@@ -34,9 +34,6 @@ export interface IRecordPrams {
 	shop: any
 }
 
-export interface IRecordBatchPrams {
-	data: IRecordBatchParamsData
-}
 
 export interface Irecord {
 	params: IRecordPrams
@@ -45,7 +42,7 @@ export interface Irecord {
 }
 
 export interface IrecordBatch {
-	params: IRecordBatchPrams[]
+	params: IRecordBatchParamsData[]
 	royalty: any
 	commission: any
 	accountAddress: any
@@ -257,7 +254,7 @@ const web3Model = {
 				const currencyAddress = '0x0000000000000000000000000000000000000000'
 
 				for (const data of params) {
-					const prod = data.data;
+					const prod = data;
 					const quantity: any = prod.quantity
 					if (!royalty) royalty = 0
 					const beneficiaries: Beneficiary[] = []
