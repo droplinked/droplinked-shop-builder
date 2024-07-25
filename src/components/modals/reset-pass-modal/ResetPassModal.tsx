@@ -19,39 +19,36 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   const onSubmit = async (params: IforgetPasswordService) => {
     try {
       await mutateAsync(params)
-      showToast({ message: `Send an email to : ${params.email}`, type: "success" });
-      close();
-    } catch (error) {
+      showToast({ message: `Send an email to : ${params.email}`, type: "success" })
+      close()
+    }
+    catch (error) {
       showToast({ message: error?.response?.data?.data?.message || error?.message, type: "error" })
     }
   }
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required'),
+    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required')
   })
 
   return (
     <AppModal open={show} close={close} title="Forgot Password">
       <Formik
-        initialValues={{
-          email: '',
-        }}
+        initialValues={{ email: '' }}
         validationSchema={formSchema}
+        validateOnChange={false}
         onSubmit={onSubmit}
         validateOnBlur
       >
-
         {({ errors, values, setFieldValue }) => (
           <Form>
             <VStack align={"stretch"} spacing={4}>
-              <AppTypography fontSize="14px" color={"#FFF"}>Please enter the email address you’ve been registered for your store, we will send you an email to help you change your password</AppTypography>
+              <AppTypography fontSize={14} color={"#fff"}>Please enter the email address you’ve been registered for your store, we will send you an email to help you change your password</AppTypography>
               <AppInput
                 name="email"
-                isRequired
                 label={"Email"}
                 error={errors.email}
                 value={values.email}
-                type={"email"}
                 onChange={(e) => setFieldValue("email", e.target.value)}
               />
               <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Send Verification</BasicButton>
@@ -63,7 +60,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         )}
       </Formik>
     </AppModal>
-  );
-};
+  )
+}
 
-export default ResetPassModal;
+export default ResetPassModal

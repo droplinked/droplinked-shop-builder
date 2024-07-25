@@ -1,4 +1,4 @@
-import { Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Flex, Text, useDisclosure, Input, Button } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTable from 'components/common/table/AppTable';
 import useAppToast from 'functions/hooks/toast/useToast';
@@ -11,15 +11,38 @@ import DetailsModal from './parts/detailsModal/DetailsModal';
 import SkuTableOptions from './parts/options/SkuTableOptions';
 import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function SkuTable() {
-    const { showToast } = useAppToast()
-    const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext)
+    const { showToast } = useAppToast();
+    const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext);
     const [Sku, setSku] = useState(null)
-    const { getRows } = SkuTableModel
-    const recordModal = useDisclosure()
-    const editModal = useDisclosure()
-    const detailsModal = useDisclosure()
+    const { getRows } = SkuTableModel;
+    const recordModal = useDisclosure();
+    const editModal = useDisclosure();
+    const detailsModal = useDisclosure();
+    const [generalPrice, setGeneralPrice] = useState();
+    const [generalQuantity, setGeneralQuantity] = useState(0);
+
+    const handleGeneralPriceChange = (e) => {
+        const newPrice = e.target.value;
+        setGeneralPrice(newPrice);
+        const updatedSku = state.sku.map(sku => ({
+            ...sku,
+            price: newPrice
+        }));
+        updateState("sku", updatedSku);
+    };
+
+    const handleGeneralQuantityChange = (e) => {
+        const newQuantity = e.target.value;
+        setGeneralQuantity(newQuantity);
+        const updatedSku = state.sku.map(sku => ({
+            ...sku,
+            quantity: newQuantity
+        }));
+        updateState("sku", updatedSku);
+    };
 
     const checkDropLegalUsage = () => {
         const { errorMessage, key } = productTypeLegalUsageMap["drop"]
@@ -34,9 +57,21 @@ function SkuTable() {
 
         return state.sku.map((el, key) => {
             return {
-                ...getRows({ sku: el, state, key, available_variant }),
+                ...getRows({ sku: el, state, key, available_variant, onPriceChange: handleGeneralPriceChange, generalPrice, onQuantityChange: handleGeneralQuantityChange, generalQuantity }),
                 controls: {
-                    caption: "Drop",
+                    caption:
+                        <Flex flexDirection={"column"} alignItems={"center"} gap={"16px"}>
+                            <AppTypography>Drop</AppTypography>
+                            <SkuTableOptions
+                                element={el}
+                                updateSku={(sku) => setSku(sku)}
+                                elementKey={key}
+                                modals={{
+                                    editModal: editModal.onOpen,
+                                    recordMoal: checkDropLegalUsage
+                                }}
+                            />
+                        </Flex>,
                     props: {
                         style: { textAlign: "center" }
                     },
@@ -113,4 +148,4 @@ function SkuTable() {
     )
 }
 
-export default SkuTable
+export default SkuTable;
