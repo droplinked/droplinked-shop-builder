@@ -74,7 +74,7 @@ const SkuTableModel = ({
                     caption: 
                         <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
                             <AppTypography>Quantity</AppTypography>
-                            {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalPrice} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalPrice} onChange={onQuantityChange} name={"quantity"} placeholder="0" />}
+                            {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"quantity"} placeholder="0" />}
                         </Flex>,
                     value: product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.quantity} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
                 },
