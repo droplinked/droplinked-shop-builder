@@ -38,6 +38,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         }}
         validationSchema={formSchema}
         onSubmit={onSubmit}
+        validateOnBlur
       >
 
         {({ errors, values, setFieldValue }) => (

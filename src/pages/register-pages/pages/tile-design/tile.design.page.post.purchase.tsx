@@ -15,7 +15,7 @@ const TileDesignPagePostPurchase = () => {
         },
     } = useContext(TileDesignContext);
     const grey_if_dark_mode = CONTAINER.darkMode ? "#C2C2C2" : "#000000";
-    const black_if_dark_mode = CONTAINER.darkMode ? "#000000" : "#FFFFFF";
+    const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
     return (
         <Box bg={black_if_dark_mode} color={grey_if_dark_mode} width={"full"} maxW={"70%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <VStack spacing={"10px"} padding={"16px"} rounded={"8px"} bg={"#1E9473"} alignItems={"flex-start"}>

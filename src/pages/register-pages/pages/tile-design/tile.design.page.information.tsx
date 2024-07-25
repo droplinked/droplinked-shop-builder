@@ -38,7 +38,7 @@ const TileDesignPageInformation = () => {
         },
     } = useContext(TileDesignContext);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
-    const black_if_dark_mode = CONTAINER.darkMode ? "#000000" : "#FFFFFF";
+    const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
 
     return (
         <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>

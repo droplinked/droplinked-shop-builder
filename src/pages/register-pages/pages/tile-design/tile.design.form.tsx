@@ -103,7 +103,6 @@ const TileDesignForm = () => {
         state: { design, current },
         methods: { updateFormFields, updateState },
     } = useContext(TileDesignContext);
-    console.log(current);
     if (current.section === "none") return null;
     const change_theme = (toDarkMode: boolean) => {
         const {
@@ -117,7 +116,7 @@ const TileDesignForm = () => {
                           ...design?.PRODUCT,
                           CONTAINER: {
                               ...CONTAINER,
-                              backgroundColor: CONTAINER.backgroundColor === "#FFFFFF" ? "#000000" : CONTAINER.backgroundColor,
+                              backgroundColor: CONTAINER.backgroundColor === "#FFFFFF" ? "#141414" : CONTAINER.backgroundColor,
                               darkMode: toDarkMode,
                           },
                           TITLE: {
@@ -126,7 +125,7 @@ const TileDesignForm = () => {
                           PRICE: { color: PRICE.color === "#000000" ? "#FFFFFF" : PRICE.color },
                           BUTTON: {
                               ...BUTTON,
-                              backgroundColor: BUTTON.backgroundColor === "#000000" ? "#FFFFFF" : BUTTON.backgroundColor,
+                              backgroundColor: BUTTON.backgroundColor === "#141414" ? "#FFFFFF" : BUTTON.backgroundColor,
                               color: BUTTON.color === "#FFFFFF" ? "#000000" : BUTTON.color,
                           },
                       },
@@ -136,7 +135,7 @@ const TileDesignForm = () => {
                           ...design?.PRODUCT,
                           CONTAINER: {
                               ...CONTAINER,
-                              backgroundColor: CONTAINER.backgroundColor === "#000000" ? "#FFFFFF" : CONTAINER.backgroundColor,
+                              backgroundColor: CONTAINER.backgroundColor === "#141414" ? "#FFFFFF" : CONTAINER.backgroundColor,
                               darkMode: toDarkMode,
                           },
                           TITLE: {
@@ -145,7 +144,7 @@ const TileDesignForm = () => {
                           PRICE: { color: PRICE.color === "#FFFFFF" ? "#000000" : PRICE.color },
                           BUTTON: {
                               ...BUTTON,
-                              backgroundColor: BUTTON.backgroundColor === "#FFFFFF" ? "#000000" : BUTTON.backgroundColor,
+                              backgroundColor: BUTTON.backgroundColor === "#FFFFFF" ? "#141414" : BUTTON.backgroundColor,
                               color: BUTTON.color === "#000000" ? "#FFFFFF" : BUTTON.color,
                           },
                       },

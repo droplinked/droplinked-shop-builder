@@ -16,7 +16,7 @@ const TileDesignPagePayment = () => {
     } = useContext(TileDesignContext);
     const [checked, setChecked] = useState(false);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
-    const black_if_dark_mode = CONTAINER.darkMode ? "#000000" : "#FFFFFF";
+    const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
     const grey_if_dark_mode = CONTAINER.darkMode ? "#C2C2C2" : "#000000";
 
     return (
