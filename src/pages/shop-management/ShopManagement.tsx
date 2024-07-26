@@ -1,14 +1,10 @@
 import { Box, Divider, Flex, Heading } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useEffect } from 'react'
+import React from 'react'
 import ShopList from './shop-list/ShopList'
 
 function ShopManagement() {
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [])
-
     return (
         <Flex justifyContent={"center"} marginBlock={"120px"}>
             <Box

@@ -13,9 +13,9 @@ interface ILink {
 
 function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void }) {
     const links: ILink[] = [
-        { label: "Change Shop", href: "/shop-management", icon: <AppIcons.WhiteShopIcon /> },
-        { label: "View Shop", href: `${SHOP_URL}/${shop?.name}`, icon: <AppIcons.Eye /> },
         { label: "Credit", href: "/dashboard/settings/coupons", icon: <AppIcons.WhiteOpenWallet /> },
+        { label: "View Shop", href: `${SHOP_URL}/${shop?.name}`, icon: <AppIcons.Eye /> },
+        { label: "Change Shop", href: "/shop-management", icon: <AppIcons.WhiteShopIcon /> },
         { label: "Settings", href: "/dashboard/settings/shop-info", icon: <AppIcons.SettingIcon /> },
         { label: "Help", href: "https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked", icon: <AppIcons.HelpCenter /> }
     ]
