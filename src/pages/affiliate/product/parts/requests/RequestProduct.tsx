@@ -1,4 +1,4 @@
-import { Box, HStack, useDisclosure } from '@chakra-ui/react'
+import { HStack, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTable from 'components/common/table/AppTable'
 import React, { useContext, useState } from 'react'
@@ -29,14 +29,14 @@ function RequestProduct() {
                         },
                         value: (
                             <HStack gap={2}>
-                                <Box>
-                                    <BasicButton onClick={() => {
+                                <BasicButton
+                                    onClick={() => {
                                         onOpen()
                                         setSku(el)
-                                    }}>
-                                        Request
-                                    </BasicButton>
-                                </Box>
+                                    }}
+                                >
+                                    Request
+                                </BasicButton>
                             </HStack>
                         )
                     }
