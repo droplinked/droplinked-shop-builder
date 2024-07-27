@@ -15,7 +15,7 @@ const hashkeyModel = {
 					appDevelopment ? 'testnet' : 'mainnet'
 				}`
 			case 'POLYGON':
-				return `https://${appDevelopment ? 'mumbai.' : ''}polygonscan.com/tx/${hashkey}`
+				return `https://${appDevelopment ? 'amoy.' : ''}polygonscan.com/tx/${hashkey}`
 			case 'XRPLSIDECHAIN':
 				return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
 			case 'BINANCE':
