@@ -95,6 +95,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
             if (foundPlan) {
                 setSelectedPlan(foundPlan);
                 !loading && loginWithGoogle();
+                purchaseModal.onOpen();
             }
         }
     }, [plans]);
