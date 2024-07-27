@@ -29,20 +29,22 @@ function Mission({ mission }: { mission: Participation }) {
                             </Flex>
                         </Flex>
                         <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "#292929"} />
-                        <AppTypography fontSize={12} fontWeight={400} color={mission.isCompleted ? "#2BCFA1" : "#fff"}>{mission.description}</AppTypography>
+                        <AppTypography fontSize={12} fontWeight={400} color={mission.isCompleted ? "#2BCFA1" : "#fff"} whiteSpace={"pre-line"}>{mission.description}</AppTypography>
                     </Flex>
-                    {
-                        mission.isCompleted ?
-                            <AppTypography textAlign={"center"} fontSize={20} fontWeight={900} color={"#2BCFA1"}>Mission completed!</AppTypography> :
-                            <BasicButton
-                                onClick={() => {
-                                    setSelectedMission(mission)
-                                    onOpen()
-                                }}
-                            >
-                                Details
-                            </BasicButton>
-                    }
+                    <Flex flexGrow={1} direction="column" justifyContent="flex-end">
+                        {
+                            mission.isCompleted ?
+                                <AppTypography textAlign={"center"} fontSize={20} fontWeight={900} color={"#2BCFA1"}>Mission completed!</AppTypography> :
+                                <BasicButton
+                                    onClick={() => {
+                                        setSelectedMission(mission)
+                                        onOpen()
+                                    }}
+                                >
+                                    Details
+                                </BasicButton>
+                        }
+                    </Flex>
                 </Flex>
             </GamificationCard>
             {isOpen && <MissionReviewModal isOpen={isOpen} onClose={onClose} mission={selectedMission} />}
