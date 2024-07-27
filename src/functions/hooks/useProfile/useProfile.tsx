@@ -20,6 +20,5 @@ export function useProfile() {
     setShopData,
     logoutUser,
     updateShopData,
-    isLoading: loading,
   };
 }

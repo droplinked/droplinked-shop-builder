@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Flex, useDisclosure, Spinner } from "@chakra-ui/react";
+import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
-    const { profile, isLoading: profileLoading } = useProfile();
+    const { profile } = useProfile();
     const purchaseModal = useDisclosure();
     const signInModal = useDisclosure();
     const { price, type } = plan;
@@ -42,26 +42,6 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isPlansPage = location.pathname === "/plans";
 
     const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
-    const [hasProfile, setHasProfile] = useState<boolean>(!!profile);
-    const [isProfileUpdating, setIsProfileUpdating] = useState<boolean>(false);
-    const [shouldOpenPurchaseModal, setShouldOpenPurchaseModal] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (profileLoading) {
-            setIsProfileUpdating(true);
-        } else {
-            setIsProfileUpdating(false);
-            setHasProfile(!!profile);
-            // Check if the flag is set to open the purchase modal
-            if (shouldOpenPurchaseModal && !isProfileUpdating) {
-                purchaseModal.onOpen();
-                setShouldOpenPurchaseModal(false); // Reset the flag after opening the modal
-            }
-        }
-    }, [profile, profileLoading, shouldOpenPurchaseModal, isProfileUpdating]);
-
-    console.log(shouldOpenPurchaseModal)
-    console.log(isProfileUpdating)
 
     const handlePlanPurchase = () => {
         if (!profile) return signInModal.onOpen();
@@ -71,10 +51,14 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
     const handleAuthModalClose = useCallback(() => {
         signInModal.onClose();
-        if (isPlansPage && hasProfile && !isProfileUpdating) {
-            setShouldOpenPurchaseModal(true); // Set the flag to open purchase modal
+        openPurchaseModal()
+    }, [signInModal]);
+
+    const openPurchaseModal = useCallback(() => {
+        if (profile && !signInModal.isOpen && isPlansPage) {
+            purchaseModal.onOpen();
         }
-    }, [isPlansPage, hasProfile, isProfileUpdating, signInModal]);
+    }, [profile, signInModal.isOpen, isPlansPage]);
 
     const processLogin = async (data: any) => {
         try {
@@ -102,10 +86,10 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         signInModal.onClose();
     }, [login, processLogin]);
 
+    const access_token = searchParams.get("access_token");
+    const refresh_token = searchParams.get("refresh_token");
+    const subscription_id = searchParams.get("subscriptionId");
     useEffect(() => {
-        const access_token = searchParams.get("access_token");
-        const refresh_token = searchParams.get("refresh_token");
-        const subscription_id = searchParams.get("subscriptionId");
 
         if (access_token && refresh_token) {
             localStorage.setItem('access_token', access_token);

@@ -34,7 +34,7 @@ const refresh_access_token = async () => {
         return data.access_token
     } catch (error) {
         AppStorage.clearStorage()
-        console.log("error error")
+        console.log(error)
         // window.location.replace(window.location.origin)
     }
 }
