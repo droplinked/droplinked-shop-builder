@@ -284,7 +284,6 @@ const web3Model = {
 					})
 				}
 
-
 				const dataDeploy: IdeployBatch = {
 					blockchain,
 					deployHash: '',
@@ -292,7 +291,6 @@ const web3Model = {
 					royalty,
 					commission
 				}
-
 
 				const res = await recordModel.record({
 					product,
@@ -302,9 +300,11 @@ const web3Model = {
 					shopAddress,
 					products
 				})
+
 				if (res) dataDeploy.deployHash = res.transactionHash
 
 				await recordModel.deployBatch(dataDeploy)
+
 				resolve(dataDeploy.deployHash)
 			} catch (error) {
 				reject(error)

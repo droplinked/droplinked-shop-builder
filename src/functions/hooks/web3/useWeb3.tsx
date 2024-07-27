@@ -3,27 +3,49 @@ import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/dto/chains'
 import useHookStore from '../store/useHookStore'
-import web3Model, { IAcceptData, IRecordPrams, IRequestData } from './models'
+import web3Model, { IAcceptData, IrecordBatch, IRecordPrams, IRequestData } from './models'
 
 // method: "record" | "request" | "accept"
 export type IWeb3 = {
     method: "record"
-    params: IRecordPrams
+    params: IRecordPrams | any
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
 } | {
     method: "request"
     params: IRequestData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
 } | {
     method: "accept"
     params: IAcceptData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
+} | {
+    method: "record_batch"
+    params: IrecordBatch | any
+    chain: string
+    stack: any
+    wallets: Array<IUserWalletsProps>
+    commission: number
+    royalty: number
+    product: any
+    shop: any
 }
 
 interface IGetChain {
@@ -38,7 +60,7 @@ interface ILogin {
 }
 
 const useAppWeb3 = () => {
-    const { record, request, accept } = web3Model
+    const { record, request, accept, recordBatch } = web3Model
     const { app: { updateWallet } } = useHookStore()
 
     const getChain = ({ chain, wallets }: IGetChain) => wallets ? wallets.find(el => el.type === chain && el?.address) : null
@@ -72,7 +94,7 @@ const useAppWeb3 = () => {
         })
     }
 
-    const web3 = ({ method, params, chain, wallets, stack }: IWeb3) => {
+    const web3 = ({ method, params, chain, wallets, stack, product, commission, royalty, shop }: IWeb3) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
@@ -84,6 +106,9 @@ const useAppWeb3 = () => {
                     resolve(requests)
                 } else if (method === "accept") {
                     const requests = await accept({ params, accountAddress, stack })
+                    resolve(requests)
+                } else if (method === "record_batch") {
+                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product, shop, commission, royalty, stack,  })
                     resolve(requests)
                 }
             } catch (error) {
