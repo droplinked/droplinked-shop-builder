@@ -40,10 +40,12 @@ import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Email } from "./email.svg";
 import { ReactComponent as Enterprise } from "./enterprise.svg";
 import { ReactComponent as ETH } from "./eth.svg";
+import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as File } from "./file.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
 import { ReactComponent as Gallery } from "./gallery.svg";
+import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
@@ -71,6 +73,7 @@ import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
+import { ReactComponent as Paint } from "./paint.svg";
 import { ReactComponent as Pen } from "./pen.svg";
 import { ReactComponent as Personalize } from "./personalize.svg";
 import { ReactComponent as Phantom } from "./phantom.svg";
@@ -82,6 +85,7 @@ import { ReactComponent as VariantsIcon } from "./products-active-icon.svg";
 import { ReactComponent as ProductsIcon } from "./products-icon.svg";
 import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
 import { ReactComponent as RedTrash } from "./red-trash.svg";
+import { ReactComponent as Redbelly } from "./redbelly.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
 import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
@@ -99,6 +103,7 @@ import { ReactComponent as Starter } from "./starter.svg";
 import { ReactComponent as StripeS } from "./stripe-s-icon.svg";
 import { ReactComponent as Stripe } from "./stripe.svg";
 import { ReactComponent as Stacks } from "./stx.svg";
+import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
 import { ReactComponent as TearIcon } from "./tear-icon.svg";
 import { ReactComponent as ThreeStars } from "./three-stars.svg";
 import { ReactComponent as Tick } from "./tick.svg";
@@ -120,10 +125,6 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
-import { ReactComponent as Gamification } from "./gamification.svg";
-import { ReactComponent as Paint } from "./paint.svg";
-import { ReactComponent as Redbelly } from "./redbelly.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -251,7 +252,8 @@ const AppIcons = {
   MultiShopManagement,
   Gamification,
   Paint,
-  Redbelly
+  Redbelly,
+  Eye
 }
 
 export default AppIcons

@@ -5,6 +5,7 @@ import { typesProperties } from 'lib/utils/statics/types'
 import { array, number, object, string } from 'yup'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
+import { isDateExpired } from 'lib/utils/heper/helpers'
 
 interface ImakeData {
     state: IproductState
@@ -81,6 +82,11 @@ const ButtonsProductClass = ({
                     },
                     title: string().required(),
                 })
+
+                if (state.launchDate && isDateExpired(state.launchDate)) {
+                    error.message = "Please choose a further date for launch time"
+                    throw error
+                }
 
                 await schema.validate(state)
                 resolve(true)
