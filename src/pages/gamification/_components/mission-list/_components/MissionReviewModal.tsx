@@ -73,7 +73,7 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                         <>
                             <Box position="relative">
                                 {isLoading && <GamificationSpinner />}
-                                <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" filter={isLoading ? 'blur(4px)' : 'none'}>
+                                <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" whiteSpace={"pre-line"} filter={isLoading ? 'blur(4px)' : 'none'}>
                                     <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Description:</Box> {mission.description}
                                 </AppTypography>
                             </Box>
