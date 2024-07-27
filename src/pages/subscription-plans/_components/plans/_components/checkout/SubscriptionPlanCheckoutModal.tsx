@@ -1,15 +1,17 @@
-import AppModal, { IAppModal } from 'components/common/modal/AppModal'
+import AppModal from 'components/common/modal/AppModal'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
 import StripeModal from './_components/StripeModal'
 
-interface Props extends IAppModal {
+interface Props {
     selectedPlan: SubscriptionPlan
+    isOpen: boolean;
+    close: () => void
 }
 
-function SubscriptionPlanCheckoutModal({ selectedPlan, open, close }: Props) {
+function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close }: Props) {
     const [clientSecret, setClientSecret] = useState<string | null>(null)
     const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
 
@@ -22,7 +24,7 @@ function SubscriptionPlanCheckoutModal({ selectedPlan, open, close }: Props) {
     return (
         <AppModal
             close={close}
-            open={open}
+            open={isOpen}
             size="2xl"
         >
             {renderContent()}
