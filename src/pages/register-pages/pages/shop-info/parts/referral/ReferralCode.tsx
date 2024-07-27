@@ -28,7 +28,7 @@ const ReferralCode = ({ States: { referralDetails: { code, customCode, percent }
     const debounced_code = useDebounce(values?.customCode);
     return (
         <Flex direction="column" gap="36px">
-            <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins our community using your referral code, you'll receive {percent}% of our commissions from their orders.</AppTypography></Flex>
+            <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins the community using your code, you receive {percent}% commission of any plan or subscription.</AppTypography></Flex>
 
             <WithPermission requiredPermission="create_referral_code" >
                 <Flex direction="column" gap="12px">
