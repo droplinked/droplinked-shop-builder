@@ -33,7 +33,7 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
     },
     [Chain.BASE]: {
-        [Network.TESTNET]: { chainName: "Base Göerli", chainId: "0x14a33", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://goerli.base.org'] },
+        [Network.TESTNET]: { chainName: "Base Sepolia", chainId: "0x14a34", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://sepolia.base.org'] },
         [Network.MAINNET]: { chainName: "Base Mainnet", chainId: "0x2105", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.base.org/'] }
     },
     [Chain.LINEA]: {
