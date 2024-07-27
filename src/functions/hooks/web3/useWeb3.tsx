@@ -3,7 +3,7 @@ import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/dto/chains'
 import useHookStore from '../store/useHookStore'
-import web3Model, { IAcceptData, IRecordPrams, IRequestData } from './models'
+import web3Model, { IAcceptData, IrecordBatch, IRecordBatchParamsData, IRecordPrams, IRequestData } from './models'
 
 // method: "record" | "request" | "accept"
 export type IWeb3 = {
@@ -24,6 +24,12 @@ export type IWeb3 = {
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+} | {
+    method: "record_batch"
+    params: IrecordBatch | any
+    chain: string
+    stack: any
+    wallets: Array<IUserWalletsProps>
 }
 
 interface IGetChain {
@@ -38,7 +44,7 @@ interface ILogin {
 }
 
 const useAppWeb3 = () => {
-    const { record, request, accept } = web3Model
+    const { record, request, accept, recordBatch } = web3Model
     const { app: { updateWallet } } = useHookStore()
 
     const getChain = ({ chain, wallets }: IGetChain) => wallets ? wallets.find(el => el.type === chain && el?.address) : null
@@ -77,6 +83,7 @@ const useAppWeb3 = () => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
                 if (method === "record") {
+                    console.log("params", params)
                     const records = await record({ params, accountAddress, stack })
                     resolve(records)
                 } else if (method === "request") {
@@ -84,6 +91,11 @@ const useAppWeb3 = () => {
                     resolve(requests)
                 } else if (method === "accept") {
                     const requests = await accept({ params, accountAddress, stack })
+                    resolve(requests)
+                } else if (method === "record_batch") {
+                    console.log("params", params)
+                    console.log("chain", chain)
+                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product: params.product, shop: params.shop, commission: params[0].data.commission, royalty: params[0].data.royalty, stack,  })
                     resolve(requests)
                 }
             } catch (error) {

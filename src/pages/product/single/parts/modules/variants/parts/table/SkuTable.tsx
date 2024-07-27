@@ -52,6 +52,10 @@ function SkuTable() {
         showToast({ message: errorMessage, type: "error" })
     }
 
+    const setAllSku = () => {
+        setSku(state.sku);
+    };
+
     const rows = useMemo(() => {
         if (!state.sku.length) return null
 
@@ -64,7 +68,7 @@ function SkuTable() {
                             <AppTypography>Drop</AppTypography>
                             <SkuTableOptions
                                 element={el}
-                                updateSku={(sku) => setSku(sku)}
+                                updateSku={setAllSku}
                                 elementKey={key}
                                 modals={{
                                     editModal: editModal.onOpen,
