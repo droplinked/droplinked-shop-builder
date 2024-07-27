@@ -59,26 +59,28 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     }
                 </AppTypography>
 
-                {
-                    features.map(featureGroup => {
-                        if (featureGroup.value.every(feature => !feature.value)) return null
-                        return <Flex key={featureGroup.key} direction={"column"} gap={2}>
-                            <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography>
-                            {
-                                featureGroup.value.filter(feature => feature.value).map(feature =>
-                                    <Flex key={feature.key} alignItems={"start"} gap={2}>
-                                        <AppIcons.Tick style={{ flexShrink: 0 }} />
-                                        <AppTypography color={"white"}>
-                                            {`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
-                                        </AppTypography>
-                                    </Flex>
-                                )
-                            }
-                        </Flex>
-                    })
-                }
+                <Flex direction={"column"} gap={2}>
+                    {
+                        features.map(featureGroup => {
+                            if (featureGroup.value.every(feature => !feature.value)) return null
+                            return <Flex key={featureGroup.key} direction={"column"} gap={2}>
+                                {/* <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography> */}
+                                {
+                                    featureGroup.value.filter(feature => feature.value).map(feature =>
+                                        <Flex key={feature.key} alignItems={"start"} gap={2}>
+                                            <AppIcons.Tick style={{ flexShrink: 0 }} />
+                                            <AppTypography color={"white"}>
+                                                {`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
+                                            </AppTypography>
+                                        </Flex>
+                                    )
+                                }
+                            </Flex>
+                        })
+                    }
+                </Flex>
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={purchaseModal.isOpen} close={purchaseModal.onClose} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} isOpen={purchaseModal.isOpen} close={purchaseModal.onClose} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={signInModal.onClose} type={MODAL_TYPE.SIGNUP} />}
         </>
     )
