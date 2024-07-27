@@ -9,7 +9,7 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://bsc-dataseed.binance.org/'] }
     },
     [Chain.POLYGON]: {
-        [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
+        [Network.TESTNET]: { chainName: "Polygon Amoy Testnet", chainId: "0x13882", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-amoy.polygon.technology'] },
         [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
     },
     [Chain.XRPLSIDECHAIN]: {

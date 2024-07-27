@@ -47,7 +47,7 @@ namespace OrderInformationModel {
             case "STACKS":
                 return `https://explorer.hiro.so/txid/${transactionId}?chain=${appDevelopment ? "testnet" : "mainnet"}`
             case "POLYGON":
-                return `https://${appDevelopment ? "mumbai." : ""}polygonscan.com/tx/${transactionId}`
+                return `https://${appDevelopment ? "amoy." : ""}polygonscan.com/tx/${transactionId}`
             case "XRPLSIDECHAIN":
                 return `https://evm-sidechain.xrpl.org/tx/${transactionId}`
             case "BINANCE":
