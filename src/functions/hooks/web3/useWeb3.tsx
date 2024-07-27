@@ -3,33 +3,49 @@ import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/dto/chains'
 import useHookStore from '../store/useHookStore'
-import web3Model, { IAcceptData, IrecordBatch, IRecordBatchParamsData, IRecordPrams, IRequestData } from './models'
+import web3Model, { IAcceptData, IrecordBatch, IRecordPrams, IRequestData } from './models'
 
 // method: "record" | "request" | "accept"
 export type IWeb3 = {
     method: "record"
-    params: IRecordPrams
+    params: IRecordPrams | any
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
 } | {
     method: "request"
     params: IRequestData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
 } | {
     method: "accept"
     params: IAcceptData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission?: number
+    royalty?: number
+    product?: any
+    shop?: any
 } | {
     method: "record_batch"
     params: IrecordBatch | any
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
+    commission: number
+    royalty: number
+    product: any
+    shop: any
 }
 
 interface IGetChain {
@@ -78,12 +94,11 @@ const useAppWeb3 = () => {
         })
     }
 
-    const web3 = ({ method, params, chain, wallets, stack }: IWeb3) => {
+    const web3 = ({ method, params, chain, wallets, stack, product, commission, royalty, shop }: IWeb3) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
                 if (method === "record") {
-                    console.log("params", params)
                     const records = await record({ params, accountAddress, stack })
                     resolve(records)
                 } else if (method === "request") {
@@ -93,9 +108,8 @@ const useAppWeb3 = () => {
                     const requests = await accept({ params, accountAddress, stack })
                     resolve(requests)
                 } else if (method === "record_batch") {
-                    console.log("params", params)
-                    console.log("chain", chain)
-                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product: params[0].product, shop: params[0].shop, commission: params[0].data.commission, royalty: params[0].data.royalty, stack,  })
+                    console.log({ params, chain, wallets, stack, product, commission, royalty, shop })
+                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product, shop, commission, royalty, stack,  })
                     resolve(requests)
                 }
             } catch (error) {

@@ -40,27 +40,29 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
     const { app: { user: { wallets } } } = useHookStore()
-console.log(sku)
+
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
-        console.log(data)
         try {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : isRecordAllSKUs ? Array.isArray(sku) && sku.reduce((sum, sku) => sum + sku.quantity, 0).toString() : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
             const { commission, quantity, blockchain, royalty } = data
-            const params = { commission, quantity, blockchain, royalty }
+            const params = isRecordAllSKUs ? 
+                Array.isArray(sku) && sku.map(skuItem => ({
+                    quantity: skuItem.quantity.toString(),
+                    sku: skuItem,
+                    imageUrl: image
+                })) : { commission, quantity, blockchain, royalty }
 
             const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
             const deployhash = isRecordAllSKUs ? 
                 await web3({
                     method: "record_batch",
-                    params: [{
-                        data: params,
-                        product,
-                        sku,
-                        imageUrl: image,
-                        shop,
-                    }],
+                    params,
+                    product,
+                    shop,
+                    commission,
+                    royalty,
                     chain: data.blockchain,
                     wallets,
                     stack
@@ -79,7 +81,6 @@ console.log(sku)
                     wallets,
                     stack
                 })
-                console.log("deployhash", deployhash)
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
