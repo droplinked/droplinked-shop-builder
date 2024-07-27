@@ -56,6 +56,8 @@ function SkuTable() {
         setSku(state.sku);
     };
 
+    const allSkusRecorded = state?.sku?.every(sku => sku?.recordData && sku?.recordData?.status === "RECORDED");
+
     const rows = useMemo(() => {
         if (!state.sku.length) return null
 
@@ -66,16 +68,17 @@ function SkuTable() {
                     caption:
                         <Flex flexDirection={"column"} alignItems={"center"} gap={"16px"}>
                             <AppTypography>Drop</AppTypography>
-                            {el.recordData.status !== "RECORDED" && 
-                            <SkuTableOptions
-                                element={el}
-                                updateSku={setAllSku}
-                                elementKey={key}
-                                modals={{
-                                    editModal: editModal.onOpen,
-                                    recordMoal: checkDropLegalUsage
-                                }}
-                            />}
+                            {!allSkusRecorded && 
+                                <SkuTableOptions
+                                    element={el}
+                                    updateSku={setAllSku}
+                                    elementKey={key}
+                                    modals={{
+                                        editModal: editModal.onOpen,
+                                        recordMoal: checkDropLegalUsage
+                                    }}
+                                />
+                            }
                         </Flex>,
                     props: {
                         style: { textAlign: "center" }

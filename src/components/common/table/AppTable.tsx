@@ -18,7 +18,7 @@ export interface ITableRows {
 
 export interface IAppTable {
     vertical?: boolean
-    rows?: Array<ITableRows> | ITableRows
+    rows?: Array<ITableRows> | ITableRows | any
     empty?: any
     props?: {
         tr?: TableRowProps
