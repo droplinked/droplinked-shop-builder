@@ -42,7 +42,7 @@ const CompleteGoogelModal = ({ show, close, switchModal, isFromPlansPage, subscr
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
                 const status = data.user.status;
-                if (isFromPlansPage) {
+                if (!isFromPlansPage) {
                     const {href, dashboard} = navigating_user_based_on_status(status, data);
                     dashboard ? shopNavigate(href) : navigate(href)
                 }

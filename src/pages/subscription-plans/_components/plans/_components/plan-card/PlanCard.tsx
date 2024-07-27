@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
@@ -32,7 +32,9 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isEnterprise = type === "ENTERPRISE";
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title;
 
-    const { app: { login, loading } } = useHookStore();
+    const {
+        app: { login, loading },
+    } = useHookStore();
     const { showToast } = useAppToast();
     const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
@@ -45,75 +47,61 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
     const handlePlanPurchase = () => {
         if (!profile) return signInModal.onOpen();
-        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com";
+        if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com");
         purchaseModal.onOpen();
     };
 
-    const handleAuthModalClose = useCallback(() => {
+    const handleAuthModalClose = () => {
         signInModal.onClose();
-        openPurchaseModal()
-    }, [signInModal]);
-
-    const openPurchaseModal = useCallback(() => {
         if (profile && !signInModal.isOpen && isPlansPage) {
             purchaseModal.onOpen();
         }
-    }, [profile, signInModal.isOpen, isPlansPage]);
-
-    const processLogin = async (data: any) => {
-        try {
-            const { user } = data;
-            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
-            if (status === "DELETED")
-                return showToast({ message: "This account has been deleted", type: "error" });
-
-            if (user.type !== "SHOPBUILDER")
-                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
-
-            if (!isPlansPage) {
-                const { href, dashboard } = navigating_user_based_on_status(status, data);
-                dashboard ? shopNavigate(href) : navigate(href);
-            }
-            signInModal.onClose();
-        } catch (error) {
-            showToast({ message: error.message, type: "error" });
-        }
     };
 
-    const loginWithGoogle = useCallback(async (access_token: string, refresh_token: string) => {
-        let result = await login({ type: "get", access_token, refresh_token, params: { access_token } });
-        if (result) await processLogin(result);
-        signInModal.onClose();
-    }, [login, processLogin]);
+    const params_variables = useMemo(
+        () => ({
+            access_token: searchParams.get("access_token"),
+            refresh_token: searchParams.get("refresh_token"),
+            subscription_id: searchParams.get("subscriptionId"),
+        }),
+        [searchParams]
+    );
 
-    const access_token = searchParams.get("access_token");
-    const refresh_token = searchParams.get("refresh_token");
-    const subscription_id = searchParams.get("subscriptionId");
+    const loginWithGoogle = useCallback(async () => {
+        await login({ type: "get", access_token: params_variables?.access_token, refresh_token: params_variables?.refresh_token, params: { access_token: params_variables?.access_token } })
+            .then((res) => {
+                const { user } = res;
+                const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
+                if (status === "DELETED") return showToast({ message: "This account has been deleted", type: "error" });
+
+                if (user.type !== "SHOPBUILDER") return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
+
+                if (!isPlansPage) {
+                    const { href, dashboard } = navigating_user_based_on_status(status, res);
+                    dashboard ? shopNavigate(href) : navigate(href);
+                }
+            })
+            .catch((err) => {
+                showToast({ message: err.message, type: "error" });
+            })
+            .finally(() => {
+                signInModal.onClose();
+            });
+    }, []);
+
     useEffect(() => {
-
-        if (access_token && refresh_token) {
-            localStorage.setItem('access_token', access_token);
-            localStorage.setItem('refresh_token', refresh_token);
-        }
-
-        if (access_token && refresh_token && searchParams.get("modal") === "purchase" && subscription_id && !loading) {
-            const foundPlan = plans.find(plan => plan._id === subscription_id);
+        if (params_variables?.access_token && params_variables?.refresh_token && searchParams.get("modal") === "purchase" && params_variables?.subscription_id && !loading) {
+            const foundPlan = plans.find((plan) => plan._id === params_variables?.subscription_id);
             if (foundPlan) {
                 setSelectedPlan(foundPlan);
-                loginWithGoogle(access_token, refresh_token);
+                !loading && loginWithGoogle();
             }
         }
-    }, [searchParams, plans, loading, loginWithGoogle]);
+    }, [plans]);
 
     return (
         <>
-            <Flex
-                direction={"column"}
-                gap={4}
-                borderRadius={8}
-                padding={4}
-                bgColor={"#262626"}
-            >
+            <Flex direction={"column"} gap={4} borderRadius={8} padding={4} bgColor={"#262626"}>
                 <Flex justifyContent={"center"}>
                     <PlanHeading planTitle={type} fontSize={24} iconSize={24} />
                 </Flex>
@@ -125,31 +113,37 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                 {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
 
                 <AppTypography fontSize={12} fontWeight={600} color={"white"}>
-                    {
-                        isStarter ?
-                            "Included in all plans:" :
-                            <>Everything in <Box as="span" color={"primary"} fontWeight={600}>{prevPlanTitle}</Box>, plus:</>
-                    }
+                    {isStarter ? (
+                        "Included in all plans:"
+                    ) : (
+                        <>
+                            Everything in{" "}
+                            <Box as="span" color={"primary"} fontWeight={600}>
+                                {prevPlanTitle}
+                            </Box>
+                            , plus:
+                        </>
+                    )}
                 </AppTypography>
 
-                {
-                    features.map(featureGroup => {
-                        if (featureGroup.value.every(feature => !feature.value)) return null;
-                        return <Flex key={featureGroup.key} direction={"column"} gap={2}>
-                            <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography>
-                            {
-                                featureGroup.value.filter(feature => feature.value).map(feature =>
+                {features.map((featureGroup) => {
+                    if (featureGroup.value.every((feature) => !feature.value)) return null;
+                    return (
+                        <Flex key={featureGroup.key} direction={"column"} gap={2}>
+                            <AppTypography fontWeight={500} color={"white"}>
+                                {featureGroup.title || featureGroup.key}
+                            </AppTypography>
+                            {featureGroup.value
+                                .filter((feature) => feature.value)
+                                .map((feature) => (
                                     <Flex key={feature.key} alignItems={"start"} gap={2}>
                                         <AppIcons.Tick style={{ flexShrink: 0 }} />
-                                        <AppTypography color={"white"}>
-                                            {`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
-                                        </AppTypography>
+                                        <AppTypography color={"white"}>{`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}</AppTypography>
                                     </Flex>
-                                )
-                            }
+                                ))}
                         </Flex>
-                    })
-                }
+                    );
+                })}
             </Flex>
             {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
