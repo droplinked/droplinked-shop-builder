@@ -108,7 +108,6 @@ const useAppWeb3 = () => {
                     const requests = await accept({ params, accountAddress, stack })
                     resolve(requests)
                 } else if (method === "record_batch") {
-                    console.log({ params, chain, wallets, stack, product, commission, royalty, shop })
                     const requests = await recordBatch({ params, accountAddress, blockchain: chain, product, shop, commission, royalty, stack,  })
                     resolve(requests)
                 }

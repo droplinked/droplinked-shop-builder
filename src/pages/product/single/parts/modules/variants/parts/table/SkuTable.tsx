@@ -66,6 +66,7 @@ function SkuTable() {
                     caption:
                         <Flex flexDirection={"column"} alignItems={"center"} gap={"16px"}>
                             <AppTypography>Drop</AppTypography>
+                            {el.recordData.status !== "RECORDED" && 
                             <SkuTableOptions
                                 element={el}
                                 updateSku={setAllSku}
@@ -74,7 +75,7 @@ function SkuTable() {
                                     editModal: editModal.onOpen,
                                     recordMoal: checkDropLegalUsage
                                 }}
-                            />
+                            />}
                         </Flex>,
                     props: {
                         style: { textAlign: "center" }

@@ -211,16 +211,13 @@ const web3Model = {
 	}: IrecordBatch) => {
 		return new Promise<void>(async (resolve: any, reject) => {
 			try {
-				console.log("1")
 				const chain =
 					product.product_type === 'DIGITAL' ? product.digitalDetail.chain : blockchain
 				let deployedContract
 				let targetChainContract
 				if (shop.deployedContracts) {
-					console.log("1.25")
 					targetChainContract = shop.deployedContracts.find((contract) => (contract.type === chain))
 					if (!targetChainContract) {
-					console.log("2")
 						deployedContract = await getNetworkProvider(
 							Chain[chain as string],
 							Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
@@ -232,11 +229,9 @@ const web3Model = {
 							shop.logo,
 							shop.description
 						)
-						console.log("3")
 						await deployShopContractService({ type: chain, ...deployedContract })
 					}
 				} else {
-					console.log("1.5")
 					deployedContract = await getNetworkProvider(
 						Chain[chain as string],
 						Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
@@ -249,21 +244,16 @@ const web3Model = {
 						shop.description
 					)
 					await deployShopContractService({ type: chain, ...deployedContract })
-					console.log("1.75")
 				}
 				const products: RecordProduct[] = []
-				console.log("4")
 
 				const nftContract =
 					targetChainContract?.deployedNFTAddress || deployedContract.deployedNFTAddress
 				const shopAddress =
 					targetChainContract?.deployedShopAddress || deployedContract.deployedShopAddress
 				const currencyAddress = '0x0000000000000000000000000000000000000000'
-				console.log("5")
 
-console.log("record batch", params)
 				for (const data of params) {
-					console.log("6")
 					const prod = data;
 					const quantity: any = prod.quantity
 					if (!royalty) royalty = 0
@@ -275,10 +265,8 @@ console.log("record batch", params)
 							wallet: droplink_wallet
 						})
 					}
-					console.log("7")
 					let productType = ProductType.DIGITAL // TODO: update this
 					if (product.product_type === 'PRINT_ON_DEMAND') productType = ProductType.POD
-					console.log("8")
 					products.push({
 						acceptsManageWallet: true,
 						amount: quantity,
@@ -296,8 +284,6 @@ console.log("record batch", params)
 					})
 				}
 
-				console.log("9")
-
 				const dataDeploy: IdeployBatch = {
 					blockchain,
 					deployHash: '',
@@ -305,8 +291,6 @@ console.log("record batch", params)
 					royalty,
 					commission
 				}
-				console.log("10")
-
 
 				const res = await recordModel.record({
 					product,
@@ -316,20 +300,13 @@ console.log("record batch", params)
 					shopAddress,
 					products
 				})
-				console.log("11")
 
 				if (res) dataDeploy.deployHash = res.transactionHash
-				console.log("12")
 
 				await recordModel.deployBatch(dataDeploy)
-				console.log("13")
 
 				resolve(dataDeploy.deployHash)
-				console.log("14")
 			} catch (error) {
-				console.log("15")
-				console.log(error)
-
 				reject(error)
 			}
 		})
