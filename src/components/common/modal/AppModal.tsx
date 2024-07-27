@@ -2,13 +2,13 @@ import { Flex, Modal, ModalBody, ModalContent, ModalOverlay, ModalProps, StylePr
 import React from 'react'
 import AppTypography from '../typography/AppTypography'
 
-export interface IAppModal extends Omit<ModalProps, "isOpen" | "onClose">{
+export interface IAppModal extends Omit<ModalProps, "isOpen" | "onClose"> {
     open: boolean
     close: any
     scrollBehavior?: "inside" | "outside"
     contentProps?: StyleProps
     title?: string
-    
+
 }
 
 function AppModal(props: IAppModal) {
