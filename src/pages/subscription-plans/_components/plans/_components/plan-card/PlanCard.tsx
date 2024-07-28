@@ -5,19 +5,25 @@ import AppTypography from "components/common/typography/AppTypography";
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { capitalizeFirstLetter, navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
+import useHookStore from "functions/hooks/store/useHookStore";
+import useAppToast from "functions/hooks/toast/useToast";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { appDevelopment } from "lib/utils/app/variable";
 
 interface Props {
     plan: SubscriptionPlan;
     prevPlanType: string;
     features: SubOptionId[];
+    plans?: any;
 }
 
-const PlanCard = ({ plan, prevPlanType, features }: Props) => {
+const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const { profile } = useProfile()
     const purchaseModal = useDisclosure()
     const signInModal = useDisclosure()
@@ -31,6 +37,70 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
         if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
         purchaseModal.onOpen()
     }
+
+    const {
+        app: { login, loading },
+    } = useHookStore();
+    const { showToast } = useAppToast();
+    const navigate = useNavigate();
+    const { shopNavigate } = useCustomNavigate();
+
+    const [searchParams] = useSearchParams();
+    const location = useLocation();
+    const isPlansPage = location.pathname === "/plans";
+
+    const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
+    const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false);
+
+    const handleAuthModalClose = () => {
+        signInModal.onClose();
+        if (isPlansPage) {
+            purchaseModal.onOpen();
+        }
+    };
+
+    const params_variables = useMemo(
+        () => ({
+            access_token: searchParams.get("access_token"),
+            refresh_token: searchParams.get("refresh_token"),
+            subscription_id: searchParams.get("subscriptionId"),
+        }),
+        [searchParams]
+    );
+
+    const loginWithGoogle = useCallback(async () => {
+        await login({ type: "get", access_token: params_variables?.access_token, refresh_token: params_variables?.refresh_token, params: { access_token: params_variables?.access_token } })
+            .then((res) => {
+                const { user } = res;
+                const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
+                if (status === "DELETED") return showToast({ message: "This account has been deleted", type: "error" });
+
+                if (user.type !== "SHOPBUILDER") return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
+
+                if (!isPlansPage) {
+                    const { href, dashboard } = navigating_user_based_on_status(status, res);
+                    dashboard ? shopNavigate(href) : navigate(href);
+                }
+            })
+            .catch((err) => {
+                showToast({ message: err.message, type: "error" });
+            })
+            .finally(() => {
+                signInModal.onClose();
+            });
+    }, []);
+
+    useEffect(() => {
+        if (params_variables?.access_token && params_variables?.refresh_token && searchParams.get("modal") === "purchase" && params_variables?.subscription_id && !loading) {
+            const foundPlan = plans.find((plan) => plan._id === params_variables?.subscription_id);
+            if (foundPlan) {
+                setSelectedPlan(foundPlan);
+                !loading && loginWithGoogle();
+                setIsLoggedInViaGoogle(true);
+                purchaseModal.onOpen();
+            }
+        }
+    }, []);
 
     return (
         <>
@@ -80,7 +150,7 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     }
                 </Flex>
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} isOpen={purchaseModal.isOpen} close={purchaseModal.onClose} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} isOpen={purchaseModal.isOpen} close={purchaseModal.onClose} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={signInModal.onClose} type={MODAL_TYPE.SIGNUP} />}
         </>
     )
