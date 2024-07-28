@@ -54,8 +54,10 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
     const handleAuthModalClose = () => {
         signInModal.onClose();
-        if (isPlansPage) {
+        if (isPlansPage && !isEnterprise) {
             purchaseModal.onOpen();
+        } else if (isPlansPage && isEnterprise) {
+            window.location.href = "mailto:Support@droplinked.com"
         }
     };
 
