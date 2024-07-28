@@ -70,7 +70,7 @@ async function getFundsProxy(chain: Chain, network: Network) {
     let result = String(
         (
             await axios.get(
-                `https://apiv3dev.droplinked.com/storage/${snakeCase(
+                `https://${network === Network.TESTNET ? 'apiv3dev' : 'apiv3'}.droplinked.com/storage/${snakeCase(
                     Chain[chain]
                 )}${snakeCase(Network[network])}ContractAddressFundsProxy`
             )
