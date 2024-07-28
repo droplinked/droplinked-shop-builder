@@ -2,6 +2,7 @@ import { Divider, Flex, Heading } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { buySubscriptionPlanService } from 'lib/apis/subscription/subscriptionServices'
 import PlanHeading from 'pages/subscription-plans/_components/PlanHeading'
@@ -13,11 +14,14 @@ interface Props {
     setClientSecret: Dispatch<SetStateAction<string>>;
     close: () => void;
     hasProfile?: any;
+    isFromPlansPage?: boolean;
 }
 
-function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close, hasProfile }: Props) {
+function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close, hasProfile, isFromPlansPage }: Props) {
     const { isLoading, mutateAsync: confirmPlan } = useMutation(() => buySubscriptionPlanService({ amount: +price, subId: _id }))
     const { showToast } = useAppToast()
+    const { logoutUser } = useProfile()
+
 
     const handleConfirmPlan = async () => {
         try {
@@ -27,6 +31,12 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
         catch (e) {
             showToast({ message: e.message, type: "error" })
         }
+    }
+
+
+    const handleCloseModal = () => {
+        isFromPlansPage && logoutUser()
+        close()
     }
 
     return (
@@ -61,7 +71,7 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
 
             {/* actions */}
             <Flex justifyContent={"space-between"} alignItems={"center"}>
-                <BasicButton variant='outline' onClick={close}>Back</BasicButton>
+                <BasicButton variant='outline' onClick={handleCloseModal}>Back</BasicButton>
                 <BasicButton isLoading={isLoading} isDisabled={isLoading || !hasProfile} onClick={handleConfirmPlan}>Confirm</BasicButton>
             </Flex>
         </Flex>

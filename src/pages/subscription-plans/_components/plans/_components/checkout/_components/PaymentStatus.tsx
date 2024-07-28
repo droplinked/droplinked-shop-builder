@@ -1,6 +1,7 @@
 import { Box, Divider, Flex, Heading, Image } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
@@ -21,13 +22,17 @@ function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, is
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
-    let navigate = useNavigate()
+    const { logoutUser } = useProfile();
+    let navigate = useNavigate();
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
         if (isFromPlansPage && isLoggedInViaGoogle) {
             navigate("/dashboard/url-registration")
         } else if (isFromPlansPage && !isLoggedInViaGoogle) {
+            const registerEmail = localStorage.getItem("registerEmail");
+            logoutUser()
+            registerEmail && localStorage.setItem("registerEmail", registerEmail)
             navigate("/email-confirmation")
         }
         window.scrollTo({ top: 0, behavior: 'smooth' })
