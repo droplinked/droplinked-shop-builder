@@ -12,11 +12,14 @@ import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
-import { BASE_URL } from "lib/utils/app/variable";
+import { appDevelopment, BASE_URL } from "lib/utils/app/variable";
 import { IsignupService } from "lib/apis/auth/interfaces";
 import { signupService } from "lib/apis/auth/services";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import useHookStore from "functions/hooks/store/useHookStore";
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 
-const SignupProducer = ({ close, shopname, switchToggle }) => {
+const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage }) => {
     const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
     const [States, setStates] = useState({ show: { password: false, repassword: false } });
@@ -24,14 +27,48 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     const { showToast } = useAppToast();
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
     const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
+
+    const { app: { login } } = useHookStore()
+    const { shopNavigate } = useCustomNavigate()
+
+    const handleLogin = async (data) => {
+        try {
+            const result = await login({ type: "default", params: { ...data, userType: "PRODUCER" } })
+            if (result) processLogin(result)
+        } catch (error) {
+            showToast({ message: error?.message, type: "error" })
+        }
+    }
+
+    const processLogin = async (data: any) => {
+        try {
+            const { user } = data
+            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
+            if (status === "DELETED")
+                return showToast({ message: "This account has been deleted", type: "error" })
+
+            if (user.type !== "SHOPBUILDER")
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
+
+            if (!isFromPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, data)
+                dashboard ? shopNavigate(href) : navigate(href)
+            }
+            close()
+        } catch (error) {
+            showToast({ message: error.message, type: "error" })
+        }
+    }
+    
     const onSubmit = async (data: any) => {
         try {
             const { email, password, referral } = data;
             await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true });
+            isFromPlansPage && handleLogin({email, password})
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
-            navigate("/email-confirmation");
+            !isFromPlansPage && navigate("/email-confirmation");
         } catch (error) {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });
         }

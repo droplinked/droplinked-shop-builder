@@ -12,9 +12,10 @@ interface Props {
     selectedPlan: SubscriptionPlan;
     setClientSecret: Dispatch<SetStateAction<string>>;
     close: () => void;
+    hasProfile?: any;
 }
 
-function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close }: Props) {
+function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close, hasProfile }: Props) {
     const { isLoading, mutateAsync: confirmPlan } = useMutation(() => buySubscriptionPlanService({ amount: +price, subId: _id }))
     const { showToast } = useAppToast()
 
@@ -61,7 +62,7 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
             {/* actions */}
             <Flex justifyContent={"space-between"} alignItems={"center"}>
                 <BasicButton variant='outline' onClick={close}>Back</BasicButton>
-                <BasicButton isLoading={isLoading} isDisabled={isLoading} onClick={handleConfirmPlan}>Confirm</BasicButton>
+                <BasicButton isLoading={isLoading} isDisabled={isLoading || !hasProfile} onClick={handleConfirmPlan}>Confirm</BasicButton>
             </Flex>
         </Flex>
     )

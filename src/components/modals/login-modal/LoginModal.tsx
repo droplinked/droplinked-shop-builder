@@ -20,7 +20,7 @@ const formSchema = Yup.object().shape({
     password: Yup.string().required("Required"),
 })
 
-const LoginModal = ({ show, close, switchModal, switchReset }) => {
+const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) => {
     const [searchParams] = useSearchParams()
     const { app: { login, loading } } = useHookStore()
     const { showToast } = useAppToast()

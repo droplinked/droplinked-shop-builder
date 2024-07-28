@@ -15,8 +15,8 @@ const AuthModal = ({ show, close, shopName, type = MODAL_TYPE.SIGNIN, isFromPlan
 
   const correctComponent = () => {
     switch (modalType) {
-      case MODAL_TYPE.SIGNIN: return <LoginModal show={show} close={closeModal} switchModal={switchModal} switchReset={switchResetModal} />
-      case MODAL_TYPE.SIGNUP: return <SignupModal show={show} close={closeModal} switchModal={switchModal} shopName={shopName} />
+      case MODAL_TYPE.SIGNIN: return <LoginModal show={show} close={closeModal} switchModal={switchModal} switchReset={switchResetModal} isFromPlansPage={isFromPlansPage} />
+      case MODAL_TYPE.SIGNUP: return <SignupModal show={show} close={closeModal} switchModal={switchModal} shopName={shopName} isFromPlansPage={isFromPlansPage} subscriptionPlan={subscriptionPlan} />
       case MODAL_TYPE.RESET: return <ResetPassModal show={show} close={closeModal} switchReset={switchResetModal} />
       case MODAL_TYPE.GOOGLE: return <CompleteGoogelModal show={show} close={closeModal} switchModal={switchModalWithType} />
     }

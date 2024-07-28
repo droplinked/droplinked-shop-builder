@@ -5,21 +5,31 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import { useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     paymentStatus: "success" | "error",
     selectedPlan: SubscriptionPlan
     close: () => void
+    isFromPlansPage?: boolean
+    isLoggedInViaGoogle?: boolean
 }
 
-function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
+function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
     const queryClient = useQueryClient()
     const isSuccessful = paymentStatus === "success"
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
+    let navigate = useNavigate()
+
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
+        if (isFromPlansPage && isLoggedInViaGoogle) {
+            navigate("/dashboard/url-registration")
+        } else if (isFromPlansPage && !isLoggedInViaGoogle) {
+            navigate("/email-confirmation")
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' })
         close()
     }

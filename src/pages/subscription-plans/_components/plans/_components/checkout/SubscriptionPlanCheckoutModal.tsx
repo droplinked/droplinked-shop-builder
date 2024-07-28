@@ -19,9 +19,9 @@ function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close, isFromPlan
     const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
 
     const renderContent = () => {
-        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} />
+        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} isFromPlansPage={isFromPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} />
         if (clientSecret) return <StripeModal clientSecret={clientSecret} close={close} setPaymentStatus={setPaymentStatus} />
-        return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} />
+        return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} hasProfile={hasProfile} />
     }
 
     return (
