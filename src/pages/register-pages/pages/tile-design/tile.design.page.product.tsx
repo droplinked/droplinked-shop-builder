@@ -6,6 +6,7 @@ import { wrap } from "@popmotion/popcorn";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
 import { TileDesignContext } from "./context/tile.design.context";
+import { percent_to_hex } from "lib/utils/heper/helpers";
 
 const imagesToShow = [
     {
@@ -64,7 +65,17 @@ const TileDesignPageProduct = () => {
         return `${basic}px`;
     };
     return (
-        <Box maxW={"40%"} minW={"380px"} height={height_of_container()} position={"relative"} display="flex" flexDirection="column" alignItems={"center"} justifyContent={"center"} color={white_if_dark_mode}>
+        <Box
+            maxW={"40%"}
+            minW={"380px"}
+            height={height_of_container()}
+            position={"relative"}
+            display="flex"
+            flexDirection="column"
+            alignItems={"center"}
+            justifyContent={"center"}
+            color={white_if_dark_mode}
+        >
             <VStack
                 align={"stretch"}
                 padding="24px 32px"
@@ -77,8 +88,7 @@ const TileDesignPageProduct = () => {
                 zIndex={9}
                 border={"3px solid transparent"}
                 cursor={"pointer"}
-                opacity={CONTAINER.opacity}
-                backgroundColor={CONTAINER?.backgroundColor}
+                backgroundColor={`${CONTAINER?.backgroundColor}${percent_to_hex?.[Number((CONTAINER?.opacity * 100).toFixed())]}`}
                 _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
                 onClick={() => {
                     updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.CONTAINER });
@@ -246,7 +256,6 @@ const TileDesignPageProduct = () => {
                                         gap="10px"
                                         borderRadius="4px"
                                         border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
-                                        
                                     >
                                         <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
                                     </Box>
