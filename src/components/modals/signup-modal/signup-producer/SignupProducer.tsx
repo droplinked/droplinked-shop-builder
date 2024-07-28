@@ -19,7 +19,7 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import useHookStore from "functions/hooks/store/useHookStore";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 
-const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage }) => {
+const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscriptionPlan }) => {
     const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
     const [States, setStates] = useState({ show: { password: false, repassword: false } });
@@ -147,7 +147,32 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage }) => {
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"} />
                         </HStack>
-                        <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton>
+                        {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
+                        <BasicButton
+                            onClick={() => {
+                                const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`);
+                                
+                                if (referral_code_from_params && referral_code_from_params !== "") {
+                                    googleAuthUrl.searchParams.append("referralCode", referral_code_from_params);
+                                }
+                                
+                                if (isFromPlansPage && subscriptionPlan?._id) {
+                                    googleAuthUrl.searchParams.append("subscriptionId", subscriptionPlan._id);
+                                }
+                                
+                                window.location.href = googleAuthUrl.toString();
+                            }}
+                            backgroundColor={"mainGray.500"}
+                            borderRadius={"8px"}
+                            border={"none"}
+                            _hover={{ backgroundColor: "mainGray.500" }}
+                            color={"lightgray"}
+                            iconSpacing={"12px"}
+                            leftIcon={<AppIcons.Google />}
+                            isDisabled={isLoading}
+                            >
+                                Sign up with Google
+                        </BasicButton>
                     </VStack>
                 </Form>
             )}

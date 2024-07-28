@@ -1,5 +1,5 @@
 import SignupProducer from "./signup-producer/SignupProducer";
-import { Flex, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import AppModal from 'components/common/modal/AppModal';
 
 const SignupModal = ({ show, close, switchModal, shopName, isFromPlansPage, subscriptionPlan }) => {
