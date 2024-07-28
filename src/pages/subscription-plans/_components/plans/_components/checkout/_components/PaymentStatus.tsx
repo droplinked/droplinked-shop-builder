@@ -12,9 +12,10 @@ interface Props {
     selectedPlan: SubscriptionPlan
     close: () => void
     isFromPlansPage?: boolean
+    isLoggedInViaGoogle?: boolean
 }
 
-function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage }: Props) {
+function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
     const queryClient = useQueryClient()
     const isSuccessful = paymentStatus === "success"
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
@@ -24,7 +25,11 @@ function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage }: 
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
-        isFromPlansPage && navigate("/email-confirmation")
+        if (isFromPlansPage && isLoggedInViaGoogle) {
+            navigate("/dashboard/url-registration")
+        } else if (isFromPlansPage && !isLoggedInViaGoogle) {
+            navigate("/email-confirmation")
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' })
         close()
     }

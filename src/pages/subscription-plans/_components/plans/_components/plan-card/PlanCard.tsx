@@ -44,6 +44,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isPlansPage = location.pathname === "/plans";
 
     const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
+    const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false);
 
     const handlePlanPurchase = () => {
         if (!profile) return signInModal.onOpen();
@@ -53,7 +54,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
     const handleAuthModalClose = () => {
         signInModal.onClose();
-        if (profile && !signInModal.isOpen && isPlansPage) {
+        if (isPlansPage) {
             purchaseModal.onOpen();
         }
     };
@@ -95,10 +96,11 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
             if (foundPlan) {
                 setSelectedPlan(foundPlan);
                 !loading && loginWithGoogle();
+                setIsLoggedInViaGoogle(true);
                 purchaseModal.onOpen();
             }
         }
-    }, [plans]);
+    }, []);
 
     return (
         <>
@@ -146,7 +148,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                     );
                 })}
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={() => purchaseModal.onClose()} isFromPlansPage={isPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} hasProfile={profile} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
         </>
     );
