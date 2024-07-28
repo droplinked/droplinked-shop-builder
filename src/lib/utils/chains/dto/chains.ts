@@ -10,6 +10,7 @@ export enum Chain {
 	LINEA,
 	ETH,
 	SOLANA,
+	REDBELLY,
 }
 export enum Network {
 	MAINNET,

@@ -55,6 +55,7 @@ const Plans = () => {
                 return <PlanCard
                     key={plan._id}
                     plan={plan}
+                    plans={plans}
                     prevPlanType={prevPlan.type}
                     features={index === 0 ?
                         getFilteredFeatures(plan) :

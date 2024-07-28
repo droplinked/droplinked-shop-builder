@@ -30,6 +30,8 @@ function RecordModal({ close, open, product, sku }: Iprops) {
         setState(recordStates)
     }, [])
 
+    const isRecordAllSKUs = Array.isArray(sku) && sku.length > 1;
+
     return (
         <recordContext.Provider value={{
             state: State,
@@ -45,7 +47,7 @@ function RecordModal({ close, open, product, sku }: Iprops) {
                 }}
                 isCentered={false}
             >
-                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} sku={sku} />}
+                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} sku={sku} isRecordAllSKUs={isRecordAllSKUs} />}
             </AppModal>
         </recordContext.Provider>
     )

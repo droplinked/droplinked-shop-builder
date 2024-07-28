@@ -11,36 +11,34 @@ interface ILink {
     icon: JSX.Element
 }
 
-interface Props {
-    shop: any,
-    close: Function
-}
-
-function ProfileDropdownLinks({ shop, close }: Props) {
+function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void }) {
     const links: ILink[] = [
-        { label: "Store", href: `${SHOP_URL}/${shop?.name}`, icon: <AppIcons.WhiteShopIcon width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
-        { label: "Credit", href: "/dashboard/settings/coupons", icon: <AppIcons.WhiteOpenWallet width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
-        { label: "Settings", href: "/dashboard/settings/shop-info", icon: <AppIcons.SettingIcon width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
-        { label: "Help", href: "https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked", icon: <AppIcons.HelpCenter width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
+        { label: "Credit", href: "/dashboard/settings/coupons", icon: <AppIcons.WhiteOpenWallet /> },
+        { label: "View Shop", href: `${SHOP_URL}/${shop?.name}`, icon: <AppIcons.Eye /> },
+        { label: "Change Shop", href: "/shop-management", icon: <AppIcons.WhiteShopIcon /> },
+        { label: "Settings", href: "/dashboard/settings/shop-info", icon: <AppIcons.SettingIcon /> },
+        { label: "Help", href: "https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked", icon: <AppIcons.HelpCenter /> }
     ]
 
     const renderLinkAttributes = (link: ILink) =>
-        <Flex alignItems={"center"} gap={"12px"}>
+        <Flex alignItems={"center"} gap={3} sx={{ svg: { width: 6, height: 6 } }}>
             {link.icon}
-            <AppTypography color={"#FFFFFF"} fontSize={"16px"}>{link.label}</AppTypography>
+            <AppTypography color={"#FFFFFF"} fontSize={16}>{link.label}</AppTypography>
         </Flex>
 
     return (
-        <Flex direction={"column"} gap="24px">
+        <Flex direction={"column"} gap={6}>
             {links.map((link, index) => {
-                return ["Store", "Help"].includes(link.label) ?
+                return link.href.startsWith("https://") ?
                     <ChakraLink key={index} href={link.href} target={"_blank"}>{renderLinkAttributes(link)}</ChakraLink > :
                     <ReactLink key={index} to={link.href} onClick={() => close()}>
-                        {link.label === "Settings" ? renderLinkAttributes(link) :
-                            <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
+                        {link.label === "Credit" ?
+                            <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit?.toFixed(2)} USD</AppTypography>
+                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>${shop?.credit?.toFixed(2)} USD</AppTypography>
                             </Flex>
+                            :
+                            renderLinkAttributes(link)
                         }
                     </ReactLink>
             })}

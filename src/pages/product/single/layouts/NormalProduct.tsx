@@ -6,6 +6,7 @@ import CollectionProduct from '../parts/collection/CollectionProduct'
 import DigitalLinks from '../parts/digital/DigitalLinks'
 import General from '../parts/general/General'
 import DigitalInformation from '../parts/infromation/DigitalInformation'
+import LaunchDate from '../parts/launch-date/LaunchDate'
 import ShippingProduct from '../parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from '../parts/podDesign/ProductPodDesign'
 import ProductTile from '../parts/product-tile/ProductTile'
@@ -25,6 +26,7 @@ function NormalProduct() {
             {ProductModel.isPrintful(prodviderID) && <Variant />}
             <CollectionProduct />
             <ProductTile />
+            <LaunchDate />
             <ButtonsProduct />
         </>
     )

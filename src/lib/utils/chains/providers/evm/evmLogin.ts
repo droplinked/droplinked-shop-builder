@@ -2,7 +2,6 @@ import { Buffer } from "buffer";
 import { Chain, Network } from "../../dto/chains";
 import { ModalInterface } from "../../dto/modalInterface";
 import { isCasperWalletExtentionInstalled } from "../casper/casperWalletAuth";
-import { isStacksWalletInstalled } from "@stacks/connect";
 
 let chainNames = {
     [Chain.BINANCE]: {
@@ -10,7 +9,7 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://bsc-dataseed.binance.org/'] }
     },
     [Chain.POLYGON]: {
-        [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
+        [Network.TESTNET]: { chainName: "Polygon Amoy Testnet", chainId: "0x13882", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-amoy.polygon.technology'] },
         [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
     },
     [Chain.XRPLSIDECHAIN]: {
@@ -34,7 +33,7 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
     },
     [Chain.BASE]: {
-        [Network.TESTNET]: { chainName: "Base Göerli", chainId: "0x14a33", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://goerli.base.org'] },
+        [Network.TESTNET]: { chainName: "Base Sepolia", chainId: "0x14a34", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://sepolia.base.org'] },
         [Network.MAINNET]: { chainName: "Base Mainnet", chainId: "0x2105", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.base.org/'] }
     },
     [Chain.LINEA]: {
@@ -44,6 +43,10 @@ let chainNames = {
     [Chain.ETH]: {
         [Network.MAINNET]: { chainName: "Ethereum", chainId: "0x1", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.infura.io/v3/'] },
         [Network.TESTNET]: { chainName: "Sepolia", chainId: "0xaa36a7", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://eth-sepolia.public.blastapi.io/'] }
+    },
+    [Chain.REDBELLY]: {
+        [Network.TESTNET]: { chainName: "Redbelly Network Testnet", chainId: "0x99", nativeCurrency: { name: 'RBNT', decimals: 18, symbol: 'RBNT' }, rpcUrls: ['https://governors.testnet.redbelly.network'] },
+        [Network.MAINNET]: null
     }
 };
 
@@ -61,16 +64,17 @@ export async function getAccounts(ethereum: any) {
 }
 
 export function isWalletInstalled(chain: string) {
-    if (["POLYGON", "XRPLSIDECHAIN", "NEAR", "BINANCE", "BASE", "LINEA", "ETH"].includes(chain)) {
+    if (["POLYGON", "XRPLSIDECHAIN", "NEAR", "BINANCE", "BASE", "LINEA", "ETH", "REDBELLY"].includes(chain)) {
         return { installed: isMetamaskInstalled(), walletName: "MetaMask wallet" }
     }
     else if (chain === "SOLANA") {
         return { installed: (window as any).phantom?.solana?.isPhantom, walletName: "Phantom wallet" };
     } else if (chain === "CASPER") {
         return { installed: isCasperWalletExtentionInstalled(), walletName: "Casper wallet" }
-    } else if (chain === "STACKS") {
-        return { installed: isStacksWalletInstalled(), walletName: "Leather wallet" }
-    }
+    } 
+    // else if (chain === "STACKS") {
+    //     return { installed: isStacksWalletInstalled(), walletName: "Leather wallet" }
+    // }
 }
 
 export async function isWalletConnected(ethereum: any) {

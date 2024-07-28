@@ -12,13 +12,11 @@ interface IProps {
 
 function ProductPageTitle({ description, title, head, isRequired }: IProps) {
     return (
-        <VStack align={"stretch"}>
-            <Box>
-                <HStack width={"fit-content"}>
-                    <AppTypography fontSize='18px' fontWeight={head ? 'bold' : "normal"}>{title}</AppTypography>
-                    {isRequired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
-                </HStack>
-            </Box>
+        <VStack align={"stretch"} userSelect={"none"}>
+            <HStack width={"fit-content"}>
+                <AppTypography fontSize='18px' fontWeight={head ? 'bold' : "normal"}>{title}</AppTypography>
+                {isRequired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
+            </HStack>
             <AppTypography fontSize='14px' color={"#C2C2C2"}>{description}</AppTypography>
         </VStack>
     )

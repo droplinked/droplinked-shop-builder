@@ -7,7 +7,8 @@ import { EVMApproveRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
 import { evmLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
 import { EVMPublishRequest } from "./evmPublish";
-import { EVMrecordMerch } from "./evmRecord";
+import { EVMBatchRecord, EVMrecordMerch } from "./evmRecord";
+import { RecordProduct } from "../../dto/recordDTO";
 
 export class EVMProvider implements ChainProvider {
     chain: Chain = Chain.BINANCE;
@@ -83,7 +84,7 @@ export class EVMProvider implements ChainProvider {
         return await EVMDeployShop(this.getWalletProvider(),this.chain, this.network, this.address, shopName, shopAddress, shopOwner, shopLogo, shopDescription, this.modalInterface);
     }
 
-    casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
+    casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, skuID: string): Promise<string> {
         throw new Error("Method not implemented.");
     }
 
@@ -137,20 +138,26 @@ export class EVMProvider implements ChainProvider {
         this.address = address;
         return { address, signature };
     }
-    async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData> {
+    async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, skuID: string): Promise<RecordData> {
         await this.handleWallet(this.address);
-        return await EVMrecordMerch(this.getWalletProvider(),sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, apiKey, this.modalInterface);
+        return await EVMrecordMerch(this.getWalletProvider(), this.chain,sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, skuID, this.modalInterface);
     }
+
+    async recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string): Promise<RecordData>{
+        await this.handleWallet(this.address)
+        return await EVMBatchRecord(this.getWalletProvider(), this.chain, this.address, shopAddress, nftContract, this.modalInterface, products)
+    }
+
     async publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData> {
         await this.handleWallet(this.address);
-        return await EVMPublishRequest(this.getWalletProvider(),this.address, productId, shopAddress, this.modalInterface);
+        return await EVMPublishRequest(this.getWalletProvider(), this.chain,this.address, productId, shopAddress, this.modalInterface);
     }
     async approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMApproveRequest(this.getWalletProvider(),this.address, requestId, shopAddress, this.modalInterface);
+        return await EVMApproveRequest(this.getWalletProvider(), this.chain,this.address, requestId, shopAddress, this.modalInterface);
     }
     async disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMDisapproveRequest(this.getWalletProvider(),this.address, requestId, shopAddress, this.modalInterface);
+        return await EVMDisapproveRequest(this.getWalletProvider(), this.chain,this.address, requestId, shopAddress, this.modalInterface);
     }
 }

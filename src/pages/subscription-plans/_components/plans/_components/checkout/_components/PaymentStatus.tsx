@@ -1,25 +1,40 @@
 import { Box, Divider, Flex, Heading, Image } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import { useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     paymentStatus: "success" | "error",
     selectedPlan: SubscriptionPlan
     close: () => void
+    isFromPlansPage?: boolean
+    isLoggedInViaGoogle?: boolean
 }
 
-function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
+function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
     const queryClient = useQueryClient()
     const isSuccessful = paymentStatus === "success"
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
+    const { logoutUser } = useProfile();
+    let navigate = useNavigate();
+
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
+        if (isFromPlansPage && isLoggedInViaGoogle) {
+            navigate("/dashboard/url-registration")
+        } else if (isFromPlansPage && !isLoggedInViaGoogle) {
+            const registerEmail = localStorage.getItem("registerEmail");
+            logoutUser()
+            registerEmail && localStorage.setItem("registerEmail", registerEmail)
+            navigate("/email-confirmation")
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' })
         close()
     }
@@ -28,7 +43,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
         <Flex direction={"column"} alignItems={"center"} gap={5}>
             <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>{headingText}</Heading>
 
-            <Divider m={0} height={"1px"} borderColor={"#292929"} />
+            <Divider height={"1px"} borderColor={"#292929"} />
 
             <Image src={imageSrc} width={"349px"} height={"auto"} objectFit={"cover"} />
 

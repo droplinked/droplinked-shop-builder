@@ -2,6 +2,7 @@ import { Divider, Flex, Heading } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { buySubscriptionPlanService } from 'lib/apis/subscription/subscriptionServices'
 import PlanHeading from 'pages/subscription-plans/_components/PlanHeading'
@@ -12,11 +13,15 @@ interface Props {
     selectedPlan: SubscriptionPlan;
     setClientSecret: Dispatch<SetStateAction<string>>;
     close: () => void;
+    hasProfile?: any;
+    isFromPlansPage?: boolean;
 }
 
-function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close }: Props) {
+function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, close, hasProfile, isFromPlansPage }: Props) {
     const { isLoading, mutateAsync: confirmPlan } = useMutation(() => buySubscriptionPlanService({ amount: +price, subId: _id }))
     const { showToast } = useAppToast()
+    const { logoutUser } = useProfile()
+
 
     const handleConfirmPlan = async () => {
         try {
@@ -26,6 +31,12 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
         catch (e) {
             showToast({ message: e.message, type: "error" })
         }
+    }
+
+
+    const handleCloseModal = () => {
+        isFromPlansPage && logoutUser()
+        close()
     }
 
     return (
@@ -38,7 +49,7 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
                     </AppTypography>
                 </Flex>
 
-                <Divider m={0} height={"1px"} borderColor={"#292929"} />
+                <Divider height={"1px"} borderColor={"#292929"} />
 
                 <AppTypography textAlign={"center"} fontSize={20} color={"#C2C2C2"}>Upgrade to the Business Plan for advanced customization, exclusive features, and priority support. Confirm your subscription now to enhance your store.</AppTypography>
 
@@ -60,8 +71,8 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
 
             {/* actions */}
             <Flex justifyContent={"space-between"} alignItems={"center"}>
-                <BasicButton variant='outline' onClick={close}>Back</BasicButton>
-                <BasicButton isLoading={isLoading} isDisabled={isLoading} onClick={handleConfirmPlan}>Confirm</BasicButton>
+                <BasicButton variant='outline' onClick={handleCloseModal}>Back</BasicButton>
+                <BasicButton isLoading={isLoading} isDisabled={isLoading || !hasProfile} onClick={handleConfirmPlan}>Confirm</BasicButton>
             </Flex>
         </Flex>
     )

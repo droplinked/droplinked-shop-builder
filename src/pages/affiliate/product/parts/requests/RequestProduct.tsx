@@ -1,6 +1,5 @@
-import { Box, HStack, useDisclosure } from '@chakra-ui/react'
+import { HStack, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import AppTable from 'components/common/table/AppTable'
 import React, { useContext, useState } from 'react'
 import { ShopProductContext } from '../../context'
@@ -11,6 +10,7 @@ function RequestProduct() {
     const { product, shop } = useContext(ShopProductContext)
     const [Sku, setSku] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <>
             <AppTable
@@ -29,29 +29,20 @@ function RequestProduct() {
                         },
                         value: (
                             <HStack gap={2}>
-                                <Box>
-                                    <BasicButton onClick={() => {
+                                <BasicButton
+                                    onClick={() => {
                                         onOpen()
                                         setSku(el)
-                                    }}>
-                                        Request
-                                    </BasicButton>
-                                </Box>
-                                <Box>
-                                    <PopOverMenu items={[
-                                        {
-                                            caption: "view details",
-                                            onClick: () => { }
-                                        }
-                                    ]} />
-                                </Box>
+                                    }}
+                                >
+                                    Request
+                                </BasicButton>
                             </HStack>
                         )
                     }
                 }))}
             />
             <ModalRequest product={product} sku={Sku} open={isOpen} shop={shop} close={onClose} />
-            {/* <RequestDetail /> */}
         </>
     )
 }

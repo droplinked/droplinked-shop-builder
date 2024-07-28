@@ -15,7 +15,7 @@ const hashkeyModel = {
 					appDevelopment ? 'testnet' : 'mainnet'
 				}`
 			case 'POLYGON':
-				return `https://${appDevelopment ? 'mumbai.' : ''}polygonscan.com/tx/${hashkey}`
+				return `https://${appDevelopment ? 'amoy.' : ''}polygonscan.com/tx/${hashkey}`
 			case 'XRPLSIDECHAIN':
 				return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
 			case 'BINANCE':
@@ -30,6 +30,8 @@ const hashkeyModel = {
 				return `https://${appDevelopment ? 'sepolia' : ''}.etherscan.io/tx/${hashkey}`
 			case 'SOLANA':
 				return `https://explorer.solana.com/tx/${hashkey}?cluster=devnet`
+			case 'REDBELLY':
+				return `https://explorer.testnet.redbelly.network/transaction/${hashkey}`
 			default:
 				return ''
 		}

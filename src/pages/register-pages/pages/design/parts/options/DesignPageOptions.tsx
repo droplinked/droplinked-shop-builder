@@ -7,6 +7,7 @@ import DesignPageHeader from './parts/header/DesignPageHeader'
 import DesignPageIntro from './parts/intro/DesignPageIntro'
 import DesignPageProducts from './parts/products/DesignPageProducts'
 import DesignPageProfile from './parts/profile/DesignPageProfile'
+import DesignPageReleaseDate from './parts/releaseDate/DesignPageReleaseDate'
 
 function DesignPageOptions() {
     return (
@@ -18,6 +19,7 @@ function DesignPageOptions() {
             <DesignPageProfile />
             <DesignPageProducts />
             <DesignPagefooter />
+            <DesignPageReleaseDate />
             {/* <DesignPageBanner /> */}
         </VStack>
     )

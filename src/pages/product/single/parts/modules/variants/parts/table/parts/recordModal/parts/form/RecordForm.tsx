@@ -9,6 +9,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
 import { useCheckPermission } from 'lib/stores/app/appStore';
+import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo } from 'react';
 import * as Yup from 'yup';
 import recordContext from '../../context';
@@ -19,6 +20,7 @@ interface Iprops {
     close: Function
     product: any
     sku: Isku
+    isRecordAllSKUs?: boolean
 }
 
 interface IRecordSubmit {
@@ -30,27 +32,62 @@ interface IRecordSubmit {
     royalty: number
 }
 
-function RecordForm({ close, product, sku }: Iprops) {
+function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
+    const { state: { legalUsage }, methods: { updateState: updateProductContext } } = useContext(productContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
     const { app: { user: { wallets } } } = useHookStore()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
-            data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
+            data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : isRecordAllSKUs ? Array.isArray(sku) && sku.reduce((sum, sku) => sum + sku.quantity, 0).toString() : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
             const { commission, quantity, blockchain, royalty } = data
-            const params = { commission, quantity, blockchain, royalty }
+            const params = isRecordAllSKUs ? 
+                Array.isArray(sku) && sku.map(skuItem => ({
+                    quantity: skuItem.quantity.toString(),
+                    sku: skuItem,
+                    imageUrl: image
+                })) : { commission, quantity, blockchain, royalty }
 
             const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
-            const deployhash = await web3({ method: "record", params: { data: params, product, sku, imageUrl: image, shop }, chain: data.blockchain, wallets, stack })
+            const deployhash = isRecordAllSKUs ? 
+                await web3({
+                    method: "record_batch",
+                    params,
+                    product,
+                    shop,
+                    commission,
+                    royalty,
+                    chain: data.blockchain,
+                    wallets,
+                    stack
+                })
+                : 
+                await web3({
+                    method: "record",
+                    params: {
+                        data: params,
+                        product,
+                        sku,
+                        imageUrl: image,
+                        shop
+                    },
+                    chain: data.blockchain,
+                    wallets,
+                    stack
+                })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
+            updateProductContext("legalUsage", legalUsage.map(legalUsageObj => {
+                if (legalUsageObj.key !== "drop") return legalUsageObj
+                return { ...legalUsageObj, remaining: legalUsageObj.remaining === "Unlimited" ? "Unlimited" : +legalUsageObj.remaining - 1 }
+            }))
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
@@ -132,8 +169,9 @@ function RecordForm({ close, product, sku }: Iprops) {
                                     value='DROPLINKED'
                                     alignItems="flex-start"
                                     colorScheme='green'
+                                    isChecked={values.royaltyon}
                                     onChange={({ target: { checked } }) => {
-                                        if (!checkPermissionAndShowToast("web3_royalty_feature")) return
+                                        if (!checkPermissionAndShowToast("web3_royalty_feature")) return;
                                         setFieldValue('royaltyon', checked)
                                     }}
                                 >

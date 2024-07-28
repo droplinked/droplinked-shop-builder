@@ -3,20 +3,15 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { isDateExpired } from "lib/utils/heper/helpers";
 import React, { useCallback, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { designContext, initialStateDesignPage } from "../../design-context";
 import designPageButtonsModel from "./model";
 
 function DesignPageButtons() {
-    const {
-        state: { shop },
-        methods: { dispatch },
-    } = useContext(designContext);
-    const {
-        setShopData: { update, loading },
-        updateShopData,
-    } = useProfile();
+    const { state: { shop }, methods: { dispatch } } = useContext(designContext);
+    const { setShopData: { update, loading }, updateShopData } = useProfile();
     const { showToast } = useAppToast();
     const { shopNavigate } = useCustomNavigate();
     const currentPath = useLocation().pathname;
@@ -25,9 +20,11 @@ function DesignPageButtons() {
 
     const validate = useCallback(() => {
         return new Promise<any>((resolve, reject) => {
+
             if (!shop.logo.length) reject("Please choose profile logo");
             else if (!shop.headerIcon.length) reject("Please choose header logo");
             else if (!shop.backgroundImage.length) reject("Please choose Hero Image");
+            else if (shop.launchDate && isDateExpired(shop.launchDate)) reject("Please choose a further date for launch time")
             else resolve(true);
         });
     }, [shop]);

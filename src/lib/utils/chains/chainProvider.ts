@@ -9,7 +9,8 @@ import {
 import { Beneficiary } from './dto/chainStructs'
 import { Chain, ChainWallet, Network } from './dto/chains'
 import { ModalInterface, defaultModal } from './dto/modalInterface'
-import { CasperProvider } from './providers/casper/casperProvider'
+import { RecordProduct } from './dto/recordDTO'
+// import { CasperProvider } from './providers/casper/casperProvider'
 import { EVMProvider } from './providers/evm/evmProvider'
 import { SolanaProvider } from './providers/solana/solana.provider'
 
@@ -33,6 +34,14 @@ export class ChainNotImplementedException {
 		this.message = field
 	}
 }
+
+export class MetadataUploadFailedException {
+	public readonly message: string = ''
+	constructor(field: string) {
+		this.message = field
+	}
+}
+
 
 export interface ChainProvider {
 	walletLogin(): Promise<any>
@@ -68,8 +77,9 @@ export interface ChainProvider {
 		nftContract: EthAddress,
 		shopAddress: EthAddress,
 		currencyAddress: EthAddress,
-		apiKey: string
+		skuID: string
 	): Promise<RecordData>
+	recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string) : Promise<RecordData>
 	publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>
 	approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>
 	disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>
@@ -92,8 +102,10 @@ let chainMapping = {
 		[Network.MAINNET]: new EVMProvider(Chain.NEAR, Network.MAINNET),
 	},
 	[Chain.CASPER]: {
-		[Network.TESTNET]: new CasperProvider(Chain.CASPER, Network.TESTNET),
-		[Network.MAINNET]: new CasperProvider(Chain.CASPER, Network.MAINNET),
+		// [Network.TESTNET]: new CasperProvider(Chain.CASPER, Network.TESTNET),
+		// [Network.MAINNET]: new CasperProvider(Chain.CASPER, Network.MAINNET),
+		[Network.TESTNET]: new EVMProvider(Chain.NEAR, Network.TESTNET),
+		[Network.MAINNET]: new EVMProvider(Chain.NEAR, Network.MAINNET),
 	},
 	[Chain.XRPLSIDECHAIN]: {
 		[Network.TESTNET]: new EVMProvider(Chain.XRPLSIDECHAIN, Network.TESTNET),
@@ -123,6 +135,10 @@ let chainMapping = {
 		[Network.MAINNET]: new SolanaProvider(Chain.SOLANA, Network.TESTNET),
 		[Network.TESTNET]: new SolanaProvider(Chain.SOLANA, Network.TESTNET),
 	},
+	[Chain.REDBELLY]: {
+		[Network.MAINNET]: new EVMProvider(Chain.REDBELLY, Network.MAINNET),
+		[Network.TESTNET]: new EVMProvider(Chain.REDBELLY, Network.TESTNET),
+	}
 }
 
 export function getNetworkProvider(

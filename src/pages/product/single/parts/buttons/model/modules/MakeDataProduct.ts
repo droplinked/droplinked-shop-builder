@@ -56,6 +56,7 @@ const MakeDataProductModel = ({
             "isAddToCartDisabled": state.isAddToCartDisabled,
             "pre_purchase_data_fetch": state.pre_purchase_data_fetch,
             "productTile": state.productTile,
+            "launchDate": state.launchDate,
             ...state?.shippingPrice && { "shippingPrice": state.shippingPrice },
             ...state?.printful_template_id && { "printful_template_id": state.printful_template_id },
         }

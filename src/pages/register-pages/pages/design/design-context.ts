@@ -247,7 +247,7 @@ export const initialStateDesignPage: IStateDesignPage = {
         fullWidthHero: false,
         productSectionText: "",
         shopDesign: {
-            fontfamily: "Montserrat",
+            fontfamily: "Nunito Sans",
             headerBackground: "",
             isHeaderFixed: false,
             hiroLayout: "center",
@@ -263,6 +263,7 @@ export const initialStateDesignPage: IStateDesignPage = {
             faviconURL: "",
         },
         template_options: template_options_defaults,
+        launchDate: null
     },
 };
 
@@ -270,6 +271,6 @@ export const designContext = createContext<IProps>({
     state: initialStateDesignPage,
     methods: {
         dispatch: null,
-        resetState: () => {},
+        resetState: () => { },
     },
 });

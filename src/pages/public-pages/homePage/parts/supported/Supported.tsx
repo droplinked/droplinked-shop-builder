@@ -1,4 +1,4 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import { Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import LandingDescription from '../parts/description/LandingDescription'
 import LandingTitle from '../parts/title/LandingTitle'
@@ -15,7 +15,8 @@ function Supported() {
         'assets/images/homepage/Solana.png',
         'assets/images/homepage/base.png',
         'assets/images/homepage/skale.png',
-        'assets/images/homepage/Hedera.png'
+        'assets/images/homepage/Hedera.png',
+        'assets/images/homepage/circle.png',
     ]
 
     return (

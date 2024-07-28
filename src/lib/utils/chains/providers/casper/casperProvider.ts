@@ -4,6 +4,7 @@ import { ChainProvider } from "../../chainProvider";
 // import { casperRecordMerch } from "./casperRecord";
 import { AffiliateRequestData, Beneficiary, DeployedShop, ProductType, RecordData, Uint256 } from "../../dto/chainStructs";
 import { ModalInterface } from "../../dto/modalInterface";
+import { RecordProduct } from "../../dto/recordDTO";
 
 export class CasperProvider implements ChainProvider{
     network: Network = Network.TESTNET;
@@ -12,6 +13,9 @@ export class CasperProvider implements ChainProvider{
     constructor(_chain: Chain, _network: Network) {
         this.chain = _chain;
         this.network = _network;
+    }
+    recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string): Promise<RecordData> {
+        throw new Error("Method not implemented.");
     }
     deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<DeployedShop> {
         throw new Error("Method not implemented.");

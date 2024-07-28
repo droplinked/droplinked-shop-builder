@@ -1,5 +1,6 @@
 import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout"
 import MainLayout from "components/layouts/app/main/mainLayout"
+import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout"
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
 import NotFound from "pages/404/404"
 import ShopProduct from "pages/affiliate/product/ShopProduct"
@@ -14,6 +15,7 @@ import BlogForm from "pages/blogs/parts/blog-form/BlogForm"
 import Blog from "pages/blogs/parts/blog/Blog"
 import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
+import Gamification from "pages/gamification/Gamification"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
 import Products from "pages/product/list/products"
@@ -25,7 +27,6 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
@@ -36,12 +37,15 @@ import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
+import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -76,19 +80,13 @@ function AppRoutes() {
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route path="roi" element={<ROIPage />} />
-          {/* <Route path="dpp" element={<DppPage />} /> */}
+          <Route path="dpp" element={<DppPage />} />
           <Route path="blogs">
             <Route index element={<PublicBlogs />} />
             <Route path=":slug" element={<PublicBlog />} />
           </Route>
-          <Route
-            path="email-verification/:token"
-            element={<VerifyEmailPage />}
-          />
-          <Route
-            path="producer/account-recovery/:token"
-            element={<ResetPassPage />}
-          />
+          <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+          <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
@@ -98,6 +96,7 @@ function AppRoutes() {
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
+            <Route path="tile" element={<TileDesign />} />
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
             <Route path="admins" element={<Admins />} />
@@ -130,11 +129,16 @@ function AppRoutes() {
             <Route path="create" element={<BlogForm />} />
             <Route path=":slug" element={<Blog />} />
           </Route>
-          <Route path="plans">
-            <Route index element={<SubscriptionPlans />} />
-          </Route>
+          <Route path="plans" element={<SubscriptionPlans />} />
+          <Route path="gamification" element={<Gamification />} />
         </Route>
+
+        <Route path="shop-management" element={<ShopManagementLayout />}>
+          <Route index element={<ShopManagement />} />
+        </Route>
+
         <Route path=":shopname" element={<ShopPage />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

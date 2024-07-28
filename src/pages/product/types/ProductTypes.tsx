@@ -46,7 +46,7 @@ function ProductTypes() {
     },
     {
       type: "Digital Product",
-      description: "Upload digital assents, artworks, NFTs to sell",
+      description: "Upload digital assets, artworks, NFTs to sell",
       image: "/assets/images/digital.svg",
       route: createProductRoute + "digital",
       legalUsageKey: "digital_product"

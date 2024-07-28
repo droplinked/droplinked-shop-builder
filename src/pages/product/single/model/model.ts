@@ -70,7 +70,10 @@ const ProductSingleModel = ({
             subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
             technique: data?.technique,
             pre_purchase_data_fetch: data?.pre_purchase_data_fetch,
-            productTile: data?.productTile
+            productTile: data?.productTile,
+            launchDate: data?.launchDate,
+            legalUsage: data?.legalUsage,
+            publish_status: data?.publish_status
             // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },

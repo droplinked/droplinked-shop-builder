@@ -20,7 +20,7 @@ const formSchema = Yup.object().shape({
     password: Yup.string().required("Required"),
 })
 
-const LoginModal = ({ show, close, switchModal, switchReset }) => {
+const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) => {
     const [searchParams] = useSearchParams()
     const { app: { login, loading } } = useHookStore()
     const { showToast } = useAppToast()
@@ -39,14 +39,12 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     const processLogin = async (data: any) => {
         try {
             const { user } = data
-            if (!["PRODUCER", "ADMIN"].includes(user.type))
-                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
-
             const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
-            if (status === "DELETED") {
-                showToast({ message: "This account has been deleted", type: "error" })
-                return
-            }
+            if (status === "DELETED")
+                return showToast({ message: "This account has been deleted", type: "error" })
+
+            if (user.type !== "SHOPBUILDER")
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
             const { href, dashboard } = navigating_user_based_on_status(status, data)
             dashboard ? shopNavigate(href) : navigate(href)

@@ -23,7 +23,7 @@ interface IProps {
 
 interface IForm {
     title: string;
-    description: string;
+    description?: string;
     image: string;
 }
 
@@ -55,13 +55,13 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
     );
 
     const formSchema = Yup.object().shape({
-        title: Yup.string().required('Required'),
-        description: Yup.string().required('Required'),
-        image: Yup.string().required('Required'),
-    });
+        title: Yup.string().required('Name is required'),
+        description: Yup.string(),
+        image: Yup.string().required('Image is required'),
+    })
 
     return (
-        <AppModal close={close} open={open} size="2xl" title={collection ? 'Edit Collection' : 'Create Collection'} contentProps={{ padding: '60px 80px' }}>
+        <AppModal close={close} open={open} size="2xl" title={collection ? 'Edit Collection' : 'Create Collection'}>
             <Formik
                 initialValues={{
                     title: collection ? collection.title : '',
@@ -81,7 +81,6 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                                     name="title"
                                     value={values.title}
                                     onChange={(e: any) => setFieldValue('title', e.target.value)}
-                                    isRequired
                                     maxLength={40}
                                     label="Name"
                                     placeholder="Collection 1"
@@ -91,7 +90,6 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                                     name="description"
                                     value={values.description}
                                     onChange={(e: any) => setFieldValue('description', e.target.value)}
-                                    isRequired
                                     maxLength={100}
                                     label="Description"
                                     placeholder="Describe collection"

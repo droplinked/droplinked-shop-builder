@@ -11,28 +11,56 @@ interface IgetRows {
     state: IproductState
     key: number
     available_variant: Array<any>
+    onPriceChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    generalPrice?: number
+    onQuantityChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    generalQuantity?: number
 }
 
 const SkuTableModel = ({
-    getRows: ({ state, sku, key, available_variant }: IgetRows) => {
-        const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
-        const product_type = state.product_type
+    getRows: ({ state, sku, key, available_variant, onPriceChange, generalPrice, onQuantityChange, generalQuantity }: IgetRows) => {
+        const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED";
+        const product_type = state.product_type;
 
         return {
             Variant: {
+                caption: 
+                    <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"16px"}>
+                        <AppTypography>Variant</AppTypography>
+                        <AppTypography>Change All</AppTypography>
+                    </Flex>,
                 props: {
                     width: "20%"
                 },
                 value: sku?.options?.map(el => el?.caption).join("-")
             },
             price: {
-                caption: product_type === "PRINT_ON_DEMAND" ? "Retail Price" : "Price",
+                caption: 
+                    <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
+                        <AppTypography>{product_type === "PRINT_ON_DEMAND" ? "Retail Price" : "Price"}</AppTypography>
+                        <Flex gap={2} alignItems="center">
+                            <FieldsSkuTable
+                                isDisabled={checkRecord}
+                                index={key}
+                                value={generalPrice}
+                                name={"price"}
+                                onChange={onPriceChange}
+                                placeholder="0"
+                            />
+                            <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
+                        </Flex>
+                    </Flex>,
                 props: {
                     width: "20%"
                 },
                 value: (
                     <Flex gap={2} alignItems="center">
-                        <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.price} name={"price"} />
+                        <FieldsSkuTable
+                            isDisabled={checkRecord}
+                            index={key}
+                            value={sku.price}
+                            name={"price"}
+                        />
                         <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
                     </Flex>
                 )
@@ -43,6 +71,11 @@ const SkuTableModel = ({
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
+                    caption: 
+                        <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
+                            <AppTypography>Quantity</AppTypography>
+                            {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"quantity"} placeholder="0" />}
+                        </Flex>,
                     value: product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.quantity} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
                 },
             },
@@ -84,4 +117,4 @@ const SkuTableModel = ({
     }
 })
 
-export default SkuTableModel
+export default SkuTableModel;

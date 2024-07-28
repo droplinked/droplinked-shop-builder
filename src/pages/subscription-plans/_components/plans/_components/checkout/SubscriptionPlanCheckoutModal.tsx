@@ -1,28 +1,33 @@
-import AppModal, { IAppModal } from 'components/common/modal/AppModal'
+import AppModal from 'components/common/modal/AppModal'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
 import StripeModal from './_components/StripeModal'
 
-interface Props extends IAppModal {
+interface Props {
     selectedPlan: SubscriptionPlan
+    isOpen: boolean;
+    close: () => void;
+    isFromPlansPage?: boolean;
+    isLoggedInViaGoogle?: boolean;
+    hasProfile?: any;
 }
 
-function SubscriptionPlanCheckoutModal({ selectedPlan, open, close }: Props) {
+function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
     const [clientSecret, setClientSecret] = useState<string | null>(null)
     const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
 
     const renderContent = () => {
-        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} />
-        if (clientSecret) return <StripeModal clientSecret={clientSecret} close={close} setPaymentStatus={setPaymentStatus} />
-        return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} />
+        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} isFromPlansPage={isFromPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} />
+        if (clientSecret) return <StripeModal clientSecret={clientSecret} close={close} setPaymentStatus={setPaymentStatus} isFromPlansPage={isFromPlansPage} />
+        return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} hasProfile={hasProfile} isFromPlansPage={isFromPlansPage} />
     }
 
     return (
         <AppModal
             close={close}
-            open={open}
+            open={isOpen}
             size="2xl"
         >
             {renderContent()}

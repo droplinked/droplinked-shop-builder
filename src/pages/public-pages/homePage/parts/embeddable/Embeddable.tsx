@@ -55,7 +55,7 @@ function Embeddable() {
                 </Swiper>
             </VStack>
             <Flex width={{ base: "90%", sm: "60%", lg: "40%" }} direction={"column"} gap={{ base: 4, lg: 8 }} marginTop="20px">
-                <AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "24px", lg: "32px" }} color={"#fff"} fontWeight='bold' whiteSpace={"nowrap"}>Embeddable Product Cards</AppTypography>
+                <AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "24px", lg: "32px" }} color={"#fff"} fontWeight='bold'>Embeddable Product Cards</AppTypography>
                 <AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "16px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with stand alone checkout to reach customers wherever they are</AppTypography>
             </Flex>
         </Flex>

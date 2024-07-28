@@ -5,38 +5,54 @@ import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import React, { useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
 function HeaderDashboardLoggedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
-    const { logoutUser } = useProfile()
+    const { logoutUser } = useProfile();
     const { app: { shop, user } } = useHookStore();
-    const logout = useCallback(() => {
-        logoutUser()
-        onClose()
-    }, []);
+    const popoverRef = useRef<HTMLDivElement>(null);
+
+    const logout = () => {
+        logoutUser();
+        onClose();
+    };
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+                onClose();
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [onClose]);
 
     return (
         <Popover
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={onClose}
-            variant="unstyle"
+            variant="unstyled"
         >
             <PopoverTrigger>
                 <Flex alignItems="center" gap="12px" cursor="pointer">
-                    <AppTypography color={"lightGray"} fontSize={"18px"} fontWeight={"500"}>{shop?.name}</AppTypography>
+                    <AppTypography userSelect={"none"} color={"lightGray"} fontSize={"18px"} fontWeight={"500"}>{shop.name}</AppTypography>
                     <AppIcons.ShopIcon />
                 </Flex>
             </PopoverTrigger>
             <PopoverContent
-                right="27px"
+                ref={popoverRef}
                 width="280px"
-                shadow="none !important"
+                right="32px"
                 outline="none !important"
                 border="none !important"
                 borderRadius="8px"
+                shadow="none !important"
                 padding="24px"
                 bg="#292929"
             >
@@ -67,8 +83,8 @@ function HeaderDashboardLoggedin() {
                     </Flex>
                 </PopoverBody>
             </PopoverContent>
-        </Popover >
+        </Popover>
     )
 }
 
-export default HeaderDashboardLoggedin
+export default HeaderDashboardLoggedin;

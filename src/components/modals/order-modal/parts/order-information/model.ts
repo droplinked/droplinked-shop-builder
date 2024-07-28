@@ -39,7 +39,6 @@ namespace OrderInformationModel {
     }
 
     export const getTransactionLink = (order: any) => {
-        console.log(order)
         const { orderInformation, details } = order
         const { transactionId } = orderInformation
         switch (details.paidWith) {
@@ -48,7 +47,7 @@ namespace OrderInformationModel {
             case "STACKS":
                 return `https://explorer.hiro.so/txid/${transactionId}?chain=${appDevelopment ? "testnet" : "mainnet"}`
             case "POLYGON":
-                return `https://${appDevelopment ? "mumbai." : ""}polygonscan.com/tx/${transactionId}`
+                return `https://${appDevelopment ? "amoy." : ""}polygonscan.com/tx/${transactionId}`
             case "XRPLSIDECHAIN":
                 return `https://evm-sidechain.xrpl.org/tx/${transactionId}`
             case "BINANCE":
@@ -61,6 +60,8 @@ namespace OrderInformationModel {
                 return `https://${appDevelopment ? "goerli." : ""}lineascan.build/tx/${transactionId}`
             case "ETH":
                 return `https://${appDevelopment ? "sepolia." : ""}etherscan.io/tx/${transactionId}`
+            case 'REDBELLY': 
+				return `https://explorer.testnet.redbelly.network/transaction/${transactionId}`
             default:
                 return ""
         }

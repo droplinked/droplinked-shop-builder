@@ -1,6 +1,6 @@
 import { StyleProps, SystemStyleObject } from "@chakra-ui/react";
 
-export type IPreviewSections = "theme" | "header" | "hero" | "profile" | "products" | "footer";
+export type IPreviewSections = "theme" | "header" | "hero" | "profile" | "products" | "footer" | "releaseDate";
 
 export interface ITemplateOptions {
     "--dlk-lyt": {
@@ -97,7 +97,7 @@ export interface ITemplateOptions {
             "--dlk-pgs-hme-bnr": {
                 "--dlk-pgs-hme-bnr-styles": StyleProps;
                 "--dlk-pgs-hme-bnr-img": StyleProps;
-                "--dlk-pgs-hme-bnr-txt":{
+                "--dlk-pgs-hme-bnr-txt": {
                     "--dlk-pgs-hme-bnr-txt-styles": StyleProps,
                     "--dlk-pgs-hme-bnr-txt-cntnt": StyleProps,
                 }
@@ -207,6 +207,7 @@ export interface ITemplateOptions {
         };
     };
 }
+
 export interface IAdditionalLinkes {
     caption: string;
     link: string;
@@ -251,6 +252,7 @@ export interface IShopDesignPage {
         faviconURL?: string;
     };
     template_options?: ITemplateOptions;
+    launchDate?: string | null;
 }
 
 export interface IStateDesignPage {
@@ -261,13 +263,13 @@ export interface IStateDesignPage {
 
 export type actionsDesignPage =
     | {
-          type: "updateState";
-          params: IStateDesignPage;
-      }
+        type: "updateState";
+        params: IStateDesignPage;
+    }
     | {
-          type: "updateShop";
-          params: IShopDesignPage;
-      };
+        type: "updateShop";
+        params: IShopDesignPage;
+    };
 
 namespace designPageReducer {
     export const reducers = (state: IStateDesignPage, actions: actionsDesignPage): IStateDesignPage => {
@@ -281,16 +283,16 @@ namespace designPageReducer {
                 ...state,
                 shop: actions.params.shopDesign
                     ? {
-                          ...state.shop,
-                          shopDesign: {
-                              ...state.shop.shopDesign,
-                              ...actions.params.shopDesign,
-                          },
-                      }
+                        ...state.shop,
+                        shopDesign: {
+                            ...state.shop.shopDesign,
+                            ...actions.params.shopDesign,
+                        },
+                    }
                     : {
-                          ...state.shop,
-                          ...actions.params,
-                      },
+                        ...state.shop,
+                        ...actions.params,
+                    },
             };
         } else return state;
     };
