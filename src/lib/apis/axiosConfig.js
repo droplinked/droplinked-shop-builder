@@ -22,7 +22,6 @@ const clearPromise = () => {
 const refresh_access_token = async () => {
     try {
         const refresh_token = AppStorage.refreshToken()
-        console.log("refresh", refresh_token)
         const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
         })
@@ -34,8 +33,7 @@ const refresh_access_token = async () => {
         return data.access_token
     } catch (error) {
         AppStorage.clearStorage()
-        console.log(error)
-        // window.location.replace(window.location.origin)
+        window.location.replace(window.location.origin)
     }
 }
 
