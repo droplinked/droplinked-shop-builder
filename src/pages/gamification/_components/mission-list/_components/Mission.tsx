@@ -29,7 +29,15 @@ function Mission({ mission }: { mission: Participation }) {
                             </Flex>
                         </Flex>
                         <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "#292929"} />
-                        <AppTypography fontSize={12} fontWeight={400} color={mission.isCompleted ? "#2BCFA1" : "#fff"} whiteSpace={"pre-line"}>{mission.description}</AppTypography>
+                        <AppTypography 
+                            fontSize={12} 
+                            fontWeight={400} 
+                            color={mission.isCompleted ? "#2BCFA1" : "#fff"} 
+                            whiteSpace={"pre-line"} 
+                            style={{display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden", textOverflow: "ellipsis"}}
+                        >
+                            {mission.description}
+                        </AppTypography>
                     </Flex>
                     <Flex flexGrow={1} direction="column" justifyContent="flex-end">
                         {
