@@ -5,7 +5,7 @@ import LoginModal from "../login-modal/LoginModal";
 import ResetPassModal from "../reset-pass-modal/ResetPassModal";
 import SignupModal from "../signup-modal/SignupModal";
 
-const AuthModal = ({ show, close, shopName, type = MODAL_TYPE.SIGNIN }: { show: boolean; close: () => void; shopName?: string; type?: MODAL_TYPE }) => {
+const AuthModal = ({ show, close, shopName, type = MODAL_TYPE.SIGNIN, isFromPlansPage, subscriptionPlan }: { show: boolean; close: () => void; shopName?: string; type?: MODAL_TYPE; isFromPlansPage?: boolean; subscriptionPlan?: any }) => {
   const [modalType, setModalType] = useState(type ? type : MODAL_TYPE.SIGNIN);
 
   const switchModal = () => setModalType(modalType === MODAL_TYPE.SIGNIN ? MODAL_TYPE.SIGNUP : MODAL_TYPE.SIGNIN);

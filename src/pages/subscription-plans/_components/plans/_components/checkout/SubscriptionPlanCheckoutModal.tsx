@@ -8,10 +8,13 @@ import StripeModal from './_components/StripeModal'
 interface Props {
     selectedPlan: SubscriptionPlan
     isOpen: boolean;
-    close: () => void
+    close: () => void;
+    isFromPlansPage?: boolean;
+    isLoggedInViaGoogle?: boolean;
+    hasProfile?: any;
 }
 
-function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close }: Props) {
+function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
     const [clientSecret, setClientSecret] = useState<string | null>(null)
     const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
 

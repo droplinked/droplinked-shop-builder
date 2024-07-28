@@ -150,8 +150,8 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                     }
                 </Flex>
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} isOpen={purchaseModal.isOpen} close={purchaseModal.onClose} />}
-            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={signInModal.onClose} type={MODAL_TYPE.SIGNUP} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} isOpen={purchaseModal.isOpen} close={() => purchaseModal.onClose()} isFromPlansPage={isPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} hasProfile={profile} />}
+            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
         </>
     )
 }
