@@ -43,10 +43,8 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
     const processLogin = async (data: any) => {
         try {
             const { user } = data
-            const status = isFromPlansPage ? "VERIFY" : user.status
+            const status = isFromPlansPage ? "VERIFIED" : user.status
 
-            status === "NEW" && showToast({message: "Please verify your email to log in", type: "info"})
-            
             if (status === "DELETED")
                 return showToast({ message: "This account has been deleted", type: "error" })
 

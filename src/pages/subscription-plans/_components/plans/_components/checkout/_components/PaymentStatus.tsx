@@ -39,6 +39,11 @@ function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, is
         close()
     }
 
+    const handleClickCancel = () => {
+        isFromPlansPage && logoutUser()
+        close()
+    }
+
     return (
         <Flex direction={"column"} alignItems={"center"} gap={5}>
             <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>{headingText}</Heading>
@@ -62,7 +67,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, is
             {
                 isSuccessful ?
                     <BasicButton onClick={fetchShopSubscriptionData}>Great</BasicButton> :
-                    <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
+                    <BasicButton variant='outline' onClick={handleClickCancel}>Cancel</BasicButton>
             }
         </Flex>
     )
