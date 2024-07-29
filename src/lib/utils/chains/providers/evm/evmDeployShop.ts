@@ -59,7 +59,7 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
             const tx = await contract.deployShop(byteCode + bytecodeWithArgs.split("0x")[1], salt)
             modalInterface.waiting("Waiting for confirmation...");
             const receipt = await tx.wait();
-            const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log) } catch { return null } }).filter((log: any) => log != null);
+            const logs = receipt.logs.map((log: any) => {try{return contract.interface.parseLog(log)}catch(e){return null}}).filter((log: any) => log !== null) as any;
             const shopDeployLog = logs.find((log: any) => log.name === "ShopDeployed");
             const deployedShopAddress = shopDeployLog.args.shop;
             const deployedNFTAddress = shopDeployLog.args.nftContract;
