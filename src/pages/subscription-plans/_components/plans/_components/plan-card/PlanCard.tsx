@@ -74,7 +74,8 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         await login({ type: "get", access_token: params_variables?.access_token, refresh_token: params_variables?.refresh_token, params: { access_token: params_variables?.access_token } })
             .then((res) => {
                 const { user } = res;
-                const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
+                const status = user.status;
+
                 if (status === "DELETED") return showToast({ message: "This account has been deleted", type: "error" });
 
                 if (user.type !== "SHOPBUILDER") return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
