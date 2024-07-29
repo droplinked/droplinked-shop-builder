@@ -12,35 +12,33 @@ function TileDesignHeader() {
         methods: { updateState },
     } = useContext(TileDesignContext);
     return (
-        <HStack width={"full"} padding={"12px 24px"} rounded={"8px"} alignItems={"center"} justifyContent={"space-between"} backgroundColor={"#141414"}>
-            <HStack gap={"48px"}>
-                <Select
-                    options={[
-                        { label: TILE_DESIGN_PAGES_ENUM.PRODUCT, value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
-                        { label: TILE_DESIGN_PAGES_ENUM.INFORMATION, value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
-                        { label: TILE_DESIGN_PAGES_ENUM.SHIPPING, value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
-                        { label: TILE_DESIGN_PAGES_ENUM.PAYMENT, value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
-                        { label: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE, value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
-                    ]}
-                    onChange={(e) => {
-                        updateState("current", { page: e?.value, section: e.value === TILE_DESIGN_PAGES_ENUM.PRODUCT ? PRODUCT_SECTIONS_ENUM.CONTAINER : "none" });
-                    }}
-                    value={{ label: current.page, value: current.page }}
-                    isSearchable={false}
-                    styles={{
-                        ...DropDownModel.style(false),
-                        control: (baseStyles) => ({ display: "flex", cursor: "pointer", padding: "0px", width: "164px" }),
-                        indicatorsContainer: (baseStyles) => ({ ...baseStyles, color: "white" }),
-                        dropdownIndicator: (baseStyles) => ({ ...baseStyles, padding: "0px" }),
-                        indicatorSeparator: (baseStyles) => ({ display: "none" }),
-                        singleValue: (baseStyles) => ({ ...baseStyles, color: "white", fontSize: "14px", fontWeight: "500" }),
-                    }}
-                />
-                <AppTypography fontSize={"14px"} fontWeight={"500"} textAlign={"center"} color={"white"}>
+        <HStack width={"full"} padding={"12px 24px"} rounded={"8px"} gap={"48px"} alignItems={"center"} justifyContent={"space-between"} backgroundColor={"#141414"}>
+            <Select
+                options={[
+                    { label: TILE_DESIGN_PAGES_ENUM.PRODUCT, value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
+                    { label: TILE_DESIGN_PAGES_ENUM.INFORMATION, value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
+                    { label: TILE_DESIGN_PAGES_ENUM.SHIPPING, value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
+                    { label: TILE_DESIGN_PAGES_ENUM.PAYMENT, value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
+                    { label: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE, value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
+                ]}
+                onChange={(e) => {
+                    updateState("current", { page: e?.value, section: e.value === TILE_DESIGN_PAGES_ENUM.PRODUCT ? PRODUCT_SECTIONS_ENUM.CONTAINER : "none" });
+                }}
+                value={{ label: current.page, value: current.page }}
+                isSearchable={false}
+                styles={{
+                    ...DropDownModel.style(false),
+                    control: (baseStyles) => ({ display: "flex", cursor: "pointer", padding: "0px", width: "164px" }),
+                    indicatorsContainer: (baseStyles) => ({ ...baseStyles, color: "white" }),
+                    dropdownIndicator: (baseStyles) => ({ ...baseStyles, padding: "0px" }),
+                    indicatorSeparator: (baseStyles) => ({ display: "none" }),
+                    singleValue: (baseStyles) => ({ ...baseStyles, color: "white", fontSize: "14px", fontWeight: "500" }),
+                }}
+            />
+            {/* <AppTypography fontSize={"14px"} fontWeight={"500"} textAlign={"center"} color={"white"}>
                     Final Setup
-                </AppTypography>
-            </HStack>
-            <Flex justifyContent="center" gap="48px">
+                </AppTypography> */}
+            {/* <Flex justifyContent="center" gap="48px">
                 <Box cursor="pointer">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -67,7 +65,7 @@ function TileDesignHeader() {
                         />
                     </svg>
                 </Box>
-            </Flex>
+            </Flex> */}
         </HStack>
     );
 }
