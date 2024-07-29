@@ -64,7 +64,8 @@ const states = (set, get): IAppStore => ({
                 const access_token = method.type === "default" ? result?.access_token : method.access_token
                 const refresh_token = method.type === "default" ? result?.refresh_token : method.refresh_token;
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
-                let status = appDevelopment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
+                let status = window.location.pathname === "/plans" ? "VERIFY" : result?.user?.status
+                status === "NEW" && toast["info"]("Please verify your email to log in")
 
                 set({
                     loading: false,

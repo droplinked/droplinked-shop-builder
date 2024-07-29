@@ -39,7 +39,8 @@ const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) 
     const processLogin = async (data: any) => {
         try {
             const { user } = data
-            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
+            const status = user.status
+
             if (status === "DELETED")
                 return showToast({ message: "This account has been deleted", type: "error" })
 
