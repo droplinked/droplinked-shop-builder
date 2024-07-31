@@ -4,11 +4,11 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppTypography from "components/common/typography/AppTypography";
 import { Form, Formik } from "formik";
-import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { IsignupService } from "lib/apis/auth/interfaces";
 import { signupService } from "lib/apis/auth/services";
+import useAppStore from "lib/stores/app/appStore";
 import { BASE_URL } from "lib/utils/app/variable";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { passwordRegex } from "lib/utils/heper/regex";
@@ -28,7 +28,7 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
     const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
 
-    const { app: { login } } = useHookStore()
+    const { login } = useAppStore()
     const { shopNavigate } = useCustomNavigate()
 
     const handleLogin = async (data) => {

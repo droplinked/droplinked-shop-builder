@@ -2,14 +2,14 @@ import { Box, Flex, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import AuthModal from 'components/modals/auth-modal/AuthModal'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import Typewriter from 'typewriter-effect'
 import { MODAL_TYPE } from '../../HomePage'
 import Droplinked from './parts/droplinked/Droplinked'
 
 function Banner() {
-    const { app: { shop } } = useHookStore();
+    const { shop } = useAppStore();
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (

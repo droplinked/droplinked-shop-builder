@@ -5,10 +5,10 @@ import AppCard from 'components/common/card/AppCard';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 import AppTypography from 'components/common/typography/AppTypography';
 import useStack from 'functions/hooks/stack/useStack';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { supportedChainsService } from 'lib/apis/sku/services';
+import useAppStore from 'lib/stores/app/appStore';
 import { isWalletInstalled } from 'lib/utils/chains/providers/evm/evmLogin';
 import React, { useCallback } from 'react';
 import { useQuery } from 'react-query';
@@ -23,7 +23,7 @@ function ConnectWallets() {
     })
     const { getChain, login } = useAppWeb3()
     const { showToast } = useAppToast()
-    const { app: { user: { wallets } } } = useHookStore()
+    const { user: { wallets } } = useAppStore()
     const stack = useStack()
 
     const loginChain = useCallback(async (chain: string) => {

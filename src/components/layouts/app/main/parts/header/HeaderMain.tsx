@@ -1,13 +1,13 @@
 import { Flex, Hide, Show } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AuthModal from "components/modals/auth-modal/AuthModal";
-import useHookStore from "functions/hooks/store/useHookStore";
+import useAppStore from "lib/stores/app/appStore";
 import React, { useState } from "react";
 import DesktopHeader from "./parts/desktop-header/DesktopHeader";
 import MobileHeader from "./parts/mobile-header/MobileHeader";
 
 function HeaderMain() {
-    const { app: { shop } } = useHookStore()
+    const { shop } = useAppStore()
     const [header_state, set_header_state] = useState<{ auth_modal: boolean; scrolled: boolean }>({ auth_modal: false, scrolled: false })
     const toggleAuthModal = () => set_header_state((p) => ({ ...p, auth_modal: !p.auth_modal }))
     window.onscroll = () => {

@@ -3,11 +3,11 @@ import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
 import AuthModal from "components/modals/auth-modal/AuthModal";
-import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
+import useAppStore from "lib/stores/app/appStore";
 import { capitalizeFirstLetter, navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
@@ -37,9 +37,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         purchaseModal.onOpen()
     }
 
-    const {
-        app: { login, loading },
-    } = useHookStore();
+    const { login, loading } = useAppStore();
     const { showToast } = useAppToast();
     const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
