@@ -3,7 +3,6 @@ import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import CollectionCreate from 'pages/collections/parts/create/CollectionCreate'
 import React from 'react'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
@@ -11,10 +10,9 @@ import CollectionList from './parts/list'
 
 function Collection() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { data: { collection: { fetch } } } = useHookStore()
 
     return (
-        <VStack width={"100%"} spacing={4} align={"stretch"}>
+        <VStack spacing={4} align={"stretch"}>
             <HStack justifyContent={"space-between"}>
                 <VStack align={"stretch"}>
                     <FieldLabel label='Collections' isRequired />

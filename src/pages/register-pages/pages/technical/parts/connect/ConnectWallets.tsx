@@ -3,7 +3,6 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppCard from 'components/common/card/AppCard';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppTypography from 'components/common/typography/AppTypography';
 import useStack from 'functions/hooks/stack/useStack';
 import useHookStore from 'functions/hooks/store/useHookStore';
@@ -42,7 +41,7 @@ function ConnectWallets() {
         }
     }, [wallets, stack.stxAddress])
 
-    if(isLoading) return <ConnectWalletsLoading/>;
+    if (isLoading) return <ConnectWalletsLoading />;
 
     return (
         <AppCard>
