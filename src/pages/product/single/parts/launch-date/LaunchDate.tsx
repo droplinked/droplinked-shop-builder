@@ -47,7 +47,7 @@ const LaunchDate = () => {
     return (
         <ProductCollapse
             title="Release Date"
-            description="Select a shipping method to deliver your product."
+            description="Schedule the product release date if you don't want to publish it immediately."
             isRequired={false}
         >
             <Flex direction="column" gap={6}>
