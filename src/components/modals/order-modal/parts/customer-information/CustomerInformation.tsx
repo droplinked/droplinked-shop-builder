@@ -8,7 +8,8 @@ const CustomerInformation = () => {
   const information = [
     { label: "Name", value: order?.customer.name },
     { label: "Email", value: order?.customer.email },
-    { label: "Address", value: order?.customer.address }
+    { label: "Address", value: order?.customer.address },
+    { label: "Order Note", value: order?.details?.note },
   ]
 
   return (
