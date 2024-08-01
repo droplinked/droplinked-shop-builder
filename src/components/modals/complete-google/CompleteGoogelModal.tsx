@@ -3,9 +3,9 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from "components/common/modal/AppModal";
 import { Form, Formik } from "formik";
-import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import useAppStore from "lib/stores/app/appStore";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { usernameRegex } from "lib/utils/heper/regex";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
@@ -15,9 +15,7 @@ import * as Yup from "yup";
 
 const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; close: () => void; switchModal: (type: MODAL_TYPE) => void }) => {
     const [searchParams] = useSearchParams();
-    const {
-        app: { login, loading },
-    } = useHookStore();
+    const { login, loading } = useAppStore();
     const { showToast } = useAppToast();
     const { shopNavigate } = useCustomNavigate();
     const navigate = useNavigate();
@@ -42,7 +40,7 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
                 const status = data.user.status;
-                const {href, dashboard} = navigating_user_based_on_status(status, data);
+                const { href, dashboard } = navigating_user_based_on_status(status, data);
                 dashboard ? shopNavigate(href) : navigate(href)
             }
         } catch (error) {

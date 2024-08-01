@@ -3,15 +3,15 @@ import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import useAppStore from 'lib/stores/app/appStore';
 import React, { useEffect, useRef } from 'react';
 import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
 function HeaderDashboardLoggedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile();
-    const { app: { shop, user } } = useHookStore();
+    const { shop, user } = useAppStore();
     const popoverRef = useRef<HTMLDivElement>(null);
 
     const logout = () => {

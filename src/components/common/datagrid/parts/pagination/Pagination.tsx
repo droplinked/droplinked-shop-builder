@@ -1,7 +1,7 @@
-import { Box, Flex, HStack, LinkBox } from '@chakra-ui/react'
+import { Box, Flex, HStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useCallback, useMemo } from 'react'
-import { Link, useSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 export interface IPagination {
     current: number
@@ -26,7 +26,7 @@ function Pagination({ current, lastPage, nextPage, prevPage }: IPagination) {
             const key = index + 1
             const active = current === key
             result.push(
-                <Link to={getRoutePage(key)}>
+                <Link key={key} to={getRoutePage(key)}>
                     <Flex height="40px" width="40px" justifyContent="center" alignItems="center" color="#FFF" border={`1px solid ${active ? "#4B4B4B" : "transparent"}`} borderRadius="100px">
                         <AppTypography fontSize='14px' fontWeight={active ? 'bold' : 'normal'}>{key}</AppTypography>
                     </Flex>

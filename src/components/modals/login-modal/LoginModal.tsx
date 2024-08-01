@@ -5,10 +5,10 @@ import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from "components/common/modal/AppModal";
 import AppTypography from "components/common/typography/AppTypography";
 import { Form, Formik } from "formik";
-import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { BASE_URL, appDevelopment } from "lib/utils/app/variable";
+import useAppStore from "lib/stores/app/appStore";
+import { BASE_URL } from "lib/utils/app/variable";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useEffect } from "react";
@@ -22,7 +22,7 @@ const formSchema = Yup.object().shape({
 
 const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) => {
     const [searchParams] = useSearchParams()
-    const { app: { login, loading } } = useHookStore()
+    const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
     const navigate = useNavigate()
     const { shopNavigate } = useCustomNavigate()
