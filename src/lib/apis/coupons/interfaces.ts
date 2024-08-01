@@ -17,3 +17,7 @@ export interface IgiftcardsService {
     limit?: number
     search?: string
 }
+
+export interface IexportCouponsReport {
+    giftCardId: string;
+}
