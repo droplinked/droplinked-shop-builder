@@ -6,16 +6,16 @@ import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { retrieveNFTs } from 'lib/apis/user/services'
+import useAppStore from 'lib/stores/app/appStore'
 import { appDevelopment } from 'lib/utils/app/variable'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NFTDetailsModal from './parts/NFTDetailsModal'
 
 function NFTs() {
-    const { app: { user: { wallets } } } = useHookStore()
+    const { user: { wallets } } = useAppStore()
     const [isLoading, setLoading] = useState(false)
     const [searchTerm, setSearchTerm] = useState("")
     const [myProducts, setMyProducts] = useState(false)

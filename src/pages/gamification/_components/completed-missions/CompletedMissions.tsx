@@ -1,14 +1,14 @@
 import { Flex, Progress } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import { Participation } from 'lib/apis/gamification/interfaces'
+import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 function CompletedMissions({ isLoading, missions }: { isLoading: boolean, missions: Participation[] }) {
-    const { app: { shop } } = useHookStore()
+    const { shop } = useAppStore()
     const totalPoints = missions.reduce((acc, curr) => acc + +curr.rewards.find((reward) => reward.type === "CREDIT")?.value ?? 0, 0)
     const pointsEarned = missions
         .filter(mission => mission.isCompleted)

@@ -3,10 +3,10 @@ import React from 'react'
 import AppCard from '../card/AppCard'
 import AppTable, { IAppTable } from '../table/AppTable'
 import DatagridButtons, { IDatagridButtons } from './parts/buttons/DatagridButtons'
-import DatagridSkeleton from './parts/skeleton/DatagridSkeleton'
-import SearchDatagrid, { ISearchDatagrid } from './parts/search/SearchDatagrid'
 import FiltersDatagrid, { IFiltersDatagridItems } from './parts/filters/FiltersDatagrid'
 import Pagination, { IPagination } from './parts/pagination/Pagination'
+import SearchDatagrid, { ISearchDatagrid } from './parts/search/SearchDatagrid'
+import DatagridSkeleton from './parts/skeleton/DatagridSkeleton'
 
 type mergeType = IDatagridButtons & IAppTable
 

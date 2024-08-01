@@ -1,8 +1,7 @@
-import { IUserWalletsProps } from 'lib/stores/app/appStore'
+import useAppStore, { IUserWalletsProps } from 'lib/stores/app/appStore'
 import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/dto/chains'
-import useHookStore from '../store/useHookStore'
 import web3Model, { IAcceptData, IrecordBatch, IRecordPrams, IRequestData } from './models'
 
 // method: "record" | "request" | "accept"
@@ -61,7 +60,7 @@ interface ILogin {
 
 const useAppWeb3 = () => {
     const { record, request, accept, recordBatch } = web3Model
-    const { app: { updateWallet } } = useHookStore()
+    const { updateWallet } = useAppStore()
 
     const getChain = ({ chain, wallets }: IGetChain) => wallets ? wallets.find(el => el.type === chain && el?.address) : null
 
@@ -108,7 +107,7 @@ const useAppWeb3 = () => {
                     const requests = await accept({ params, accountAddress, stack })
                     resolve(requests)
                 } else if (method === "record_batch") {
-                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product, shop, commission, royalty, stack,  })
+                    const requests = await recordBatch({ params, accountAddress, blockchain: chain, product, shop, commission, royalty, stack, })
                     resolve(requests)
                 }
             } catch (error) {
