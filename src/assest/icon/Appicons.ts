@@ -68,6 +68,7 @@ import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
+import { ReactComponent as Maximize } from "./maximize.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
 import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
@@ -253,7 +254,8 @@ const AppIcons = {
   Gamification,
   Paint,
   Redbelly,
-  Eye
+  Eye,
+  Maximize
 }
 
 export default AppIcons
