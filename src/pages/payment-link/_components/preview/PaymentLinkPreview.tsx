@@ -20,7 +20,7 @@ export default function PaymentLinkPreview() {
     }
 
     return (
-        <PaymentLinkCard title='Preview' height={"fit-content"} flexGrow={1}>
+        <PaymentLinkCard title='Preview' height={"fit-content"}>
             <Image width={"fit-content"} height={"209px"} src={getImageForScenario()} objectFit={"fill"} borderRadius={4} onClick={() => { }} />
         </PaymentLinkCard>
     )
