@@ -18,6 +18,7 @@ import DashboardPage from "pages/dashboard/DashboardPage"
 import Gamification from "pages/gamification/Gamification"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
+import PaymentLink from "pages/payment-link/PaymentLink"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
@@ -27,6 +28,7 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
@@ -37,15 +39,14 @@ import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
-import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
+import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -131,6 +132,7 @@ function AppRoutes() {
           </Route>
           <Route path="plans" element={<SubscriptionPlans />} />
           <Route path="gamification" element={<Gamification />} />
+          <Route path="payment-link" element={<PaymentLink />} />
         </Route>
 
         <Route path="shop-management" element={<ShopManagementLayout />}>
