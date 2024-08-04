@@ -2,6 +2,7 @@ import { AccountChangedException, WalletNotFoundException } from '../../chainPro
 import { ProductType, Beneficiary, RecordData, Uint256 } from '../../dto/chainStructs'
 import { Chain, ChainWallet, Network } from '../../dto/chains'
 import { ModalInterface, defaultModal } from '../../dto/modalInterface'
+import { RecordProduct } from '../../dto/recordDTO'
 import { SolanaApproveRequest } from './approve.solana'
 import { SolanDeployShop } from './deployShop.solana'
 import { SolanaLogin } from './login.solana'
@@ -140,6 +141,10 @@ export class SolanaProvider {
 			apiKey,
 			this.modalInterface
 		)
+	}
+
+	recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string, apiKey: string): Promise<RecordData> {
+		throw new Error("Method not implemented.");
 	}
 
 	publishRequest(

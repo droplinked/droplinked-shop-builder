@@ -2,15 +2,15 @@ import { Flex } from "@chakra-ui/react";
 import AppCard from "components/common/card/AppCard";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import AppTypography from "components/common/typography/AppTypography";
-import React, { useContext, useEffect, useMemo } from "react";
-import WalletsAccordion from "./wallets.accordion";
-import { useMutation, useQuery } from "react-query";
-import technicalContext from "../../context";
 import { authSupportedWalletsService } from "lib/apis/auth/services";
 import { getShopInformationService, paymentPublicService } from "lib/apis/shop/shopServices";
-import WalletWithoutLogin from "./wallet.without.login";
-import BasicButton from "components/common/BasicButton/BasicButton";
+import React, { useContext, useMemo } from "react";
+import { useQuery } from "react-query";
+import technicalContext from "../../context";
 import { WalletLoginLoading } from "./wallet.loadings";
+import WalletWithoutLogin from "./wallet.without.login";
+import WalletsAccordion from "./wallets.accordion";
+import { makePayments } from "./wallets.helpers";
 
 const Wallets = () => {
     const {
@@ -66,7 +66,11 @@ const Wallets = () => {
                 {isLoading && <WalletLoginLoading />}
                 <Flex direction={"column"} gap={"8px"}>
                     {!isLoading && supported?.data?.data?.map((login_method, index) => <WalletsAccordion key={index} chain={login_method} payment={payment?.data?.data} />)}
-                    {!isLoading && paymentsWithoutLogin?.map((method, index) => <WalletWithoutLogin key={index} payment={method} />)}
+                    {!isLoading &&
+                        makePayments({
+                            paymentMethods: paymentMethods,
+                            paymentPublic: paymentsWithoutLogin,
+                        })?.map((method, index) => <WalletWithoutLogin key={index} payment={method} />)}
                 </Flex>
             </Flex>
         </AppCard>

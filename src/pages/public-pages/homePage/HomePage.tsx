@@ -1,7 +1,8 @@
 import { Flex, Image, useDisclosure } from '@chakra-ui/react';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
-import useHookStore from 'functions/hooks/store/useHookStore';
+import AuthModal from 'components/modals/auth-modal/AuthModal';
+import useAppStore from 'lib/stores/app/appStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
@@ -15,12 +16,11 @@ import Networks from './parts/networks/Networks';
 import Partners from './parts/partners/Partners';
 import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
-import AuthModal from 'components/modals/auth-modal/AuthModal';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
 function HomePage() {
-  const { app: { user, shop } } = useHookStore()
+  const { user, shop } = useAppStore()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [States, setStates] = useState({
     pause: false,
@@ -30,18 +30,18 @@ function HomePage() {
   const [searchParams] = useSearchParams()
 
   const modal_types_convertion = {
-      login: MODAL_TYPE.SIGNIN,
-      signup: MODAL_TYPE.SIGNUP,
-      forgot_password: MODAL_TYPE.RESET,
-      google: MODAL_TYPE.GOOGLE
+    login: MODAL_TYPE.SIGNIN,
+    signup: MODAL_TYPE.SIGNUP,
+    forgot_password: MODAL_TYPE.RESET,
+    google: MODAL_TYPE.GOOGLE
   };
 
   useEffect(() => {
-      const param = searchParams.get("modal");
-      if (param) {
-          setStates((prev) => ({...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN}))
-          onOpen();
-      }
+    const param = searchParams.get("modal");
+    if (param) {
+      setStates((prev) => ({ ...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN }))
+      onOpen();
+    }
   }, [searchParams]);
 
 

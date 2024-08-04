@@ -102,7 +102,13 @@ function PartnersSlider() {
                 settings: {
                     slidesToShow: 2,
                 }
-            }
+            },
+            {
+                breakpoint: 400,
+                settings: {
+                    slidesToShow: 1,
+                }
+            },
         ]
     }
 
@@ -112,11 +118,13 @@ function PartnersSlider() {
                 {
                     partners.map((partner, key) => {
                         const { title, icon, url } = partner
-                        return <MainCard key={key} display={"flex !important"} transition="1s" padding={{ base: "24px", lg: "40px" }}>
-                            <Image width={{ base: "36px", md: "64px" }} aspectRatio={1} objectFit={"contain"} paddingBottom="10px" src={icon} alt={title} />
-                            <AppTypography fontSize={{ sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5">{title}</AppTypography>
-                            <a href={url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
-                        </MainCard>
+                        return (
+                            <MainCard key={key} display={"flex"} transition="1s" padding={{ base: 4, md: 6, lg: 8 }}>
+                                <Image width={{ base: "36px", md: "64px" }} aspectRatio={1} objectFit={"contain"} paddingBottom="10px" src={icon} alt={title} />
+                                <AppTypography fontSize={{ sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5" whiteSpace={"nowrap"}>{title}</AppTypography>
+                                <a href={url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
+                            </MainCard>
+                        )
                     })
                 }
             </Slider>

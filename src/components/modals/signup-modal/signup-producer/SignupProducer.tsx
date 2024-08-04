@@ -1,8 +1,16 @@
 import { Box, Divider, HStack, Stack, VStack } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
+import AppTypography from "components/common/typography/AppTypography";
 import { Form, Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { IsignupService } from "lib/apis/auth/interfaces";
+import { signupService } from "lib/apis/auth/services";
+import useAppStore from "lib/stores/app/appStore";
+import { BASE_URL } from "lib/utils/app/variable";
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { passwordRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useMemo, useState } from "react";
@@ -10,14 +18,6 @@ import { useMutation } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
-import AppTypography from "components/common/typography/AppTypography";
-import AppIcons from "assest/icon/Appicons";
-import { appDevelopment, BASE_URL } from "lib/utils/app/variable";
-import { IsignupService } from "lib/apis/auth/interfaces";
-import { signupService } from "lib/apis/auth/services";
-import useHookStore from "functions/hooks/store/useHookStore";
-import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscriptionPlan }) => {
     const [searchParams] = useSearchParams();
@@ -28,10 +28,8 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
     const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
 
-
-    const { app: { login } } = useHookStore()
+    const { login } = useAppStore()
     const { shopNavigate } = useCustomNavigate()
-
 
     const handleLogin = async (data) => {
         try {
@@ -45,7 +43,8 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
     const processLogin = async (data: any) => {
         try {
             const { user } = data
-            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
+            const status = isFromPlansPage ? "VERIFIED" : user.status
+
             if (status === "DELETED")
                 return showToast({ message: "This account has been deleted", type: "error" })
 
@@ -61,14 +60,12 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
             showToast({ message: error.message, type: "error" })
         }
     }
-    
-    
-    
+
     const onSubmit = async (data: any) => {
         try {
             const { email, password, referral } = data;
-            await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, subscriptionId: subscriptionPlan?._id });
-            handleLogin({email, password})
+            await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true });
+            isFromPlansPage && handleLogin({ email, password })
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
@@ -151,19 +148,19 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"} />
                         </HStack>
-                        {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}${isFromPlansPage ? `subscriptionId=${subscriptionPlan?._id}`}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
+                        {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
                         <BasicButton
                             onClick={() => {
                                 const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`);
-                                
+
                                 if (referral_code_from_params && referral_code_from_params !== "") {
                                     googleAuthUrl.searchParams.append("referralCode", referral_code_from_params);
                                 }
-                                
+
                                 if (isFromPlansPage && subscriptionPlan?._id) {
                                     googleAuthUrl.searchParams.append("subscriptionId", subscriptionPlan._id);
                                 }
-                                
+
                                 window.location.href = googleAuthUrl.toString();
                             }}
                             backgroundColor={"mainGray.500"}
@@ -174,9 +171,9 @@ const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscr
                             iconSpacing={"12px"}
                             leftIcon={<AppIcons.Google />}
                             isDisabled={isLoading}
-                            >
-                                Sign up with Google
-                            </BasicButton>
+                        >
+                            Sign up with Google
+                        </BasicButton>
                     </VStack>
                 </Form>
             )}

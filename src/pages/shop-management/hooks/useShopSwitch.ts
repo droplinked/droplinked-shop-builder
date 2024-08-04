@@ -9,7 +9,7 @@ const useShopSwitcher = () => {
 
     return useMutation({
         mutationFn: (shopId: string) => switchShopService(shopId),
-        onSuccess: (response) => {
+        onSuccess: async (response) => {
             const { data: { access_token, refresh_token, shop, user } } = response
             updateState({ key: "access_token", params: access_token })
             updateState({ key: "refresh_token", params: refresh_token })

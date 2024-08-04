@@ -1,0 +1,30 @@
+.spinner{
+    position: relative;
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    background:conic-gradient(#2EC99E00 1% , #2EC99E);
+    -webkit-mask:radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #000 0);
+    animation: spin 1s linear infinite;
+}
+
+.spinner:after{
+    content:"";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.spinner:after{
+    height: 10px;
+    width: 10px;
+    background-color: #2EC99E;
+    top: 0;
+    left: 30px;
+}
+
+@keyframes spin {
+    to{
+        transform: rotate(1turn);
+    }
+}

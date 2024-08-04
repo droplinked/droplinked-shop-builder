@@ -1,10 +1,11 @@
-import { extendTheme } from "@chakra-ui/react";
+import { Divider, extendTheme } from "@chakra-ui/react";
 import { switchAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
 
 export const theme = extendTheme({
-    components:{
-      Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({ baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({ container: { border: "none", outline: "none" }, thumb: { backgroundColor: "#1E1E1E" }, track: { backgroundColor: "#5E5E5E", _checked: { bg: "green.500" } } }) }) 
+    components: {
+        Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({ baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({ container: { border: "none", outline: "none" }, thumb: { backgroundColor: "#1E1E1E" }, track: { backgroundColor: "#5E5E5E", _checked: { bg: "green.500" } } }) }),
+        Divider: { baseStyle: { margin: "0" } }
     },
     styles: {
         global: {

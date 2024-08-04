@@ -97,6 +97,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "GOOGLE":{
             icon: <AppIcons.Google {...props}/>,
             name: "Google"
+        },
+        "REDBELLY":{
+            icon: <AppIcons.Redbelly {...props}/>,
+            name: "Redbelly"
         }
     }), [props])
 

@@ -1,13 +1,13 @@
 import { Flex, Hide, Show } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AuthModal from "components/modals/auth-modal/AuthModal";
-import useHookStore from "functions/hooks/store/useHookStore";
+import useAppStore from "lib/stores/app/appStore";
 import React, { useState } from "react";
 import DesktopHeader from "./parts/desktop-header/DesktopHeader";
 import MobileHeader from "./parts/mobile-header/MobileHeader";
 
 function HeaderMain() {
-    const { app: { shop } } = useHookStore()
+    const { shop } = useAppStore()
     const [header_state, set_header_state] = useState<{ auth_modal: boolean; scrolled: boolean }>({ auth_modal: false, scrolled: false })
     const toggleAuthModal = () => set_header_state((p) => ({ ...p, auth_modal: !p.auth_modal }))
     window.onscroll = () => {
@@ -21,7 +21,7 @@ function HeaderMain() {
             label: "Products",
             links: [
                 { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Product on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Production on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
                 { label: "Digital Goods", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
                 { label: "Tokenpay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],

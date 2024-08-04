@@ -1,41 +1,44 @@
-import React, { useContext, useEffect } from 'react'
-import { productContext } from 'pages/product/single/context'
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex, useRadioGroup } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import AppTypography from 'components/common/typography/AppTypography'
+import useCollections from 'functions/hooks/useCollections/useCollections'
+import { Collection } from 'lib/apis/collection/interfaces'
+import { productContext } from 'pages/product/single/context'
+import React, { useContext, useEffect } from 'react'
+import CollectionRadio from '../collection-radio/CollectionRadio'
 
-interface IProps {
-  isLoading: boolean
-}
-
-function ListCollection({ isLoading }: IProps) {
+function CollectionList() {
   const { state: { productCollectionID }, methods: { updateState }, productID } = useContext(productContext)
-  const { data: { collection: { data } } } = useHookStore()
+  const { isFetching, error, data } = useCollections()
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: 'selected-collection',
+    onChange: (collectionId) => updateState('productCollectionID', collectionId),
+    value: productCollectionID || data?.data[0]?._id
+  })
 
-  // if state collection is null set first collection
   useEffect(() => {
-    if (data && data.length && !productID) updateState('productCollectionID', data[0]._id)
+    if (!productID) updateState('productCollectionID', data?.data[0]._id)
   }, [data, productID])
 
+
   return (
-    <AppSkeleton isLoaded={!isLoading}>
-      <Flex backgroundColor="#141414" padding={6} gap={3} flexWrap="wrap" alignItems="baseline" minHeight="180px">
-        {data && data.length ? data.map((el: any, key: number) => (
-          <Box
-            key={key}
-            onClick={() => updateState('productCollectionID', el._id)}
-            backgroundColor={el._id === productCollectionID ? "#2EC99E" : "#1C1C1C"}
-            color={el._id === productCollectionID ? "#084836" : "#808080"}
-            padding="6px 16px"
-            borderRadius="100px"
-            cursor="pointer"
-          >
-            {el.title}
-          </Box>
-        )) : null}
+    <AppSkeleton isLoaded={!isFetching}>
+      <Flex minHeight="180px" flexWrap="wrap" gap={3} padding={6} backgroundColor="#141414" {...getRootProps()}>
+        {
+          error ?
+            <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access collections at the moment. Give it another try soon?</AppTypography>
+            :
+            data?.data.map((collection: Collection) =>
+              <CollectionRadio
+                key={collection._id}
+                label={collection.title}
+                {...getRadioProps({ value: collection._id })}
+              />
+            )
+        }
       </Flex>
     </AppSkeleton>
   )
 }
 
-export default ListCollection
+export default CollectionList

@@ -1,13 +1,12 @@
 import { useDisclosure } from '@chakra-ui/react';
 import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
 import useStack from 'functions/hooks/stack/useStack';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
 import { productUpdateServices } from 'lib/apis/product/productServices';
-import { useLegalUsage } from 'lib/stores/app/appStore';
+import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ProductSingleModel from 'pages/product/single/model/model';
@@ -30,7 +29,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const stack = useStack()
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
-    const { app: { user: { wallets } } } = useHookStore()
+    const { user: { wallets } } = useAppStore()
 
     const publish = useCallback(async () => {
         try {

@@ -20,9 +20,11 @@ function RequestSpecs() {
             value: `${sku.dimensions.length} x ${sku.dimensions.height} x ${sku.dimensions.width}`
           }
         },
-        Weight: {
-          caption: "Weight",
-          value: sku.weight
+        ...sku.weight && {
+          Weight: {
+            caption: "Weight",
+            value: sku.weight
+          }
         },
         ExternalID: {
           caption: "External ID",

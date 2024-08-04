@@ -9,7 +9,7 @@ import OptionsCaption from '../../../caption/OptionsCaption'
 function OptionFonts() {
     const { methods: { dispatch }, state: { shop: { shopDesign: { fontfamily } } } } = useContext(designContext)
 
-    const fonts = ['Montserrat', 'Manrope', 'Source Serif Pro', 'Fredoka One', 'Nunito Sans', 'Allerta']
+    const fonts = ['Nunito Sans', 'Montserrat', 'Manrope', 'Source Serif Pro', 'Fredoka One', 'Allerta']
 
     return (
         <VStack align="stretch">

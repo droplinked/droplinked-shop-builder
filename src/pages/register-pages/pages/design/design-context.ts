@@ -247,7 +247,7 @@ export const initialStateDesignPage: IStateDesignPage = {
         fullWidthHero: false,
         productSectionText: "",
         shopDesign: {
-            fontfamily: "Montserrat",
+            fontfamily: "Nunito Sans",
             headerBackground: "",
             isHeaderFixed: false,
             hiroLayout: "center",

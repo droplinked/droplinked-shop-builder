@@ -4,17 +4,18 @@ import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
 import AuthModal from "components/modals/auth-modal/AuthModal";
+import useAppToast from "functions/hooks/toast/useToast";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
+import useAppStore from "lib/stores/app/appStore";
 import { capitalizeFirstLetter, navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
-import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
 import useHookStore from "functions/hooks/store/useHookStore";
-import useAppToast from "functions/hooks/toast/useToast";
 import { appDevelopment } from "lib/utils/app/variable";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 interface Props {
     plan: SubscriptionPlan;
@@ -24,17 +25,21 @@ interface Props {
 }
 
 const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
-    const { profile } = useProfile();
-    const purchaseModal = useDisclosure();
-    const signInModal = useDisclosure();
-    const { price, type } = plan;
-    const isStarter = type === "STARTER";
-    const isEnterprise = type === "ENTERPRISE";
-    const prevPlanTitle = subscriptionPlanMap[prevPlanType].title;
+    const { profile } = useProfile()
+    const purchaseModal = useDisclosure()
+    const signInModal = useDisclosure()
+    const { price, type } = plan
+    const isStarter = type === "STARTER"
+    const isEnterprise = type === "ENTERPRISE"
+    const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
 
-    const {
-        app: { login, loading },
-    } = useHookStore();
+    const handlePlanPurchase = () => {
+        if (!profile) return signInModal.onOpen()
+        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
+        purchaseModal.onOpen()
+    }
+
+    const { login, loading } = useAppStore();
     const { showToast } = useAppToast();
     const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
@@ -46,16 +51,12 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
     const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false);
 
-    const handlePlanPurchase = () => {
-        if (!profile) return signInModal.onOpen();
-        if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com");
-        purchaseModal.onOpen();
-    };
-
     const handleAuthModalClose = () => {
         signInModal.onClose();
-        if (isPlansPage) {
+        if (isPlansPage && !isEnterprise) {
             purchaseModal.onOpen();
+        } else if (isPlansPage && isEnterprise) {
+            window.location.href = "mailto:Support@droplinked.com"
         }
     };
 
@@ -72,7 +73,8 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         await login({ type: "get", access_token: params_variables?.access_token, refresh_token: params_variables?.refresh_token, params: { access_token: params_variables?.access_token } })
             .then((res) => {
                 const { user } = res;
-                const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
+                const status = user.status;
+
                 if (status === "DELETED") return showToast({ message: "This account has been deleted", type: "error" });
 
                 if (user.type !== "SHOPBUILDER") return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
@@ -129,26 +131,28 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                     )}
                 </AppTypography>
 
-                {features.map((featureGroup) => {
-                    if (featureGroup.value.every((feature) => !feature.value)) return null;
-                    return (
-                        <Flex key={featureGroup.key} direction={"column"} gap={2}>
-                            <AppTypography fontWeight={500} color={"white"}>
-                                {featureGroup.title || featureGroup.key}
-                            </AppTypography>
-                            {featureGroup.value
-                                .filter((feature) => feature.value)
-                                .map((feature) => (
-                                    <Flex key={feature.key} alignItems={"start"} gap={2}>
-                                        <AppIcons.Tick style={{ flexShrink: 0 }} />
-                                        <AppTypography color={"white"}>{`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}</AppTypography>
-                                    </Flex>
-                                ))}
-                        </Flex>
-                    );
-                })}
+                <Flex direction={"column"} gap={2}>
+                    {
+                        features.map(featureGroup => {
+                            if (featureGroup.value.every(feature => !feature.value)) return null
+                            return <Flex key={featureGroup.key} direction={"column"} gap={2}>
+                                {/* <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography> */}
+                                {
+                                    featureGroup.value.filter(feature => feature.value).map(feature =>
+                                        <Flex key={feature.key} alignItems={"start"} gap={2}>
+                                            <AppIcons.Tick style={{ flexShrink: 0 }} />
+                                            <AppTypography color={"white"}>
+                                                {`${feature.title} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
+                                            </AppTypography>
+                                        </Flex>
+                                    )
+                                }
+                            </Flex>
+                        })
+                    }
+                </Flex>
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={() => purchaseModal.onClose()} isFromPlansPage={isPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} hasProfile={profile} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} isOpen={purchaseModal.isOpen} close={() => purchaseModal.onClose()} isFromPlansPage={isPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} hasProfile={profile} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
         </>
     );

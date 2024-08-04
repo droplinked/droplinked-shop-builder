@@ -1,9 +1,9 @@
 import { useDisclosure } from '@chakra-ui/react'
 import useStack from 'functions/hooks/stack/useStack'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import useAppStore from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useState } from 'react'
 import { requestsButtonsContext } from './context'
@@ -17,11 +17,7 @@ function NotificationsButtons({ shop, refetch, sku, recordData }: requestInterfa
 	const modalHashKey = useDisclosure()
 	const { showToast } = useAppToast()
 	const { web3 } = useAppWeb3()
-	const {
-		app: {
-			user: { wallets },
-		},
-	} = useHookStore()
+	const { user: { wallets } } = useAppStore()
 
 	const [States, setStates] = useState<requestInterfaces.IStates>({
 		status: null,

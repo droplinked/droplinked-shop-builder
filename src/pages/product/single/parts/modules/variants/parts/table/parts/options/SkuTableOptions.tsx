@@ -1,13 +1,10 @@
-import React, { useCallback, useContext } from 'react'
-import { Box, HStack, Tooltip } from '@chakra-ui/react'
-import { productContext } from 'pages/product/single/context'
-import { Isku } from 'lib/apis/product/interfaces'
-import introductionClass from 'pages/product/single/parts/general/model'
-import AppIcons from 'assest/icon/Appicons';
-import { useMemo } from 'react'
-import classes from './style.module.scss'
+import { Box, HStack } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
-import { IRecordModalProduct } from '../recordModal/RecordModal'
+import { Isku } from 'lib/apis/product/interfaces'
+import { productContext } from 'pages/product/single/context'
+import React, { useContext, useMemo } from 'react'
+import classes from './style.module.scss'
 
 interface IProps {
     element: Isku
@@ -21,7 +18,6 @@ interface IProps {
 
 function SkuTableOptions({ element, updateSku, modals: { recordMoal } }: IProps) {
     const { state, productID } = useContext(productContext)
-
     const isDisable = useMemo(() => !state.publish_product || !productID, [state, productID])
 
     return (

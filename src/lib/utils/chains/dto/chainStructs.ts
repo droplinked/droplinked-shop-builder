@@ -66,7 +66,7 @@ type PurchaseData = {
     shopAddress: EthAddress;
 }
 
-type RecordData = { transactionHash: string, productId: Uint256, amountRecorded: Uint256 };
+type RecordData = { transactionHash: string, productId?: Uint256, amountRecorded?: Uint256 };
 
 type AffiliateRequestData = { transactionHash: string; requestId: Uint256; publisher: EthAddress } | undefined;
 

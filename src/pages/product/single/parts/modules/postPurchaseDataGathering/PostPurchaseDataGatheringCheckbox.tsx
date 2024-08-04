@@ -23,12 +23,10 @@ function PostPurchaseDataGatheringCheckbox() {
     return (
         <AppSkeleton isLoaded={!isLoading}>
             <Flex gap={3}>
-                <Box>
-                    <AppSwitch
-                        isDisabled={!shopPostPurchaseDataGathering}
-                        onChange={handleCheckboxChange}
-                        isChecked={pre_purchase_data_fetch} />
-                </Box>
+                <AppSwitch
+                    isDisabled={!shopPostPurchaseDataGathering}
+                    onChange={handleCheckboxChange}
+                    isChecked={pre_purchase_data_fetch} />
                 <VStack align='stretch' color="#C2C2C2" spacing={1}>
                     <AppTypography fontSize='14px' fontWeight='bold'>Post-Purchase Data Gathering</AppTypography>
                     <AppTypography fontSize='14px'>Write a question to gather comment or specific information from customers before purchase!</AppTypography>

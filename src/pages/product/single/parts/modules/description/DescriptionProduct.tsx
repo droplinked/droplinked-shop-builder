@@ -21,7 +21,7 @@ function DescriptionProduct() {
                 <Box className={classes.editor}>
                     <Editor
                         onEditorChange={(el: any) => updateState('description', el)}
-                        apiKey='r4cgib74mcr1i0twnfwdoeadukqd7ln8173wea43acokjfc4'
+                        apiKey='6pfzx71rzzdg48m2qr77o5du3ueym435j2nxhsjnqc6e18s3'
                         initialValue={Update}
                         init={{
                             skin: "oxide-dark",

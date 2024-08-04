@@ -1,15 +1,14 @@
-import { Box, Flex, HStack, useOutsideClick } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppSwitch from "components/common/swich";
 import AppTypography from "components/common/typography/AppTypography";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useGetPermissionValue } from "lib/stores/app/appStore";
-import AppErrors from "lib/utils/statics/errors/errors";
-import technicalContext from "pages/register-pages/pages/technical/context";
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { canActivateNewPaymentMethod } from "./wallets.helpers";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import technicalContext from "pages/register-pages/pages/technical/context";
+import React, { useContext, useMemo, useState } from "react";
+import { canActivateNewPaymentMethod } from "./wallets.helpers";
 
 const WalletWithoutLogin = ({ payment, token }: { payment: any; token?: any }) => {
     const getPermissionValue = useGetPermissionValue();
@@ -27,13 +26,12 @@ const WalletWithoutLogin = ({ payment, token }: { payment: any; token?: any }) =
             if (!canActivateNewPaymentMethod(payment, selectedPaymentMethods, getPermissionValue, showToast)) return;
             existingChainIndex !== -1 ? (selectedPaymentMethods[existingChainIndex].isActive = true) : selectedPaymentMethods.push({ ...payment, isActive: true });
         } else {
-            // const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
-            // if (activePaymentMethodsCount === 1) return
             selectedPaymentMethods[existingChainIndex].isActive = false;
         }
         updateState("paymentMethods", selectedPaymentMethods);
     };
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={payment?.type?.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [payment?.type]);
+
 
     return (
         <Flex direction={"column"} gap={"24px"} borderRadius={"8px"} padding={"24px"} backgroundColor={"#141414"}>

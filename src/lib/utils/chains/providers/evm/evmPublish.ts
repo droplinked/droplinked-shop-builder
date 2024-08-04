@@ -1,17 +1,18 @@
 import { ethers } from 'ethers';
 import { EthAddress, Uint256 } from '../../dto/chainStructs';
-import { shopABI } from '../../dto/chainABI';
+import { getShopABI } from '../../dto/chainABI';
 import { AlreadyRequested } from '../../dto/chainErrors';
 import { getGasPrice } from '../../dto/chainConstants';
 import { ModalInterface } from '../../dto/modalInterface';
+import { Chain } from '../../dto/chains';
 
-export let EVMPublishRequest = async function (provider: any,address: string, productId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
+export let EVMPublishRequest = async function (provider: any, chain: Chain,address: string, productId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
     }
     modalInterface.waiting("Requesting affiliate...");
-    const contract = new ethers.Contract(shopAddress, shopABI, signer);
+    const contract = new ethers.Contract(shopAddress, getShopABI(chain), signer);
     try {
         await contract.callStatic.requestAffiliate(productId);
         const gasEstimation = (await contract.estimateGas.requestAffiliate(productId)).toBigInt().valueOf();

@@ -1,4 +1,5 @@
 import { VARIANT_OPTIONS_ENUM } from "types/enum/variant.options.enum"
+import { LegalUsage } from "../subscription/interfaces"
 
 export interface IproductList {
     page: number
@@ -67,6 +68,8 @@ export interface IproductState {
     productTile?: any[];
     printful_option_data?: any;
     launchDate?: string | null;
+    legalUsage: LegalUsage[],
+    publish_status?: "PUBLISHED" | "DRAFTED"
 }
 
 export interface IpropertiesItems {
@@ -82,9 +85,10 @@ export interface Iproperties {
 }
 
 export interface IskuOption {
-    value: string
-    variantName: string,
-    caption: string
+    value: string;
+    variantName: string;
+    variantID: string;
+    caption: string;
 }
 
 export interface IrecordData {

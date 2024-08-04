@@ -2,6 +2,7 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "jest.runMode": "on-demand",
     "cSpell.words": [
+        "droplink",
         "droplinked",
         "LINEA",
         "SKALE",

@@ -71,7 +71,9 @@ const ProductSingleModel = ({
             technique: data?.technique,
             pre_purchase_data_fetch: data?.pre_purchase_data_fetch,
             productTile: data?.productTile,
-            launchDate: data?.launchDate
+            launchDate: data?.launchDate,
+            legalUsage: data?.legalUsage,
+            publish_status: data?.publish_status
             // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },

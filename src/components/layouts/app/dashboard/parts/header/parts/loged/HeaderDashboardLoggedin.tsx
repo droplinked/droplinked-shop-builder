@@ -3,26 +3,41 @@ import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import React from 'react';
+import useAppStore from 'lib/stores/app/appStore';
+import React, { useEffect, useRef } from 'react';
 import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
 function HeaderDashboardLoggedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
-    const { logoutUser } = useProfile()
-    const { app: { shop, user } } = useHookStore();
+    const { logoutUser } = useProfile();
+    const { shop, user } = useAppStore();
+    const popoverRef = useRef<HTMLDivElement>(null);
+
     const logout = () => {
-        logoutUser()
-        onClose()
-    }
+        logoutUser();
+        onClose();
+    };
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+                onClose();
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [onClose]);
 
     return (
         <Popover
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={onClose}
-            variant="unstyle"
+            variant="unstyled"
         >
             <PopoverTrigger>
                 <Flex alignItems="center" gap="12px" cursor="pointer">
@@ -31,6 +46,7 @@ function HeaderDashboardLoggedin() {
                 </Flex>
             </PopoverTrigger>
             <PopoverContent
+                ref={popoverRef}
                 width="280px"
                 right="32px"
                 outline="none !important"
@@ -71,4 +87,4 @@ function HeaderDashboardLoggedin() {
     )
 }
 
-export default HeaderDashboardLoggedin
+export default HeaderDashboardLoggedin;
