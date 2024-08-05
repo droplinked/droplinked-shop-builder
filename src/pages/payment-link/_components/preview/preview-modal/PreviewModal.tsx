@@ -27,7 +27,7 @@ export default function PreviewModal({ isOpen, onClose, currentPreviewImage }: P
         "/assets/images/paymentLink/payment-link-result.png"
     ]
 
-    const settings = {
+    const sliderSettings = {
         dots: false,
         infinite: true,
         arrows: false,
@@ -46,7 +46,7 @@ export default function PreviewModal({ isOpen, onClose, currentPreviewImage }: P
                         <PreviewModalArrows onPrev={handlePrev} onNext={handleNext} />
                     </Flex>
                     <Box flexGrow={1} borderRadius={8} overflow={"hidden"} sx={{ ".slick-slide": { padding: 0 } }}>
-                        <Slider ref={sliderRef} {...settings}>
+                        <Slider ref={sliderRef} {...sliderSettings}>
                             {images.map((image, index) => <Image key={index} src={image} alt={`Slide ${index + 1}`} />)}
                         </Slider>
                     </Box>
