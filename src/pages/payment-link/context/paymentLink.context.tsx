@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export type PaymentLinkVariantsStyle = "DROPDOWN" | "SELECTOR"
 export type PaymentLinkColorPallete = "LIGHT" | "DARK"
 
-type PaymentLinkData = {
+export type PaymentLinkData = {
     variantsStyle: PaymentLinkVariantsStyle;
     additionalNote: boolean;
     logoVisibility: boolean;

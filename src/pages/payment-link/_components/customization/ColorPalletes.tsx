@@ -39,7 +39,6 @@ function ColorPalleteRadio({ ...props }) {
                 {...getRadioProps()}
             >
                 <Box
-                    {...getRadioProps()}
                     width={14}
                     height={4}
                     borderRadius={"inherit"}
