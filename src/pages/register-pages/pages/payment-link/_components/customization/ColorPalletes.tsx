@@ -19,14 +19,14 @@ export default function ColorPalletes() {
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>Color Pallete</AppTypography>
             <Flex alignItems={"center"} gap={4} {...getRootProps()}>
-                {colorPalletes.map((color, i) => <ColorPalleteRadio key={i} color={color} {...getRadioProps({ value: color.value })} />)}
+                {colorPalletes.map((theme, i) => <ColorPalleteRadio key={i} theme={theme} {...getRadioProps({ value: theme.value })} />)}
             </Flex>
         </Flex>
     )
 }
 
 function ColorPalleteRadio({ ...props }) {
-    const { color, ...radioProps } = props
+    const { theme, ...radioProps } = props
     const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
@@ -42,7 +42,7 @@ function ColorPalleteRadio({ ...props }) {
                     width={14}
                     height={4}
                     borderRadius={"inherit"}
-                    bgColor={color.bgColor}
+                    bgColor={theme.bgColor}
                 />
             </Box>
         </FormLabel>

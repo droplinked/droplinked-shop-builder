@@ -1,3 +1,4 @@
+import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/paymentLink.context"
 import axiosInstance from "../axiosConfig"
 import { IproductByIdServices, IproductDeleteServices, IproductList, IProductReorder, IproductState, IProductTile, IproductUpdateServices } from "./interfaces"
 
@@ -63,4 +64,8 @@ export const getProductTileService = (productTileId: string) => {
 
 export const duplicateProductService = (productId: string) => {
     return axiosInstance.post(`/product/duplicate`, { productId })
+}
+
+export const updateProductLinkOptionsService = (options: PaymentLinkData) => {
+    return axiosInstance.patch(`shop/update/product-link-options`, options)
 }
