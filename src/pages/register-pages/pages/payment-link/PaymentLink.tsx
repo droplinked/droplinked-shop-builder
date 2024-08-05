@@ -8,8 +8,8 @@ import PaymentLinkProvider from './context/paymentLink.context'
 function PaymentLink() {
     return (
         <PaymentLinkProvider>
-            <Flex wrap={"wrap"} gap={6}>
-                <Flex direction={"column"} flexGrow={2} gap={6}>
+            <Flex direction={{ base: "column", xl: "row" }} gap={6}>
+                <Flex direction={"column"} flexGrow={1} gap={6}>
                     <PaymentLinkSettings />
                     <PaymentLinkCustomization />
                 </Flex>

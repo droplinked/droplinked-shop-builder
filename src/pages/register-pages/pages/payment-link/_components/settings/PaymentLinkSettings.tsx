@@ -1,5 +1,5 @@
 import { Divider } from '@chakra-ui/react'
-import { PaymentLinkContext } from 'pages/payment-link/context/paymentLink.context'
+import { PaymentLinkContext } from 'pages/register-pages/pages/payment-link/context/paymentLink.context'
 import React, { useContext } from 'react'
 import PaymentLinkCard from '../PaymentLinkCard'
 import PaymentLinkSwitch from '../PaymentLinkSwitch'

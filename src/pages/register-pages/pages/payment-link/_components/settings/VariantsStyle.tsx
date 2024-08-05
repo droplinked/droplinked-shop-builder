@@ -1,7 +1,7 @@
-import { Box, Flex, FormLabel, SimpleGrid, useRadio, useRadioGroup } from '@chakra-ui/react'
+import { Box, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { PaymentLinkContext, PaymentLinkVariantsStyle } from 'pages/payment-link/context/paymentLink.context'
+import { PaymentLinkContext, PaymentLinkVariantsStyle } from 'pages/register-pages/pages/payment-link/context/paymentLink.context'
 import React, { useContext } from 'react'
 
 const variants: { image: string, title: string, description: string, value: PaymentLinkVariantsStyle }[] = [
@@ -24,11 +24,17 @@ export default function VariantsStyle() {
                 <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>Choose how you want product variants to be shown</AppTypography>
             </Flex>
 
-            <SimpleGrid columns={{ base: 1, xl: 2 }} gap={6} {...getRootProps()}>
+            {/* <SimpleGrid columns={{ base: 1, xl: 2 }} gap={6} {...getRootProps()}>
                 {variants.map((variant) => (
                     <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} />
                 ))}
-            </SimpleGrid>
+            </SimpleGrid> */}
+
+            <Flex direction={"column"} gap={6} {...getRootProps()}>
+                {variants.map((variant) => (
+                    <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} />
+                ))}
+            </Flex>
         </Flex>
     )
 }

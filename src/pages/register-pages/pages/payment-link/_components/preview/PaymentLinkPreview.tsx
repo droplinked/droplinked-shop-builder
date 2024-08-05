@@ -1,9 +1,8 @@
 import { Box, Flex, Image, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import { PaymentLinkContext, PaymentLinkData } from 'pages/payment-link/context/paymentLink.context'
 import React, { useContext } from 'react'
-import "yet-another-react-lightbox/styles.css"
+import { PaymentLinkContext, PaymentLinkData } from '../../context/paymentLink.context'
 import PaymentLinkCard from '../PaymentLinkCard'
 import PreviewModal from './preview-modal/PreviewModal'
 
@@ -14,9 +13,9 @@ export default function PaymentLinkPreview() {
 
     return (
         <>
-            <PaymentLinkCard title='Preview' height={"fit-content"}>
+            <PaymentLinkCard title='Preview' height={"fit-content"} flexShrink={0}>
                 <Box position="relative" width="fit-content" height="209px" borderRadius={4} overflow="hidden" sx={{ "*": { userSelect: "none" } }}>
-                    <Image width="100%" height="209px" src={currentPreviewImage} objectFit="fill" />
+                    <Image width="350px" height="209px" src={currentPreviewImage} objectFit="fill" />
                     <Flex
                         position="absolute"
                         inset={0}

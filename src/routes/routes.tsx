@@ -18,7 +18,6 @@ import DashboardPage from "pages/dashboard/DashboardPage"
 import Gamification from "pages/gamification/Gamification"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
-import PaymentLink from "pages/payment-link/PaymentLink"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
@@ -39,6 +38,7 @@ import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
+import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
@@ -101,6 +101,7 @@ function AppRoutes() {
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
             <Route path="admins" element={<Admins />} />
+            <Route path="payment-link-design" element={<PaymentLink />} />
           </Route>
           <Route path="products">
             <Route index element={<Products />} />
@@ -132,7 +133,6 @@ function AppRoutes() {
           </Route>
           <Route path="plans" element={<SubscriptionPlans />} />
           <Route path="gamification" element={<Gamification />} />
-          <Route path="payment-link" element={<PaymentLink />} />
         </Route>
 
         <Route path="shop-management" element={<ShopManagementLayout />}>
