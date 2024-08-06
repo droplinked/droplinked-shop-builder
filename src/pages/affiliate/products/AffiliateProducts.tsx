@@ -14,6 +14,7 @@ import AffiliateProductsFilters from './parts/filter/AffiliateProductsFilters'
 import AffiliateProductsLoading from './parts/loading/AffiliateProductsLoading'
 
 function AffiliateProducts() {
+    console.log("yessss!")
     const { data, mutate, isLoading } = useMutation((params: IShopRecordedService) => ShopRecordedService(params))
     const [searchParams] = useSearchParams()
     const { shopNavigate } = useCustomNavigate()
