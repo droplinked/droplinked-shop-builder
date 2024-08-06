@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import PaymentLinkSubmit from './_components/PaymentLinkSubmit'
 import PaymentLinkCustomization from './_components/customization/PaymentLinkCustomization'
@@ -7,16 +7,18 @@ import PaymentLinkSettings from './_components/settings/PaymentLinkSettings'
 import PaymentLinkProvider from './context/paymentLink.context'
 
 function PaymentLink() {
+    const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)')
+
     return (
         <PaymentLinkProvider>
-            <Flex direction={{ base: "column", xl: "row" }} gap={6}>
+            <Flex direction={isLargerThan1200 ? "row" : "column"} gap={6}>
                 <Flex direction={"column"} flexGrow={1} gap={6}>
                     <PaymentLinkSettings />
                     <PaymentLinkCustomization />
-                    <PaymentLinkSubmit display={{ base: "none", xl: "flex" }} />
+                    {isLargerThan1200 && <PaymentLinkSubmit />}
                 </Flex>
                 <PaymentLinkPreview />
-                <PaymentLinkSubmit display={{ base: "flex", xl: "none" }} />
+                {!isLargerThan1200 && <PaymentLinkSubmit />}
             </Flex>
         </PaymentLinkProvider>
     )
