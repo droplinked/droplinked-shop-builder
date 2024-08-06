@@ -11,6 +11,7 @@ import ShippingProduct from '../parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from '../parts/podDesign/ProductPodDesign'
 import ProductTile from '../parts/product-tile/ProductTile'
 import Variant from '../parts/variant/Variant'
+import Web3Settings from '../parts/web3-settings/Web3Settings'
 
 function NormalProduct() {
     const { state: { prodviderID } } = useContext(productContext)
@@ -19,6 +20,7 @@ function NormalProduct() {
         <>
             <General open={true} />
             <DigitalInformation />
+            <Web3Settings />
             <DigitalLinks />
             <ShippingProduct />
             {!ProductModel.isPrintful(prodviderID) && <Variant />}
