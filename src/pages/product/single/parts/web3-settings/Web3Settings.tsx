@@ -15,7 +15,6 @@ function Web3Settings() {
                 <ProductCollapse
                     title='Web 3 settings'
                     description='Add the variants, and set a cover image to preview the product.'
-                    isRequired
                 >
                     <Flex direction={"column"} gap={9}>
                         <NetworkDigital />
