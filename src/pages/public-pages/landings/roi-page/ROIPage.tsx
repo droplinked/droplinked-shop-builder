@@ -3,6 +3,7 @@ import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import CustomHeading from '../parts/heading/Heading'
 import Layout from '../parts/layout/Layout'
 import StarryBorder from '../parts/starry-border/StarryBorder'
@@ -12,7 +13,6 @@ import Radio from './_components/radio/Radio'
 import ROIResultRow from './_components/roi-result-row/ROIResultRow'
 import Select from './_components/select/Select'
 import useROICalculation from './utils/hooks/useROICalculation'
-import { useNavigate } from 'react-router-dom'
 
 function ROIPage() {
     const navigate = useNavigate()
@@ -45,7 +45,7 @@ function ROIPage() {
                         </Container>
 
                         <Container title='Protocols'>
-                            {isLoading ? 
+                            {isLoading ?
                                 <Spinner />
                                 :
                                 <Select items={networks} selectedItem={selectedNetwork} onChange={(e) => setSelectedNetwork(+e.target.value)} />

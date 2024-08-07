@@ -1,0 +1,56 @@
+import { Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import React from 'react'
+import { ScreenSize } from './PreviewModal'
+
+interface Props {
+    currentScreenSize: ScreenSize,
+    onChange: (size: ScreenSize) => void
+}
+
+export default function PreviewModalScreenSize({ currentScreenSize, onChange }: Props) {
+    const { getRootProps, getRadioProps } = useRadioGroup({
+        name: 'selected-screen-size',
+        onChange,
+        value: currentScreenSize
+    })
+
+    return (
+        <Flex height={12} alignItems={"center"} gap={1} bg={"#F2F2F2"} p={1} borderRadius={8} {...getRootProps()}>
+            <ScreenSizeRadio icon={<AppIcons.Desktop />} text={"Desktop"} {...getRadioProps({ value: "DESKTOP" })} />
+            <ScreenSizeRadio icon={<AppIcons.Mobile />} text={"Mobile"} {...getRadioProps({ value: "MOBILE" })} />
+        </Flex>
+    )
+}
+
+function ScreenSizeRadio({ ...props }) {
+    const { icon, text, ...radioProps } = props
+    const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
+
+    return (
+        <FormLabel height={"100%"} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
+            <input {...getInputProps()} hidden />
+            <Flex
+                width={"140px"}
+                height={"100%"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                gap={"6px"}
+                borderRadius={8}
+                bg={isChecked ? "#fff" : "transparent"}
+                transition={"all 0.2s"}
+                sx={{
+                    "*": { transition: "all 0.2s" },
+                    "svg path": { stroke: isChecked ? "#000" : "#BCBCBC" }
+                }}
+                {...getRadioProps()}
+            >
+                {icon}
+                <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#000" : "#BCBCBC"}>
+                    {text}
+                </AppTypography>
+            </Flex>
+        </FormLabel>
+    )
+}
