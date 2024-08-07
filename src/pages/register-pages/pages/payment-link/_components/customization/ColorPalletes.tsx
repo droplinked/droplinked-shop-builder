@@ -1,7 +1,7 @@
 import { Box, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { PaymentLinkColorPallete, PaymentLinkContext } from 'pages/register-pages/pages/payment-link/context/paymentLink.context'
 import React, { useContext } from 'react'
+import { PaymentLinkColorPallete, PaymentLinkContext } from '../../context/PaymentLinkContext'
 
 const colorPalletes: { value: PaymentLinkColorPallete, bgColor: string }[] = [
     { value: "LIGHT", bgColor: "#FFFFFF" }

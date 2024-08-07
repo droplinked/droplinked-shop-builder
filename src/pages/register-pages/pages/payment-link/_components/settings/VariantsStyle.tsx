@@ -1,8 +1,8 @@
 import { Box, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { PaymentLinkContext, PaymentLinkVariantsStyle } from 'pages/register-pages/pages/payment-link/context/paymentLink.context'
 import React, { useContext } from 'react'
+import { PaymentLinkContext, PaymentLinkVariantsStyle } from '../../context/PaymentLinkContext'
 
 const variants: { image: string, title: string, description: string, value: PaymentLinkVariantsStyle }[] = [
     { image: "https://upload-file-droplinked.s3.amazonaws.com/72a84a0503d3101e0ea6849ee6f439bcbc12cd67ec9cd6b0a39f0d7dfe0b7894.png", title: "Dropdown", description: "Variants are being shown in dropdowns.", value: "DROPDOWN" },

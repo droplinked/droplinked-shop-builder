@@ -3,7 +3,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { updateProductLinkOptionsService } from 'lib/apis/product/productServices'
 import useAppStore from 'lib/stores/app/appStore'
 import React, { useContext, useState } from 'react'
-import { PaymentLinkContext } from '../context/paymentLink.context'
+import { PaymentLinkContext } from '../context/PaymentLinkContext'
 
 function PaymentLinkSubmit() {
     const { paymentLinkData } = useContext(PaymentLinkContext)

@@ -18,8 +18,8 @@ export default function PreviewModalScreenSize({ currentScreenSize, onChange }: 
 
     return (
         <Flex height={12} alignItems={"center"} gap={1} bg={"#F2F2F2"} p={1} borderRadius={8} {...getRootProps()}>
-            <ScreenSizeRadio icon={<AppIcons.Desktop />} text={"Desktop"} {...getRadioProps({ value: "DESKTOP" })} />
-            <ScreenSizeRadio icon={<AppIcons.Mobile />} text={"Mobile"} {...getRadioProps({ value: "MOBILE" })} />
+            <ScreenSizeRadio icon={<AppIcons.Desktop />} text={"Desktop"} {...getRadioProps({ value: "desktop" })} />
+            <ScreenSizeRadio icon={<AppIcons.Mobile />} text={"Mobile"} {...getRadioProps({ value: "mobile" })} />
         </Flex>
     )
 }
@@ -32,7 +32,7 @@ function ScreenSizeRadio({ ...props }) {
         <FormLabel height={"100%"} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
             <input {...getInputProps()} hidden />
             <Flex
-                width={"140px"}
+                width={{ base: "100px", md: "120px", xl: "140px" }}
                 height={"100%"}
                 justifyContent={"center"}
                 alignItems={"center"}

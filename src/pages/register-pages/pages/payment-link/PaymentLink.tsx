@@ -3,7 +3,7 @@ import React from 'react'
 import PaymentLinkSubmit from './_components/PaymentLinkSubmit'
 import PaymentLinkPreview from './_components/preview/PaymentLinkPreview'
 import PaymentLinkSettings from './_components/settings/PaymentLinkSettings'
-import PaymentLinkProvider from './context/paymentLink.context'
+import PaymentLinkProvider from './context/PaymentLinkContext'
 
 function PaymentLink() {
     const [isLargerThan1200] = useMediaQuery('(min-width: 1200px)')
