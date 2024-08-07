@@ -14,8 +14,8 @@ export default function PaymentLinkPreview() {
     return (
         <>
             <PaymentLinkCard title='Preview' height={"fit-content"} flexShrink={0}>
-                <Box position="relative" width="fit-content" height="209px" borderRadius={4} overflow="hidden" sx={{ "*": { userSelect: "none" } }}>
-                    <Image width="350px" height="209px" src={currentPreviewImage} objectFit="fill" />
+                <Box position="relative" width="fit-content" height="auto" borderRadius={4} overflow="hidden" sx={{ "*": { userSelect: "none" } }}>
+                    <Image width="300px" src={currentPreviewImage} objectFit="cover" />
                     <Flex
                         position="absolute"
                         inset={0}
