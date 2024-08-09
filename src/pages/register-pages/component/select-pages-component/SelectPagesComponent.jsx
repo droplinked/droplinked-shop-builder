@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
-import { useMemo } from "react";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { SideText } from "pages/register-pages/RegisterPages-style";
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 
 const SelectPagesComponent = () => {
   const { shopNavigate } = useCustomNavigate();
@@ -25,7 +25,7 @@ const SelectPagesComponent = () => {
 
       <SideText
         cursor={isSettings && "pointer"}
-        color={currentPath.includes("design") ? "primary" : "lightGray"}
+        color={currentPath === "/dashboard/settings/design" ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/design");
         }}
@@ -51,6 +51,16 @@ const SelectPagesComponent = () => {
         }}
       >
         Product Tile Design
+      </SideText>
+
+      <SideText
+        cursor={isSettings && "pointer"}
+        color={currentPath === "/dashboard/settings/payment-link-design" ? "primary" : "lightGray"}
+        onClick={() => {
+          if (isSettings) shopNavigate("settings/payment-link-design");
+        }}
+      >
+        Payment Link Design
       </SideText>
 
       {isSettings && (

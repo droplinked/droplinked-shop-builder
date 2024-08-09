@@ -45,7 +45,7 @@ function RequestsList() {
                     <Image src={element.logo} width="14px" height="14px" borderRadius="100%" />
                     <AppTypography fontSize="12px" color="#2BCFA1">{element.name}</AppTypography>
                   </Flex>
-                  <AppBadge fontSize="10px" padding="6px 24px" status={el?.status === "PENDING" ? "gray" : ["FAILED", "CANCELED"].includes(el?.status) ? "red" : "green"} text={capitalizeFirstLetter(el?.status)} />
+                  <AppBadge fontSize="10px" padding="6px 24px" status={el?.status === "PENDING" ? "gray" : ["FAILED", "CANCELED", "REJECTED"].includes(el?.status) ? "red" : "green"} text={capitalizeFirstLetter(el?.status)} />
                 </Flex>
                 <VStack width="100%" align="stretch" paddingLeft="44px" spacing="12px">
                   <Flex justifyContent="space-between" gap="12px">

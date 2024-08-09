@@ -1,4 +1,4 @@
-import { Flex, FlexProps, FlexboxProps, GridItemProps } from '@chakra-ui/react'
+import { Flex, FlexProps } from '@chakra-ui/react'
 import React from 'react'
 
 interface Props extends FlexProps { }

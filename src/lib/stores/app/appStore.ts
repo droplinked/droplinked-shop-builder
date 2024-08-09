@@ -5,6 +5,7 @@ import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
 import { IGetUserService } from 'lib/apis/user/interfaces'
 import { getUserService, userUpdateService } from 'lib/apis/user/services'
+import AppStorage from 'lib/utils/app/sessions'
 import { appDevelopment } from 'lib/utils/app/variable'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { toast } from 'react-toastify'
@@ -31,8 +32,8 @@ export interface IAppStore {
     user: IUser
     shop: any
     loading: boolean
-    access_token: string | null
-    refresh_token: string | null
+    // access_token: string | null
+    // refresh_token: string | null
     login(method: { type: "default", params: IauthLoginService } | { type: "google", access_token: string, refresh_token: string, params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
@@ -48,8 +49,8 @@ export interface IAppStore {
 const states = (set, get): IAppStore => ({
     user: null,
     shop: null,
-    access_token: null,
-    refresh_token: null,
+    // access_token: null,
+    // refresh_token: null,
     loading: false,
     login: (method) => {
         return new Promise<any>(async (resolve, reject) => {
@@ -72,10 +73,11 @@ const states = (set, get): IAppStore => ({
                     ...status !== "NEW" && {
                         user: result?.user,
                         shop: result?.shop,
-                        access_token,
-                        refresh_token,
+                        // access_token,
+                        // refresh_token,
                     }
                 })
+                AppStorage.set_tokens(access_token, refresh_token)
                 resolve(result)
             } catch (error) {
                 reject(error?.response?.data || error);
@@ -171,8 +173,8 @@ const _persist = persist(states, {
     name: appStorePersistName, partialize: (state) => ({
         shop: state.shop,
         user: state.user,
-        access_token: state.access_token,
-        refresh_token: state.refresh_token,
+        // access_token: state.access_token,
+        // refresh_token: state.refresh_token,
     })
 })
 const useAppStore = appDevelopment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)

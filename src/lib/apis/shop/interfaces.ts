@@ -70,7 +70,7 @@ export interface IShopRecordedService {
 }
 
 export interface IshopPublicRecordedService {
-    tags: string
+    s: string
     page: string | number
 }
 

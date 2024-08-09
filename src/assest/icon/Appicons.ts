@@ -31,6 +31,7 @@ import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 import { ReactComponent as Delete } from "./delete.svg";
+import { ReactComponent as Desktop } from "./desktop-icon.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
@@ -68,6 +69,8 @@ import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
+import { ReactComponent as Maximize } from "./maximize.svg";
+import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
 import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
@@ -259,7 +262,10 @@ const AppIcons = {
   Gamification,
   Paint,
   Redbelly,
-  Eye
+  Eye,
+  Maximize,
+  Mobile,
+  Desktop
 }
 
 export default AppIcons
