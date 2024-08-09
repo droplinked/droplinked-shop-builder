@@ -26,7 +26,6 @@ const refresh_access_token = async () => {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
         })
         const data = response?.data?.data
-        console.log("access",data.access_token)
         await set_tokens(data.access_token, data.refresh_token)
         requests_queue.forEach(callback => callback(data.access_token))
         requests_queue = []
