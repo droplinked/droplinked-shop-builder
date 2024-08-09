@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Image } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
+import { eventLogin } from "lib/apis/events/services";
 
 const ConnectEventAccount = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleConnectAccount = async () => {
+    setIsLoading(true)
+    const redirectToEventUrl = await eventLogin();
+    setIsLoading(false)
+    window.location.href = redirectToEventUrl
+  }
+
   return (
     <Flex
       alignItems={"flex-start"}
@@ -20,7 +30,7 @@ const ConnectEventAccount = () => {
         gap={"8px"}
         width={"100%"}
       >
-        <BasicButton>Connect Account</BasicButton>
+        <BasicButton isLoading={isLoading} loadingText={"Redirecting..."} onClick={handleConnectAccount}>Connect Account</BasicButton>
         <Flex alignItems={"center"} gap={"4px"}>
           <AppTypography fontSize={"18px"} fontWeight={700} color={"#FFF"}>Connect to droplinked events application</AppTypography>
           <AppTypography fontSize={"18px"} fontWeight={700} color={"#2BCFA1"}>*</AppTypography>
