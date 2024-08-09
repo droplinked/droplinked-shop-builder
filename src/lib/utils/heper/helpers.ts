@@ -228,3 +228,20 @@ export const percent_to_hex = {
     1: "03",
     0: "00",
 };
+
+export const UTCConverter = (utcTimeString: string): string => {
+    const date = new Date(utcTimeString);
+
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    };
+
+    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+
+    return `${formattedDate} (Local time)`;
+};
