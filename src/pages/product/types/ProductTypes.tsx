@@ -1,13 +1,20 @@
+import React, { useEffect, useState } from 'react'
 import { Flex, Image, VStack } from '@chakra-ui/react'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+// Components
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
+import Loading from './Loading'
+
+// Funcs
 import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import Loading from './Loading'
+
+// APIs
+import { checkEventAccountConnection, checkEventApiKey, creatEventApiKey } from 'lib/apis/api-key/services'
 
 interface ProductType {
   type: "Physical Product" | "Production on Demand" | "Digital Product" | "Event"
@@ -22,7 +29,38 @@ function ProductTypes() {
   const { isFetching, isError, data } = useShopSubscriptionData()
   const { showToast } = useAppToast()
   const { shopRoute } = useCustomNavigate()
-  const isLoginEventAccaount = true
+  const [isLoginEventAccaount, setIsLoginEventAccaount] = useState(false)
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const apiKey = queryParams.get("key");
+
+  const checkApiKey = async () => {
+    try {
+      const resChecking = await checkEventApiKey({key: apiKey})
+      if (resChecking) {
+        setIsLoginEventAccaount(true)
+        await creatEventApiKey({key: apiKey})
+      } 
+    } catch (error) {
+      showToast({message: error.message, type: 'error'})
+    }
+  }
+
+  const isEventAccountConnect = async () => {
+    try {
+      const result = await checkEventAccountConnection();
+      result && setIsLoginEventAccaount(true)
+      return result
+    } catch (error) {
+      showToast({message: error.message, type: 'error'})
+    }
+  }
+
+  useEffect(() => {
+    apiKey && checkApiKey()
+    !apiKey && isEventAccountConnect()
+  }, [apiKey])
 
   if (isFetching) return <Loading />
 
