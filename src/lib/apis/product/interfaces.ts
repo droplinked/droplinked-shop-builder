@@ -16,7 +16,7 @@ export interface IProductPosition {
     left: number
 }
 
-export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
+export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL" | "EVENT"
 
 export interface IDigitalLinks {
     file_url?: string
