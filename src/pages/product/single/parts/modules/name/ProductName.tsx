@@ -5,7 +5,7 @@ import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 
 function ProductName() {
-    const { state: { title }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { title, product_type }, methods: { updateState }, loading } = useContext(productContext)
     const limitCharacter = 70
 
     return (
@@ -16,6 +16,7 @@ function ProductName() {
                 name="productName"
                 isRequired
                 loading={loading}
+                isDisabled={product_type === "EVENT" ? true : false}
                 paddingRight="80px"
                 placeholder="Long Sleeve T-shirt"
                 maxLength={limitCharacter}
