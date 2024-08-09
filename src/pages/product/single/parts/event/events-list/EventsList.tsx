@@ -1,52 +1,94 @@
+import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
+// Components
 import AppSwitch from "components/common/swich";
 import AppTypography from "components/common/typography/AppTypography";
-import React, { useState } from "react";
 import PreviousEventCard from "./_components/previous-event-card/PreviousEventCard";
 import EventCard from "./_components/event-card/EventCard";
+import EventCardSkeleton from "./_components/event-card-skeleton/EventCardSkeleton";
 
-const previousEvent = [
-  {
-    image: "https://upload-file-droplinked.s3.amazonaws.com/eedadf55118509ea32882533ecc968edc1ae95ee6e9d716b8f9912e4464d1795_or.jpeg",
-    text: "Event Tech Summit",
-    date: "Thursday, Nov 14, 2024, 12:00 AM (Local time)",
-    location: "Silicon Valley Conference Center, San Francisco",
-    host: "droplinked",
-    isExpired: true,
-  },
-  {
-    image: "https://upload-file-droplinked.s3.amazonaws.com/eedadf55118509ea32882533ecc968edc1ae95ee6e9d716b8f9912e4464d1795_or.jpeg",
-    text: "Event Tech Summit2",
-    date: "Thursday, Nov 14, 2024, 12:00 AM (Local time)",
-    location: "Silicon Valley Conference Center, San Francisco",
-    host: "droplinked",
-    isExpired: true,
-  },
-  {
-    image: "https://upload-file-droplinked.s3.amazonaws.com/eedadf55118509ea32882533ecc968edc1ae95ee6e9d716b8f9912e4464d1795_or.jpeg",
-    text: "Event Tech Summit3",
-    date: "Thursday, Nov 14, 2024, 12:00 AM (Local time)",
-    location: "Silicon Valley Conference Center, San Francisco",
-    host: "droplinked",
-    isExpired: true,
-  },
-  {
-    image: "https://upload-file-droplinked.s3.amazonaws.com/eedadf55118509ea32882533ecc968edc1ae95ee6e9d716b8f9912e4464d1795_or.jpeg",
-    text: "Event Tech Summit4",
-    date: "Thursday, Nov 14, 2024, 12:00 AM (Local time)",
-    location: "Silicon Valley Conference Center, San Francisco",
-    host: "droplinked",
-    isExpired: true,
-  },
-]
+// Icons
+import AppIcons from "assest/icon/Appicons";
+
+// APIs
+import { getEvents } from "lib/apis/events/services";
+
+// App Toast
+import useAppToast from "functions/hooks/toast/useToast";
+
+// Helpers
+import { isDateExpired } from "lib/utils/heper/helpers";
 
 const EventsList = () => {
-  const [showExpiredEvents, setShowExpiredEvents] = useState(false)
+  const { showToast } = useAppToast();
+  const [showExpiredEvents, setShowExpiredEvents] = useState(false);
+  const [eventsData, setEventsData] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchEventData = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getEvents();
+      const newEventsWithExpiry = data.newEventProducts.map((event) => ({
+        ...event,
+        isExpired: isDateExpired(event.start),
+      }));
+      const addedEventsWithExpiry = data.addedEventProducts.map((event) => ({
+        ...event,
+        isExpired: isDateExpired(event.start),
+      }));
+      setEventsData({ 
+        ...data, 
+        newEventProducts: newEventsWithExpiry,
+        addedEventProducts: addedEventsWithExpiry,
+      });
+    } catch (error) {
+      showToast({ message: error.message, type: "error" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEventData();
+  }, []);
+
+  const handleEventImported = (eventID: string) => {
+    setEventsData((prevData) => {
+      const importedEvent = prevData.newEventProducts.find(event => event._id === eventID);
+      const updatedAddedEvents = [...prevData.addedEventProducts, importedEvent];
+      const updatedNewEvents = prevData.newEventProducts.filter(event => event._id !== eventID);
+      
+      return {
+        ...prevData,
+        addedEventProducts: updatedAddedEvents.map((event) => ({
+          ...event,
+          isExpired: isDateExpired(event.start),
+        })),
+        newEventProducts: updatedNewEvents,
+      };
+    });
+  };
+
+  const expiredEvents = [
+    ...eventsData?.newEventProducts?.filter(event => event.isExpired) || [],
+    ...eventsData?.addedEventProducts?.filter(event => event.isExpired) || []
+  ];
+
+  const upcomingEvents = eventsData?.newEventProducts?.filter(event => !event.isExpired);
+  const addedUpcomingEvents = eventsData?.addedEventProducts?.filter(event => !event.isExpired);
 
   return (
     <Flex alignItems={"flex-start"} flexDirection={"column"} gap={"20px"} alignSelf={"stretch"} padding={"50px 60px"} borderRadius={"8px"} bgColor={"#1C1C1C"}>
       <Flex alignItems={"center"} justifyContent={"space-between"} width={"100%"}>
-        <AppTypography fontSize={"18px"} fontWeight={700} color={"#FFF"}>List of Events</AppTypography>
+        <Flex alignItems={"center"} gap={"12px"}>
+          <AppTypography fontSize={"18px"} fontWeight={700} color={"#FFF"}>List of Events</AppTypography>
+          <Flex onClick={fetchEventData} cursor={"pointer"}>
+            <AppIcons.EventCalendar />
+          </Flex>
+        </Flex>
         <Flex alignItems={"center"} gap={"12px"}>
           <AppSwitch isChecked={showExpiredEvents} onChange={() => setShowExpiredEvents(!showExpiredEvents)} />
           <AppTypography fontSize={"14px"} fontWeight={700} color={"#C2C2C2"}>Hide Expired Events</AppTypography>
@@ -56,39 +98,60 @@ const EventsList = () => {
       {/* divider */}
       <Flex height={"1px"} width={"100%"} bgColor={"#5D5D5D"} />
 
-      <AppTypography fontSize={"18px"} fontWeight={700} color={"#2BCFA1"}>Previously Imported Events</AppTypography>
-      <Flex alignItems={"flex-start"} gap={"18px"} width={"100%"}>
-        {previousEvent.map((event, index) => (
-          <PreviousEventCard imageSrc={event.image} text={event.text} key={index} />
-        ))}
+      {addedUpcomingEvents?.length > 0 && 
+        <>
+          <AppTypography fontSize={"18px"} fontWeight={700} color={"#2BCFA1"}>Previously Imported Events</AppTypography>
+          <Flex 
+            alignItems={"flex-start"} 
+            gap={"18px"} 
+            width={"100%"} 
+            overflowX={"auto"} 
+            css={{
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                "-ms-overflow-style": "none",
+                "scrollbar-width": "none",
+            }}
+          >
+            {addedUpcomingEvents.map((event, index) => (
+              <PreviousEventCard event={event} key={index} />
+            ))}
+          </Flex>
+          <Flex height={"1px"} width={"100%"} bgColor={"#5D5D5D"} />
+        </>
+      }
+
+      <Flex alignItems={"flex-start"} justifyContent={"flex-start"} alignContent={"flex-start"} alignSelf={"stretch"} flexWrap={"wrap"} gap={"10px"} rowGap={"20px"}>
+        {isLoading ? 
+          Array.from({ length: 6 }).map((_, index) => <EventCardSkeleton key={index} /> )
+        :
+        upcomingEvents?.length > 0 ?
+          upcomingEvents?.map((event, index) => (
+            <EventCard event={event} key={index} onEventImported={handleEventImported} />
+          ))
+          :
+          <AppTypography fontSize={"18px"} fontWeight={700} color={"#C2C2C2"}>
+            Looks like you don't have any upcoming events right now. <Link to={"https://events.airfoil.studio/"} style={{textDecoration: "underline", color: "#2BCFA1", fontWeight: 600}}>Why not create one?</Link> 🤨
+          </AppTypography>
+        }
       </Flex>
 
-      {/* divider */}
-      <Flex height={"1px"} width={"100%"} bgColor={"#5D5D5D"} />
-
-      <Flex alignItems={"flex-start"} justifyContent={"space-between"} alignContent={"flex-start"} alignSelf={"stretch"} flexWrap={"wrap"} rowGap={"20px"}>
-        {previousEvent.map((event, index) => (
-          <EventCard imageSrc={event.image} title={event.text} date={event.date} location={event.location} host={event.host} key={index} />
-        ))}
-      </Flex>
-
-      {showExpiredEvents &&
+      {showExpiredEvents && expiredEvents.length > 0 &&
         <>
           {/* divider */}
           <Flex height={"1px"} width={"100%"} bgColor={"#5D5D5D"} />
 
           <AppTypography fontSize={"18px"} fontWeight={700} color={"#FFF"}>Expired Events</AppTypography>
-          <Flex alignItems={"flex-start"} justifyContent={"space-between"} alignContent={"flex-start"} alignSelf={"stretch"} flexWrap={"wrap"} rowGap={"20px"}>
-          {previousEvent.map((event, index) => (
-            <EventCard imageSrc={event.image} title={event.text} date={event.date} location={event.location} host={event.host} isExpired={event.isExpired} key={index} />
-          ))}
+          <Flex alignItems={"flex-start"} justifyContent={"flex-start"} alignContent={"flex-start"} alignSelf={"stretch"} flexWrap={"wrap"} gap={"10px"} rowGap={"20px"}>
+            {expiredEvents?.map((event, index) => (
+              <EventCard event={event} isExpired={event.isExpired} key={index} />
+            ))}
           </Flex>
         </>
       }
-      
-      
     </Flex>
-  )
-}
+  );
+};
 
 export default EventsList;

@@ -3,17 +3,17 @@ import { Flex, Box, Image } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 
 interface IPreviousEventCard {
-  imageSrc: string;
-  text: string;
+  event: any;
 }
 
-const PreviousEventCard = ({ imageSrc, text }: IPreviousEventCard) => {
+const PreviousEventCard = ({ event }: IPreviousEventCard) => {
   return (
     <Flex
       alignItems={"flex-start"}
       flexDirection={"column"}
       gap={"12px"}
       padding={"12px"}
+      flex={"0 0 auto"}
       width={"100%"}
       maxWidth={"263px"}
       borderRadius={"12px"}
@@ -29,7 +29,7 @@ const PreviousEventCard = ({ imageSrc, text }: IPreviousEventCard) => {
         overflow="hidden"
       >
         <Image
-          src={imageSrc}
+          src={event?.banner}
           width={"100%"}
           height={"100%"}
           objectFit={"cover"}
@@ -46,7 +46,7 @@ const PreviousEventCard = ({ imageSrc, text }: IPreviousEventCard) => {
         />
       </Box>
       <AppTypography fontSize={"16px"} fontWeight={700} color={"#2BCFA1"}>
-        {text}
+        {event?.title}
       </AppTypography>
     </Flex>
   );
