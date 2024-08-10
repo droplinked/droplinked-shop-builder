@@ -13,6 +13,7 @@ import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
+import PaymentLinkModal from '../payment-link/PaymentLinkModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
 
@@ -30,6 +31,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
     const { user: { wallets } } = useAppStore()
+    const paymentLinkModal = useDisclosure()
 
     const publish = useCallback(async () => {
         try {
@@ -83,6 +85,10 @@ function ControlsListProduct({ productID, product, fetch }) {
             {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
+            },
+            {
+                caption: "Get payment link",
+                onClick: () => paymentLinkModal.onOpen()
             }
         ]
         if (product?.publish_status === "DRAFTED") list.push({
@@ -106,6 +112,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             <PopOverMenu items={items} />
             <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
+            {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
         </>
     )
 }

@@ -11,7 +11,7 @@ function ClipboardText({ text, props }: Iprops) {
     const { showToast } = useAppToast()
     const handleClick = useCallback(() => {
         navigator.clipboard.writeText(text)
-        showToast({ message: 'Copied', type: "info", options: { autoClose: 200, hideProgressBar: true } })
+        showToast({ message: 'Copied', type: "success", options: { autoClose: 200, hideProgressBar: true } })
     }, [])
 
     return <AppIcons.CopyIcon width={"18px"} height="18px" {...props} onClick={handleClick} style={{ cursor: "pointer" }} />
