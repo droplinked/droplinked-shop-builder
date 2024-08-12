@@ -7,7 +7,7 @@ import { productContext } from 'pages/product/single/context'
 import React, { useContext, useState } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
 
-function NetworkDigital() {
+function DigitalProductNetwork() {
     const { productID, state, methods: { dispatch } } = useContext(productContext)
     const [showDetails, setDetailsVisibility] = useState(Boolean(state?.digitalDetail?.chain))
     const { showToast } = useAppToast()
@@ -46,4 +46,4 @@ function NetworkDigital() {
     )
 }
 
-export default NetworkDigital
+export default DigitalProductNetwork
