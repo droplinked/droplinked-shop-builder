@@ -7,7 +7,7 @@ import DigitalProductNetwork from '../modules/digitalProductNetwork/DigitalProdu
 import DigitalProductRoyalty from '../modules/digitalProductRoyalty/DigitalProductRoyalty'
 
 function Web3Settings() {
-    const { state: { product_type, digitalDetail, sku } } = useContext(productContext)
+    const { state: { product_type, digitalDetail } } = useContext(productContext)
     const [showDetails, setDetailsVisibility] = useState(Boolean(digitalDetail?.chain))
 
     return (
