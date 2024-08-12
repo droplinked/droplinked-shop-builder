@@ -4,12 +4,16 @@ import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
 
-function DigitalProductNetwork() {
-    const { productID, state, methods: { dispatch } } = useContext(productContext)
-    const [showDetails, setDetailsVisibility] = useState(Boolean(state?.digitalDetail?.chain))
+interface Props {
+    showDetails: boolean
+    setDetailsVisibility: (checked: boolean) => void
+}
+
+function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
+    const { productID, state, methods: { dispatch, updateState } } = useContext(productContext)
     const { showToast } = useAppToast()
 
     const handleSwitchChange = (checked: boolean) => {
@@ -17,7 +21,19 @@ function DigitalProductNetwork() {
             return showToast({ type: "error", message: "You have already published this product" })
 
         setDetailsVisibility(checked)
-        if (!checked) dispatch({ type: "updateDigitalLinks", params: { chain: "" } })
+        if (!checked) {
+            const sku = state.sku
+            dispatch({ type: "updateDigitalLinks", params: { chain: "" } })
+            const updatedSku = {
+                ...sku[0],
+                royalty: null,
+                recordData: {
+                    ...sku[0].recordData,
+                    commision: 0
+                }
+            }
+            updateState('sku', [updatedSku])
+        }
     }
 
     return (
