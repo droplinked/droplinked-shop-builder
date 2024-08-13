@@ -1,17 +1,30 @@
 import React, { useState } from "react";
 import { Flex, Image } from "@chakra-ui/react";
+
+// Components
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
+
+// APIs
 import { eventLogin } from "lib/apis/events/services";
+
+// App Toast
+import useAppToast from "functions/hooks/toast/useToast";
 
 const ConnectEventAccount = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const { showToast } = useAppToast()
 
   const handleConnectAccount = async () => {
-    setIsLoading(true)
-    const redirectToEventUrl = await eventLogin();
-    setIsLoading(false)
-    window.location.href = redirectToEventUrl
+    try {
+      setIsLoading(true)
+      const redirectToEventUrl = await eventLogin();
+      window.location.href = redirectToEventUrl
+      setIsLoading(false)
+    } catch (error) {
+      showToast({message: "You cannot connect your event account at this time. Please try again later", type: "error"})
+      setIsLoading(false)
+    }
   }
 
   return (
