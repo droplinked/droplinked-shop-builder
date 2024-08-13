@@ -19,7 +19,7 @@ import { useProfile } from "functions/hooks/useProfile/useProfile";
 const TileDesign = () => {
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
-    const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: shop?.productTileStyle, current: initialTileDesignState?.current } : initialTileDesignState);
+    const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: { ...initialTileDesignState.design, ...shop?.productTileStyle,}, current: initialTileDesignState?.current } : initialTileDesignState);
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params));
 
     const updateFormFields = useCallback(({ page, section, key, value }: { page: TILE_DESIGN_PAGES_ENUM; section: PRODUCT_SECTIONS_ENUM | "none"; key: string; value: any }) => {

@@ -1,4 +1,4 @@
-import { Box, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
+import { Box, Flex, FormLabel, SimpleGrid, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext } from 'react'
@@ -24,17 +24,11 @@ export default function VariantsStyle() {
                 <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>Choose how you want product variants to be shown</AppTypography>
             </Flex>
 
-            {/* <SimpleGrid columns={{ base: 1, xl: 2 }} gap={6} {...getRootProps()}>
+            <SimpleGrid columns={{ base: 1, xl: 2 }} gap={6} {...getRootProps()}>
                 {variants.map((variant) => (
                     <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} />
                 ))}
-            </SimpleGrid> */}
-
-            <Flex direction={"column"} gap={6} {...getRootProps()}>
-                {variants.map((variant) => (
-                    <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} />
-                ))}
-            </Flex>
+            </SimpleGrid>
         </Flex>
     )
 }
@@ -45,17 +39,18 @@ function VariantStyleRadio({ ...props }) {
     const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
-        <FormLabel margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
+        <FormLabel flexGrow={1} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
             <input {...getInputProps()} hidden />
             <Flex
                 {...getRadioProps()}
+                height={"100%"}
                 direction={"column"} gap={4}
                 padding={4}
                 border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
                 borderRadius={8}
             >
                 <Box borderRadius={4} padding={6} bgColor={"#3C3C3C"}>
-                    <AppImage height={"61px"} src={variant.image} objectFit={"contain"} />
+                    <AppImage height={"64px"} src={variant.image} objectFit={"contain"} />
                 </Box>
                 <Box>
                     <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>{variant.title}</AppTypography>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TILE_DESIGN_PAGES_ENUM, TILE_INPUT_TYPES, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
+import { TILE_DESIGN_PAGES_ENUM, TILE_INPUT_TYPES, PRODUCT_SECTIONS_ENUM, ITileDesignState } from "./types/tile.design.types";
 import { HStack, Input, Select, Slider, SliderFilledTrack, SliderThumb, SliderTrack, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
@@ -8,24 +8,55 @@ import AppInput from "components/common/form/textbox/AppInput";
 import AppSwitch from "components/common/swich";
 import AppColorPicker from "components/common/colorPicker/AppColorPicker";
 
-const tile_design_form_fields_object = {
+const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "design">) => ({
     [TILE_DESIGN_PAGES_ENUM.PRODUCT]: {
         [PRODUCT_SECTIONS_ENUM.CONTAINER]: {
             inputs: [
                 {
+                    label: "Type",
+                    type: TILE_INPUT_TYPES.DROPDOWN,
+                    options: ["card", "button"],
+                    key: "type",
+                },
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
                     label: "Background Color",
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "backgroundColor",
                 },
-                {
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
                     label: "Background Transparency",
                     type: TILE_INPUT_TYPES.SLIDER,
                     key: "opacity",
+                },
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
+                    label: "Product description",
+                    type: TILE_INPUT_TYPES.SWITCH,
+                    key: "description",
                 },
                 {
                     label: "Dark Mode",
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "darkMode",
+                },
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
+                    label: "Buy Button Text",
+                    type: TILE_INPUT_TYPES.TEXT,
+                    key: "text",
+                },
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
+                    label: "Buy Button Background Color",
+                    type: TILE_INPUT_TYPES.COLOR_PICKER,
+                    key: "buttonBackgroundColor",
+                },
+                design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
+                    label: "Buy Button Text Color",
+                    type: TILE_INPUT_TYPES.COLOR_PICKER,
+                    key: "color",
+                },
+                {
+                    label: "Get phone number for digital product",
+                    type: TILE_INPUT_TYPES.SWITCH,
+                    key: "phone",
                 },
             ],
         },
@@ -58,7 +89,7 @@ const tile_design_form_fields_object = {
         [PRODUCT_SECTIONS_ENUM.PRICE]: {
             inputs: [
                 {
-                    label: "Title Text Color",
+                    label: "Price Text Color",
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -96,7 +127,7 @@ const tile_design_form_fields_object = {
             ],
         },
     },
-};
+});
 
 const TileDesignForm = () => {
     const {
@@ -162,68 +193,70 @@ const TileDesignForm = () => {
             </HStack>
             <form>
                 <VStack align={"stretch"} spacing={"16px"} paddingY={"16px"}>
-                    {tile_design_form_fields_object?.[current?.page]?.[current?.section]?.inputs?.map((input: any) => {
-                        const currentValue = design?.[current?.page][current?.section][input?.key];
-                        const inputComponent = () => {
-                            if (input?.type === TILE_INPUT_TYPES.TEXT)
-                                return (
-                                    <Input
-                                        value={currentValue}
-                                        name={input?.key}
-                                        onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.currentTarget?.value })}
-                                    />
-                                );
-                            if (input?.type === TILE_INPUT_TYPES.SWITCH && input?.key !== "darkMode")
-                                return (
-                                    <AppSwitch
-                                        isChecked={currentValue}
-                                        name={input?.key}
-                                        onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.currentTarget?.checked })}
-                                    />
-                                );
+                    {tile_design_form_fields_object({ design })
+                        ?.[current?.page]?.[current?.section]?.inputs?.filter(Boolean)
+                        ?.map((input: any) => {
+                            const currentValue = design?.[current?.page][current?.section][input?.key];
+                            const inputComponent = () => {
+                                if (input?.type === TILE_INPUT_TYPES.TEXT)
+                                    return (
+                                        <Input
+                                            value={currentValue}
+                                            name={input?.key}
+                                            onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.currentTarget?.value })}
+                                        />
+                                    );
+                                if (input?.type === TILE_INPUT_TYPES.SWITCH && input?.key !== "darkMode")
+                                    return (
+                                        <AppSwitch
+                                            isChecked={currentValue}
+                                            name={input?.key}
+                                            onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.currentTarget?.checked })}
+                                        />
+                                    );
 
-                            if (input?.type === TILE_INPUT_TYPES.SWITCH && input?.key === "darkMode")
-                                return <AppSwitch isChecked={currentValue} name={input?.key} onChange={(e) => change_theme(e?.target?.checked)} />;
-                            if (input?.type === TILE_INPUT_TYPES.COLOR_PICKER)
-                                return (
-                                    <AppColorPicker
-                                        props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE", minW: "128px" } }}
-                                        value={currentValue}
-                                        onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e })}
-                                    />
-                                );
-                            if (input?.type === TILE_INPUT_TYPES.DROPDOWN)
-                                return (
-                                    <Select value={currentValue} onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.target?.value })}>
-                                        {input?.options?.map((option) => (
-                                            <option value={option}>{option}</option>
-                                        ))}
-                                    </Select>
-                                );
+                                if (input?.type === TILE_INPUT_TYPES.SWITCH && input?.key === "darkMode")
+                                    return <AppSwitch isChecked={currentValue} name={input?.key} onChange={(e) => change_theme(e?.target?.checked)} />;
+                                if (input?.type === TILE_INPUT_TYPES.COLOR_PICKER)
+                                    return (
+                                        <AppColorPicker
+                                            props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE", minW: "128px" } }}
+                                            value={currentValue}
+                                            onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e })}
+                                        />
+                                    );
+                                if (input?.type === TILE_INPUT_TYPES.DROPDOWN)
+                                    return (
+                                        <Select value={currentValue} onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.target?.value })}>
+                                            {input?.options?.map((option) => (
+                                                <option value={option}>{option}</option>
+                                            ))}
+                                        </Select>
+                                    );
 
-                            if (input?.type === TILE_INPUT_TYPES.SLIDER)
-                                return (
-                                    <Slider
-                                        aria-label="slider-ex-1"
-                                        defaultValue={currentValue * 100}
-                                        onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e / 100 })}
-                                    >
-                                        <SliderTrack>
-                                            <SliderFilledTrack />
-                                        </SliderTrack>
-                                        <SliderThumb />
-                                    </Slider>
-                                );
-                        };
-                        return (
-                            <HStack align={"center"} justifyContent={"space-between"} wrap={"wrap"}>
-                                <AppTypography fontSize={"14px"} fontWeight={"500"}>
-                                    {input?.label}
-                                </AppTypography>
-                                {inputComponent()}
-                            </HStack>
-                        );
-                    })}
+                                if (input?.type === TILE_INPUT_TYPES.SLIDER)
+                                    return (
+                                        <Slider
+                                            aria-label="slider-ex-1"
+                                            defaultValue={currentValue * 100}
+                                            onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e / 100 })}
+                                        >
+                                            <SliderTrack>
+                                                <SliderFilledTrack />
+                                            </SliderTrack>
+                                            <SliderThumb />
+                                        </Slider>
+                                    );
+                            };
+                            return (
+                                <HStack align={"center"} justifyContent={"space-between"} wrap={"wrap"}>
+                                    <AppTypography fontSize={"14px"} fontWeight={"500"}>
+                                        {input?.label}
+                                    </AppTypography>
+                                    {inputComponent()}
+                                </HStack>
+                            );
+                        })}
                 </VStack>
             </form>
         </VStack>

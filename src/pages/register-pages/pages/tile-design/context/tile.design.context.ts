@@ -5,9 +5,15 @@ export const initialTileDesignState: ITileDesignState = {
     design: {
         PRODUCT: {
             CONTAINER: {
+                type: "card",
                 backgroundColor: "#FFFFFF",
                 opacity: 1,
                 darkMode: false,
+                description: false,
+                phone: false,
+                buttonBackgroundColor: "#000000",
+                text: "Buy",
+                color: "#FFFFFF",
             },
             IMAGE: {
                 display: true,

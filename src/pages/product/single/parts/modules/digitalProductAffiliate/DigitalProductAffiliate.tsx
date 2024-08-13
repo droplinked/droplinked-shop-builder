@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext } from 'react'
 
-function CommissionDigital() {
+function DigitalProductAffiliate() {
     const { methods: { updateState }, state: { sku } } = useContext(productContext)
 
     const change = useCallback((checked: boolean) => {
@@ -26,4 +26,4 @@ function CommissionDigital() {
     )
 }
 
-export default CommissionDigital
+export default DigitalProductAffiliate

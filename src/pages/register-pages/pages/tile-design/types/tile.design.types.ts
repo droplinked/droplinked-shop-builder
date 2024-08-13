@@ -28,9 +28,15 @@ export interface ITileDesignState {
     design?: {
         [TILE_DESIGN_PAGES_ENUM.PRODUCT]: {
             [PRODUCT_SECTIONS_ENUM.CONTAINER]: {
+                type: "card" | "button";
                 backgroundColor: string;
                 opacity: number;
                 darkMode: boolean;
+                description: boolean;
+                phone: boolean;
+                buttonBackgroundColor: string;
+                text: string;
+                color: string;
             };
             [PRODUCT_SECTIONS_ENUM.IMAGE]: {
                 display: boolean;

@@ -36,6 +36,7 @@ import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
+import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Email } from "./email.svg";
@@ -94,6 +95,7 @@ import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
 import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
+import { ReactComponent as Share } from "./share.svg";
 import { ReactComponent as Shirt } from "./shirt.svg";
 import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
 import { ReactComponent as Skale } from "./skale.svg";
@@ -268,6 +270,8 @@ const AppIcons = {
   Mobile,
   Desktop,
   Refresh,
+  Download,
+  Share
 }
 
 export default AppIcons
