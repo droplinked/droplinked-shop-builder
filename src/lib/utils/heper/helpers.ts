@@ -245,3 +245,20 @@ export const UTCConverter = (utcTimeString: string): string => {
 
     return `${formattedDate} (Local time)`;
 };
+
+export const format_date_to_month_day_year_hour = (dateString: string): string => {
+    const date = new Date(dateString);
+
+    const options: Intl.DateTimeFormatOptions = { month: "short" };
+    const month = date.toLocaleString("en-US", options);
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    let hours = date.getUTCHours();
+    let minutes = date.getUTCMinutes();
+
+    const formattedHours = hours.toString().padStart(2, "0");
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+
+    return `${month} ${day}, ${year} - ${formattedHours}:${formattedMinutes}`;
+};
