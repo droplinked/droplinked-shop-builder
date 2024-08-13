@@ -21,7 +21,7 @@ function CouponsListHead() {
         <>
             <Flex justifyContent="space-between" alignItems="center">
                 <VStack align="stretch" spacing="12px">
-                    <AppTypography color="#C2C2C2" fontSize="12px">Your Credit</AppTypography>
+                    <AppTypography color="#C2C2C2" fontSize="12px">Credits</AppTypography>
                     <HStack alignItems="center">
                         <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">${shop?.credit?.toFixed(2)} USD</AppTypography>
                     </HStack>
@@ -30,7 +30,7 @@ function CouponsListHead() {
                     )}
                 </VStack>
                 <Flex gap="10px">
-                    <BasicButton sizes="medium" variant='outline' onClick={rechargeModel.onOpen}>Recharge Credit</BasicButton>
+                    <BasicButton sizes="medium" variant='outline' onClick={rechargeModel.onOpen}>Reload Credits</BasicButton>
                     <BasicButton sizes="medium" onClick={handleOpenCreateCouponModal}>Create Coupon</BasicButton>
                 </Flex>
             </Flex>

@@ -49,7 +49,7 @@ function DesignPageReleaseDate() {
             <Flex direction={"column"} gap={12}>
                 <Flex alignItems={"center"} gap={3}>
                     <AppSwitch isChecked={showDetails} onChange={({ target: { checked } }) => handleSwitchChange(checked)} />
-                    <AppTypography userSelect={"none"} fontSize={14} fontWeight={"600"} color='#C2C2C2'>Date Counter</AppTypography>
+                    <AppTypography userSelect={"none"} fontSize={14} fontWeight={"600"} color='#C2C2C2'>Countdown timer</AppTypography>
                 </Flex>
 
                 {showDetails &&
@@ -58,12 +58,12 @@ function DesignPageReleaseDate() {
                             onChange={(value: any) => dispatch({ type: 'updateShop', params: { launchDate: value.toISOString() } })}
                             placeholderText="YYYY-MM-DD"
                             minDate={new Date()}
-                            label="Shop Release Date"
+                            label="Release Date"
                             value={launchDate ? new Date(launchDate) : null}
                         />
 
                         <Flex direction="column" gap={3}>
-                            <AppTypography fontSize={16} fontWeight={500}>Shop Release Time</AppTypography>
+                            <AppTypography fontSize={16} fontWeight={500}>Release Time</AppTypography>
                             <Flex height={12} flexWrap="wrap" gap={3}>
                                 {["hour", "minute", "second"].map((unit, index) => (
                                     <Fragment key={unit}>

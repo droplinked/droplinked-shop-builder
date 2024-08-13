@@ -42,7 +42,7 @@ function DesignPageButtons() {
                 template_options: { ...deep_validate_and_transform(shop.template_options) },
             });
             updateShopData();
-            showToast({ message: "Shop update", type: "success" });
+            showToast({ message: "Store design has been updated", type: "success" });
             if (isRegister) shopNavigate(`register/technical`);
         } catch (error) {
             showToast({ message: error, type: "error" });

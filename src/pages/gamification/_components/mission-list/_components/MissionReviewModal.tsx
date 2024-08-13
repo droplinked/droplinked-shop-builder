@@ -60,10 +60,10 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                     />
                     <Flex direction="column" gap="10px" fontSize={12} fontWeight={700}>
                         <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                            Mission Title: <Box as="span" color="#fff">{mission.name}</Box>
+                            Mission: <Box as="span" color="#fff">{mission.name}</Box>
                         </AppTypography>
                         <AppTypography fontSize={12} fontWeight={700} color="#2BCFA1">
-                            Mission Category: <Box as="span" color="#fff">{mission.categoryId.name}</Box>
+                            Category: <Box as="span" color="#fff">{mission.categoryId.name}</Box>
                         </AppTypography>
                     </Flex>
                 </Flex>
@@ -74,14 +74,14 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                             <Box position="relative">
                                 {isLoading && <GamificationSpinner />}
                                 <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" whiteSpace={"pre-line"} filter={isLoading ? 'blur(4px)' : 'none'}>
-                                    <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Description:</Box> {mission.description}
+                                    <Box as="span" color="#2BCFA1" fontWeight={700}>Description:</Box> {mission.description}
                                 </AppTypography>
                             </Box>
                             <Divider height="2px" borderColor="#292929" />
                             {!error && (
                                 <Flex direction="column" gap={4}>
                                     <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                        Points: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
+                                        Points Awarded: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
                                     </AppTypography>
                                     <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
                                         Review Status
