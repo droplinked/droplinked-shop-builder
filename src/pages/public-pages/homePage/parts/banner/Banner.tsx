@@ -36,7 +36,7 @@ function Banner() {
                                     autoStart: true,
                                     loop: true
                                 }}
-                            /> | On-Chain
+                            /> | Onchain
                         </Text>
                         <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
                             <AppTypography fontSize={{ base: "12px", sm: "16px" }} fontWeight={600}>Start Selling</AppTypography>

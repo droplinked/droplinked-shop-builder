@@ -13,14 +13,12 @@ interface IrefactorData {
 
 const CollectionsModel = {
     makeData: (element: any, fetch: any) => {
-        const ruleSet = element?.ruleSets && element.ruleSets[0];
-
         return {
             Collection: {
                 value: <CollectionTitleColumn collection={element} />
             },
             rulesets: {
-                value: ruleSet ? <CollectionRulesetColumn ruleset={ruleSet} /> : "-"
+                value: element?.ruleSetID ? <CollectionRulesetColumn ruleset={element?.ruleSetID} /> : "-"
             },
             Products: {
                 value: element.productsCount || "-"

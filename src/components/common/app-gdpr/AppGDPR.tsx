@@ -99,7 +99,7 @@ function AppGDPR() {
           >
             <AppTypography textAlign={{base: "center", sm: "left"}} fontSize={"24px"} fontWeight={700} color={"#2BCFA1"} width={"100%"}>Privacy Policy</AppTypography>
             <AppTypography textAlign={{base: "center", sm: "left"}} fontSize={{ base: "14px", md: "20px" }} fontWeight={500}>
-              Droplinked values your privacy. We collect minimal data such as name, email, and IP address to provide our services. Your data is protected and you have the right to access, correct, or delete it. For inquiries, contact us at <Link href="mailto:Support@droplinked.com" textDecoration={"underline"}>Support@droplinked.com</Link> .
+              Droplinked values your privacy. We collect minimal data such as name, email, and IP address to provide our services. Your data is protected and you have the right to access, correct, or delete it. For inquiries, contact us at <Link href="mailto:support@droplinked.com" textDecoration={"underline"}>support@droplinked.com</Link> .
             </AppTypography>
             <Flex
               alignItems={"center"}

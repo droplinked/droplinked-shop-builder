@@ -38,10 +38,10 @@ function RechargePayment() {
             {({ errors, values, setFieldValue }) => (
                 <Form>
                     <VStack align={"stretch"} color="#FFF" spacing="36px">
-                        <AppTypography fontSize="14px" textAlign="center" color="#C2C2C2">Description about charging credit, how it works, why does they need it and any other description about payment</AppTypography>
+                        <AppTypography fontSize="14px" textAlign="center" color="#C2C2C2">Top up the account balance to pay for digital coupons, offers and monthly plan services</AppTypography>
                         <VStack align="stretch">
                             <HStack justifyContent="space-between" alignItems="baseline" rowGap="10px">
-                                <Box width="100%"><AppInput name='' label='Credit Recharge Value' value={values.amount} error={errors?.amount ? errors?.amount.toString() : null} onChange={(e) => setFieldValue('amount', parseInt(e.target.value))} placeholder='2000' /></Box>
+                                <Box width="100%"><AppInput name='' label='Credit Value' value={values.amount} error={errors?.amount ? errors?.amount.toString() : null} onChange={(e) => setFieldValue('amount', parseInt(e.target.value))} placeholder='Enter total value amount' /></Box>
                                 <AppTypography color="#808080" fontSize="14px" position="relative" top="47px">USD</AppTypography>
                             </HStack>
                             <HStack><AppTypography color="#C2C2C2" fontSize="12px">Payment with</AppTypography> <BlockchainDisplay show='icon' blockchain='STRIPE' props={{ width: "36px" }} /></HStack>

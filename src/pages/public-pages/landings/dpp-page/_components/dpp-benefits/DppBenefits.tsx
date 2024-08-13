@@ -59,7 +59,7 @@ const DppBenefits = () => {
       
       <Flex width={"100%"} marginBottom={isLargerThan1250 ? "227px" : "0px"}>
         {isLargerThan1250 ?
-          <Flex position={"relative"} flexDirection={"column"}>
+          <Flex position={"relative"} flexDirection={"column"} marginLeft={"50px"} width={"50%"}>
             <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"227px"}>
               {itemsData.filter((_, index) => index % 2 === 0).map((item) => (
                 <Flex alignItems={"center"} gap={"28px"} key={item.number}>

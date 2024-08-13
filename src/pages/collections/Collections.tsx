@@ -6,11 +6,13 @@ import React, { useMemo, useState } from 'react'
 import CollectionsModel from './model'
 import CollectionCreate from './parts/create/CollectionCreate'
 import CollectionsEmpty from './parts/empty/CollectionsEmpty'
+import CollectionReorderModal from './parts/collection-reorder-modal/CollectionReorderModal'
 
 function Collections() {
     const checkPermissionAndShowToast = useCheckPermission()
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const { isFetching, error, data } = useCollections()
+    const collectionReorderModal = useDisclosure()
+    const { isFetching, data, refetch } = useCollections()
     const [searchTerm, setSearchTerm] = useState("")
 
     const handleOpenCreateCollectionModal = () => {
@@ -35,13 +37,30 @@ function Collections() {
                     {
                         caption: "Create Collection",
                         onClick: handleOpenCreateCollectionModal
-                    }
+                    },
+                    {
+                        caption: "Visibility and reorder",
+                        onClick: collectionReorderModal.onOpen,
+                        buttonProps: {
+                            variant: "outline",
+                        }
+                    },
                 ]}
                 rows={rows}
                 search={{ onChange: (e) => setSearchTerm(e.target.value) }}
                 empty={<CollectionsEmpty handleOpenCreateCollectionModal={handleOpenCreateCollectionModal} />}
             />
             <CollectionCreate close={onClose} open={isOpen} />
+            {
+                collectionReorderModal.isOpen &&
+                <CollectionReorderModal
+                    isOpen={collectionReorderModal.isOpen}
+                    close={() => {
+                        collectionReorderModal.onClose()
+                        refetch()
+                    }}
+                />
+            }
         </>
     )
 }

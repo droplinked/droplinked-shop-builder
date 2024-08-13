@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Components
 import AppSwitch from "components/common/swich";
@@ -26,9 +27,12 @@ const EventsList = () => {
   const [showExpiredEvents, setShowExpiredEvents] = useState(false);
   const [eventsData, setEventsData] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRotating, setIsRotating] = useState(false);
 
   const fetchEventData = async () => {
     setIsLoading(true);
+    setIsRotating(true);
+
     try {
       const data = await getEvents();
       const newEventsWithExpiry = data.newEventProducts.map((event) => ({
@@ -48,6 +52,7 @@ const EventsList = () => {
       showToast({ message: error.message, type: "error" });
     } finally {
       setIsLoading(false);
+      setIsRotating(false);
     }
   };
 
@@ -85,13 +90,18 @@ const EventsList = () => {
       <Flex alignItems={"center"} justifyContent={"space-between"} width={"100%"}>
         <Flex alignItems={"center"} gap={"12px"}>
           <AppTypography fontSize={"18px"} fontWeight={700} color={"#FFF"}>List of Events</AppTypography>
-          <Flex onClick={fetchEventData} cursor={"pointer"}>
-            <AppIcons.EventCalendar />
-          </Flex>
+          <motion.div
+            animate={{ rotate: isRotating ? 360 : 0 }}
+            transition={{ duration: 1, ease: "linear" }}
+            onClick={fetchEventData}
+            style={{ cursor: "pointer" }}
+          >
+            <AppIcons.Refresh />
+          </motion.div>
         </Flex>
         <Flex alignItems={"center"} gap={"12px"}>
           <AppSwitch isChecked={showExpiredEvents} onChange={() => setShowExpiredEvents(!showExpiredEvents)} />
-          <AppTypography fontSize={"14px"} fontWeight={700} color={"#C2C2C2"}>Hide Expired Events</AppTypography>
+          <AppTypography fontSize={"14px"} fontWeight={700} color={"#C2C2C2"}>show Expired Events</AppTypography>
         </Flex>
       </Flex>
 
