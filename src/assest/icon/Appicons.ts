@@ -89,6 +89,7 @@ import { ReactComponent as ProductsIcon } from "./products-icon.svg";
 import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
 import { ReactComponent as RedTrash } from "./red-trash.svg";
 import { ReactComponent as Redbelly } from "./redbelly.svg";
+import { ReactComponent as Refresh } from "./refresh.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
 import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
@@ -265,7 +266,8 @@ const AppIcons = {
   Eye,
   Maximize,
   Mobile,
-  Desktop
+  Desktop,
+  Refresh,
 }
 
 export default AppIcons
