@@ -11,19 +11,19 @@ interface Iprops {
 }
 
 function BlockchainNetwork({ error, onChange, value }: Iprops) {
-    const chains = useQuery({
+    const { data, isFetching } = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => onChange(data.data.data[0])
     })
 
     return <AppSelectBox
-        items={chains.data ? chains.data?.data?.data.map((el: any) => ({ value: el, caption: capitalizeFirstLetter(el) })) : []}
+        items={data ? data?.data?.data.map((el: any) => ({ value: el, caption: capitalizeFirstLetter(el) })) : []}
         name="blockchain"
         label='Blockchain Network'
-        loading={!chains.isLoading}
-        placeholder='Select Blockchain'
+        loading={!isFetching}
         error={error}
         onChange={(e) => onChange(e.target.value)}
         value={value}
