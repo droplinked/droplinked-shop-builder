@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Flex, HStack, Select, Stack, Tooltip, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Select, Stack, useDisclosure, VStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { motion } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
@@ -7,7 +7,7 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
 import { TileDesignContext } from "./context/tile.design.context";
 import { percent_to_hex } from "lib/utils/heper/helpers";
-import AppTooltip from "components/common/tooltip/AppTooltip";
+import AppModal from "components/common/modal/AppModal";
 
 const imagesToShow = [
     {
@@ -56,6 +56,7 @@ const TileDesignPageProduct = () => {
         },
         methods: { updateFormFields, updateState },
     } = useContext(TileDesignContext);
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const activeImageIndex = wrap(0, imagesToShow?.length, imageCount);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
     const black_if_dark_mode = CONTAINER.darkMode ? "#000000" : "#FFFFFF";
@@ -213,18 +214,38 @@ const TileDesignPageProduct = () => {
                         >
                             Casper punks unisex premium pullover hooded sweat shirt
                         </AppTypography>
-                        <AppTypography color={"#179EF8"} _hover={{ textDecor: "underline" }} fontSize={"14px"} fontWeight={400} cursor={"pointer"}>
-                            <AppTooltip
-                                label={"Casper punks unisex premium pullover hooded sweat shirt"}
-                                placement="bottom"
-                                color={white_if_dark_mode}
-                                padding="5px 10px"
-                                fontSize="12px"
-                                bg={black_if_dark_mode}
-                            >
-                                View Description
-                            </AppTooltip>
-                        </AppTypography>
+                        {CONTAINER.description && (
+                            <>
+                                <BasicButton
+                                    alignSelf={"start"}
+                                    justifyContent={"flex-start"}
+                                    padding={1}
+                                    variant="link"
+                                    onClick={onOpen}
+                                    color={"#179EF8"}
+                                    _hover={{ textDecor: "underline" }}
+                                    buttonTextProps={{ fontSize: "14px", fontWeight: "400", textAlign: "left" }}
+                                    cursor={"pointer"}
+                                >
+                                    View Description
+                                </BasicButton>
+                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white"}}>
+                                    <Flex direction={"column"} justifyContent={"space-between"} gap={16}>
+                                        <AppTypography color={white_if_dark_mode} fontSize="14px" fontWeight={"500"}>
+                                            This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous! • Fabric
+                                            composition in the EU: 96% polyester, 4% spandex • Fabric composition in the US: 93% polyester, 7% spandex • Fabric weight: 6.19 oz/yd² (210 g/m²), weight
+                                            may vary by 5% • Comfortable, stretchy material that stretches and recovers on the cross and lengthwise grains. • Precision-cut and hand-sewn after printing
+                                            • Blank product components in the EU sourced from Lithuania • Blank product components in the US sourced from the US
+                                        </AppTypography>
+                                        <BasicButton color={white_if_dark_mode} minW={"auto"} border={`1px solid ${white_if_dark_mode}`} alignSelf={"flex-end"} variant="outline" onClick={onClose}>
+                                            Close
+                                        </BasicButton>
+                                    </Flex>
+                                </AppModal>
+                            </>
+                        )}
+                        {/* </AppTooltip> */}
+
                         <AppTypography
                             padding={1}
                             cursor={"pointer"}
