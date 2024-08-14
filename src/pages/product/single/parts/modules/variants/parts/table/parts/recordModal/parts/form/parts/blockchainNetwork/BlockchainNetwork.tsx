@@ -15,7 +15,8 @@ function BlockchainNetwork({ error, onChange, value }: Iprops) {
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => onChange(data.data.data[0])
     })
 
     return <AppSelectBox
@@ -23,7 +24,6 @@ function BlockchainNetwork({ error, onChange, value }: Iprops) {
         name="blockchain"
         label='Blockchain Network'
         loading={!chains.isLoading}
-        placeholder='Select Blockchain'
         error={error}
         onChange={(e) => onChange(e.target.value)}
         value={value}
