@@ -8,18 +8,14 @@ import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
 
-const Plans = () => {
+export default function Plans() {
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
         refetchOnWindowFocus: false
     })
 
-    if (isFetching) return (
-        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6, base: 4 }}>
-            <Loading />
-        </SimpleGrid>
-    )
+    if (isFetching) return <PlansGrid><Loading /></PlansGrid >
 
     if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
 
@@ -46,10 +42,7 @@ const Plans = () => {
     const plans = data.data
 
     return (
-        <SimpleGrid
-            columns={{ base: 1, md: 2, xl: 4 }}
-            gap={{ lg: 8, md: 6, base: 4 }}
-        >
+        <PlansGrid>
             {plans.map((plan, index) => {
                 const prevPlan = plans[index - 1] || plans[0]
                 return <PlanCard
@@ -63,8 +56,17 @@ const Plans = () => {
                     }
                 />
             })}
-        </SimpleGrid>
+        </PlansGrid>
     )
 }
 
-export default Plans
+function PlansGrid({ children }) {
+    return (
+        <SimpleGrid
+            columns={{ base: 1, md: 2, xl: 4 }}
+            gap={{ lg: 8, md: 6, base: 4 }}
+        >
+            {children}
+        </SimpleGrid>
+    )
+}
