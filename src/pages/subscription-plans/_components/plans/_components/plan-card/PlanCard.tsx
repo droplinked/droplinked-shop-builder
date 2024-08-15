@@ -170,10 +170,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
                                         <Flex key={feature.key} gap={2}>
                                             <AppIcons.Tick style={{ flexShrink: 0 }} />
                                             <AppTypography fontSize={14} color="white">
-                                                {`${feature.title} ${typeof feature.value === "boolean"
-                                                    ? ""
-                                                    : `: ${feature.value}`
-                                                    }`}
+                                                {`${feature.title} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
                                             </AppTypography>
                                         </Flex>
                                     ))}
