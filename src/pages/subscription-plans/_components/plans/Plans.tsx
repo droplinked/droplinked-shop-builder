@@ -3,12 +3,16 @@ import AppTypography from "components/common/typography/AppTypography";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
+import PlanDurationRadioContainer from "./_components/plan-duration-radio/PlanDurationRadioContainer";
+
+export type PlanDuration = "monthly" | "yearly"
 
 export default function Plans() {
+    const [selectedPlanDuration, setPlanDuration] = useState<PlanDuration>("yearly")
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
@@ -42,29 +46,33 @@ export default function Plans() {
     const plans = data.data
 
     return (
-        <PlansGrid>
-            {plans.map((plan, index) => {
-                const prevPlan = plans[index - 1] || plans[0]
-                return <PlanCard
-                    key={plan._id}
-                    plan={plan}
-                    plans={plans}
-                    prevPlanType={prevPlan.type}
-                    features={index === 0 ?
-                        getFilteredFeatures(plan) :
-                        getFilteredFeatures(plan, plans[index - 1])
-                    }
-                />
-            })}
-        </PlansGrid>
+        <>
+            <PlanDurationRadioContainer selectedPlanDuration={selectedPlanDuration} onChange={(duration) => setPlanDuration(duration)} />
+            <PlansGrid>
+                {plans.map((plan, index) => {
+                    const prevPlan = plans[index - 1] || plans[0]
+                    return <PlanCard
+                        key={plan._id}
+                        plan={plan}
+                        plans={plans}
+                        prevPlanType={prevPlan.type}
+                        features={index === 0 ?
+                            getFilteredFeatures(plan) :
+                            getFilteredFeatures(plan, plans[index - 1])
+                        }
+                        selectedPlanDuration={selectedPlanDuration}
+                    />
+                })}
+            </PlansGrid>
+        </>
     )
 }
 
 function PlansGrid({ children }) {
     return (
         <SimpleGrid
-            columns={{ base: 1, md: 2, xl: 4 }}
-            gap={{ lg: 8, md: 6, base: 4 }}
+            columns={{ base: 1, lg: 2, xl: 4 }}
+            gap={{ lg: 6, md: 4, base: 4 }}
         >
             {children}
         </SimpleGrid>

@@ -15,7 +15,6 @@ import { ReactComponent as BlackInformation } from './black-information.svg';
 import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as Brain } from "./brain.svg";
-import { ReactComponent as Business } from "./business.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
@@ -40,8 +39,11 @@ import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Email } from "./email.svg";
-import { ReactComponent as Enterprise } from "./enterprise.svg";
+import { ReactComponent as EnterprisePlan } from "./enterprise-plan.svg";
 import { ReactComponent as ETH } from "./eth.svg";
+import { ReactComponent as EventCalendar } from "./event-calendar.svg";
+import { ReactComponent as EventHost } from "./event-host.svg";
+import { ReactComponent as EventLocation } from "./event-location.svg";
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as File } from "./file.svg";
@@ -84,7 +86,8 @@ import { ReactComponent as Phantom } from "./phantom.svg";
 import { ReactComponent as PintrestIcon } from "./pintrest.svg";
 import { ReactComponent as PlusIcon } from "./plus-icon.svg";
 import { ReactComponent as Polygon } from "./polygon-matic-logo.svg";
-import { ReactComponent as Premium } from "./premium.svg";
+import { ReactComponent as PremiumPlan } from "./premium-plan.svg";
+import { ReactComponent as ProPlan } from "./pro-plan.svg";
 import { ReactComponent as VariantsIcon } from "./products-active-icon.svg";
 import { ReactComponent as ProductsIcon } from "./products-icon.svg";
 import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
@@ -105,7 +108,7 @@ import { ReactComponent as StarOff } from "./star-off.svg";
 import { ReactComponent as StarOn } from "./star-on.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
-import { ReactComponent as Starter } from "./starter.svg";
+import { ReactComponent as StarterPlan } from "./starter-plan.svg";
 import { ReactComponent as StripeS } from "./stripe-s-icon.svg";
 import { ReactComponent as Stripe } from "./stripe.svg";
 import { ReactComponent as Stacks } from "./stx.svg";
@@ -131,9 +134,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as EventCalendar } from "./event-calendar.svg";
-import { ReactComponent as EventLocation } from "./event-location.svg";
-import { ReactComponent as EventHost } from "./event-host.svg";
+
 
 const AppIcons = {
   ProductsIcon,
@@ -253,10 +254,6 @@ const AppIcons = {
   Pen,
   Delete,
   Tick,
-  Starter,
-  Business,
-  Premium,
-  Enterprise,
   SubscriptionPlan,
   MultiShopManagement,
   EventCalendar,
@@ -271,7 +268,11 @@ const AppIcons = {
   Desktop,
   Refresh,
   Download,
-  Share
+  Share,
+  StarterPlan,
+  ProPlan,
+  PremiumPlan,
+  EnterprisePlan
 }
 
 export default AppIcons

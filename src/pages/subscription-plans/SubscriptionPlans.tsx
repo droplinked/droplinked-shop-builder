@@ -6,7 +6,7 @@ import Plans from './_components/plans/Plans'
 
 function SubscriptionPlans() {
     return (
-        <Flex direction={"column"} gap={"80px"}>
+        <Flex direction={"column"} gap={9}>
             <Flex
                 direction={"column"}
                 gap={6}
