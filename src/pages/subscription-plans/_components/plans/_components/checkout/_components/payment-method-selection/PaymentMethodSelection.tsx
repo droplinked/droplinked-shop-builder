@@ -61,7 +61,7 @@ function PaymentMethodSelection({ setStripeClientSecret, setplanPurchaseModalSte
         <>
             <ModalHeader paddingBlock={0}>
                 <PurchaseStepInformation
-                    icon={<AppIcons.ConfirmPlan />}
+                    icon={<AppIcons.PaymentMethodSelection />}
                     title='Payment methods'
                     description={"How would you like to pay for your subscription?"}
                 />

@@ -87,6 +87,7 @@ import { ReactComponent as NewStripe } from "./new-stripe.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
 import { ReactComponent as Paint } from "./paint.svg";
+import { ReactComponent as PaymentMethodSelection } from "./payment-method-selection.svg";
 import { ReactComponent as Pen } from "./pen.svg";
 import { ReactComponent as Personalize } from "./personalize.svg";
 import { ReactComponent as Phantom } from "./phantom.svg";
@@ -116,6 +117,7 @@ import { ReactComponent as StarOn } from "./star-on.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
 import { ReactComponent as StarterPlan } from "./starter-plan.svg";
+import { ReactComponent as StripePayment } from "./stripe-payment.svg";
 import { ReactComponent as StripeS } from "./stripe-s-icon.svg";
 import { ReactComponent as Stripe } from "./stripe.svg";
 import { ReactComponent as Stacks } from "./stx.svg";
@@ -287,7 +289,9 @@ const AppIcons = {
   NewSolana,
   NewStripe,
   BlueBase,
-  BlueLinea
+  BlueLinea,
+  PaymentMethodSelection,
+  StripePayment
 }
 
 export default AppIcons

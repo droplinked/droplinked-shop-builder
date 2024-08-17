@@ -30,7 +30,7 @@ function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPl
         <>
             <ModalHeader paddingBlock={0}>
                 <PurchaseStepInformation
-                    icon={<AppIcons.ConfirmPlan />}
+                    icon={<AppIcons.StripePayment />}
                     title='Credit card information'
                     description={"Choose a credit card on file or add a new one."}
                 />
