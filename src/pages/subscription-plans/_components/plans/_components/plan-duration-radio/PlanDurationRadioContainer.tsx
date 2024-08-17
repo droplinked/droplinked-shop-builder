@@ -1,18 +1,16 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import React from 'react'
-import { PlanDuration } from '../../Plans'
+import useSubscriptionPlanPurchaseStore from '../../store/planPurchaseStore'
 import PlanDurationRadio from './PlanDurationRadio'
 
-interface Props {
-    selectedPlanDuration: PlanDuration,
-    onChange: (duration: PlanDuration) => void
-}
+function PlanDurationRadioContainer() {
+    const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
+    const updatePlanDuration = useSubscriptionPlanPurchaseStore((state) => state.updatePlanDuration)
 
-function PlanDurationRadioContainer({ selectedPlanDuration, onChange }: Props) {
     const { getRootProps, getRadioProps } = useRadioGroup({
-        name: 'selected-plan-duration',
-        onChange,
-        value: selectedPlanDuration
+        name: 'preferred-plan-duration',
+        onChange: updatePlanDuration,
+        value: preferredPlanDuration
     })
 
     return (

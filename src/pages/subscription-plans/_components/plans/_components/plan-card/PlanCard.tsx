@@ -13,22 +13,23 @@ import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 import { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading"
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import { PlanDuration } from "../../Plans"
+import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
+import PlanPrice from "../plan-price/PlanPrice"
 
 interface Props {
     plan: SubscriptionPlan
     plans?: SubscriptionPlan[]
     prevPlanType: string
     features: SubOptionId[]
-    selectedPlanDuration: PlanDuration
 }
 
-const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }: Props) => {
+const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
+    const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
     const { profile } = useProfile()
     const purchaseModal = useDisclosure()
     const signInModal = useDisclosure()
-    const { price, type } = plan
+    const { type } = plan
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const { title, icon, description } = subscriptionPlanMap[plan.type]
@@ -38,29 +39,11 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
     const navigate = useNavigate()
     const { shopNavigate } = useCustomNavigate()
     const [searchParams] = useSearchParams()
-    const location = useLocation()
-    const isPlansPage = location.pathname === "/plans"
-    const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan)
+    const isPlansPage = useLocation().pathname === "/plans"
     const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false)
 
-    const renderPlanPrice = () => {
-        if (isStarter) return "Free"
-        if (isEnterprise) return "Let’s talk"
-        if (selectedPlanDuration === "yearly") {
-            const discountedPrice = (+price * 0.9).toFixed(2)
-            return (
-                <>
-                    ${discountedPrice}
-                    <AppTypography as="span" ml={3} fontSize={20} fontWeight={400} color="#FF2244" textDecoration="line-through">
-                        ${price}
-                    </AppTypography>
-                </>
-            )
-        }
-        return `$${price}`
-    }
-
     const handlePlanPurchase = () => {
+        updateSelectedPlan(plan)
         if (!profile) return signInModal.onOpen()
         if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com")
         purchaseModal.onOpen()
@@ -125,7 +108,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
         ) {
             const foundPlan = plans.find((p) => p._id === paramsVariables?.subscription_id)
             if (foundPlan) {
-                setSelectedPlan(foundPlan)
+                updateSelectedPlan(foundPlan)
                 setIsLoggedInViaGoogle(true)
                 loginWithGoogle()
                 purchaseModal.onOpen()
@@ -148,11 +131,9 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
                     </Box>
                 </Flex>
 
-                <AppTypography fontSize={32} fontWeight={700} color="white">{renderPlanPrice()}</AppTypography>
+                <PlanPrice plan={plan} />
 
-                <BasicButton onClick={handlePlanPurchase}>
-                    {isEnterprise ? "Contact Us" : "Select"}
-                </BasicButton>
+                {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</BasicButton>}
 
                 <Divider borderColor="#3C3C3C" />
 
@@ -181,7 +162,6 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
             </Flex>
             {purchaseModal.isOpen && (
                 <SubscriptionPlanCheckoutModal
-                    selectedPlan={selectedPlan}
                     isOpen={purchaseModal.isOpen}
                     close={purchaseModal.onClose}
                     isFromPlansPage={isPlansPage}
@@ -194,7 +174,6 @@ const PlanCard = ({ plan, prevPlanType, features, plans, selectedPlanDuration }:
                     close={handleAuthModalClose}
                     type={MODAL_TYPE.SIGNUP}
                     isFromPlansPage={isPlansPage}
-                    subscriptionPlan={selectedPlan}
                 />
             )}
         </>

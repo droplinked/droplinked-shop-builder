@@ -13,6 +13,8 @@ import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
 import { ReactComponent as BlackInformation } from './black-information.svg';
 import { ReactComponent as Blog } from "./blog.svg";
+import { ReactComponent as BlueBase } from "./blue-base.svg";
+import { ReactComponent as BlueLinea } from "./blue-linea.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as Brain } from "./brain.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
@@ -24,6 +26,7 @@ import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as Coins } from "./coins.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
+import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as CopyIcon } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
@@ -77,6 +80,10 @@ import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
 import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
+import { ReactComponent as NewPolygon } from "./new-polygon.svg";
+import { ReactComponent as NewRedbelly } from "./new-redbelly.svg";
+import { ReactComponent as NewSolana } from "./new-solana.svg";
+import { ReactComponent as NewStripe } from "./new-stripe.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
 import { ReactComponent as Paint } from "./paint.svg";
@@ -117,6 +124,7 @@ import { ReactComponent as TearIcon } from "./tear-icon.svg";
 import { ReactComponent as ThreeStars } from "./three-stars.svg";
 import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
+import { ReactComponent as Token } from "./token.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
 import { ReactComponent as Unisat } from "./unisat.svg";
@@ -134,7 +142,6 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-
 
 const AppIcons = {
   ProductsIcon,
@@ -272,7 +279,15 @@ const AppIcons = {
   StarterPlan,
   ProPlan,
   PremiumPlan,
-  EnterprisePlan
+  EnterprisePlan,
+  ConfirmPlan,
+  Token,
+  NewPolygon,
+  NewRedbelly,
+  NewSolana,
+  NewStripe,
+  BlueBase,
+  BlueLinea
 }
 
 export default AppIcons

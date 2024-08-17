@@ -3,16 +3,13 @@ import AppTypography from "components/common/typography/AppTypography";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
 import PlanDurationRadioContainer from "./_components/plan-duration-radio/PlanDurationRadioContainer";
 
-export type PlanDuration = "monthly" | "yearly"
-
 export default function Plans() {
-    const [selectedPlanDuration, setPlanDuration] = useState<PlanDuration>("yearly")
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
@@ -47,7 +44,7 @@ export default function Plans() {
 
     return (
         <>
-            <PlanDurationRadioContainer selectedPlanDuration={selectedPlanDuration} onChange={(duration) => setPlanDuration(duration)} />
+            <PlanDurationRadioContainer />
             <PlansGrid>
                 {plans.map((plan, index) => {
                     const prevPlan = plans[index - 1] || plans[0]
@@ -60,7 +57,6 @@ export default function Plans() {
                             getFilteredFeatures(plan) :
                             getFilteredFeatures(plan, plans[index - 1])
                         }
-                        selectedPlanDuration={selectedPlanDuration}
                     />
                 })}
             </PlansGrid>

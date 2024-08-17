@@ -1,0 +1,46 @@
+import { ModalBody, ModalFooter } from '@chakra-ui/react'
+import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore'
+import React, { useState } from 'react'
+import { ModalStep } from '../../SubscriptionPlanCheckoutModal'
+
+interface Props {
+    setplanPurchaseModalStep: (step: ModalStep) => void
+    closeModal: () => void
+}
+
+function StripeForm({ setplanPurchaseModalStep }: Props) {
+    const elements = useElements()
+    const stripe = useStripe()
+    const [isFormCompleted, setFormCompleted] = useState(false)
+    const [isLoading, setLoading] = useState(false)
+    const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
+
+    const handleStripePayment = async () => {
+        if (!stripe || !elements) return
+        setLoading(true)
+        const { error } = await stripe.confirmPayment({ elements, redirect: "if_required" })
+        if (error) {
+            setLoading(false)
+            setplanPurchaseModalStep("FailedPayment")
+        }
+        setLoading(false)
+        setplanPurchaseModalStep("SuccessfulPayment")
+    }
+
+    return (
+        <>
+            <ModalBody paddingBlock={0}>
+                <PaymentElement onChange={(e) => setFormCompleted(e.complete)} />
+            </ModalBody>
+
+            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 1 }}>
+                <BasicButton width={"50%"} isDisabled={isLoading} variant='outline' onClick={() => setplanPurchaseModalStep("PaymentMethodSelection")}>Back</BasicButton>
+                <BasicButton width={"50%"} isDisabled={!isFormCompleted || isLoading} isLoading={isLoading} onClick={handleStripePayment}>Pay ${selectedPlanPrice}</BasicButton>
+            </ModalFooter>
+        </>
+    )
+}
+
+export default StripeForm

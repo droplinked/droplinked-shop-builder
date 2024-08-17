@@ -1,36 +1,35 @@
-import { Box, Divider, Flex, Heading, Image } from '@chakra-ui/react'
+import { ModalBody, ModalFooter } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
 
 interface Props {
-    paymentStatus: "success" | "error",
-    selectedPlan: SubscriptionPlan
-    close: () => void
-    isFromPlansPage?: boolean
-    isLoggedInViaGoogle?: boolean
+    paymentStatus: "success" | "error";
+    close: () => void;
+    isFromPlansPage?: boolean;
+    isLoggedInViaGoogle?: boolean;
 }
 
-function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
+function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
+    const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
+    const { logoutUser } = useProfile()
     const isSuccessful = paymentStatus === "success"
-    const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
-
-    const { logoutUser } = useProfile();
-    let navigate = useNavigate();
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
         if (isFromPlansPage && isLoggedInViaGoogle) {
             navigate("/dashboard/url-registration")
         } else if (isFromPlansPage && !isLoggedInViaGoogle) {
-            const registerEmail = localStorage.getItem("registerEmail");
+            const registerEmail = localStorage.getItem("registerEmail")
             logoutUser()
             registerEmail && localStorage.setItem("registerEmail", registerEmail)
             navigate("/email-confirmation")
@@ -39,37 +38,63 @@ function PaymentStatus({ paymentStatus, selectedPlan, close, isFromPlansPage, is
         close()
     }
 
-    const handleClickCancel = () => {
+    const handleCloseModal = () => {
         isFromPlansPage && logoutUser()
         close()
     }
 
     return (
-        <Flex direction={"column"} alignItems={"center"} gap={5}>
-            <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>{headingText}</Heading>
+        <>
+            <ModalBody
+                display={"flex"}
+                flexDirection={"column"}
+                paddingTop={{ lg: 12, md: 8, base: 4 }}
+            >
+                <AppImage
+                    width={{ xl: "349px", md: "249px", base: "100%" }}
+                    height={{ xl: "326px", md: "226px", base: "auto" }}
+                    alignSelf={"center"}
+                    src={imageSrc}
+                    objectFit={"cover"}
+                />
+                <AppTypography
+                    marginTop={{ lg: 16, md: 12, base: 8 }}
+                    textAlign={"center"}
+                    fontSize={32}
+                    fontWeight={700}
+                    color={"white"}
+                >
+                    {isSuccessful ? "You're all set!" : "Payment failed"}
+                </AppTypography>
+                <AppTypography
+                    fontSize={16}
+                    textAlign={"center"}
+                    color={"white"}
+                >
+                    {isSuccessful ?
+                        `Your ${subscriptionPlanMap[selectedPlan.type].title} Plan subscription is now active.`
+                        :
+                        "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."}
+                </AppTypography>
+            </ModalBody>
 
-            <Divider height={"1px"} borderColor={"#292929"} />
-
-            <Image src={imageSrc} width={"349px"} height={"auto"} objectFit={"cover"} />
-
-            <AppTypography textAlign={"center"} fontSize={20} color={"#C2C2C2"}>
-                {isSuccessful ?
-                    <>
-                        Thank you for subscribing to the {" "}
-                        <Box as="span" color={"primary"}>{subscriptionPlanMap[selectedPlan.type].title} Plan!</Box> {" "}
-                        Your payment was successful.
-                    </>
-                    :
-                    "Oops! Something went wrong with your payment. Please check your payment details and try again"
+            <ModalFooter
+                display={"flex"}
+                justifyContent={isSuccessful ? "center" : "unset"}
+                alignItems={isSuccessful ? "center" : "unset"}
+                gap={{ xl: 6, base: 1 }}
+            >
+                {
+                    isSuccessful ?
+                        <BasicButton width={"50%"} variant='outline' onClick={fetchShopSubscriptionData}>Return to Dashboard</BasicButton>
+                        :
+                        <>
+                            <BasicButton width={"50%"} variant='outline' onClick={handleCloseModal}>Close</BasicButton>
+                            <BasicButton width={"50%"} onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
+                        </>
                 }
-            </AppTypography>
-
-            {
-                isSuccessful ?
-                    <BasicButton onClick={fetchShopSubscriptionData}>Great</BasicButton> :
-                    <BasicButton variant='outline' onClick={handleClickCancel}>Cancel</BasicButton>
-            }
-        </Flex>
+            </ModalFooter>
+        </>
     )
 }
 
