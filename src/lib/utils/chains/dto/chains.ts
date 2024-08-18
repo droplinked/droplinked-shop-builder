@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 export enum Chain {
 	CASPER,
 	POLYGON,
@@ -22,4 +24,10 @@ export enum ChainWallet {
 	CoinBase,
 	CasperWallet,
 	Phantom,
+}
+
+export async function getGasPrice(
+	provider: ethers.providers.JsonRpcProvider
+): Promise<BigInt> {
+	return (await provider.getGasPrice()).toBigInt();
 }
