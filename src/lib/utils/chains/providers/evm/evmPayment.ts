@@ -1,7 +1,10 @@
 import { ethers } from 'ethers';
 import { Chain, ChainWallet, Network, getGasPrice } from '../../dto/chains';
 import { getPaymentABI, getContractAddress } from './evmConstants';
-import { IChainPayment } from '../../../chains/chainProvider';
+import {
+	ChainNotImplementedException,
+	IChainPayment,
+} from '../../../chains/chainProvider';
 
 export let EVMPayment = async function (
 	provider: any,
@@ -12,6 +15,11 @@ export let EVMPayment = async function (
 	wallet: ChainWallet
 ) {
 	const signer = provider.getSigner();
+	if (chain === Chain.SKALE) {
+		throw new ChainNotImplementedException(
+			'Payments on skale are not supported in shop-builder'
+		);
+	}
 	if (data.cartItems === undefined) {
 		data.cartItems = [];
 	}
