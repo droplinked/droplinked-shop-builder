@@ -94,6 +94,7 @@ import { ReactComponent as Phantom } from "./phantom.svg";
 import { ReactComponent as PintrestIcon } from "./pintrest.svg";
 import { ReactComponent as PlusIcon } from "./plus-icon.svg";
 import { ReactComponent as Polygon } from "./polygon-matic-logo.svg";
+import { ReactComponent as PopularPlanMedal } from "./popular-plan-medal.svg";
 import { ReactComponent as PremiumPlan } from "./premium-plan.svg";
 import { ReactComponent as ProPlan } from "./pro-plan.svg";
 import { ReactComponent as VariantsIcon } from "./products-active-icon.svg";
@@ -291,7 +292,8 @@ const AppIcons = {
   BlueBase,
   BlueLinea,
   PaymentMethodSelection,
-  StripePayment
+  StripePayment,
+  PopularPlanMedal
 }
 
 export default AppIcons

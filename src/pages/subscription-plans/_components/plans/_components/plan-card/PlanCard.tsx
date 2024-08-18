@@ -16,6 +16,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
 import PlanPrice from "../plan-price/PlanPrice"
+import PopularPlanBadge from "./PopularPlanBadge"
 
 interface Props {
     plan: SubscriptionPlan
@@ -32,6 +33,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const { type } = plan
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
+    const isPopular = type === "BUSINESS"
     const { title, icon, description } = subscriptionPlanMap[plan.type]
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
     const { login, loading } = useAppStore()
@@ -118,7 +120,17 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
     return (
         <>
-            <Flex direction="column" gap={9} borderRadius={8} p={9} bg="#222222">
+            <Flex
+                position={"relative"}
+                direction="column"
+                gap={9}
+                borderRadius={8}
+                padding={9}
+                bg="#222222"
+                {...(isPopular && { border: "2px solid #2BCFA1" })}
+            >
+                {isPopular && <PopularPlanBadge />}
+
                 <Flex direction="column" gap={4}>
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
                         {icon}
