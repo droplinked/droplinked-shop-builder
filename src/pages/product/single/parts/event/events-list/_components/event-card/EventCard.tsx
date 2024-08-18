@@ -20,7 +20,7 @@ import { UTCConverter } from "lib/utils/heper/helpers";
 interface IEventCard {
   event: any;
   isExpired?: boolean;
-  onEventImported?: (eventID: string) => void; 
+  onEventImported?: (eventID: string) => void;
 }
 
 const EventCard = ({ event, isExpired, onEventImported }: IEventCard) => {
@@ -31,16 +31,15 @@ const EventCard = ({ event, isExpired, onEventImported }: IEventCard) => {
     setIsLoading(true)
     try {
       const res = await importEvents({ eventIds: [eventID] })
-      console.log(res)
       setIsLoading(false)
-      showToast({message: "Event successfully imported!", type: "success"})
+      showToast({ message: "Event successfully imported!", type: "success" })
       onEventImported(eventID);
     } catch (error) {
       setIsLoading(false)
-      showToast({message: error.message, type: "error"})
+      showToast({ message: error.message, type: "error" })
     }
   }
-  
+
   return (
     <Flex
       alignItems={"flex-start"}
@@ -97,7 +96,7 @@ const EventCard = ({ event, isExpired, onEventImported }: IEventCard) => {
       <Flex alignItems={"center"} justifyContent={"center"} gap={"4px"}>
         <AppIcons.EventCalendar />
         <AppTypography fontSize={"12px"} fontWeight={500} color={isExpired ? "#808080" : "#C2C2C2"}>
-          {`${UTCConverter(event?.start)}` }
+          {`${UTCConverter(event?.start)}`}
         </AppTypography>
       </Flex>
 

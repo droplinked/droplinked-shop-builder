@@ -47,7 +47,6 @@ function PaymentMethodSelection({ setStripeClientSecret, setplanPurchaseModalSte
         try {
             if (selectedPaymentMethod.type === "Stripe") {
                 const { data: { clientSecret } } = await confirmPlan()
-                console.log("clientSecret", clientSecret)
                 setplanPurchaseModalStep("StripePayment")
                 setStripeClientSecret(clientSecret)
             }
