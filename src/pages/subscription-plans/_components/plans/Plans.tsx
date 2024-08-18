@@ -67,8 +67,9 @@ export default function Plans() {
 function PlansGrid({ children }) {
     return (
         <SimpleGrid
-            columns={{ base: 1, lg: 2, xl: 4 }}
-            gap={{ lg: 6, md: 4, base: 4 }}
+            columns={{ base: 1, md: 2, lg: 2, xl: 4 }}
+            columnGap={{ lg: 6, md: 4, base: 4 }}
+            rowGap={{ lg: 6, md: 4, base: 9 }}
         >
             {children}
         </SimpleGrid>

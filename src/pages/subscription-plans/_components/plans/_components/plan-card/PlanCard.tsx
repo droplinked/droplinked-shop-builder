@@ -125,9 +125,15 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                 direction="column"
                 gap={9}
                 borderRadius={8}
-                padding={9}
+                padding={{ lg: 9, base: 7 }}
                 bg="#222222"
-                {...(isPopular && { border: "2px solid #2BCFA1" })}
+                {...(isPopular && {
+                    border: "2px solid #2BCFA1",
+                    backgroundImage: "url('/assets/images/popular-plan-bg.png')",
+                    backgroundPosition: "top right",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: { base: "auto 60%", xl: "auto 35%" }
+                })}
             >
                 {isPopular && <PopularPlanBadge />}
 

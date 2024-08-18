@@ -1,6 +1,5 @@
-import { Divider, extendTheme } from "@chakra-ui/react";
 import { switchAnatomy } from "@chakra-ui/anatomy";
-import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { createMultiStyleConfigHelpers, extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
     components: {

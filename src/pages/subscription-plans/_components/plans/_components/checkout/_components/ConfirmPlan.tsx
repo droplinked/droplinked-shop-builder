@@ -74,7 +74,16 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                 />
             </ModalHeader>
             <ModalBody paddingBlock={0}>
-                <Flex direction={"column"} border={"1.5px solid #2BCFA1"} borderRadius={8} padding={8}>
+                <Flex
+                    direction={"column"}
+                    border={"1.5px solid #2BCFA1"}
+                    borderRadius={8}
+                    padding={{ xl: 9, base: 6 }}
+                    backgroundImage={"/assets/images/popular-plan-bg.png"}
+                    backgroundPosition={"top right"}
+                    backgroundRepeat={"no-repeat"}
+                    backgroundSize={"auto 150%"}
+                >
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
                         {icon}
                     </Center>
@@ -82,7 +91,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>
                     <PlanPrice marginTop={9} plan={selectedPlan} />
                 </Flex>
-            </ModalBody>
+            </ModalBody >
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 1 }}>
                 <BasicButton width={"50%"} variant='outline' onClick={handleCloseModal}>Discard</BasicButton>
                 <BasicButton width={"50%"} onClick={() => setplanPurchaseModalStep("PaymentMethodSelection")}>Next</BasicButton>
