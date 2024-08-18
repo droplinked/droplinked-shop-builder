@@ -1,27 +1,28 @@
 import AppTypography from 'components/common/typography/AppTypography'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React from 'react'
-import useSubscriptionPlanPurchaseStore, { calculatePlanPrice } from '../../store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore from '../../store/planPurchaseStore'
 
 function PlanPrice({ plan, marginTop = 0 }: { plan: SubscriptionPlan, marginTop?: number }) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
 
     const renderPlanPrice = () => {
-        const { type, price } = plan
+        const { type } = plan
         if (type === "STARTER") return "Free"
         if (type === "ENTERPRISE") return "Let’s talk"
-        if (preferredPlanDuration === "yearly") {
-            const discountedPrice = calculatePlanPrice(plan, preferredPlanDuration)
+
+        const targetPriceObj = plan.price.find((priceOption) => priceOption.month === preferredPlanDuration.month)
+        if (preferredPlanDuration.discount) {
             return (
                 <>
-                    ${discountedPrice}
+                    ${targetPriceObj.discountPrice}
                     <AppTypography as="span" ml={3} fontSize={20} fontWeight={400} color="#FF2244" textDecoration="line-through">
-                        ${price}
+                        ${targetPriceObj.price}
                     </AppTypography>
                 </>
             )
         }
-        return `$${price}`
+        return `$${targetPriceObj.price}`
     }
 
     return (

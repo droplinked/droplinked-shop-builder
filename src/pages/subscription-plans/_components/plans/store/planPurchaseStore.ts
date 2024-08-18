@@ -1,7 +1,12 @@
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { create } from 'zustand'
 
-type PlanDuration = "monthly" | "yearly"
+type PlanDuration = { month: number, label: string, discount?: number }
+export const planDurations: PlanDuration[] = [
+    { month: 1, label: "Monthly" },
+    { month: 12, label: "Annually", discount: 10 },
+    { month: 60, label: "5-Year", discount: 25 },
+]
 
 type State = {
     selectedPlan: SubscriptionPlan | null,
@@ -16,8 +21,8 @@ type Action = {
 
 const useSubscriptionPlanPurchaseStore = create<State & Action>((set, get) => ({
     selectedPlan: null,
-    selectedPlanPrice: 0,
-    preferredPlanDuration: "yearly",
+    selectedPlanPrice: calculatePlanPrice(null, planDurations[1]),
+    preferredPlanDuration: planDurations[1],
     updateSelectedPlan: (plan) => {
         const { preferredPlanDuration } = get()
         const planPrice = calculatePlanPrice(plan, preferredPlanDuration)
@@ -32,9 +37,12 @@ const useSubscriptionPlanPurchaseStore = create<State & Action>((set, get) => ({
 
 export default useSubscriptionPlanPurchaseStore
 
-export const calculatePlanPrice = (plan: SubscriptionPlan | null, duration: PlanDuration): number => {
+function calculatePlanPrice(plan: SubscriptionPlan | null, preferredPlanDuration: PlanDuration): number {
     if (!plan) return 0
-    const basePrice = Number(plan.price)
-    const finalPrice = duration === "monthly" ? basePrice : basePrice * 0.9
-    return parseFloat(finalPrice.toFixed(2))
+    const { price } = plan
+    const targetPriceObj = price.find((priceOption) => priceOption.month === preferredPlanDuration.month)
+    if (preferredPlanDuration.discount)
+        return +targetPriceObj.discountPrice
+
+    return +targetPriceObj.price
 }

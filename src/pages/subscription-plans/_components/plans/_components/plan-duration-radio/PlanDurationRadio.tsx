@@ -3,7 +3,7 @@ import AppTypography from "components/common/typography/AppTypography"
 import React from "react"
 
 function PlanDurationRadio({ ...props }) {
-    const { text, ...radioProps } = props
+    const { duration, ...radioProps } = props
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
@@ -21,17 +21,12 @@ function PlanDurationRadio({ ...props }) {
                 sx={{ "*": { transition: "all 0.2s" } }}
             >
                 {
-                    text !== "Yearly" ?
+                    <Flex alignItems={"center"} gap={2}>
                         <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#fff" : "#B1B1B1"}>
-                            {text}
+                            {duration.label}
                         </AppTypography>
-                        :
-                        <Flex alignItems={"center"} gap={2}>
-                            <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#fff" : "#B1B1B1"}>
-                                {text}
-                            </AppTypography>
-                            <Center paddingBlock={1} paddingInline={2} borderRadius={"100px"} bgColor={"#80EDCF1A"} color={"#2BCFA1"} fontSize={12} fontWeight={600}>-10%</Center>
-                        </Flex>
+                        {duration.discount && <Center paddingBlock={1} paddingInline={2} borderRadius={"100px"} bgColor={"#80EDCF1A"} color={"#2BCFA1"} fontSize={12} fontWeight={600}>{`-${duration.discount}%`}</Center>}
+                    </Flex>
                 }
             </Flex>
         </FormLabel>

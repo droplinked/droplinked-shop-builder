@@ -11,7 +11,13 @@ export interface SubOptionId {
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: string;
+    // price: Array<string | {
+    //     month: number;
+    //     price: number;
+    //     discount: number;
+    //     discountPrice: number;
+    // }>;
+    price: any[],
     description: string;
     subOptionIds: SubOptionId[]
 }
