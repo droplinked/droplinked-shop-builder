@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
@@ -43,7 +43,7 @@ export default function Plans() {
     const plans = data.data
 
     return (
-        <>
+        <Flex direction={"column"} gap={9}>
             <PlanDurationRadioContainer />
             <PlansGrid>
                 {plans.map((plan, index) => {
@@ -60,7 +60,7 @@ export default function Plans() {
                     />
                 })}
             </PlansGrid>
-        </>
+        </Flex>
     )
 }
 

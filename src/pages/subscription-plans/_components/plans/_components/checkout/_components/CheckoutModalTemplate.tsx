@@ -8,7 +8,7 @@ interface Props extends PropsWithChildren {
 
 function CheckoutModalTemplate({ isOpen, onClose, children }: Props) {
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size={"2xl"} isCentered>
+        <Modal isOpen={isOpen} onClose={onClose} size={"2xl"} closeOnOverlayClick={false} closeOnEsc={false} isCentered>
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
             <ModalContent
                 height={"85dvh"}
