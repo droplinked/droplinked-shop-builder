@@ -33,8 +33,8 @@ interface Props {
 
 function PaymentMethodSelection({ setStripeClientSecret, setplanPurchaseModalStep }: Props) {
     const { _id } = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
-    const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
-    const { isLoading, mutateAsync: confirmPlan } = useMutation(() => buySubscriptionPlanService({ amount: selectedPlanPrice, subId: _id }))
+    const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
+    const { isLoading, mutateAsync: confirmPlan } = useMutation(() => buySubscriptionPlanService({ month: preferredPlanDuration.month, subId: _id, recurring: false }))
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod>(paymentMethods[0])
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'preferred-payment-method',

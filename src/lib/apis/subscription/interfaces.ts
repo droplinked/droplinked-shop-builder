@@ -54,8 +54,9 @@ export interface ShopSubscriptionData {
 }
 
 export interface SubscriptionCheckout {
-    amount: number;
-    subId: string
+    month: number;
+    subId: string;
+    recurring: boolean
 }
 
 export interface SubscriptionPurchaseResult {
