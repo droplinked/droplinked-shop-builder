@@ -1,10 +1,11 @@
-import { Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react'
+import { Box, Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
 
-function PaymentMethodRadio({ ...props }) {
-    const { paymentMethod: { label, icon }, ...radioProps } = props
+export default function PaymentMethodRadio({ ...props }) {
+    const { paymentMethod: { type }, ...radioProps } = props
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
@@ -27,17 +28,25 @@ function PaymentMethodRadio({ ...props }) {
                 <Circle size={5} border={`1.5px solid ${isChecked ? "#2BCFA1" : "#fff"}`} >
                     <Circle size={2.5} bg={"#2BCFA1"} opacity={isChecked ? 1 : 0} />
                 </Circle>
-                {label === "Stripe" ?
-                    <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{label}</AppTypography> :
+                {type === "STRIPE" ?
+                    <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{capitalizeFirstLetter(type)}</AppTypography> :
                     <Flex alignItems={"center"} sx={isChecked ? { "svg path": { stroke: "#2BCFA1" } } : {}}>
                         <AppIcons.Token />
-                        <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{label}</AppTypography>
+                        <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{capitalizeFirstLetter(type)}</AppTypography>
                     </Flex>
                 }
             </Flex>
-            {icon}
+            {ChainIconMap[type]}
         </FormLabel>
     )
 }
 
-export default PaymentMethodRadio
+const ChainIconMap: Record<string, JSX.Element> = {
+    "STRIPE": <AppIcons.NewStripe />,
+    "LINEA": <AppIcons.BlueLinea />,
+    "BINANCE": <Box width={6} height={6}><AppIcons.Binance /></Box>,
+    "POLYGON": <AppIcons.NewPolygon />,
+    "BASE": <AppIcons.BlueBase />,
+    "SKALE": <Box width={6} height={6}><AppIcons.Skale /></Box>,
+    "REDBELLY": <AppIcons.NewRedbelly />
+}

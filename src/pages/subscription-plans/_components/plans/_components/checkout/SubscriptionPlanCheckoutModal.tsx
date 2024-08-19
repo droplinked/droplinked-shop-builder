@@ -16,7 +16,7 @@ interface Props {
 }
 
 function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
-    const [planPurchaseModalStep, setplanPurchaseModalStep] = useState<ModalStep>('PlanConfirmation')
+    const [planPurchaseModalStep, setplanPurchaseModalStep] = useState<ModalStep>('PaymentMethodSelection')
     const [stripeClientSecret, setStripeClientSecret] = useState<string | null>(null)
 
     const renderContent = () => {

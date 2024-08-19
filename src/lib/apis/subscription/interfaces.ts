@@ -59,9 +59,30 @@ export interface SubscriptionCheckout {
     recurring: boolean
 }
 
-export interface SubscriptionPurchaseResult {
+export interface SubscriptionCryptoCheckout {
+    chain: string;
+    token: string;
+    checkoutData: SubscriptionCheckout
+}
+
+export interface SubscriptionStripePaymentResult {
     amount: number
     transactionId: string;
     clientSecret: string;
     paymentIntentId: string;
+}
+
+interface PaymentMethodToken {
+    icon: string;
+    isNative: boolean;
+    isCustom: boolean;
+    name: string;
+    type: string;
+    _id: string;
+}
+
+export interface SubscriptionPlanPaymentMethod {
+    _id: string;
+    type: string;
+    tokens?: PaymentMethodToken[]
 }
