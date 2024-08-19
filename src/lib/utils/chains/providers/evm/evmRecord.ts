@@ -188,6 +188,9 @@ export async function EVMrecordMerch(
 			const productIdLog = logs.find(
 				(log: any) => log.name === 'ProductRegistered'
 			);
+			if (!productIdLog) {
+				return { transactionHash: tx.hash };
+			}
 			const productId = productIdLog.args.productId.toString();
 			const amountRecorded = productIdLog.args.amount.toString();
 			modalInterface.success('Successfully recorded the product!');
