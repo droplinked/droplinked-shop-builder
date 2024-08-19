@@ -5,46 +5,59 @@ import {
 	ProductType,
 	RecordData,
 	Uint256,
-} from './dto/chainStructs'
-import { Beneficiary } from './dto/chainStructs'
-import { Chain, ChainWallet, Network } from './dto/chains'
-import { ModalInterface, defaultModal } from './dto/modalInterface'
-import { RecordProduct } from './dto/recordDTO'
+} from './dto/chainStructs';
+import { Beneficiary } from './dto/chainStructs';
+import { Chain, ChainWallet, Network } from './dto/chains';
+import { ModalInterface, defaultModal } from './dto/modalInterface';
+import { RecordProduct } from './dto/recordDTO';
 // import { CasperProvider } from './providers/casper/casperProvider'
-import { EVMProvider } from './providers/evm/evmProvider'
-import { SolanaProvider } from './providers/solana/solana.provider'
+import { EVMProvider } from './providers/evm/evmProvider';
+import { SolanaProvider } from './providers/solana/solana.provider';
 
 export class WalletNotFoundException {
-	public readonly message: string = ''
+	public readonly message: string = '';
 	constructor(field: string) {
-		this.message = field
+		this.message = field;
 	}
 }
 
 export class AccountChangedException {
-	public readonly message: string = ''
+	public readonly message: string = '';
 	constructor(field: string) {
-		this.message = field
+		this.message = field;
 	}
 }
 
 export class ChainNotImplementedException {
-	public readonly message: string = ''
+	public readonly message: string = '';
 	constructor(field: string) {
-		this.message = field
+		this.message = field;
 	}
 }
 
 export class MetadataUploadFailedException {
-	public readonly message: string = ''
+	public readonly message: string = '';
 	constructor(field: string) {
-		this.message = field
+		this.message = field;
 	}
 }
 
+export interface IChainPayment {
+	chainLinkRoundId: string;
+	totalPrice: any;
+	tbdValues: number[];
+	tbdReceivers: string[];
+	cartItems: {
+		id: number;
+		amount: number;
+		isAffiliate: boolean;
+		shopAddress: string;
+	}[];
+	memo: string;
+}
 
 export interface ChainProvider {
-	walletLogin(): Promise<any>
+	walletLogin(): Promise<any>;
 	casperRecordProduct(
 		skuProperties: any,
 		productTitle: string,
@@ -54,14 +67,14 @@ export interface ChainProvider {
 		amount: number,
 		commission: number,
 		apiKey: string
-	): Promise<string>
+	): Promise<string>;
 	deployShop(
 		shopName: string,
 		shopAddress: string,
 		shopOwner: EthAddress,
 		shopLogo: string,
 		shopDescription: string
-	): Promise<DeployedShop>
+	): Promise<DeployedShop>;
 	recordProduct(
 		sku_properties: any,
 		product_title: string,
@@ -78,14 +91,27 @@ export interface ChainProvider {
 		shopAddress: EthAddress,
 		currencyAddress: EthAddress,
 		skuID: string
-	): Promise<RecordData>
-	recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string) : Promise<RecordData>
-	publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>
-	approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>
-	disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>
-	setAddress(address: EthAddress): ChainProvider
-	setWallet(wallet: ChainWallet): ChainProvider
-	setModal(modal: ModalInterface): ChainProvider
+	): Promise<RecordData>;
+	recordBatch(
+		products: RecordProduct[],
+		shopAddress: string,
+		nftContract: string
+	): Promise<RecordData>;
+	publishRequest(
+		productId: Uint256,
+		shopAddress: EthAddress
+	): Promise<AffiliateRequestData>;
+	approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+	disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+	payment(data: IChainPayment): Promise<{ deploy_hash: string; cryptoAmount: any }>;
+	paymentWithToken(
+		receiver: string,
+		amount: number,
+		tokenAddress: string
+	): Promise<string>;
+	setAddress(address: EthAddress): ChainProvider;
+	setWallet(wallet: ChainWallet): ChainProvider;
+	setModal(modal: ModalInterface): ChainProvider;
 }
 
 let chainMapping = {
@@ -138,8 +164,8 @@ let chainMapping = {
 	[Chain.REDBELLY]: {
 		[Network.MAINNET]: new EVMProvider(Chain.REDBELLY, Network.MAINNET),
 		[Network.TESTNET]: new EVMProvider(Chain.REDBELLY, Network.TESTNET),
-	}
-}
+	},
+};
 
 export function getNetworkProvider(
 	chain: Chain,
@@ -149,16 +175,18 @@ export function getNetworkProvider(
 	modalInterface: ModalInterface = new defaultModal()
 ) {
 	if (chainMapping[chain][network] == null)
-		throw new ChainNotImplementedException('The given chain is not implemented yet')
+		throw new ChainNotImplementedException(
+			'The given chain is not implemented yet'
+		);
 	if (modalInterface == null) {
-		modalInterface = new defaultModal()
+		modalInterface = new defaultModal();
 	}
 	if (wallet == null && chain !== Chain.CASPER && chain !== Chain.STACKS) {
-		wallet = ChainWallet.Metamask
+		wallet = ChainWallet.Metamask;
 	}
 
 	return chainMapping[chain][network]
 		?.setAddress(address)
 		.setModal(modalInterface)
-		.setWallet(wallet)
+		.setWallet(wallet);
 }
