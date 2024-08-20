@@ -82,15 +82,15 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
                 display={"flex"}
                 justifyContent={isSuccessful ? "center" : "unset"}
                 alignItems={isSuccessful ? "center" : "unset"}
-                gap={{ xl: 6, base: 1 }}
+                gap={{ xl: 6, base: 3 }}
             >
                 {
                     isSuccessful ?
-                        <BasicButton width={"50%"} variant='outline' onClick={fetchShopSubscriptionData}>Return to Dashboard</BasicButton>
+                        <BasicButton variant='outline' onClick={fetchShopSubscriptionData}>Return to Dashboard</BasicButton>
                         :
                         <>
-                            <BasicButton width={"50%"} variant='outline' onClick={handleCloseModal}>Close</BasicButton>
-                            <BasicButton width={"50%"} onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
+                            <BasicButton minWidth={"unset"} width={"50%"} variant='outline' onClick={handleCloseModal}>Close</BasicButton>
+                            <BasicButton minWidth={"unset"} width={"50%"} onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
                         </>
                 }
             </ModalFooter>

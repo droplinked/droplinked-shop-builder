@@ -105,9 +105,9 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
                         )
                 }
             </ModalBody>
-            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 1 }}>
-                <BasicButton width={"50%"} isDisabled={isTransactionInProgress} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, modalStep: "PlanConfirmation" }))}>Back</BasicButton>
-                <BasicButton width={"50%"} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>Next</BasicButton>
+            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
+                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, modalStep: "PlanConfirmation" }))}>Back</BasicButton>
+                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>Next</BasicButton>
             </ModalFooter>
         </>
     )

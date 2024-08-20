@@ -16,7 +16,7 @@ interface Props {
 
 function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
     const [modalData, setModalData] = useState<ModalState>({
-        modalStep: "PlanConfirmation",
+        modalStep: "SuccessfulPayment",
         stripeClientSecret: "",
         selectedPaymentMethod: null
     })

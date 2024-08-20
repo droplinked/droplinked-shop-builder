@@ -11,8 +11,9 @@ function CheckoutModalTemplate({ isOpen, onClose, children }: Props) {
         <Modal isOpen={isOpen} onClose={onClose} size={"2xl"} closeOnOverlayClick={false} closeOnEsc={false} isCentered>
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
             <ModalContent
-                height={"85dvh"}
-                margin={{ base: 4 }}
+                width={{ base: "90%", md: "600px" }}
+                height={{ base: "85vh", md: "95vh" }}
+                margin={{ base: 4, md: "auto" }}
                 box-shadow={"0px 0px 20px 0px #00000033"}
                 borderRadius={24}
                 padding={0}

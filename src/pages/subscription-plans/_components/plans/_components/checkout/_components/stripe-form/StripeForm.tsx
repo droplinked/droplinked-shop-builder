@@ -35,9 +35,9 @@ function StripeForm({ setplanPurchaseModalStep }: Props) {
                 <PaymentElement onChange={(e) => setFormCompleted(e.complete)} />
             </ModalBody>
 
-            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 1 }}>
-                <BasicButton width={"50%"} isDisabled={isLoading} variant='outline' onClick={() => setplanPurchaseModalStep("PaymentMethodSelection")}>Back</BasicButton>
-                <BasicButton width={"50%"} isDisabled={!isFormCompleted || isLoading} isLoading={isLoading} onClick={handleStripePayment}>Pay ${selectedPlanPrice}</BasicButton>
+            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
+                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isLoading} variant='outline' onClick={() => setplanPurchaseModalStep("PaymentMethodSelection")}>Back</BasicButton>
+                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={!isFormCompleted || isLoading} isLoading={isLoading} onClick={handleStripePayment}>Pay ${selectedPlanPrice}</BasicButton>
             </ModalFooter>
         </>
     )
