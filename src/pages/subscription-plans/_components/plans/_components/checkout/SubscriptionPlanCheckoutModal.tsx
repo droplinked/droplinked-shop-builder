@@ -16,7 +16,7 @@ interface Props {
 
 function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
     const [modalData, setModalData] = useState<ModalState>({
-        modalStep: "PlanConfirmation",
+        step: "PlanConfirmation",
         stripeClientSecret: "",
         selectedPaymentMethod: null
     })
@@ -25,30 +25,30 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
         setModalData({ ...modalData, [key]: value })
 
     const renderContent = () => {
-        const { modalStep, stripeClientSecret } = modalData
-        if (modalStep === 'PlanConfirmation')
+        const { step, stripeClientSecret } = modalData
+        if (step === 'PlanConfirmation')
             return <ConfirmPlan
-                setplanPurchaseModalStep={(step) => updateModalData("modalStep", step)}
+                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
                 close={close} hasProfile={hasProfile}
                 isFromPlansPage={isFromPlansPage}
             />
 
-        else if (modalStep === "PaymentMethodSelection")
+        else if (step === "PaymentMethodSelection")
             return <PaymentMethodSelection
                 setModalData={setModalData}
                 selectedPaymentMethod={modalData.selectedPaymentMethod}
             />
 
-        else if (modalStep === "StripePayment")
+        else if (step === "StripePayment")
             return <StripePayment
                 clientSecret={stripeClientSecret}
-                setplanPurchaseModalStep={(step) => updateModalData("modalStep", step)}
+                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
                 close={close}
                 isFromPlansPage={isFromPlansPage}
             />
 
         return <PaymentStatus
-            paymentStatus={modalStep === "SuccessfulPayment" ? "success" : "error"}
+            paymentStatus={step === "SuccessfulPayment" ? "success" : "error"}
             close={close}
             isFromPlansPage={isFromPlansPage}
             isLoggedInViaGoogle={isLoggedInViaGoogle}
@@ -59,7 +59,7 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
         <CheckoutModalTemplate
             onClose={close}
             isOpen={isOpen}
-            currentStep={modalData.modalStep}
+            currentStep={modalData.step}
         >
             {renderContent()}
         </CheckoutModalTemplate>

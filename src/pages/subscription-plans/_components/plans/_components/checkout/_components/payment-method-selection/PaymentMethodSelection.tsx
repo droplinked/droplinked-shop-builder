@@ -47,7 +47,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
         try {
             setTransactionInProgress(true)
             const { data: { clientSecret } } = await confirmStripePayment()
-            setModalData((prevData) => ({ ...prevData, modalStep: "StripePayment", stripeClientSecret: clientSecret }))
+            setModalData((prevData) => ({ ...prevData, step: "StripePayment", stripeClientSecret: clientSecret }))
         }
         catch (e) {
             showToast({ message: (e as Error).message, type: "error" })
@@ -73,10 +73,10 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
                 recurring: false,
                 walletAddress: address
             })
-            setModalData((prevData) => ({ ...prevData, modalStep: "SuccessfulPayment" }))
+            setModalData((prevData) => ({ ...prevData, step: "SuccessfulPayment" }))
         }
         catch (e) {
-            setModalData((prevData) => ({ ...prevData, modalStep: "FailedPayment" }))
+            setModalData((prevData) => ({ ...prevData, step: "FailedPayment" }))
         }
         finally {
             setTransactionInProgress(false)
@@ -106,7 +106,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
                 }
             </ModalBody>
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
-                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, modalStep: "PlanConfirmation" }))}>Back</BasicButton>
+                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, step: "PlanConfirmation" }))}>Back</BasicButton>
                 <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>Next</BasicButton>
             </ModalFooter>
         </>
