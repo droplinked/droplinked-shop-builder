@@ -10,34 +10,37 @@ import { Chain, ChainWallet, Network } from 'lib/utils/chains/dto/chains';
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
 import React, { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
-import { ModalStep } from '../../SubscriptionPlanCheckoutModal';
 import PurchaseStepInformation from '../PurchaseStepInformation';
 import PaymentMethodRadio from './PaymentMethodRadio';
+import { ModalState, ModalStep } from '../../types/interfaces';
+import Loading from './Loading';
 
 interface Props {
-    setplanPurchaseModalStep: (step: ModalStep) => void;
-    setStripeClientSecret: (clientSecret: string) => void;
+    setModalData: React.Dispatch<React.SetStateAction<ModalState>>;
+    selectedPaymentMethod: SubscriptionPlanPaymentMethod;
 }
 
-export default function PaymentMethodSelection({ setStripeClientSecret, setplanPurchaseModalStep }: Props) {
+export default function PaymentMethodSelection({ setModalData, selectedPaymentMethod }: Props) {
     const { _id: selectedPlanId } = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const { showToast } = useAppToast()
+    const { isFetching: isFethingPaymentMethods, isError, data: paymentMethods } = useQuery({
+        queryKey: "plan-payment-methods",
+        queryFn: () => getSubscriptionPaymentMethodsService(),
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => {
+            if (!selectedPaymentMethod) setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: data.data[0] }))
+        }
+    })
     const { isLoading: stripePaymentLoading, mutateAsync: confirmStripePayment } = useMutation(() => subscriptionPlanStripePaymentService({ month: preferredPlanDuration.month, subId: selectedPlanId, recurring: false }))
     const { isLoading: cryptoPaymentLoading, mutateAsync: confirmCryptoPayment } = useMutation(() => subscriptionPlanCryptoPaymentService({
         chain: selectedPaymentMethod.type,
         token: selectedPaymentMethod.tokens?.find(t => t.isNative).type || "",
         checkoutData: { month: preferredPlanDuration.month, subId: selectedPlanId, recurring: false }
     }))
-    const { isFetching: isFethingPaymentMethods, isError, data: paymentMethods } = useQuery({
-        queryKey: "plan-payment-methods",
-        queryFn: () => getSubscriptionPaymentMethodsService(),
-        refetchOnWindowFocus: false
-    })
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<SubscriptionPlanPaymentMethod>(paymentMethods?.data[0])
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'preferred-payment-method',
-        onChange: (type) => setSelectedPaymentMethod(paymentMethods.data.find((method) => method.type === type)),
+        onChange: (type) => setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: paymentMethods.data.find((method) => method.type === type) })),
         value: selectedPaymentMethod?.type
     })
 
@@ -45,8 +48,7 @@ export default function PaymentMethodSelection({ setStripeClientSecret, setplanP
         try {
             if (selectedPaymentMethod.type === "STRIPE") {
                 const { data: { clientSecret } } = await confirmStripePayment()
-                setplanPurchaseModalStep("StripePayment")
-                setStripeClientSecret(clientSecret)
+                setModalData((prevData) => ({ ...prevData, modalStep: "StripePayment", stripeClientSecret: clientSecret }))
                 return
             }
             console.log(getChain(selectedPaymentMethod.type))
@@ -70,17 +72,19 @@ export default function PaymentMethodSelection({ setStripeClientSecret, setplanP
             </ModalHeader>
             <ModalBody display={"flex"} flexDirection={"column"} gap={4} paddingBlock={0} {...getRootProps()}>
                 {
-                    isFethingPaymentMethods ? <p>Loading...</p> :
-                        paymentMethods.data.map(paymentMethod => <PaymentMethodRadio
-                            key={paymentMethod.type}
-                            paymentMethod={paymentMethod}
-                            {...getRadioProps({ value: paymentMethod.type })}
-                        />
+                    isFethingPaymentMethods ?
+                        <Loading /> :
+                        paymentMethods.data.map(paymentMethod =>
+                            <PaymentMethodRadio
+                                key={paymentMethod.type}
+                                paymentMethod={paymentMethod}
+                                {...getRadioProps({ value: paymentMethod.type })}
+                            />
                         )
                 }
             </ModalBody>
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 1 }}>
-                <BasicButton width={"50%"} variant='outline' onClick={() => setplanPurchaseModalStep("PlanConfirmation")}>Back</BasicButton>
+                <BasicButton width={"50%"} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, modalStep: "PlanConfirmation" }))}>Back</BasicButton>
                 <BasicButton width={"50%"} isDisabled={stripePaymentLoading} isLoading={stripePaymentLoading} onClick={handlePayment}>Next</BasicButton>
             </ModalFooter>
         </>

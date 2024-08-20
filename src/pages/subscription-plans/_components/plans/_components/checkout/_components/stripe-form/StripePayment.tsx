@@ -5,9 +5,9 @@ import AppIcons from 'assest/icon/Appicons';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { appDevelopment } from 'lib/utils/app/variable';
 import React from 'react';
-import { ModalStep } from '../../SubscriptionPlanCheckoutModal';
 import PurchaseStepInformation from '../PurchaseStepInformation';
 import StripeForm from './StripeForm';
+import { ModalStep } from '../../types/interfaces';
 
 const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`)
 

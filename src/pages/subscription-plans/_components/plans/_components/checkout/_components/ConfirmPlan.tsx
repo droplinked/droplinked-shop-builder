@@ -8,8 +8,8 @@ import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHe
 import React from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
 import PlanPrice from '../../plan-price/PlanPrice'
-import { ModalStep } from '../SubscriptionPlanCheckoutModal'
 import PurchaseStepInformation from './PurchaseStepInformation'
+import { ModalStep } from '../types/interfaces'
 
 interface Props {
     setplanPurchaseModalStep: (step: ModalStep) => void;

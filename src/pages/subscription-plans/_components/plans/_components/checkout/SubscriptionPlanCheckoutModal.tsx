@@ -4,8 +4,7 @@ import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
 import PaymentMethodSelection from './_components/payment-method-selection/PaymentMethodSelection'
 import StripePayment from './_components/stripe-form/StripePayment'
-
-export type ModalStep = 'PlanConfirmation' | 'PaymentMethodSelection' | 'StripePayment' | 'SuccessfulPayment' | 'FailedPayment'
+import { ModalState, ModalStep } from './types/interfaces'
 
 interface Props {
     isOpen: boolean;
@@ -16,33 +15,40 @@ interface Props {
 }
 
 function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
-    const [planPurchaseModalStep, setplanPurchaseModalStep] = useState<ModalStep>('PaymentMethodSelection')
-    const [stripeClientSecret, setStripeClientSecret] = useState<string | null>(null)
+    const [modalData, setModalData] = useState<ModalState>({
+        modalStep: "PlanConfirmation",
+        stripeClientSecret: "",
+        selectedPaymentMethod: null
+    })
+
+    const updateModalData = <K extends keyof ModalState>(key: K, value: ModalState[K]) =>
+        setModalData({ ...modalData, [key]: value })
 
     const renderContent = () => {
-        if (planPurchaseModalStep === 'PlanConfirmation')
+        const { modalStep, stripeClientSecret } = modalData
+        if (modalStep === 'PlanConfirmation')
             return <ConfirmPlan
-                setplanPurchaseModalStep={(step) => setplanPurchaseModalStep(step)}
+                setplanPurchaseModalStep={(step) => updateModalData("modalStep", step)}
                 close={close} hasProfile={hasProfile}
                 isFromPlansPage={isFromPlansPage}
             />
 
-        else if (planPurchaseModalStep === "PaymentMethodSelection")
+        else if (modalStep === "PaymentMethodSelection")
             return <PaymentMethodSelection
-                setplanPurchaseModalStep={setplanPurchaseModalStep}
-                setStripeClientSecret={setStripeClientSecret}
+                setModalData={setModalData}
+                selectedPaymentMethod={modalData.selectedPaymentMethod}
             />
 
-        else if (planPurchaseModalStep === "StripePayment")
+        else if (modalStep === "StripePayment")
             return <StripePayment
                 clientSecret={stripeClientSecret}
-                setplanPurchaseModalStep={setplanPurchaseModalStep}
+                setplanPurchaseModalStep={(step) => updateModalData("modalStep", step)}
                 close={close}
                 isFromPlansPage={isFromPlansPage}
             />
 
         return <PaymentStatus
-            paymentStatus={planPurchaseModalStep === "SuccessfulPayment" ? "success" : "error"}
+            paymentStatus={modalStep === "SuccessfulPayment" ? "success" : "error"}
             close={close}
             isFromPlansPage={isFromPlansPage}
             isLoggedInViaGoogle={isLoggedInViaGoogle}

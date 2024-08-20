@@ -3,7 +3,7 @@ import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore'
 import React, { useState } from 'react'
-import { ModalStep } from '../../SubscriptionPlanCheckoutModal'
+import { ModalStep } from '../../types/interfaces'
 
 interface Props {
     setplanPurchaseModalStep: (step: ModalStep) => void
