@@ -1,41 +1,61 @@
-import { appDevelopment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable';
 
 interface IgetLink {
-	blockchain: string
-	hashkey: string
+	blockchain: string;
+	hashkey: string;
 }
 
 const hashkeyModel = {
 	getLink: ({ blockchain, hashkey }: IgetLink) => {
 		switch (blockchain) {
 			case 'CASPER':
-				return `https://${appDevelopment ? 'testnet.' : ''}cspr.live/deploy/${hashkey}`
+				return `https://${
+					appDevelopment ? 'testnet.' : ''
+				}cspr.live/deploy/${hashkey}`;
 			case 'STACKS':
 				return `https://explorer.hiro.so/txid/${hashkey}?chain=${
 					appDevelopment ? 'testnet' : 'mainnet'
-				}`
+				}`;
 			case 'POLYGON':
-				return `https://${appDevelopment ? 'amoy.' : ''}polygonscan.com/tx/${hashkey}`
+				return `https://${
+					appDevelopment ? 'amoy.' : ''
+				}polygonscan.com/tx/${hashkey}`;
 			case 'XRPLSIDECHAIN':
-				return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
+				return `https://evm-sidechain.xrpl.org/tx/${hashkey}`;
 			case 'BINANCE':
-				return `https://${appDevelopment ? 'testnet.' : ''}bscscan.com/tx/${hashkey}`
+				return `https://${
+					appDevelopment ? 'testnet.' : ''
+				}bscscan.com/tx/${hashkey}`;
 			case 'NEAR':
-				return `https://explorer.${appDevelopment ? 'testnet' : 'mainnet'}.aurora.dev/tx/${hashkey}`
+				return `https://explorer.${
+					appDevelopment ? 'testnet' : 'mainnet'
+				}.aurora.dev/tx/${hashkey}`;
 			case 'BASE':
-				return `https://base${appDevelopment ? '-goerli' : ''}.blockscout.com/tx/${hashkey}`
+				return `https://base${
+					appDevelopment ? '-goerli' : ''
+				}.blockscout.com/tx/${hashkey}`;
 			case 'LINEA':
-				return `https://${appDevelopment ? 'goerli' : ''}.lineascan.build/tx/${hashkey}`
+				return `https://${
+					appDevelopment ? 'goerli' : ''
+				}.lineascan.build/tx/${hashkey}`;
 			case 'ETH':
-				return `https://${appDevelopment ? 'sepolia' : ''}.etherscan.io/tx/${hashkey}`
+				return `https://${
+					appDevelopment ? 'sepolia' : ''
+				}.etherscan.io/tx/${hashkey}`;
 			case 'SOLANA':
-				return `https://explorer.solana.com/tx/${hashkey}?cluster=devnet`
+				return `https://explorer.solana.com/tx/${hashkey}?cluster=devnet`;
 			case 'REDBELLY':
-				return `https://explorer.testnet.redbelly.network/transaction/${hashkey}`
+				return `https://explorer.testnet.redbelly.network/transaction/${hashkey}`;
+			case 'SKALE':
+				return `https://${
+					appDevelopment
+						? 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
+						: 'honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
+				}/tx/${hashkey}`;
 			default:
-				return ''
+				return '';
 		}
 	},
-}
+};
 
-export default hashkeyModel
+export default hashkeyModel;

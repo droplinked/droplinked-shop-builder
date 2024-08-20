@@ -188,6 +188,7 @@ export function isWalletInstalled(chain: string) {
 			'LINEA',
 			'ETH',
 			'REDBELLY',
+			'SKALE',
 		].includes(chain)
 	) {
 		return {

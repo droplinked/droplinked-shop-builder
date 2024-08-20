@@ -92,6 +92,7 @@ const VariantsMakeDataModel = ({
                         value: option.value,
                         variantName: option.variantName,
                         variantID: option?.variantID,
+                        isCustom: option?.isCustom,
                         caption: option?.caption
                     };
                 });
@@ -120,6 +121,7 @@ const VariantsMakeDataModel = ({
                 value: "",
                 variantName: obj?.custom_title || obj?.title,
                 variantID: property_to_id?.[obj?.title?.toLowerCase()] || undefined,
+                isCustom: obj?.isCustom,
                 caption: ""
             };
 

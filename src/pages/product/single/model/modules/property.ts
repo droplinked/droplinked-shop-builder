@@ -13,6 +13,7 @@ const propertyFactor = {
                         items: [],
                         title: variantName,
                         value: element.variantID,
+                        isCustom: element?.isCustom
                     };
                 }
                 properties[variantName]["items"][element.value] = {
