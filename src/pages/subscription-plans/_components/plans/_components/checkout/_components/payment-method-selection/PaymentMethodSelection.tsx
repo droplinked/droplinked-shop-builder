@@ -27,6 +27,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
     const { isFetching: isFethingPaymentMethods, isError, data: paymentMethods } = useQuery({
         queryKey: "plan-payment-methods",
         queryFn: () => getSubscriptionPaymentMethodsService(),
+        staleTime: 1000 * 60 * 5, // 5 minutes,
         refetchOnWindowFocus: false,
         onSuccess: (data) => {
             if (!selectedPaymentMethod) setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: data.data[0] }))
