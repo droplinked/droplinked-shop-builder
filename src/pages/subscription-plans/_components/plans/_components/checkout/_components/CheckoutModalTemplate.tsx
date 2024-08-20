@@ -1,14 +1,25 @@
-import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react'
-import React, { PropsWithChildren } from 'react'
+import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import React, { PropsWithChildren } from 'react';
+import { ModalStep } from '../types/interfaces';
 
 interface Props extends PropsWithChildren {
-    isOpen: boolean
-    onClose: () => void
+    isOpen: boolean;
+    onClose: () => void;
+    currentStep: ModalStep;
 }
 
-function CheckoutModalTemplate({ isOpen, onClose, children }: Props) {
+function CheckoutModalTemplate({ isOpen, onClose, currentStep, children }: Props) {
+    const isCloseable = !["FailedPayment", "SuccessfulPayment"].includes(currentStep)
+
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size={"2xl"} closeOnOverlayClick={false} closeOnEsc={false} isCentered>
+        <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            size={"2xl"}
+            closeOnOverlayClick={isCloseable}
+            closeOnEsc={isCloseable}
+            isCentered
+        >
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
             <ModalContent
                 width={{ base: "90%", md: "600px" }}
