@@ -151,7 +151,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
                 <PlanPrice plan={plan} />
 
-                {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</BasicButton>}
+                <BasicButton isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</BasicButton>
 
                 <Divider borderColor="#3C3C3C" />
 

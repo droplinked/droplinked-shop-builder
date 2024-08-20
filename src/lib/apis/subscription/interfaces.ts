@@ -86,3 +86,11 @@ export interface SubscriptionPlanPaymentMethod {
     type: string;
     tokens?: PaymentMethodToken[]
 }
+
+export interface We3TransactionData {
+    deploy_hash: string;
+    cryptoAmount?: number;
+    subscriptionId: string;
+    recurring: boolean;
+    walletAddress: string;
+}
