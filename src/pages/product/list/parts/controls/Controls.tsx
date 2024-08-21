@@ -14,9 +14,9 @@ import ButtonsProductClass from 'pages/product/single/parts/buttons/model/Button
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
 import PaymentLinkModal from '../payment-link/PaymentLinkModal';
+import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
-import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 
 export type action = "DELETE" | "DUPLICATE"
 

@@ -1,4 +1,4 @@
-import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/paymentLink.context"
+import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext"
 import axiosInstance from "../axiosConfig"
 import { IproductByIdServices, IproductDeleteServices, IproductList, IProductReorder, IproductState, IProductTile, IproductUpdateServices } from "./interfaces"
 

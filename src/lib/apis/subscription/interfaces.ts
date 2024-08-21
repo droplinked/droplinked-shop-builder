@@ -11,18 +11,12 @@ export interface SubOptionId {
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    // price: Array<string | {
-    //     month: number;
-    //     price: number;
-    //     discount: number;
-    //     discountPrice: number;
-    // }>;
     price: any[],
     description: string;
     subOptionIds: SubOptionId[]
 }
 
-export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop"
+export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop" | "event"
 
 export interface LegalUsage {
     all: string;

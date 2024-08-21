@@ -35,7 +35,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
             if (!selectedPaymentMethod) setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: data.data[0] }))
         }
     })
-    const { mutateAsync: confirmStripePayment } = useMutation(() => subscriptionPlanStripePaymentService({ month: preferredPlanDuration.month, subId: selectedPlanId, recurring: false }))
+    const { mutateAsync: confirmStripePayment } = useMutation(() => subscriptionPlanStripePaymentService({ month: preferredPlanDuration.month, subId: selectedPlanId, recurring: true }))
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'preferred-payment-method',
         onChange: (type) => setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: paymentMethods.data.find((method) => method.type === type) })),

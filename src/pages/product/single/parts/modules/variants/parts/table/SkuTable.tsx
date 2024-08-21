@@ -1,7 +1,9 @@
-import { Flex, Text, useDisclosure, Input, Button } from '@chakra-ui/react';
+import { Flex, Text, useDisclosure } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTable from 'components/common/table/AppTable';
+import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
@@ -11,10 +13,10 @@ import DetailsModal from './parts/detailsModal/DetailsModal';
 import SkuTableOptions from './parts/options/SkuTableOptions';
 import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
-import AppTypography from 'components/common/typography/AppTypography';
 
 function SkuTable() {
     const { showToast } = useAppToast();
+    const shopLegalUsage = useLegalUsage()
     const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext);
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel;
@@ -46,7 +48,7 @@ function SkuTable() {
 
     const checkDropLegalUsage = () => {
         const { errorMessage, key } = productTypeLegalUsageMap["drop"]
-        const legalUsage = state.legalUsage.find(obj => obj.key === key)
+        const legalUsage = shopLegalUsage.find(obj => obj.key === key)
         if ((legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0))
             return recordModal.onOpen()
         showToast({ message: errorMessage, type: "error" })
@@ -68,7 +70,7 @@ function SkuTable() {
                     caption:
                         <Flex flexDirection={"column"} alignItems={"center"} gap={"16px"}>
                             <AppTypography>Drop</AppTypography>
-                            {!allSkusRecorded && 
+                            {!allSkusRecorded &&
                                 <SkuTableOptions
                                     element={el}
                                     updateSku={setAllSku}
