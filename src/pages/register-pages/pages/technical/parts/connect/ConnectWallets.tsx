@@ -30,7 +30,6 @@ function ConnectWallets() {
 
 	const loginChain = useCallback(
 		async (chain: string) => {
-			console.log(chain);
 			try {
 				const { installed, walletName } =
 					isWalletInstalled(chain);
@@ -118,7 +117,7 @@ function ConnectWallets() {
 													isExist
 														?.address
 														.length -
-														6
+													6
 												)}`}</AppTypography>
 												<ClipboardText
 													props={{

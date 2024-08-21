@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react'
 import { Flex, Image, VStack } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 // Components
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
-import Loading from './Loading'
 
 // Funcs
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import AppErrors from 'lib/utils/statics/errors/errors'
 
 // APIs
 import { checkEventAccountConnection, checkEventApiKey, creatEventApiKey } from 'lib/apis/api-key/services'
+import { LegalUsageKey } from 'lib/apis/subscription/interfaces'
+import { useLegalUsage } from 'lib/stores/app/appStore'
 
 interface ProductType {
   type: "Physical Product" | "Production on Demand" | "Digital Product" | "Event"
   description: string;
   image: string;
   route: string;
-  legalUsageKey: string;
+  legalUsageKey: LegalUsageKey;
 }
 
 function ProductTypes() {
+  const shopLegalUsage = useLegalUsage()
   const navigate = useNavigate()
-  const { isFetching, isError, data } = useShopSubscriptionData()
   const { showToast } = useAppToast()
   const { shopRoute } = useCustomNavigate()
   const [isLoginEventAccaount, setIsLoginEventAccaount] = useState(false)
@@ -37,13 +37,13 @@ function ProductTypes() {
 
   const checkApiKey = async () => {
     try {
-      const resChecking = await checkEventApiKey({key: apiKey})
+      const resChecking = await checkEventApiKey({ key: apiKey })
       if (resChecking) {
         setIsLoginEventAccaount(true)
-        await creatEventApiKey({key: apiKey})
-      } 
+        await creatEventApiKey({ key: apiKey })
+      }
     } catch (error) {
-      showToast({message: error.message, type: 'error'})
+      showToast({ message: error.message, type: 'error' })
     }
   }
 
@@ -53,7 +53,7 @@ function ProductTypes() {
       result && setIsLoginEventAccaount(true)
       return result
     } catch (error) {
-      showToast({message: error.message, type: 'error'})
+      showToast({ message: error.message, type: 'error' })
     }
   }
 
@@ -61,10 +61,6 @@ function ProductTypes() {
     apiKey && checkApiKey()
     !apiKey && isEventAccountConnect()
   }, [apiKey])
-
-  if (isFetching) return <Loading />
-
-  if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
 
   const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
@@ -100,15 +96,11 @@ function ProductTypes() {
   ]
 
   const navigateToProductForm = (productType: ProductType) => {
-    const legalUsage = data.data.legalUsage.find(obj => obj.key === productType.legalUsageKey)
-    try {
-      if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
-        return navigate(productType.route)
-      }
-    } catch (error) {
-      showToast({ message: AppErrors.permission.product_creation_limit_reached, type: "error" })
+    const legalUsage = shopLegalUsage.find(obj => obj.key === productType.legalUsageKey)
+    if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
+      return navigate(productType.route)
     }
-    
+    showToast({ message: AppErrors.permission.product_creation_limit_reached(productType.legalUsageKey), type: "error" })
   }
 
   return (

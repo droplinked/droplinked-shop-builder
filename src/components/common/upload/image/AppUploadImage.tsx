@@ -3,7 +3,7 @@ import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
-import appUploadImageContext, { ImodeUploadImage, IUploadImageDefault } from './context';
+import appUploadImageContext, { IUploadImageDefault, ImodeUploadImage } from './context';
 import UploadImageModel from './model';
 import DefaultHoverBox from './parts/default/DefaultHoverBox';
 
@@ -62,7 +62,7 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
         }}>
             <AppScrollBar maxHeight="425px" overflow="auto">
                 <DefaultHoverBox />
-                <input type="file" className="d-none" ref={fileRef} onChange={create} />
+                <input type="file" hidden ref={fileRef} onChange={create} />
             </AppScrollBar>
         </appUploadImageContext.Provider>
     )
