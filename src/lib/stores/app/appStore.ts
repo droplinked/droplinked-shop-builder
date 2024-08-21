@@ -43,14 +43,13 @@ export interface IAppStore {
     updateShopSubscriptionData: (shopSubscriptionData: ShopSubscriptionData) => void,
     hasPermission: (permission: string) => boolean,
     checkPermissionAndShowToast: (permission: string, message?: string) => boolean,
-    getPermissionValue: (permission: string) => any
+    getPermissionValue: (permission: string) => any,
+    updateShopLegalUsage: (shopLegalUsage: any) => void
 }
 
 const states = (set, get): IAppStore => ({
     user: null,
     shop: null,
-    // access_token: null,
-    // refresh_token: null,
     loading: false,
     login: (method) => {
         return new Promise<any>(async (resolve, reject) => {
@@ -165,6 +164,10 @@ const states = (set, get): IAppStore => ({
         if (!permissionObj) return null
 
         return permissionObj.value
+    },
+    updateShopLegalUsage: (shopLegalUsage) => {
+        const { shop } = get()
+        set({ shop: { ...shop, subscription: { ...shop.subscription, legalUsage: shopLegalUsage } } })
     }
 })
 
@@ -173,8 +176,6 @@ const _persist = persist(states, {
     name: appStorePersistName, partialize: (state) => ({
         shop: state.shop,
         user: state.user,
-        // access_token: state.access_token,
-        // refresh_token: state.refresh_token,
     })
 })
 const useAppStore = appDevelopment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
@@ -184,5 +185,6 @@ export const useCheckPermission = () => useAppStore(state => state.checkPermissi
 export const useGetPermissionValue = () => useAppStore(state => state.getPermissionValue)
 export const useLegalUsage = () => useAppStore(state => state.shop.subscription.legalUsage)
 export const useUpdateShopPermissions = () => useAppStore(state => state.updateShopSubscriptionData)
+export const useUpdateShopLegalUsage = () => useAppStore(state => state.updateShopLegalUsage)
 
 export default useAppStore
