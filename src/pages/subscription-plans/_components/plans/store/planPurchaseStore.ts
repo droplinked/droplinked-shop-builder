@@ -41,6 +41,7 @@ function calculatePlanPrice(plan: SubscriptionPlan | null, preferredPlanDuration
     if (!plan) return 0
     const { price } = plan
     const targetPriceObj = price.find((priceOption) => priceOption.month === preferredPlanDuration.month)
+    if (!targetPriceObj) return 0
     if (preferredPlanDuration.discount)
         return +targetPriceObj.discountPrice
 
