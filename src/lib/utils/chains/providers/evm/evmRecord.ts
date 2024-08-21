@@ -126,23 +126,25 @@ export async function EVMrecordMerch(
 				gasPrice: gasPrice,
 			});
 			modalInterface.waiting('Waiting for confirmation...');
-			let receipt = await tx.wait();
-			const logs = receipt.logs
-				.map((log: any) => {
-					try {
-						return contract.interface.parseLog(log);
-					} catch {
-						return null;
-					}
-				})
-				.filter((log: any) => log != null);
-			const productIdLog = logs.find(
-				(log: any) => log.name === 'ProductRegistered'
-			);
-			const productId = productIdLog.args.productId.toString();
-			const amountRecorded = productIdLog.args.amount.toString();
+			await tx.wait();
+			// let receipt = await tx.wait();
+			// const logs = receipt.logs
+			// 	.map((log: any) => {
+			// 		try {
+			// 			return contract.interface.parseLog(log);
+			// 		} catch {
+			// 			return null;
+			// 		}
+			// 	})
+			// 	.filter((log: any) => log != null);
+			// const productIdLog = logs.find(
+			// 	(log: any) => log.name === 'ProductRegistered'
+			// );
+			// const productId = productIdLog.args.productId.toString();
+			// const amountRecorded = productIdLog.args.amount.toString();
 			modalInterface.success('Successfully recorded the product!');
-			return { transactionHash: tx.hash, productId, amountRecorded };
+			// return { transactionHash: tx.hash, productId, amountRecorded };
+			return { transactionHash: tx.hash };
 		} else {
 			type Product = {
 				_nftAddress: string;
