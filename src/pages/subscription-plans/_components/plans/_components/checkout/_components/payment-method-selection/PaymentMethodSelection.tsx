@@ -1,6 +1,7 @@
 import { ModalBody, ModalFooter, ModalHeader, useRadioGroup } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
+import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
 import { getSubscriptionPaymentMethodsService, sendPlanPurchaseTransactionToWeb3Service, subscriptionPlanCryptoPaymentService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices';
@@ -8,7 +9,7 @@ import { appDevelopment } from 'lib/utils/app/variable';
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import { Chain, ChainWallet, Network } from 'lib/utils/chains/dto/chains';
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
 import PurchaseStepInformation from '../PurchaseStepInformation';
@@ -25,7 +26,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const { showToast } = useAppToast()
     const [isTransactionInProgress, setTransactionInProgress] = useState(false)
-    const { isFetching: isFethingPaymentMethods, isError, data: paymentMethods } = useQuery({
+    const { isFetching: isFethingPaymentMethods, isError, data: paymentMethods, refetch: refetchPaymentMethods } = useQuery({
         queryKey: "plan-payment-methods",
         queryFn: () => getSubscriptionPaymentMethodsService(),
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -41,7 +42,12 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
         value: selectedPaymentMethod?.type
     })
 
-    const handlePayment = () => selectedPaymentMethod.type === "STRIPE" ? hndleStripePayment() : handleCryptoPayment()
+    useEffect(() => {
+        if (!selectedPaymentMethod) refetchPaymentMethods()
+    }, [selectedPaymentMethod, refetchPaymentMethods])
+
+    const handlePayment = () =>
+        selectedPaymentMethod.type === "STRIPE" ? hndleStripePayment() : handleCryptoPayment()
 
     const hndleStripePayment = async () => {
         try {
@@ -94,15 +100,17 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
             </ModalHeader>
             <ModalBody display={"flex"} flexDirection={"column"} gap={4} paddingBlock={0} {...getRootProps()}>
                 {
-                    isFethingPaymentMethods ?
-                        <Loading /> :
-                        paymentMethods.data.map(paymentMethod =>
-                            <PaymentMethodRadio
-                                key={paymentMethod.type}
-                                paymentMethod={paymentMethod}
-                                {...getRadioProps({ value: paymentMethod.type })}
-                            />
-                        )
+                    isError ?
+                        <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access payment methods at the moment. Give it another try soon?</AppTypography> :
+                        isFethingPaymentMethods ?
+                            <Loading /> :
+                            paymentMethods.data.map(paymentMethod =>
+                                <PaymentMethodRadio
+                                    key={paymentMethod.type}
+                                    paymentMethod={paymentMethod}
+                                    {...getRadioProps({ value: paymentMethod.type })}
+                                />
+                            )
                 }
             </ModalBody>
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
