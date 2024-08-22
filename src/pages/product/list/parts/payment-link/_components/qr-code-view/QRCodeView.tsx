@@ -1,13 +1,18 @@
-import { Button, Center, Flex, FormLabel } from '@chakra-ui/react'
+import { Button, Center, Flex, FormLabel, Link } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import { SHOP_URL } from 'lib/utils/app/variable'
 import React, { useRef } from 'react'
 import QRCode from 'react-qr-code'
-import ShareButton from '../ShareButton'
+import { ColorPalleteOption } from '../../PaymentLinkModal'
 import styles from "./styles.module.scss"
 
-function QRCodeView({ productID, colorPallete }: { productID: string; colorPallete: string }) {
+interface Props {
+    productID: string
+    colorPallete: ColorPalleteOption
+}
+
+export default function QRCodeView({ productID, colorPallete }: Props) {
     const qrCodeContainerRef = useRef<HTMLDivElement>(null)
     const productLink = `${SHOP_URL}/paylink/${productID}`
 
@@ -55,23 +60,49 @@ function QRCodeView({ productID, colorPallete }: { productID: string; colorPalle
 
             <Flex direction={"column"} gap={4}>
                 <Flex alignItems={"center"} gap={4}>
-                    <Flex flexGrow={1}>
-                        <div className={styles["input-group"]}>
-                            <input defaultValue={`${productLink.slice(0, 22)}...`} placeholder=" " readOnly />
-                            <FormLabel left={8}>Payment Link</FormLabel>
-                            <ClipboardText text={productLink} />
-                        </div>
-                    </Flex>
+                    <LinkInput productLink={productLink} />
                     <ShareButton productLink={productLink} />
                 </Flex>
-
-                <Button display={"flex"} alignItems={"center"} gap={2} borderRadius={8} background={"#2BCFA1"} _hover={{}} _active={{}} onClick={downloadQRCode}>
-                    <AppIcons.Download />
-                    Download
-                </Button>
+                <DownloadButton onClick={downloadQRCode} />
             </Flex>
-        </Flex >
+        </Flex>
     )
 }
 
-export default QRCodeView
+function LinkInput({ productLink }: { productLink: string }) {
+    return (
+        <Flex className={styles["input-group"]}>
+            <input defaultValue={`${productLink.slice(0, 22)}...`} placeholder=" " readOnly />
+            <FormLabel>Payment Link</FormLabel>
+            <ClipboardText text={productLink} />
+        </Flex>
+    )
+}
+
+function ShareButton({ productLink }: { productLink: string }) {
+    return (
+        <Link href={productLink} target='_blank'>
+            <Center width={12} height={12} borderRadius={8} bgColor={"#3C3C3C"} _hover={{}} _active={{}}>
+                <AppIcons.Share />
+            </Center>
+        </Link>
+    )
+}
+
+function DownloadButton({ onClick }: { onClick: () => void }) {
+    return (
+        <Button
+            display="flex"
+            alignItems="center"
+            gap={2}
+            borderRadius={8}
+            background="#2BCFA1"
+            _hover={{}}
+            _active={{}}
+            onClick={onClick}
+        >
+            <AppIcons.Download />
+            Download
+        </Button>
+    )
+}
