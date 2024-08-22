@@ -1,13 +1,12 @@
 import { Flex, VStack } from "@chakra-ui/react";
-import AppModal, { IAppModal } from "components/common/modal/AppModal";
-import AppTypography from "components/common/typography/AppTypography";
-import React from "react";
-import AppSkeleton from "components/common/skeleton/AppSkeleton";
-import { useQuery } from "react-query";
-import { getProductOrdersService } from "lib/apis/order/services";
-import AppTable from "components/common/table/AppTable";
-import { format_date_to_month_day_year_hour } from "lib/utils/heper/helpers";
 import AppEmptyPage from "components/common/empty/AppEmptyPage";
+import AppModal, { IAppModal } from "components/common/modal/AppModal";
+import AppSkeleton from "components/common/skeleton/AppSkeleton";
+import AppTable from "components/common/table/AppTable";
+import AppTypography from "components/common/typography/AppTypography";
+import { getProductOrdersService } from "lib/apis/order/services";
+import React from "react";
+import { useQuery } from "react-query";
 
 interface Iprops extends Omit<IAppModal, "children"> {
     productId: string;
@@ -62,14 +61,14 @@ function ProductOrdersModal({ close, open, productId }: Iprops) {
                                     },
                                     value: (
                                         <AppTypography price fontSize="16px" color="#C2C2C2">
-                                            {order?.amount}
+                                            {order?.amount.toFixed(2)}
                                         </AppTypography>
                                     ),
                                 },
                                 Quantity: {
                                     caption: "Quantity",
                                     props: {
-                                        width: "10%",
+                                        width: "fit-content",
                                     },
                                     value: (
                                         <AppTypography fontSize="16px" color="#C2C2C2">
@@ -80,11 +79,11 @@ function ProductOrdersModal({ close, open, productId }: Iprops) {
                                 date: {
                                     caption: "Date",
                                     props: {
-                                        width: "20%",
+                                        width: "30%",
                                     },
                                     value: (
                                         <AppTypography fontSize="16px" color="#C2C2C2">
-                                            {format_date_to_month_day_year_hour(order?.date)}
+                                            {(new Date(order?.date)).toLocaleDateString("en-US", { minute: "numeric", hour: "numeric", day: "numeric", month: "long", year: "numeric" })}
                                         </AppTypography>
                                     ),
                                 },
@@ -99,4 +98,4 @@ function ProductOrdersModal({ close, open, productId }: Iprops) {
     );
 }
 
-export default ProductOrdersModal;
+export default ProductOrdersModal
