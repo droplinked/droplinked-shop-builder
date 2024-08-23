@@ -18,7 +18,7 @@ export default function VariantsStyle() {
     })
 
     return (
-        <Flex direction={"column"} gap={4}>
+        <Flex direction={"column"} gap={4} sx={{ "*": { userSelect: "none" } }}>
             <Flex direction={"column"} gap={1}>
                 <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>Variants Style</AppTypography>
                 <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>Choose how you want product variants to be shown</AppTypography>
@@ -36,27 +36,26 @@ export default function VariantsStyle() {
 
 function VariantStyleRadio({ ...props }) {
     const { variant, ...radioProps } = props
-    const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
+    const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
-        <FormLabel flexGrow={1} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
+        <FormLabel
+            flexGrow={1}
+            height={"100%"}
+            margin={0}
+            padding={4}
+            border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
+            borderRadius={8}
+            cursor='pointer'
+            {...htmlProps}
+            {...getLabelProps()}
+        >
             <input {...getInputProps()} hidden />
-            <Flex
-                {...getRadioProps()}
-                height={"100%"}
-                direction={"column"} gap={4}
-                padding={4}
-                border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
-                borderRadius={8}
-            >
-                <Box borderRadius={4} padding={6} bgColor={"#3C3C3C"}>
-                    <AppImage height={"64px"} src={variant.image} objectFit={"contain"} />
-                </Box>
-                <Box>
-                    <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>{variant.title}</AppTypography>
-                    <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>{variant.description}</AppTypography>
-                </Box>
-            </Flex>
+            <Box borderRadius={4} padding={6} bgColor={"#3C3C3C"}>
+                <AppImage height={"64px"} src={variant.image} objectFit={"contain"} />
+            </Box>
+            <AppTypography mt={4} fontSize={16} fontWeight={600} color={"#fff"}>{variant.title}</AppTypography>
+            <AppTypography mt={1} fontSize={14} fontWeight={400} color={"#fff"}>{variant.description}</AppTypography>
         </FormLabel>
     )
 }

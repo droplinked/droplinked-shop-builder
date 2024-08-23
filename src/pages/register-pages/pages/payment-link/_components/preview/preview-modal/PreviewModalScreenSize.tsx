@@ -6,13 +6,13 @@ import { ScreenSize } from './PreviewModal'
 
 interface Props {
     currentScreenSize: ScreenSize,
-    onChange: (size: ScreenSize) => void
+    onScreenSizeChange: (size: ScreenSize) => void
 }
 
-export default function PreviewModalScreenSize({ currentScreenSize, onChange }: Props) {
+export default function PreviewModalScreenSize({ currentScreenSize, onScreenSizeChange }: Props) {
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-screen-size',
-        onChange,
+        onChange: onScreenSizeChange,
         value: currentScreenSize
     })
 
@@ -26,7 +26,7 @@ export default function PreviewModalScreenSize({ currentScreenSize, onChange }: 
 
 function ScreenSizeRadio({ ...props }) {
     const { icon, text, ...radioProps } = props
-    const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
+    const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
         <FormLabel height={"100%"} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
@@ -44,7 +44,6 @@ function ScreenSizeRadio({ ...props }) {
                     "*": { transition: "all 0.2s" },
                     "svg path": { stroke: isChecked ? "#000" : "#BCBCBC" }
                 }}
-                {...getRadioProps()}
             >
                 {icon}
                 <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#000" : "#BCBCBC"}>
