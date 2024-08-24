@@ -33,7 +33,7 @@ function ProductsMain() {
     return (
         <Flex maxWidth={"100%"} direction={"column"} gap={5}>
             <LandingTitle title='Decentralized Registration of Products' />
-            <LandingDescription text='Start selling today with a customizable storefront paired with web3 tools for on-chain transparency' />
+            <LandingDescription text='Start selling today with a customizable storefront paired with web3 tools for onchain transparency' />
             <Flex flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: "20px", xl: "56px" }}>
                 {data.map((el, key) => (
                     <MainCard key={key}>

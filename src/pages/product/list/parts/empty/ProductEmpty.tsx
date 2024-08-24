@@ -23,7 +23,7 @@ function ProductEmpty() {
                     },
                     {
                         icon: <AppIcons.TearIcon />,
-                        label: "Decentralize earnings and commissions on-chain"
+                        label: "Decentralize earnings and commissions onchain"
                     }
                 ]}
             />
