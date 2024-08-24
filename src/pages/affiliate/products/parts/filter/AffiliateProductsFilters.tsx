@@ -1,8 +1,9 @@
 import { HStack } from '@chakra-ui/react'
 import FiltersDatagrid, { IFiltersDatagridItems } from 'components/common/datagrid/parts/filters/FiltersDatagrid'
 import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
+import useDebounce from 'functions/hooks/debounce/useDebounce'
 import { productCategoryervices } from 'lib/apis/product/productServices'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
 
@@ -15,6 +16,12 @@ function AffiliateProductsFilters({ addQuery }) {
     })
     const category = data?.data?.data
     const [searchParams] = useSearchParams()
+    const [searchTerm, setSearchTerm] = useState(searchParams.get('title') || '')
+    const debouncedSearchTerm = useDebounce(searchTerm)
+
+    useEffect(() => {
+        addQuery('title', debouncedSearchTerm)
+    }, [debouncedSearchTerm])
 
     const filters: Array<IFiltersDatagridItems> = useMemo(() => {
         const getSubs = category && category.find(el => el._id === searchParams.get('category'))
@@ -28,7 +35,7 @@ function AffiliateProductsFilters({ addQuery }) {
                 })) : []
             }
         ]
-        
+
         if (getSubs) items.push({
             title: "Sub category",
             list: getSubs ? getSubs.subCategories.map(el => ({
@@ -43,7 +50,7 @@ function AffiliateProductsFilters({ addQuery }) {
 
     return (
         <HStack spacing={7}>
-            <SearchDatagrid value={searchParams.get('title')} onChange={(e) => addQuery('title', e.target.value)} />
+            <SearchDatagrid value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             <FiltersDatagrid item={filters} />
         </HStack>
     )

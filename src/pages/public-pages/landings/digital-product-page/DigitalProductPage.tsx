@@ -27,7 +27,7 @@ function DigitalProductPage() {
                 direction='rtl'
                 image='assets/images/digitalProduct/create-nft.png'
                 title='Mint NFTs'
-                description='Convert art pieces, documents, audio, video and ticketing into on-chain records'
+                description='Convert art pieces, documents, audio, video and ticketing into onchain records'
             />
             <DualSideFlex
                 direction='ltr'

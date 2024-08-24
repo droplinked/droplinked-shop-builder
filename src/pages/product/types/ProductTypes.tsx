@@ -1,31 +1,66 @@
 import { Flex, Image, VStack } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+// Components
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
+
+// Funcs
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import Loading from './Loading'
+
+// APIs
+import { checkEventAccountConnection, checkEventApiKey, creatEventApiKey } from 'lib/apis/api-key/services'
+import { LegalUsageKey } from 'lib/apis/subscription/interfaces'
+import { useLegalUsage } from 'lib/stores/app/appStore'
 
 interface ProductType {
   type: "Physical Product" | "Production on Demand" | "Digital Product" | "Event"
   description: string;
   image: string;
   route: string;
-  legalUsageKey: string;
+  legalUsageKey: LegalUsageKey;
 }
 
 function ProductTypes() {
+  const shopLegalUsage = useLegalUsage()
   const navigate = useNavigate()
-  const { isFetching, isError, data } = useShopSubscriptionData()
   const { showToast } = useAppToast()
   const { shopRoute } = useCustomNavigate()
+  const [isLoginEventAccaount, setIsLoginEventAccaount] = useState(false)
 
-  if (isFetching) return <Loading />
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const apiKey = queryParams.get("key");
 
-  if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
+  const checkApiKey = async () => {
+    try {
+      const resChecking = await checkEventApiKey({ key: apiKey })
+      if (resChecking) {
+        setIsLoginEventAccaount(true)
+        await creatEventApiKey({ key: apiKey })
+      }
+    } catch (error) {
+      showToast({ message: error.message, type: 'error' })
+    }
+  }
+
+  const isEventAccountConnect = async () => {
+    try {
+      const result = await checkEventAccountConnection();
+      result && setIsLoginEventAccaount(true)
+      return result
+    } catch (error) {
+      showToast({ message: error.message, type: 'error' })
+    }
+  }
+
+  useEffect(() => {
+    apiKey && checkApiKey()
+    !apiKey && isEventAccountConnect()
+  }, [apiKey])
 
   const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
@@ -53,19 +88,19 @@ function ProductTypes() {
     },
     {
       type: "Event",
-      description: "Coming soon...",
-      image: "",
-      route: null,
-      legalUsageKey: ""
+      description: "Connect your event account and list your events as products to sell tickets directly from your storefront.",
+      image: "https://upload-file-droplinked.s3.amazonaws.com/5deb23e6807730a9587de9183782da44d0662342404f86a8a9fb0020d23309b8_or.png",
+      route: isLoginEventAccaount ? shopRoute + "/products/events-list" : shopRoute + "/products/connect-event-account",
+      legalUsageKey: "event"
     }
   ]
 
   const navigateToProductForm = (productType: ProductType) => {
-    const legalUsage = data.data.legalUsage.find(obj => obj.key === productType.legalUsageKey)
+    const legalUsage = shopLegalUsage.find(obj => obj.key === productType.legalUsageKey)
     if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
       return navigate(productType.route)
     }
-    showToast({ message: AppErrors.permission.product_creation_limit_reached, type: "error" })
+    showToast({ message: AppErrors.permission.product_creation_limit_reached(productType.legalUsageKey), type: "error" })
   }
 
   return (
@@ -78,7 +113,7 @@ function ProductTypes() {
                 <AppTypography fontSize='20px' color={productType.type ? "#FFF" : "#878787"} fontWeight='bold'>{productType.type}</AppTypography>
                 <AppTypography fontSize='14px' color="#C2C2C2">{productType.description}</AppTypography>
               </VStack>
-              <Image src={productType.image} />
+              <Image src={productType.image} maxWidth={"195px"} maxHeight={"161px"} />
             </Flex>
           </AppCard>
         </Flex>

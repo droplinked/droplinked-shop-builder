@@ -26,7 +26,7 @@ function RechargeModel({ close, open }: Iprops) {
   }
 
   return (
-    <AppModal close={close} open={open} size="xl" title='Recharge Your Credit'>
+    <AppModal close={close} open={open} size="xl" title='Add Credit'>
       <rechargeContext.Provider value={{ close, clientSecret: States.clientSecret, updateState }}>
         {States.clientSecret ? <AppStripe cancel={close} onSuccess={submit} clientSecret={States.clientSecret} /> : <RechargePayment />}
       </rechargeContext.Provider>

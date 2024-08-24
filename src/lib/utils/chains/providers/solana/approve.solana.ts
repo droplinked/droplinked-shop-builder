@@ -39,7 +39,6 @@ export async function SolanaApproveRequest(
 		const owner_address = new PublicKey(address)
 
 		const publisher = recordData.details.publisher
-		console.log('publisher', publisher)
 
 		const publisher_address = new PublicKey(publisher)
 

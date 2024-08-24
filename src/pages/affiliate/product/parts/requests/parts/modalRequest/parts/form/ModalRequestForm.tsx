@@ -2,12 +2,12 @@ import { Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { Form, Formik } from 'formik'
 import useStack from 'functions/hooks/stack/useStack'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { ISolanaRequestService, IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
+import useAppStore from 'lib/stores/app/appStore'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
@@ -30,7 +30,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 	const stack = useStack()
 	const [Loading, setLoading] = useState(false)
 	const { web3 } = useAppWeb3()
-	const { app: { user: { wallets } } } = useHookStore()
+	const { user: { wallets } } = useAppStore()
 
 	const request = useCallback(
 		async (deployHash: string, quantity: number, chain: string, affiliateData?: object) => {

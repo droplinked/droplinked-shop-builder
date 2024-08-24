@@ -16,7 +16,7 @@ export interface IProductPosition {
     left: number
 }
 
-export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
+export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL" | "EVENT"
 
 export interface IDigitalLinks {
     file_url?: string
@@ -79,7 +79,8 @@ export interface IpropertiesItems {
 
 export interface Iproperties {
     title: string
-    items: Array<IpropertiesItems>
+    items: Array<IpropertiesItems>,
+    isCustom?: boolean,
     // propery_type: VARIANT_OPTIONS_ENUM | null
     custom_title?: string
 }

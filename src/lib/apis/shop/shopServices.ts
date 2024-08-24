@@ -9,7 +9,7 @@ export const paymentMethodsService = () => axiosInstance.get(`shop/payment-metho
 
 export const paymentCreateService = (params: Array<IpaymentCreateService>) => axiosInstance.post(`shop/payment-methods`, { methods: params })
 
-export const shopPublicRecordedService = ({ page, tags }: IshopPublicRecordedService) => axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${tags ? '&tags=' + `["${tags}"]` : ''}`)
+export const shopPublicRecordedService = ({ page, s }: IshopPublicRecordedService) => axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${s ? '&s=' + `${s}` : ''}`)
 
 export const recordedShopService = ({ shopName }: IrecordedShopService) => axiosInstance.get(`shop/public/recorded/${shopName}`)
 

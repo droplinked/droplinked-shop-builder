@@ -28,7 +28,7 @@ function NetworkLayers() {
         {
             image: '/assets/images/homepage/layers/Rectangle923.png',
             title: 'The droplinked Smart Contract',
-            description: 'Automate transparency, reliability and control of inventory on-chain with your community'
+            description: 'Automate transparency, reliability and control of inventory onchain with your community'
         },
     ]
 

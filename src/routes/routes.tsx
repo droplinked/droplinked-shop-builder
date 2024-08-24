@@ -20,6 +20,8 @@ import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
+import ConnectEventAccount from "pages/product/single/parts/event/connect-event-account/ConnectEventAccount"
+import EventsList from "pages/product/single/parts/event/events-list/EventsList"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
@@ -27,6 +29,7 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
@@ -37,15 +40,15 @@ import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
-import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
+import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
+import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -100,6 +103,7 @@ function AppRoutes() {
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
             <Route path="admins" element={<Admins />} />
+            <Route path="payment-link-design" element={<PaymentLink />} />
           </Route>
           <Route path="products">
             <Route index element={<Products />} />
@@ -107,6 +111,8 @@ function AppRoutes() {
             <Route path="order/:productID" element={<ProductOrder />} />
             <Route path="create/:type" element={<ProductSingle />} />
             <Route path=":productId" element={<ProductSingle />} />
+            <Route path="connect-event-account" element={<ConnectEventAccount />} />
+            <Route path="events-list" element={<EventsList />} />
           </Route>
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />

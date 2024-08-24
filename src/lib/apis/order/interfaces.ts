@@ -17,3 +17,7 @@ export interface IcrateSampleService {
 export interface IupdateSampleService {
     rateId: string
 }
+
+export interface IGetProductOrdersService {
+    productId: string
+}

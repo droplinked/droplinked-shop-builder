@@ -1,14 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppStore from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
 import DashboardDate from './parts/datepicker/DashboardDate'
 
 function WelcomeDashboard() {
-    const { app } = useHookStore()
-
+    const { shop } = useAppStore()
     const getTime = () => {
         const currentDate = new Date()
         const currentHour = currentDate.getHours()
@@ -29,7 +28,7 @@ function WelcomeDashboard() {
     return (
         <Flex justifyContent="space-between" alignItems="center">
             <Flex alignItems="center" gap="10px">
-                <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(app?.shop?.name)}</strong></AppTypography>
+                <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(shop?.name)}</strong></AppTypography>
                 <AppIcons.Hand />
             </Flex>
             <DashboardDate />

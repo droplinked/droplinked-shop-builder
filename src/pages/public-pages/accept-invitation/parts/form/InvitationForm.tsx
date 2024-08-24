@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { Form, Formik } from 'formik'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { acceptInvitationService } from 'lib/apis/user/services'
+import useAppStore from 'lib/stores/app/appStore'
 import { passwordRegex } from 'lib/utils/heper/regex'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useState } from 'react'
@@ -19,7 +19,7 @@ interface Props {
 function InvitationForm({ invitationId, email }: Props) {
     const navigate = useNavigate()
     const [isLoading, setLoading] = useState(false)
-    const { app: { login } } = useHookStore()
+    const { login } = useAppStore()
     const { showToast } = useAppToast()
 
     const onSubmit = async (data: any) => {

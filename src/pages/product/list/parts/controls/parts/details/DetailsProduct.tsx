@@ -11,7 +11,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { productService } from 'lib/apis/shop/shopServices'
 import { IproductService } from 'lib/apis/shop/interfaces'
 
-interface Iprops extends IAppModal {
+interface Iprops extends Omit<IAppModal, "children"> {
     productID: string
 }
 

@@ -9,12 +9,11 @@ interface Props {
     iconSize?: number;
 }
 
-export const subscriptionPlanMap: Record<string, { icon: JSX.Element, title: string }> = {
-    "STARTER": { icon: <AppIcons.Starter />, title: "Starter" },
-    "BASIC": { icon: <AppIcons.Starter />, title: "Basic" },
-    "BUSINESS": { icon: <AppIcons.Business />, title: "Business" },
-    "BUSINESS_PRO": { icon: <AppIcons.Premium />, title: "Business Pro" },
-    "ENTERPRISE": { icon: <AppIcons.Enterprise />, title: "Enterprise" }
+export const subscriptionPlanMap: Record<string, { icon: JSX.Element, title: string, description: string }> = {
+    "STARTER": { icon: <AppIcons.StarterPlan />, title: "Starter", description: "For individuals or companies just getting started." },
+    "BUSINESS": { icon: <AppIcons.ProPlan />, title: "Pro", description: "For small businesses and teams ready to grow." },
+    "BUSINESS_PRO": { icon: <AppIcons.PremiumPlan />, title: "Premium", description: "Designed for large businesses needing comprehensive solutions at scale." },
+    "ENTERPRISE": { icon: <AppIcons.EnterprisePlan />, title: "Enterprise", description: "Contact us to explore integration." }
 }
 
 function PlanHeading({ planTitle, fontSize = 16, iconSize = 16 }: Props) {

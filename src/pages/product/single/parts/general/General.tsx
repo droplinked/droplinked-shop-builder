@@ -6,9 +6,9 @@ import ProductCollapse from '../modules/collapse/ProductCollapse'
 import DescriptionProduct from '../modules/description/DescriptionProduct'
 import ProductImages from '../modules/images/ProductImages'
 import ProductName from '../modules/name/ProductName'
-import NetworkDigital from '../modules/network/NetworkDigital'
 import PostPurchaseDataGatheringCheckbox from '../modules/postPurchaseDataGathering/PostPurchaseDataGatheringCheckbox'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
+import EventNotice from '../modules/event-notice/EventNotice'
 
 interface Iprops {
     open?: boolean
@@ -22,11 +22,11 @@ function General({ open = true }: Iprops) {
             <VStack spacing="60px" align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
+                {product_type === "EVENT" && <EventNotice />}
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
                 <PostPurchaseDataGatheringCheckbox />
-                <NetworkDigital />
             </VStack>
         </ProductCollapse>
     )

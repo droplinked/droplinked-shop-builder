@@ -1,10 +1,12 @@
 import { useDisclosure } from '@chakra-ui/hooks'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import useCollections from 'functions/hooks/useCollections/useCollections'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { Collection } from 'lib/apis/collection/interfaces'
 import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
+import { useUpdateShopLegalUsage } from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -15,8 +17,12 @@ import ProductEmpty from './parts/empty/ProductEmpty'
 import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
-    const { data: { collection } } = useHookStore()
-    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
+    const { isFetching: isFetchingCollections, error, data: collectionsData } = useCollections()
+    const updateShopLegalUsage = useUpdateShopLegalUsage()
+    const { mutate, isLoading, data } = useMutation({
+        mutationFn: (params: IproductList) => productServices(params),
+        onSuccess: (data) => updateShopLegalUsage(data.data.data.legalUsage)
+    })
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
     const products = useMemo(() => data?.data?.data, [data])
@@ -24,9 +30,7 @@ function Products() {
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { refactorData } = ProductListModel
-    const [States, setStates] = useState({
-        checkboxes: []
-    })
+    const [States, setStates] = useState({ checkboxes: [] })
     const { shop } = useProfile()
     const { shopRoute } = useCustomNavigate()
     const productReorderModal = useDisclosure()
@@ -38,8 +42,6 @@ function Products() {
     }, [page, searchParams])
 
     useEffect(() => fetch(), [mutate, page, searchParams])
-
-    // Set search state
 
     // Handle search and without search
     const rows = useMemo(() => {
@@ -92,7 +94,7 @@ function Products() {
     return (
         <>
             <AppDataGrid
-                loading={isLoading}
+                loading={isLoading || isFetchingCollections}
                 buttons={buttons}
                 rows={rows}
                 checkbox={{
@@ -102,11 +104,11 @@ function Products() {
                 filters={[
                     {
                         title: "Collections",
-                        list: collection.data ? collection.data.map(el => (
+                        list: collectionsData?.data ? collectionsData.data.map((collection: Collection) => (
                             {
-                                title: el?.title,
-                                onClick: () => updateFilters("productCollectionID", el?._id),
-                                isActive: searchParams.get("filter") === `productCollectionID:${el?._id}`
+                                title: collection.title,
+                                onClick: () => updateFilters("productCollectionID", collection._id),
+                                isActive: searchParams.get("filter") === `productCollectionID:${collection._id}`
                             }
                         )) : []
                     },

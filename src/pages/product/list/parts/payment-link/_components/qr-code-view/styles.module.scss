@@ -1,0 +1,40 @@
+.input-group{
+    flex: 1;
+    position: relative;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #3C3C3C;
+    border-radius: 8px;
+    padding: 12px 16px;
+
+    &:has(> input:focus , input:not(:placeholder-shown):not(:focus)){
+        border-color: #3C3C3C;
+    }
+
+    &>input{
+        flex: 1;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        color: #fff;
+
+        &:focus + label , 
+        &:not(:placeholder-shown):not(:focus) + label{
+            top: 0;
+            left: 12px;
+            font-size: 12px;
+        }
+    }
+
+    &>label{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-inline: 4px;
+        color: #fff;
+        font-size: 16px;
+        pointer-events: none;
+        transition: all 0.2s;
+        background-color: #1c1c1c;
+    }
+}

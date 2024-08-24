@@ -1,7 +1,7 @@
 import { Box, Flex, InputProps } from "@chakra-ui/react";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppTypography from "components/common/typography/AppTypography";
-import ShowPassword from "components/modals/signup-modal/signup-producer/parts/showPassword/ShowPassword";
+import ShowPassword from "components/modals/signup-modal/ShowPassword";
 import React, { useState } from 'react';
 
 interface Props extends InputProps {

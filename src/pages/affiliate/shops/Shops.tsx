@@ -1,16 +1,16 @@
-import { Box, SimpleGrid, VStack } from '@chakra-ui/react'
+import { Box, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
-import React, { useCallback, useEffect, useMemo } from 'react'
-import { useMutation } from 'react-query'
-import { useSearchParams } from 'react-router-dom'
+import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { IshopPublicRecordedService } from 'lib/apis/shop/interfaces'
 import { shopPublicRecordedService } from 'lib/apis/shop/shopServices'
-import ShopsListSkeleton from './parts/skeleton/ShopsListSkeleton'
+import React, { useCallback, useEffect, useMemo } from 'react'
+import { useMutation } from 'react-query'
+import { useSearchParams } from 'react-router-dom'
 import ShopsContainer from './parts/container/ShopsContainer'
 import AffiliateStoresFilters from './parts/filter/AffiliateStoresFilters'
-import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
-import AppEmptyPage from 'components/common/empty/AppEmptyPage'
+import ShopsListSkeleton from './parts/skeleton/ShopsListSkeleton'
 
 function Shops() {
   const { mutate, data, isLoading } = useMutation((params: IshopPublicRecordedService) => shopPublicRecordedService(params))
@@ -21,7 +21,7 @@ function Shops() {
   const fetch = useCallback(() => {
     mutate({
       page: searchParams.get('page') || 1,
-      tags: searchParams.get('search') || null,
+      s: searchParams.get('search') || null,
     })
   }, [searchParams])
 

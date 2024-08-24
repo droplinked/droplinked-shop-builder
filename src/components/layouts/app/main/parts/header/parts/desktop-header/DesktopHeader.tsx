@@ -2,7 +2,7 @@ import { Box, Flex, HStack, PopoverBody, VStack } from '@chakra-ui/react'
 import AppPopoverOnHover from 'components/common/PopoverMenu/PopOverOnHover'
 import AppTypography from 'components/common/typography/AppTypography'
 import HeaderDashboardLoggedin from 'components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLoggedin'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Droplinked from '../droplinked/Droplinked'
@@ -21,7 +21,7 @@ interface Props {
 }
 
 function DesktopHeader({ products_menu, toggleAuthModal }: Props) {
-    const { app: { shop } } = useHookStore()
+    const { shop } = useAppStore()
 
     return (
         <>

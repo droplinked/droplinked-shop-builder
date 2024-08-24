@@ -18,7 +18,7 @@ function Features() {
                 </Flex>
                 <Flex direction={"column"} gap={4}>
                     <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Decentralized Affiliate Network</AppTypography>
-                    <AppTypography fontSize={20} color={"#fff"}>Deploying products on-chain connects them to the decentralized network, unlocking royalty benefits and more</AppTypography>
+                    <AppTypography fontSize={20} color={"#fff"}>Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more</AppTypography>
                 </Flex>
             </Flex>
         </Flex>

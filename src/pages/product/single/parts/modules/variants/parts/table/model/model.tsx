@@ -46,6 +46,7 @@ const SkuTableModel = ({
                                 name={"price"}
                                 onChange={onPriceChange}
                                 placeholder="0"
+                                type="number"
                             />
                             <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
                         </Flex>
@@ -60,6 +61,7 @@ const SkuTableModel = ({
                             index={key}
                             value={sku.price}
                             name={"price"}
+                            type="number"
                         />
                         <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
                     </Flex>
@@ -74,7 +76,7 @@ const SkuTableModel = ({
                     caption: 
                         <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
                             <AppTypography>Quantity</AppTypography>
-                            {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"quantity"} placeholder="0" />}
+                            {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"quantity"} placeholder="0" type="number" />}
                         </Flex>,
                     value: product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.quantity} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
                 },

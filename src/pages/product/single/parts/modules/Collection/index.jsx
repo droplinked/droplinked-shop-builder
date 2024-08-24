@@ -1,41 +1,31 @@
-import { Box, HStack, VStack, useDisclosure } from '@chakra-ui/react'
+import { HStack, VStack, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import CollectionCreate from 'pages/collections/parts/create/CollectionCreate'
 import React from 'react'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
-import ListCollection from './parts/list'
+import CollectionList from './parts/list'
 
 function Collection() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { data: { collection: { fetch } } } = useHookStore()
 
     return (
-        <VStack width={"100%"} spacing={4} align={"stretch"}>
-            <Box>
-                <HStack justifyContent={"space-between"}>
-                    <VStack align={"stretch"}>
-                        <FieldLabel isRequired label='Collections' />
-                        <AppTypography color="#C2C2C2" fontSize='14px'>
-                            Select a collection or create a new one to publish the product.
-                        </AppTypography>
-                    </VStack>
-                    <Box>
-                        <SkeletonProduct>
-                            <BasicButton onClick={onOpen} sizes="medium" variant="outline">New Collection</BasicButton>
-                        </SkeletonProduct>
-                        <CollectionCreate close={onClose} open={isOpen} refetch={fetch} />
-                    </Box>
-                </HStack>
-            </Box>
-            <Box>
+        <VStack spacing={4} align={"stretch"}>
+            <HStack justifyContent={"space-between"}>
+                <VStack align={"stretch"}>
+                    <FieldLabel label='Collections' isRequired />
+                    <AppTypography color="#C2C2C2" fontSize='14px'>
+                        Select a collection or create a new one to publish the product.
+                    </AppTypography>
+                </VStack>
                 <SkeletonProduct>
-                    <ListCollection />
+                    <BasicButton onClick={onOpen} sizes="medium" variant="outline">New Collection</BasicButton>
                 </SkeletonProduct>
-            </Box>
+                <CollectionCreate close={onClose} open={isOpen} refetch={fetch} />
+            </HStack>
+            <CollectionList />
             <HStack alignItems="center">
                 <AppIcons.Info />
                 <AppTypography color="#757575" fontSize='14px'>NFT gating features and ruleset management are in the Collections page. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>

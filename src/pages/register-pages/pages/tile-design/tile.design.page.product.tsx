@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Flex, HStack, Select, Stack, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Select, Stack, useDisclosure, VStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { motion } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
@@ -7,6 +7,7 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
 import { TileDesignContext } from "./context/tile.design.context";
 import { percent_to_hex } from "lib/utils/heper/helpers";
+import AppModal from "components/common/modal/AppModal";
 
 const imagesToShow = [
     {
@@ -55,13 +56,15 @@ const TileDesignPageProduct = () => {
         },
         methods: { updateFormFields, updateState },
     } = useContext(TileDesignContext);
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const activeImageIndex = wrap(0, imagesToShow?.length, imageCount);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
     const black_if_dark_mode = CONTAINER.darkMode ? "#000000" : "#FFFFFF";
     const height_of_container = () => {
         let basic = 370;
-        if (IMAGE.display) basic += 180;
+        if (IMAGE.display) basic += 220;
         if (VARIANTS.displayType === "checkbox") basic += 150;
+        if (CONTAINER.type === "button") basic = 150;
         return `${basic}px`;
     };
     return (
@@ -94,252 +97,304 @@ const TileDesignPageProduct = () => {
                     updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.CONTAINER });
                 }}
             ></VStack>
-            <VStack align={"stretch"} spacing="16px" maxW={"80%"} maxH={"90%"} position={"absolute"} zIndex={999}>
-                {IMAGE.display ? (
-                    <Box
-                        role={"group"}
-                        style={{
-                            height: "100%",
-                            width: "100%",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center",
-                            borderRadius: "8px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: "16px",
-                        }}
-                        border={"3px solid transparent"}
-                        cursor={"pointer"}
-                        _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                        onClick={() => {
-                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.IMAGE });
-                        }}
-                    >
-                        <motion.div
-                            key={imageCount}
+            {CONTAINER.type !== "button" ? (
+                <VStack align={"stretch"} spacing="16px" maxW={"80%"} maxH={"90%"} position={"absolute"} zIndex={999}>
+                    {IMAGE.display ? (
+                        <Box
+                            role={"group"}
                             style={{
-                                height: "216px",
+                                height: "100%",
                                 width: "100%",
                                 backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
                                 backgroundPosition: "center",
                                 borderRadius: "8px",
-                                backgroundImage: `url(${imagesToShow?.[activeImageIndex]?.thumbnail})`,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                gap: "16px",
                             }}
-                            custom={direction}
-                            variants={{
-                                incoming: { opacity: 0 },
-                                active: { scale: 1, opacity: 1 },
-                                exit: { opacity: 0.2 },
+                            border={"3px solid transparent"}
+                            cursor={"pointer"}
+                            _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                            onClick={() => {
+                                updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.IMAGE });
                             }}
-                            initial="incoming"
-                            animate="active"
-                            exit="exit"
-                            transition={{ duration: 1, ease: [0.56, 0.03, 0.12, 1.04] }}
-                        />
-                        {IMAGE.slider && (
+                        >
                             <motion.div
+                                key={imageCount}
                                 style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    gap: "2px",
+                                    height: "216px",
+                                    width: "100%",
+                                    backgroundSize: "cover",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center",
+                                    borderRadius: "8px",
+                                    backgroundImage: `url(${imagesToShow?.[activeImageIndex]?.thumbnail})`,
                                 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                {imagesToShow.map((image, index) => (
-                                    <div key={image._id} onClick={() => setImageCount([index, index > activeImageIndex ? 1 : index < activeImageIndex ? -1 : 0])} style={{ cursor: "pointer" }}>
-                                        <div
-                                            style={
-                                                index === activeImageIndex
-                                                    ? {
-                                                          borderRadius: "8px",
-                                                          transition: "300ms ease",
-                                                          width: "12px",
-                                                          height: "12px",
-                                                          backgroundColor: "#2bcfa1",
-                                                      }
-                                                    : {
-                                                          width: "10px",
-                                                          height: "10px",
-                                                          borderRadius: "8px",
-                                                          backgroundColor: "#9cf8de",
-                                                          transition: "300ms ease",
-                                                      }
-                                            }
-                                        />
-                                    </div>
-                                ))}
-                            </motion.div>
-                        )}
-                    </Box>
-                ) : (
-                    <Box
-                        borderRadius="16px"
-                        height={"50px"}
-                        border={"3px solid transparent"}
-                        cursor={"pointer"}
-                        _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                        onClick={() => {
-                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.IMAGE });
-                        }}
-                    ></Box>
-                )}
+                                custom={direction}
+                                variants={{
+                                    incoming: { opacity: 0 },
+                                    active: { scale: 1, opacity: 1 },
+                                    exit: { opacity: 0.2 },
+                                }}
+                                initial="incoming"
+                                animate="active"
+                                exit="exit"
+                                transition={{ duration: 1, ease: [0.56, 0.03, 0.12, 1.04] }}
+                            />
+                            {IMAGE.slider && (
+                                <motion.div
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        gap: "2px",
+                                    }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    {imagesToShow.map((image, index) => (
+                                        <div key={image._id} onClick={() => setImageCount([index, index > activeImageIndex ? 1 : index < activeImageIndex ? -1 : 0])} style={{ cursor: "pointer" }}>
+                                            <div
+                                                style={
+                                                    index === activeImageIndex
+                                                        ? {
+                                                              borderRadius: "8px",
+                                                              transition: "300ms ease",
+                                                              width: "12px",
+                                                              height: "12px",
+                                                              backgroundColor: "#2bcfa1",
+                                                          }
+                                                        : {
+                                                              width: "10px",
+                                                              height: "10px",
+                                                              borderRadius: "8px",
+                                                              backgroundColor: "#9cf8de",
+                                                              transition: "300ms ease",
+                                                          }
+                                                }
+                                            />
+                                        </div>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </Box>
+                    ) : (
+                        <Box
+                            borderRadius="16px"
+                            height={"50px"}
+                            border={"3px solid transparent"}
+                            cursor={"pointer"}
+                            _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                            onClick={() => {
+                                updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.IMAGE });
+                            }}
+                        ></Box>
+                    )}
 
-                <Flex direction={"column"} gap={2}>
-                    <AppTypography
-                        padding={1}
-                        textAlign="left"
-                        overflow={"hidden"}
-                        noOfLines={1}
-                        maxW={"100%"}
-                        textOverflow={"ellipsis"}
-                        alignSelf={"stretch"}
-                        fontSize={{ base: "14px", sm: "16px" }}
-                        fontWeight={400}
-                        color={TITLE.color}
-                        cursor={"pointer"}
-                        _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                        border={"1px solid transparent"}
-                        rounded={"16px"}
-                        onClick={() => {
-                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.TITLE });
-                        }}
-                    >
-                        Casper punks unisex premium pullover hooded sweat shirt
-                    </AppTypography>
-                    <AppTypography
-                        padding={1}
-                        cursor={"pointer"}
-                        _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                        border={"1px solid transparent"}
-                        rounded={"16px"}
-                        onClick={() => {
-                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.PRICE });
-                        }}
-                        textAlign={"left"}
-                        color={PRICE.color}
-                        fontWeight={600}
-                        fontSize={{ base: "14px", sm: "16px" }}
-                    >
-                        $99.99 USD
-                    </AppTypography>
-                </Flex>
-                {VARIANTS?.displayType === "checkbox" ? (
-                    <>
-                        <VStack justifyContent="flex-start" align={"stretch"} alignItems={"start"} gap="8px" width={"full"} flexWrap={"wrap"}>
-                            <AppTypography fontWeight={"400"} fontSize={"14px"}>
-                                Color
-                            </AppTypography>
-                            <HStack
-                                align={"stretch"}
-                                gap={"8px"}
-                                padding={"4px"}
-                                rounded={"4px"}
-                                border={"1px solid transparent"}
-                                cursor={"pointer"}
-                                _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                                onClick={() => {
-                                    updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
-                                }}
-                            >
+                    <Flex direction={"column"} gap={2}>
+                        <AppTypography
+                            padding={1}
+                            textAlign="left"
+                            overflow={"hidden"}
+                            noOfLines={1}
+                            maxW={"100%"}
+                            textOverflow={"ellipsis"}
+                            alignSelf={"stretch"}
+                            fontSize={{ base: "14px", sm: "16px" }}
+                            fontWeight={400}
+                            color={TITLE.color}
+                            cursor={"pointer"}
+                            _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                            border={"1px solid transparent"}
+                            rounded={"16px"}
+                            onClick={() => {
+                                updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.TITLE });
+                            }}
+                        >
+                            Casper punks unisex premium pullover hooded sweat shirt
+                        </AppTypography>
+                        {CONTAINER.description && (
+                            <>
+                                <BasicButton
+                                    alignSelf={"start"}
+                                    justifyContent={"flex-start"}
+                                    padding={1}
+                                    variant="link"
+                                    onClick={onOpen}
+                                    color={"#179EF8"}
+                                    _hover={{ textDecor: "underline" }}
+                                    buttonTextProps={{ fontSize: "14px", fontWeight: "400", textAlign: "left" }}
+                                    cursor={"pointer"}
+                                >
+                                    View Description
+                                </BasicButton>
+                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white"}}>
+                                    <Flex direction={"column"} justifyContent={"space-between"} gap={16}>
+                                        <AppTypography color={white_if_dark_mode} fontSize="14px" fontWeight={"500"}>
+                                            This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous! • Fabric
+                                            composition in the EU: 96% polyester, 4% spandex • Fabric composition in the US: 93% polyester, 7% spandex • Fabric weight: 6.19 oz/yd² (210 g/m²), weight
+                                            may vary by 5% • Comfortable, stretchy material that stretches and recovers on the cross and lengthwise grains. • Precision-cut and hand-sewn after printing
+                                            • Blank product components in the EU sourced from Lithuania • Blank product components in the US sourced from the US
+                                        </AppTypography>
+                                        <BasicButton color={white_if_dark_mode} minW={"auto"} border={`1px solid ${white_if_dark_mode}`} alignSelf={"flex-end"} variant="outline" onClick={onClose}>
+                                            Close
+                                        </BasicButton>
+                                    </Flex>
+                                </AppModal>
+                            </>
+                        )}
+                        {/* </AppTooltip> */}
+
+                        <AppTypography
+                            padding={1}
+                            cursor={"pointer"}
+                            _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                            border={"1px solid transparent"}
+                            rounded={"16px"}
+                            onClick={() => {
+                                updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.PRICE });
+                            }}
+                            textAlign={"left"}
+                            color={PRICE.color}
+                            fontWeight={600}
+                            fontSize={{ base: "14px", sm: "16px" }}
+                        >
+                            $99.99 USD
+                        </AppTypography>
+                    </Flex>
+                    {VARIANTS?.displayType === "checkbox" ? (
+                        <>
+                            <VStack justifyContent="flex-start" align={"stretch"} alignItems={"start"} gap="8px" width={"full"} flexWrap={"wrap"}>
+                                <AppTypography fontWeight={"400"} fontSize={"14px"}>
+                                    Color
+                                </AppTypography>
+                                <HStack
+                                    align={"stretch"}
+                                    gap={"8px"}
+                                    padding={"4px"}
+                                    rounded={"4px"}
+                                    border={"1px solid transparent"}
+                                    cursor={"pointer"}
+                                    _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                                    onClick={() => {
+                                        updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
+                                    }}
+                                >
+                                    {colors.map((el, key: number) => (
+                                        <Box
+                                            key={key}
+                                            display="flex"
+                                            width="36px"
+                                            height="36px"
+                                            padding="6px"
+                                            alignItems="center"
+                                            gap="10px"
+                                            borderRadius="4px"
+                                            border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
+                                        >
+                                            <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
+                                        </Box>
+                                    ))}
+                                </HStack>
+                            </VStack>
+                            <VStack justifyContent="flex-start" align={"stretch"} alignItems={"start"} gap="8px" width={"full"} flexWrap={"wrap"}>
+                                <AppTypography fontWeight={"400"} fontSize={"14px"}>
+                                    Size
+                                </AppTypography>
+                                <HStack
+                                    align={"stretch"}
+                                    gap={"8px"}
+                                    padding={"4px"}
+                                    rounded={"4px"}
+                                    border={"1px solid transparent"}
+                                    cursor={"pointer"}
+                                    _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                                    onClick={() => {
+                                        updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
+                                    }}
+                                >
+                                    {sizes.map((el, key: number) => (
+                                        <Box
+                                            key={key}
+                                            display="flex"
+                                            width="36px"
+                                            height="36px"
+                                            padding="8px"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                            gap="8px"
+                                            border={"1px solid #DEDEDE"}
+                                            rounded={"4px"}
+                                            backgroundColor={key === 2 && white_if_dark_mode}
+                                            color={key === 2 ? black_if_dark_mode : white_if_dark_mode}
+                                        >
+                                            {el.value}
+                                        </Box>
+                                    ))}
+                                </HStack>
+                            </VStack>
+                        </>
+                    ) : (
+                        <HStack
+                            justifyContent="flex-start"
+                            align={"stretch"}
+                            alignItems={"start"}
+                            gap="8px"
+                            width={"full"}
+                            border={"1px solid transparent"}
+                            cursor={"pointer"}
+                            _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                            onClick={() => {
+                                updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
+                            }}
+                        >
+                            <Select placeholder={"Color"} color={white_if_dark_mode}>
                                 {colors.map((el, key: number) => (
-                                    <Box
-                                        key={key}
-                                        display="flex"
-                                        width="36px"
-                                        height="36px"
-                                        padding="6px"
-                                        alignItems="center"
-                                        gap="10px"
-                                        borderRadius="4px"
-                                        border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
-                                    >
-                                        <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
-                                    </Box>
+                                    <option value={el.caption}>{el?.caption}</option>
                                 ))}
-                            </HStack>
-                        </VStack>
-                        <VStack justifyContent="flex-start" align={"stretch"} alignItems={"start"} gap="8px" width={"full"} flexWrap={"wrap"}>
-                            <AppTypography fontWeight={"400"} fontSize={"14px"}>
-                                Size
-                            </AppTypography>
-                            <HStack
-                                align={"stretch"}
-                                gap={"8px"}
-                                padding={"4px"}
-                                rounded={"4px"}
-                                border={"1px solid transparent"}
-                                cursor={"pointer"}
-                                _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                                onClick={() => {
-                                    updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
-                                }}
-                            >
+                            </Select>
+                            <Select placeholder={"Size"} color={white_if_dark_mode}>
                                 {sizes.map((el, key: number) => (
-                                    <Box
-                                        key={key}
-                                        display="flex"
-                                        width="36px"
-                                        height="36px"
-                                        padding="8px"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap="8px"
-                                        border={"1px solid #DEDEDE"}
-                                        rounded={"4px"}
-                                        backgroundColor={key === 2 && white_if_dark_mode}
-                                        color={key === 2 ? black_if_dark_mode : white_if_dark_mode}
-                                    >
-                                        {el.value}
-                                    </Box>
+                                    <option value={el.caption}>{el?.caption}</option>
                                 ))}
-                            </HStack>
-                        </VStack>
-                    </>
-                ) : (
-                    <HStack
-                        justifyContent="flex-start"
+                            </Select>
+                        </HStack>
+                    )}
+                    <Stack
                         align={"stretch"}
-                        alignItems={"start"}
-                        gap="8px"
-                        width={"full"}
-                        border={"1px solid transparent"}
                         cursor={"pointer"}
+                        border={"1px solid transparent"}
+                        rounded={"8px"}
                         _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
                         onClick={() => {
-                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.VARIANTS });
+                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.BUTTON });
                         }}
                     >
-                        <Select placeholder={"Color"} color={white_if_dark_mode}>
-                            {colors.map((el, key: number) => (
-                                <option value={el.caption}>{el?.caption}</option>
-                            ))}
-                        </Select>
-                        <Select placeholder={"Size"} color={white_if_dark_mode}>
-                            {sizes.map((el, key: number) => (
-                                <option value={el.caption}>{el?.caption}</option>
-                            ))}
-                        </Select>
-                    </HStack>
-                )}
-                <Stack
-                    align={"stretch"}
-                    cursor={"pointer"}
-                    border={"1px solid transparent"}
-                    rounded={"8px"}
-                    _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
-                    onClick={() => {
-                        updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.BUTTON });
-                    }}
-                >
-                    <BasicButton bg={BUTTON.backgroundColor} padding={"12px"} border={"none"} color={BUTTON.color} _hover={{}} _active={{}}>
-                        {BUTTON.text}
-                    </BasicButton>
-                </Stack>
-            </VStack>
+                        <BasicButton bg={BUTTON.backgroundColor} padding={"12px"} border={"none"} color={BUTTON.color} _hover={{}} _active={{}}>
+                            {BUTTON.text}
+                        </BasicButton>
+                    </Stack>
+                </VStack>
+            ) : (
+                <VStack align={"stretch"} spacing="16px" maxW={"80%"} width={"100%"} maxH={"90%"} position={"absolute"} zIndex={999}>
+                    <Stack
+                        align={"stretch"}
+                        cursor={"pointer"}
+                        width={"100%"}
+                        border={"1px solid transparent"}
+                        rounded={"8px"}
+                        _hover={{ border: "1px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
+                        onClick={() => {
+                            updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.CONTAINER });
+                        }}
+                    >
+                        <BasicButton bg={CONTAINER.buttonBackgroundColor} padding={"12px"} border={"none"} width={"full"} color={CONTAINER.color} _hover={{}} _active={{}}>
+                            {CONTAINER.text}
+                        </BasicButton>
+                    </Stack>
+                </VStack>
+            )}
         </Box>
     );
 };

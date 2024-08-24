@@ -1,12 +1,12 @@
-import AppModal from 'components/common/modal/AppModal'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
+import CheckoutModalTemplate from './_components/CheckoutModalTemplate'
 import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
-import StripeModal from './_components/StripeModal'
+import PaymentMethodSelection from './_components/payment-method-selection/PaymentMethodSelection'
+import StripePayment from './_components/stripe-form/StripePayment'
+import { ModalState } from './types/interfaces'
 
 interface Props {
-    selectedPlan: SubscriptionPlan
     isOpen: boolean;
     close: () => void;
     isFromPlansPage?: boolean;
@@ -14,24 +14,55 @@ interface Props {
     hasProfile?: any;
 }
 
-function SubscriptionPlanCheckoutModal({ selectedPlan, isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
-    const [clientSecret, setClientSecret] = useState<string | null>(null)
-    const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
+function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
+    const [modalData, setModalData] = useState<ModalState>({
+        step: "PlanConfirmation",
+        stripeClientSecret: "",
+        selectedPaymentMethod: null
+    })
+
+    const updateModalData = <K extends keyof ModalState>(key: K, value: ModalState[K]) =>
+        setModalData({ ...modalData, [key]: value })
 
     const renderContent = () => {
-        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} isFromPlansPage={isFromPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} />
-        if (clientSecret) return <StripeModal clientSecret={clientSecret} close={close} setPaymentStatus={setPaymentStatus} isFromPlansPage={isFromPlansPage} />
-        return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} hasProfile={hasProfile} isFromPlansPage={isFromPlansPage} />
+        const { step, stripeClientSecret } = modalData
+        if (step === 'PlanConfirmation')
+            return <ConfirmPlan
+                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
+                close={close} hasProfile={hasProfile}
+                isFromPlansPage={isFromPlansPage}
+            />
+
+        else if (step === "PaymentMethodSelection")
+            return <PaymentMethodSelection
+                setModalData={setModalData}
+                selectedPaymentMethod={modalData.selectedPaymentMethod}
+            />
+
+        else if (step === "StripePayment")
+            return <StripePayment
+                clientSecret={stripeClientSecret}
+                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
+                close={close}
+                isFromPlansPage={isFromPlansPage}
+            />
+
+        return <PaymentStatus
+            paymentStatus={step === "SuccessfulPayment" ? "success" : "error"}
+            close={close}
+            isFromPlansPage={isFromPlansPage}
+            isLoggedInViaGoogle={isLoggedInViaGoogle}
+        />
     }
 
     return (
-        <AppModal
-            close={close}
-            open={isOpen}
-            size="2xl"
+        <CheckoutModalTemplate
+            onClose={close}
+            isOpen={isOpen}
+            currentStep={modalData.step}
         >
             {renderContent()}
-        </AppModal>
+        </CheckoutModalTemplate>
     )
 }
 

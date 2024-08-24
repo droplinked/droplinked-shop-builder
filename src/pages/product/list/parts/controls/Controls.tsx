@@ -1,19 +1,20 @@
 import { useDisclosure } from '@chakra-ui/react';
 import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
 import useStack from 'functions/hooks/stack/useStack';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
 import { productUpdateServices } from 'lib/apis/product/productServices';
-import { useLegalUsage } from 'lib/stores/app/appStore';
+import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
+import PaymentLinkModal from '../payment-link/PaymentLinkModal';
+import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
 
@@ -30,7 +31,9 @@ function ControlsListProduct({ productID, product, fetch }) {
     const stack = useStack()
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
-    const { app: { user: { wallets } } } = useHookStore()
+    const { user: { wallets } } = useAppStore()
+    const paymentLinkModal = useDisclosure()
+    const productOrdersModal = useDisclosure()
 
     const publish = useCallback(async () => {
         try {
@@ -82,9 +85,17 @@ function ControlsListProduct({ productID, product, fetch }) {
                 onClick: detailModal.onOpen
             },
             {
+                caption: "Orders",
+                onClick: () => productOrdersModal.onOpen()
+            },
+            {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
-            }
+            },
+            {
+                caption: "Get payment link",
+                onClick: () => paymentLinkModal.onOpen()
+            },
         ]
         if (product?.publish_status === "DRAFTED") list.push({
             caption: "Publish",
@@ -107,6 +118,8 @@ function ControlsListProduct({ productID, product, fetch }) {
             <PopOverMenu items={items} />
             <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
+            {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
+            {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
         </>
     )
 }

@@ -4,11 +4,10 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik';
 import useStack from 'functions/hooks/stack/useStack';
-import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
-import { useCheckPermission } from 'lib/stores/app/appStore';
+import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo } from 'react';
 import * as Yup from 'yup';
@@ -39,7 +38,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
     const { state: { legalUsage }, methods: { updateState: updateProductContext } } = useContext(productContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
-    const { app: { user: { wallets } } } = useHookStore()
+    const { user: { wallets } } = useAppStore()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
@@ -47,7 +46,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
             const { commission, quantity, blockchain, royalty } = data
-            const params = isRecordAllSKUs ? 
+            const params = isRecordAllSKUs ?
                 Array.isArray(sku) && sku.map(skuItem => ({
                     quantity: skuItem.quantity.toString(),
                     sku: skuItem,
@@ -55,7 +54,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
                 })) : { commission, quantity, blockchain, royalty }
 
             const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
-            const deployhash = isRecordAllSKUs ? 
+            const deployhash = isRecordAllSKUs ?
                 await web3({
                     method: "record_batch",
                     params,
@@ -67,7 +66,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Iprops) {
                     wallets,
                     stack
                 })
-                : 
+                :
                 await web3({
                     method: "record",
                     params: {
