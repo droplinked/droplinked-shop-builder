@@ -51,11 +51,6 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         purchaseModal.onOpen()
     }
 
-    const handleAuthModalClose = () => {
-        signInModal.onClose()
-        if (isPlansPage) handlePlanPurchase()
-    }
-
     const paramsVariables = useMemo(
         () => ({
             access_token: searchParams.get("access_token"),
@@ -188,10 +183,12 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                 />
             )}
             {signInModal.isOpen && (
-                <AuthModal show={signInModal.isOpen}
-                    close={handleAuthModalClose}
+                <AuthModal
+                    show={signInModal.isOpen}
+                    close={signInModal.onClose}
                     type={MODAL_TYPE.SIGNUP}
                     isFromPlansPage={isPlansPage}
+                    openPlanPurchaseModal={purchaseModal.onOpen}
                 />
             )}
         </>
