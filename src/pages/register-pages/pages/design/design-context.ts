@@ -242,7 +242,7 @@ export const initialStateDesignPage: IStateDesignPage = {
         messengerURL: "",
         headerIcon: "https://upload-file-droplinked.s3.amazonaws.com/3ac6262ee09643c53e41f175725ca843f0e31ff9ab6075e2f4a13ad2cefe0685.png",
         backgroundColor: "#141414",
-        backgroundImage: "https://upload-file-droplinked.s3.amazonaws.com/e3973fb16bd66fc95b98a572c5596f59aa0e6ab141f7cab2d9348fe80463c812.png",
+        backgroundImage: "https://upload-file-droplinked.s3.amazonaws.com/23af0b47bf743d9c9b0f5a79e0f3726b8d35a1175a5434e9174b8b34bb6b9c45.png",
         backgroundImageSecondary: "",
         fullWidthHero: false,
         productSectionText: "",
