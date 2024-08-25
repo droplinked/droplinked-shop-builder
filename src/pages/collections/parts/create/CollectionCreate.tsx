@@ -59,7 +59,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
     const formSchema = Yup.object().shape({
         title: Yup.string().required('Name is required'),
         description: Yup.string(),
-        image: Yup.string().required('Image is required'),
+        image: Yup.string()
     })
 
     return (
