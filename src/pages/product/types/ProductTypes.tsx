@@ -59,6 +59,11 @@ function ProductTypes() {
     }
   }
 
+  useEffect(() => {
+    apiKey && checkApiKey()
+    !apiKey && isEventAccountConnect()
+  }, [apiKey])
+
   const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
     {
@@ -93,14 +98,9 @@ function ProductTypes() {
   ]
 
   const navigateToProductForm = async (productType: ProductType) => {
-    let eventRoute;
-    if (productType?.type === "Event") {
-      const isEventAccountConnected = apiKey ? await checkApiKey() : await isEventAccountConnect()
-      eventRoute = isEventAccountConnected ? shopRoute + "/products/events-list" : shopRoute + "/products/connect-event-account"
-    }
     const legalUsage = shopLegalUsage.find(obj => obj.key === productType.legalUsageKey)
     if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
-      return productType?.type === "Event" ? navigate(eventRoute) : navigate(productType.route)
+      return navigate(productType.route)
     }
     showToast({ message: AppErrors.permission.product_creation_limit_reached(productType.legalUsageKey), type: "error" })
   }
