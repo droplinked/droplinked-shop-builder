@@ -38,7 +38,7 @@ function ControlsListCollection({ collection, fetch }) {
                 }
             ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />
-            {ruleModal.isOpen && <RuleModal collectionId={collection?._id} ruleId={collection?.ruleSetID?._id} update={fetch} close={ruleModal.onClose} show={ruleModal.isOpen} />}
+            {ruleModal.isOpen && <RuleModal collectionId={collection?._id} ruleId={collection?.ruleSetID?._id} close={ruleModal.onClose} show={ruleModal.isOpen} />}
             <CollectionCreate close={editModal.onClose} collection={collection} open={editModal.isOpen} />
         </>
     )

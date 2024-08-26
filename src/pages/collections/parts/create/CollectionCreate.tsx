@@ -72,6 +72,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                     image: collection?.image || '',
                 }}
                 enableReinitialize
+                validateOnChange={false}
                 validationSchema={formSchema}
                 onSubmit={onSubmit}
             >
