@@ -57,10 +57,10 @@ const Wallets = () => {
                 <Flex direction={"column"} gap={"8px"}>
                     <FieldLabel label="User Login Methods" textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired />
                     <AppTypography fontSize="14px" color="#C2C2C2">
-                        Activate the payment methods and add target wallet for each of them.
+                        Activate various payment methods and a target wallet associated with accepting deposits.
                     </AppTypography>
                     <AppTypography fontSize="14px" color="#C2C2C2">
-                        Allow or deny login option for each wallet
+                        Allow or deny login option for each wallet.
                     </AppTypography>
                 </Flex>
                 {isLoading && <WalletLoginLoading />}
