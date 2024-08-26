@@ -58,9 +58,11 @@ function ProductTypes() {
   }
 
   useEffect(() => {
-    apiKey && checkApiKey()
-    !apiKey && isEventAccountConnect()
-  }, [apiKey])
+    if (!isFetching) {
+      apiKey && checkApiKey()
+      !apiKey && isEventAccountConnect()
+    }
+  }, [apiKey, isFetching])
 
   if (isFetching) return <Loading />
 
