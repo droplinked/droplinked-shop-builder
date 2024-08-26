@@ -6,7 +6,6 @@ import DropDownModel from "components/common/form/dropdown/DropDownModel";
 import AppTypography from "components/common/typography/AppTypography";
 import { FieldArray, Form, Formik } from "formik";
 import { variantOptionsService } from "lib/apis/variant/services";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import { productContext } from "pages/product/single/context";
 import React, { useCallback, useContext, useRef, useState } from "react";
 import { useQuery } from "react-query";
@@ -84,7 +83,7 @@ const PropertyVariants = () => {
         if (formikRef.current) {
             const formik = formikRef.current;
             const optionIndex = formik.values.options.findIndex(opt => opt.name === propertyType);
-            
+
             if (optionIndex !== -1) {
                 formik.setFieldValue(`options[${optionIndex}].values`, [
                     ...formik.values.options[optionIndex].values,
@@ -131,12 +130,12 @@ const PropertyVariants = () => {
                                                         }}
                                                         onChange={(e) => {
                                                             if ((option?.values?.length > 1 && option?.values?.[0]?.value !== "") || values.options.some((opt) => opt?.name?.toLowerCase() === e?.value?.toLowerCase())) return;
-                                                            if(e?.value === "Custom Size" || e?.value === "Custom Color") {
-                                                                if(values.options.some((opt) => `custom ${opt?.name?.toLowerCase()}` === e?.value?.toLowerCase())) return
+                                                            if (e?.value === "Custom Size" || e?.value === "Custom Color") {
+                                                                if (values.options.some((opt) => `custom ${opt?.name?.toLowerCase()}` === e?.value?.toLowerCase())) return
                                                                 // arrayHelpers?.form?.setFieldValue(`options[${index}].values`, []);
-                                                                arrayHelpers?.form?.setFieldValue(`options[${index}]`, {name: e?.value === "Custom Color" ? "Color" : e?.value === "Custom Size" ? "Size" : "", isCustom: true, values: e?.value !== "Custom Color" ? [{ value: "", caption: "" }] : [], isOpen: true});
-                                                            }else{
-                                                                if(values.options.some((opt) => opt?.name?.toLowerCase() === `custom ${e?.value?.toLowerCase()}`)) return
+                                                                arrayHelpers?.form?.setFieldValue(`options[${index}]`, { name: e?.value === "Custom Color" ? "Color" : e?.value === "Custom Size" ? "Size" : "", isCustom: true, values: e?.value !== "Custom Color" ? [{ value: "", caption: "" }] : [], isOpen: true });
+                                                            } else {
+                                                                if (values.options.some((opt) => opt?.name?.toLowerCase() === `custom ${e?.value?.toLowerCase()}`)) return
                                                                 // arrayHelpers?.form?.setFieldValue(`options[${index}].values`, []);
                                                                 // arrayHelpers?.form?.setFieldValue(`options[${index}].name`, e?.value);
                                                                 arrayHelpers?.form?.setFieldValue(`options[${index}]`, { name: e?.value, isOpen: true, isCustom: false, values: [] });
@@ -146,8 +145,8 @@ const PropertyVariants = () => {
                                                         options={dropdownInput}
                                                         styles={{ ...DropDownModel.style(undefined), indicatorsContainer: (baseStyles) => ({ ...baseStyles }), indicatorSeparator: (baseStyles) => ({ ...baseStyles, display: "none" }), container: (baseStyles) => ({ ...baseStyles, width: "100%" }), input: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }), control: (baseStyles) => ({ ...baseStyles, borderColor: "transparent", backgroundColor: "transparent", fontSize: "16x", padding: "8px 18px", borderRadius: "8px", display: "flex" }), placeholder: (baseStyles) => ({ ...baseStyles, color: "#808080" }), singleValue: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }), option: () => ({ fontSize: "14px", padding: "10px 16px", color: "#C2C2C2", ":hover": { backgroundColor: "#444" } }) }}
                                                         onInputChange={(e) => {
-                                                            if(e?.toUpperCase().includes("COLOR")) setDropdownInput([{ label: "Color", value: "Color" }, {label: `Create Color`, value: `Custom Color`}])
-                                                            if(e?.toUpperCase().includes("SIZE")) setDropdownInput([{ label: "Size", value: "Size" }, {label: `Create Size}`, value: `Custom Size`}])
+                                                            if (e?.toUpperCase().includes("COLOR")) setDropdownInput([{ label: "Color", value: "Color" }, { label: `Create Color`, value: `Custom Color` }])
+                                                            if (e?.toUpperCase().includes("SIZE")) setDropdownInput([{ label: "Size", value: "Size" }, { label: `Create Size`, value: `Custom Size` }])
                                                         }}
                                                         onBlur={() => setDropdownInput([{ label: "Color", value: "Color" }, { label: "Size", value: "Size" }])}
                                                         onFocus={() => setDropdownInput([{ label: "Color", value: "Color" }, { label: "Size", value: "Size" }])}
@@ -186,7 +185,7 @@ const PropertyVariants = () => {
                                                         </HStack>
                                                         {option?.name === "Color" && option?.isCustom && (
                                                             <HStack background="#262626" padding={"8px"} rounded={"8px"} width={"full"}>
-                                                                <AppColorPicker props={{containerProps: {backgroundColor: "transparent"}}} value={customColor.value || "#FFFFFF"} onChange={(e) => setCustomColor({ ...customColor, value: e })} />
+                                                                <AppColorPicker props={{ containerProps: { backgroundColor: "transparent" } }} value={customColor.value || "#FFFFFF"} onChange={(e) => setCustomColor({ ...customColor, value: e })} />
                                                                 <Input
                                                                     border={"none"}
                                                                     focusBorderColor="transparent"
@@ -199,7 +198,7 @@ const PropertyVariants = () => {
                                                                 <BasicButton
                                                                     onClick={() => {
                                                                         if (customColor.caption && customColor.value) {
-                                                                            if(option?.values?.some((opt) => opt?.value?.toLowerCase() === customColor?.value?.toLowerCase() || opt?.caption?.toLowerCase() === customColor?.caption?.toLowerCase())) return
+                                                                            if (option?.values?.some((opt) => opt?.value?.toLowerCase() === customColor?.value?.toLowerCase() || opt?.caption?.toLowerCase() === customColor?.caption?.toLowerCase())) return
                                                                             addCustomProperty("Color", customColor);
                                                                             setCustomColor({ value: "#FFFFFF", caption: "" });
                                                                         }
@@ -212,7 +211,7 @@ const PropertyVariants = () => {
                                                         {option?.values?.map((value, k) => (
                                                             <HStack padding={"8px 18px"} height={"48px"} key={k} width={"full"} align="center" justifyContent={"center"} borderRadius="8px" background="#262626"
                                                             >
-                                                                {option?.name === "Color" && option?.isCustom && <Box backgroundColor={value?.value} borderRadius={"100%"} border={"2px solid #353535"} width={"32px"} height="32px"/>}
+                                                                {option?.name === "Color" && option?.isCustom && <Box backgroundColor={value?.value} borderRadius={"100%"} border={"2px solid #353535"} width={"32px"} height="32px" />}
                                                                 <Input
                                                                     isReadOnly={!option?.isCustom || option?.name === "Color" || option?.name === ""}
                                                                     background="transparent"
