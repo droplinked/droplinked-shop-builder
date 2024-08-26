@@ -24,6 +24,7 @@ function StripeForm({ setplanPurchaseModalStep }: Props) {
         if (error) {
             setLoading(false)
             setplanPurchaseModalStep("FailedPayment")
+            return
         }
         setLoading(false)
         setplanPurchaseModalStep("SuccessfulPayment")
