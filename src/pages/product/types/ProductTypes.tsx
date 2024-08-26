@@ -58,11 +58,8 @@ function ProductTypes() {
   }
 
   useEffect(() => {
-    if (!isFetching) {
-      apiKey && checkApiKey()
-      !apiKey && isEventAccountConnect()
-    }
-  }, [apiKey, isFetching])
+    apiKey ? checkApiKey() : isEventAccountConnect()
+  }, [apiKey])
 
   const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
