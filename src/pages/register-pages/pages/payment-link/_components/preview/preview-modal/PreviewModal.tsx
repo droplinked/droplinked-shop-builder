@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { PaymentLinkPreviewImage } from '../PaymentLinkPreview';
+import { PaymentLinkPreviewImage } from '../hooks/usePreviewImages';
 import PreviewModalArrows from './PreviewModalArrows';
 import PreviewModalScreenSize from './PreviewModalScreenSize';
 
@@ -20,7 +20,7 @@ const sliderImages: Array<PaymentLinkPreviewImage> = [
 interface Props {
     isOpen: boolean;
     onClose: () => void;
-    currentPreviewImages: PaymentLinkPreviewImage
+    currentPreviewImages: PaymentLinkPreviewImage;
 }
 
 export default function PreviewModal({ isOpen, onClose, currentPreviewImages }: Props) {
@@ -44,7 +44,7 @@ export default function PreviewModal({ isOpen, onClose, currentPreviewImages }: 
             <ModalContent bg={"transparent"}>
                 <ModalBody display={"flex"} flexDirection={"column"} gap={8}>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <PreviewModalScreenSize currentScreenSize={screenSize} onChange={setScreenSize} />
+                        <PreviewModalScreenSize currentScreenSize={screenSize} onScreenSizeChange={setScreenSize} />
                         <PreviewModalArrows onPrev={handlePrev} onNext={handleNext} />
                     </Flex>
                     <Box

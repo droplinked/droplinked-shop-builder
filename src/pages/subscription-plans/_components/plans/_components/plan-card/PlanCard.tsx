@@ -1,161 +1,198 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
-import BasicButton from "components/common/BasicButton/BasicButton";
-import AppTypography from "components/common/typography/AppTypography";
-import AuthModal from "components/modals/auth-modal/AuthModal";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
-import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
-import useAppStore from "lib/stores/app/appStore";
-import { capitalizeFirstLetter, navigating_user_based_on_status } from "lib/utils/heper/helpers";
-import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
-import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
-import useHookStore from "functions/hooks/store/useHookStore";
-import { appDevelopment } from "lib/utils/app/variable";
+import { Box, Center, Divider, Flex, useDisclosure } from "@chakra-ui/react"
+import AppIcons from "assest/icon/Appicons"
+import BasicButton from "components/common/BasicButton/BasicButton"
+import AppTypography from "components/common/typography/AppTypography"
+import AuthModal from "components/modals/auth-modal/AuthModal"
+import useAppToast from "functions/hooks/toast/useToast"
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate"
+import { useProfile } from "functions/hooks/useProfile/useProfile"
+import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
+import useAppStore from "lib/stores/app/appStore"
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers"
+import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
+import { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading"
+import React, { Fragment, useCallback, useEffect, useMemo, useState } from "react"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
+import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
+import PlanPrice from "../plan-price/PlanPrice"
+import PopularPlanBadge from "./PopularPlanBadge"
 
 interface Props {
-    plan: SubscriptionPlan;
-    plans?: any;
-    prevPlanType: string;
-    features: SubOptionId[];
+    plan: SubscriptionPlan
+    plans?: SubscriptionPlan[]
+    prevPlanType: string
+    features: SubOptionId[]
 }
 
 const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
+    const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
     const { profile } = useProfile()
     const purchaseModal = useDisclosure()
     const signInModal = useDisclosure()
-    const { price, type } = plan
+    const { type } = plan
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
+    const isPopular = type === "BUSINESS"
+    const { title, icon, description } = subscriptionPlanMap[plan.type]
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
+    const { login, loading } = useAppStore()
+    const { showToast } = useAppToast()
+    const navigate = useNavigate()
+    const { shopNavigate } = useCustomNavigate()
+    const [searchParams] = useSearchParams()
+    const isPlansPage = useLocation().pathname === "/plans"
+    const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false)
 
     const handlePlanPurchase = () => {
+        updateSelectedPlan(plan)
         if (!profile) return signInModal.onOpen()
-        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
+        if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com")
         purchaseModal.onOpen()
     }
 
-    const { login, loading } = useAppStore();
-    const { showToast } = useAppToast();
-    const navigate = useNavigate();
-    const { shopNavigate } = useCustomNavigate();
-
-    const [searchParams] = useSearchParams();
-    const location = useLocation();
-    const isPlansPage = location.pathname === "/plans";
-
-    const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
-    const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false);
-
-    const handleAuthModalClose = () => {
-        signInModal.onClose();
-        if (isPlansPage && !isEnterprise) {
-            purchaseModal.onOpen();
-        } else if (isPlansPage && isEnterprise) {
-            window.location.href = "mailto:Support@droplinked.com"
-        }
-    };
-
-    const params_variables = useMemo(
+    const paramsVariables = useMemo(
         () => ({
             access_token: searchParams.get("access_token"),
             refresh_token: searchParams.get("refresh_token"),
-            subscription_id: searchParams.get("subscriptionId"),
+            subscription_id: searchParams.get("subscriptionId")
         }),
         [searchParams]
-    );
+    )
 
     const loginWithGoogle = useCallback(async () => {
-        await login({ type: "get", access_token: params_variables?.access_token, refresh_token: params_variables?.refresh_token, params: { access_token: params_variables?.access_token } })
-            .then((res) => {
-                const { user } = res;
-                const status = user.status;
-
-                if (status === "DELETED") return showToast({ message: "This account has been deleted", type: "error" });
-
-                if (user.type !== "SHOPBUILDER") return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
-
-                if (!isPlansPage) {
-                    const { href, dashboard } = navigating_user_based_on_status(status, res);
-                    dashboard ? shopNavigate(href) : navigate(href);
-                }
+        try {
+            const res = await login({
+                type: "get",
+                access_token: paramsVariables?.access_token,
+                refresh_token: paramsVariables?.refresh_token,
+                params: { access_token: paramsVariables?.access_token }
             })
-            .catch((err) => {
-                showToast({ message: err.message, type: "error" });
-            })
-            .finally(() => {
-                signInModal.onClose();
-            });
-    }, []);
+            const { user } = res
+            const status = user.status
+
+            if (status === "DELETED")
+                return showToast({
+                    message: "This account has been deleted",
+                    type: "error"
+                })
+
+            if (user.type !== "SHOPBUILDER")
+                return showToast({
+                    message:
+                        "This account is unable to log in. Please check your credentials.",
+                    type: "error"
+                })
+
+            if (!isPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, res)
+                dashboard ? shopNavigate(href) : navigate(href)
+            }
+        } catch (err) {
+            showToast({ message: err.message, type: "error" })
+        } finally {
+            signInModal.onClose()
+        }
+    }, [login, paramsVariables, showToast, isPlansPage, navigate, shopNavigate, signInModal])
 
     useEffect(() => {
-        if (params_variables?.access_token && params_variables?.refresh_token && searchParams.get("modal") === "purchase" && params_variables?.subscription_id && !loading) {
-            const foundPlan = plans.find((plan) => plan._id === params_variables?.subscription_id);
+        if (
+            paramsVariables?.access_token &&
+            paramsVariables?.refresh_token &&
+            searchParams.get("modal") === "purchase" &&
+            paramsVariables?.subscription_id &&
+            !loading
+        ) {
+            const foundPlan = plans.find((p) => p._id === paramsVariables?.subscription_id)
             if (foundPlan) {
-                setSelectedPlan(foundPlan);
-                !loading && loginWithGoogle();
-                setIsLoggedInViaGoogle(true);
-                purchaseModal.onOpen();
+                updateSelectedPlan(foundPlan)
+                setIsLoggedInViaGoogle(true)
+                loginWithGoogle()
+                purchaseModal.onOpen()
             }
         }
-    }, []);
+    }, [paramsVariables, searchParams, loading, loginWithGoogle, plans, purchaseModal])
 
     return (
         <>
-            <Flex direction={"column"} gap={4} borderRadius={8} padding={4} bgColor={"#262626"}>
-                <Flex justifyContent={"center"}>
-                    <PlanHeading planTitle={type} fontSize={24} iconSize={24} />
+            <Flex
+                position={"relative"}
+                direction="column"
+                gap={9}
+                borderRadius={8}
+                padding={{ lg: 9, base: 7 }}
+                bg="#222222"
+                {...(isPopular && {
+                    border: "2px solid #2BCFA1",
+                    backgroundImage: "url('/assets/images/popular-plan-bg.png')",
+                    backgroundPosition: "top right",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: { base: "auto 60%", xl: "auto 35%" }
+                })}
+            >
+                {isPopular && <PopularPlanBadge />}
+
+                <Flex direction="column" gap={4}>
+                    <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
+                        {icon}
+                    </Center>
+                    <Box>
+                        <AppTypography fontSize={20} fontWeight={700} color="white">{title}</AppTypography>
+                        <AppTypography minHeight={{ base: "48px", xl: "72px" }} fontSize={16} color="#B1B1B1">
+                            {description}
+                        </AppTypography>
+                    </Box>
                 </Flex>
 
-                <AppTypography textAlign={"center"} fontSize={24} fontWeight={600} color={isStarter ? "#2BCFA1" : "#9C4EFF"}>
-                    {isNaN(Number(price)) ? capitalizeFirstLetter(selectedPlan?.price) : `$${price}/mo`}
-                </AppTypography>
+                <PlanPrice plan={plan} />
 
-                {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
+                <BasicButton isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</BasicButton>
 
-                <AppTypography fontSize={12} fontWeight={600} color={"white"}>
-                    {isStarter ? (
-                        "Included in all plans:"
-                    ) : (
-                        <>
-                            Everything in{" "}
-                            <Box as="span" color={"primary"} fontWeight={600}>
-                                {prevPlanTitle}
-                            </Box>
-                            , plus:
-                        </>
-                    )}
-                </AppTypography>
+                <Divider borderColor="#3C3C3C" />
 
-                <Flex direction={"column"} gap={2}>
-                    {
-                        features.map(featureGroup => {
-                            if (featureGroup.value.every(feature => !feature.value)) return null
-                            return <Flex key={featureGroup.key} direction={"column"} gap={2}>
-                                {/* <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography> */}
-                                {
-                                    featureGroup.value.filter(feature => feature.value).map(feature =>
-                                        <Flex key={feature.key} alignItems={"start"} gap={2}>
+                <Flex direction="column" gap={4}>
+                    <AppTypography fontSize={14} color="#B1B1B1">
+                        {isStarter ? "Included in all plans:" : `Includes everything in ${prevPlanTitle}, plus:`}
+                    </AppTypography>
+
+                    {features.map((featureGroup) =>
+                        featureGroup.value.some((feature) => feature.value) ?
+                            <Fragment key={featureGroup.key}>
+                                {featureGroup.value
+                                    .filter((feature) => feature.value)
+                                    .map((feature) => (
+                                        <Flex key={feature.key} gap={2}>
                                             <AppIcons.Tick style={{ flexShrink: 0 }} />
-                                            <AppTypography color={"white"}>
+                                            <AppTypography fontSize={14} color="white">
                                                 {`${feature.title} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
                                             </AppTypography>
                                         </Flex>
-                                    )
-                                }
-                            </Flex>
-                        })
-                    }
+                                    ))}
+                            </Fragment> :
+                            null
+                    )}
                 </Flex>
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} isOpen={purchaseModal.isOpen} close={() => purchaseModal.onClose()} isFromPlansPage={isPlansPage} isLoggedInViaGoogle={isLoggedInViaGoogle} hasProfile={profile} />}
-            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
+            {purchaseModal.isOpen && (
+                <SubscriptionPlanCheckoutModal
+                    isOpen={purchaseModal.isOpen}
+                    close={purchaseModal.onClose}
+                    isFromPlansPage={isPlansPage}
+                    isLoggedInViaGoogle={isLoggedInViaGoogle}
+                    hasProfile={profile}
+                />
+            )}
+            {signInModal.isOpen && (
+                <AuthModal
+                    show={signInModal.isOpen}
+                    close={signInModal.onClose}
+                    type={MODAL_TYPE.SIGNUP}
+                    isFromPlansPage={isPlansPage}
+                    openPlanPurchaseModal={purchaseModal.onOpen}
+                />
+            )}
         </>
-    );
-};
+    )
+}
 
-export default PlanCard;
+export default PlanCard

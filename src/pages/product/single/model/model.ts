@@ -30,6 +30,7 @@ const ProductSingleModel = ({
                         return {
                             value: option.value,
                             variantName: option?.custom_title || option?.variantName,
+                            isCustom: option?.isCustom,
                             variantID: property_to_id?.[option?.variantName?.toLowerCase()] || undefined,
                             caption: option.caption
                         }

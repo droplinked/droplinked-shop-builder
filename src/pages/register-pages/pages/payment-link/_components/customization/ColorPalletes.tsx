@@ -27,24 +27,25 @@ export default function ColorPalletes() {
 
 function ColorPalleteRadio({ ...props }) {
     const { theme, ...radioProps } = props
-    const { state: { isChecked }, getInputProps, getRadioProps, htmlProps, getLabelProps } = useRadio(radioProps)
+    const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
-        <FormLabel margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
+        <FormLabel
+            margin={0}
+            padding={1}
+            border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
+            borderRadius={16}
+            cursor='pointer'
+            {...htmlProps}
+            {...getLabelProps()}
+        >
             <input {...getInputProps()} hidden />
             <Box
-                padding={1}
-                border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
-                borderRadius={16}
-                {...getRadioProps()}
-            >
-                <Box
-                    width={14}
-                    height={4}
-                    borderRadius={"inherit"}
-                    bgColor={theme.bgColor}
-                />
-            </Box>
+                width={14}
+                height={4}
+                borderRadius={"inherit"}
+                bgColor={theme.bgColor}
+            />
         </FormLabel>
     )
 }

@@ -6,6 +6,7 @@ import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { Collection } from 'lib/apis/collection/interfaces'
 import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
+import { useUpdateShopLegalUsage } from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -17,7 +18,11 @@ import ProductReorderModal from './parts/productReorderModal/ProductReorderModal
 
 function Products() {
     const { isFetching: isFetchingCollections, error, data: collectionsData } = useCollections()
-    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
+    const updateShopLegalUsage = useUpdateShopLegalUsage()
+    const { mutate, isLoading, data } = useMutation({
+        mutationFn: (params: IproductList) => productServices(params),
+        onSuccess: (data) => updateShopLegalUsage(data.data.data.legalUsage)
+    })
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
     const products = useMemo(() => data?.data?.data, [data])

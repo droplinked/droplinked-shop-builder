@@ -9,7 +9,7 @@ function TabularContent() {
     const [activeTab, setActiveTab] = useState(tabs[0])
     const contentMap: { [key: string]: { title: string, description: string } } = {
         "Inventory Management": {
-            title: "Manage Inventory On-chain",
+            title: "Manage Inventory Onchain",
             description: "Digitize and manage catalogues with blockchain-integrated tools",
         },
         "Custom Shipping": {

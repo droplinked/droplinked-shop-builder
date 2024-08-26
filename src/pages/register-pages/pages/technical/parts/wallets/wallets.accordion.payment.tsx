@@ -1,13 +1,13 @@
 import { Box, Flex, HStack, useOutsideClick, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import AppSwitch from "components/common/swich";
+import AppTypography from "components/common/typography/AppTypography";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useGetPermissionValue } from "lib/stores/app/appStore";
 import technicalContext from "pages/register-pages/pages/technical/context";
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { canActivateNewPaymentMethod } from "./wallets.helpers";
-import AppTypography from "components/common/typography/AppTypography";
-import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 
 const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
     const getPermissionValue = useGetPermissionValue();
@@ -100,7 +100,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
             </Flex>
             <FieldLabel label="Payments" textProps={{ fontSize: "14px", color: "#C2C2C2", fontWeight: "600" }} />
 
-            <HStack align={"stretch"} width={"full"} justify={"flex-start"}>
+            <HStack align={"stretch"} width={"full"} justify={"flex-start"} flexWrap={"wrap"}>
                 {chain.tokens?.length &&
                     chain?.tokens?.map((token, index) => (
                         <Flex key={index} bg={"mainLayer"} rounded={"8px"} width={"auto"} gap={4} padding={"16px 16px"} alignItems={"center"} justifyContent="space-between">

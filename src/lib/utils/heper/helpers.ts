@@ -244,4 +244,4 @@ export const UTCConverter = (utcTimeString: string): string => {
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 
     return `${formattedDate} (Local time)`;
-};
+}

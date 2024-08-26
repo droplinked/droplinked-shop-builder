@@ -42,7 +42,7 @@ function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
                 <AppSwitch isChecked={showDetails} onChange={({ target: { checked } }) => handleSwitchChange(checked)} />
                 <VStack align='stretch' color="#C2C2C2" spacing={1}>
                     <AppTypography fontSize={14} fontWeight='bold'>Drop</AppTypography>
-                    <AppTypography fontSize={14}>Enable recording this digital good on-chain and select a network to drop it on.</AppTypography>
+                    <AppTypography fontSize={14}>Enable recording this digital good onchain and select a network to drop it on.</AppTypography>
                 </VStack>
             </Flex>
             {showDetails && (

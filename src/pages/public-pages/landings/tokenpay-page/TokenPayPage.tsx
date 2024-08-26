@@ -1,3 +1,6 @@
+import { useDisclosure } from "@chakra-ui/react"
+import AuthModal from "components/modals/auth-modal/AuthModal"
+import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 import React from "react"
 import AboveTheFoldSection from "../parts/above-the-fold/AboveTheFoldSection"
 import Layout from "../parts/layout/Layout"
@@ -6,9 +9,6 @@ import Details from "./parts/_components/Details"
 import Features from "./parts/features/Features"
 import Gallery from "./parts/gallery/Gallery"
 import PricingPlans from "./parts/pricing-plans/PricingPlans"
-import { useDisclosure } from "@chakra-ui/react"
-import AuthModal from "components/modals/auth-modal/AuthModal"
-import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 
 function TokenPayPage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,7 +21,7 @@ function TokenPayPage() {
         CTAButtonText="Get Started"
         CTAButtonFunction={onOpen}
       />
-      <Details title="Crypto Commerce" description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful on-chain tools to elevate a tokens utility and projects success." />
+      <Details title="Crypto Commerce" description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful onchain tools to elevate a tokens utility and projects success." />
       <Features />
       <Gallery />
       <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />

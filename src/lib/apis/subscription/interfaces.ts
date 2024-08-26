@@ -11,12 +11,12 @@ export interface SubOptionId {
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: string;
+    price: any[],
     description: string;
     subOptionIds: SubOptionId[]
 }
 
-export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop"
+export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop" | "event"
 
 export interface LegalUsage {
     all: string;
@@ -48,13 +48,43 @@ export interface ShopSubscriptionData {
 }
 
 export interface SubscriptionCheckout {
-    amount: number;
-    subId: string
+    month: number;
+    subId: string;
+    recurring: boolean
 }
 
-export interface SubscriptionPurchaseResult {
+export interface SubscriptionCryptoCheckout {
+    chain: string;
+    token: string;
+    checkoutData: SubscriptionCheckout
+}
+
+export interface SubscriptionStripePaymentResult {
     amount: number
     transactionId: string;
     clientSecret: string;
     paymentIntentId: string;
+}
+
+interface PaymentMethodToken {
+    icon: string;
+    isNative: boolean;
+    isCustom: boolean;
+    name: string;
+    type: string;
+    _id: string;
+}
+
+export interface SubscriptionPlanPaymentMethod {
+    _id: string;
+    type: string;
+    tokens?: PaymentMethodToken[]
+}
+
+export interface We3TransactionData {
+    deploy_hash: string;
+    cryptoAmount?: number;
+    subscriptionId: string;
+    recurring: boolean;
+    walletAddress: string;
 }

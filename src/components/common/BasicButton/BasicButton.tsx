@@ -1,6 +1,6 @@
 import { Box, Button, ButtonProps, Spinner, StyleProps } from "@chakra-ui/react";
 import React, { useMemo } from "react";
-import AppTypography from "../typography/AppTypography";
+import AppTypography, { IAppTypography } from "../typography/AppTypography";
 import BasicButtonModel, { sizesButton } from "./model/BasicButtonModel";
 import { BasicButtonStylesTypes } from "./model/modules/styles";
 
@@ -8,9 +8,10 @@ export interface IBasicButton extends ButtonProps {
   children?: any
   sizes?: sizesButton
   variant?: BasicButtonStylesTypes
+  buttonTextProps?: IAppTypography
 }
 export default function BasicButton(props: IBasicButton) {
-  const { children, sizes, variant } = props
+  const { children, sizes, variant, buttonTextProps } = props
   const { sizesHandel, stylesHandel } = BasicButtonModel
 
   const style = useMemo((): StyleProps => {
@@ -53,7 +54,7 @@ export default function BasicButton(props: IBasicButton) {
           />
         </>
       ) : null}
-      <Box {...props.isLoading && { color: "transparent" }}><AppTypography fontSize={sizesHandel(sizes).text} fontWeight="600">{children}</AppTypography></Box>
+      <Box {...props.isLoading && { color: "transparent" }}><AppTypography fontSize={sizesHandel(sizes).text} fontWeight="600" {...buttonTextProps}>{children}</AppTypography></Box>
     </Button>
   );
 }

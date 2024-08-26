@@ -14,6 +14,7 @@ import ButtonsProductClass from 'pages/product/single/parts/buttons/model/Button
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
 import PaymentLinkModal from '../payment-link/PaymentLinkModal';
+import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
 
@@ -32,6 +33,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const appWeb3 = useAppWeb3()
     const { user: { wallets } } = useAppStore()
     const paymentLinkModal = useDisclosure()
+    const productOrdersModal = useDisclosure()
 
     const publish = useCallback(async () => {
         try {
@@ -83,13 +85,17 @@ function ControlsListProduct({ productID, product, fetch }) {
                 onClick: detailModal.onOpen
             },
             {
+                caption: "Orders",
+                onClick: () => productOrdersModal.onOpen()
+            },
+            {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
             },
             {
                 caption: "Get payment link",
                 onClick: () => paymentLinkModal.onOpen()
-            }
+            },
         ]
         if (product?.publish_status === "DRAFTED") list.push({
             caption: "Publish",
@@ -113,6 +119,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
             {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
+            {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
         </>
     )
 }

@@ -37,8 +37,8 @@ function FinancialAccounts() {
         <AppCard>
             <Flex direction='column' gap='24px'>
                 <Flex direction='column' gap='8px'>
-                    <AppTypography fontSize='18px' fontWeight='bold' color='#FFFFFF'>Financial Accounts</AppTypography>
-                    <AppTypography fontSize='14px' color='#C2C2C2'>Connect and Manage your online payment services or bank accounts.</AppTypography>
+                    <AppTypography fontSize='18px' fontWeight='bold' color='#fff'>Connect Accounts</AppTypography>
+                    <AppTypography fontSize='14px' color='#C2C2C2'>Manage payment preferences associated with payouts.</AppTypography>
                 </Flex>
                 {isError ?
                     <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access shop data at the moment. Give it another try soon?</AppTypography> :

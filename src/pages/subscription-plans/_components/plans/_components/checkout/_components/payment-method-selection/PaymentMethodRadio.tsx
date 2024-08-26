@@ -1,0 +1,53 @@
+import { Box, Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import React from 'react'
+
+export default function PaymentMethodRadio({ ...props }) {
+    const { paymentMethod: { type }, ...radioProps } = props
+    const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
+
+    return (
+        <FormLabel
+            margin={0}
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
+            borderRadius={8}
+            padding={4}
+            bg={isChecked ? "#2BCFA11A" : "transparent"}
+            cursor='pointer'
+            {...htmlProps}
+            {...getLabelProps()}
+            sx={{ "*": { transition: "inherit" } }}
+        >
+            <input {...getInputProps()} hidden />
+            <Flex align={"center"} gap={3}>
+                <Circle size={5} border={`1.5px solid ${isChecked ? "#2BCFA1" : "#fff"}`} >
+                    <Circle size={2.5} bg={"#2BCFA1"} opacity={isChecked ? 1 : 0} />
+                </Circle>
+                {type === "STRIPE" ?
+                    <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{capitalizeFirstLetter(type)}</AppTypography> :
+                    <Flex alignItems={"center"} sx={isChecked ? { "svg path": { stroke: "#2BCFA1" } } : {}}>
+                        <AppIcons.Token />
+                        <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#2BCFA1" : "#fff"}>{capitalizeFirstLetter(type)}</AppTypography>
+                    </Flex>
+                }
+            </Flex>
+            {ChainIconMap[type]}
+        </FormLabel>
+    )
+}
+
+const ChainIconMap: Record<string, JSX.Element> = {
+    "STRIPE": <AppIcons.NewStripe />,
+    "LINEA": <AppIcons.BlueLinea />,
+    "BINANCE": <Box width={6} height={6}><AppIcons.Binance /></Box>,
+    "POLYGON": <AppIcons.NewPolygon />,
+    "BASE": <AppIcons.BlueBase />,
+    "SKALE": <Box width={6} height={6}><AppIcons.Skale /></Box>,
+    "REDBELLY": <AppIcons.NewRedbelly />,
+    "ETH": <AppIcons.ETH />
+}

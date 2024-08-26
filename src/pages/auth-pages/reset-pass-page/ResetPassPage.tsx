@@ -2,7 +2,7 @@ import { Box, Flex, VStack } from "@chakra-ui/react";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
-import ShowPassword from "components/modals/signup-modal/signup-producer/parts/showPassword/ShowPassword";
+import ShowPassword from "components/modals/signup-modal/ShowPassword";
 import { Form, Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
 import { IchangePasswordService } from "lib/apis/user/interfaces";

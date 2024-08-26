@@ -13,7 +13,7 @@ import { useCheckPermission } from "lib/stores/app/appStore";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useEffect, useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import * as Yup from "yup";
 import { RuleTypes } from "./RuleModel";
 import ruleModelContext from "./context";
@@ -21,8 +21,9 @@ import RulesetAddress from "./parts/address/RulesetAddress";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import RulesetType from "./parts/type/RulesetType";
 
-// this modal use for add new rule or edit exsiting rule
-const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
+// This modal is used to add a new rule or edit an existing rule
+const RuleModal = ({ show, collectionId, close, ruleId }) => {
+    const queryClient = useQueryClient()
     const checkPermissionAndShowToast = useCheckPermission()
     const [State, setState] = useState(null);
     const getRule = useMutation((params: IgetRuleService) => getRuleService(params));
@@ -77,7 +78,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 if (!checkPermissionAndShowToast("rulesets")) return
                 await createRule.mutateAsync(requestBody)
             }
-            update();
+            queryClient.invalidateQueries({ queryKey: ['collectionList'] })
             close();
             showToast({ message: AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], type: "success" });
         } catch (error) {
@@ -98,136 +99,137 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     if (!show) return null;
 
     return (
-        <AppModal open={show} isCentered={false} close={close} title="Create Ruleset" size="2xl">
-            {false ? (
-                <LoadingComponent />
-            ) : (
-                <Formik
-                    initialValues={{
-                        tag: State ? (State?.rules ? State?.rules[0].description : "") : "",
-                        weburl: State ? State?.webUrl : "",
-                        chain: State ? State?.type : "ETH",
-                        ruleType: State ? State?.ruleType : "NFT",
-                        rule: State ? (State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT) : RuleTypes.GATED,
-                        discount: State ? (State?.rules ? State?.rules[0].discountPercentage : 0) : 0,
-                        address: State ? (State?.rules ? State?.rules[0].addresses : []) : [],
-                        requirement: State ? (State?.rules ? State?.rules[0].nftsCount : "") : "",
-                    }}
-                    enableReinitialize
-                    validateOnChange={false}
-                    validationSchema={formSchema}
-                    onSubmit={submit}
-                >
-                    {({ errors, values, setFieldValue, submitForm }) => (
-                        <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
-                            <VStack width={"100%"} align="stretch" spacing={8}>
-                                <VStack align="stretch" spacing={1}>
+        <AppModal open={show} isCentered={false} close={close} title={`${ruleId ? "Edit" : "Create"} Ruleset`} size="2xl">
+            {
+                false ?
+                    <LoadingComponent />
+                    :
+                    <Formik
+                        initialValues={{
+                            tag: State?.rules?.[0]?.description || "",
+                            weburl: State?.webUrl || "",
+                            chain: State?.type || "ETH",
+                            ruleType: State?.ruleType || "NFT",
+                            rule: State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT,
+                            discount: State?.rules?.[0]?.discountPercentage || 0,
+                            address: State?.rules?.[0]?.addresses || [],
+                            requirement: State?.rules?.[0]?.nftsCount || ""
+                        }}
+                        enableReinitialize
+                        validateOnChange={false}
+                        validationSchema={formSchema}
+                        onSubmit={submit}
+                    >
+                        {({ errors, values, setFieldValue, submitForm }) => (
+                            <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
+                                <VStack width={"100%"} align="stretch" spacing={8}>
                                     <VStack align="stretch" spacing={1}>
-                                        <FieldLabel label="NFT Gating Message" isRequired />
-                                        <AppTypography fontSize="12px" color="#9C9C9C">
-                                            Enter a message for the NFT holders that will be shown in the gating modal.
-                                        </AppTypography>
+                                        <VStack align="stretch" spacing={1}>
+                                            <FieldLabel label="NFT Gating Message" isRequired />
+                                            <AppTypography fontSize="12px" color="#9C9C9C">
+                                                Enter a message for the NFT holders that will be shown in the gating modal.
+                                            </AppTypography>
+                                        </VStack>
+                                        <TextboxRule element={"tag"} placeholder="e.g., Exclusive offer unlocked by the ownership of specific NFT" />
                                     </VStack>
-                                    <TextboxRule element={"tag"} placeholder="e.g., Exclusive offer unlocked by the ownership of specific NFT" />
-                                </VStack>
-                                <Box>
-                                    <RulesetType />
-                                </Box>
-                                <VStack align="stretch" spacing={1}>
-                                    <VStack align="stretch" spacing={1}>
-                                        <FieldLabel label="NFT Info URL" isRequired />
-                                        <AppTypography fontSize="12px" color="#9C9C9C">
-                                            Add the link to provide more information about the NFT or marketplace.
-                                        </AppTypography>
-                                    </VStack>
-                                    <TextboxRule element={"weburl"} placeholder="e.g., https://www.opensea.com" />
-                                </VStack>
-                                <VStack align="stretch" spacing={1}>
-                                    <VStack align="stretch" spacing={1}>
-                                        <FieldLabel label="Blockchain Network" isRequired />
-                                        <AppTypography fontSize="12px" color="#9C9C9C">
-                                            Select a blockchain network to validate the ownership of the Required NFTs.
-                                        </AppTypography>
-                                    </VStack>
-                                    <AppSelectBox
-                                        name={"chain"}
-                                        placeholder="Select chain"
-                                        onChange={(e) => {
-                                            setFieldValue("chain", e.target.value)
-                                            availableRuleTypes.mutate({ chain: e.target.value })
-                                        }}
-                                        items={
-                                            chains.data
-                                                ? chains.data?.data?.data.map((el) => {
-                                                    return {
-                                                        value: el,
-                                                        caption: capitalizeFirstLetter(el),
-                                                    };
-                                                })
-                                                : []
-                                        }
-                                        value={values["chain"]}
-                                        error={typeof errors["chain"] === "string" ? errors["chain"] : null}
-                                        loading={!getRule.isLoading && !chains.isLoading}
-                                        isRequired
-                                    />
-                                </VStack>
-                                <VStack align="stretch" spacing={1}>
-                                    <VStack align="stretch" spacing={1}>
-                                        <FieldLabel label="Ruleset Type" isRequired />
-                                        <AppTypography fontSize="12px" color="#9C9C9C">
-                                            Select a Ruleset type to validate the rules over them.
-                                        </AppTypography>
-                                    </VStack>
-                                    <AppSelectBox
-                                        name={"ruleType"}
-                                        placeholder="Select Rule Type"
-                                        onChange={(e) => setFieldValue("ruleType", e.target.value)}
-                                        items={
-                                            availableRuleTypes.data
-                                                ? availableRuleTypes.data?.data?.data.map((el) => {
-                                                    return {
-                                                        value: el,
-                                                        caption: capitalizeFirstLetter(el),
-                                                    };
-                                                })
-                                                : []
-                                        }
-                                        value={values["ruleType"]}
-                                        error={typeof errors["ruleType"] === "string" ? errors["ruleType"] : null}
-                                        loading={!getRule.isLoading && !chains.isLoading && !availableRuleTypes.isLoading}
-                                        isRequired
-                                    />
-                                </VStack>
-                                <Box>
-                                    <RulesetAddress />
-                                </Box>
-                                <VStack align="stretch" spacing={1}>
-                                    <VStack align="stretch" spacing={1}>
-                                        <FieldLabel label="Minimum NFT Required" isRequired />
-                                        <AppTypography fontSize="12px" color="#9C9C9C">
-                                            Specify the minimum amount of NFTs required to pass the ruleset.
-                                        </AppTypography>
-                                    </VStack>
-                                    <TextboxRule element={"requirement"} placeholder="e.g., 5" />
-                                </VStack>
-                                <HStack justifyContent={"space-between"}>
-                                    <Box width={"35%"}>
-                                        <BasicButton width={"100%"} onClick={close} variant="outline">
-                                            Cancel
-                                        </BasicButton>
+                                    <Box>
+                                        <RulesetType />
                                     </Box>
-                                    <Box width={"35%"}>
-                                        <BasicButton width={"100%"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
-                                            Save
-                                        </BasicButton>
+                                    <VStack align="stretch" spacing={1}>
+                                        <VStack align="stretch" spacing={1}>
+                                            <FieldLabel label="NFT Info URL" isRequired />
+                                            <AppTypography fontSize="12px" color="#9C9C9C">
+                                                Add the link to provide more information about the NFT or marketplace.
+                                            </AppTypography>
+                                        </VStack>
+                                        <TextboxRule element={"weburl"} placeholder="e.g., https://www.opensea.com" />
+                                    </VStack>
+                                    <VStack align="stretch" spacing={1}>
+                                        <VStack align="stretch" spacing={1}>
+                                            <FieldLabel label="Blockchain Network" isRequired />
+                                            <AppTypography fontSize="12px" color="#9C9C9C">
+                                                Select a blockchain network to validate the ownership of the Required NFTs.
+                                            </AppTypography>
+                                        </VStack>
+                                        <AppSelectBox
+                                            name={"chain"}
+                                            placeholder="Select chain"
+                                            onChange={(e) => {
+                                                setFieldValue("chain", e.target.value)
+                                                availableRuleTypes.mutate({ chain: e.target.value })
+                                            }}
+                                            items={
+                                                chains.data
+                                                    ? chains.data?.data?.data.map((el) => {
+                                                        return {
+                                                            value: el,
+                                                            caption: capitalizeFirstLetter(el),
+                                                        };
+                                                    })
+                                                    : []
+                                            }
+                                            value={values["chain"]}
+                                            error={typeof errors["chain"] === "string" ? errors["chain"] : null}
+                                            loading={!getRule.isLoading && !chains.isLoading}
+                                            isRequired
+                                        />
+                                    </VStack>
+                                    <VStack align="stretch" spacing={1}>
+                                        <VStack align="stretch" spacing={1}>
+                                            <FieldLabel label="Ruleset Type" isRequired />
+                                            <AppTypography fontSize="12px" color="#9C9C9C">
+                                                Select a Ruleset type to validate the rules over them.
+                                            </AppTypography>
+                                        </VStack>
+                                        <AppSelectBox
+                                            name={"ruleType"}
+                                            placeholder="Select Rule Type"
+                                            onChange={(e) => setFieldValue("ruleType", e.target.value)}
+                                            items={
+                                                availableRuleTypes.data
+                                                    ? availableRuleTypes.data?.data?.data.map((el) => {
+                                                        return {
+                                                            value: el,
+                                                            caption: capitalizeFirstLetter(el),
+                                                        };
+                                                    })
+                                                    : []
+                                            }
+                                            value={values["ruleType"]}
+                                            error={typeof errors["ruleType"] === "string" ? errors["ruleType"] : null}
+                                            loading={!getRule.isLoading && !chains.isLoading && !availableRuleTypes.isLoading}
+                                            isRequired
+                                        />
+                                    </VStack>
+                                    <Box>
+                                        <RulesetAddress />
                                     </Box>
-                                </HStack>
-                            </VStack>
-                        </ruleModelContext.Provider>
-                    )}
-                </Formik>
-            )}
+                                    <VStack align="stretch" spacing={1}>
+                                        <VStack align="stretch" spacing={1}>
+                                            <FieldLabel label="Minimum NFT Required" isRequired />
+                                            <AppTypography fontSize="12px" color="#9C9C9C">
+                                                Specify the minimum amount of NFTs required to pass the ruleset.
+                                            </AppTypography>
+                                        </VStack>
+                                        <TextboxRule element={"requirement"} placeholder="e.g., 5" />
+                                    </VStack>
+                                    <HStack justifyContent={"space-between"}>
+                                        <Box width={"35%"}>
+                                            <BasicButton width={"100%"} onClick={close} variant="outline">
+                                                Cancel
+                                            </BasicButton>
+                                        </Box>
+                                        <Box width={"35%"}>
+                                            <BasicButton width={"100%"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
+                                                Save
+                                            </BasicButton>
+                                        </Box>
+                                    </HStack>
+                                </VStack>
+                            </ruleModelContext.Provider>
+                        )}
+                    </Formik>
+            }
         </AppModal>
     )
 }
