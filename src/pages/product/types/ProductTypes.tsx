@@ -38,10 +38,12 @@ function ProductTypes() {
   const checkApiKey = async () => {
     try {
       const resChecking = await checkEventApiKey({ key: apiKey })
+      console.log(resChecking)
       if (resChecking) {
         setIsLoginEventAccaount(true)
         await creatEventApiKey({ key: apiKey })
       }
+      return resChecking
     } catch (error) {
       showToast({ message: error.message, type: 'error' })
     }
@@ -56,10 +58,6 @@ function ProductTypes() {
       showToast({ message: error.message, type: 'error' })
     }
   }
-
-  useEffect(() => {
-    apiKey ? checkApiKey() : isEventAccountConnect()
-  }, [apiKey])
 
   const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
@@ -94,10 +92,15 @@ function ProductTypes() {
     }
   ]
 
-  const navigateToProductForm = (productType: ProductType) => {
+  const navigateToProductForm = async (productType: ProductType) => {
+    let eventRoute;
+    if (productType?.type === "Event") {
+      const isEventAccountConnected = apiKey ? await checkApiKey() : await isEventAccountConnect()
+      eventRoute = isEventAccountConnected ? shopRoute + "/products/events-list" : shopRoute + "/products/connect-event-account"
+    }
     const legalUsage = shopLegalUsage.find(obj => obj.key === productType.legalUsageKey)
     if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
-      return navigate(productType.route)
+      return productType?.type === "Event" ? navigate(eventRoute) : navigate(productType.route)
     }
     showToast({ message: AppErrors.permission.product_creation_limit_reached(productType.legalUsageKey), type: "error" })
   }
