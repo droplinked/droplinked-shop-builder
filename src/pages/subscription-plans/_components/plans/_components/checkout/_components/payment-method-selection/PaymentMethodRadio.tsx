@@ -48,5 +48,6 @@ const ChainIconMap: Record<string, JSX.Element> = {
     "POLYGON": <AppIcons.NewPolygon />,
     "BASE": <AppIcons.BlueBase />,
     "SKALE": <Box width={6} height={6}><AppIcons.Skale /></Box>,
-    "REDBELLY": <AppIcons.NewRedbelly />
+    "REDBELLY": <AppIcons.NewRedbelly />,
+    "ETH": <AppIcons.ETH />
 }
