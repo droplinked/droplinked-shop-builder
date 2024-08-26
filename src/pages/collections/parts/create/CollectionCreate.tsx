@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, Image, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
+import ErrorLabel from 'components/common/form/errorLabel/errorLabel';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal from 'components/common/modal/AppModal';
 import AppUploadImage from 'components/common/upload/image/AppUploadImage';
@@ -57,9 +58,9 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
     )
 
     const formSchema = Yup.object().shape({
-        title: Yup.string().required('Name is required'),
+        title: Yup.string().required('Please provide a name for the collection'),
         description: Yup.string(),
-        image: Yup.string()
+        image: Yup.string().required('Please provide an image for the collection')
     })
 
     return (
@@ -98,8 +99,9 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                                 />
                                 <Flex width="100%">
                                     {!values.image ?
-                                        <Flex direction="column" gap={3} width="100%">
+                                        <Flex width={"100%"} direction="column" gap={3}>
                                             <AppUploadImage onChange={(image: string) => setFieldValue('image', image)} values={values.image} mode="single" size="original" />
+                                            {errors.image && <ErrorLabel message={errors.image} />}
                                         </Flex>
                                         :
                                         <Box position="relative">
@@ -112,16 +114,10 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                                 </Flex>
                             </Flex>
                             <HStack justifyContent="space-between">
-                                <Box>
-                                    <BasicButton variant="outline" onClick={close}>
-                                        Cancel
-                                    </BasicButton>
-                                </Box>
-                                <Box>
-                                    <BasicButton type="submit" isLoading={createService.isLoading || updateService.isLoading}>
-                                        {collection ? 'Edit' : 'Create'}
-                                    </BasicButton>
-                                </Box>
+                                <BasicButton variant="outline" onClick={close}>Cancel</BasicButton>
+                                <BasicButton type="submit" isLoading={createService.isLoading || updateService.isLoading}>
+                                    {collection ? 'Edit' : 'Create'}
+                                </BasicButton>
                             </HStack>
                         </VStack>
                     </Form>
