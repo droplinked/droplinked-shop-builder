@@ -60,6 +60,7 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
             onClose={close}
             isOpen={isOpen}
             currentStep={modalData.step}
+            isFromPlansPage={isFromPlansPage}
         >
             {renderContent()}
         </CheckoutModalTemplate>

@@ -1,4 +1,5 @@
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import React, { PropsWithChildren } from 'react';
 import { ModalStep } from '../types/interfaces';
 
@@ -6,15 +7,23 @@ interface Props extends PropsWithChildren {
     isOpen: boolean;
     onClose: () => void;
     currentStep: ModalStep;
+    isFromPlansPage: boolean;
 }
 
-function CheckoutModalTemplate({ isOpen, onClose, currentStep, children }: Props) {
+function CheckoutModalTemplate({ isOpen, onClose, currentStep, children, isFromPlansPage }: Props) {
+    const { logoutUser } = useProfile()
     const isCloseable = !["FailedPayment", "SuccessfulPayment"].includes(currentStep)
+
+    function closeModal() {
+        if (!isCloseable) return
+        if (isFromPlansPage && isCloseable) logoutUser()
+        onClose()
+    }
 
     return (
         <Modal
             isOpen={isOpen}
-            onClose={onClose}
+            onClose={closeModal}
             size={"2xl"}
             closeOnOverlayClick={isCloseable}
             closeOnEsc={isCloseable}
