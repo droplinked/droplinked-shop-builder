@@ -107,7 +107,7 @@ const web3Model = {
 									`Getting permission failed, reason: ${req.data}`
 								);
 								throw new Error(
-									'Permission denied'
+									"Permission denied, make sure you've connected your skale wallet"
 								);
 							}
 						}
@@ -140,7 +140,7 @@ const web3Model = {
 								`Getting permission failed, reason: ${req.data}`
 							);
 							throw new Error(
-								'Permission denied'
+								"Permission denied, make sure you've connected your skale wallet"
 							);
 						}
 					}
