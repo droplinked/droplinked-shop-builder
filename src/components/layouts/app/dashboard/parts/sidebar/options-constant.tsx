@@ -11,5 +11,6 @@ export const OPTIONS = [
     { icon: <AppIcons.Blog />, label: 'Blogs', path: '/blogs' },
     { icon: <AppIcons.SubscriptionPlan />, label: 'Pricing Plans', path: '/plans' },
     { icon: <AppIcons.Gamification />, label: 'Rewards Panel', path: '/gamification' },
-    { icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info' },
+    { icon: <AppIcons.InvoiceManagement />, label: 'Invoice Management', path: '/invoice-management' },
+    { icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info' }
 ]

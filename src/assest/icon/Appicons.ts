@@ -12,6 +12,7 @@ import { ReactComponent as Bitcoin } from "./bitcoin.svg";
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
 import { ReactComponent as BlackInformation } from './black-information.svg';
+import { ReactComponent as BlackPlus } from "./black-plus.svg";
 import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BlueBase } from "./blue-base.svg";
 import { ReactComponent as BlueLinea } from "./blue-linea.svg";
@@ -38,6 +39,7 @@ import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
+import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
@@ -71,6 +73,7 @@ import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
 import { ReactComponent as InstagramIcon } from "./instagram.svg";
 import { ReactComponent as InvisibleIcon } from "./invisible-icon.svg";
+import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
@@ -106,6 +109,7 @@ import { ReactComponent as Refresh } from "./refresh.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
 import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
+import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
 import { ReactComponent as Shirt } from "./shirt.svg";
@@ -293,7 +297,11 @@ const AppIcons = {
   BlueLinea,
   PaymentMethodSelection,
   StripePayment,
-  PopularPlanMedal
+  PopularPlanMedal,
+  InvoiceManagement,
+  BlackPlus,
+  Dots,
+  Search
 }
 
 export default AppIcons
