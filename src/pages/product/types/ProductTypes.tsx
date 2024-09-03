@@ -38,7 +38,6 @@ function ProductTypes() {
   const checkApiKey = async () => {
     try {
       const resChecking = await checkEventApiKey({ key: apiKey })
-      console.log(resChecking)
       if (resChecking) {
         setIsLoginEventAccaount(true)
         await creatEventApiKey({ key: apiKey })

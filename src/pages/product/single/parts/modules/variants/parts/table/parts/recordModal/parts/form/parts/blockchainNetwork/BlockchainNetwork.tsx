@@ -16,7 +16,9 @@ function BlockchainNetwork({ error, onChange, value }: Iprops) {
         queryKey: "supported_chains",
         cacheTime: 60 * 60 * 1000,
         refetchOnWindowFocus: false,
-        onSuccess: (data) => onChange(data.data.data[0])
+        onSuccess: (data) => {
+            !value && onChange(data.data.data[0])
+        }
     })
 
     return <AppSelectBox
