@@ -245,3 +245,8 @@ export const UTCConverter = (utcTimeString: string): string => {
 
     return `${formattedDate} (Local time)`;
 }
+
+export const formattedCurrency = (number: number) => new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+}).format(number)

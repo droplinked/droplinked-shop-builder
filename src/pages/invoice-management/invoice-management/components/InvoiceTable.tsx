@@ -1,8 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
+import { formattedCurrency } from 'lib/utils/heper/helpers'
 import Table from 'pages/invoice-management/components/Table'
 import React from 'react'
+import StatusBadge from './StatusBadge'
 
 function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
     const columns: ColumnDef<Invoice>[] = [
@@ -10,17 +12,17 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
         { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
         { accessorKey: 'created', header: 'Created', cell: info => info.getValue() },
         { accessorKey: 'due', header: 'Due date', cell: info => info.getValue() },
-        { accessorKey: 'amount', header: 'Amount', cell: info => info.getValue() },
-        { accessorKey: 'status', header: 'Status', cell: info => info.getValue() }
+        { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
+        { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 
-    const data = [
+    const data: Invoice[] = [
         {
             _id: 'INV-1001',
             client: 'Acme Corp',
             created: '2024-08-12',
             due: '2024-09-12',
-            amount: '$1,200.00',
+            amount: '1200',
             status: 'Paid',
         },
         {
@@ -28,7 +30,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
             client: 'Globex Inc.',
             created: '2024-08-15',
             due: '2024-09-15',
-            amount: '$2,450.50',
+            amount: '2450.50',
             status: 'Pending',
         },
         {
@@ -36,7 +38,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
             client: 'Soylent Corp',
             created: '2024-08-20',
             due: '2024-09-20',
-            amount: '$980.75',
+            amount: '980.75',
             status: 'Overdue',
         },
         {
@@ -44,7 +46,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
             client: 'Initech',
             created: '2024-08-25',
             due: '2024-09-25',
-            amount: '$3,150.00',
+            amount: '3150',
             status: 'Paid',
         },
         {
@@ -52,7 +54,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
             client: 'Umbrella Corp',
             created: '2024-08-30',
             due: '2024-09-30',
-            amount: '$4,700.25',
+            amount: '4700.25',
             status: 'Pending',
         }
     ]
