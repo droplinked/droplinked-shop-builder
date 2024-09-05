@@ -73,6 +73,7 @@ import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
 import { ReactComponent as InstagramIcon } from "./instagram.svg";
 import { ReactComponent as InvisibleIcon } from "./invisible-icon.svg";
+import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
@@ -301,7 +302,8 @@ const AppIcons = {
   InvoiceManagement,
   BlackPlus,
   Dots,
-  Search
+  Search,
+  InvoiceDiscount
 }
 
 export default AppIcons

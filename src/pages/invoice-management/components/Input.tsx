@@ -70,7 +70,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
 
     return (
         <InputGroup display="flex" flexDirection="column" gap={2}>
-            <FormLabel m={0} fontSize={14} fontWeight={500} color="white">
+            <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">
                 {label}
             </FormLabel>
             {!icon && !actionButton ?
