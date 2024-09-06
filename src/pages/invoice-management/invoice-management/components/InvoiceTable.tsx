@@ -1,12 +1,15 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import { formattedCurrency } from 'lib/utils/heper/helpers'
 import Table from 'pages/invoice-management/components/Table'
-import React from 'react'
+import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
+import React, { useState } from 'react'
 import StatusBadge from './StatusBadge'
 
 function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
+    const [invoiceId, setInvoiceId] = useState(null)
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
         { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
         { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
@@ -15,6 +18,11 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
         { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
+
+    const openDetailsModal = (invoice: Invoice) => {
+        setInvoiceId(invoice._id)
+        onOpen()
+    }
 
     const data: Invoice[] = [
         {
@@ -62,12 +70,17 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
     const renderActions = (row: Invoice) => (
         <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
             <button onClick={() => { }}><AppIcons.Share /></button>
-            <button onClick={() => { }}><AppIcons.Eye /></button>
+            <button onClick={() => openDetailsModal(row)}><AppIcons.Eye /></button>
             <button onClick={() => { }}><AppIcons.Dots /></button>
         </Flex>
     )
 
-    return <Table columns={columns} data={data} renderActions={renderActions} />
+    return (
+        <>
+            <Table columns={columns} data={data} renderActions={renderActions} />
+            {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceId} />}
+        </>
+    )
 }
 
 export default InvoiceTable

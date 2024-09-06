@@ -28,7 +28,7 @@ import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as Coins } from "./coins.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
-import { ReactComponent as CopyIcon } from "./copy.svg";
+import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
@@ -73,6 +73,7 @@ import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
 import { ReactComponent as InstagramIcon } from "./instagram.svg";
 import { ReactComponent as InvisibleIcon } from "./invisible-icon.svg";
+import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as Linea } from "./linea.svg";
@@ -190,7 +191,6 @@ const AppIcons = {
   InfoIcon,
   ManageIcon,
   ActiveIcon,
-  CopyIcon,
   ArrowDown,
   Close,
   Stacks,
@@ -303,7 +303,9 @@ const AppIcons = {
   BlackPlus,
   Dots,
   Search,
-  InvoiceDiscount
+  InvoiceDiscount,
+  InvoiceCreated,
+  Copy
 }
 
 export default AppIcons
