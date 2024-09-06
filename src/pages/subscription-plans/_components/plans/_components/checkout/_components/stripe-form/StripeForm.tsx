@@ -32,7 +32,7 @@ function StripeForm({ setplanPurchaseModalStep }: Props) {
 
     return (
         <>
-            <ModalBody paddingBlock={0}>
+            <ModalBody>
                 <PaymentElement onChange={(e) => setFormCompleted(e.complete)} />
             </ModalBody>
 

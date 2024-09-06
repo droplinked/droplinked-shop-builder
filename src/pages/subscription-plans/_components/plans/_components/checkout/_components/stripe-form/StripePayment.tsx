@@ -2,11 +2,11 @@ import { ModalHeader } from '@chakra-ui/react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import AppIcons from 'assest/icon/Appicons';
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { appDevelopment } from 'lib/utils/app/variable';
 import React from 'react';
 import { ModalStep } from '../../types/interfaces';
-import PurchaseStepInformation from '../PurchaseStepInformation';
 import StripeForm from './StripeForm';
 
 const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`)
@@ -28,8 +28,8 @@ function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPl
 
     return (
         <>
-            <ModalHeader paddingBlock={0}>
-                <PurchaseStepInformation
+            <ModalHeader>
+                <ModalHeaderData
                     icon={<AppIcons.StripePayment />}
                     title='Credit card information'
                     description={"Choose a credit card on file or add a new one."}
