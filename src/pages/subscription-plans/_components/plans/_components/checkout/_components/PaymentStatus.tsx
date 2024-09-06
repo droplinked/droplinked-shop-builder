@@ -45,14 +45,10 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
 
     return (
         <>
-            <ModalBody
-                display={"flex"}
-                flexDirection={"column"}
-                paddingTop={{ lg: 12, md: 8, base: 4 }}
-            >
+            <ModalBody display={"flex"} flexDirection={"column"}>
                 <AppImage
                     width={{ xl: "349px", md: "249px", base: "100%" }}
-                    height={{ xl: "326px", md: "226px", base: "auto" }}
+                    height={{ xl: "326px", md: "236px", base: "auto" }}
                     alignSelf={"center"}
                     src={imageSrc}
                     objectFit={"cover"}

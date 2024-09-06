@@ -8,12 +8,17 @@ interface Props {
     description: string;
 }
 
-function PurchaseStepInformation({ icon, title, description }: Props) {
+function ModalHeaderData({ icon, title, description }: Props) {
     return (
         <>
             <Flex justifyContent={"space-between"}>
                 {icon}
-                <ModalCloseButton width={"fit-content"} height={"fit-content"} position={"relative"} color={"white"} />
+                <ModalCloseButton
+                    width={"fit-content"}
+                    height={"fit-content"}
+                    position={"relative"}
+                    color={"white"}
+                />
             </Flex>
             <AppTypography mt={6} fontSize={24} fontWeight={700} color={"white"}>{title}</AppTypography>
             <AppTypography mt={2} fontSize={16} color={"white"}>{description}</AppTypography>
@@ -21,4 +26,4 @@ function PurchaseStepInformation({ icon, title, description }: Props) {
     )
 }
 
-export default PurchaseStepInformation
+export default ModalHeaderData
