@@ -2,13 +2,13 @@ import { Center, Flex, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/re
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
 import PlanPrice from '../../plan-price/PlanPrice'
 import { ModalStep } from '../types/interfaces'
-import PurchaseStepInformation from './PurchaseStepInformation'
 
 interface Props {
     setplanPurchaseModalStep: (step: ModalStep) => void;
@@ -30,14 +30,14 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
 
     return (
         <>
-            <ModalHeader paddingBlock={0}>
-                <PurchaseStepInformation
+            <ModalHeader>
+                <ModalHeaderData
                     icon={<AppIcons.ConfirmPlan />}
                     title='Confirm subscription'
                     description={`Upgrade to the ${title} Plan for $${selectedPlanPrice} per year to access advanced features.`}
                 />
             </ModalHeader>
-            <ModalBody paddingBlock={0}>
+            <ModalBody>
                 <Flex
                     direction={"column"}
                     border={"1.5px solid #2BCFA1"}

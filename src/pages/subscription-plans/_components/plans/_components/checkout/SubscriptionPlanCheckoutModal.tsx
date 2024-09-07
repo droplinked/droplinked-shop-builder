@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CheckoutModalTemplate from './_components/CheckoutModalTemplate'
+import CheckoutModal from './_components/CheckoutModal'
 import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
 import PaymentMethodSelection from './_components/payment-method-selection/PaymentMethodSelection'
@@ -29,7 +29,8 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
         if (step === 'PlanConfirmation')
             return <ConfirmPlan
                 setplanPurchaseModalStep={(step) => updateModalData("step", step)}
-                close={close} hasProfile={hasProfile}
+                close={close}
+                hasProfile={hasProfile}
                 isFromPlansPage={isFromPlansPage}
             />
 
@@ -56,14 +57,14 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
     }
 
     return (
-        <CheckoutModalTemplate
+        <CheckoutModal
             onClose={close}
             isOpen={isOpen}
             currentStep={modalData.step}
             isFromPlansPage={isFromPlansPage}
         >
             {renderContent()}
-        </CheckoutModalTemplate>
+        </CheckoutModal>
     )
 }
 
