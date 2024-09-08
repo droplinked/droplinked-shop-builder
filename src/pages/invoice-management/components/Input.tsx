@@ -17,6 +17,8 @@ interface Props {
 
 export default function Input({ label, inputProps, inputGroupProps, icon, actionButton }: Props) {
     const baseInputProps = {
+        borderRadius: 8,
+        py: 3,
         fontSize: 16,
         fontWeight: 400,
         color: "#7B7B7B",
@@ -31,7 +33,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         display: "flex",
         alignItems: "center",
         gap: 2,
-        border: "1px solid #292929",
+        border: "1.5px solid #292929",
         borderRadius: 8,
         py: actionButton ? 2 : 3,
         pl: 4,
@@ -39,13 +41,13 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         ...inputGroupProps
     }
 
-    const inputElement = <ChakraInput
-        border={icon || actionButton ? "none" : "1.5px solid #292929"}
-        borderRadius={8}
-        py={3}
-        px={icon || actionButton ? 0 : 4}
-        {...baseInputProps}
-    />
+    const inputElement = (
+        <ChakraInput
+            border={icon || actionButton ? "none" : "1.5px solid #292929"}
+            px={icon || actionButton ? 0 : 4}
+            {...baseInputProps}
+        />
+    )
 
     if (!label) {
         if (!icon && !actionButton) return inputElement

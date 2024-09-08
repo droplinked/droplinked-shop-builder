@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
+import Button from '../components/Button'
 import SectionedContent from './components/SectionedContent'
 import InvoiceAddress from './components/form/InvoiceAddress'
 import InvoiceContactInformation from './components/form/InvoiceContactInformation'
@@ -14,7 +15,10 @@ function CreateInvoice() {
                 <InvoiceAddress />
                 <InvoiceShippingMethods />
             </SectionedContent>
-            <InvoiceSummary />
+            <Flex direction={"column"} gap={6}>
+                <InvoiceSummary />
+                <Button onClick={() => console.log("clicked")}>Create Invoice</Button>
+            </Flex>
         </Flex>
     )
 }

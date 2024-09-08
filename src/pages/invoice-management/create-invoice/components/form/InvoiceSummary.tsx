@@ -4,10 +4,11 @@ import Input from 'pages/invoice-management/components/Input'
 import React from 'react'
 import SectionedContent from '../SectionedContent'
 import CartSummaryRow from './CartSummaryRow'
+import InvoiceMemo from './InvoiceMemo'
 
 function InvoiceSummary() {
     return (
-        <SectionedContent as={"aside"} width={"420px"} title="Summary">
+        <SectionedContent as={"aside"} width={{ base: "100%", lg: "420px" }} title="Summary">
             <Input
                 icon={<AppIcons.InvoiceDiscount />}
                 inputGroupProps={{ height: 12 }}
@@ -21,6 +22,8 @@ function InvoiceSummary() {
             </Flex>
 
             <CartSummaryRow title='Total order' value={256} isValueBold />
+
+            <InvoiceMemo />
         </SectionedContent>
     )
 }
