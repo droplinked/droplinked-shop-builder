@@ -43,7 +43,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
 
     const findAndUpdateToken = (e, token) => {
         const isChecked = e.target.checked;
-        if (!chain?.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" });
+        if (!wallets) return showToast({ type: "info", message: "Please enter your wallet address first" });
         const targetChain = selectedPaymentMethods?.find((payment) => payment.type === chain.type);
         if (!targetChain) {
             const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] };
