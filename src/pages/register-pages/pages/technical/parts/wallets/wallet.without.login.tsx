@@ -24,6 +24,7 @@ const WalletWithoutLogin = ({ payment, token }: { payment: any; token?: any }) =
         const existingChainIndex = selectedPaymentMethods.findIndex((selected_payment_methods) => selected_payment_methods.type === payment.type);
         if (e.target.checked) {
             if (!canActivateNewPaymentMethod(payment, selectedPaymentMethods, getPermissionValue, showToast)) return;
+            if (payment?.destinationAddress === "" || !payment.destinationAddress) delete payment.destinationAddress
             existingChainIndex !== -1 ? (selectedPaymentMethods[existingChainIndex].isActive = true) : selectedPaymentMethods.push({ ...payment, isActive: true });
         } else {
             selectedPaymentMethods[existingChainIndex].isActive = false;
