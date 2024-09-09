@@ -1,23 +1,27 @@
 import { Table as ChakraTable, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
 import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 
-interface TableProps<T extends object> {
+interface Props<T extends object> {
     columns: ColumnDef<T>[]
     data: T[]
     renderActions?: (row: T) => ReactNode
     emptyView?: ReactNode
+    enableSorting?: boolean
+    sorting?: SortingState
+    setSorting?: (state: SortingState) => void
+    groupBy?: keyof T
+    renderGroupCell?: (row: T, cell: any, isFirstInGroup: boolean) => ReactNode
 }
 
-const Table = <T extends object>({ columns, data, renderActions, emptyView }: TableProps<T>) => {
-    const [sorting, setSorting] = useState<SortingState>([])
+const Table = <T extends object>({ columns, data, renderActions, emptyView, enableSorting = false, sorting, setSorting, groupBy, renderGroupCell }: Props<T>) => {
     const table = useReactTable({
         data,
         columns,
-        state: { sorting },
-        onSortingChange: setSorting,
+        state: { sorting: enableSorting ? sorting : undefined },
+        onSortingChange: enableSorting ? setSorting : undefined,
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(),
+        getSortedRowModel: enableSorting ? getSortedRowModel() : undefined
     })
 
     return (
@@ -28,7 +32,7 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView }: Ta
         >
             <ChakraTable
                 variant="unstyled"
-                sx={{ userSelect: "none" }}
+                sx={{ userSelect: enableSorting ? "none" : "auto" }}
             >
                 <Thead>
                     {table.getHeaderGroups().map(headerGroup => (
@@ -36,21 +40,20 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView }: Ta
                             {headerGroup.headers.map(header => (
                                 <Th
                                     key={header.id}
-                                    onClick={header.column.getToggleSortingHandler()}
+                                    onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}
                                     textTransform="capitalize"
                                     fontSize={16}
                                     fontWeight={400}
                                     color="#7B7B7B"
                                     paddingInline={6}
                                     paddingBlock={4}
+                                    cursor={enableSorting ? "pointer" : "default"}
                                 >
                                     {flexRender(header.column.columnDef.header, header.getContext())}
-                                    {header.column.getIsSorted() ? (header.column.getIsSorted() === 'desc' ? ' 🔽' : ' 🔼') : null}
+                                    {enableSorting && header.column.getIsSorted() ? (header.column.getIsSorted() === 'desc' ? ' 🔽' : ' 🔼') : null}
                                 </Th>
                             ))}
-                            {renderActions && (
-                                <Th paddingInline={6} paddingBlock={4}></Th>
-                            )}
+                            {renderActions && (<Th paddingInline={6} paddingBlock={4}></Th>)}
                         </Tr>
                     ))}
                 </Thead>
@@ -66,32 +69,45 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView }: Ta
                             </Td>
                         </Tr>
                         :
-                        table.getRowModel().rows.map((row, rowIndex) => (
-                            <Tr
-                                key={row.id}
-                                borderTop="1px solid #262626"
-                                borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
-                                bgColor="#1C1C1C"
-                                color="white"
-                            >
-                                {row.getVisibleCells().map(cell => (
-                                    <Td
-                                        key={cell.id}
-                                        paddingInline={6}
-                                        paddingBlock={4}
-                                        fontSize={16}
-                                        fontWeight={400}
-                                    >
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </Td>
-                                ))}
-                                {renderActions && (
-                                    <Td paddingInline={6} paddingBlock={4}>
-                                        {renderActions(row.original)}
-                                    </Td>
-                                )}
-                            </Tr>
-                        ))}
+                        table.getRowModel().rows.map((row, rowIndex) => {
+                            const currentRow = row.original
+                            const prevRow = rowIndex > 0 ? table.getRowModel().rows[rowIndex - 1].original : null
+                            const nextRow = rowIndex < table.getRowModel().rows.length - 1 ? table.getRowModel().rows[rowIndex + 1].original : null
+
+                            const isFirstInGroup = !prevRow || (groupBy && currentRow[groupBy] !== prevRow[groupBy])
+                            const isLastInGroup = !nextRow || (groupBy && currentRow[groupBy] !== nextRow[groupBy])
+
+                            return (
+                                <Tr
+                                    key={row.id}
+                                    borderTop={isFirstInGroup ? "1px solid #262626" : "none"}
+                                    borderBottom={isLastInGroup ? "1px solid #262626" : "none"}
+                                    bgColor="#1C1C1C"
+                                    color="white"
+                                >
+                                    {row.getVisibleCells().map((cell, cellIndex) => (
+                                        <Td
+                                            key={cell.id}
+                                            paddingInline={6}
+                                            paddingBlock={4}
+                                            fontSize={16}
+                                            fontWeight={400}
+                                        >
+                                            {renderGroupCell
+                                                ? renderGroupCell(currentRow, cell, isFirstInGroup)
+                                                : flexRender(cell.column.columnDef.cell, cell.getContext())
+                                            }
+                                        </Td>
+                                    ))}
+                                    {renderActions && (
+                                        <Td paddingInline={6} paddingBlock={4}>
+                                            {renderActions(row.original)}
+                                        </Td>
+                                    )}
+                                </Tr>
+                            )
+                        })
+                    }
                 </Tbody>
             </ChakraTable>
         </TableContainer>
