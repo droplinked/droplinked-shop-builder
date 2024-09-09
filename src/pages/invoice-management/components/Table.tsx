@@ -1,5 +1,6 @@
 import { Table as ChakraTable, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
 import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
+import AppTypography from "components/common/typography/AppTypography"
 import React, { ReactNode } from 'react'
 
 interface Props<T extends object> {
@@ -64,8 +65,9 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView, enab
                                 colSpan={columns.length + 1}
                                 paddingInline={6}
                                 paddingBlock={4}
+                                sx={{ textAlign: "-webkit-center" }}
                             >
-                                {emptyView || 'No data available'}
+                                {emptyView || <AppTypography fontSize={14} color={"white"}>No data available</AppTypography>}
                             </Td>
                         </Tr>
                         :

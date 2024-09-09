@@ -1,6 +1,6 @@
-type InvoiceStatus = "Paid" | "Pending" | "Overdue"
+export type InvoiceStatus = "Paid" | "Pending" | "Overdue"
 
-interface Invoice {
+export interface Invoice {
     _id: string;
     client: string;
     created: string;

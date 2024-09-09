@@ -1,14 +1,15 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
+import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import { formattedCurrency } from 'lib/utils/heper/helpers'
 import Table from 'pages/invoice-management/components/Table'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import StatusBadge from './StatusBadge'
 
 function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
-    const [invoiceId, setInvoiceId] = useState(null)
+    const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
         { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
@@ -20,7 +21,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
     ]
 
     const openDetailsModal = (invoice: Invoice) => {
-        setInvoiceId(invoice._id)
+        invoiceRef.current = invoice._id
         onOpen()
     }
 
@@ -78,7 +79,7 @@ function InvoiceTable({ invoices }: { invoices: Invoice[] }) {
     return (
         <>
             <Table columns={columns} data={data} renderActions={renderActions} />
-            {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceId} />}
+            {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>
     )
 }
