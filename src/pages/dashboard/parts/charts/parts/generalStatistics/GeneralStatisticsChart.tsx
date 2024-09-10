@@ -147,8 +147,8 @@ function GeneralStatisticsChart() {
 
           tooltipEl.style.minWidth = '170px';
           tooltipEl.style.position = 'absolute';
-          tooltipEl.style.top = tooltipModel.caretY + 160 + 'px';
-          tooltipEl.style.left = tooltipModel.caretX + 50 + 'px';
+          tooltipEl.style.top = tooltipModel.caretY + 120 + 'px';
+          tooltipEl.style.left = tooltipModel.caretX + 240 + 'px';
           tooltipEl.style.opacity = "1";
           tooltipEl.style.transition = "opacity 0.2s";
           tooltipEl.style.borderRadius = "8px";
