@@ -78,16 +78,16 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
     // Handler to save btn on input mode
     const saveWalletAddress = (index: number) => {
         const trimmedAddress = wallets[index].destinationAddress.trim();
-    
+
         if (!trimmedAddress) {
             return showToast({ type: "info", message: "Please enter a valid wallet address" });
         }
-    
+
         if (wallets.some((wallet, i) => wallet.destinationAddress.trim() === trimmedAddress && i !== index)) {
             showToast({ type: "warning", message: "This wallet address already exists. Please enter a unique address." });
             return;
         }
-    
+
         const updatedWallets = wallets.map((wallet, i) => {
             if (i === index) {
                 return {
@@ -98,32 +98,56 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
             }
             return wallet;
         });
-    
+
         const newPercent = Math.floor(100 / updatedWallets.length);
         const remainingPercent = 100 - newPercent * updatedWallets.length;
-    
+
         const updatedWalletsWithPercent = updatedWallets.map((wallet, i) => ({
             ...wallet,
             percent: i === updatedWallets.length - 1 ? newPercent + remainingPercent : newPercent,
         }));
-    
+
         setWallets(updatedWalletsWithPercent);
 
+        // Get the updated payment methods
         const updatedPaymentMethods = [...paymentMethods];
-        const targetPaymentMethod = updatedPaymentMethods.find((payment) => payment?.type === chain?.type);
+        let targetPaymentMethod = updatedPaymentMethods.find((payment) => payment?.type === chain?.type);
 
         if (targetPaymentMethod) {
+            // Update the existing payment method
             targetPaymentMethod.destinationAddress = updatedWalletsWithPercent.map(wallet => ({
                 destinationAddress: wallet.destinationAddress,
                 percent: wallet.percent,
             }));
-            
+
+            // Activate the first token when the first wallet address is saved
+            if (updatedWalletsWithPercent.length === 1 && chain.tokens?.length > 0) {
+                targetPaymentMethod.isActive = true;
+                targetPaymentMethod.tokens[0].isActive = true;
+            }
+
+            // Disable the tokens if have not any wallet address
             if (targetPaymentMethod.destinationAddress.length === 0) {
                 targetPaymentMethod.isActive = false;
                 targetPaymentMethod.tokens?.forEach((token) => (token.isActive = false));
             }
+        } else {
+            // Add a new payment method if not found
+            const newPaymentMethod = {
+                ...chain,
+                isActive: updatedWalletsWithPercent.length > 0, // Activate if there's at least one wallet address
+                destinationAddress: updatedWalletsWithPercent.map(wallet => ({
+                    destinationAddress: wallet.destinationAddress,
+                    percent: wallet.percent,
+                })),
+                tokens: chain.tokens.map((token, index) => ({
+                    ...token,
+                    isActive: updatedWalletsWithPercent.length === 1 && index === 0, // Activate the first token if the first wallet is added
+                })),
+            };
+            updatedPaymentMethods.push(newPaymentMethod);
         }
-        
+
         updateState("paymentMethods", updatedPaymentMethods);
         setEditableWallets(editableWallets?.filter((i) => i !== index));
     };
