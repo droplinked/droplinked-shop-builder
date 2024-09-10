@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 // Icons
 import AppIcons from "assest/icon/Appicons";
 
+// Components
+import SaveBtn from "./field-save-btn/SaveBtn";
+
 const MotionFlex = motion(Flex);
+const MotionBox = motion(Box);
 
 const AddressAndPercentField = ({
   wallet,
@@ -49,14 +53,34 @@ const AddressAndPercentField = ({
             disabled={!editableWallets.includes(index)}
           />
           <InputRightElement width="4.5rem" marginLeft={"16px"}>
-            <Flex alignItems={"center"} gap={"16px"}>
-              <Box onClick={() => toggleEditMode(index)} cursor={"pointer"}>
-                {!editableWallets.includes(index) ? <AppIcons.EditIconWhite /> : <AppIcons.Tick />}
-              </Box>
-              <Box onClick={() => removeWallet(index)} cursor={"pointer"}>
-                <AppIcons.TrashRed />
-              </Box>
-            </Flex>
+            {editableWallets.includes(index) ?
+              <MotionBox
+                key="save-btn"
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.5 }}
+              >
+                <SaveBtn onClickHandler={() => toggleEditMode(index)} />
+              </MotionBox>
+            : 
+              <MotionFlex
+                key="edit-delete-icons"
+                alignItems={"center"}
+                gap={"16px"}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Box onClick={() => toggleEditMode(index)} cursor={"pointer"}>
+                  <AppIcons.EditIconWhite />
+                </Box>
+                <Box onClick={() => removeWallet(index)} cursor={"pointer"}>
+                  <AppIcons.TrashRed />
+                </Box>
+              </MotionFlex>
+            }
           </InputRightElement>
         </InputGroup>
       </Flex>
