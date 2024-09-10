@@ -146,6 +146,27 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as SidebarDroplinked } from "./sidebar-droplinked.svg";
+import { ReactComponent as SidebarAffiliate } from "./sidebar-affiliate.svg";
+import { ReactComponent as SidebarAnalytics } from "./sidebar-analytics.svg";
+import { ReactComponent as SidebarBlog } from "./sidebar-blog.svg";
+import { ReactComponent as SidebarProducts } from "./sidebar-products.svg";
+import { ReactComponent as SidebarChat } from "./sidebar-chat.svg";
+import { ReactComponent as SidebarChevrondown } from "./sidebar-chevrondown.svg";
+import { ReactComponent as SidebarNote } from "./sidebar-note.svg";
+import { ReactComponent as SidebarPlan } from "./sidebar-plan.svg";
+import { ReactComponent as SidebarRewards } from "./sidebar-rewards.svg";
+import { ReactComponent as SidebarSetting } from "./sidebar-setting.svg";
+import { ReactComponent as SidebarUser } from "./sidebar-user.svg";
+import { ReactComponent as ProfileSwitch } from "./profile-switch.svg";
+import { ReactComponent as ProfileCredit } from "./profile-credit.svg";
+import { ReactComponent as ProfileDocument } from "./profile-document.svg";
+import { ReactComponent as ProfileEnterprise } from "./profile-enterprise.svg";
+import { ReactComponent as ProfileLogout } from "./profile-logout.svg";
+import { ReactComponent as ProfileSetting } from "./profile-setting.svg";
+import { ReactComponent as ProfileShop } from "./profile-shop.svg";
+import { ReactComponent as ProfileSupport } from "./profile-support.svg";
+import { ReactComponent as Profileswitch } from "./profile-switch.svg";
 
 const AppIcons = {
   ActiveIcon,
@@ -295,7 +316,27 @@ const AppIcons = {
   XRPL,
   Xumm,
   Xverse,
-  YellowAlert
+  YellowAlert,
+  SidebarDroplinked,
+  SidebarAffiliate,
+  SidebarAnalytics,
+  SidebarBlog,
+  SidebarProducts,
+  SidebarChat,
+  SidebarChevrondown,
+  SidebarNote,
+  SidebarPlan,
+  SidebarRewards,
+  SidebarSetting,
+  SidebarUser,
+  ProfileCredit,
+  ProfileDocument,
+  ProfileEnterprise,
+  ProfileLogout,
+  ProfileSetting,
+  ProfileShop,
+  ProfileSupport,
+  ProfileSwitch,
 };
 
 export default AppIcons;
