@@ -12,7 +12,7 @@ export const SideText = chakra("div", {
 export const PageContent = chakra("div", {
   baseStyle: {
     w: "100%",
-    maxW: "800px",
+    // maxW: "800px",
     h: "auto",
   },
 });
