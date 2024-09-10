@@ -4,11 +4,11 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
 import PlanPrice from '../../plan-price/PlanPrice'
 import { ModalStep } from '../types/interfaces'
+import { subscriptionPlanMap } from 'lib/utils/heper/helpers'
 
 interface Props {
     setplanPurchaseModalStep: (step: ModalStep) => void;
@@ -21,7 +21,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
     const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
     const { logoutUser } = useProfile()
-    const { title, icon, description } = subscriptionPlanMap[selectedPlan.type]
+    const { title, icon: SubscriptionIcon, description } = subscriptionPlanMap[selectedPlan.type]
 
     const handleCloseModal = () => {
         isFromPlansPage && logoutUser()
@@ -49,7 +49,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     backgroundSize={"auto 150%"}
                 >
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        {icon}
+                        <SubscriptionIcon/>
                     </Center>
                     <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>

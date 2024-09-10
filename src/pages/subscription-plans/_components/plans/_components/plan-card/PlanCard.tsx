@@ -8,9 +8,8 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import useAppStore from "lib/stores/app/appStore"
-import { navigating_user_based_on_status } from "lib/utils/heper/helpers"
+import { navigating_user_based_on_status, subscriptionPlanMap } from "lib/utils/heper/helpers"
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
-import { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading"
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
@@ -34,7 +33,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
-    const { title, icon, description } = subscriptionPlanMap[plan.type]
+    const { title, icon: SubscriptionIcon, description } = subscriptionPlanMap[plan.type]
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
@@ -134,7 +133,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
                 <Flex direction="column" gap={4}>
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        {icon}
+                        <SubscriptionIcon/>
                     </Center>
                     <Box>
                         <AppTypography fontSize={20} fontWeight={700} color="white">{title}</AppTypography>
