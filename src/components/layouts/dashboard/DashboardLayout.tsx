@@ -5,7 +5,7 @@ import FooterLayout from "../app/main/parts/footer/FooterLayout";
 import useAppStore from "lib/stores/app/appStore";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import DashboardLayoutSidebar from "./DashboardLayoutSidebar";
-import DashboardLayoutHeader from "./dashboardLayoutHeader";
+import DashboardLayoutHeader from "./DashboardLayoutHeader";
 import { createSubscriptionStatusConstants } from "./dashboard.layout.constants";
 
 const DashboardLayout = () => {
