@@ -22,7 +22,7 @@ function BestSelling() {
             product: {
                 value: <BestSellingProduct product={el} />,
                 props: {
-                    width: "100%"
+                    width: "75%"
                 }
             },
             sale: {
