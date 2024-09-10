@@ -1,4 +1,3 @@
-import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout"
 import MainLayout from "components/layouts/app/main/mainLayout"
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout"
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
@@ -49,6 +48,7 @@ import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
+import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
