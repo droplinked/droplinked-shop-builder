@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import SaveBtn from "./field-save-btn/SaveBtn";
 
 const MotionBox = motion(Box);
 
@@ -14,8 +15,8 @@ const AddAddressField = ({ wallet, index, handleAddressChange, saveWalletAddress
       padding={"0px 8px 0px 16px"}
       display={"flex"}
       alignItems={"center"}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <InputGroup>
@@ -30,18 +31,7 @@ const AddAddressField = ({ wallet, index, handleAddressChange, saveWalletAddress
           maxWidth={"90%"}
         />
         <InputRightElement width='4.5rem' bgColor={"mainLayer"} borderRadius={"8px"} paddingLeft={"8px"}>
-          <Button 
-            height={"32px"} 
-            padding={"12px 14px"} 
-            borderRadius={"6px"} 
-            bgColor={"primary"} 
-            color={"#FFF"} 
-            size='sm' 
-            isDisabled={wallet.destinationAddress === ""} 
-            onClick={() => saveWalletAddress(index)}
-          >
-            Save
-          </Button>
+          <SaveBtn onClickHandler={() => saveWalletAddress(index)} isDisabled={wallet.destinationAddress === ""} />
         </InputRightElement>
       </InputGroup>
     </MotionBox>
