@@ -1,4 +1,5 @@
 import { isStyleProp } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
 
 export const capitalizeFirstLetter = (value: string) => {
     if (!value) return "";
@@ -245,3 +246,21 @@ export const UTCConverter = (utcTimeString: string): string => {
 
     return `${formattedDate} (Local time)`;
 }
+
+export const subscriptionPlanMap: Record<
+    string,
+    {
+        icon: React.FunctionComponent<
+            React.SVGProps<SVGSVGElement> & {
+                title?: string;
+            }
+        >;
+        title: string;
+        description: string;
+    }
+> = {
+    STARTER: { icon: AppIcons.StarterPlan, title: "Starter", description: "For individuals or companies just getting started." },
+    BUSINESS: { icon: AppIcons.ProPlan, title: "Pro", description: "For small businesses and teams ready to grow." },
+    BUSINESS_PRO: { icon: AppIcons.PremiumPlan, title: "Premium", description: "Designed for large businesses needing comprehensive solutions at scale." },
+    ENTERPRISE: { icon: AppIcons.EnterprisePlan, title: "Enterprise", description: "Contact us to explore integration." },
+};
