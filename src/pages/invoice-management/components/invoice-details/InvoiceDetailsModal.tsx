@@ -1,4 +1,4 @@
-import { ModalBody, ModalHeader } from '@chakra-ui/react';
+import { ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
@@ -21,14 +21,11 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
             modalRootProps={{ isOpen, onClose, size: "5xl", scrollBehavior: "outside" }}
             modalContentProps={{ width: "936px" }}
         >
-            <ModalHeader>
-                <ModalHeaderData
-                    icon={<AppIcons.InvoiceCreated />}
-                    title="Invoice created"
-                    description='A link of your invoice is sent to the customer. You can also use the following link to view the invoice.'
-                />
-
-            </ModalHeader>
+            <ModalHeaderData
+                icon={<AppIcons.InvoiceCreated />}
+                title="Invoice created"
+                description='A link of your invoice is sent to the customer. You can also use the following link to view the invoice.'
+            />
 
             <ModalBody display={"flex"} flexDirection={"column"} gap={4}>
                 <AppShareableLink link='https://google.com' />

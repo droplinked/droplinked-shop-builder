@@ -31,7 +31,7 @@ function Select<T extends string | number>({ items, label, inputGroupProps, sele
             borderWidth={"1.5px"}
             borderRadius={8}
             color={"#7B7B7B"}
-            icon={< AppIcons.SelectChevronDown />}
+            icon={<AppIcons.SelectChevronDown />}
             _placeholder={{ color: "#7B7B7B" }}
             _hover={{}}
             _focus={{}}

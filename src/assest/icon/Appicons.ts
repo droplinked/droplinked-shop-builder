@@ -4,6 +4,7 @@ import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
+import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Bag } from "./bag.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
@@ -34,6 +35,7 @@ import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 import { ReactComponent as Delete } from "./delete.svg";
+import { ReactComponent as DescSorting } from "./desc-sorting.svg";
 import { ReactComponent as Desktop } from "./desktop-icon.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
@@ -43,6 +45,7 @@ import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
+import { ReactComponent as Edit } from "./edit.svg";
 import { ReactComponent as Email } from "./email.svg";
 import { ReactComponent as EnterprisePlan } from "./enterprise-plan.svg";
 import { ReactComponent as ETH } from "./eth.svg";
@@ -76,6 +79,7 @@ import { ReactComponent as InvisibleIcon } from "./invisible-icon.svg";
 import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
+import { ReactComponent as InvoiceProduct } from "./invoice-product.svg";
 import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
@@ -89,6 +93,7 @@ import { ReactComponent as NewPolygon } from "./new-polygon.svg";
 import { ReactComponent as NewRedbelly } from "./new-redbelly.svg";
 import { ReactComponent as NewSolana } from "./new-solana.svg";
 import { ReactComponent as NewStripe } from "./new-stripe.svg";
+import { ReactComponent as NotSorted } from "./not-sorted.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
 import { ReactComponent as Paint } from "./paint.svg";
@@ -307,7 +312,12 @@ const AppIcons = {
   InvoiceDiscount,
   InvoiceCreated,
   Copy,
-  SelectChevronDown
+  SelectChevronDown,
+  InvoiceProduct,
+  NotSorted,
+  AscSorting,
+  DescSorting,
+  Edit
 }
 
 export default AppIcons

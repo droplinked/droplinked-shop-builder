@@ -1,4 +1,4 @@
-import { ModalBody, ModalFooter, ModalHeader, useRadioGroup } from '@chakra-ui/react';
+import { ModalBody, ModalFooter, useRadioGroup } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTypography from 'components/common/typography/AppTypography';
@@ -105,13 +105,11 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 
     return (
         <>
-            <ModalHeader>
-                <ModalHeaderData
-                    icon={<AppIcons.PaymentMethodSelection />}
-                    title='Payment methods'
-                    description={"How would you like to pay for your subscription?"}
-                />
-            </ModalHeader>
+            <ModalHeaderData
+                icon={<AppIcons.PaymentMethodSelection />}
+                title='Payment methods'
+                description={"How would you like to pay for your subscription?"}
+            />
             <ModalBody display={"flex"} flexDirection={"column"} gap={4} {...getRootProps()}>
                 {renderContent()}
             </ModalBody>

@@ -1,18 +1,19 @@
 import { Badge, BadgeProps } from '@chakra-ui/react'
+import { InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import React from 'react'
 
 const statusStyles: Record<InvoiceStatus, BadgeProps> = {
-    "Paid": {
+    "CHECKED_OUT": {
         bg: '#092C22',
         color: '#2BCFA1',
         borderColor: '#2BCFA1',
     },
-    "Pending": {
+    "PENDING": {
         bg: '#292929',
         color: '#fff',
         borderColor: '#616161',
     },
-    "Overdue": {
+    "ACTIVE": {
         bg: '#FF22441A',
         color: '#FF2244',
         borderColor: '#FF2244',
