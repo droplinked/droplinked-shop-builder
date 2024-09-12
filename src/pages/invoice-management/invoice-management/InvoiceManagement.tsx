@@ -7,16 +7,19 @@ import InvoiceFilters from './components/InvoiceFilters'
 import InvoiceManagementHeader from './components/InvoiceManagementHeader'
 import InvoiceTable from './components/table/InvoiceTable'
 
+export const INVOICES_QUERY_KEY = "invoiceList"
+
 function InvoiceManagement() {
     const [invoiceFilters, setInvoiceFilters] = useState<InvoiceQueryParams>({ page: 1, limit: 15 })
     const updateInvoiceFilters = <K extends keyof InvoiceQueryParams>(key: K, value: InvoiceQueryParams[K]) =>
         setInvoiceFilters({ ...invoiceFilters, [key]: value })
 
     const { isFetching, isError, data, refetch } = useQuery({
-        queryKey: ["invoiceList", invoiceFilters],
+        queryKey: [INVOICES_QUERY_KEY, invoiceFilters],
         queryFn: () => getInvoicesService(invoiceFilters),
         refetchOnWindowFocus: false
     })
+    const invoices = data?.data?.data || []
 
     useEffect(() => {
         refetch()
@@ -27,7 +30,7 @@ function InvoiceManagement() {
             <InvoiceManagementHeader />
             <Flex mt={9} direction={"column"} gap={6}>
                 <InvoiceFilters updateInvoiceFilters={updateInvoiceFilters} />
-                <InvoiceTable invoices={data?.data?.data || []} isLoading={isFetching} />
+                <InvoiceTable invoices={invoices} isLoading={isFetching} />
             </Flex>
         </>
     )

@@ -1,22 +1,27 @@
-import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react'
-import React from 'react'
+import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props extends ButtonProps {
-    onClick: () => void
+    onClick: () => void;
+    variant?: 'primary' | 'ghost';
 }
 
-function Button({ onClick, children, ...props }: Props) {
+function Button({ onClick, variant = 'primary', children, ...props }: Props) {
+    const isPrimary = variant === 'primary'
+
     return (
         <ChakraButton
+            variant={variant}
             flexShrink={0}
             display={"flex"}
             alignItems={"center"}
             gap={"6px"}
+            border={`1px solid ${isPrimary ? "#2BCFA1" : "#616161"}`}
             borderRadius={8}
             paddingBlock={3}
             paddingInline={4}
-            bgColor={"#2BCFA1"}
-            color={"black"}
+            bgColor={isPrimary ? "#2BCFA1" : "transparent"}
+            color={isPrimary ? "black" : "white"}
             onClick={onClick}
             _hover={{}}
             _active={{}}

@@ -1,21 +1,21 @@
-import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
+import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react"
 import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import AppIcons from "assest/icon/Appicons"
-import AppTypography from "components/common/typography/AppTypography"
 import React, { ReactNode } from 'react'
 
 interface Props<T extends object> {
     columns: ColumnDef<T>[]
     data: T[]
     renderActions?: (row: T) => ReactNode
-    emptyView?: ReactNode
     enableSorting?: boolean
     sorting?: SortingState
     setSorting?: (state: SortingState) => void
     isLoading?: boolean
+    footerContent?: ReactNode
 }
 
-const Table = <T extends object>({ columns, data, renderActions, emptyView, enableSorting = false, sorting, setSorting, isLoading }: Props<T>) => {
+function Table<T extends object>(props: Props<T>) {
+    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, footerContent } = props
     const table = useReactTable({
         data,
         columns,
@@ -33,9 +33,12 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView, enab
         >
             <ChakraTable
                 variant="unstyled"
-                sx={{ userSelect: enableSorting ? "none" : "auto" }}
+                sx={{
+                    "th, td": { paddingInline: 6, paddingBlock: 4 },
+                    userSelect: "none"
+                }}
             >
-                <Thead sx={{ "th": { paddingInline: 6, paddingBlock: 4 } }}>
+                <Thead>
                     {table.getHeaderGroups().map(headerGroup => (
                         <Tr key={headerGroup.id} bgColor="#262626">
                             {headerGroup.headers.map(header => (
@@ -60,58 +63,62 @@ const Table = <T extends object>({ columns, data, renderActions, emptyView, enab
                                     }
                                 </Th>
                             ))}
-                            {!isLoading && renderActions && <Th></Th>}
+                            {renderActions && <Th></Th>}
                         </Tr>
                     ))}
                 </Thead>
-                <Tbody sx={{ "td": { paddingInline: 6, paddingBlock: 4 } }}>
+
+                <Tbody
+                    sx={{
+                        "tr": {
+                            bgColor: "#1C1C1C",
+                            transition: "background 0.2s",
+                            _hover: { bgColor: "#222222" }
+                        }
+                    }}
+                >
                     {
                         isLoading ?
-                            Array.from({ length: 1 }).map((_, index) => (
-                                <Tr key={index} bgColor="#1C1C1C">
+                            Array.from({ length: 3 }).map((_, index) => (
+                                <Tr key={index}>
                                     {columns.map((_, colIndex) => (
                                         <Td key={colIndex}>
                                             <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
                                         </Td>
                                     ))}
+                                    {renderActions && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
                                 </Tr>
                             ))
                             :
-                            data.length === 0 ?
-                                <Tr bgColor="#1C1C1C">
-                                    <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
-                                        {
-                                            emptyView
-                                            ||
-                                            <AppTypography fontSize={14} color={"white"}>No data available</AppTypography>
-                                        }
-                                    </Td>
-                                </Tr>
-                                :
-                                table.getRowModel().rows.map((row, rowIndex) => {
-                                    return (
-                                        <Tr
-                                            key={row.id}
-                                            borderTop="1px solid #262626"
-                                            borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
-                                            bgColor="#1C1C1C"
-                                            color="white"
-                                        >
-                                            {row.getVisibleCells().map((cell, cellIndex) => (
-                                                <Td
-                                                    key={cell.id}
-                                                    fontSize={16}
-                                                    fontWeight={400}
-                                                >
-                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                                </Td>
-                                            ))}
-                                            {!isLoading && renderActions && <Td>{renderActions(row.original)}</Td>}
-                                        </Tr>
-                                    )
-                                })
+                            table.getRowModel().rows.map((row, rowIndex) => {
+                                return (
+                                    <Tr
+                                        key={row.id}
+                                        borderTop="1px solid #262626"
+                                        borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
+                                        color="white"
+                                    >
+                                        {row.getVisibleCells().map((cell, cellIndex) => (
+                                            <Td key={cell.id} fontSize={16} fontWeight={400}>
+                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                            </Td>
+                                        ))}
+                                        {renderActions && <Td>{renderActions(row.original)}</Td>}
+                                    </Tr>
+                                )
+                            })
                     }
                 </Tbody>
+
+                {footerContent && (
+                    <Tfoot>
+                        <Tr bgColor="#1C1C1C">
+                            <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
+                                {footerContent}
+                            </Td>
+                        </Tr>
+                    </Tfoot>
+                )}
             </ChakraTable>
         </TableContainer>
     )

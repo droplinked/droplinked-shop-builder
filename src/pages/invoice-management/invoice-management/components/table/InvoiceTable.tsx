@@ -18,9 +18,9 @@ function InvoiceTable({ invoices, isLoading }: Props) {
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
-        { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
+        { accessorKey: 'id', header: 'ID Number', cell: info => info.getValue() },
         { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
-        { accessorKey: 'created', header: 'Created', cell: info => info.getValue() },
+        { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
         { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
@@ -38,53 +38,9 @@ function InvoiceTable({ invoices, isLoading }: Props) {
         </Flex>
     )
 
-    const data: Invoice[] = [
-        {
-            _id: 'INV-1001',
-            client: 'Acme Corp',
-            created: '2024-08-12',
-            amount: '1200',
-            status: 'ACTIVE',
-        },
-        {
-            _id: 'INV-1002',
-            client: 'Globex Inc.',
-            created: '2024-08-15',
-            amount: '2450.50',
-            status: 'ACTIVE',
-        },
-        {
-            _id: 'INV-1003',
-            client: 'Soylent Corp',
-            created: '2024-08-20',
-            amount: '980.75',
-            status: 'ACTIVE',
-        },
-        {
-            _id: 'INV-1004',
-            client: 'Initech',
-            created: '2024-08-25',
-            amount: '3150',
-            status: 'CHECKED_OUT',
-        },
-        {
-            _id: 'INV-1005',
-            client: 'Umbrella Corp',
-            created: '2024-08-30',
-            amount: '4700.25',
-            status: 'PENDING',
-        }
-    ]
-
     return (
         <>
-            <Table
-                columns={columns}
-                data={data || invoices}
-                renderActions={renderActions}
-                isLoading={isLoading}
-                enableSorting
-            />
+            <Table isLoading={isLoading} columns={columns} data={invoices} renderActions={renderActions} />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>
     )

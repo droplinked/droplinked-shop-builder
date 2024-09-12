@@ -20,7 +20,6 @@ export default function VariantsDropdown({ selectedVariant, onSelectVariant, pro
                 selectedVariant={selectedVariant}
                 onSelectVariant={onSelectVariant}
                 product={product}
-                onClose={onClose}
             />
         </Popover>
     )
@@ -32,7 +31,7 @@ const DropdownTrigger = ({ isOpen }: { isOpen: boolean }) => (
             minW={"156px"}
             display={"flex"}
             alignItems={"center"}
-            border={"1.5px solid #292929"}
+            border={`1.5px solid ${isOpen ? '#878787' : '#292929'}`}
             borderRadius={8}
             px={4}
             py={3}
@@ -53,7 +52,7 @@ const DropdownTrigger = ({ isOpen }: { isOpen: boolean }) => (
     </PopoverTrigger>
 )
 
-const DropdownContent = ({ selectedVariant, onSelectVariant, product, onClose }) => {
+const DropdownContent = ({ selectedVariant, onSelectVariant, product }) => {
     const [searchTerm, setSearchTerm] = useState("")
 
     const sortedOptions = (options) => {

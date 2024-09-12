@@ -5,6 +5,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import Input from 'pages/invoice-management/components/Input';
 import React, { useState } from 'react';
+import useInvoiceCreationMethods from '../hooks/useInvoiceCreationMethods';
 import ProductTable from './ProductTable';
 
 interface Props {
@@ -15,10 +16,17 @@ interface Props {
 function InvoiceProductModal({ isOpen, onClose }: Props) {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
+    const { cart } = useInvoiceCreationMethods()
+    console.log(cart)
+
+    const closeModal = () => {
+        console.log(cart)
+        onClose()
+    }
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "5xl", scrollBehavior: "outside" }}
+            modalRootProps={{ isOpen, onClose: closeModal, size: "5xl", scrollBehavior: "outside" }}
             modalContentProps={{ width: "936px" }}
         >
             <ModalHeaderData

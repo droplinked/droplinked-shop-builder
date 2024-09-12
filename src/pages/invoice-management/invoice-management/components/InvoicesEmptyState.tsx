@@ -10,7 +10,7 @@ function InvoicesEmptyState() {
     const navigate = useNavigate()
 
     return (
-        <Flex mt={16} direction={"column"} alignItems={"center"}>
+        <Flex mt={12} direction={"column"} alignItems={"center"}>
             <AppImage
                 width='220px'
                 height='260px'

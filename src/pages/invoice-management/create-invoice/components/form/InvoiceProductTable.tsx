@@ -4,7 +4,7 @@ import AppIcons from 'assest/icon/Appicons'
 import Table from 'pages/invoice-management/components/Table'
 import TextButton from 'pages/invoice-management/components/TextButton'
 import React from 'react'
-import InvoiceProductModal from './product-modal/InvoiceProductModal'
+import InvoiceProductModal from './product-modal/components/InvoiceProductModal'
 
 export default function InvoiceProductTable() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,7 +24,7 @@ export default function InvoiceProductTable() {
             <Table
                 columns={columns}
                 data={data}
-                emptyView={
+                footerContent={
                     <TextButton onClick={onOpen}>
                         <AppIcons.BlackPlus />
                         Add product

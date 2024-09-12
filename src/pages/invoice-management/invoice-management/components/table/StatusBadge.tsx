@@ -2,26 +2,35 @@ import { Badge, BadgeProps } from '@chakra-ui/react'
 import { InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import React from 'react'
 
-const statusStyles: Record<InvoiceStatus, BadgeProps> = {
+const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = {
     "CHECKED_OUT": {
-        bg: '#092C22',
-        color: '#2BCFA1',
-        borderColor: '#2BCFA1',
+        label: "Checked Out",
+        styles: {
+            bg: '#092C22',
+            color: '#2BCFA1',
+            borderColor: '#2BCFA1',
+        }
     },
     "PENDING": {
-        bg: '#292929',
-        color: '#fff',
-        borderColor: '#616161',
+        label: "Pending",
+        styles: {
+            bg: '#292929',
+            color: '#fff',
+            borderColor: '#616161',
+        }
     },
     "ACTIVE": {
-        bg: '#FF22441A',
-        color: '#FF2244',
-        borderColor: '#FF2244',
+        label: "Active",
+        styles: {
+            bg: '#FF22441A',
+            color: '#FF2244',
+            borderColor: '#FF2244',
+        }
     }
 }
 
 function StatusBadge({ status }: { status: InvoiceStatus }) {
-    const { ...styles } = statusStyles[status]
+    const { label, styles } = statusMap[status]
 
     return (
         <Badge
@@ -34,7 +43,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
             textTransform={"capitalize"}
             {...styles}
         >
-            {status}
+            {label}
         </Badge>
     )
 }
