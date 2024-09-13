@@ -7,13 +7,14 @@ import InvoiceContactInformation from './components/form/InvoiceContactInformati
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceShippingMethods from './components/form/InvoiceShippingMethods'
 import InvoiceSummary from './components/form/InvoiceSummary'
-import useInvoiceStore from './store/invoiceStore'
+import useInvoiceStore, { Cart } from './store/invoiceStore'
 
 function CreateInvoice() {
     const updateCart = useInvoiceStore((state) => state.updateCart)
+    const areAllProductsDigital = useInvoiceStore((state) => state.areAllProductsDigital)
 
     useEffect(() => {
-        return () => { updateCart({}) }
+        return () => { updateCart({} as Cart) }
     }, [updateCart])
 
     return (
@@ -23,8 +24,15 @@ function CreateInvoice() {
 
                 <SectionedContent title="Client Details">
                     <InvoiceContactInformation />
-                    <InvoiceAddress />
-                    <InvoiceShippingMethods />
+                    {areAllProductsDigital &&
+                        (
+                            <>
+                                <InvoiceAddress />
+                                <InvoiceShippingMethods />
+                            </>
+                        )
+                    }
+
                 </SectionedContent>
             </Flex>
 

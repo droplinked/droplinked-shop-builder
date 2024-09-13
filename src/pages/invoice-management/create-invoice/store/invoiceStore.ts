@@ -1,6 +1,42 @@
 import { create } from 'zustand';
 
-interface Cart {
+export interface CartItem {
+    _id: string
+    skuID: string
+    groupId: string
+    product: {
+        _id: string;
+        title: string
+        image: string
+        skuImage: string
+        m2m_preview: string
+        slug: string;
+        type: string
+        pre_purchase_data_fetch?: {
+            active: boolean;
+            title: string;
+        }
+    }
+    options: {
+        quantity: number
+        size: {
+            caption: string
+            value: string
+        },
+        color: {
+            caption: string
+            value: string
+        }
+    },
+    totals: {
+        discountPercentage: number
+        priceItem: number
+        priceItemByDiscount: number
+        subTotal: number
+    }
+}
+
+export interface Cart {
     _id: string;
     shopID: {
         _id: string;
@@ -10,41 +46,7 @@ interface Cart {
     type: string;
     email?: string;
     note?: string;
-    items: {
-        _id: string
-        skuID: string
-        groupId: string
-        product: {
-            _id: string;
-            title: string
-            image: string
-            skuImage: string
-            m2m_preview: string
-            slug: string;
-            type: string
-            pre_purchase_data_fetch?: {
-                active: boolean;
-                title: string;
-            }
-        }
-        options: {
-            quantity: number
-            size: {
-                caption: string
-                value: string
-            },
-            color: {
-                caption: string
-                value: string
-            }
-        },
-        totals: {
-            discountPercentage: number
-            priceItem: number
-            priceItemByDiscount: number
-            subTotal: number
-        }
-    }[],
+    items: CartItem[],
     shippings: {
 
         groupId: string,
@@ -75,7 +77,8 @@ interface Cart {
 }
 
 type State = {
-    cart: Cart
+    cart: Cart;
+    areAllProductsDigital: boolean;
 }
 
 type Action = {
@@ -84,7 +87,11 @@ type Action = {
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
-    updateCart: (cart) => set({ cart })
+    areAllProductsDigital: true,
+    updateCart: (cart) => {
+        const areAllProductsDigital = cart.items?.every(item => item.product.type === 'DIGITAL')
+        set({ cart, areAllProductsDigital })
+    }
 }))
 
 export default useInvoiceStore
