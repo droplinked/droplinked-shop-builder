@@ -37,12 +37,12 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
                 }
                 const res = await addProductToInvoiceService(invoiceId, cart)
                 updateCart(res.data)
-
                 onClose()
             }
         }
         catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
+            onClose()
         }
         finally {
             setLoading(false)
@@ -69,7 +69,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
                         onChange: (e) => setSearchTerm(e.target.value)
                     }}
                 />
-                <ProductTable debouncedSearchTerm={debouncedSearchTerm} cart={cart} setCart={setCart} />
+                <ProductTable debouncedSearchTerm={debouncedSearchTerm} setCart={setCart} />
 
                 {isLoading && (
                     <Flex

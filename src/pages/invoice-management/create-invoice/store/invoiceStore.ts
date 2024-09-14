@@ -1,5 +1,21 @@
 import { create } from 'zustand';
 
+export interface InvoiceFormSchema {
+    email: string;
+    address: {
+        firstName: string;
+        lastName: string;
+        addressLine1: string;
+        addressLine2: string;
+        country: string;
+        city: string;
+        state: string;
+        zip: string;
+        addressType: string;
+        phoneNumber: string;
+    }
+}
+
 export interface CartItem {
     _id: string
     skuID: string

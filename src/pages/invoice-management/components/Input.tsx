@@ -1,4 +1,5 @@
-import { Input as ChakraInput, FormLabel, InputGroup, InputGroupProps, InputProps } from '@chakra-ui/react';
+import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps } from '@chakra-ui/react';
+import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import Button from './Button';
 
@@ -12,10 +13,11 @@ interface Props {
         onClick: () => void;
         isDisabled?: boolean;
         isLoading?: boolean;
-    }
+    };
+    error?: string;
 }
 
-export default function Input({ label, inputProps, inputGroupProps, icon, actionButton }: Props) {
+export default function Input({ label, inputProps, inputGroupProps, icon, actionButton, error }: Props) {
     const baseInputProps = {
         borderRadius: 8,
         py: 3,
@@ -50,35 +52,11 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
     )
 
     if (!label) {
-        if (!icon && !actionButton) return inputElement
+        if (!icon && !actionButton && !error) return inputElement
 
         return (
-            <InputGroup {...baseInputGroupProps}>
-                {icon}
-                {inputElement}
-                {actionButton && (
-                    <Button
-                        onClick={actionButton.onClick}
-                        isDisabled={actionButton.isDisabled}
-                        isLoading={actionButton.isLoading}
-                        borderRadius={4}
-                    >
-                        {actionButton.label}
-                    </Button>
-                )}
-            </InputGroup>
-        )
-    }
-
-    return (
-        <InputGroup display="flex" flexDirection="column" gap={2}>
-            <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">
-                {label}
-            </FormLabel>
-            {!icon && !actionButton ?
-                inputElement
-                :
-                <InputGroup {...baseInputGroupProps}>
+            <>
+                <Flex {...baseInputGroupProps}>
                     {icon}
                     {inputElement}
                     {actionButton && (
@@ -91,8 +69,36 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
                             {actionButton.label}
                         </Button>
                     )}
-                </InputGroup>
+                </Flex>
+                {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+            </>
+        )
+    }
+
+    return (
+        <InputGroup display="flex" flexDirection="column" gap={2}>
+            <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">
+                {label}
+            </FormLabel>
+            {!icon && !actionButton ?
+                inputElement
+                :
+                <Flex {...baseInputGroupProps}>
+                    {icon}
+                    {inputElement}
+                    {actionButton && (
+                        <Button
+                            onClick={actionButton.onClick}
+                            isDisabled={actionButton.isDisabled}
+                            isLoading={actionButton.isLoading}
+                            borderRadius={4}
+                        >
+                            {actionButton.label}
+                        </Button>
+                    )}
+                </Flex>
             }
+            {error && <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
         </InputGroup>
     )
 }

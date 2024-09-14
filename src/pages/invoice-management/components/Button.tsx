@@ -2,7 +2,7 @@ import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props extends ButtonProps {
-    onClick: () => void;
+    onClick?: () => void;
     variant?: 'primary' | 'ghost';
 }
 
