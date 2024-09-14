@@ -2,6 +2,7 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
+import { SHOP_URL } from 'lib/utils/app/variable'
 import { formattedCurrency } from 'lib/utils/heper/helpers'
 import Table from 'pages/invoice-management/components/Table'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
@@ -18,7 +19,7 @@ function InvoiceTable({ invoices, isLoading }: Props) {
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
-        { accessorKey: 'id', header: 'ID Number', cell: info => info.getValue() },
+        { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
         { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
         { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
@@ -30,13 +31,17 @@ function InvoiceTable({ invoices, isLoading }: Props) {
         onOpen()
     }
 
-    const renderActions = (row: Invoice) => (
-        <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
-            <button onClick={() => console.log("share")}><AppIcons.Share /></button>
-            <button onClick={() => openDetailsModal(row)}><AppIcons.Eye /></button>
-            <InvoiceTableMenu invoiceId={row._id} />
-        </Flex>
-    )
+    const renderActions = (row: Invoice) => {
+        const paymentLink = `${SHOP_URL}/paylink/${row._id}`
+
+        return (
+            <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
+                <button onClick={() => window.open(paymentLink, "_blank")}><AppIcons.Share /></button>
+                <button onClick={() => openDetailsModal(row)}><AppIcons.Eye /></button>
+                <InvoiceTableMenu invoiceId={row._id} />
+            </Flex>
+        )
+    }
 
     return (
         <>

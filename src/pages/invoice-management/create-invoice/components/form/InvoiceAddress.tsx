@@ -25,6 +25,7 @@ function InvoiceAddress() {
         >
             <SimpleGrid
                 columns={{ base: 1, md: 2 }}
+                alignItems={"flex-start"}
                 columnGap={6}
                 rowGap={4}
             >

@@ -23,3 +23,8 @@ export interface InvoiceQueryParams {
     search?: string;
     status?: InvoiceStatus
 }
+
+export interface CartAdditionalDetails {
+    email: string;
+    note: string;
+}

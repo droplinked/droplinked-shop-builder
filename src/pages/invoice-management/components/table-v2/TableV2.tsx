@@ -1,48 +1,35 @@
 import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
-import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
+import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
-import React, { ReactNode } from 'react'
+import React from 'react'
+import useTableContext, { TableContext } from './TableContext'
+import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'
 
-interface TableHeadProps<T extends object> {
-    columns: ColumnDef<T>[]
-    data: T[]
-    hasActionColumn?: boolean
-    enableSorting?: boolean
-    sorting?: SortingState
-    setSorting?: (state: SortingState) => void
-    footerContent?: ReactNode
-}
-
-interface TableBodyProps<T extends object> {
-    columns: ColumnDef<T>[]
-    isLoading?: boolean
-    hasActionColumn?: boolean
-    children: ReactNode
-}
-
-function TableRoot({ children }) {
+function TableRoot<T extends object>({ children, columns, hasActionColumn = false }: TableRootProps<T>) {
     return (
-        <TableContainer
-            border="1px solid #262626"
-            borderRadius={8}
-            overflow="hidden"
-        >
-            <ChakraTable
-                variant="unstyled"
-                sx={{
-                    "th, td": { paddingInline: 6, paddingBlock: 4 },
-                    userSelect: "none"
-                }}
+        <TableContext.Provider value={{ columns, hasActionColumn }}>
+            <TableContainer
+                border="1px solid #262626"
+                borderRadius={8}
+                overflow="hidden"
             >
-                {children}
-            </ChakraTable>
-        </TableContainer>
+                <ChakraTable
+                    variant="unstyled"
+                    sx={{
+                        "th, td": { paddingInline: 6, paddingBlock: 4 },
+                        userSelect: "none",
+                    }}
+                >
+                    {children}
+                </ChakraTable>
+            </TableContainer>
+        </TableContext.Provider>
     )
 }
 
 function TableHead<T extends object>(props: TableHeadProps<T>) {
-    const { columns, data, hasActionColumn = false, enableSorting = false, sorting, setSorting, footerContent } = props
-
+    const { data, enableSorting = false, sorting, setSorting } = props
+    const { columns, hasActionColumn } = useTableContext()
     const table = useReactTable({
         data,
         columns,
@@ -85,13 +72,14 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
     )
 }
 
-function TableBody<T extends object>({ isLoading, columns, hasActionColumn, children }: TableBodyProps<T>) {
+function TableBody({ isLoading, children }: TableBodyProps) {
+    const { columns, hasActionColumn } = useTableContext()
+
     return (
         <Tbody
             sx={{
                 "tr": {
                     bgColor: "#1C1C1C",
-                    borderTop: "1px solid #262626",
                     borderBottom: "1px solid #262626",
                     color: "white",
                     transition: "background 0.2s",
@@ -121,7 +109,17 @@ function TableBody<T extends object>({ isLoading, columns, hasActionColumn, chil
 }
 
 function TableFooter({ children }) {
-    return <Tfoot>{children}</Tfoot>
+    const { columns } = useTableContext()
+
+    return (
+        <Tfoot borderTop={"1px solid #262626"}>
+            <Tr bgColor="#1C1C1C">
+                <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
+                    {children}
+                </Td>
+            </Tr>
+        </Tfoot>
+    )
 }
 
 const Table = {

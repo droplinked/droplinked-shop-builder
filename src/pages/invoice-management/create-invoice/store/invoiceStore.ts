@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 export interface InvoiceFormSchema {
     email: string;
+    note: string;
     address: {
         firstName: string;
         lastName: string;
@@ -99,15 +100,18 @@ type State = {
 
 type Action = {
     updateCart: (cart: State['cart']) => void
+    resetCart: () => void
 }
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
     updateCart: (cart) => {
+        console.log({ cart })
         const areAllProductsDigital = cart.items?.every(item => item.product.type === 'DIGITAL')
         set({ cart, areAllProductsDigital })
-    }
+    },
+    resetCart: () => set({ cart: {} as Cart, areAllProductsDigital: true })
 }))
 
 export default useInvoiceStore

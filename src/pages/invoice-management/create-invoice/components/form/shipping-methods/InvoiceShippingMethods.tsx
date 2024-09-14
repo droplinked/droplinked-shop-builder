@@ -1,7 +1,7 @@
 import { Box, Circle, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
-import ToggleableSection from '../ToggleableSection'
+import ToggleableSection from '../../ToggleableSection'
 
 export default function InvoiceShippingMethods() {
     const [paymentMethod, setPaymentMethod] = useState("")

@@ -1,22 +1,70 @@
 import { Flex } from '@chakra-ui/react'
-import { Formik, FormikProvider } from 'formik'
+import { Form, Formik, FormikProvider } from 'formik'
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import Button from '../components/Button'
-import SectionedContent from './components/SectionedContent'
-import InvoiceAddress from './components/form/InvoiceAddress'
-import InvoiceContactInformation from './components/form/InvoiceContactInformation'
+import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
-import InvoiceShippingMethods from './components/form/InvoiceShippingMethods'
 import InvoiceSummary from './components/form/InvoiceSummary'
-import useInvoiceStore, { Cart, InvoiceFormSchema } from './store/invoiceStore'
+import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
 
 export default function CreateInvoice() {
-    const updateCart = useInvoiceStore((state) => state.updateCart)
-    const areAllProductsDigital = useInvoiceStore((state) => state.areAllProductsDigital)
+    const { resetCart, areAllProductsDigital } = useInvoiceStore()
+    const navigate = useNavigate()
+
+    const validationSchema = Yup.object({
+        email: Yup.string().email('Invalid email address').required('Email is required'),
+        note: Yup.string(),
+        address: Yup.object().shape({
+            firstName: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("First Name is required"),
+                otherwise: schema => schema
+            }),
+            lastName: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("Last Name is required"),
+                otherwise: schema => schema
+            }),
+            addressLine1: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("Address Line 1 is required"),
+                otherwise: schema => schema
+            }),
+            addressLine2: Yup.string(),
+            country: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("Country is required"),
+                otherwise: schema => schema
+            }),
+            city: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("City is required"),
+                otherwise: schema => schema
+            }),
+            state: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("State is required"),
+                otherwise: schema => schema
+            }),
+            zip: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("Zip Code is required"),
+                otherwise: schema => schema
+            }),
+            addressType: Yup.string(),
+            phoneNumber: Yup.string().when([], {
+                is: () => !areAllProductsDigital,
+                then: schema => schema.required("Phone Number is required"),
+                otherwise: schema => schema
+            })
+        })
+    })
 
     const initialValues: InvoiceFormSchema = {
         email: '',
+        note: '',
         address: {
             firstName: '',
             lastName: '',
@@ -35,52 +83,42 @@ export default function CreateInvoice() {
         console.log('Form submitted:', values)
     }
 
+    const handleDiscard = () => {
+        resetCart()
+        navigate("/dashboard/invoice-management")
+    }
+
     useEffect(() => {
-        return () => { updateCart({} as Cart) }
-    }, [updateCart])
+        return () => { resetCart() }
+    }, [resetCart])
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
+            validateOnChange={false}
             onSubmit={handleSubmit}
         >
             {formik => (
                 <FormikProvider value={formik}>
-                    <Flex direction={{ base: "column", lg: "row" }} gap={6}>
-                        <Flex flex={1} direction={"column"} gap={"inherit"}>
-                            <InvoiceProductTable />
+                    <Form>
+                        <Flex direction={{ base: "column", lg: "row" }} gap={6}>
+                            <Flex flex={1} direction={"column"} gap={"inherit"}>
+                                <InvoiceProductTable />
+                                <InvoiceClientDetails />
+                            </Flex>
 
-                            <SectionedContent title="Client Details">
-                                <InvoiceContactInformation />
-                                {!areAllProductsDigital && <InvoiceAddress />}
-                                {!areAllProductsDigital && <InvoiceShippingMethods />}
-                            </SectionedContent>
+                            <Flex direction={"column"} gap={6}>
+                                <InvoiceSummary />
+                                <Flex direction={"column"} gap={4}>
+                                    <Button type='submit'>Create Invoice</Button>
+                                    <Button variant='ghost' onClick={handleDiscard}>Discard</Button>
+                                </Flex>
+                            </Flex>
                         </Flex>
-
-                        <Flex direction={"column"} gap={6}>
-                            <InvoiceSummary />
-                            <Button type='submit'>Create Invoice</Button>
-                        </Flex>
-                    </Flex>
+                    </Form>
                 </FormikProvider>
             )}
         </Formik>
     )
 }
-
-const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Email is required'),
-    address: Yup.object().shape({
-        firstName: Yup.string(),
-        lastName: Yup.string(),
-        addressLine1: Yup.string(),
-        addressLine2: Yup.string(),
-        country: Yup.string(),
-        city: Yup.string(),
-        state: Yup.string(),
-        zip: Yup.string(),
-        addressType: Yup.string(),
-        phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Must be exactly 10 digits')
-    })
-})

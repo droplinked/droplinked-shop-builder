@@ -2,11 +2,10 @@ import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props extends ButtonProps {
-    onClick?: () => void;
     variant?: 'primary' | 'ghost';
 }
 
-function Button({ onClick, variant = 'primary', children, ...props }: Props) {
+function Button({ variant = 'primary', children, ...props }: Props) {
     const isPrimary = variant === 'primary'
 
     return (
@@ -21,8 +20,8 @@ function Button({ onClick, variant = 'primary', children, ...props }: Props) {
             paddingBlock={3}
             paddingInline={4}
             bgColor={isPrimary ? "#2BCFA1" : "transparent"}
+            fontWeight={400}
             color={isPrimary ? "black" : "white"}
-            onClick={onClick}
             _hover={{}}
             _active={{}}
             sx={{

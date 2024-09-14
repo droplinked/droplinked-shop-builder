@@ -20,6 +20,7 @@ export default function VariantsDropdown({ selectedVariant, onSelectVariant, pro
                 selectedVariant={selectedVariant}
                 onSelectVariant={onSelectVariant}
                 product={product}
+                onClose={onClose}
             />
         </Popover>
     )
@@ -52,7 +53,7 @@ const DropdownTrigger = ({ isOpen }: { isOpen: boolean }) => (
     </PopoverTrigger>
 )
 
-const DropdownContent = ({ selectedVariant, onSelectVariant, product }) => {
+const DropdownContent = ({ selectedVariant, onSelectVariant, product, onClose }) => {
     const [searchTerm, setSearchTerm] = useState("")
 
     const sortedOptions = (options) => {
@@ -69,6 +70,11 @@ const DropdownContent = ({ selectedVariant, onSelectVariant, product }) => {
             .toLowerCase()
         return optionsText.includes(searchTerm.toLowerCase())
     })
+
+    const handleVariantSelect = (skuId) => {
+        onSelectVariant(skuId)
+        onClose()
+    }
 
     return (
         <PopoverContent
@@ -114,7 +120,7 @@ const DropdownContent = ({ selectedVariant, onSelectVariant, product }) => {
                             cursor={"pointer"}
                             userSelect={"none"}
                             _hover={{ bgColor: "#292929" }}
-                            onClick={() => onSelectVariant(sku._id)}
+                            onClick={() => handleVariantSelect(sku._id)}
                         >
                             <Flex flex={1} alignItems={"center"} gap={8}>
                                 {sortedOptions(sku.options).map((option: any, index: number) => (

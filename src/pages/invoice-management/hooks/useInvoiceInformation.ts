@@ -1,3 +1,4 @@
+import { retrieveInvoiceByIdService } from "lib/apis/invoice/invoiceServices";
 import { useQuery } from "react-query";
 
 export type SummaryRow = {
@@ -11,15 +12,16 @@ type InvoiceInformationMap = Record<string, SummaryRow[]>
 export default function useInvoiceInformation(invoiceId?: string) {
     const { isFetching, isError, data } = useQuery({
         queryKey: ["invoice", invoiceId],
-        queryFn: () => Promise.resolve({}),
+        queryFn: () => retrieveInvoiceByIdService(invoiceId || ""),
         enabled: !!invoiceId,
     })
+    const invoiceData = data?.data
 
     const invoiceInformationMap: InvoiceInformationMap = {
         "Information": [
-            { label: "ID Number", value: invoiceId || "INV-0001" },
-            { label: "Status", value: "Pending" },
-            { label: "Memo", value: "If no one is at home, please leave the package at the front door." }
+            { label: "ID Number", value: invoiceId || "N/A" },
+            { label: "Status", value: invoiceData?.status || "N/A" },
+            { label: "Memo", value: invoiceData?.note || "N/A" }
         ],
         "Client detail": [
             { label: "Full name", value: "Alireza Taherzadeh" },
@@ -29,18 +31,17 @@ export default function useInvoiceInformation(invoiceId?: string) {
             { label: "Shipping Method", value: "Express shipping" }
         ],
         "Payment Details": [
-            { label: "Total cart", value: 123, isPrice: true },
-            { label: "Tax", value: 123, isPrice: true },
-            { label: "Total Shipping", value: 123, isPrice: true },
-            { label: "Order Tax", value: 123, isPrice: true },
-            { label: "Total Cost", value: 123, isPrice: true }
+            { label: "Total cart", value: invoiceData?.totalCart?.subtotal, isPrice: true },
+            { label: "Tax", value: invoiceData?.totalCart?.estimatedTaxes, isPrice: true },
+            { label: "Total Shipping", value: invoiceData?.totalCart?.shipping, isPrice: true },
+            { label: "Total Cost", value: invoiceData?.totalCart?.totalPayment, isPrice: true }
         ]
     }
 
     return {
         isFetching,
         isError,
-        data,
+        data: invoiceData,
         invoiceInformationMap
     }
 }

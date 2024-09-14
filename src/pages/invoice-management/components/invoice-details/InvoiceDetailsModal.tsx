@@ -3,6 +3,7 @@ import AppIcons from 'assest/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink';
+import { SHOP_URL } from 'lib/utils/app/variable';
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation';
 import React from 'react';
 import SummaryBox from './SummaryBox';
@@ -15,6 +16,7 @@ interface Props {
 
 function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
     const { invoiceInformationMap } = useInvoiceInformation(invoiceId)
+    const paymentLink = `${SHOP_URL}/paylink/${invoiceId}`
 
     return (
         <AppModal
@@ -28,7 +30,7 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
             />
 
             <ModalBody display={"flex"} flexDirection={"column"} gap={4}>
-                <AppShareableLink link='https://google.com' />
+                <AppShareableLink link={paymentLink} />
 
                 {Object.entries(invoiceInformationMap).map(([key, value], index) => (
                     <SummaryBox key={index} title={key} rows={value} />

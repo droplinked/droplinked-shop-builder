@@ -63,13 +63,12 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
                 <Input
                     inputProps={{
                         width: "300px",
-                        height: 12,
                         placeholder: "Product name",
                         value: searchTerm,
                         onChange: (e) => setSearchTerm(e.target.value)
                     }}
                 />
-                <ProductTable debouncedSearchTerm={debouncedSearchTerm} setCart={setCart} />
+                <ProductTable debouncedSearchTerm={debouncedSearchTerm} cart={cart} setCart={setCart} />
 
                 {isLoading && (
                     <Flex

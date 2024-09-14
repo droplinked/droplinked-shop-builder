@@ -20,12 +20,12 @@ function InvoiceContactInformation() {
                 {!areAllProductsDigital && (
                     <>
                         <Input
-                            label='First name'
+                            label='First Name'
                             inputProps={{ name: "firstName", placeholder: "John", value: values.address.firstName, onChange: (e) => setFieldValue("address.firstName", e.target.value) }}
                             error={errors.address?.firstName}
                         />
                         <Input
-                            label='Last name'
+                            label='Last Name'
                             inputProps={{ name: "lastName", placeholder: "Doe", value: values.address.lastName, onChange: (e) => setFieldValue("address.lastName", e.target.value) }}
                             error={errors.address?.lastName}
                         />
@@ -41,7 +41,7 @@ function InvoiceContactInformation() {
                 {!areAllProductsDigital &&
                     <Input
                         label='Phone Number'
-                        inputProps={{ name: "phoneNumber", placeholder: "+1 123 456 789", value: values.address.phoneNumber, onChange: (e) => setFieldValue("address.phoneNumber", e.target.value) }}
+                        inputProps={{ height: "51px", name: "phoneNumber", placeholder: "+1 123 456 789", value: values.address.phoneNumber, onChange: (e) => setFieldValue("address.phoneNumber", e.target.value) }}
                         error={errors.address?.phoneNumber}
                     />
                 }

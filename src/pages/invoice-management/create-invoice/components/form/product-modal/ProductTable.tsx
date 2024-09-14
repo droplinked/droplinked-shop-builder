@@ -5,12 +5,12 @@ import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { productServices } from 'lib/apis/product/productServices'
 import Input from 'pages/invoice-management/components/Input'
-import Table from 'pages/invoice-management/components/TableV2'
+import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import VariantsDropdown from './VariantsDropdown'
 
-export default function ProductTable({ debouncedSearchTerm, setCart }) {
+export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
     const { isFetching, isError, data, refetch } = useQuery({
         queryFn: () => productServices({ page: 1, limit: 15, filter: debouncedSearchTerm }),
         queryKey: ["products", debouncedSearchTerm],
@@ -28,27 +28,30 @@ export default function ProductTable({ debouncedSearchTerm, setCart }) {
     ]
 
     return (
-        <Table.Root>
-            <Table.Head columns={columns} data={products} hasActionColumn={true} />
-            <Table.Body columns={columns} isLoading={isFetching} hasActionColumn={true} >
-                {products.map((product, index) => <ProductRow key={index} product={product} setCart={setCart} />)}
+        <Table.Root columns={columns} hasActionColumn={true}>
+            <Table.Head data={products} />
+            <Table.Body isLoading={isFetching}>
+                {products.map((product, index) => <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}
             </Table.Body>
         </Table.Root>
     )
 }
 
-function ProductRow({ product, setCart }) {
+function ProductRow({ product, cart, setCart }) {
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
 
-    // Handler for when the Add button is clicked
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
-            setCart(prevCart => ([
-                ...prevCart,
-                { skuId, quantity: Number(quantity) }
-            ]))
+            if (cart.find(item => item.skuId === skuId)) {
+                setCart(prevCart => prevCart.map(item => {
+                    return item.skuId === skuId ?
+                        { ...item, quantity: item.quantity + Number(quantity) } :
+                        item
+                }))
+            }
+            else setCart(prevCart => ([...prevCart, { skuId, quantity: Number(quantity) }]))
             setQuantity(0)
             setSkuId("")
             showToast({ type: "success", message: "Product added to cart" })
@@ -75,13 +78,18 @@ function ProductRow({ product, setCart }) {
                 <Input
                     inputProps={{
                         width: "68px",
-                        value: quantity || "",
                         type: "number",
+                        value: quantity || "",
+                        min: 1,
                         fontSize: 14,
                         color: "#878787",
                         placeholder: "1",
                         _focus: { borderColor: "#878787" },
-                        onChange: (e) => setQuantity(parseInt(e.target.value))
+                        onChange: (e) => setQuantity(parseInt(e.target.value)),
+                        onKeyDown: (e) => {
+                            const invalidKeys = ['+', '-', 'e']
+                            if (invalidKeys.includes(e.key)) e.preventDefault()
+                        }
                     }}
                 />
             </Td>

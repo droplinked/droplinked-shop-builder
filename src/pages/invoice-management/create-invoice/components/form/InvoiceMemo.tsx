@@ -1,9 +1,11 @@
 import { FormLabel, InputGroup, Textarea } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useState } from 'react'
+import { useFormikContext } from 'formik'
+import React from 'react'
+import { InvoiceFormSchema } from '../../store/invoiceStore'
 
 function InvoiceMemo() {
-    const [memo, setMemo] = useState("")
+    const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
     const maxCharacters = 100
 
     return (
@@ -13,7 +15,7 @@ function InvoiceMemo() {
         >
             <FormLabel margin={0} fontSize={16} color={"white"}>Memo</FormLabel>
             <Textarea
-                value={memo}
+                value={values.note}
                 maxLength={maxCharacters}
                 rows={3}
                 mt={4}
@@ -27,7 +29,7 @@ function InvoiceMemo() {
                 _hover={{}}
                 _focus={{}}
                 _focusVisible={{}}
-                onChange={(e) => setMemo(e.target.value)}
+                onChange={(e) => setFieldValue("note", e.target.value)}
             ></Textarea>
             <AppTypography
                 mt={2}
@@ -36,7 +38,7 @@ function InvoiceMemo() {
                 color={"#7B7B7B"}
                 userSelect={"none"}
             >
-                {memo.length}/{maxCharacters}
+                {values.note.length}/{maxCharacters}
             </AppTypography>
         </InputGroup>
     )
