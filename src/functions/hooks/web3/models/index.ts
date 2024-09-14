@@ -121,11 +121,11 @@ const web3Model = {
 								],
 								accountAddress
 							).deployShop(
-								shop.name,
-								`${SHOP_URL}/${shop.name}`,
+								shop?.name,
+								`${SHOP_URL}/${shop?.name}`,
 								accountAddress,
-								shop.logo,
-								shop.description
+								shop?.logo,
+								shop?.description
 							);
 						await deployShopContractService({
 							type: chain,
@@ -153,11 +153,11 @@ const web3Model = {
 						],
 						accountAddress
 					).deployShop(
-						shop.name,
-						`${SHOP_URL}/${shop.name}`,
+						shop?.name,
+						`${SHOP_URL}/${shop?.name}`,
 						accountAddress,
-						shop.logo,
-						shop.description
+						shop?.logo,
+						shop?.description
 					);
 					await deployShopContractService({
 						type: chain,
@@ -280,11 +280,11 @@ const web3Model = {
 								],
 								accountAddress
 							).deployShop(
-								shop.name,
-								`${SHOP_URL}/${shop.name}`,
+								shop?.name,
+								`${SHOP_URL}/${shop?.name}`,
 								accountAddress,
-								shop.logo,
-								shop.description
+								shop?.logo,
+								shop?.description
 							);
 						await deployShopContractService({
 							type: chain,
@@ -301,11 +301,11 @@ const web3Model = {
 						],
 						accountAddress
 					).deployShop(
-						shop.name,
-						`${SHOP_URL}/${shop.name}`,
+						shop?.name,
+						`${SHOP_URL}/${shop?.name}`,
 						accountAddress,
-						shop.logo,
-						shop.description
+						shop?.logo,
+						shop?.description
 					);
 					await deployShopContractService({
 						type: chain,

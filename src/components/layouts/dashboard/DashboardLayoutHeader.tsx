@@ -26,7 +26,7 @@ const DashboardLayoutHeader = ({ subscriptionInfo: { icon: SubscriptionIcon, tit
                                 <Image width={"48px"} height={"48px"} src={shop?.logo} borderRadius="full" objectFit={"contain"} backgroundPosition={"center"} />
                                 <Box display="flex" alignSelf={"stretch"} flexDirection="column" justifyContent="center" alignItems="flex-start" flex="1 0 0">
                                     <AppTypography alignSelf={"stretch"} color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="600" lineHeight="24px">{user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : "Welcome"}</AppTypography>
-                                    <AppTypography alignSelf={"stretch"} color="#C4C4C4" fontFamily="Inter" fontSize="12px" fontStyle="normal" fontWeight="400" lineHeight="16px">{shop.description.length <= 15 ? shop.description : <AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>}</AppTypography>
+                                    <AppTypography alignSelf={"stretch"} color="#C4C4C4" fontFamily="Inter" fontSize="12px" fontStyle="normal" fontWeight="400" lineHeight="16px">{shop?.description?.length <= 15 ? shop?.description : <AppTooltip label={shop?.description}>{`${shop?.description?.slice(0, 15)}...`}</AppTooltip>}</AppTypography>
                                 </Box>
                                 <Link to={"/shop-management"}><AppIcons.ProfileSwitch width={"20px"} height={"20px"} /></Link>
                             </Box>
