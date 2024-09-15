@@ -44,7 +44,7 @@ function InvoiceTable({ invoices, isLoading }: Props) {
             <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
                 <button onClick={() => window.open(paymentLink, "_blank")}><AppIcons.Share /></button>
                 <button onClick={() => openDetailsModal(row)}><AppIcons.Eye /></button>
-                <InvoiceTableMenu invoiceId={row._id} />
+                <InvoiceTableMenu invoice={row} />
             </Flex>
         )
     }

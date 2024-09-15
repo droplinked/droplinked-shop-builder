@@ -111,7 +111,7 @@ const useInvoiceStore = create<State & Action>((set) => ({
     areAllProductsDigital: true,
     selectedShippingMethod: null,
     updateCart: (cart) => {
-        const areAllProductsDigital = cart.items?.every(item => item.product.type === 'DIGITAL')
+        const areAllProductsDigital = cart.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
         set({ cart, areAllProductsDigital })
     },
     updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),

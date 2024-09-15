@@ -13,20 +13,22 @@ type InvoiceInformationMap = Record<string, SummaryRow[]>
 export default function useInvoiceInformation(invoiceId?: string) {
     const { isFetching, isError, data } = useQuery({
         queryKey: ["invoice", invoiceId],
-        queryFn: () => retrieveInvoiceByIdService(invoiceId || ""),
+        queryFn: () => retrieveInvoiceByIdService(invoiceId),
         enabled: !!invoiceId,
+        refetchOnWindowFocus: false
     })
-    const { cart, areAllProductsDigital } = useInvoiceStore()
+    const cart = useInvoiceStore(state => state.cart)
     const invoice = invoiceId ? data?.data : cart
+    const areAllProductsDigital = invoice?.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
 
     function formatAddress() {
-        const { addressLine1, addressLine2, city, state, zip, country } = invoice.address
+        const { addressLine1, addressLine2, city, state, zip, country } = invoice?.address ?? {}
         const formattedAddress = [addressLine1, addressLine2, city, state, zip, country].filter(Boolean).join(', ')
         return formattedAddress
     }
 
     function findSelectedShippingTitle() {
-        for (const shippingGroup of invoice.shippings) {
+        for (const shippingGroup of invoice?.shippings ?? []) {
             const selectedMethod = shippingGroup.data.find(method => method.selected)
             if (selectedMethod) return selectedMethod.title
         }
@@ -40,9 +42,9 @@ export default function useInvoiceInformation(invoiceId?: string) {
             { label: "Memo", value: invoice?.note || "N/A" }
         ],
         "Client detail": [
-            { label: "Full name", value: areAllProductsDigital ? "N/A" : `${invoice?.address.firstName} ${invoice?.address.lastName}` },
+            { label: "Full name", value: areAllProductsDigital ? "N/A" : `${invoice?.address?.firstName} ${invoice?.address?.lastName}` },
             { label: "Email Address", value: invoice?.email },
-            { label: "Mobile Number", value: areAllProductsDigital ? "N/A" : invoice?.address.phoneNumber },
+            { label: "Mobile Number", value: areAllProductsDigital ? "N/A" : invoice?.address?.phoneNumber },
             { label: "Address", value: areAllProductsDigital ? "N/A" : formatAddress() },
             { label: "Shipping Method", value: areAllProductsDigital ? "N/A" : findSelectedShippingTitle() }
         ],

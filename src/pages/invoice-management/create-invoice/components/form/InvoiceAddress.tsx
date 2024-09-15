@@ -67,7 +67,7 @@ function InvoiceAddress() {
                 />
                 <Input
                     label='Zip Code'
-                    inputProps={{ name: "zip", placeholder: "Enter Zip Code", value: values.address.zip, onChange: (e) => setFieldValue("address.zip", e.target.value) }}
+                    inputProps={{ name: "zip", placeholder: "Zip Code", value: values.address.zip, onChange: (e) => setFieldValue("address.zip", e.target.value) }}
                     error={errors.address?.zip}
                 />
             </SimpleGrid>

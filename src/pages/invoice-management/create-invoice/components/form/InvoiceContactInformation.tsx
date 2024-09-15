@@ -42,7 +42,7 @@ function InvoiceContactInformation() {
                 {!areAllProductsDigital &&
                     <Input
                         label='Phone Number'
-                        inputProps={{ height: "51px", name: "phoneNumber", placeholder: "+1 123 456 789", value: values.address.phoneNumber, onChange: (e) => setFieldValue("address.phoneNumber", e.target.value) }}
+                        inputProps={{ name: "phoneNumber", placeholder: "+1 123 456 789", value: values.address.phoneNumber, onChange: (e) => setFieldValue("address.phoneNumber", e.target.value) }}
                         error={errors.address?.phoneNumber}
                     />
                 }

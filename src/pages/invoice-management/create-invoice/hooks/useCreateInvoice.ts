@@ -28,11 +28,9 @@ export default function useCreateInvoice() {
             updateCart(data)
 
             if (!areAllProductsDigital) {
-                if (!cart.address) {
-                    const { data: { data: createdAddress } } = await createAddressService(formData.address)
-                    const { data } = await addAddressToCartService(cart._id, createdAddress._id)
-                    updateCart(data)
-                }
+                const { data: { data: createdAddress } } = await createAddressService(formData.address)
+                const { data } = await addAddressToCartService(cart._id, createdAddress._id)
+                updateCart(data)
 
                 if (trigger === "CREATE_BUTTON") {
                     const { data } = await addShippingMethodToCartService(cart._id, selectedShippingMethod)

@@ -7,10 +7,12 @@ import { deleteInvoiceService } from 'lib/apis/invoice/invoiceServices'
 import Button from 'pages/invoice-management/components/Button'
 import React from 'react'
 import { useMutation, useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import { INVOICES_QUERY_KEY } from '../../InvoiceManagement'
 
-export default function InvoiceTableMenu({ invoiceId }) {
+export default function InvoiceTableMenu({ invoice }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     return (
         <>
@@ -39,17 +41,16 @@ export default function InvoiceTableMenu({ invoiceId }) {
                         }
                     }}
                 >
-                    <MenuItem>
-                        <AppIcons.Edit />
-                        Edit
-                    </MenuItem>
+                    {invoice.status === "ACTIVE" &&
+                        <MenuItem onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}><AppIcons.Edit />Edit</MenuItem>
+                    }
                     <MenuItem color={"#FF2244"} onClick={onOpen}>
                         <AppIcons.RedTrash />
                         Delete
                     </MenuItem>
                 </MenuList>
             </Menu>
-            {isOpen && <ConfirmInvoiceDeleteModal invoiceId={invoiceId} isOpen={isOpen} onClose={onClose} />}
+            {isOpen && <ConfirmInvoiceDeleteModal isOpen={isOpen} onClose={onClose} invoiceId={invoice._id} />}
         </>
     )
 }

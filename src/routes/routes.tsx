@@ -1,11 +1,12 @@
 import MainLayout from "components/layouts/app/main/mainLayout"
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout"
+import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
 import NotFound from "pages/404/404"
 import ShopProduct from "pages/affiliate/product/ShopProduct"
 import AffiliateProducts from "pages/affiliate/products/AffiliateProducts"
-import Shops from "pages/affiliate/shops/Shops"
 import Shop from "pages/affiliate/shopSingle/Shop"
+import Shops from "pages/affiliate/shops/Shops"
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
 import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
@@ -39,17 +40,16 @@ import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import Admins from "pages/register-pages/pages/admins/Admins"
 import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
-import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
-import React, { lazy, Suspense } from "react"
+import React, { Suspense, lazy } from "react"
 import { Route, Routes } from "react-router-dom"
-import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -140,6 +140,7 @@ function AppRoutes() {
           <Route path="gamification" element={<Gamification />} />
           <Route path="invoice-management" element={<InvoiceManagement />} />
           <Route path="invoice-management/create" element={<CreateInvoice />} />
+          <Route path="invoice-management/edit/:invoiceId" element={<CreateInvoice />} />
         </Route>
 
         <Route path="shop-management" element={<ShopManagementLayout />}>
