@@ -1,48 +1,56 @@
-import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps } from '@chakra-ui/react';
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import AppTypography from 'components/common/typography/AppTypography';
 import React, { useMemo } from 'react';
 
-interface SelectItem<T> {
-    title: string;
-    value: T;
-}
-
-interface Props<T> {
-    items: SelectItem<T>[];
-    label?: string;
+interface Props {
+    label: string;
+    items: any[];
+    value?: any;
+    labelAccessor?: string;
+    valueAccessor?: string;
+    isLoading?: boolean;
+    error?: string;
     inputGroupProps?: InputGroupProps;
     selectProps?: SelectProps;
-    isLoading?: boolean;
+    onChange?: (value: any) => void;
 }
 
-function Select<T extends string | number>({ items, label, inputGroupProps, selectProps, isLoading }: Props<T>) {
+function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", isLoading, error, inputGroupProps, selectProps, onChange }: Props) {
     const options = useMemo(() => {
         return items.map((item) => (
-            <option key={item.value} value={item.value}>
-                {item.title}
+            <option key={item[valueAccessor]} value={item[valueAccessor]}>
+                {item[labelAccessor]}
             </option>
         ))
     }, [items])
 
     const selectElement = (
         <ChakraSelect
+            value={value}
             height={12}
             border={"1px solid #292929"}
             borderWidth={"1.5px"}
             borderRadius={8}
             color={"#7B7B7B"}
-            icon={<AppIcons.SelectChevronDown />}
+            icon={isLoading ? <Spinner size={"sm"} color='#7B7B7B' /> : <AppIcons.SelectChevronDown />}
             _placeholder={{ color: "#7B7B7B" }}
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}
+            onChange={onChange}
             {...selectProps}
         >
             {options}
         </ChakraSelect>
     )
 
-    if (!label) return selectElement
+    if (!label) return (
+        <>
+            {selectElement}
+            <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>
+        </>
+    )
 
     return (
         <InputGroup
@@ -53,6 +61,7 @@ function Select<T extends string | number>({ items, label, inputGroupProps, sele
         >
             <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">{label}</FormLabel>
             {selectElement}
+            <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>
         </InputGroup>
     )
 }
