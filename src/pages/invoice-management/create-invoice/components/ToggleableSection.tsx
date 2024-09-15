@@ -1,23 +1,16 @@
 import { Box, Flex, Switch } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import React, { ChangeEvent, ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 
 interface Props {
     title: string;
     description: string;
+    isExpanded?: boolean;
     onToggle?: () => void;
     children: ReactNode;
 }
 
-function ToggleableSection({ title, description, onToggle, children }: Props) {
-    const [showDetails, setShowDetails] = useState(false)
-
-    const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
-        const newState = e.target.checked
-        setShowDetails(newState)
-        onToggle?.()
-    }
-
+function ToggleableSection({ title, description, isExpanded, onToggle, children }: Props) {
     return (
         <>
             <Flex justifyContent={"space-between"}>
@@ -26,8 +19,8 @@ function ToggleableSection({ title, description, onToggle, children }: Props) {
                     <AppTypography fontSize={14} color={"#B1B1B1"}>{description}</AppTypography>
                 </Flex>
                 <Switch
-                    isChecked={showDetails}
-                    onChange={handleToggle}
+                    isChecked={isExpanded}
+                    onChange={onToggle}
                     sx={{
                         ".chakra-switch__track": { bgColor: "#878787" },
                         ".chakra-switch__thumb": { bgColor: "#1C1C1C" }
@@ -35,7 +28,7 @@ function ToggleableSection({ title, description, onToggle, children }: Props) {
                 />
             </Flex>
 
-            {showDetails && <Box mt={6}>{children}</Box>}
+            {isExpanded && children && <Box mt={6}>{children}</Box>}
         </>
     )
 }

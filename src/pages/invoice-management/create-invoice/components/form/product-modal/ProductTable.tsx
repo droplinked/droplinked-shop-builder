@@ -98,10 +98,12 @@ function ProductRow({ product, cart, setCart }) {
             </Td>
             <Td>
                 <Button
-                    border={"1px solid #2BCFA1"}
-                    color={"#2BCFA1"}
-                    bg={"none"}
                     size={"sm"}
+                    border={"1px solid #2BCFA1"}
+                    bg={"none"}
+                    fontSize={12}
+                    fontWeight={500}
+                    color={"#2BCFA1"}
                     opacity={0}
                     transition="opacity 0.2s"
                     _hover={{}}

@@ -1,3 +1,4 @@
+import { CartShippingMethod } from 'lib/apis/invoice/interfaces';
 import { create } from 'zustand';
 
 export interface InvoiceFormSchema {
@@ -59,13 +60,13 @@ export interface Cart {
         _id: string;
         ownerID: string;
     },
+    address?: InvoiceFormSchema["address"];
     status: string;
     type: string;
     email?: string;
     note?: string;
     items: CartItem[],
     shippings: {
-
         groupId: string,
         type: string,
         data: {
@@ -96,22 +97,29 @@ export interface Cart {
 type State = {
     cart: Cart;
     areAllProductsDigital: boolean;
+    selectedShippingMethod: CartShippingMethod | null
 }
 
 type Action = {
     updateCart: (cart: State['cart']) => void
+    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void
     resetCart: () => void
 }
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
+    selectedShippingMethod: null,
     updateCart: (cart) => {
-        console.log({ cart })
         const areAllProductsDigital = cart.items?.every(item => item.product.type === 'DIGITAL')
         set({ cart, areAllProductsDigital })
     },
-    resetCart: () => set({ cart: {} as Cart, areAllProductsDigital: true })
+    updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
+    resetCart: () => set({
+        cart: {} as Cart,
+        areAllProductsDigital: true,
+        selectedShippingMethod: null
+    })
 }))
 
 export default useInvoiceStore

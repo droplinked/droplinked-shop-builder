@@ -24,7 +24,17 @@ export interface InvoiceQueryParams {
     status?: InvoiceStatus
 }
 
+export interface DeleteInvoiceProduct {
+    cartId: string;
+    itemId: string;
+}
+
 export interface CartAdditionalDetails {
     email: string;
     note: string;
+}
+
+export interface CartShippingMethod {
+    groupId: string;
+    shipmentId: string;
 }

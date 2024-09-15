@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import { allCountriesService } from 'lib/apis/address/addressServices'
 import Input from 'pages/invoice-management/components/Input'
@@ -9,6 +9,7 @@ import { InvoiceFormSchema } from '../../store/invoiceStore'
 import ToggleableSection from '../ToggleableSection'
 
 function InvoiceAddress() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
@@ -22,6 +23,8 @@ function InvoiceAddress() {
         <ToggleableSection
             title='Address'
             description='Enable this option if you want to enter the customers address details.'
+            isExpanded={isOpen}
+            onToggle={isOpen ? onClose : onOpen}
         >
             <SimpleGrid
                 columns={{ base: 1, md: 2 }}
@@ -68,7 +71,7 @@ function InvoiceAddress() {
                     error={errors.address?.zip}
                 />
             </SimpleGrid>
-        </ToggleableSection>
+        </ToggleableSection >
     )
 }
 

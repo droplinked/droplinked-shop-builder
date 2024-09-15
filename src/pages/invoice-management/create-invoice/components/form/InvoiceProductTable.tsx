@@ -1,11 +1,14 @@
-import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
+import { Flex, Spinner, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import { DeleteInvoiceProduct } from 'lib/apis/invoice/interfaces'
+import { removeProductFromCartService } from 'lib/apis/invoice/invoiceServices'
 import TextButton from 'pages/invoice-management/components/TextButton'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useMemo } from 'react'
+import { useMutation } from 'react-query'
 import useInvoiceStore, { CartItem } from '../../store/invoiceStore'
 import InvoiceProductModal from './product-modal/InvoiceProductModal'
 
@@ -84,18 +87,28 @@ function CartItemRow({ cartItem }: { cartItem: SerializedCartItem }) {
                     <Td>{sku.options?.size?.caption || 'N/A'}</Td>
                     <Td>{sku.options?.quantity || 'N/A'}</Td>
                     <Td>{sku.totals?.priceItem || 'N/A'}</Td>
-                    <Td>
-                        <Button
-                            bg="none"
-                            _hover={{ bg: 'none' }}
-                            _active={{ bg: 'none' }}
-                            _focusVisible={{ bg: 'none' }}
-                        >
-                            <AppIcons.RedTrash />
-                        </Button>
-                    </Td>
+                    <SKURemoveButton itemId={sku._id} />
                 </Tr>
             ))}
         </>
+    )
+}
+
+function SKURemoveButton({ itemId }) {
+    const { cart, updateCart } = useInvoiceStore()
+    const { isLoading, mutate: removeProduct } = useMutation({
+        mutationFn: (data: DeleteInvoiceProduct) => removeProductFromCartService(data),
+        onSuccess: (response) => updateCart(response.data)
+    })
+
+    return (
+        <Td>
+            {isLoading ?
+                <Spinner size={'sm'} color={"#FF2244"} /> :
+                <button onClick={() => removeProduct({ cartId: cart._id, itemId })}>
+                    <AppIcons.RedTrash />
+                </button>
+            }
+        </Td>
     )
 }

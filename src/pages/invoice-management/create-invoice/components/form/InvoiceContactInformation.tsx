@@ -14,6 +14,7 @@ function InvoiceContactInformation() {
             <AppTypography fontSize={16} fontWeight={500} color={"white"}>Contact Information</AppTypography>
             <SimpleGrid
                 columns={{ base: 1, md: areAllProductsDigital ? 1 : 2 }}
+                alignItems={"flex-start"}
                 columnGap={6}
                 rowGap={4}
             >

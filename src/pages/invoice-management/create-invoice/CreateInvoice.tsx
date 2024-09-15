@@ -7,11 +7,13 @@ import Button from '../components/Button'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
+import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
 
 export default function CreateInvoice() {
     const { resetCart, areAllProductsDigital } = useInvoiceStore()
     const navigate = useNavigate()
+    const { createInvoice, isLoading } = useCreateInvoice()
 
     const validationSchema = Yup.object({
         email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -70,17 +72,13 @@ export default function CreateInvoice() {
             lastName: '',
             addressLine1: '',
             addressLine2: '',
-            country: '',
-            city: '',
-            state: '',
+            country: 'United States',
+            city: 'Los Alamitos',
+            state: 'California',
             zip: '',
             addressType: 'CUSTOMER',
-            phoneNumber: ''
+            phoneNumber: '+14155552671'
         }
-    }
-
-    const handleSubmit = (values) => {
-        console.log('Form submitted:', values)
     }
 
     const handleDiscard = () => {
@@ -97,7 +95,7 @@ export default function CreateInvoice() {
             initialValues={initialValues}
             validationSchema={validationSchema}
             validateOnChange={false}
-            onSubmit={handleSubmit}
+            onSubmit={(values) => createInvoice({ trigger: "CREATE_BUTTON", formData: values })}
         >
             {formik => (
                 <FormikProvider value={formik}>
@@ -111,8 +109,8 @@ export default function CreateInvoice() {
                             <Flex direction={"column"} gap={6}>
                                 <InvoiceSummary />
                                 <Flex direction={"column"} gap={4}>
-                                    <Button type='submit'>Create Invoice</Button>
-                                    <Button variant='ghost' onClick={handleDiscard}>Discard</Button>
+                                    <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>Create Invoice</Button>
+                                    <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
                                 </Flex>
                             </Flex>
                         </Flex>

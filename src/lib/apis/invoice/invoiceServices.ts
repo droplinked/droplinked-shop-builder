@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { CartAdditionalDetails, InvoiceQueryParams } from "./interfaces";
+import { CartAdditionalDetails, CartShippingMethod, DeleteInvoiceProduct, InvoiceQueryParams } from "./interfaces";
 
 const endpoint = "cart/producer/invoices"
 
@@ -8,8 +8,8 @@ export const createInvoiceService = () => axiosInstance.post(endpoint).then(res 
 export const addProductToInvoiceService = (invoiceId: string, products: any[]) =>
     axiosInstance.post(`${endpoint}/${invoiceId}/products`, { products }).then(res => res.data)
 
-export const removeProductFromCartService = (cartId: string, itemId: string) =>
-    axiosInstance.delete(`cart/v2/public/anonymous-cart/${cartId}`, { data: { itemId } })
+export const removeProductFromCartService = ({ cartId, itemId }: DeleteInvoiceProduct) =>
+    axiosInstance.delete(`cart/v2/public/anonymous-cart/${cartId}`, { data: { itemId } }).then(res => res.data)
 
 export const createAddressService = (address: any) =>
     axiosInstance.post("address-book/public/anonymous-customer", address).then(res => res.data)
@@ -22,6 +22,9 @@ export const addAdditionalDetailsToCartService = (cartId: string, details: CartA
 
 export const addGiftCardToCartService = (cartId: string, giftCardCode: string) =>
     axiosInstance.patch(`giftcard/public/apply/${giftCardCode}/${cartId}`).then(res => res.data)
+
+export const addShippingMethodToCartService = (cartId: string, shippingMethod: CartShippingMethod) =>
+    axiosInstance.post(`checkout/v2/public/anonymous-cart/${cartId}/shipping-rate`, { rates: [shippingMethod] }).then(res => res.data)
 
 export const getInvoicesService = (params: InvoiceQueryParams) => {
     const queryParams = new URLSearchParams(

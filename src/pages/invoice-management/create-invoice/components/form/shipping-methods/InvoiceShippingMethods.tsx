@@ -1,36 +1,59 @@
-import { Box, Circle, Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
+import { Box, Circle, Flex, FormLabel, useDisclosure, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useState } from 'react'
+import { useFormikContext } from 'formik'
+import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useCreateInvoice'
+import useInvoiceStore, { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/store/invoiceStore'
+import React from 'react'
 import ToggleableSection from '../../ToggleableSection'
+import ShippingMethodsLoading from './ShippingMethodsLoading'
 
 export default function InvoiceShippingMethods() {
-    const [paymentMethod, setPaymentMethod] = useState("")
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { values, validateForm } = useFormikContext<InvoiceFormSchema>()
+    const { createInvoice, isLoading } = useCreateInvoice()
+    const { cart, selectedShippingMethod, updateShippingMethod } = useInvoiceStore()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-payment-method',
-        onChange: (value: string) => setPaymentMethod(value),
-        value: paymentMethod,
+        onChange: (shppingMethodId: string) => {
+            const shippingGroup = cart.shippings.find(group => group.data.some(method => method.id === shppingMethodId))
+            updateShippingMethod({ groupId: shippingGroup.groupId, shipmentId: shppingMethodId })
+        },
+        value: selectedShippingMethod?.shipmentId,
     })
 
-    const shippingMethods = [
-        { title: "Standard", price: 6, fulfillmentDate: "2 business days", estimatedDelivery: "2 business days" },
-        { title: "Express", price: 6, fulfillmentDate: "2 business days", estimatedDelivery: "2 business days" },
-        { title: "Priority", price: 6, fulfillmentDate: "2 business days", estimatedDelivery: "2 business days" },
-    ]
+    const handleToggle = async () => {
+        const validationResult = await validateForm()
+        if (Object.entries(validationResult).length > 0) return
+        onOpen()
+        createInvoice({ trigger: "SHIPPING_METHODS_SWITCH", formData: values })
+    }
+
+    const renderContent = () => {
+        if (isLoading) return <ShippingMethodsLoading />
+        if (!cart.shippings.length) return null
+        return (
+            <Flex direction="column" gap={4} {...getRootProps()}>
+                {cart?.shippings.map((shippingGroup) => (
+                    shippingGroup.data.map((shippingMethod) => (
+                        <ShippingMethodRadio
+                            key={shippingMethod.id}
+                            method={shippingMethod}
+                            {...getRadioProps({ value: shippingMethod.id })}
+                        />
+                    ))
+                ))}
+            </Flex>
+        )
+    }
 
     return (
         <ToggleableSection
             title='Shipping'
             description='Shipping methods are based on the type of inventory and address on the invoice.'
+            isExpanded={isOpen}
+            onToggle={isOpen ? onClose : handleToggle}
         >
-            <Flex direction="column" gap={4} {...getRootProps()}>
-                {shippingMethods.map((method) => (
-                    <ShippingMethodRadio
-                        key={method.title}
-                        method={method}
-                        {...getRadioProps({ value: method.title })}
-                    />
-                ))}
-            </Flex>
+            {renderContent()}
         </ToggleableSection>
     )
 }
@@ -62,8 +85,7 @@ function ShippingMethodRadio({ method, ...radioProps }) {
                         <AppTypography>{method.price}</AppTypography>
                     </Flex>
                     <Flex mt={2} direction={{ base: "column", xl: "row" }} justifyContent="space-between" alignItems={{ base: "normal", xl: "center" }}>
-                        <ShippingMethodDetails title="Fulfillment Date" value={method.fulfillmentDate} isChecked={isChecked} />
-                        <ShippingMethodDetails title="Estimated Delivery" value={method.estimatedDelivery} isChecked={isChecked} />
+                        <ShippingMethodDetails title="Estimated Delivery" value={method.delivery_estimation} isChecked={isChecked} />
                     </Flex>
                 </Box>
             </Flex>
