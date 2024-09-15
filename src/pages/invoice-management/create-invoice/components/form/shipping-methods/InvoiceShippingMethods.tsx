@@ -30,7 +30,7 @@ export default function InvoiceShippingMethods() {
 
     const renderContent = () => {
         if (isLoading) return <ShippingMethodsLoading />
-        if (!cart.shippings.length) return null
+        if (!cart.shippings?.length) return null
         return (
             <Flex direction="column" gap={4} {...getRootProps()}>
                 {cart?.shippings.map((shippingGroup) => (

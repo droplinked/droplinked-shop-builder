@@ -43,6 +43,22 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         ...inputGroupProps
     }
 
+    const actionButtonElement = (
+        <Button
+            size={"sm"}
+            borderRadius={4}
+            paddingBlock={2}
+            paddingInline={3}
+            fontSize={12}
+            fontWeight={500}
+            isDisabled={actionButton?.isDisabled}
+            isLoading={actionButton?.isLoading}
+            onClick={actionButton?.onClick}
+        >
+            {actionButton?.label}
+        </Button>
+    )
+
     const inputElement = (
         <ChakraInput
             border={icon || actionButton ? "none" : "1.5px solid #292929"}
@@ -59,16 +75,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
                 <Flex {...baseInputGroupProps}>
                     {icon}
                     {inputElement}
-                    {actionButton && (
-                        <Button
-                            onClick={actionButton.onClick}
-                            isDisabled={actionButton.isDisabled}
-                            isLoading={actionButton.isLoading}
-                            borderRadius={4}
-                        >
-                            {actionButton.label}
-                        </Button>
-                    )}
+                    {actionButton && actionButtonElement}
                 </Flex>
                 {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
             </>
@@ -86,16 +93,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
                 <Flex {...baseInputGroupProps}>
                     {icon}
                     {inputElement}
-                    {actionButton && (
-                        <Button
-                            onClick={actionButton.onClick}
-                            isDisabled={actionButton.isDisabled}
-                            isLoading={actionButton.isLoading}
-                            borderRadius={4}
-                        >
-                            {actionButton.label}
-                        </Button>
-                    )}
+                    {actionButton && actionButtonElement}
                 </Flex>
             }
             {error && <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}

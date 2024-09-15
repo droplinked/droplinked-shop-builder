@@ -2,11 +2,12 @@ import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props extends ButtonProps {
-    variant?: 'primary' | 'ghost';
+    variant?: 'primary' | 'ghost' | 'outline'
 }
 
 function Button({ variant = 'primary', children, ...props }: Props) {
     const isPrimary = variant === 'primary'
+    const isDisabled = props.isDisabled
 
     return (
         <ChakraButton
@@ -30,6 +31,11 @@ function Button({ variant = 'primary', children, ...props }: Props) {
                     fontWeight: "500"
                 }
             }}
+            {...(isDisabled && {
+                borderColor: "#262626",
+                bgColor: "#262626",
+                color: "#737373",
+            })}
             {...props}
         >
             {children}

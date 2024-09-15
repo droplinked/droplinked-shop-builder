@@ -96,7 +96,7 @@ function CartItemRow({ cartItem }: { cartItem: SerializedCartItem }) {
 
 function SKURemoveButton({ itemId }) {
     const { cart, updateCart } = useInvoiceStore()
-    const { isLoading, mutate: removeProduct } = useMutation({
+    const { isLoading, mutateAsync: removeProduct } = useMutation({
         mutationFn: (data: DeleteInvoiceProduct) => removeProductFromCartService(data),
         onSuccess: (response) => updateCart(response.data)
     })
