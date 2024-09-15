@@ -24,8 +24,7 @@ export default function InvoiceShippingMethods() {
     const handleToggle = async () => {
         const validationResult = await validateForm()
         if (Object.entries(validationResult).length > 0) return
-        const isValid = isInvoiceDataValid(values)
-        if (!isValid) return
+        if (!isInvoiceDataValid(values)) return
         onOpen()
         createInvoice(values)
     }

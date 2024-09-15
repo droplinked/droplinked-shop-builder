@@ -32,8 +32,7 @@ export default function CreateInvoice() {
     if (isFetching) return <FullScreenLoader />
 
     const handleSubmit = (values: InvoiceFormSchema) => {
-        const isValid = isInvoiceDataValid(values)
-        if (!isValid) return
+        if (!isInvoiceDataValid(values)) return
         createInvoice(values)
     }
 
