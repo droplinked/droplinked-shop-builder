@@ -2,13 +2,13 @@ import { Box, Flex } from '@chakra-ui/react'
 import AdminHoc from 'functions/hoc/admin/adminHoc'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import HeaderDashboard from '../dashboard/parts/header/HeaderDashboard'
 import FooterLayout from '../main/parts/footer/FooterLayout'
+import DashboardLayoutHeader from 'components/layouts/dashboard/DashboardLayoutHeader'
 
 function ShopManagementLayout() {
     return (
         <Flex minHeight={"100dvh"} direction={"column"} bgColor={"bG"}>
-            <HeaderDashboard />
+            <DashboardLayoutHeader />
             <Box
                 minHeight={"80dvh"}
                 flex={1}

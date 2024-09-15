@@ -50,7 +50,7 @@ export const sidebar_constants: SidebarGroup[] = [
             },
             { title: "Pricing Plans", icon: AppIcons.SidebarPlan, linkTo: "/dashboard/plans", list: [] },
             { title: "Rewards", icon: AppIcons.SidebarRewards, linkTo: "/dashboard/gamification", list: [] },
-            { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/dashboard/", list: [] },
+            // { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/dashboard/", list: [] },
         ],
     },
 ];
@@ -80,13 +80,13 @@ export const createProfileConstants = (shop: { credit: number; name: string }, l
         isExternalLink: false,
         rightSide: { value: null, style: {} },
     },
-    {
-        title: { label: "Support", style: {} },
-        icon: { svg: AppIcons.ProfileSupport, style: {} },
-        linkTo: "/dashboard/",
-        isExternalLink: false,
-        rightSide: { value: null, style: {} },
-    },
+    // {
+    //     title: { label: "Support", style: {} },
+    //     icon: { svg: AppIcons.ProfileSupport, style: {} },
+    //     linkTo: "/dashboard/",
+    //     isExternalLink: false,
+    //     rightSide: { value: null, style: {} },
+    // },
     {
         title: { label: "Documents", style: {} },
         icon: { svg: AppIcons.ProfileDocument, style: {} },
