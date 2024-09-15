@@ -7,16 +7,20 @@ import AppTooltip from "components/common/tooltip/AppTooltip";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import useAppStore from "lib/stores/app/appStore";
 import { appVersion } from "lib/utils/app/variable";
-import { createProfileConstants } from "./dashboard.layout.constants";
+import { createProfileConstants, createSubscriptionStatusConstants } from "./dashboard.layout.constants";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
-const DashboardLayoutHeader = ({ subscriptionInfo: { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } }) => {
-    const { logoutUser } = useProfile();
+const DashboardLayoutHeader = () => {
+    const { shopNavigate } = useCustomNavigate();
     const { shop, user } = useAppStore();
+    const { logoutUser } = useProfile();
+    const { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } = createSubscriptionStatusConstants({ STARTER: () => shopNavigate("/dashboard/plans") }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
     const profileConstants = createProfileConstants(shop, logoutUser);
+
     return (
         <Box display="flex" width="full" padding="16px 36px 16px 24px" justifyContent="flex-end" alignItems="center" gap="16px" position="sticky" top={0} borderBottom="1px solid #292929" zIndex="999" backgroundColor="#141414">
-            <AppTypography flex="1 0 0" color="#FFF" fontFamily="Inter" fontSize="20px" fontWeight="700" lineHeight="32px">Page Title</AppTypography>
+            <AppTypography flex="1 0 0" color="#FFF" fontFamily="Inter" fontSize="20px" fontWeight="700" lineHeight="32px"></AppTypography>
             <Menu variant="unstyled">
                 <MenuButton cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C"><AppIcons.SidebarUser width="20px" height="20px" /></MenuButton>
                 <MenuList right="32px" borderRadius="8px" background="#222" border="none" width="352px" boxShadow="0px 4px 6px -4px rgba(23, 34, 62, 0.08), 0px 8px 12px -6px rgba(23, 34, 62, 0.08)">
@@ -42,7 +46,7 @@ const DashboardLayoutHeader = ({ subscriptionInfo: { icon: SubscriptionIcon, tit
                             <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch">
                                 {profileConstants?.map((profile_list) => (
                                     <DashboardLayoutDecideFragmentOrLink key={profile_list?.title?.label} isExternalLink={profile_list?.isExternalLink} linkTo={profile_list?.linkTo}>
-                                        <Box display="flex" height="52px" padding="16px" justifyContent="center" alignItems="center" gap="12px" alignSelf="stretch" cursor={profile_list?.linkTo && "pointer"}>
+                                        <Box display="flex" height="52px" padding="16px" justifyContent="center" alignItems="center" gap="12px" alignSelf="stretch" cursor={(profile_list?.linkTo || profile_list?.action) && "pointer"} onClick={() => profile_list?.action?.()}>
                                             <profile_list.icon.svg width={"20px"} height={"20px"} {...profile_list?.title?.style} />
                                             <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px" {...profile_list?.title.style}>{profile_list?.title?.label}</AppTypography>
                                             {profile_list?.rightSide?.value && <Box {...profile_list?.rightSide?.style}>{profile_list?.rightSide?.value}</Box>}
