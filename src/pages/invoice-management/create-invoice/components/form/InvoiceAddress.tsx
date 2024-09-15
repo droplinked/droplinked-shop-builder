@@ -6,12 +6,13 @@ import Input from 'pages/invoice-management/components/Input'
 import Select from 'pages/invoice-management/components/Select'
 import React, { useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { InvoiceFormSchema } from '../../store/invoiceStore'
+import useInvoiceStore, { InvoiceFormSchema } from '../../store/invoiceStore'
 import ToggleableSection from '../ToggleableSection'
 
 function InvoiceAddress() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
+    const updateCountryISO2 = useInvoiceStore(state => state.updateCountryISO2)
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
         staleTime: 60 * 60 * 1000,
@@ -59,11 +60,17 @@ function InvoiceAddress() {
                     items={countries}
                     value={values.address.country}
                     valueAccessor='name'
+                    dataAttributes={{
+                        'data-iso2': 'iso2'
+                    }}
                     isLoading={isFetchingCountries}
                     error={errors.address?.country}
                     selectProps={{
                         placeholder: "Country",
                         onChange: (e) => {
+                            const selectedOptionElement = e.target.selectedOptions[0]
+                            const countryISO2 = selectedOptionElement.getAttribute('data-iso2')
+                            updateCountryISO2(countryISO2)
                             const selectedCountry = e.target.value
                             setFieldValue("address.country", selectedCountry)
                             setFieldValue("address.state", "")

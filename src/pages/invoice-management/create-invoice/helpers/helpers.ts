@@ -66,7 +66,7 @@ export function getInvoiceFormInitialValues(invoiceId: string | undefined, data:
             state: invoiceId ? data.address.state : '',
             zip: invoiceId ? data.address.zip : '',
             addressType: 'CUSTOMER',
-            phoneNumber: invoiceId ? data.address.phoneNumber : '+14155552671'
+            phoneNumber: invoiceId ? data.address.phoneNumber : ''
         }
     } as InvoiceFormSchema
 }

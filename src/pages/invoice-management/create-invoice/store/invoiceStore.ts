@@ -97,28 +97,33 @@ export interface Cart {
 type State = {
     cart: Cart;
     areAllProductsDigital: boolean;
-    selectedShippingMethod: CartShippingMethod | null
+    selectedShippingMethod: CartShippingMethod | null;
+    countryISO2: string;
 }
 
 type Action = {
-    updateCart: (cart: State['cart']) => void
-    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void
-    resetCart: () => void
+    updateCart: (cart: State['cart']) => void;
+    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void;
+    updateCountryISO2: (countryISO2: string) => void;
+    resetCart: () => void;
 }
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
     selectedShippingMethod: null,
+    countryISO2: '',
     updateCart: (cart) => {
         const areAllProductsDigital = cart.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
         set({ cart, areAllProductsDigital })
     },
     updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
+    updateCountryISO2: (countryISO2) => set({ countryISO2 }),
     resetCart: () => set({
         cart: {} as Cart,
         areAllProductsDigital: true,
-        selectedShippingMethod: null
+        selectedShippingMethod: null,
+        countryISO2: ''
     })
 }))
 

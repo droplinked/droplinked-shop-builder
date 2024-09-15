@@ -10,7 +10,7 @@ import ShippingMethodsLoading from './ShippingMethodsLoading'
 export default function InvoiceShippingMethods() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, validateForm } = useFormikContext<InvoiceFormSchema>()
-    const { createInvoice, isLoading } = useCreateInvoice()
+    const { isInvoiceDataValid, createInvoice, isLoading } = useCreateInvoice({ trigger: "SHIPPING_METHODS_SWITCH" })
     const { cart, selectedShippingMethod, updateShippingMethod } = useInvoiceStore()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-payment-method',
@@ -24,8 +24,10 @@ export default function InvoiceShippingMethods() {
     const handleToggle = async () => {
         const validationResult = await validateForm()
         if (Object.entries(validationResult).length > 0) return
+        const isValid = isInvoiceDataValid(values)
+        if (!isValid) return
         onOpen()
-        createInvoice({ trigger: "SHIPPING_METHODS_SWITCH", formData: values })
+        createInvoice(values)
     }
 
     const renderContent = () => {
