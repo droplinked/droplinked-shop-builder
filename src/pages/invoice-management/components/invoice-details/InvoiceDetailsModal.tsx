@@ -17,7 +17,6 @@ interface Props {
 function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
     const { invoiceInformationMap, data } = useInvoiceInformation(invoiceId)
     const paymentLink = `${SHOP_URL}/paylink/${invoiceId}`
-    console.log("invoice data", data)
 
     return (
         <AppModal
