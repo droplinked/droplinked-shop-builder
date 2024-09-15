@@ -26,7 +26,7 @@ export default function CreateInvoice() {
     }, [resetCart])
 
     useEffect(() => {
-        if (data) updateCart(data)
+        if (data?._id) updateCart(data)
     }, [data, updateCart])
 
     if (isFetching) return <FullScreenLoader />
