@@ -1,4 +1,4 @@
-import { Flex, ModalCloseButton } from '@chakra-ui/react';
+import { Flex, ModalCloseButton, ModalHeader } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { ReactNode } from 'react';
 
@@ -10,7 +10,7 @@ interface Props {
 
 function ModalHeaderData({ icon, title, description }: Props) {
     return (
-        <>
+        <ModalHeader>
             <Flex justifyContent={"space-between"}>
                 {icon}
                 <ModalCloseButton
@@ -22,7 +22,7 @@ function ModalHeaderData({ icon, title, description }: Props) {
             </Flex>
             <AppTypography mt={6} fontSize={24} fontWeight={700} color={"white"}>{title}</AppTypography>
             <AppTypography mt={2} fontSize={16} color={"white"}>{description}</AppTypography>
-        </>
+        </ModalHeader>
     )
 }
 

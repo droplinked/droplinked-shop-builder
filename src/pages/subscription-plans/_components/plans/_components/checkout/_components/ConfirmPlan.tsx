@@ -1,4 +1,4 @@
-import { Center, Flex, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react'
+import { Center, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -30,13 +30,11 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
 
     return (
         <>
-            <ModalHeader>
-                <ModalHeaderData
-                    icon={<AppIcons.ConfirmPlan />}
-                    title='Confirm subscription'
-                    description={`Upgrade to the ${title} Plan for $${selectedPlanPrice} per year to access advanced features.`}
-                />
-            </ModalHeader>
+            <ModalHeaderData
+                icon={<AppIcons.ConfirmPlan />}
+                title='Confirm subscription'
+                description={`Upgrade to the ${title} Plan for $${selectedPlanPrice} per year to access advanced features.`}
+            />
             <ModalBody>
                 <Flex
                     direction={"column"}
@@ -49,7 +47,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     backgroundSize={"auto 150%"}
                 >
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        <SubscriptionIcon/>
+                        <SubscriptionIcon />
                     </Center>
                     <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>

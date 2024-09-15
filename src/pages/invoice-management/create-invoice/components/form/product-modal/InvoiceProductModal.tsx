@@ -1,0 +1,90 @@
+import { Flex, ModalBody } from '@chakra-ui/react';
+import AppIcons from 'assest/icon/Appicons';
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import AppModal from 'components/redesign/modal/AppModal';
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import useDebounce from 'functions/hooks/debounce/useDebounce';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
+import Input from 'pages/invoice-management/components/Input';
+import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
+import React, { useState } from 'react';
+import ProductTable from './ProductTable';
+
+interface Props {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+function InvoiceProductModal({ isOpen, onClose }: Props) {
+    const [searchTerm, setSearchTerm] = useState("")
+    const debouncedSearchTerm = useDebounce(searchTerm, 500)
+    const [cart, setCart] = useState([])
+    const [isLoading, setLoading] = useState(false)
+    const { showToast } = useAppToast()
+    const invoiceCart = useInvoiceStore((state) => state.cart)
+    const updateCart = useInvoiceStore((state) => state.updateCart)
+
+    const closeModal = async () => {
+        try {
+            if (!cart.length) onClose()
+            else {
+                setLoading(true)
+                let invoiceId = invoiceCart._id
+                if (!invoiceId) {
+                    const { data } = await createInvoiceService()
+                    invoiceId = data._id
+                }
+                const res = await addProductToInvoiceService(invoiceId, cart)
+                updateCart(res.data)
+                onClose()
+            }
+        }
+        catch (error) {
+            showToast({ message: (error as Error).message, type: "error" })
+            onClose()
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    return (
+        <AppModal
+            modalRootProps={{ isOpen, onClose: closeModal, size: "5xl" }}
+        >
+            <ModalHeaderData
+                icon={<AppIcons.InvoiceProduct />}
+                title="Products"
+                description="Select one of the products to add into your invoice."
+            />
+
+            <ModalBody display={"flex"} flexDirection={"column"} gap={6}>
+                <Input
+                    inputProps={{
+                        width: "300px",
+                        placeholder: "Product name",
+                        value: searchTerm,
+                        onChange: (e) => setSearchTerm(e.target.value)
+                    }}
+                />
+                <ProductTable debouncedSearchTerm={debouncedSearchTerm} cart={cart} setCart={setCart} />
+
+                {isLoading && (
+                    <Flex
+                        position={"fixed"}
+                        inset={0}
+                        backgroundColor="rgba(72, 72, 72, 0.4)"
+                        backdropFilter="blur(20px)"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <LoadingComponent />
+                    </Flex>
+                )}
+            </ModalBody>
+        </AppModal>
+    )
+}
+
+export default InvoiceProductModal

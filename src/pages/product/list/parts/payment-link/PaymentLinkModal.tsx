@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react'
 import AppModal from 'components/common/modal/AppModal'
 import React, { useState } from 'react'
 import QRCodeColorPallete from './_components/QRCodeColorPallete'
+import QRCodeView from './_components/QRCodeView'
 import TabNavigation from './_components/TabNavigation'
-import QRCodeView from './_components/qr-code-view/QRCodeView'
 
 interface PaymentLinkModalProps {
     isOpen: boolean;

@@ -47,31 +47,22 @@ function FileUpload({ label, setExcelData }: Props) {
             })
 
             let createShippingDto: any = {
-                calculateBasedOnUnit: rates.some(
-                    (rate) =>
-                        rate.pricePerUnit !== undefined &&
-                        rate.pricePerUnit !== null &&
-                        rate.pricePerUnit !== ""
-                )
-                    ? "WEIGHT"
-                    : "SIZE",
+                calculateBasedOnUnit: rates.some((rate) =>
+                    rate.pricePerUnit !== undefined &&
+                    rate.pricePerUnit !== null &&
+                    rate.pricePerUnit !== ""
+                ) ?
+                    "WEIGHT" :
+                    "SIZE",
                 rates,
                 isActive: true,
             }
 
-            if (
-                shippingRules.some((rule) => rule["Price (USD) Per KG"] !== undefined)
-            ) {
+            if (shippingRules.some((rule) => rule["Price (USD) Per KG"] !== undefined))
                 createShippingDto.weightUnit = "KG"
-            }
 
-            if (
-                shippingRules.some(
-                    (rule) => rule["Price (USD) per Package Size"] !== undefined
-                )
-            ) {
+            if (shippingRules.some((rule) => rule["Price (USD) per Package Size"] !== undefined))
                 createShippingDto.sizeUnit = "CM"
-            }
 
             setExcelData(createShippingDto)
         }

@@ -264,3 +264,8 @@ export const subscriptionPlanMap: Record<
     BUSINESS_PRO: { icon: AppIcons.PremiumPlan, title: "Premium", description: "Designed for large businesses needing comprehensive solutions at scale." },
     ENTERPRISE: { icon: AppIcons.EnterprisePlan, title: "Enterprise", description: "Contact us to explore integration." },
 };
+
+export const formattedCurrency = (number: number) => new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+}).format(number)
