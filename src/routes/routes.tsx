@@ -49,6 +49,7 @@ import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
+import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -116,7 +117,7 @@ function AppRoutes() {
           </Route>
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />
-          <Route path="affiliate" element={<AffiliateLayout />}>
+          {/* <Route path="affiliate" element={<AffiliateLayout />}>
             <Route index element={<AffiliateProducts />} />
             <Route path="stores" element={<Shops />} />
             <Route path="shops">
@@ -128,6 +129,9 @@ function AppRoutes() {
             </Route>
             <Route path="requests" element={<Requests />} />
             <Route path="notifications" element={<Notifications />} />
+          </Route> */}
+          <Route path="affiliate">
+            <Route path="market" element={<AffiliateMarket />} />
           </Route>
           <Route path="nfts" element={<NFTs />} />
           <Route path="blogs">
