@@ -3,7 +3,6 @@ import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import { SHOP_URL } from 'lib/utils/app/variable'
-import { formattedCurrency } from 'lib/utils/heper/helpers'
 import Table from 'pages/invoice-management/components/Table'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
 import React, { useRef } from 'react'
@@ -20,9 +19,16 @@ function InvoiceTable({ invoices, isLoading }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
         { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
-        { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
+        { accessorKey: 'email', header: 'Client', cell: info => info.getValue() },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
-        { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
+        {
+            accessorKey: '',
+            header: 'Amount', cell: info => {
+                const invoice = info.row.original
+                return "N/A"
+                // formattedCurrency(info.getValue() as number)
+            }
+        },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 

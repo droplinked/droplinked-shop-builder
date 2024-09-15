@@ -30,11 +30,12 @@ function Table<T extends object>(props: Props<T>) {
             border="1px solid #262626"
             borderRadius={8}
             overflow="hidden"
+            overflowX="auto"
         >
             <ChakraTable
                 variant="unstyled"
                 sx={{
-                    "th, td": { paddingInline: 6, paddingBlock: 4 },
+                    "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: 14, fontWeight: 400 },
                     userSelect: "none"
                 }}
             >
@@ -45,8 +46,6 @@ function Table<T extends object>(props: Props<T>) {
                                 <Th
                                     key={header.id}
                                     textTransform="capitalize"
-                                    fontSize={16}
-                                    fontWeight={400}
                                     color="#7B7B7B"
                                     cursor={enableSorting ? "pointer" : "default"}
                                     sx={{ "svg": { display: "inline-block" } }}
