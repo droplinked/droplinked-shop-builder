@@ -1,9 +1,10 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useDisclosure } from '@chakra-ui/react'
 import { Form, Formik, FormikProvider } from 'formik'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import Button from '../components/Button'
+import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
@@ -11,6 +12,7 @@ import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
 
 export default function CreateInvoice() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const { resetCart, areAllProductsDigital } = useInvoiceStore()
     const navigate = useNavigate()
     const { createInvoice, isLoading } = useCreateInvoice()
@@ -86,37 +88,46 @@ export default function CreateInvoice() {
         navigate("/dashboard/invoice-management")
     }
 
+    const closeInvoiceModal = () => {
+        onClose()
+        resetCart()
+        navigate("/dashboard/invoice-management")
+    }
+
     useEffect(() => {
         return () => { resetCart() }
     }, [resetCart])
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            validateOnChange={false}
-            onSubmit={(values) => createInvoice({ trigger: "CREATE_BUTTON", formData: values })}
-        >
-            {formik => (
-                <FormikProvider value={formik}>
-                    <Form>
-                        <Flex direction={{ base: "column", lg: "row" }} gap={6}>
-                            <Flex flex={1} direction={"column"} gap={"inherit"}>
-                                <InvoiceProductTable />
-                                <InvoiceClientDetails />
-                            </Flex>
+        <>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                validateOnChange={false}
+                onSubmit={(values) => createInvoice({ trigger: "CREATE_BUTTON", formData: values, onSuccess: onOpen })}
+            >
+                {formik => (
+                    <FormikProvider value={formik}>
+                        <Form>
+                            <Flex direction={{ base: "column", lg: "row" }} gap={6}>
+                                <Flex flex={1} direction={"column"} gap={"inherit"}>
+                                    <InvoiceProductTable />
+                                    <InvoiceClientDetails />
+                                </Flex>
 
-                            <Flex direction={"column"} gap={6}>
-                                <InvoiceSummary />
-                                <Flex direction={"column"} gap={4}>
-                                    <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>Create Invoice</Button>
-                                    <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                <Flex direction={"column"} gap={6}>
+                                    <InvoiceSummary />
+                                    <Flex direction={"column"} gap={4}>
+                                        <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>Create Invoice</Button>
+                                        <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                    </Flex>
                                 </Flex>
                             </Flex>
-                        </Flex>
-                    </Form>
-                </FormikProvider>
-            )}
-        </Formik>
+                        </Form>
+                    </FormikProvider>
+                )}
+            </Formik>
+            {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={closeInvoiceModal} />}
+        </>
     )
 }

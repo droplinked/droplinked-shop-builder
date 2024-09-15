@@ -32,7 +32,7 @@ function InvoiceSummary() {
     }
 
     return (
-        <SectionedContent as={"aside"} width={{ base: "100%", lg: "420px" }} title="Summary">
+        <SectionedContent as={"aside"} width={{ base: "100%", lg: "380px" }} title="Summary">
             <Input
                 icon={<AppIcons.InvoiceDiscount />}
                 inputGroupProps={{ height: 12 }}
