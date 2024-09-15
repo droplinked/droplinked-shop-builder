@@ -126,7 +126,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
             {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
             {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
-            {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} productId={product._id} />}
+            {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} product={product} />}
          
              
         </>

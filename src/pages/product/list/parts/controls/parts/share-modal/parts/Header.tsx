@@ -1,16 +1,14 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 
-interface HeaderProps {
-  productImage: string;
-  productTitle: string;
-  productPrice: string;
+import { TransformedProduct } from "../productUtils";
+
+
+
+interface DirectLinkContentProps {
+  product: TransformedProduct;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  productImage,
-  productTitle,
-  productPrice,
-}) => {
+const Header: React.FC<DirectLinkContentProps> = ({ product}) => {
   return (
     <Box width="100%">
       {/* بخش اول: آیکون و متن */}
@@ -51,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         {/* تصویر محصول */}
         <Image
-          src={productImage}
+          src={product.image}
           alt="Product"
           width="56px"
           height="56px"
@@ -62,12 +60,12 @@ const Header: React.FC<HeaderProps> = ({
         {/* عنوان و توضیحات محصول */}
         <VStack align="flex-start" spacing="4px" flex="1">
           <Text fontSize="16px" fontWeight="700" color="white">
-            {/* {productTitle} */}
-            Apple iPhone 13 Pro Max
+           {product.title} 
+        
           </Text>
-          {/* <Text fontSize="14px" fontWeight="400" color="gray.400">
-            {productTitle}
-          </Text> */}
+           <Text fontSize="14px" fontWeight="400" color="gray.400">
+            {product.description}
+          </Text> 
         </VStack>
 
         {/* جداکننده عمودی */}
@@ -80,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
           color="white"
           whiteSpace="nowrap"
         >
-          {productPrice}
+          {product.price}
         </Text>
       </Flex>
     </Box>

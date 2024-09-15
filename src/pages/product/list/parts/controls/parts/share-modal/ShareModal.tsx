@@ -8,16 +8,24 @@ import PaymentLinkContent from "./parts/PaymentLinkContent";
 import ProductTileContent from "./parts/ProductTileContent";
 import SocialTileContent from "./parts/SocialTileContent";
 import TABS from "./tabsConstants"; // وارد کردن مقادیر ثابت از فایل جدید
+import { transformProductData } from "./productUtils";
 
 interface IProps {
   close: () => void;
   open: boolean;
-  productId: string;
+  product: any; // این نوع داده باید به نوع داده صحیح تغییر کند
 }
 
-function ProductShareModal({ close, open, productId }: IProps) {
+function ProductShareModal({ close, open,  product }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
+  console.log('product ', product)
+  // استفاده از تابع transformProductData برای تبدیل داده‌های ورودی
+  const transformedProduct = transformProductData(product);
 
+  if (!transformedProduct) {
+    return <></>; // نمایش پیام اگر داده محصول موجود نبود
+  }
+console.log('transformedProduct ', transformedProduct)
   const handleTabChange = (tabName: string) => {
     setActiveTab(tabName);
   };
@@ -25,9 +33,9 @@ function ProductShareModal({ close, open, productId }: IProps) {
   const renderTabContent = () => {
     switch (activeTab) {
       case TABS.DIRECT_LINK:
-        return <DirectLinkContent />;
+        return <DirectLinkContent product={transformedProduct} />;
       case TABS.PAYMENT_LINK:
-        return <PaymentLinkContent />;
+        return <PaymentLinkContent id={transformedProduct.id} />;
       case TABS.PRODUCT_TILE:
         return <ProductTileContent />;
       case TABS.SOCIAL_TILE:
@@ -39,9 +47,7 @@ function ProductShareModal({ close, open, productId }: IProps) {
   return (
     <AppModal close={close} open={open} size="2xl">
       <Header
-        productImage="https://upload-file-droplinked.s3.amazonaws.com/original/1726323378519-unisex-lightweight-t-shirt-black-front-66e59aa6bb75a.png"
-        productTitle="test"
-        productPrice="100usd"
+        product={transformedProduct}
       />
       <Box mb="24px" />
       <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />

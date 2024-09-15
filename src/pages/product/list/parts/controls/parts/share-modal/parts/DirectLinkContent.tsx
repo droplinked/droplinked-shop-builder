@@ -1,9 +1,14 @@
 import { Box, Flex, Image, Input, Button, IconButton } from "@chakra-ui/react";
 import { ReactComponent as CopyIcon } from "assest/icon/copy.svg";
 import { ReactComponent as ExternalLinkIcon } from "assest/icon/share.svg";
+import { TransformedProduct } from "../productUtils";
+interface DirectLinkContentProps {
+  product: TransformedProduct;
+}
 
-const DirectLinkContent = () => {
-  const productLink = "https://droplinked.io/bedi/product/digital-pr...";
+const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
+  // لینک محصول با استفاده از `slug`
+  const productLink = `https://dev.droplinked.io/tbest28/product/${product.slug}`;
 
   return (
     <Box width="100%" bg="#292929" padding="32px">

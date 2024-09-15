@@ -12,9 +12,13 @@ import { ReactComponent as ExternalLinkIcon } from "assest/icon/share.svg";
 import { ReactComponent as ConfigureIcon } from "assest/icon/share.svg";
 import { ReactComponent as DownloadIcon } from "assest/icon/share.svg";
 
-const PaymentLinkContent = () => {
-    const productLink = "https://droplinked.io/bedi/product/digital-pr...";
-  
+interface PaymentLinkContentProps {
+  id: string; // prop `id` برای ساخت لینک
+}
+
+const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
+  // ساخت لینک محصول با استفاده از `id`
+  const productLink = `https://droplinked.io/bedi/product/${id}`;
     return (
       <Box width="100%" bg="#292929" padding="32px">
         {/* بخش بالایی: QR کد و دکمه های حالت نمایش */}
