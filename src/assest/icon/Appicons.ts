@@ -3,7 +3,6 @@ import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
 import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
-import { ReactComponent as AffiliateMarketBanner } from "./affiliate-market-banner.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
@@ -359,7 +358,6 @@ const AppIcons = {
   ProfileShop,
   ProfileSupport,
   ProfileSwitch,
-  AffiliateMarketBanner
 }
 
 export default AppIcons

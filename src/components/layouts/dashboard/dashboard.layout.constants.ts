@@ -5,7 +5,7 @@ import { SHOP_URL } from "lib/utils/app/variable";
 
 type SidebarItem = { title: string; icon: any; linkTo: string | null; list: Array<{ listTitle: string; linkTo: string }> };
 type SidebarGroup = { group: string; items: SidebarItem[] };
-type ProfileItem = { title: { label: string; style: Partial<IAppTypography> }; icon: { svg: any; style: Partial<IAppTypography> }; linkTo: string | null; isExternalLink: boolean; rightSide: { value: string | null; style: Partial<IAppTypography>}; action?: () => void };
+type ProfileItem = { title: { label: string; style: Partial<IAppTypography> }; icon: { svg: any; style: Partial<IAppTypography> }; linkTo: string | null; isExternalLink: boolean; rightSide: { value: string | null; style: Partial<IAppTypography> }; action?: () => void };
 type SubscriptionPlan = { icon: any; title: string; rightSide: { type: "text"; style: IAppTypography; value: string } | { type: "button"; style: BoxProps; value: string; action: () => void } };
 
 export const sidebar_constants: SidebarGroup[] = [
@@ -17,13 +17,13 @@ export const sidebar_constants: SidebarGroup[] = [
                 title: "Orders",
                 icon: AppIcons.SidebarNote,
                 linkTo: null,
-                list: [ { listTitle: "Orders", linkTo: "/dashboard/orders" }, { listTitle: "Invoices", linkTo: "/dashboard/invoices" } ],
+                list: [{ listTitle: "Orders", linkTo: "/dashboard/orders" }, { listTitle: "Invoices", linkTo: "/dashboard/invoice-management" }],
             },
             {
                 title: "Affiliate",
                 icon: AppIcons.SidebarAffiliate,
                 linkTo: null,
-                list: [ { listTitle: "Market", linkTo: "/dashboard/" }, { listTitle: "Stores", linkTo: "/dashboard/affiliate/stores" }, { listTitle: "Products", linkTo: "/dashboard/affiliate" } ],
+                list: [{ listTitle: "Market", linkTo: "/dashboard/" }, { listTitle: "Stores", linkTo: "/dashboard/affiliate/stores" }, { listTitle: "Products", linkTo: "/dashboard/affiliate" }],
             },
         ],
     },
@@ -34,7 +34,7 @@ export const sidebar_constants: SidebarGroup[] = [
                 title: "Products",
                 icon: AppIcons.SidebarProducts,
                 linkTo: null,
-                list: [ { listTitle: "Inventory", linkTo: "/dashboard/products" }, { listTitle: "Records (NFTs)", linkTo: "/dashboard/nfts" }, { listTitle: "Product Tile", linkTo: "/dashboard/settings/tile" }, { listTitle: "Product Link", linkTo: "/dashboard/settings/payment-link-design" }, { listTitle: "Collections", linkTo: "/dashboard/collections" } ],
+                list: [{ listTitle: "Inventory", linkTo: "/dashboard/products" }, { listTitle: "Records (NFTs)", linkTo: "/dashboard/nfts" }, { listTitle: "Product Tile", linkTo: "/dashboard/settings/tile" }, { listTitle: "Product Link", linkTo: "/dashboard/settings/payment-link-design" }, { listTitle: "Collections", linkTo: "/dashboard/collections" }],
             },
             { title: "Blog", linkTo: "/dashboard/blogs", icon: AppIcons.SidebarBlog, list: [] },
         ],
@@ -46,7 +46,7 @@ export const sidebar_constants: SidebarGroup[] = [
                 title: "Account Management",
                 icon: AppIcons.SidebarSetting,
                 linkTo: null,
-                list: [ { listTitle: "Account Information", linkTo: "/dashboard/settings/shop-info" }, { listTitle: "Storefront Designer", linkTo: "/dashboard/settings/design" }, { listTitle: "Wallet and Payments", linkTo: "/dashboard/settings/technical" }, { listTitle: "Coupons", linkTo: "/dashboard/settings/coupons" }, { listTitle: "Admin Management", linkTo: "/dashboard/settings/admins" } ],
+                list: [{ listTitle: "Account Information", linkTo: "/dashboard/settings/shop-info" }, { listTitle: "Storefront Designer", linkTo: "/dashboard/settings/design" }, { listTitle: "Wallet and Payments", linkTo: "/dashboard/settings/technical" }, { listTitle: "Coupons", linkTo: "/dashboard/settings/coupons" }, { listTitle: "Admin Management", linkTo: "/dashboard/settings/admins" }],
             },
             { title: "Pricing Plans", icon: AppIcons.SidebarPlan, linkTo: "/dashboard/plans", list: [] },
             { title: "Rewards", icon: AppIcons.SidebarRewards, linkTo: "/dashboard/gamification", list: [] },
