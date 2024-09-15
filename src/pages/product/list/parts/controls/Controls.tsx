@@ -17,6 +17,7 @@ import PaymentLinkModal from '../payment-link/PaymentLinkModal';
 import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
+import ProductShareModal from './parts/share-modal/ShareModal';
 
 export type action = "DELETE" | "DUPLICATE"
 
@@ -34,6 +35,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const { user: { wallets } } = useAppStore()
     const paymentLinkModal = useDisclosure()
     const productOrdersModal = useDisclosure()
+    const handleShareModal = useDisclosure()
 
     const publish = useCallback(async () => {
         try {
@@ -96,6 +98,10 @@ function ControlsListProduct({ productID, product, fetch }) {
                 caption: "Get payment link",
                 onClick: () => paymentLinkModal.onOpen()
             },
+            {
+                caption: "Share",
+                onClick: () => handleShareModal.onOpen()
+            },
         ]
         if (product?.publish_status === "DRAFTED") list.push({
             caption: "Publish",
@@ -120,6 +126,9 @@ function ControlsListProduct({ productID, product, fetch }) {
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
             {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
             {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
+            {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} productId={product._id} />}
+         
+             
         </>
     )
 }
