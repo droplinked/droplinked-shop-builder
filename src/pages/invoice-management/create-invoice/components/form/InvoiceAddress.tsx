@@ -61,13 +61,15 @@ function InvoiceAddress() {
                     valueAccessor='name'
                     isLoading={isFetchingCountries}
                     error={errors.address?.country}
-                    selectProps={{ placeholder: "Country" }}
-                    onChange={(e) => {
-                        const selectedCountry = e.target.value
-                        setFieldValue("address.country", selectedCountry)
-                        setFieldValue("address.state", "")
-                        setFieldValue("address.city", "")
-                        getStates({ country_name: selectedCountry })
+                    selectProps={{
+                        placeholder: "Country",
+                        onChange: (e) => {
+                            const selectedCountry = e.target.value
+                            setFieldValue("address.country", selectedCountry)
+                            setFieldValue("address.state", "")
+                            setFieldValue("address.city", "")
+                            getStates({ country_name: selectedCountry })
+                        }
                     }}
                 />
                 <Select
@@ -77,12 +79,14 @@ function InvoiceAddress() {
                     valueAccessor='name'
                     isLoading={isFetchingStates}
                     error={errors.address?.state}
-                    selectProps={{ placeholder: "State" }}
-                    onChange={(e) => {
-                        const selectedState = e.target.value
-                        setFieldValue("address.state", selectedState)
-                        setFieldValue("address.city", "")
-                        getCities({ country_name: values.address.country, state_name: selectedState })
+                    selectProps={{
+                        placeholder: "State",
+                        onChange: (e) => {
+                            const selectedState = e.target.value
+                            setFieldValue("address.state", selectedState)
+                            setFieldValue("address.city", "")
+                            getCities({ country_name: values.address.country, state_name: selectedState })
+                        }
                     }}
                 />
                 <Select
@@ -92,8 +96,10 @@ function InvoiceAddress() {
                     valueAccessor='name'
                     isLoading={isFetchingCities}
                     error={errors.address?.city}
-                    selectProps={{ placeholder: "City" }}
-                    onChange={(e) => setFieldValue("address.city", e.target.value)}
+                    selectProps={{
+                        placeholder: "City",
+                        onChange: (e) => setFieldValue("address.city", e.target.value)
+                    }}
                 />
                 <Input
                     label='Zip Code'

@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import React, { useMemo } from 'react';
 
 interface Props {
-    label: string;
+    label?: string;
     items: any[];
     value?: any;
     labelAccessor?: string;
@@ -13,10 +13,9 @@ interface Props {
     error?: string;
     inputGroupProps?: InputGroupProps;
     selectProps?: SelectProps;
-    onChange?: (value: any) => void;
 }
 
-function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", isLoading, error, inputGroupProps, selectProps, onChange }: Props) {
+function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", isLoading, error, inputGroupProps, selectProps }: Props) {
     const options = useMemo(() => {
         return items.map((item) => (
             <option key={item[valueAccessor]} value={item[valueAccessor]}>
@@ -38,7 +37,6 @@ function Select({ label, items, value, labelAccessor = "name", valueAccessor = "
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}
-            onChange={onChange}
             {...selectProps}
         >
             {options}
@@ -48,7 +46,7 @@ function Select({ label, items, value, labelAccessor = "name", valueAccessor = "
     if (!label) return (
         <>
             {selectElement}
-            <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>
+            {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
         </>
     )
 
@@ -61,7 +59,7 @@ function Select({ label, items, value, labelAccessor = "name", valueAccessor = "
         >
             <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">{label}</FormLabel>
             {selectElement}
-            <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>
+            {error && <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
         </InputGroup>
     )
 }
