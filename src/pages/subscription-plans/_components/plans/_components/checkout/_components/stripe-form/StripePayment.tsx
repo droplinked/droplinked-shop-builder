@@ -1,4 +1,3 @@
-import { ModalHeader } from '@chakra-ui/react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import AppIcons from 'assest/icon/Appicons';
@@ -28,13 +27,11 @@ function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPl
 
     return (
         <>
-            <ModalHeader>
-                <ModalHeaderData
-                    icon={<AppIcons.StripePayment />}
-                    title='Credit card information'
-                    description={"Choose a credit card on file or add a new one."}
-                />
-            </ModalHeader>
+            <ModalHeaderData
+                icon={<AppIcons.StripePayment />}
+                title='Credit card information'
+                description={"Choose a credit card on file or add a new one."}
+            />
 
             <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "night" }, paymentMethodCreation: "manual" }}>
                 <StripeForm setplanPurchaseModalStep={setplanPurchaseModalStep} closeModal={handleCloseModal} />

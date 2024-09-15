@@ -1,11 +1,10 @@
-import { Button, Center, Flex, FormLabel, Link } from '@chakra-ui/react'
+import { Button, Center, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink'
 import { SHOP_URL } from 'lib/utils/app/variable'
 import React, { useRef } from 'react'
 import QRCode from 'react-qr-code'
-import { ColorPalleteOption } from '../../PaymentLinkModal'
-import styles from "./styles.module.scss"
+import { ColorPalleteOption } from '../PaymentLinkModal'
 
 interface Props {
     productID: string
@@ -59,33 +58,10 @@ export default function QRCodeView({ productID, colorPallete }: Props) {
             </Center>
 
             <Flex direction={"column"} gap={4}>
-                <Flex alignItems={"center"} gap={4}>
-                    <LinkInput productLink={productLink} />
-                    <ShareButton productLink={productLink} />
-                </Flex>
+                <AppShareableLink link={productLink} />
                 <DownloadButton onClick={downloadQRCode} />
             </Flex>
         </Flex>
-    )
-}
-
-function LinkInput({ productLink }: { productLink: string }) {
-    return (
-        <Flex className={styles["input-group"]}>
-            <input defaultValue={`${productLink.slice(0, 22)}...`} placeholder=" " readOnly />
-            <FormLabel>Payment Link</FormLabel>
-            <ClipboardText text={productLink} />
-        </Flex>
-    )
-}
-
-function ShareButton({ productLink }: { productLink: string }) {
-    return (
-        <Link href={productLink} target='_blank'>
-            <Center width={12} height={12} borderRadius={8} bgColor={"#3C3C3C"} _hover={{}} _active={{}}>
-                <AppIcons.Share />
-            </Center>
-        </Link>
     )
 }
 

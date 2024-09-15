@@ -15,6 +15,7 @@ import Blog from "pages/blogs/parts/blog/Blog"
 import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
 import Gamification from "pages/gamification/Gamification"
+import { CreateInvoice, InvoiceManagement } from "pages/invoice-management"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
 import Products from "pages/product/list/products"
@@ -137,6 +138,8 @@ function AppRoutes() {
           </Route>
           <Route path="plans" element={<SubscriptionPlans />} />
           <Route path="gamification" element={<Gamification />} />
+          <Route path="invoice-management" element={<InvoiceManagement />} />
+          <Route path="invoice-management/create" element={<CreateInvoice />} />
         </Route>
 
         <Route path="shop-management" element={<ShopManagementLayout />}>

@@ -48,9 +48,9 @@ function ProductTileTable() {
                     caption: "",
                     value: (
                         <Flex justify="flex-end" align="center" gap={2}>
-                            <Flex as="button" {...basic_cta_row_style} onClick={() => {navigator.clipboard.writeText(tile.embedded_tag); showToast({ message: "Copied", type: "info", options: { autoClose: 200, hideProgressBar: true }})}}><AppIcons.CopyIcon width={16} height={16} />Copy Component</Flex>
-                            <Flex as="button" {...basic_cta_row_style} onClick={() => {setSelectedTile(tile); productTileModal.onOpen()}}> Edit</Flex>
-                            <Flex as="button" {...basic_cta_row_style} onClick={() => {setSelectedTile(tile); confirmationModal.onOpen()}} backgroundColor="#E63F43" ><AppIcons.WhiteTrash /></Flex>
+                            <Flex as="button" {...basic_cta_row_style} onClick={() => { navigator.clipboard.writeText(tile.embedded_tag); showToast({ message: "Copied", type: "info", options: { autoClose: 200, hideProgressBar: true } }) }}><AppIcons.Copy width={16} height={16} />Copy Component</Flex>
+                            <Flex as="button" {...basic_cta_row_style} onClick={() => { setSelectedTile(tile); productTileModal.onOpen() }}> Edit</Flex>
+                            <Flex as="button" {...basic_cta_row_style} onClick={() => { setSelectedTile(tile); confirmationModal.onOpen() }} backgroundColor="#E63F43" ><AppIcons.WhiteTrash /></Flex>
                         </Flex>
                     ),
                 },
