@@ -13,6 +13,11 @@ interface Props {
 function InvoiceFilters({ updateInvoiceFilters }: Props) {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
+    const statusOptions = [
+        { title: "Active", value: "ACTIVE" },
+        { title: "Pending", value: "PENDING" },
+        { title: "Checked Out", value: "CHECKED_OUT" }
+    ]
 
     useEffect(() => {
         updateInvoiceFilters("search", debouncedSearchTerm)
@@ -30,17 +35,14 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 icon={<AppIcons.Search />}
             />
             <Select
+                items={statusOptions}
+                labelAccessor='title'
+                valueAccessor='value'
                 selectProps={{
                     width: "200px",
                     bgColor: "#1C1C1C",
-                    placeholder: "Status",
                     onChange: (e) => updateInvoiceFilters("status", e.target.value as InvoiceStatus)
                 }}
-                items={[
-                    { title: "Active", value: "ACTIVE" },
-                    { title: "Pending", value: "PENDING" },
-                    { title: "Checked Out", value: "CHECKED_OUT" }
-                ]}
             />
         </Flex>
     )

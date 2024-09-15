@@ -61,9 +61,9 @@ export function getInvoiceFormInitialValues(invoiceId: string | undefined, data:
             lastName: invoiceId ? data.address.lastName : '',
             addressLine1: invoiceId ? data.address.addressLine1 : '',
             addressLine2: invoiceId ? data.address.addressLine2 : '',
-            country: invoiceId ? data.address.country : 'United States',
-            city: invoiceId ? data.address.city : 'Los Alamitos',
-            state: invoiceId ? data.address.state : 'California',
+            country: invoiceId ? data.address.country : '',
+            city: invoiceId ? data.address.city : '',
+            state: invoiceId ? data.address.state : '',
             zip: invoiceId ? data.address.zip : '',
             addressType: 'CUSTOMER',
             phoneNumber: invoiceId ? data.address.phoneNumber : '+14155552671'

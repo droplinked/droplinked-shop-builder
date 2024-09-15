@@ -14,17 +14,17 @@ const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = 
     "PENDING": {
         label: "Pending",
         styles: {
-            bg: '#292929',
-            color: '#fff',
-            borderColor: '#616161',
+            bg: '#FF22441A',
+            color: '#FF2244',
+            borderColor: '#FF2244',
         }
     },
     "ACTIVE": {
         label: "Active",
         styles: {
-            bg: '#FF22441A',
-            color: '#FF2244',
-            borderColor: '#FF2244',
+            bg: '#292929',
+            color: '#fff',
+            borderColor: '#616161',
         }
     }
 }
