@@ -11,13 +11,13 @@ import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
 import { getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
-import useInvoiceStore from './store/invoiceStore'
+import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { updateCart, resetCart, areAllProductsDigital } = useInvoiceStore()
-    const { createInvoice, isLoading } = useCreateInvoice()
+    const { isInvoiceDataValid, createInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: onOpen })
     const { invoiceId } = useParams()
     const { data, isFetching } = useInvoiceInformation(invoiceId)
 
@@ -30,6 +30,11 @@ export default function CreateInvoice() {
     }, [data, updateCart])
 
     if (isFetching) return <FullScreenLoader />
+
+    const handleSubmit = (values: InvoiceFormSchema) => {
+        if (!isInvoiceDataValid(values)) return
+        createInvoice(values)
+    }
 
     const handleDiscard = () => {
         resetCart()
@@ -48,7 +53,7 @@ export default function CreateInvoice() {
                 initialValues={getInvoiceFormInitialValues(invoiceId, data)}
                 validationSchema={getInvoiceValidationSchema(areAllProductsDigital)}
                 validateOnChange={false}
-                onSubmit={(values) => createInvoice({ trigger: "CREATE_BUTTON", formData: values, onSuccess: onOpen })}
+                onSubmit={handleSubmit}
             >
                 {formik => (
                     <FormikProvider value={formik}>

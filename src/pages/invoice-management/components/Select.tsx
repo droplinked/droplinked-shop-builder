@@ -9,16 +9,21 @@ interface Props {
     value?: any;
     labelAccessor?: string;
     valueAccessor?: string;
+    dataAttributes?: Record<string, string>;
     isLoading?: boolean;
     error?: string;
     inputGroupProps?: InputGroupProps;
     selectProps?: SelectProps;
 }
 
-function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", isLoading, error, inputGroupProps, selectProps }: Props) {
+function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", dataAttributes, isLoading, error, inputGroupProps, selectProps }: Props) {
     const options = useMemo(() => {
         return items.map((item) => (
-            <option key={item[valueAccessor]} value={item[valueAccessor]}>
+            <option
+                key={item[valueAccessor]}
+                value={item[valueAccessor]}
+                {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}
+            >
                 {item[labelAccessor]}
             </option>
         ))
