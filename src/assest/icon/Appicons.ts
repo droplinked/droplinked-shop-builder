@@ -166,7 +166,8 @@ import { ReactComponent as ProfileLogout } from "./profile-logout.svg";
 import { ReactComponent as ProfileSetting } from "./profile-setting.svg";
 import { ReactComponent as ProfileShop } from "./profile-shop.svg";
 import { ReactComponent as ProfileSupport } from "./profile-support.svg";
-import { ReactComponent as Profileswitch } from "./profile-switch.svg";
+import { ReactComponent as AffiliateMarketBanner } from "./affiliate-market-banner.svg";
+
 
 const AppIcons = {
   ActiveIcon,
@@ -337,6 +338,7 @@ const AppIcons = {
   ProfileShop,
   ProfileSupport,
   ProfileSwitch,
+  AffiliateMarketBanner
 };
 
 export default AppIcons;
