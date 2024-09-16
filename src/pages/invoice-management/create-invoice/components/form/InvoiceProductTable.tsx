@@ -75,7 +75,6 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
 }
 
 function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
-    console.log("table row", hasActionColumn)
     const { product, skus } = cartItem
 
     return (
