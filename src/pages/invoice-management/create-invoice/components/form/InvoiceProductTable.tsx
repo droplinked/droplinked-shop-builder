@@ -1,4 +1,4 @@
-import { Flex, Spinner, Td, Tr, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, Spinner, Td, Tooltip, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
@@ -77,19 +77,19 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
 function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem
 
+
     return (
         <>
             {skus.map((sku, index) => (
                 <Tr
+                    position={"relative"}
                     key={index}
                     borderBottom={index === skus.length - 1 ? 'default' : 'none !important'}
                 >
                     <Td>
-                        <Flex alignItems="center" gap={6} opacity={index === 0 ? 1 : 0}>
+                        <Flex alignItems="center" gap={3} opacity={index === 0 ? 1 : 0}>
                             <AppImage src={product.image} width={12} height={12} />
-                            <AppTypography fontSize={16} color="white">
-                                {product.title}
-                            </AppTypography>
+                            <ProductTitle title={product.title} />
                         </Flex>
                     </Td>
                     <Td>{sku.options?.color?.caption || 'N/A'}</Td>
@@ -99,6 +99,30 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}
+        </>
+    )
+}
+
+function ProductTitle({ title }) {
+    const renderProductTitleElement = (title: string) =>
+        <AppTypography fontSize={16} color="white">{title}</AppTypography>
+
+    return (
+        <>
+            {title.length > 15 ?
+                <Tooltip
+                    label={title}
+                    padding={3}
+                    borderRadius={8}
+                    bgColor={"#fff"}
+                    color={"#000"}
+                    hasArrow
+                >
+                    <Box as="span">{renderProductTitleElement(title.slice(0, 15) + '...')}</Box>
+                </Tooltip>
+                :
+                renderProductTitleElement(title)
+            }
         </>
     )
 }
