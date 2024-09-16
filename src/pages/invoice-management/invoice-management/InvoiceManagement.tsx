@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { InvoiceQueryParams } from 'lib/apis/invoice/interfaces'
 import { getInvoicesService } from 'lib/apis/invoice/invoiceServices'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import InvoiceFilters from './components/InvoiceFilters'
 import InvoiceManagementHeader from './components/InvoiceManagementHeader'
@@ -11,19 +11,16 @@ export const INVOICES_QUERY_KEY = "invoiceList"
 
 function InvoiceManagement() {
     const [invoiceFilters, setInvoiceFilters] = useState<InvoiceQueryParams>({ page: 1, limit: 15 })
-    const updateInvoiceFilters = <K extends keyof InvoiceQueryParams>(key: K, value: InvoiceQueryParams[K]) =>
-        setInvoiceFilters({ ...invoiceFilters, [key]: value })
-
-    const { isFetching, isError, data, refetch } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: [INVOICES_QUERY_KEY, invoiceFilters],
         queryFn: () => getInvoicesService(invoiceFilters),
         refetchOnWindowFocus: false
     })
-    const invoices = data?.data?.data || []
 
-    useEffect(() => {
-        refetch()
-    }, [refetch, invoiceFilters])
+    const updateInvoiceFilters = <K extends keyof InvoiceQueryParams>(key: K, value: InvoiceQueryParams[K]) =>
+        setInvoiceFilters({ ...invoiceFilters, [key]: value })
+
+    const invoices = data?.data?.data || []
 
     return (
         <>
