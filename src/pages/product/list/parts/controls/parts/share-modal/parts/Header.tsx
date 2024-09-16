@@ -1,38 +1,22 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
-
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import AppIcons from "assest/icon/Appicons";
 import { TransformedProduct } from "../productUtils";
 
-
+//ShareIcon
 
 interface DirectLinkContentProps {
   product: TransformedProduct;
 }
 
-const Header: React.FC<DirectLinkContentProps> = ({ product}) => {
+const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
   return (
     <Box width="100%">
-      {/* بخش اول: آیکون و متن */}
-      <Flex
-        direction="column"
-        alignItems="flex-start"
-        alignSelf="stretch"
-        mb="24px"
-      >
-        <Image
-          src="https://upload-file-droplinked.s3.amazonaws.com/ee406aaeed685a9f9aacf6fa5aa654f41044b3717a75b9ca65991958f574d884.png"
-          alt="Icon"
-          width="48px"
-          height="48px"
-        />
-        <VStack align="flex-start" spacing="4px" mt="24px" color="white">
-          <Text fontSize="24px" fontWeight="700">
-            Share Product
-          </Text>
-          <Text fontSize="16px" fontWeight="400">
-            Share your product with people around the world.
-          </Text>
-        </VStack>
-      </Flex>
+      <ModalHeaderData
+        icon={<AppIcons.ShareIcon />}
+        title=" Share Product"
+        description={`Share your product with people around the world.`}
+      />
 
       {/* فاصله 24 پیکسل بین بخش‌ها */}
       <Box mb="24px" />
@@ -60,12 +44,11 @@ const Header: React.FC<DirectLinkContentProps> = ({ product}) => {
         {/* عنوان و توضیحات محصول */}
         <VStack align="flex-start" spacing="4px" flex="1">
           <Text fontSize="16px" fontWeight="700" color="white">
-           {product.title} 
-        
+            {product.title}
           </Text>
-           <Text fontSize="14px" fontWeight="400" color="gray.400">
+          <Text fontSize="14px" fontWeight="400" color="gray.400">
             {product.description}
-          </Text> 
+          </Text>
         </VStack>
 
         {/* جداکننده عمودی */}
