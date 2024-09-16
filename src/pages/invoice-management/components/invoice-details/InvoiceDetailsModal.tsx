@@ -30,7 +30,12 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
                 description='A link of your invoice is sent to the customer. You can also use the following link to view the invoice.'
             />
 
-            <ModalBody display={"flex"} flexDirection={"column"} gap={4}>
+            <ModalBody
+                display={"flex"}
+                flexDirection={"column"}
+                gap={4}
+                pt={"4px !important"}
+            >
                 <AppShareableLink link={paymentLink} />
 
                 {Object.entries(invoiceInformationMap).map(([key, value], index) => (
