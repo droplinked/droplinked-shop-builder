@@ -1,5 +1,24 @@
 import * as Yup from 'yup'
-import { InvoiceFormSchema } from '../store/invoiceStore'
+
+export interface Address {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    addressLine1: string;
+    addressLine2: string;
+    country: string;
+    city: string;
+    state: string;
+    zip: number;
+    addressType: string;
+    phoneNumber: string;
+}
+
+export interface InvoiceFormSchema {
+    email: string;
+    note: string;
+    address: Address;
+}
 
 export function getInvoiceValidationSchema(areAllProductsDigital: boolean) {
     return Yup.object({

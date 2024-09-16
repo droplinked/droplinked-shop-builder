@@ -1,22 +1,6 @@
 import { CartShippingMethod } from 'lib/apis/invoice/interfaces';
 import { create } from 'zustand';
-
-export interface InvoiceFormSchema {
-    email: string;
-    note: string;
-    address: {
-        firstName: string;
-        lastName: string;
-        addressLine1: string;
-        addressLine2: string;
-        country: string;
-        city: string;
-        state: string;
-        zip: string;
-        addressType: string;
-        phoneNumber: string;
-    }
-}
+import { Address } from '../helpers/helpers';
 
 export interface CartItem {
     _id: string
@@ -60,7 +44,7 @@ export interface Cart {
         _id: string;
         ownerID: string;
     },
-    address?: InvoiceFormSchema["address"];
+    address?: Address
     status: string;
     type: string;
     email?: string;

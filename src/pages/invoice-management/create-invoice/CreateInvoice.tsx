@@ -9,9 +9,9 @@ import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
-import { getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
+import { InvoiceFormSchema, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
-import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
+import useInvoiceStore from './store/invoiceStore'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
