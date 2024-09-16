@@ -49,8 +49,9 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        height="300px"
+        height="auto"
         mb="24px"
+        pY='24px'
       >
         <QRCodeComponent ref={qrCodeContainerRef} link={productLink} color={selectedColor} />
 

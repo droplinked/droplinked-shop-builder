@@ -17,7 +17,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab }) => {
   ];
 
   return (
-    <Box padding="16px" width="100%">
+    <Box paddingX="16px" paddingTop='16px' paddingBottom='0px' width="100%">
       <Flex justifyContent="space-between">
         {tabs.map((tab) => (
           <Box key={tab.name} textAlign="center">

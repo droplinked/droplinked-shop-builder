@@ -19,7 +19,8 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
         alignItems="center"
         flex="1 0 0"
         alignSelf="stretch"
-        height="300px"
+        height="auto"
+        paddingBottom='24px'
       >
         <Image
           src="https://upload-file-droplinked.s3.amazonaws.com/cc82d904fa5afa573b2994a2f4afbccd81caad24a773e9063f451860f158d892.png"

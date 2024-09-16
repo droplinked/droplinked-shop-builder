@@ -38,9 +38,11 @@ function ProductShareModal({ close, open, product }: IProps) {
       case TABS.PAYMENT_LINK:
         return <PaymentLinkContent id={transformedProduct.id} />;
       case TABS.PRODUCT_TILE:
-        return <ProductTileContent productTile={transformedProduct.productTile} />;
+        return (
+          <ProductTileContent productTile={transformedProduct.productTile} />
+        );
       case TABS.SOCIAL_TILE:
-        return <SocialTileContent  />;
+        return <SocialTileContent />;
       default:
         return <DirectLinkContent product={transformedProduct} />;
     }
@@ -56,18 +58,19 @@ function ProductShareModal({ close, open, product }: IProps) {
       modalRootProps={{
         isOpen: open,
         onClose: close,
-        size: "2xl",
+        size: "xl",
         scrollBehavior: "outside",
       }}
       modalContentProps={{ width: "100%", padding: "0px !important" }}
     >
-      <Box pt="48px" pr="48px" pl="48px" pb="0px">
-        <Header product={transformedProduct} />
-        <Box mb="24px" />
-        <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />
-      </Box>
-
-      <ModalBody padding="0px !important">{renderTabContent()}</ModalBody>
+      <ModalBody padding="0px !important">
+        <Box pt="48px" pr="48px" pl="48px" pb="0px">
+          <Header product={transformedProduct} />
+          <Box mb="24px" />
+          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />
+        </Box>
+        {renderTabContent()}
+      </ModalBody>
     </AppModal>
   );
 }
