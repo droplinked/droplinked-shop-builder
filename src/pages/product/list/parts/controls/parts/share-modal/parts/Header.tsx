@@ -12,12 +12,13 @@ interface DirectLinkContentProps {
 const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
   return (
     <Box width="100%">
-      <ModalHeaderData
-        icon={<AppIcons.ShareIcon />}
-        title=" Share Product"
-        description={`Share your product with people around the world.`}
-      />
-
+      <Box marginX="-48px">
+        <ModalHeaderData
+          icon={<AppIcons.ShareIcon />}
+          title=" Share Product"
+          description={`Share your product with people around the world.`}
+        />
+      </Box>
       {/* فاصله 24 پیکسل بین بخش‌ها */}
       <Box mb="24px" />
 

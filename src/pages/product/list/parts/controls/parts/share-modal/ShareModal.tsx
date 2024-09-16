@@ -1,6 +1,7 @@
 import { useState } from "react";
-import AppModal, { IAppModal } from "components/common/modal/AppModal";
-import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
+import AppModal from "components/redesign/modal/AppModal";
+import { Box, ModalBody } from "@chakra-ui/react";
+
 import Header from "./parts/Header";
 import TabButtons from "./parts/TabButtons";
 import DirectLinkContent from "./parts/DirectLinkContent";
@@ -16,16 +17,16 @@ interface IProps {
   product: any; // این نوع داده باید به نوع داده صحیح تغییر کند
 }
 
-function ProductShareModal({ close, open,  product }: IProps) {
+function ProductShareModal({ close, open, product }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
-  console.log('product ', product)
+  console.log("product ", product);
   // استفاده از تابع transformProductData برای تبدیل داده‌های ورودی
   const transformedProduct = transformProductData(product);
 
   if (!transformedProduct) {
     return <></>; // نمایش پیام اگر داده محصول موجود نبود
   }
-console.log('transformedProduct ', transformedProduct)
+  console.log("transformedProduct ", transformedProduct);
   const handleTabChange = (tabName: string) => {
     setActiveTab(tabName);
   };
@@ -44,14 +45,29 @@ console.log('transformedProduct ', transformedProduct)
         return <DirectLinkContent />;
     }
   };
+
+  //   <AppModal
+  //   modalRootProps={{ isOpen, onClose, size: "5xl", scrollBehavior: "outside" }}
+  //   modalContentProps={{ width: "936px" }}
+  // >
+
   return (
-    <AppModal close={close} open={open} size="2xl">
-      <Header
-        product={transformedProduct}
-      />
-      <Box mb="24px" />
-      <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />
-      {renderTabContent()}
+    <AppModal
+      modalRootProps={{
+        isOpen: open,
+        onClose: close,
+        size: "2xl",
+        scrollBehavior: "outside",
+      }}
+      modalContentProps={{ width: "100%", padding: "0px !important" }}
+    >
+      <Box pt="48px" pr="48px" pl="48px" pb="0px">
+        <Header product={transformedProduct} />
+        <Box mb="24px" />
+        <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />
+      </Box>
+
+      <ModalBody padding="0px !important">{renderTabContent()}</ModalBody>
     </AppModal>
   );
 }
