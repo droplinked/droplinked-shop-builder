@@ -1,6 +1,5 @@
-import { Box, Flex, Image, Input, Button, IconButton } from "@chakra-ui/react";
-import { ReactComponent as CopyIcon } from "assest/icon/copy.svg";
-import { ReactComponent as ExternalLinkIcon } from "assest/icon/share.svg";
+import { Box, Flex, Image } from "@chakra-ui/react";
+import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
 import { TransformedProduct } from "../productUtils";
 interface DirectLinkContentProps {
   product: TransformedProduct;
@@ -9,6 +8,8 @@ interface DirectLinkContentProps {
 const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
   // لینک محصول با استفاده از `slug`
   const productLink = `https://dev.droplinked.io/tbest28/product/${product.slug}`;
+
+  //
 
   return (
     <Box width="100%" bg="#292929" padding="32px">
@@ -25,59 +26,18 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
           alt="Centered Icon"
         />
       </Flex>
-
-      {/* بخش پایینی */}
-      <Flex
+      <Box
+        width="100%"
+        display="flex"
         padding="32px"
-        alignItems="center"
-        gap="16px"
-        alignSelf="stretch"
         borderRadius="12px"
         border="1px solid #292929"
         background="#141414"
-        mt="24px"
+        justifyContent="center" // مرکز کردن افقی
+        alignItems="center"
       >
-        {/* نمایش لینک و دکمه‌های کپی و باز کردن */}
-        <Flex
-          padding="12px 16px"
-          alignItems="center"
-          gap="16px"
-          flex="1 0 0"
-          borderRadius="8px"
-          border="1px solid #292929"
-          width="100%"
-        >
-          {/* لینک */}
-          <Input
-            value={productLink}
-            isReadOnly
-            variant="unstyled"
-            color="white"
-            flex="1"
-          />
-          {/* دکمه کپی */}
-          <CopyIcon
-            icon={<CopyIcon />}
-            aria-label="Copy link"
-            colorScheme="whiteAlpha"
-            onClick={() => navigator.clipboard.writeText(productLink)}
-          />
-        </Flex>
-
-        {/* دکمه باز کردن لینک */}
-        <Button
-          display="flex"
-          padding="14px"
-          justifyContent="center"
-          alignItems="center"
-          gap="4px"
-          borderRadius="8px"
-          background="#2BCFA1"
-          _hover={{ bg: "#28B68A" }}
-        >
-          <ExternalLinkIcon w={5} h={5} />
-        </Button>
-      </Flex>
+        <AppShareableLink link={productLink} buttonBgColor="#2BCFA1" />
+      </Box>
     </Box>
   );
 };

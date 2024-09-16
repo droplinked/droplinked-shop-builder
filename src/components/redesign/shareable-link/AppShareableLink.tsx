@@ -5,14 +5,15 @@ import React from 'react'
 import styles from "./styles.module.scss"
 
 interface Props {
-    link: string
-}
+    link: string;
+    buttonBgColor?: string; 
+  }
 
-export default function AppShareableLink({ link }: Props) {
+export default function AppShareableLink({ link, buttonBgColor }: Props) {
     return (
-        <Flex alignItems={"center"} gap={4}>
+        <Flex alignItems={"center"} gap={4} width='100%'>
             <LinkInput link={link} />
-            <ShareButton link={link} />
+            <ShareButton link={link} buttonBgColor={buttonBgColor} />
         </Flex>
     )
 }
@@ -27,10 +28,10 @@ function LinkInput({ link }: Props) {
     )
 }
 
-function ShareButton({ link }: Props) {
+function ShareButton({ link, buttonBgColor }: Props) {
     return (
         <Link href={link} target='_blank'>
-            <Center width={12} height={12} borderRadius={8} bgColor={"#3C3C3C"}>
+            <Center width={12} height={12} borderRadius={8}  bgColor={buttonBgColor || "#3C3C3C"} >
                 <AppIcons.Share />
             </Center>
         </Link>
