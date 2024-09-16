@@ -2,6 +2,13 @@ import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot,
 import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import AppIcons from "assest/icon/Appicons"
 import React, { ReactNode } from 'react'
+import InfiniteScroll from "react-infinite-scroll-component"
+
+interface InfiniteScrollProps {
+    dataLength: number
+    hasMore: boolean
+    next: () => void
+}
 
 interface Props<T extends object> {
     columns: ColumnDef<T>[]
@@ -13,10 +20,11 @@ interface Props<T extends object> {
     isLoading?: boolean
     emptyView?: ReactNode
     footerContent?: ReactNode
+    infiniteScroll?: InfiniteScrollProps
 }
 
 function Table<T extends object>(props: Props<T>) {
-    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent } = props
+    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
     const table = useReactTable({
         data,
         columns,
@@ -26,6 +34,110 @@ function Table<T extends object>(props: Props<T>) {
         getSortedRowModel: enableSorting ? getSortedRowModel() : undefined
     })
 
+    const loader = (
+        Array.from({ length: 3 }).map((_, index) => (
+            <Tr key={index}>
+                {columns.map((_, colIndex) => (
+                    <Td key={colIndex}>
+                        <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
+                    </Td>
+                ))}
+                {renderActions && (
+                    <Td>
+                        <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
+                    </Td>
+                )}
+            </Tr>
+        ))
+    )
+
+    const tableContent = (
+        <ChakraTable
+            variant="unstyled"
+            sx={{
+                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: 14, fontWeight: 400 },
+                userSelect: "none"
+            }}
+        >
+            <Thead>
+                {table.getHeaderGroups().map(headerGroup => (
+                    <Tr key={headerGroup.id} bgColor="#262626">
+                        {headerGroup.headers.map(header => (
+                            <Th
+                                key={header.id}
+                                textTransform="capitalize"
+                                color="#7B7B7B"
+                                cursor={enableSorting ? "pointer" : "default"}
+                                sx={{ "svg": { display: "inline-block" } }}
+                                onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}
+                            >
+                                {enableSorting ?
+                                    <Flex alignItems="center" gap={1}>
+                                        {flexRender(header.column.columnDef.header, header.getContext())}
+                                        {header.column.getIsSorted() && (
+                                            header.column.getIsSorted() === 'desc'
+                                                ? <AppIcons.DescSorting />
+                                                : <AppIcons.AscSorting />
+                                        )}
+                                    </Flex>
+                                    :
+                                    flexRender(header.column.columnDef.header, header.getContext())
+                                }
+                            </Th>
+                        ))}
+                        {renderActions && <Th />}
+                    </Tr>
+                ))}
+            </Thead>
+
+            <Tbody
+                sx={{
+                    "tr": {
+                        bgColor: "#1C1C1C",
+                        transition: "background 0.2s",
+                        _hover: { bgColor: "#222222" }
+                    }
+                }}
+            >
+                {table.getRowModel().rows.map((row, rowIndex) => (
+                    <Tr
+                        key={row.id}
+                        borderTop="1px solid #262626"
+                        borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
+                        color="white"
+                    >
+                        {row.getVisibleCells().map((cell, cellIndex) => (
+                            <Td key={cell.id} fontSize={16} fontWeight={400}>
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            </Td>
+                        ))}
+                        {renderActions && <Td>{renderActions(row.original)}</Td>}
+                    </Tr>
+                ))}
+                {isLoading
+                    ? loader
+                    : table.getRowModel().rows.length === 0 && (
+                        <Tr>
+                            <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
+                                {emptyView}
+                            </Td>
+                        </Tr>
+                    )
+                }
+            </Tbody>
+
+            {footerContent && (
+                <Tfoot>
+                    <Tr bgColor="#1C1C1C">
+                        <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
+                            {footerContent}
+                        </Td>
+                    </Tr>
+                </Tfoot>
+            )}
+        </ChakraTable>
+    )
+
     return (
         <TableContainer
             border="1px solid #262626"
@@ -33,98 +145,18 @@ function Table<T extends object>(props: Props<T>) {
             overflow="hidden"
             overflowX="auto"
         >
-            <ChakraTable
-                variant="unstyled"
-                sx={{
-                    "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: 14, fontWeight: 400 },
-                    userSelect: "none"
-                }}
-            >
-                <Thead>
-                    {table.getHeaderGroups().map(headerGroup => (
-                        <Tr key={headerGroup.id} bgColor="#262626">
-                            {headerGroup.headers.map(header => (
-                                <Th
-                                    key={header.id}
-                                    textTransform="capitalize"
-                                    color="#7B7B7B"
-                                    cursor={enableSorting ? "pointer" : "default"}
-                                    sx={{ "svg": { display: "inline-block" } }}
-                                    onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}
-                                >
-                                    {
-                                        enableSorting ?
-                                            <Flex alignItems={"center"} gap={1}>
-                                                {flexRender(header.column.columnDef.header, header.getContext())}
-                                                {header.column.getIsSorted() ? (header.column.getIsSorted() === 'desc' ? <AppIcons.DescSorting /> : <AppIcons.AscSorting />) : null}
-                                            </Flex>
-                                            :
-                                            flexRender(header.column.columnDef.header, header.getContext())
-                                    }
-                                </Th>
-                            ))}
-                            {renderActions && <Th></Th>}
-                        </Tr>
-                    ))}
-                </Thead>
-
-                <Tbody
-                    sx={{
-                        "tr": {
-                            bgColor: "#1C1C1C",
-                            transition: "background 0.2s",
-                            _hover: { bgColor: "#222222" }
-                        }
-                    }}
+            {infiniteScroll ?
+                <InfiniteScroll
+                    dataLength={infiniteScroll.dataLength}
+                    next={infiniteScroll.next}
+                    hasMore={infiniteScroll.hasMore}
+                    loader={null}
                 >
-                    {
-                        isLoading ?
-                            Array.from({ length: 3 }).map((_, index) => (
-                                <Tr key={index}>
-                                    {columns.map((_, colIndex) => (
-                                        <Td key={colIndex}>
-                                            <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
-                                        </Td>
-                                    ))}
-                                    {renderActions && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
-                                </Tr>
-                            ))
-                            :
-                            table.getRowModel().rows.length === 0 ?
-                                <Tr>
-                                    <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>{emptyView}</Td>
-                                </Tr>
-                                :
-                                table.getRowModel().rows.map((row, rowIndex) => {
-                                    return (
-                                        <Tr
-                                            key={row.id}
-                                            borderTop="1px solid #262626"
-                                            borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
-                                            color="white"
-                                        >
-                                            {row.getVisibleCells().map((cell, cellIndex) => (
-                                                <Td key={cell.id} fontSize={16} fontWeight={400}>
-                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                                </Td>
-                                            ))}
-                                            {renderActions && <Td>{renderActions(row.original)}</Td>}
-                                        </Tr>
-                                    )
-                                })
-                    }
-                </Tbody>
-
-                {footerContent && (
-                    <Tfoot>
-                        <Tr bgColor="#1C1C1C">
-                            <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
-                                {footerContent}
-                            </Td>
-                        </Tr>
-                    </Tfoot>
-                )}
-            </ChakraTable>
+                    {tableContent}
+                </InfiniteScroll>
+                :
+                tableContent
+            }
         </TableContainer>
     )
 }

@@ -14,9 +14,12 @@ import StatusBadge from './StatusBadge'
 interface Props {
     invoices: Invoice[];
     isLoading: boolean;
+    dataLength: number
+    hasMore: boolean
+    next: () => void
 }
 
-function InvoiceTable({ invoices, isLoading }: Props) {
+function InvoiceTable({ invoices, isLoading, dataLength, hasMore, next }: Props) {
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
@@ -82,6 +85,7 @@ function InvoiceTable({ invoices, isLoading }: Props) {
                         No invoices available. Create a new invoice to get started.
                     </AppTypography>
                 }
+                infiniteScroll={{ dataLength, hasMore, next }}
             />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>
