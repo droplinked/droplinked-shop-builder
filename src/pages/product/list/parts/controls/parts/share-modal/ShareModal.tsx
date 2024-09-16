@@ -38,11 +38,11 @@ function ProductShareModal({ close, open, product }: IProps) {
       case TABS.PAYMENT_LINK:
         return <PaymentLinkContent id={transformedProduct.id} />;
       case TABS.PRODUCT_TILE:
-        return <ProductTileContent />;
+        return <ProductTileContent productTile={transformedProduct.productTile} />;
       case TABS.SOCIAL_TILE:
-        return <SocialTileContent />;
+        return <SocialTileContent  />;
       default:
-        return <DirectLinkContent />;
+        return <DirectLinkContent product={transformedProduct} />;
     }
   };
 

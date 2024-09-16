@@ -25,7 +25,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
   const productLink = `https://droplinked.io/bedi/product/${id}`;
 
   const handleNavigateSettings = () => {
-    navigate('/dashboard/settings/tile'); // ناوبری به مسیر در همان تب
+    navigate('/dashboard/settings/payment-link-design'); // ناوبری به مسیر در همان تب
   };
 
 
