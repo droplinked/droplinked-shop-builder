@@ -62,7 +62,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
           color="white"
           whiteSpace="nowrap"
         >
-          {product.price}
+          $ {product.price} USD
         </Text>
       </Flex>
     </Box>

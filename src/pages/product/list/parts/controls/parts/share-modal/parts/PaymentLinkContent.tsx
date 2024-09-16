@@ -1,139 +1,120 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Input,
-  Button,
-  IconButton,
-  Text,
-} from "@chakra-ui/react";
-import { ReactComponent as CopyIcon } from "assest/icon/copy.svg";
-import { ReactComponent as ExternalLinkIcon } from "assest/icon/share.svg";
-import { ReactComponent as ConfigureIcon } from "assest/icon/share.svg";
-import { ReactComponent as DownloadIcon } from "assest/icon/share.svg";
+import { Box, Flex, Button, Divider } from "@chakra-ui/react";
+import { useState ,useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
+import ColorCircle from "./ColorCircle";
+import QRCodeComponent from "./QRCodeComponent";
+import AppIcons from "assest/icon/Appicons";
+import { downloadQRCode } from "./downloadQRCode";
+
+// تعریف ثابت‌های رنگ‌ها
+const WHITE_COLOR = "#FFFFFF";
+const BLACK_COLOR = "#000000";
+
+type CircleColor = typeof WHITE_COLOR | typeof BLACK_COLOR;
 
 interface PaymentLinkContentProps {
   id: string; // prop `id` برای ساخت لینک
 }
 
 const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
+  const qrCodeContainerRef = useRef<HTMLDivElement>(null); 
+  const navigate = useNavigate(); 
+  const [selectedColor, setSelectedColor] = useState<CircleColor>(WHITE_COLOR); // رنگ پیش‌فرض سفید
   // ساخت لینک محصول با استفاده از `id`
   const productLink = `https://droplinked.io/bedi/product/${id}`;
-    return (
-      <Box width="100%" bg="#292929" padding="32px">
-        {/* بخش بالایی: QR کد و دکمه های حالت نمایش */}
-        <Flex
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          height="300px"
-          mb="24px"
-        >
-          {/* تصویر QR کد */}
-          <Image
-            src="https://upload-file-droplinked.s3.amazonaws.com/3a8f91c98fdbb457d44b0f0eee11a94d7c22ed37801cd06901f1b0a6edd9ce84.png"
-            alt="QR Code"
-            boxSize="188px"
-            mb="24px"
-          />
-  
-          {/* دکمه‌های جابجایی */}
-          <Flex gap="8px">
-            <Box
-              width="37px"
-              height="37px"
-              borderRadius="50%"
-              bg="#1C1C1C"
-              border="2px solid #2BCFA1"
-            />
-            <Box
-              width="37px"
-              height="37px"
-              borderRadius="50%"
-              bg="#1C1C1C"
-              border="2px solid #FFFFFF"
-            />
-          </Flex>
-        </Flex>
-  
-        {/* بخش پایینی: لینک محصول و دکمه‌های عمل */}
-        <Flex
-          flexDirection="column"
-          gap="16px"
-          alignSelf="stretch"
-          borderRadius="12px"
-          border="1px solid #292929"
-          background="#141414"
-          padding="24px"
-        >
-          {/* نمایش لینک و دکمه‌های کپی و باز کردن */}
-          <Flex
-            padding="12px 16px"
-            alignItems="center"
-            gap="16px"
-            borderRadius="8px"
-            border="1px solid #292929"
-            width="100%"
-          >
-            {/* لینک */}
-            <Input
-              value={productLink}
-              isReadOnly
-              variant="unstyled"
-              color="white"
-              flex="1"
-            />
-            {/* دکمه کپی */}
-            <IconButton
-              icon={<CopyIcon width={20} height={20} />}
-              aria-label="Copy link"
-              colorScheme="whiteAlpha"
-              onClick={() => navigator.clipboard.writeText(productLink)}
-            />
-            {/* دکمه باز کردن لینک */}
-            <IconButton
-              icon={<ExternalLinkIcon width={20} height={20} />}
-              aria-label="Open link"
-              background="#2BCFA1"
-              _hover={{ bg: "#28B68A" }}
-              ml="8px"
-            />
-          </Flex>
-  
-          {/* دکمه‌های تنظیم و دانلود QR کد */}
-          <Flex justifyContent="space-between" mt="16px">
-            <Button
-              leftIcon={<ConfigureIcon width={20} height={20} />}
-              color="#FFF"
-              fontFamily="Inter"
-              fontSize="14px"
-              fontWeight="500"
-              lineHeight="20px"
-              variant="unstyled"
-              display="flex"
-              alignItems="center"
-              gap="8px"
-            >
-              Configure
-            </Button>
-            <Button
-              leftIcon={<DownloadIcon width={20} height={20} />}
-              color="#2BCFA1"
-              fontFamily="Inter"
-              fontSize="14px"
-              fontWeight="500"
-              lineHeight="20px"
-              variant="unstyled"
-              display="flex"
-              alignItems="center"
-              gap="8px"
-            >
-              Download QR Code
-            </Button>
-          </Flex>
-        </Flex>
-      </Box>
+
+  const handleNavigateSettings = () => {
+    navigate('/dashboard/settings/tile'); // ناوبری به مسیر در همان تب
+  };
+
+
+
+
+  const handleDownloadClick = () => {
+    downloadQRCode(qrCodeContainerRef, 'qrcode.png'); // استفاده از تابع دانلود
+  };
+
+  // تابع تغییر رنگ
+  const toggleColor = () => {
+    setSelectedColor((prevColor) =>
+      prevColor === WHITE_COLOR ? BLACK_COLOR : WHITE_COLOR
     );
   };
+
+  return (
+    <Box width="100%" bg="#292929" padding="32px">
+      {/* بخش بالایی: QR کد و دکمه های حالت نمایش */}
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        height="300px"
+        mb="24px"
+      >
+        <QRCodeComponent ref={qrCodeContainerRef} link={productLink} color={selectedColor} />
+
+        {/* دکمه‌های جابجایی */}
+        <Flex gap="8px">
+          <ColorCircle
+            color={WHITE_COLOR}
+            isActive={selectedColor === WHITE_COLOR} // تشخیص بر اساس رنگ انتخاب شده
+            onClick={toggleColor} // تابع تغییر رنگ
+          />
+          <ColorCircle
+            color={BLACK_COLOR}
+            isActive={selectedColor === BLACK_COLOR} // تشخیص بر اساس رنگ انتخاب شده
+            onClick={toggleColor} // تابع تغییر رنگ
+          />
+        </Flex>
+      </Flex>
+
+      <Box borderRadius="12px" border="1px solid #292929" bg="#141414">
+        {/* بخش بالایی با پدینگ */}
+        <Box padding="32px">
+          <AppShareableLink link={productLink} buttonBgColor="#2BCFA1" />
+        </Box>
+
+        {/* خط جداکننده */}
+        <Divider borderColor="#292929" />
+
+        {/* بخش پایینی با دکمه‌ها */}
+        <Flex paddingY="24px" paddingX="32px" justifyContent="space-between">
+          <Button
+            leftIcon={<AppIcons.SettingIcon width={20} height={20} />}
+            color="#FFF"
+            fontFamily="Inter"
+            fontSize="14px"
+            fontWeight="500"
+            lineHeight="20px"
+            variant="unstyled"
+            display="flex"
+            alignItems="center"
+            gap="8px"
+            onClick={handleNavigateSettings}
+          >
+            Configure
+          </Button>
+          <Button
+          sx={{ "svg path": { stroke: "#2BCFA1" } }}
+            leftIcon={<AppIcons.Download width={20} height={20} />}
+            color="#2BCFA1"
+            fontFamily="Inter"
+            fontSize="14px"
+            fontWeight="500"
+            lineHeight="20px"
+            variant="unstyled"
+            display="flex"
+            alignItems="center"
+            gap="8px"
+            onClick={handleDownloadClick}
+          >
+            Download QR Code
+          </Button>
+        </Flex>
+      </Box>
+    </Box>
+  );
+};
 
 export default PaymentLinkContent;
