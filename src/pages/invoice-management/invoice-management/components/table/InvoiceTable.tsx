@@ -1,6 +1,7 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import { SHOP_URL } from 'lib/utils/app/variable'
 import Table from 'pages/invoice-management/components/Table'
@@ -21,14 +22,7 @@ function InvoiceTable({ invoices, isLoading }: Props) {
         { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
         { accessorKey: 'email', header: 'Client', cell: info => info.getValue() },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
-        {
-            accessorKey: '',
-            header: 'Amount', cell: info => {
-                const invoice = info.row.original
-                return "N/A"
-                // formattedCurrency(info.getValue() as number)
-            }
-        },
+        { accessorKey: '', header: 'Amount', cell: () => "N/A" },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 
@@ -51,7 +45,15 @@ function InvoiceTable({ invoices, isLoading }: Props) {
 
     return (
         <>
-            <Table isLoading={isLoading} columns={columns} data={invoices} renderActions={renderActions} />
+            <Table
+                isLoading={isLoading}
+                columns={columns}
+                data={invoices}
+                renderActions={renderActions}
+                emptyView={
+                    <AppTypography fontSize={16} fontWeight={500} color={"white"}>Looks like space is empty</AppTypography>
+                }
+            />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>
     )

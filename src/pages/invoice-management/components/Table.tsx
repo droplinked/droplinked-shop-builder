@@ -11,11 +11,12 @@ interface Props<T extends object> {
     sorting?: SortingState
     setSorting?: (state: SortingState) => void
     isLoading?: boolean
+    emptyView?: ReactNode
     footerContent?: ReactNode
 }
 
 function Table<T extends object>(props: Props<T>) {
-    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, footerContent } = props
+    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent } = props
     const table = useReactTable({
         data,
         columns,
@@ -89,23 +90,28 @@ function Table<T extends object>(props: Props<T>) {
                                 </Tr>
                             ))
                             :
-                            table.getRowModel().rows.map((row, rowIndex) => {
-                                return (
-                                    <Tr
-                                        key={row.id}
-                                        borderTop="1px solid #262626"
-                                        borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
-                                        color="white"
-                                    >
-                                        {row.getVisibleCells().map((cell, cellIndex) => (
-                                            <Td key={cell.id} fontSize={16} fontWeight={400}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                            </Td>
-                                        ))}
-                                        {renderActions && <Td>{renderActions(row.original)}</Td>}
-                                    </Tr>
-                                )
-                            })
+                            table.getRowModel().rows.length === 0 ?
+                                <Tr>
+                                    <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>{emptyView}</Td>
+                                </Tr>
+                                :
+                                table.getRowModel().rows.map((row, rowIndex) => {
+                                    return (
+                                        <Tr
+                                            key={row.id}
+                                            borderTop="1px solid #262626"
+                                            borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
+                                            color="white"
+                                        >
+                                            {row.getVisibleCells().map((cell, cellIndex) => (
+                                                <Td key={cell.id} fontSize={16} fontWeight={400}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </Td>
+                                            ))}
+                                            {renderActions && <Td>{renderActions(row.original)}</Td>}
+                                        </Tr>
+                                    )
+                                })
                     }
                 </Tbody>
 
