@@ -78,7 +78,9 @@ function InvoiceTable({ invoices, isLoading }: Props) {
                 data={invoices}
                 renderActions={renderActions}
                 emptyView={
-                    <AppTypography fontSize={16} fontWeight={500} color={"white"}>Looks like space is empty</AppTypography>
+                    <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                        No invoices available. Create a new invoice to get started.
+                    </AppTypography>
                 }
             />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}

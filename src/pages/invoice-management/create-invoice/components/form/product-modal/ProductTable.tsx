@@ -1,4 +1,4 @@
-import { Button, Flex, Td, Tr } from '@chakra-ui/react'
+import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -8,6 +8,7 @@ import Input from 'pages/invoice-management/components/Input'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
+import ProductTitleCell from '../ProductTitleCell'
 import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
@@ -38,9 +39,11 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
 }
 
 function ProductRow({ product, cart, setCart }) {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
+    const isDigitalProduct = product.product_type === "DIGITAL"
 
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
@@ -56,15 +59,29 @@ function ProductRow({ product, cart, setCart }) {
             setSkuId("")
             showToast({ type: "success", message: "Product added to cart" })
         }
-        else showToast({ type: "info", message: "Please select SKU and quantity before adding" })
+        else {
+            const message = isDigitalProduct ?
+                "Quantity required. Please enter a value before adding" :
+                "Please select both SKU and quantity before adding"
+            showToast({ type: "info", message })
+        }
     }
+
+    const toggleDropdown = () => {
+        if (isDigitalProduct) return
+        onOpen()
+    }
+
+    useEffect(() => {
+        if (isDigitalProduct) setSkuId(product.skuIDs[0]._id)
+    }, [product, setSkuId])
 
     return (
         <Tr _hover={{ "button": { opacity: 1 } }}>
             <Td>
                 <Flex alignItems={"center"} gap={6}>
                     <AppImage src={product.media[0]?.url} width={12} height={12} />
-                    <AppTypography fontSize={16} color={"white"}>{product.title}</AppTypography>
+                    <ProductTitleCell title={product.title} wordLimit={35} />
                 </Flex>
             </Td>
             <Td>
@@ -72,6 +89,9 @@ function ProductRow({ product, cart, setCart }) {
                     selectedVariant={skuId}
                     onSelectVariant={(selectedSku) => setSkuId(selectedSku)}
                     product={product}
+                    isOpen={isOpen}
+                    onOpen={toggleDropdown}
+                    onClose={onClose}
                 />
             </Td>
             <Td>

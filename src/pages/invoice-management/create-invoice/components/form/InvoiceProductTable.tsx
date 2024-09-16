@@ -1,8 +1,7 @@
-import { Box, Flex, Spinner, Td, Tooltip, Tr, useDisclosure } from '@chakra-ui/react'
+import { Flex, Spinner, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
-import AppTypography from 'components/common/typography/AppTypography'
 import { DeleteInvoiceProduct } from 'lib/apis/invoice/interfaces'
 import { removeProductFromCartService } from 'lib/apis/invoice/invoiceServices'
 import TextButton from 'pages/invoice-management/components/TextButton'
@@ -10,6 +9,7 @@ import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useMemo } from 'react'
 import { useMutation } from 'react-query'
 import useInvoiceStore, { CartItem } from '../../store/invoiceStore'
+import ProductTitleCell from './ProductTitleCell'
 import InvoiceProductModal from './product-modal/InvoiceProductModal'
 
 interface SerializedCartItem {
@@ -77,7 +77,6 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
 function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem
 
-
     return (
         <>
             {skus.map((sku, index) => (
@@ -89,7 +88,7 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     <Td>
                         <Flex alignItems="center" gap={3} opacity={index === 0 ? 1 : 0}>
                             <AppImage src={product.image} width={12} height={12} />
-                            <ProductTitle title={product.title} />
+                            <ProductTitleCell title={product.title} />
                         </Flex>
                     </Td>
                     <Td>{sku.options?.color?.caption || 'N/A'}</Td>
@@ -99,30 +98,6 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}
-        </>
-    )
-}
-
-function ProductTitle({ title }) {
-    const renderProductTitleElement = (title: string) =>
-        <AppTypography fontSize={16} color="white">{title}</AppTypography>
-
-    return (
-        <>
-            {title.length > 15 ?
-                <Tooltip
-                    label={title}
-                    padding={3}
-                    borderRadius={8}
-                    bgColor={"#fff"}
-                    color={"#000"}
-                    hasArrow
-                >
-                    <Box as="span">{renderProductTitleElement(title.slice(0, 15) + '...')}</Box>
-                </Tooltip>
-                :
-                renderProductTitleElement(title)
-            }
         </>
     )
 }

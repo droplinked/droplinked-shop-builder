@@ -8,10 +8,12 @@ interface Props {
     selectedVariant: string | undefined
     onSelectVariant: (sku: string) => void
     product: any
+    isOpen: boolean
+    onOpen: () => void
+    onClose: () => void
 }
 
-export default function VariantsDropdown({ selectedVariant, onSelectVariant, product }: Props) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export default function VariantsDropdown({ selectedVariant, onSelectVariant, product, isOpen, onOpen, onClose }: Props) {
 
     return (
         <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} placement='bottom-start'>
