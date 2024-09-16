@@ -4,10 +4,10 @@ import useDebounce from 'functions/hooks/debounce/useDebounce'
 import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import Input from 'pages/invoice-management/components/Input'
 import Select from 'pages/invoice-management/components/Select'
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface Props {
-    updateInvoiceFilters: <K extends keyof InvoiceQueryParams>(key: K, value: InvoiceQueryParams[K]) => void
+    updateInvoiceFilters: Dispatch<SetStateAction<InvoiceQueryParams>>
 }
 
 function InvoiceFilters({ updateInvoiceFilters }: Props) {
@@ -20,7 +20,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
     ]
 
     useEffect(() => {
-        updateInvoiceFilters("search", debouncedSearchTerm)
+        updateInvoiceFilters(prev => ({ ...prev, page: 1, search: debouncedSearchTerm }))
     }, [debouncedSearchTerm])
 
     return (
@@ -41,7 +41,8 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 selectProps={{
                     width: "200px",
                     bgColor: "#1C1C1C",
-                    onChange: (e) => updateInvoiceFilters("status", e.target.value as InvoiceStatus)
+                    placeholder: "Status",
+                    onChange: (e) => updateInvoiceFilters(prev => ({ ...prev, page: 1, status: e.target.value as InvoiceStatus }))
                 }}
             />
         </Flex>

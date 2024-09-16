@@ -17,16 +17,13 @@ function InvoiceManagement() {
         refetchOnWindowFocus: false
     })
 
-    const updateInvoiceFilters = <K extends keyof InvoiceQueryParams>(key: K, value: InvoiceQueryParams[K]) =>
-        setInvoiceFilters({ ...invoiceFilters, [key]: value })
-
     const invoices = data?.data?.data || []
 
     return (
         <>
             <InvoiceManagementHeader />
             <Flex mt={9} direction={"column"} gap={6}>
-                <InvoiceFilters updateInvoiceFilters={updateInvoiceFilters} />
+                <InvoiceFilters updateInvoiceFilters={setInvoiceFilters} />
                 <InvoiceTable invoices={invoices} isLoading={isFetching} />
             </Flex>
         </>
