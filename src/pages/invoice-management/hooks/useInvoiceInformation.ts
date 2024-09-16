@@ -21,6 +21,11 @@ export default function useInvoiceInformation(invoiceId?: string) {
     const invoice = invoiceId ? data?.data : cart
     const areAllProductsDigital = invoice?.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
 
+    function formatFullName() {
+        const { firstName, lastName } = invoice?.address ?? {}
+        return [firstName, lastName].filter(Boolean).join(' ')
+    }
+
     function formatAddress() {
         const { addressLine1, addressLine2, city, state, zip, country } = invoice?.address ?? {}
         const formattedAddress = [addressLine1, addressLine2, city, state, zip, country].filter(Boolean).join(', ')
@@ -42,7 +47,7 @@ export default function useInvoiceInformation(invoiceId?: string) {
             { label: "Memo", value: invoice?.note || "N/A" }
         ],
         "Client detail": [
-            { label: "Full name", value: areAllProductsDigital ? "N/A" : `${invoice?.address?.firstName} ${invoice?.address?.lastName}` },
+            { label: "Full name", value: areAllProductsDigital ? "N/A" : formatFullName() },
             { label: "Email Address", value: invoice?.email },
             { label: "Mobile Number", value: areAllProductsDigital ? "N/A" : invoice?.address?.phoneNumber },
             { label: "Address", value: areAllProductsDigital ? "N/A" : formatAddress() },

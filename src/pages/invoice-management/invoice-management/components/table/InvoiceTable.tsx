@@ -38,7 +38,7 @@ function InvoiceTable({ invoices, isLoading }: Props) {
     }
 
     const renderActions = (row: Invoice) => {
-        const paymentLink = `${SHOP_URL}/paylink/${row._id}`
+        const paymentLink = `${SHOP_URL}/paylink/invoice/${row._id}`
 
         return (
             <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>

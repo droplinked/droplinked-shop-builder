@@ -4,6 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink';
 import { SHOP_URL } from 'lib/utils/app/variable';
+import InvoiceProductTable from 'pages/invoice-management/create-invoice/components/form/InvoiceProductTable';
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation';
 import React from 'react';
 import SummaryBox from './SummaryBox';
@@ -16,7 +17,7 @@ interface Props {
 
 function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
     const { invoiceInformationMap, data } = useInvoiceInformation(invoiceId)
-    const paymentLink = `${SHOP_URL}/paylink/${invoiceId}`
+    const paymentLink = `${SHOP_URL}/paylink/invoice/${invoiceId}`
 
     return (
         <AppModal
@@ -35,6 +36,8 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
                 {Object.entries(invoiceInformationMap).map(([key, value], index) => (
                     <SummaryBox key={index} title={key} rows={value} />
                 ))}
+
+                <InvoiceProductTable invoice={data} hasActionColumn={false} hasFooter={false} />
             </ModalBody>
         </AppModal>
     )

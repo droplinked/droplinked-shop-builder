@@ -104,7 +104,7 @@ function TableBody({ isLoading, children }: TableBodyProps) {
                     :
                     children
             }
-        </Tbody >
+        </Tbody>
     )
 }
 

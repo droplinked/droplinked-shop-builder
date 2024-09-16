@@ -17,8 +17,15 @@ interface SerializedCartItem {
     skus: CartItem[]
 }
 
-export default function InvoiceProductTable() {
-    const cartItems = useInvoiceStore(state => state.cart.items)
+interface Props {
+    invoice?: any;
+    hasActionColumn?: boolean
+    hasFooter?: boolean
+}
+
+export default function InvoiceProductTable({ invoice, hasActionColumn = true, hasFooter = true }: Props) {
+    let cartItems = useInvoiceStore(state => state.cart.items)
+    if (invoice) cartItems = invoice.items
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const groupedCartItems = useMemo(() => groupCartItemsByProduct(cartItems), [cartItems])
@@ -33,19 +40,21 @@ export default function InvoiceProductTable() {
 
     return (
         <>
-            <Table.Root columns={columns} hasActionColumn={true}>
+            <Table.Root columns={columns} hasActionColumn={hasActionColumn}>
                 <Table.Head data={cartItems} />
                 <Table.Body>
                     {groupedCartItems.map((cartItem, index) => (
-                        <CartItemRow key={index} cartItem={cartItem} />
+                        <CartItemRow key={index} cartItem={cartItem} hasActionColumn={hasActionColumn} />
                     ))}
                 </Table.Body>
-                <Table.Footer>
-                    <TextButton paddingBlock={3} paddingInline={4} onClick={onOpen}>
-                        <AppIcons.BlackPlus />
-                        Add product
-                    </TextButton>
-                </Table.Footer>
+                {hasFooter && (
+                    <Table.Footer>
+                        <TextButton paddingBlock={3} paddingInline={4} onClick={onOpen}>
+                            <AppIcons.BlackPlus />
+                            Add product
+                        </TextButton>
+                    </Table.Footer>
+                )}
             </Table.Root>
             {isOpen && <InvoiceProductModal isOpen={isOpen} onClose={onClose} />}
         </>
@@ -65,7 +74,8 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
     return Array.from(groupedItems.values())
 }
 
-function CartItemRow({ cartItem }: { cartItem: SerializedCartItem }) {
+function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
+    console.log("table row", hasActionColumn)
     const { product, skus } = cartItem
 
     return (
@@ -87,7 +97,7 @@ function CartItemRow({ cartItem }: { cartItem: SerializedCartItem }) {
                     <Td>{sku.options?.size?.caption || 'N/A'}</Td>
                     <Td>{sku.options?.quantity || 'N/A'}</Td>
                     <Td>{sku.totals?.priceItem || 'N/A'}</Td>
-                    <SKURemoveButton itemId={sku._id} />
+                    {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}
         </>
