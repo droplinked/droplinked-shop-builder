@@ -3,12 +3,7 @@ import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel
 import AppIcons from "assest/icon/Appicons"
 import React, { ReactNode } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component"
-
-interface InfiniteScrollProps {
-    dataLength: number
-    hasMore: boolean
-    next: () => void
-}
+import { InfiniteScrollProps } from "./table-v2/interfaces"
 
 interface Props<T extends object> {
     columns: ColumnDef<T>[]
@@ -107,16 +102,16 @@ function Table<T extends object>(props: Props<T>) {
                         color="white"
                     >
                         {row.getVisibleCells().map((cell, cellIndex) => (
-                            <Td key={cell.id} fontSize={16} fontWeight={400}>
+                            <Td key={cellIndex} fontSize={16} fontWeight={400}>
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             </Td>
                         ))}
                         {renderActions && <Td>{renderActions(row.original)}</Td>}
                     </Tr>
                 ))}
-                {isLoading
-                    ? loader
-                    : table.getRowModel().rows.length === 0 && (
+                {isLoading ?
+                    loader :
+                    table.getRowModel().rows.length === 0 && (
                         <Tr>
                             <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
                                 {emptyView}

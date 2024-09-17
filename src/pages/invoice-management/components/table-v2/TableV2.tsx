@@ -2,10 +2,23 @@ import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot,
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import useTableContext, { TableContext } from './TableContext'
 import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'
 
-function TableRoot<T extends object>({ children, columns, hasActionColumn = false }: TableRootProps<T>) {
+function TableRoot<T extends object>({ children, columns, hasActionColumn = false, infiniteScroll }: TableRootProps<T>) {
+    const tableContent = (
+        <ChakraTable
+            variant="unstyled"
+            sx={{
+                "th, td": { paddingInline: 6, paddingBlock: 4 },
+                userSelect: "none",
+            }}
+        >
+            {children}
+        </ChakraTable>
+    )
+
     return (
         <TableContext.Provider value={{ columns, hasActionColumn }}>
             <TableContainer
@@ -13,15 +26,19 @@ function TableRoot<T extends object>({ children, columns, hasActionColumn = fals
                 borderRadius={8}
                 overflow="hidden"
             >
-                <ChakraTable
-                    variant="unstyled"
-                    sx={{
-                        "th, td": { paddingInline: 6, paddingBlock: 4 },
-                        userSelect: "none",
-                    }}
-                >
-                    {children}
-                </ChakraTable>
+                {infiniteScroll ?
+                    <InfiniteScroll
+                        dataLength={infiniteScroll.dataLength}
+                        next={infiniteScroll.next}
+                        hasMore={infiniteScroll.hasMore}
+                        loader={null}
+                    >
+                        {tableContent}
+                    </InfiniteScroll>
+                    :
+                    tableContent
+                }
+
             </TableContainer>
         </TableContext.Provider>
     )
@@ -65,7 +82,7 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
                             }
                         </Th>
                     ))}
-                    {hasActionColumn && <Th></Th>}
+                    {hasActionColumn && <Th />}
                 </Tr>
             ))}
         </Thead>
@@ -89,20 +106,20 @@ function TableBody({ isLoading, children }: TableBodyProps) {
                 "td": { fontSize: 16, fontWeight: 400 }
             }}
         >
-            {
-                isLoading ?
-                    Array.from({ length: 3 }).map((_, index) => (
-                        <Tr key={index}>
-                            {columns.map((_, colIndex) => (
-                                <Td key={colIndex}>
-                                    <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
-                                </Td>
-                            ))}
-                            {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
-                        </Tr>
-                    ))
-                    :
-                    children
+            {children}
+            {isLoading ?
+                Array.from({ length: 3 }).map((_, index) => (
+                    <Tr key={index}>
+                        {columns.map((_, colIndex) =>
+                            <Td key={colIndex}>
+                                <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
+                            </Td>
+                        )}
+                        {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
+                    </Tr>
+                ))
+                :
+                null
             }
         </Tbody>
     )

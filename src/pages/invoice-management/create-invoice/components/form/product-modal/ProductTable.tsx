@@ -7,19 +7,17 @@ import { productServices } from 'lib/apis/product/productServices'
 import Input from 'pages/invoice-management/components/Input'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import { useInfiniteQuery } from 'react-query'
 import ProductTitleCell from '../ProductTitleCell'
 import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
-    const { isFetching, isError, data, refetch } = useQuery({
-        queryFn: () => productServices({ page: 1, limit: 15, filter: debouncedSearchTerm }),
-        queryKey: ["products", debouncedSearchTerm],
+    const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 15, filter: debouncedSearchTerm }),
+        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
     })
-    const products = data?.data?.data?.data || []
-
-    useEffect(() => { refetch() }, [debouncedSearchTerm])
+    const products = data?.pages.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
         { accessorKey: '', header: 'Product' },
@@ -29,10 +27,15 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
     ]
 
     return (
-        <Table.Root columns={columns} hasActionColumn={true}>
-            <Table.Head data={products} />
+        <Table.Root
+            columns={columns}
+            hasActionColumn={true}
+            infiniteScroll={{ dataLength: products.length, next: fetchNextPage, hasMore: hasNextPage }}
+        >
+            <Table.Head data={products} columns={columns} />
             <Table.Body isLoading={isFetching}>
-                {products.map((product, index) => <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}
+                {products.map((product, index) =>
+                    <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}
             </Table.Body>
         </Table.Root>
     )
