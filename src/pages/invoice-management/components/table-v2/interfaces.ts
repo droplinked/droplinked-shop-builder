@@ -15,7 +15,6 @@ export interface TableRootProps<T extends object> {
 }
 
 export interface TableHeadProps<T extends object> {
-    columns: ColumnDef<T>[]
     data: T[]
     enableSorting?: boolean
     sorting?: SortingState

@@ -2,10 +2,10 @@ import { FormLabel, InputGroup, Textarea } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useFormikContext } from 'formik'
 import React from 'react'
-import { InvoiceFormSchema } from '../../store/invoiceStore'
+import { InvoiceFormSchema } from '../../helpers/helpers'
 
 function InvoiceMemo() {
-    const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
+    const { values, setFieldValue } = useFormikContext<InvoiceFormSchema>()
     const maxCharacters = 100
 
     return (

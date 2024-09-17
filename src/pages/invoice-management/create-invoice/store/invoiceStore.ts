@@ -82,12 +82,16 @@ type State = {
     cart: Cart;
     areAllProductsDigital: boolean;
     selectedShippingMethod: CartShippingMethod | null;
+    isAddressSwitchToggled: boolean;
+    isEditMode: boolean;
     countryISO2: string;
 }
 
 type Action = {
     updateCart: (cart: State['cart']) => void;
     updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void;
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled: boolean) => void;
+    updateIsEditMode: (isEditMode: boolean) => void;
     updateCountryISO2: (countryISO2: string) => void;
     resetCart: () => void;
 }
@@ -96,12 +100,16 @@ const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
     selectedShippingMethod: null,
+    isAddressSwitchToggled: false,
+    isEditMode: false,
     countryISO2: '',
     updateCart: (cart) => {
         const areAllProductsDigital = cart.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
         set({ cart, areAllProductsDigital })
     },
     updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled) => set({ isAddressSwitchToggled }),
+    updateIsEditMode: (isEditMode) => set({ isEditMode }),
     updateCountryISO2: (countryISO2) => set({ countryISO2 }),
     resetCart: () => set({
         cart: {} as Cart,

@@ -4,18 +4,19 @@ import { allCountriesService, citiesService, statesService } from 'lib/apis/addr
 import { IcitiesService, IsatatesService } from 'lib/apis/address/interfaces'
 import Input from 'pages/invoice-management/components/Input'
 import Select from 'pages/invoice-management/components/Select'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import useInvoiceStore, { InvoiceFormSchema } from '../../store/invoiceStore'
+import { InvoiceFormSchema } from '../../helpers/helpers'
+import useInvoiceStore from '../../store/invoiceStore'
 import ToggleableSection from '../ToggleableSection'
 
 function InvoiceAddress() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
     const updateCountryISO2 = useInvoiceStore(state => state.updateCountryISO2)
+    const updateIsAddressSwitchToggled = useInvoiceStore(state => state.updateIsAddressSwitchToggled)
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
-        staleTime: 60 * 60 * 1000,
         refetchOnWindowFocus: false,
     })
     const { isLoading: isFetchingStates, mutateAsync: getStates, data: statesData } = useMutation((params: IsatatesService) => statesService(params))
@@ -24,6 +25,10 @@ function InvoiceAddress() {
     const countries = useMemo(() => countriesData?.data?.data?.countries || [], [countriesData])
     const states = useMemo(() => statesData?.data?.data?.states || [], [statesData])
     const cities = useMemo(() => citiesData?.data?.data?.cities || [], [citiesData])
+
+    useEffect(() => {
+        updateIsAddressSwitchToggled(isOpen)
+    }, [isOpen, updateIsAddressSwitchToggled])
 
     return (
         <ToggleableSection
@@ -49,9 +54,11 @@ function InvoiceAddress() {
                     error={errors.address?.addressLine2}
                 />
             </SimpleGrid>
+
             <SimpleGrid
                 marginTop={{ base: 4, xl: 6 }}
                 columns={{ base: 1, md: 2, xl: 4 }}
+                alignItems={"flex-start"}
                 columnGap={6}
                 rowGap={4}
             >

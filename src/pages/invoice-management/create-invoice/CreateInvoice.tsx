@@ -1,5 +1,6 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import { Form, Formik, FormikProvider } from 'formik'
+import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../components/Button'
@@ -15,19 +16,28 @@ import useInvoiceStore from './store/invoiceStore'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const { updateCart, resetCart, areAllProductsDigital } = useInvoiceStore()
-    const { isInvoiceDataValid, createInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: onOpen })
+    const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
+    const { updateCart, resetCart, isAddressSwitchToggled, updateIsEditMode } = useInvoiceStore()
+    const { isInvoiceDataValid, createInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { invoiceId } = useParams()
     const { data, isFetching } = useInvoiceInformation(invoiceId)
+    const { showToast } = useAppToast()
 
     useEffect(() => {
         return () => { resetCart() }
     }, [resetCart])
 
     useEffect(() => {
-        if (data?._id) updateCart(data)
-    }, [data, updateCart])
+        if (data?._id) {
+            if (data.status !== "ACTIVE") {
+                showToast({ message: "You cannot edit an invoice that is not active", type: "error" })
+                navigate("/dashboard/invoice-management")
+                return
+            }
+            updateCart(data)
+            updateIsEditMode(true)
+        }
+    }, [data, updateCart, updateIsEditMode])
 
     if (isFetching) return <FullScreenLoader />
 
@@ -42,7 +52,7 @@ export default function CreateInvoice() {
     }
 
     const closeInvoiceModal = () => {
-        onClose()
+        closeInvoiceDetailsModal()
         resetCart()
         navigate("/dashboard/invoice-management")
     }
@@ -51,7 +61,7 @@ export default function CreateInvoice() {
         <>
             <Formik
                 initialValues={getInvoiceFormInitialValues(invoiceId, data)}
-                validationSchema={getInvoiceValidationSchema(areAllProductsDigital)}
+                validationSchema={getInvoiceValidationSchema(isAddressSwitchToggled)}
                 validateOnChange={false}
                 onSubmit={handleSubmit}
             >

@@ -17,7 +17,7 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
     })
-    const products = data?.pages.flatMap(page => page.data.data.data) || []
+    const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
         { accessorKey: '', header: 'Product' },
@@ -32,7 +32,7 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
             hasActionColumn={true}
             infiniteScroll={{ dataLength: products.length, next: fetchNextPage, hasMore: hasNextPage }}
         >
-            <Table.Head data={products} columns={columns} />
+            <Table.Head data={products} />
             <Table.Body isLoading={isFetching}>
                 {products.map((product, index) =>
                     <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}

@@ -8,7 +8,7 @@ import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoi
 import FullScreenLoader from 'pages/invoice-management/components/FullScreenLoader';
 import Input from 'pages/invoice-management/components/Input';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductTable from './ProductTable';
 
 interface Props {
@@ -24,6 +24,15 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
     const { showToast } = useAppToast()
     const invoiceCart = useInvoiceStore((state) => state.cart)
     const updateCart = useInvoiceStore((state) => state.updateCart)
+
+    useEffect(() => {
+        if (!invoiceCart.items.length) return
+        const prevItems = invoiceCart.items.map(item => ({
+            skuId: item.skuID,
+            quantity: item.options.quantity
+        }))
+        setCart(prevItems)
+    }, [setCart, invoiceCart.items])
 
     const closeModal = async () => {
         try {
