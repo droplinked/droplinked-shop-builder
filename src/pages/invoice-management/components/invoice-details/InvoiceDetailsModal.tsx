@@ -26,7 +26,7 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
         >
             <ModalHeaderData
                 icon={<AppIcons.InvoiceCreated />}
-                title="Invoice created"
+                title="Invoice Details"
                 description='A link of your invoice is sent to the customer. You can also use the following link to view the invoice.'
             />
 

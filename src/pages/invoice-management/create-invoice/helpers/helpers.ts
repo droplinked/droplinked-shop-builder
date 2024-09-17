@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 export interface Address {
     _id: string;
+    easyPostAddressID: string;
     firstName: string;
     lastName: string;
     addressLine1: string;
@@ -76,4 +77,14 @@ export function getInvoiceFormInitialValues(invoiceId: string | undefined, data:
             phoneNumber: invoiceId ? data.address?.phoneNumber : ''
         }
     } as InvoiceFormSchema
+}
+
+export function findSelectedShippingMethod(shippings) {
+    for (const shippingGroup of shippings) {
+        const selectedShippingMethod = shippingGroup.data.find(shipping => shipping.selected)
+        if (selectedShippingMethod) {
+            return { groupId: shippingGroup.groupId, shipmentId: selectedShippingMethod.id }
+        }
+    }
+    return null
 }

@@ -13,11 +13,10 @@ import ToggleableSection from '../ToggleableSection'
 function InvoiceAddress() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
-    const updateCountryISO2 = useInvoiceStore(state => state.updateCountryISO2)
-    const updateIsAddressSwitchToggled = useInvoiceStore(state => state.updateIsAddressSwitchToggled)
+    const { cart, updateIsAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
-        refetchOnWindowFocus: false,
+        refetchOnWindowFocus: false
     })
     const { isLoading: isFetchingStates, mutateAsync: getStates, data: statesData } = useMutation((params: IsatatesService) => statesService(params))
     const { isLoading: isFetchingCities, mutateAsync: getCities, data: citiesData } = useMutation((params: IcitiesService) => citiesService(params))
@@ -25,6 +24,13 @@ function InvoiceAddress() {
     const countries = useMemo(() => countriesData?.data?.data?.countries || [], [countriesData])
     const states = useMemo(() => statesData?.data?.data?.states || [], [statesData])
     const cities = useMemo(() => citiesData?.data?.data?.cities || [], [citiesData])
+
+    useEffect(() => {
+        if (cart.address?._id) {
+            getStates({ country_name: values.address.country })
+            getCities({ country_name: values.address.country, state_name: values.address.state })
+        }
+    }, [cart.address?._id])
 
     useEffect(() => {
         updateIsAddressSwitchToggled(isOpen)

@@ -10,16 +10,16 @@ import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
-import { InvoiceFormSchema, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
+import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
-    const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
-    const { updateCart, resetCart, isAddressSwitchToggled, updateIsEditMode } = useInvoiceStore()
-    const { isInvoiceDataValid, createInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { invoiceId } = useParams()
+    const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
+    const { updateCart, resetCart, isAddressSwitchToggled, updateShippingMethod, isEditMode, updateIsEditMode } = useInvoiceStore()
+    const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
 
@@ -28,7 +28,7 @@ export default function CreateInvoice() {
     }, [resetCart])
 
     useEffect(() => {
-        if (data?._id) {
+        if (invoiceId && data?._id) {
             if (data.status !== "ACTIVE") {
                 showToast({ message: "You cannot edit an invoice that is not active", type: "error" })
                 navigate("/dashboard/invoice-management")
@@ -36,14 +36,16 @@ export default function CreateInvoice() {
             }
             updateCart(data)
             updateIsEditMode(true)
+            const selectedShippingGroup = findSelectedShippingMethod(data.shippings)
+            if (selectedShippingGroup) updateShippingMethod(selectedShippingGroup)
         }
-    }, [data, updateCart, updateIsEditMode])
+    }, [invoiceId, data, updateCart, updateIsEditMode])
 
     if (isFetching) return <FullScreenLoader />
 
     const handleSubmit = (values: InvoiceFormSchema) => {
         if (!isInvoiceDataValid(values)) return
-        createInvoice(values)
+        isEditMode ? updateInvoice(values) : createInvoice(values)
     }
 
     const handleDiscard = () => {

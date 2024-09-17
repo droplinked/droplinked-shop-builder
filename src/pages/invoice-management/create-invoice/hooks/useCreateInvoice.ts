@@ -1,7 +1,9 @@
 import useAppToast from 'functions/hooks/toast/useToast'
 import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
+import { deepEqual } from 'lib/utils/heper/helpers'
 import { phone } from "phone"
 import { useState } from 'react'
+import { findSelectedShippingMethod } from '../helpers/helpers'
 import useInvoiceStore from '../store/invoiceStore'
 
 interface Props {
@@ -11,12 +13,11 @@ interface Props {
 
 export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const [isLoading, setLoading] = useState(false)
-    const { cart, updateCart, isAddressSwitchToggled, selectedShippingMethod, countryISO2 } = useInvoiceStore()
-    const { _id, address } = cart
+    const { cart, updateCart, isAddressSwitchToggled, countryISO2, selectedShippingMethod } = useInvoiceStore()
     const { showToast } = useAppToast()
 
     const isInvoiceDataValid = (formData: any) => {
-        if (!_id) return showToast({ message: "You have to add products to the cart first", type: "error" })
+        if (!cart._id) return showToast({ message: "You have to add products to the cart first", type: "error" })
 
         if (trigger === "SHIPPING_METHODS_SWITCH") {
             const { addressLine1, city, state, zip, country } = formData.address ?? {}
@@ -36,18 +37,18 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     }
 
     const addAdditionalDetailsToCart = async (formData: any) => {
-        const { data } = await addAdditionalDetailsToCartService(_id, { email: formData.email, note: formData.note })
+        const { data } = await addAdditionalDetailsToCartService(cart._id, { email: formData.email, note: formData.note })
         updateCart(data)
     }
 
     const createAddressAndAddToCart = async (formData: any) => {
         const { data: createdAddress } = await createAddressService(formData.address)
-        const { data } = await addAddressToCartService(_id, createdAddress._id)
+        const { data } = await addAddressToCartService(cart._id, createdAddress._id)
         updateCart(data)
     }
 
     const addShippingMethodToCart = async () => {
-        const { data } = await addShippingMethodToCartService(_id, selectedShippingMethod)
+        const { data } = await addShippingMethodToCartService(cart._id, selectedShippingMethod)
         updateCart(data)
     }
 
@@ -57,11 +58,11 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
             validatePhoneNumber(formData)
             await addAdditionalDetailsToCart(formData)
 
-            if (isAddressSwitchToggled && !address)
+            if (isAddressSwitchToggled && !cart.address)
                 await createAddressAndAddToCart(formData)
 
             if (trigger === "CREATE_BUTTON") {
-                if (selectedShippingMethod?.shipmentId) await addShippingMethodToCart()
+                if (cart.address && selectedShippingMethod?.shipmentId) await addShippingMethodToCart()
                 onSuccess?.()
             }
         }
@@ -74,5 +75,33 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
         }
     }
 
-    return { isInvoiceDataValid, createInvoice, isLoading }
+    const updateInvoice = async (formData: any) => {
+        try {
+            setLoading(true)
+            validatePhoneNumber(formData)
+            await addAdditionalDetailsToCart(formData)
+
+            const { _id, easyPostAddressID, ...rest } = cart.address
+            if (!deepEqual(rest, formData.address)) await createAddressAndAddToCart(formData)
+
+            const prevSelectedMethod = findSelectedShippingMethod(cart.shippings)
+            if (!deepEqual(prevSelectedMethod, selectedShippingMethod)) await addShippingMethodToCart()
+
+            onSuccess?.()
+        }
+        catch (error) {
+            if (error.response) return showToast({ message: error.response.data.data.message, type: "error" })
+            showToast({ message: (error as Error).message, type: "error" })
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    return {
+        isInvoiceDataValid,
+        createInvoice,
+        updateInvoice,
+        isLoading
+    }
 }

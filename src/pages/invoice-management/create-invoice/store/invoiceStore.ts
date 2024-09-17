@@ -81,42 +81,43 @@ export interface Cart {
 type State = {
     cart: Cart;
     areAllProductsDigital: boolean;
-    selectedShippingMethod: CartShippingMethod | null;
     isAddressSwitchToggled: boolean;
-    isEditMode: boolean;
     countryISO2: string;
+    selectedShippingMethod: CartShippingMethod | null;
+    isEditMode: boolean;
 }
 
 type Action = {
     updateCart: (cart: State['cart']) => void;
-    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void;
-    updateIsAddressSwitchToggled: (isAddressSwitchToggled: boolean) => void;
-    updateIsEditMode: (isEditMode: boolean) => void;
-    updateCountryISO2: (countryISO2: string) => void;
     resetCart: () => void;
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled: boolean) => void;
+    updateCountryISO2: (countryISO2: string) => void;
+    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void;
+    updateIsEditMode: (isEditMode: boolean) => void;
 }
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
-    selectedShippingMethod: null,
     isAddressSwitchToggled: false,
-    isEditMode: false,
     countryISO2: '',
+    selectedShippingMethod: null,
+    isEditMode: false,
     updateCart: (cart) => {
         const areAllProductsDigital = cart.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
         set({ cart, areAllProductsDigital })
     },
-    updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
-    updateIsAddressSwitchToggled: (isAddressSwitchToggled) => set({ isAddressSwitchToggled }),
-    updateIsEditMode: (isEditMode) => set({ isEditMode }),
-    updateCountryISO2: (countryISO2) => set({ countryISO2 }),
     resetCart: () => set({
         cart: {} as Cart,
         areAllProductsDigital: true,
         selectedShippingMethod: null,
-        countryISO2: ''
-    })
+        countryISO2: '',
+        isEditMode: false
+    }),
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled) => set({ isAddressSwitchToggled }),
+    updateCountryISO2: (countryISO2) => set({ countryISO2 }),
+    updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
+    updateIsEditMode: (isEditMode) => set({ isEditMode })
 }))
 
 export default useInvoiceStore

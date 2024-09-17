@@ -18,9 +18,9 @@ interface Props {
 
 function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", dataAttributes, isLoading, error, inputGroupProps, selectProps }: Props) {
     const options = useMemo(() => {
-        return items.map((item) => (
+        return items.map((item, index) => (
             <option
-                key={item[valueAccessor]}
+                key={index}
                 value={item[valueAccessor]}
                 {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}
             >

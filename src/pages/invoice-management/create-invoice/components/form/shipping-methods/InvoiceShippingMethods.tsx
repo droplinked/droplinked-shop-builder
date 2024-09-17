@@ -3,6 +3,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { useFormikContext } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { addAddressToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
+import { deepEqual } from 'lib/utils/heper/helpers'
 import { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/helpers/helpers'
 import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useCreateInvoice'
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
@@ -15,7 +16,8 @@ export default function InvoiceShippingMethods() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, validateForm } = useFormikContext<InvoiceFormSchema>()
     const { isInvoiceDataValid } = useCreateInvoice({ trigger: "SHIPPING_METHODS_SWITCH" })
-    const { cart, updateCart, selectedShippingMethod, updateShippingMethod } = useInvoiceStore()
+    const { cart, updateCart, selectedShippingMethod, updateShippingMethod, isEditMode } = useInvoiceStore()
+    const { showToast } = useAppToast()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-payment-method',
         onChange: (shppingMethodId: string) => {
@@ -24,7 +26,6 @@ export default function InvoiceShippingMethods() {
         },
         value: selectedShippingMethod?.shipmentId,
     })
-    const { showToast } = useAppToast()
 
     const handleToggle = async () => {
         const validationResult = await validateForm()
@@ -53,12 +54,15 @@ export default function InvoiceShippingMethods() {
 
     useEffect(() => {
         (async () => {
-            if (isOpen && !cart.address) {
+            const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
+
+            if ((isEditMode && !deepEqual(rest, values.address)) || (isOpen && !cart.address)) {
                 try {
                     setLoading(true)
                     const { data: createdAddress } = await createAddressService(values.address)
                     const { data } = await addAddressToCartService(cart._id, createdAddress._id)
                     updateCart(data)
+                    updateShippingMethod(null)
                 }
                 catch (error) {
                     if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
@@ -71,6 +75,11 @@ export default function InvoiceShippingMethods() {
             }
         })()
     }, [isOpen])
+
+    useEffect(() => {
+        const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
+        if (!deepEqual(rest, values.address)) onClose()
+    }, [values.address])
 
     return (
         <ToggleableSection
