@@ -26,7 +26,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
     const updateCart = useInvoiceStore((state) => state.updateCart)
 
     useEffect(() => {
-        if (!invoiceCart.items.length) return
+        if (!invoiceCart.items?.length) return
         const prevItems = invoiceCart.items.map(item => ({
             skuId: item.skuID,
             quantity: item.options.quantity
