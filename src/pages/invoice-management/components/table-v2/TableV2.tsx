@@ -2,45 +2,28 @@ import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot,
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import useTableContext, { TableContext } from './TableContext'
 import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'
 
-function TableRoot<T extends object>({ children, columns, hasActionColumn = false, infiniteScroll }: TableRootProps<T>) {
-    const tableContent = (
-        <ChakraTable
-            variant="unstyled"
-            sx={{
-                "th, td": { paddingInline: 6, paddingBlock: 4 },
-                userSelect: "none",
-            }}
-        >
-            {children}
-        </ChakraTable>
-    )
-
+function TableRoot<T extends object>({ children, columns, hasActionColumn = false }: TableRootProps<T>) {
     return (
-        <TableContext.Provider value={{ columns, hasActionColumn, infiniteScroll }}>
+        <TableContext.Provider value={{ columns, hasActionColumn }}>
             <TableContainer
                 border="1px solid #262626"
                 borderRadius={8}
                 overflow="hidden"
             >
-                {infiniteScroll ?
-                    <InfiniteScroll
-                        dataLength={infiniteScroll.dataLength}
-                        next={infiniteScroll.next}
-                        hasMore={infiniteScroll.hasMore}
-                        loader={null}
-                    >
-                        {tableContent}
-                    </InfiniteScroll>
-                    :
-                    tableContent
-                }
-
+                <ChakraTable
+                    variant="unstyled"
+                    sx={{
+                        "th, td": { paddingInline: 6, paddingBlock: 4 },
+                        userSelect: "none",
+                    }}
+                >
+                    {children}
+                </ChakraTable>
             </TableContainer>
-        </TableContext.Provider>
+        </TableContext.Provider >
     )
 }
 
@@ -90,7 +73,7 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
 }
 
 function TableBody({ isLoading, children }: TableBodyProps) {
-    const { columns, hasActionColumn, infiniteScroll } = useTableContext()
+    const { columns, hasActionColumn } = useTableContext()
     const tableLoading = (
         Array.from({ length: 3 }).map((_, index) => (
             <Tr key={index}>
@@ -105,17 +88,7 @@ function TableBody({ isLoading, children }: TableBodyProps) {
     )
 
     const renderTableBody = () => {
-        const { isFetchingNextPage } = infiniteScroll || {}
-        if (isLoading && !isFetchingNextPage) return tableLoading
-        if (infiniteScroll) {
-            return (
-                <>
-                    {children}
-                    {isFetchingNextPage && tableLoading}
-                </>
-            )
-        }
-
+        if (isLoading) return tableLoading
         return children
     }
 

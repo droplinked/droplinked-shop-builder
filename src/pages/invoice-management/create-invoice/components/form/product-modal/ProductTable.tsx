@@ -2,18 +2,19 @@ import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import useIntersectionObserver from 'functions/hooks/intersection-observer/useIntersectionObserver'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { productServices } from 'lib/apis/product/productServices'
 import Input from 'pages/invoice-management/components/Input'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
-import React, { useEffect, useState } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import ProductTitleCell from '../ProductTitleCell'
 import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 15, filter: debouncedSearchTerm }),
+    const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
+        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 7, filter: debouncedSearchTerm }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
     })
@@ -26,22 +27,32 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
         { accessorKey: 'skuIDs', header: 'Unit price' }
     ]
 
+    const lastSKURef = useIntersectionObserver<HTMLTableRowElement>(() => {
+        if (hasNextPage) fetchNextPage()
+    }, [])
+
     return (
         <Table.Root
             columns={columns}
             hasActionColumn={true}
-            infiniteScroll={{ dataLength: products.length, next: fetchNextPage, hasMore: hasNextPage, isFetchingNextPage }}
         >
             <Table.Head data={products} />
             <Table.Body isLoading={isFetching}>
-                {products.map((product, index) =>
-                    <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}
+                {products.map((product, index, products) =>
+                    <ProductRow key={index}
+                        ref={index === products.length - 1 ? lastSKURef : null}
+                        product={product}
+                        cart={cart}
+                        setCart={setCart}
+                    />
+                )}
             </Table.Body>
         </Table.Root>
     )
 }
 
-function ProductRow({ product, cart, setCart }) {
+const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, setCart: any }>(function ProductRow(props, ref) {
+    const { product, cart, setCart } = props
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
@@ -80,7 +91,10 @@ function ProductRow({ product, cart, setCart }) {
     }, [product, setSkuId])
 
     return (
-        <Tr _hover={{ "button": { opacity: 1 } }}>
+        <Tr
+            ref={ref}
+            _hover={{ "button": { opacity: 1 } }}
+        >
             <Td>
                 <Flex alignItems={"center"} gap={6}>
                     <AppImage src={product.media[0]?.url} width={12} height={12} />
@@ -139,4 +153,4 @@ function ProductRow({ product, cart, setCart }) {
             </Td>
         </Tr>
     )
-}
+})

@@ -3,7 +3,6 @@ import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel
 import AppIcons from "assest/icon/Appicons"
 import React, { ReactNode } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component"
-import { InfiniteScrollProps } from "./table-v2/interfaces"
 
 interface Props<T extends object> {
     columns: ColumnDef<T>[]
@@ -15,7 +14,12 @@ interface Props<T extends object> {
     isLoading?: boolean
     emptyView?: ReactNode
     footerContent?: ReactNode
-    infiniteScroll?: InfiniteScrollProps
+    infiniteScroll?: {
+        dataLength: number
+        hasMore: boolean
+        next: () => void
+        isFetchingNextPage: boolean
+    }
 }
 
 function Table<T extends object>(props: Props<T>) {

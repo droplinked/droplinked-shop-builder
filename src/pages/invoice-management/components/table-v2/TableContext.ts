@@ -1,11 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { createContext, useContext } from 'react'
-import { InfiniteScrollProps } from './interfaces'
 
 interface TableConfiguration {
     columns: ColumnDef<any>[]
     hasActionColumn: boolean
-    infiniteScroll?: InfiniteScrollProps
 }
 
 type TableContextType = TableConfiguration | null

@@ -1,17 +1,9 @@
 import { ColumnDef, SortingState } from "@tanstack/react-table"
 import { ReactNode } from "react"
 
-export interface InfiniteScrollProps {
-    dataLength: number
-    hasMore: boolean
-    next: () => void
-    isFetchingNextPage: boolean
-}
-
 export interface TableRootProps<T extends object> {
     columns: ColumnDef<T>[]
     hasActionColumn?: boolean
-    infiniteScroll?: InfiniteScrollProps
     children: ReactNode
 }
 
