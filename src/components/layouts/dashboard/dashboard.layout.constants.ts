@@ -23,7 +23,7 @@ export const sidebar_constants: SidebarGroup[] = [
                 title: "Affiliate",
                 icon: AppIcons.SidebarAffiliate,
                 linkTo: null,
-                list: [{ listTitle: "Market", linkTo: "/dashboard/" }, { listTitle: "Stores", linkTo: "/dashboard/affiliate/stores" }, { listTitle: "Products", linkTo: "/dashboard/affiliate" }],
+                list: [{ listTitle: "Market", linkTo: "/dashboard/affiliate/market" }, { listTitle: "Stores", linkTo: "/dashboard/affiliate/stores" }, { listTitle: "Products", linkTo: "/dashboard/affiliate/products" }],
             },
         ],
     },
