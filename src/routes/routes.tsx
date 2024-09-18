@@ -1,11 +1,6 @@
 import MainLayout from "components/layouts/app/main/mainLayout"
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout"
-import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
 import NotFound from "pages/404/404"
-import ShopProduct from "pages/affiliate/product/ShopProduct"
-import AffiliateProducts from "pages/affiliate/products/AffiliateProducts"
-import Shops from "pages/affiliate/shops/Shops"
-import Shop from "pages/affiliate/shopSingle/Shop"
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
 import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
@@ -51,6 +46,9 @@ import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
 import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket"
+import AffiliateProductsLayout from "pages/redesign-affiliate/products/AffiliateProductsLayout"
+import AffiliateProductsSinglePage from "pages/redesign-affiliate/product-page/ProductPage"
+// import AffiliateProducts from "pages/redesign-affiliate/products/AffiliateProducts"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -133,6 +131,10 @@ function AppRoutes() {
           </Route> */}
           <Route path="affiliate">
             <Route path="market" element={<AffiliateMarket />} />
+            <Route path="products">
+              <Route index element={<AffiliateProductsLayout/>} />
+              <Route path=":slug" element={<AffiliateProductsSinglePage/>} />
+            </Route>
           </Route>
           <Route path="nfts" element={<NFTs />} />
           <Route path="blogs">
