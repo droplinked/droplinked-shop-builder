@@ -5,10 +5,11 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
+import { arraysAreEqual } from 'lib/utils/heper/helpers';
 import FullScreenLoader from 'pages/invoice-management/components/FullScreenLoader';
 import Input from 'pages/invoice-management/components/Input';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ProductTable from './ProductTable';
 
 interface Props {
@@ -24,19 +25,16 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
     const { showToast } = useAppToast()
     const invoiceCart = useInvoiceStore((state) => state.cart)
     const updateCart = useInvoiceStore((state) => state.updateCart)
+    const prevItems = useMemo(() => {
+        if (!invoiceCart.items) return []
+        return invoiceCart.items.map(item => ({ skuId: item.skuID, quantity: item.options.quantity }))
+    }, [])
 
-    useEffect(() => {
-        if (!invoiceCart.items?.length) return
-        const prevItems = invoiceCart.items.map(item => ({
-            skuId: item.skuID,
-            quantity: item.options.quantity
-        }))
-        setCart(prevItems)
-    }, [setCart, invoiceCart.items])
+    useEffect(() => { setCart(prevItems) }, [prevItems, setCart])
 
     const closeModal = async () => {
         try {
-            if (!cart.length) onClose()
+            if (!cart.length || arraysAreEqual(cart, prevItems)) onClose()
             else {
                 setLoading(true)
                 let invoiceId = invoiceCart._id

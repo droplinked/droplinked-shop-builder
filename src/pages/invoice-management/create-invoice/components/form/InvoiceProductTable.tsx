@@ -61,6 +61,7 @@ export default function InvoiceProductTable({ invoice, hasActionColumn = true, h
     )
 }
 
+// Group cart items by product because the product table can have multiple rows for each product
 function groupCartItemsByProduct(cartItems: CartItem[]) {
     const groupedItems = new Map<string, SerializedCartItem>()
 

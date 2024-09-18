@@ -287,3 +287,12 @@ export function deepEqual(obj1, obj2) {
 
     return true
 }
+
+export const arraysAreEqual = (arr1: any[], arr2: any[]): boolean => {
+    if (arr1.length !== arr2.length) return false
+
+    const sortedArr1 = [...arr1].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
+    const sortedArr2 = [...arr2].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
+
+    return sortedArr1.every((item, index) => deepEqual(item, sortedArr2[index]))
+}
