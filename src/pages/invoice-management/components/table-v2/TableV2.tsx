@@ -72,7 +72,7 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
     )
 }
 
-function TableBody({ isLoading, children }: TableBodyProps) {
+function TableBody({ children, isLoading, infiniteScroll }: TableBodyProps) {
     const { columns, hasActionColumn } = useTableContext()
     const tableLoading = (
         Array.from({ length: 3 }).map((_, index) => (
@@ -88,7 +88,17 @@ function TableBody({ isLoading, children }: TableBodyProps) {
     )
 
     const renderTableBody = () => {
-        if (isLoading) return tableLoading
+        const { isFetchingNextPage } = infiniteScroll || {}
+        if (isLoading && !isFetchingNextPage) return tableLoading
+        if (infiniteScroll) {
+            return (
+                <>
+                    {children}
+                    {isFetchingNextPage && tableLoading}
+                </>
+            )
+        }
+
         return children
     }
 

@@ -13,7 +13,7 @@ import ProductTitleCell from '../ProductTitleCell'
 import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
-    const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
         queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 7, filter: debouncedSearchTerm }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
@@ -37,7 +37,7 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
             hasActionColumn={true}
         >
             <Table.Head data={products} />
-            <Table.Body isLoading={isFetching}>
+            <Table.Body isLoading={isFetching} infiniteScroll={{ isFetchingNextPage }}>
                 {products.map((product, index, products) =>
                     <ProductRow key={index}
                         ref={index === products.length - 1 ? lastSKURef : null}
