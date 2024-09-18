@@ -75,7 +75,7 @@ function Table<T extends object>(props: Props<T>) {
     )
 
     const renderTableBody = () => {
-        const { isFetchingNextPage } = infiniteScroll || {};
+        const { isFetchingNextPage } = infiniteScroll || {}
         const isTableEmpty = !table.getRowModel().rows.length
         if (isTableEmpty && !isLoading) return tableEmptyView
         if (isLoading && !isFetchingNextPage) return tableLoading

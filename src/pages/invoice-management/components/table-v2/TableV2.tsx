@@ -20,7 +20,7 @@ function TableRoot<T extends object>({ children, columns, hasActionColumn = fals
     )
 
     return (
-        <TableContext.Provider value={{ columns, hasActionColumn }}>
+        <TableContext.Provider value={{ columns, hasActionColumn, infiniteScroll }}>
             <TableContainer
                 border="1px solid #262626"
                 borderRadius={8}
@@ -90,7 +90,34 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
 }
 
 function TableBody({ isLoading, children }: TableBodyProps) {
-    const { columns, hasActionColumn } = useTableContext()
+    const { columns, hasActionColumn, infiniteScroll } = useTableContext()
+    const tableLoading = (
+        Array.from({ length: 3 }).map((_, index) => (
+            <Tr key={index}>
+                {columns.map((_, colIndex) =>
+                    <Td key={colIndex}>
+                        <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
+                    </Td>
+                )}
+                {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
+            </Tr>
+        ))
+    )
+
+    const renderTableBody = () => {
+        const { isFetchingNextPage } = infiniteScroll || {}
+        if (isLoading && !isFetchingNextPage) return tableLoading
+        if (infiniteScroll) {
+            return (
+                <>
+                    {children}
+                    {isFetchingNextPage && tableLoading}
+                </>
+            )
+        }
+
+        return children
+    }
 
     return (
         <Tbody
@@ -106,21 +133,7 @@ function TableBody({ isLoading, children }: TableBodyProps) {
                 "td": { fontSize: 16, fontWeight: 400 }
             }}
         >
-            {children}
-            {isLoading ?
-                Array.from({ length: 3 }).map((_, index) => (
-                    <Tr key={index}>
-                        {columns.map((_, colIndex) =>
-                            <Td key={colIndex}>
-                                <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
-                            </Td>
-                        )}
-                        {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
-                    </Tr>
-                ))
-                :
-                null
-            }
+            {renderTableBody()}
         </Tbody>
     )
 }
