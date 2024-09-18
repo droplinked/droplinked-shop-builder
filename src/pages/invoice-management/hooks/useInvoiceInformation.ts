@@ -37,7 +37,7 @@ export default function useInvoiceInformation(invoiceId?: string) {
             const selectedMethod = shippingGroup.data.find(method => method.selected)
             if (selectedMethod) return selectedMethod.title
         }
-        return null
+        return "N/A"
     }
 
     const invoiceInformationMap: InvoiceInformationMap = {
