@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import InvoiceFilters from './components/InvoiceFilters'
 import InvoiceManagementHeader from './components/InvoiceManagementHeader'
+import InvoicesEmptyState from './components/InvoicesEmptyState'
 import InvoiceTable from './components/table/InvoiceTable'
 
 export const INVOICES_QUERY_KEY = "invoiceList"
@@ -21,20 +22,24 @@ function InvoiceManagement() {
     })
 
     const invoices = data?.pages.flatMap(page => page.data.data) || []
+    const shouldShowEmptyView = !invoices.length && !invoiceFilters.search && !invoiceFilters.status && !isFetching
 
     return (
         <>
             <InvoiceManagementHeader />
-            <Flex mt={9} direction={"column"} gap={6}>
-                <InvoiceFilters updateInvoiceFilters={setInvoiceFilters} />
-                <InvoiceTable
-                    invoices={invoices}
-                    isLoading={isFetching}
-                    dataLength={invoices.length}
-                    hasMore={hasNextPage}
-                    next={fetchNextPage}
-                />
-            </Flex>
+            {shouldShowEmptyView ?
+                <InvoicesEmptyState /> :
+                <Flex mt={9} direction={"column"} gap={6}>
+                    <InvoiceFilters updateInvoiceFilters={setInvoiceFilters} />
+                    <InvoiceTable
+                        invoices={invoices}
+                        isLoading={isFetching}
+                        dataLength={invoices.length}
+                        hasMore={hasNextPage}
+                        next={fetchNextPage}
+                    />
+                </Flex>
+            }
         </>
     )
 }

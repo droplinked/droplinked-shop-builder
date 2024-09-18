@@ -42,7 +42,10 @@ export default function InvoiceTableMenu({ invoice }) {
                     }}
                 >
                     {invoice.status === "ACTIVE" &&
-                        <MenuItem onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}><AppIcons.Edit />Edit</MenuItem>
+                        <MenuItem onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}>
+                            <AppIcons.Edit />
+                            Edit
+                        </MenuItem>
                     }
                     <MenuItem color={"#FF2244"} onClick={onOpen}>
                         <AppIcons.RedTrash />
