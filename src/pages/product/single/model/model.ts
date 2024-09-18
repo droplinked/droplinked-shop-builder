@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
-import propertyFactor from "./modules/property";
 import { property_to_id } from "lib/utils/statics/types";
+import propertyFactor from "./modules/property";
 
 const ProductSingleModel = ({
 
@@ -74,7 +74,8 @@ const ProductSingleModel = ({
             productTile: data?.productTile,
             launchDate: data?.launchDate,
             legalUsage: data?.legalUsage,
-            publish_status: data?.publish_status
+            publish_status: data?.publish_status,
+            commision: data?.commision
             // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },
