@@ -27,7 +27,7 @@ export default function CreateInvoice() {
         return () => resetCart()
     }, [resetCart])
 
-    // This is to handle edit mode
+    // This is used to handle edit mode
     useEffect(() => {
         if (invoiceId && data?._id) {
             if (data.status !== "ACTIVE") {
