@@ -14,7 +14,7 @@ export const INVOICES_QUERY_KEY = "invoiceList"
 function InvoiceManagement() {
     const [invoiceFilters, setInvoiceFilters] = useState<InvoiceQueryParams>({ page: 1, limit: 15 })
     const { shop } = useProfile()
-    const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
         queryKey: [INVOICES_QUERY_KEY, { ...invoiceFilters, shopId: shop._id }],
         queryFn: ({ pageParam = 1 }) => getInvoicesService({ ...invoiceFilters, page: pageParam }),
         getNextPageParam: (lastPage) => lastPage.data.nextPage,
@@ -37,6 +37,7 @@ function InvoiceManagement() {
                         dataLength={invoices.length}
                         hasMore={hasNextPage}
                         next={fetchNextPage}
+                        isFetchingNextPage={isFetchingNextPage}
                     />
                 </Flex>
             }

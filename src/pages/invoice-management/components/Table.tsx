@@ -29,7 +29,7 @@ function Table<T extends object>(props: Props<T>) {
         getSortedRowModel: enableSorting ? getSortedRowModel() : undefined
     })
 
-    const loader = (
+    const tableLoading = (
         Array.from({ length: 3 }).map((_, index) => (
             <Tr key={index}>
                 {columns.map((_, colIndex) => (
@@ -45,6 +45,51 @@ function Table<T extends object>(props: Props<T>) {
             </Tr>
         ))
     )
+
+    const tableRows = (
+        table.getRowModel().rows.map((row, rowIndex) => (
+            <Tr
+                key={row.id}
+                borderTop="1px solid #262626"
+                borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
+                color="white"
+            >
+                {row.getVisibleCells().map((cell, cellIndex) => (
+                    <Td key={cellIndex} fontSize={16} fontWeight={400}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </Td>
+                ))}
+                {renderActions && <Td>{renderActions(row.original)}</Td>}
+            </Tr>
+        ))
+    )
+
+    const tableEmptyView = (
+        table.getRowModel().rows.length === 0 && (
+            <Tr>
+                <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
+                    {emptyView}
+                </Td>
+            </Tr>
+        )
+    )
+
+    const renderTableBody = () => {
+        const { isFetchingNextPage } = infiniteScroll || {};
+        const isTableEmpty = !table.getRowModel().rows.length
+        if (isTableEmpty && !isLoading) return tableEmptyView
+        if (isLoading && !isFetchingNextPage) return tableLoading
+        if (infiniteScroll) {
+            return (
+                <>
+                    {tableRows}
+                    {isFetchingNextPage && tableLoading}
+                </>
+            )
+        }
+
+        return tableContent
+    }
 
     const tableContent = (
         <ChakraTable
@@ -94,31 +139,7 @@ function Table<T extends object>(props: Props<T>) {
                     }
                 }}
             >
-                {table.getRowModel().rows.map((row, rowIndex) => (
-                    <Tr
-                        key={row.id}
-                        borderTop="1px solid #262626"
-                        borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
-                        color="white"
-                    >
-                        {row.getVisibleCells().map((cell, cellIndex) => (
-                            <Td key={cellIndex} fontSize={16} fontWeight={400}>
-                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            </Td>
-                        ))}
-                        {renderActions && <Td>{renderActions(row.original)}</Td>}
-                    </Tr>
-                ))}
-                {isLoading ?
-                    loader :
-                    table.getRowModel().rows.length === 0 && (
-                        <Tr>
-                            <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
-                                {emptyView}
-                            </Td>
-                        </Tr>
-                    )
-                }
+                {renderTableBody()}
             </Tbody>
 
             {footerContent && (

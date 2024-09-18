@@ -12,14 +12,15 @@ import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
 
 interface Props {
-    invoices: Invoice[];
-    isLoading: boolean;
+    invoices: Invoice[]
+    isLoading: boolean
     dataLength: number
     hasMore: boolean
+    isFetchingNextPage: boolean
     next: () => void
 }
 
-function InvoiceTable({ invoices, isLoading, dataLength, hasMore, next }: Props) {
+function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
@@ -30,17 +31,16 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, next }: Props)
             cell: info => {
                 const { email, checkoutAddressID } = info.row.original
                 const { firstName, lastName } = checkoutAddressID ?? {}
-                return (
-                    <>
-                        {email || checkoutAddressID ?
-                            <Flex direction="column" >
-                                {checkoutAddressID && <AppTypography fontSize={16} color={"white"}>{`${firstName} ${lastName}`}</AppTypography>}
-                                {email && <AppTypography fontSize={12} color={"#B1B1B1"}>{email}</AppTypography>}
-                            </Flex>
-                            : "N/A"
-                        }
-                    </>
+                const hasFullName = !!(firstName && lastName)
+                if (email && hasFullName) return (
+                    <Flex direction="column">
+                        <AppTypography fontSize={14} color="white">{`${firstName} ${lastName}`}</AppTypography>
+                        <AppTypography fontSize={14} color="#B1B1B1">{email}</AppTypography>
+                    </Flex>
                 )
+                if (email) return <AppTypography fontSize={14} color="white">{email}</AppTypography>
+                if (hasFullName) return <AppTypography fontSize={14} color="white">{`${firstName} ${lastName}`}</AppTypography>
+                return "N/A"
             }
         },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
@@ -85,7 +85,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, next }: Props)
                         No invoices available. Create a new invoice to get started.
                     </AppTypography>
                 }
-                infiniteScroll={{ dataLength, hasMore, next }}
+                infiniteScroll={{ dataLength, hasMore, next, isFetchingNextPage }}
             />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>

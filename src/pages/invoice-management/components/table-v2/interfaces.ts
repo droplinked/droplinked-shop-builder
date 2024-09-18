@@ -5,6 +5,7 @@ export interface InfiniteScrollProps {
     dataLength: number
     hasMore: boolean
     next: () => void
+    isFetchingNextPage: boolean
 }
 
 export interface TableRootProps<T extends object> {
