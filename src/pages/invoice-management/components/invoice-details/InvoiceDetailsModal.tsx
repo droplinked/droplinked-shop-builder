@@ -4,6 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink';
 import { SHOP_URL } from 'lib/utils/app/variable';
+import InvoiceProductTable from 'pages/invoice-management/create-invoice/components/form/InvoiceProductTable';
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation';
 import React from 'react';
 import SummaryBox from './SummaryBox';
@@ -15,8 +16,8 @@ interface Props {
 }
 
 function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
-    const { invoiceInformationMap } = useInvoiceInformation(invoiceId)
-    const paymentLink = `${SHOP_URL}/paylink/${invoiceId}`
+    const { invoiceInformationMap, data } = useInvoiceInformation(invoiceId)
+    const paymentLink = `${SHOP_URL}/paylink/invoice/${invoiceId ?? data._id}`
 
     return (
         <AppModal
@@ -25,16 +26,23 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
         >
             <ModalHeaderData
                 icon={<AppIcons.InvoiceCreated />}
-                title="Invoice created"
+                title="Invoice Details"
                 description='A link of your invoice is sent to the customer. You can also use the following link to view the invoice.'
             />
 
-            <ModalBody display={"flex"} flexDirection={"column"} gap={4}>
+            <ModalBody
+                display={"flex"}
+                flexDirection={"column"}
+                gap={4}
+                pt={"4px !important"}
+            >
                 <AppShareableLink link={paymentLink} />
 
                 {Object.entries(invoiceInformationMap).map(([key, value], index) => (
                     <SummaryBox key={index} title={key} rows={value} />
                 ))}
+
+                <InvoiceProductTable invoice={data} hasActionColumn={false} hasFooter={false} />
             </ModalBody>
         </AppModal>
     )

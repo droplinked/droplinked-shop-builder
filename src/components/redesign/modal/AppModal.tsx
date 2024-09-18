@@ -15,7 +15,7 @@ function AppModal({ modalRootProps, modalContentProps, children }: Props) {
                 display={"flex"}
                 flexDirection={"column"}
                 gap={{ lg: 12, base: 8 }}
-                margin={{ base: 4, md: "auto" }}
+                margin={4}
                 box-shadow={"0px 0px 20px 0px #00000033"}
                 borderRadius={24}
                 paddingBlock={{ lg: 12, md: 8, base: 4 }}

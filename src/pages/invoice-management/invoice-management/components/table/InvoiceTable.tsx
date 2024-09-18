@@ -1,6 +1,7 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import { SHOP_URL } from 'lib/utils/app/variable'
 import { formattedCurrency } from 'lib/utils/heper/helpers'
@@ -11,18 +12,47 @@ import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
 
 interface Props {
-    invoices: Invoice[];
-    isLoading: boolean;
+    invoices: Invoice[]
+    isLoading: boolean
+    dataLength: number
+    hasMore: boolean
+    isFetchingNextPage: boolean
+    next: () => void
 }
 
-function InvoiceTable({ invoices, isLoading }: Props) {
+function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
         { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
-        { accessorKey: 'client', header: 'Client', cell: info => info.getValue() },
+        {
+            accessorKey: 'email',
+            header: 'Client',
+            cell: info => {
+                const { email, checkoutAddressID } = info.row.original
+                const { firstName, lastName } = checkoutAddressID ?? {}
+                const hasFullName = !!(firstName && lastName)
+                if (email && hasFullName) return (
+                    <Flex direction="column">
+                        <AppTypography fontSize={14} color="white">{`${firstName} ${lastName}`}</AppTypography>
+                        <AppTypography fontSize={14} color="#B1B1B1">{email}</AppTypography>
+                    </Flex>
+                )
+                if (email) return <AppTypography fontSize={14} color="white">{email}</AppTypography>
+                if (hasFullName) return <AppTypography fontSize={14} color="white">{`${firstName} ${lastName}`}</AppTypography>
+                return "N/A"
+            }
+        },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
-        { accessorKey: 'amount', header: 'Amount', cell: info => formattedCurrency(info.getValue() as number) },
+        {
+            accessorKey: 'amount',
+            header: 'Amount',
+            cell: (info) => {
+                const amount = info.getValue() as number
+                if (amount) return formattedCurrency(amount)
+                return "N/A"
+            }
+        },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 
@@ -32,20 +62,31 @@ function InvoiceTable({ invoices, isLoading }: Props) {
     }
 
     const renderActions = (row: Invoice) => {
-        const paymentLink = `${SHOP_URL}/paylink/${row._id}`
+        const paymentLink = `${SHOP_URL}/paylink/invoice/${row._id}`
 
         return (
             <Flex alignItems="center" gap={6} sx={{ "svg": { width: 5, height: 5 } }}>
                 <button onClick={() => window.open(paymentLink, "_blank")}><AppIcons.Share /></button>
                 <button onClick={() => openDetailsModal(row)}><AppIcons.Eye /></button>
-                <InvoiceTableMenu invoiceId={row._id} />
+                <InvoiceTableMenu invoice={row} />
             </Flex>
         )
     }
 
     return (
         <>
-            <Table isLoading={isLoading} columns={columns} data={invoices} renderActions={renderActions} />
+            <Table
+                isLoading={isLoading}
+                columns={columns}
+                data={invoices}
+                renderActions={renderActions}
+                emptyView={
+                    <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                        No invoices available. Create a new invoice to get started.
+                    </AppTypography>
+                }
+                infiniteScroll={{ dataLength, hasMore, next, isFetchingNextPage }}
+            />
             {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={onClose} invoiceId={invoiceRef.current} />}
         </>
     )

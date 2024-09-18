@@ -34,15 +34,15 @@ import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import Admins from "pages/register-pages/pages/admins/Admins"
 import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign"
-import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
-import React, { lazy, Suspense } from "react"
+import React, { Suspense, lazy } from "react"
 import { Route, Routes } from "react-router-dom"
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout"
 import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket"
@@ -146,6 +146,7 @@ function AppRoutes() {
           <Route path="gamification" element={<Gamification />} />
           <Route path="invoice-management" element={<InvoiceManagement />} />
           <Route path="invoice-management/create" element={<CreateInvoice />} />
+          <Route path="invoice-management/edit/:invoiceId" element={<CreateInvoice />} />
         </Route>
 
         <Route path="shop-management" element={<ShopManagementLayout />}>

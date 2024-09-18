@@ -2,7 +2,6 @@ import { Flex, Spinner, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
-import AppTypography from 'components/common/typography/AppTypography'
 import { DeleteInvoiceProduct } from 'lib/apis/invoice/interfaces'
 import { removeProductFromCartService } from 'lib/apis/invoice/invoiceServices'
 import TextButton from 'pages/invoice-management/components/TextButton'
@@ -10,6 +9,7 @@ import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { useMemo } from 'react'
 import { useMutation } from 'react-query'
 import useInvoiceStore, { CartItem } from '../../store/invoiceStore'
+import ProductTitleCell from './ProductTitleCell'
 import InvoiceProductModal from './product-modal/InvoiceProductModal'
 
 interface SerializedCartItem {
@@ -17,8 +17,15 @@ interface SerializedCartItem {
     skus: CartItem[]
 }
 
-export default function InvoiceProductTable() {
-    const cartItems = useInvoiceStore(state => state.cart.items)
+interface Props {
+    invoice?: any;
+    hasActionColumn?: boolean
+    hasFooter?: boolean
+}
+
+export default function InvoiceProductTable({ invoice, hasActionColumn = true, hasFooter = true }: Props) {
+    let cartItems = useInvoiceStore(state => state.cart.items)
+    if (invoice) cartItems = invoice.items
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const groupedCartItems = useMemo(() => groupCartItemsByProduct(cartItems), [cartItems])
@@ -33,25 +40,28 @@ export default function InvoiceProductTable() {
 
     return (
         <>
-            <Table.Root columns={columns} hasActionColumn={true}>
+            <Table.Root columns={columns} hasActionColumn={hasActionColumn}>
                 <Table.Head data={cartItems} />
                 <Table.Body>
                     {groupedCartItems.map((cartItem, index) => (
-                        <CartItemRow key={index} cartItem={cartItem} />
+                        <CartItemRow key={index} cartItem={cartItem} hasActionColumn={hasActionColumn} />
                     ))}
                 </Table.Body>
-                <Table.Footer>
-                    <TextButton paddingBlock={3} paddingInline={4} onClick={onOpen}>
-                        <AppIcons.BlackPlus />
-                        Add product
-                    </TextButton>
-                </Table.Footer>
+                {hasFooter && (
+                    <Table.Footer>
+                        <TextButton paddingBlock={3} paddingInline={4} onClick={onOpen}>
+                            <AppIcons.BlackPlus />
+                            Add product
+                        </TextButton>
+                    </Table.Footer>
+                )}
             </Table.Root>
             {isOpen && <InvoiceProductModal isOpen={isOpen} onClose={onClose} />}
         </>
     )
 }
 
+// Group cart items by product because the product table can have multiple rows for each product
 function groupCartItemsByProduct(cartItems: CartItem[]) {
     const groupedItems = new Map<string, SerializedCartItem>()
 
@@ -65,29 +75,28 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
     return Array.from(groupedItems.values())
 }
 
-function CartItemRow({ cartItem }: { cartItem: SerializedCartItem }) {
+function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem
 
     return (
         <>
             {skus.map((sku, index) => (
                 <Tr
+                    position={"relative"}
                     key={index}
                     borderBottom={index === skus.length - 1 ? 'default' : 'none !important'}
                 >
                     <Td>
-                        <Flex alignItems="center" gap={6} opacity={index === 0 ? 1 : 0}>
+                        <Flex alignItems="center" gap={3} opacity={index === 0 ? 1 : 0}>
                             <AppImage src={product.image} width={12} height={12} />
-                            <AppTypography fontSize={16} color="white">
-                                {product.title}
-                            </AppTypography>
+                            <ProductTitleCell title={product.title} />
                         </Flex>
                     </Td>
                     <Td>{sku.options?.color?.caption || 'N/A'}</Td>
                     <Td>{sku.options?.size?.caption || 'N/A'}</Td>
                     <Td>{sku.options?.quantity || 'N/A'}</Td>
                     <Td>{sku.totals?.priceItem || 'N/A'}</Td>
-                    <SKURemoveButton itemId={sku._id} />
+                    {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}
         </>

@@ -13,7 +13,7 @@ interface Props {
 
 export default function QRCodeView({ productID, colorPallete }: Props) {
     const qrCodeContainerRef = useRef<HTMLDivElement>(null)
-    const productLink = `${SHOP_URL}/paylink/${productID}`
+    const productLink = `${SHOP_URL}/paylink/product/${productID}`
 
     const downloadQRCode = () => {
         const svgElement = qrCodeContainerRef.current.querySelector('svg')

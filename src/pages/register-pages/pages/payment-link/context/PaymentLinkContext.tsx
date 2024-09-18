@@ -20,7 +20,12 @@ export const PaymentLinkContext = createContext<PaymentLinkContextType>({} as Pa
 
 export default function PaymentLinkProvider({ children }) {
     const { shop } = useAppStore()
-    const [paymentLinkData, setPaymentLinkData] = useState<PaymentLinkData>(shop.productLinkOptions)
+    const [paymentLinkData, setPaymentLinkData] = useState<PaymentLinkData>(shop.productLinkOptions ?? {
+        variantsStyle: "DROPDOWN",
+        additionalNote: false,
+        logoVisibility: true,
+        colorPallete: "LIGHT"
+    })
 
     const updatePaymentLink = <K extends keyof typeof paymentLinkData>(key: K, value: typeof paymentLinkData[K]) =>
         setPaymentLinkData({ ...paymentLinkData, [key]: value })

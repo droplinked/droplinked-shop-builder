@@ -1,24 +1,24 @@
-import { Button, Flex, Td, Tr } from '@chakra-ui/react'
+import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import useIntersectionObserver from 'functions/hooks/intersection-observer/useIntersectionObserver'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { productServices } from 'lib/apis/product/productServices'
 import Input from 'pages/invoice-management/components/Input'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
-import React, { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import React, { forwardRef, useEffect, useState } from 'react'
+import { useInfiniteQuery } from 'react-query'
+import ProductTitleCell from '../ProductTitleCell'
 import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
-    const { isFetching, isError, data, refetch } = useQuery({
-        queryFn: () => productServices({ page: 1, limit: 15, filter: debouncedSearchTerm }),
-        queryKey: ["products", debouncedSearchTerm],
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
+        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 7, filter: debouncedSearchTerm }),
+        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
     })
-    const products = data?.data?.data?.data || []
-
-    useEffect(() => { refetch() }, [debouncedSearchTerm])
+    const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
         { accessorKey: '', header: 'Product' },
@@ -27,20 +27,37 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
         { accessorKey: 'skuIDs', header: 'Unit price' }
     ]
 
+    const lastSKURef = useIntersectionObserver<HTMLTableRowElement>(() => {
+        if (hasNextPage) fetchNextPage()
+    }, [])
+
     return (
-        <Table.Root columns={columns} hasActionColumn={true}>
+        <Table.Root
+            columns={columns}
+            hasActionColumn={true}
+        >
             <Table.Head data={products} />
-            <Table.Body isLoading={isFetching}>
-                {products.map((product, index) => <ProductRow key={index} product={product} cart={cart} setCart={setCart} />)}
+            <Table.Body isLoading={isFetching} infiniteScroll={{ isFetchingNextPage }}>
+                {products.map((product, index, products) =>
+                    <ProductRow key={index}
+                        ref={index === products.length - 1 ? lastSKURef : null}
+                        product={product}
+                        cart={cart}
+                        setCart={setCart}
+                    />
+                )}
             </Table.Body>
         </Table.Root>
     )
 }
 
-function ProductRow({ product, cart, setCart }) {
+const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, setCart: any }>(function ProductRow(props, ref) {
+    const { product, cart, setCart } = props
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
+    const isDigitalProduct = product.product_type === "DIGITAL"
 
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
@@ -56,15 +73,32 @@ function ProductRow({ product, cart, setCart }) {
             setSkuId("")
             showToast({ type: "success", message: "Product added to cart" })
         }
-        else showToast({ type: "info", message: "Please select SKU and quantity before adding" })
+        else {
+            const message = isDigitalProduct ?
+                "Quantity required. Please enter a value before adding" :
+                "Please select both SKU and quantity before adding"
+            showToast({ type: "info", message })
+        }
     }
 
+    const toggleDropdown = () => {
+        if (isDigitalProduct) return
+        onOpen()
+    }
+
+    useEffect(() => {
+        if (isDigitalProduct) setSkuId(product.skuIDs[0]._id)
+    }, [product, setSkuId])
+
     return (
-        <Tr _hover={{ "button": { opacity: 1 } }}>
+        <Tr
+            ref={ref}
+            _hover={{ "button": { opacity: 1 } }}
+        >
             <Td>
                 <Flex alignItems={"center"} gap={6}>
                     <AppImage src={product.media[0]?.url} width={12} height={12} />
-                    <AppTypography fontSize={16} color={"white"}>{product.title}</AppTypography>
+                    <ProductTitleCell title={product.title} wordLimit={35} />
                 </Flex>
             </Td>
             <Td>
@@ -72,6 +106,9 @@ function ProductRow({ product, cart, setCart }) {
                     selectedVariant={skuId}
                     onSelectVariant={(selectedSku) => setSkuId(selectedSku)}
                     product={product}
+                    isOpen={isOpen}
+                    onOpen={toggleDropdown}
+                    onClose={onClose}
                 />
             </Td>
             <Td>
@@ -116,4 +153,4 @@ function ProductRow({ product, cart, setCart }) {
             </Td>
         </Tr>
     )
-}
+})

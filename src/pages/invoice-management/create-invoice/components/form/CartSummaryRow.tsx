@@ -9,6 +9,11 @@ interface Props {
 }
 
 function CartSummaryRow({ title, value, isValueBold = false }: Props) {
+    const formattedPrice = (price: number) => {
+        const validPrice = isNaN(price) ? 0 : price
+        return `$${validPrice.toFixed(2)} `
+    }
+
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <AppTypography fontSize={16} color={"white"}>{title}</AppTypography>
@@ -17,7 +22,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
                 fontWeight={isValueBold ? 700 : 400}
                 color={"white"}
             >
-                ${value}{" "}
+                {formattedPrice(value)}
                 <Box as='span' fontSize={16} color={'#878787'}>{"USD"}</Box>
             </AppTypography>
         </Flex>

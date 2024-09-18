@@ -16,6 +16,7 @@ function InvoicesEmptyState() {
                 height='260px'
                 src='https://upload-file-droplinked.s3.amazonaws.com/8043d6e41e03dcb155f33d2a2ccde56ddcb02819e4e1c998e3285a271c3aeb24.png'
                 objectFit='cover'
+                borderRadius={8}
                 alt='floating astronaut'
             />
             <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>Looks like space is empty</AppTypography>

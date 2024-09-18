@@ -1,4 +1,4 @@
-import { Box, Button, Circle, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Circle, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Input from 'pages/invoice-management/components/Input'
@@ -8,10 +8,13 @@ interface Props {
     selectedVariant: string | undefined
     onSelectVariant: (sku: string) => void
     product: any
+    isOpen: boolean
+    onOpen: () => void
+    onClose: () => void
 }
 
-export default function VariantsDropdown({ selectedVariant, onSelectVariant, product }: Props) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export default function VariantsDropdown(props: Props) {
+    const { isOpen, onOpen, onClose, selectedVariant, onSelectVariant, product } = props
 
     return (
         <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} placement='bottom-start'>

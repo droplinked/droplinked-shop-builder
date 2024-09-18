@@ -1,9 +1,9 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { createContext, useContext } from 'react';
+import { ColumnDef } from '@tanstack/react-table'
+import { createContext, useContext } from 'react'
 
 interface TableConfiguration {
-    columns: ColumnDef<any>[];
-    hasActionColumn: boolean;
+    columns: ColumnDef<any>[]
+    hasActionColumn: boolean
 }
 
 type TableContextType = TableConfiguration | null

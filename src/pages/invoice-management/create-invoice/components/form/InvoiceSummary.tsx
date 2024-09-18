@@ -32,7 +32,7 @@ function InvoiceSummary() {
     }
 
     return (
-        <SectionedContent as={"aside"} width={{ base: "100%", lg: "420px" }} title="Summary">
+        <SectionedContent as={"aside"} width={{ base: "100%", lg: "380px" }} title="Summary">
             <Input
                 icon={<AppIcons.InvoiceDiscount />}
                 inputGroupProps={{ height: 12 }}
@@ -50,12 +50,12 @@ function InvoiceSummary() {
             />
 
             <Flex direction={"column"} gap={4}>
-                <CartSummaryRow title='Total cart' value={totalCart?.subtotal || 0} />
-                <CartSummaryRow title='Tax' value={totalCart?.estimatedTaxes || 0} />
-                <CartSummaryRow title='Total shipping' value={totalCart?.shipping || 0} />
+                <CartSummaryRow title='Total cart' value={totalCart?.subtotal} />
+                <CartSummaryRow title='Tax' value={totalCart?.estimatedTaxes} />
+                <CartSummaryRow title='Total shipping' value={totalCart?.shipping} />
             </Flex>
 
-            <CartSummaryRow title='Total order' value={totalCart?.totalPayment || 0} isValueBold />
+            <CartSummaryRow title='Total order' value={totalCart?.totalPayment} isValueBold />
 
             <InvoiceMemo />
         </SectionedContent>

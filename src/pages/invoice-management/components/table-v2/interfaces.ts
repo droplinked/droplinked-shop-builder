@@ -15,6 +15,9 @@ export interface TableHeadProps<T extends object> {
 }
 
 export interface TableBodyProps {
-    isLoading?: boolean
     children: ReactNode
+    isLoading?: boolean
+    infiniteScroll?: {
+        isFetchingNextPage: boolean
+    }
 }

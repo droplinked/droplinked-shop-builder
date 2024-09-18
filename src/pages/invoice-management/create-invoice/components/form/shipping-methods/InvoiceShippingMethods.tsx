@@ -1,17 +1,23 @@
 import { Box, Circle, Flex, FormLabel, useDisclosure, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useFormikContext } from 'formik'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { addAddressToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
+import { deepEqual } from 'lib/utils/heper/helpers'
+import { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/helpers/helpers'
 import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useCreateInvoice'
-import useInvoiceStore, { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/store/invoiceStore'
-import React from 'react'
+import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
+import React, { useEffect, useState } from 'react'
 import ToggleableSection from '../../ToggleableSection'
 import ShippingMethodsLoading from './ShippingMethodsLoading'
 
 export default function InvoiceShippingMethods() {
+    const [isLoading, setLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, validateForm } = useFormikContext<InvoiceFormSchema>()
-    const { createInvoice, isLoading } = useCreateInvoice()
-    const { cart, selectedShippingMethod, updateShippingMethod } = useInvoiceStore()
+    const { isInvoiceDataValid } = useCreateInvoice({ trigger: "SHIPPING_METHODS_SWITCH" })
+    const { cart, updateCart, selectedShippingMethod, updateShippingMethod, isEditMode } = useInvoiceStore()
+    const { showToast } = useAppToast()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-payment-method',
         onChange: (shppingMethodId: string) => {
@@ -24,8 +30,8 @@ export default function InvoiceShippingMethods() {
     const handleToggle = async () => {
         const validationResult = await validateForm()
         if (Object.entries(validationResult).length > 0) return
+        if (!isInvoiceDataValid(values)) return
         onOpen()
-        createInvoice({ trigger: "SHIPPING_METHODS_SWITCH", formData: values })
     }
 
     const renderContent = () => {
@@ -45,6 +51,35 @@ export default function InvoiceShippingMethods() {
             </Flex>
         )
     }
+
+    useEffect(() => {
+        (async () => {
+            const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
+
+            if ((isEditMode && !deepEqual(rest, values.address)) || (isOpen && !cart.address)) {
+                try {
+                    setLoading(true)
+                    const { data: createdAddress } = await createAddressService(values.address)
+                    const { data } = await addAddressToCartService(cart._id, createdAddress._id)
+                    updateCart(data)
+                    updateShippingMethod(null)
+                }
+                catch (error) {
+                    if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
+                    else showToast({ message: (error as Error).message, type: "error" })
+                    onClose()
+                }
+                finally {
+                    setLoading(false)
+                }
+            }
+        })()
+    }, [isOpen])
+
+    useEffect(() => {
+        const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
+        if (!deepEqual(rest, values.address)) onClose()
+    }, [values.address])
 
     return (
         <ToggleableSection

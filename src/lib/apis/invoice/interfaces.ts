@@ -1,3 +1,5 @@
+import { Address } from "pages/invoice-management/create-invoice/helpers/helpers"
+
 export type InvoiceStatus = "ACTIVE" | "CHECKED_OUT" | "PENDING"
 
 export interface Invoice {
@@ -15,6 +17,8 @@ export interface Invoice {
     groupedItems: any[];
     passedRules: any[];
     createdAt: string;
+    email?: string;
+    checkoutAddressID?: Address;
 }
 
 export interface InvoiceQueryParams {

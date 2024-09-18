@@ -23,7 +23,7 @@ function TableRoot<T extends object>({ children, columns, hasActionColumn = fals
                     {children}
                 </ChakraTable>
             </TableContainer>
-        </TableContext.Provider>
+        </TableContext.Provider >
     )
 }
 
@@ -65,15 +65,42 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
                             }
                         </Th>
                     ))}
-                    {hasActionColumn && <Th></Th>}
+                    {hasActionColumn && <Th />}
                 </Tr>
             ))}
         </Thead>
     )
 }
 
-function TableBody({ isLoading, children }: TableBodyProps) {
+function TableBody({ children, isLoading, infiniteScroll }: TableBodyProps) {
     const { columns, hasActionColumn } = useTableContext()
+    const tableLoading = (
+        Array.from({ length: 3 }).map((_, index) => (
+            <Tr key={index}>
+                {columns.map((_, colIndex) =>
+                    <Td key={colIndex}>
+                        <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
+                    </Td>
+                )}
+                {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
+            </Tr>
+        ))
+    )
+
+    const renderTableBody = () => {
+        const { isFetchingNextPage } = infiniteScroll || {}
+        if (isLoading && !isFetchingNextPage) return tableLoading
+        if (infiniteScroll) {
+            return (
+                <>
+                    {children}
+                    {isFetchingNextPage && tableLoading}
+                </>
+            )
+        }
+
+        return children
+    }
 
     return (
         <Tbody
@@ -89,22 +116,8 @@ function TableBody({ isLoading, children }: TableBodyProps) {
                 "td": { fontSize: 16, fontWeight: 400 }
             }}
         >
-            {
-                isLoading ?
-                    Array.from({ length: 3 }).map((_, index) => (
-                        <Tr key={index}>
-                            {columns.map((_, colIndex) => (
-                                <Td key={colIndex}>
-                                    <Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" />
-                                </Td>
-                            ))}
-                            {hasActionColumn && <Td><Skeleton height={5} borderRadius={4} startColor="#333" endColor="#555" /></Td>}
-                        </Tr>
-                    ))
-                    :
-                    children
-            }
-        </Tbody >
+            {renderTableBody()}
+        </Tbody>
     )
 }
 

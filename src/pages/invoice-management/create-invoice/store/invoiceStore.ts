@@ -1,22 +1,6 @@
 import { CartShippingMethod } from 'lib/apis/invoice/interfaces';
 import { create } from 'zustand';
-
-export interface InvoiceFormSchema {
-    email: string;
-    note: string;
-    address: {
-        firstName: string;
-        lastName: string;
-        addressLine1: string;
-        addressLine2: string;
-        country: string;
-        city: string;
-        state: string;
-        zip: string;
-        addressType: string;
-        phoneNumber: string;
-    }
-}
+import { Address } from '../helpers/helpers';
 
 export interface CartItem {
     _id: string
@@ -60,7 +44,7 @@ export interface Cart {
         _id: string;
         ownerID: string;
     },
-    address?: InvoiceFormSchema["address"];
+    address?: Address
     status: string;
     type: string;
     email?: string;
@@ -97,29 +81,43 @@ export interface Cart {
 type State = {
     cart: Cart;
     areAllProductsDigital: boolean;
-    selectedShippingMethod: CartShippingMethod | null
+    isAddressSwitchToggled: boolean;
+    countryISO2: string;
+    selectedShippingMethod: CartShippingMethod | null;
+    isEditMode: boolean;
 }
 
 type Action = {
-    updateCart: (cart: State['cart']) => void
-    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void
-    resetCart: () => void
+    updateCart: (cart: State['cart']) => void;
+    resetCart: () => void;
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled: boolean) => void;
+    updateCountryISO2: (countryISO2: string) => void;
+    updateShippingMethod: (shippingMethod: CartShippingMethod | null) => void;
+    updateIsEditMode: (isEditMode: boolean) => void;
 }
 
 const useInvoiceStore = create<State & Action>((set) => ({
     cart: {} as Cart,
     areAllProductsDigital: true,
+    isAddressSwitchToggled: false,
+    countryISO2: '',
     selectedShippingMethod: null,
+    isEditMode: false,
     updateCart: (cart) => {
-        const areAllProductsDigital = cart.items?.every(item => item.product.type === 'DIGITAL')
+        const areAllProductsDigital = cart.items?.every(({ product }) => ['DIGITAL', 'EVENT'].includes(product.type))
         set({ cart, areAllProductsDigital })
     },
-    updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
     resetCart: () => set({
         cart: {} as Cart,
         areAllProductsDigital: true,
-        selectedShippingMethod: null
-    })
+        selectedShippingMethod: null,
+        countryISO2: '',
+        isEditMode: false
+    }),
+    updateIsAddressSwitchToggled: (isAddressSwitchToggled) => set({ isAddressSwitchToggled }),
+    updateCountryISO2: (countryISO2) => set({ countryISO2 }),
+    updateShippingMethod: (shippingMethod) => set({ selectedShippingMethod: shippingMethod }),
+    updateIsEditMode: (isEditMode) => set({ isEditMode })
 }))
 
 export default useInvoiceStore

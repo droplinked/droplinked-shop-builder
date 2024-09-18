@@ -1,52 +1,73 @@
 import useAppToast from 'functions/hooks/toast/useToast'
-import { createAddressService } from 'lib/apis/address/addressServices'
-import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService } from 'lib/apis/invoice/invoiceServices'
+import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
+import { deepEqual } from 'lib/utils/heper/helpers'
+import { phone } from "phone"
 import { useState } from 'react'
+import { findSelectedShippingMethod } from '../helpers/helpers'
 import useInvoiceStore from '../store/invoiceStore'
 
 interface Props {
     trigger: "CREATE_BUTTON" | "SHIPPING_METHODS_SWITCH"
-    formData: any
     onSuccess?: () => void
 }
 
-export default function useCreateInvoice() {
+export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const [isLoading, setLoading] = useState(false)
-    const { cart, updateCart, areAllProductsDigital, selectedShippingMethod } = useInvoiceStore()
+    const { cart, updateCart, isAddressSwitchToggled, countryISO2, selectedShippingMethod } = useInvoiceStore()
     const { showToast } = useAppToast()
 
-    const createInvoice = async ({ trigger, formData, onSuccess }: Props) => {
+    const isInvoiceDataValid = (formData: any) => {
+        if (!cart._id) return showToast({ message: "You have to add products to the cart first", type: "error" })
+
+        if (trigger === "SHIPPING_METHODS_SWITCH") {
+            const { addressLine1, city, state, zip, country } = formData.address ?? {}
+            const allFieldsPresent = [addressLine1, city, state, zip, country].every(Boolean)
+            if (!allFieldsPresent) {
+                return showToast({ message: "Please provide a valid address to proceed", type: "error" })
+            }
+        }
+
+        return true
+    }
+
+    const validatePhoneNumber = (formData: any) => {
+        const { isValid, phoneNumber } = phone(formData.address.phoneNumber, { country: countryISO2 })
+        if (!isValid) throw new Error("Please enter a valid phone number")
+        formData.address.phoneNumber = phoneNumber
+    }
+
+    const addAdditionalDetailsToCart = async (formData: any) => {
+        const { data } = await addAdditionalDetailsToCartService(cart._id, { email: formData.email, note: formData.note })
+        updateCart(data)
+    }
+
+    const createAddressAndAddToCart = async (formData: any) => {
+        const { data: createdAddress } = await createAddressService(formData.address)
+        const { data } = await addAddressToCartService(cart._id, createdAddress._id)
+        updateCart(data)
+    }
+
+    const addShippingMethodToCart = async () => {
+        const { data } = await addShippingMethodToCartService(cart._id, selectedShippingMethod)
+        updateCart(data)
+    }
+
+    const createInvoice = async (formData: any) => {
         try {
             setLoading(true)
-            if (!cart._id)
-                throw new Error("You have to add products to the cart first")
+            validatePhoneNumber(formData)
+            await addAdditionalDetailsToCart(formData)
 
-            if (trigger === "CREATE_BUTTON" && !selectedShippingMethod)
-                throw new Error("Please select a shipping method")
+            if (isAddressSwitchToggled && !cart.address)
+                await createAddressAndAddToCart(formData)
 
-            const { data } = await addAdditionalDetailsToCartService(cart._id, { email: formData.email, note: formData.note })
-            updateCart(data)
-
-            if (!areAllProductsDigital) {
-                if (!cart.address) {
-                    const { data: { data: createdAddress } } = await createAddressService(formData.address)
-                    const { data } = await addAddressToCartService(cart._id, createdAddress._id)
-                    updateCart(data)
-                }
-
-                if (trigger === "CREATE_BUTTON") {
-                    const { data } = await addShippingMethodToCartService(cart._id, selectedShippingMethod)
-                    updateCart(data)
-                }
+            if (trigger === "CREATE_BUTTON") {
+                if (cart.address && selectedShippingMethod?.shipmentId) await addShippingMethodToCart()
+                onSuccess?.()
             }
-
-            if (trigger === "CREATE_BUTTON") onSuccess?.()
         }
-        catch (error: any) {
-            if (error.response) {
-                showToast({ message: error.response.data.data.message, type: "error" })
-                return
-            }
+        catch (error) {
+            if (error.response) return showToast({ message: error.response.data.data.message, type: "error" })
             showToast({ message: (error as Error).message, type: "error" })
         }
         finally {
@@ -54,5 +75,33 @@ export default function useCreateInvoice() {
         }
     }
 
-    return { createInvoice, isLoading }
+    const updateInvoice = async (formData: any) => {
+        try {
+            setLoading(true)
+            validatePhoneNumber(formData)
+            await addAdditionalDetailsToCart(formData)
+
+            const { _id, easyPostAddressID, ...rest } = cart.address
+            if (!deepEqual(rest, formData.address)) await createAddressAndAddToCart(formData)
+
+            const prevSelectedMethod = findSelectedShippingMethod(cart.shippings)
+            if (!deepEqual(prevSelectedMethod, selectedShippingMethod)) await addShippingMethodToCart()
+
+            onSuccess?.()
+        }
+        catch (error) {
+            if (error.response) return showToast({ message: error.response.data.data.message, type: "error" })
+            showToast({ message: (error as Error).message, type: "error" })
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    return {
+        isInvoiceDataValid,
+        createInvoice,
+        updateInvoice,
+        isLoading
+    }
 }

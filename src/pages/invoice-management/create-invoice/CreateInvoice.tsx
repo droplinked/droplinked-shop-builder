@@ -1,84 +1,52 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useDisclosure } from '@chakra-ui/react'
 import { Form, Formik, FormikProvider } from 'formik'
+import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
+import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../components/Button'
+import FullScreenLoader from '../components/FullScreenLoader'
+import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
+import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
+import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
-import useInvoiceStore, { InvoiceFormSchema } from './store/invoiceStore'
+import useInvoiceStore from './store/invoiceStore'
 
 export default function CreateInvoice() {
-    const { resetCart, areAllProductsDigital } = useInvoiceStore()
     const navigate = useNavigate()
-    const { createInvoice, isLoading } = useCreateInvoice()
+    const { invoiceId } = useParams()
+    const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
+    const { updateCart, resetCart, isAddressSwitchToggled, updateShippingMethod, isEditMode, updateIsEditMode } = useInvoiceStore()
+    const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
+    const { data, isFetching } = useInvoiceInformation(invoiceId)
+    const { showToast } = useAppToast()
 
-    const validationSchema = Yup.object({
-        email: Yup.string().email('Invalid email address').required('Email is required'),
-        note: Yup.string(),
-        address: Yup.object().shape({
-            firstName: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("First Name is required"),
-                otherwise: schema => schema
-            }),
-            lastName: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("Last Name is required"),
-                otherwise: schema => schema
-            }),
-            addressLine1: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("Address Line 1 is required"),
-                otherwise: schema => schema
-            }),
-            addressLine2: Yup.string(),
-            country: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("Country is required"),
-                otherwise: schema => schema
-            }),
-            city: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("City is required"),
-                otherwise: schema => schema
-            }),
-            state: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("State is required"),
-                otherwise: schema => schema
-            }),
-            zip: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("Zip Code is required"),
-                otherwise: schema => schema
-            }),
-            addressType: Yup.string(),
-            phoneNumber: Yup.string().when([], {
-                is: () => !areAllProductsDigital,
-                then: schema => schema.required("Phone Number is required"),
-                otherwise: schema => schema
-            })
-        })
-    })
+    useEffect(() => {
+        return () => resetCart()
+    }, [resetCart])
 
-    const initialValues: InvoiceFormSchema = {
-        email: '',
-        note: '',
-        address: {
-            firstName: '',
-            lastName: '',
-            addressLine1: '',
-            addressLine2: '',
-            country: 'United States',
-            city: 'Los Alamitos',
-            state: 'California',
-            zip: '',
-            addressType: 'CUSTOMER',
-            phoneNumber: '+14155552671'
+    // This is used to handle edit mode
+    useEffect(() => {
+        if (invoiceId && data?._id) {
+            if (data.status !== "ACTIVE") {
+                showToast({ message: "You cannot edit an invoice that is not active", type: "error" })
+                navigate("/dashboard/invoice-management")
+                return
+            }
+            updateCart(data)
+            updateIsEditMode(true)
+            const selectedShippingGroup = findSelectedShippingMethod(data.shippings)
+            if (selectedShippingGroup) updateShippingMethod(selectedShippingGroup)
         }
+    }, [invoiceId, data, updateCart, updateIsEditMode])
+
+    if (isFetching) return <FullScreenLoader />
+
+    const handleSubmit = (values: InvoiceFormSchema) => {
+        if (!isInvoiceDataValid(values)) return
+        isEditMode ? updateInvoice(values) : createInvoice(values)
     }
 
     const handleDiscard = () => {
@@ -86,37 +54,42 @@ export default function CreateInvoice() {
         navigate("/dashboard/invoice-management")
     }
 
-    useEffect(() => {
-        return () => { resetCart() }
-    }, [resetCart])
+    const closeInvoiceModal = () => {
+        closeInvoiceDetailsModal()
+        resetCart()
+        navigate("/dashboard/invoice-management")
+    }
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            validateOnChange={false}
-            onSubmit={(values) => createInvoice({ trigger: "CREATE_BUTTON", formData: values })}
-        >
-            {formik => (
-                <FormikProvider value={formik}>
-                    <Form>
-                        <Flex direction={{ base: "column", lg: "row" }} gap={6}>
-                            <Flex flex={1} direction={"column"} gap={"inherit"}>
-                                <InvoiceProductTable />
-                                <InvoiceClientDetails />
-                            </Flex>
+        <>
+            <Formik
+                initialValues={getInvoiceFormInitialValues(invoiceId, data)}
+                validationSchema={getInvoiceValidationSchema(isAddressSwitchToggled)}
+                validateOnChange={false}
+                onSubmit={handleSubmit}
+            >
+                {formik => (
+                    <FormikProvider value={formik}>
+                        <Form>
+                            <Flex direction={{ base: "column", lg: "row" }} gap={6}>
+                                <Flex flex={1} direction={"column"} gap={"inherit"}>
+                                    <InvoiceProductTable />
+                                    <InvoiceClientDetails />
+                                </Flex>
 
-                            <Flex direction={"column"} gap={6}>
-                                <InvoiceSummary />
-                                <Flex direction={"column"} gap={4}>
-                                    <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>Create Invoice</Button>
-                                    <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                <Flex direction={"column"} gap={6}>
+                                    <InvoiceSummary />
+                                    <Flex direction={"column"} gap={4}>
+                                        <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</Button>
+                                        <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                    </Flex>
                                 </Flex>
                             </Flex>
-                        </Flex>
-                    </Form>
-                </FormikProvider>
-            )}
-        </Formik>
+                        </Form>
+                    </FormikProvider>
+                )}
+            </Formik>
+            {isOpen && <InvoiceDetailsModal isOpen={isOpen} onClose={closeInvoiceModal} />}
+        </>
     )
 }
