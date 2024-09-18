@@ -13,7 +13,7 @@ import ToggleableSection from '../ToggleableSection'
 function InvoiceAddress() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
-    const { cart, updateIsAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
+    const { updateIsAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
         refetchOnWindowFocus: false
@@ -26,11 +26,14 @@ function InvoiceAddress() {
     const cities = useMemo(() => citiesData?.data?.data?.cities || [], [citiesData])
 
     useEffect(() => {
-        if (cart.address?._id) {
+        if (values.address.state && !states.length) {
             getStates({ country_name: values.address.country })
+        }
+
+        if (values.address.city && !cities.length) {
             getCities({ country_name: values.address.country, state_name: values.address.state })
         }
-    }, [cart.address?._id])
+    }, [values.address.state, values.address.city, states, cities])
 
     useEffect(() => {
         updateIsAddressSwitchToggled(isOpen)
