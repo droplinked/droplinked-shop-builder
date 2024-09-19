@@ -21,10 +21,7 @@ export default function AffiliateMarketing() {
 
     return (
         <Flex gap={3}>
-            <AppSwitch
-                isChecked={isCommissionEnabled}
-                onChange={handleSwitchChange}
-            />
+            <AppSwitch isChecked={isCommissionEnabled} onChange={handleSwitchChange} />
 
             <Flex width="100%" direction="column" gap={4}>
                 <Flex flexDirection="column" gap={1} color="#C2C2C2">
@@ -52,19 +49,15 @@ function CommissionDetails({ commision, onCommissionChange }) {
     return (
         <Flex justifyContent="space-between" gap={4}>
             <Flex flex={1} direction="column" gap={1}>
-                <AppTypography fontSize={14} fontWeight={500}>
-                    Commission
-                </AppTypography>
-                <AppTypography fontSize={14}>
-                    Set the commission percentage affiliates will earn for each sale.
-                </AppTypography>
+                <AppTypography fontSize={14} fontWeight={500}>Commission</AppTypography>
+                <AppTypography fontSize={14}>Set the commission percentage affiliates will earn for each sale.</AppTypography>
             </Flex>
 
             <Flex alignItems="center" gap={1} color="#7B7B7B">
                 <AppInput
                     type="number"
-                    min={0}
-                    max={100}
+                    min={1}
+                    max={99}
                     value={commision}
                     width="64px"
                     color="#7B7B7B"
