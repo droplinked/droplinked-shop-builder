@@ -1,4 +1,3 @@
-import { VARIANT_OPTIONS_ENUM } from "types/enum/variant.options.enum"
 import { LegalUsage } from "../subscription/interfaces"
 
 export interface IproductList {
@@ -69,7 +68,9 @@ export interface IproductState {
     printful_option_data?: any;
     launchDate?: string | null;
     legalUsage: LegalUsage[],
-    publish_status?: "PUBLISHED" | "DRAFTED"
+    publish_status?: "PUBLISHED" | "DRAFTED",
+    commission?: number
+    canBeAffiliated?: boolean
 }
 
 export interface IpropertiesItems {
