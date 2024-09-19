@@ -177,6 +177,9 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as RedAlert } from "./red-alert.svg";
+import { ReactComponent as EditIconWhite } from "./edit-icon-white.svg";
+import { ReactComponent as TrashRed } from "./trash-red.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -191,6 +194,7 @@ const AppIcons = {
   VariantsIcon,
   Xverse,
   RuleIcon,
+  TrashRed,
   EditIcon,
   DeleteIcon,
   ShopIcon,
@@ -224,6 +228,7 @@ const AppIcons = {
   Bitcoin,
   Stripe,
   File,
+  EditIconWhite,
   Discord,
   Web,
   LinkedIn,
@@ -249,6 +254,7 @@ const AppIcons = {
   DatepickerDashboard,
   Linea,
   WhiteShopIcon,
+  RedAlert,
   WhiteOpenWallet,
   HelpCenter,
   Logout,

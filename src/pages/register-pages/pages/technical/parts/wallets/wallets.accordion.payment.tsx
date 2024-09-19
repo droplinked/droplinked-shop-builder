@@ -304,7 +304,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
                     border={"1px solid #F24"} 
                     bgColor={"rgba(255, 34, 68, 0.05)"}
                 >
-                    <AppIcons.RedInfo />
+                    <AppIcons.RedAlert />
                     <AppTypography fontSize={"14px"} fontWeight={400}>{calculateTotalPercent(wallets).message}</AppTypography>
                 </MotionFlex>
             }
