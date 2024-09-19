@@ -3,25 +3,21 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 export default function AffiliateMarketing() {
-    const { state: { commision }, methods: { updateState } } = useContext(productContext)
-    const [isCommissionEnabled, setCommissionEnabled] = useState(!!commision)
-
-    const handleSwitchChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const isEnabled = e.target.checked
-        setCommissionEnabled(isEnabled)
-        if (!isEnabled) updateState('commision', 0)
-    }
+    const { state: { commission, canBeAffiliated }, methods: { updateState } } = useContext(productContext)
 
     const handleCommissionChange = ({ target: { value, validity } }) => {
-        if (validity.valid) updateState('commision', parseInt(value))
+        if (validity.valid) updateState('commission', parseInt(value))
     }
 
     return (
         <Flex gap={3}>
-            <AppSwitch isChecked={isCommissionEnabled} onChange={handleSwitchChange} />
+            <AppSwitch
+                isChecked={canBeAffiliated}
+                onChange={(e) => updateState('canBeAffiliated', e.target.checked)}
+            />
 
             <Flex width="100%" direction="column" gap={4}>
                 <Flex flexDirection="column" gap={1} color="#C2C2C2">
@@ -29,9 +25,9 @@ export default function AffiliateMarketing() {
                     <AppTypography fontSize={14}>Enable to allow co-sellers to import and sell your products.</AppTypography>
                 </Flex>
 
-                {isCommissionEnabled && (
+                {canBeAffiliated && (
                     <CommissionDetails
-                        commision={commision}
+                        commission={commission}
                         onCommissionChange={handleCommissionChange}
                     />
                 )}
@@ -40,7 +36,7 @@ export default function AffiliateMarketing() {
     )
 }
 
-function CommissionDetails({ commision, onCommissionChange }) {
+function CommissionDetails({ commission, onCommissionChange }) {
     const preventInvalidKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const invalidKeys = ['+', '-', 'e']
         if (invalidKeys.includes(e.key)) e.preventDefault()
@@ -58,7 +54,7 @@ function CommissionDetails({ commision, onCommissionChange }) {
                     type="number"
                     min={1}
                     max={99}
-                    value={commision}
+                    value={commission}
                     width="64px"
                     color="#7B7B7B"
                     name="commission"

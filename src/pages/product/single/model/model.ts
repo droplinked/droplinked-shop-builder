@@ -75,7 +75,8 @@ const ProductSingleModel = ({
             launchDate: data?.launchDate,
             legalUsage: data?.legalUsage,
             publish_status: data?.publish_status,
-            commision: data?.commision
+            commission: data?.commission,
+            canBeAffiliated: data?.canBeAffiliated
             // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },

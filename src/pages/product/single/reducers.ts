@@ -60,7 +60,8 @@ export const productParams: IproductState = {
     launchDate: null,
     legalUsage: [],
     publish_status: "PUBLISHED",
-    commision: 0
+    commission: 0,
+    canBeAffiliated: false
 }
 
 namespace ProductPageNamespace {

@@ -96,8 +96,8 @@ const ButtonsProductClass = ({
         })
     },
 
-    makeData: ({ state: { publish_status, commision, ...rest }, draft, productID }: ImakeData) => {
-        const state: IproductState = { ...rest, commision: commision || undefined, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
+    makeData: ({ state: { publish_status, commission, ...rest }, draft, productID }: ImakeData) => {
+        const state: IproductState = { ...rest, commission: commission || undefined, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })

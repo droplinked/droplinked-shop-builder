@@ -69,7 +69,8 @@ export interface IproductState {
     launchDate?: string | null;
     legalUsage: LegalUsage[],
     publish_status?: "PUBLISHED" | "DRAFTED",
-    commision?: number
+    commission?: number
+    canBeAffiliated?: boolean
 }
 
 export interface IpropertiesItems {
