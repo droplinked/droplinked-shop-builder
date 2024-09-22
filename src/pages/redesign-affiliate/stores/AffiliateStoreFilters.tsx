@@ -34,7 +34,7 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
                 }}
                 icon={<AppIcons.Search />}
             />
-            <Select
+            {/* <Select
                 items={statusOptions}
                 labelAccessor="title"
                 valueAccessor="value"
@@ -44,7 +44,7 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
                     placeholder: "Status",
                     onChange: (e) => updateInvoiceFilters((prev) => ({ ...prev, page: 1, status: e.target.value as InvoiceStatus })),
                 }}
-            />
+            /> */}
         </Flex>
     );
 }
