@@ -44,6 +44,7 @@ import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
+import { ReactComponent as EditIconWhite } from "./edit-icon-white.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Edit } from "./edit.svg";
 import { ReactComponent as Email } from "./email.svg";
@@ -117,6 +118,7 @@ import { ReactComponent as ProfileSetting } from "./profile-setting.svg";
 import { ReactComponent as ProfileShop } from "./profile-shop.svg";
 import { ReactComponent as ProfileSupport } from "./profile-support.svg";
 import { ReactComponent as ProfileSwitch } from "./profile-switch.svg";
+import { ReactComponent as RedAlert } from "./red-alert.svg";
 import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
 import { ReactComponent as RedTrash } from "./red-trash.svg";
 import { ReactComponent as Redbelly } from "./redbelly.svg";
@@ -127,6 +129,7 @@ import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
+import { ReactComponent as ShareIcon } from "./share-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
 import { ReactComponent as Shirt } from "./shirt.svg";
 import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
@@ -160,6 +163,7 @@ import { ReactComponent as ThreeStars } from "./three-stars.svg";
 import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
 import { ReactComponent as Token } from "./token.svg";
+import { ReactComponent as TrashRed } from "./trash-red.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
 import { ReactComponent as Unisat } from "./unisat.svg";
@@ -195,6 +199,7 @@ const AppIcons = {
   VariantsIcon,
   Xverse,
   RuleIcon,
+  TrashRed,
   EditIcon,
   DeleteIcon,
   ShopIcon,
@@ -228,6 +233,7 @@ const AppIcons = {
   Bitcoin,
   Stripe,
   File,
+  EditIconWhite,
   Discord,
   Web,
   LinkedIn,
@@ -253,6 +259,7 @@ const AppIcons = {
   DatepickerDashboard,
   Linea,
   WhiteShopIcon,
+  RedAlert,
   WhiteOpenWallet,
   HelpCenter,
   Logout,
@@ -365,7 +372,8 @@ const AppIcons = {
   AffiliateProductsArrow,
   AffiliateProductsSeparator,
   AffiliateProductsDollar,
-  AffiliateProductsPercent
+  AffiliateProductsPercent,
+  ShareIcon
 }
 
 export default AppIcons

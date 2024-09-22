@@ -1,12 +1,12 @@
 import { ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
 import { arraysAreEqual } from 'lib/utils/heper/helpers';
-import FullScreenLoader from 'pages/invoice-management/components/FullScreenLoader';
 import Input from 'pages/invoice-management/components/Input';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -77,7 +77,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
                 />
                 <ProductTable debouncedSearchTerm={debouncedSearchTerm} cart={cart} setCart={setCart} />
 
-                {isLoading && <FullScreenLoader />}
+                {isLoading && <FullScreenLoading />}
             </ModalBody>
         </AppModal>
     )

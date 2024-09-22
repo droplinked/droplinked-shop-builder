@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import React from 'react'
 
-function FullScreenLoader() {
+function FullScreenLoading() {
     return (
         <Flex
             position={"fixed"}
@@ -11,10 +11,11 @@ function FullScreenLoader() {
             backdropFilter="blur(20px)"
             justifyContent="center"
             alignItems="center"
+            zIndex={10}
         >
             <LoadingComponent />
         </Flex>
     )
 }
 
-export default FullScreenLoader
+export default FullScreenLoading

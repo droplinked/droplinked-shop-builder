@@ -1,5 +1,4 @@
-import { VARIANT_OPTIONS_ENUM } from "types/enum/variant.options.enum";
-import { LegalUsage } from "../subscription/interfaces";
+import { LegalUsage } from "../subscription/interfaces"
 
 export interface IproductList {
     page: number;
@@ -68,8 +67,10 @@ export interface IproductState {
     productTile?: any[];
     printful_option_data?: any;
     launchDate?: string | null;
-    legalUsage: LegalUsage[];
-    publish_status?: "PUBLISHED" | "DRAFTED";
+    legalUsage: LegalUsage[],
+    publish_status?: "PUBLISHED" | "DRAFTED",
+    commission?: number
+    canBeAffiliated?: boolean
 }
 
 export interface IpropertiesItems {
