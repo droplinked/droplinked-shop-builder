@@ -10,6 +10,7 @@ import { importAffiliateProductService } from "lib/apis/product/productServices"
 import productPageModel from "../../model";
 import AppIcons from "assest/icon/Appicons";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionChevron, AppAccordionPanel } from "components/redesign/accordion/AppAccordion";
+import useAppToast from "functions/hooks/toast/useToast";
 
 function ProductDetails() {
     const {
@@ -19,6 +20,11 @@ function ProductDetails() {
     const sizes = useMemo(() => productPageModel.getOptions({ skuIDs: product?.skuIDs, type: "size" }), [product]);
     const variants = useMemo(() => productPageModel.getCustomVariants(product?.skuIDs), [product]);
     const colors = useMemo(() => productPageModel.getOptions({ skuIDs: product?.skuIDs, type: "color" }), [product]);
+    const { showToast } = useAppToast();
+    const importProduct = async () =>
+        await mutateAsync({ productId: product?._id })
+            ?.then((res) => showToast({ type: "success", message: "Product Imported" }))
+            .catch(async (e) => showToast({ type: "error", message: await e?.response?.data?.data?.message }));
     return (
         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="48px" alignSelf="stretch">
             <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
@@ -81,7 +87,7 @@ function ProductDetails() {
                       </Box>
                   ))
                 : null}
-            <BasicButton isLoading={isLoading} isDisabled={isLoading} width={"full"} onClick={async () => await mutateAsync({ productId: product?._id })}>
+            <BasicButton isLoading={isLoading} isDisabled={isLoading} width={"full"} onClick={importProduct}>
                 Import Product
             </BasicButton>
             <Divider width={"full"} borderColor={"#292929"} />

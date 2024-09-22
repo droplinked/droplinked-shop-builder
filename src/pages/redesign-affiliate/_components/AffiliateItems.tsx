@@ -5,7 +5,7 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import React from "react";
 
 export const LAffiliateItem = () => (
-    <Box width="288px" height="360px" position="relative">
+    <Box width="full" height="360px" position="relative">
         <Skeleton height="100%" width="100%" borderRadius="8px" />
         <Box position="absolute" bottom="0" left="0" right="0" padding="12px 16px 16px 16px" borderRadius="8px" background="rgba(255, 255, 255, 0.10)" backdropFilter="blur(25px)">
             <Skeleton height="24px" width="80%" mb="8px" />
@@ -45,7 +45,7 @@ const AffiliateItem = ({
         <Box
             position="relative"
             display="flex"
-            width="288px"
+            width="full"
             height="360px"
             padding="8px"
             flexDirection="column"
@@ -64,11 +64,12 @@ const AffiliateItem = ({
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    backgroundImage: `url(${image})`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    transition: "transform 0.3s ease",
+                    // backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.80) 100%), url(${image})`,
+                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.15) 100%), url(${image}) lightgray -24.16px -11.282px / 116.233% 107.464%`,
+                    transition: "transform 0.3s ease 0.1s",
                     zIndex: -1,
                     transform: "scale(1.1)",
                 },
@@ -89,7 +90,7 @@ const AffiliateItem = ({
                 display="flex"
                 padding="12px 16px 16px 16px"
                 borderRadius="8px"
-                background="rgba(255, 255, 255, 0.10)"
+                background="rgba(0, 0, 0, 0.15)"
                 backdropFilter="blur(25px)"
                 flexDirection="column"
                 justifyContent="center"

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Flex, Skeleton, Text } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
 import { getProductsCommunityService } from "lib/apis/product/productServices";
@@ -24,33 +24,33 @@ const AffiliateProductsList = () => {
 
     if (isLoading)
         return (
-            <Flex flexWrap={"wrap"} flexDir={"row"} justifyContent={"space-between"} marginTop={"24px"} alignItems={"flex-start"} gap={"16px"}>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, "2xl": 4 }} spacing={"16px"} width="full">
                 {Array(4)
                     .fill(0)
                     .map((_, index) => (
                         <LAffiliateItem />
                     ))}
-            </Flex>
+            </SimpleGrid>
         );
     if (isError) return <Text>Error loading products</Text>;
 
     return (
-        <Box color={"white"}>
+        <Box color={"white"} width={"full"}>
             <InfiniteScroll
                 dataLength={data?.pages.flatMap((page) => page?.data)?.length || 0}
                 next={fetchNextPage}
                 hasMore={!!hasNextPage}
                 loader={
-                    <Flex flexWrap={"wrap"} flexDir={"row"} justifyContent={"space-between"} marginTop={"24px"} alignItems={"flex-start"} gap={"16px"}>
+                    <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, "2xl": 4 }} spacing={"16px"} width="full">
                         {Array(4)
                             .fill(0)
                             .map((_, index) => (
                                 <LAffiliateItem />
                             ))}
-                    </Flex>
+                    </SimpleGrid>
                 }
             >
-                <Flex flexWrap={"wrap"} flexDir={"row"} justifyContent={"space-between"} alignItems={"flex-start"} gap={"16px"}>
+                <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, "2xl": 4 }} spacing={"16px"} width="full">
                     {data?.pages
                         ?.flatMap((page) => page?.data)
                         ?.map((product: any) => (
@@ -65,7 +65,7 @@ const AffiliateProductsList = () => {
                                 logo={product.ownerShops?.logo}
                             />
                         ))}
-                </Flex>
+                </SimpleGrid>
             </InfiniteScroll>
         </Box>
     );

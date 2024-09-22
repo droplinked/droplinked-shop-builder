@@ -1,4 +1,4 @@
-import { Box, Flex, Link, VStack } from "@chakra-ui/react";
+import { Box, Flex, Link, SimpleGrid, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
@@ -49,30 +49,11 @@ const AffiliateStoresProfile = () => {
                     </Flex>
                 </Box>
             </Box>
-            <Flex flexWrap={"wrap"} width={"full"} flexDir={"row"} justifyContent={"flex-start"} alignItems={"flex-start"} gap={"16px"}>
-                {!isLoadingStore ? (
-                    storeProfile?.products?.map((product: any) => (
-                        <AffiliateItem
-                            key={product.slug}
-                            slug={product.slug}
-                            name={product.title}
-                            price={product.skus?.[0]?.price}
-                            commission={product.commission}
-                            image={product.media?.find((urls) => urls?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url}
-                            ownerName={product.ownerShops?.name}
-                            logo={product.ownerShops?.logo}
-                        />
-                    ))
-                ) : (
-                    <Flex flexWrap={"wrap"} flexDir={"row"} justifyContent={"space-between"} marginTop={"24px"} alignItems={"flex-start"} gap={"16px"}>
-                        {Array(4)
-                            .fill(0)
-                            .map((_, index) => (
-                                <LAffiliateItem key={index} />
-                            ))}
-                    </Flex>
-                )}
-            </Flex>
+            <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4, "2xl": 4 }} spacing={"24px"} width="full">
+                {isLoadingStore 
+                ? Array(4).fill(0).map((_, index) => (<Box key={`skeleton-${index}`} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><LAffiliateItem /></Box>))
+                : storeProfile?.products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem key={product?.slug} slug={product?.slug} name={product?.title} price={product?.skuIDs?.[0]?.price} commission={product?.skuIDs?.[0]?.commision} image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product?.media?.[0]?.thumbnail || product?.media?.[0]?.url} ownerName={storeProfile?.name} logo={storeProfile?.logo}/></Box> ))}
+            </SimpleGrid>
         </Box>
     );
 };

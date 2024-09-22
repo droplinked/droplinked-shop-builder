@@ -83,18 +83,17 @@ export const updateProductLinkOptionsService = (options: PaymentLinkData) => {
 
 export const getProductsCommunityService = (params: IGetProductsCommunityService) => {
     const queryParams = new URLSearchParams();
-
     Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined) {
-            // if (Array.isArray(value)) {
-            // value.forEach((item) => queryParams.append(key, item));
-            // } else {
-            if (!isNaN(value)) queryParams.append(key, (value));
-            else queryParams.append(key, JSON.stringify(value));
-            // }
+        if (value !== undefined && value !== null && value !== "") {
+            if (Array.isArray(value) && value.length > 0) {
+                queryParams.append(key, JSON.stringify(value));
+            } else if (!isNaN(Number(value))) {
+                queryParams.append(key, value.toString());
+            } else {
+                queryParams.append(key, value);
+            }
         }
     });
-
     return axiosInstance.get(`/product/community/view?${queryParams.toString()}`);
 };
 

@@ -139,14 +139,7 @@ const AffiliateProductsLayout = () => {
                                 </AppAccordionTrigger>
                                 <AppAccordionPanel paddingTop={"24px"}>
                                     <HStack width={"full"} spacing={"8px"}>
-                                        <Box
-                                            display="flex"
-                                            padding="12px 16px"
-                                            alignItems="center"
-                                            gap="8px"
-                                            borderRadius="8px"
-                                            border={`1.5px solid ${filters?.lowestPrice && filters?.lowestPrice !== 0 ? "#2BCFA1" : "#292929"}`}
-                                        >
+                                        <Box display="flex" padding="12px 16px" alignItems="center" gap="8px" borderRadius="8px" border={`1.5px solid ${filters?.lowestPrice ? "#2BCFA1" : "#292929"}`}>
                                             <AppIcons.AffiliateProductsDollar />
                                             <Input
                                                 fontSize="14px"
@@ -159,9 +152,12 @@ const AffiliateProductsLayout = () => {
                                                 _hover={{}}
                                                 _focusVisible={{}}
                                                 _placeholder={{ color: "#7B7B7B" }}
-                                                value={filters.title}
+                                                value={filters.lowestPrice}
                                                 placeholder="0"
-                                                onChange={(e) => handleFilterChange("lowestPrice", e.target.value)}
+                                                onChange={(e) => !isNaN(parseFloat(e?.target?.value)) && handleFilterChange("lowestPrice", parseFloat(e.target.value))}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "+" || e.key === "-" || e.key === "e") e.preventDefault();
+                                                }}
                                             />
                                         </Box>
                                         <AppIcons.AffiliateProductsSeparator />
@@ -171,10 +167,11 @@ const AffiliateProductsLayout = () => {
                                             alignItems="center"
                                             gap="8px"
                                             borderRadius="8px"
-                                            border={`1.5px solid ${filters?.lowestPrice && filters?.lowestPrice !== 0 ? "#2BCFA1" : "#292929"}`}
+                                            border={`1.5px solid ${filters?.highestPrice ? "#2BCFA1" : "#292929"}`}
                                         >
                                             <AppIcons.AffiliateProductsDollar />
                                             <Input
+                                                type="number"
                                                 fontSize="14px"
                                                 fontWeight="400"
                                                 width={"full"}
@@ -186,9 +183,12 @@ const AffiliateProductsLayout = () => {
                                                 _hover={{}}
                                                 _focusVisible={{}}
                                                 _placeholder={{ color: "#7B7B7B" }}
-                                                value={filters.title}
+                                                value={filters.highestPrice}
                                                 placeholder="1000"
-                                                onChange={(e) => handleFilterChange("highestPrice", e.target.value)}
+                                                onChange={(e) => !isNaN(parseFloat(e?.target?.value)) && handleFilterChange("highestPrice", parseFloat(e.target.value))}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "+" || e.key === "-" || e.key === "e") e.preventDefault();
+                                                }}
                                             />
                                         </Box>
                                     </HStack>
@@ -220,10 +220,11 @@ const AffiliateProductsLayout = () => {
                                             alignItems="center"
                                             gap="8px"
                                             borderRadius="8px"
-                                            border={`1.5px solid ${filters?.lowestCommission && filters?.lowestCommission !== 0 ? "#2BCFA1" : "#292929"}`}
+                                            border={`1.5px solid ${filters?.lowestCommission ? "#2BCFA1" : "#292929"}`}
                                         >
                                             <AppIcons.AffiliateProductsPercent />
                                             <Input
+                                                type="number"
                                                 fontSize="14px"
                                                 fontWeight="400"
                                                 color="#FFFFFF"
@@ -234,9 +235,12 @@ const AffiliateProductsLayout = () => {
                                                 _hover={{}}
                                                 _focusVisible={{}}
                                                 _placeholder={{ color: "#7B7B7B" }}
-                                                value={filters.title}
+                                                value={filters.lowestCommission}
                                                 placeholder="0"
-                                                onChange={(e) => handleFilterChange("lowestCommission", e.target.value)}
+                                                onChange={(e) => !isNaN(parseFloat(e?.target?.value)) && handleFilterChange("lowestCommission", parseFloat(e.target.value))}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "+" || e.key === "-" || e.key === "e") e.preventDefault();
+                                                }}
                                             />
                                         </Box>
                                         <AppIcons.AffiliateProductsSeparator />
@@ -246,10 +250,11 @@ const AffiliateProductsLayout = () => {
                                             alignItems="center"
                                             gap="8px"
                                             borderRadius="8px"
-                                            border={`1.5px solid ${filters?.highestCommission && filters?.highestCommission !== 0 ? "#2BCFA1" : "#292929"}`}
+                                            border={`1.5px solid ${filters?.highestCommission ? "#2BCFA1" : "#292929"}`}
                                         >
                                             <AppIcons.AffiliateProductsPercent />
                                             <Input
+                                                type="number"
                                                 fontSize="14px"
                                                 fontWeight="400"
                                                 width={"full"}
@@ -261,9 +266,12 @@ const AffiliateProductsLayout = () => {
                                                 _hover={{}}
                                                 _focusVisible={{}}
                                                 _placeholder={{ color: "#7B7B7B" }}
-                                                value={filters.title}
-                                                placeholder="1000"
-                                                onChange={(e) => handleFilterChange("highestCommission", e.target.value)}
+                                                value={filters.highestCommission}
+                                                placeholder="100"
+                                                onChange={(e) => !isNaN(parseFloat(e?.target?.value)) && handleFilterChange("highestCommission", parseFloat(e.target.value))}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "+" || e.key === "-" || e.key === "e") e.preventDefault();
+                                                }}
                                             />
                                         </Box>
                                     </HStack>

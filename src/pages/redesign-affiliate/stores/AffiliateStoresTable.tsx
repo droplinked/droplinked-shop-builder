@@ -42,11 +42,11 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
             header: "Merchant",
             cell: (info) => {
                 const { logo, name, _id } = info?.row?.original;
-                if (logo && name && _id)
+                if (name && _id)
                     return (
                         <Link to={`/dashboard/affiliate/stores/${_id}`}>
                             <Flex alignItems={"center"} gap={"16px"} cursor={"pointer"}>
-                                {logo ? <AppImage className="polygon-image" width={"56px"} height={"56px"} src={logo} /> : null}
+                                {logo && logo !== "" ? <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} /> : <AppIcons.SidebarDroplinked width={"56px"} height={"56px"} />}
                                 <AppTypography fontSize={"16px"} fontWeight={"400"} fontFamily={"Inter"} color="#FFF">
                                     {name}
                                 </AppTypography>
@@ -57,19 +57,19 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
             },
         },
         {
-            accessorKey: "products",
+            accessorKey: "totalProducts",
             header: "Products",
-            cell: (info) => (info?.getValue() as Array<any>)?.length,
+            cell: (info) => (info?.getValue()),
         },
         { accessorKey: "totalSoldUnits", header: "Units Sold", cell: (info) => info.getValue() },
-        { accessorKey: "totalSoldUnits", header: "Avg. Commission", cell: (info) => info.getValue() },
+        { accessorKey: "averageCommission", header: "Avg. Commission", cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
         {
-            accessorKey: "products",
+            accessorKey: "topProducts",
             header: "Top Products",
             cell: (info) => (
                 <Flex gap={"-8px"}>
                     {(info?.getValue() as Array<any>)?.map((product) => (
-                        <AppImage width={"40px"} height={"40px"} rounded={"25px"} src={product?.media?.find((med) => med?.isMain === true)?.url || product?.media?.[0]?.url} />
+                        <AppImage width={"40px"} height={"40px"} rounded={"25px"} src={product?.url} />
                     ))}
                 </Flex>
             ),
