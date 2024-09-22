@@ -1,5 +1,6 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SHOP_URL } from "lib/utils/app/variable";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
@@ -9,7 +10,8 @@ interface DirectLinkContentProps {
 }
 
 const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
-  const productLink = `${SHOP_URL}/paylink/product/${product.id}`;
+  const { shop } = useProfile();
+  const productLink = `${SHOP_URL}/${shop.name}/product/${product.slug}`;
 
   return (
     <Box width="100%" bg="#292929" padding="32px">
