@@ -117,7 +117,7 @@ function ShippingMethodRadio({ method, ...radioProps }) {
                 <Box flex={1}>
                     <Flex alignItems="center" sx={{ "p": { fontWeight: 500, color: "white" } }}>
                         <AppTypography flex={1}>{method.title}</AppTypography>
-                        <AppTypography>{method.price}</AppTypography>
+                        <AppTypography price>{method.price.toFixed(2)}</AppTypography>
                     </Flex>
                     <Flex mt={2} direction={{ base: "column", xl: "row" }} justifyContent="space-between" alignItems={{ base: "normal", xl: "center" }}>
                         <ShippingMethodDetails title="Estimated Delivery" value={method.delivery_estimation} isChecked={isChecked} />

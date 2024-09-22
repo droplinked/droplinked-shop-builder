@@ -89,13 +89,13 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     <Td>
                         <Flex alignItems="center" gap={3} opacity={index === 0 ? 1 : 0}>
                             <AppImage src={product.image} width={12} height={12} />
-                            <ProductTitleCell title={product.title} />
+                            <ProductTitleCell title={product.title} wordLimit={10} />
                         </Flex>
                     </Td>
-                    <Td>{sku.options?.color?.caption || 'N/A'}</Td>
-                    <Td>{sku.options?.size?.caption || 'N/A'}</Td>
-                    <Td>{sku.options?.quantity || 'N/A'}</Td>
-                    <Td>{sku.totals?.priceItem || 'N/A'}</Td>
+                    <Td>{sku.options?.color?.caption || '-'}</Td>
+                    <Td>{sku.options?.size?.caption || '-'}</Td>
+                    <Td>{sku.options?.quantity || '-'}</Td>
+                    <Td>{`$${sku.totals?.priceItem?.toFixed(2)} USD` || '-'}</Td>
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}
