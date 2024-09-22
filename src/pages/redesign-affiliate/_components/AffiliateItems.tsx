@@ -1,8 +1,27 @@
-import { Box, Divider, Flex } from "@chakra-ui/react";
+import { Box, Divider, Flex, Skeleton } from "@chakra-ui/react";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import React from "react";
+
+export const LAffiliateItem = () => (
+    <Box width="288px" height="360px" position="relative">
+        <Skeleton height="100%" width="100%" borderRadius="8px" />
+        <Box position="absolute" bottom="0" left="0" right="0" padding="12px 16px 16px 16px" borderRadius="8px" background="rgba(255, 255, 255, 0.10)" backdropFilter="blur(25px)">
+            <Skeleton height="24px" width="80%" mb="8px" />
+            <Flex justifyContent="space-between">
+                <Box>
+                    <Skeleton height="16px" width="40px" mb="4px" />
+                    <Skeleton height="20px" width="60px" />
+                </Box>
+                <Box>
+                    <Skeleton height="16px" width="40px" mb="4px" />
+                    <Skeleton height="20px" width="60px" />
+                </Box>
+            </Flex>
+        </Box>
+    </Box>
+);
 
 const AffiliateItem = ({
     image,
