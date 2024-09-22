@@ -105,3 +105,8 @@ export const getSingleProductCommunityService = ({ slug, user }: IGetSingleProdu
 export const importAffiliateProductService = ({ productId }: IimportAffiliateProduct) => {
     return axiosInstance.post(`/product/community/import`, { productId });
 };
+
+
+export const getNewProducts = () => axiosInstance.get('/product/community/new');
+
+export const getHotProducts = () => axiosInstance.get(`/product/community/view/hot`);
