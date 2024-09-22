@@ -222,7 +222,7 @@ const AffiliateProductsLayout = () => {
                                             borderRadius="8px"
                                             border={`1.5px solid ${filters?.lowestCommission && filters?.lowestCommission !== 0 ? "#2BCFA1" : "#292929"}`}
                                         >
-                                            <AppIcons.AffiliateProductsDollar />
+                                            <AppIcons.AffiliateProductsPercent />
                                             <Input
                                                 fontSize="14px"
                                                 fontWeight="400"
@@ -248,7 +248,7 @@ const AffiliateProductsLayout = () => {
                                             borderRadius="8px"
                                             border={`1.5px solid ${filters?.highestCommission && filters?.highestCommission !== 0 ? "#2BCFA1" : "#292929"}`}
                                         >
-                                            <AppIcons.AffiliateProductsDollar />
+                                            <AppIcons.AffiliateProductsPercent />
                                             <Input
                                                 fontSize="14px"
                                                 fontWeight="400"
@@ -301,12 +301,12 @@ const AffiliateProductsLayout = () => {
                                     onChange={(e) => handleFilterChange("title", e.target.value)}
                                 />
                             </Flex>
-                            <Select width="200px" bgColor="#1C1C1C" onChange={(e) => handleFilterChange("sort", e.target.value)}>
+                            {/* <Select width="200px" bgColor="#1C1C1C" onChange={(e) => handleFilterChange("sort", e.target.value)}>
                                 <option value={"LOWEST_PRICE"}>Lowest Price</option>
                                 <option value={"HEIGHEST_PRICE"}>Heighst Price</option>
                                 <option value={"LOWEST_COMMISSION"}>Lowest Commission</option>
                                 <option value={"HEIGHEST_COMMISSION"}>Heighst Commission</option>
-                            </Select>
+                            </Select> */}
                         </HStack>
                         <AffiliateProductsList />
                     </VStack>

@@ -180,6 +180,7 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as  AffiliateProductsArrow} from "./affiliate-products-arrow.svg";
 import { ReactComponent as  AffiliateProductsSeparator} from "./affiliate-products-separator.svg";
 import { ReactComponent as  AffiliateProductsDollar} from "./affiliate-products-dollar.svg";
+import { ReactComponent as  AffiliateProductsPercent} from "./affiliate-products-percent.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -363,7 +364,8 @@ const AppIcons = {
   ProfileSwitch,
   AffiliateProductsArrow,
   AffiliateProductsSeparator,
-  AffiliateProductsDollar
+  AffiliateProductsDollar,
+  AffiliateProductsPercent
 }
 
 export default AppIcons
