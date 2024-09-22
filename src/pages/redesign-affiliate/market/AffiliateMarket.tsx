@@ -56,7 +56,7 @@ const AffiliateMarket = () => {
                             : newShops?.data?.data?.map((shop, index) => (
                                   <Box key={shop._id} display={{ base: index < 3 ? "block" : "none", sm: index < 3 ? "block" : "none", md: index < 3 ? "block" : "none", lg: index < 4 ? "block" : "none", xl: index < 5 ? "block" : "none", "2xl": index < 5 ? "block" : "none" }}>
                                       <Link to={`/dashboard/affiliate/stores/${shop?._id}`} style={{ display: "flex", flex: "1 0 0", alignItems: "center", cursor: "pointer", gap: "16px", borderRadius: "8px" }}>
-                                          <AppImage rounded="full" src={shop?.logo} />
+                                          <AppImage rounded="full" width={"56px"} height={"56px"} src={shop?.logo} />
                                           <Box display="flex" flexDirection="column" justifyContent="center" alignItems="flex-start">
                                               <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="700" lineHeight="24px">{shop?.name}</AppTypography>
                                               <AppTypography color="#F5F7FA99" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">Merchant</AppTypography>
