@@ -1,4 +1,4 @@
-import { Center, forwardRef } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
 import React from 'react';
 import QRCode from 'react-qr-code';
 

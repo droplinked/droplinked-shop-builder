@@ -1,15 +1,14 @@
-import { useState } from "react";
-import AppModal from "components/redesign/modal/AppModal";
 import { Box, ModalBody } from "@chakra-ui/react";
-
-import Header from "./parts/Header";
-import TabButtons from "./parts/TabButtons";
+import AppModal from "components/redesign/modal/AppModal";
+import React, { useState } from "react";
 import DirectLinkContent from "./parts/DirectLinkContent";
+import Header from "./parts/Header";
 import PaymentLinkContent from "./parts/PaymentLinkContent";
 import ProductTileContent from "./parts/ProductTileContent";
 import SocialTileContent from "./parts/SocialTileContent";
-import TABS from "./tabsConstants"; // وارد کردن مقادیر ثابت از فایل جدید
+import TabButtons from "./parts/TabButtons";
 import { transformProductData } from "./productUtils";
+import TABS from "./tabsConstants"; // وارد کردن مقادیر ثابت از فایل جدید
 
 interface IProps {
   close: () => void;
@@ -19,17 +18,12 @@ interface IProps {
 
 function ProductShareModal({ close, open, product }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
-  console.log("product ", product);
   // استفاده از تابع transformProductData برای تبدیل داده‌های ورودی
   const transformedProduct = transformProductData(product);
 
-  if (!transformedProduct) {
-    return <></>; // نمایش پیام اگر داده محصول موجود نبود
-  }
-  console.log("transformedProduct ", transformedProduct);
-  const handleTabChange = (tabName: string) => {
-    setActiveTab(tabName);
-  };
+  if (!transformedProduct) return <></>; // نمایش پیام اگر داده محصول موجود نبود
+
+  const handleTabChange = (tabName: string) => setActiveTab(tabName);
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -47,11 +41,6 @@ function ProductShareModal({ close, open, product }: IProps) {
         return <DirectLinkContent product={transformedProduct} />;
     }
   };
-
-  //   <AppModal
-  //   modalRootProps={{ isOpen, onClose, size: "5xl", scrollBehavior: "outside" }}
-  //   modalContentProps={{ width: "936px" }}
-  // >
 
   return (
     <AppModal

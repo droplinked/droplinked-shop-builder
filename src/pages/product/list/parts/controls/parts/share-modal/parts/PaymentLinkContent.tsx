@@ -1,11 +1,12 @@
-import { Box, Flex, Button, Divider } from "@chakra-ui/react";
-import { useState ,useRef } from "react";
-import { useNavigate } from 'react-router-dom';
-import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
-import ColorCircle from "./ColorCircle";
-import QRCodeComponent from "./QRCodeComponent";
+import { Box, Button, Divider, Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
+import { SHOP_URL } from "lib/utils/app/variable";
+import React, { useRef, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import ColorCircle from "./ColorCircle";
 import { downloadQRCode } from "./downloadQRCode";
+import QRCodeComponent from "./QRCodeComponent";
 
 // تعریف ثابت‌های رنگ‌ها
 const WHITE_COLOR = "#FFFFFF";
@@ -18,22 +19,16 @@ interface PaymentLinkContentProps {
 }
 
 const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
-  const qrCodeContainerRef = useRef<HTMLDivElement>(null); 
-  const navigate = useNavigate(); 
+  const qrCodeContainerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState<CircleColor>(WHITE_COLOR); // رنگ پیش‌فرض سفید
-  // ساخت لینک محصول با استفاده از `id`
-  const productLink = `https://droplinked.io/bedi/product/${id}`;
+  const productLink = `${SHOP_URL}/paylink/product/${id}`;
 
   const handleNavigateSettings = () => {
     navigate('/dashboard/settings/payment-link-design'); // ناوبری به مسیر در همان تب
   };
 
-
-
-
-  const handleDownloadClick = () => {
-    downloadQRCode(qrCodeContainerRef, 'qrcode.png'); // استفاده از تابع دانلود
-  };
+  const handleDownloadClick = () => downloadQRCode(qrCodeContainerRef, 'qrcode.png'); // استفاده از تابع دانلود
 
   // تابع تغییر رنگ
   const toggleColor = () => {
@@ -51,7 +46,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
         flexDirection="column"
         height="auto"
         mb="24px"
-        pY='24px'
+        py='24px'
       >
         <QRCodeComponent ref={qrCodeContainerRef} link={productLink} color={selectedColor} />
 
@@ -97,7 +92,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
             Configure
           </Button>
           <Button
-          sx={{ "svg path": { stroke: "#2BCFA1" } }}
+            sx={{ "svg path": { stroke: "#2BCFA1" } }}
             leftIcon={<AppIcons.Download width={20} height={20} />}
             color="#2BCFA1"
             fontFamily="Inter"

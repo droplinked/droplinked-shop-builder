@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { useState } from "react";
-import TABS from '../tabsConstants'
+import React from "react";
+import TABS from '../tabsConstants';
 
 interface TabButtonsProps {
   onTabChange: (tabName: string) => void;

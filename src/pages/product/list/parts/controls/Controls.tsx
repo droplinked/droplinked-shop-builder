@@ -94,10 +94,10 @@ function ControlsListProduct({ productID, product, fetch }) {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
             },
-            {
-                caption: "Get payment link",
-                onClick: () => paymentLinkModal.onOpen()
-            },
+            // {
+            //     caption: "Get payment link",
+            //     onClick: () => paymentLinkModal.onOpen()
+            // },
             {
                 caption: "Share",
                 onClick: () => handleShareModal.onOpen()
@@ -127,8 +127,8 @@ function ControlsListProduct({ productID, product, fetch }) {
             {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
             {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
             {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} product={product} />}
-         
-             
+
+
         </>
     )
 }

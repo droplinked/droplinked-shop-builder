@@ -1,15 +1,15 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
+import { SHOP_URL } from "lib/utils/app/variable";
+import React from "react";
 import { TransformedProduct } from "../productUtils";
+
 interface DirectLinkContentProps {
   product: TransformedProduct;
 }
 
 const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
-  // لینک محصول با استفاده از `slug`
-  const productLink = `https://dev.droplinked.io/tbest28/product/${product.slug}`;
-
-  //
+  const productLink = `${SHOP_URL}/paylink/product/${product.id}`;
 
   return (
     <Box width="100%" bg="#292929" padding="32px">

@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import AppIcons from "assest/icon/Appicons";
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import React from "react";
 import { TransformedProduct } from "../productUtils";
 
 //ShareIcon

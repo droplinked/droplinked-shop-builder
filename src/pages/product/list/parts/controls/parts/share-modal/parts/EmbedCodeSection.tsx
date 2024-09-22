@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Flex, Text, Link, Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom"; // وارد کردن useNavigate از react-router-dom
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import useAppToast from 'functions/hooks/toast/useToast';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface EmbedCodeSectionProps {
   embedCode: string; // متن کد تعبیه شده
@@ -10,12 +10,8 @@ interface EmbedCodeSectionProps {
   helpLink: string; // لینک صفحه کمک
 }
 
-const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({
-  embedCode,
-  configLink,
-  helpLink,
-}) => {
-  const navigate = useNavigate(); // استفاده از useNavigate برای ناوبری
+const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLink, helpLink }) => {
+  const navigate = useNavigate();
   const { showToast } = useAppToast();
 
   const handleCopy = () => {
@@ -23,9 +19,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({
     showToast({ message: 'Copied', type: "success", options: { autoClose: 200, hideProgressBar: true } });
   };
 
-  const handleNavigate = (link: string) => {
-    navigate(link); // هدایت به مسیر با استفاده از useNavigate
-  };
+  const handleNavigate = (link: string) => navigate(link);
 
   return (
     <Flex
@@ -40,17 +34,17 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({
       position="relative"
       mt="0"
     >
-         {/* متن "Embed Code" به صورت مطلق برای قرارگیری دقیق روی بردر */}
-         <Text
-          fontSize="14px"
-          fontWeight="bold"
-          color="white"
-          position="absolute"
-          px="8px"  // پدینگ افقی برای فاصله‌دهی
-          zIndex="1" // نمایش در بالای بردر
-        >
-          Embed Code
-        </Text>
+      {/* متن "Embed Code" به صورت مطلق برای قرارگیری دقیق روی بردر */}
+      <Text
+        fontSize="14px"
+        fontWeight="bold"
+        color="white"
+        position="absolute"
+        px="8px"  // پدینگ افقی برای فاصله‌دهی
+        zIndex="1" // نمایش در بالای بردر
+      >
+        Embed Code
+      </Text>
       {/* کد تعبیه */}
       <Box
         as="pre"
@@ -69,8 +63,6 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({
         border="1px solid #292929"
         mt="16px"  // فاصله‌دهی برای قرارگیری مناسب زیر متن Embed Code
       >
-     
-
         {/* دکمه کپی بالا سمت راست */}
         <AppIcons.Copy
           width={20}
@@ -83,7 +75,6 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({
           }}
           onClick={handleCopy}
         />
-
         {embedCode}
       </Box>
 

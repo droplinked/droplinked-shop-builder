@@ -6,8 +6,8 @@ import styles from "./styles.module.scss"
 
 interface Props {
     link: string;
-    buttonBgColor?: string; 
-  }
+    buttonBgColor?: string;
+}
 
 export default function AppShareableLink({ link, buttonBgColor }: Props) {
     return (
@@ -31,7 +31,7 @@ function LinkInput({ link }: Props) {
 function ShareButton({ link, buttonBgColor }: Props) {
     return (
         <Link href={link} target='_blank'>
-            <Center width={12} height={12} borderRadius={8}  bgColor={buttonBgColor || "#3C3C3C"} >
+            <Center width={12} height={12} borderRadius={8} bgColor={buttonBgColor || "#3C3C3C"} >
                 <AppIcons.Share />
             </Center>
         </Link>
