@@ -50,7 +50,7 @@ function ProductShareModal({ close, open, product }: IProps) {
         size: "xl",
         scrollBehavior: "outside",
       }}
-      modalContentProps={{ width: "100%", padding: "0px !important" }}
+      modalContentProps={{ width: "100%", padding: "0px !important", overflow: "hidden" }}
     >
       <ModalBody padding="0px !important">
         <Box pt="48px" pr="48px" pl="48px" pb="0px">
