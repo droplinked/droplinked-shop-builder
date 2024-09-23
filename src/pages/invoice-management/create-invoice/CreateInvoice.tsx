@@ -1,10 +1,10 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
+import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading'
 import { Form, Formik, FormikProvider } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../components/Button'
-import FullScreenLoader from '../components/FullScreenLoader'
 import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
 import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
@@ -42,7 +42,7 @@ export default function CreateInvoice() {
         }
     }, [invoiceId, data, updateCart, updateIsEditMode])
 
-    if (isFetching) return <FullScreenLoader />
+    if (isFetching) return <FullScreenLoading />
 
     const handleSubmit = (values: InvoiceFormSchema) => {
         if (!isInvoiceDataValid(values)) return

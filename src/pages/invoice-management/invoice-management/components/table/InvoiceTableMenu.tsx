@@ -16,10 +16,9 @@ export default function InvoiceTableMenu({ invoice }) {
 
     return (
         <>
-            <Menu>
+            <Menu isLazy>
                 <MenuButton as={"button"}><AppIcons.Dots /></MenuButton>
                 <MenuList
-                    width={"144px !important"}
                     border={"1px solid #292929"}
                     borderRadius={8}
                     padding={0}
@@ -30,7 +29,6 @@ export default function InvoiceTableMenu({ invoice }) {
                         "button": {
                             display: "flex",
                             alignItems: "center",
-                            gap: 2,
                             px: 4,
                             py: 3,
                             fontSize: 16,
@@ -42,13 +40,15 @@ export default function InvoiceTableMenu({ invoice }) {
                     }}
                 >
                     {invoice.status === "ACTIVE" &&
-                        <MenuItem onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}>
-                            <AppIcons.Edit />
+                        <MenuItem
+                            icon={<AppIcons.Edit />}
+                            onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}
+                        >
                             Edit
                         </MenuItem>
                     }
-                    <MenuItem color={"#FF2244"} onClick={onOpen}>
-                        <AppIcons.RedTrash />
+
+                    <MenuItem icon={<AppIcons.RedTrash />} color={"#FF2244"} onClick={onOpen}>
                         Delete
                     </MenuItem>
                 </MenuList>

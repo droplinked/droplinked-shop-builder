@@ -3,6 +3,8 @@ import {
 	IchargeCreditService,
 	ICustomReferralCode,
 	IDeployContract,
+	IGetShopCommunityProfile,
+	IGetShopsCommunityService,
 	IpaymentCreateService,
 	IproductService,
 	IrecordedShopService,
@@ -124,3 +126,21 @@ export const createExtraShopForCurrentUserService = (name: string) =>
 
 export const switchShopService = (shopId: string) =>
 	axiosInstance.post('shop/switch', { shopId }).then((res) => res.data);
+
+export const getShopsCommunityService = (params: IGetShopsCommunityService) => {
+    const queryParams = new URLSearchParams();
+
+    Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined) {
+            if (!isNaN(value)) queryParams.append(key, (value));
+            else queryParams.append(key, JSON.stringify(value));
+        }
+    });
+
+    return axiosInstance.get(`/shop/community/view?${queryParams.toString()}`);
+};
+
+export const getNewShopsService = () => axiosInstance.get('/shop/community/new')
+
+
+export const getShopCommunityProfile = ({shopId}: IGetShopCommunityProfile) => axiosInstance.get(`/shop/community/view/products/${shopId}`)

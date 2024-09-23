@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios'
+import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { getBlogByIdService } from 'lib/apis/blog/services'
 import useAppStore from 'lib/stores/app/appStore'
-import ProductLoading from 'pages/product/single/parts/loading/ProductLoading'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -29,7 +29,9 @@ function SingleBlog() {
 
     return (
         <>
-            {isFetching ? <ProductLoading /> : <BlogForm blog={{ ...blog, content: JSON.parse(blog.content) }} />}
+            {isFetching ?
+                <FullScreenLoading /> :
+                <BlogForm blog={{ ...blog, content: JSON.parse(blog.content) }} />}
         </>
     )
 }

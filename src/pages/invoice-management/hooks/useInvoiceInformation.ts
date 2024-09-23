@@ -23,13 +23,14 @@ export default function useInvoiceInformation(invoiceId?: string) {
 
     function formatFullName() {
         const { firstName, lastName } = invoice?.address ?? {}
-        return [firstName, lastName].filter(Boolean).join(' ')
+        const fullName = [firstName, lastName].filter(Boolean).join(' ')
+        return fullName || "-"
     }
 
     function formatAddress() {
         const { addressLine1, addressLine2, city, state, zip, country } = invoice?.address ?? {}
         const formattedAddress = [addressLine1, addressLine2, city, state, zip, country].filter(Boolean).join(', ')
-        return formattedAddress
+        return formattedAddress || "-"
     }
 
     function findSelectedShippingTitle() {
@@ -37,21 +38,21 @@ export default function useInvoiceInformation(invoiceId?: string) {
             const selectedMethod = shippingGroup.data.find(method => method.selected)
             if (selectedMethod) return selectedMethod.title
         }
-        return "N/A"
+        return "-"
     }
 
     const invoiceInformationMap: InvoiceInformationMap = {
         "Information": [
-            { label: "ID Number", value: invoice?._id || "N/A" },
-            { label: "Status", value: invoice?.status || "N/A" },
-            { label: "Memo", value: invoice?.note || "N/A" }
+            { label: "ID Number", value: invoice?._id || "-" },
+            { label: "Status", value: invoice?.status || "-" },
+            { label: "Memo", value: invoice?.note || "-" }
         ],
         "Client detail": [
-            { label: "Full name", value: areAllProductsDigital ? "N/A" : formatFullName() },
-            { label: "Email Address", value: invoice?.email },
-            { label: "Mobile Number", value: areAllProductsDigital ? "N/A" : invoice?.address?.phoneNumber },
-            { label: "Address", value: areAllProductsDigital ? "N/A" : formatAddress() },
-            { label: "Shipping Method", value: areAllProductsDigital ? "N/A" : findSelectedShippingTitle() }
+            { label: "Full name", value: formatFullName() },
+            { label: "Email Address", value: invoice?.email || "-" },
+            { label: "Mobile Number", value: invoice?.address?.phoneNumber || "-" },
+            { label: "Address", value: formatAddress() },
+            { label: "Shipping Method", value: findSelectedShippingTitle() }
         ],
         "Payment Details": [
             { label: "Total cart", value: invoice?.totalCart?.subtotal, isPrice: true },

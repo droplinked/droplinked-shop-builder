@@ -40,7 +40,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 )
                 if (email) return <AppTypography fontSize={14} color="white">{email}</AppTypography>
                 if (hasFullName) return <AppTypography fontSize={14} color="white">{`${firstName} ${lastName}`}</AppTypography>
-                return "N/A"
+                return "-"
             }
         },
         { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
@@ -49,8 +49,8 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
             header: 'Amount',
             cell: (info) => {
                 const amount = info.getValue() as number
-                if (amount) return formattedCurrency(amount)
-                return "N/A"
+                if (amount) return `${formattedCurrency(amount)} USD`
+                return "-"
             }
         },
         { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }

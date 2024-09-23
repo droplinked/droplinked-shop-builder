@@ -5,6 +5,7 @@ import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import DashboardLayoutSidebarItem from "./DashboardLayoutSidebarItem";
 import { Link } from "react-router-dom";
+import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
 
 
 const DashboardLayoutSidebar = () => {
@@ -24,7 +25,7 @@ const DashboardLayoutSidebar = () => {
                             <AppTypography color="#7B7B7B" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px">{sidebar_group.group}</AppTypography>
                         </Flex>
                         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
-                            {sidebar_group?.items?.map((item) => (<DashboardLayoutSidebarItem key={item?.title} item={item} isExpanded={openList === item?.title} toggleExpanded={() => setOpenList(openList === item?.title ? null : item?.title)} />))}
+                            {sidebar_group?.items?.map((item) => (<DashboardLayoutDecideFragmentOrLink linkTo={item?.linkTo}><DashboardLayoutSidebarItem key={item?.title} item={item} isExpanded={openList === item?.title} toggleExpanded={() => setOpenList(openList === item?.title ? null : item?.title)} /></DashboardLayoutDecideFragmentOrLink>))}
                         </Box>
                     </Box>
                 ))}

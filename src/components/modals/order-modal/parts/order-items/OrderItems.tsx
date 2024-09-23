@@ -3,10 +3,10 @@ import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
+import { cart_item_options_to_array_of_variants } from 'lib/utils/heper/helpers'
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
-import { cart_item_options_to_array_of_variants } from 'lib/utils/heper/helpers'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
@@ -30,10 +30,12 @@ function OrderItems() {
                                     </AppTypography>
                                     {item.isAffiliate && <CartItemBadge text={"Affiliate"} colorScheme='green' />}
                                 </Flex>
-                                <Flex alignItems={"center"} gap={"5px"}>
-                                    {item.shipping && <CartItemBadge text={item?.shipping} />}
-                                    {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
-                                </Flex>
+                                {item?.shipping || item?.options && (
+                                    <Flex alignItems={"center"} gap={"5px"}>
+                                        {item?.shipping && <CartItemBadge text={item.shipping} />}
+                                        {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
+                                    </Flex>
+                                )}
                             </Flex>
                         </Flex>
 

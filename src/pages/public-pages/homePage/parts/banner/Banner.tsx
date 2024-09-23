@@ -44,7 +44,7 @@ function Banner() {
                     </VStack>
                 </Flex>
             </Box>
-            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} shopName={shop?.name} close={onClose} />}
+            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </>
     )
 }

@@ -1,85 +1,85 @@
-import { IAuthSupportedWalletsService } from "../auth/interfaces"
+import { IAuthSupportedWalletsService } from "../auth/interfaces";
 
 export interface IshopService {
-    shopName: string
+    shopName: string;
 }
 
 export interface IshopInfoService {
-    shopName: string
+    shopName: string;
 }
 
 export interface IpaymentCreateService {
-    type: string
-    destinationAddress: string
-    isActive: boolean
+    type: string;
+    destinationAddress: string;
+    isActive: boolean;
 }
 
 export interface IrecordedShopService {
-    shopName: string
+    shopName: string;
 }
 
 export interface IproductService {
-    productID: string
+    productID: string;
 }
 
 export interface IshopSocial {
-    discordURL?: string
-    instagramURL?: string
-    twitterURL?: string
-    webURL?: string
-    linkedinURL?: string
-    tiktokURL?: string
-    facebookURL?: string
-    telegramURL?: string
-    youtubeURL?: string
-    messengerURL?: string
+    discordURL?: string;
+    instagramURL?: string;
+    twitterURL?: string;
+    webURL?: string;
+    linkedinURL?: string;
+    tiktokURL?: string;
+    facebookURL?: string;
+    telegramURL?: string;
+    youtubeURL?: string;
+    messengerURL?: string;
 }
 
 export interface IshopUpdateService extends IshopSocial {
-    description?: string
-    logo?: string
-    addressBookID?: string
-    shopifyDomain?: string
-    headerIcon?: string
-    textColor?: string
-    backgroundColor?: string
-    theme?: string
-    backgroundText?: string
-    backgroundImage?: string
-    backgroundImageSecondary?: string
-    templateID?: string
-    tags?: Array<string>
-    infoEmail?: string
+    description?: string;
+    logo?: string;
+    addressBookID?: string;
+    shopifyDomain?: string;
+    headerIcon?: string;
+    textColor?: string;
+    backgroundColor?: string;
+    theme?: string;
+    backgroundText?: string;
+    backgroundImage?: string;
+    backgroundImageSecondary?: string;
+    templateID?: string;
+    tags?: Array<string>;
+    infoEmail?: string;
     imsType?: string;
     paymentMethods?: any[];
-    loginMethods?: IAuthSupportedWalletsService[]
-    credit?: number,
+    loginMethods?: IAuthSupportedWalletsService[];
+    credit?: number;
     pre_purchase_data_fetch?: {
-        active: boolean,
-        title: string
-    },
-    productTile?: any[],
-    productTileStyle?: any,
+        active: boolean;
+        title: string;
+    };
+    productTile?: any[];
+    productTileStyle?: any;
 }
 
 export interface IShopRecordedService {
-    subCategoryIds: Array<string>
-    categoryIds: Array<string>
-    title: string
-    page: string | number
+    subCategoryIds: Array<string>;
+    categoryIds: Array<string>;
+    title: string;
+    page: string | number;
 }
 
 export interface IshopPublicRecordedService {
-    s: string
-    page: string | number
+    s: string;
+    page: string | number;
 }
 
 export interface IchargeCreditService {
-    amount: number
+    amount: number;
 }
 
 export interface ShopOAuth2Client {
-    domains: Array<string>
+    domains: Array<string>;
 }
 
 export interface ShopCustomURL {
@@ -118,4 +118,16 @@ export interface UserExtraShopResponse {
     name: string;
     ownerID: string;
     apiKey: string;
+}
+
+export interface IGetShopsCommunityService {
+    limit: number;
+    page: number;
+    name?: string;
+    tags?: string[];
+    sort?: string;
+}
+
+export interface IGetShopCommunityProfile {
+    shopId: string;
 }

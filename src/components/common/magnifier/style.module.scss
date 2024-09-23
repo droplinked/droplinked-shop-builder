@@ -1,0 +1,12 @@
+.image {
+    box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    position: absolute;
+    border: 4px solid #efefef;
+    z-index: 99;
+    display: block;
+    transition: opacity 0.2s;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-color: #FFF;
+}
