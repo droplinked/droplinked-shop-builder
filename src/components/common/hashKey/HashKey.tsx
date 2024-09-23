@@ -33,9 +33,9 @@ function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModa
                 </Box>
                 <Box><ClipboardText text={getLink} /></Box>
             </Flex>
-            <AppTypography display="flex" alignItems={"center"} fontSize='12px'>
-                Dropped on{" "}
-                <BlockchainDisplay show='icon' props={{ width: "15px", height: "15px" }} blockchain={blockchain} />{" "}
+            <AppTypography display="flex" alignItems={"center"} gap={"4px"} fontSize='12px'>
+                Dropped on
+                <BlockchainDisplay show='icon' props={{ width: "15px", height: "15px" }} blockchain={blockchain} />
                 <BlockchainDisplay show='name' blockchain={blockchain} />
             </AppTypography>
             <Flex paddingTop={6} justifyContent="center"><BasicButton onClick={() => close()}>Close</BasicButton></Flex>
