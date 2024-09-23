@@ -10,7 +10,6 @@ import CartItemBadge from './components/CartItemBadge'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-    console.log(order?.items)
 
     return (
         <Flex direction={"column"} gap={"24px"}>
@@ -22,7 +21,7 @@ function OrderItems() {
                         <Flex alignItems={"center"} gap={"16px"} position={"relative"} width={"320px"}>
                             <AppImage src={item.skuImage || item.image} width="48px" height="48px" borderRadius="4px" />
                             <Flex direction={"column"} gap={"5px"}>
-                                <Flex alignItems={"center"} gap={"8px"} bgColor={"red"}>
+                                <Flex alignItems={"center"} gap={"8px"}>
                                     <AppTypography color={"#FFFFFF"} fontSize={"14px"} position={"relative"}>
                                         {item.title.length <= 25 ?
                                             item.title :
