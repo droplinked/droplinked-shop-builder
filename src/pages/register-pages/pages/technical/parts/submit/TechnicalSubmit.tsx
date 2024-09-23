@@ -48,7 +48,7 @@ function TechnicalSubmit() {
     return (
         <Flex justifyContent={"flex-end"}>
             <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" && !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
-                Update
+                Update test
             </BasicButton>
         </Flex>
     )
