@@ -15,12 +15,27 @@ function TechnicalSubmit() {
     const { setShopData: { loading }, shop } = useProfile()
     const { showToast } = useAppToast()
 
+    // Validate total percent of destination addresses
+    const validatePaymentMethods = (methods) => {
+        for (const method of methods) {
+            if (method.isActive && method.destinationAddress.length) {
+                const totalPercent = method.destinationAddress.reduce((acc, dest) => acc + dest.percent, 0);
+                if (totalPercent !== 100) {
+                    throw new Error(`The total percent for ${method.type} should equal 100. Current total is ${totalPercent}.`);
+                }
+            }
+        }
+    };
+
     const clickSubmit = useCallback(async () => {
         try {
             if (!loginMethods.length) throw new Error("You should activate at least one login method")
 
             const activePaymentMethods = paymentMethods.filter(payment => payment.isActive)
             if (!activePaymentMethods.length) throw new Error("You should activate at least one payment method")
+
+            // Validate total percent of payment methods
+            validatePaymentMethods(activePaymentMethods);
 
             const shopData: IshopUpdateService = { paymentMethods: activePaymentMethods, loginMethods }
             await mutateAsync(shopData)
