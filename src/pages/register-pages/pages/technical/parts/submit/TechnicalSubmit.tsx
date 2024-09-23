@@ -21,8 +21,8 @@ function TechnicalSubmit() {
             if (method.type === "STRIPE") {
                 continue;
             }
-            if (method.isActive && method.destinationAddress.length) {
-                const totalPercent = method.destinationAddress.reduce((acc, dest) => acc + dest.percent, 0);
+            if (method.isActive && method?.destinationAddress?.length) {
+                const totalPercent = method.destinationAddress?.reduce((acc, dest) => acc + dest.percent, 0);
                 if (totalPercent !== 100) {
                     throw new Error(`The total percent for ${method.type} should equal 100. Current total is ${totalPercent}.`);
                 }
@@ -33,10 +33,10 @@ function TechnicalSubmit() {
     const clickSubmit = useCallback(async () => {
         try {
             if (!loginMethods.length) throw new Error("You should activate at least one login method")
-
-            const activePaymentMethods = paymentMethods.filter(payment => payment.isActive)
-            if (!activePaymentMethods.length) throw new Error("You should activate at least one payment method")
-
+        
+        const activePaymentMethods = paymentMethods.filter(payment => payment.isActive)
+        if (!activePaymentMethods.length) throw new Error("You should activate at least one payment method")
+            
             // Validate total percent of payment methods
             validatePaymentMethods(activePaymentMethods);
 
