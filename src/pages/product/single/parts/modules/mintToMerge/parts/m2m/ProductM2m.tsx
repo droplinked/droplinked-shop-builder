@@ -30,7 +30,9 @@ function ProductM2m() {
                     <HStack spacing="5px" key={key}>
                         <Switch className={classes.switch} isChecked={checked(item?._id)} onChange={el => updateM2M(el.target.checked, item?._id)} outline="none !important" boxShadow="none !important" size='md' />
                         <Box><BlockchainDisplay show='icon' blockchain={item?.name.toUpperCase()} props={{ width: "20px", height: "20px" }} /></Box>
-                        <AppTypography fontSize='14px'>{item?.name}</AppTypography>
+                        <AppTypography fontSize='14px'>
+                            <BlockchainDisplay show='name' blockchain={item?.name.toUpperCase()} />
+                        </AppTypography>
                     </HStack>
                 ))}
             </SimpleGrid>

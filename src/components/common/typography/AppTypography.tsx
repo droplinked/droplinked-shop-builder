@@ -6,14 +6,14 @@ export interface IAppTypography extends TextProps {
   price?: boolean
 }
 
-function AppTypography({children, price = false, ...props}: IAppTypography) {
+function AppTypography({ children, price = false, ...props }: IAppTypography) {
   return (
     <Text
       margin={0}
       fontWeight={props.fontWeight || "normal"}
       fontSize={props.fontSize || "12px"}
       {...props}>
-      {price ? <>$ {children} USD</> :  children }
+      {price ? <>${children} USD</> : children}
     </Text>
   )
 }

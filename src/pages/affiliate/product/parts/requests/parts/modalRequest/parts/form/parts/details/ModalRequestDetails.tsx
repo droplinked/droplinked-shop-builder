@@ -2,7 +2,6 @@ import { Box, Flex, VStack } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 import React, { useContext } from 'react';
 import { ModalRequestContext } from '../../context';
 import { ModalReqDetailsStyles } from './style-component';
@@ -10,6 +9,7 @@ import { ModalReqDetailsStyles } from './style-component';
 function ModalRequestDetails() {
     const { product, sku } = useContext(ModalRequestContext)
     const { LabelText } = ModalReqDetailsStyles
+    const chain = sku?.recordData?.recordNetwork
 
     return (
         <Flex gap={5} alignItems="center">
@@ -21,8 +21,12 @@ function ModalRequestDetails() {
                     <LabelText>Total Price: ${sku?.price.toFixed(2)} USD</LabelText>
                     <LabelText>Your earning: ${sku?.publisherEarning} USD</LabelText>
                     <Flex alignItems={"center"} gap={2} paddingTop={2}>
-                        <BlockchainDisplay show='icon' blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} />
-                        <AppTypography fontSize={14}>{capitalizeFirstLetter(sku?.recordData?.recordNetwork)}</AppTypography>
+                        <BlockchainDisplay show='icon' blockchain={chain} props={{ width: "16px" }} />
+                        {chain && (
+                            <AppTypography fontSize={14}>
+                                <BlockchainDisplay show='name' blockchain={chain} />
+                            </AppTypography>
+                        )}
                     </Flex>
                 </VStack>
             </Box>

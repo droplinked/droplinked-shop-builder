@@ -1,7 +1,6 @@
 import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
-import AppTypography from 'components/common/typography/AppTypography'
 import useIntersectionObserver from 'functions/hooks/intersection-observer/useIntersectionObserver'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { productServices } from 'lib/apis/product/productServices'
@@ -14,7 +13,8 @@ import VariantsDropdown from './VariantsDropdown'
 
 export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 7, filter: debouncedSearchTerm }),
+        queryKey: ["products", debouncedSearchTerm],
+        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 15, filter: debouncedSearchTerm }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
         refetchOnWindowFocus: false
     })
@@ -58,6 +58,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
     const isDigitalProduct = product.product_type === "DIGITAL"
+    const firstSkuPrice = product.skuIDs?.[0]?.price
 
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
@@ -130,8 +131,8 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
                     }}
                 />
             </Td>
-            <Td>
-                <AppTypography fontSize={16} color={"#7B7B7B"}>${product.skuIDs?.[0]?.price}</AppTypography>
+            <Td color={"#7B7B7B"}>
+                {firstSkuPrice ? `$${firstSkuPrice.toFixed(2)} USD` : "-"}
             </Td>
             <Td>
                 <Button
