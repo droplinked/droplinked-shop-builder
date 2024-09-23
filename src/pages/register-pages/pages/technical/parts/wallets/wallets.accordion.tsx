@@ -7,22 +7,19 @@ import AppTypography from "components/common/typography/AppTypography";
 import useAppToast from "functions/hooks/toast/useToast";
 import { IAuthSupportedWalletsService } from "lib/apis/auth/interfaces";
 import { useGetPermissionValue } from "lib/stores/app/appStore";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import technicalContext from "pages/register-pages/pages/technical/context";
 import React, { useContext, useMemo, useState } from "react";
-import { handleActivateWallet, makePayments } from "./wallets.helpers";
 import WalletsAccordionPayment from "./wallets.accordion.payment";
+import { handleActivateWallet, makePayments } from "./wallets.helpers";
 
 function WalletsAccordion({ chain, payment }: { chain: IAuthSupportedWalletsService; payment: any }) {
+    const { state: { loginMethods, paymentMethods }, updateState } = useContext(technicalContext);
     const getPermissionValue = useGetPermissionValue();
     const { showToast } = useAppToast();
-    const {
-        state: { loginMethods, paymentMethods },
-        updateState,
-    } = useContext(technicalContext);
     const [isExpanded, setExpanded] = useState(false);
 
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={chain?.name?.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [chain?.name]);
+    const ChainTitle = useMemo(() => <BlockchainDisplay blockchain={chain?.name?.toUpperCase()} show="name" />, [chain?.name]);
     const wallets = {
         METAMASK: <AppIcons.MetaMaskIcon />,
         UNISAT: <AppIcons.Unisat />,
@@ -38,7 +35,7 @@ function WalletsAccordion({ chain, payment }: { chain: IAuthSupportedWalletsServ
                 <Flex alignItems={"center"} gap={"16px"}>
                     {ChainIcon}
                     <AppTypography fontSize={"14px"} fontWeight={"bold"} color={"#C2C2C2"}>
-                        {chain?.name && capitalizeFirstLetter(chain?.name)}
+                        {chain?.name && ChainTitle}
                     </AppTypography>
                 </Flex>
                 <AppIcons.ArrowDown style={{ transition: ".3s", ...(isExpanded && { transform: "rotate(180deg)" }) }} />
@@ -73,7 +70,7 @@ function WalletsAccordion({ chain, payment }: { chain: IAuthSupportedWalletsServ
                                 {index === 0 && foundedPaymentMethod && (
                                     <VStack align={"stretch"} gap={"16px"}>
                                         {/* {foundedPaymentMethod?.tokens?.map((token, idx) => ( */}
-                                            <WalletsAccordionPayment chain={foundedPaymentMethod}/>
+                                        <WalletsAccordionPayment chain={foundedPaymentMethod} />
                                         {/* ))} */}
                                     </VStack>
                                 )}

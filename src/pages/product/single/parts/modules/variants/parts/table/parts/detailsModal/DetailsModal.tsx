@@ -106,12 +106,12 @@ function DetailsModal({ open, close, sku }: Props) {
                             }}
                         />
                         <AppTypography color={"#FF473E"} fontSize={"12px"}>
-                            {response?.sku.recordData.recordNetwork} Blockchain
+                            <BlockchainDisplay show="name" blockchain={response?.sku.recordData.recordNetwork} /> Blockchain
                         </AppTypography>
                     </Flex>
-                </VStack >
+                </VStack>
         }
-    </AppModal >
+    </AppModal>
 }
 
 export default DetailsModal
