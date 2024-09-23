@@ -18,6 +18,9 @@ function TechnicalSubmit() {
     // Validate total percent of destination addresses
     const validatePaymentMethods = (methods) => {
         for (const method of methods) {
+            if (method.type === "STRIPE") {
+                continue;
+            }
             if (method.isActive && method.destinationAddress.length) {
                 const totalPercent = method.destinationAddress.reduce((acc, dest) => acc + dest.percent, 0);
                 if (totalPercent !== 100) {
@@ -48,7 +51,7 @@ function TechnicalSubmit() {
     return (
         <Flex justifyContent={"flex-end"}>
             <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" && !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
-                Update test
+                Update
             </BasicButton>
         </Flex>
     )
