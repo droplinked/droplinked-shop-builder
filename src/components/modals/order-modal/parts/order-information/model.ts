@@ -67,11 +67,11 @@ namespace OrderInformationModel {
 				}.aurora.dev/tx/${transactionId}`;
 			case 'BASE':
 				return `https://base${
-					appDevelopment ? '-goerli.' : '.'
+					appDevelopment ? '-sepolia.' : '.'
 				}blockscout.com/tx/${transactionId}`;
 			case 'LINEA':
 				return `https://${
-					appDevelopment ? 'goerli.' : ''
+					appDevelopment ? 'sepolia.' : ''
 				}lineascan.build/tx/${transactionId}`;
 			case 'ETH':
 				return `https://${

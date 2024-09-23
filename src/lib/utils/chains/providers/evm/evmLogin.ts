@@ -131,7 +131,7 @@ let chainNames = {
 			chainName: 'Linea',
 			chainId: '0xe704',
 			nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' },
-			rpcUrls: ['https://rpc.goerli.linea.build'],
+			rpcUrls: ['https://rpc.sepolia.linea.build'],
 		},
 	},
 	[Chain.ETH]: {
