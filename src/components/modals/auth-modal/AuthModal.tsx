@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import CompleteGoogelModal from "../complete-google/CompleteGoogelModal";
 import LoginModal from "../login-modal/LoginModal";
 import ResetPassModal from "../reset-pass-modal/ResetPassModal";
-import SignupModal from "../signup-modal/SignupModal";
+import SignupModal from "./../signup-modal/SignupModal";
 
 interface Props {
   show: boolean;
