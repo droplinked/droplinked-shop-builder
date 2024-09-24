@@ -114,7 +114,10 @@ function SKURemoveButton({ itemId }) {
         <Td>
             {isLoading ?
                 <Spinner size={'sm'} color={"#FF2244"} /> :
-                <button onClick={() => removeProduct({ cartId: cart._id, itemId })}>
+                <button
+                    type='button'
+                    onClick={() => removeProduct({ cartId: cart._id, itemId })}
+                >
                     <AppIcons.RedTrash />
                 </button>
             }
