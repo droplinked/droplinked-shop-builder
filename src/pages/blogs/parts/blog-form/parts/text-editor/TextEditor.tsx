@@ -5,7 +5,6 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { Flex } from '@chakra-ui/react';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import React from 'react';
-
 import "./styles.css";
 
 interface Props {
