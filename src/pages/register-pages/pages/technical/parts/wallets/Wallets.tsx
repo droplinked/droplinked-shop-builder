@@ -13,15 +13,10 @@ import WalletsAccordion from "./wallets.accordion";
 import { makePayments } from "./wallets.helpers";
 
 const Wallets = () => {
-    const {
-        updateState,
-        state: { paymentMethods },
-    } = useContext(technicalContext);
-
-    const { data: supported, isSuccess: supportedSuccess, error: supportedError } = useQuery("supported-login-methods", authSupportedWalletsService, { refetchOnWindowFocus: false });
+    const { updateState, state: { paymentMethods } } = useContext(technicalContext);
+    const { data: supported, isSuccess: supportedSuccess, error: supportedError } = useQuery("supported-login-methods", authSupportedWalletsService);
     const { data: payment, isLoading } = useQuery({ queryFn: paymentPublicService, queryKey: "available_payment_methods_service" });
     const { data: selected, error: selectedError } = useQuery("selected-login-methods", getShopInformationService, {
-        refetchOnWindowFocus: false,
         enabled: supportedSuccess,
         onSuccess: (res) => {
             let selectedMethods = res?.data?.data?.loginMethods;

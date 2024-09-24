@@ -1,7 +1,6 @@
 import { Box, Divider, Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { useContext, useMemo } from "react";
-import productPageContext from "../../context";
+import { useMemo } from "react";
 import React from "react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import { useMutation } from "react-query";
@@ -12,10 +11,7 @@ import AppIcons from "assest/icon/Appicons";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionChevron, AppAccordionPanel } from "components/redesign/accordion/AppAccordion";
 import useAppToast from "functions/hooks/toast/useToast";
 
-function ProductDetails() {
-    const {
-        states: { product, sku },
-    } = useContext(productPageContext);
+function ProductDetails({ product }: { product: any }) {
     const { mutateAsync, isLoading } = useMutation((params: IimportAffiliateProduct) => importAffiliateProductService(params));
     const sizes = useMemo(() => productPageModel.getOptions({ skuIDs: product?.skuIDs, type: "size" }), [product]);
     const variants = useMemo(() => productPageModel.getCustomVariants(product?.skuIDs), [product]);
@@ -33,7 +29,7 @@ function ProductDetails() {
                 </AppTypography>
             </Box>
             <AppTypography color="#FFF" fontFamily="Inter" fontSize="36px" fontStyle="normal" fontWeight="700" lineHeight="52px" price>
-                {sku?.price.toFixed(2)}
+                {product?.skuIDs?.[0]?.price.toFixed(2)}
             </AppTypography>
             {colors.length ? (
                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="16px" alignSelf="stretch">
@@ -43,7 +39,7 @@ function ProductDetails() {
                     <Flex display="flex" alignItems="flex-start" alignContent="flex-start" gap="16px" alignSelf="stretch" flexWrap="wrap">
                         {colors.map((el, key) => (
                             <Flex border={"1px solid #292929"} rounded={"8px"} padding={"8px"}>
-                                <Box key={key} width="32px" height="32px" cursor="pointer" borderRadius="4px" background={el?.value} />
+                                <Box key={key} width="32px" height="32px" borderRadius="4px" background={el?.value} />
                             </Flex>
                         ))}
                     </Flex>

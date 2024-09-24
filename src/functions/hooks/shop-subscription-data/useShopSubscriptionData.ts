@@ -8,7 +8,6 @@ const useShopSubscriptionData = () => {
     const queryObj = useQuery({
         queryKey: ["shop-subscription-plan"],
         queryFn: () => getShopSubscriptionDataService(),
-        refetchOnWindowFocus: false,
         onSuccess: (data) => updateShopSubscriptionData(data.data)
     })
 

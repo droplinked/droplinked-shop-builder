@@ -16,7 +16,6 @@ function FinancialAccounts() {
     const { showToast } = useAppToast()
     const { isFetching: isFetchingShopData, isError, data: shopData } = useQuery({
         queryFn: getShopInformationService,
-        refetchOnWindowFocus: false
     })
 
     const createStripeOnboardingLink = async () => {

@@ -11,7 +11,7 @@ import { useQuery } from 'react-query'
 
 function PrivateKey() {
     const hasPermission = useHasPermission()
-    const { isLoading, data } = useQuery("shopPrivateKey", getShopPrivateKeyService, { refetchOnWindowFocus: false, enabled: hasPermission("shopfront_apis") })
+    const { isLoading, data } = useQuery("shopPrivateKey", getShopPrivateKeyService, { enabled: hasPermission("shopfront_apis") })
     const privateKey = data?.data.data.privateKey
 
     return (

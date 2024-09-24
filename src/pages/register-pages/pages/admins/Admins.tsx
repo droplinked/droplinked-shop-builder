@@ -8,7 +8,7 @@ import InvitationForm from './parts/form/InvitationForm';
 import UserList from './parts/list/UserList';
 
 function Admins() {
-    const { isFetching, data, refetch } = useQuery({ queryFn: () => getInvitationsService(), refetchOnWindowFocus: false })
+    const { isFetching, data, refetch } = useQuery({ queryFn: () => getInvitationsService() })
 
     return (
         <AppCard>

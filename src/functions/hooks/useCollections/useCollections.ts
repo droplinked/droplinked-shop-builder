@@ -8,7 +8,6 @@ const useCollections = () => {
     return useQuery({
         queryFn: () => collectionService(),
         queryKey: ["collectionList", shop._id],
-        refetchOnWindowFocus: false
     })
 }
 

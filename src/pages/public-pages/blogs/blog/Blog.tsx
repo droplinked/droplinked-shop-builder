@@ -12,7 +12,6 @@ const PublicBlog = () => {
     const { slug } = useParams();
     const { isFetching, data } = useQuery({
         queryFn: () => getPublicBlogByIdService({ slug: slug! }),
-        refetchOnWindowFocus: false,
         onError: (error: any) => {
             const errorData = error?.response?.data;
             if (errorData?.statusCode === 404) navigate("/blogs");

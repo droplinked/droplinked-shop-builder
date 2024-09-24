@@ -12,8 +12,7 @@ import PlanDurationRadioContainer from "./_components/plan-duration-radio/PlanDu
 export default function Plans() {
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
-        queryFn: () => getSubscriptionPlansService(),
-        refetchOnWindowFocus: false
+        queryFn: () => getSubscriptionPlansService()
     })
 
     if (isFetching) return <PlansGrid><Loading /></PlansGrid >

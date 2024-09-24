@@ -29,6 +29,7 @@ import { EVMBatchRecord, EVMrecordMerch } from './evmRecord';
 import { RecordProduct } from '../../dto/recordDTO';
 import { EVMPayment } from './evmPayment';
 import { getERC20TokenTransferABI } from './evmConstants';
+import axiosInstance from 'lib/apis/axiosConfig';
 
 export class EVMProvider implements ChainProvider {
 	chain: Chain = Chain.BINANCE;
@@ -199,6 +200,16 @@ export class EVMProvider implements ChainProvider {
 			});
 			this.handleWallet(_address);
 		}
+		if (this.chain === Chain.SKALE) {
+			const distributionRequest = (
+				await axiosInstance.patch(`shop/sFuelDistribution`, {
+					wallet: this.address,
+					isTestnet: this.network === Network.TESTNET,
+				})
+			).data;
+			console.log(distributionRequest);
+		}
+
 		this.modalInterface.success('Wallet connected');
 	}
 	async walletLogin() {

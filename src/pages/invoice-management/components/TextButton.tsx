@@ -9,18 +9,18 @@ interface Props extends ButtonProps {
 function TextButton({ onClick, children, ...props }: Props) {
     return (
         <Button
-            height={"fit-content"}
+            height="fit-content"
             type='button'
-            display={"flex"}
-            alignItems={"center"}
+            display="flex"
+            alignItems="center"
             gap={2}
             padding={0}
-            bg={"none"}
+            bg="none"
             fontSize={14}
             fontWeight={400}
-            color={"#2BCFA1"}
-            cursor={"pointer"}
-            userSelect={"none"}
+            color="#2BCFA1"
+            cursor="pointer"
+            userSelect="none"
             sx={{ "svg path": { "stroke": "#2BCFA1" } }}
             onClick={onClick}
             _hover={{}}

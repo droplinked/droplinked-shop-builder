@@ -1,6 +1,6 @@
 import { Textarea, TextareaProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'

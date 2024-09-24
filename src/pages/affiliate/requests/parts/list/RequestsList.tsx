@@ -8,7 +8,7 @@ import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { IpublisherRequestService } from "lib/apis/affiliate/interfaces";
 import { publisherRequestService } from "lib/apis/affiliate/shopServices";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";

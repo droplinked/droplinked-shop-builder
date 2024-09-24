@@ -4,7 +4,7 @@ import uploadImage from "assest/icon/upload-icon.svg";
 import axios from "axios";
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import useAppToast from "functions/hooks/toast/useToast";
-import { toMb } from "lib/utils/heper/helpers";
+import { toMb } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useRef, useState } from "react";
 import { DeleteIcon, ImagesInputWrapper, InputAddImage, ItemImage } from "./Input-images-style";

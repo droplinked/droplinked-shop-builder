@@ -6,7 +6,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { IAuthSupportedWalletsService } from 'lib/apis/auth/interfaces';
 import { useGetPermissionValue } from 'lib/stores/app/appStore';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import technicalContext from 'pages/register-pages/pages/technical/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';

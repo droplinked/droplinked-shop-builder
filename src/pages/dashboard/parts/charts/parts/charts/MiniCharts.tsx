@@ -1,6 +1,6 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getPercentage } from 'lib/utils/heper/helpers'
+import { getPercentage } from 'lib/utils/helpers/helpers'
 import React, { useContext, useMemo } from 'react'
 import dashboardChartsContext from '../../context'
 import OrdersChart from './parts/charts/orders/OrdersChart'

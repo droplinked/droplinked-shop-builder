@@ -13,8 +13,7 @@ function ShopList() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isFetching, error, data } = useQuery({
         queryFn: () => getUserShopsService(),
-        queryKey: ["current-user-shops"],
-        refetchOnWindowFocus: false
+        queryKey: ["current-user-shops"]
     })
 
     const renderContent = () => {

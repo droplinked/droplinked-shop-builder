@@ -23,6 +23,7 @@ export default function CreateInvoice() {
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
 
+    // This is used to reset cart when user navigates away
     useEffect(() => {
         return () => resetCart()
     }, [resetCart])
@@ -81,7 +82,7 @@ export default function CreateInvoice() {
                                     <InvoiceSummary />
                                     <Flex direction={"column"} gap={4}>
                                         <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</Button>
-                                        <Button variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                        <Button type='button' variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
                                     </Flex>
                                 </Flex>
                             </Flex>

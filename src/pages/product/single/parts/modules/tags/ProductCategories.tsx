@@ -13,7 +13,6 @@ function ProductCategories() {
     queryFn: productCategoryervices,
     queryKey: "product_category",
     cacheTime: 60 * 60 * 1000,
-    refetchOnWindowFocus: false
   })
 
   return (

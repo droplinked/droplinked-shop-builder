@@ -35,7 +35,7 @@ import CreatableSelect from "react-select/creatable";
  */
 
 const PropertyVariants = () => {
-    const { data } = useQuery({ queryFn: variantOptionsService, queryKey: "product_properties", cacheTime: 60 * 60 * 1000, refetchOnWindowFocus: false });
+    const { data } = useQuery({ queryFn: variantOptionsService, queryKey: "product_properties", cacheTime: 60 * 60 * 1000 });
     const formikRef = useRef(null);
     const { state: { properties, publish_product }, productID, methods: { updateState } } = useContext(productContext);
     const getProps = useCallback(() => properties ? { options: properties?.map((api_properties) => ({ name: api_properties?.title || "", values: api_properties?.items || [], isOpen: false, isCustom: api_properties?.isCustom })) } : { options: [{ name: "", values: [{ value: "", caption: "" }], isOpen: true, isCustom: true }] }, [properties]);

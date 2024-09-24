@@ -3,11 +3,11 @@ import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 import { IBlog } from "./blogs.interface";
-import { time_ago } from "lib/utils/heper/helpers";
+import { time_ago } from "lib/utils/helpers/helpers";
 
 const LatestBlog = ({ blog }: { blog: IBlog }) => {
     return (
-        <Box width={"full"} pos={"relative"} height={"512px"}  maxWidth="1400px">
+        <Box width={"full"} pos={"relative"} height={"512px"} maxWidth="1400px">
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
             <Flex
                 position={"absolute"}

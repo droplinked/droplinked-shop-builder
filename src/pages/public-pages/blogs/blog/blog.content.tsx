@@ -1,20 +1,27 @@
+import "@blocknote/core/fonts/inter.css";
+import { BlockNoteView } from "@blocknote/mantine";
 import { useCreateBlockNote } from "@blocknote/react";
+import "@blocknote/react/style.css";
+import { Box } from "@chakra-ui/react";
+import React from "react";
 import { IBlog } from "../blogs.interface";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { useEffect, useState } from "react";
 
 function BlogContent({ blog }: { blog: IBlog }) {
-    const [html, setHTML] = useState<string>("");
     const editor = useCreateBlockNote({ initialContent: JSON.parse(blog.content) });
 
-    useEffect(() => {
-        (async () => {
-            const html = await editor.blocksToHTMLLossy();
-            setHTML(html);
-        })();
-    }, []);
-
-    return <AppTypography color={"white"} dangerouslySetInnerHTML={{ __html: html }}></AppTypography>;
+    return (
+        <Box
+            sx={{
+                ".bn-editor": {
+                    paddingInline: "0px !important",
+                    backgroundColor: "transparent !important",
+                    minHeight: "auto !important",
+                },
+            }}
+        >
+            <BlockNoteView editor={editor} editable={false} />
+        </Box>
+    );
 }
 
 export default BlogContent;
