@@ -2,6 +2,7 @@ import { Buffer } from 'buffer';
 import { Chain, Network } from '../../dto/chains';
 import { ModalInterface } from '../../dto/modalInterface';
 import { isCasperWalletExtentionInstalled } from '../casper/casperWalletAuth';
+import axiosInstance from 'lib/apis/axiosConfig';
 
 let chainNames = {
 	[Chain.BINANCE]: {
@@ -291,6 +292,16 @@ export async function evmLogin(
 			`Please sign this message to let droplinked view your PublicKey & Address and validate your identity`,
 			'utf8'
 		).toString('hex')}`;
+		if (chain === Chain.SKALE) {
+			const distributionRequest = (
+				await axiosInstance.patch(`shop/sFuelDistribution`, {
+					wallet: address,
+					isTestnet: network === Network.TESTNET,
+				})
+			).data;
+			console.log(distributionRequest);
+		}
+
 		const signature = await ethereum.request({
 			method: 'personal_sign',
 			params: [msg, address],
