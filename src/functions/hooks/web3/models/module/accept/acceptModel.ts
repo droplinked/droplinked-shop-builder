@@ -1,4 +1,3 @@
-// import { configStacks } from "lib/utils/blockchain/stacks/_constans"
 import { acceptRejectRequestService } from "lib/apis/affiliate/shopServices"
 
 interface IapproveCasper {

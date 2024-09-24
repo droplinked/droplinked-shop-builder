@@ -11,20 +11,20 @@ import React, { useCallback, useContext, useState } from 'react'
 function DigitalProductRoyalty() {
     const hasPermission = useHasPermission()
     const { showToast } = useAppToast()
-    const { methods: { updateState }, state: { sku } } = useContext(productContext)
+    const { productID, state: { sku, publish_status }, methods: { updateState } } = useContext(productContext)
     const [showInput, setInputVisibility] = useState(() => Boolean(sku[0]?.royalty))
 
     const updateRoyalty = useCallback((value: number) => {
-        updateState('sku', [{
-            ...sku[0],
-            royalty: value
-        }])
+        updateState('sku', [{ ...sku[0], royalty: value }])
     }, [sku])
 
-    const enableRoyalty = (checked: boolean) => {
-        if (!hasPermission("web3_royalty_feature") && checked) {
+    const handleRoyaltyChange = (checked: boolean) => {
+        if (productID && publish_status === "PUBLISHED")
+            return showToast({ type: "error", message: "You have already published this product" })
+
+        if (!hasPermission("web3_royalty_feature") && checked)
             return showToast({ message: AppErrors.permission.permission_denied, type: "error" })
-        }
+
         setInputVisibility(checked)
         if (!checked) updateRoyalty(null)
     }
@@ -32,7 +32,7 @@ function DigitalProductRoyalty() {
     return (
         <Flex direction={"column"} gap={6}>
             <Flex alignItems={"center"} gap={3}>
-                <AppSwitch isChecked={showInput} onChange={({ target: { checked } }) => enableRoyalty(checked)} />
+                <AppSwitch isChecked={showInput} onChange={({ target: { checked } }) => handleRoyaltyChange(checked)} />
                 <AppTypography fontSize={14} color="#C2C2C2" fontWeight='bold'>Activate Royalty for this product and ensures receiving a percentage from each resale</AppTypography>
             </Flex>
             {

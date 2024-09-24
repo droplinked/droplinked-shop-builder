@@ -51,7 +51,7 @@ function RegisterShopInfo() {
   useEffect(() => { addressService.mutate() }, [])
   useEffect(() => { updateStates("addressBookID", address && address.length ? address[0]._id : null) }, [addressService.data])
   useEffect(() => {
-    if (shop?.description) updateStates("description", shop.description)
+    if (shop?.description) updateStates("description", shop?.description)
     if (shop?.tags) updateStates("tags", shop.tags)
     if (shop?.pre_purchase_data_fetch) updateStates("pre_purchase_data_fetch", shop.pre_purchase_data_fetch)
     if (shop?.referralDetails) updateStates("referralDetails", shop.referralDetails)

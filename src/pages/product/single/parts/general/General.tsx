@@ -1,14 +1,15 @@
 import { VStack } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import { productContext } from '../../context'
+import AffiliateMarketing from '../modules/affiliate-market/AffiliateMarketing'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
 import DescriptionProduct from '../modules/description/DescriptionProduct'
+import EventNotice from '../modules/event-notice/EventNotice'
 import ProductImages from '../modules/images/ProductImages'
 import ProductName from '../modules/name/ProductName'
 import PostPurchaseDataGatheringCheckbox from '../modules/postPurchaseDataGathering/PostPurchaseDataGatheringCheckbox'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
-import EventNotice from '../modules/event-notice/EventNotice'
 
 interface Iprops {
     open?: boolean
@@ -27,6 +28,7 @@ function General({ open = true }: Iprops) {
                 <ProductImages />
                 <AvailablePurchase />
                 <PostPurchaseDataGatheringCheckbox />
+                <AffiliateMarketing />
             </VStack>
         </ProductCollapse>
     )

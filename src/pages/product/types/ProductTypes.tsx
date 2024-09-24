@@ -42,6 +42,7 @@ function ProductTypes() {
         setIsLoginEventAccaount(true)
         await creatEventApiKey({ key: apiKey })
       }
+      return resChecking
     } catch (error) {
       showToast({ message: error.message, type: 'error' })
     }
@@ -95,7 +96,7 @@ function ProductTypes() {
     }
   ]
 
-  const navigateToProductForm = (productType: ProductType) => {
+  const navigateToProductForm = async (productType: ProductType) => {
     const legalUsage = shopLegalUsage.find(obj => obj.key === productType.legalUsageKey)
     if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
       return navigate(productType.route)

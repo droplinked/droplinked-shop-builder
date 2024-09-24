@@ -1,11 +1,11 @@
 import { IStacks } from 'functions/hooks/web3/models/module/record/recordModel'
 import { IproductState, Isku } from 'lib/apis/product/interfaces'
+import { isDateExpired } from 'lib/utils/heper/helpers'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
 import { array, number, object, string } from 'yup'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
-import { isDateExpired } from 'lib/utils/heper/helpers'
 
 interface ImakeData {
     state: IproductState
@@ -96,8 +96,8 @@ const ButtonsProductClass = ({
         })
     },
 
-    makeData: ({ state: { publish_status, ...rest }, draft, productID }: ImakeData) => {
-        const state: IproductState = { ...rest, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
+    makeData: ({ state: { publish_status, commission, ...rest }, draft, productID }: ImakeData) => {
+        const state: IproductState = { ...rest, commission: commission || undefined, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })

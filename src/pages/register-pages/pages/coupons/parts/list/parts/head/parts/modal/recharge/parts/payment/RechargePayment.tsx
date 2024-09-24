@@ -22,6 +22,7 @@ function RechargePayment() {
         try {
             const query = await mutateAsync(data)
             updateState('clientSecret', query.data.data.clientSecret)
+            updateState('amount', data.amount)
         } catch (error) {
             showToast({ message: error?.message || 'Oops! Something went wrong', type: 'error' })
         }
@@ -29,9 +30,7 @@ function RechargePayment() {
 
     return (
         <Formik
-            initialValues={{
-                amount: '',
-            }}
+            initialValues={{ amount: '' }}
             validationSchema={formSchema}
             onSubmit={onSubmit}
         >
@@ -44,7 +43,10 @@ function RechargePayment() {
                                 <Box width="100%"><AppInput name='' label='Credit Value' value={values.amount} error={errors?.amount ? errors?.amount.toString() : null} onChange={(e) => setFieldValue('amount', parseInt(e.target.value))} placeholder='Enter total value amount' /></Box>
                                 <AppTypography color="#808080" fontSize="14px" position="relative" top="47px">USD</AppTypography>
                             </HStack>
-                            <HStack><AppTypography color="#C2C2C2" fontSize="12px">Payment with</AppTypography> <BlockchainDisplay show='icon' blockchain='STRIPE' props={{ width: "36px" }} /></HStack>
+                            <HStack>
+                                <AppTypography color="#C2C2C2" fontSize="12px">Payment with</AppTypography>
+                                <BlockchainDisplay show='icon' blockchain='STRIPE' props={{ width: "36px" }} />
+                            </HStack>
                         </VStack>
                         <Flex justifyContent="space-between">
                             <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
@@ -53,7 +55,7 @@ function RechargePayment() {
                     </VStack>
                 </Form>
             )}
-        </Formik >
+        </Formik>
     )
 }
 

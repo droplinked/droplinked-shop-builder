@@ -5,7 +5,6 @@ import AppSwitch from "components/common/swich";
 import AppTypography from "components/common/typography/AppTypography";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useGetPermissionValue } from "lib/stores/app/appStore";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import technicalContext from "pages/register-pages/pages/technical/context";
 import React, { useContext, useMemo, useState } from "react";
 import { canActivateNewPaymentMethod } from "./wallets.helpers";
@@ -24,6 +23,7 @@ const WalletWithoutLogin = ({ payment, token }: { payment: any; token?: any }) =
         const existingChainIndex = selectedPaymentMethods.findIndex((selected_payment_methods) => selected_payment_methods.type === payment.type);
         if (e.target.checked) {
             if (!canActivateNewPaymentMethod(payment, selectedPaymentMethods, getPermissionValue, showToast)) return;
+            if (payment?.destinationAddress === "" || !payment.destinationAddress) delete payment.destinationAddress
             existingChainIndex !== -1 ? (selectedPaymentMethods[existingChainIndex].isActive = true) : selectedPaymentMethods.push({ ...payment, isActive: true });
         } else {
             selectedPaymentMethods[existingChainIndex].isActive = false;
@@ -38,9 +38,11 @@ const WalletWithoutLogin = ({ payment, token }: { payment: any; token?: any }) =
             <Flex justifyContent={"space-between"} alignItems="center" style={{ cursor: "pointer" }} onClick={() => setExpanded(!isExpanded)}>
                 <Flex alignItems={"center"} gap={"16px"}>
                     {ChainIcon}
-                    <AppTypography fontSize={"14px"} fontWeight={"bold"} color={"#C2C2C2"}>
-                        {payment?.type && capitalizeFirstLetter(payment?.type)}
-                    </AppTypography>
+                    {payment?.type && (
+                        <AppTypography fontSize={"14px"} fontWeight={"bold"} color={"#C2C2C2"}>
+                            <BlockchainDisplay blockchain={payment.type.toUpperCase()} show="name" />
+                        </AppTypography>
+                    )}
                 </Flex>
                 <AppIcons.ArrowDown style={{ transition: ".3s", ...(isExpanded && { transform: "rotate(180deg)" }) }} />
             </Flex>

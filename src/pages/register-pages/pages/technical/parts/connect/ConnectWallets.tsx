@@ -119,15 +119,7 @@ function ConnectWallets() {
 														.length -
 													6
 												)}`}</AppTypography>
-												<ClipboardText
-													props={{
-														width: '16px',
-														height: '16px',
-													}}
-													text={
-														isExist?.address
-													}
-												/>
+												<ClipboardText text={isExist?.address} />
 											</Flex>
 										) : (
 											<BasicButton

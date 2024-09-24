@@ -3,11 +3,11 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
+import { subscriptionPlanMap } from 'lib/utils/heper/helpers'
 
 interface Props {
     paymentStatus: "success" | "error";
@@ -45,14 +45,10 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
 
     return (
         <>
-            <ModalBody
-                display={"flex"}
-                flexDirection={"column"}
-                paddingTop={{ lg: 12, md: 8, base: 4 }}
-            >
+            <ModalBody display={"flex"} flexDirection={"column"}>
                 <AppImage
                     width={{ xl: "349px", md: "249px", base: "100%" }}
-                    height={{ xl: "326px", md: "226px", base: "auto" }}
+                    height={{ xl: "326px", md: "236px", base: "auto" }}
                     alignSelf={"center"}
                     src={imageSrc}
                     objectFit={"cover"}

@@ -1,7 +1,8 @@
-import { ModalBody, ModalFooter, ModalHeader, useRadioGroup } from '@chakra-ui/react';
+import { ModalBody, ModalFooter, useRadioGroup } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTypography from 'components/common/typography/AppTypography';
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
 import { getSubscriptionPaymentMethodsService, sendPlanPurchaseTransactionToWeb3Service, subscriptionPlanCryptoPaymentService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices';
@@ -12,7 +13,6 @@ import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_componen
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
-import PurchaseStepInformation from '../PurchaseStepInformation';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
 
@@ -89,29 +89,29 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
         }
     }
 
+    const renderContent = () => {
+        if (isFethingPaymentMethods) return <Loading />
+        if (isError)
+            return <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access payment methods at the moment. Give it another try soon?</AppTypography>
+
+        return paymentMethods.data.map(paymentMethod =>
+            <PaymentMethodRadio
+                key={paymentMethod.type}
+                paymentMethod={paymentMethod}
+                {...getRadioProps({ value: paymentMethod.type })}
+            />
+        )
+    }
+
     return (
         <>
-            <ModalHeader paddingBlock={0}>
-                <PurchaseStepInformation
-                    icon={<AppIcons.PaymentMethodSelection />}
-                    title='Payment methods'
-                    description={"How would you like to pay for your subscription?"}
-                />
-            </ModalHeader>
-            <ModalBody display={"flex"} flexDirection={"column"} gap={4} paddingBlock={0} {...getRootProps()}>
-                {
-                    isError ?
-                        <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access payment methods at the moment. Give it another try soon?</AppTypography> :
-                        isFethingPaymentMethods ?
-                            <Loading /> :
-                            paymentMethods.data.map(paymentMethod =>
-                                <PaymentMethodRadio
-                                    key={paymentMethod.type}
-                                    paymentMethod={paymentMethod}
-                                    {...getRadioProps({ value: paymentMethod.type })}
-                                />
-                            )
-                }
+            <ModalHeaderData
+                icon={<AppIcons.PaymentMethodSelection />}
+                title='Payment methods'
+                description={"How would you like to pay for your subscription?"}
+            />
+            <ModalBody display={"flex"} flexDirection={"column"} gap={4} {...getRootProps()}>
+                {renderContent()}
             </ModalBody>
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
                 <BasicButton minWidth={"unset"} width={"50%"} isDisabled={isTransactionInProgress} variant='outline' onClick={() => setModalData((prevData) => ({ ...prevData, step: "PlanConfirmation" }))}>Back</BasicButton>

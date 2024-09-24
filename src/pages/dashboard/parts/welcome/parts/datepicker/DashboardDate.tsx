@@ -31,7 +31,7 @@ function DashboardDate() {
     const nextAvailble = useMemo(() => new Date().getTime() >= to.getTime(), [to])
 
     return (
-        <Flex position="relative" alignItems="center" gap="12px">
+        <Flex alignItems="center" gap="12px">
             <Flex alignItems="center" backgroundColor="#1C1C1C" padding="6px" borderRadius="4px">
                 {ranges.map((el, key) => (
                     <Box key={key} {...style} onClick={() => setRange(el)} backgroundColor={el === value ? '#2BCFA1' : ''}><AppTypography color={el === value ? '#333' : "#878787"}>{capitalizeFirstLetter(el)}</AppTypography></Box>

@@ -13,16 +13,15 @@ interface Props {
 }
 
 function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
-    const { productID, state, methods: { dispatch, updateState } } = useContext(productContext)
+    const { productID, state: { publish_status, sku, digitalDetail }, methods: { dispatch, updateState } } = useContext(productContext)
     const { showToast } = useAppToast()
 
     const handleSwitchChange = (checked: boolean) => {
-        if (checked && productID && state.publish_status === "PUBLISHED")
+        if (productID && publish_status === "PUBLISHED")
             return showToast({ type: "error", message: "You have already published this product" })
 
         setDetailsVisibility(checked)
         if (!checked) {
-            const sku = state.sku
             dispatch({ type: "updateDigitalLinks", params: { chain: "" } })
             const updatedSku = {
                 ...sku[0],
@@ -45,19 +44,19 @@ function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
                     <AppTypography fontSize={14}>Enable recording this digital good onchain and select a network to drop it on.</AppTypography>
                 </VStack>
             </Flex>
-            {showDetails && (
+            {showDetails &&
                 <VStack align="stretch">
                     <BlockchainNetwork
                         error={null}
                         onChange={e => dispatch({ type: "updateDigitalLinks", params: { chain: e } })}
-                        value={state?.digitalDetail?.chain}
+                        value={digitalDetail?.chain}
                     />
                     <HStack alignItems="center">
                         <AppIcons.Info />
                         <AppTypography color="#757575" fontSize='14px'>All product details will be recorded as an NFT on your selected blockchain wallet. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
                     </HStack>
                 </VStack>
-            )}
+            }
         </Flex>
     )
 }

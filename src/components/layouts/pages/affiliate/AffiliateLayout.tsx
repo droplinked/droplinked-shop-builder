@@ -12,7 +12,7 @@ function AffiliateLayout() {
   return (
     <WithPermission requiredPermission='affiliate_panel'>
       <HStack alignItems={"start"}>
-        <VStack width={"150px"} spacing={4} color="#FFF" align={"stretch"}>
+        {/* <VStack width={"150px"} spacing={4} color="#FFF" align={"stretch"}>
           {links().map((el, key) => (
             <Box key={key}>
               <Link to={el.link}>
@@ -20,8 +20,8 @@ function AffiliateLayout() {
               </Link>
             </Box>
           ))}
-        </VStack>
-        <Box width={"88%"}><Outlet /></Box>
+        </VStack> */}
+        <Box width={"100%"}><Outlet /></Box>
       </HStack>
     </WithPermission>
   )

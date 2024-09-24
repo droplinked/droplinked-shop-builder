@@ -1,13 +1,18 @@
 import { Flex } from '@chakra-ui/react'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext } from 'react'
 
 function DigitalProductAffiliate() {
-    const { methods: { updateState }, state: { sku } } = useContext(productContext)
+    const { productID, state: { sku, publish_status }, methods: { updateState } } = useContext(productContext)
+    const { showToast } = useAppToast()
 
     const change = useCallback((checked: boolean) => {
+        if (productID && publish_status === "PUBLISHED")
+            return showToast({ type: "error", message: "You have already published this product" })
+
         const updatedSku = {
             ...sku[0],
             recordData: {

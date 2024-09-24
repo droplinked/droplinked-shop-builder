@@ -1,7 +1,6 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { appDevelopment } from 'lib/utils/app/variable'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useMemo } from 'react'
 import BlockchainDisplay from '../blockchainDisplay/BlockchainDisplay'
 import ClipboardText from '../clipboardText/ClipboardText'
@@ -34,7 +33,11 @@ function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModa
                 </Box>
                 <Box><ClipboardText text={getLink} /></Box>
             </Flex>
-            <Box><AppTypography display="flex" gap={1} fontSize='12px'>Dropped on <BlockchainDisplay show='icon' props={{ width: "15px", height: "15px" }} blockchain={blockchain} /> {capitalizeFirstLetter(blockchain)}</AppTypography></Box>
+            <AppTypography display="flex" alignItems={"center"} gap={"4px"} fontSize='12px'>
+                Dropped on
+                <BlockchainDisplay show='icon' props={{ width: "15px", height: "15px" }} blockchain={blockchain} />
+                <BlockchainDisplay show='name' blockchain={blockchain} />
+            </AppTypography>
             <Flex paddingTop={6} justifyContent="center"><BasicButton onClick={() => close()}>Close</BasicButton></Flex>
         </VStack>
     )

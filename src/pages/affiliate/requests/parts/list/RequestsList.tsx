@@ -83,7 +83,11 @@ function RequestsList() {
                   <Flex alignItems="center" gap="8px" color="#808080">
                     <BlockchainDisplay show="icon" blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
                     <AppTypography position="relative" top="2px" fontSize="10px" display="flex">
-                      Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'><BlockchainDisplay show='name' blockchain={el?.network} /></AppTypography> blockchain
+                      Dropped on {" "}
+                      <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'>
+                        <BlockchainDisplay show='name' blockchain={el?.network} />
+                      </AppTypography>{" "}
+                      blockchain
                     </AppTypography>
                   </Flex>
                 </VStack>

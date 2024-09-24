@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { productContext } from '../../context'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
 import DigitalProductAffiliate from '../modules/digitalProductAffiliate/DigitalProductAffiliate'
@@ -7,8 +7,12 @@ import DigitalProductNetwork from '../modules/digitalProductNetwork/DigitalProdu
 import DigitalProductRoyalty from '../modules/digitalProductRoyalty/DigitalProductRoyalty'
 
 function Web3Settings() {
-    const { state: { product_type, digitalDetail } } = useContext(productContext)
+    const { state: { product_type, digitalDetail, sku } } = useContext(productContext)
     const [showDetails, setDetailsVisibility] = useState(Boolean(digitalDetail?.chain))
+
+    useEffect(() => {
+        setDetailsVisibility(Boolean(digitalDetail?.chain))
+    }, [setDetailsVisibility, digitalDetail?.chain])
 
     return (
         <>

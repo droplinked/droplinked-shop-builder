@@ -1,4 +1,5 @@
 import { isStyleProp } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
 
 export const capitalizeFirstLetter = (value: string) => {
     if (!value) return "";
@@ -101,6 +102,8 @@ export const time_ago = (date_string: string): string => {
 };
 
 export const cart_item_options_to_array_of_variants = (options: any) => {
+    console.log({ options });
+    if (!options) return
     let result: { name: string; caption: string }[] = [];
     Object.keys(options).forEach((key) => {
         if (key !== "quantity") {
@@ -244,4 +247,54 @@ export const UTCConverter = (utcTimeString: string): string => {
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 
     return `${formattedDate} (Local time)`;
+}
+
+export const subscriptionPlanMap: Record<
+    string,
+    {
+        icon: React.FunctionComponent<
+            React.SVGProps<SVGSVGElement> & {
+                title?: string;
+            }
+        >;
+        title: string;
+        description: string;
+    }
+> = {
+    STARTER: { icon: AppIcons.StarterPlan, title: "Starter", description: "For individuals or companies just getting started." },
+    BUSINESS: { icon: AppIcons.ProPlan, title: "Pro", description: "For small businesses and teams ready to grow." },
+    BUSINESS_PRO: { icon: AppIcons.PremiumPlan, title: "Premium", description: "Designed for large businesses needing comprehensive solutions at scale." },
+    ENTERPRISE: { icon: AppIcons.EnterprisePlan, title: "Enterprise", description: "Contact us to explore integration." },
+};
+
+export const formattedCurrency = (number: number) => new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+}).format(number)
+
+export function deepEqual(obj1, obj2) {
+    if (obj1 === obj2) return true
+
+    if (typeof obj1 !== "object" || typeof obj2 !== "object" || obj1 === null || obj2 === null)
+        return false
+
+    const keys1 = Object.keys(obj1)
+    const keys2 = Object.keys(obj2)
+
+    if (keys1.length !== keys2.length) return false
+
+    for (let key of keys1) {
+        if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false
+    }
+
+    return true
+}
+
+export const arraysAreEqual = (arr1: any[], arr2: any[]): boolean => {
+    if (arr1.length !== arr2.length) return false
+
+    const sortedArr1 = [...arr1].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
+    const sortedArr2 = [...arr2].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
+
+    return sortedArr1.every((item, index) => deepEqual(item, sortedArr2[index]))
 }
