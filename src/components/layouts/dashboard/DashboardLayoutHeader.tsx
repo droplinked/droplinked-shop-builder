@@ -18,6 +18,14 @@ const DashboardLayoutHeader = () => {
     const { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } = createSubscriptionStatusConstants({ STARTER: () => shopNavigate("/dashboard/plans") }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
     const profileConstants = createProfileConstants(shop, logoutUser);
 
+    const getShopInfo = () => {
+        const text = shop?.description || shop?.name
+        if (!text) return ""
+        return text.length <= 15 ?
+            text :
+            <AppTooltip label={text}>{`${text.slice(0, 15)}...`}</AppTooltip>
+    }
+
     return (
         <Flex position="sticky" top={0} width="full" justifyContent="flex-end" alignItems="center" gap="16px" padding="16px 36px 16px 24px" borderBottom="1px solid #292929" backgroundColor="#141414" zIndex={2}>
             <Menu variant="unstyled">
@@ -30,7 +38,7 @@ const DashboardLayoutHeader = () => {
                             <Image width={"48px"} height={"48px"} src={shop?.logo} borderRadius="full" objectFit={"contain"} backgroundPosition={"center"} />
                             <Box display="flex" alignSelf={"stretch"} flexDirection="column" justifyContent="center" alignItems="flex-start" flex="1 0 0">
                                 <AppTypography alignSelf={"stretch"} color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="600" lineHeight="24px">{user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : "Welcome"}</AppTypography>
-                                <AppTypography alignSelf={"stretch"} color="#C4C4C4" fontFamily="Inter" fontSize="12px" fontStyle="normal" fontWeight="400" lineHeight="16px">{shop?.description?.length <= 15 ? shop?.description : <AppTooltip label={shop?.description}>{`${shop?.description?.slice(0, 15)}...`}</AppTooltip>}</AppTypography>
+                                <AppTypography alignSelf={"stretch"} color="#C4C4C4" fontFamily="Inter" fontSize="12px" fontStyle="normal" fontWeight="400" lineHeight="16px">{getShopInfo()}</AppTypography>
                             </Box>
                             <Link to={"/shop-management"}><AppIcons.ProfileSwitch width={"20px"} height={"20px"} /></Link>
                         </Box>
