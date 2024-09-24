@@ -32,11 +32,11 @@ const hashkeyModel = {
 				}.aurora.dev/tx/${hashkey}`;
 			case 'BASE':
 				return `https://base${
-					appDevelopment ? '-goerli' : ''
+					appDevelopment ? '-sepolia' : ''
 				}.blockscout.com/tx/${hashkey}`;
 			case 'LINEA':
 				return `https://${
-					appDevelopment ? 'goerli' : ''
+					appDevelopment ? 'sepolia' : ''
 				}.lineascan.build/tx/${hashkey}`;
 			case 'ETH':
 				return `https://${
