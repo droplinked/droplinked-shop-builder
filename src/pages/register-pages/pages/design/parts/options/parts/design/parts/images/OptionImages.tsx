@@ -12,7 +12,6 @@ function OptionImages() {
         queryFn: availableTemplateService,
         queryKey: "images_them_option_query",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
     })
 
     return (

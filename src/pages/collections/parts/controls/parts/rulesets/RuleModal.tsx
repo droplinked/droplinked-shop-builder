@@ -34,7 +34,6 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
         queryKey: "chains_query",
         queryFn: rulesetChainsService,
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false,
     });
 
     const { showToast } = useAppToast();

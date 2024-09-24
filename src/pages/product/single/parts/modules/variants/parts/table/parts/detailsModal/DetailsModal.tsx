@@ -27,8 +27,7 @@ function DetailsModal({ open, close, sku }: Props) {
         onError: (error) => {
             showToast({ message: (error as Error).message, type: "error" })
             close()
-        },
-        refetchOnWindowFocus: false
+        }
     })
     const response = useMemo(() => data?.data.data, [data])
     const variant = getVariant(response?.sku)

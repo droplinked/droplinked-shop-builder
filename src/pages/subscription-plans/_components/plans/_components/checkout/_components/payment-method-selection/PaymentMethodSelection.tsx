@@ -30,7 +30,6 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
         queryKey: "plan-payment-methods",
         queryFn: () => getSubscriptionPaymentMethodsService(),
         staleTime: 1000 * 60 * 5, // 5 minutes
-        refetchOnWindowFocus: false,
         onSuccess: (data) => {
             if (!selectedPaymentMethod) setModalData((prevData) => ({ ...prevData, selectedPaymentMethod: data.data[0] }))
         }

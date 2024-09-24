@@ -12,9 +12,8 @@ import LoginMethodsLoading from './parts/loading/LoginMethodsLoading'
 
 function SupportedLoginMethods() {
     const { updateState } = useContext(technicalContext)
-    const supportedLoginMethods = useQuery("supported-login-methods", authSupportedWalletsService, { refetchOnWindowFocus: false })
+    const supportedLoginMethods = useQuery("supported-login-methods", authSupportedWalletsService)
     const selectedLoginMethods = useQuery("selected-login-methods", getShopInformationService, {
-        refetchOnWindowFocus: false,
         enabled: supportedLoginMethods.isSuccess,
         onSuccess: (data) => {
             let selectedLoginMethods = data.data.data.loginMethods

@@ -17,7 +17,6 @@ function Blogs() {
     const { isFetching, data } = useQuery({
         queryKey: "shop-blogs",
         queryFn: () => getShopBlogsService(shop._id),
-        refetchOnWindowFocus: false
     })
     const blogs = data?.data
 

@@ -41,7 +41,7 @@ function RegisterShopInfo() {
   const hasPermission = useHasPermission()
   const { shop } = useProfile()
   const addressService = useMutation(() => getShopAddressBookService())
-  const { data: referralReports, isLoading: referralReportsLoading } = useQuery({ queryKey: 'referral_report', queryFn: getReferralReportService, cacheTime: 1, refetchOnWindowFocus: false, enabled: hasPermission("create_referral_code") });
+  const { data: referralReports, isLoading: referralReportsLoading } = useQuery({ queryKey: 'referral_report', queryFn: getReferralReportService, cacheTime: 1, enabled: hasPermission("create_referral_code") });
   const [States, setStates] = useState<IstatesShopInfo>({ description: null, addressBookID: null, tags: [], pre_purchase_data_fetch: null, referralDetails: null })
   const [pending, start_transition] = useTransition()
   const updateStates = (key: string, value: string) => start_transition(() => setStates((prev: IstatesShopInfo) => ({ ...prev, [key]: value })))

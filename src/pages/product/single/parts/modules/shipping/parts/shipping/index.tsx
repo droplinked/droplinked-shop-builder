@@ -20,7 +20,6 @@ function Shipping() {
     const { isFetching, data: customShippings, refetch } = useQuery({
         queryKey: "custom-shippings",
         queryFn: () => getCustomShippingsService(),
-        refetchOnWindowFocus: false,
         enabled: hasPermission("custom_shipping")
     })
     const [targetShipping, setTargetShipping] = useState(null) //To remove custom shipping

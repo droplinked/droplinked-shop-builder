@@ -9,7 +9,6 @@ import EventNotice from '../modules/event-notice/EventNotice'
 import ProductImages from '../modules/images/ProductImages'
 import ProductName from '../modules/name/ProductName'
 import PostPurchaseDataGatheringCheckbox from '../modules/postPurchaseDataGathering/PostPurchaseDataGatheringCheckbox'
-import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 
 interface Iprops {
     open?: boolean
@@ -24,7 +23,6 @@ function General({ open = true }: Iprops) {
                 <ProductName />
                 <DescriptionProduct />
                 {product_type === "EVENT" && <EventNotice />}
-                <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
                 <PostPurchaseDataGatheringCheckbox />

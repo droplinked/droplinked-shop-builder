@@ -13,7 +13,7 @@ import UpdateAPIKey from './parts/update-api-key/UpdateAPIKey'
 
 export default function ShopAPIKey() {
     const hasPermission = useHasPermission()
-    const getShopAPIKey = useQuery("shopAPIKey", getShopAPIKeyService, { refetchOnWindowFocus: false, enabled: hasPermission("shopfront_apis") })
+    const getShopAPIKey = useQuery("shopAPIKey", getShopAPIKeyService, { enabled: hasPermission("shopfront_apis") })
     const updateShopAPIKey = useMutation((params: ShopOAuth2Client) => updateShopAPIKeyService(params))
     const fetchedData = useMemo(() => getShopAPIKey.data?.data.data, [getShopAPIKey.data])
 

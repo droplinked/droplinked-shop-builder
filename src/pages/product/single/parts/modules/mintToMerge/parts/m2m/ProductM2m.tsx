@@ -12,7 +12,6 @@ function ProductM2m() {
         queryFn: printServicesServices,
         queryKey: "printServicesServices",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
     })
     const { state: { m2m_services }, methods: { updateState } } = useContext(productContext)
 

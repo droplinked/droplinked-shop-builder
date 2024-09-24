@@ -17,7 +17,6 @@ function SingleBlog() {
     const { isFetching, data } = useQuery({
         queryKey: "blog",
         queryFn: () => getBlogByIdService(shop._id, slug),
-        refetchOnWindowFocus: false,
         onError: (e) => {
             const errorStatus = (e as AxiosError).response.status
             const is404Error = errorStatus === 404
