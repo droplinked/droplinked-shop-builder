@@ -15,14 +15,14 @@ function PlanDurationRadio({ ...props }) {
                 justifyContent={"center"}
                 alignItems={"center"}
                 gap={"6px"}
-                borderRadius={8}
-                bg={isChecked ? "#3C3C3C" : "transparent"}
+                borderRadius={6}
+                bg={isChecked ? "#292929" : "transparent"}
                 transition={"all 0.2s"}
                 sx={{ "*": { transition: "all 0.2s" } }}
             >
                 {
-                    <Flex alignItems={"center"} gap={2}>
-                        <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#fff" : "#B1B1B1"}>
+                    <Flex alignItems={"center"} gap={"6px"}>
+                        <AppTypography fontSize={14} color={isChecked ? "#fff" : "#B1B1B1"}>
                             {duration.label}
                         </AppTypography>
                         {duration.discount && <Center paddingBlock={1} paddingInline={2} borderRadius={"100px"} bgColor={"#80EDCF1A"} color={"#2BCFA1"} fontSize={12} fontWeight={600}>{`-${duration.discount}%`}</Center>}

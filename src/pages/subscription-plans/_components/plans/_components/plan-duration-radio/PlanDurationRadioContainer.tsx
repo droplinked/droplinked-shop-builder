@@ -21,8 +21,8 @@ function PlanDurationRadioContainer() {
             height={12}
             alignItems={"center"}
             gap={1}
-            bg={"#222222"}
-            p={1}
+            bg={"#1C1C1C"}
+            p={"6px"}
             borderRadius={8}
             sx={{
                 /* Firefox */

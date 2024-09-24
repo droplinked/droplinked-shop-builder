@@ -1,6 +1,5 @@
 import { Box, Center, Divider, Flex, useDisclosure } from "@chakra-ui/react"
 import AppIcons from "assest/icon/Appicons"
-import BasicButton from "components/common/BasicButton/BasicButton"
 import AppTypography from "components/common/typography/AppTypography"
 import AuthModal from "components/modals/auth-modal/AuthModal"
 import useAppToast from "functions/hooks/toast/useToast"
@@ -9,12 +8,14 @@ import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import useAppStore from "lib/stores/app/appStore"
 import { navigating_user_based_on_status, subscriptionPlanMap } from "lib/utils/helpers/helpers"
+import Button from "pages/invoice-management/components/Button"
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
 import PlanPrice from "../plan-price/PlanPrice"
+import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
 
 interface Props {
@@ -33,7 +34,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
-    const { title, icon: SubscriptionIcon, description } = subscriptionPlanMap[plan.type]
+    const { title, icon: SubscriptionIcon } = subscriptionPlanMap[plan.type]
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
@@ -71,17 +72,10 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
             const status = user.status
 
             if (status === "DELETED")
-                return showToast({
-                    message: "This account has been deleted",
-                    type: "error"
-                })
+                return showToast({ message: "This account has been deleted", type: "error" })
 
             if (user.type !== "SHOPBUILDER")
-                return showToast({
-                    message:
-                        "This account is unable to log in. Please check your credentials.",
-                    type: "error"
-                })
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
             if (!isPlansPage) {
                 const { href, dashboard } = navigating_user_based_on_status(status, res)
@@ -120,13 +114,13 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                 gap={9}
                 borderRadius={8}
                 padding={{ lg: 9, base: 7 }}
-                bg="#222222"
+                bg="#1C1C1C"
                 {...(isPopular && {
                     border: "2px solid #2BCFA1",
                     backgroundImage: "url('/assets/images/popular-plan-bg.png')",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",
-                    backgroundSize: { base: "auto 60%", xl: "auto 35%" }
+                    backgroundSize: { base: "auto 55%", xl: "auto 35%" }
                 })}
             >
                 {isPopular && <PopularPlanBadge />}
@@ -137,15 +131,13 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
                     </Center>
                     <Box>
                         <AppTypography fontSize={20} fontWeight={700} color="white">{title}</AppTypography>
-                        <AppTypography minHeight={{ base: "48px", xl: "72px" }} fontSize={16} color="#B1B1B1">
-                            {description}
-                        </AppTypography>
+                        <PlanDescription plan={plan} />
                     </Box>
                 </Flex>
 
                 <PlanPrice plan={plan} />
 
-                <BasicButton isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</BasicButton>
+                <Button fontWeight={500} isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</Button>
 
                 <Divider borderColor="#3C3C3C" />
 
