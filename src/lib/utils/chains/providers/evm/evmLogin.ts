@@ -294,7 +294,7 @@ export async function evmLogin(
 		).toString('hex')}`;
 		if (chain === Chain.SKALE) {
 			const distributionRequest = (
-				await axiosInstance.patch(`shop/sFuelDistribution`, {
+				await axiosInstance.post(`shop/sFuelDistribution`, {
 					wallet: address,
 					isTestnet: network === Network.TESTNET,
 				})
