@@ -1,5 +1,5 @@
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React, { useState } from 'react'
 import CouponForm from '../../../../form/CouponForm'
 import CouponsCreateContext, { CouponsCreateStates } from './context'

@@ -3,7 +3,7 @@ import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 import { IBlog } from "./blogs.interface";
-import { time_ago } from "lib/utils/heper/helpers";
+import { time_ago } from "lib/utils/helpers/helpers";
 import { Link, useNavigate } from "react-router-dom";
 const Blog = ({ blog }: { blog: IBlog }) => {
     const navigate = useNavigate();

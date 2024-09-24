@@ -1,6 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import ProductPositions from '../../../positions/ProductPositions'

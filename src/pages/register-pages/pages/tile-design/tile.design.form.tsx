@@ -7,7 +7,7 @@ import { TileDesignContext } from "./context/tile.design.context";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppSwitch from "components/common/swich";
 import AppColorPicker from "components/common/colorPicker/AppColorPicker";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
 
 const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "design">) => ({
     [TILE_DESIGN_PAGES_ENUM.PRODUCT]: {
@@ -144,43 +144,43 @@ const TileDesignForm = () => {
             "design",
             toDarkMode
                 ? {
-                      PRODUCT: {
-                          ...design?.PRODUCT,
-                          CONTAINER: {
-                              ...CONTAINER,
-                              backgroundColor: CONTAINER.backgroundColor === "#FFFFFF" ? "#141414" : CONTAINER.backgroundColor,
-                              darkMode: toDarkMode,
-                          },
-                          TITLE: {
-                              color: TITLE.color === "#000000" ? "#FFFFFF" : TITLE.color,
-                          },
-                          PRICE: { color: PRICE.color === "#000000" ? "#FFFFFF" : PRICE.color },
-                          BUTTON: {
-                              ...BUTTON,
-                              backgroundColor: BUTTON.backgroundColor === "#141414" ? "#FFFFFF" : BUTTON.backgroundColor,
-                              color: BUTTON.color === "#FFFFFF" ? "#000000" : BUTTON.color,
-                          },
-                      },
-                  }
+                    PRODUCT: {
+                        ...design?.PRODUCT,
+                        CONTAINER: {
+                            ...CONTAINER,
+                            backgroundColor: CONTAINER.backgroundColor === "#FFFFFF" ? "#141414" : CONTAINER.backgroundColor,
+                            darkMode: toDarkMode,
+                        },
+                        TITLE: {
+                            color: TITLE.color === "#000000" ? "#FFFFFF" : TITLE.color,
+                        },
+                        PRICE: { color: PRICE.color === "#000000" ? "#FFFFFF" : PRICE.color },
+                        BUTTON: {
+                            ...BUTTON,
+                            backgroundColor: BUTTON.backgroundColor === "#141414" ? "#FFFFFF" : BUTTON.backgroundColor,
+                            color: BUTTON.color === "#FFFFFF" ? "#000000" : BUTTON.color,
+                        },
+                    },
+                }
                 : {
-                      PRODUCT: {
-                          ...design?.PRODUCT,
-                          CONTAINER: {
-                              ...CONTAINER,
-                              backgroundColor: CONTAINER.backgroundColor === "#141414" ? "#FFFFFF" : CONTAINER.backgroundColor,
-                              darkMode: toDarkMode,
-                          },
-                          TITLE: {
-                              color: TITLE.color === "#FFFFFF" ? "#000000" : TITLE.color,
-                          },
-                          PRICE: { color: PRICE.color === "#FFFFFF" ? "#000000" : PRICE.color },
-                          BUTTON: {
-                              ...BUTTON,
-                              backgroundColor: BUTTON.backgroundColor === "#FFFFFF" ? "#141414" : BUTTON.backgroundColor,
-                              color: BUTTON.color === "#000000" ? "#FFFFFF" : BUTTON.color,
-                          },
-                      },
-                  }
+                    PRODUCT: {
+                        ...design?.PRODUCT,
+                        CONTAINER: {
+                            ...CONTAINER,
+                            backgroundColor: CONTAINER.backgroundColor === "#141414" ? "#FFFFFF" : CONTAINER.backgroundColor,
+                            darkMode: toDarkMode,
+                        },
+                        TITLE: {
+                            color: TITLE.color === "#FFFFFF" ? "#000000" : TITLE.color,
+                        },
+                        PRICE: { color: PRICE.color === "#FFFFFF" ? "#000000" : PRICE.color },
+                        BUTTON: {
+                            ...BUTTON,
+                            backgroundColor: BUTTON.backgroundColor === "#FFFFFF" ? "#141414" : BUTTON.backgroundColor,
+                            color: BUTTON.color === "#000000" ? "#FFFFFF" : BUTTON.color,
+                        },
+                    },
+                }
         );
     };
 

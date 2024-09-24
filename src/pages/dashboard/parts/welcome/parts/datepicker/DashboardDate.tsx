@@ -1,6 +1,6 @@
 import { Box, BoxProps, Flex, Icon } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers';
 import dashboardPageContext from 'pages/dashboard/context';
 import React, { useCallback, useContext, useMemo } from 'react'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -15,7 +15,7 @@ function DashboardDate() {
         borderRadius: "4px"
     }
 
-    const setRange = useCallback((el) => {        
+    const setRange = useCallback((el) => {
         const range = getDateRange({ range: el, startDate: new Date() })
         updateDateRange('from', range.from)
         updateDateRange('to', range.to)

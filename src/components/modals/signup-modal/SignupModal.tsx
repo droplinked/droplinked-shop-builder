@@ -10,8 +10,8 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import { signupService } from "lib/apis/auth/services";
 import useAppStore from "lib/stores/app/appStore";
 import { BASE_URL } from "lib/utils/app/variable";
-import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
-import { passwordRegex } from "lib/utils/heper/regex";
+import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
+import { passwordRegex } from "lib/utils/helpers/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

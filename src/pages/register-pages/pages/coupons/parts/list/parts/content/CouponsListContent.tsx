@@ -5,7 +5,7 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppModal from 'components/common/modal/AppModal'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 import React, { useContext, useState } from 'react'
 import CouponForm from '../form/CouponForm'
@@ -26,7 +26,7 @@ function CouponsListContent() {
     const handleExportCouponsReport = async (couponID: string) => {
         try {
             setIsFetchingCouponsReport(true)
-            const data = await exportCouponsReport({giftCardId: couponID})
+            const data = await exportCouponsReport({ giftCardId: couponID })
             const url = window.URL.createObjectURL(data);
             const link = document.createElement('a')
             link.href = url
@@ -95,7 +95,7 @@ function CouponsListContent() {
                                                     <td width="50px"></td>
                                                     <td><AppTypography fontSize="12px">Code</AppTypography></td>
                                                     <td><AppTypography fontSize="12px">Status</AppTypography></td>
-                                                    <td width="30px"><Button bgColor={"#1C1C1C"} borderRadius={"6px"} border={"2px solid #292929"} width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{bg: "unset"}} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
+                                                    <td width="30px"><Button bgColor={"#1C1C1C"} borderRadius={"6px"} border={"2px solid #292929"} width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{ bg: "unset" }} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
                                                     <td width="30px"></td>
                                                 </tr>
                                             </thead>

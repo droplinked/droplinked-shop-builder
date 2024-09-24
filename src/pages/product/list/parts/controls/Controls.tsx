@@ -7,7 +7,7 @@ import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
 import { productUpdateServices } from 'lib/apis/product/productServices';
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
-import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
+import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';

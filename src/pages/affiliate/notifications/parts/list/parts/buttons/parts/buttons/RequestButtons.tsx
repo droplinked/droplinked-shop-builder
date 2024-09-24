@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import AppBadge from 'components/common/badge/AppBadge'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React, { useContext } from 'react'
 import { requestsButtonsContext } from '../../context'
 import RequestListButton from '../requestListButton/RequestListButton'

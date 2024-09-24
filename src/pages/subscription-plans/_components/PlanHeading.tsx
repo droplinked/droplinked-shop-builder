@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import { subscriptionPlanMap } from 'lib/utils/heper/helpers';
+import { subscriptionPlanMap } from 'lib/utils/helpers/helpers';
 import React, { JSX } from 'react';
 
 interface Props {
@@ -21,7 +21,7 @@ function PlanHeading({ planTitle, fontSize = 16, iconSize = 16 }: Props) {
                 svg: { width: `${iconSize}px`, height: `${iconSize}px` }
             }}
         >
-            <SubscriptionIcon/>
+            <SubscriptionIcon />
             <AppTypography fontSize={fontSize} fontWeight={700} color={"white"}>{title}</AppTypography>
         </Flex>
     )

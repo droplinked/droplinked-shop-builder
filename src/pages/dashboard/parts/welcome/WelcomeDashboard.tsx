@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppStore from 'lib/stores/app/appStore'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React from 'react'
 import DashboardDate from './parts/datepicker/DashboardDate'
 

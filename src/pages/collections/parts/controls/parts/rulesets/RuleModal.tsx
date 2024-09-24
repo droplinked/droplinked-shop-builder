@@ -10,7 +10,7 @@ import useAppToast from "functions/hooks/toast/useToast";
 import { IcreateRuleService, IgetRuleService, IgetRuleTypeService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, rulesetTypeService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { useCheckPermission } from "lib/stores/app/appStore";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";

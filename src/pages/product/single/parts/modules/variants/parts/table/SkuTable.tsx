@@ -4,7 +4,7 @@ import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useLegalUsage } from 'lib/stores/app/appStore';
-import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
+import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';

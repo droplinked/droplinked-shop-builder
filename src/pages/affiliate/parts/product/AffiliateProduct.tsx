@@ -2,7 +2,7 @@ import { Box, HStack, Image, StackProps, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import AppTypography from 'components/common/typography/AppTypography';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';

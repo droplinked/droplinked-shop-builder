@@ -3,7 +3,7 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
-import { isDateExpired } from "lib/utils/heper/helpers";
+import { isDateExpired } from "lib/utils/helpers/helpers";
 import React, { useCallback, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { designContext, initialStateDesignPage } from "../../design-context";

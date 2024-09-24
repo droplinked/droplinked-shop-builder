@@ -1,6 +1,6 @@
 import useAppToast from 'functions/hooks/toast/useToast'
 import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
-import { deepEqual } from 'lib/utils/heper/helpers'
+import { deepEqual } from 'lib/utils/helpers/helpers'
 import { phone } from "phone"
 import { useState } from 'react'
 import { findSelectedShippingMethod } from '../helpers/helpers'

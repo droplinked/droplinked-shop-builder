@@ -15,7 +15,7 @@ import { importEvents } from "lib/apis/events/services";
 import useAppToast from "functions/hooks/toast/useToast";
 
 // Helpers
-import { UTCConverter } from "lib/utils/heper/helpers";
+import { UTCConverter } from "lib/utils/helpers/helpers";
 
 interface IEventCard {
   event: any;

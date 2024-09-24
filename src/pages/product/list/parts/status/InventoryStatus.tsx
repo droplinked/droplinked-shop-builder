@@ -1,5 +1,5 @@
 import AppBadge from 'components/common/badge/AppBadge';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers';
 import React from 'react'
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
 
 function InventoryStatus({ data }: IProps) {
     return (
-        <div><AppBadge colorScheme={data?.publish_status === "DRAFTED" ? "purple" : "green"} textTransform="capitalize" text={data?.publish_status === "PUBLISHED" ? capitalizeFirstLetter(data?.publish_status) : "Draft" } /></div>
+        <div><AppBadge colorScheme={data?.publish_status === "DRAFTED" ? "purple" : "green"} textTransform="capitalize" text={data?.publish_status === "PUBLISHED" ? capitalizeFirstLetter(data?.publish_status) : "Draft"} /></div>
     )
 }
 
