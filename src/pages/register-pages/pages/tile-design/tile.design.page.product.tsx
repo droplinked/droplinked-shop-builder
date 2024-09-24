@@ -6,7 +6,7 @@ import { wrap } from "@popmotion/popcorn";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
 import { TileDesignContext } from "./context/tile.design.context";
-import { percent_to_hex } from "lib/utils/heper/helpers";
+import { percent_to_hex } from "lib/utils/helpers/helpers";
 import AppModal from "components/common/modal/AppModal";
 
 const imagesToShow = [
@@ -159,19 +159,19 @@ const TileDesignPageProduct = () => {
                                                 style={
                                                     index === activeImageIndex
                                                         ? {
-                                                              borderRadius: "8px",
-                                                              transition: "300ms ease",
-                                                              width: "12px",
-                                                              height: "12px",
-                                                              backgroundColor: "#2bcfa1",
-                                                          }
+                                                            borderRadius: "8px",
+                                                            transition: "300ms ease",
+                                                            width: "12px",
+                                                            height: "12px",
+                                                            backgroundColor: "#2bcfa1",
+                                                        }
                                                         : {
-                                                              width: "10px",
-                                                              height: "10px",
-                                                              borderRadius: "8px",
-                                                              backgroundColor: "#9cf8de",
-                                                              transition: "300ms ease",
-                                                          }
+                                                            width: "10px",
+                                                            height: "10px",
+                                                            borderRadius: "8px",
+                                                            backgroundColor: "#9cf8de",
+                                                            transition: "300ms ease",
+                                                        }
                                                 }
                                             />
                                         </div>
@@ -229,7 +229,7 @@ const TileDesignPageProduct = () => {
                                 >
                                     View Description
                                 </BasicButton>
-                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white"}}>
+                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{ backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white" }}>
                                     <Flex direction={"column"} justifyContent={"space-between"} gap={16}>
                                         <AppTypography color={white_if_dark_mode} fontSize="14px" fontWeight={"500"}>
                                             This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous! • Fabric

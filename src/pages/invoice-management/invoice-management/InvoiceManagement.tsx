@@ -18,7 +18,6 @@ function InvoiceManagement() {
         queryKey: [INVOICES_QUERY_KEY, { ...invoiceFilters, shopId: shop._id }],
         queryFn: ({ pageParam = 1 }) => getInvoicesService({ ...invoiceFilters, page: pageParam }),
         getNextPageParam: (lastPage) => lastPage.data.nextPage,
-        refetchOnWindowFocus: false
     })
 
     const invoices = data?.pages.flatMap(page => page.data.data) || []

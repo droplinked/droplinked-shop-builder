@@ -1,4 +1,4 @@
-import { toMb } from "lib/utils/heper/helpers";
+import { toMb } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 
 const UploadImageModel = ({

@@ -1,7 +1,7 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getPercentage } from 'lib/utils/heper/helpers'
+import { getPercentage } from 'lib/utils/helpers/helpers'
 import dashboardChartsContext from 'pages/dashboard/parts/charts/context'
 import DashboardEmpty from 'pages/dashboard/parts/parts/empty/DashboardEmpty'
 import React, { useContext, useMemo } from 'react'

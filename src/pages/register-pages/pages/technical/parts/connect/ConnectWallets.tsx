@@ -19,7 +19,6 @@ function ConnectWallets() {
 		queryFn: supportedChainsService,
 		queryKey: 'supported_chains',
 		cacheTime: 60 * 60 * 1000,
-		refetchOnWindowFocus: false,
 	});
 	const { getChain, login } = useAppWeb3();
 	const { showToast } = useAppToast();

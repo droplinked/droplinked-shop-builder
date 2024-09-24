@@ -16,7 +16,6 @@ export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
         queryKey: ["products", debouncedSearchTerm],
         queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 15, filter: debouncedSearchTerm }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
-        refetchOnWindowFocus: false
     })
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 

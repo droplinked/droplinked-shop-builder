@@ -20,7 +20,6 @@ function ProductOrderAddress() {
         queryFn: allCountriesService,
         queryKey: "allCountriesService",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
     })
     const states = useMutation((params: IsatatesService) => statesService(params))
     const cities = useMutation((params: IcitiesService) => citiesService(params))

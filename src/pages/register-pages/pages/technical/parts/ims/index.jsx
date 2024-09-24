@@ -5,7 +5,7 @@ import AppDialog from "components/common/dialog"
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel"
 import AppTypography from "components/common/typography/AppTypography"
 import useAppToast from "functions/hooks/toast/useToast"
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers"
+import { capitalizeFirstLetter } from "lib/utils/helpers/helpers"
 import { BlackBox, TextLabelBold } from "pages/register-pages/RegisterPages-style"
 import React, { useContext, useState } from "react"
 import technicalContext from "../../context"
@@ -13,7 +13,7 @@ import technicalContext from "../../context"
 function Ims() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [RadioGroupValue, setRadioGroup] = useState("")
-  const {updateState, state: { imsType }} = useContext(technicalContext)
+  const { updateState, state: { imsType } } = useContext(technicalContext)
   const { showToast } = useAppToast()
 
   return (
@@ -108,7 +108,7 @@ function Ims() {
                 <BasicButton
                   onClick={() => {
                     if (!RadioGroupValue.length)
-                      return showToast({ message: "Please choose type", type: "error"})
+                      return showToast({ message: "Please choose type", type: "error" })
                     onOpen()
                   }}
                   sizes="medium">

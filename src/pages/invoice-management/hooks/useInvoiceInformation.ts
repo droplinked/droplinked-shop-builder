@@ -15,7 +15,6 @@ export default function useInvoiceInformation(invoiceId?: string) {
         queryKey: ["invoice", invoiceId],
         queryFn: () => retrieveInvoiceByIdService(invoiceId),
         enabled: !!invoiceId,
-        refetchOnWindowFocus: false
     })
     const cart = useInvoiceStore(state => state.cart)
     const invoice = invoiceId ? data?.data : cart

@@ -12,7 +12,6 @@ function AffiliateProductsFilters({ addQuery }) {
         queryFn: productCategoryervices,
         queryKey: "product_category",
         cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
     })
     const category = data?.data?.data
     const [searchParams] = useSearchParams()

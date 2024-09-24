@@ -20,7 +20,7 @@ import { getEvents } from "lib/apis/events/services";
 import useAppToast from "functions/hooks/toast/useToast";
 
 // Helpers
-import { isDateExpired } from "lib/utils/heper/helpers";
+import { isDateExpired } from "lib/utils/helpers/helpers";
 
 const EventsList = () => {
   const { showToast } = useAppToast();
@@ -43,8 +43,8 @@ const EventsList = () => {
         ...event,
         isExpired: isDateExpired(event.start),
       }));
-      setEventsData({ 
-        ...data, 
+      setEventsData({
+        ...data,
         newEventProducts: newEventsWithExpiry,
         addedEventProducts: addedEventsWithExpiry,
       });
@@ -65,7 +65,7 @@ const EventsList = () => {
       const importedEvent = prevData.newEventProducts.find(event => event._id === eventID);
       const updatedAddedEvents = [...prevData.addedEventProducts, importedEvent];
       const updatedNewEvents = prevData.newEventProducts.filter(event => event._id !== eventID);
-      
+
       return {
         ...prevData,
         addedEventProducts: updatedAddedEvents.map((event) => ({
@@ -108,20 +108,20 @@ const EventsList = () => {
       {/* divider */}
       <Flex height={"1px"} width={"100%"} bgColor={"#5D5D5D"} />
 
-      {addedUpcomingEvents?.length > 0 && 
+      {addedUpcomingEvents?.length > 0 &&
         <>
           <AppTypography fontSize={"18px"} fontWeight={700} color={"#2BCFA1"}>Previously Imported Events</AppTypography>
-          <Flex 
-            alignItems={"flex-start"} 
-            gap={"18px"} 
-            width={"100%"} 
-            overflowX={"auto"} 
+          <Flex
+            alignItems={"flex-start"}
+            gap={"18px"}
+            width={"100%"}
+            overflowX={"auto"}
             css={{
-                "&::-webkit-scrollbar": {
-                  display: "none",
-                },
-                "-ms-overflow-style": "none",
-                "scrollbar-width": "none",
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+              "-ms-overflow-style": "none",
+              "scrollbar-width": "none",
             }}
           >
             {addedUpcomingEvents.map((event, index) => (
@@ -133,17 +133,17 @@ const EventsList = () => {
       }
 
       <Flex alignItems={"flex-start"} justifyContent={"flex-start"} alignContent={"flex-start"} alignSelf={"stretch"} flexWrap={"wrap"} gap={"10px"} rowGap={"20px"}>
-        {isLoading ? 
-          Array.from({ length: 6 }).map((_, index) => <EventCardSkeleton key={index} /> )
-        :
-        upcomingEvents?.length > 0 ?
-          upcomingEvents?.map((event, index) => (
-            <EventCard event={event} key={index} onEventImported={handleEventImported} />
-          ))
+        {isLoading ?
+          Array.from({ length: 6 }).map((_, index) => <EventCardSkeleton key={index} />)
           :
-          <AppTypography fontSize={"18px"} fontWeight={700} color={"#C2C2C2"}>
-            Looks like you don't have any upcoming events right now. <Link to={"https://events.airfoil.studio/"} style={{textDecoration: "underline", color: "#2BCFA1", fontWeight: 600}}>Why not create one?</Link> 🤨
-          </AppTypography>
+          upcomingEvents?.length > 0 ?
+            upcomingEvents?.map((event, index) => (
+              <EventCard event={event} key={index} onEventImported={handleEventImported} />
+            ))
+            :
+            <AppTypography fontSize={"18px"} fontWeight={700} color={"#C2C2C2"}>
+              Looks like you don't have any upcoming events right now. <Link to={"https://events.airfoil.studio/"} style={{ textDecoration: "underline", color: "#2BCFA1", fontWeight: 600 }}>Why not create one?</Link> 🤨
+            </AppTypography>
         }
       </Flex>
 

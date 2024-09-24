@@ -24,7 +24,6 @@ function AffiliateStores() {
         getNextPageParam: (pagination, pages) => {
             return pagination?.hasNextPage ? pages.length + 1 : undefined;
         },
-        refetchOnWindowFocus: false,
     });
     const stores = data?.pages?.flatMap((page) => page?.data) || [];
     return (

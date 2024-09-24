@@ -9,7 +9,7 @@ import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import useAppStore from "lib/stores/app/appStore";
 import { BASE_URL } from "lib/utils/app/variable";
-import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
+import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

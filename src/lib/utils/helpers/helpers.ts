@@ -102,7 +102,6 @@ export const time_ago = (date_string: string): string => {
 };
 
 export const cart_item_options_to_array_of_variants = (options: any) => {
-    console.log({ options });
     if (!options) return
     let result: { name: string; caption: string }[] = [];
     Object.keys(options).forEach((key) => {

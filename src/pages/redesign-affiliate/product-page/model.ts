@@ -1,9 +1,3 @@
-interface IfindSkuAsOption {
-    skuIDs: any;
-    color: string | null;
-    size: string | null;
-}
-
 type Option = {
     variantName: string;
     value: string;

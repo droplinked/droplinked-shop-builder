@@ -6,7 +6,7 @@ import Blog from "./blogs.blog";
 import { IBlog } from "./blogs.interface";
 import { getSuperAdminBlogs } from "lib/apis/blog/services";
 import LatestBlog from "./blogs.latest";
-import { sort_by_date } from "lib/utils/heper/helpers";
+import { sort_by_date } from "lib/utils/helpers/helpers";
 import LoadingBlogs from "./blogs.loading";
 
 const useScrollAnimation = (ref, length: number) => {

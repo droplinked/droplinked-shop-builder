@@ -1,6 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import AppDialog, { IAppDialog } from 'components/common/dialog'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React, { useMemo } from 'react'
 import requestInterfaces from '../../interfaces'
 
@@ -13,7 +13,7 @@ interface Iprops {
 }
 
 function NotificationsModal({ close, open, status, approveClick, loading }: Iprops) {
-    
+
     const label = useMemo(() => typeof status === "string" ? capitalizeFirstLetter(status) : "", [status])
 
     return (

@@ -5,7 +5,7 @@ import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { InvoiceStatus } from "lib/apis/invoice/interfaces";
 import { SHOP_URL } from "lib/utils/app/variable";
-import { formattedCurrency } from "lib/utils/heper/helpers";
+import { formattedCurrency } from "lib/utils/helpers/helpers";
 import Table from "pages/invoice-management/components/Table";
 import StatusBadge from "pages/invoice-management/invoice-management/components/table/StatusBadge";
 import React, { useRef } from "react";
@@ -46,7 +46,7 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
                     return (
                         <Link to={`/dashboard/affiliate/stores/${_id}`}>
                             <Flex alignItems={"center"} gap={"16px"} cursor={"pointer"}>
-                                {logo && logo !== "" ? <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} /> : <AppImage rounded="full" width={"56px"} height={"56px"} src="https://upload-file-droplinked.s3.amazonaws.com/05d45f56e28ac067f0689d3e3d33366f1dfb1e62947fedda435f491e4f0b8913.png" /> }
+                                {logo && logo !== "" ? <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} /> : <AppImage rounded="full" width={"56px"} height={"56px"} src="https://upload-file-droplinked.s3.amazonaws.com/05d45f56e28ac067f0689d3e3d33366f1dfb1e62947fedda435f491e4f0b8913.png" />}
                                 <AppTypography fontSize={"16px"} fontWeight={"400"} fontFamily={"Inter"} color="#FFF">
                                     {name}
                                 </AppTypography>

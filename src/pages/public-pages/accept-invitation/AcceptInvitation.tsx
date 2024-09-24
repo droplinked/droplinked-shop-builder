@@ -17,7 +17,6 @@ function AcceptInvitation() {
             navigate("/")
             showToast({ type: "error", message: (error as Error).message })
         },
-        refetchOnWindowFocus: false,
     })
 
     return (

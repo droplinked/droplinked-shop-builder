@@ -10,7 +10,6 @@ import { useQuery } from 'react-query'
 function PostPurchaseDataGatheringCheckbox() {
     const { isLoading, data } = useQuery({
         queryFn: getShopInformationService,
-        refetchOnWindowFocus: false
     })
     const shopPostPurchaseDataGathering = data?.data.data.pre_purchase_data_fetch
     const { state: { pre_purchase_data_fetch }, methods: { updateState } } = useContext(productContext)

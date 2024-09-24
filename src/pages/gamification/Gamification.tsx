@@ -9,7 +9,6 @@ function Gamification() {
     const { isFetching, data } = useQuery({
         queryKey: ["participates"],
         queryFn: () => getParticipatesService(),
-        refetchOnWindowFocus: false
     })
     const missions = data?.data.data ?? []
 

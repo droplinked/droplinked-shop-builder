@@ -13,7 +13,7 @@ interface Iprops extends Omit<IAppModal, "children"> {
 }
 
 function ProductOrdersModal({ close, open, productId }: Iprops) {
-    const { data, isFetching } = useQuery({ queryFn: () => getProductOrdersService({ productId }), queryKey: ["get-product-orders"], refetchOnWindowFocus: false });
+    const { data, isFetching } = useQuery({ queryFn: () => getProductOrdersService({ productId }), queryKey: ["get-product-orders"] });
     return (
         <>
             <AppModal close={close} open={open} size="6xl">

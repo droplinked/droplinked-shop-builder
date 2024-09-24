@@ -16,7 +16,6 @@ function InvoiceAddress() {
     const { updateIsAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
     const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
         queryFn: allCountriesService,
-        refetchOnWindowFocus: false
     })
     const { isLoading: isFetchingStates, mutateAsync: getStates, data: statesData } = useMutation((params: IsatatesService) => statesService(params))
     const { isLoading: isFetchingCities, mutateAsync: getCities, data: citiesData } = useMutation((params: IcitiesService) => citiesService(params))
