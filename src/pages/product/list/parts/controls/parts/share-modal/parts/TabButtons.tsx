@@ -13,7 +13,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab }) => {
     { name: TABS.DIRECT_LINK },
     { name: TABS.PAYMENT_LINK },
     { name: TABS.PRODUCT_TILE },
-    { name: TABS.SOCIAL_TILE },
+    // { name: TABS.SOCIAL_TILE },
   ];
 
   return (

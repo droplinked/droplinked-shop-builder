@@ -69,38 +69,36 @@ function ButtonsProduct() {
             const requestData = productID ? { productID, params: formData } : formData
             let product;
 
+            const shouldRecordDigitalProduct = !draft && state?.digitalDetail?.chain && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED"
+
             if (state.product_type === "DIGITAL") {
                 if (!productID) {
                     checkProductTypeLegalUsage()
-                    const createResponse = await create.mutateAsync(requestData);
+                    const createResponse = await create.mutateAsync({ ...requestData, publish_product: shouldRecordDigitalProduct ? false : true });
                     product = refactorData(createResponse.data?.data);
                 }
                 else if (productID && !isChanged) {
                     const updateResponse = await update.mutateAsync(requestData);
                     product = refactorData(updateResponse.data?.data);
                 }
-                else {
-                    product = state;
-                }
-            } else {
+                else product = state
+            }
+            else {
                 if (!productID) {
                     checkProductTypeLegalUsage()
                     product = await create.mutateAsync(requestData);
-                } else {
-                    product = await update.mutateAsync(requestData);
                 }
+                else product = await update.mutateAsync(requestData);
             }
 
-            if (!draft && state?.digitalDetail?.chain && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
+            if (shouldRecordDigitalProduct) {
                 try {
                     const hashkey = await record({
                         method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {
                             ...state,
                             _id: product._id,
-                            sku: [
-                                { ...state.sku[0], _id: product.sku[0]._id }
-                            ]
+                            sku: [{ ...state.sku[0], _id: product.sku[0]._id }]
                         },
                         stacks
                     })
@@ -108,9 +106,10 @@ function ButtonsProduct() {
                     await updateShopData()
                     setStateHandle('hashkey', hashkey)
                     onOpen()
-                } catch (error) {
+                }
+                catch (error) {
                     shopNavigate("products")
-                    showToast({ message: "Something went wrong!", type: "error" })
+                    showToast({ message: "Something went wrong during the recording process", type: "error" })
                 }
             }
             else {
@@ -118,7 +117,8 @@ function ButtonsProduct() {
                 shopNavigate("products")
             }
             setStateHandle("loading", false)
-        } catch (error) {
+        }
+        catch (error) {
             setStateHandle("loading", false)
             showToast({ message: error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", type: "error" })
         }
