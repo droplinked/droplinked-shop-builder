@@ -46,7 +46,16 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
                     return (
                         <Link to={`/dashboard/affiliate/stores/${_id}`}>
                             <Flex alignItems={"center"} gap={"16px"} cursor={"pointer"}>
-                                {logo && logo !== "" ? <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} /> : <AppImage rounded="full" width={"56px"} height={"56px"} src="https://upload-file-droplinked.s3.amazonaws.com/05d45f56e28ac067f0689d3e3d33366f1dfb1e62947fedda435f491e4f0b8913.png" />}
+                                {logo && logo !== "" ? (
+                                    <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} />
+                                ) : (
+                                    <AppImage
+                                        rounded="full"
+                                        width={"56px"}
+                                        height={"56px"}
+                                        src="https://upload-file-droplinked.s3.amazonaws.com/05d45f56e28ac067f0689d3e3d33366f1dfb1e62947fedda435f491e4f0b8913.png"
+                                    />
+                                )}
                                 <AppTypography fontSize={"16px"} fontWeight={"400"} fontFamily={"Inter"} color="#FFF">
                                     {name}
                                 </AppTypography>
@@ -59,7 +68,7 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
         {
             accessorKey: "totalProducts",
             header: "Products",
-            cell: (info) => (info?.getValue()),
+            cell: (info) => info?.getValue(),
         },
         { accessorKey: "totalSoldUnits", header: "Units Sold", cell: (info) => info.getValue() },
         { accessorKey: "averageCommission", header: "Avg. Commission", cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
@@ -67,9 +76,9 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
             accessorKey: "topProducts",
             header: "Top Products",
             cell: (info) => (
-                <Flex gap={"-8px"}>
-                    {(info?.getValue() as Array<any>)?.map((product) => (
-                        <AppImage width={"40px"} height={"40px"} rounded={"25px"} src={product?.url} />
+                <Flex alignItems={"flex-start"} justifyContent={"flex-start"} overflow={"hidden"}>
+                    {(info?.getValue() as Array<any>)?.map((product, index) => (
+                        <AppImage key={product?._id} marginLeft={index !== 0 && "-8px"} border="2px solid #1C1C1C" backgroundColor={"#1C1C1C"} width={"40px"} height={"40px"} rounded={"25px"} src={product?.url} />
                     ))}
                 </Flex>
             ),
