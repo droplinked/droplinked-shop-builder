@@ -147,7 +147,7 @@ function Printful({ close }: IProps) {
             isMain: media.length ? false : key === 0,
             isMockup: true
         }))
-        updateState("media", [...media.filter(el => !el.isMockup), ...images].map((el, key) => ({ ...el, isMain: key === 0 })))
+        updateState("media", images.map((el, key) => ({ ...el, isMain: key === 0 })))
     }, [media])
 
     useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])

@@ -9,7 +9,7 @@ import PrintfullTechniques from './parts/techniques/PrintfullTechniques'
 
 function Artwork2d() {
     const [States, setStates] = useState(null)
-    const { state: { positions, printful_template_id, technique }, methods: { updateState } } = useContext(productContext)
+    const { productID, state: { positions, printful_template_id, technique, publish_status }, methods: { updateState } } = useContext(productContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const isTechnique = useMemo(() => technique || printful_template_id, [printful_template_id, States, technique])
@@ -20,7 +20,14 @@ function Artwork2d() {
 
     return (
         <artwork2dContext.Provider value={{ ...States, setStates: (key, value) => setStates(prev => ({ ...prev, [key]: value })) }} >
-            <BasicButton onClick={onOpen} variant={printful_template_id ? "outline" : "solid"} sizes="medium">{printful_template_id ? "Edit Design" : 'Design Maker'}</BasicButton>
+            <BasicButton
+                isDisabled={!!productID && publish_status === "PUBLISHED"}
+                variant={printful_template_id ? "outline" : "solid"}
+                sizes="medium"
+                onClick={onOpen}
+            >
+                {printful_template_id ? "Edit Design" : 'Design Maker'}
+            </BasicButton>
             {isOpen && (
                 <AppModal isCentered={false} title="Create a Product Template" contentProps={{ maxWidth: isTechnique ? "1100px" : "330px", width: "95%", padding: "30px 10px" }} close={() => isTechnique ? {} : onClose()} open={true}>
                     {isTechnique ? <Printful close={onClose} /> : <PrintfullTechniques />}
