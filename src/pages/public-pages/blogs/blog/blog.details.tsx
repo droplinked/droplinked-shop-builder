@@ -6,7 +6,7 @@ import React from "react";
 
 function BlogDetails({ blog }: { blog: IBlog }) {
     return (
-        <>
+        <Flex direction={"column"} p={"64px"} width={"full"} alignItems={"flex-start"} justifyContent={"center"} mt={"40px"} gap={12}>
             <Image width={"100%"} height={{ md: "450px", base: "300px" }} src={blog.image} objectFit={"cover"} />
             <AppTypography color={"white"} fontSize={{ base: 24, md: 28, lg: 36 }}>
                 {blog.title}
@@ -26,7 +26,7 @@ function BlogDetails({ blog }: { blog: IBlog }) {
                     ))}
                 </HStack>
             </Flex>
-        </>
+        </Flex>
     );
 }
 
