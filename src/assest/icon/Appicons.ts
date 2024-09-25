@@ -185,6 +185,8 @@ import { ReactComponent as  AffiliateProductsArrow} from "./affiliate-products-a
 import { ReactComponent as  AffiliateProductsSeparator} from "./affiliate-products-separator.svg";
 import { ReactComponent as  AffiliateProductsDollar} from "./affiliate-products-dollar.svg";
 import { ReactComponent as  AffiliateProductsPercent} from "./affiliate-products-percent.svg";
+import { ReactComponent as  SidebarBrush} from "./sidebar-brush.svg";
+
 
 const AppIcons = {
   ProductsIcon,
@@ -373,7 +375,8 @@ const AppIcons = {
   AffiliateProductsSeparator,
   AffiliateProductsDollar,
   AffiliateProductsPercent,
-  ShareIcon
+  ShareIcon,
+  SidebarBrush
 }
 
 export default AppIcons
