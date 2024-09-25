@@ -73,7 +73,7 @@ function CouponForm({ coupon, close }: Props) {
         quantity: Yup.number().min(0).typeError('Please enter a valid value.').required('This field is required.'),
         balance: Yup.number().min(0).typeError('Please enter a valid value.').required('This field is required.').when([], {
             is: () => type === "DISCOUNT",
-            then: schema => schema.min(1).max(99, "Please enter a discount percentage between 1 and 99."),
+            then: schema => schema.min(1).max(100, "Please enter a discount percentage between 1 and 100."),
             otherwise: schema => schema
         })
     })
