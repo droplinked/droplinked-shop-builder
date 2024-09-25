@@ -25,7 +25,7 @@ const ProductGrid = ({ isLoading, products }) => (
     <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4, "2xl": 4 }} spacing={"24px"} width="full">
         {isLoading 
             ? Array(4).fill(0).map((_, index) => (<Box key={`skeleton-${index}`} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><LAffiliateItem /></Box>))
-            : products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem slug={product.slug} name={product.title} price={product.skus?.[0]?.price} commission={product.commission} image={product.media?.find((urls) => urls?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url} ownerName={product?.ownerShops?.name} logo={product.ownerShops?.logo}/></Box> ))}
+            : products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem slug={product?.slug} name={product?.title} price={product.skuIDs?.[0]?.price} commission={product?.commission} image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url} ownerName={product?.producerShop?.name} logo={product.ownerShops?.logo}/></Box> ))}
     </SimpleGrid>
 );
 
@@ -37,10 +37,13 @@ const AffiliateMarket = () => {
 
     return (
         <VStack spacing={"36px"}>
-            <VStack alignItems="center" width="full" justifyContent="center" height="360px" background="radial-gradient(305.12% 110.25% at 13.65% 81.01%, #182522 1.56%, rgba(48, 48, 48, 0.08) 23.53%, rgba(46, 73, 63, 0.42) 44.64%, #171717 79.55%, #000 100%), linear-gradient(rgba(255, 255, 255, 0.16) .1em, transparent .1em), linear-gradient(90deg, rgba(255, 255, 255, 0.16) .1em, transparent .1em), #060606" backgroundPosition="center, 0 0, 0 0" backgroundSize="cover, 3em 3em, 3em 3em" backgroundRepeat="no-repeat, repeat, repeat" borderRadius="8px" border="1.5px solid #292929">
+                                
+
+            {/* <VStack alignItems="center" width="full" justifyContent="center" height="360px" background="radial-gradient(305.12% 110.25% at 13.65% 81.01%, #182522 1.56%, rgba(48, 48, 48, 0.08) 23.53%, rgba(46, 73, 63, 0.42) 44.64%, #171717 79.55%, #000 100%), linear-gradient(rgba(255, 255, 255, 0.16) .1em, transparent .1em), linear-gradient(90deg, rgba(255, 255, 255, 0.16) .1em, transparent .1em), #060606" backgroundPosition="center, 0 0, 0 0" backgroundSize="cover, 3em 3em, 3em 3em" backgroundRepeat="no-repeat, repeat, repeat" borderRadius="8px" border="1.5px solid #292929"> */}
+            <VStack alignItems="center" width="full" justifyContent="center" height="360px" backgroundImage={"https://upload-file-droplinked.s3.amazonaws.com/bf3bda9191edadbd12d03397827db60fefef7a6ea261185ff87c3df11fadffbe.png"} backgroundPosition="center, 0 0, 0 0" backgroundSize="cover, 3em 3em, 3em 3em" backgroundRepeat="no-repeat, repeat, repeat" borderRadius="8px" border="1.5px solid #292929">
                 <VStack display="inline-flex" flexDirection="column" alignItems="center" spacing="16px">
-                    <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize="32px" fontStyle="normal" fontWeight="400" lineHeight="48px">Unlock Savings</AppTypography>
-                    <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize="48px" fontStyle="normal" fontWeight="700" lineHeight="64px">Explore Top Affiliate Picks!</AppTypography>
+                    {/* <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize="32px" fontStyle="normal" fontWeight="400" lineHeight="48px">Explore communities and companies on droplinked</AppTypography> */}
+                    <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize={{ base: "24px", md: "32px", lg: "36px", xl: "40px"}} fontStyle="normal" fontWeight="700" lineHeight="3.5rem">Explore communities and companies on droplinked</AppTypography>
                 </VStack>
             </VStack>
             <VStack width="full" flexDirection="column" alignItems="flex-start" spacing="48px">
