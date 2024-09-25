@@ -186,6 +186,10 @@ import { ReactComponent as  AffiliateProductsSeparator} from "./affiliate-produc
 import { ReactComponent as  AffiliateProductsDollar} from "./affiliate-products-dollar.svg";
 import { ReactComponent as  AffiliateProductsPercent} from "./affiliate-products-percent.svg";
 import { ReactComponent as  SidebarBrush} from "./sidebar-brush.svg";
+import { ReactComponent as  AffiliateStoreInstagram} from "./affiliate-store-instagram.svg";
+import { ReactComponent as  AffiliateStoreTiktok} from "./affiliate-store-tiktok.svg";
+import { ReactComponent as  AffiliateStoreYoutube} from "./affiliate-store-youtube.svg";
+import { ReactComponent as  AffiliateStoreTwitter} from "./affiliate-store-twitter.svg";
 
 
 const AppIcons = {
@@ -376,7 +380,11 @@ const AppIcons = {
   AffiliateProductsDollar,
   AffiliateProductsPercent,
   ShareIcon,
-  SidebarBrush
+  SidebarBrush,
+  AffiliateStoreInstagram,
+  AffiliateStoreTwitter,
+  AffiliateStoreYoutube,
+  AffiliateStoreTiktok,
 }
 
 export default AppIcons
