@@ -43,7 +43,7 @@ const AffiliateMarket = () => {
             <VStack alignItems="center" width="full" justifyContent="center" height="360px" backgroundImage={"https://upload-file-droplinked.s3.amazonaws.com/bf3bda9191edadbd12d03397827db60fefef7a6ea261185ff87c3df11fadffbe.png"} backgroundPosition="center, 0 0, 0 0" backgroundSize="cover, 3em 3em, 3em 3em" backgroundRepeat="no-repeat, repeat, repeat" borderRadius="8px" border="1.5px solid #292929">
                 <VStack display="inline-flex" flexDirection="column" alignItems="center" spacing="16px">
                     {/* <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize="32px" fontStyle="normal" fontWeight="400" lineHeight="48px">Explore communities and companies on droplinked</AppTypography> */}
-                    <AppTypography color="#FFF" textAlign="center" fontFamily="Poppins" fontSize={{ base: "24px", md: "32px", lg: "36px", xl: "40px"}} fontStyle="normal" fontWeight="700" lineHeight="3.5rem">Explore communities and companies on droplinked</AppTypography>
+                    <AppTypography color="#FFF" maxW={{base: "90%", md: "80%"}} textAlign="center" fontFamily="Poppins" fontSize={{ base: "24px", md: "28px", lg: "32px", xl: "36px"}} fontStyle="normal" fontWeight="700" lineHeight="3.5rem">Explore communities and companies on droplinked</AppTypography>
                 </VStack>
             </VStack>
             <VStack width="full" flexDirection="column" alignItems="flex-start" spacing="48px">
