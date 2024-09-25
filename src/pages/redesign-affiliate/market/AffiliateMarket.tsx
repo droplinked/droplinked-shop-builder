@@ -8,10 +8,11 @@ import { getHotProducts, getNewProducts } from "lib/apis/product/productServices
 import AppImage from "components/common/image/AppImage";
 import { Link } from "react-router-dom";
 
-const dates_constant = [
-    { label: "Today", value: "today" },
-    { label: "This week", value: "week" },
-    { label: "This month", value: "month" },
+type DateTypes = {label: "Today", value: "daily"} | {label: "This week", value: "weekly"} | {label: "This month", value: "monthly"}
+const dates_constant: DateTypes[] = [
+    { label: "Today", value: "daily" },
+    { label: "This week", value: "weekly" },
+    { label: "This month", value: "monthly" },
 ];
 
 const SectionHeader = ({ title, linkText, linkTo }) => (
@@ -25,16 +26,15 @@ const ProductGrid = ({ isLoading, products }) => (
     <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4, "2xl": 4 }} spacing={"24px"} width="full">
         {isLoading 
             ? Array(4).fill(0).map((_, index) => (<Box key={`skeleton-${index}`} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><LAffiliateItem /></Box>))
-            : products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem slug={product?.slug} name={product?.title} price={product.skuIDs?.[0]?.price} commission={product?.commission} image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url} ownerName={product?.producerShop?.name} logo={product.ownerShops?.logo}/></Box> ))}
+            : products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem slug={product?.slug} name={product?.title} price={product.skuIDs?.[0]?.price || product?.skus?.[0]?.price} commission={product?.commission} image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url} ownerName={product?.producerShop?.name || product?.shop?.shopName} logo={product.ownerShops?.logo}/></Box> ))}
     </SimpleGrid>
 );
 
 const AffiliateMarket = () => {
-    const [date, setDate] = useState({ label: "Today", value: "today" });
+    const [date, setDate] = useState<DateTypes>({ label: "Today", value: "daily" });
     const { data: newShops, isLoading: isLoadingNewShops } = useQuery({ queryKey: ["new-shops-service"], queryFn: getNewShopsService });
     const { data: newProducts, isLoading: isLoadingNewProducts } = useQuery({ queryKey: ["new-products"], queryFn: getNewProducts });
-    const { data: hotProducts, isLoading: isLoadingHotProducts } = useQuery({ queryKey: ["hot-products"], queryFn: getHotProducts });
-
+    const { data: hotProducts, isLoading: isLoadingHotProducts } = useQuery({ queryKey: ["hot-products", date?.value], queryFn: () => getHotProducts({range: date?.value})});
     return (
         <VStack spacing={"36px"}>
                                 
@@ -75,7 +75,7 @@ const AffiliateMarket = () => {
                             <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">Hot Products</AppTypography>
                             <Flex gap={"12px"}>
                                 {dates_constant?.map((date_constant) => (
-                                    <Box key={date_constant?.value} cursor="pointer" onClick={() => setDate({ label: date_constant?.label, value: date_constant?.value })} backgroundColor={date_constant?.value === date?.value ? "#2BCFA1" : "#292929"} display="flex" padding="6px 16px" justifyContent="center" alignItems="center" gap="10px" borderRadius="100px">
+                                    <Box key={date_constant?.value} cursor="pointer" onClick={() => setDate(date_constant)} backgroundColor={date_constant?.value === date?.value ? "#2BCFA1" : "#292929"} display="flex" padding="6px 16px" justifyContent="center" alignItems="center" gap="10px" borderRadius="100px">
                                         <AppTypography textAlign="center" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px" color={date_constant?.value === date?.value ? "#000" : "#7B7B7B"}>{date_constant?.label}</AppTypography>
                                     </Box>
                                 ))}
