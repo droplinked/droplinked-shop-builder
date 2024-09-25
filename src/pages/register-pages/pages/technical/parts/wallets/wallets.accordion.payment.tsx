@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Flex, HStack, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
 // Icons
 import AppIcons from "assest/icon/Appicons";
@@ -28,13 +28,13 @@ const MotionFlex = motion(Flex)
 
 const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
     const getPermissionValue = useGetPermissionValue();
-    const { state: { paymentMethods }, updateState} = useContext(technicalContext);
+    const { state: { paymentMethods }, updateState } = useContext(technicalContext);
     const selectedPaymentMethods = [...(paymentMethods ?? [])];
     const { showToast } = useAppToast();
 
     const [wallets, setWallets] = useState(chain?.destinationAddress || []);
     const [editableWallets, setEditableWallets] = useState([]);
-    
+
     const calculatePercent = calculateTotalPercent(wallets)
 
     const persistWalletAddress = useCallback(() => {
@@ -69,7 +69,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
     useEffect(() => {
         setWallets(chain.destinationAddress);
     }, []);
-    
+
     // Handler to add a new wallet in input mode
     const addNewWallet = () => {
         setWallets([...wallets, { destinationAddress: "", percent: undefined, isNew: true }]);
@@ -169,7 +169,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
         const updatedWallets = [...wallets];
         updatedWallets[index].percent = value;
         setWallets(updatedWallets);
-        
+
         const updatedPaymentMethods = [...paymentMethods];
         const targetPaymentMethod = updatedPaymentMethods.find((payment) => payment?.type === chain?.type);
 
@@ -181,34 +181,34 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
 
     const removeWallet = (index: number) => {
         const updatedWallets = wallets.filter((_, i) => i !== index);
-        
+
         const newPercent = Math.floor(100 / updatedWallets.length);
         const remainingPercent = 100 - (newPercent * updatedWallets.length);
-        
+
         const updatedWalletsWithPercent = updatedWallets.map((wallet, i) => {
             if (i === updatedWallets.length - 1) {
                 return { ...wallet, percent: newPercent + remainingPercent };
             }
             return { ...wallet, percent: newPercent };
         });
-        
+
         setWallets(updatedWalletsWithPercent);
-        
+
         const updatedPaymentMethods = [...paymentMethods];
         const targetPaymentMethod = updatedPaymentMethods.find((payment) => payment?.type === chain?.type);
-        
+
         if (targetPaymentMethod) {
             targetPaymentMethod.destinationAddress = updatedWalletsWithPercent.map(wallet => ({
                 destinationAddress: wallet.destinationAddress,
                 percent: wallet.percent,
             }));
-            
+
             if (targetPaymentMethod.destinationAddress.length === 0) {
                 targetPaymentMethod.isActive = false;
                 targetPaymentMethod.tokens?.forEach((token) => (token.isActive = false));
             }
         }
-    
+
         updateState("paymentMethods", updatedPaymentMethods);
     };
 
@@ -216,21 +216,21 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
         if (editableWallets.includes(index)) {
             const updatedWallets = [...wallets];
             const currentAddress = updatedWallets[index].destinationAddress.trim();
-    
+
             // Check if the current address is duplicated in other wallets
             const isDuplicate = updatedWallets.some((wallet, i) => i !== index && wallet.destinationAddress.trim() === currentAddress);
-    
+
             if (isDuplicate) {
                 showToast({ type: "warning", message: "This wallet address already exists. Please enter a unique address." });
                 return;
             }
-    
+
             setEditableWallets(editableWallets.filter((i) => i !== index));
         } else {
             setEditableWallets([...editableWallets, index]);
         }
     };
-    
+
     return (
         <VStack align={"stretch"} gap={"16px"}>
             <Flex alignItems={"center"} justifyContent={"space-between"} alignSelf={"stretch"}>
@@ -250,7 +250,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                {wallets?.length !== 0 && 
+                {wallets?.length !== 0 &&
                     <MotionFlex
                         alignItems={"center"}
                         justifyContent={"space-between"}
@@ -269,10 +269,10 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
                     wallet?.isNew ? (
                         <AddAddressField
                             key={wallet._id}
-                            wallet={wallet} 
-                            index={index} 
-                            handleAddressChange={handleAddressChange} 
-                            saveWalletAddress={saveWalletAddress} 
+                            wallet={wallet}
+                            index={index}
+                            handleAddressChange={handleAddressChange}
+                            saveWalletAddress={saveWalletAddress}
                         />
                     ) : (
                         <AddressAndPercentField
@@ -290,18 +290,18 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
                 ))}
             </MotionFlex>
 
-            
+
             {wallets?.length !== 0 && calculatePercent.totalPercent !== 100 && calculatePercent.status !== "MISSING_ADDRESSES" &&
-                <MotionFlex 
+                <MotionFlex
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    alignItems={"flex-start"} 
-                    alignSelf={"stretch"} 
-                    gap={"8px"} 
-                    padding={"16px"} 
-                    borderRadius={"8px"} 
-                    border={"1px solid #F24"} 
+                    alignItems={"flex-start"}
+                    alignSelf={"stretch"}
+                    gap={"8px"}
+                    padding={"16px"}
+                    borderRadius={"8px"}
+                    border={"1px solid #F24"}
                     bgColor={"rgba(255, 34, 68, 0.05)"}
                 >
                     <AppIcons.RedAlert />
@@ -315,7 +315,7 @@ const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
                 {chain.tokens?.length &&
                     chain?.tokens?.map((token, index) => (
                         <Flex key={index} bg={"mainLayer"} rounded={"8px"} width={"auto"} gap={4} padding={"16px 16px"} alignItems={"center"} justifyContent="space-between">
-                            <AppTypography color={"#C2C2C2"}>{token?.type}</AppTypography>
+                            <AppTypography color={"#C2C2C2"}>{token?.name}</AppTypography>
                             <AppSwitch isChecked={token.isActive} onChange={(e) => findAndUpdateToken(e, token)} />
                         </Flex>
                     ))}
