@@ -101,7 +101,7 @@ export async function EVMrecordMerch(
 				_amount: amount,
 				_accepted: acceptsManageWallet,
 				_affiliatePercentage: commission,
-				_price: price,
+				_price: chain === Chain.SKALE ? price * 1e4 : price,
 				_currencyAddress: currencyAddress,
 				_royalty: royalty,
 				_nftType: NFTType.ERC1155,
@@ -405,7 +405,10 @@ export async function EVMBatchRecord(
 				_amount: productTemp.amount,
 				_accepted: productTemp.acceptsManageWallet,
 				_affiliatePercentage: productTemp.commission,
-				_price: productTemp.price,
+				_price:
+					chain === Chain.SKALE
+						? productTemp.price * 1e4
+						: productTemp.price,
 				_currencyAddress: productTemp.currencyAddress,
 				_royalty: productTemp.royalty,
 				_nftType: NFTType.ERC1155,
