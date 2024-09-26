@@ -921,7 +921,7 @@ export function toBase64(str: any) {
 }
 
 export const SkaleUsdcAddressForTestnet = '0x2aebcdc4f9f9149a50422fff86198cb0939ea165';
-export const SkaleUsdcAddressForMainnet = '0x20a7dB1824efd390fa0A70246Ef5A6959820B0bB';
+export const SkaleUsdcAddressForMainnet = '0x2aebcdc4f9f9149a50422fff86198cb0939ea165';
 
 export {
 	getContractABIShopBuilder,
