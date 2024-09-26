@@ -32,27 +32,87 @@ const AffiliateStoresProfile = () => {
                     </AppTypography>
                     <Flex gap={"12px"} alignItems={"center"}>
                         {storeProfile?.tiktokURL && storeProfile?.tiktokURL !== "" && (
-                            <Link href={storeProfile?.tiktokURL}>
-                                <AppIcons.TikTok />
+                            <Link
+                                href={`https://tiktok.com/@${storeProfile?.tiktokURL}`}
+                                style={{ width: "40px", height: "40px", borderRadius: "8px", backgroundColor: "#292929", display: "flex", alignItems: "center", justifyContent: "center" }}
+                                target="_blank"
+                            >
+                                <AppIcons.AffiliateStoreTiktok />
                             </Link>
                         )}
                         {storeProfile?.instagramURL && storeProfile?.instagramURL !== "" && (
-                            <Link href={storeProfile?.instagramURL}>
-                                <AppIcons.InstagramIcon />
+                            <Link
+                                href={`https://instagram.com/${storeProfile?.instagramURL}`}
+                                style={{ width: "40px", height: "40px", borderRadius: "8px", backgroundColor: "#292929", display: "flex", alignItems: "center", justifyContent: "center" }}
+                                target="_blank"
+                            >
+                                <AppIcons.AffiliateStoreInstagram />
                             </Link>
                         )}
                         {storeProfile?.twitterURL && storeProfile?.twitterURL !== "" && (
-                            <Link href={storeProfile?.twitterURL}>
-                                <AppIcons.TwitterIcon />
+                            <Link
+                                href={`https://x.com/${storeProfile?.twitterURL}`}
+                                style={{ width: "40px", height: "40px", borderRadius: "8px", backgroundColor: "#292929", display: "flex", alignItems: "center", justifyContent: "center" }}
+                                target="_blank"
+                            >
+                                <AppIcons.AffiliateStoreTwitter />
+                            </Link>
+                        )}
+                        {storeProfile?.youtubeURL && storeProfile?.youtubeURL !== "" && (
+                            <Link
+                                href={`https://youtube.com/@${storeProfile?.youtubeURL}`}
+                                style={{ width: "40px", height: "40px", borderRadius: "8px", backgroundColor: "#292929", display: "flex", alignItems: "center", justifyContent: "center" }}
+                                target="_blank"
+                            >
+                                <AppIcons.AffiliateStoreYoutube />
                             </Link>
                         )}
                     </Flex>
                 </Box>
             </Box>
             <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4, "2xl": 4 }} spacing={"24px"} width="full">
-                {isLoadingStore 
-                ? Array(4).fill(0).map((_, index) => (<Box key={`skeleton-${index}`} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><LAffiliateItem /></Box>))
-                : storeProfile?.products?.map((product, index) => (<Box key={product.slug} display={{ base: index < 1 ? "block" : "none", sm: index < 1 ? "block" : "none", md: index < 2 ? "block" : "none", lg: index < 3 ? "block" : "none", xl: index < 4 ? "block" : "none", "2xl": index < 4 ? "block" : "none" }}><AffiliateItem key={product?.slug} slug={product?.slug} name={product?.title} price={product?.skuIDs?.[0]?.price} commission={product?.skuIDs?.[0]?.commision} image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product?.media?.[0]?.thumbnail || product?.media?.[0]?.url} ownerName={storeProfile?.name} logo={storeProfile?.logo}/></Box> ))}
+                {isLoadingStore
+                    ? Array(4)
+                          .fill(0)
+                          .map((_, index) => (
+                              <Box
+                                  key={`skeleton-${index}`}
+                                  display={{
+                                      base: index < 1 ? "block" : "none",
+                                      sm: index < 1 ? "block" : "none",
+                                      md: index < 2 ? "block" : "none",
+                                      lg: index < 3 ? "block" : "none",
+                                      xl: index < 4 ? "block" : "none",
+                                      "2xl": index < 4 ? "block" : "none",
+                                  }}
+                              >
+                                  <LAffiliateItem />
+                              </Box>
+                          ))
+                    : storeProfile?.products?.map((product, index) => (
+                          <Box
+                              key={product.slug}
+                              display={{
+                                  base: index < 1 ? "block" : "none",
+                                  sm: index < 1 ? "block" : "none",
+                                  md: index < 2 ? "block" : "none",
+                                  lg: index < 3 ? "block" : "none",
+                                  xl: index < 4 ? "block" : "none",
+                                  "2xl": index < 4 ? "block" : "none",
+                              }}
+                          >
+                              <AffiliateItem
+                                  key={product?.slug}
+                                  slug={product?.slug}
+                                  name={product?.title}
+                                  price={product?.skuIDs?.[0]?.price}
+                                  commission={product?.skuIDs?.[0]?.commision}
+                                  image={product?.media?.find((urls) => urls?.isMain)?.thumbnail || product?.media?.[0]?.thumbnail || product?.media?.[0]?.url}
+                                  ownerName={storeProfile?.name}
+                                  logo={storeProfile?.logo}
+                              />
+                          </Box>
+                      ))}
             </SimpleGrid>
         </Box>
     );

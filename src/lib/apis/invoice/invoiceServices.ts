@@ -1,3 +1,4 @@
+import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
 import { CartAdditionalDetails, CartShippingMethod, DeleteInvoiceProduct, InvoiceQueryParams } from "./interfaces";
 
@@ -27,14 +28,8 @@ export const addShippingMethodToCartService = (cartId: string, shippingMethod: C
     axiosInstance.post(`checkout/v2/public/anonymous-cart/${cartId}/shipping-rate`, { rates: [shippingMethod] }).then(res => res.data)
 
 export const getInvoicesService = (params: InvoiceQueryParams) => {
-    const queryParams = new URLSearchParams(
-        Object.entries(params).reduce((acc, [key, value]) => {
-            if (value) acc[key] = String(value)
-            return acc
-        }, {} as Record<string, string>)
-    ).toString()
-
-    return axiosInstance.get(`${endpoint}?${queryParams}`).then(res => res.data)
+    const queryString = createQueryString(params).toString();
+    return axiosInstance.get(`${endpoint}?${queryString}`).then(res => res.data)
 }
 
 export const retrieveInvoiceByIdService = (invoiceId: string) => axiosInstance.get(`cart/v2/public/anonymous-cart/${invoiceId}`).then(res => res.data)

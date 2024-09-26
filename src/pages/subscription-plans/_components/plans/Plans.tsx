@@ -47,16 +47,18 @@ export default function Plans() {
             <PlansGrid>
                 {plans.map((plan, index) => {
                     const prevPlan = plans[index - 1] || plans[0]
-                    return <PlanCard
-                        key={plan._id}
-                        plan={plan}
-                        plans={plans}
-                        prevPlanType={prevPlan.type}
-                        features={index === 0 ?
-                            getFilteredFeatures(plan) :
-                            getFilteredFeatures(plan, plans[index - 1])
-                        }
-                    />
+                    return (
+                        <PlanCard
+                            key={plan._id}
+                            plan={plan}
+                            plans={plans}
+                            prevPlanType={prevPlan.type}
+                            features={index === 0 ?
+                                getFilteredFeatures(plan) :
+                                getFilteredFeatures(plan, plans[index - 1])
+                            }
+                        />
+                    )
                 })}
             </PlansGrid>
         </Flex>

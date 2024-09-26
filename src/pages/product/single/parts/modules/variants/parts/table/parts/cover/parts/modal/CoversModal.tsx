@@ -3,11 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import { productContext } from 'pages/product/single/context'
-import React from 'react'
-import { useEffect } from 'react'
-import { useCallback } from 'react'
-import { useState } from 'react'
-import { useContext } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 interface IProps extends IAppModal {
     image: string
@@ -16,35 +12,55 @@ interface IProps extends IAppModal {
 
 function CoversModal({ close, open, image, index }: IProps) {
     const { state: { media, sku }, methods: { updateState } } = useContext(productContext)
-    const [Image, setImage] = useState('')
-
-    useEffect(() => image && setImage(image), [image])
-
-    const setImg = useCallback((value: string) => setImage(value), [])
+    const [selectedImage, setSelectedImage] = useState('')
 
     const save = useCallback(() => {
         const refactor = sku.map((el, key) => (key === index ? {
             ...el,
-            image: Image
+            image: selectedImage
         } : el))
         updateState("sku", refactor)
         close()
-    }, [index, Image, sku])
+    }, [index, selectedImage, sku])
+
+    useEffect(() => image && setSelectedImage(image), [image])
 
     return (
         <AppModal title='Variant Cover' size="4xl" close={close} open={open}>
             <VStack align="stretch" spacing="40px">
-                <SimpleGrid columns={4} spacing={6}>
-                    {media.length && media.map((el: any, key: number) => (
-                        <Box key={key} border={`4px solid ${Image === el.url ? '#2BCFA1' : 'transparent'}`} borderRadius="8px" overflow="hidden"><AppImage cursor="pointer" onClick={() => setImg(el.url)} src={el.url} width="100%" /></Box>
+                <SimpleGrid
+                    columns={4}
+                    spacing={6}
+                    height={"400px"}
+                    overflowY={"auto"}
+                    paddingRight={media.length > 4 ? 2 : 0}
+                    sx={{ "&::-webkit-scrollbar-track": { bgColor: "#1c1c1c" } }}
+                >
+                    {media.length && media.map((img: any, key: number) => (
+                        <Box
+                            key={key}
+                            height={"200px"}
+                            border={`4px solid ${selectedImage === img.url ? '#2BCFA1' : 'transparent'}`}
+                            borderRadius="8px"
+                            overflow="hidden"
+                        >
+                            <AppImage
+                                src={img.url}
+                                width={"100%"}
+                                height={"100%"}
+                                objectFit={"cover"}
+                                cursor="pointer"
+                                onClick={() => setSelectedImage(img.url)}
+                            />
+                        </Box>
                     ))}
                 </SimpleGrid>
                 <Flex justifyContent="space-between">
-                    <Box><BasicButton variant='outline' onClick={close}>Discard</BasicButton></Box>
-                    <Box><BasicButton onClick={save}>Save</BasicButton></Box>
+                    <BasicButton variant='outline' onClick={close}>Discard</BasicButton>
+                    <BasicButton onClick={save}>Save</BasicButton>
                 </Flex>
             </VStack>
-        </AppModal>
+        </AppModal >
     )
 }
 

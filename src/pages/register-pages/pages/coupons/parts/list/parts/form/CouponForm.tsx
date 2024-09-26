@@ -69,9 +69,13 @@ function CouponForm({ coupon, close }: Props) {
     }, [type, shop])
 
     const formSchema = Yup.object().shape({
-        name: Yup.string().required('Required'),
-        quantity: Yup.number().min(0).typeError('Please correct value').required('Required'),
-        balance: Yup.number().min(0).typeError('Please correct value').required('Required'),
+        name: Yup.string().required('This field is required.'),
+        quantity: Yup.number().min(0).typeError('Please enter a valid value.').required('This field is required.'),
+        balance: Yup.number().min(0).typeError('Please enter a valid value.').required('This field is required.').when([], {
+            is: () => type === "DISCOUNT",
+            then: schema => schema.min(1).max(100, "Please enter a discount percentage between 1 and 100."),
+            otherwise: schema => schema
+        })
     })
 
     return (

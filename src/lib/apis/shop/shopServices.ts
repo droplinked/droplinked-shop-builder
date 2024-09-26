@@ -1,3 +1,4 @@
+import { createQueryString } from '../_utils/with.query';
 import axiosInstance from '../axiosConfig';
 import {
 	IchargeCreditService,
@@ -128,16 +129,8 @@ export const switchShopService = (shopId: string) =>
 	axiosInstance.post('shop/switch', { shopId }).then((res) => res.data);
 
 export const getShopsCommunityService = (params: IGetShopsCommunityService) => {
-    const queryParams = new URLSearchParams();
-
-    Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined) {
-            if (!isNaN(value)) queryParams.append(key, (value));
-            else queryParams.append(key, JSON.stringify(value));
-        }
-    });
-
-    return axiosInstance.get(`/shop/community/view?${queryParams.toString()}`);
+	const queryString = createQueryString(params).toString();
+    return axiosInstance.get(`/shop/community/view?${queryString}`);
 };
 
 export const getNewShopsService = () => axiosInstance.get('/shop/community/new')

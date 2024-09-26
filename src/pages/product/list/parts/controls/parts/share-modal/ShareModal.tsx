@@ -49,6 +49,7 @@ function ProductShareModal({ close, open, product }: IProps) {
         onClose: close,
         size: "xl",
         scrollBehavior: "outside",
+        isCentered: true
       }}
       modalContentProps={{ width: "100%", padding: "0px !important", overflow: "hidden" }}
     >

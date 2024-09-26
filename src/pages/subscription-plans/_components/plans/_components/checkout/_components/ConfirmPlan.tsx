@@ -51,7 +51,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     </Center>
                     <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>
-                    <PlanPrice marginTop={9} plan={selectedPlan} />
+                    <PlanPrice plan={selectedPlan} marginTop={9} height={"fit-content"} />
                 </Flex>
             </ModalBody>
             <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
