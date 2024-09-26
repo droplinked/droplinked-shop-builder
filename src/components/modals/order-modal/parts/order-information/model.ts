@@ -83,7 +83,7 @@ namespace OrderInformationModel {
 				return `https://${
 					appDevelopment
 						? 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
-						: 'honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
+						: 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
 				}/tx/${transactionId}`;
 			default:
 				return '';
