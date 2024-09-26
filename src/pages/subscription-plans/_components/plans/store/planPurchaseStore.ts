@@ -12,17 +12,26 @@ type State = {
     selectedPlan: SubscriptionPlan | null,
     selectedPlanPrice: number
     preferredPlanDuration: PlanDuration
+    planCardStyles: {
+        descriptionHeight: number,
+        priceHeight: number
+    }
 }
 
 type Action = {
     updateSelectedPlan: (plan: State['selectedPlan']) => void
     updatePlanDuration: (planDuration: State['preferredPlanDuration']) => void
+    updatePlanCardStyles: <K extends keyof State['planCardStyles']>(key: K, value: State['planCardStyles'][K]) => void
 }
 
 const useSubscriptionPlanPurchaseStore = create<State & Action>((set, get) => ({
     selectedPlan: null,
     selectedPlanPrice: calculatePlanPrice(null, planDurations[1]),
     preferredPlanDuration: planDurations[1],
+    planCardStyles: {
+        descriptionHeight: 48,
+        priceHeight: 48
+    },
     updateSelectedPlan: (plan) => {
         const { preferredPlanDuration } = get()
         const planPrice = calculatePlanPrice(plan, preferredPlanDuration)
@@ -32,6 +41,9 @@ const useSubscriptionPlanPurchaseStore = create<State & Action>((set, get) => ({
         const { selectedPlan } = get()
         const planPrice = calculatePlanPrice(selectedPlan, preferredPlanDuration)
         set({ preferredPlanDuration, selectedPlanPrice: planPrice })
+    },
+    updatePlanCardStyles(key, value) {
+        set({ planCardStyles: { ...get().planCardStyles, [key]: value } })
     }
 }))
 

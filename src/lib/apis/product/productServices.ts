@@ -1,6 +1,7 @@
 import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
 import axiosInstance from "../axiosConfig";
 import {
+    IGetHotProductsParams,
     IGetProductsCommunityService,
     IGetSingleProductCommunity,
     IimportAffiliateProduct,
@@ -12,6 +13,7 @@ import {
     IProductTile,
     IproductUpdateServices,
 } from "./interfaces";
+import { createQueryString } from "../_utils/with.query";
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`);
@@ -82,19 +84,8 @@ export const updateProductLinkOptionsService = (options: PaymentLinkData) => {
 };
 
 export const getProductsCommunityService = (params: IGetProductsCommunityService) => {
-    const queryParams = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== "") {
-            if (Array.isArray(value) && value.length > 0) {
-                queryParams.append(key, JSON.stringify(value));
-            } else if (!isNaN(Number(value))) {
-                queryParams.append(key, value.toString());
-            } else {
-                queryParams.append(key, value);
-            }
-        }
-    });
-    return axiosInstance.get(`/product/community/view?${queryParams.toString()}`);
+    const queryString = createQueryString(params).toString();
+    return axiosInstance.get(`/product/community/view?${queryString.toString()}`);
 };
 
 export const getSingleProductCommunityService = ({ slug, user }: IGetSingleProductCommunity) => {
@@ -105,7 +96,9 @@ export const importAffiliateProductService = ({ productId }: IimportAffiliatePro
     return axiosInstance.post(`/product/community/import`, { productId });
 };
 
+export const getNewProducts = () => axiosInstance.get("/product/community/new");
 
-export const getNewProducts = () => axiosInstance.get('/product/community/new');
-
-export const getHotProducts = () => axiosInstance.get(`/product/community/view/hot`);
+export const getHotProducts = (params: IGetHotProductsParams) => {
+    const queryString = createQueryString(params).toString();
+    return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
+};

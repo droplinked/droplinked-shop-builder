@@ -920,7 +920,7 @@ export function toBase64(str: any) {
 	return btoa(str);
 }
 
-export const SkaleUsdcAddressForTestnet = '0x982983d9B4Cd84CeF4302e8EA4eD6cf652c7A402';
+export const SkaleUsdcAddressForTestnet = '0x2aebcdc4f9f9149a50422fff86198cb0939ea165';
 export const SkaleUsdcAddressForMainnet = '0x7Cf76E740Cb23b99337b21F392F22c47Ad910c67';
 
 export {

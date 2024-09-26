@@ -20,7 +20,7 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
     ];
 
     useEffect(() => {
-        updateInvoiceFilters((prev) => ({ ...prev, page: 1, search: debouncedSearchTerm }));
+        updateInvoiceFilters((prev) => ({ ...prev, page: 1, name: debouncedSearchTerm }));
     }, [debouncedSearchTerm]);
 
     return (

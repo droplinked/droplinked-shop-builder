@@ -1,4 +1,4 @@
-import { LegalUsage } from "../subscription/interfaces"
+import { LegalUsage } from "../subscription/interfaces";
 
 export interface IproductList {
     page: number;
@@ -67,10 +67,10 @@ export interface IproductState {
     productTile?: any[];
     printful_option_data?: any;
     launchDate?: string | null;
-    legalUsage: LegalUsage[],
-    publish_status?: "PUBLISHED" | "DRAFTED",
-    commission?: number
-    canBeAffiliated?: boolean
+    legalUsage: LegalUsage[];
+    publish_status?: "PUBLISHED" | "DRAFTED";
+    commission?: number;
+    canBeAffiliated?: boolean;
 }
 
 export interface IpropertiesItems {
@@ -172,4 +172,8 @@ export interface IGetSingleProductCommunity {
 
 export interface IimportAffiliateProduct {
     productId: string;
+}
+
+export interface IGetHotProductsParams {
+    range?: "daily" | "weekly" | "monthly";
 }

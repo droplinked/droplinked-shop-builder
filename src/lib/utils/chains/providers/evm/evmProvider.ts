@@ -202,7 +202,7 @@ export class EVMProvider implements ChainProvider {
 		}
 		if (this.chain === Chain.SKALE) {
 			const distributionRequest = (
-				await axiosInstance.patch(`shop/sFuelDistribution`, {
+				await axiosInstance.post(`shop/sFuelDistribution`, {
 					wallet: this.address,
 					isTestnet: this.network === Network.TESTNET,
 				})

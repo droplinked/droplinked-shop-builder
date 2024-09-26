@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { getPublicBlogByIdService } from "lib/apis/blog/services";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
@@ -27,9 +27,9 @@ const PublicBlog = () => {
     }, [pathname]);
 
     return (
-        <Flex direction={"column"} p={"64px"} mt={"40px"} gap={12} maxWidth={"1400px"}>
+        <Box alignItems={"flex-start"} justifyContent={"center"} width={"full"}>
             {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
-        </Flex>
+        </Box>
     );
 };
 

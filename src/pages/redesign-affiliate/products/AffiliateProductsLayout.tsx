@@ -40,7 +40,7 @@ const AffiliateProductsLayout = () => {
     return (
         <ProductContext.Provider value={contextValue}>
             <VStack align={"stretch"} width={"full"} spacing={"24px"}>
-                <Box
+                {/* <Box
                     display="flex"
                     width="full"
                     padding="48px 64px"
@@ -63,7 +63,7 @@ const AffiliateProductsLayout = () => {
                             <AppIcons.AffiliateProductsArrow width={"24px"} height={"24px"} />
                         </HStack>
                     </Box>
-                </Box>
+                </Box> */}
                 <HStack alignItems="flex-start" spacing="24px">
                     <Box width="288px">
                         <AppAccordion multiCollapse={true} display={"flex"} flexDir={"column"} gap={"24px"}>

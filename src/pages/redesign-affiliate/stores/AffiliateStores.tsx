@@ -48,7 +48,7 @@ function AffiliateStores() {
                         <AppTypography color="#2BCFA1" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">
                             Become an Affiliate Partner
                         </AppTypography>
-                        <AppIcons.AffiliateProductsArrow width={"24px"} height={"24px"} />
+                        {/* <AppIcons.AffiliateProductsArrow width={"24px"} height={"24px"} /> */}
                     </HStack>
                 </Box>
             </Box>
