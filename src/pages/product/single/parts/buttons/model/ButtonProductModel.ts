@@ -88,6 +88,11 @@ const ButtonsProductClass = ({
                     throw error
                 }
 
+                if (state.canBeAffiliated && !state.commission) {
+                    error.message = "Please enter a valid commission percentage between 1 and 100"
+                    throw error
+                }
+
                 await schema.validate(state)
                 resolve(true)
             } catch (error) {

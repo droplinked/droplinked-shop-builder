@@ -9,7 +9,9 @@ export default function AffiliateMarketing() {
     const { state: { commission, canBeAffiliated }, methods: { updateState } } = useContext(productContext)
 
     const handleCommissionChange = ({ target: { value, validity } }) => {
-        if (validity.valid) updateState('commission', parseInt(value))
+        if (!validity.valid) return
+        const parsedValue = parseInt(value)
+        updateState('commission', isNaN(parsedValue) ? 0 : parsedValue)
     }
 
     return (
