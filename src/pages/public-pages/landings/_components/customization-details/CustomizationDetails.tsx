@@ -1,9 +1,9 @@
 import { Flex, Grid, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import Container from 'pages/public-pages/landings/parts/container/Container'
-import CustomHeading from 'pages/public-pages/landings/parts/heading/Heading'
 import React from 'react'
 import Details from '../details/Details'
+import Container from '../container/Container'
+import CustomHeading from '../heading/Heading'
 
 export default function CustomizationDetails() {
     const detailItems = [

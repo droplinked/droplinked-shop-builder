@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import Container from 'pages/public-pages/landings/_components/container/Container';
+import CustomHeading from 'pages/public-pages/landings/_components/heading/Heading';
 import React, { ReactNode } from 'react';
-import Container from '../../../../../parts/container/Container';
-import CustomHeading from '../../../../../parts/heading/Heading';
 
 interface Props {
     icon: ReactNode
@@ -17,8 +17,8 @@ function Feature({ icon, title, description }: Props) {
             < Flex direction={"column"} gap={6} >
                 <CustomHeading title={title} fontSize={24} />
                 <AppTypography fontSize={20} color={"#fff"}>{description}</AppTypography>
-            </Flex >
-        </Container >
+            </Flex>
+        </Container>
     )
 }
 

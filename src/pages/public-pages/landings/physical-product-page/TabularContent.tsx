@@ -1,8 +1,8 @@
 import { Flex, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import CustomHeading from 'pages/public-pages/landings/parts/heading/Heading'
-import TabsContainer from 'pages/public-pages/landings/parts/tabs-container/TabsContainer'
 import React, { useState } from 'react'
+import CustomHeading from '../_components/heading/Heading'
+import TabsContainer from './TabsContainer'
 
 const tabContentMap = {
     "Inventory Management": {
@@ -27,36 +27,41 @@ const tabContentMap = {
     },
 }
 
-const TabularContent = () => {
+export default function TabularContent() {
     const tabs = Object.keys(tabContentMap)
     const [activeTab, setActiveTab] = useState(tabs[0])
-    const { title, description, imageSrc } = tabContentMap[activeTab]
 
     return (
         <Flex width="100%" direction="column" alignItems="center" gap={12}>
             <TabsContainer tabs={tabs} activeTab={activeTab} setter={setActiveTab} />
-            <Flex
-                width="100%"
-                justifyContent="center"
-                direction={{ base: "column", lg: "row" }}
-                alignItems="center"
-                gap={12}
-            >
-                <Image
-                    flexShrink={0}
-                    src={imageSrc}
-                    width="253px"
-                    height="228px"
-                />
-                <Flex width={{ base: "100%", lg: "50%" }} direction="column" gap={6}>
-                    <CustomHeading title={title} fontSize={36} textAlign={{ base: "center", lg: "start" }} />
-                    <AppTypography fontSize={20} color="#fff" textAlign={{ base: "center", lg: "start" }}>
-                        {description}
-                    </AppTypography>
-                </Flex>
-            </Flex>
+            <TabContent activeTab={activeTab} />
         </Flex>
     )
 }
 
-export default TabularContent
+const TabContent = ({ activeTab }) => {
+    const { title, description, imageSrc } = tabContentMap[activeTab]
+
+    return (
+        <Flex
+            width="100%"
+            justifyContent="center"
+            direction={{ base: "column", lg: "row" }}
+            alignItems="center"
+            gap={12}
+        >
+            <Image
+                flexShrink={0}
+                src={imageSrc}
+                width="253px"
+                height="228px"
+            />
+            <Flex width={{ base: "100%", lg: "50%" }} direction="column" gap={6}>
+                <CustomHeading title={title} fontSize={36} textAlign={{ base: "center", lg: "start" }} />
+                <AppTypography fontSize={20} color="#fff" textAlign={{ base: "center", lg: "start" }}>
+                    {description}
+                </AppTypography>
+            </Flex>
+        </Flex>
+    )
+}

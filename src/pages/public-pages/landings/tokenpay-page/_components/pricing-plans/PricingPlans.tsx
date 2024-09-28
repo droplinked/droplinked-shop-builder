@@ -1,10 +1,10 @@
 import { Flex, Grid } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
-import PlanAdvantage from './parts/plan-advantage/PlanAdvantage'
-import Plan from './parts/plan/Plan'
+import Plan from './Plan'
+import PlanAdvantage from './PlanAdvantage'
 
-function PricingPlans() {
+export default function PricingPlans() {
     return (
         <Grid
             width={"100%"}
@@ -41,5 +41,3 @@ function PricingPlans() {
         </Grid>
     )
 }
-
-export default PricingPlans

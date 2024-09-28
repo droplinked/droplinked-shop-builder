@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import CustomHeading from 'pages/public-pages/landings/parts/heading/Heading'
 import React from 'react'
+import CustomHeading from '../heading/Heading'
 
 export default function Features() {
     const featuresList = [

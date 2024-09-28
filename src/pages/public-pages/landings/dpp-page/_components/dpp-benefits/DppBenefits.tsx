@@ -3,7 +3,7 @@ import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
-import CustomHeading from "pages/public-pages/landings/parts/heading/Heading";
+import CustomHeading from "pages/public-pages/landings/_components/heading/Heading";
 
 
 const itemsData = [
@@ -56,7 +56,7 @@ const DppBenefits = () => {
           Our Digital Product Passport solution is designed to bring unparalleled transparency, efficiency, and sustainability to your product management. Embrace a greener, smarter way to track, manage, and report every phase of your product's journey.
         </AppTypography>
       </Flex>
-      
+
       <Flex width={"100%"} marginBottom={isLargerThan1250 ? "227px" : "0px"}>
         {isLargerThan1250 ?
           <Flex position={"relative"} flexDirection={"column"} marginLeft={"50px"} width={"50%"}>

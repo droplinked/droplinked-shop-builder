@@ -3,8 +3,8 @@ import { Flex } from "@chakra-ui/react";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
-import CustomHeading from "pages/public-pages/landings/parts/heading/Heading";
 import SliceIndicator from "./slice-indicator/SliceIndicator";
+import CustomHeading from "pages/public-pages/landings/_components/heading/Heading";
 
 const DppChart = () => {
   return (

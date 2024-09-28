@@ -1,8 +1,8 @@
 import { Box, Divider, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import Container from 'pages/public-pages/landings/_components/container/Container';
+import CustomHeading from 'pages/public-pages/landings/_components/heading/Heading';
 import React from 'react';
-import Container from '../../../../../parts/container/Container';
-import CustomHeading from '../../../../../parts/heading/Heading';
 
 interface Props {
     icon: React.ReactNode;

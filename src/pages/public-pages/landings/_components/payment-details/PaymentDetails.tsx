@@ -1,6 +1,6 @@
 import { Flex, Image } from '@chakra-ui/react'
-import Details from 'pages/public-pages/landings/parts/details/Details'
 import React from 'react'
+import Details from '../details/Details'
 
 function PaymentDetails() {
     const networks = [

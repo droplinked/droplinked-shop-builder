@@ -2,14 +2,14 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 
 //Components
-import CustomHeading from "../parts/heading/Heading";
-import Layout from "../parts/layout/Layout";
 import AppTypography from "components/common/typography/AppTypography";
 import ProductPassport from "./_components/product-passport/ProductPassport";
 import DppBenefits from "./_components/dpp-benefits/DppBenefits";
 import DppBlockchain from "./_components/dpp-blockchain/DppBlockchain";
 import DppChart from "./_components/dpp-chart/DppChart";
 import DppContactUs from "./_components/dpp-contact-us/DppContactUs";
+import Layout from "../_components/layout/Layout";
+import CustomHeading from "../_components/heading/Heading";
 
 
 const DppPage = () => {
@@ -26,7 +26,7 @@ const DppPage = () => {
               Droplinked’s Digital Product Passport provides attribution efficiency and compliance for inventory management at scale.
             </AppTypography>
           </Flex>
-          <ProductPassport />  
+          <ProductPassport />
         </Flex>
 
         {/* section 2 */}
@@ -49,10 +49,10 @@ const DppPage = () => {
 
         {/* section 6 */}
         <DppChart />
-        
+
         {/* section 7 */}
         <DppContactUs />
-          
+
       </Flex>
     </Layout>
   )

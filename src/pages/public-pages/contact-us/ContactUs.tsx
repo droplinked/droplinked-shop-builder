@@ -1,8 +1,8 @@
 import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import CustomHeading from '../landings/parts/heading/Heading'
 import ContactUsForm from './parts/form/Form'
+import CustomHeading from '../landings/_components/heading/Heading'
 
 function ContactUs() {
     return (

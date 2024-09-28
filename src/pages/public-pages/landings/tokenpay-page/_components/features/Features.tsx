@@ -1,7 +1,7 @@
 import { Grid } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
-import Feature from './parts/feature-component/Feature'
+import Feature from './Feature'
 
 function Features() {
     const features = [
