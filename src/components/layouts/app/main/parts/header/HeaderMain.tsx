@@ -53,7 +53,7 @@ function HeaderMain() {
                 <Hide below="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Hide>
                 <Show below="md"><MobileHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Show>
             </Flex>
-            <AuthModal show={header_state.auth_modal} shopName={shop?.name} close={toggleAuthModal} />
+            <AuthModal show={header_state.auth_modal} close={toggleAuthModal} />
         </>
     );
 }

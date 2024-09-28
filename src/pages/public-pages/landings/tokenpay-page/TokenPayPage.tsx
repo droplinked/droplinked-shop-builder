@@ -12,6 +12,7 @@ import PricingPlans from "./parts/pricing-plans/PricingPlans"
 
 function TokenPayPage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <Layout>
       <AboveTheFoldSection

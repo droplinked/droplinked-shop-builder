@@ -12,6 +12,7 @@ import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 
 function PhysicalProductPage() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Layout>
             <AboveTheFoldSection

@@ -16,6 +16,7 @@ import useROICalculation from './utils/hooks/useROICalculation'
 
 function ROIPage() {
     const navigate = useNavigate()
+
     const {
         plans, selectedPlan, handlePlanChange,
         networks, selectedNetwork, setSelectedNetwork,

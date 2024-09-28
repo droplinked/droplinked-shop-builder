@@ -10,8 +10,27 @@ import AuthModal from 'components/modals/auth-modal/AuthModal'
 import { useDisclosure } from '@chakra-ui/react'
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 
-function DigitalProductPage() {
+const DigitalProductPage = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const dualSideFlexData = [
+        {
+            image: 'assets/images/digitalProduct/create-nft.png',
+            title: 'Mint NFTs',
+            description: 'Convert art pieces, documents, audio, video, and ticketing into on-chain records',
+        },
+        {
+            image: 'assets/images/digitalProduct/chain-support.png',
+            title: 'Multi-Chain Integration',
+            description: 'Supporting multiple blockchain networks to offer greater flexibility',
+        },
+        {
+            image: 'assets/images/digitalProduct/royalty.png',
+            title: 'Loyalty and Royalty Programs',
+            description: 'Maximize earnings and rewards with co-selling and reselling',
+        },
+    ]
+
     return (
         <Layout>
             <AboveTheFoldSection
@@ -23,24 +42,15 @@ function DigitalProductPage() {
             />
             <CustomizationDetails />
             <PaymentDetails />
-            <DualSideFlex
-                direction='rtl'
-                image='assets/images/digitalProduct/create-nft.png'
-                title='Mint NFTs'
-                description='Convert art pieces, documents, audio, video and ticketing into onchain records'
-            />
-            <DualSideFlex
-                direction='ltr'
-                image='assets/images/digitalProduct/chain-support.png'
-                title='Multi-Chain Integration'
-                description='Supporting multiple blockchain networks to offer greater flexibility'
-            />
-            <DualSideFlex
-                direction='rtl'
-                image='assets/images/digitalProduct/royalty.png'
-                title='Loyalty and Royalty Programs '
-                description='Maximize earnings and rewards with co-selling and reselling'
-            />
+            {dualSideFlexData.map((item, index) => (
+                <DualSideFlex
+                    key={index}
+                    direction={index % 2 === 0 ? 'rtl' : 'ltr'}
+                    image={item.image}
+                    title={item.title}
+                    description={item.description}
+                />
+            ))}
             <Features />
             <StarryBorder
                 title='Launch a Store Today'
