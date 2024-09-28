@@ -3,6 +3,14 @@ import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
 import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
+import { ReactComponent as AffiliateProductsArrow } from "./affiliate-products-arrow.svg";
+import { ReactComponent as AffiliateProductsDollar } from "./affiliate-products-dollar.svg";
+import { ReactComponent as AffiliateProductsPercent } from "./affiliate-products-percent.svg";
+import { ReactComponent as AffiliateProductsSeparator } from "./affiliate-products-separator.svg";
+import { ReactComponent as AffiliateStoreInstagram } from "./affiliate-store-instagram.svg";
+import { ReactComponent as AffiliateStoreTiktok } from "./affiliate-store-tiktok.svg";
+import { ReactComponent as AffiliateStoreTwitter } from "./affiliate-store-twitter.svg";
+import { ReactComponent as AffiliateStoreYoutube } from "./affiliate-store-youtube.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
@@ -81,6 +89,8 @@ import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as InvoiceProduct } from "./invoice-product.svg";
+import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-nib.svg";
+import { ReactComponent as LandingPageLink } from "./landing-page-link.svg";
 import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
@@ -136,6 +146,7 @@ import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
 import { ReactComponent as SidebarAffiliate } from "./sidebar-affiliate.svg";
 import { ReactComponent as SidebarAnalytics } from "./sidebar-analytics.svg";
 import { ReactComponent as SidebarBlog } from "./sidebar-blog.svg";
+import { ReactComponent as SidebarBrush } from "./sidebar-brush.svg";
 import { ReactComponent as SidebarChat } from "./sidebar-chat.svg";
 import { ReactComponent as SidebarChevrondown } from "./sidebar-chevrondown.svg";
 import { ReactComponent as SidebarDroplinked } from "./sidebar-droplinked.svg";
@@ -181,16 +192,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as  AffiliateProductsArrow} from "./affiliate-products-arrow.svg";
-import { ReactComponent as  AffiliateProductsSeparator} from "./affiliate-products-separator.svg";
-import { ReactComponent as  AffiliateProductsDollar} from "./affiliate-products-dollar.svg";
-import { ReactComponent as  AffiliateProductsPercent} from "./affiliate-products-percent.svg";
-import { ReactComponent as  SidebarBrush} from "./sidebar-brush.svg";
-import { ReactComponent as  AffiliateStoreInstagram} from "./affiliate-store-instagram.svg";
-import { ReactComponent as  AffiliateStoreTiktok} from "./affiliate-store-tiktok.svg";
-import { ReactComponent as  AffiliateStoreYoutube} from "./affiliate-store-youtube.svg";
-import { ReactComponent as  AffiliateStoreTwitter} from "./affiliate-store-twitter.svg";
-
+import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -385,6 +387,9 @@ const AppIcons = {
   AffiliateStoreTwitter,
   AffiliateStoreYoutube,
   AffiliateStoreTiktok,
+  LandingPageLink,
+  LandingPageDesignNib,
+  LandingPageCreditCard
 }
 
 export default AppIcons

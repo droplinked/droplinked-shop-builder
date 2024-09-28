@@ -1,18 +1,11 @@
-import { Box, Flex, Image } from "@chakra-ui/react"
+import { Flex, Image } from "@chakra-ui/react"
 import BasicButton from "components/common/BasicButton/BasicButton"
 import AppTypography from "components/common/typography/AppTypography"
 import React from "react"
 import CustomHeading from "../heading/Heading"
+import { IAboveTheFoldSection } from "../../types/interfaces"
 
-interface Props {
-  image: string;
-  title: string;
-  description: string;
-  CTAButtonText: string;
-  CTAButtonFunction?: () => void
-}
-
-function AboveTheFoldSection({ image, title, description, CTAButtonText, CTAButtonFunction }: Props) {
+function AboveTheFoldSection({ image, title, description, CTAButtonText, CTAButtonFunction }: IAboveTheFoldSection) {
   return (
     <Flex direction={{ base: "column", xl: "row" }} alignItems={"center"} gap={{ base: 14, xl: 20 }}>
       <Flex order={{ base: 2, xl: 1 }} direction={"column"} gap={{ base: 14, xl: 20 }}>

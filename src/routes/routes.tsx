@@ -50,6 +50,7 @@ import AffiliateProductsLayout from "pages/redesign-affiliate/products/Affiliate
 import AffiliateProductsSinglePage from "pages/redesign-affiliate/product-page/ProductPage";
 import AffiliateStores from "pages/redesign-affiliate/stores/AffiliateStores";
 import AffiliateStoresProfile from "pages/redesign-affiliate/stores/profile/AffiliateStoresProfile";
+import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
 // import AffiliateProducts from "pages/redesign-affiliate/products/AffiliateProducts"
 
 const ProductSingle = lazy(() => import("pages/product/single"));
@@ -77,6 +78,7 @@ function AppRoutes() {
                     <Route path="physical-product" element={<PhysicalProductPage />} />
                     <Route path="digital-product" element={<DigitalProductPage />} />
                     <Route path="pod-product" element={<PODProductPage />} />
+                    <Route path="payment-link" element={<PaymentLinkPage />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />
@@ -134,7 +136,7 @@ function AppRoutes() {
                         <Route path="stores">
                             <Route index element={<AffiliateStores />} />
                             <Route path=":shopId">
-                            <Route index element={<AffiliateStoresProfile />} />
+                                <Route index element={<AffiliateStoresProfile />} />
                                 <Route path=":slug" element={<AffiliateProductsSinglePage />} />
                             </Route>
                         </Route>
