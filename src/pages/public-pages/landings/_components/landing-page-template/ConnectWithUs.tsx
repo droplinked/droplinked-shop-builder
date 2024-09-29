@@ -12,8 +12,8 @@ export default function ConnectWithUs() {
             columns={{ base: 1, lg: 2 }}
             alignItems="center"
             gap="88px"
-            paddingBlock="110px"
-            paddingInline={12}
+            paddingBlock={{ base: 0, lg: "110px" }}
+            paddingInline={{ base: 0, lg: 12 }}
         >
             <IntroSection />
             <EmailForm />

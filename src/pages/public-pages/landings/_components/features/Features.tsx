@@ -26,7 +26,7 @@ export default function Features({ features }: Props) {
 
     return (
         <Flex direction={{ base: "column", lg: "row" }} gap={{ base: 14, lg: 16, xl: 128 }}>
-            <CustomHeading title='Features and Benefits' fontSize={36} whiteSpace="nowrap" />
+            <CustomHeading title='Features and Benefits' flexShrink={0} fontSize={36} />
             <Flex direction="column" gap={14}>
                 {featuresList.map(({ title, description }, index) => (
                     <FeatureItem key={index} title={title} description={description} />
