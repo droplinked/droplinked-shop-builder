@@ -137,3 +137,8 @@ export const getNewShopsService = () => axiosInstance.get('/shop/community/new')
 
 
 export const getShopCommunityProfile = ({shopId}: IGetShopCommunityProfile) => axiosInstance.get(`/shop/community/view/products/${shopId}`)
+
+
+export const getShopGrowthHack = () => axiosInstance.get('/shop/growth/list')
+
+

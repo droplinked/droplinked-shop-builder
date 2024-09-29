@@ -8,9 +8,11 @@ import React, { useCallback, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { designContext, initialStateDesignPage } from "../../design-context";
 import designPageButtonsModel from "./model";
+import useGrowthHackStore from "lib/stores/growth-hack/useGrowthHackStore";
 
 function DesignPageButtons() {
     const { state: { shop }, methods: { dispatch } } = useContext(designContext);
+    const { growthHackData, fetchGrowthHackData } = useGrowthHackStore();
     const { setShopData: { update, loading }, updateShopData } = useProfile();
     const { showToast } = useAppToast();
     const { shopNavigate } = useCustomNavigate();
@@ -41,6 +43,7 @@ function DesignPageButtons() {
                 },
                 template_options: { ...deep_validate_and_transform(shop.template_options) },
             });
+            if(!growthHackData?.list?.customizeShop) await fetchGrowthHackData()
             updateShopData();
             showToast({ message: "Store design has been updated", type: "success" });
             if (isRegister) shopNavigate(`register/technical`);

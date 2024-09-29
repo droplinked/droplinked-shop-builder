@@ -11,6 +11,7 @@ import AppErrors from 'lib/utils/statics/errors/errors'
 import { toast } from 'react-toastify'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
+import useGrowthHackStore from '../growth-hack/useGrowthHackStore'
 
 export interface IUserWalletsProps {
     type: string
@@ -77,6 +78,8 @@ const states = (set, get): IAppStore => ({
                     }
                 })
                 AppStorage.set_tokens(access_token, refresh_token)
+                const fetchGrowthHackData = useGrowthHackStore.getState().fetchGrowthHackData
+                fetchGrowthHackData()
                 resolve(result)
             } catch (error) {
                 reject(error?.response?.data || error);
