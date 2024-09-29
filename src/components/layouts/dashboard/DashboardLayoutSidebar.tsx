@@ -6,6 +6,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import { Link } from "react-router-dom";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionPanel, AppAccordionChevron } from "components/redesign/accordion/AppAccordion";
+import DashboardLayoutSidebarGrowthHack from "./DashboardLayoutSidebarGrowthHack";
 
 const DashboardLayoutSidebar = () => {
     return (
@@ -44,6 +45,7 @@ const DashboardLayoutSidebar = () => {
                         ))}
                     </Box>
                 ))}
+                <DashboardLayoutSidebarGrowthHack/>
             </AppAccordion>
         </Flex>
     );
