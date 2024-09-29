@@ -36,17 +36,25 @@ function Affiliate() {
             {
                 image: "https://upload-file-droplinked.s3.amazonaws.com/650df9ac5fa7e05854ade840474e6fdaa44b56eb490cc819afc050bb50d0d653.png",
                 title: "Merchant Benefits",
-                description: "Create a fully immersive shopping environment where customers can walk through and explore your store in the Metaverse"
+                description: [
+                    { boldText: "Expand reach", rest: "by connecting with trusted co-sellers you whitelist to access inventory" },
+                    { boldText: "Track sales and performance", rest: "in real-time with comprehensive analytics on first and ongoing sales" },
+                    { boldText: "Automatic commission payouts", rest: "ensure smooth, hassle-free transactions for every sale that is made" }
+                ]
             },
             {
                 image: "https://upload-file-droplinked.s3.amazonaws.com/74a595f41e38b4da60d2e46c82c20460d964949d3f13cf01c30a41ac99f193f9.png",
                 title: "Co-Selling Benefits",
-                description: "Enhance customer engagement with interactive 3D stores that offer a more dynamic and captivating shopping experience"
+                description: [
+                    { boldText: "Easily discover and promote", rest: "products based on personalized offers made by merchants" },
+                    { boldText: "Create customizable storefronts", rest: "or product embeddable tiles to showcase and sell products more effectively on any property or social channel" },
+                    { boldText: "Earn commissions", rest: "instantly on every successful sale made based on merchant terms" }
+                ]
             },
             {
                 image: "https://upload-file-droplinked.s3.amazonaws.com/5ce553d6ee2d9024d844f08f0779dcb874d506bb9aeabd38ef6b55e43bb9d5eb.png",
                 title: "Easy Setup",
-                description: "Take your store to the next level by embracing the future of shopping with a Metaverse presence that stands out"
+                description: "Begin your affiliate marketing journey in no time without any coding needed. Simply customize your preferred settings on your account and let the system do the rest"
             }
         ],
         featureGroups: [

@@ -1,39 +1,46 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 interface ISectionWithText {
-    title: string;
-    description: string;
+    title: string
+    description: string | IDescriptionWithBoldWord[]
+}
+
+interface IDescriptionWithBoldWord {
+    boldText: string
+    rest: string
 }
 
 interface IImageSection extends ISectionWithText {
-    image: string;
+    image: string
 }
 
 interface ICTAButton {
-    CTAButtonText: string;
-    CTAButtonFunction?: () => void;
+    CTAButtonText: string
+    CTAButtonFunction?: () => void
 }
 
 export interface IAboveTheFoldSection extends IImageSection, ICTAButton { }
 
 export interface IDetailsItem extends ISectionWithText {
-    icon: ReactNode;
+    icon: ReactNode
 }
 
 export interface IDetailsSection extends ISectionWithText {
-    detailItems: IDetailsItem[];
+    detailItems: IDetailsItem[]
 }
 
 export interface IFeatureGroup {
-    title?: string;
-    features: ISectionWithText[];
+    title?: string
+    features: ISectionWithText[]
 }
 
-export interface IDualSideFlex extends IImageSection { }
+export interface IDualSideFlex extends IImageSection {
+    description: string | IDescriptionWithBoldWord[]
+}
 
 export interface ILandingPageTemplate {
-    aboveTheFoldSection: IAboveTheFoldSection;
-    detailsSection: IDetailsSection;
-    dualSideFlexData: IDualSideFlex[];
-    featureGroups: IFeatureGroup[];
+    aboveTheFoldSection: IAboveTheFoldSection
+    detailsSection: IDetailsSection
+    dualSideFlexData: IDualSideFlex[]
+    featureGroups: IFeatureGroup[]
 }
