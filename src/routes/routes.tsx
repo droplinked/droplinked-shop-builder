@@ -24,12 +24,12 @@ import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitat
 import ContactUs from "pages/public-pages/contact-us/ContactUs";
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage";
 import HomePage from "pages/public-pages/homePage/HomePage";
-import Affiliate from "pages/public-pages/landings/affiliate-page/Affiliate";
-import AffiliateSass from "pages/public-pages/landings/affiliate-sass-page/AffiliateSass";
-import CustomToken from "pages/public-pages/landings/custom-token-page/CustomToken";
+import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
+import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
+import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
-import MetaverseStore from "pages/public-pages/landings/metaverse-store-page/MetaverseStore";
+import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage";
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage";
@@ -87,10 +87,10 @@ function AppRoutes() {
                     <Route path="payment-link" element={<PaymentLinkPage />} />
                     <Route path="product-tile" element={<ProductTilePage />} />
                     <Route path="tokenizing-products" element={<TokenizingProductsPage />} />
-                    <Route path="affiliate-sass" element={<AffiliateSass />} />
-                    <Route path="custom-token" element={<CustomToken />} />
-                    <Route path="metaverse-store" element={<MetaverseStore />} />
-                    <Route path="affiliate" element={<Affiliate />} />
+                    <Route path="affiliate-sass" element={<AffiliateSassPage />} />
+                    <Route path="custom-token" element={<CustomTokenPage />} />
+                    <Route path="metaverse-store" element={<MetaverseStorePage />} />
+                    <Route path="affiliate" element={<AffiliatePage />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />

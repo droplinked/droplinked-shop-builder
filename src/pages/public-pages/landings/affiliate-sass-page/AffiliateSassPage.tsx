@@ -3,7 +3,7 @@ import React from 'react'
 import LandingPageTemplate from '../_components/landing-page-template/LandingPageTemplate'
 import { ILandingPageTemplate } from '../types/interfaces'
 
-function AffiliateSass() {
+function AffiliateSassPage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
             image: "https://upload-file-droplinked.s3.amazonaws.com/fe6dffd33b07044bf7086f981ff458825c93b6c1a4aba2fbd135520873253062.png",
@@ -63,4 +63,4 @@ function AffiliateSass() {
     return <LandingPageTemplate data={data} />
 }
 
-export default AffiliateSass
+export default AffiliateSassPage

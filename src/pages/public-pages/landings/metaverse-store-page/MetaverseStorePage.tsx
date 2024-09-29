@@ -3,7 +3,7 @@ import React from 'react'
 import LandingPageTemplate from '../_components/landing-page-template/LandingPageTemplate'
 import { ILandingPageTemplate } from '../types/interfaces'
 
-function MetaverseStore() {
+function MetaverseStorePage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
             image: "https://upload-file-droplinked.s3.amazonaws.com/651d6e5690bba4d9b48c041ced2944d7704cfb41bf3fa2507c7d3adb1da068ec.png",
@@ -63,4 +63,4 @@ function MetaverseStore() {
     return <LandingPageTemplate data={data} />
 }
 
-export default MetaverseStore
+export default MetaverseStorePage

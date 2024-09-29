@@ -3,7 +3,7 @@ import React from 'react'
 import LandingPageTemplate from '../_components/landing-page-template/LandingPageTemplate'
 import { ILandingPageTemplate } from '../types/interfaces'
 
-function CustomToken() {
+function CustomTokenPage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
             image: "https://upload-file-droplinked.s3.amazonaws.com/92e73c26229520df01d80732f877ca364db71af706c714ff5ed7fc35f6b70fc5.png",
@@ -63,4 +63,4 @@ function CustomToken() {
     return <LandingPageTemplate data={data} />
 }
 
-export default CustomToken
+export default CustomTokenPage
