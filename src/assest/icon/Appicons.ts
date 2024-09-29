@@ -190,7 +190,11 @@ import { ReactComponent as  AffiliateStoreInstagram} from "./affiliate-store-ins
 import { ReactComponent as  AffiliateStoreTiktok} from "./affiliate-store-tiktok.svg";
 import { ReactComponent as  AffiliateStoreYoutube} from "./affiliate-store-youtube.svg";
 import { ReactComponent as  AffiliateStoreTwitter} from "./affiliate-store-twitter.svg";
-
+import { ReactComponent as  SidebarCircle} from "./sidebar-circle.svg";
+import { ReactComponent as  SidebarTickedCircle} from "./sidebar-ticked-circle.svg";
+import { ReactComponent as SidebarChevronright } from "./sidebar-chevronright.svg";
+import { ReactComponent as SidebarNext } from "./sidebar-next.svg";
+import { ReactComponent as SidebarGo } from "./sidebar-go.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -385,6 +389,11 @@ const AppIcons = {
   AffiliateStoreTwitter,
   AffiliateStoreYoutube,
   AffiliateStoreTiktok,
+  SidebarCircle,
+  SidebarTickedCircle,
+  SidebarChevronright,
+  SidebarNext,
+  SidebarGo,
 }
 
 export default AppIcons
