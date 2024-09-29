@@ -16,6 +16,7 @@ import { useMutation } from 'react-query'
 import { productContext } from '../../context'
 import ProductSingleModel from '../../model/model'
 import ButtonsProductClass from './model/ButtonProductModel'
+import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
 
 // prdocut page
 function ButtonsProduct() {
@@ -37,6 +38,7 @@ function ButtonsProduct() {
     const { refactorData } = ProductSingleModel
     const appWeb3 = useAppWeb3()
     const { user: { wallets, _id }, shop } = useAppStore()
+    const { growthHackData, fetchGrowthHackData } = useGrowthHackStore();
 
     const isProducer = useMemo(() => productID && (_id !== state?.ownerID), [state, _id, productID])
 
@@ -113,6 +115,7 @@ function ButtonsProduct() {
                 }
             }
             else {
+                if (!growthHackData?.list?.createFirstProduct || (!growthHackData?.list?.joinAffiliateMarket && state?.commission)) await fetchGrowthHackData();
                 showToast({ message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success" })
                 shopNavigate("products")
             }
