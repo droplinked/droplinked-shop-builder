@@ -24,11 +24,16 @@ export interface IDetailsSection extends ISectionWithText {
     detailItems: IDetailsItem[];
 }
 
+export interface IFeatureGroup {
+    title?: string;
+    features: ISectionWithText[];
+}
+
 export interface IDualSideFlex extends IImageSection { }
 
 export interface ILandingPageTemplate {
     aboveTheFoldSection: IAboveTheFoldSection;
     detailsSection: IDetailsSection;
     dualSideFlexData: IDualSideFlex[];
-    features: ISectionWithText[];
+    featureGroups: IFeatureGroup[];
 }

@@ -49,10 +49,14 @@ export default function PaymentLinkPage() {
                 description: "Simplify the checkout process by collecting only the information you need for digital products"
             }
         ],
-        features: [
-            { title: "Direct Payment Links & QR Codes", description: "Enable quick, frictionless purchases with shareable payment links and QR codes." },
-            { title: "Customizable Experience", description: "Customize payment pages to reflect your brand’s identity, ensuring a cohesive customer experience." },
-            { title: "Alternative Payment Methods", description: "Provide cryptocurrency pricing for added flexibility in payment options." }
+        featureGroups: [
+            {
+                features: [
+                    { title: "Direct Payment Links & QR Codes", description: "Enable quick, frictionless purchases with shareable payment links and QR codes." },
+                    { title: "Customizable Experience", description: "Customize payment pages to reflect your brand’s identity, ensuring a cohesive customer experience." },
+                    { title: "Alternative Payment Methods", description: "Provide cryptocurrency pricing for added flexibility in payment options." }
+                ]
+            }
         ]
     }
 

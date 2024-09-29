@@ -89,6 +89,8 @@ import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as InvoiceProduct } from "./invoice-product.svg";
+import { ReactComponent as LandingPageCode } from "./landing-page-code.svg";
+import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
 import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-nib.svg";
 import { ReactComponent as LandingPageLink } from "./landing-page-link.svg";
 import { ReactComponent as Linea } from "./linea.svg";
@@ -192,7 +194,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
+import { ReactComponent as LandingPageTemplate } from "./landing-page-template.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -389,7 +391,9 @@ const AppIcons = {
   AffiliateStoreTiktok,
   LandingPageLink,
   LandingPageDesignNib,
-  LandingPageCreditCard
+  LandingPageCreditCard,
+  LandingPageCode,
+  LandingPageTemplate
 }
 
 export default AppIcons

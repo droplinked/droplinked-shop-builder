@@ -16,7 +16,7 @@ interface Props {
 }
 
 function LandingPageTemplate({ data }: Props) {
-    const { aboveTheFoldSection, detailsSection, dualSideFlexData, features } = data
+    const { aboveTheFoldSection, detailsSection, dualSideFlexData, featureGroups } = data
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -43,7 +43,7 @@ function LandingPageTemplate({ data }: Props) {
                 />
             ))}
 
-            <Features features={features} />
+            <Features features={featureGroups} />
 
             <ConnectWithUs />
 

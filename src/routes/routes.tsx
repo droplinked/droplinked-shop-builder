@@ -1,5 +1,6 @@
 import MainLayout from "components/layouts/app/main/mainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
+import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import NotFound from "pages/404/404";
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage";
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage";
@@ -23,17 +24,29 @@ import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitat
 import ContactUs from "pages/public-pages/contact-us/ContactUs";
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage";
 import HomePage from "pages/public-pages/homePage/HomePage";
+import Affiliate from "pages/public-pages/landings/affiliate-page/Affiliate";
+import AffiliateSass from "pages/public-pages/landings/affiliate-sass-page/AffiliateSass";
+import CustomToken from "pages/public-pages/landings/custom-token-page/CustomToken";
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
+import MetaverseStore from "pages/public-pages/landings/metaverse-store-page/MetaverseStore";
+import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage";
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage";
+import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage";
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
+import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
 import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage";
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage";
 import ShopPage from "pages/public-pages/shop-page/ShopPage";
 import TermsPage from "pages/public-pages/terms-page/TermsPage";
+import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket";
+import AffiliateProductsSinglePage from "pages/redesign-affiliate/product-page/ProductPage";
+import AffiliateProductsLayout from "pages/redesign-affiliate/products/AffiliateProductsLayout";
+import AffiliateStores from "pages/redesign-affiliate/stores/AffiliateStores";
+import AffiliateStoresProfile from "pages/redesign-affiliate/stores/profile/AffiliateStoresProfile";
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
 import Admins from "pages/register-pages/pages/admins/Admins";
 import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink";
@@ -44,13 +57,6 @@ import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
-import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket";
-import AffiliateProductsLayout from "pages/redesign-affiliate/products/AffiliateProductsLayout";
-import AffiliateProductsSinglePage from "pages/redesign-affiliate/product-page/ProductPage";
-import AffiliateStores from "pages/redesign-affiliate/stores/AffiliateStores";
-import AffiliateStoresProfile from "pages/redesign-affiliate/stores/profile/AffiliateStoresProfile";
-import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
 // import AffiliateProducts from "pages/redesign-affiliate/products/AffiliateProducts"
 
 const ProductSingle = lazy(() => import("pages/product/single"));
@@ -79,6 +85,12 @@ function AppRoutes() {
                     <Route path="digital-product" element={<DigitalProductPage />} />
                     <Route path="pod-product" element={<PODProductPage />} />
                     <Route path="payment-link" element={<PaymentLinkPage />} />
+                    <Route path="product-tile" element={<ProductTilePage />} />
+                    <Route path="tokenizing-products" element={<TokenizingProductsPage />} />
+                    <Route path="affiliate-sass" element={<AffiliateSass />} />
+                    <Route path="custom-token" element={<CustomToken />} />
+                    <Route path="metaverse-store" element={<MetaverseStore />} />
+                    <Route path="affiliate" element={<Affiliate />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />
