@@ -1,7 +1,7 @@
 import { Heading, HeadingProps } from '@chakra-ui/react'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
-interface Props extends HeadingProps, PropsWithChildren { }
+interface Props extends HeadingProps { }
 
 function D3Heading({ children, ...props }: Props) {
     return (

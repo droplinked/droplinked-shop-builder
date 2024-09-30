@@ -39,7 +39,7 @@ const useAppAccordionContext = () => {
     return context;
 };
 
-const useAppAccordionItemContext = () => {
+export const useAppAccordionItemContext = () => {
     const context = useContext(AppAccordionItemContext);
     if (!context) {
         throw new Error("AppAccordionItem components should be used within AppAccordionItem");

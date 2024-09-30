@@ -1,7 +1,7 @@
 import { Badge, BadgeProps } from '@chakra-ui/react'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
-interface Props extends BadgeProps, PropsWithChildren { }
+interface Props extends BadgeProps { }
 
 function D3Badge({ children, ...props }: Props) {
     return (

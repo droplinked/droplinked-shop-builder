@@ -3,6 +3,14 @@ import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
 import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
+import { ReactComponent as AffiliateProductsArrow } from "./affiliate-products-arrow.svg";
+import { ReactComponent as AffiliateProductsDollar } from "./affiliate-products-dollar.svg";
+import { ReactComponent as AffiliateProductsPercent } from "./affiliate-products-percent.svg";
+import { ReactComponent as AffiliateProductsSeparator } from "./affiliate-products-separator.svg";
+import { ReactComponent as AffiliateStoreInstagram } from "./affiliate-store-instagram.svg";
+import { ReactComponent as AffiliateStoreTiktok } from "./affiliate-store-tiktok.svg";
+import { ReactComponent as AffiliateStoreTwitter } from "./affiliate-store-twitter.svg";
+import { ReactComponent as AffiliateStoreYoutube } from "./affiliate-store-youtube.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
@@ -31,6 +39,13 @@ import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
+import { ReactComponent as D3Access } from "./d3-access.svg";
+import { ReactComponent as D3EnterpriseTools } from "./d3-enterprise-tools.svg";
+import { ReactComponent as D3Logo } from "./d3-logo.svg";
+import { ReactComponent as D3NFTIntegration } from "./d3-nft-integration.svg";
+import { ReactComponent as D3ProPlan } from "./d3-pro-plan.svg";
+import { ReactComponent as D3ShopSetup } from "./d3-shop-setup.svg";
+import { ReactComponent as D3Web3Support } from "./d3-web3-support.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
@@ -85,6 +100,7 @@ import { ReactComponent as LandingPageCode } from "./landing-page-code.svg";
 import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
 import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-nib.svg";
 import { ReactComponent as LandingPageLink } from "./landing-page-link.svg";
+import { ReactComponent as LandingPageTemplate } from "./landing-page-template.svg";
 import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
@@ -143,12 +159,17 @@ import { ReactComponent as SidebarBlog } from "./sidebar-blog.svg";
 import { ReactComponent as SidebarBrush } from "./sidebar-brush.svg";
 import { ReactComponent as SidebarChat } from "./sidebar-chat.svg";
 import { ReactComponent as SidebarChevrondown } from "./sidebar-chevrondown.svg";
+import { ReactComponent as SidebarChevronright } from "./sidebar-chevronright.svg";
+import { ReactComponent as SidebarCircle } from "./sidebar-circle.svg";
 import { ReactComponent as SidebarDroplinked } from "./sidebar-droplinked.svg";
+import { ReactComponent as SidebarGo } from "./sidebar-go.svg";
+import { ReactComponent as SidebarNext } from "./sidebar-next.svg";
 import { ReactComponent as SidebarNote } from "./sidebar-note.svg";
 import { ReactComponent as SidebarPlan } from "./sidebar-plan.svg";
 import { ReactComponent as SidebarProducts } from "./sidebar-products.svg";
 import { ReactComponent as SidebarRewards } from "./sidebar-rewards.svg";
 import { ReactComponent as SidebarSetting } from "./sidebar-setting.svg";
+import { ReactComponent as SidebarTickedCircle } from "./sidebar-ticked-circle.svg";
 import { ReactComponent as SidebarUser } from "./sidebar-user.svg";
 import { ReactComponent as Skale } from "./skale.svg";
 import { ReactComponent as SnapchatIcon } from "./snapchat.svg";
@@ -186,20 +207,6 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as LandingPageTemplate } from "./landing-page-template.svg";
-import { ReactComponent as  AffiliateProductsArrow} from "./affiliate-products-arrow.svg";
-import { ReactComponent as  AffiliateProductsSeparator} from "./affiliate-products-separator.svg";
-import { ReactComponent as  AffiliateProductsDollar} from "./affiliate-products-dollar.svg";
-import { ReactComponent as  AffiliateProductsPercent} from "./affiliate-products-percent.svg";
-import { ReactComponent as  AffiliateStoreInstagram} from "./affiliate-store-instagram.svg";
-import { ReactComponent as  AffiliateStoreTiktok} from "./affiliate-store-tiktok.svg";
-import { ReactComponent as  AffiliateStoreYoutube} from "./affiliate-store-youtube.svg";
-import { ReactComponent as  AffiliateStoreTwitter} from "./affiliate-store-twitter.svg";
-import { ReactComponent as  SidebarCircle} from "./sidebar-circle.svg";
-import { ReactComponent as  SidebarTickedCircle} from "./sidebar-ticked-circle.svg";
-import { ReactComponent as SidebarChevronright } from "./sidebar-chevronright.svg";
-import { ReactComponent as SidebarNext } from "./sidebar-next.svg";
-import { ReactComponent as SidebarGo } from "./sidebar-go.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -404,6 +411,13 @@ const AppIcons = {
   SidebarChevronright,
   SidebarNext,
   SidebarGo,
+  D3ShopSetup,
+  D3EnterpriseTools,
+  D3NFTIntegration,
+  D3Access,
+  D3ProPlan,
+  D3Web3Support,
+  D3Logo
 }
 
 export default AppIcons
