@@ -21,7 +21,7 @@ function DescriptionProduct() {
                 <Box className={classes.editor}>
                     <Editor
                         onEditorChange={(el: any) => updateState('description', el)}
-                        apiKey='57mtmdviq9n319653m728pam7vkeu01qreem77arg8d57u1h'
+                        apiKey='r4cgib74mcr1i0twnfwdoeadukqd7ln8173wea43acokjfc4'
                         initialValue={Update}
                         disabled={product_type === "EVENT" ? true : false}
                         init={{
