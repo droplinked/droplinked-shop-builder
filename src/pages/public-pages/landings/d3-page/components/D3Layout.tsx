@@ -10,6 +10,12 @@ function D3Layout({ children }) {
             paddingInline={{ base: "16px", md: "36px", lg: "60px" }}
             paddingBottom={"120px"}
             backgroundColor={"#010101"}
+            sx={{
+                ".d3-icon": {
+                    width: { base: "40px !important", md: "56px !important" },
+                    height: { base: "40px !important", md: "56px !important" }
+                }
+            }}
         >
             {children}
         </Flex>
