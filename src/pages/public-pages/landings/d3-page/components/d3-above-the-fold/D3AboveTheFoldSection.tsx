@@ -17,7 +17,7 @@ export default function D3AboveTheFoldSection() {
             <Flex direction={"column"} gap={8} textAlign={"center"}>
                 <D3Heading as={"h1"} fontSize={48}>droplinked & D3</D3Heading>
                 <Logos />
-                <D3Paragraph>Redeem the exclusive offer for a 6 month pro plan with a D3 domain on droplinked.</D3Paragraph>
+                <D3Paragraph>Redeem the exclusive offer for a 6 month Pro Plan with a D3 domain.</D3Paragraph>
                 <Button alignSelf={"center"} fontSize={14} fontWeight={500}>Claim Now</Button>
             </Flex>
         </Grid>

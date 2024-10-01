@@ -22,7 +22,7 @@ export default function D3CollaborationDetails() {
 
 function Details() {
     const details: IDetailsItem[] = [
-        { icon: <AppIcons.D3ShopSetup />, title: "Shop Setup Simplified", description: "Integrate your D3 domain on droplinked." },
+        { icon: <AppIcons.D3ShopSetup />, title: "Store Setup Simplified", description: "Integrate your D3 domain on droplinked and launch your shop." },
         { icon: <AppIcons.D3EnterpriseTools />, title: "Enterprise-Level Tools", description: "Unlock advanced features to scale your business from the start." },
         { icon: <AppIcons.D3NFTIntegration />, title: "Seamless NFT Integration", description: "Create, manage, and sell NFTs on a customizable storefront." }
     ]

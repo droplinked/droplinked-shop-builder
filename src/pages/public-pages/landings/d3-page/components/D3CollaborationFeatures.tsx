@@ -12,13 +12,13 @@ export default function D3CollaborationFeatures() {
     const features: Feature[] = [
         {
             icon: <AppIcons.D3ProPlan />,
-            title: "6 Month Pro Plan Access",
+            title: "6 Month Pro Plan",
             description: "Enjoy premium features for six months for being a loyal D3 customer.",
-            image: ""
+            image: "https://upload-file-droplinked.s3.amazonaws.com/b2ab77f6817eda666fbf91efc298620a93f7688df5592c2c048e916dd357beb5.png"
         },
         {
             icon: <AppIcons.D3Access />,
-            title: "Access Thousands of Products",
+            title: "Access +10k Products",
             description: "Choose from a vast catalog to customize and sell unique merchandise on demand.",
             image: "https://upload-file-droplinked.s3.amazonaws.com/8273463bd617dd09cabee8bfb3a018e476b8113c35621fafe1d094f40d6871b5.png"
         },
