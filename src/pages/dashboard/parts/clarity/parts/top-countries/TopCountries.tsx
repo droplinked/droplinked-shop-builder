@@ -8,7 +8,7 @@ import DashboardTable from 'pages/dashboard/parts/parts/table/DashboardTable'
 import React, { useContext } from 'react'
 import clarityContext from '../../context'
 
-function BestSellingProducts() {
+function TopCountries() {
     const { isLoading, clarityData } = useContext(clarityContext)
     const items: Array<ITableRows> = Object.keys(clarityData?.topCountries || {}).map(country => ({
         country: {
@@ -37,8 +37,8 @@ function BestSellingProducts() {
                     <DashboardTable items={items} />
                 </AppSkeleton>
             </Flex>
-        </AppCard >
+        </AppCard>
     )
 }
 
-export default BestSellingProducts
+export default TopCountries
