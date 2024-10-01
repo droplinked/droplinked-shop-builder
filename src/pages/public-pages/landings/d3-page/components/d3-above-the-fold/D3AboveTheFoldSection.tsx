@@ -29,7 +29,7 @@ export default function D3AboveTheFoldSection() {
                     Claim Now
                 </Button>
             </Flex>
-            <AppModal modalRootProps={{ isOpen, onClose, size: "3xl" }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
+            <AppModal modalRootProps={{ isOpen, onClose, size: "3xl", isCentered: true }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
                 <ModalBody
                     display="flex"
                     width={{ base: "360px", md: "625px" }}
@@ -42,7 +42,7 @@ export default function D3AboveTheFoldSection() {
                     paddingBlock={"0px !important"}
                     rounded="24px"
                 >
-                    <D3Wallet />
+                    <D3Wallet variant="green" isLoading icon="tick"/>
                     <Box display="flex" padding="0px 48px 48px 48px" flexDirection="column" alignItems="flex-end" gap="48px" alignSelf="stretch">
                         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
                             <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
