@@ -3,15 +3,24 @@ import { createMultiStyleConfigHelpers, extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
     components: {
-        Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({ baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({ container: { border: "none", outline: "none" }, thumb: { backgroundColor: "#1E1E1E" }, track: { backgroundColor: "#5E5E5E", _checked: { bg: "green.500" } } }) }),
+        Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({
+            baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({
+                container: { border: "none", outline: "none" },
+                thumb: { backgroundColor: "#1E1E1E" },
+                track: {
+                    backgroundColor: "#5E5E5E",
+                    _checked: { bg: "green.500" }
+                }
+            })
+        }),
         Divider: { baseStyle: { margin: "0" } }
     },
     styles: {
         global: {
             ".chakra-form__required-indicator": {
-                color: "#2EC99E !important",
-            },
-        },
+                color: "#2EC99E !important"
+            }
+        }
     },
     colors: {
         bG: "#141414",
@@ -52,12 +61,12 @@ export const theme = extendTheme({
             700: "#545454",
             800: "#474747",
             900: "#333333",
-        },
+        }
     },
     breakpoints: {
-        sm: "481px",
+        sm: "360px",
         md: "768px",
-        lg: "992px",
-        xl: "1200px",
-    },
-});
+        lg: "1280px",
+        xl: "1440px"
+    }
+})

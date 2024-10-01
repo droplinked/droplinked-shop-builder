@@ -19,8 +19,8 @@ export default function D3AboveTheFoldSection() {
             bgSize={"cover"}
             bgPos={"center"}
         >
-            <Flex direction={"column"} gap={8} textAlign={"center"}>
-                <D3Heading as={"h1"} fontSize={48}>
+            <Flex direction={"column"} gap={8} textAlign={"center"} paddingInline={{ base: 8, md: 0 }}>
+                <D3Heading as={"h1"} fontSize={{ base: 28, md: 36, lg: 48 }}>
                     droplinked & D3
                 </D3Heading>
                 <Logos />

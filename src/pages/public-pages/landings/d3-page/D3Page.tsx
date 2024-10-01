@@ -1,5 +1,4 @@
 import React from 'react'
-import D3FAQ from './components/d3-faq/D3FAQ'
 import D3AboveTheFoldSection from './components/d3-above-the-fold/D3AboveTheFoldSection'
 import D3CollaborationDetails from './components/D3CollaborationDetails'
 import D3CollaborationFeatures from './components/D3CollaborationFeatures'
@@ -12,7 +11,6 @@ function D3Page() {
             <D3Layout>
                 <D3CollaborationDetails />
                 <D3CollaborationFeatures />
-                <D3FAQ />
             </D3Layout>
         </>
     )
