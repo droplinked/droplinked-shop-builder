@@ -51,7 +51,9 @@ function DetailItem({ icon, title, description }: IDetailsItem) {
         >
             <Flex direction={"column"} paddingLeft={{ base: 4, md: 6 }} bg="#010101">
                 {icon}
-                <AppTypography marginTop={{ base: 4, md: 8 }} fontSize={{ base: 18, md: 20 }} fontWeight={700} color={"white"}>{title}</AppTypography>
+                <AppTypography marginTop={{ base: 4, md: 8 }} fontSize={{ base: 18, md: 20 }} fontWeight={700} color={"white"}>
+                    {title}
+                </AppTypography>
                 <D3Paragraph marginTop={1}>{description as string}</D3Paragraph>
             </Flex>
         </Box>

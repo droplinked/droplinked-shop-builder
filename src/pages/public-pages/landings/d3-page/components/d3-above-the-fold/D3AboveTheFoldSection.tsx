@@ -1,18 +1,20 @@
 import { Box, Flex, Grid, ModalBody, useDisclosure } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
+import AppTypography from "components/common/typography/AppTypography";
+import AppModal from "components/redesign/modal/AppModal";
 import Button from "pages/invoice-management/components/Button";
 import React from "react";
 import D3Heading from "../common/D3Heading";
 import D3Paragraph from "../common/D3Paragraph";
-import Logos from "./Logos";
-import AppModal from "components/redesign/modal/AppModal";
 import D3Wallet from "../common/D3Wallet";
-import AppTypography from "components/common/typography/AppTypography";
-import AppIcons from "assest/icon/Appicons";
+import Logos from "./Logos";
 
 export default function D3AboveTheFoldSection() {
-    const { isOpen, onClose, onOpen } = useDisclosure();
+    const { isOpen, onClose, onOpen } = useDisclosure()
+
     return (
         <Grid
+            minHeight={"550px"}
             height={"100dvh"}
             placeContent={"center"}
             bgImg={"https://upload-file-droplinked.s3.amazonaws.com/db0b798ebd29ca8f2bb07e202b38b02f7b024f5d9b98c16c9019d6ebcf0086d6.png"}
@@ -42,7 +44,7 @@ export default function D3AboveTheFoldSection() {
                     paddingBlock={"0px !important"}
                     rounded="24px"
                 >
-                    <D3Wallet variant="green" isLoading icon="tick"/>
+                    <D3Wallet variant="green" isLoading icon="tick" />
                     <Box display="flex" padding="0px 48px 48px 48px" flexDirection="column" alignItems="flex-end" gap="48px" alignSelf="stretch">
                         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
                             <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
@@ -120,5 +122,5 @@ export default function D3AboveTheFoldSection() {
                 </ModalBody>
             </AppModal>
         </Grid>
-    );
+    )
 }
