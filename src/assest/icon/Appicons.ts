@@ -200,6 +200,10 @@ import { ReactComponent as  SidebarTickedCircle} from "./sidebar-ticked-circle.s
 import { ReactComponent as SidebarChevronright } from "./sidebar-chevronright.svg";
 import { ReactComponent as SidebarNext } from "./sidebar-next.svg";
 import { ReactComponent as SidebarGo } from "./sidebar-go.svg";
+import { ReactComponent as D3Main } from "./d3-main.svg";
+import { ReactComponent as D3Spinner } from "./d3-spinner.svg";
+import { ReactComponent as D3Wallet } from "./d3-wallet.svg";
+import { ReactComponent as D3Tick } from "./d3-tick.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -404,6 +408,10 @@ const AppIcons = {
   SidebarChevronright,
   SidebarNext,
   SidebarGo,
+  D3Main,
+  D3Spinner,
+  D3Wallet,
+  D3Tick,
 }
 
 export default AppIcons
