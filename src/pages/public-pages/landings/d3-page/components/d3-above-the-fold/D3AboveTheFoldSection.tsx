@@ -14,8 +14,8 @@ export default function D3AboveTheFoldSection() {
             bgSize={"cover"}
             bgPos={"center"}
         >
-            <Flex direction={"column"} gap={8} textAlign={"center"}>
-                <D3Heading as={"h1"} fontSize={48}>droplinked & D3</D3Heading>
+            <Flex direction={"column"} gap={8} textAlign={"center"} paddingInline={{ base: 8, md: 0 }}>
+                <D3Heading as={"h1"} fontSize={{ base: 28, md: 36, lg: 48 }}>droplinked & D3</D3Heading>
                 <Logos />
                 <D3Paragraph>Redeem the exclusive offer for a 6 month Pro Plan with a D3 domain.</D3Paragraph>
                 <Button alignSelf={"center"} fontSize={14} fontWeight={500}>Claim Now</Button>

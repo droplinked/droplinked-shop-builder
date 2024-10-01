@@ -5,9 +5,10 @@ function D3Layout({ children }) {
     return (
         <Flex
             direction={"column"}
-            gap={"200px"}
-            padding={"72px"}
-            paddingBottom={120}
+            gap={{ base: "120px", lg: "160px", xl: "200px" }}
+            paddingTop={{ base: "48px", xl: "72px" }}
+            paddingInline={{ base: "16px", md: "36px", lg: "60px" }}
+            paddingBottom={"120px"}
             backgroundColor={"#010101"}
         >
             {children}

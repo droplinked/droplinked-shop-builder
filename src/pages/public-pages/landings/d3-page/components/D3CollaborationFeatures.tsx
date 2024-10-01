@@ -55,11 +55,12 @@ function FeatureCard({ feature }: { feature: Feature }) {
             border="1px solid #222"
             borderRadius={16}
             overflow={"hidden"}
+            gap={{ base: 4, md: 8 }}
         >
-            <Flex direction={"column"} gap={8} padding={8}>
+            <Flex direction={"column"} gap={{ base: 4, md: 8 }} padding={{ base: 4, md: 8 }}>
                 {icon}
                 <Box>
-                    <AppTypography fontSize={20} fontWeight={700} color={"white"}>{title}</AppTypography>
+                    <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color={"white"}>{title}</AppTypography>
                     <D3Paragraph marginTop={1}>{description as string}</D3Paragraph>
                 </Box>
             </Flex>
