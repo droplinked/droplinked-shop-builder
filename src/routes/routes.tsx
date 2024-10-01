@@ -27,6 +27,7 @@ import HomePage from "pages/public-pages/homePage/HomePage";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
+import D3Page from "pages/public-pages/landings/d3-page/D3Page";
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
@@ -91,6 +92,7 @@ function AppRoutes() {
                     <Route path="custom-token" element={<CustomTokenPage />} />
                     <Route path="metaverse-store" element={<MetaverseStorePage />} />
                     <Route path="affiliate" element={<AffiliatePage />} />
+                    <Route path="d3" element={<D3Page />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />
