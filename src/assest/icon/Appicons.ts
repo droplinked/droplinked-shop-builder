@@ -40,6 +40,10 @@ import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as D3Access } from "./d3-access.svg";
+import { ReactComponent as D3D3BorderRed } from "./d3-d3-border-red.svg";
+import { ReactComponent as D3D3Border } from "./d3-d3-border.svg";
+import { ReactComponent as D3DroplinkedBorderRed } from "./d3-droplinked-border-red.svg";
+import { ReactComponent as D3DroplinkedBorder } from "./d3-droplinked-border.svg";
 import { ReactComponent as D3EnterpriseTools } from "./d3-enterprise-tools.svg";
 import { ReactComponent as D3Logo } from "./d3-logo.svg";
 import { ReactComponent as D3Main } from "./d3-main.svg";
@@ -425,7 +429,11 @@ const AppIcons = {
   D3Access,
   D3ProPlan,
   D3Web3Support,
-  D3Logo
+  D3Logo,
+  D3DroplinkedBorder,
+  D3D3Border,
+  D3DroplinkedBorderRed,
+  D3D3BorderRed
 }
 
 export default AppIcons
