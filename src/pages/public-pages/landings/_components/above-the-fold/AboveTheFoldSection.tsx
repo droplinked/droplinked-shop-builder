@@ -32,14 +32,8 @@ function Content({ title, description, CTAButtonText, CTAButtonFunction }: IAbov
       alignItems="flex-start"
       gap={{ base: 6, lg: "64px", xl: "80px" }}
     >
-      <CustomHeading
-        as="h1"
-        title={title}
-        fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}
-      />
-      <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">
-        {description}
-      </AppTypography>
+      <CustomHeading as="h1" title={title} fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }} />
+      <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
       <Button
         paddingInline={{ base: 4, lg: 5 }}
         fontWeight={500}

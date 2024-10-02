@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image, useMediaQuery } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import { IDualSideFlex } from '../../types/interfaces';
@@ -9,11 +9,10 @@ interface Props extends IDualSideFlex {
 }
 
 export default function DualSideFlex({ direction, image, title, description }: Props) {
+    const [isSmallerThan1280] = useMediaQuery('(max-width: 1279px)')
 
     const renderDescription = () => {
-        if (typeof description === 'string') {
-            return <AppTypography>{description}</AppTypography>
-        }
+        if (typeof description === 'string') return <AppTypography>{description}</AppTypography>
 
         return (
             <Box as='ul' pl={3}>
@@ -30,12 +29,13 @@ export default function DualSideFlex({ direction, image, title, description }: P
         <Flex
             width="100%"
             direction={{ base: 'column', lg: 'row' }}
-            alignItems="center"
+            alignItems={{ base: "flex-start", lg: "center" }}
             gap={{ base: 12, lg: 9, xl: "80px" }}
-            dir={direction}
+            dir={isSmallerThan1280 ? "lte" : direction}
         >
             <Image
                 flexShrink={0}
+                alignSelf={"center"}
                 width={{ base: "328px", md: "518px", lg: "474px", xl: "526px" }}
                 height="auto"
                 src={image}
@@ -50,6 +50,6 @@ export default function DualSideFlex({ direction, image, title, description }: P
                 <CustomHeading width="fit-content" title={title} fontSize={{ base: 20, lg: 28 }} />
                 {renderDescription()}
             </Flex>
-        </Flex >
+        </Flex>
     )
 }
