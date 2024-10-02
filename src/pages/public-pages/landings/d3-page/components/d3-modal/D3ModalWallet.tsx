@@ -1,8 +1,8 @@
-import React from "react";
 import { Box, keyframes } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import React from "react";
 
-interface ID3WalletProps {
+interface ID3ModalWalletProps {
     width?: string | number;
     height?: string | number;
     variant?: "green" | "red";
@@ -39,7 +39,7 @@ const IconFilter = ({ right = true }: { right: boolean }) => {
     );
 };
 
-const D3Wallet: React.FC<ID3WalletProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
+const D3ModalWallet: React.FC<ID3ModalWalletProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
     const isGreen = variant === "green";
     const color = isGreen ? "#2BCFA1" : "#FF2244";
     const centerIconSize = 152;
@@ -206,4 +206,4 @@ const D3Wallet: React.FC<ID3WalletProps> = ({ variant = "green", isLoading = fal
     );
 };
 
-export default D3Wallet;
+export default D3ModalWallet;
