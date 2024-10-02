@@ -1,38 +1,45 @@
 import { Flex, Image } from "@chakra-ui/react"
-import BasicButton from "components/common/BasicButton/BasicButton"
 import AppTypography from "components/common/typography/AppTypography"
+import Button from "pages/invoice-management/components/Button"
 import React from "react"
 import { IAboveTheFoldSection } from "../../types/interfaces"
 import CustomHeading from "../heading/Heading"
 
 export default function AboveTheFoldSection(props: IAboveTheFoldSection) {
-  const { image } = props
-
   return (
-    <Flex direction={{ base: "column", xl: "row" }} alignItems={"center"} gap={{ base: 14, xl: 20 }}>
+    <Flex
+      direction={{ base: "column", lg: "row" }}
+      alignItems="center"
+      gap={{ base: 12, lg: 9, xl: 6 }}
+    >
       <Content {...props} />
       <Image
-        src={image}
-        width={{ base: "85%", md: "65%", xl: "45%" }}
-        objectFit={"cover"}
-        order={{ base: 1, xl: 2 }}
+        src={props.image}
+        width={{ base: "328px", md: "518px", lg: "504px", xl: "526px" }}
+        objectFit="cover"
+        order={{ base: 1, lg: 2 }}
       />
     </Flex>
   )
 }
 
-function Content(props: IAboveTheFoldSection) {
-  const { title, description, CTAButtonText, CTAButtonFunction } = props
-
+function Content({ title, description, CTAButtonText, CTAButtonFunction }: IAboveTheFoldSection) {
   return (
-    <Flex order={{ base: 2, xl: 1 }} direction={"column"} gap={{ base: 14, xl: 20 }}>
-      <CustomHeading title={title} textAlign={{ base: "center", xl: "start" }} />
-      <AppTypography textAlign={{ base: "center", xl: "start" }} fontSize={{ base: 20, xl: 24 }} color={"#fff"}>
-        {description}
-      </AppTypography>
-      <BasicButton alignSelf={{ base: "center", xl: "start" }} onClick={CTAButtonFunction}>
+    <Flex
+      order={{ base: 2, lg: 1 }}
+      direction="column"
+      alignItems={"flex-start"}
+      gap={{ base: 6, lg: "64px", xl: "80px" }}
+    >
+      <CustomHeading as="h1" title={title} fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }} />
+      <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
+      <Button
+        paddingInline={{ base: 4, lg: 5 }}
+        fontWeight={500}
+        onClick={CTAButtonFunction}
+      >
         {CTAButtonText}
-      </BasicButton>
+      </Button>
     </Flex>
   )
 }

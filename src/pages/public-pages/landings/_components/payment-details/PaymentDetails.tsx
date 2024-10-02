@@ -28,10 +28,10 @@ function PaymentDetails() {
             <Flex
                 justifyContent="center"
                 flexWrap="wrap"
-                columnGap={{ base: "20px", sm: "80px" }}
-                rowGap="48px"
+                columnGap={{ base: 9, lg: 14 }}
+                rowGap={{ base: 9, lg: 12 }}
             >
-                {networks.map((network, key) => <Image key={key} height={{ base: "16px", sm: "24px" }} src={network} />)}
+                {networks.map((network, key) => <Image key={key} height={{ base: "16px", md: "24px" }} src={network} />)}
             </Flex>
         </Details>
     )

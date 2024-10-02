@@ -8,14 +8,10 @@ import DualSideFlex from '../dual-side-flex/DualSideFlex'
 import Features from '../features/Features'
 import Layout from '../layout/Layout'
 import PaymentDetails from '../payment-details/PaymentDetails'
-import ConnectWithUs from './ConnectWithUs'
+import ConnectWithUs from './connect-with-us/ConnectWithUs'
 import DetailsSection from './DetailsSection'
 
-interface Props {
-    data: ILandingPageTemplate
-}
-
-function LandingPageTemplate({ data }: Props) {
+function LandingPageTemplate({ data }: { data: ILandingPageTemplate }) {
     const { aboveTheFoldSection, detailsSection, dualSideFlexData, featureGroups } = data
     const { isOpen, onOpen, onClose } = useDisclosure()
 
