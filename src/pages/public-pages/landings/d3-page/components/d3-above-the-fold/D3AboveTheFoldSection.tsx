@@ -1,6 +1,6 @@
-import { Box, Flex, Grid, ModalBody, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Grid, ModalBody, StyleProps, useDisclosure } from "@chakra-ui/react";
 import Button from "pages/invoice-management/components/Button";
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import D3Heading from "../common/D3Heading";
 import D3Paragraph from "../common/D3Paragraph";
 import Logos from "./Logos";
@@ -8,9 +8,92 @@ import AppModal from "components/redesign/modal/AppModal";
 import D3Wallet from "../common/D3Wallet";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
+import D3Context, { D3StepsType } from "../../context/d3.context";
+import { getNetworkProvider } from "lib/utils/chains/chainProvider";
+import { Chain, Network } from "lib/utils/chains/dto/chains";
+import { appDevelopment } from "lib/utils/app/variable";
 
 export default function D3AboveTheFoldSection() {
     const { isOpen, onClose, onOpen } = useDisclosure();
+    const {
+        states: { currentStep },
+        methods: { updateStates },
+    } = useContext(D3Context);
+    const connect_d3_wallet = () => {
+        return new Promise((resolve, reject) => {
+            updateStates({ key: "currentStep", value: "loading" });
+
+            getNetworkProvider(Chain.ETH, Network[appDevelopment ? "TESTNET" : "MAINNET"], null)
+                .walletLogin()
+                .then((res) => {
+                    console.log(res);
+                    updateStates({ key: "currentStep", value: "done" });
+                    resolve(res);
+                })
+                .catch((error) => {
+                    updateStates({ key: "currentStep", value: "error" });
+                    // reject(error);
+                });
+        });
+    };
+    const connect_wallet_steps: {
+        [K in D3StepsType]: {
+            title: string;
+            description: string;
+            buttons: { left: null | { label: string; onClick: () => void; styles?: StyleProps }; right: { label: string; onClick: () => void; rightIcon?: any; styles?: StyleProps } };
+        };
+    } = {
+        connect: {
+            title: "Connect Wallet for Verification",
+            description: "Connect your wallet to check if you're eligible for the 6 month Pro Plan.",
+            buttons: {
+                left: {
+                    label: "Close",
+                    onClick: onClose,
+                    styles: {},
+                },
+                right: { label: "Check Wallet Eligibility", onClick: async () => await connect_d3_wallet(), rightIcon: <AppIcons.SidebarNext />, styles: {} },
+            },
+        },
+        loading: {
+            title: "Verifying Wallet Status",
+            description: "Please wait while your wallet is verified for eligibility.",
+            buttons: {
+                left: {
+                    label: "Close",
+                    onClick: () => {},
+                    styles: {
+                        background: "#292929",
+                        color: "#737373",
+                        cursor: "not-allowed",
+                    },
+                },
+                right: {
+                    label: "Check Wallet Eligibility",
+                    onClick: () => {},
+                    rightIcon: <AppIcons.SidebarNext />,
+                    styles: {
+                        background: "#292929",
+                        color: "#737373",
+                        cursor: "not-allowed",
+                        border: "none",
+                    },
+                },
+            },
+        },
+        error: {
+            title: "Wallet Verification Unsuccessful",
+            description: "It looks like your wallet doesn’t meet the criteria. Unfortunately, you're not eligible to claim the offer.",
+            buttons: { left: null, right: { label: "Return", onClick: () => updateStates({ key: "currentStep", value: "connect" }) } },
+        },
+        done: {
+            title: "Congrats, Wallet Offer Verified",
+            description: "You can now create an account and enjoy 6 months of a Pro Plan.",
+            buttons: { left: null, right: { label: "Claim Now", onClick: onClose } },
+        },
+    };
+    const current_state = useMemo(() => connect_wallet_steps?.[currentStep], [currentStep, updateStates]);
+
     return (
         <Grid
             height={"100dvh"}
@@ -42,16 +125,16 @@ export default function D3AboveTheFoldSection() {
                     paddingBlock={"0px !important"}
                     rounded="24px"
                 >
-                    <D3Wallet variant="green" isLoading icon="tick"/>
-                    <Box display="flex" padding="0px 48px 48px 48px" flexDirection="column" alignItems="flex-end" gap="48px" alignSelf="stretch">
+                    <D3Wallet variant={currentStep === "error" ? "red" : "green"} isLoading={currentStep === "loading"} icon={currentStep === "done" ? "tick" : "wallet"} />
+                    <Box display="flex" padding={{ base: "0px 16px 36px 16px", md: "0px 48px 48px 48px" }} flexDirection="column" alignItems="flex-end" gap="48px" alignSelf="stretch">
                         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
-                            <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                                Connect Wallet for Verification
+                            <AppTypography color="#FFF" fontFamily="Inter" fontSize={{ base: "18px", md: "24px" }} fontStyle="normal" fontWeight="700" lineHeight="36px">
+                                {current_state?.title}
                             </AppTypography>
-                            <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                Connect your wallet to check if you're eligible for the 6 month Pro Plan.
+                            <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize={{ base: "14px", md: "16px" }} fontStyle="normal" fontWeight="400" lineHeight="24px">
+                                {current_state?.description}
                             </AppTypography>
-                            <Box display="flex" justifyContent="space-between" alignItems="flex-start" alignSelf="stretch">
+                            <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={{ base: "12px", md: "auto" }} alignSelf="stretch" flexDir={{ base: "column", md: "row" }}>
                                 <Box display={"flex"} alignItems={"center"} gap={"12px"} flex={"1 0 0"}>
                                     <Box as="svg" width="32px" height="32px" viewBox="0 0 32 32" fill="none">
                                         <rect width="32" height="32" rx="16" fill="#2BCFA1" fill-opacity="0.1" />
@@ -92,27 +175,42 @@ export default function D3AboveTheFoldSection() {
                             </Box>
                             <Box display="flex" justifyContent="center" alignItems="center" gap="24px" alignSelf="stretch">
                                 <Flex flex={"1 0 0"} alignItems={"flex-start"}>
-                                    <Button
-                                        backgroundColor={"#292929"}
-                                        border={"none"}
-                                        display="flex"
-                                        padding="12px 20px"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        color="#FFF"
-                                        textAlign="center"
-                                        fontFamily="Inter"
-                                        fontSize="16px"
-                                        fontStyle="normal"
-                                        fontWeight="500"
-                                        lineHeight="24px"
-                                    >
-                                        Close
-                                    </Button>
+                                    {current_state?.buttons?.left && (
+                                        <Button
+                                            backgroundColor={"#292929"}
+                                            border={"none"}
+                                            display="flex"
+                                            padding="12px 16px"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                            color="#FFF"
+                                            textAlign="center"
+                                            fontFamily="Inter"
+                                            fontSize={{ base: "14px", md: "16px" }}
+                                            fontStyle="normal"
+                                            fontWeight="500"
+                                            lineHeight={{ base: "16px", md: "24px" }}
+                                            onClick={current_state?.buttons?.left?.onClick}
+                                            {...current_state?.buttons?.left?.styles}
+                                        >
+                                            Close
+                                        </Button>
+                                    )}
                                 </Flex>
-                                <Button padding="12px 20px" color="#000" textAlign="center" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="500" lineHeight="24px">
-                                    Check Wallet Eligibility
-                                    <AppIcons.SidebarNext />
+                                <Button
+                                    padding="12px 20px"
+                                    color="#000"
+                                    textAlign="center"
+                                    fontFamily="Inter"
+                                    fontSize={{ base: "14px", md: "16px" }}
+                                    fontStyle="normal"
+                                    fontWeight="500"
+                                    lineHeight={{ base: "16px", md: "24px" }}
+                                    onClick={current_state?.buttons?.right?.onClick}
+                                    {...current_state.buttons?.right?.styles}
+                                >
+                                    {current_state?.buttons?.right?.label}
+                                    {current_state?.buttons?.right?.rightIcon && current_state?.buttons?.right?.rightIcon}
                                 </Button>
                             </Box>
                         </Box>
