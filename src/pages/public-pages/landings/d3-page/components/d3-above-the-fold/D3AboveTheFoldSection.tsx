@@ -1,17 +1,17 @@
 import { Box, Flex, Grid, ModalBody, StyleProps, useDisclosure } from "@chakra-ui/react";
-import Button from "pages/invoice-management/components/Button";
-import React, { useContext, useMemo } from "react";
-import D3Heading from "../common/D3Heading";
-import D3Paragraph from "../common/D3Paragraph";
-import Logos from "./Logos";
-import AppModal from "components/redesign/modal/AppModal";
-import D3Wallet from "../common/D3Wallet";
-import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
-import D3Context, { D3StepsType } from "../../context/d3.context";
+import AppTypography from "components/common/typography/AppTypography";
+import AppModal from "components/redesign/modal/AppModal";
+import { appDevelopment } from "lib/utils/app/variable";
 import { getNetworkProvider } from "lib/utils/chains/chainProvider";
 import { Chain, Network } from "lib/utils/chains/dto/chains";
-import { appDevelopment } from "lib/utils/app/variable";
+import Button from "pages/invoice-management/components/Button";
+import React, { useContext, useMemo } from "react";
+import D3Context, { D3StepsType } from "../../context/d3.context";
+import D3Heading from "../common/D3Heading";
+import D3Paragraph from "../common/D3Paragraph";
+import D3Wallet from "../common/D3Wallet";
+import Logos from "./Logos";
 
 export default function D3AboveTheFoldSection() {
     const { isOpen, onClose, onOpen } = useDisclosure();
@@ -96,6 +96,7 @@ export default function D3AboveTheFoldSection() {
 
     return (
         <Grid
+            minHeight={"550px"}
             height={"100dvh"}
             placeContent={"center"}
             bgImg={"https://upload-file-droplinked.s3.amazonaws.com/db0b798ebd29ca8f2bb07e202b38b02f7b024f5d9b98c16c9019d6ebcf0086d6.png"}
