@@ -61,3 +61,8 @@ export interface IAcceptInvitation {
     invitationId: string;
     password: string;
 }
+
+export interface ISubscribeFeature {
+    feature: string;
+    email: string;
+}

@@ -10,21 +10,13 @@ export default function DetailsSection({ data }: { data: IDetailsSection }) {
     const { title, description, detailItems } = data
 
     return (
-        <Details title={title} description={description}>
+        <Details title={title} description={description as string}>
             <Grid
-                width="100%"
-                templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(3, 1fr)" }}
+                templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }}
                 templateRows="repeat(1, 1fr)"
-                gap={{ base: 6, xl: 9 }}
+                gap={{ base: 4, xl: 6 }}
             >
-                {detailItems.map(({ icon, title, description }, index) => (
-                    <DetailItem
-                        key={index}
-                        icon={icon}
-                        title={title}
-                        description={description}
-                    />
-                ))}
+                {detailItems.map((item) => <DetailItem key={item.title} {...item} />)}
             </Grid>
         </Details>
     )
@@ -33,8 +25,8 @@ export default function DetailsSection({ data }: { data: IDetailsSection }) {
 const DetailItem = ({ icon, title, description }) => (
     <Container gap={6}>
         {icon}
-        <Flex direction="column" gap={4}>
-            <CustomHeading title={title} fontSize={20} />
+        <Flex direction="column" gap={2}>
+            <CustomHeading title={title} width={"fit-content"} fontSize={20} />
             <AppTypography fontSize={16} color="#fff">{description}</AppTypography>
         </Flex>
     </Container>

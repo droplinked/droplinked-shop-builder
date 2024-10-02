@@ -17,7 +17,7 @@ function PaymentDetails() {
         'assets/images/homepage/black_and_white/xrpl.png',
         'assets/images/homepage/black_and_white/skale.png',
         'assets/images/homepage/black_and_white/hedera.png',
-        'assets/images/homepage/black_and_white/stripe.png',
+        'assets/images/homepage/black_and_white/stripe.png'
     ]
 
     return (
@@ -28,10 +28,10 @@ function PaymentDetails() {
             <Flex
                 justifyContent="center"
                 flexWrap="wrap"
-                columnGap={{ base: "20px", sm: "80px" }}
-                rowGap="48px"
+                columnGap={{ base: 9, lg: 12, xl: 14 }}
+                rowGap={{ base: 9, lg: 12 }}
             >
-                {networks.map((network, key) => <Image key={key} height={{ base: "16px", sm: "24px" }} src={network} />)}
+                {networks.map((network, key) => <Image key={key} height={{ base: "16px", md: "24px" }} src={network} />)}
             </Flex>
         </Details>
     )
