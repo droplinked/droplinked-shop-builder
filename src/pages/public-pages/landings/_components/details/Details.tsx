@@ -11,8 +11,12 @@ interface Props {
 
 function Details({ title, description, children }: Props) {
     return (
-        <Flex direction={"column"} gap={{ base: 12, lg: 20 }}>
-            <Flex direction={"column"} alignItems={"center"} gap={{ base: 2, lg: 4 }}>
+        <Flex
+            width={"100%"}
+            direction={"column"}
+            gap={{ base: 12, lg: 20 }}
+        >
+            <Flex direction={"column"} gap={{ base: 2, lg: 4 }} sx={{ textAlign: "center" }}>
                 <CustomHeading title={title} fontSize={{ base: 20, lg: 28 }} />
                 <AppTypography fontSize={{ base: 16, xl: 18 }} color={"#fff"}>{description}</AppTypography>
             </Flex>

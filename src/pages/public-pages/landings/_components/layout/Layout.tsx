@@ -12,6 +12,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                 paddingBlock={120}
                 paddingInline={{ base: 4, md: 9, lg: "60px", xl: "72px" }}
                 paddingBottom={{ base: "120px", lg: "160px", xl: "200px" }}
+                sx={{ "&>*": { width: "100%" } }}
             >
                 {children}
             </Flex>

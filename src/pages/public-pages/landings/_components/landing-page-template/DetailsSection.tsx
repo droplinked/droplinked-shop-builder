@@ -12,12 +12,11 @@ export default function DetailsSection({ data }: { data: IDetailsSection }) {
     return (
         <Details title={title} description={description as string}>
             <Grid
-                width="100%"
                 templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }}
                 templateRows="repeat(1, 1fr)"
                 gap={{ base: 4, xl: 6 }}
             >
-                {detailItems.map((item, index) => <DetailItem key={index} {...item} />)}
+                {detailItems.map((item) => <DetailItem key={item.title} {...item} />)}
             </Grid>
         </Details>
     )

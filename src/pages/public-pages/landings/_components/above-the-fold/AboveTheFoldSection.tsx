@@ -9,7 +9,7 @@ export default function AboveTheFoldSection(props: IAboveTheFoldSection) {
   return (
     <Flex
       direction={{ base: "column", lg: "row" }}
-      alignItems="center"
+      alignItems={{ base: "flex-start", lg: "center" }}
       gap={{ base: 12, lg: 9, xl: 6 }}
     >
       <Content {...props} />
@@ -18,6 +18,7 @@ export default function AboveTheFoldSection(props: IAboveTheFoldSection) {
         width={{ base: "328px", md: "518px", lg: "504px", xl: "526px" }}
         objectFit="cover"
         order={{ base: 1, lg: 2 }}
+        alignSelf={"center"}
       />
     </Flex>
   )
@@ -28,11 +29,17 @@ function Content({ title, description, CTAButtonText, CTAButtonFunction }: IAbov
     <Flex
       order={{ base: 2, lg: 1 }}
       direction="column"
-      alignItems={"flex-start"}
+      alignItems="flex-start"
       gap={{ base: 6, lg: "64px", xl: "80px" }}
     >
-      <CustomHeading as="h1" title={title} fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }} />
-      <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
+      <CustomHeading
+        as="h1"
+        title={title}
+        fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}
+      />
+      <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">
+        {description}
+      </AppTypography>
       <Button
         paddingInline={{ base: 4, lg: 5 }}
         fontWeight={500}

@@ -1,5 +1,5 @@
-import { Flex, FlexProps } from '@chakra-ui/react'
-import React from 'react'
+import { Flex, FlexProps } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props extends FlexProps {
     children: any;
@@ -11,7 +11,7 @@ function Container({ children, gap = 9, ...props }: Props) {
         <Flex
             direction={"column"}
             gap={gap}
-            padding={{ base: 6, lg: 9 }}
+            padding={{ base: 6, md: 9 }}
             borderRadius={16}
             border={"1px solid rgb(255, 255, 255 , 0.3)"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
