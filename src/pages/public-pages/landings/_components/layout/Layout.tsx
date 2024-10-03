@@ -5,13 +5,14 @@ function Layout({ children }: { children: React.ReactNode }) {
     return (
         <Flex justifyContent={"center"}>
             <Flex
-                width={{ base: "100%", lg: "80%" }}
                 maxWidth="1400px"
                 direction="column"
                 alignItems={"center"}
-                gap={{ base: "64px", md: "120px", lg: "160px" }}
-                paddingInline={{ base: 4, sm: 7 }}
+                gap={{ base: "120px", lg: "160px", xl: "200px" }}
                 paddingBlock={120}
+                paddingInline={{ base: 4, md: 9, lg: "60px", xl: "72px" }}
+                paddingBottom={{ base: "120px", lg: "160px", xl: "200px" }}
+                sx={{ "&>*": { width: "100%" } }}
             >
                 {children}
             </Flex>

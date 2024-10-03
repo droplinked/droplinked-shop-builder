@@ -1,15 +1,11 @@
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { IFeatureGroup } from '../../types/interfaces'
 import CustomHeading from '../heading/Heading'
 
-interface Props {
-    features?: IFeatureGroup[]
-}
-
-export default function Features({ features }: Props) {
-    const featureGroups: IFeatureGroup[] = features ?? [
+export default function Features({ features }: { features?: IFeatureGroup[] }) {
+    const defaultFeatureGroups: IFeatureGroup[] = [
         {
             features: [
                 {
@@ -27,20 +23,27 @@ export default function Features({ features }: Props) {
             ]
         }
     ]
+    const featureGroups = features ?? defaultFeatureGroups
 
     return (
         <>
             {featureGroups.map(({ title, features }, index) => (
                 <Flex
                     key={index}
-                    direction={{ base: "column", lg: "row" }}
-                    gap={{ base: 14, lg: 16, xl: 128 }}
+                    width="100%"
+                    direction={{ base: 'column', lg: 'row' }}
+                    gap={{ base: 6, lg: 4, xl: 6 }}
                 >
-                    <CustomHeading title={title || "Features and Benefits"} flexShrink={0} fontSize={36} />
-                    <Flex direction="column" gap={14}>
-                        {features.map(({ title, description }, index) => (
-                            <FeatureItem key={index} title={title} description={description} />
-                        ))}
+                    <Box width={{ base: "100%", lg: "400px" }}>
+                        <CustomHeading
+                            title={title || "Features and Benefits"}
+                            width={"fit-content"}
+                            flexShrink={0}
+                            fontSize={{ base: 20, lg: 28 }}
+                        />
+                    </Box>
+                    <Flex direction="column" gap={{ base: 6, lg: 9, xl: 14 }}>
+                        {features.map((feature, index) => <FeatureItem key={index} {...feature} />)}
                     </Flex>
                 </Flex>
             ))}
@@ -49,8 +52,8 @@ export default function Features({ features }: Props) {
 }
 
 const FeatureItem = ({ title, description }) => (
-    <Flex direction="column" gap={4}>
-        <AppTypography fontSize={20} fontWeight={700} color="#fff">{title}</AppTypography>
-        <AppTypography fontSize={20} color="#fff">{description}</AppTypography>
+    <Flex direction="column" gap={2} sx={{ color: '#fff' }}>
+        <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700}>{title}</AppTypography>
+        <AppTypography fontSize={{ base: 16, xl: 18 }}>{description}</AppTypography>
     </Flex>
 )
