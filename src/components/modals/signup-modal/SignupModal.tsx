@@ -26,6 +26,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
   const { showToast } = useAppToast();
   const toggleShowField = useCallback((field: any) => setPasswordVisibility((prev) => ({ ...prev, [field]: !prev[field] })), [])
   const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
+  const d3_id_from_params = useMemo(() => searchParams.get("d3-id"), [searchParams])
 
   const { login } = useAppStore()
   const { shopNavigate } = useCustomNavigate()
@@ -64,7 +65,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
     try {
       setLoading(true)
       const { email, password, referral } = data;
-      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true });
+      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined });
       isFromPlansPage && await handleLogin({ email, password })
       localStorage.setItem("registerEmail", JSON.stringify(email));
       showToast({ message: "Account successfully created", type: "success" });

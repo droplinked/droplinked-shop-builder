@@ -61,3 +61,8 @@ export interface IAcceptInvitation {
     invitationId: string;
     password: string;
 }
+
+export interface IPostUserVerifyD3{
+    walletAddress: string;
+    walletType: string;
+}

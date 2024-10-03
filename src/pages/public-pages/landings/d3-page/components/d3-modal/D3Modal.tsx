@@ -1,16 +1,26 @@
 import { Box, Flex, ModalBody, StyleProps, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
+import AuthModal from "components/modals/auth-modal/AuthModal";
 import AppModal from "components/redesign/modal/AppModal";
+import { IPostUserVerifyD3 } from "lib/apis/user/interfaces";
+import { postUserVerifyD3 } from "lib/apis/user/services";
 import { appDevelopment } from "lib/utils/app/variable";
 import { getNetworkProvider } from "lib/utils/chains/chainProvider";
 import { Chain, Network } from "lib/utils/chains/dto/chains";
 import Button from "pages/invoice-management/components/Button";
+import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import React, { useContext, useMemo } from "react";
+import { useMutation } from "react-query";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import D3Context, { D3StepsType } from "../../context/d3.context";
 import D3Wallet from "./D3ModalWallet";
 const D3Modal = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
+    const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) => postUserVerifyD3(props));
+    const navigate = useNavigate();
+    const { isOpen: signupModalIsOpen, onOpen: signupModalOnOpen, onClose: signupModalOnClose } = useDisclosure();
+    const [searchParams] = useSearchParams();
     const {
         states: { currentStep },
         methods: { updateStates },
@@ -18,12 +28,16 @@ const D3Modal = () => {
     const connect_d3_wallet = () => {
         return new Promise((resolve, reject) => {
             updateStates({ key: "currentStep", value: "loading" });
-
             getNetworkProvider(Chain.ETH, Network[appDevelopment ? "TESTNET" : "MAINNET"], null)
                 .walletLogin()
-                .then((res) => {
+                .then(async (res) => {
                     console.log(res);
-                    updateStates({ key: "currentStep", value: "done" });
+                    await mutateAsync({ walletAddress: res?.address, walletType: "EVM" }).then((verifyRes) => {
+                        console.log(verifyRes?.data?.data);
+                        if (!verifyRes?.data?.data || verifyRes?.data?.data === "false" || verifyRes?.data?.data === false) return updateStates({ key: "currentStep", value: "error" });
+                        searchParams.set("d3-id", verifyRes?.data?.data);
+                        updateStates({ key: "currentStep", value: "done" });
+                    });
                     resolve(res);
                 })
                 .catch((error) => {
@@ -85,7 +99,22 @@ const D3Modal = () => {
         done: {
             title: "Congrats, Wallet Offer Verified",
             description: "You can now create an account and enjoy 6 months of a Pro Plan.",
-            buttons: { left: null, right: { label: "Claim Now", onClick: onClose } },
+            buttons: {
+                left: null,
+                right: {
+                    label: "Claim Now",
+                    onClick: () => {
+                        if (searchParams.get("d3-id")) {
+                            navigate(`/d3/?d3-id=${searchParams.get("d3-id").toString()}`);
+                            if (searchParams.get("d3-id")) {
+                                console.log(searchParams.get("d3-id"));
+                                onClose();
+                                signupModalOnOpen();
+                            }
+                        }
+                    },
+                },
+            },
         },
     };
     const current_state = useMemo(() => connect_wallet_steps?.[currentStep], [currentStep, updateStates]);
@@ -200,6 +229,7 @@ const D3Modal = () => {
                     </Box>
                 </ModalBody>
             </AppModal>
+            {signupModalIsOpen && <AuthModal show={true} type={MODAL_TYPE.SIGNUP} close={signupModalOnClose} />}
         </>
     );
 };

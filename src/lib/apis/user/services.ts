@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IAcceptInvitation, IGetUserService, IInvitation, IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IuserUpdateService } from "./interfaces";
+import { IAcceptInvitation, IGetUserService, IInvitation, IPostUserVerifyD3, IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IuserUpdateService } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
     return axiosInstance.post(`user/forgot-password`, props)
@@ -52,3 +52,5 @@ export const acceptInvitationService = (props: IAcceptInvitation) => {
 export const getInvitationDetails = (invitationId: string) => {
     return axiosInstance.post(`rbac/invitations/${invitationId}/info`)
 }
+
+export const postUserVerifyD3 = (props: IPostUserVerifyD3) => axiosInstance.post(`user/d3/verify`, props)
