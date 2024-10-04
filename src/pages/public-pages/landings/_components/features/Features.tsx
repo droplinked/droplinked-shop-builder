@@ -37,7 +37,7 @@ export default function Features({ features }: { features?: IFeatureGroup[] }) {
                     <Box width={{ base: "100%", lg: "400px" }}>
                         <CustomHeading
                             title={title || "Features and Benefits"}
-                            width={"fit-content"}
+                            width="fit-content"
                             flexShrink={0}
                             fontSize={{ base: 20, lg: 28 }}
                         />

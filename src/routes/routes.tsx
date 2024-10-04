@@ -1,6 +1,7 @@
 import MainLayout from "components/layouts/app/main/mainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
+import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import NotFound from "pages/404/404";
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage";
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage";
@@ -37,8 +38,7 @@ import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProd
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage";
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
-import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage";
-import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
+import TokenpayPage from "pages/public-pages/landings/tokenpay-page/TokenpayPage";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage";
 import ShopPage from "pages/public-pages/shop-page/ShopPage";
@@ -58,11 +58,8 @@ import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-// import AffiliateProducts from "pages/redesign-affiliate/products/AffiliateProducts"
 
 const ProductSingle = lazy(() => import("pages/product/single"));
-const Requests = lazy(() => import("pages/affiliate/requests/Requests"));
-const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
@@ -71,7 +68,7 @@ const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 
 function AppRoutes() {
     return (
-        <Suspense fallback={<LoadingPage />}>
+        <Suspense fallback={<FullScreenLoading />}>
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
@@ -81,7 +78,7 @@ function AppRoutes() {
                     <Route path="contact-us" element={<ContactUs />} />
                     <Route path="privacy" element={<PrivacyPage />} />
                     <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-                    <Route path="tokenpay" element={<TokenPayPage />} />
+                    <Route path="tokenpay" element={<TokenpayPage />} />
                     <Route path="physical-product" element={<PhysicalProductPage />} />
                     <Route path="digital-product" element={<DigitalProductPage />} />
                     <Route path="pod-product" element={<PODProductPage />} />
@@ -128,19 +125,6 @@ function AppRoutes() {
                     </Route>
                     <Route path="collections" element={<Collections />} />
                     <Route path="orders" element={<Orders />} />
-                    {/* <Route path="affiliate" element={<AffiliateLayout />}>
-            <Route index element={<AffiliateProducts />} />
-            <Route path="stores" element={<Shops />} />
-            <Route path="shops">
-              <Route index element={<Shops />} />
-              <Route path=":shopName">
-                <Route index element={<Shop />} />
-                <Route path=":productID" element={<ShopProduct />} />
-              </Route>
-            </Route>
-            <Route path="requests" element={<Requests />} />
-            <Route path="notifications" element={<Notifications />} />
-          </Route> */}
                     <Route path="affiliate">
                         <Route path="market" element={<AffiliateMarket />} />
                         <Route path="products">
@@ -173,7 +157,6 @@ function AppRoutes() {
                 </Route>
 
                 <Route path=":shopname" element={<ShopPage />} />
-
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Suspense>

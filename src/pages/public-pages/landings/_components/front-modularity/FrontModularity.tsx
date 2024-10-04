@@ -1,11 +1,11 @@
 import { Flex, Grid, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import Details from '../details/Details'
 import Container from '../container/Container'
+import Details from '../details/Details'
 import CustomHeading from '../heading/Heading'
 
-export default function CustomizationDetails() {
+export default function FrontModularity() {
     const detailItems = [
         {
             imageSrc: 'assets/images/physicalProduct/design-nib.png',

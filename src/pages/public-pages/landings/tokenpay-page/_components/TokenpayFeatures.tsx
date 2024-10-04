@@ -1,9 +1,11 @@
-import { Grid } from '@chakra-ui/react'
+import { Flex, Grid } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import Feature from './Feature'
+import Container from '../../_components/container/Container'
+import CustomHeading from '../../_components/heading/Heading'
 
-function Features() {
+export default function TokenpayFeatures() {
     const features = [
         { icon: <AppIcons.Personalize />, title: 'Personalize Your Marketplace', description: 'Create a shop that mirrors the unique essence of your community, offering a mix of on-demand and additional items tailored to your audience.' },
         { icon: <AppIcons.Unlock />, title: 'Unlock Token Potential', description: 'Elevate community engagement by enabling token-based transactions for a variety of goods. Droplinked bridges the gap between digital assets and real-world utility.' },
@@ -14,15 +16,22 @@ function Features() {
     return (
         <Grid
             templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
-            templateRows={"repeat(2, 1fr)"}
+            templateRows="repeat(2, 1fr)"
             gap={9}
         >
-            {features.map(({ icon, title, description }, index) =>
-                <Feature key={index} icon={icon} title={title} description={description} />
-            )}
-
+            {features.map((feature) => <Feature key={feature.title} {...feature} />)}
         </Grid>
     )
 }
 
-export default Features
+function Feature({ icon, title, description }) {
+    return (
+        <Container>
+            {icon}
+            <Flex direction="column" gap={6} >
+                <CustomHeading title={title} width="fit-content" fontSize={20} />
+                <AppTypography fontSize={16} color="white">{description}</AppTypography>
+            </Flex>
+        </Container>
+    )
+}

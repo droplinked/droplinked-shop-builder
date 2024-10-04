@@ -1,24 +1,21 @@
 import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+import { ISectionWithText } from '../../types/interfaces';
 import CustomHeading from '../heading/Heading';
 
-interface Props {
-    title: string;
-    description: string;
-    children: React.ReactNode
-}
+interface Props extends ISectionWithText, PropsWithChildren { }
 
 function Details({ title, description, children }: Props) {
     return (
         <Flex
-            width={"100%"}
-            direction={"column"}
+            width="100%"
+            direction="column"
             gap={{ base: 12, lg: 20 }}
         >
-            <Flex direction={"column"} gap={{ base: 2, lg: 4 }} sx={{ textAlign: "center" }}>
-                <CustomHeading title={title} fontSize={{ base: 20, lg: 28 }} />
-                <AppTypography fontSize={{ base: 16, xl: 18 }} color={"#fff"}>{description}</AppTypography>
+            <Flex direction="column" alignItems="center" gap={{ base: 2, lg: 4 }} sx={{ textAlign: "center" }}>
+                <CustomHeading title={title} width="fit-content" fontSize={{ base: 20, lg: 28 }} />
+                <AppTypography fontSize={{ base: 16, xl: 18 }} color="white">{description}</AppTypography>
             </Flex>
             {children}
         </Flex>

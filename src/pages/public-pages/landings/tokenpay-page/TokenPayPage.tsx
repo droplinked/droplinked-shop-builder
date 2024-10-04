@@ -3,14 +3,14 @@ import AuthModal from "components/modals/auth-modal/AuthModal"
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 import React from "react"
 import AboveTheFoldSection from "../_components/above-the-fold/AboveTheFoldSection"
+import Details from "../_components/details/Details"
 import Layout from "../_components/layout/Layout"
 import StarryBorder from "../_components/starry-border/StarryBorder"
-import Details from "./_components/Details"
-import Features from "./_components/features/Features"
-import PricingPlans from "./_components/pricing-plans/PricingPlans"
 import Gallery from "./_components/Gallery"
+import PricingPlans from "./_components/pricing-plans/PricingPlans"
+import TokenpayFeatures from "./_components/TokenpayFeatures"
 
-function TokenPayPage() {
+function TokenpayPage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -22,11 +22,23 @@ function TokenPayPage() {
         CTAButtonText="Get Started"
         CTAButtonFunction={onOpen}
       />
-      <Details title="Crypto Commerce" description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful onchain tools to elevate a tokens utility and projects success." />
-      <Features />
+
+      <Details
+        title="Crypto Commerce"
+        description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful onchain tools to elevate a tokens utility and projects success."
+      />
+
+      <TokenpayFeatures />
+
       <Gallery />
-      <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />
+
+      <Details
+        title="Empower Communities"
+        description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success."
+      />
+
       <PricingPlans />
+
       <StarryBorder
         title='Launch a Store Today'
         description='Simple setup, secure transactions and endless possibilities await your community.'
@@ -38,4 +50,4 @@ function TokenPayPage() {
   )
 }
 
-export default TokenPayPage
+export default TokenpayPage

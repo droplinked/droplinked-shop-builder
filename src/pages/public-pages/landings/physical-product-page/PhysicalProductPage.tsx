@@ -1,6 +1,6 @@
 import React from 'react'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
-import CustomizationDetails from '../_components/customization-details/CustomizationDetails'
+import FrontModularity from '../_components/front-modularity/FrontModularity'
 import Features from '../_components/features/Features'
 import Layout from '../_components/layout/Layout'
 import PaymentDetails from '../_components/payment-details/PaymentDetails'
@@ -22,10 +22,15 @@ function PhysicalProductPage() {
                 CTAButtonText="Get Started"
                 CTAButtonFunction={onOpen}
             />
-            <CustomizationDetails />
+
+            <FrontModularity />
+
             <PaymentDetails />
+
             <TabularContent />
+
             <Features />
+
             <StarryBorder
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'
