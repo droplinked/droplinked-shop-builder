@@ -6,7 +6,7 @@ interface Props extends TextProps { }
 
 function D3Paragraph({ children, ...props }: Props) {
     return (
-        <AppTypography fontSize={{ base: 14, md: 16 }} fontWeight={400} color={"#7B7B7B"} {...props}>{children}</AppTypography>
+        <AppTypography fontSize={{ base: 14, md: 16 }} fontWeight={400} color="#7B7B7B" {...props}>{children}</AppTypography>
     )
 }
 

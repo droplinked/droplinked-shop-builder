@@ -9,12 +9,10 @@ import Button from "pages/invoice-management/components/Button";
 import React, { useContext, useMemo } from "react";
 import D3Context, { D3StepsType } from "../../context/d3.context";
 import D3Wallet from "./D3ModalWallet";
+
 const D3Modal = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
-    const {
-        states: { currentStep },
-        methods: { updateStates },
-    } = useContext(D3Context);
+    const { states: { currentStep }, methods: { updateStates } } = useContext(D3Context);
     const connect_d3_wallet = () => {
         return new Promise((resolve, reject) => {
             updateStates({ key: "currentStep", value: "loading" });
@@ -57,7 +55,7 @@ const D3Modal = () => {
             buttons: {
                 left: {
                     label: "Close",
-                    onClick: () => {},
+                    onClick: () => { },
                     styles: {
                         background: "#292929",
                         color: "#737373",
@@ -66,7 +64,7 @@ const D3Modal = () => {
                 },
                 right: {
                     label: "Check Wallet Eligibility",
-                    onClick: () => {},
+                    onClick: () => { },
                     rightIcon: <AppIcons.SidebarNext />,
                     styles: {
                         background: "#292929",
@@ -92,7 +90,7 @@ const D3Modal = () => {
 
     return (
         <>
-            <Button alignSelf={"center"} fontSize={14} fontWeight={500} onClick={onOpen}>
+            <Button paddingInline={{ base: 4, lg: 5 }} fontSize={{ base: 14, lg: 16 }} fontWeight={500} onClick={onOpen}>
                 Claim Now
             </Button>
             <AppModal modalRootProps={{ isOpen, onClose, size: "3xl", isCentered: true }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
