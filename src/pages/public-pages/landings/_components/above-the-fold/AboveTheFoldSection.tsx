@@ -34,11 +34,7 @@ function Content({ title, description, CTAButtonText, CTAButtonFunction }: IAbov
     >
       <SpectrumHeader as="h1" fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>{title}</SpectrumHeader>
       <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
-      <Button
-        paddingInline={{ base: 4, lg: 5 }}
-        fontWeight={500}
-        onClick={CTAButtonFunction}
-      >
+      <Button fontWeight={500} onClick={CTAButtonFunction}>
         {CTAButtonText}
       </Button>
     </Flex>

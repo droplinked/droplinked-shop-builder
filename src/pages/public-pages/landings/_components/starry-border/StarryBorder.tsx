@@ -22,7 +22,7 @@ function StarryBorder({ title, description, buttonText, buttonFunctionality }: P
         >
             <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color="#fff" textAlign="center" paddingInline={{ base: 3 }}>{title}</Heading>
             <AppTypography width={{ base: "80%", lg: "60%" }} textAlign="center" fontSize={16} color="white">{description}</AppTypography>
-            <Button paddingInline={{ base: 4, lg: 5 }} fontWeight={500} onClick={buttonFunctionality}>{buttonText}</Button>
+            <Button fontWeight={500} onClick={buttonFunctionality}>{buttonText}</Button>
             <Show above='lg'>
                 <Image width="150px" top="35px" right="-3px" src='assets/images/tokenPayPage/Monero.png' />
                 <Image width="150px" bottom={0} left="80px" src='assets/images/tokenPayPage/Etherium.png' />
