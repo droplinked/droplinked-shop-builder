@@ -2,13 +2,10 @@ import { Box, Flex, Grid, Image, SimpleGrid, useMediaQuery } from '@chakra-ui/re
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import { IDetailsItem } from '../../types/interfaces'
 import D3Paragraph from './common/D3Paragraph'
 
-type Feature = { image: string | { base: string, md: string } } & IDetailsItem
-
 export default function D3CollaborationFeatures() {
-    const features: Feature[] = [
+    const features = [
         {
             icon: <AppIcons.D3ProPlan className='d3-icon' />,
             title: "6 Month Pro Plan",
@@ -42,7 +39,7 @@ export default function D3CollaborationFeatures() {
     )
 }
 
-function FeatureCard({ icon, title, description, image }: Feature) {
+function FeatureCard({ icon, title, description, image }) {
     const [isSmallerThan768] = useMediaQuery('(max-width: 767px)')
     const imageUrl = typeof image === 'string' ?
         image :

@@ -40,6 +40,7 @@ import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as D3Access } from "./d3-access.svg";
+import { ReactComponent as D3CoreChain } from "./d3-core-chain.svg";
 import { ReactComponent as D3D3BorderRed } from "./d3-d3-border-red.svg";
 import { ReactComponent as D3D3Border } from "./d3-d3-border.svg";
 import { ReactComponent as D3DroplinkedBorderRed } from "./d3-droplinked-border-red.svg";
@@ -49,9 +50,11 @@ import { ReactComponent as D3Logo } from "./d3-logo.svg";
 import { ReactComponent as D3Main } from "./d3-main.svg";
 import { ReactComponent as D3NFTIntegration } from "./d3-nft-integration.svg";
 import { ReactComponent as D3ProPlan } from "./d3-pro-plan.svg";
+import { ReactComponent as D3Shiba } from "./d3-shiba.svg";
 import { ReactComponent as D3ShopSetup } from "./d3-shop-setup.svg";
 import { ReactComponent as D3Spinner } from "./d3-spinner.svg";
 import { ReactComponent as D3Tick } from "./d3-tick.svg";
+import { ReactComponent as D3Victorin } from "./d3-victorin.svg";
 import { ReactComponent as D3Wallet } from "./d3-wallet.svg";
 import { ReactComponent as D3Web3Support } from "./d3-web3-support.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
@@ -433,7 +436,10 @@ const AppIcons = {
   D3DroplinkedBorder,
   D3D3Border,
   D3DroplinkedBorderRed,
-  D3D3BorderRed
+  D3D3BorderRed,
+  D3Shiba,
+  D3Victorin,
+  D3CoreChain
 }
 
 export default AppIcons
