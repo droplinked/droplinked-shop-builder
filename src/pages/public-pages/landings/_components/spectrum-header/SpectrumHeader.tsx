@@ -1,13 +1,12 @@
 import { Heading, HeadingProps } from "@chakra-ui/react"
 import React from "react"
 
-interface Props extends HeadingProps {
-  title: string
-}
+interface Props extends HeadingProps { }
 
-function CustomHeading({ title, ...props }: Props) {
+function SpectrumHeader({ children, ...props }: Props) {
   return (
     <Heading
+      width="fit-content"
       margin={0}
       fontSize={{ base: 36, lg: 48 }}
       fontWeight={700}
@@ -15,9 +14,9 @@ function CustomHeading({ title, ...props }: Props) {
       backgroundClip="text"
       {...props}
     >
-      {title}
+      {children}
     </Heading>
   )
 }
 
-export default CustomHeading
+export default SpectrumHeader

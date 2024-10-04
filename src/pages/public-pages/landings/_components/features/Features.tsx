@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { IFeatureGroup } from '../../types/interfaces'
-import CustomHeading from '../heading/Heading'
+import SpectrumHeader from '../spectrum-header/SpectrumHeader'
 
 export default function Features({ features }: { features?: IFeatureGroup[] }) {
     const defaultFeatureGroups: IFeatureGroup[] = [
@@ -34,13 +34,8 @@ export default function Features({ features }: { features?: IFeatureGroup[] }) {
                     direction={{ base: 'column', lg: 'row' }}
                     gap={{ base: 6, lg: 4, xl: 6 }}
                 >
-                    <Box width={{ base: "100%", lg: "400px" }}>
-                        <CustomHeading
-                            title={title || "Features and Benefits"}
-                            width="fit-content"
-                            flexShrink={0}
-                            fontSize={{ base: 20, lg: 28 }}
-                        />
+                    <Box width={{ base: "100%", lg: "400px" }} flexShrink={0}>
+                        <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{title || "Features and Benefits"}</SpectrumHeader>
                     </Box>
                     <Flex direction="column" gap={{ base: 6, lg: 9, xl: 14 }}>
                         {features.map((feature, index) => <FeatureItem key={index} {...feature} />)}

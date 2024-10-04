@@ -2,7 +2,7 @@ import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import ContactUsForm from './parts/form/Form'
-import CustomHeading from '../landings/_components/heading/Heading'
+import SpectrumHeader from '../landings/_components/spectrum-header/SpectrumHeader'
 
 function ContactUs() {
     return (
@@ -11,7 +11,7 @@ function ContactUs() {
             <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex direction={"column"} alignItems={"center"} gap={20} paddingBlock={120} paddingInline={{ base: "16px", sm: "28px" }}>
                 <Flex direction={"column"} alignItems={"center"} gap={4}>
-                    <CustomHeading title='Get in touch' fontSize={{ base: 32, md: 48, lg: 64 }} />
+                    <SpectrumHeader fontSize={{ base: 32, md: 48, lg: 64 }}>Get in touch</SpectrumHeader>
                     <AppTypography textAlign={"center"} fontSize={{ base: 20, md: 24 }} fontWeight={500} color={"#fff"}>Reach out, and let's create a universe of possibilities together!</AppTypography>
                 </Flex>
                 <Flex
@@ -39,7 +39,7 @@ function ContactUs() {
                     </Show>
                 </Flex>
             </Flex>
-        </Box >
+        </Box>
     )
 }
 

@@ -3,7 +3,7 @@ import AppTypography from "components/common/typography/AppTypography"
 import Button from "pages/invoice-management/components/Button"
 import React from "react"
 import { IAboveTheFoldSection } from "../../types/interfaces"
-import CustomHeading from "../heading/Heading"
+import SpectrumHeader from "../spectrum-header/SpectrumHeader"
 
 export default function AboveTheFoldSection(props: IAboveTheFoldSection) {
   return (
@@ -32,7 +32,7 @@ function Content({ title, description, CTAButtonText, CTAButtonFunction }: IAbov
       alignItems="flex-start"
       gap={{ base: 6, lg: "64px", xl: "80px" }}
     >
-      <CustomHeading as="h1" title={title} fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }} />
+      <SpectrumHeader as="h1" fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>{title}</SpectrumHeader>
       <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
       <Button
         paddingInline={{ base: 4, lg: 5 }}

@@ -1,15 +1,14 @@
 import { Box, Divider, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import Container from 'pages/public-pages/landings/_components/container/Container';
-import CustomHeading from 'pages/public-pages/landings/_components/heading/Heading';
-import React from 'react';
+import SpectrumHeader from 'pages/public-pages/landings/_components/spectrum-header/SpectrumHeader';
+import React, { PropsWithChildren } from 'react';
 
-interface Props {
+interface Props extends PropsWithChildren {
     icon: React.ReactNode;
     title: string;
     description: string;
     price: string;
-    children?: React.ReactNode
 }
 
 function Plan({ icon, title, description, price, children }: Props) {
@@ -24,7 +23,7 @@ function Plan({ icon, title, description, price, children }: Props) {
                         backgroundColor={"#3C3C3C"}
                         borderRadius={8}
                     >
-                        <CustomHeading title={title} fontSize={16} />
+                        <SpectrumHeader fontSize={16}>{title}</SpectrumHeader>
                     </Box>
                     <AppTypography fontSize={14} color={"#fff"}>{description}</AppTypography>
                 </Flex>

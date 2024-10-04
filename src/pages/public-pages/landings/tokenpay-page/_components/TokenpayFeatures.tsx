@@ -3,7 +3,7 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import Container from '../../_components/container/Container'
-import CustomHeading from '../../_components/heading/Heading'
+import SpectrumHeader from '../../_components/spectrum-header/SpectrumHeader'
 
 export default function TokenpayFeatures() {
     const features = [
@@ -28,8 +28,8 @@ function Feature({ icon, title, description }) {
     return (
         <Container>
             {icon}
-            <Flex direction="column" gap={6} >
-                <CustomHeading title={title} width="fit-content" fontSize={20} />
+            <Flex direction="column" gap={6}>
+                <SpectrumHeader fontSize={20}>{title}</SpectrumHeader>
                 <AppTypography fontSize={16} color="white">{description}</AppTypography>
             </Flex>
         </Container>
