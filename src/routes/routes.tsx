@@ -38,7 +38,7 @@ import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProd
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage";
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
-import TokenpayPage from "pages/public-pages/landings/tokenpay-page/TokenpayPage";
+import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage";
 import ShopPage from "pages/public-pages/shop-page/ShopPage";
@@ -78,10 +78,10 @@ function AppRoutes() {
                     <Route path="contact-us" element={<ContactUs />} />
                     <Route path="privacy" element={<PrivacyPage />} />
                     <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-                    <Route path="tokenpay" element={<TokenpayPage />} />
                     <Route path="physical-product" element={<PhysicalProductPage />} />
                     <Route path="digital-product" element={<DigitalProductPage />} />
                     <Route path="pod-product" element={<PODProductPage />} />
+                    <Route path="tokenpay" element={<TokanpayPage />} />
                     <Route path="payment-link" element={<PaymentLinkPage />} />
                     <Route path="product-tile" element={<ProductTilePage />} />
                     <Route path="tokenizing-products" element={<TokenizingProductsPage />} />

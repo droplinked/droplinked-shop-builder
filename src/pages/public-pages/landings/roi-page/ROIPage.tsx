@@ -30,8 +30,8 @@ function ROIPage() {
         <Layout>
             <Flex width={"100%"} direction={"column"} gap={100}>
                 <Flex direction={"column"} alignItems={"center"} gap={4}>
-                    <SpectrumHeader>Product Record Calculator</SpectrumHeader>
-                    <AppTypography margin={"auto"} maxWidth={"700px"} textAlign={"center"} fontSize={24} color={"#fff"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
+                    <SpectrumHeader fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>Product Record Calculator</SpectrumHeader>
+                    <AppTypography maxWidth={"700px"} textAlign={"center"} fontSize={{ base: 16, xl: 18 }} color={"#fff"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
                 </Flex>
                 <Flex direction={{ base: "column", xl: "row" }} gap={{ base: 6, xl: 9 }}>
                     {/* left side */}
