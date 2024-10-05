@@ -82,13 +82,13 @@ function AppRoutes() {
                     <Route path="digital-product" element={<DigitalProductPage />} />
                     <Route path="pod-product" element={<PODProductPage />} />
                     <Route path="tokenpay" element={<TokanpayPage />} />
-                    <Route path="payment-link" element={<PaymentLinkPage />} />
-                    <Route path="product-tile" element={<ProductTilePage />} />
+                    <Route path="payment-links" element={<PaymentLinkPage />} />
+                    <Route path="product-tiles" element={<ProductTilePage />} />
                     <Route path="tokenizing-products" element={<TokenizingProductsPage />} />
                     <Route path="affiliate-sass" element={<AffiliateSassPage />} />
-                    <Route path="custom-token" element={<CustomTokenPage />} />
+                    <Route path="custom-tokens" element={<CustomTokenPage />} />
                     <Route path="metaverse-store" element={<MetaverseStorePage />} />
-                    <Route path="affiliate" element={<AffiliatePage />} />
+                    <Route path="onchain-affiliate" element={<AffiliatePage />} />
                     <Route path="d3" element={<D3Page />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
