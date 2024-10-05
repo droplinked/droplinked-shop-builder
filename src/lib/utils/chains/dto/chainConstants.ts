@@ -2,8 +2,9 @@ import axios from 'axios';
 import { Chain, ChainWallet, Network } from './chains';
 import { ethers } from 'ethers';
 
+export const testnetNetworks = [Chain.POLYGON];
+
 async function getShopByteCode(chain: Chain, network: Network) {
-	const testnetNetworks = [Chain.POLYGON];
 	if (network === Network.TESTNET) {
 		if (testnetNetworks.includes(chain)) {
 			let result = String(
