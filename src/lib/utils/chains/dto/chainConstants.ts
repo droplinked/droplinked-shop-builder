@@ -2,7 +2,22 @@ import axios from 'axios';
 import { Chain, ChainWallet, Network } from './chains';
 import { ethers } from 'ethers';
 
-async function getShopByteCode(chain: Chain) {
+async function getShopByteCode(chain: Chain, network: Network) {
+	const testnetNetworks = [Chain.POLYGON];
+	if (network === Network.TESTNET) {
+		if (testnetNetworks.includes(chain)) {
+			let result = String(
+				(
+					await axios.get(
+						`https://apiv3dev.droplinked.com/storage/shopBytecodeV0`
+					)
+				).data.value
+			);
+			return result;
+		} else {
+			throw new Error('Network not supported');
+		}
+	}
 	if (chain !== Chain.REDBELLY && chain !== Chain.SKALE) {
 		let result = String(
 			(
