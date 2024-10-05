@@ -4,7 +4,6 @@ import { Outlet, useLocation } from 'react-router-dom'
 import FooterLayout from './parts/footer/FooterLayout'
 import HeaderMain from './parts/header/HeaderMain'
 
-// This is master layout
 function MainLayout() {
     const location = useLocation()
 
