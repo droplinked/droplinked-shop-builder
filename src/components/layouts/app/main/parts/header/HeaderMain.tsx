@@ -49,6 +49,7 @@ function HeaderMain() {
             <Flex
                 as="header"
                 justifyContent="space-between"
+                alignItems="center"
                 position="fixed"
                 top={0}
                 left={0}
