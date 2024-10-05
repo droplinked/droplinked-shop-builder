@@ -38,7 +38,7 @@ export async function EVMDeployShop(
 	modalInterface.waiting('Getting ready to deploy...');
 	const contract = new ethers.Contract(deployerAddress, deployerABI, signer);
 	modalInterface.waiting('got deployer contract');
-	const byteCode = await getShopByteCode(chain);
+	const byteCode = await getShopByteCode(chain, network);
 	modalInterface.waiting('got bytecode');
 	const salt =
 		'0x' +
