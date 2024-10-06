@@ -9,7 +9,7 @@ import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService,
 import useAppStore from "lib/stores/app/appStore";
 import { appDevelopment } from "lib/utils/app/variable";
 import useShopSwitcher from "pages/shop-management/hooks/useShopSwitch";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -40,14 +40,14 @@ function SimpleRegistrationModal(props: Props) {
     const debouncedUsername = useDebounce(username, 1000);
     const [isUsernameAvailable, setUsernameAvailability] = useState<boolean | null>(null);
     const { mutateAsync: checkUsername, isLoading: isCheckingUsername } = useMutation(checkUsernameAvailabilityService);
-    const { mutateAsync: updateUsername, isLoading: isUpdatingUsername, data: updateUsernameData } = useMutation(updateShopNameService);
+    const { mutateAsync: updateUsername, isLoading: isUpdatingUsername } = useMutation(updateShopNameService);
     const { mutateAsync: createExtraShop, isLoading: isCreatingExtraShop } = useMutation(createExtraShopForCurrentUserService);
-    const { mutateAsync: createWallet, isLoading: isCreatingWallet, data: createWalletData } = useMutation(postCreateCircleWallet);
+    const { mutateAsync: createWallet, isLoading: isCreatingWallet, isError, data: createWalletData } = useMutation(postCreateCircleWallet);
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher();
     const { showToast } = useAppToast();
     const navigate = useNavigate();
     const isCreatingShop = mode === "CREATE_EXTRA_SHOP";
-
+    const hasShopName = useMemo(() => shop?.name && !shop?.name?.startsWith("default_droplinked"), [shop?.name]);
     const handleInputChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
         if (!/\s/.test(value)) setUsername(value);
         if (!value) setUsernameAvailability(null);
@@ -66,7 +66,6 @@ function SimpleRegistrationModal(props: Props) {
             const { data } = await updateUsername({ id: shop._id, shopName: username });
             updateState({ key: "user", params: data.data.user });
             updateState({ key: "shop", params: data.data.shop });
-            console.log(updateUsernameData?.data);
             await createWallet();
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." });
@@ -86,6 +85,7 @@ function SimpleRegistrationModal(props: Props) {
 
     useEffect(() => {
         (async () => {
+            await createWallet();
             try {
                 if (!debouncedUsername) return;
                 const { data } = await checkUsername(username);
@@ -101,10 +101,10 @@ function SimpleRegistrationModal(props: Props) {
 
     return (
         <AppModal
-            modalRootProps={{ isOpen: isOpen, onClose: () => isCreatingShop && props.close(), size: shop?.name ? "3xl" : "xl", isCentered: true }}
-            modalContentProps={shop?.name && { width: "auto !important", padding: "0px !important" }}
+            modalRootProps={{ isOpen: isOpen, onClose: () => isCreatingShop && props.close(), size: hasShopName ? "3xl" : "xl", isCentered: true }}
+            modalContentProps={hasShopName && { width: "auto !important", padding: "0px !important" }}
         >
-            {!shop?.name ? (
+            {!hasShopName ? (
                 <ModalBody display="flex" flexDir="column" gap={128}>
                     <Flex justifyContent="center" pt={83}>
                         <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#7B7B7B">
@@ -149,14 +149,16 @@ function SimpleRegistrationModal(props: Props) {
                     paddingBlock={"0px !important"}
                     rounded="24px"
                 >
-                    <WalletStatus isLoading={isCreatingWallet} icon={createWalletData?.data?.data ? "tick" : "wallet"} sideIcons={false} />
+                    <WalletStatus isLoading={isCreatingWallet && !isError} icon={createWalletData?.data?.data ? "tick" : "wallet"} sideIcons={false} />
                     <Box display="flex" padding="0px 48px 48px 48px" flexDirection="column" alignItems="center" gap="48px" flex="1 0 0" alignSelf="stretch">
                         <Box display="flex" flexDirection="column" alignItems="center" gap="12px" flex="1 0 0" alignSelf="stretch">
                             <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                                Initializing Wallet
+                                {isCreatingWallet && !isError ? "Initializing Wallet" : "Wallet Created!"}
                             </AppTypography>
                             <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                Please wait while a new wallet is generated
+                                {isCreatingWallet && !isError
+                                    ? "Please wait while a new wallet is generated"
+                                    : "You can now manage your funds, make transactions, and explore the full range of features."}
                             </AppTypography>
                         </Box>
                         <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
