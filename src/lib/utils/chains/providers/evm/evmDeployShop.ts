@@ -5,6 +5,7 @@ import {
 	getFundsProxy,
 	getGasPrice,
 	getShopByteCode,
+	testnetNetworks,
 } from '../../dto/chainConstants';
 import { deployerABI } from '../../dto/chainABI';
 import { chainLink } from '../../dto/chainLinkAddresses';
@@ -38,7 +39,7 @@ export async function EVMDeployShop(
 	modalInterface.waiting('Getting ready to deploy...');
 	const contract = new ethers.Contract(deployerAddress, deployerABI, signer);
 	modalInterface.waiting('got deployer contract');
-	const byteCode = await getShopByteCode(chain);
+	const byteCode = await getShopByteCode(chain, network);
 	modalInterface.waiting('got bytecode');
 	const salt =
 		'0x' +
@@ -56,6 +57,16 @@ export async function EVMDeployShop(
 			shopDescription ? shopDescription : '',
 			deployerAddress,
 		];
+	} else if (testnetNetworks.includes(chain) && network === Network.TESTNET) {
+		constructorArgs = [
+			shopName ? shopName : '',
+			shopAddress,
+			shopOwner,
+			shopLogo ? shopLogo : '',
+			shopDescription ? shopDescription : '',
+			deployerAddress,
+			chainLink[chain][network],
+		];
 	} else
 		constructorArgs = [
 			shopName ? shopName : '',
@@ -69,12 +80,25 @@ export async function EVMDeployShop(
 		];
 	modalInterface.waiting('created constructor args');
 	let bytecodeWithArgs;
-	if (chain === Chain.REDBELLY || chain === Chain.SKALE)
+	if (chain === Chain.REDBELLY || chain === Chain.SKALE) {
 		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
 			['string', 'string', 'address', 'string', 'string', 'address'],
 			constructorArgs
 		);
-	else
+	} else if (testnetNetworks.includes(chain) && network === Network.TESTNET) {
+		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
+			[
+				'string',
+				'string',
+				'address',
+				'string',
+				'string',
+				'address',
+				'address',
+			],
+			constructorArgs
+		);
+	} else {
 		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
 			[
 				'string',
@@ -88,6 +112,7 @@ export async function EVMDeployShop(
 			],
 			constructorArgs
 		);
+	}
 	modalInterface.waiting('Created bytecodeWithArgs');
 	try {
 		if (chain !== Chain.REDBELLY && chain !== Chain.SKALE) {

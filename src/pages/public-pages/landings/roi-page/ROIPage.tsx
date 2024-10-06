@@ -4,8 +4,8 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import CustomHeading from '../_components/heading/Heading'
 import Layout from '../_components/layout/Layout'
+import SpectrumHeader from '../_components/spectrum-header/SpectrumHeader'
 import StarryBorder from '../_components/starry-border/StarryBorder'
 import Container from './_components/container/Container'
 import Input from './_components/input/Input'
@@ -29,9 +29,9 @@ function ROIPage() {
     return (
         <Layout>
             <Flex width={"100%"} direction={"column"} gap={100}>
-                <Flex direction={"column"} gap={4}>
-                    <CustomHeading title='Product Record Calculator' textAlign={"center"} />
-                    <AppTypography margin={"auto"} maxWidth={"700px"} fontSize={24} color={"#fff"} textAlign={"center"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
+                <Flex direction={"column"} alignItems={"center"} gap={4}>
+                    <SpectrumHeader fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>Product Record Calculator</SpectrumHeader>
+                    <AppTypography maxWidth={"700px"} textAlign={"center"} fontSize={{ base: 16, xl: 18 }} color={"#fff"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
                 </Flex>
                 <Flex direction={{ base: "column", xl: "row" }} gap={{ base: 6, xl: 9 }}>
                     {/* left side */}

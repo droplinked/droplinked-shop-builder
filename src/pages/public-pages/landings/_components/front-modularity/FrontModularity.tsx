@@ -1,11 +1,11 @@
 import { Flex, Grid, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import Details from '../details/Details'
 import Container from '../container/Container'
-import CustomHeading from '../heading/Heading'
+import Details from '../details/Details'
+import SpectrumHeader from '../spectrum-header/SpectrumHeader'
 
-export default function CustomizationDetails() {
+export default function FrontModularity() {
     const detailItems = [
         {
             imageSrc: 'assets/images/physicalProduct/design-nib.png',
@@ -35,14 +35,7 @@ export default function CustomizationDetails() {
                 templateRows="repeat(1, 1fr)"
                 gap={{ base: 6, xl: 9 }}
             >
-                {detailItems.map(({ imageSrc, title, description }, index) => (
-                    <DetailItem
-                        key={index}
-                        imageSrc={imageSrc}
-                        title={title}
-                        description={description}
-                    />
-                ))}
+                {detailItems.map((item) => <DetailItem key={item.title} {...item} />)}
             </Grid>
         </Details>
     )
@@ -52,10 +45,8 @@ const DetailItem = ({ imageSrc, title, description }) => (
     <Container gap={6}>
         <Image width={12} height={12} src={imageSrc} />
         <Flex direction="column" gap={4}>
-            <CustomHeading title={title} fontSize={20} />
-            <AppTypography fontSize={16} color="#fff">
-                {description}
-            </AppTypography>
+            <SpectrumHeader fontSize={20}>{title}</SpectrumHeader>
+            <AppTypography fontSize={16} color="#fff">{description}</AppTypography>
         </Flex>
     </Container>
 )
