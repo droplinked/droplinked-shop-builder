@@ -2,12 +2,13 @@ import { Box, keyframes } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import React from "react";
 
-interface ID3ModalWalletProps {
+interface IWalletStatusProps {
     width?: string | number;
     height?: string | number;
     variant?: "green" | "red";
     isLoading?: boolean;
     icon?: "wallet" | "tick";
+    sideIcons?: boolean;
 }
 
 const spinAnimation = keyframes`
@@ -39,7 +40,7 @@ const IconFilter = ({ right = true }: { right: boolean }) => {
     );
 };
 
-const D3ModalWallet: React.FC<ID3ModalWalletProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
+const WalletStatus: React.FC<IWalletStatusProps> = ({ variant = "green", isLoading = false, icon = "wallet", sideIcons = true }) => {
     const isGreen = variant === "green";
     const color = isGreen ? "#2BCFA1" : "#FF2244";
     const centerIconSize = 152;
@@ -116,34 +117,40 @@ const D3ModalWallet: React.FC<ID3ModalWalletProps> = ({ variant = "green", isLoa
     const SideIcons = ({ children }: { children: React.ReactNode }) => {
         return (
             <Box width={"full"} height={"full"} position="relative" overflow="hidden" display={"flex"} alignItems={"center"} justifyContent={"center"} gap={"0px"}>
-                <Box width={{ base: "55px", md: "96px" }} height={{ base: "55px", md: "96px" }}>
-                    {isGreen ? <AppIcons.D3DroplinkedBorder width={"full"} height={"full"} /> : <AppIcons.D3DroplinkedBorderRed width={"full"} height={"full"} />}
-                </Box>
-                <Box
-                    display="flex"
-                    width={{ base: `${sideIconsSizeSm}px`, md: `${sideIconsSize}px` }}
-                    height="2px"
-                    rounded={"full"}
-                    alignItems="flex-start"
-                    gap="8px"
-                    flexShrink="0"
-                    background={`linear-gradient(270deg, ${isGreen ? "#2D9275" : color} 0%, rgba(34, 34, 34, 0.00) 100%)`}
-                />
-                {children}
+                {sideIcons ? (
+                    <>
+                        <Box width={{ base: "55px", md: "96px" }} height={{ base: "55px", md: "96px" }}>
+                            {isGreen ? <AppIcons.D3DroplinkedBorder width={"full"} height={"full"} /> : <AppIcons.D3DroplinkedBorderRed width={"full"} height={"full"} />}
+                        </Box>
+                        <Box
+                            display="flex"
+                            width={{ base: `${sideIconsSizeSm}px`, md: `${sideIconsSize}px` }}
+                            height="2px"
+                            rounded={"full"}
+                            alignItems="flex-start"
+                            gap="8px"
+                            flexShrink="0"
+                            background={`linear-gradient(270deg, ${isGreen ? "#2D9275" : color} 0%, rgba(34, 34, 34, 0.00) 100%)`}
+                        />
+                        {children}
 
-                <Box
-                    display="flex"
-                    width={{ base: `${sideIconsSizeSm}px`, md: `${sideIconsSize}px` }}
-                    height="2px"
-                    rounded={"full"}
-                    alignItems="flex-start"
-                    gap="8px"
-                    flexShrink="0"
-                    background={`linear-gradient(90deg, ${isGreen ? "#2D9275" : color} 0%, rgba(34, 34, 34, 0.00) 100%)`}
-                />
-                <Box width={{ base: "55px", md: "96px" }} height={{ base: "55px", md: "96px" }}>
-                    {isGreen ? <AppIcons.D3D3Border width={"full"} height={"full"} /> : <AppIcons.D3D3BorderRed width={"full"} height={"full"} />}
-                </Box>
+                        <Box
+                            display="flex"
+                            width={{ base: `${sideIconsSizeSm}px`, md: `${sideIconsSize}px` }}
+                            height="2px"
+                            rounded={"full"}
+                            alignItems="flex-start"
+                            gap="8px"
+                            flexShrink="0"
+                            background={`linear-gradient(90deg, ${isGreen ? "#2D9275" : color} 0%, rgba(34, 34, 34, 0.00) 100%)`}
+                        />
+                        <Box width={{ base: "55px", md: "96px" }} height={{ base: "55px", md: "96px" }}>
+                            {isGreen ? <AppIcons.D3D3Border width={"full"} height={"full"} /> : <AppIcons.D3D3BorderRed width={"full"} height={"full"} />}
+                        </Box>
+                    </>
+                ) : (
+                    children
+                )}
             </Box>
         );
     };
@@ -155,24 +162,37 @@ const D3ModalWallet: React.FC<ID3ModalWalletProps> = ({ variant = "green", isLoa
                 {renderSVGContent()}
             </Box>
 
-            {Array.from({ length: 6 }).map((_, index) => (
-                <Box
-                    key={index}
-                    position="absolute"
-                    borderRadius="full"
-                    border={{ base: `${index === 0 ? "1px" : "0.5px"} solid ${isGreen ? "white" : color}`, md: `${index === 0 ? "2px" : "1px"} solid ${isGreen ? "white" : color}` }}
-                    width={{ base: `${220 + index * 30}px`, md: `${390 + index * 50}px` }}
-                    height={{ base: `${220 + index * 30}px`, md: `${390 + index * 50}px` }}
-                    opacity={index === 0 ? (isLoading ? 0.08 : 0.16) : isGreen ? (5 - index) * 0.01 : (14 - index) * 0.01}
-                    borderWidth={{ base: index === 0 && "1px", md: index === 0 && "2px" }}
-                />
-            ))}
+            {Array.from({ length: sideIcons ? 9 : 6 }).map((_, index) =>
+                sideIcons ? (
+                    <Box
+                        key={index}
+                        position="absolute"
+                        borderRadius="full"
+                        border={{ base: `${index === 0 ? "1px" : "0.5px"} solid ${isGreen ? "white" : color}`, md: `${index === 0 ? "2px" : "1px"} solid ${isGreen ? "white" : color}` }}
+                        width={{ base: `${220 + index * 30}px`, md: `${390 + index * 50}px` }}
+                        height={{ base: `${220 + index * 30}px`, md: `${390 + index * 50}px` }}
+                        opacity={index === 0 ? (isLoading ? 0.08 : 0.16) : isGreen ? (5 - index) * 0.01 : (14 - index) * 0.01}
+                        borderWidth={{ base: index === 0 && "1px", md: index === 0 && "2px" }}
+                    />
+                ) : (
+                    <Box
+                        key={index}
+                        position="absolute"
+                        borderRadius="full"
+                        border={{ base: `${index === 0 ? "1px" : "0.5px"} solid ${color}`, md: `${index === 0 ? "2px" : "1px"} solid ${isGreen ? "white" : color}` }}
+                        width={{ base: `${180 + index * 20}px`, md: `${245 + index * 35}px` }}
+                        height={{ base: `${180 + index * 20}px`, md: `${245 + index * 35}px` }}
+                        opacity={index === 0 ? (isLoading ? 0.1 : 0.2) : isGreen ? (8 - index) * 0.01 : (18 - index) * 0.01}
+                        borderWidth={{ base: index === 0 && "1px", md: index === 0 && "2px" }}
+                    />
+                )
+            )}
 
             {isGreen && isLoading && (
                 <Box
                     position="absolute"
-                    width={{ base: `${centerIconSizeSm + 1}px`, md: `${centerIconSize + 2}px` }}
-                    height={{ base: `${centerIconSizeSm + 1}px`, md: `${centerIconSize + 2}px` }}
+                    width={sideIcons ? { base: `${centerIconSizeSm + 1}px`, md: `${centerIconSize + 2}px` } : { base: "180px", md: "245px" }}
+                    height={sideIcons ? { base: `${centerIconSizeSm + 1}px`, md: `${centerIconSize + 2}px` } : { base: "180px", md: "245px" }}
                     overflow="hidden"
                     animation={`${spinAnimation} 2s linear infinite`}
                     transformOrigin="center"
@@ -206,4 +226,4 @@ const D3ModalWallet: React.FC<ID3ModalWalletProps> = ({ variant = "green", isLoa
     );
 };
 
-export default D3ModalWallet;
+export default WalletStatus;

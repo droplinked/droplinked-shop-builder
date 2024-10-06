@@ -30,6 +30,11 @@ import { ReactComponent as Brain } from "./brain.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
+import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
+import { ReactComponent as CircleRefresh } from "./circle-refresh.svg";
+import { ReactComponent as CircleShield } from "./circle-shield.svg";
+import { ReactComponent as CircleCopy } from "./circle-copy.svg";
+import { ReactComponent as Circle } from "./circle.svg";
 import { ReactComponent as Clock } from "./clock.svg";
 import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
@@ -433,7 +438,12 @@ const AppIcons = {
   D3DroplinkedBorder,
   D3D3Border,
   D3DroplinkedBorderRed,
-  D3D3BorderRed
+  D3D3BorderRed,
+  Circle,
+  CircleShield,
+  CircleDashboard,
+  CircleRefresh,
+  CircleCopy
 }
 
 export default AppIcons
