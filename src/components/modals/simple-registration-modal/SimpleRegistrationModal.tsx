@@ -77,7 +77,9 @@ function SimpleRegistrationModal(props: Props) {
             const {
                 data: { _id },
             } = await createExtraShop(username);
-            await switchShop(_id);
+            await createWallet()
+                .then(async (res) => await switchShop(_id))
+                .catch((e) => console.log(e));
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." });
         }
@@ -85,7 +87,7 @@ function SimpleRegistrationModal(props: Props) {
 
     useEffect(() => {
         (async () => {
-            await createWallet();
+            // await createWallet();
             try {
                 if (!debouncedUsername) return;
                 const { data } = await checkUsername(username);

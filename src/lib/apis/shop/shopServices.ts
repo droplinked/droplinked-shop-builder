@@ -142,3 +142,5 @@ export const getShopCommunityProfile = ({shopId}: IGetShopCommunityProfile) => a
 export const getShopGrowthHack = () => axiosInstance.get('/shop/growth/list')
 
 export const postCreateCircleWallet = () => axiosInstance.post('/shop/circle/wallet')
+
+export const getCircleWallet = () => axiosInstance.get('/shop/circle/wallet')
