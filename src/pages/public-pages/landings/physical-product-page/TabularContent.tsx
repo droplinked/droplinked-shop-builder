@@ -1,7 +1,7 @@
 import { Flex, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
-import CustomHeading from '../_components/heading/Heading'
+import SpectrumHeader from '../_components/spectrum-header/SpectrumHeader'
 import TabsContainer from './TabsContainer'
 
 const tabContentMap = {
@@ -50,17 +50,16 @@ const TabContent = ({ activeTab }) => {
             alignItems="center"
             gap={12}
         >
-            <Image
-                flexShrink={0}
-                src={imageSrc}
-                width="253px"
-                height="228px"
-            />
-            <Flex width={{ base: "100%", lg: "50%" }} direction="column" gap={6}>
-                <CustomHeading title={title} fontSize={36} textAlign={{ base: "center", lg: "start" }} />
-                <AppTypography fontSize={20} color="#fff" textAlign={{ base: "center", lg: "start" }}>
-                    {description}
-                </AppTypography>
+            <Image flexShrink={0} width="253px" height="228px" src={imageSrc} />
+
+            <Flex
+                width={{ base: "100%", lg: "50%" }}
+                direction="column"
+                alignItems={{ base: "center", lg: "flex-start" }}
+                gap={6}
+            >
+                <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{title}</SpectrumHeader>
+                <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">{description}</AppTypography>
             </Flex>
         </Flex>
     )

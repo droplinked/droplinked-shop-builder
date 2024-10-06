@@ -14,7 +14,6 @@ import { ReactComponent as AffiliateStoreYoutube } from "./affiliate-store-youtu
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
-import { ReactComponent as Bag } from "./bag.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Binance } from "./binance.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
@@ -34,12 +33,12 @@ import { ReactComponent as Clock } from "./clock.svg";
 import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
-import { ReactComponent as Coins } from "./coins.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as D3Access } from "./d3-access.svg";
+import { ReactComponent as D3CoreChain } from "./d3-core-chain.svg";
 import { ReactComponent as D3D3BorderRed } from "./d3-d3-border-red.svg";
 import { ReactComponent as D3D3Border } from "./d3-d3-border.svg";
 import { ReactComponent as D3DroplinkedBorderRed } from "./d3-droplinked-border-red.svg";
@@ -49,9 +48,11 @@ import { ReactComponent as D3Logo } from "./d3-logo.svg";
 import { ReactComponent as D3Main } from "./d3-main.svg";
 import { ReactComponent as D3NFTIntegration } from "./d3-nft-integration.svg";
 import { ReactComponent as D3ProPlan } from "./d3-pro-plan.svg";
+import { ReactComponent as D3Shiba } from "./d3-shiba.svg";
 import { ReactComponent as D3ShopSetup } from "./d3-shop-setup.svg";
 import { ReactComponent as D3Spinner } from "./d3-spinner.svg";
 import { ReactComponent as D3Tick } from "./d3-tick.svg";
+import { ReactComponent as D3Victorin } from "./d3-victorin.svg";
 import { ReactComponent as D3Wallet } from "./d3-wallet.svg";
 import { ReactComponent as D3Web3Support } from "./d3-web3-support.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
@@ -80,7 +81,6 @@ import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as File } from "./file.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
-import { ReactComponent as Gallery } from "./gallery.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
@@ -91,6 +91,16 @@ import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
 import { ReactComponent as Hand } from "./hand.svg";
+import { ReactComponent as HeaderAffiliateSass } from "./header-affiliate-sass.svg";
+import { ReactComponent as HeaderAffiliate } from "./header-affiliate.svg";
+import { ReactComponent as HeaderBag } from "./header-bag.svg";
+import { ReactComponent as HeaderCoins } from "./header-coins.svg";
+import { ReactComponent as HeaderCreditCard } from "./header-credit.svg";
+import { ReactComponent as HeaderD3 } from "./header-d3.svg";
+import { ReactComponent as HeaderImage } from "./header-image.svg";
+import { ReactComponent as HeaderProductBox } from "./header-product-box.svg";
+import { ReactComponent as HeaderShirt } from "./header-shirt.svg";
+import { ReactComponent as HeaderTokenCoin } from "./header-token-coin.svg";
 import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
@@ -114,6 +124,7 @@ import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as Maximize } from "./maximize.svg";
+import { ReactComponent as MetaverseStore } from "./metaverse-store.svg";
 import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
 import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
@@ -159,7 +170,6 @@ import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
 import { ReactComponent as ShareIcon } from "./share-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
-import { ReactComponent as Shirt } from "./shirt.svg";
 import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
 import { ReactComponent as SidebarAffiliate } from "./sidebar-affiliate.svg";
 import { ReactComponent as SidebarAnalytics } from "./sidebar-analytics.svg";
@@ -274,10 +284,6 @@ const AppIcons = {
   Google,
   DiscountSetting,
   GiftSetting,
-  Coins,
-  Gallery,
-  Shirt,
-  Bag,
   Ripple,
   StarOutline,
   StarFilled,
@@ -433,7 +439,21 @@ const AppIcons = {
   D3DroplinkedBorder,
   D3D3Border,
   D3DroplinkedBorderRed,
-  D3D3BorderRed
+  D3D3BorderRed,
+  D3Shiba,
+  D3Victorin,
+  D3CoreChain,
+  HeaderAffiliate,
+  HeaderAffiliateSass,
+  HeaderBag,
+  HeaderCoins,
+  HeaderCreditCard,
+  HeaderImage,
+  HeaderShirt,
+  HeaderTokenCoin,
+  HeaderD3,
+  HeaderProductBox,
+  MetaverseStore
 }
 
 export default AppIcons

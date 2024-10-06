@@ -1,9 +1,9 @@
-import React from "react";
 import { Flex, Image } from "@chakra-ui/react";
+import React from "react";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
-import CustomHeading from "pages/public-pages/landings/_components/heading/Heading";
+import SpectrumHeader from "pages/public-pages/landings/_components/spectrum-header/SpectrumHeader";
 
 const dppWithBlcBenefits = [
   {
@@ -26,7 +26,7 @@ const dppWithBlcBenefits = [
 const DppBlockchain = () => {
   return (
     <Flex alignItems={"center"} flexDirection={"column"} gap={"40px"}>
-      <CustomHeading title="Enhancing DPPs with Blockchain" textAlign={"center"} />
+      <SpectrumHeader>Enhancing DPPs with Blockchain</SpectrumHeader>
       <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>
         Using blockchain technology to implement Digital Product Passports (DPPs) as Non-Fungible Tokens (NFTs) can significantly enhance their value in terms of security, transparency, and traceability.
       </AppTypography>

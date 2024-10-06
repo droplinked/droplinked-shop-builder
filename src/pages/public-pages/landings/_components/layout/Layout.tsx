@@ -3,7 +3,7 @@ import React from 'react'
 
 function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <Flex justifyContent={"center"}>
+        <Flex justifyContent="center">
             <Flex
                 maxWidth="1400px"
                 direction="column"

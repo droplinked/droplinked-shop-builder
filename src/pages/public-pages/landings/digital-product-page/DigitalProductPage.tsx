@@ -1,14 +1,14 @@
+import { useDisclosure } from '@chakra-ui/react'
+import AuthModal from 'components/modals/auth-modal/AuthModal'
+import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 import React from 'react'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
-import CustomizationDetails from '../_components/customization-details/CustomizationDetails'
 import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
 import Features from '../_components/features/Features'
+import FrontModularity from '../_components/front-modularity/FrontModularity'
 import Layout from '../_components/layout/Layout'
 import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { useDisclosure } from '@chakra-ui/react'
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 
 const DigitalProductPage = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,8 +40,11 @@ const DigitalProductPage = () => {
                 CTAButtonText="Get Started"
                 CTAButtonFunction={onOpen}
             />
-            <CustomizationDetails />
+
+            <FrontModularity />
+
             <PaymentDetails />
+
             {dualSideFlexData.map((item, index) => (
                 <DualSideFlex
                     key={index}
@@ -51,7 +54,9 @@ const DigitalProductPage = () => {
                     description={item.description}
                 />
             ))}
+
             <Features />
+
             <StarryBorder
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'

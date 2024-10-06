@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-interface ISectionWithText {
+export interface ISectionWithText {
     title: string
     description: string | IDescriptionWithBoldWord[]
 }

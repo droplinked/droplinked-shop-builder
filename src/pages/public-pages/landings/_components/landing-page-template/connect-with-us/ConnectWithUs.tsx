@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import CustomHeading from '../../heading/Heading'
+import SpectrumHeader from '../../spectrum-header/SpectrumHeader'
 import EmailForm from './EmailForm'
 
 export default function ConnectWithUs() {
@@ -24,7 +24,7 @@ export default function ConnectWithUs() {
 
 const IntroSection = () => (
     <Flex direction="column" gap={4}>
-        <CustomHeading title="Let’s Connect" width="fit-content" fontSize={{ base: 20, lg: 28 }} />
+        <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>Let’s Connect</SpectrumHeader>
         <AppTypography fontSize={{ base: 16, md: 18 }} color="#C4C4C4">
             We value your interest and would like to stay in touch. Please provide your email below, and a member of our team will reach out to you shortly.
         </AppTypography>

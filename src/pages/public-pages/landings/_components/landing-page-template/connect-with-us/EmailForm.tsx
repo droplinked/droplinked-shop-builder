@@ -92,8 +92,6 @@ const SubmitButton = ({ isSubmitting }) => (
     <Button
         type="submit"
         borderRadius={36}
-        paddingBlock={3}
-        paddingInline={5}
         fontSize={{ base: 14, md: 16 }}
         fontWeight={500}
         isLoading={isSubmitting}
