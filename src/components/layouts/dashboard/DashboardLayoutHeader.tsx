@@ -43,7 +43,7 @@ const DashboardLayoutHeader = () => {
                             <Link to={"/shop-management"}><AppIcons.ProfileSwitch width={"20px"} height={"20px"} /></Link>
                         </Box>
                         <Divider display="flex" flexDirection="column" alignItems="flex-start" gap="10px" alignSelf="stretch" height={"1px"} borderColor={"#292929"} />
-                        <Link to='/dashboard/plans' style={{ display: 'flex', padding: '0px 16px', alignItems: 'center', gap: '4px', alignSelf: 'stretch', cursor: 'pointer' }}>
+                        <Link to='/analytics/plans' style={{ display: 'flex', padding: '0px 16px', alignItems: 'center', gap: '4px', alignSelf: 'stretch', cursor: 'pointer' }}>
                             <Box display="flex" alignItems="center" gap="12px" flex="1 0 0">
                                 <SubscriptionIcon width={"20px"} height={"20px"} color="white" />
                                 <AppTypography color="#FFF" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">{subscriptionTitle}</AppTypography>

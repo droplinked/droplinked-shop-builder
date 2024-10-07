@@ -26,7 +26,7 @@ const ProductTileContent: React.FC<ProductTileContentProps> = ({ productTile }) 
 
       <EmbedCodeSection
         embedCode={embedCode}
-        configLink="/dashboard/settings/tile"
+        configLink="/analytics/settings/tile"
         helpLink="https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/product-tiles"
       />
     </Box>

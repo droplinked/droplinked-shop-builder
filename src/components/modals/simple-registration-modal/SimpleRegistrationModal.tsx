@@ -63,7 +63,7 @@ function SimpleRegistrationModal(props: Props) {
             const { data } = await updateUsername({ id: shop._id, shopName: username })
             updateState({ key: "user", params: data.data.user })
             updateState({ key: "shop", params: data.data.shop })
-            navigate("/dashboard")
+            navigate("/analytics")
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
         }

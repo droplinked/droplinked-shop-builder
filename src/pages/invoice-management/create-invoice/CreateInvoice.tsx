@@ -33,7 +33,7 @@ export default function CreateInvoice() {
         if (invoiceId && data?._id) {
             if (data.status !== "ACTIVE") {
                 showToast({ message: "You cannot edit an invoice that is not active", type: "error" })
-                navigate("/dashboard/invoice-management")
+                navigate("/analytics/invoice-management")
                 return
             }
             updateCart(data)
@@ -52,13 +52,13 @@ export default function CreateInvoice() {
 
     const handleDiscard = () => {
         resetCart()
-        navigate("/dashboard/invoice-management")
+        navigate("/analytics/invoice-management")
     }
 
     const closeInvoiceModal = () => {
         closeInvoiceDetailsModal()
         resetCart()
-        navigate("/dashboard/invoice-management")
+        navigate("/analytics/invoice-management")
     }
 
     return (

@@ -25,7 +25,7 @@ const SelectPagesComponent = () => {
 
       <SideText
         cursor={isSettings && "pointer"}
-        color={currentPath === "/dashboard/settings/design" ? "primary" : "lightGray"}
+        color={currentPath === "/analytics/settings/design" ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/design");
         }}
@@ -55,7 +55,7 @@ const SelectPagesComponent = () => {
 
       <SideText
         cursor={isSettings && "pointer"}
-        color={currentPath === "/dashboard/settings/payment-link-design" ? "primary" : "lightGray"}
+        color={currentPath === "/analytics/settings/payment-link-design" ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/payment-link-design");
         }}

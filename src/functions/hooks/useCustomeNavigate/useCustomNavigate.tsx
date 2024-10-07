@@ -14,7 +14,7 @@ export function useCustomNavigate() {
   const { shop } = useProfile();
   const navigate = useNavigate();
   const location = useLocation()
-  const shopRoute = `/dashboard`
+  const shopRoute = `/analytics`
 
   const shopNavigate = (path: string, checkCurrentPath = false) => {
     const route = shopRoute + "/" + path

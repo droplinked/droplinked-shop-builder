@@ -42,7 +42,7 @@ export default function InvoiceTableMenu({ invoice }) {
                     {invoice.status === "ACTIVE" &&
                         <MenuItem
                             icon={<AppIcons.Edit />}
-                            onClick={() => navigate(`/dashboard/invoice-management/edit/${invoice._id}`)}
+                            onClick={() => navigate(`/analytics/invoice-management/edit/${invoice._id}`)}
                         >
                             Edit
                         </MenuItem>
