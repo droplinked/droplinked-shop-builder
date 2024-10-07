@@ -1,29 +1,34 @@
+import useAppStore from 'lib/stores/app/appStore'
 import Select from 'pages/invoice-management/components/Select'
 import React from 'react'
 
 interface Props {
     onWalletChange: (wallet: string) => void
+    selectedChain: string
 }
 
-function WalletSelect({ onWalletChange }: Props) {
-    const statusOptions = [
-        { title: "Active", value: "ACTIVE" },
-        { title: "Pending", value: "PENDING" },
-        { title: "Checked Out", value: "CHECKED_OUT" }
-    ]
+function WalletSelect({ onWalletChange, selectedChain }: Props) {
+    const { shop, user: { wallets: connectedWallets } } = useAppStore()
+    console.log(shop.circleWallets)
+    const targetCircleWallet = shop.circleWallets?.find((wallet) => wallet.chain === selectedChain)
+    const manuallyConnectedWalletOnSelectedChain = connectedWallets.find((wallet) => wallet.type === selectedChain)
+    const wallets = [targetCircleWallet, manuallyConnectedWalletOnSelectedChain]
+        .filter(Boolean)
+        .map((wallet) => ({ walletAddress: wallet.address, circleChain: wallet.circleChain }))
 
     return (
         <Select
-            items={statusOptions}
-            labelAccessor='title'
-            valueAccessor='value'
+            items={wallets}
+            labelAccessor='walletAddress'
             selectProps={{
                 width: "100%",
                 borderColor: "#292929",
                 bgColor: "#1C1C1C",
                 color: "white",
                 placeholder: "Wallet",
-                onChange: (e) => onWalletChange(e.target.value)
+                onChange: (e) => {
+                    onWalletChange(Boolean(e.target.value) ? JSON.parse(e.target.value) : "")
+                }
             }}
         />
     )

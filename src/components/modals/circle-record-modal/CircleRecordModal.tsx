@@ -1,10 +1,10 @@
 import { Flex, Image, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react'
 import AppModal from 'components/redesign/modal/AppModal'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { deployCircleContract } from 'lib/apis/shop/shopServices'
-import useAppStore from 'lib/stores/app/appStore'
 import Button from 'pages/invoice-management/components/Button'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InformationRow from './InformationRow'
 import ModalBodyHeadline from './ModalBodyHeadline'
 import WalletSelect from './WalletSelect'
@@ -14,23 +14,38 @@ interface Props {
     isOpen: boolean
     onClose: () => void
     selectedChain: string
+    recordFunction?: () => Promise<any>
 }
 
-export default function CircleRecordModal({ isOpen, onClose, selectedChain }: Props) {
-    const [selectedWallet, setSelectedWallet] = useState("")
-    const { shop } = useAppStore()
+export default function CircleRecordModal({ isOpen, onClose, selectedChain, recordFunction }: Props) {
+    const [isLoading, setLoading] = useState(false)
+    const [hasSelectedCircleWallet, setHasSelectedCircleWallet] = useState(false)
+    const [selectedWallet, setSelectedWallet] = useState(null)
     const { showToast } = useAppToast()
-    const isFirstCircleRecord = !shop.deployedContracts.some(
-        (contract) => contract.type === selectedChain && contract.isCircle
-    )
+    const { shopNavigate } = useCustomNavigate()
+
+    useEffect(() => {
+        if (selectedWallet) {
+            setHasSelectedCircleWallet(selectedWallet.circleChain ? true : false)
+        }
+    }, [selectedWallet, setHasSelectedCircleWallet])
 
     const handleRecord = async () => {
         try {
-            await deployCircleContract(selectedChain)
-            // await recordSKUWithCircleWallet({ chain: selectedChain, params: {} })
+            setLoading(true)
+            if (hasSelectedCircleWallet) {
+                await deployCircleContract(selectedChain)
+                // await recordSKUWithCircleWallet({ chain: selectedChain, params: {} })
+                return
+            }
+            else recordFunction()
         }
         catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
+            shopNavigate("products")
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -48,20 +63,20 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain }: Pr
             </ModalHeader>
 
             <ModalBody display="flex" flexDirection="column" gap={9}>
-                <ModalBodyHeadline isFirstCircleRecord={isFirstCircleRecord} />
+                <ModalBodyHeadline isCircleRecord={isLoading && hasSelectedCircleWallet} />
 
-                {isFirstCircleRecord && (
+                {!isLoading && (
                     <Flex direction="column" gap={4}>
-                        <WalletSelect onWalletChange={setSelectedWallet} />
+                        <WalletSelect selectedChain={selectedChain} onWalletChange={setSelectedWallet} />
                         <WalletWarningMessage />
                     </Flex>
                 )}
 
                 <Flex direction="column" gap={4}>
-                    {!isFirstCircleRecord && (
+                    {isLoading && (
                         <InformationRow
                             title="Target Wallet"
-                            value="Circle"
+                            value={`${selectedWallet?.walletAddress?.slice(0, 20)}...`}
                             tooltip="You have selected your preferred wallet on the first attempt and can no longer change it."
                         />
                     )}
@@ -77,7 +92,7 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain }: Pr
                 sx={{ button: { fontWeight: 500 } }}
             >
                 <Button variant="ghost" onClick={onClose}>Cancel</Button>
-                <Button onClick={handleRecord}>Record</Button>
+                <Button onClick={handleRecord} isDisabled={!selectedWallet || hasSelectedCircleWallet || isLoading}>Record</Button>
             </ModalFooter>
         </AppModal>
     )
