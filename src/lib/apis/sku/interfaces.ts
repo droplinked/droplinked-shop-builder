@@ -1,24 +1,22 @@
-export interface IrecordCasperService {
-    chain: string
-    params: {
-        deploy_hash: string
-        deploy_hash_link: string
-        skuID: string
-        commision: number
-        royalty: number
-        canBeAffiliated: boolean
-        recorded_quantity?: number
-    }
+interface ICommonRecordParams {
+    deploy_hash: string
+    deploy_hash_link: string
+    commision: number
+    royalty: number
+    canBeAffiliated: boolean
 }
 
-export interface IrecordBatchCasperService {
+export interface IRecordCasperService {
     chain: string
-    params: {
-        deploy_hash: string
-        deploy_hash_link: string
-        productId: string
-        commision: number
-        royalty: number
-        canBeAffiliated: boolean
-    }
+    params: ICommonRecordParams & { skuID: string, recorded_quantity?: number }
+}
+
+export interface IRecordBatchCasperService {
+    chain: string
+    params: ICommonRecordParams & { productId: string }
+}
+
+export interface IRecordWithCircleWallet {
+    chain: string
+    params: ICommonRecordParams & { price: number, beneficiaries: [] }
 }
