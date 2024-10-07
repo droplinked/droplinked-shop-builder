@@ -87,7 +87,6 @@ function SimpleRegistrationModal(props: Props) {
 
     useEffect(() => {
         (async () => {
-            // await createWallet();
             try {
                 if (!debouncedUsername) return;
                 const { data } = await checkUsername(username);
@@ -157,7 +156,7 @@ function SimpleRegistrationModal(props: Props) {
                             <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
                                 {isCreatingWallet && !isError ? "Initializing Wallet" : "Wallet Created!"}
                             </AppTypography>
-                            <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
+                            <AppTypography color="#B1B1B1" align={"center"} fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
                                 {isCreatingWallet && !isError
                                     ? "Please wait while a new wallet is generated"
                                     : "You can now manage your funds, make transactions, and explore the full range of features."}
@@ -178,8 +177,24 @@ function SimpleRegistrationModal(props: Props) {
                                 fontStyle="normal"
                                 fontWeight="500"
                                 lineHeight={{ base: "16px", md: "24px" }}
+                                onClick={() => !isCreatingWallet && navigate("/analytics/settings/technical")}
+                                {...(isCreatingWallet && { background: "#292929", color: "#737373", cursor: "not-allowed" })}
                             >
-                                Close
+                                Access Wallet
+                            </Button>
+                            <Button
+                                padding="12px 20px"
+                                color="#000"
+                                textAlign="center"
+                                fontFamily="Inter"
+                                fontSize={{ base: "14px", md: "16px" }}
+                                fontStyle="normal"
+                                fontWeight="500"
+                                lineHeight={{ base: "16px", md: "24px" }}
+                                onClick={() => !isCreatingWallet && navigate("/analytics")}
+                                {...(isCreatingWallet && { background: "#292929", color: "#737373", cursor: "not-allowed", border: "none" })}
+                            >
+                                Go to Dashboard
                             </Button>
                         </Box>
                     </Box>
