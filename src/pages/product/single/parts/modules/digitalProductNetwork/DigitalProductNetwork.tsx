@@ -23,14 +23,7 @@ function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
         setDetailsVisibility(checked)
         if (!checked) {
             dispatch({ type: "updateDigitalLinks", params: { chain: "" } })
-            const updatedSku = {
-                ...sku[0],
-                royalty: null,
-                recordData: {
-                    ...sku[0].recordData,
-                    commision: 0
-                }
-            }
+            const updatedSku = { ...sku[0], royalty: null }
             updateState('sku', [updatedSku])
         }
     }

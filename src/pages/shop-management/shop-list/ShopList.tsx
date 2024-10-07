@@ -28,11 +28,6 @@ function ShopList() {
         <>
             <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
-                    <TabList>
-                        <Tab p={0}>
-                            <BasicButton>Active Shops</BasicButton>
-                        </Tab>
-                    </TabList>
                     <BasicButton alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
                 </Flex>
                 <TabPanels>

@@ -44,12 +44,12 @@ export interface IGrowthHackSection {
 
 export const sidebar_constants: SidebarGroup[] = [
     {
-        group: "Dashboard",
+        group: "Analytics",
         items: [
             {
                 title: "Analytics",
                 icon: AppIcons.SidebarAnalytics,
-                linkTo: "/dashboard",
+                linkTo: "/analytics",
                 list: [],
             },
         ],
@@ -62,12 +62,12 @@ export const sidebar_constants: SidebarGroup[] = [
                 icon: AppIcons.SidebarProducts,
                 linkTo: null,
                 list: [
-                    { listTitle: "Inventory Management", linkTo: "/dashboard/products" },
+                    { listTitle: "Inventory Management", linkTo: "/analytics/products" },
                     {
                         listTitle: "Product Collections",
-                        linkTo: "/dashboard/collections",
+                        linkTo: "/analytics/collections",
                     },
-                    { listTitle: "Onchain Records", linkTo: "/dashboard/nfts" },
+                    { listTitle: "Onchain Records", linkTo: "/analytics/nfts" },
                 ],
             },
 
@@ -76,8 +76,8 @@ export const sidebar_constants: SidebarGroup[] = [
                 icon: AppIcons.SidebarNote,
                 linkTo: null,
                 list: [
-                    { listTitle: "Purchase History", linkTo: "/dashboard/orders" },
-                    { listTitle: "Invoices", linkTo: "/dashboard/invoice-management" },
+                    { listTitle: "Purchase History", linkTo: "/analytics/orders" },
+                    { listTitle: "Invoices", linkTo: "/analytics/invoice-management" },
                 ],
             },
 
@@ -88,16 +88,16 @@ export const sidebar_constants: SidebarGroup[] = [
                 list: [
                     {
                         listTitle: "Storefront Designer",
-                        linkTo: "/dashboard/settings/design",
+                        linkTo: "/analytics/settings/design",
                     },
-                    { listTitle: "Product Tiles", linkTo: "/dashboard/settings/tile" },
+                    { listTitle: "Product Tiles", linkTo: "/analytics/settings/tile" },
                     {
                         listTitle: "Product Links",
-                        linkTo: "/dashboard/settings/payment-link-design",
+                        linkTo: "/analytics/settings/payment-link-design",
                     },
                     {
                         listTitle: "Blog Editor",
-                        linkTo: "/dashboard/blogs",
+                        linkTo: "/analytics/blogs",
                     },
                 ],
             },
@@ -111,15 +111,15 @@ export const sidebar_constants: SidebarGroup[] = [
                 icon: AppIcons.SidebarAffiliate,
                 linkTo: null,
                 list: [
-                    { listTitle: "Marketplace", linkTo: "/dashboard/affiliate/market" },
-                    { listTitle: "Products", linkTo: "/dashboard/affiliate/products" },
-                    { listTitle: "Stores", linkTo: "/dashboard/affiliate/stores" },
+                    { listTitle: "Marketplace", linkTo: "/analytics/affiliate/market" },
+                    { listTitle: "Products", linkTo: "/analytics/affiliate/products" },
+                    { listTitle: "Stores", linkTo: "/analytics/affiliate/stores" },
                 ],
             },
             {
                 title: "Rewards Center",
                 icon: AppIcons.SidebarRewards,
-                linkTo: "/dashboard/gamification",
+                linkTo: "/analytics/gamification",
                 list: [],
             },
             {
@@ -129,25 +129,25 @@ export const sidebar_constants: SidebarGroup[] = [
                 list: [
                     {
                         listTitle: "Account Information",
-                        linkTo: "/dashboard/settings/shop-info",
+                        linkTo: "/analytics/settings/shop-info",
                     },
 
                     {
                         listTitle: "Wallet and Payments",
-                        linkTo: "/dashboard/settings/technical",
+                        linkTo: "/analytics/settings/technical",
                     },
                     {
                         listTitle: "User Management",
-                        linkTo: "/dashboard/settings/admins",
+                        linkTo: "/analytics/settings/admins",
                     },
                     {
                         listTitle: "Digital Coupons",
-                        linkTo: "/dashboard/settings/coupons",
+                        linkTo: "/analytics/settings/coupons",
                     },
                 ],
             },
 
-            // { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/dashboard/", list: [] },
+            // { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/analytics/", list: [] },
         ],
     },
 ];
@@ -179,14 +179,14 @@ export const createProfileConstants = (shop: { credit: number; name: string }, l
     {
         title: { label: "Settings", style: {} },
         icon: { svg: AppIcons.ProfileSetting, style: {} },
-        linkTo: "/dashboard/settings/shop-info",
+        linkTo: "/analytics/settings/shop-info",
         isExternalLink: false,
         rightSide: { value: null, style: {} },
     },
     // {
     //     title: { label: "Support", style: {} },
     //     icon: { svg: AppIcons.ProfileSupport, style: {} },
-    //     linkTo: "/dashboard/",
+    //     linkTo: "/analytics/",
     //     isExternalLink: false,
     //     rightSide: { value: null, style: {} },
     // },
@@ -290,7 +290,7 @@ export const growth_hack_constants = [
             {
                 title: "Physical Products",
                 description: "Add physical products by entering details like name, description, and price. Customers can browse and buy directly from your store.",
-                link: { linkTitle: "Learn more", linkTo: "/dashboard", isExternal: false },
+                link: { linkTitle: "Learn more", linkTo: "/analytics", isExternal: false },
                 image: "https://upload-file-droplinked.s3.amazonaws.com/215575e99677753f8ba8277f621ac9a36eda99e621cdd60b1b69d3d8ce11da4d.png",
                 buttons: {
                     left: null,
@@ -305,7 +305,7 @@ export const growth_hack_constants = [
             {
                 title: "Digital Goods",
                 description: "Sell digital products like eBooks, software, or music. Upload files, set prices, and allow instant downloads after purchase.",
-                link: { linkTitle: "Learn more", linkTo: "/dashboard", isExternal: false },
+                link: { linkTitle: "Learn more", linkTo: "/analytics", isExternal: false },
                 image: "https://upload-file-droplinked.s3.amazonaws.com/59fe00a4b64ec51e04c4c0b80927ddd9e021d6aa2b418e26ba7ee19c0aad6796.png",
                 buttons: {
                     left: {
@@ -338,7 +338,7 @@ export const growth_hack_constants = [
                         styles: {},
                         onClick: (setCurrentSubSection, onClose, navigate) => {
                             onClose();
-                            navigate("/dashboard/products/types");
+                            navigate("/analytics/products/types");
                         },
                     },
                 },
@@ -361,7 +361,7 @@ export const growth_hack_constants = [
                         styles: {},
                         onClick: (setCurrentSubSection, onClose, navigate) => {
                             onClose();
-                            navigate("/dashboard/settings/design");
+                            navigate("/analytics/settings/design");
                         },
                     },
                 },
@@ -384,7 +384,7 @@ export const growth_hack_constants = [
                         styles: {},
                         onClick: (setCurrentSubSection, onClose, navigate) => {
                             onClose();
-                            navigate("/dashboard/affiliate/market");
+                            navigate("/analytics/affiliate/market");
                         },
                     },
                 },
@@ -466,7 +466,7 @@ export const growth_hack_constants = [
                         styles: {},
                         onClick: (setCurrentSubSection, onClose, navigate) => {
                             onClose();
-                            navigate("/dashboard");
+                            navigate("/analytics");
                         },
                     },
                 },

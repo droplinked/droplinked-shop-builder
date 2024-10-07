@@ -28,7 +28,7 @@ function InvitationForm({ invitationId, email }: Props) {
             setLoading(true)
             await acceptInvitationService({ invitationId, password })
             await login({ type: "default", params: { email, password, userType: "PRODUCER" } })
-            navigate("/dashboard")
+            navigate("/analytics")
         }
         catch (e) {
             showToast({ type: "error", message: (e as Error).message })

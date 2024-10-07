@@ -25,7 +25,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
   const productLink = `${SHOP_URL}/paylink/product/${id}`;
 
   const handleNavigateSettings = () => {
-    navigate('/dashboard/settings/payment-link-design'); // ناوبری به مسیر در همان تب
+    navigate('/analytics/settings/payment-link-design'); // ناوبری به مسیر در همان تب
   };
 
   const handleDownloadClick = () => downloadQRCode(qrCodeContainerRef, 'qrcode.png'); // استفاده از تابع دانلود

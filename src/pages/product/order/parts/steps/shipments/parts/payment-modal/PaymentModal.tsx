@@ -62,7 +62,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
                             <Flex justifyContent={"center"}>
                                 <BasicButton onClick={() => {
                                     close()
-                                    navigate("/dashboard/products")
+                                    navigate("/analytics/products")
                                 }}>Ok</BasicButton>
                             </Flex>
                         </>

@@ -102,7 +102,7 @@ function AppRoutes() {
                     <Route path="plans" element={<PricingPage />} />
                 </Route>
 
-                <Route path="dashboard" element={<DashboardLayout />}>
+                <Route path="analytics" element={<DashboardLayout />}>
                     <Route index element={<DashboardPage />} />
                     <Route path="url-registration" element={<SimpleRegistration />} />
                     <Route path="settings" element={<RegisterPagesWrapper />}>
