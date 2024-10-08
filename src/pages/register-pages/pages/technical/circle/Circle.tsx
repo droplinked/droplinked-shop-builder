@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Input, ModalBody, ModalCloseButton, ModalHeader, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, Link, ModalBody, ModalCloseButton, ModalHeader, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import AppModal from "components/redesign/modal/AppModal";
@@ -37,7 +37,7 @@ const Circle = () => {
                 _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                 _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                 opacity={isWithdrawing ? ".3" : "1"}
-                onClick={() => navigate("/analytics/register")}
+                onClick={() => navigate("/analytics/registration")}
             >
                 Connect Circle Wallets
             </Button>
@@ -149,25 +149,27 @@ const Circle = () => {
                         >
                             Manage Wallet
                         </Button>
-                        <Button
-                            display="flex"
-                            border="none"
-                            color="#FFF"
-                            textAlign="center"
-                            fontFamily="Inter"
-                            fontSize="14px"
-                            fontStyle="normal"
-                            fontWeight="500"
-                            lineHeight="16px"
-                            padding="12px 16px"
-                            justifyContent="center"
-                            alignItems="center"
-                            gap="6px"
-                            borderRadius="8px"
-                            background="#262626"
-                        >
-                            Charge Wallet
-                        </Button>
+                        <Link alignSelf={"stretch"} href="https://www.binance.com/en/crypto/buy" target="_blank">
+                            <Button
+                                display="flex"
+                                border="none"
+                                color="#FFF"
+                                textAlign="center"
+                                fontFamily="Inter"
+                                fontSize="14px"
+                                fontStyle="normal"
+                                fontWeight="500"
+                                lineHeight="16px"
+                                padding="12px 16px"
+                                justifyContent="center"
+                                alignItems="center"
+                                gap="6px"
+                                borderRadius="8px"
+                                background="#262626"
+                            >
+                                Charge Wallet
+                            </Button>
+                        </Link>
                     </Box>
                 </Box>
             </Box>
