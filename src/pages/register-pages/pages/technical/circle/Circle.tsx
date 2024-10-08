@@ -5,16 +5,43 @@ import AppModal from "components/redesign/modal/AppModal";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
+import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
 import Button from "pages/invoice-management/components/Button";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const Circle = () => {
     const { data, isLoading } = useQuery({ queryFn: getCircleWallet, queryKey: "circle_wallet" });
     const { data: withdrawData, mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
     const { shop } = useAppStore();
     const { isOpen, onOpen, onClose } = useDisclosure();
-    console.log(shop?.circleWallets);
+    const navigate = useNavigate();
+    if (!shop?.circleWallets?.length)
+        return (
+            <Button
+                display="flex"
+                padding="12px 16px"
+                justifyContent="center"
+                alignItems="center"
+                gap="6px"
+                color="#2BCFA1"
+                textAlign="center"
+                fontFamily="Inter"
+                fontSize="14px"
+                fontStyle="normal"
+                fontWeight="500"
+                lineHeight="16px"
+                backgroundColor="transparent"
+                border="none"
+                _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
+                _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
+                opacity={isWithdrawing ? ".3" : "1"}
+                onClick={() => navigate("/analytics/register")}
+            >
+                Connect Circle Wallets
+            </Button>
+        );
     return (
         <Box display="flex" width="full" alignItems="center" borderRadius="8px" background="#1C1C1C">
             <Image src="https://upload-file-droplinked.s3.amazonaws.com/0ed7113f38aa1fdd77fef89b65c1928a0d265d9fc8aa26d57bc7424344bd1bf8.png" width={"320px"} height={"full"} objectFit={"cover"} />
@@ -73,9 +100,12 @@ const Circle = () => {
                                         fontFamily="Inter"
                                         fontSize="16px"
                                         fontWeight="400"
-                                        value={"0xe29E7479c23Db494aAa0D36C93844B2d79f50c2245"}
+                                        value={shop?.circleWallets?.find((circleWallet) => circleWallet?.chain === "ETH")?.address || ""}
                                     />
-                                    <AppIcons.CircleCopy />
+                                    <AppIcons.CircleCopy
+                                        cursor={"pointer"}
+                                        onClick={() => navigator.clipboard.writeText(shop?.circleWallets?.find((circleWallet) => circleWallet?.chain === "ETH")?.address || "")}
+                                    />
                                 </Box>
                                 <Box
                                     display="flex"
@@ -113,7 +143,9 @@ const Circle = () => {
                             gap="6px"
                             borderRadius="8px"
                             background="#2BCFA1"
-                            onClick={onOpen}
+                            onClick={() => {
+                                data?.data?.data && onOpen();
+                            }}
                         >
                             Manage Wallet
                         </Button>
@@ -154,55 +186,66 @@ const Circle = () => {
                         </AppTypography>
                     </Box>
                     <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid #292929">
-                        <Box display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
-                            <Box display={"flex"} alignItems={"center"} gap={"16px"} flex="1">
-                                <Box
-                                    display="flex"
-                                    width="40px"
-                                    height="40px"
-                                    padding="8px"
-                                    flexDirection="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    gap="8px"
-                                    flexShrink="0"
-                                    rounded="36px"
-                                    bgColor="#262626"
-                                />
-                                <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                    USDC
-                                </AppTypography>
-                            </Box>
-                            <Box display="flex" justifyContent="center" alignItems="center" gap="4px" flex="1 0 0">
-                                <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                    138.89
-                                </AppTypography>
-                                <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px" flex="1 0 0">
-                                    USDC
-                                </AppTypography>
-                            </Box>
-                            <Button
-                                display="flex"
-                                padding="12px 16px"
-                                justifyContent="center"
-                                alignItems="center"
-                                gap="6px"
-                                color="#2BCFA1"
-                                textAlign="center"
-                                fontFamily="Inter"
-                                fontSize="14px"
-                                fontStyle="normal"
-                                fontWeight="500"
-                                lineHeight="16px"
-                                backgroundColor="transparent"
-                                border="none"
-                                _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
-                                _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
-                                onClick={async () => await withdraw({ tokenId: "", amount: 0 })}
-                            >
-                                Withdraw
-                            </Button>
-                        </Box>
+                        {data?.data?.data?.map((chain) => {
+                            const Icon = AppIcons?.[`Circle${capitalizeFirstLetter(chain?.chain?.toLowerCase() || "")}`];
+                            return (
+                                <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
+                                    <Box display={"flex"} alignItems={"center"} gap={"16px"} flex="1">
+                                        <Box
+                                            display="flex"
+                                            width="40px"
+                                            height="40px"
+                                            padding="8px"
+                                            flexDirection="column"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                            gap="8px"
+                                            flexShrink="0"
+                                            rounded="36px"
+                                            bgColor="#262626"
+                                        >
+                                            {Icon ? <Icon /> : <></>}
+                                        </Box>
+                                        <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
+                                            {chain?.tokenName}
+                                        </AppTypography>
+                                    </Box>
+                                    <Box display="flex" justifyContent="center" alignItems="center" gap="4px" flex="1 0 0">
+                                        <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
+                                            {chain?.amount}
+                                        </AppTypography>
+                                        <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px" flex="1 0 0">
+                                            {chain?.tokenSymbol}
+                                        </AppTypography>
+                                    </Box>
+                                    <Button
+                                        display="flex"
+                                        padding="12px 16px"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        gap="6px"
+                                        color="#2BCFA1"
+                                        textAlign="center"
+                                        fontFamily="Inter"
+                                        fontSize="14px"
+                                        fontStyle="normal"
+                                        fontWeight="500"
+                                        lineHeight="16px"
+                                        backgroundColor="transparent"
+                                        border="none"
+                                        _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
+                                        _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
+                                        isDisabled={isWithdrawing || !chain?.tokenId || !chain?.amount || chain?.amount === 0}
+                                        opacity={isWithdrawing ? ".3" : "1"}
+                                        onClick={async () => {
+                                            if (chain?.tokenId && chain?.amount && chain?.amount > 0) await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount });
+                                        }}
+                                    >
+                                        Withdraw
+                                    </Button>
+                                </Box>
+                            );
+                        })}
                     </Box>
                 </ModalBody>
             </AppModal>

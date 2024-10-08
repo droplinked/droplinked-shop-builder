@@ -33,6 +33,7 @@ import { ReactComponent as CircleCopy } from "./circle-copy.svg";
 import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
 import { ReactComponent as CircleEth } from "./circle-eth.svg";
 import { ReactComponent as CircleModal } from "./circle-modal.svg";
+import { ReactComponent as CirclePolygon } from "./circle-polygon.svg";
 import { ReactComponent as CircleRefresh } from "./circle-refresh.svg";
 import { ReactComponent as CircleShield } from "./circle-shield.svg";
 import { ReactComponent as CircleSolana } from "./circle-solana.svg";
@@ -471,7 +472,8 @@ const AppIcons = {
     CircleModal,
     CircleUsdc,
     CircleEth,
-    CircleSolana
+    CircleSolana,
+    CirclePolygon,
 };
 
 export default AppIcons;
