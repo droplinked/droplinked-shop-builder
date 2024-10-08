@@ -1,20 +1,20 @@
-import { Box, Checkbox, HStack, useDisclosure, VStack } from '@chakra-ui/react';
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import AppInput from 'components/common/form/textbox/AppInput';
-import AppTypography from 'components/common/typography/AppTypography';
-import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecordModal';
-import { Form, Formik } from 'formik';
-import useStack from 'functions/hooks/stack/useStack';
-import useAppToast from 'functions/hooks/toast/useToast';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
-import { Isku } from 'lib/apis/product/interfaces';
-import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
-import { productContext } from 'pages/product/single/context';
-import React, { useCallback, useContext, useMemo, useRef } from 'react';
-import * as Yup from 'yup';
-import recordContext from '../../context';
-import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork';
-import RecordCovers from './parts/covers/RecordCovers';
+import { Box, Checkbox, HStack, useDisclosure, VStack } from '@chakra-ui/react'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppInput from 'components/common/form/textbox/AppInput'
+import AppTypography from 'components/common/typography/AppTypography'
+import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecordModal'
+import { Form, Formik } from 'formik'
+import useStack from 'functions/hooks/stack/useStack'
+import useAppToast from 'functions/hooks/toast/useToast'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import { Isku } from 'lib/apis/product/interfaces'
+import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
+import { productContext } from 'pages/product/single/context'
+import React, { useCallback, useContext, useMemo, useRef } from 'react'
+import * as Yup from 'yup'
+import recordContext from '../../context'
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
+import RecordCovers from './parts/covers/RecordCovers'
 
 interface Props {
     close: () => void
@@ -32,9 +32,9 @@ interface IRecordSubmit {
     royalty: number
 }
 
-function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
+const RecordForm = ({ close, product, sku, isRecordAllSKUs }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const formDataRef = useRef(null)
+    const formDataRef = useRef<IRecordSubmit | null>(null)
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
@@ -48,40 +48,14 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
         try {
             const { commission, blockchain, royalty, quantity } = formDataRef.current ?? {}
             const params = isRecordAllSKUs ?
-                Array.isArray(sku) && sku.map(skuItem => ({
-                    quantity,
-                    sku: skuItem,
-                    imageUrl: image
-                }))
-                :
+                Array.isArray(sku) && sku.map(skuItem => ({ quantity, sku: skuItem, imageUrl: image })) :
                 formDataRef.current
 
             const deployhash = isRecordAllSKUs ?
-                await web3({
-                    method: "record_batch",
-                    params,
-                    product,
-                    shop,
-                    commission,
-                    royalty,
-                    chain: blockchain,
-                    wallets,
-                    stack
-                })
+                await web3({ method: "record_batch", params, product, shop, commission, royalty, chain: blockchain, wallets, stack })
                 :
-                await web3({
-                    method: "record",
-                    params: {
-                        data: params,
-                        product,
-                        sku,
-                        imageUrl: image,
-                        shop
-                    },
-                    chain: blockchain,
-                    wallets,
-                    stack
-                })
+                await web3({ method: "record", params: { data: params, product, sku, imageUrl: image, shop }, chain: blockchain, wallets, stack })
+
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", blockchain)
@@ -92,12 +66,20 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
             onClose()
         }
         catch (e) {
-            if (e?.message) {
-                if (e?.message.includes("The first argument")) return updateState("loading", false)
-                showToast({ message: e?.message, type: "error" })
-            }
-            else
-                showToast({ message: "Oops! Something went wrong. Please contact support for assistance.", type: "error" })
+            handleError(e)
+        }
+        finally {
+            updateState("loading", false)
+        }
+    }
+
+    const handleError = (e) => {
+        if (e?.message) {
+            if (e?.message.includes("The first argument")) return updateState("loading", false)
+            showToast({ message: e?.message, type: "error" })
+        }
+        else {
+            showToast({ message: "Oops! Something went wrong. Please contact support for assistance.", type: "error" })
         }
     }
 
@@ -106,11 +88,10 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ?
                 "1000000" :
                 isRecordAllSKUs ?
-                    Array.isArray(sku) && sku.reduce((sum, sku) => sum + sku.quantity, 0).toString()
-                    :
+                    Array.isArray(sku) && sku.reduce((sum, sku) => sum + sku.quantity, 0).toString() :
                     sku.quantity.toString()
-            formDataRef.current = data
 
+            formDataRef.current = data
             if (!image) throw Error('Please select an image to continue.')
 
             const { blockchain } = data
@@ -121,33 +102,21 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                 shop.circleWallets?.some(cw => cw.chain === blockchain)
 
             if (shouldRenderCircleRecord) return onOpen()
-
-            else {
-                updateState("loading", true)
-                await recordFunction()
-            }
+            updateState("loading", true)
+            await recordFunction()
         }
         catch (error) {
-            if (error?.message) {
-                if (error?.message.includes("The first argument")) return updateState("loading", false)
-                showToast({ message: error?.message, type: "error" });
-            }
-            else {
-                showToast({ message: "Oops! Something went wrong. Please contact support for assistance.", type: "error" })
-            }
-            updateState("loading", false)
+            handleError(error)
         }
     }, [product, sku, image, wallets, stack.stxAddress])
 
-    const formSchema = useMemo(() => {
-        return Yup.object().shape({
-            blockchain: Yup.string().required('Required'),
-            dropon: Yup.boolean(),
-            commission: Yup.number().when('dropon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') }),
-            royaltyon: Yup.boolean(),
-            royalty: Yup.number().when('royaltyon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') })
-        })
-    }, [product.product_type])
+    const formSchema = useMemo(() => Yup.object().shape({
+        blockchain: Yup.string().required('Required'),
+        dropon: Yup.boolean(),
+        commission: Yup.number().when('dropon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') }),
+        royaltyon: Yup.boolean(),
+        royalty: Yup.number().when('royaltyon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') })
+    }), [product.product_type])
 
     return (
         <>
@@ -168,7 +137,9 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                     <Form>
                         <Box color={"#FFF"}>
                             <VStack align={"stretch"} spacing={8}>
-                                <Box textAlign={"center"}><AppTypography fontSize={"larger"} margin="12px 0" color={"#FEB900"}>Warning !</AppTypography></Box>
+                                <Box textAlign={"center"}>
+                                    <AppTypography fontSize={"larger"} margin="12px 0" color={"#FEB900"}>Warning !</AppTypography>
+                                </Box>
                                 <Box textAlign={"center"}>
                                     <AppTypography color="#C2C2C2" fontSize={"lg"}>
                                         Once your product variant is recorded on a blockchain network, it becomes immutable, and <AppTypography color={"#FFF"} fontWeight='600' fontSize={"lg"} display="inline">neither the variants nor properties can be edited.</AppTypography> Please ensure that all details of your product are accurate before recording it.
@@ -212,7 +183,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                                         colorScheme='green'
                                         isChecked={values.royaltyon}
                                         onChange={({ target: { checked } }) => {
-                                            if (!checkPermissionAndShowToast("web3_royalty_feature")) return;
+                                            if (!checkPermissionAndShowToast("web3_royalty_feature")) return
                                             setFieldValue('royaltyon', checked)
                                         }}
                                     >
@@ -234,8 +205,8 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                                 )}
                                 <RecordCovers />
                                 <HStack justifyContent={"space-between"}>
-                                    <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
-                                    <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>
+                                    <BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton>
+                                    <BasicButton type="submit" isLoading={loading}>Drop</BasicButton>
                                 </HStack>
                             </VStack>
                         </Box>
