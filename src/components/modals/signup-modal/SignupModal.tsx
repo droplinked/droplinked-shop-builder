@@ -157,6 +157,10 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
                     googleAuthUrl.searchParams.append("subscriptionId", subscriptionPlan._id);
                   }
 
+                  if (d3_id_from_params && d3_id_from_params !== "") {
+                    googleAuthUrl.searchParams.append("d3UserId", d3_id_from_params);
+                  }
+
                   window.location.href = googleAuthUrl.toString();
                 }}
                 backgroundColor={"mainGray.500"}
