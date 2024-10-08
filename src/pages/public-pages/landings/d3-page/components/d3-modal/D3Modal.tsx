@@ -15,13 +15,18 @@ import { useMutation } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import D3Context, { D3StepsType } from "../../context/d3.context";
 import WalletStatusSideIcons from "components/common/walletStatus/WalletStatusSideIcons";
+import useAppToast from "functions/hooks/toast/useToast";
 const D3Modal = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
     const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) => postUserVerifyD3(props));
     const navigate = useNavigate();
     const { isOpen: signupModalIsOpen, onOpen: signupModalOnOpen, onClose: signupModalOnClose } = useDisclosure();
     const [searchParams] = useSearchParams();
-    const { states: { currentStep }, methods: { updateStates } } = useContext(D3Context);
+    const {
+        states: { currentStep },
+        methods: { updateStates },
+    } = useContext(D3Context);
+    const { showToast } = useAppToast();
     const connect_d3_wallet = () => {
         return new Promise((resolve, reject) => {
             updateStates({ key: "currentStep", value: "loading" });
@@ -38,8 +43,12 @@ const D3Modal = () => {
                     resolve(res);
                 })
                 .catch((error) => {
-                    updateStates({ key: "currentStep", value: "error" });
-                    // reject(error);
+                    if (error?.message === "No EVM Wallet is installed") {
+                        showToast({ type: "error", message: "Metamask wallet is not installed!" });
+                        updateStates({ key: "currentStep", value: "connect" });
+                    } else {
+                        updateStates({ key: "currentStep", value: "error" });
+                    }
                 });
         });
     };
@@ -68,7 +77,7 @@ const D3Modal = () => {
             buttons: {
                 left: {
                     label: "Close",
-                    onClick: () => { },
+                    onClick: () => {},
                     styles: {
                         background: "#292929",
                         color: "#737373",
@@ -77,7 +86,7 @@ const D3Modal = () => {
                 },
                 right: {
                     label: "Check Wallet Eligibility",
-                    onClick: () => { },
+                    onClick: () => {},
                     rightIcon: <AppIcons.SidebarNext />,
                     styles: {
                         background: "#292929",
