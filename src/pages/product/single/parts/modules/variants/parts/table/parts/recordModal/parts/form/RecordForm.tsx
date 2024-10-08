@@ -35,7 +35,6 @@ interface IRecordSubmit {
 function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [formData, setFormData] = useState(null)
-    const [shouldRenderCircleRecord, setShouldRenderCircleRecord] = useState(null)
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
@@ -97,7 +96,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                 showToast({ message: e?.message, type: "error" })
             }
             else
-                showToast({ message: "Oops! Something went wrong please contact support", type: "error" })
+                showToast({ message: "Oops! Something went wrong. Please contact support for assistance.", type: "error" })
         }
     }
 
@@ -134,7 +133,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                 showToast({ message: error?.message, type: "error" });
             }
             else {
-                showToast({ message: "Oops! Something went wrong please contact support", type: "error" })
+                showToast({ message: "Oops! Something went wrong. Please contact support for assistance.", type: "error" })
             }
             updateState("loading", false)
         }
@@ -144,9 +143,9 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
             dropon: Yup.boolean(),
-            commission: Yup.number().when('dropon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter number").required('Required') }),
+            commission: Yup.number().when('dropon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') }),
             royaltyon: Yup.boolean(),
-            royalty: Yup.number().when('royaltyon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter number").required('Required') }),
+            royalty: Yup.number().when('royaltyon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter a valid number").required('Required') })
         })
     }, [product.product_type])
 
@@ -196,8 +195,8 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                                     <VStack align="stretch">
                                         <AppInput
                                             name="blockchain"
-                                            placeholder='%25'
-                                            label='Commision'
+                                            placeholder='25%'
+                                            label='Commission'
                                             error={errors.commission}
                                             onChange={(e) => setFieldValue("commission", e.target.value)}
                                             value={values.commission || ""}
@@ -224,17 +223,14 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                                     </Checkbox>
                                 </Box>
                                 {values.royaltyon && (
-                                    <VStack align="stretch">
-                                        <AppInput
-                                            name="royalty"
-                                            placeholder='%25'
-                                            label='Royalty'
-                                            error={errors.royalty}
-                                            onChange={(e) => setFieldValue("royalty", e.target.value)}
-                                            value={values.royalty || ""}
-                                        />
-                                        <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
-                                    </VStack>
+                                    <AppInput
+                                        name="royalty"
+                                        placeholder='25%'
+                                        label='Royalty'
+                                        error={errors.royalty}
+                                        onChange={(e) => setFieldValue("royalty", e.target.value)}
+                                        value={values.royalty || ""}
+                                    />
                                 )}
                                 <RecordCovers />
                                 <HStack justifyContent={"space-between"}>

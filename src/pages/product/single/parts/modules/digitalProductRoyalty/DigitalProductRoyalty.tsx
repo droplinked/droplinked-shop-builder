@@ -43,7 +43,7 @@ function DigitalProductRoyalty() {
                     value={sku[0].royalty}
                     min={1}
                     max={99}
-                    placeholder='%25'
+                    placeholder='25%'
                     onKeyDown={(e) => {
                         const invalidKeys = ['+', '-', 'e']
                         if (invalidKeys.includes(e.key)) {

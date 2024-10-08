@@ -48,7 +48,7 @@ function RecordModal({ close, open, product, sku }: Props) {
             >
                 {State.hashkey ?
                     <HashKey
-                        text="Sku record successful"
+                        text="SKU record processed successfully!"
                         blockchain={State.blockchain}
                         hashkey={State.hashkey}
                         close={closeModal}
