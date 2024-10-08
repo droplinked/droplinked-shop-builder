@@ -116,9 +116,9 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
             const { blockchain } = data
 
             const shouldRenderCircleRecord =
-                !shop.deployedContracts.some(contract => contract.type === blockchain) &&
+                !shop.deployedContracts?.some(contract => contract.type === blockchain) &&
                 ["ETH", "POLYGON", "SOLANA"].includes(blockchain) &&
-                shop.circleWallets.some(cw => cw.chain === blockchain)
+                shop.circleWallets?.some(cw => cw.chain === blockchain)
 
             if (shouldRenderCircleRecord) return onOpen()
 

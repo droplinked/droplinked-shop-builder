@@ -117,9 +117,9 @@ function ButtonsProduct() {
             if (shouldRecordDigitalProduct) {
                 try {
                     const shouldOpenCircleModal =
-                        !shop.deployedContracts.some(contract => contract.type === selectedChain) &&
+                        !shop.deployedContracts?.some(contract => contract.type === selectedChain) &&
                         ["ETH", "POLYGON", "SOLANA"].includes(selectedChain) &&
-                        shop.circleWallets.some(cw => cw.chain === selectedChain)
+                        shop.circleWallets?.some(cw => cw.chain === selectedChain)
 
                     if (shouldOpenCircleModal) openCircleRecordModal()
                     else await recordCreatedProduct()
