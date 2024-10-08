@@ -14,7 +14,7 @@ import React, { useContext, useMemo } from "react";
 import { useMutation } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import D3Context, { D3StepsType } from "../../context/d3.context";
-import WalletStatus from "components/common/walletStatus/WalletStatus";
+import WalletStatusSideIcons from "components/common/walletStatus/WalletStatusSideIcons";
 const D3Modal = () => {
     const { isOpen, onClose, onOpen } = useDisclosure();
     const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) => postUserVerifyD3(props));
@@ -134,7 +134,7 @@ const D3Modal = () => {
                     paddingBlock={"0px !important"}
                     rounded="24px"
                 >
-                    <WalletStatus variant={currentStep === "error" ? "red" : "green"} isLoading={currentStep === "loading"} icon={currentStep === "done" ? "tick" : "wallet"} />
+                    <WalletStatusSideIcons variant={currentStep === "error" ? "red" : "green"} isLoading={currentStep === "loading"} icon={currentStep === "done" ? "tick" : "wallet"} />
                     <Box display="flex" padding={{ base: "0px 16px 36px 16px", md: "0px 48px 48px 48px" }} flexDirection="column" alignItems="flex-end" gap="48px" alignSelf="stretch">
                         <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
                             <AppTypography color="#FFF" fontFamily="Inter" fontSize={{ base: "18px", md: "24px" }} fontStyle="normal" fontWeight="700" lineHeight="36px">

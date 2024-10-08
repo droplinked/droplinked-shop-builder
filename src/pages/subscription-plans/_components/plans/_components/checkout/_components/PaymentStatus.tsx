@@ -27,7 +27,7 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
         if (isFromPlansPage && isLoggedInViaGoogle) {
-            navigate("/analytics/url-registration")
+            navigate("/analytics/registration")
         } else if (isFromPlansPage && !isLoggedInViaGoogle) {
             const registerEmail = localStorage.getItem("registerEmail")
             logoutUser()

@@ -131,3 +131,8 @@ export interface IGetShopsCommunityService {
 export interface IGetShopCommunityProfile {
     shopId: string;
 }
+
+export interface IPostWithdrawCircleWallet {
+    tokenId: string;
+    amount: number;
+}

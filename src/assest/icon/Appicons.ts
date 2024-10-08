@@ -31,9 +31,12 @@ import { ReactComponent as CheckCircle } from "./check-circle.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
 import { ReactComponent as CircleCopy } from "./circle-copy.svg";
 import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
+import { ReactComponent as CircleEth } from "./circle-eth.svg";
 import { ReactComponent as CircleModal } from "./circle-modal.svg";
 import { ReactComponent as CircleRefresh } from "./circle-refresh.svg";
 import { ReactComponent as CircleShield } from "./circle-shield.svg";
+import { ReactComponent as CircleSolana } from "./circle-solana.svg";
+import { ReactComponent as CircleUsdc } from "./circle-usdc.svg";
 import { ReactComponent as Circle } from "./circle.svg";
 import { ReactComponent as Clock } from "./clock.svg";
 import { ReactComponent as CloseRed } from "./close-red.svg";
@@ -466,6 +469,9 @@ const AppIcons = {
     HeaderProductBox,
     MetaverseStore,
     CircleModal,
+    CircleUsdc,
+    CircleEth,
+    CircleSolana
 };
 
 export default AppIcons;

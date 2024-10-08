@@ -7,6 +7,7 @@ import {
 	IGetShopCommunityProfile,
 	IGetShopsCommunityService,
 	IpaymentCreateService,
+	IPostWithdrawCircleWallet,
 	IproductService,
 	IrecordedShopService,
 	IshopInfoService,
@@ -144,3 +145,5 @@ export const getShopGrowthHack = () => axiosInstance.get('/shop/growth/list')
 export const postCreateCircleWallet = () => axiosInstance.post('/shop/circle/wallet')
 
 export const getCircleWallet = () => axiosInstance.get('/shop/circle/wallet')
+
+export const postWithdrawCircle = (props :IPostWithdrawCircleWallet) => axiosInstance.post('/shop/circle/withdraw', {...props})
