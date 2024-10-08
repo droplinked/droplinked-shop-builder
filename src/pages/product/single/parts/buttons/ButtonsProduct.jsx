@@ -91,7 +91,6 @@ function ButtonsProduct() {
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
-            let product;
 
             const shouldRecordDigitalProduct = !draft && selectedChain && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED"
 

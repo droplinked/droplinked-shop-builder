@@ -10,7 +10,7 @@ import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
 import { productContext } from 'pages/product/single/context';
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useRef } from 'react';
 import * as Yup from 'yup';
 import recordContext from '../../context';
 import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork';
@@ -34,7 +34,7 @@ interface IRecordSubmit {
 
 function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [formData, setFormData] = useState(null)
+    const formDataRef = useRef(null)
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
@@ -46,14 +46,15 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
 
     const recordFunction = async () => {
         try {
-            const { commission, quantity, blockchain, royalty } = formData
-
+            const { commission, blockchain, royalty, quantity } = formDataRef.current ?? {}
             const params = isRecordAllSKUs ?
                 Array.isArray(sku) && sku.map(skuItem => ({
-                    quantity: skuItem.quantity.toString(),
+                    quantity,
                     sku: skuItem,
                     imageUrl: image
-                })) : { commission, quantity, blockchain, royalty }
+                }))
+                :
+                formDataRef.current
 
             const deployhash = isRecordAllSKUs ?
                 await web3({
@@ -108,7 +109,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
                     Array.isArray(sku) && sku.reduce((sum, sku) => sum + sku.quantity, 0).toString()
                     :
                     sku.quantity.toString()
-            setFormData(data)
+            formDataRef.current = data
 
             if (!image) throw Error('Please select an image to continue.')
 
@@ -116,7 +117,7 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
 
             const shouldRenderCircleRecord =
                 !shop.deployedContracts.some(contract => contract.type === blockchain) &&
-                ["ETH", "POLYGON", "SOLANA", "BINANCE"].includes(blockchain) &&
+                ["ETH", "POLYGON", "SOLANA"].includes(blockchain) &&
                 shop.circleWallets.some(cw => cw.chain === blockchain)
 
             if (shouldRenderCircleRecord) return onOpen()
@@ -124,7 +125,6 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
             else {
                 updateState("loading", true)
                 await recordFunction()
-                close()
             }
         }
         catch (error) {
@@ -245,8 +245,8 @@ function RecordForm({ close, product, sku, isRecordAllSKUs }: Props) {
             {isOpen && (
                 <CircleRecordModal
                     isOpen={isOpen}
-                    onClose={close}
-                    selectedChain={formData.blockchain}
+                    onClose={onClose}
+                    selectedChain={formDataRef.current.blockchain}
                     recordFunction={recordFunction}
                 />
             )}
