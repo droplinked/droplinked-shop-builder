@@ -64,8 +64,8 @@ const AffiliateProductsLayout = () => {
                         </HStack>
                     </Box>
                 </Box> */}
-                <HStack alignItems="flex-start" spacing="24px">
-                    <Box width="288px">
+                <Flex alignItems="flex-start" gap="24px">
+                    <Box flexShrink={0} width="288px">
                         <AppAccordion multiCollapse={true} display={"flex"} flexDir={"column"} gap={"24px"}>
                             <AppAccordionItem
                                 display="flex"
@@ -318,10 +318,10 @@ const AffiliateProductsLayout = () => {
                         </HStack>
                         <AffiliateProductsList />
                     </VStack>
-                </HStack>
+                </Flex>
             </VStack>
         </ProductContext.Provider>
     );
 };
 
-export default AffiliateProductsLayout;
+export default AffiliateProductsLayout

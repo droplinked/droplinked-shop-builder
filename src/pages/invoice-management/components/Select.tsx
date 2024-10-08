@@ -1,37 +1,60 @@
-import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
-import React, { useMemo } from 'react';
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import React, { useMemo } from 'react'
 
 interface Props {
-    label?: string;
-    items: any[];
-    value?: any;
-    labelAccessor?: string;
-    valueAccessor?: string;
-    dataAttributes?: Record<string, string>;
-    isLoading?: boolean;
-    error?: string;
-    inputGroupProps?: InputGroupProps;
-    selectProps?: SelectProps;
+    label?: string
+    items: any[]
+    value?: any
+    onChange?: (value: any) => void
+    labelAccessor?: string
+    valueAccessor?: string
+    dataAttributes?: Record<string, string>
+    isLoading?: boolean
+    error?: string
+    inputGroupProps?: InputGroupProps
+    selectProps?: SelectProps
 }
 
-function Select({ label, items, value, labelAccessor = "name", valueAccessor = "id", dataAttributes, isLoading, error, inputGroupProps, selectProps }: Props) {
+function Select({
+    label,
+    items,
+    value,
+    onChange,
+    labelAccessor = "name",
+    valueAccessor,
+    dataAttributes,
+    isLoading,
+    error,
+    inputGroupProps,
+    selectProps
+}: Props) {
     const options = useMemo(() => {
-        return items.map((item, index) => (
-            <option
-                key={index}
-                value={item[valueAccessor]}
-                {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}
-            >
-                {item[labelAccessor]}
-            </option>
-        ))
-    }, [items])
+        return items.map((item, index) => {
+            const optionValue = valueAccessor ? item[valueAccessor] : JSON.stringify(item)  // Use whole object if valueAccessor is not provided
+
+            return (
+                <option
+                    key={index}
+                    value={optionValue}
+                    {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}
+                >
+                    {item[labelAccessor]}
+                </option>
+            )
+        })
+    }, [items, valueAccessor, labelAccessor, dataAttributes])
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = e.target.value
+        const selectedItem = valueAccessor ? items.find(item => item[valueAccessor] === selectedValue) : JSON.parse(selectedValue)
+        onChange?.(selectedItem)
+    }
 
     const selectElement = (
         <ChakraSelect
-            value={value}
+            value={valueAccessor ? value?.[valueAccessor] : JSON.stringify(value)}  // Update the value prop
             height={12}
             border={"1px solid #292929"}
             borderWidth={"1.5px"}
@@ -42,6 +65,7 @@ function Select({ label, items, value, labelAccessor = "name", valueAccessor = "
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}
+            onChange={handleChange}
             {...selectProps}
         >
             {options}

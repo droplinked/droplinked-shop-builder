@@ -1,4 +1,4 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
+import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'

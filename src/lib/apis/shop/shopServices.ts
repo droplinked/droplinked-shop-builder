@@ -61,10 +61,8 @@ export const ShopRecordedService = ({
 	title,
 }: IShopRecordedService) =>
 	axiosInstance.get(
-		`product/community/recorded?limit=25&page=${page}${
-			categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''
-		}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${
-			title ? '&title=' + title : ''
+		`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''
+		}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''
 		}`
 	);
 
@@ -131,14 +129,13 @@ export const switchShopService = (shopId: string) =>
 
 export const getShopsCommunityService = (params: IGetShopsCommunityService) => {
 	const queryString = createQueryString(params).toString();
-    return axiosInstance.get(`/shop/community/view?${queryString}`);
+	return axiosInstance.get(`/shop/community/view?${queryString}`);
 };
 
 export const getNewShopsService = () => axiosInstance.get('/shop/community/new')
 
 
-export const getShopCommunityProfile = ({shopId}: IGetShopCommunityProfile) => axiosInstance.get(`/shop/community/view/products/${shopId}`)
-
+export const getShopCommunityProfile = ({ shopId }: IGetShopCommunityProfile) => axiosInstance.get(`/shop/community/view/products/${shopId}`)
 
 export const getShopGrowthHack = () => axiosInstance.get('/shop/growth/list')
 
@@ -147,3 +144,5 @@ export const postCreateCircleWallet = () => axiosInstance.post('/shop/circle/wal
 export const getCircleWallet = () => axiosInstance.get('/shop/circle/wallet')
 
 export const postWithdrawCircle = (props :IPostWithdrawCircleWallet) => axiosInstance.post('/shop/circle/withdraw', {...props})
+
+export const deployCircleContract = (network: string) => axiosInstance.post('shop/circle/deploy', { type: network })
