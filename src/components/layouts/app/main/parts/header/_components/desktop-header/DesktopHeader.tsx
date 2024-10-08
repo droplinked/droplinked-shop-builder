@@ -52,11 +52,11 @@ function HeaderMenu({ headerMenuItems }) {
                     )
                 },
                 content: {
-                    children: (
+                    children: ({ onClose }) => (
                         <PopoverBody display="flex" flexDirection="column">
                             <Flex direction="column" gap={9}>
                                 {headerMenuItems.map((menuItem) => (
-                                    <MenuSection key={menuItem?.label} menuItem={menuItem} />
+                                    <MenuSection key={menuItem?.label} onClose={onClose} menuItem={menuItem} />
                                 ))}
                             </Flex>
                         </PopoverBody>
@@ -75,14 +75,14 @@ function HeaderMenu({ headerMenuItems }) {
     )
 }
 
-function MenuSection({ menuItem }) {
+function MenuSection({ menuItem, onClose }) {
     return (
         <Flex direction="column" gap={4}>
             <AppTypography fontSize={16} fontWeight={700} color="white">{menuItem.label}</AppTypography>
             <SimpleGrid columns={{ base: 3, xl: 4 }} gap={6}>
                 {menuItem.links.map((link) => (
                     <Link key={link.label} to={link.href}>
-                        <Flex alignItems="flex-start" gap={4}>
+                        <Flex alignItems="flex-start" gap={4} onClick={onClose}>
                             <HeaderIconContainer>{link.icon}</HeaderIconContainer>
                             <Flex direction="column">
                                 <AppTypography fontSize={16} fontWeight={500} color="white">{link.label}</AppTypography>

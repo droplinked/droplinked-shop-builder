@@ -7,7 +7,7 @@ interface IProps extends PopoverProps {
             children: React.ReactNode;
         };
         content: {
-            children: React.ReactNode;
+            children: React.ReactNode | ((props: { onClose: () => void }) => React.ReactNode);
             props?: PopoverContentProps;
         };
     };
@@ -23,7 +23,7 @@ function AppPopoverOnHover({ nodes: { trigger, content }, ...props }: IProps) {
                             {trigger.children}
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent {...content.props}>{content.children}</PopoverContent>
+                    <PopoverContent {...content.props}>{typeof content.children === "function" ? content.children({ onClose }) : content.children}</PopoverContent>
                 </>
             )}
         </Popover>
