@@ -16,7 +16,11 @@ async function getShopByteCode(chain: Chain, network: Network) {
 			);
 			return result;
 		} else {
-			if (chain !== Chain.BINANCE) {
+			if (
+				chain !== Chain.BINANCE &&
+				chain !== Chain.SKALE &&
+				chain !== Chain.REDBELLY
+			) {
 				throw new Error('Network not supported');
 			}
 		}
