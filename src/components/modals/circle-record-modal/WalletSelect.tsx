@@ -23,7 +23,6 @@ function WalletSelect({ onWalletChange, selectedChain }: Props) {
                 width: "100%",
                 borderColor: "#292929",
                 bgColor: "#1C1C1C",
-                color: "white",
                 placeholder: "Wallet",
                 onChange: (e) => {
                     onWalletChange(Boolean(e.target.value) ? JSON.parse(e.target.value) : "")
