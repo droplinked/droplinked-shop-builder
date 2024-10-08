@@ -5,7 +5,6 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 import { deployCircleContract } from 'lib/apis/shop/shopServices'
 import Button from 'pages/invoice-management/components/Button'
 import React, { useEffect, useState } from 'react'
-import InformationRow from './InformationRow'
 import ModalBodyHeadline from './ModalBodyHeadline'
 import WalletSelect from './WalletSelect'
 import WalletWarningMessage from './WalletWarningMessage'
@@ -38,7 +37,7 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                 // await recordSKUWithCircleWallet({ chain: selectedChain, params: {} })
                 return
             }
-            else recordFunction()
+            else await recordFunction()
         }
         catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
@@ -72,7 +71,7 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                     </Flex>
                 )}
 
-                <Flex direction="column" gap={4}>
+                {/* <Flex direction="column" gap={4}>
                     {isLoading && (
                         <InformationRow
                             title="Target Wallet"
@@ -81,7 +80,7 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                         />
                     )}
                     <InformationRow title="Gas Fee" value="0.00356" />
-                </Flex>
+                </Flex> */}
             </ModalBody>
 
             <ModalFooter
@@ -92,7 +91,13 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                 sx={{ button: { fontWeight: 500 } }}
             >
                 <Button variant="ghost" onClick={onClose}>Cancel</Button>
-                <Button onClick={handleRecord} isDisabled={!selectedWallet || hasSelectedCircleWallet || isLoading}>Record</Button>
+                <Button
+                    isDisabled={!selectedWallet || hasSelectedCircleWallet || isLoading}
+                    isLoading={isLoading}
+                    onClick={handleRecord}
+                >
+                    Record
+                </Button>
             </ModalFooter>
         </AppModal>
     )

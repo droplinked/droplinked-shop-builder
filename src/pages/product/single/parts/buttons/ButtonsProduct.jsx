@@ -50,20 +50,27 @@ function ButtonsProduct() {
     }
 
     const recordCreatedProduct = async () => {
-        const product = createdProductRef.current
-        const hashkey = await record({
-            method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: selectedChain, wallets, stack: stacks, shop }),
-            product: {
-                ...state,
-                _id: product._id,
-                sku: [{ ...state.sku[0], _id: product.sku[0]._id }]
-            },
-            stacks
-        })
-        await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
-        await updateShopData()
-        setStateHandle('hashkey', hashkey)
-        onOpen()
+        try {
+            const product = createdProductRef.current
+            const hashkey = await record({
+                method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: selectedChain, wallets, stack: stacks, shop }),
+                product: {
+                    ...state,
+                    _id: product._id,
+                    sku: [{ ...state.sku[0], _id: product.sku[0]._id }]
+                },
+                stacks
+            })
+            await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
+            await updateShopData()
+            setStateHandle('hashkey', hashkey)
+            closeCircleRecordModal()
+            onOpen()
+        }
+        catch (error) {
+            shopNavigate("products")
+            showToast({ message: "Something went wrong during the recording process", type: "error" })
+        }
     }
 
     // Submit product

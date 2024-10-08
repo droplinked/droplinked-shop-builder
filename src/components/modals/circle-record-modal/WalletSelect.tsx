@@ -9,7 +9,6 @@ interface Props {
 
 function WalletSelect({ onWalletChange, selectedChain }: Props) {
     const { shop, user: { wallets: connectedWallets } } = useAppStore()
-    console.log(shop.circleWallets)
     const targetCircleWallet = shop.circleWallets?.find((wallet) => wallet.chain === selectedChain)
     const manuallyConnectedWalletOnSelectedChain = connectedWallets.find((wallet) => wallet.type === selectedChain)
     const wallets = [targetCircleWallet, manuallyConnectedWalletOnSelectedChain]
