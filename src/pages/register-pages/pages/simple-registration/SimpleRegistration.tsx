@@ -18,7 +18,7 @@ function SimpleRegistration() {
         if (hasShopName && hasCreatedCircleWallet) navigate("/analytics");
         console.log(hasShopName, hasCreatedCircleWallet)
     }, [hasCreatedCircleWallet, hasShopName]);
-
+    if(hasShopName && hasCreatedCircleWallet) return <></>
     if (modal === "URL") return <SimpleRegistrationModal isOpen={true} mode="REGISTER_SHOP_NAME" toggleModal={toggleModal} />;
     else if (modal === "WALLET") return <CreateWallet hasCreatedCircleWallet={hasCreatedCircleWallet} />;
     else return <></>;
