@@ -71,7 +71,7 @@ function ButtonsProduct() {
         }
         catch (error) {
             shopNavigate("products")
-            showToast({ message: "Something went wrong during the recording process", type: "error" })
+            showToast({ message: error.message || "Something went wrong during the recording process", type: "error" })
         }
     }
 

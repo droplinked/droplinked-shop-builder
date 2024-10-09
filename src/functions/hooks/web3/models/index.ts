@@ -3,13 +3,13 @@ import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/sh
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import { Chain, Network } from 'lib/utils/chains/dto/chains';
+import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
+import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
+import { droplink_wallet } from 'lib/utils/statics/adresses';
+import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
+import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
-import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
-import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
-import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
-import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
-import { droplink_wallet } from 'lib/utils/statics/adresses';
 
 export interface IRecordParamsData {
 	commission: any;
@@ -227,11 +227,9 @@ const web3Model = {
 						accountAddress,
 						nftContract,
 						shopAddress,
-						products,
-					});
-					if (res)
-						dataDeploy.deployHash =
-							res.transactionHash;
+						products
+					})
+					if (res) dataDeploy.deployHash = res.transactionHash;
 				}
 
 				await recordModel.deploy(dataDeploy);
