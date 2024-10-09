@@ -1,4 +1,4 @@
-import { Flex, Grid } from "@chakra-ui/react";
+import { Flex, Grid, Image } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 import D3Heading from "../common/D3Heading";
@@ -11,9 +11,10 @@ export default function D3AboveTheFoldSection() {
             minHeight="600px"
             height="100dvh"
             placeContent="center"
-            bgImg="https://upload-file-droplinked.s3.amazonaws.com/db0b798ebd29ca8f2bb07e202b38b02f7b024f5d9b98c16c9019d6ebcf0086d6.png"
+            bgImg="https://upload-file-droplinked.s3.amazonaws.com/b982940b80e90c56f277848bf50e1bfb3cb1414dfd89271924bce098d7427043.png"
             bgSize="cover"
             bgPos="center"
+            pos={"relative"}
         >
             <Flex
                 maxWidth={{ base: "100%", md: "518px", lg: "572px", xl: "636px" }}
@@ -26,9 +27,13 @@ export default function D3AboveTheFoldSection() {
                     droplinked & D3
                 </D3Heading>
                 <Logos />
-                <AppTypography textAlign="center" fontSize={{ base: 14, md: 20 }} color="white">Unlock 6 months of the Pro Plan absolutely free! Redeem the exclusive offer today.</AppTypography>
+                <AppTypography textAlign="center" fontFamily={"Inter"} fontSize={{ base: 14, md: 20 }} color="white">
+                    Unlock 6 months of the Pro Plan absolutely free!<br/>
+                    Redeem the exclusive offer today.
+                </AppTypography>
                 <D3Modal />
             </Flex>
+            <Image position={"absolute"} bottom={"0px"} src="https://upload-file-droplinked.s3.amazonaws.com/2cd66491a6f9b72875d21b0d723f5737002a186562a3fabab0eb9b3b3ce0e1ed.png"/>
         </Grid>
     );
 }

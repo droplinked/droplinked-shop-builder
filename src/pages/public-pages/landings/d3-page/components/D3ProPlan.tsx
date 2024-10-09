@@ -36,7 +36,10 @@ function Content() {
                 <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
                     Free 6 Month Pro Plan
                 </AppTypography>
-                <D3Paragraph>Unlock 6 months of the Pro Plan absolutely free! Redeem the exclusive offer today.</D3Paragraph>
+                <D3Paragraph>
+                    Unlock 6 months of the Pro Plan absolutely free!<br/>
+                    Redeem the exclusive offer today.
+                </D3Paragraph>
             </Flex>
             <D3Modal />
         </Flex>

@@ -9,7 +9,7 @@ import D3Paragraph from './common/D3Paragraph'
 export default function D3CollaborationDetails() {
     return (
         <Flex direction="column" justifyContent="flex-start">
-            <D3Heading textAlign="center">Exclusive Perk for D3 Members</D3Heading>
+            <D3Heading textAlign="center">Perks for D3 Members</D3Heading>
             <Details />
         </Flex>
     )

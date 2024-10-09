@@ -14,7 +14,7 @@ export default function D3CollaborationFeatures() {
         },
         {
             icon: <AppIcons.D3Access className='d3-icon' />,
-            title: "Access +10k Products",
+            title: "Access +10k Products Instantly",
             description: "Choose from a vast catalog to customize and sell unique merchandise on demand.",
             image: {
                 base: "https://upload-file-droplinked.s3.amazonaws.com/04efd571a6aa665289570959c00e702266d4f749c44883c8c68949eb8f77cc8e.png",
@@ -32,7 +32,7 @@ export default function D3CollaborationFeatures() {
     return (
         <Grid templateColumns={{ base: "1fr", lg: "45% 55%" }} alignItems="start" gap={4}>
             <FeatureCard {...features[0]} />
-            <SimpleGrid gap={4}>
+            <SimpleGrid height={"full"} gap={4}>
                 {features.slice(1).map((feature) => <FeatureCard key={feature.title} {...feature} />)}
             </SimpleGrid>
         </Grid>
@@ -52,8 +52,9 @@ function FeatureCard({ icon, title, description, image }) {
             borderRadius={16}
             overflow="hidden"
             gap={{ base: 4, md: 0 }}
+            height={"full"}
         >
-            <Flex direction="column" gap={{ base: 4, md: 8 }} padding={{ base: 4, md: 8 }}>
+            <Flex height={"full"} direction="column" gap={{ base: 4, md: 8 }} padding={{ base: 4, md: 8 }}>
                 {icon}
                 <Box>
                     <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">

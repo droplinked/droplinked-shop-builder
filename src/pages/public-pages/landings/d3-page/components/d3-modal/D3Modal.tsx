@@ -87,7 +87,7 @@ const D3Modal = () => {
                 right: {
                     label: "Check Wallet Eligibility",
                     onClick: () => {},
-                    rightIcon: <AppIcons.SidebarNext />,
+                    rightIcon: <AppIcons.SidebarNext stroke="#737373"/>,
                     styles: {
                         background: "#292929",
                         color: "#737373",
