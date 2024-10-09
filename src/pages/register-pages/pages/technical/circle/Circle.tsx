@@ -9,7 +9,7 @@ import CircleManage from "./CircleManage";
 
 const Circle = () => {
     const { shop, user } = useAppStore(), manageModal = useDisclosure(), navigate = useNavigate();
-    return !shop?.circleWallets?.length ? <Button onClick={() => navigate("/analytics/registration")}>Connect Merchant Wallet</Button> : (
+    return !shop?.circleWallets?.length ? <Button onClick={() => navigate("/analytics/registration")}>Activate Merchant Wallet</Button> : (
       <Box display="flex" width="full" alignItems="center" borderRadius="8px" background="#1C1C1C">
         <Image src="https://upload-file-droplinked.s3.amazonaws.com/0ed7113f38aa1fdd77fef89b65c1928a0d265d9fc8aa26d57bc7424344bd1bf8.png" width="320px" height="full" objectFit="cover" />
         <Box display="flex" padding="36px" flexDirection="column" justifyContent="center" alignItems="flex-start" gap="8px" flex="1 0 0">
