@@ -102,7 +102,7 @@ const ButtonsProductClass = ({
     },
 
     makeData: ({ state: { publish_status, commission, ...rest }, draft, productID }: ImakeData) => {
-        const state: IproductState = { ...rest, commission: commission || undefined, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
+        const state: IproductState = { ...rest, commission: commission || 0, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })
@@ -114,7 +114,7 @@ const ButtonsProductClass = ({
         const dataForm = {
             data: {
                 blockchain: product?.digitalDetail?.chain,
-                commission: product.sku[0].recordData.commision,
+                commission: product.commission,
                 quantity: product.sku[0].quantity,
             },
             shop,

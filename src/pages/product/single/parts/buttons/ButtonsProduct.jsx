@@ -8,6 +8,7 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
+import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
@@ -63,6 +64,7 @@ function ButtonsProduct() {
             })
             await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
             await updateShopData()
+            await getShopSubscriptionDataService()
             setStateHandle('hashkey', hashkey)
             closeCircleRecordModal()
             onOpen()

@@ -1,11 +1,20 @@
+import useAppStore from "lib/stores/app/appStore";
 import axiosInstance from "../axiosConfig";
 import { ShopSubscriptionData, SubscriptionCheckout, SubscriptionCryptoCheckout, SubscriptionPlan, SubscriptionPlanPaymentMethod, SubscriptionStripePaymentResult, We3TransactionData } from "./interfaces";
 
 const endpoint = "subscription"
 
-export const getSubscriptionPlansService = () => axiosInstance.get<{ data: SubscriptionPlan[] }>(endpoint).then(res => res.data)
+export const getSubscriptionPlansService = () =>
+    axiosInstance.get<{ data: SubscriptionPlan[] }>(endpoint).then(res => res.data)
 
-export const getShopSubscriptionDataService = () => axiosInstance.get<{ data: ShopSubscriptionData }>(`${endpoint}/shop`).then(res => res.data)
+export const getShopSubscriptionDataService = () => {
+    return axiosInstance.get<{ data: ShopSubscriptionData }>(`${endpoint}/shop`)
+        .then(res => {
+            const response = res.data
+            useAppStore.getState().updateShopSubscriptionData(response.data)
+            return response
+        })
+}
 
 export const getSubscriptionPaymentMethodsService = () => axiosInstance.get<{ data: SubscriptionPlanPaymentMethod[] }>(`${endpoint}/payment/chains`).then(res => res.data)
 

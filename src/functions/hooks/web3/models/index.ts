@@ -1,11 +1,6 @@
 import { Isku } from 'lib/apis/product/interfaces';
-import {
-	deployShopContractService,
-	getDeployPermission,
-} from 'lib/apis/shop/shopServices';
+import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
-// import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-// import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import { Chain, Network } from 'lib/utils/chains/dto/chains';
 import acceptModel from './module/accept/acceptModel';
@@ -115,9 +110,9 @@ const web3Model = {
 							await getNetworkProvider(
 								Chain[chain as string],
 								Network[
-									appDevelopment
-										? 'TESTNET'
-										: 'MAINNET'
+								appDevelopment
+									? 'TESTNET'
+									: 'MAINNET'
 								],
 								accountAddress
 							).deployShop(
@@ -147,9 +142,9 @@ const web3Model = {
 					deployedContract = await getNetworkProvider(
 						Chain[chain as string],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).deployShop(
@@ -274,9 +269,9 @@ const web3Model = {
 							await getNetworkProvider(
 								Chain[chain as string],
 								Network[
-									appDevelopment
-										? 'TESTNET'
-										: 'MAINNET'
+								appDevelopment
+									? 'TESTNET'
+									: 'MAINNET'
 								],
 								accountAddress
 							).deployShop(
@@ -295,9 +290,9 @@ const web3Model = {
 					deployedContract = await getNetworkProvider(
 						Chain[chain as string],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).deployShop(
@@ -416,9 +411,9 @@ const web3Model = {
 					const request = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).publishRequest(productId, shopAddress);
@@ -475,9 +470,9 @@ const web3Model = {
 					const accept = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).approveRequest(requestID, deployShopContract);

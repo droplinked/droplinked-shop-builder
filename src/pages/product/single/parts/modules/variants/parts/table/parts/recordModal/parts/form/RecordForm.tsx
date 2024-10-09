@@ -8,8 +8,8 @@ import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { Isku } from 'lib/apis/product/interfaces'
+import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
-import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useMemo, useRef } from 'react'
 import * as Yup from 'yup'
 import recordContext from '../../context'
@@ -38,7 +38,6 @@ const RecordForm = ({ close, product, sku, isRecordAllSKUs }: Props) => {
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
-    const { state: { legalUsage }, methods: { updateState: updateProductContext } } = useContext(productContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
     const { user: { wallets } } = useAppStore()
@@ -56,13 +55,10 @@ const RecordForm = ({ close, product, sku, isRecordAllSKUs }: Props) => {
                 :
                 await web3({ method: "record", params: { data: params, product, sku, imageUrl: image, shop }, chain: blockchain, wallets, stack })
 
+            await getShopSubscriptionDataService()
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", blockchain)
-            updateProductContext("legalUsage", legalUsage.map(legalUsageObj => {
-                if (legalUsageObj.key !== "drop") return legalUsageObj
-                return { ...legalUsageObj, remaining: legalUsageObj.remaining === "Unlimited" ? "Unlimited" : +legalUsageObj.remaining - 1 }
-            }))
             onClose()
         }
         catch (e) {

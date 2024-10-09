@@ -3,6 +3,8 @@ import AppIcons from 'assest/icon/Appicons'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useLegalUsage } from 'lib/stores/app/appStore'
+import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
@@ -15,10 +17,21 @@ interface Props {
 function DigitalProductNetwork({ showDetails, setDetailsVisibility }: Props) {
     const { productID, state: { publish_status, sku, digitalDetail }, methods: { dispatch, updateState } } = useContext(productContext)
     const { showToast } = useAppToast()
+    const shopLegalUsage = useLegalUsage()
+
+
+    const checkDropLegalUsage = () => {
+
+    }
 
     const handleSwitchChange = (checked: boolean) => {
         if (productID && publish_status === "PUBLISHED")
             return showToast({ type: "error", message: "You have already published this product" })
+
+        const { errorMessage, key } = productTypeLegalUsageMap["drop"]
+        const legalUsage = shopLegalUsage.find(obj => obj.key === key)
+        if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0))
+            return showToast({ message: errorMessage, type: "error" })
 
         setDetailsVisibility(checked)
         if (!checked) {
