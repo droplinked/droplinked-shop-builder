@@ -12,7 +12,7 @@ import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 const Circle = () => {
-    const { data, isLoading } = useQuery({ queryFn: getCircleWallet, queryKey: "circle_wallet" });
+    const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"] });
     const { data: withdrawData, mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
     const { shop } = useAppStore();
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,7 +36,6 @@ const Circle = () => {
                 border="none"
                 _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                 _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
-                opacity={isWithdrawing ? ".3" : "1"}
                 onClick={() => navigate("/analytics/registration")}
             >
                 Connect Circle Wallets
@@ -144,7 +143,10 @@ const Circle = () => {
                             borderRadius="8px"
                             background="#2BCFA1"
                             onClick={() => {
-                                data?.data?.data && onOpen();
+                                if (data?.data?.data) {
+                                    onOpen();
+                                    refetch()
+                                }
                             }}
                         >
                             Manage Wallet
@@ -183,9 +185,8 @@ const Circle = () => {
                         <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
                             Manage Circle Wallet
                         </AppTypography>
-                        <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                            Select one of the products to add into your invoice.
-                        </AppTypography>
+                        {/* <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
+                        </AppTypography> */}
                     </Box>
                     <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid #292929">
                         {data?.data?.data?.map((chain) => {
@@ -212,9 +213,21 @@ const Circle = () => {
                                             {chain?.tokenName}
                                         </AppTypography>
                                     </Box>
-                                    <Box display="flex" justifyContent="center" alignItems="center" gap="4px" flex="1 0 0">
-                                        <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                            {chain?.amount}
+                                    <Box display="flex" justifyContent="center" alignItems="center" gap="4px" flex="1 0 0" overflow={"hidden"}>
+                                        <AppTypography
+                                            color="#B1B1B1"
+                                            display="-webkit-box"
+                                            style={{ WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}
+                                            textOverflow="ellipsis"
+                                            height={"auto"}
+                                            maxW={"50%"}
+                                            fontFamily="Inter"
+                                            fontSize="16px"
+                                            fontStyle="normal"
+                                            fontWeight="400"
+                                            lineHeight="24px"
+                                        >
+                                            {Number(chain?.amount)}
                                         </AppTypography>
                                         <AppTypography color="#B1B1B1" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px" flex="1 0 0">
                                             {chain?.tokenSymbol}
@@ -237,10 +250,10 @@ const Circle = () => {
                                         border="none"
                                         _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                                         _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
-                                        isDisabled={isWithdrawing || !chain?.tokenId || !chain?.amount || chain?.amount === 0}
+                                        isDisabled={isWithdrawing || !chain?.tokenId || !chain?.amount || Number(chain?.amount) === 0}
                                         opacity={isWithdrawing ? ".3" : "1"}
                                         onClick={async () => {
-                                            if (chain?.tokenId && chain?.amount && chain?.amount > 0) await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount });
+                                            if (chain?.tokenId && Number(chain?.amount) && Number(chain?.amount) > 0) await withdraw({ tokenId: chain?.tokenId, amount: Number(chain?.amount) });
                                         }}
                                     >
                                         Withdraw
