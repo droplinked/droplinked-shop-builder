@@ -8,24 +8,31 @@ interface Props {
 }
 
 function WalletSelect({ onWalletChange, selectedChain }: Props) {
-    const { shop, user: { wallets: connectedWallets } } = useAppStore()
-    const targetCircleWallet = shop.circleWallets?.find((wallet) => wallet.chain === selectedChain)
-    const manuallyConnectedWalletOnSelectedChain = connectedWallets.find((wallet) => wallet.type === selectedChain)
-    const wallets = [targetCircleWallet, manuallyConnectedWalletOnSelectedChain]
+    const { shop, user: { wallets: userWallets } } = useAppStore()
+
+    // Find the wallet corresponding to the selected chain in shop's circle wallets
+    const shopCircleWalletForChain = shop.circleWallets?.find((wallet) => wallet.chain === selectedChain)
+
+    // Find the wallet manually connected by the user for the selected chain
+    const userWalletForChain = userWallets.find((wallet) => wallet.type === selectedChain)
+
+    // Combine the wallets found in both shop circle wallets and user wallets
+    const availableWallets = [shopCircleWalletForChain, userWalletForChain]
         .filter(Boolean)
         .map((wallet) => ({ walletAddress: wallet.address, circleChain: wallet.circleChain }))
 
     return (
         <Select
-            items={wallets}
+            items={availableWallets}
             labelAccessor='walletAddress'
             selectProps={{
                 width: "100%",
                 borderColor: "#292929",
                 bgColor: "#1C1C1C",
-                placeholder: "Wallet",
+                placeholder: "Select Wallet",
                 onChange: (e) => {
-                    onWalletChange(Boolean(e.target.value) ? JSON.parse(e.target.value) : "")
+                    const selectedWallet = Boolean(e.target.value) ? JSON.parse(e.target.value) : ""
+                    onWalletChange(selectedWallet)
                 }
             }}
         />
