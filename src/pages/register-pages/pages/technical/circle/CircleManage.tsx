@@ -46,7 +46,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                   </Box>
                   <Button display="flex" padding="12px 16px" justifyContent="center" alignItems="center" gap="6px" color="#2BCFA1" textAlign="center" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="16px" backgroundColor="transparent" border="none" _hover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }} _active={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }} isDisabled={isWithdrawing || !chain?.tokenId || !chain?.amount || chain?.amount === "0"} opacity={isWithdrawing ? ".3" : "1"} 
                   onClick={async () => {
-                    if (!user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
+                    if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
                       if (chain?.tokenId && chain?.amount && chain?.amount !== "0")
                         await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
                           .then(async (res) => { if (res?.data?.data === true) await refetch(); })
