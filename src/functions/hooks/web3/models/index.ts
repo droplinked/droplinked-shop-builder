@@ -318,7 +318,7 @@ const web3Model = {
 
 				for (const data of params) {
 					const prod = data;
-					const quantity: any = prod.quantity;
+					let quantity: any = prod.quantity;
 					if (!royalty) royalty = 0;
 					const beneficiaries: Beneficiary[] = [];
 					if (product.product_type === 'PRINT_ON_DEMAND') {
@@ -329,8 +329,10 @@ const web3Model = {
 						});
 					}
 					let productType = ProductType.DIGITAL; // TODO: update this
-					if (product.product_type === 'PRINT_ON_DEMAND')
+					if (product.product_type === 'PRINT_ON_DEMAND') {
 						productType = ProductType.POD;
+						quantity = '1000000';
+					}
 					products.push({
 						acceptsManageWallet: true,
 						amount: quantity,

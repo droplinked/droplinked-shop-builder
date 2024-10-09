@@ -5,6 +5,8 @@ import { ethers } from 'ethers';
 export const testnetNetworks = [Chain.POLYGON];
 
 async function getShopByteCode(chain: Chain, network: Network) {
+	// TODO: needs refactor
+	console.log({ chain, network });
 	if (network === Network.TESTNET) {
 		if (testnetNetworks.includes(chain)) {
 			let result = String(

@@ -27,6 +27,16 @@ export async function EVMDeployShop(
 	shopDescription: string,
 	modalInterface: ModalInterface
 ) {
+	console.log({
+		chain,
+		network,
+		address,
+		shopName,
+		shopAddress,
+		shopOwner,
+		shopLogo,
+		shopDescription,
+	});
 	const signer = provider.getSigner();
 	modalInterface.waiting('got the signer: ' + (await signer.getAddress()));
 	if (
@@ -49,6 +59,7 @@ export async function EVMDeployShop(
 	modalInterface.waiting('created salt');
 	let constructorArgs;
 	if (chain === Chain.REDBELLY || chain === Chain.SKALE) {
+		console.log('Skale or redbelly');
 		constructorArgs = [
 			shopName ? shopName : '',
 			shopAddress,
@@ -164,6 +175,7 @@ export async function EVMDeployShop(
 			};
 		} else {
 			modalInterface.waiting('Deploying Shop...');
+
 			const tx = await contract.deployShop(
 				byteCode + bytecodeWithArgs.split('0x')[1],
 				salt
