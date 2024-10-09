@@ -5,7 +5,6 @@ import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecor
 import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
@@ -24,7 +23,6 @@ import ButtonsProductClass from './model/ButtonProductModel'
 function ButtonsProduct() {
     const createdProductRef = useRef(null)
     const shopLegalUsage = useLegalUsage()
-    const { updateShopData } = useProfile()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isCircleRecordModalOpen, onOpen: openCircleRecordModal, onClose: closeCircleRecordModal } = useDisclosure()
     const create = useMutation((params) => productCreateServices(params))
@@ -63,7 +61,6 @@ function ButtonsProduct() {
                 stacks
             })
             await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
-            await updateShopData()
             await getShopSubscriptionDataService()
             setStateHandle('hashkey', hashkey)
             closeCircleRecordModal()

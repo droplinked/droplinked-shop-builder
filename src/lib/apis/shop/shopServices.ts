@@ -108,7 +108,7 @@ export const updateCustomReferralCodeService = (props: ICustomReferralCode) =>
 	axiosInstance.patch('shop/referral/custom/code', props);
 
 export const deployShopContractService = (props: IDeployContract) =>
-	axiosInstance.patch('shop/contract/deploy', props);
+	axiosInstance.patch('shop/contract/deploy', props).then(res => res.data);
 
 export const checkUsernameAvailabilityService = (shopName: string) =>
 	axiosInstance.post('shop/check-shop-name', { shopName });
@@ -143,6 +143,6 @@ export const postCreateCircleWallet = () => axiosInstance.post('/shop/circle/wal
 
 export const getCircleWallet = () => axiosInstance.get('/shop/circle/wallet')
 
-export const postWithdrawCircle = (props :IPostWithdrawCircleWallet) => axiosInstance.post('/shop/circle/withdraw', {...props})
+export const postWithdrawCircle = (props: IPostWithdrawCircleWallet) => axiosInstance.post('/shop/circle/withdraw', { ...props })
 
 export const deployCircleContract = (network: string) => axiosInstance.post('shop/circle/deploy', { type: network })

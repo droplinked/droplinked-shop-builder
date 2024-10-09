@@ -1,5 +1,6 @@
 import { Isku } from 'lib/apis/product/interfaces';
 import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
+import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import { Chain, Network } from 'lib/utils/chains/dto/chains';
@@ -10,6 +11,11 @@ import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
 import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
+
+const updateShopDeployedContracts = (deployedContracts) => {
+	const { shop, updateState } = useAppStore.getState()
+	updateState({ key: "shop", params: { ...shop, deployedContracts } })
+}
 
 export interface IRecordParamsData {
 	commission: any;
@@ -90,9 +96,7 @@ const web3Model = {
 				let deployedContract;
 				let targetChainContract;
 				if (shop.deployedContracts) {
-					targetChainContract = shop.deployedContracts.find(
-						(contract) => contract.type === chain
-					);
+					targetChainContract = shop.deployedContracts.find((contract) => contract.type === chain)
 					if (!targetChainContract) {
 						if (chain === 'SKALE') {
 							const req =
@@ -122,12 +126,11 @@ const web3Model = {
 								shop?.logo,
 								shop?.description
 							);
-						await deployShopContractService({
-							type: chain,
-							...deployedContract,
-						});
+						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+						updateShopDeployedContracts(data)
 					}
-				} else {
+				}
+				else {
 					if (chain === 'SKALE') {
 						const req = await getDeployPermission();
 						if (req.status !== 201) {
@@ -154,10 +157,8 @@ const web3Model = {
 						shop?.logo,
 						shop?.description
 					);
-					await deployShopContractService({
-						type: chain,
-						...deployedContract,
-					});
+					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+					updateShopDeployedContracts(data)
 				}
 				const commission = data.commission;
 				const quantity: any = data.quantity;
@@ -279,10 +280,8 @@ const web3Model = {
 								shop?.logo,
 								shop?.description
 							);
-						await deployShopContractService({
-							type: chain,
-							...deployedContract,
-						});
+						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+						updateShopDeployedContracts(data)
 					}
 				} else {
 					deployedContract = await getNetworkProvider(
@@ -300,10 +299,8 @@ const web3Model = {
 						shop?.logo,
 						shop?.description
 					);
-					await deployShopContractService({
-						type: chain,
-						...deployedContract,
-					});
+					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+					updateShopDeployedContracts(data)
 				}
 				const products: RecordProduct[] = [];
 
