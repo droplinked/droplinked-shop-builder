@@ -36,7 +36,7 @@ const DashboardLayoutSidebarGrowthHack = () => {
             </Box>
             <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
                 <AppTypography color="#FFF" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px">
-                    Growth Hacks
+                    Level Up
                 </AppTypography>
                 <AppTypography color="#FFF" fontFamily="Inter" fontSize="12px" fontStyle="normal" fontWeight="400" lineHeight="16px">
                     Take meaningful actions to drive your business forward and unlock new opportunities.
