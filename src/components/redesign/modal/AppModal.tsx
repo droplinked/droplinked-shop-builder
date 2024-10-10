@@ -10,16 +10,17 @@ interface Props extends PropsWithChildren {
 function AppModal({ modalRootProps, modalContentProps, children }: Props) {
     return (
         <Modal {...modalRootProps}>
-            <ModalOverlay bg={"rgba(0,0,0,.9)"} />
+            <ModalOverlay bg="rgba(0,0,0,.9)" />
             <ModalContent
-                display={"flex"}
-                flexDirection={"column"}
+                display="flex"
+                flexDirection="column"
                 gap={{ lg: 12, base: 8 }}
                 margin={4}
-                box-shadow={"0px 0px 20px 0px #00000033"}
+                box-shadow="0px 0px 20px 0px #00000033"
                 borderRadius={24}
                 paddingBlock={{ lg: 12, md: 8, base: 4 }}
-                bg={"#1C1C1C"}
+                bg="#1C1C1C"
+                overflow="hidden"
                 sx={{
                     "header , footer , .chakra-modal__body": {
                         paddingBlock: 0,

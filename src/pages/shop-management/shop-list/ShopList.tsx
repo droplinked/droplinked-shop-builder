@@ -1,4 +1,4 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
+import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
@@ -28,11 +28,6 @@ function ShopList() {
         <>
             <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
-                    <TabList>
-                        <Tab p={0}>
-                            <BasicButton>Active Shops</BasicButton>
-                        </Tab>
-                    </TabList>
                     <BasicButton alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
                 </Flex>
                 <TabPanels>

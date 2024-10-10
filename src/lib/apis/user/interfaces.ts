@@ -1,43 +1,43 @@
-import { IUserWalletsProps } from "lib/stores/app/appStore"
+import { IUserWalletsProps } from "lib/stores/app/appStore";
 
 export interface IforgetPasswordService {
-    email: string
+    email: string;
 }
 
 export interface IresendEmailService {
-    email: string
+    email: string;
 }
 
 export interface IchangePasswordService {
-    newPassword: string
-    accountRecoveryToken: string
+    newPassword: string;
+    accountRecoveryToken: string;
 }
 
 export interface IemailVerifyService {
-    token: string
+    token: string;
 }
 
 export interface IGetUserService {
-    access_token: string
+    access_token: string;
 }
 
 export interface IuserUpdateService {
-    firstname?: string,
-    customerShop?: string,
-    lastname?: string,
-    avatar?: string,
-    email?: string,
-    phone?: string,
-    casperAddress?: string,
-    stacksAddress?: string,
-    ETHAddress?: string,
-    skaleAddress?: string,
-    unstoppableDomainAddress?: string,
-    hederaAddress?: string,
-    unisatAddress?: string,
-    polygonAddress?: string,
-    binanceAddress?: string,
-    wallets?: Array<IUserWalletsProps>
+    firstname?: string;
+    customerShop?: string;
+    lastname?: string;
+    avatar?: string;
+    email?: string;
+    phone?: string;
+    casperAddress?: string;
+    stacksAddress?: string;
+    ETHAddress?: string;
+    skaleAddress?: string;
+    unstoppableDomainAddress?: string;
+    hederaAddress?: string;
+    unisatAddress?: string;
+    polygonAddress?: string;
+    binanceAddress?: string;
+    wallets?: Array<IUserWalletsProps>;
 }
 
 export interface IRetrieveNFTs {
@@ -47,7 +47,7 @@ export interface IRetrieveNFTs {
         address: string;
         chain: string;
         network: string;
-    }
+    };
 }
 
 export interface IInvitation {
@@ -60,4 +60,13 @@ export interface IInvitation {
 export interface IAcceptInvitation {
     invitationId: string;
     password: string;
+}
+
+export interface IPostUserVerifyD3 {
+    walletAddress: string;
+    walletType: string;
+}
+export interface ISubscribeFeature {
+    feature: string;
+    email: string;
 }

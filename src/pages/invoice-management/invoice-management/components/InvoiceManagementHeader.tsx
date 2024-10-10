@@ -19,7 +19,7 @@ function InvoiceManagementHeader() {
                 <AppTypography fontSize={16} color={"#878787"}>Create, view, and track all invoices in one place.</AppTypography>
             </Flex>
 
-            <Button onClick={() => navigate("/dashboard/invoice-management/create")}>
+            <Button onClick={() => navigate("/analytics/invoice-management/create")}>
                 <AppIcons.BlackPlus />
                 <AppTypography>New Invoice</AppTypography>
             </Button>

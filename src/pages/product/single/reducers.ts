@@ -60,7 +60,7 @@ export const productParams: IproductState = {
     launchDate: null,
     legalUsage: [],
     publish_status: "PUBLISHED",
-    commission: 0,
+    commission: 1,
     canBeAffiliated: false
 }
 

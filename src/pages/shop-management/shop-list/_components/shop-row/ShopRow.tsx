@@ -18,7 +18,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
 
     const switchToShop = async () => {
         try {
-            if (shop.selected) return navigate("/dashboard")
+            if (shop.selected) return navigate("/analytics")
             await switchShop(shop._id)
         }
         catch {

@@ -21,7 +21,7 @@ function InvoicesEmptyState() {
             />
             <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>Looks like space is empty</AppTypography>
             <AppTypography mt={2} fontSize={16} fontWeight={400} color={"white"}>Create an invoice to get started!</AppTypography>
-            <TextButton mt={4} onClick={() => navigate("/dashboard/invoice-management/create")}>
+            <TextButton mt={4} onClick={() => navigate("/analytics/invoice-management/create")}>
                 <AppIcons.BlackPlus />
                 New Invoice
             </TextButton>

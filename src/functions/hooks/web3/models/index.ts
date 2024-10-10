@@ -1,20 +1,21 @@
 import { Isku } from 'lib/apis/product/interfaces';
-import {
-	deployShopContractService,
-	getDeployPermission,
-} from 'lib/apis/shop/shopServices';
+import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
+import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
-// import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-// import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import { Chain, Network } from 'lib/utils/chains/dto/chains';
+import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
+import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
+import { droplink_wallet } from 'lib/utils/statics/adresses';
+import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
+import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
-import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
-import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
-import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
-import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
-import { droplink_wallet } from 'lib/utils/statics/adresses';
+
+const updateShopDeployedContracts = (deployedContracts) => {
+	const { shop, updateState } = useAppStore.getState()
+	updateState({ key: "shop", params: { ...shop, deployedContracts } })
+}
 
 export interface IRecordParamsData {
 	commission: any;
@@ -95,9 +96,7 @@ const web3Model = {
 				let deployedContract;
 				let targetChainContract;
 				if (shop.deployedContracts) {
-					targetChainContract = shop.deployedContracts.find(
-						(contract) => contract.type === chain
-					);
+					targetChainContract = shop.deployedContracts.find((contract) => contract.type === chain)
 					if (!targetChainContract) {
 						if (chain === 'SKALE') {
 							const req =
@@ -115,9 +114,9 @@ const web3Model = {
 							await getNetworkProvider(
 								Chain[chain as string],
 								Network[
-									appDevelopment
-										? 'TESTNET'
-										: 'MAINNET'
+								appDevelopment
+									? 'TESTNET'
+									: 'MAINNET'
 								],
 								accountAddress
 							).deployShop(
@@ -127,12 +126,11 @@ const web3Model = {
 								shop?.logo,
 								shop?.description
 							);
-						await deployShopContractService({
-							type: chain,
-							...deployedContract,
-						});
+						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+						updateShopDeployedContracts(data)
 					}
-				} else {
+				}
+				else {
 					if (chain === 'SKALE') {
 						const req = await getDeployPermission();
 						if (req.status !== 201) {
@@ -147,9 +145,9 @@ const web3Model = {
 					deployedContract = await getNetworkProvider(
 						Chain[chain as string],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).deployShop(
@@ -159,10 +157,8 @@ const web3Model = {
 						shop?.logo,
 						shop?.description
 					);
-					await deployShopContractService({
-						type: chain,
-						...deployedContract,
-					});
+					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+					updateShopDeployedContracts(data)
 				}
 				const commission = data.commission;
 				const quantity: any = data.quantity;
@@ -232,11 +228,9 @@ const web3Model = {
 						accountAddress,
 						nftContract,
 						shopAddress,
-						products,
-					});
-					if (res)
-						dataDeploy.deployHash =
-							res.transactionHash;
+						products
+					})
+					if (res) dataDeploy.deployHash = res.transactionHash;
 				}
 
 				await recordModel.deploy(dataDeploy);
@@ -274,9 +268,9 @@ const web3Model = {
 							await getNetworkProvider(
 								Chain[chain as string],
 								Network[
-									appDevelopment
-										? 'TESTNET'
-										: 'MAINNET'
+								appDevelopment
+									? 'TESTNET'
+									: 'MAINNET'
 								],
 								accountAddress
 							).deployShop(
@@ -286,18 +280,16 @@ const web3Model = {
 								shop?.logo,
 								shop?.description
 							);
-						await deployShopContractService({
-							type: chain,
-							...deployedContract,
-						});
+						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+						updateShopDeployedContracts(data)
 					}
 				} else {
 					deployedContract = await getNetworkProvider(
 						Chain[chain as string],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).deployShop(
@@ -307,10 +299,8 @@ const web3Model = {
 						shop?.logo,
 						shop?.description
 					);
-					await deployShopContractService({
-						type: chain,
-						...deployedContract,
-					});
+					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
+					updateShopDeployedContracts(data)
 				}
 				const products: RecordProduct[] = [];
 
@@ -325,7 +315,7 @@ const web3Model = {
 
 				for (const data of params) {
 					const prod = data;
-					const quantity: any = prod.quantity;
+					let quantity: any = prod.quantity;
 					if (!royalty) royalty = 0;
 					const beneficiaries: Beneficiary[] = [];
 					if (product.product_type === 'PRINT_ON_DEMAND') {
@@ -336,8 +326,10 @@ const web3Model = {
 						});
 					}
 					let productType = ProductType.DIGITAL; // TODO: update this
-					if (product.product_type === 'PRINT_ON_DEMAND')
+					if (product.product_type === 'PRINT_ON_DEMAND') {
 						productType = ProductType.POD;
+						quantity = '1000000';
+					}
 					products.push({
 						acceptsManageWallet: true,
 						amount: quantity,
@@ -416,9 +408,9 @@ const web3Model = {
 					const request = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).publishRequest(productId, shopAddress);
@@ -475,9 +467,9 @@ const web3Model = {
 					const accept = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						],
 						accountAddress
 					).approveRequest(requestID, deployShopContract);

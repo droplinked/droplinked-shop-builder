@@ -22,6 +22,6 @@ export class statusesModule {
 
     urlRegistration = () => {
         const user = this.user
-        return user?.status === "NEW" && "url-registration"
+        return user?.status === "NEW" && "registration"
     }
 }

@@ -52,7 +52,7 @@ function HomePage() {
     </>
   ), [])
 
-  return user && shop ? <Navigate to="/dashboard" /> : (
+  return user && shop ? <Navigate to="/analytics" /> : (
     <>
       <HeaderMain />
       <ParallaxProvider>

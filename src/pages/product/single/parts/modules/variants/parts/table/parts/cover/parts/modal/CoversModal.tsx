@@ -60,7 +60,7 @@ function CoversModal({ close, open, image, index }: IProps) {
                     <BasicButton onClick={save}>Save</BasicButton>
                 </Flex>
             </VStack>
-        </AppModal >
+        </AppModal>
     )
 }
 

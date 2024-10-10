@@ -1,11 +1,17 @@
 import hashkeyModel from 'components/common/hashKey/model';
 import { recordBatchCasperService, recordCasperService } from 'lib/apis/sku/services';
 import { appDevelopment } from 'lib/utils/app/variable';
-import { ChainNotImplementedException, getNetworkProvider } from 'lib/utils/chains/chainProvider';
+import {
+	ChainNotImplementedException,
+	getNetworkProvider,
+} from 'lib/utils/chains/chainProvider';
 import { Chain, Network } from 'lib/utils/chains/dto/chains';
 import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
 import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
-import { SkaleUsdcAddressForMainnet, SkaleUsdcAddressForTestnet } from 'lib/utils/chains/providers/evm/evmConstants';
+import {
+	SkaleUsdcAddressForMainnet,
+	SkaleUsdcAddressForTestnet,
+} from 'lib/utils/chains/providers/evm/evmConstants';
 import { droplink_wallet } from 'lib/utils/statics/adresses';
 import { IRecordParamsData } from '../..';
 
@@ -92,6 +98,7 @@ const recordModel = {
 						},
 					];
 				const skuId = sku['_id']; // TODO: check here
+				console.log(quantity, sku.quantity);
 				record = await provider.recordProduct(
 					sku,
 					product.title,

@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"resolveJsonModule": true,
 		"baseUrl": "src",
+		"paths": {"test-utils": ["./test-utils"]},
 		"jsx": "react"
 	},
 	"include": ["src"]

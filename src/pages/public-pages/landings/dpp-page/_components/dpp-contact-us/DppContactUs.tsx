@@ -52,7 +52,7 @@ const DppContactUs = () => {
         onSubmit={onSubmit}
       >
         {({ values, handleChange, handleSubmit, errors, touched }) => (
-          <Form onSubmit={handleSubmit} style={{width: "60%"}}>
+          <Form onSubmit={handleSubmit} style={{ width: "60%" }}>
             <Flex flexDirection={"column"} alignItems={"center"} justifyContent={"center"} gap={"24px"} width={"100%"}>
               <Flex flexDirection={{ base: "column", md: "row" }} gap="16px" width="100%">
                 <Box width="100%">
