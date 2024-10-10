@@ -7,7 +7,7 @@ function AboutUs() {
 
     const data = [
         {
-            title: "On- Chain Registration",
+            title: "Onchain Registration",
             description: "Streamlining cross-chain goods registration with customizable parameters and rules on your chosen blockchain.",
             borderColor: "#944BFB"
         },
