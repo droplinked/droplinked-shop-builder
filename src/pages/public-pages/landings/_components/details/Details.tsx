@@ -15,7 +15,7 @@ function Details({ title, description, children }: Props) {
         >
             <Flex direction="column" alignItems="center" gap={{ base: 2, lg: 4 }} sx={{ textAlign: "center" }}>
                 <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{title}</SpectrumHeader>
-                <AppTypography fontSize={{ base: 16, xl: 18 }} color="white">{description}</AppTypography>
+                <AppTypography whiteSpace="pre-line" fontSize={{ base: 16, xl: 18 }} color="white">{description}</AppTypography>
             </Flex>
             {children}
         </Flex>
