@@ -351,6 +351,7 @@ export async function EVMBatchRecord(
 	modalInterface: ModalInterface,
 	products: RecordProduct[]
 ): Promise<RecordData> {
+	console.log({ chain, address, shopAddress, nftContract, products });
 	const signer = provider.getSigner();
 	if (
 		(await signer.getAddress()).toLocaleLowerCase() !==
