@@ -12,13 +12,13 @@ function AffiliatePage() {
             CTAButtonText: "Get Started"
         },
         detailsSection: {
-            title: "Transparent Attribution From Point of Production to Point of Sale",
+            title: "Transparent Attribution from Point of Production to Point of Sale",
             description: "Earn affiliate commissions effortlessly with smart contracts, eliminating the need for trust between partners.",
             detailItems: [
                 {
                     icon: <AppIcons.LandingPageCode />,
                     title: "Automated Distributions",
-                    description: "Earnings and commissions are processed and distributed automatically, eliminating the legacy processes and manual steps typically used on merchant networks today. "
+                    description: "Earnings and commissions are processed and distributed automatically, eliminating the legacy processes and manual steps typically used on merchant networks today."
                 },
                 {
                     icon: <AppIcons.LandingPageCreditCard />,
@@ -44,7 +44,7 @@ function AffiliatePage() {
             },
             {
                 image: "https://upload-file-droplinked.s3.amazonaws.com/74a595f41e38b4da60d2e46c82c20460d964949d3f13cf01c30a41ac99f193f9.png",
-                title: "Co-Selling Benefits",
+                title: "Co-selling Benefits",
                 description: [
                     { boldText: "Easily discover and promote", rest: "products based on personalized offers made by merchants" },
                     { boldText: "Create customizable storefronts", rest: "or product embeddable tiles to showcase and sell products more effectively on any property or social channel" },
@@ -54,7 +54,7 @@ function AffiliatePage() {
             {
                 image: "https://upload-file-droplinked.s3.amazonaws.com/5ce553d6ee2d9024d844f08f0779dcb874d506bb9aeabd38ef6b55e43bb9d5eb.png",
                 title: "Easy Setup",
-                description: "Begin your affiliate marketing journey in no time without any coding needed. Simply customize your preferred settings on your account and let the system do the rest"
+                description: "Begin your affiliate marketing journey in no time without any coding needed. Simply customize your preferred settings on your account and let the system do the rest."
             }
         ],
         featureGroups: [
@@ -67,7 +67,7 @@ function AffiliatePage() {
                 ]
             },
             {
-                title: "Co-Selling Features",
+                title: "Co-selling Features",
                 features: [
                     { title: "Getting Started", description: "Create a storefront and explore the affiliate panel to find a variety of brand products to instantly add to a shop or product tile" },
                     { title: "Promote & Earn", description: "Select products, submit approval requests and track the status of requests and sales on the go" },
