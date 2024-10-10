@@ -7,7 +7,7 @@ import D3Paragraph from './common/D3Paragraph'
 
 export default function D3Community() {
     return (
-        <Flex direction="column" justifyContent={"flex-start"}>
+        <Flex direction="column" justifyContent="flex-start">
             <D3Heading textAlign="center">Join Your Community Today</D3Heading>
             <Details />
         </Flex>

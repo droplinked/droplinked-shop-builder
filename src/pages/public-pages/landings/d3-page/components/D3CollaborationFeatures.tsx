@@ -47,14 +47,14 @@ function FeatureCard({ icon, title, description, image }) {
 
     return (
         <Flex
+            height="100%"
             direction="column"
             border="1px solid #222"
             borderRadius={16}
             overflow="hidden"
             gap={{ base: 4, md: 0 }}
-            height={"full"}
         >
-            <Flex height={"full"} direction="column" gap={{ base: 4, md: 8 }} padding={{ base: 4, md: 8 }}>
+            <Flex height="100%" direction="column" gap={{ base: 4, md: 8 }} padding={{ base: 4, md: 8 }}>
                 {icon}
                 <Box>
                     <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
