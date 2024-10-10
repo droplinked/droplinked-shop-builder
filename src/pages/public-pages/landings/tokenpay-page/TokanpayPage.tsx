@@ -29,7 +29,7 @@ function TokanpayPage() {
 
             <TokenpayFeatures />
 
-            <Image src="assets/images/tokenpayPage/token-pay-gallery.png" />
+            <Image src="https://upload-file-droplinked.s3.amazonaws.com/f69bc2b8d23993287248a4d13ce91596c34c6d4b910471fdf81bb676e0c5d3e5.png" />
 
             <Details
                 title="Empower Communities"
