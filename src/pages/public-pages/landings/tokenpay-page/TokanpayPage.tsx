@@ -15,7 +15,7 @@ function TokanpayPage() {
     return (
         <Layout>
             <AboveTheFoldSection
-                image="assets/images/tokenpayPage/token-pay-bear.png"
+                image="https://upload-file-droplinked.s3.amazonaws.com/265336fb6702384264635267b4d490a66e93627ec6c646aaa9769e740229169c.png"
                 title="Token Powered Commerce Driven by Your Community"
                 description="Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities."
                 CTAButtonText="Get Started"
