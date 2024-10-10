@@ -284,7 +284,7 @@ export const createSubscriptionStatusConstants = (actions: { STARTER: () => void
 
 export const growth_hack_constants = [
     {
-        title: "Create your first product",
+        title: "Create first product",
         objectField: "createFirstProduct",
         subSections: [
             {
@@ -346,7 +346,7 @@ export const growth_hack_constants = [
         ],
     },
     {
-        title: "Customize your shop",
+        title: "Customize shopfront",
         objectField: "customizeShop",
         subSections: [
             {
@@ -369,7 +369,7 @@ export const growth_hack_constants = [
         ],
     },
     {
-        title: "Join the affiliate market",
+        title: "Join affiliate market",
         objectField: "joinAffiliateMarket",
         subSections: [
             {
@@ -392,7 +392,7 @@ export const growth_hack_constants = [
         ],
     },
     {
-        title: "Sell your first product",
+        title: "Sell first product",
         objectField: "sellFirstProduct",
         subSections: [
             {
