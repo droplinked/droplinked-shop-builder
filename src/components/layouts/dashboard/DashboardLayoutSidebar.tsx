@@ -6,12 +6,13 @@ import AppTypography from "components/common/typography/AppTypography";
 import { Link } from "react-router-dom";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionPanel, AppAccordionChevron } from "components/redesign/accordion/AppAccordion";
+import DashboardLayoutSidebarGrowthHack from "./DashboardLayoutSidebarGrowthHack";
 
 const DashboardLayoutSidebar = () => {
     return (
         <Flex width="288px" height="100vh" flexDirection="column" alignItems="flex-start" position="sticky" top={0}>
             <Box padding="28px 16px 24px 16px">
-                <Link to={"/dashboard"}>
+                <Link to={"/analytics"}>
                     <Box display="flex" width="257px" alignItems="center" gap="24px" cursor={"pointer"}>
                         <AppIcons.SidebarDroplinked width="32px" height="32px" />
                         <Image src="https://upload-file-droplinked.s3.amazonaws.com/b9214ede097ce79176231d6eff27af5ed52081ad4bd33e35cc4e42e7e78ba6cf.png" width="127px" height="24px" flexShrink="0" />
@@ -44,6 +45,7 @@ const DashboardLayoutSidebar = () => {
                         ))}
                     </Box>
                 ))}
+                <DashboardLayoutSidebarGrowthHack />
             </AppAccordion>
         </Flex>
     );

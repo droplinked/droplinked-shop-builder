@@ -52,16 +52,16 @@ function ProductGroups() {
     return (
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
-                <AppTypography fontSize='16px'>Sales based Categories</AppTypography>
-                {data?.data?.data?.length > 0 ? 
+                <AppTypography fontSize='16px'>Sales Categories</AppTypography>
+                {data?.data?.data?.length > 0 ?
                     <Flex alignItems="center" gap="10px" flexWrap="wrap">
                         <MiniChartsFlags caption='Digital Goods' color='yellow' />
                         <MiniChartsFlags caption='Production on Demand Items' color='gold' />
                         <MiniChartsFlags caption='Physical Products' color='brown' />
-                    </Flex> 
-                    : 
+                    </Flex>
+                    :
                     <Flex alignItems="center" justifyContent={'flex-start'} width={"100%"}>
-                        <DashboardEmpty minHeight={"20px"}  />
+                        <DashboardEmpty minHeight={"20px"} />
                     </Flex>
                 }
             </VStack>

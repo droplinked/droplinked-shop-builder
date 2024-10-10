@@ -1,17 +1,18 @@
 import React from 'react'
-import AboveTheFoldSection from '../parts/above-the-fold/AboveTheFoldSection'
-import CustomizationDetails from '../parts/customization-details/CustomizationDetails'
-import Features from '../parts/features/Features'
-import Layout from '../parts/layout/Layout'
-import PaymentDetails from '../parts/payment-details/PaymentDetails'
-import StarryBorder from '../parts/starry-border/StarryBorder'
-import TabularContent from './parts/tabular-content/TabularContent'
+import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
+import FrontModularity from '../_components/front-modularity/FrontModularity'
+import Features from '../_components/features/Features'
+import Layout from '../_components/layout/Layout'
+import PaymentDetails from '../_components/payment-details/PaymentDetails'
+import StarryBorder from '../_components/starry-border/StarryBorder'
+import TabularContent from './TabularContent'
 import { useDisclosure } from '@chakra-ui/react'
 import AuthModal from 'components/modals/auth-modal/AuthModal'
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 
 function PhysicalProductPage() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Layout>
             <AboveTheFoldSection
@@ -21,10 +22,15 @@ function PhysicalProductPage() {
                 CTAButtonText="Get Started"
                 CTAButtonFunction={onOpen}
             />
-            <CustomizationDetails />
+
+            <FrontModularity />
+
             <PaymentDetails />
+
             <TabularContent />
+
             <Features />
+
             <StarryBorder
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'

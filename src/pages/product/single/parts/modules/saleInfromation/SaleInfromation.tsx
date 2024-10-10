@@ -25,14 +25,10 @@ function SaleInfromation() {
             "quantity": 0,
             "recorded_quantity": 0,
             "recordData": {
-                status: "NOT_RECORDED",
-                commision: 0
+                status: "NOT_RECORDED"
             },
-            "deploy_hash": '',
+            "deploy_hash": ''
         }
-
-
-        if (productID && !sku[0].recordData.commision) data = { ...sku[0], commision: 20 }
 
         updateState('sku', [data])
     }, [productID, sku])

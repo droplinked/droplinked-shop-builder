@@ -2,8 +2,6 @@ import { VStack } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import { productContext } from '../../context'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
-import CommissionDigital from '../modules/digitalProductAffiliate/CommissionDigital'
-import DigitalProductRoyalty from '../modules/digitalProductRoyalty/DigitalProductRoyalty'
 import NftImage from '../modules/nftImage/NftImage'
 import SaleInfromation from '../modules/saleInfromation/SaleInfromation'
 

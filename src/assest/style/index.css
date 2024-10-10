@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: "Avenir Next";
+    font-family: "Inter";
     font-weight: normal;
     font-style: normal;
 }
@@ -11,7 +11,11 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Avenir Next" !important;
+    font-family: "Poppins" !important;
+}
+
+p, button, input, a, li{
+    font-family: "Inter" !important;
 }
 
 :root {

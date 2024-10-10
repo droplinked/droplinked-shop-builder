@@ -1,9 +1,9 @@
-import React from "react";
 import { Flex, Image } from "@chakra-ui/react";
+import React from "react";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
-import CustomHeading from "pages/public-pages/landings/parts/heading/Heading";
+import SpectrumHeader from "pages/public-pages/landings/_components/spectrum-header/SpectrumHeader";
 
 const dppWithBlcBenefits = [
   {
@@ -26,15 +26,15 @@ const dppWithBlcBenefits = [
 const DppBlockchain = () => {
   return (
     <Flex alignItems={"center"} flexDirection={"column"} gap={"40px"}>
-      <CustomHeading title="Enhancing DPPs with Blockchain" textAlign={"center"} />
+      <SpectrumHeader>Enhancing DPPs with Blockchain</SpectrumHeader>
       <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>
         Using blockchain technology to implement Digital Product Passports (DPPs) as Non-Fungible Tokens (NFTs) can significantly enhance their value in terms of security, transparency, and traceability.
       </AppTypography>
 
       {/* cards */}
-      <Flex justifyContent={"center"} alignItems={"flex-start"} flexDirection={{base: "column", lg: "row"}} gap={"42px"} width={"100%"}>
+      <Flex justifyContent={"center"} alignItems={"flex-start"} flexDirection={{ base: "column", lg: "row" }} gap={"42px"} width={"100%"}>
         {dppWithBlcBenefits.map((benefit, index) => (
-          <Flex key={index} alignItems={"center"} justifyContent={"center"} flexDirection={"column"} padding={"9px 0"} width={"100%"} maxWidth={{base: "100%", lg: "384px"}} height={"455px"} borderTop={"2px solid #2ec99e"} borderRadius={"25px"} bg={"linear-gradient(180deg, rgba(46, 201, 158, 0.10) 0%, rgba(46, 201, 158, 0.00) 50%)"}>
+          <Flex key={index} alignItems={"center"} justifyContent={"center"} flexDirection={"column"} padding={"9px 0"} width={"100%"} maxWidth={{ base: "100%", lg: "384px" }} height={"455px"} borderTop={"2px solid #2ec99e"} borderRadius={"25px"} bg={"linear-gradient(180deg, rgba(46, 201, 158, 0.10) 0%, rgba(46, 201, 158, 0.00) 50%)"}>
             <Flex flexDirection={"column"} alignItems={"center"} gap={"10px"}>
               <AppTypography fontSize={"36px"} fontWeight={700} color={"#2BCFA1"}>{benefit.title}</AppTypography>
               {benefit.benefits.map((item, idx) => (

@@ -5,6 +5,7 @@ import {
 	getFundsProxy,
 	getGasPrice,
 	getShopByteCode,
+	testnetNetworks,
 } from '../../dto/chainConstants';
 import { deployerABI } from '../../dto/chainABI';
 import { chainLink } from '../../dto/chainLinkAddresses';
@@ -26,6 +27,16 @@ export async function EVMDeployShop(
 	shopDescription: string,
 	modalInterface: ModalInterface
 ) {
+	console.log({
+		chain,
+		network,
+		address,
+		shopName,
+		shopAddress,
+		shopOwner,
+		shopLogo,
+		shopDescription,
+	});
 	const signer = provider.getSigner();
 	modalInterface.waiting('got the signer: ' + (await signer.getAddress()));
 	if (
@@ -38,7 +49,7 @@ export async function EVMDeployShop(
 	modalInterface.waiting('Getting ready to deploy...');
 	const contract = new ethers.Contract(deployerAddress, deployerABI, signer);
 	modalInterface.waiting('got deployer contract');
-	const byteCode = await getShopByteCode(chain);
+	const byteCode = await getShopByteCode(chain, network);
 	modalInterface.waiting('got bytecode');
 	const salt =
 		'0x' +
@@ -48,6 +59,7 @@ export async function EVMDeployShop(
 	modalInterface.waiting('created salt');
 	let constructorArgs;
 	if (chain === Chain.REDBELLY || chain === Chain.SKALE) {
+		console.log('Skale or redbelly');
 		constructorArgs = [
 			shopName ? shopName : '',
 			shopAddress,
@@ -55,6 +67,16 @@ export async function EVMDeployShop(
 			shopLogo ? shopLogo : '',
 			shopDescription ? shopDescription : '',
 			deployerAddress,
+		];
+	} else if (testnetNetworks.includes(chain) && network === Network.TESTNET) {
+		constructorArgs = [
+			shopName ? shopName : '',
+			shopAddress,
+			shopOwner,
+			shopLogo ? shopLogo : '',
+			shopDescription ? shopDescription : '',
+			deployerAddress,
+			chainLink[chain][network],
 		];
 	} else
 		constructorArgs = [
@@ -69,12 +91,25 @@ export async function EVMDeployShop(
 		];
 	modalInterface.waiting('created constructor args');
 	let bytecodeWithArgs;
-	if (chain === Chain.REDBELLY || chain === Chain.SKALE)
+	if (chain === Chain.REDBELLY || chain === Chain.SKALE) {
 		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
 			['string', 'string', 'address', 'string', 'string', 'address'],
 			constructorArgs
 		);
-	else
+	} else if (testnetNetworks.includes(chain) && network === Network.TESTNET) {
+		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
+			[
+				'string',
+				'string',
+				'address',
+				'string',
+				'string',
+				'address',
+				'address',
+			],
+			constructorArgs
+		);
+	} else {
 		bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(
 			[
 				'string',
@@ -88,6 +123,7 @@ export async function EVMDeployShop(
 			],
 			constructorArgs
 		);
+	}
 	modalInterface.waiting('Created bytecodeWithArgs');
 	try {
 		if (chain !== Chain.REDBELLY && chain !== Chain.SKALE) {
@@ -139,6 +175,7 @@ export async function EVMDeployShop(
 			};
 		} else {
 			modalInterface.waiting('Deploying Shop...');
+
 			const tx = await contract.deployShop(
 				byteCode + bytecodeWithArgs.split('0x')[1],
 				salt

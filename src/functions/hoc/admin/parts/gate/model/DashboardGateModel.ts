@@ -18,7 +18,7 @@ const DashboardGateModel = ({
     },
 
     registerGate: ({ to, redirect, pathname }: IregisterGate) => {
-        if (pathname.includes("url-registration")) return false
+        if (pathname.includes("registration")) return false
         const checkPath = pathname.includes(to) // check current path
         if (!checkPath) redirect(to)
     }

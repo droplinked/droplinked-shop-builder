@@ -44,7 +44,7 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
                 const { logo, name, _id } = info?.row?.original;
                 if (name && _id)
                     return (
-                        <Link to={`/dashboard/affiliate/stores/${_id}`}>
+                        <Link to={`/analytics/affiliate/stores/${_id}`}>
                             <Flex alignItems={"center"} gap={"16px"} cursor={"pointer"}>
                                 {logo && logo !== "" ? (
                                     <AppImage rounded={"full"} width={"56px"} height={"56px"} src={logo} />

@@ -49,6 +49,23 @@ export async function EVMrecordMerch(
 	skuID: string,
 	modalInterface: ModalInterface
 ) {
+	console.log({
+		sku_properties,
+		product_title,
+		description,
+		image_url,
+		price,
+		amount,
+		commission,
+		type,
+		beneficiaries,
+		acceptsManageWallet,
+		royalty,
+		nftContract,
+		shopAddress,
+		currencyAddress,
+		skuID,
+	});
 	const signer = provider.getSigner();
 
 	if (
@@ -113,6 +130,7 @@ export async function EVMrecordMerch(
 				_beneficiaries: beneficiaries,
 				_receiveUSDC: false,
 			};
+			console.log({ recordData });
 			await contract.callStatic.mintAndRegister(recordData);
 			modalInterface.waiting('callStatic');
 			const gasEstimation = (

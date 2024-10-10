@@ -3,7 +3,6 @@ import { property_to_id } from "lib/utils/statics/types";
 import propertyFactor from "./modules/property";
 
 const ProductSingleModel = ({
-
     // Sync data for IproductState interface
     refactorData: (data: any): IproductState => {
         const skuIDs: Array<any> = data?.skuIDs
@@ -75,9 +74,8 @@ const ProductSingleModel = ({
             launchDate: data?.launchDate,
             legalUsage: data?.legalUsage,
             publish_status: data?.publish_status,
-            commission: data?.commission,
+            commission: data?.commission || 1,
             canBeAffiliated: data?.canBeAffiliated
-            // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },
 
@@ -88,7 +86,6 @@ const ProductSingleModel = ({
                 return "PRINT_ON_DEMAND"
             case "digital":
                 return "DIGITAL"
-
             default:
                 return "NORMAL"
         }

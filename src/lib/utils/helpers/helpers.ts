@@ -50,9 +50,9 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
             localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
             return { href: "/email-confirmation", dashboard: false };
         case "VERIFIED":
-            return { href: "url-registration", dashboard: true };
+            return { href: "registration", dashboard: true };
         case "PROFILE_COMPLETED":
-            return { href: "url-registration", dashboard: true };
+            return { href: "registration", dashboard: true };
         case "SHOP_INFO_COMPLETED":
             return { href: "", dashboard: true };
         case "IMS_TYPE_COMPLETED":

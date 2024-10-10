@@ -1,10 +1,9 @@
-import React from "react";
 import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
+import React from "react";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
-import CustomHeading from "pages/public-pages/landings/parts/heading/Heading";
-
+import SpectrumHeader from "pages/public-pages/landings/_components/spectrum-header/SpectrumHeader";
 
 const itemsData = [
   {
@@ -51,12 +50,12 @@ const DppBenefits = () => {
   return (
     <Flex flexDirection={"column"} gap={"42px"}>
       <Flex alignItems={"center"} flexDirection={"column"} gap={"36px"}>
-        <CustomHeading title="Digital Product Passport Benefits" textAlign={"center"} />
+        <SpectrumHeader>Digital Product Passport Benefits</SpectrumHeader>
         <AppTypography fontSize={"18px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>
           Our Digital Product Passport solution is designed to bring unparalleled transparency, efficiency, and sustainability to your product management. Embrace a greener, smarter way to track, manage, and report every phase of your product's journey.
         </AppTypography>
       </Flex>
-      
+
       <Flex width={"100%"} marginBottom={isLargerThan1250 ? "227px" : "0px"}>
         {isLargerThan1250 ?
           <Flex position={"relative"} flexDirection={"column"} marginLeft={"50px"} width={"50%"}>
