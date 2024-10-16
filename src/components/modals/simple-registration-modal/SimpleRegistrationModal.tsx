@@ -1,101 +1,97 @@
-import { Box, Flex, Heading, Spinner } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
-import BasicButton from "components/common/BasicButton/BasicButton";
-import AppModal from "components/common/modal/AppModal";
-import AppTypography from "components/common/typography/AppTypography";
-import useDebounce from "functions/hooks/debounce/useDebounce";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
-import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from "lib/apis/shop/shopServices";
-import useAppStore from "lib/stores/app/appStore";
-import { appDevelopment } from "lib/utils/app/variable";
-import useShopSwitcher from "pages/shop-management/hooks/useShopSwitch";
-import React, { useEffect, useState } from "react";
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
-import styles from "./styles.module.scss";
+import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
+import AppIcons from "assest/icon/Appicons"
+import BasicButton from "components/common/BasicButton/BasicButton"
+import AppModal from "components/common/modal/AppModal"
+import AppTypography from "components/common/typography/AppTypography"
+import useDebounce from "functions/hooks/debounce/useDebounce"
+import useAppToast from "functions/hooks/toast/useToast"
+import { useProfile } from "functions/hooks/useProfile/useProfile"
+import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from "lib/apis/shop/shopServices"
+import useAppStore from "lib/stores/app/appStore"
+import { appDevelopment } from "lib/utils/app/variable"
+import useShopSwitcher from "pages/shop-management/hooks/useShopSwitch"
+import React, { useEffect, useState } from "react"
+import { useMutation } from "react-query"
+import styles from "./styles.module.scss"
 
 type CommonProps = {
-    isOpen: boolean;
-    toggleModal: () => void;
-};
+    isOpen: boolean
+    onSuccess: () => void
+}
 
 type RegisterShopNameProps = CommonProps & {
-    mode: "REGISTER_SHOP_NAME";
-};
+    mode: "REGISTER_SHOP_NAME"
+}
 
 type CreateExtraShopProps = CommonProps & {
-    mode: "CREATE_EXTRA_SHOP";
-    close: () => void;
-};
+    mode: "CREATE_EXTRA_SHOP"
+    close: () => void
+}
 
-type Props = RegisterShopNameProps | CreateExtraShopProps;
+type Props = RegisterShopNameProps | CreateExtraShopProps
 
 function SimpleRegistrationModal(props: Props) {
-    const { isOpen, toggleModal, mode } = props;
-    const { shop } = useProfile();
-    const { updateState } = useAppStore();
-    const [username, setUsername] = useState("");
-    const debouncedUsername = useDebounce(username, 1000);
-    const [isUsernameAvailable, setUsernameAvailability] = useState<boolean | null>(null);
-    const { mutateAsync: checkUsername, isLoading: isCheckingUsername } = useMutation(checkUsernameAvailabilityService);
-    const { mutateAsync: updateUsername, isLoading: isUpdatingUsername } = useMutation(updateShopNameService);
-    const { mutateAsync: createExtraShop, isLoading: isCreatingExtraShop } = useMutation(createExtraShopForCurrentUserService);
-    const { isLoading, mutateAsync: switchShop } = useShopSwitcher(true);
-    const { showToast } = useAppToast();
-    const navigate = useNavigate();
-    const isCreatingShop = mode === "CREATE_EXTRA_SHOP";
+    const { isOpen, onSuccess, mode } = props
+    const { shop } = useProfile()
+    const { updateState } = useAppStore()
+    const [username, setUsername] = useState("")
+    const debouncedUsername = useDebounce(username, 1000)
+    const [isUsernameAvailable, setUsernameAvailability] = useState<boolean | null>(null)
+    const { mutateAsync: checkUsername, isLoading: isCheckingUsername } = useMutation(checkUsernameAvailabilityService)
+    const { mutateAsync: updateUsername, isLoading: isUpdatingUsername } = useMutation(updateShopNameService)
+    const { mutateAsync: createExtraShop, isLoading: isCreatingExtraShop } = useMutation(createExtraShopForCurrentUserService)
+    const { isLoading, mutateAsync: switchShop } = useShopSwitcher(true)
+    const { showToast } = useAppToast()
+    const isCreatingShop = mode === "CREATE_EXTRA_SHOP"
 
     const handleInputChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-        if (!/\s/.test(value)) setUsername(value);
-        if (!value) setUsernameAvailability(null);
-    };
+        if (!/\s/.test(value)) setUsername(value)
+        if (!value) setUsernameAvailability(null)
+    }
 
     const renderUsernameAvailabilityIcon = () => {
-        if (isCheckingUsername) return <Spinner />;
-        else if (isUsernameAvailable === false) return <AppIcons.RedCircleCross />;
-        else if (isUsernameAvailable) return <AppIcons.CircleCheck />;
-        return null;
-    };
+        if (isCheckingUsername) return <Spinner />
+        else if (isUsernameAvailable === false) return <AppIcons.RedCircleCross />
+        else if (isUsernameAvailable) return <AppIcons.CircleCheck />
+        return null
+    }
 
     const handleUsernameRegistration = async () => {
         try {
-            if (!isUsernameAvailable) return;
-            const { data } = await updateUsername({ id: shop._id, shopName: username });
-            updateState({ key: "user", params: data.data.user });
-            updateState({ key: "shop", params: data.data.shop });
-            toggleModal();
-        } catch (error) {
-            showToast({ type: "error", message: "Oops! Something went wrong." });
+            if (!isUsernameAvailable) return
+            const { data } = await updateUsername({ id: shop._id, shopName: username })
+            updateState({ key: "user", params: data.data.user })
+            updateState({ key: "shop", params: data.data.shop })
+            onSuccess()
         }
-    };
+        catch (error) {
+            showToast({ type: "error", message: "Oops! Something went wrong." })
+        }
+    }
 
     const handleCreateExtraShop = async () => {
         try {
-            const {
-                data: { _id },
-            } = await createExtraShop(username);
-            await switchShop(_id);
-            toggleModal()
+            const { data: { _id } } = await createExtraShop(username)
+            await switchShop(_id)
+            onSuccess()
         } catch (error) {
-            showToast({ type: "error", message: "Oops! Something went wrong." });
+            showToast({ type: "error", message: "Oops! Something went wrong." })
         }
-    };
+    }
 
     useEffect(() => {
         (async () => {
             try {
-                if (!debouncedUsername) return;
-                const { data } = await checkUsername(username);
-                setUsernameAvailability(data.data);
-            } catch (e) {
-                const {
-                    response: { data },
-                } = e;
-                showToast({ type: "error", message: data?.data?.message });
+                if (!debouncedUsername) return
+                const { data } = await checkUsername(username)
+                setUsernameAvailability(data.data)
             }
-        })();
-    }, [debouncedUsername]);
+            catch (e) {
+                const { response: { data } } = e
+                showToast({ type: "error", message: data?.data?.message })
+            }
+        })()
+    }, [debouncedUsername])
 
     return (
         <AppModal open={isOpen} size="xl" close={() => isCreatingShop && props.close()}>
@@ -129,7 +125,7 @@ function SimpleRegistrationModal(props: Props) {
                 </Flex>
             </Flex>
         </AppModal>
-    );
+    )
 }
 
-export default SimpleRegistrationModal;
+export default SimpleRegistrationModal

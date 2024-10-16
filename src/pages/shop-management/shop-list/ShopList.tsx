@@ -5,11 +5,13 @@ import SimpleRegistrationModal from 'components/modals/simple-registration-modal
 import { getUserShopsService } from 'lib/apis/shop/shopServices'
 import React from 'react'
 import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import EmptyBox from './_components/empty-box/EmptyBox'
 import Loading from './_components/loading/Loading'
 import ShopRow from './_components/shop-row/ShopRow'
 
 function ShopList() {
+    const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isFetching, error, data } = useQuery({
         queryFn: () => getUserShopsService(),
@@ -43,7 +45,14 @@ function ShopList() {
                     </TabPanel>
                 </TabPanels>
             </Tabs>
-            {isOpen && <SimpleRegistrationModal isOpen={isOpen} mode='CREATE_EXTRA_SHOP' close={onClose} />}
+            {isOpen && (
+                <SimpleRegistrationModal
+                    isOpen={isOpen}
+                    mode='CREATE_EXTRA_SHOP'
+                    close={onClose}
+                    onSuccess={() => navigate("/analytics")}
+                />
+            )}
         </>
     )
 }
