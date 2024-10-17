@@ -27,7 +27,7 @@ const PublicBlog = () => {
     }, [pathname]);
 
     return (
-        <Box alignItems={"flex-start"} justifyContent={"center"} width={"full"}>
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"} width={"full"}>
             {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
         </Box>
     );
