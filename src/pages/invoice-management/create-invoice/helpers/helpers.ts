@@ -55,7 +55,7 @@ export function getInvoiceValidationSchema(isAddressSwitchToggled: boolean) {
                 otherwise: schema => schema
             }),
             addressType: Yup.string(),
-            phoneNumber: Yup.string().required("Phone Number is required"),
+            phoneNumber: Yup.string()
         })
     })
 }
