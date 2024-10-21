@@ -341,11 +341,17 @@ export class EVMProvider implements ChainProvider {
 
 	async d3Login(): Promise<{ address: string }> {
 		const ethereum = this.getWalletProvider().provider;
-		if (!(await isWalletConnected(ethereum))) {
+
+		const isConnected = await isWalletConnected(ethereum);
+
+		if (!isConnected) {
 			await requestAccounts(ethereum);
 		}
+
 		const res = await getAccounts(ethereum);
-		let address = res[0];
+
+		let address = res[0] || '';
+
 		return { address };
 	}
 
