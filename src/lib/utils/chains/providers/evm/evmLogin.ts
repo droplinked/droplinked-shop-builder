@@ -232,7 +232,7 @@ export async function changeChain(ethereum: any, chain: Chain, network: Network)
 	});
 }
 
-export async function requestAccounts(ethereum: any) {
+async function requestAccounts(ethereum: any) {
 	try {
 		return await ethereum.request({ method: 'eth_requestAccounts' });
 	} catch (error) {

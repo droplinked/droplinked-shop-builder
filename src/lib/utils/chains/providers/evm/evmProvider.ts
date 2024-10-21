@@ -23,7 +23,6 @@ import {
 	isWalletConnected,
 	isChainCorrect,
 	changeChain,
-	requestAccounts,
 } from './evmLogin';
 import { EVMPublishRequest } from './evmPublish';
 import { EVMBatchRecord, EVMrecordMerch } from './evmRecord';
@@ -337,16 +336,6 @@ export class EVMProvider implements ChainProvider {
 			data,
 			this.wallet
 		);
-	}
-
-	async d3Login(): Promise<{ address: string }> {
-		const ethereum = this.getWalletProvider().provider;
-		if (!(await isWalletConnected(ethereum))) {
-			await requestAccounts(ethereum);
-		}
-		const res = await getAccounts(ethereum);
-		let address = res[0];
-		return { address };
 	}
 
 	async paymentWithToken(
