@@ -19,7 +19,7 @@ function Banner() {
                     <VStack justifyContent="center" color="#fff">
                         <Droplinked />
                         <AppTypography textAlign={"center"} fontSize={{ base: "20px", sm: "24px", lg: "32px", xl: "48px" }} fontWeight='bold'>The Next Generation of Commerce</AppTypography>
-                        <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
+                        <Text fontSize={{ base: "10px", sm: "20px", xl: "34px" }} display="flex">
                             <Typewriter
                                 options={{
                                     strings: [

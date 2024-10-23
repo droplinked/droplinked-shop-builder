@@ -55,7 +55,7 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const createInvoice = async (formData: any) => {
         try {
             setLoading(true)
-            validatePhoneNumber(formData)
+           // validatePhoneNumber(formData)
             await addAdditionalDetailsToCart(formData)
 
             if (isAddressSwitchToggled && !cart.address)
