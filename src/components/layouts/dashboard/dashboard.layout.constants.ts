@@ -152,7 +152,7 @@ export const sidebar_constants: SidebarGroup[] = [
     },
 ];
 
-export const createProfileConstants = (shop: { credit: number; name: string; hasCustomDomain: boolean; }, domain_name: string, logoutUser: () => void): ProfileItem[] => [
+export const createProfileConstants = (shop: { credit: number; name: string; shopDomain: string; }, logoutUser: () => void): ProfileItem[] => [
     {
         title: { label: "Credit", style: {} },
         icon: { svg: AppIcons.ProfileCredit, style: {} },
@@ -173,7 +173,7 @@ export const createProfileConstants = (shop: { credit: number; name: string; has
         title: { label: "View shop", style: {} },
         icon: { svg: AppIcons.ProfileShop, style: {} },
         // FIXME: hasCustomDomain Does not work
-        linkTo: shop?.hasCustomDomain ? `https://${domain_name}` :  `${SHOP_URL}/${shop.name}`,
+        linkTo: shop?.shopDomain ? `https://${shop?.shopDomain}` :  `${SHOP_URL}/${shop.name}`,
         isExternalLink: true,
         rightSide: { value: null, style: {} },
     },

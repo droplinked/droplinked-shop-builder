@@ -6,29 +6,17 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import useAppStore from "lib/stores/app/appStore";
 import { appVersion } from "lib/utils/app/variable";
-import React, { useMemo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { createProfileConstants, createSubscriptionStatusConstants } from "./dashboard.layout.constants";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
-import { useQuery } from "react-query";
-import { getShopDNSInformationService } from "lib/apis/shop/shopServices";
-import useAppToast from "functions/hooks/toast/useToast";
 
 const DashboardLayoutHeader = () => {
     const { shopNavigate } = useCustomNavigate();
-    const { showToast } = useAppToast()
     const { shop, user } = useAppStore();
     const { logoutUser } = useProfile();
-    const shopDNSInformationQuery = useQuery({
-        queryKey: "shopDNSInformation",
-        queryFn: () => getShopDNSInformationService(),
-        onError: () => {
-            showToast({ message: "Unable to fetch DNS Information", type: "error" })
-        }
-    })
-    const dnsData = useMemo(() => shopDNSInformationQuery.data?.data?.data?.dnsData, [shopDNSInformationQuery.data])
     const { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } = createSubscriptionStatusConstants({ STARTER: () => shopNavigate("/dashboard/plans") }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
-    const profileConstants = createProfileConstants(shop, dnsData?.domain_name, logoutUser);
+    const profileConstants = createProfileConstants(shop, logoutUser);
     const getShopInfo = () => {
         const text = shop?.description || shop?.name
         if (!text) return ""
