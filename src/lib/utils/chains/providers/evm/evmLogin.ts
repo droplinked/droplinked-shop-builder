@@ -99,11 +99,11 @@ let chainNames = {
 			],
 		},
 		[Network.MAINNET]: {
-			chainName: 'SKALE Testnet Calypso Hub',
-			chainId: '0x3A14269B',
+			chainName: 'SKALE Calypso Hub',
+			chainId: '0x5D456C62',
 			nativeCurrency: { name: 'sFUEL', decimals: 18, symbol: 'sFUEL' },
 			rpcUrls: [
-				'https://testnet.skalenodes.com/v1/giant-half-dual-testnet',
+				'https://mainnet.skalenodes.com/v1/honorable-steel-rasalhague',
 			],
 		},
 	},
@@ -232,7 +232,7 @@ export async function changeChain(ethereum: any, chain: Chain, network: Network)
 	});
 }
 
-async function requestAccounts(ethereum: any) {
+export async function requestAccounts(ethereum: any) {
 	try {
 		return await ethereum.request({ method: 'eth_requestAccounts' });
 	} catch (error) {

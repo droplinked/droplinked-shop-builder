@@ -6,7 +6,7 @@ function PaymentDetails() {
     const networks = [
         'assets/images/homepage/black_and_white/eth.png',
         'assets/images/homepage/black_and_white/bitcoin.png',
-        'assets/images/homepage/black_and_white/binance.png',
+        'assets/images/homepage/black_and_white/BNB-chain.png',
         'assets/images/homepage/black_and_white/stacks.png',
         'assets/images/homepage/black_and_white/near.png',
         'assets/images/homepage/black_and_white/polygon.png',

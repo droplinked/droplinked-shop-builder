@@ -11,7 +11,7 @@ function Supported() {
         'assets/images/homepage/Near.png',
         'assets/images/homepage/xrp-ledger.png',
         'assets/images/homepage/Unisat.png',
-        'assets/images/homepage/Binance.png',
+        'assets/images/homepage/BNB-chain.png',
         'assets/images/homepage/Solana.png',
         'assets/images/homepage/base.png',
         'assets/images/homepage/skale.png',
