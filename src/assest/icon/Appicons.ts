@@ -64,6 +64,7 @@ import { ReactComponent as D3ShopSetup } from "./d3-shop-setup.svg";
 import { ReactComponent as D3Spinner } from "./d3-spinner.svg";
 import { ReactComponent as D3Tick } from "./d3-tick.svg";
 import { ReactComponent as D3Victorin } from "./d3-victorin.svg";
+import { ReactComponent as D3Ape } from "./d3-ape.svg";
 import { ReactComponent as D3Wallet } from "./d3-wallet.svg";
 import { ReactComponent as D3Web3Support } from "./d3-web3-support.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
@@ -476,6 +477,7 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
+    D3Ape
 };
 
 export default AppIcons;
