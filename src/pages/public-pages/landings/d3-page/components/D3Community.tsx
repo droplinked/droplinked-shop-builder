@@ -39,7 +39,7 @@ function Details() {
     },
     {
       icon: <AppIcons.D3Victorin className="d3-icon" />,
-      title: "Victorin",
+      title: "Viction",
       description: ".vic",
       image:
         "https://upload-file-droplinked.s3.amazonaws.com/54f499e01d6a1f4620c79dd8edeae98b03184f12c9e64e832e3a8419b5837ae4.png",
