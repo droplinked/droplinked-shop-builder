@@ -21,6 +21,7 @@ function SKUOptions({ options, circleProps, textProps }: Props) {
 
     return (
         <Flex
+            flex={1}
             alignItems="center"
             gap={8}
             overflow="scroll"

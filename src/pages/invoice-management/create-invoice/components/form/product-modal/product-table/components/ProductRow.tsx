@@ -14,7 +14,6 @@ interface Props {
 
 const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) {
     const { product, cart, setCart } = props
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
@@ -60,9 +59,6 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                     selectedSKUId={skuId}
                     onSelectSKU={(selectedSKUId) => setSkuId(selectedSKUId)}
                     product={product}
-                    isOpen={isOpen}
-                    onOpen={() => { if (!isDigitalProduct) onOpen() }}
-                    onClose={onClose}
                 />
             </Td>
             <Td>
