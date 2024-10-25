@@ -4,7 +4,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import Input from 'pages/invoice-management/components/Input'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../ProductTitleCell'
-import VariantsDropdown from './VariantsDropdown'
+import VariantsDropdown from './variants-dropdown/VariantsDropdown'
 
 interface Props {
     product: any
@@ -57,11 +57,11 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
             </Td>
             <Td>
                 <VariantsDropdown
-                    selectedVariant={skuId}
-                    onSelectVariant={(selectedSku) => setSkuId(selectedSku)}
+                    selectedSKUId={skuId}
+                    onSelectSKU={(selectedSKUId) => setSkuId(selectedSKUId)}
                     product={product}
                     isOpen={isOpen}
-                    onOpen={!isDigitalProduct && onOpen}
+                    onOpen={() => { if (!isDigitalProduct) onOpen() }}
                     onClose={onClose}
                 />
             </Td>
