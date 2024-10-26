@@ -15,7 +15,7 @@ import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
-import { ReactComponent as Binance } from "./binance.svg";
+import { ReactComponent as BnbChain } from "./bnb-chain.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
@@ -298,7 +298,7 @@ const AppIcons = {
     Ripple,
     StarOutline,
     StarFilled,
-    Binance,
+    BnbChain,
     Email,
     Base,
     Hand,
