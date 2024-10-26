@@ -59,7 +59,7 @@ export default function PaymentMethodRadio({ ...props }) {
 const ChainIconMap: Record<string, JSX.Element> = {
     "STRIPE": <AppIcons.NewStripe />,
     "LINEA": <AppIcons.BlueLinea />,
-    "BINANCE": <Box width={6} height={6}><AppIcons.Binance /></Box>,
+    "BINANCE": <Box width={6} height={6}><AppIcons.BnbChain /></Box>,
     "POLYGON": <AppIcons.NewPolygon />,
     "BASE": <AppIcons.BlueBase />,
     "SKALE": <Box width={6} height={6}><AppIcons.Skale /></Box>,
