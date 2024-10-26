@@ -88,7 +88,7 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                 >
                     <Td>
                         <Flex alignItems="center" gap={3} opacity={index === 0 ? 1 : 0}>
-                            <AppImage src={product.image} width={12} height={12} />
+                            <AppImage src={product.m2m_preview || product.skuImage || product.image} width={12} height={12} />
                             <ProductTitleCell title={product.title} wordLimit={10} />
                         </Flex>
                     </Td>
