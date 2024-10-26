@@ -172,7 +172,6 @@ export const createProfileConstants = (shop: { credit: number; name: string; sho
     {
         title: { label: "View shop", style: {} },
         icon: { svg: AppIcons.ProfileShop, style: {} },
-        // FIXME: hasCustomDomain Does not work
         linkTo: shop?.shopDomain ? `https://${shop?.shopDomain}` :  `${SHOP_URL}/${shop.name}`,
         isExternalLink: true,
         rightSide: { value: null, style: {} },
