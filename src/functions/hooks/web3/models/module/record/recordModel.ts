@@ -5,8 +5,7 @@ import {
 	ChainNotImplementedException,
 	getNetworkProvider,
 } from 'lib/utils/chains/chainProvider';
-import { Chain, Network } from 'lib/utils/chains/dto/chains';
-import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
+import { Beneficiary } from 'lib/utils/chains/dto/chainStructs';
 import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
 import {
 	SkaleUsdcAddressForMainnet,
@@ -14,6 +13,17 @@ import {
 } from 'lib/utils/chains/providers/evm/evmConstants';
 import { droplink_wallet } from 'lib/utils/statics/adresses';
 import { IRecordParamsData } from '../..';
+import {
+	DropWeb3,
+	Network,
+	Chain,
+	Web3Actions,
+	ChainWallet,
+	ProductType,
+	toEthAddress,
+	RecordResponse,
+	ISKUDetails,
+} from 'droplinked-web3';
 
 interface Irecord {
 	product: any;
@@ -55,11 +65,17 @@ const recordModel = {
 		shopAddress,
 		products,
 	}: Irecord) => {
-		const provider = getNetworkProvider(
-			Chain[blockchain],
-			Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
-			accountAddress
+		const web3 = new DropWeb3(
+			appDevelopment ? Network.TESTNET : Network.MAINNET
 		);
+		const provider = web3.web3Instance({
+			method: Web3Actions.RECORD_AFFILIATE,
+			chain: Chain[blockchain],
+			nftContractAddress: nftContract,
+			shopContractAddress: shopAddress,
+			preferredWallet: ChainWallet.Metamask,
+			userAddress: accountAddress,
+		});
 		// ---------------- new parameters: ------------------------
 		// get these parameters from recorder:
 		const type = ProductType.DIGITAL; // type of the product
@@ -68,7 +84,18 @@ const recordModel = {
 		const acceptsManageWallet = true; // if user accepts the manage wallet
 		const pod = product.product_type === 'PRINT_ON_DEMAND';
 
-		let record: any;
+		let record: RecordResponse;
+		const commission = products[0].commission;
+		const royalty = products[0].royalty;
+		const skaleUSDCAddress = appDevelopment
+			? SkaleUsdcAddressForTestnet
+			: SkaleUsdcAddressForMainnet;
+		// we want to set the usdc address for payment currency in skale
+		const currencyAddress =
+			Chain[blockchain] !== Chain.SKALE
+				? '0x0000000000000000000000000000000000000000'
+				: skaleUSDCAddress;
+
 		if (products.length === 1) {
 			// ----------------------------------------------------------
 			if (blockchain === 'CASPER') {
@@ -79,16 +106,6 @@ const recordModel = {
 				const sku = products[0].skuProperties;
 				const imageUrl = products[0].image_url;
 				const quantity = products[0].amount;
-				const royalty = products[0].royalty;
-				const skaleUSDCAddress = appDevelopment
-					? SkaleUsdcAddressForTestnet
-					: SkaleUsdcAddressForMainnet;
-				// we want to set the usdc address for payment currency in skale
-				const currencyAddress =
-					Chain[blockchain] !== Chain.SKALE
-						? '0x0000000000000000000000000000000000000000'
-						: skaleUSDCAddress;
-				const commission = products[0].commission;
 				if (pod)
 					beneficiaries = [
 						{
@@ -100,21 +117,30 @@ const recordModel = {
 				const skuId = sku['_id']; // TODO: check here
 				console.log(quantity, sku.quantity);
 				record = await provider.recordProduct(
-					sku,
-					product.title,
-					product.description,
-					imageUrl || product.media[0].url,
-					sku.price * 100,
-					pod ? quantity : sku.quantity,
-					commission * 100,
-					type,
-					beneficiaries,
-					acceptsManageWallet,
-					royalty * 100,
-					nftContract,
-					shopAddress,
-					currencyAddress,
-					skuId
+					{
+						acceptsManageWallet: acceptsManageWallet,
+						commission: commission * 100,
+						royalty: royalty * 100,
+						currencyAddress:
+							toEthAddress(currencyAddress),
+						description: product.description,
+						productTitle: product.title,
+						type: type,
+					},
+					[
+						{
+							amount: pod
+								? quantity
+								: sku.quantity,
+							imageUrl:
+								imageUrl ||
+								product.media[0].url,
+							beneficiaries,
+							price: sku.price * 100,
+							skuID: skuId,
+							skuProperties: sku,
+						},
+					]
 				);
 			}
 		} else {
@@ -123,10 +149,43 @@ const recordModel = {
 					'Casper is not implemented'
 				);
 			} else {
-				record = await provider.recordBatch(
-					products,
-					shopAddress,
-					nftContract
+				const skus: ISKUDetails[] = products.map((sku) => {
+					return {
+						amount: pod
+							? sku.amount
+							: sku.skuProperties.quantity,
+						imageUrl: sku.image_url,
+						beneficiaries: !pod
+							? sku.beneficiaries
+							: [
+									{
+										isPercentage:
+											false,
+										value:
+											sku
+												.skuProperties
+												.rawPrice *
+											100,
+										wallet: droplink_wallet,
+									},
+							  ],
+						price: sku.price * 100,
+						skuID: sku.skuProperties['_id'],
+						skuProperties: sku.skuProperties,
+					};
+				});
+				record = await provider.recordProduct(
+					{
+						acceptsManageWallet: acceptsManageWallet,
+						commission: commission * 100,
+						royalty: royalty * 100,
+						currencyAddress:
+							toEthAddress(currencyAddress),
+						description: product.description,
+						productTitle: product.title,
+						type: type,
+					},
+					skus
 				);
 			}
 		}
