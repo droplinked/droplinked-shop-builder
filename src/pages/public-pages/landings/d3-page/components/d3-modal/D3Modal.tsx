@@ -6,8 +6,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import { IPostUserVerifyD3 } from 'lib/apis/user/interfaces';
 import { postUserVerifyD3 } from 'lib/apis/user/services';
 import { appDevelopment } from 'lib/utils/app/variable';
-import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
-import { Chain, Network } from 'lib/utils/chains/dto/chains';
+import { DropWeb3, Network } from 'droplinked-web3';
 import Button from 'pages/invoice-management/components/Button';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
@@ -36,12 +35,8 @@ const D3Modal = () => {
 	const connect_d3_wallet = () => {
 		return new Promise((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			getNetworkProvider(
-				Chain.ETH,
-				Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
-				null
-			)
-				.d3Login()
+			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
+				.getWalletInfo()
 				.then(async (res) => {
 					console.log(res);
 					await mutateAsync({
