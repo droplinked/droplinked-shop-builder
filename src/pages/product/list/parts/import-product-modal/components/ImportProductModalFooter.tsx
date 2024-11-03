@@ -13,7 +13,7 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
             display="flex"
             justifyContent="space-between"
             gap={{ xl: 6, base: 3 }}
-            padding="36px !important"
+            paddingBlock="36px !important"
         >
             <Button variant='secondary' onClick={closeModal}>Discard</Button>
             <Button isDisabled={!file}>Validate</Button>

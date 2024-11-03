@@ -15,8 +15,7 @@ export default function ImportProductModalBody({ file, onFileChange }: Props) {
             display="flex"
             flexDirection="column"
             gap={4}
-            marginTop={{ lg: 12, base: 8 }}
-            paddingBlock="48px !important"
+            paddingBlock={{ lg: "48px !important", md: "32px !important", base: "16px !important" }}
             borderTop="1px solid #292929"
             borderBottom="1px solid #292929"
         >
@@ -33,6 +32,7 @@ function FilePreview({ file, onFileChange }: Props) {
         <Flex
             justifyContent="space-between"
             alignItems="center"
+            gap={2}
             border="1px solid #292929"
             borderRadius={8}
             padding={3}
@@ -50,6 +50,7 @@ function FilePreview({ file, onFileChange }: Props) {
 
             <Box
                 as="button"
+                flexShrink={0}
                 padding={2}
                 sx={{ "svg": { width: 5, height: 5 } }}
                 onClick={() => onFileChange(null)}

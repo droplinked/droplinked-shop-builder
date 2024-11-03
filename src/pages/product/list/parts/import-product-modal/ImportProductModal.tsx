@@ -17,12 +17,16 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
     return (
         <AppModal
             modalRootProps={{ isOpen, onClose: closeModal, size: "2xl", isCentered: true }}
-            modalContentProps={{ gap: 0, paddingBottom: "0px !important" }}
+            modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
                 icon={<AppIcons.ConfirmPlan />}
                 title="Import Products"
                 description="Easily import products using a CSV or Excel file. Download our sample template to ensure your file is formatted correctly."
+                modalHeaderProps={{
+                    bgColor: "#141414",
+                    paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
+                }}
             >
                 <Link
                     href='https://upload-file-flatlay.s3.us-west-2.amazonaws.com/622e15c810c2e7fb08c93b7ffa185228feb223ea821a3a596dfdd64c63854597_or.xlsx'
