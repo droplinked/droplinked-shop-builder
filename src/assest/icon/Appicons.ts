@@ -116,6 +116,7 @@ import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
 import { ReactComponent as ImportFile } from "./import-file.svg";
+import { ReactComponent as ImportProduct } from "./import-product.svg";
 import { ReactComponent as InfoIcon } from "./info-icon.svg";
 import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
@@ -475,7 +476,8 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-    Document
+    Document,
+    ImportProduct
 }
 
 export default AppIcons

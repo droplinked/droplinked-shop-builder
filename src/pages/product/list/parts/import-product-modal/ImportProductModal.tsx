@@ -20,7 +20,7 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
-                icon={<AppIcons.ConfirmPlan />}
+                icon={<AppIcons.ImportProduct />}
                 title="Import Products"
                 description="Easily import products using a CSV or Excel file. Download our sample template to ensure your file is formatted correctly."
                 modalHeaderProps={{
