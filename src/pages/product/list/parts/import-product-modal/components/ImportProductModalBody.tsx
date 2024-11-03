@@ -47,7 +47,13 @@ function FilePreview({ file, onFileChange }: Props) {
                     <AppTypography mt={2} fontSize={12} color="#7B7B7B">{fileSizeInMB} MB</AppTypography>
                 </Box>
             </Flex>
-            <Box as="button" padding={2} onClick={() => onFileChange(null)}>
+
+            <Box
+                as="button"
+                padding={2}
+                sx={{ "svg": { width: 5, height: 5 } }}
+                onClick={() => onFileChange(null)}
+            >
                 <AppIcons.RedTrash />
             </Box>
         </Flex>
