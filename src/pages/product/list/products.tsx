@@ -14,10 +14,11 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 import ProductEmpty from './parts/empty/ProductEmpty'
+import ImportProductModal from './parts/import-product-modal/ImportProductModal'
 import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
-    const { isFetching: isFetchingCollections, error, data: collectionsData } = useCollections()
+    const { isFetching: isFetchingCollections, data: collectionsData } = useCollections()
     const updateShopLegalUsage = useUpdateShopLegalUsage()
     const { mutate, isLoading, data } = useMutation({
         mutationFn: (params: IproductList) => productServices(params),
@@ -34,6 +35,7 @@ function Products() {
     const { shop } = useProfile()
     const { shopRoute } = useCustomNavigate()
     const productReorderModal = useDisclosure()
+    const importProductModal = useDisclosure()
 
     // Fetch service
     const fetch = useCallback(() => {
@@ -73,6 +75,13 @@ function Products() {
             {
                 caption: "Reorder Products",
                 onClick: productReorderModal.onOpen,
+                buttonProps: {
+                    variant: "outline",
+                }
+            },
+            {
+                caption: "Import",
+                onClick: importProductModal.onOpen,
                 buttonProps: {
                     variant: "outline",
                 }
@@ -149,6 +158,8 @@ function Products() {
                     }}
                 />
             }
+
+            <ImportProductModal isOpen={importProductModal.isOpen} closeModal={importProductModal.onClose} />
         </>
     )
 }

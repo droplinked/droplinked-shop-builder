@@ -89,7 +89,7 @@ function ProductReorderModal({ isOpen, close }: Props) {
                         </DndContext>
                 }
             </Flex>
-        </AppModal >
+        </AppModal>
     )
 }
 
