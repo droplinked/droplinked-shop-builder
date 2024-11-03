@@ -35,7 +35,7 @@ const ProductListModel = ({
         }
     },
 
-    getMain: (product: any) => product.media.find(el => el.isMain === 'true')?.thumbnail,
+    getProductMainImage: (product: any) => product.media.find(el => el.isMain === 'true')?.thumbnail,
 
     refactorData: ({ data, fetch }: IrefactorData): Array<ITableRows> => {
         return data.map((el: any): ITableRows => ProductListModel.makeData(el, fetch))
