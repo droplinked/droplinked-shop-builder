@@ -15,7 +15,6 @@ import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
-import { ReactComponent as BnbChain } from "./bnb-chain.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
@@ -25,6 +24,7 @@ import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BlueBase } from "./blue-base.svg";
 import { ReactComponent as BlueLinea } from "./blue-linea.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
+import { ReactComponent as BnbChain } from "./bnb-chain.svg";
 import { ReactComponent as Brain } from "./brain.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
@@ -76,6 +76,7 @@ import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
+import { ReactComponent as Document } from "./document.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
@@ -90,7 +91,6 @@ import { ReactComponent as EventHost } from "./event-host.svg";
 import { ReactComponent as EventLocation } from "./event-location.svg";
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
-import { ReactComponent as File } from "./file.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
@@ -283,7 +283,6 @@ const AppIcons = {
     Info,
     Bitcoin,
     Stripe,
-    File,
     EditIconWhite,
     Discord,
     Web,
@@ -476,6 +475,7 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-};
+    Document
+}
 
-export default AppIcons;
+export default AppIcons

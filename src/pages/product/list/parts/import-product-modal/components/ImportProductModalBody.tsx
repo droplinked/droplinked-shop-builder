@@ -40,7 +40,7 @@ function FilePreview({ file, onFileChange }: Props) {
         >
             <Flex alignItems="center" gap={4}>
                 <Center width={14} height={14} borderRadius={4} bgColor="#292929">
-                    <AppIcons.File />
+                    <AppIcons.Document />
                 </Center>
                 <Box>
                     <AppTypography fontWeight={500} color="#fff">{file.name}</AppTypography>
