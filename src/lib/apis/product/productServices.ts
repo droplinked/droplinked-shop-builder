@@ -1,4 +1,5 @@
 import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
+import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
 import {
     IGetHotProductsParams,
@@ -13,7 +14,6 @@ import {
     IProductTile,
     IproductUpdateServices,
 } from "./interfaces";
-import { createQueryString } from "../_utils/with.query";
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`);
@@ -55,8 +55,8 @@ export const reorderProductsService = (data: IProductReorder) => {
     return axiosInstance.post("product/reorder", data);
 };
 
-export const getAllProductsService = (signal: AbortSignal) => {
-    return axiosInstance.get("/product/all", { signal });
+export const getAllProductsService = () => {
+    return axiosInstance.get("/product/all").then(res => res.data)
 };
 
 export const createProductTileService = (data: IProductTile) => {
