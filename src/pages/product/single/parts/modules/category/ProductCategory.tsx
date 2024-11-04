@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Box, Divider, Flex, VStack } from '@chakra-ui/react'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import { IpodProductService } from 'lib/apis/pod/interfaces'
@@ -9,6 +9,7 @@ import { useMutation } from 'react-query'
 import ProductTypeDetail from '../productType/parts/normal/parts/details/ProductTypeDetail'
 import productCategoryContext from './context'
 import ProductCategoryButton from './parts/button/ProductCategoryButton'
+import ShippingAvailabilityPopover from './parts/shipping-availability/ShippingAvailabilityPopover'
 import ProductCategoryMenu from './parts/steps/menu/ProductCategoryMenu'
 import ProductCategoryProduct from './parts/steps/product/ProductCategoryProduct'
 import ProductCategoryNamespace from './reducer'
@@ -60,9 +61,25 @@ function ProductCategory() {
           </VStack>
           <ProductCategoryButton />
         </Flex>
-        {isLoading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : (
-          <Box color="#C2C2C2">{pod_blank_product_id ? <ProductTypeDetail image={States.product.image} title={States.product.title} boxes={["title"]} /> : steps}</Box>
-        )}
+        {isLoading ?
+          <LoadingComponent />
+          :
+          <Box color="#C2C2C2">
+            {pod_blank_product_id ?
+              <Flex alignItems="center" gap={3}>
+                <ProductTypeDetail
+                  image={States.product.image}
+                  title={States.product.title}
+                  boxes={["title"]}
+                />
+                <Divider orientation="vertical" h='20px' borderColor="#3C3C3C" />
+                <ShippingAvailabilityPopover />
+              </Flex>
+              :
+              steps
+            }
+          </Box>
+        }
       </VStack>
     </productCategoryContext.Provider>
   )

@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Flex, VStack } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
@@ -9,6 +9,7 @@ interface IProps {
     title?: string
     image?: string
 }
+
 function ProductTypeDetail({ boxes, image, title }: IProps) {
     const { state: { pod_blank_product_id }, store: { state: { product_types, product_printful } } } = useContext(productContext)
 
@@ -28,12 +29,12 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
         <>
             {getDetail && (
                 <Flex gap={3} alignItems="center">
-                    <Box width="fit-content">
-                        <AppImage width="40px" height="50px" borderRadius="8px" src={getDetail?.image} />
-                    </Box>
+                    <AppImage width="50px" height="50px" borderRadius={8} src={getDetail?.image} />
                     <VStack width="100%" align="stretch" color="#C2C2C2">
                         {boxes.map((el, key) => (
-                            <AppTypography key={key} fontSize='14px' fontWeight={el === "title" ? "bold" : "normal"}>{getDetail[el]}</AppTypography>
+                            <AppTypography key={key} fontSize='14px' fontWeight={el === "title" ? "bold" : "normal"}>
+                                {getDetail[el]}
+                            </AppTypography>
                         ))}
                     </VStack>
                 </Flex>
