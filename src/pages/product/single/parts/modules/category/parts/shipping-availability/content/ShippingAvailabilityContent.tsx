@@ -35,7 +35,9 @@ export default function ShippingAvailabilityContent() {
                 >
                     {isLoading ?
                         <LoadingComponent /> :
-                        regions.map((region, index) => <Region key={index} region={region} index={index} />)
+                        regions.map((region, index) =>
+                            <Region key={index} region={region} isLastOne={index === regions.length - 1} />
+                        )
                     }
                 </Flex>
             </Box>
@@ -43,11 +45,11 @@ export default function ShippingAvailabilityContent() {
     )
 }
 
-function Region({ region, index }) {
+function Region({ region, isLastOne }) {
     return (
         <Flex alignItems="center" gap={3}>
-            {index !== 0 && <Circle size={1} bgColor="#3C3C3C" />}
             <AppTypography fontSize={16} color="#B1B1B1">{region}</AppTypography>
+            {!isLastOne && <Circle size={1} bgColor="#3C3C3C" />}
         </Flex>
     )
 }
