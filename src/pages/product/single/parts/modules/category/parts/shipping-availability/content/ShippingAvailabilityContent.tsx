@@ -1,47 +1,18 @@
-import { Box, Flex, PopoverBody } from '@chakra-ui/react'
+import { Box, Circle, Flex, PopoverBody } from '@chakra-ui/react'
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
-import RegionList from './RegionList'
+import { getPODShippingAvailability } from 'lib/apis/product/productServices'
+import { productContext } from 'pages/product/single/context'
+import React, { useContext } from 'react'
+import { useQuery } from 'react-query'
 
 export default function ShippingAvailabilityContent() {
-    const data = [
-        {
-            region: "East Asia",
-            countries: ["China", "Japan", "South Korea", "Taiwan", "Mongolia"]
-        },
-        {
-            region: "Southeast Asia",
-            countries: ["Indonesia", "Malaysia", "Philippines", "Singapore", "Thailand", "Vietnam", "Myanmar", "Cambodia", "Laos", "Brunei"]
-        },
-        {
-            region: "South Asia",
-            countries: ["India", "Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Bhutan", "Maldives"]
-        },
-        {
-            region: "North America",
-            countries: ["United States", "Canada", "Mexico"]
-        },
-        {
-            region: "Europe",
-            countries: ["United Kingdom", "Germany", "France", "Italy", "Spain", "Netherlands", "Belgium", "Switzerland", "Sweden", "Norway", "Denmark", "Poland", "Ireland"]
-        },
-        {
-            region: "Oceania",
-            countries: ["Australia", "New Zealand", "Fiji", "Papua New Guinea", "Samoa"]
-        },
-        {
-            region: "South America",
-            countries: ["Brazil", "Argentina", "Chile", "Colombia", "Peru", "Venezuela", "Uruguay", "Paraguay", "Ecuador"]
-        },
-        {
-            region: "Africa",
-            countries: ["Nigeria", "South Africa", "Egypt", "Kenya", "Ethiopia", "Ghana", "Morocco", "Uganda", "Tanzania", "Algeria"]
-        },
-        {
-            region: "Middle East",
-            countries: ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", "Jordan", "Lebanon", "Oman", "Bahrain"]
-        }
-    ]
+    const { state: { pod_blank_product_id } } = useContext(productContext)
+    const { data, isLoading } = useQuery({
+        queryKey: ["POD-shipping-availability", pod_blank_product_id],
+        queryFn: () => getPODShippingAvailability(pod_blank_product_id)
+    })
+    const regions = data?.data?.data || []
 
     return (
         <PopoverBody padding={6}>
@@ -56,10 +27,27 @@ export default function ShippingAvailabilityContent() {
                     Available Shipping Regions
                 </AppTypography>
 
-                <Flex direction="column" gap={4} padding="32px 24px">
-                    {data.map((regionData, index) => <RegionList key={index} regionData={regionData} />)}
+                <Flex
+                    justifyContent={isLoading ? "center" : "start"}
+                    flexWrap="wrap"
+                    gap={4}
+                    padding="32px 24px"
+                >
+                    {isLoading ?
+                        <LoadingComponent /> :
+                        regions.map((region, index) => <Region key={index} region={region} index={index} />)
+                    }
                 </Flex>
             </Box>
         </PopoverBody>
+    )
+}
+
+function Region({ region, index }) {
+    return (
+        <Flex alignItems="center" gap={3}>
+            {index !== 0 && <Circle size={1} bgColor="#3C3C3C" />}
+            <AppTypography fontSize={16} color="#B1B1B1">{region}</AppTypography>
+        </Flex>
     )
 }

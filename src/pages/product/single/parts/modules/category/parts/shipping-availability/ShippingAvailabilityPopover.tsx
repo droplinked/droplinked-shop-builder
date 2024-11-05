@@ -8,7 +8,8 @@ function ShippingAvailabilityPopover() {
         <Popover>
             <ShippingAvailabilityButton />
             <PopoverContent
-                w="660px"
+                w={{ base: "360px", md: "660px" }}
+                margin={4}
                 border="1px solid #292929"
                 borderRadius={16}
                 padding={0}
