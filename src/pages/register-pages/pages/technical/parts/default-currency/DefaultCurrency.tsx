@@ -8,23 +8,25 @@ import Select from "components/redesign/select/AppSelect";
 import technicalContext from "../../context";
 import { DefaultCurrencyDescription } from "./components/DefaultCurrencyDecsription";
 import { CurrencySelect } from "./components/CurrencySelect";
+import useAppStore from "lib/stores/app/appStore";
 
 function DefaultCurrency() {
   const { isLoading, data } = useQuery({
     queryKey: ["currencyList"],
     queryFn: () => getCurrencyList(),
   });
-  const { isLoading: shopInfoLoading, data: shopInfoData } = useQuery({
-    queryKey: ["shopInfo"],
-    queryFn: () => getShopInformationService(),
-  });
+
+  const { shop: shopInfoData, loading: shopInfoLoading } = useAppStore();
   const { updateState, state: { currencyAbbreviation } } = React.useContext(technicalContext)
+
   React.useEffect(() => {
     if (!shopInfoLoading && !isLoading) {
-      updateState("currencyAbbreviation", shopInfoData?.data?.data?.currency?.abbreviation)
+      updateState("currencyAbbreviation", shopInfoData?.currency?.abbreviation)
     }
   }, [shopInfoLoading, isLoading, shopInfoData])
+
   const currencyData = data?.data?.data ?? [];
+
   return (
     <AppCard>
       <Flex direction={"column"} gap={"5px"}>

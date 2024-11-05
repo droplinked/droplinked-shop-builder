@@ -3,17 +3,16 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { IshopUpdateService } from 'lib/apis/shop/interfaces';
-import { shopUpdateService } from 'lib/apis/shop/shopServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback, useContext } from 'react';
-import { useMutation } from 'react-query';
 import technicalContext from '../../context';
+import useAppStore from 'lib/stores/app/appStore';
 
 function TechnicalSubmit() {
     const { state: { imsType, paymentMethods, loginMethods, currencyAbbreviation }, updateState } = useContext(technicalContext)
-    const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const { setShopData: { loading }, shop } = useProfile()
-    const { showToast } = useAppToast()
+    const { showToast } = useAppToast();
+    const { updateShop, loading: updateShopLoading } = useAppStore()
 
     // Validate total percent of destination addresses
     const validatePaymentMethods = (methods) => {
@@ -41,7 +40,7 @@ function TechnicalSubmit() {
             validatePaymentMethods(activePaymentMethods);
 
             const shopData: IshopUpdateService = { paymentMethods: activePaymentMethods, loginMethods, currencyAbbreviation }
-            await mutateAsync(shopData)
+            await updateShop(shopData)
             showToast({ message: AppErrors.store.payment_options_have_been_updated, type: "success" })
         } catch (error) {
             showToast({ message: error.message, type: "error" })
@@ -50,7 +49,7 @@ function TechnicalSubmit() {
 
     return (
         <Flex justifyContent={"flex-end"}>
-            <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" && !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
+            <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" && !imsType} onClick={clickSubmit} isLoading={updateShopLoading || loading}>
                 Update
             </BasicButton>
         </Flex>
