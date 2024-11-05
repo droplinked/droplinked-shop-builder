@@ -3,8 +3,8 @@ import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import AppCard from "components/common/card/AppCard";
 import { useQuery } from "react-query";
-import { getCurrencyList, getShopInformationService } from "lib/apis/shop/shopServices";
-import Select from "components/redesign/select/AppSelect";
+import { getCurrencyList } from "lib/apis/shop/shopServices";
+
 import technicalContext from "../../context";
 import { DefaultCurrencyDescription } from "./components/DefaultCurrencyDecsription";
 import { CurrencySelect } from "./components/CurrencySelect";
