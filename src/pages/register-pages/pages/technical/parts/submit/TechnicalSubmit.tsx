@@ -10,7 +10,7 @@ import { useMutation } from 'react-query';
 import technicalContext from '../../context';
 
 function TechnicalSubmit() {
-    const { state: { imsType, paymentMethods, loginMethods }, updateState } = useContext(technicalContext)
+    const { state: { imsType, paymentMethods, loginMethods, currencyAbbreviation }, updateState } = useContext(technicalContext)
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const { setShopData: { loading }, shop } = useProfile()
     const { showToast } = useAppToast()
@@ -33,14 +33,14 @@ function TechnicalSubmit() {
     const clickSubmit = useCallback(async () => {
         try {
             if (!loginMethods.length) throw new Error("You should activate at least one login method")
-        
+
             const activePaymentMethods = paymentMethods.filter(payment => payment.isActive)
             if (!activePaymentMethods.length) throw new Error("You should activate at least one payment method")
-            
+
             // Validate total percent of payment methods
             validatePaymentMethods(activePaymentMethods);
 
-            const shopData: IshopUpdateService = { paymentMethods: activePaymentMethods, loginMethods }
+            const shopData: IshopUpdateService = { paymentMethods: activePaymentMethods, loginMethods, currencyAbbreviation }
             await mutateAsync(shopData)
             showToast({ message: AppErrors.store.payment_options_have_been_updated, type: "success" })
         } catch (error) {
