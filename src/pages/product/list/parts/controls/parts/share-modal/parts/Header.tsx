@@ -66,7 +66,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
           color="white"
           whiteSpace="nowrap"
         >
-          {currency.symbol} {currencyConvertion(product.price, currency.conversionRateToUSD, false)} {currency.abbreviation}
+          {currency?.symbol} {currencyConvertion(product.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
         </Text>
       </Flex>
     </Box>

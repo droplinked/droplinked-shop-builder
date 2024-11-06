@@ -22,7 +22,7 @@ function RequestProduct() {
                         value: el?.recorded_quantity || "---"
                     },
                     Price: {
-                        value: `${currency.symbol}${currencyConvertion(el?.price, currency.conversionRateToUSD, false)} ${currency.abbreviation}`
+                        value: `${currency?.symbol}${currencyConvertion(el?.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`
                     },
                     Button: {
                         caption: "",

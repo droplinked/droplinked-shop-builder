@@ -67,7 +67,7 @@ function CouponsListContent() {
                                     </Flex>
                                     <VStack align="stretch">
                                         <AppTypography fontSize='12px'>{coupon.codes.length} {coupon.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
-                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : currencyConvertion(coupon.balance, currency.conversionRateToUSD, false)} {coupon.type === "DISCOUNT" ? '%' : currency.abbreviation}</AppTypography>
+                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : currencyConvertion(coupon.balance, currency?.conversionRateToUSD, false)} {coupon.type === "DISCOUNT" ? '%' : currency?.abbreviation}</AppTypography>
                                     </VStack>
                                     <Flex alignItems={"center"} gap={9}>
                                         <AppIcons.EditIcon

@@ -38,7 +38,7 @@ function ProfitChart() {
       {items ? (
         <VStack align="stretch" spacing="12px">
           <AppSkeleton isLoaded={isLoading}>
-            <AppTypography fontSize="18px" fontWeight="600">{currency.symbol}{currencyConvertion(revenue?.report?.profit?.value, currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+            <AppTypography fontSize="18px" fontWeight="600">{currency?.symbol}{currencyConvertion(revenue?.report?.profit?.value, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
           </AppSkeleton>
           <AppSkeleton isLoaded={isLoading}>
             <VStack align="stretch" spacing="8px">
@@ -47,7 +47,7 @@ function ProfitChart() {
                   <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
                   <Box width="100%">
                     <Box width={el.width + '%'} minWidth="52px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
-                      <AppTypography color="#333">{currency.symbol}{currencyConvertion(el.value, currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+                      <AppTypography color="#333">{currency?.symbol}{currencyConvertion(el.value, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
                     </Box>
                   </Box>
                 </Flex>

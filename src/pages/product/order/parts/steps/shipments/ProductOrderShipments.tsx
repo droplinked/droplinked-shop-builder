@@ -52,7 +52,7 @@ function ProductOrderShipments() {
                                                 <Flex alignItems="center" gap="8px">
                                                     <AppTypography color="#878787">Price</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
-                                                    <AppTypography>{`${currency.symbol}${currencyConvertion(el.price, currency.conversionRateToUSD, false)} ${currency.abbreviation}`}</AppTypography>
+                                                    <AppTypography>{`${currency?.symbol}${currencyConvertion(el.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}</AppTypography>
                                                 </Flex>
                                             </Flex>
                                         </Flex>
@@ -61,7 +61,7 @@ function ProductOrderShipments() {
                             ))}
                             <Flex justifyContent="space-between" alignItems="center">
                                 <AppTypography fontSize="16px" color="#C2C2C2">Tax</AppTypography>
-                                <AppTypography fontSize="16px" color="#C2C2C2">{`${currency.symbol}${currencyConvertion(taxAmount, currency.conversionRateToUSD, false)} ${currency.abbreviation}`}</AppTypography>
+                                <AppTypography fontSize="16px" color="#C2C2C2">{`${currency?.symbol}${currencyConvertion(taxAmount, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}</AppTypography>
                             </Flex>
                         </Flex>
                     </RadioGroup>

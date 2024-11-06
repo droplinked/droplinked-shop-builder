@@ -20,8 +20,8 @@ function ModalRequestDetails() {
                 <VStack align={"stretch"} spacing={.5}>
                     <AppTypography marginBottom={2} fontSize="2xl">{product.title}</AppTypography>
                     <LabelText>Commission: %{sku?.recordData?.commision}</LabelText>
-                    <LabelText>Total Price: {currency.symbol}{currencyConvertion(sku?.price, currency.conversionRateToUSD, false)} {currency.abbreviation}</LabelText>
-                    <LabelText>Your earning: {currency.symbol}{currencyConvertion(sku?.publisherEarning, currency.conversionRateToUSD, false)}  {currency.abbreviation}</LabelText>
+                    <LabelText>Total Price: {currency?.symbol}{currencyConvertion(sku?.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</LabelText>
+                    <LabelText>Your earning: {currency?.symbol}{currencyConvertion(sku?.publisherEarning, currency?.conversionRateToUSD, false)}  {currency?.abbreviation}</LabelText>
                     <Flex alignItems={"center"} gap={2} paddingTop={2}>
                         <BlockchainDisplay show='icon' blockchain={chain} props={{ width: "16px" }} />
                         {chain && (

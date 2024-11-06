@@ -12,7 +12,7 @@ function BestSellingSale({ product }: IProps) {
 
     return (
         <VStack align="stretch" spacing="6px">
-            <AppTypography fontSize="14px">{currency.symbol}{currencyConvertion(product?.totalAmountCombined, currency.conversionRateToUSD, false)}  {currency.abbreviation}</AppTypography>
+            <AppTypography fontSize="14px">{currency?.symbol}{currencyConvertion(product?.totalAmountCombined, currency?.conversionRateToUSD, false)}  {currency?.abbreviation}</AppTypography>
             <AppTypography fontSize="10px">{product?.totalCount} items</AppTypography>
         </VStack>
     )

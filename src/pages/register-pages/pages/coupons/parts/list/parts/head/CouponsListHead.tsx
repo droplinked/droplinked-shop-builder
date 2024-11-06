@@ -24,7 +24,7 @@ function CouponsListHead() {
                 <VStack align="stretch" spacing="12px">
                     <AppTypography color="#C2C2C2" fontSize="12px">Credits</AppTypography>
                     <HStack alignItems="center">
-                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">{currency.symbol}{currencyConvertion(shop?.credit, currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">{currency?.symbol}{currencyConvertion(shop?.credit, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
                     </HStack>
                     {(shop?.name === "unstoppable" || shop?.name === "nearhorizon") && (
                         <AppTypography color="#C2C2C2" fontSize="12px">$200 monthly charge for enterprise support and design services</AppTypography>

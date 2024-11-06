@@ -8,8 +8,8 @@ import { IShopCurrency } from "types/interface/shopCurrency.interface";
 namespace OrderDetailsModel {
     function formattedPrice(price: number, currency: IShopCurrency) {
         return <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>
-            {`${currency.symbol}${currencyConvertion(price, currency.conversionRateToUSD, false)}`}{" "}
-            <span style={{ color: "#808080" }}>{currency.abbreviation}</span>
+            {`${currency?.symbol}${currencyConvertion(price, currency?.conversionRateToUSD, false)}`}{" "}
+            <span style={{ color: "#808080" }}>{currency?.abbreviation}</span>
         </AppTypography>
     }
 

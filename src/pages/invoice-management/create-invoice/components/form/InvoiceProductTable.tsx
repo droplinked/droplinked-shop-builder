@@ -97,7 +97,7 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     <Td>{sku.options?.color?.caption || '-'}</Td>
                     <Td>{sku.options?.size?.caption || '-'}</Td>
                     <Td>{sku.options?.quantity || '-'}</Td>
-                    <Td>{`${currency.symbol}${currencyConvertion(sku.totals?.priceItem, currency.conversionRateToUSD, false)}  ${currency.abbreviation}` || '-'}</Td>
+                    <Td>{`${currency?.symbol}${currencyConvertion(sku.totals?.priceItem, currency?.conversionRateToUSD, false)}  ${currency?.abbreviation}` || '-'}</Td>
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}

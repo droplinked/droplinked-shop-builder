@@ -32,8 +32,8 @@ namespace productOrderSkuesModel {
                 caption: "Product Cost",
                 value: (
                     <AppTypography>
-                        {`${currency.symbol}${currencyConvertion(el?.rawPrice, currency.conversionRateToUSD, false)}`} {" "}
-                        <Box as="span" color="#808080">{currency.abbreviation}</Box>
+                        {`${currency?.symbol}${currencyConvertion(el?.rawPrice, currency?.conversionRateToUSD, false)}`} {" "}
+                        <Box as="span" color="#808080">{currency?.abbreviation}</Box>
                     </AppTypography>
                 )
             },

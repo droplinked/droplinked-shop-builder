@@ -33,7 +33,7 @@ function RequestSpecs() {
           value: sku.externalID
         },
         Price: {
-          value: `${currency.symbol}${currencyConvertion(sku.price, currency.conversionRateToUSD, false)}  ${currency.abbreviation}`
+          value: `${currency?.symbol}${currencyConvertion(sku.price, currency?.conversionRateToUSD, false)}  ${currency?.abbreviation}`
         },
       }} />
     </>

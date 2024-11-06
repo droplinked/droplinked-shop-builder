@@ -14,7 +14,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
     const { shop: { currency } } = useAppStore();
     const formattedPrice = (price: number) => {
         const validPrice = isNaN(price) ? 0 : price
-        return `${currency.abbreviation}${currencyConvertion(validPrice, currency.conversionRateToUSD, false)}  `
+        return `${currency?.abbreviation}${currencyConvertion(validPrice, currency?.conversionRateToUSD, false)}  `
     }
 
     return (
@@ -26,7 +26,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
                 color={"white"}
             >
                 {formattedPrice(value)}
-                <Box as='span' fontSize={16} color={'#878787'}>{currency.symbol}</Box>
+                <Box as='span' fontSize={16} color={'#878787'}>{currency?.symbol}</Box>
             </AppTypography>
         </Flex>
     )

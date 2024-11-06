@@ -97,7 +97,7 @@ function Shipping() {
                         name="cost"
                         isRequired
                         label='Shipping Cost'
-                        placeholder={`${currency.symbol}0.00 ${currency.abbreviation}`}
+                        placeholder={`${currency?.symbol}0.00 ${currency?.abbreviation}`}
                         value={shippingPrice}
                         onKeyDown={(e) => {
                             if (e.key === '+' || e.key === '-' || e.key === 'e') e.preventDefault()

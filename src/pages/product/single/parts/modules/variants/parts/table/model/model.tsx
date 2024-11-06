@@ -49,7 +49,7 @@ const SkuTableModel = ({
                                 placeholder="0"
                                 type="number"
                             />
-                            <AppTypography fontSize="12px" color={"#808080"}>{currency.abbreviation}</AppTypography>
+                            <AppTypography fontSize="12px" color={"#808080"}>{currency?.abbreviation}</AppTypography>
                         </Flex>
                     </Flex>,
                 props: {
@@ -64,7 +64,7 @@ const SkuTableModel = ({
                             name={"price"}
                             type="number"
                         />
-                        <AppTypography fontSize="12px" color={"#808080"}>{currency.abbreviation}</AppTypography>
+                        <AppTypography fontSize="12px" color={"#808080"}>{currency?.abbreviation}</AppTypography>
                     </Flex>
                 )
             },
@@ -85,7 +85,7 @@ const SkuTableModel = ({
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: available_variant ? <AppTypography fontSize="12px">{sku.rawPrice} {currency.abbreviation}</AppTypography> : 0
+                    value: available_variant ? <AppTypography fontSize="12px">{sku.rawPrice} {currency?.abbreviation}</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

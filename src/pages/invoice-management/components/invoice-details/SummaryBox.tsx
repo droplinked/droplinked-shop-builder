@@ -16,8 +16,8 @@ function SummaryBox({ title, rows }: Props) {
         if (typeof row.value === "number" && row.isPrice)
             return (
                 <AppTypography as={"dd"} fontWeight={500}>
-                    {currency.symbol}{currencyConvertion(row.value, currency.conversionRateToUSD, false)} {" "}
-                    <Box as='span' color='#878787'>{currency.abbreviation}</Box>
+                    {currency?.symbol}{currencyConvertion(row.value, currency?.conversionRateToUSD, false)} {" "}
+                    <Box as='span' color='#878787'>{currency?.abbreviation}</Box>
                 </AppTypography>
             )
         return <AppTypography as={"dd"} fontWeight={500}>{row.value}</AppTypography>

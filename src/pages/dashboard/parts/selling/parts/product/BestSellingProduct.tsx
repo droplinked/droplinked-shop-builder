@@ -15,8 +15,8 @@ function BestSellingProduct({ product }: IProps) {
             <VStack align="stretch">
                 <AppTypography fontSize="14px" fontWeight="600">{product?.productName}</AppTypography>
                 <Flex alignItems="center" gap="6px">
-                    <Box backgroundColor="rgba(43, 207, 161, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#2BCFA1">{currency.symbol}{currencyConvertion(product?.totalAmountDirect, currency.conversionRateToUSD, false)}  {currency.abbreviation}</AppTypography></Box>
-                    <Box backgroundColor="rgba(156, 78, 255, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#C59CFF">{currency.symbol}{currencyConvertion(product?.totalAmountAffiliate, currency.conversionRateToUSD, false)}  {currency.abbreviation}</AppTypography></Box>
+                    <Box backgroundColor="rgba(43, 207, 161, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#2BCFA1">{currency?.symbol}{currencyConvertion(product?.totalAmountDirect, currency?.conversionRateToUSD, false)}  {currency?.abbreviation}</AppTypography></Box>
+                    <Box backgroundColor="rgba(156, 78, 255, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#C59CFF">{currency?.symbol}{currencyConvertion(product?.totalAmountAffiliate, currency?.conversionRateToUSD, false)}  {currency?.abbreviation}</AppTypography></Box>
                 </Flex>
             </VStack>
         </Flex>

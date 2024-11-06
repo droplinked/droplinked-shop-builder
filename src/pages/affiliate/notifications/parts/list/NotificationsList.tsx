@@ -101,7 +101,7 @@ function NotificationsList() {
 															Requested Quantity: {el?.quantity || '---'}
 														</AppTypography>
 														<AppTypography fontSize="12px">
-															Price: {`${currency.symbol}${currencyConvertion(sku?.price, currency.conversionRateToUSD, false)} ${currency.abbreviation}`}
+															Price: {`${currency?.symbol}${currencyConvertion(sku?.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}
 														</AppTypography>
 														<AppTypography fontSize="12px">
 															Commission: {sku?.recordData?.commision + '%'}

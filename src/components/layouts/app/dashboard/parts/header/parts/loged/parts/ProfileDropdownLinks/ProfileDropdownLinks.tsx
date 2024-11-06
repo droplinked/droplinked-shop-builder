@@ -39,7 +39,7 @@ function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void })
                         {link.label === "Credit" ?
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>{currency.symbol}{currencyConvertion(shop?.credit?.toFixed(2), currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>{currency?.symbol}{currencyConvertion(shop?.credit?.toFixed(2), currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
                             </Flex>
                             :
                             renderLinkAttributes(link)

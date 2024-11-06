@@ -17,7 +17,7 @@ function Revenue() {
         <VStack align="stretch" spacing="4px">
             <AppTypography fontSize="16px">Total earnings</AppTypography>
             <AppSkeleton isLoaded={isLoading}>
-                <AppTypography fontSize="32px" fontWeight="600">{currency.symbol}{currencyConvertion(revenue?.total, currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+                <AppTypography fontSize="32px" fontWeight="600">{currency?.symbol}{currencyConvertion(revenue?.total, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
             </AppSkeleton>
             <AppTypography fontSize="12px" color="#C4C4C4">Your revenue from <strong>{moment(from).format('YYYY/MM/DD')}</strong> to <strong>{moment(to).format('YYYY/MM/DD')}</strong></AppTypography>
         </VStack>

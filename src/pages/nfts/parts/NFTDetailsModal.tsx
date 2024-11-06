@@ -24,7 +24,7 @@ function NFTDetailsModal({ open, close, nft }: Props) {
 
     let tableColumns: any = {
         quantity: { value: nft.productQuantity, caption: "Quantity" },
-        price: { value: `${currency.symbol}${currencyConvertion(nft.productPrice, currency.conversionRateToUSD, false)} ${currency.abbreviation}`, caption: "Price" },
+        price: { value: `${currency?.symbol}${currencyConvertion(nft.productPrice, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`, caption: "Price" },
     }
     if (nft.productSize && nft.productSize !== "not found")
         tableColumns.size = { value: nft.productSize, caption: "Size" }

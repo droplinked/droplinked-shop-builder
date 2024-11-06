@@ -52,7 +52,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
             header: 'Amount',
             cell: (info) => {
                 const amount = info.getValue() as number
-                if (amount) return `${currency.symbol} ${currencyConvertion(amount, currency.conversionRateToUSD, false)} {currency.abbreviation}`
+                if (amount) return `${currency?.symbol} ${currencyConvertion(amount, currency?.conversionRateToUSD, false)} {currency?.abbreviation}`
                 return "-"
             }
         },

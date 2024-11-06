@@ -35,7 +35,7 @@ function AffiliateDetailCard({ decript, earning, image, options, price, title }:
                         </Flex>
                     </Box>
                     <Box><Text fontSize={["sm", "md"]}>Price: {price}</Text></Box>
-                    <Box><Text fontSize={["sm", "md"]}>Your earning: {currency.symbol}{currencyConvertion(parseFloat(earning), currency.conversionRateToUSD, false)}  {currency.abbreviation} / each</Text></Box>
+                    <Box><Text fontSize={["sm", "md"]}>Your earning: {currency?.symbol}{currencyConvertion(parseFloat(earning), currency?.conversionRateToUSD, false)}  {currency?.abbreviation} / each</Text></Box>
 
                 </VStack>
             </Box>

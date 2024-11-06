@@ -83,7 +83,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 />
             </Td>
             <Td color={"#fff"}>
-                {firstSkuPrice ? `${currency.symbol}${currencyConvertion(firstSkuPrice, currency.conversionRateToUSD, false)} ${currency.abbreviation}` : "-"}
+                {firstSkuPrice ? `${currency?.symbol}${currencyConvertion(firstSkuPrice, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}` : "-"}
             </Td>
             <Td>
                 <Button

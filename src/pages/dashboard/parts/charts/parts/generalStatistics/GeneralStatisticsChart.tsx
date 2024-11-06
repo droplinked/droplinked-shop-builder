@@ -100,14 +100,14 @@ function GeneralStatisticsChart() {
                 ${typeof data.revenue !== "undefined" ? `
                   <div style="display: flex; justify-content: space-between">
                     <p style="color: #878787; margin: 0">Earnings</p>
-                    <p style="margin: 0">${currency.symbol}${currencyConvertion(data.revenue, currency.conversionRateToUSD, false)} ${currency.abbreviation}</p>
+                    <p style="margin: 0">${currency?.symbol}${currencyConvertion(data.revenue, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}</p>
                   </div>
                 `: ""}
 
                 ${typeof data.profit !== "undefined" ? `
                 <div style="display: flex; justify-content: space-between">
                   <p style="color: #878787; margin: 0">Profit</p>
-                  <p style="margin: 0">${currency.symbol}${currencyConvertion(data.profit, currency.conversionRateToUSD, false)} ${currency.abbreviation}</p>
+                  <p style="margin: 0">${currency?.symbol}${currencyConvertion(data.profit, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}</p>
                 </div>
                 `: ""}
               </div>
@@ -121,7 +121,7 @@ function GeneralStatisticsChart() {
                       <div style="width: 8px; height: 8px; border:2px solid #2BCFA1; border-radius: 50%;"></div>
                       <p style="color: #87878; margin: 0">Direct</p>
                     </div>
-                    <p style="margin: 0">${currency.symbol}${currencyConvertion(data.direct, currency.conversionRateToUSD, false)} ${currency.abbreviation}</p>
+                    <p style="margin: 0">${currency?.symbol}${currencyConvertion(data.direct, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}</p>
                   </div>
                 ` : ""}
                 
@@ -131,7 +131,7 @@ function GeneralStatisticsChart() {
                       <div style="width: 8px; height: 8px; border:2px solid #9C4EFF; border-radius: 50%;"></div>
                       <p style="color: #878787; margin: 0">Affiliate</p>
                     </div>
-                    <p style="margin: 0">${currency.symbol}${currencyConvertion(data.affiliate, currency.conversionRateToUSD, false)}  ${currency.abbreviation}</p>
+                    <p style="margin: 0">${currency?.symbol}${currencyConvertion(data.affiliate, currency?.conversionRateToUSD, false)}  ${currency?.abbreviation}</p>
                   </div>
                 `: ""}
                 
@@ -169,7 +169,7 @@ function GeneralStatisticsChart() {
     <AppSkeleton isLoaded={isLoading}>
       {revenue?.chart?.length ? (
         <VStack align="stretch">
-          <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">{currency.symbol}{currencyConvertion(maxRevenue(), currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
+          <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">{currency?.symbol}{currencyConvertion(maxRevenue(), currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
           <Bar options={options} data={data} height="100px" />
         </VStack>
       ) : <DashboardEmpty minHeight="300px" />}

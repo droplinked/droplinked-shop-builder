@@ -42,9 +42,9 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
                 caption: "Product Cost",
                 value: (
                     <AppTypography fontSize={12} color="#C2C2C2">
-                        {currency.symbol}{currencyConvertion(el.price, currency.conversionRateToUSD, false)}{" "}
+                        {currency?.symbol}{currencyConvertion(el.price, currency?.conversionRateToUSD, false)}{" "}
                         <Box as="span" color="#808080">
-                            {currency.abbreviation}
+                            {currency?.abbreviation}
                         </Box>
                     </AppTypography>
                 ),

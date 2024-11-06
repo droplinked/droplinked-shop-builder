@@ -38,7 +38,7 @@ function FileUpload({ label, setExcelData }: Props) {
                 return {
                     name: rule["Service Name"],
                     pricePerUnit:
-                        rule[`Price (${currency.abbreviation}) Per KG`] || rule[`Price (${currency.abbreviation}) per Package Size`],
+                        rule[`Price (${currency?.abbreviation}) Per KG`] || rule[`Price (${currency?.abbreviation}) per Package Size`],
                     estimatedDeliveryDate: rule["Estimated Delivary Date"],
                     countries: group
                         ? group["Countries"].split(",").map((country) => country.trim())
@@ -59,10 +59,10 @@ function FileUpload({ label, setExcelData }: Props) {
                 isActive: true,
             }
 
-            if (shippingRules.some((rule) => rule[`Price (${currency.abbreviation}) Per KG`] !== undefined))
+            if (shippingRules.some((rule) => rule[`Price (${currency?.abbreviation}) Per KG`] !== undefined))
                 createShippingDto.weightUnit = "KG"
 
-            if (shippingRules.some((rule) => rule[`Price (${currency.abbreviation}) per Package Size`] !== undefined))
+            if (shippingRules.some((rule) => rule[`Price (${currency?.abbreviation}) per Package Size`] !== undefined))
                 createShippingDto.sizeUnit = "CM"
 
             setExcelData(createShippingDto)

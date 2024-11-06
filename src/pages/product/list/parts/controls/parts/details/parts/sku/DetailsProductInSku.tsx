@@ -33,7 +33,7 @@ function DetailsProductInSku() {
                             <tr key={key}>
                                 <td><AppTypography fontSize='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
                                 <td>---</td>
-                                <td><AppTypography fontSize='14px'>{currency.symbol}{currencyConvertion(el.price, currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>{currency?.symbol}{currencyConvertion(el.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography></td>
                                 <td>
                                     <Flex justifyContent="center">
                                         {el?.recordData ? (

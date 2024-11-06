@@ -161,7 +161,7 @@ export const createProfileConstants = (shop: { credit: number; name: string; sho
         linkTo: null,
         isExternalLink: false,
         rightSide: {
-            value: `${shop.currency.symbol}${currencyConvertion(Number(shop?.credit), shop.currency.conversionRateToUSD, false)} ${shop.currency.abbreviation}`,
+            value: `${shop.currency?.symbol}${currencyConvertion(Number(shop?.credit), shop.currency?.conversionRateToUSD, false)} ${shop.currency?.abbreviation}`,
             style: {
                 color: "#2BCFA1",
                 fontFamily: "Inter",

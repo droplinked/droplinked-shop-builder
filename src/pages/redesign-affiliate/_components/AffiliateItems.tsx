@@ -124,7 +124,7 @@ const AffiliateItem = ({
                                 Price
                             </AppTypography>
                             <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px">
-                                {currency.symbol}{currencyConvertion(price, currency.conversionRateToUSD, false)} {currency.abbreviation}
+                                {currency?.symbol}{currencyConvertion(price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
                             </AppTypography>
                         </Box>
                         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="flex-start">

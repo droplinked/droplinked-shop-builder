@@ -31,7 +31,7 @@ function PreviewProducts() {
                     <VStack key={key} align="stretch" spacing="3px">
                         <Image width="100%" paddingBottom="4px" borderRadius="2px" src="/assets/images/templated/sample.png" />
                         <PreviewTypo fontSize="12px" fontWeight="bold" textAlign="center" color={textColorParagraphs || "#FFF"}>Pancho</PreviewTypo>
-                        <PreviewTypo fontSize="12px" fontWeight="bold" textAlign="center" opacity=".5" color={textColorParagraphs || "#FFF"}>{currency.symbol}{currencyConvertion(30.00, currency.conversionRateToUSD, false)} {currency.abbreviation}</PreviewTypo>
+                        <PreviewTypo fontSize="12px" fontWeight="bold" textAlign="center" opacity=".5" color={textColorParagraphs || "#FFF"}>{currency?.symbol}{currencyConvertion(30.00, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</PreviewTypo>
                     </VStack>
                 ))}
             </SimpleGrid>

@@ -76,7 +76,7 @@ function SaleInfromation() {
                                 value: (
                                     <Flex alignItems="end" gap="10px">
                                         <Box width="100px"><AppInput onChange={(e: any) => change('price', parseInt(e.target.value))} value={sku.length ? sku[0].price : ''} name='price' placeholder='0' width="100%" /></Box>
-                                        <AppTypography fontSize='14px' position="relative" bottom="13px" color="#808080">{currency.abbreviation}</AppTypography>
+                                        <AppTypography fontSize='14px' position="relative" bottom="13px" color="#808080">{currency?.abbreviation}</AppTypography>
                                     </Flex>
                                 )
                             },

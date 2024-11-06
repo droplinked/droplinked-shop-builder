@@ -19,7 +19,7 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
             return {
                 image: image || product_printful?.image,
                 title: title || product_printful?.title,
-                price: `${currency.symbol}${currencyConvertion(34.4, currency.conversionRateToUSD, false)} ${currency.abbreviation}`,
+                price: `${currency?.symbol}${currencyConvertion(34.4, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`,
                 description: product_printful?.description
             }
         }
