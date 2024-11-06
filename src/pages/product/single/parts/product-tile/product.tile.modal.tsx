@@ -5,7 +5,8 @@ import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { createProductTileService, editProductTileService } from 'lib/apis/product/productServices';
-import { useCheckPermission } from 'lib/stores/app/appStore';
+import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import { productContext } from 'pages/product/single/context';
 import React, { useContext, useState } from 'react';
 import { useMutation } from 'react-query';
@@ -18,6 +19,7 @@ interface Props {
 
 function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     const checkPermissionAndShowToast = useCheckPermission()
+    const { shop: { currency } } = useAppStore()
     const { state: { sku, productTile }, methods: { updateState } } = useContext(productContext)
     const createProductTile = useMutation(() => createProductTileService({ skuIDs }))
     const editProductTile = useMutation(() => editProductTileService(selectedTile?._id!, { skuIDs }))
@@ -40,9 +42,9 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
                 caption: "Product Cost",
                 value: (
                     <AppTypography fontSize={12} color="#C2C2C2">
-                        ${el.price}{" "}
+                        {currency.symbol}{currencyConvertion(el.price, currency.conversionRateToUSD, false)}{" "}
                         <Box as="span" color="#808080">
-                            USD
+                            {currency.abbreviation}
                         </Box>
                     </AppTypography>
                 ),

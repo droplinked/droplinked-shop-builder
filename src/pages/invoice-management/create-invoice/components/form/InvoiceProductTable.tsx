@@ -11,6 +11,8 @@ import { useMutation } from 'react-query'
 import useInvoiceStore, { CartItem } from '../../store/invoiceStore'
 import ProductTitleCell from './ProductTitleCell'
 import InvoiceProductModal from './product-modal/InvoiceProductModal'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 interface SerializedCartItem {
     product: CartItem['product']
@@ -77,7 +79,7 @@ function groupCartItemsByProduct(cartItems: CartItem[]) {
 
 function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem
-
+    const { shop: { currency } } = useAppStore();
     return (
         <>
             {skus.map((sku, index) => (
@@ -95,7 +97,7 @@ function CartItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartIt
                     <Td>{sku.options?.color?.caption || '-'}</Td>
                     <Td>{sku.options?.size?.caption || '-'}</Td>
                     <Td>{sku.options?.quantity || '-'}</Td>
-                    <Td>{`$${sku.totals?.priceItem?.toFixed(2)} USD` || '-'}</Td>
+                    <Td>{`${currency.symbol}${currencyConvertion(sku.totals?.priceItem, currency.conversionRateToUSD, false)}  ${currency.abbreviation}` || '-'}</Td>
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}

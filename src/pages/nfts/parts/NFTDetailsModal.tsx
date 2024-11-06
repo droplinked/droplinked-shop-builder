@@ -4,6 +4,8 @@ import AppImage from 'components/common/image/AppImage'
 import AppModal from 'components/common/modal/AppModal'
 import AppTable from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import React from 'react'
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 }
 
 function NFTDetailsModal({ open, close, nft }: Props) {
+    const { shop: { currency } } = useAppStore();
     const nftAttributes = [
         { label: "NFT Name", value: nft.name },
         { label: "Creator", value: nft.creator?.email },
@@ -21,7 +24,7 @@ function NFTDetailsModal({ open, close, nft }: Props) {
 
     let tableColumns: any = {
         quantity: { value: nft.productQuantity, caption: "Quantity" },
-        price: { value: `$${nft.productPrice.toFixed(2)} USD`, caption: "Price" },
+        price: { value: `${currency.symbol}${currencyConvertion(nft.productPrice, currency.conversionRateToUSD, false)} ${currency.abbreviation}`, caption: "Price" },
     }
     if (nft.productSize && nft.productSize !== "not found")
         tableColumns.size = { value: nft.productSize, caption: "Size" }

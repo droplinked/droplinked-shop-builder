@@ -5,7 +5,7 @@ import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
 import { getCustomShippingsService } from 'lib/apis/custom-shipping/CustomShippingServices'
-import { useHasPermission } from 'lib/stores/app/appStore'
+import useAppStore, { useHasPermission } from 'lib/stores/app/appStore'
 import { productContext } from 'pages/product/single/context'
 import { BlackBox, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useState } from 'react'
@@ -15,7 +15,8 @@ import Loading from '../loading/Loading'
 import RemoveCustomShippingModal from '../remove-custom-shipping-modal/RemoveCustomShippingModal'
 
 function Shipping() {
-    const hasPermission = useHasPermission()
+    const hasPermission = useHasPermission();
+    const { shop: { currency } } = useAppStore();
     const { state: { shippingPrice, shippingType }, methods: { updateState }, loading } = useContext(productContext)
     const { isFetching, data: customShippings, refetch } = useQuery({
         queryKey: "custom-shippings",
@@ -96,7 +97,7 @@ function Shipping() {
                         name="cost"
                         isRequired
                         label='Shipping Cost'
-                        placeholder="$0.00 USD"
+                        placeholder={`${currency.symbol}0.00 ${currency.abbreviation}`}
                         value={shippingPrice}
                         onKeyDown={(e) => {
                             if (e.key === '+' || e.key === '-' || e.key === 'e') e.preventDefault()

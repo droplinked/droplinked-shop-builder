@@ -2,6 +2,8 @@ import { Box, Divider, Flex, Skeleton } from "@chakra-ui/react";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import useAppStore from "lib/stores/app/appStore";
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 import React from "react";
 
 export const LAffiliateItem = () => (
@@ -40,6 +42,7 @@ const AffiliateItem = ({
     logo?: string;
     slug?: string;
 }) => {
+    const { shop: { currency } } = useAppStore();
     const { shopNavigate } = useCustomNavigate();
     return (
         <Box
@@ -121,7 +124,7 @@ const AffiliateItem = ({
                                 Price
                             </AppTypography>
                             <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px">
-                                ${price} USD
+                                {currency.symbol}{currencyConvertion(price, currency.conversionRateToUSD, false)} {currency.abbreviation}
                             </AppTypography>
                         </Box>
                         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="flex-start">

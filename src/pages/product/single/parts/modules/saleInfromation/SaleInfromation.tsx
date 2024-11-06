@@ -8,10 +8,11 @@ import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect } from 'react'
 import AlertProduct from '../alert/AlertProduct'
 import VariantsUnlimited from '../variants/parts/table/parts/unlimited/VariantsUnlimited'
+import useAppStore from 'lib/stores/app/appStore'
 
 function SaleInfromation() {
     const { loading, methods: { updateState }, state: { sku }, productID } = useContext(productContext)
-
+    const { shop: { currency } } = useAppStore();
     useEffect(() => {
         if (sku.length) return
         let data: any = {
@@ -75,7 +76,7 @@ function SaleInfromation() {
                                 value: (
                                     <Flex alignItems="end" gap="10px">
                                         <Box width="100px"><AppInput onChange={(e: any) => change('price', parseInt(e.target.value))} value={sku.length ? sku[0].price : ''} name='price' placeholder='0' width="100%" /></Box>
-                                        <AppTypography fontSize='14px' position="relative" bottom="13px" color="#808080">USD</AppTypography>
+                                        <AppTypography fontSize='14px' position="relative" bottom="13px" color="#808080">{currency.abbreviation}</AppTypography>
                                     </Flex>
                                 )
                             },

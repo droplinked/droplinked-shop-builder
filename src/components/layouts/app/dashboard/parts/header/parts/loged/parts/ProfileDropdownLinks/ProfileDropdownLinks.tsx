@@ -1,7 +1,9 @@
 import { Link as ChakraLink, Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL } from 'lib/utils/app/variable';
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 
@@ -25,6 +27,8 @@ function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void })
             {link.icon}
             <AppTypography color={"#FFFFFF"} fontSize={16}>{link.label}</AppTypography>
         </Flex>
+    const { shop: shopData } = useAppStore();
+    const { currency } = shopData;
 
     return (
         <Flex direction={"column"} gap={6}>
@@ -35,7 +39,7 @@ function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void })
                         {link.label === "Credit" ?
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>${shop?.credit?.toFixed(2)} USD</AppTypography>
+                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>{currency.symbol}{currencyConvertion(shop?.credit?.toFixed(2), currency.conversionRateToUSD, false)} {currency.abbreviation}</AppTypography>
                             </Flex>
                             :
                             renderLinkAttributes(link)

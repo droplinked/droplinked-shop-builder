@@ -3,7 +3,7 @@ import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDis
 import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
-import { useLegalUsage } from 'lib/stores/app/appStore';
+import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
@@ -18,6 +18,7 @@ function SkuTable() {
     const { showToast } = useAppToast();
     const shopLegalUsage = useLegalUsage()
     const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext);
+    const { shop: { currency } } = useAppStore()
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel;
     const recordModal = useDisclosure();
@@ -65,7 +66,7 @@ function SkuTable() {
 
         return state.sku.map((el, key) => {
             return {
-                ...getRows({ sku: el, state, key, available_variant, onPriceChange: handleGeneralPriceChange, generalPrice, onQuantityChange: handleGeneralQuantityChange, generalQuantity }),
+                ...getRows({ sku: el, state, key, available_variant, onPriceChange: handleGeneralPriceChange, generalPrice, onQuantityChange: handleGeneralQuantityChange, generalQuantity }, currency),
                 controls: {
                     caption:
                         <Flex flexDirection={"column"} alignItems={"center"} gap={"16px"}>

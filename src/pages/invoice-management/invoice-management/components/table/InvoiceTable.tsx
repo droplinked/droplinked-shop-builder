@@ -10,6 +10,8 @@ import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-det
 import React, { useRef } from 'react'
 import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 interface Props {
     invoices: Invoice[]
@@ -21,6 +23,7 @@ interface Props {
 }
 
 function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
+    const { shop: { currency } } = useAppStore();
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
@@ -49,7 +52,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
             header: 'Amount',
             cell: (info) => {
                 const amount = info.getValue() as number
-                if (amount) return `${formattedCurrency(amount)} USD`
+                if (amount) return `${currency.symbol} ${currencyConvertion(amount, currency.conversionRateToUSD, false)} {currency.abbreviation}`
                 return "-"
             }
         },

@@ -5,6 +5,7 @@ import React from "react";
 import CoverSku from "../parts/cover/CoverSku";
 import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
 import VariantsUnlimited from "../parts/unlimited/VariantsUnlimited";
+import { IShopCurrency } from "types/interface/shopCurrency.interface";
 
 interface IgetRows {
     sku: Isku
@@ -18,13 +19,13 @@ interface IgetRows {
 }
 
 const SkuTableModel = ({
-    getRows: ({ state, sku, key, available_variant, onPriceChange, generalPrice, onQuantityChange, generalQuantity }: IgetRows) => {
+    getRows: ({ state, sku, key, available_variant, onPriceChange, generalPrice, onQuantityChange, generalQuantity }: IgetRows, currency: IShopCurrency) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED";
         const product_type = state.product_type;
 
         return {
             Variant: {
-                caption: 
+                caption:
                     <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"16px"}>
                         <AppTypography>Variant</AppTypography>
                         <AppTypography>Change All</AppTypography>
@@ -35,7 +36,7 @@ const SkuTableModel = ({
                 value: sku?.options?.map(el => el?.caption).join("-")
             },
             price: {
-                caption: 
+                caption:
                     <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
                         <AppTypography>{product_type === "PRINT_ON_DEMAND" ? "Retail Price" : "Price"}</AppTypography>
                         <Flex gap={2} alignItems="center">
@@ -48,7 +49,7 @@ const SkuTableModel = ({
                                 placeholder="0"
                                 type="number"
                             />
-                            <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
+                            <AppTypography fontSize="12px" color={"#808080"}>{currency.abbreviation}</AppTypography>
                         </Flex>
                     </Flex>,
                 props: {
@@ -63,7 +64,7 @@ const SkuTableModel = ({
                             name={"price"}
                             type="number"
                         />
-                        <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
+                        <AppTypography fontSize="12px" color={"#808080"}>{currency.abbreviation}</AppTypography>
                     </Flex>
                 )
             },
@@ -73,7 +74,7 @@ const SkuTableModel = ({
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
-                    caption: 
+                    caption:
                         <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"8px"}>
                             <AppTypography>Quantity</AppTypography>
                             {product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={generalQuantity} onChange={onQuantityChange} name={"quantity"} placeholder="0" type="number" />}
@@ -84,7 +85,7 @@ const SkuTableModel = ({
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: available_variant ? <AppTypography fontSize="12px">{sku.rawPrice} USD</AppTypography> : 0
+                    value: available_variant ? <AppTypography fontSize="12px">{sku.rawPrice} {currency.abbreviation}</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

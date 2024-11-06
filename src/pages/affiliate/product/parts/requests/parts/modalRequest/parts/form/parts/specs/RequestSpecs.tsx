@@ -2,10 +2,12 @@ import AppTable from 'components/common/table/AppTable'
 import RequestProductModel from 'pages/affiliate/product/parts/requests/model'
 import React, { useContext } from 'react'
 import { ModalRequestContext } from '../../context'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function RequestSpecs() {
   const { sku } = useContext(ModalRequestContext)
-
+  const { shop: { currency } } = useAppStore();
   return (
     <>
       <AppTable vertical rows={{
@@ -31,7 +33,7 @@ function RequestSpecs() {
           value: sku.externalID
         },
         Price: {
-          value: `$${sku.price.toFixed(2)} USD`
+          value: `${currency.symbol}${currencyConvertion(sku.price, currency.conversionRateToUSD, false)}  ${currency.abbreviation}`
         },
       }} />
     </>

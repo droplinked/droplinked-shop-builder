@@ -1,5 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import useAppStore from 'lib/stores/app/appStore';
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
 
 interface Props {
@@ -9,9 +11,10 @@ interface Props {
 }
 
 function CartSummaryRow({ title, value, isValueBold = false }: Props) {
+    const { shop: { currency } } = useAppStore();
     const formattedPrice = (price: number) => {
         const validPrice = isNaN(price) ? 0 : price
-        return `$${validPrice.toFixed(2)} `
+        return `${currency.abbreviation}${currencyConvertion(validPrice, currency.conversionRateToUSD, false)}  `
     }
 
     return (
@@ -23,7 +26,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
                 color={"white"}
             >
                 {formattedPrice(value)}
-                <Box as='span' fontSize={16} color={'#878787'}>{"USD"}</Box>
+                <Box as='span' fontSize={16} color={'#878787'}>{currency.symbol}</Box>
             </AppTypography>
         </Flex>
     )
