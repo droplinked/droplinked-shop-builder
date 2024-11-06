@@ -12,7 +12,7 @@ export default function ShippingAvailabilityContent() {
         queryKey: ["POD-shipping-availability", pod_blank_product_id],
         queryFn: () => getPODShippingAvailability(pod_blank_product_id)
     })
-    const regions = data?.data?.data || []
+    const regions = data?.data || []
 
     return (
         <PopoverBody padding={6}>

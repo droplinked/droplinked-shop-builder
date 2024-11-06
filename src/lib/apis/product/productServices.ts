@@ -105,5 +105,5 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
 
 export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
-        .post("product/printful-available-shipping", { product_id })
+        .post<{ data: string[] }>("product/printful-available-shipping", { product_id })
         .then(res => res.data)
