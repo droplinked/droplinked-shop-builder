@@ -115,7 +115,6 @@ const recordModel = {
 						},
 					];
 				const skuId = sku['_id']; // TODO: check here
-				console.log(quantity, sku.quantity);
 				record = await provider.recordProduct(
 					{
 						acceptsManageWallet: acceptsManageWallet,
@@ -158,17 +157,17 @@ const recordModel = {
 						beneficiaries: !pod
 							? sku.beneficiaries
 							: [
-									{
-										isPercentage:
-											false,
-										value:
-											sku
-												.skuProperties
-												.rawPrice *
-											100,
-										wallet: droplink_wallet,
-									},
-							  ],
+								{
+									isPercentage:
+										false,
+									value:
+										sku
+											.skuProperties
+											.rawPrice *
+										100,
+									wallet: droplink_wallet,
+								},
+							],
 						price: sku.price * 100,
 						skuID: sku.skuProperties['_id'],
 						skuProperties: sku.skuProperties,
