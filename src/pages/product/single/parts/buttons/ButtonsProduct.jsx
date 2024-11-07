@@ -36,6 +36,7 @@ function ButtonsProduct() {
     const { refactorData } = ProductSingleModel
     const appWeb3 = useAppWeb3()
     const { user: { wallets, _id }, shop } = useAppStore()
+    const { currency } = shop;
     const { growthHackData, fetchGrowthHackData } = useGrowthHackStore();
     const selectedChain = state?.digitalDetail?.chain
     const isProducer = useMemo(() => productID && (_id !== state?.ownerID), [state, _id, productID])
@@ -86,7 +87,7 @@ function ButtonsProduct() {
             await validate({ state, draft })
 
             // Make and handle data for draft mode 
-            const formData = makeData({ state, draft, productID })
+            const formData = makeData({ state, draft, productID , currency})
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData

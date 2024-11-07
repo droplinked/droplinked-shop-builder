@@ -8,11 +8,12 @@ import { getCustomShippingsService } from 'lib/apis/custom-shipping/CustomShippi
 import useAppStore, { useHasPermission } from 'lib/stores/app/appStore'
 import { productContext } from 'pages/product/single/context'
 import { BlackBox, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import CreateCustomShippingModal from '../create-custom-shipping-modal/CreateCustomShippingModal'
 import Loading from '../loading/Loading'
 import RemoveCustomShippingModal from '../remove-custom-shipping-modal/RemoveCustomShippingModal'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function Shipping() {
     const hasPermission = useHasPermission();
@@ -26,7 +27,14 @@ function Shipping() {
     const [targetShipping, setTargetShipping] = useState(null) //To remove custom shipping
     const createShippingModal = useDisclosure()
     const removeShippingModal = useDisclosure()
-
+    const [displayShippingPrice, setDisplayShippingPrice] = useState<number>(0);
+    const handleChangeShippingPrice = (e) => {
+        updateState("shippingPrice", e.target.value ? Number(currencyConvertion(e.target.value, currency?.conversionRateToUSD, true)) : '')
+        setDisplayShippingPrice(e.target.value)
+    }
+    useEffect(() => {
+        setDisplayShippingPrice(Number(currencyConvertion(shippingPrice, currency?.conversionRateToUSD, false)))
+    }, [loading])
     const shippings = [
         {
             title: 'Self Managed',
@@ -98,11 +106,11 @@ function Shipping() {
                         isRequired
                         label='Shipping Cost'
                         placeholder={`${currency?.symbol}0.00 ${currency?.abbreviation}`}
-                        value={shippingPrice}
+                        value={displayShippingPrice}
                         onKeyDown={(e) => {
                             if (e.key === '+' || e.key === '-' || e.key === 'e') e.preventDefault()
                         }}
-                        onChange={(e) => updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
+                        onChange={handleChangeShippingPrice}
                     />
                 )}
             </Flex>
