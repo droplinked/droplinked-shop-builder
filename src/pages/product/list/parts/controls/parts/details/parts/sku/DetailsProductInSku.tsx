@@ -7,13 +7,15 @@ import RecordModal from 'pages/product/single/parts/modules/variants/parts/table
 import React, { useContext, useState } from 'react'
 import detailsProductContext from '../../context'
 import classes from './style.module.scss'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function DetailsProductInSku() {
     const { product, fetch } = useContext(detailsProductContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { shop: { currency } } = useAppStore();
     const detailsModal = useDisclosure()
     const [Sku, setSku] = useState()
-
     return (
         <>
             <VStack align="stretch" lineHeight="30px">
@@ -31,7 +33,7 @@ function DetailsProductInSku() {
                             <tr key={key}>
                                 <td><AppTypography fontSize='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
                                 <td>---</td>
-                                <td><AppTypography fontSize='14px'>${el.price.toFixed(2)} USD</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>{currency?.symbol}{currencyConvertion(el.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography></td>
                                 <td>
                                     <Flex justifyContent="center">
                                         {el?.recordData ? (

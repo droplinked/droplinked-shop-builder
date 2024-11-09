@@ -4,6 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext, useMemo } from 'react'
 import variontFormContext from '../../../../context'
+import useAppStore from 'lib/stores/app/appStore'
 
 interface Iprops {
     field: string
@@ -12,7 +13,7 @@ interface Iprops {
 
 function TextBoxVariantForm(props: Iprops) {
     const { field, tiny } = props
-
+    const { shop: { currency } } = useAppStore();
     const { form } = useContext(variontFormContext)
 
     const textbox = useMemo(() => {
@@ -41,7 +42,7 @@ function TextBoxVariantForm(props: Iprops) {
                     <>
                         {textbox}
                         <Flex position={"absolute"} top={0} bottom={0} margin="auto" right={0} height="90%" borderLeft="1px solid" padding={"15px 15px 10px 15px"} borderColor="line" alignItems={"center"}>
-                            <AppTypography fontSize='14px'>USD</AppTypography>
+                            <AppTypography fontSize='14px'>{currency?.abbreviation}</AppTypography>
                         </Flex>
                     </>
                 ) : textbox}

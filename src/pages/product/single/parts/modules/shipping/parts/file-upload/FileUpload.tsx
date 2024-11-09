@@ -1,6 +1,7 @@
 import { Box, Flex, FormLabel } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useAppStore from 'lib/stores/app/appStore';
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import * as XLSX from "xlsx";
@@ -12,7 +13,7 @@ interface Props {
 
 function FileUpload({ label, setExcelData }: Props) {
     const [file, setFile] = useState<File | null>(null)
-
+    const { shop: { currency } } = useAppStore();
     const onDrop = (acceptedFiles) => {
         const selectedFile = acceptedFiles[0]
         setFile(selectedFile)
@@ -37,7 +38,7 @@ function FileUpload({ label, setExcelData }: Props) {
                 return {
                     name: rule["Service Name"],
                     pricePerUnit:
-                        rule["Price (USD) Per KG"] || rule["Price (USD) per Package Size"],
+                        rule[`Price (${currency?.abbreviation}) Per KG`] || rule[`Price (${currency?.abbreviation}) per Package Size`],
                     estimatedDeliveryDate: rule["Estimated Delivary Date"],
                     countries: group
                         ? group["Countries"].split(",").map((country) => country.trim())
@@ -58,10 +59,10 @@ function FileUpload({ label, setExcelData }: Props) {
                 isActive: true,
             }
 
-            if (shippingRules.some((rule) => rule["Price (USD) Per KG"] !== undefined))
+            if (shippingRules.some((rule) => rule[`Price (${currency?.abbreviation}) Per KG`] !== undefined))
                 createShippingDto.weightUnit = "KG"
 
-            if (shippingRules.some((rule) => rule["Price (USD) per Package Size"] !== undefined))
+            if (shippingRules.some((rule) => rule[`Price (${currency?.abbreviation}) per Package Size`] !== undefined))
                 createShippingDto.sizeUnit = "CM"
 
             setExcelData(createShippingDto)

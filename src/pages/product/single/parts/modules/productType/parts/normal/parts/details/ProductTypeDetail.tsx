@@ -1,6 +1,8 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useMemo } from 'react'
 
@@ -12,13 +14,13 @@ interface IProps {
 
 function ProductTypeDetail({ boxes, image, title }: IProps) {
     const { state: { pod_blank_product_id }, store: { state: { product_types, product_printful } } } = useContext(productContext)
-
+    const { shop: { currency } } = useAppStore();
     const getDetail = useMemo(() => {
         if (product_printful) {
             return {
                 image: image || product_printful?.image,
                 title: title || product_printful?.title,
-                price: "$34.4 USD",
+                price: `${currency?.symbol}${currencyConvertion(34.4, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`,
                 description: product_printful?.description
             }
         }

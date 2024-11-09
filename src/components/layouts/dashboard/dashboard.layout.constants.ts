@@ -2,6 +2,8 @@ import { BoxProps } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import { IAppTypography } from "components/common/typography/AppTypography";
 import { SHOP_URL } from "lib/utils/app/variable";
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
+import { IShopCurrency } from "types/interface/shopCurrency.interface";
 
 type SidebarItem = {
     title: string;
@@ -152,14 +154,14 @@ export const sidebar_constants: SidebarGroup[] = [
     },
 ];
 
-export const createProfileConstants = (shop: { credit: number; name: string; shopDomain: string; }, logoutUser: () => void): ProfileItem[] => [
+export const createProfileConstants = (shop: { credit: number; name: string; shopDomain: string; currency: IShopCurrency }, logoutUser: () => void): ProfileItem[] => [
     {
         title: { label: "Credit", style: {} },
         icon: { svg: AppIcons.ProfileCredit, style: {} },
         linkTo: null,
         isExternalLink: false,
         rightSide: {
-            value: `$${shop.credit.toFixed(2)} USD`,
+            value: `${shop.currency?.symbol}${currencyConvertion(Number(shop?.credit), shop.currency?.conversionRateToUSD, false)} ${shop.currency?.abbreviation}`,
             style: {
                 color: "#2BCFA1",
                 fontFamily: "Inter",
@@ -172,7 +174,7 @@ export const createProfileConstants = (shop: { credit: number; name: string; sho
     {
         title: { label: "View shop", style: {} },
         icon: { svg: AppIcons.ProfileShop, style: {} },
-        linkTo: shop?.shopDomain ? `https://${shop?.shopDomain}` :  `${SHOP_URL}/${shop.name}`,
+        linkTo: shop?.shopDomain ? `https://${shop?.shopDomain}` : `${SHOP_URL}/${shop.name}`,
         isExternalLink: true,
         rightSide: { value: null, style: {} },
     },

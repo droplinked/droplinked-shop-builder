@@ -12,9 +12,11 @@ import ProductSingleModel from './model/model'
 import ProductLoading from './parts/loading/ProductLoading'
 import ProductStore from './parts/store/ProductStore'
 import productPageNamespace from './reducers'
+import useAppStore from 'lib/stores/app/appStore'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
+    const { shop: { currency } } = useAppStore();
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
@@ -30,7 +32,7 @@ function ProductSingle() {
                     productID: params?.productId,
                 },
                 {
-                    onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data)) : reject("Cant find this product"),
+                    onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data, currency)) : reject("Cant find this product"),
                     onError: (err) => { reject(err) }
                 }
             )
