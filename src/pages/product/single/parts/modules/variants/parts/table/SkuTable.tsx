@@ -1,4 +1,4 @@
-import { Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Flex, useDisclosure } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
@@ -85,53 +85,77 @@ function SkuTable() {
                     props: {
                         style: { textAlign: "center" }
                     },
+                    // value: (
+                    //     <>
+                    //         {
+                    //             el?.recordData ?
+                    //                 el.recordData.status === "RECORDED" ?
+                    //                     <Flex justifyContent={"center"}>
+                    //                         <BlockchainDisplay
+                    //                             blockchain={el.recordData.recordNetwork}
+                    //                             show="icon"
+                    //                             props={{
+                    //                                 width: "25px",
+                    //                                 height: "25px",
+                    //                                 cursor: "pointer",
+                    //                                 onClick: () => {
+                    //                                     setSku(el)
+                    //                                     detailsModal.onOpen()
+                    //                                 }
+                    //                             }}
+                    //                         />
+                    //                     </Flex>
+                    //                     :
+                    //                     el.recordData.status !== "NOT_RECORDED"
+                    //                         ?
+                    //                         <Flex justifyContent={"center"}>
+                    //                             <Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">
+                    //                                 {el?.recordData.status}
+                    //                             </Text>
+                    //                         </Flex>
+                    //                         :
+                    //                         <SkuTableOptions
+                    //                             element={el}
+                    //                             updateSku={(sku: any) => setSku(sku)}
+                    //                             elementKey={key}
+                    //                             modals={{
+                    //                                 editModal: editModal.onOpen,
+                    //                                 recordMoal: checkDropLegalUsage
+                    //                             }}
+                    //                         />
+                    //                 : <SkuTableOptions
+                    //                     element={el}
+                    //                     updateSku={(sku: any) => setSku(sku)}
+                    //                     elementKey={key}
+                    //                     modals={{
+                    //                         editModal: editModal.onOpen,
+                    //                         recordMoal: checkDropLegalUsage
+                    //                     }}
+                    //                 />
+                    //         }
+                    //     </>
+                    // )
                     value: (
                         <>
                             {
-                                el?.recordData ?
-                                    el.recordData.status === "RECORDED" ?
-                                        <Flex justifyContent={"center"}>
-                                            <BlockchainDisplay
-                                                blockchain={el.recordData.recordNetwork}
-                                                show="icon"
-                                                props={{
-                                                    width: "25px",
-                                                    height: "25px",
-                                                    cursor: "pointer",
-                                                    onClick: () => {
-                                                        setSku(el)
-                                                        detailsModal.onOpen()
-                                                    }
-                                                }}
-                                            />
-                                        </Flex>
-                                        :
-                                        el.recordData.status !== "NOT_RECORDED"
-                                            ?
-                                            <Flex justifyContent={"center"}>
-                                                <Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">
-                                                    {el?.recordData.status}
-                                                </Text>
-                                            </Flex>
-                                            :
-                                            <SkuTableOptions
-                                                element={el}
-                                                updateSku={(sku: any) => setSku(sku)}
-                                                elementKey={key}
-                                                modals={{
-                                                    editModal: editModal.onOpen,
-                                                    recordMoal: checkDropLegalUsage
-                                                }}
-                                            />
-                                    : <SkuTableOptions
-                                        element={el}
-                                        updateSku={(sku: any) => setSku(sku)}
-                                        elementKey={key}
-                                        modals={{
-                                            editModal: editModal.onOpen,
-                                            recordMoal: checkDropLegalUsage
-                                        }}
-                                    />
+                                el?.recordData?.status === "RECORDED" ?
+                                    <Flex justifyContent={"center"}>
+                                        <BlockchainDisplay
+                                            blockchain={el.recordData.recordNetwork}
+                                            show="icon"
+                                            props={{
+                                                width: "25px",
+                                                height: "25px",
+                                                cursor: "pointer",
+                                                onClick: () => {
+                                                    setSku(el)
+                                                    detailsModal.onOpen()
+                                                }
+                                            }}
+                                        />
+                                    </Flex>
+                                    :
+                                    null
                             }
                         </>
                     )
