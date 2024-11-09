@@ -12,49 +12,49 @@ import { DropWeb3, Network, Chain, Web3Actions, ChainWallet } from 'droplinked-w
 // method: "record" | "request" | "accept"
 export type IWeb3 =
 	| {
-			method: 'record';
-			params: IRecordPrams | any;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'record';
+		params: IRecordPrams | any;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'request';
-			params: IRequestData;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'request';
+		params: IRequestData;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'accept';
-			params: IAcceptData;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'accept';
+		params: IAcceptData;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'record_batch';
-			params: IrecordBatch | any;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission: number;
-			royalty: number;
-			product: any;
-			shop: any;
-	  };
+		method: 'record_batch';
+		params: IrecordBatch | any;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission: number;
+		royalty: number;
+		product: any;
+		shop: any;
+	};
 
 interface IGetChain {
 	chain: string;
@@ -83,9 +83,9 @@ const useAppWeb3 = () => {
 				if (chainAccount?.address) {
 					resolve(
 						chainAccount[
-							chain === 'CASPER'
-								? 'public_key'
-								: 'address'
+						chain === 'CASPER'
+							? 'public_key'
+							: 'address'
 						]
 					);
 				} else if (chain === 'STACKS') {
