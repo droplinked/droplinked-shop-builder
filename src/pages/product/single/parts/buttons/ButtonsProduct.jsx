@@ -51,19 +51,10 @@ function ButtonsProduct() {
     const recordCreatedProduct = async () => {
         try {
             const product = createdProductRef.current
-            // const hashkey = await record({
-            //     method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: selectedChain, wallets, stack: stacks, shop }),
-            //     product: {
-            //         ...state,
-            //         _id: product._id,
-            //         sku: [{ ...state.sku[0], _id: product.sku[0]._id }]
-            //     },
-            //     stacks
-            // })
             const { commission, sku } = state
             const hashkey = await web3({
                 method: "record_batch",
-                params: [{ quantity: sku[0].quantity, sku: sku[0], imageUrl: product.media[0].thumbnail }],
+                params: [{ quantity: sku[0].quantity, sku: product.sku[0], imageUrl: product.media[0].thumbnail }],
                 product,
                 shop,
                 commission: commission,
