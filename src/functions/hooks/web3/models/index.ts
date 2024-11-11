@@ -287,6 +287,17 @@ const web3Model = {
 				const web3 = new DropWeb3(
 					appDevelopment ? Network.TESTNET : Network.MAINNET
 				);
+				if (chain === 'SKALE') {
+					const req = await getDeployPermission();
+					if (req.status !== 201) {
+						console.log(
+							`Getting permission failed, reason: ${req.data}`
+						);
+						throw new Error(
+							"Permission denied, make sure you've connected your skale wallet"
+						);
+					}
+				}
 				let deployedContract: DeployShopResponse;
 				let targetChainContract;
 				if (shop.deployedContracts) {
