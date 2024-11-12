@@ -1,9 +1,11 @@
 import { Box, HStack } from "@chakra-ui/react"
 import AppSelectBox from "components/common/form/select/AppSelectBox"
 import AppTypography from "components/common/typography/AppTypography"
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion"
 import { typesProperties } from "lib/utils/statics/types"
 import { IproductOrderSkues } from "pages/product/order/context"
 import React from "react"
+import { IShopCurrency } from "types/interface/shopCurrency.interface"
 
 interface Irows {
     product: any
@@ -14,7 +16,7 @@ interface Irows {
 }
 
 namespace productOrderSkuesModel {
-    export const rows = ({ product, SkuesIDs, skus, updateState, orderId }: Irows) => product ? product.skuIDs.map(el => {
+    export const rows = ({ product, SkuesIDs, skus, updateState, orderId }: Irows, currency: IShopCurrency) => product ? product.skuIDs.map(el => {
         const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: el,
@@ -30,8 +32,8 @@ namespace productOrderSkuesModel {
                 caption: "Product Cost",
                 value: (
                     <AppTypography>
-                        {`$${el?.rawPrice?.toFixed(2)}`} {" "}
-                        <Box as="span" color="#808080">USD</Box>
+                        {`${currency?.symbol}${currencyConvertion(el?.rawPrice, currency?.conversionRateToUSD, false)}`} {" "}
+                        <Box as="span" color="#808080">{currency?.abbreviation}</Box>
                     </AppTypography>
                 )
             },

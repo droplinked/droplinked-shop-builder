@@ -11,7 +11,7 @@ function FullScreenLoading() {
             backdropFilter="blur(20px)"
             justifyContent="center"
             alignItems="center"
-            zIndex={10}
+            zIndex={9999}
         >
             <LoadingComponent />
         </Flex>

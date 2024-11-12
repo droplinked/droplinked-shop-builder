@@ -22,14 +22,18 @@ export default function D3AboveTheFoldSection() {
                 alignItems="center"
                 gap={{ base: 10, lg: 12 }}
                 paddingInline={{ base: 8, md: 4 }}
+                sx={{ "p": { textAlign: "center", color: "white" } }}
             >
                 <D3Heading as="h1" fontSize={{ base: 28, md: 48, lg: 56, xl: 64 }}>droplinked & D3</D3Heading>
                 <Logos />
-                <AppTypography textAlign="center" fontFamily={"Inter"} fontSize={{ base: 14, md: 20 }} color="white">
+                <AppTypography fontSize={{ base: 14, md: 20 }}>
                     Unlock 6 months of the Pro Plan absolutely free!<br />
                     Redeem the exclusive offer today.
                 </AppTypography>
-                <D3Modal />
+                <Flex flexDirection="column" gap={4}>
+                    <D3Modal />
+                    <AppTypography fontSize={{ base: 14, md: 16 }} fontWeight={500}>$30 Value</AppTypography>
+                </Flex>
             </Flex>
 
             <Image

@@ -28,7 +28,7 @@ function PostPurchaseDataGatheringCheckbox() {
                     isChecked={pre_purchase_data_fetch} />
                 <VStack align='stretch' color="#C2C2C2" spacing={1}>
                     <AppTypography fontSize='14px' fontWeight='bold'>Post-Purchase Data Gathering</AppTypography>
-                    <AppTypography fontSize='14px'>Write a question to gather comment or specific information from customers before purchase!</AppTypography>
+                    <AppTypography fontSize='14px'>Write a question to gather comment or specific information from customers after purchase!</AppTypography>
                 </VStack>
             </Flex>
         </AppSkeleton>

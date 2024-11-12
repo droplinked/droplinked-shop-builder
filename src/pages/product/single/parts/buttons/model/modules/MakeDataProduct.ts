@@ -1,15 +1,23 @@
 import { IproductState, Isku } from "lib/apis/product/interfaces"
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
+import { IShopCurrency } from "types/interface/shopCurrency.interface";
 
 interface IrefactorSku {
     skues: Array<Isku>
+    currency: IShopCurrency;
+}
+interface IconvertPriceToUSD {
+    skues: Array<Isku>;
+    currency: IShopCurrency;
 }
 
 interface Iupdate {
-    state: IproductState
+    state: IproductState;
+    currency: IShopCurrency
 }
 
 const MakeDataProductModel = ({
-    refactorSku: ({ skues }: IrefactorSku): Array<Isku> => {
+    refactorSku: ({ skues, currency }: IrefactorSku): Array<Isku> => {
         return skues.map((el: any) => ({
             ...el,
             dimensions: {
@@ -17,7 +25,7 @@ const MakeDataProductModel = ({
                 length: parseInt(el?.dimensions?.length) || 0,
                 width: parseInt(el?.dimensions?.width) || 0,
             },
-            price: parseFloat(el?.price),
+            price: parseFloat(currencyConvertion(el?.price, currency?.conversionRateToUSD, true)),
             weight: parseFloat(el?.weight),
             quantity: parseInt(el?.quantity),
             image: el?.image,
@@ -27,8 +35,13 @@ const MakeDataProductModel = ({
             }
         }))
     },
-
-    update: ({ state }: Iupdate) => {
+    convertPriceToUSD: ({ skues, currency }: IconvertPriceToUSD): Array<Isku> => {
+        return skues.map((el: any) => ({
+            ...el,
+            price: parseFloat(currencyConvertion(el?.price, currency?.conversionRateToUSD, true)),
+        }))
+    },
+    update: ({ state, currency }: Iupdate) => {
         return {
             "title": state.title,
             "description": state.description,
@@ -42,7 +55,7 @@ const MakeDataProductModel = ({
             "artwork2": state.artwork2,
             "artwork_position": state.artwork_position,
             "artwork2_position": state.artwork2_position,
-            "sku": state.sku,
+            "sku": MakeDataProductModel.convertPriceToUSD({ skues: state.sku, currency: currency }),
             "pod_blank_product_id": state.pod_blank_product_id,
             "thumb": state.thumb,
             "m2m_services": state.m2m_services,

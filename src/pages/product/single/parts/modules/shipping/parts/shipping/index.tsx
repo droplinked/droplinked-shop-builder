@@ -5,17 +5,19 @@ import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
 import { getCustomShippingsService } from 'lib/apis/custom-shipping/CustomShippingServices'
-import { useHasPermission } from 'lib/stores/app/appStore'
+import useAppStore, { useHasPermission } from 'lib/stores/app/appStore'
 import { productContext } from 'pages/product/single/context'
 import { BlackBox, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import CreateCustomShippingModal from '../create-custom-shipping-modal/CreateCustomShippingModal'
 import Loading from '../loading/Loading'
 import RemoveCustomShippingModal from '../remove-custom-shipping-modal/RemoveCustomShippingModal'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function Shipping() {
-    const hasPermission = useHasPermission()
+    const hasPermission = useHasPermission();
+    const { shop: { currency } } = useAppStore();
     const { state: { shippingPrice, shippingType }, methods: { updateState }, loading } = useContext(productContext)
     const { isFetching, data: customShippings, refetch } = useQuery({
         queryKey: "custom-shippings",
@@ -25,7 +27,14 @@ function Shipping() {
     const [targetShipping, setTargetShipping] = useState(null) //To remove custom shipping
     const createShippingModal = useDisclosure()
     const removeShippingModal = useDisclosure()
-
+    const [displayShippingPrice, setDisplayShippingPrice] = useState<number>(0);
+    const handleChangeShippingPrice = (e) => {
+        updateState("shippingPrice", e.target.value ? Number(currencyConvertion(e.target.value, currency?.conversionRateToUSD, true)) : '')
+        setDisplayShippingPrice(e.target.value)
+    }
+    useEffect(() => {
+        setDisplayShippingPrice(Number(currencyConvertion(shippingPrice, currency?.conversionRateToUSD, false)))
+    }, [loading])
     const shippings = [
         {
             title: 'Self Managed',
@@ -96,12 +105,12 @@ function Shipping() {
                         name="cost"
                         isRequired
                         label='Shipping Cost'
-                        placeholder="$0.00 USD"
-                        value={shippingPrice}
+                        placeholder={`${currency?.symbol}0.00 ${currency?.abbreviation}`}
+                        value={displayShippingPrice}
                         onKeyDown={(e) => {
                             if (e.key === '+' || e.key === '-' || e.key === 'e') e.preventDefault()
                         }}
-                        onChange={(e) => updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
+                        onChange={handleChangeShippingPrice}
                     />
                 )}
             </Flex>

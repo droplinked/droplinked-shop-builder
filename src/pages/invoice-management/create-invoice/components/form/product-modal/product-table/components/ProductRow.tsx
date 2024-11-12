@@ -1,67 +1,30 @@
 import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
-import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
-import useIntersectionObserver from 'functions/hooks/intersection-observer/useIntersectionObserver'
 import useAppToast from 'functions/hooks/toast/useToast'
-import { productServices } from 'lib/apis/product/productServices'
 import Input from 'pages/invoice-management/components/Input'
-import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React, { forwardRef, useEffect, useState } from 'react'
-import { useInfiniteQuery } from 'react-query'
-import ProductTitleCell from '../ProductTitleCell'
-import VariantsDropdown from './VariantsDropdown'
+import ProductTitleCell from '../../../ProductTitleCell'
+import VariantsDropdown from './variants-dropdown/VariantsDropdown'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
-export default function ProductTable({ debouncedSearchTerm, cart, setCart }) {
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-        queryKey: ["products", debouncedSearchTerm],
-        queryFn: ({ pageParam = 1 }) => productServices({ page: pageParam, limit: 15, filter: debouncedSearchTerm }),
-        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
-    })
-    const products = data?.pages?.flatMap(page => page.data.data.data) || []
-
-    const columns: ColumnDef<any>[] = [
-        { accessorKey: '', header: 'Product' },
-        { accessorKey: '', header: 'Variants' },
-        { accessorKey: 'quantity', header: 'Quantity' },
-        { accessorKey: 'skuIDs', header: 'Unit price' }
-    ]
-
-    const lastSKURef = useIntersectionObserver<HTMLTableRowElement>(() => {
-        if (hasNextPage) fetchNextPage()
-    }, [])
-
-    return (
-        <Table.Root
-            columns={columns}
-            hasActionColumn={true}
-        >
-            <Table.Head data={products} />
-            <Table.Body isLoading={isFetching} infiniteScroll={{ isFetchingNextPage }}>
-                {products.map((product, index, products) =>
-                    <ProductRow key={index}
-                        ref={index === products.length - 1 ? lastSKURef : null}
-                        product={product}
-                        cart={cart}
-                        setCart={setCart}
-                    />
-                )}
-            </Table.Body>
-        </Table.Root>
-    )
+interface Props {
+    product: any
+    cart: any
+    setCart: any
 }
 
-const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, setCart: any }>(function ProductRow(props, ref) {
+const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) {
     const { product, cart, setCart } = props
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
     const isDigitalProduct = product.product_type === "DIGITAL"
     const firstSkuPrice = product.skuIDs?.[0]?.price
-
+    const { shop: { currency } } = useAppStore();
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
-            if (cart.find(item => item.skuId === skuId)) {
+            if (cart.some(item => item.skuId === skuId)) {
                 setCart(prevCart => prevCart.map(item => {
                     return item.skuId === skuId ?
                         { ...item, quantity: item.quantity + Number(quantity) } :
@@ -81,34 +44,23 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
         }
     }
 
-    const toggleDropdown = () => {
-        if (isDigitalProduct) return
-        onOpen()
-    }
-
     useEffect(() => {
         if (isDigitalProduct) setSkuId(product.skuIDs[0]._id)
     }, [product, setSkuId])
 
     return (
-        <Tr
-            ref={ref}
-            _hover={{ "button": { opacity: 1 } }}
-        >
+        <Tr ref={ref} _hover={{ "button": { opacity: 1 } }}>
             <Td>
-                <Flex alignItems={"center"} gap={6}>
+                <Flex alignItems="center" gap={6}>
                     <AppImage src={product.media[0]?.url} width={12} height={12} />
                     <ProductTitleCell title={product.title} wordLimit={35} />
                 </Flex>
             </Td>
             <Td>
                 <VariantsDropdown
-                    selectedVariant={skuId}
-                    onSelectVariant={(selectedSku) => setSkuId(selectedSku)}
+                    selectedSKUId={skuId}
+                    onSelectSKU={(selectedSKUId) => setSkuId(selectedSKUId)}
                     product={product}
-                    isOpen={isOpen}
-                    onOpen={toggleDropdown}
-                    onClose={onClose}
                 />
             </Td>
             <Td>
@@ -119,7 +71,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
                         value: quantity || "",
                         min: 1,
                         fontSize: 14,
-                        color: "#878787",
+                        color: "#fff",
                         placeholder: "1",
                         _focus: { borderColor: "#878787" },
                         onChange: (e) => setQuantity(parseInt(e.target.value)),
@@ -130,17 +82,17 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
                     }}
                 />
             </Td>
-            <Td color={"#7B7B7B"}>
-                {firstSkuPrice ? `$${firstSkuPrice.toFixed(2)} USD` : "-"}
+            <Td color={"#fff"}>
+                {firstSkuPrice ? `${currency?.symbol}${currencyConvertion(firstSkuPrice, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}` : "-"}
             </Td>
             <Td>
                 <Button
-                    size={"sm"}
-                    border={"1px solid #2BCFA1"}
+                    size="sm"
+                    border="1px solid #2BCFA1"
                     bg={"none"}
                     fontSize={12}
                     fontWeight={500}
-                    color={"#2BCFA1"}
+                    color="#2BCFA1"
                     opacity={0}
                     transition="opacity 0.2s"
                     _hover={{}}
@@ -154,3 +106,5 @@ const ProductRow = forwardRef<HTMLTableRowElement, { product: any, cart: any, se
         </Tr>
     )
 })
+
+export default ProductRow

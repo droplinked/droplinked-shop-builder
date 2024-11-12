@@ -5,12 +5,14 @@ import React, { useContext, useState } from 'react'
 import { ShopProductContext } from '../../context'
 import RequestProductModel from './model'
 import ModalRequest from './parts/modalRequest/ModalRequest'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function RequestProduct() {
     const { product, shop } = useContext(ShopProductContext)
     const [Sku, setSku] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const { shop: { currency } } = useAppStore();
     return (
         <>
             <AppTable
@@ -20,7 +22,7 @@ function RequestProduct() {
                         value: el?.recorded_quantity || "---"
                     },
                     Price: {
-                        value: `$${el?.price.toFixed(2)} USD`
+                        value: `${currency?.symbol}${currencyConvertion(el?.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`
                     },
                     Button: {
                         caption: "",

@@ -1,10 +1,12 @@
 import { IproductState } from "lib/apis/product/interfaces";
 import { property_to_id } from "lib/utils/statics/types";
 import propertyFactor from "./modules/property";
+import { IShopCurrency } from "types/interface/shopCurrency.interface";
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 
 const ProductSingleModel = ({
     // Sync data for IproductState interface
-    refactorData: (data: any): IproductState => {
+    refactorData: (data: any, currency: IShopCurrency): IproductState => {
         const skuIDs: Array<any> = data?.skuIDs
 
         return {
@@ -34,7 +36,7 @@ const ProductSingleModel = ({
                             caption: option.caption
                         }
                     }),
-                    price: el?.price,
+                    price: currencyConvertion(el?.price, currency?.conversionRateToUSD, false),
                     quantity: el?.quantity,
                     record: false,
                     weight: el?.weight,

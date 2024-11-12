@@ -1,9 +1,11 @@
 import { Isku } from 'lib/apis/product/interfaces';
-import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
+import {
+	deployShopContractService,
+	getDeployPermission,
+} from 'lib/apis/shop/shopServices';
 import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
-import { Chain, Network } from 'lib/utils/chains/dto/chains';
 import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
 import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
 import { droplink_wallet } from 'lib/utils/statics/adresses';
@@ -11,11 +13,19 @@ import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
 import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
+import {
+	Chain,
+	ChainWallet,
+	DeployShopResponse,
+	DropWeb3,
+	Network,
+	Web3Actions,
+} from 'droplinked-web3';
 
 const updateShopDeployedContracts = (deployedContracts) => {
-	const { shop, updateState } = useAppStore.getState()
-	updateState({ key: "shop", params: { ...shop, deployedContracts } })
-}
+	const { shop, updateState } = useAppStore.getState();
+	updateState({ key: 'shop', params: { ...shop, deployedContracts } });
+};
 
 export interface IRecordParamsData {
 	commission: any;
@@ -93,10 +103,15 @@ const web3Model = {
 					product.product_type === 'DIGITAL'
 						? product.digitalDetail.chain
 						: data.blockchain;
-				let deployedContract;
+				const web3 = new DropWeb3(
+					appDevelopment ? Network.TESTNET : Network.MAINNET
+				);
+				let deployedContract: DeployShopResponse;
 				let targetChainContract;
 				if (shop.deployedContracts) {
-					targetChainContract = shop.deployedContracts.find((contract) => contract.type === chain)
+					targetChainContract = shop.deployedContracts.find(
+						(contract) => contract.type === chain
+					);
 					if (!targetChainContract) {
 						if (chain === 'SKALE') {
 							const req =
@@ -110,27 +125,31 @@ const web3Model = {
 								);
 							}
 						}
+						const chainInstance = web3.web3Instance({
+							method: Web3Actions.DEPLOY,
+							chain: Chain[chain as string],
+							preferredWallet:
+								ChainWallet.Metamask,
+							userAddress: accountAddress,
+						});
 						deployedContract =
-							await getNetworkProvider(
-								Chain[chain as string],
-								Network[
-								appDevelopment
-									? 'TESTNET'
-									: 'MAINNET'
-								],
-								accountAddress
-							).deployShop(
-								shop?.name,
-								`${SHOP_URL}/${shop?.name}`,
-								accountAddress,
-								shop?.logo,
-								shop?.description
-							);
-						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
-						updateShopDeployedContracts(data)
+							await chainInstance.deployShop({
+								shopAddress: `${SHOP_URL}/${shop?.name}`,
+								shopDescription:
+									shop?.description,
+								shopLogo: shop?.logo,
+								shopName: shop?.name,
+							});
+						const { data } =
+							await deployShopContractService({
+								type: chain,
+								transaction_id:
+									deployedContract.transactionHash,
+								...deployedContract,
+							});
+						updateShopDeployedContracts(data);
 					}
-				}
-				else {
+				} else {
 					if (chain === 'SKALE') {
 						const req = await getDeployPermission();
 						if (req.status !== 201) {
@@ -142,23 +161,29 @@ const web3Model = {
 							);
 						}
 					}
-					deployedContract = await getNetworkProvider(
-						Chain[chain as string],
-						Network[
-						appDevelopment
-							? 'TESTNET'
-							: 'MAINNET'
-						],
-						accountAddress
-					).deployShop(
-						shop?.name,
-						`${SHOP_URL}/${shop?.name}`,
-						accountAddress,
-						shop?.logo,
-						shop?.description
+					const chainInstance = web3.web3Instance({
+						method: Web3Actions.DEPLOY,
+						chain: Chain[chain as string],
+						preferredWallet: ChainWallet.Metamask,
+						userAddress: accountAddress,
+					});
+					deployedContract = await chainInstance.deployShop(
+						{
+							shopAddress: `${SHOP_URL}/${shop?.name}`,
+							shopDescription:
+								shop?.description,
+							shopLogo: shop?.logo,
+							shopName: shop?.name,
+						}
 					);
-					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
-					updateShopDeployedContracts(data)
+
+					const { data } = await deployShopContractService({
+						type: chain,
+						transaction_id:
+							deployedContract.transactionHash,
+						...deployedContract,
+					});
+					updateShopDeployedContracts(data);
 				}
 				const commission = data.commission;
 				const quantity: any = data.quantity;
@@ -228,9 +253,11 @@ const web3Model = {
 						accountAddress,
 						nftContract,
 						shopAddress,
-						products
-					})
-					if (res) dataDeploy.deployHash = res.transactionHash;
+						products,
+					});
+					if (res)
+						dataDeploy.deployHash =
+							res.transactionHash;
 				}
 
 				await recordModel.deploy(dataDeploy);
@@ -257,50 +284,74 @@ const web3Model = {
 					product.product_type === 'DIGITAL'
 						? product.digitalDetail.chain
 						: blockchain;
-				let deployedContract;
+				const web3 = new DropWeb3(
+					appDevelopment ? Network.TESTNET : Network.MAINNET
+				);
+				if (chain === 'SKALE') {
+					const req = await getDeployPermission();
+					if (req.status !== 201) {
+						console.log(
+							`Getting permission failed, reason: ${req.data}`
+						);
+						throw new Error(
+							"Permission denied, make sure you've connected your skale wallet"
+						);
+					}
+				}
+				let deployedContract: DeployShopResponse;
 				let targetChainContract;
 				if (shop.deployedContracts) {
 					targetChainContract = shop.deployedContracts.find(
 						(contract) => contract.type === chain
 					);
 					if (!targetChainContract) {
+						const chainInstance = web3.web3Instance({
+							method: Web3Actions.DEPLOY,
+							chain: Chain[chain as string],
+							preferredWallet:
+								ChainWallet.Metamask,
+							userAddress: accountAddress,
+						});
 						deployedContract =
-							await getNetworkProvider(
-								Chain[chain as string],
-								Network[
-								appDevelopment
-									? 'TESTNET'
-									: 'MAINNET'
-								],
-								accountAddress
-							).deployShop(
-								shop?.name,
-								`${SHOP_URL}/${shop?.name}`,
-								accountAddress,
-								shop?.logo,
-								shop?.description
-							);
-						const { data } = await deployShopContractService({ type: chain, ...deployedContract })
-						updateShopDeployedContracts(data)
+							await chainInstance.deployShop({
+								shopAddress: `${SHOP_URL}/${shop?.name}`,
+								shopDescription:
+									shop?.description,
+								shopLogo: shop?.logo,
+								shopName: shop?.name,
+							});
+						const { data } =
+							await deployShopContractService({
+								type: chain,
+								transaction_id:
+									deployedContract.transactionHash,
+								...deployedContract,
+							});
+						updateShopDeployedContracts(data);
 					}
 				} else {
-					deployedContract = await getNetworkProvider(
-						Chain[chain as string],
-						Network[
-						appDevelopment
-							? 'TESTNET'
-							: 'MAINNET'
-						],
-						accountAddress
-					).deployShop(
-						shop?.name,
-						`${SHOP_URL}/${shop?.name}`,
-						accountAddress,
-						shop?.logo,
-						shop?.description
+					const chainInstance = web3.web3Instance({
+						method: Web3Actions.DEPLOY,
+						chain: Chain[chain as string],
+						preferredWallet: ChainWallet.Metamask,
+						userAddress: accountAddress,
+					});
+					deployedContract = await chainInstance.deployShop(
+						{
+							shopAddress: `${SHOP_URL}/${shop?.name}`,
+							shopDescription:
+								shop?.description,
+							shopLogo: shop?.logo,
+							shopName: shop?.name,
+						}
 					);
-					const { data } = await deployShopContractService({ type: chain, ...deployedContract })
-					updateShopDeployedContracts(data)
+					const { data } = await deployShopContractService({
+						type: chain,
+						transaction_id:
+							deployedContract.transactionHash,
+						...deployedContract,
+					});
+					updateShopDeployedContracts(data);
 				}
 				const products: RecordProduct[] = [];
 
@@ -408,9 +459,9 @@ const web3Model = {
 					const request = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-						appDevelopment
-							? 'TESTNET'
-							: 'MAINNET'
+							appDevelopment
+								? 'TESTNET'
+								: 'MAINNET'
 						],
 						accountAddress
 					).publishRequest(productId, shopAddress);
@@ -467,9 +518,9 @@ const web3Model = {
 					const accept = await getNetworkProvider(
 						Chain[blockchain],
 						Network[
-						appDevelopment
-							? 'TESTNET'
-							: 'MAINNET'
+							appDevelopment
+								? 'TESTNET'
+								: 'MAINNET'
 						],
 						accountAddress
 					).approveRequest(requestID, deployShopContract);

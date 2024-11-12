@@ -6,8 +6,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import { IPostUserVerifyD3 } from 'lib/apis/user/interfaces';
 import { postUserVerifyD3 } from 'lib/apis/user/services';
 import { appDevelopment } from 'lib/utils/app/variable';
-import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
-import { Chain, Network } from 'lib/utils/chains/dto/chains';
+import { DropWeb3, Network } from 'droplinked-web3';
 import Button from 'pages/invoice-management/components/Button';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
@@ -16,6 +15,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import D3Context, { D3StepsType } from '../../context/d3.context';
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import useAppToast from 'functions/hooks/toast/useToast';
+
 const D3Modal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
 	const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) =>
@@ -36,23 +36,17 @@ const D3Modal = () => {
 	const connect_d3_wallet = () => {
 		return new Promise((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			getNetworkProvider(
-				Chain.ETH,
-				Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
-				null
-			)
-				.d3Login()
+			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
+				.getWalletInfo()
 				.then(async (res) => {
-					console.log(res);
 					await mutateAsync({
 						walletAddress: res?.address,
 						walletType: 'EVM',
 					}).then((verifyRes) => {
-						console.log(verifyRes?.data?.data);
 						if (
 							!verifyRes?.data?.data ||
 							verifyRes?.data?.data ===
-								'false' ||
+							'false' ||
 							verifyRes?.data?.data === false
 						)
 							return updateStates({
@@ -136,7 +130,7 @@ const D3Modal = () => {
 			buttons: {
 				left: {
 					label: 'Close',
-					onClick: () => {},
+					onClick: () => { },
 					styles: {
 						background: '#292929',
 						color: '#737373',
@@ -145,7 +139,7 @@ const D3Modal = () => {
 				},
 				right: {
 					label: 'Check Wallet Eligibility',
-					onClick: () => {},
+					onClick: () => { },
 					rightIcon: (
 						<AppIcons.SidebarNext stroke="#737373" />
 					),
@@ -190,11 +184,6 @@ const D3Modal = () => {
 									.toString()}`
 							);
 							if (searchParams.get('d3-id')) {
-								console.log(
-									searchParams.get(
-										'd3-id'
-									)
-								);
 								onClose();
 								signupModalOnOpen();
 							}
@@ -429,44 +418,44 @@ const D3Modal = () => {
 									{current_state
 										?.buttons
 										?.left && (
-										<Button
-											backgroundColor={
-												'#292929'
-											}
-											border={
-												'none'
-											}
-											display="flex"
-											padding="12px 16px"
-											justifyContent="center"
-											alignItems="center"
-											color="#FFF"
-											textAlign="center"
-											fontFamily="Inter"
-											fontSize={{
-												base: '14px',
-												md: '16px',
-											}}
-											fontStyle="normal"
-											fontWeight="500"
-											lineHeight={{
-												base: '16px',
-												md: '24px',
-											}}
-											onClick={
-												current_state
+											<Button
+												backgroundColor={
+													'#292929'
+												}
+												border={
+													'none'
+												}
+												display="flex"
+												padding="12px 16px"
+												justifyContent="center"
+												alignItems="center"
+												color="#FFF"
+												textAlign="center"
+												fontFamily="Inter"
+												fontSize={{
+													base: '14px',
+													md: '16px',
+												}}
+												fontStyle="normal"
+												fontWeight="500"
+												lineHeight={{
+													base: '16px',
+													md: '24px',
+												}}
+												onClick={
+													current_state
+														?.buttons
+														?.left
+														?.onClick
+												}
+												{...current_state
 													?.buttons
 													?.left
-													?.onClick
-											}
-											{...current_state
-												?.buttons
-												?.left
-												?.styles}
-										>
-											Close
-										</Button>
-									)}
+													?.styles}
+											>
+												Close
+											</Button>
+										)}
 								</Flex>
 								<Button
 									padding="12px 20px"

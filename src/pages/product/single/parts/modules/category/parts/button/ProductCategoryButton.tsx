@@ -29,7 +29,21 @@ function ProductCategoryButton() {
                     variant='outline'
                     sizes="medium"
                     isDisabled={Boolean(productID) && publish_product}
-                >Back</BasicButton> : state.product.title ? <BasicButton isDisabled={Boolean(productID && prev_data?.pod_blank_product_id)} variant='outline' sizes="medium" onClick={reset}>Change Product</BasicButton> : null
+                >
+                    Back
+                </BasicButton>
+                :
+                state.product.title ?
+                    <BasicButton
+                        isDisabled={Boolean(productID && prev_data?.pod_blank_product_id)}
+                        variant='outline'
+                        sizes="medium"
+                        onClick={reset}
+                    >
+                        Change Product
+                    </BasicButton>
+                    :
+                    null
             }
         </>
     )

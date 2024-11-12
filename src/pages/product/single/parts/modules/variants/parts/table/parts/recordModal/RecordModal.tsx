@@ -29,7 +29,7 @@ function RecordModal({ close, open, product, sku }: Props) {
         setState(recordStates)
     }
 
-    const isRecordAllSKUs = Array.isArray(sku) && sku.length > 1;
+    const isRecordAllSKUs = Array.isArray(sku)
 
     return (
         <recordContext.Provider

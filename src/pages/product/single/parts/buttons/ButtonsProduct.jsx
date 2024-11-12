@@ -34,8 +34,9 @@ function ButtonsProduct() {
     const { showToast } = useAppToast()
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
-    const appWeb3 = useAppWeb3()
+    const { web3 } = useAppWeb3()
     const { user: { wallets, _id }, shop } = useAppStore()
+    const { currency } = shop;
     const { growthHackData, fetchGrowthHackData } = useGrowthHackStore();
     const selectedChain = state?.digitalDetail?.chain
     const isProducer = useMemo(() => productID && (_id !== state?.ownerID), [state, _id, productID])
@@ -51,14 +52,17 @@ function ButtonsProduct() {
     const recordCreatedProduct = async () => {
         try {
             const product = createdProductRef.current
-            const hashkey = await record({
-                method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: selectedChain, wallets, stack: stacks, shop }),
-                product: {
-                    ...state,
-                    _id: product._id,
-                    sku: [{ ...state.sku[0], _id: product.sku[0]._id }]
-                },
-                stacks
+            const { commission, sku } = state
+            const hashkey = await web3({
+                method: "record_batch",
+                params: [{ quantity: sku[0].quantity, sku: product.sku[0], imageUrl: product.media[0].thumbnail }],
+                product,
+                shop,
+                commission: commission,
+                royalty: sku[0].royalty,
+                chain: selectedChain,
+                wallets,
+                stack: stacks
             })
             await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
             await getShopSubscriptionDataService()
@@ -86,7 +90,7 @@ function ButtonsProduct() {
             await validate({ state, draft })
 
             // Make and handle data for draft mode 
-            const formData = makeData({ state, draft, productID })
+            const formData = makeData({ state, draft, productID , currency})
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
