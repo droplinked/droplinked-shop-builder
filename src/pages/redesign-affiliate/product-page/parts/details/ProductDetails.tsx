@@ -10,6 +10,8 @@ import productPageModel from "../../model";
 import AppIcons from "assest/icon/Appicons";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionChevron, AppAccordionPanel } from "components/redesign/accordion/AppAccordion";
 import useAppToast from "functions/hooks/toast/useToast";
+import useAppStore from "lib/stores/app/appStore";
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 
 function ProductDetails({ product }: { product: any }) {
     const { mutateAsync, isLoading } = useMutation((params: IimportAffiliateProduct) => importAffiliateProductService(params));
@@ -17,6 +19,7 @@ function ProductDetails({ product }: { product: any }) {
     const variants = useMemo(() => productPageModel.getCustomVariants(product?.skuIDs), [product]);
     const colors = useMemo(() => productPageModel.getOptions({ skuIDs: product?.skuIDs, type: "color" }), [product]);
     const { showToast } = useAppToast();
+    const { shop: { currency } } = useAppStore();
     const importProduct = async () =>
         await mutateAsync({ productId: product?._id })
             ?.then((res) => showToast({ type: "success", message: "Product Imported" }))
@@ -28,8 +31,8 @@ function ProductDetails({ product }: { product: any }) {
                     {product?.title}
                 </AppTypography>
             </Box>
-            <AppTypography color="#FFF" fontFamily="Inter" fontSize="36px" fontStyle="normal" fontWeight="700" lineHeight="52px" price>
-                {product?.skuIDs?.[0]?.price.toFixed(2)}
+            <AppTypography color="#FFF" fontFamily="Inter" fontSize="36px" fontStyle="normal" fontWeight="700" lineHeight="52px">
+                {currency?.symbol}{currencyConvertion(product?.skuIDs?.[0]?.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
             </AppTypography>
             {colors.length ? (
                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="16px" alignSelf="stretch">
@@ -65,23 +68,23 @@ function ProductDetails({ product }: { product: any }) {
             ) : null}
             {variants.length
                 ? variants?.map((variant_group, key: number) => (
-                      <Box display="flex" flexDirection="column" alignItems="flex-start" gap="16px" alignSelf="stretch">
-                          <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="500" lineHeight="24px">
-                              {variant_group?.name}
-                          </AppTypography>
-                          <Flex display="flex" alignItems="flex-start" alignContent="flex-start" gap="16px" alignSelf="stretch" flexWrap="wrap">
-                              {variant_group?.values?.map((value_of_custom_variant_group) => {
-                                  return (
-                                      <Box display="flex" padding="12px 16px" justifyContent="center" alignItems="center" gap="8px" borderRadius="8px" border="1px solid #292929">
-                                          <AppTypography key={key} color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
-                                              {value_of_custom_variant_group.caption}
-                                          </AppTypography>
-                                      </Box>
-                                  );
-                              })}
-                          </Flex>
-                      </Box>
-                  ))
+                    <Box display="flex" flexDirection="column" alignItems="flex-start" gap="16px" alignSelf="stretch">
+                        <AppTypography color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="500" lineHeight="24px">
+                            {variant_group?.name}
+                        </AppTypography>
+                        <Flex display="flex" alignItems="flex-start" alignContent="flex-start" gap="16px" alignSelf="stretch" flexWrap="wrap">
+                            {variant_group?.values?.map((value_of_custom_variant_group) => {
+                                return (
+                                    <Box display="flex" padding="12px 16px" justifyContent="center" alignItems="center" gap="8px" borderRadius="8px" border="1px solid #292929">
+                                        <AppTypography key={key} color="#FFF" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
+                                            {value_of_custom_variant_group.caption}
+                                        </AppTypography>
+                                    </Box>
+                                );
+                            })}
+                        </Flex>
+                    </Box>
+                ))
                 : null}
             <BasicButton isLoading={isLoading} isDisabled={isLoading} width={"full"} onClick={importProduct}>
                 Import Product
