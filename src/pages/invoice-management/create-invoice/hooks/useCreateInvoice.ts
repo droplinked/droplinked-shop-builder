@@ -55,7 +55,7 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const createInvoice = async (formData: any) => {
         try {
             setLoading(true)
-           // validatePhoneNumber(formData)
+            // validatePhoneNumber(formData)
             await addAdditionalDetailsToCart(formData)
 
             if (isAddressSwitchToggled && !cart.address)
@@ -67,8 +67,8 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
             }
         }
         catch (error) {
-            if (error.response) return showToast({ message: error.response.data.data.message, type: "error" })
-            showToast({ message: (error as Error).message, type: "error" })
+            if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
+            else showToast({ message: (error as Error).message, type: "error" })
         }
         finally {
             setLoading(false)
@@ -78,10 +78,10 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const updateInvoice = async (formData: any) => {
         try {
             setLoading(true)
-            validatePhoneNumber(formData)
+            // validatePhoneNumber(formData)
             await addAdditionalDetailsToCart(formData)
 
-            const { _id, easyPostAddressID, ...rest } = cart.address
+            const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
             if (!deepEqual(rest, formData.address)) await createAddressAndAddToCart(formData)
 
             const prevSelectedMethod = findSelectedShippingMethod(cart.shippings)
@@ -90,8 +90,8 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
             onSuccess?.()
         }
         catch (error) {
-            if (error.response) return showToast({ message: error.response.data.data.message, type: "error" })
-            showToast({ message: (error as Error).message, type: "error" })
+            if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
+            else showToast({ message: (error as Error).message, type: "error" })
         }
         finally {
             setLoading(false)
