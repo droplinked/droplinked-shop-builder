@@ -1,4 +1,3 @@
-import { Flex, useRadioGroup } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { addAddressToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
@@ -8,8 +7,8 @@ import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useC
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
 import React, { useEffect, useState } from 'react'
 import ToggleableSection from '../../ToggleableSection'
-import ShippingMethodRadio from './ShippingMethodRadio'
-import ShippingMethodsLoading from './ShippingMethodsLoading'
+import ShippingMethodList from './components/ShippingMethodList'
+import ShippingMethodsLoading from './components/ShippingMethodsLoading'
 
 export default function InvoiceShippingMethods() {
     const { cart, updateCart, selectedShippingMethod, updateShippingMethod, isEditMode } = useInvoiceStore()
@@ -18,14 +17,6 @@ export default function InvoiceShippingMethods() {
     const { values, validateForm } = useFormikContext<InvoiceFormSchema>()
     const { isInvoiceDataValid } = useCreateInvoice({ trigger: "SHIPPING_METHODS_SWITCH" })
     const { showToast } = useAppToast()
-    const { getRootProps, getRadioProps } = useRadioGroup({
-        name: 'selected-payment-method',
-        onChange: (shppingMethodId: string) => {
-            const shippingGroup = cart.shippings.find(group => group.data.some(method => method.id === shppingMethodId))
-            updateShippingMethod({ groupId: shippingGroup.groupId, shipmentId: shppingMethodId })
-        },
-        value: selectedShippingMethod?.shipmentId,
-    })
 
     const activateSwitch = async () => {
         const validationResult = await validateForm()
@@ -35,25 +26,13 @@ export default function InvoiceShippingMethods() {
         updateInvoice()
     }
 
-    const renderContent = () => {
+    function renderContent() {
         if (isLoading) return <ShippingMethodsLoading />
         if (!cart.shippings?.length) return null
-        return (
-            <Flex direction="column" gap={4} {...getRootProps()}>
-                {cart?.shippings.map((shippingGroup) => (
-                    shippingGroup.data.map((shippingMethod) => (
-                        <ShippingMethodRadio
-                            key={shippingMethod.id}
-                            method={shippingMethod}
-                            {...getRadioProps({ value: shippingMethod.id })}
-                        />
-                    ))
-                ))}
-            </Flex>
-        )
+        return <ShippingMethodList />
     }
 
-    const updateInvoice = async () => {
+    async function updateInvoice() {
         const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
 
         if ((isEditMode && !deepEqual(rest, values.address)) || (isExpanded && !cart.address)) {
