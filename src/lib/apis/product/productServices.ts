@@ -1,4 +1,5 @@
 import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
+import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
 import {
     IGetHotProductsParams,
@@ -13,7 +14,6 @@ import {
     IProductTile,
     IproductUpdateServices,
 } from "./interfaces";
-import { createQueryString } from "../_utils/with.query";
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`);
@@ -102,3 +102,8 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
     const queryString = createQueryString(params).toString();
     return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
 };
+
+export const getPODShippingAvailability = (product_id: string) =>
+    axiosInstance
+        .post<{ data: string[] }>("product/printful-available-shipping", { product_id })
+        .then(res => res.data)

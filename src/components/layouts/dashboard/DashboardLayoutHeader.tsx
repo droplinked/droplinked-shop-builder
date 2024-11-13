@@ -17,7 +17,6 @@ const DashboardLayoutHeader = () => {
     const { logoutUser } = useProfile();
     const { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } = createSubscriptionStatusConstants({ STARTER: () => shopNavigate("/dashboard/plans") }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
     const profileConstants = createProfileConstants(shop, logoutUser);
-
     const getShopInfo = () => {
         const text = shop?.description || shop?.name
         if (!text) return ""
@@ -27,7 +26,7 @@ const DashboardLayoutHeader = () => {
     }
 
     return (
-        <Flex position="sticky" top={0} width="full" justifyContent="flex-end" alignItems="center" gap="16px" padding="16px 36px 16px 24px" borderBottom="1px solid #292929" backgroundColor="#141414" zIndex={2}>
+        <Flex position="sticky" top={0} width="full" justifyContent="flex-end" alignItems="center" gap="16px" padding="16px 36px 16px 24px" borderBottom="1px solid #292929" backgroundColor="#141414" zIndex={999}>
             <Menu variant="unstyled">
                 <MenuButton cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C">
                     <AppIcons.SidebarUser width="20px" height="20px" />

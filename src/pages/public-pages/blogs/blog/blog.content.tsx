@@ -16,6 +16,9 @@ function BlogContent({ blog }: { blog: IBlog }) {
                     paddingInline: "0px !important",
                     backgroundColor: "transparent !important",
                     minHeight: "auto !important",
+                    ".bn-block-content[data-content-type=video], .bn-block-content[data-content-type=image]": {
+                        "*": { width: "100%" },
+                    },
                 },
             }}
         >

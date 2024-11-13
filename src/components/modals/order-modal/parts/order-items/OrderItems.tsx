@@ -7,10 +7,12 @@ import { cart_item_options_to_array_of_variants } from 'lib/utils/helpers/helper
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-
+    const { shop: { currency } } = useAppStore();
     return (
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
@@ -46,7 +48,7 @@ function OrderItems() {
                         <Flex direction={"column"} alignItems={"end"} gap={"5px"} width={"140px"}>
                             <Flex alignItems={"center"} gap={"8px"}>
                                 {item?.isAffiliate && <CartItemBadge text={`${item?.percent}%`} colorScheme='green' />}
-                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>${item?.price?.toFixed(2)} USD</AppTypography>
+                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{currency?.symbol}{currencyConvertion(item?.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
                             </Flex>
                             {item?.isGated &&
                                 <Flex alignItems={"center"} gap={"4px"}>
@@ -57,7 +59,7 @@ function OrderItems() {
                             {item?.isDiscounted &&
                                 <Flex alignItems={"center"} gap={"4px"}>
                                     <AppIcons.GrayDiscountIcon />
-                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>${item?.discountAmount?.toFixed(2)} USD Discount</AppTypography>
+                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>{currency?.symbol}{currencyConvertion(item?.discountAmount, currency?.conversionRateToUSD, false)} {currency?.abbreviation} Discount</AppTypography>
                                 </Flex>
                             }
                         </Flex>

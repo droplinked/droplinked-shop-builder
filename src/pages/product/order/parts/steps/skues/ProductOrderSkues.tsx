@@ -10,10 +10,12 @@ import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
+import useAppStore from 'lib/stores/app/appStore'
 
 function ProductOrderSkues() {
     const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)
     const { mutate, data } = useMutation((param: IproductService) => productService(param))
+    const { shop: { currency } } = useAppStore();
     const params = useParams()
     const product = data?.data?.data
     const [SkuesIDs, setSkuesIDs] = useState([])
@@ -30,7 +32,7 @@ function ProductOrderSkues() {
     }
 
     // Handle rows appTable
-    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }), [product, SkuesIDs, skus, orderId])
+    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }, currency), [product, SkuesIDs, skus, orderId])
 
     return (
         <ProductOrderCard title="Product">

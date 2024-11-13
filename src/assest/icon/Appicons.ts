@@ -15,7 +15,6 @@ import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
-import { ReactComponent as Binance } from "./binance.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
@@ -25,6 +24,7 @@ import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BlueBase } from "./blue-base.svg";
 import { ReactComponent as BlueLinea } from "./blue-linea.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
+import { ReactComponent as BnbChain } from "./bnb-chain.svg";
 import { ReactComponent as Brain } from "./brain.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
@@ -71,6 +71,7 @@ import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 import { ReactComponent as Delete } from "./delete.svg";
+import { ReactComponent as DeliveryTruck } from "./delivery-truck.svg";
 import { ReactComponent as DescSorting } from "./desc-sorting.svg";
 import { ReactComponent as Desktop } from "./desktop-icon.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
@@ -299,7 +300,7 @@ const AppIcons = {
     Ripple,
     StarOutline,
     StarFilled,
-    Binance,
+    BnbChain,
     Email,
     Base,
     Hand,
@@ -477,7 +478,8 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-    D3Ape
+    D3Ape,
+    DeliveryTruck
 };
 
 export default AppIcons;

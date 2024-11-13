@@ -13,6 +13,8 @@ import { useMutation } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
 import NotificationsButtons from './parts/buttons/NotificationsButtons'
 import NotificationsSkeleton from './parts/skeleton/NotificationsSkeleton'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function NotificationsList() {
 	const [searchParams] = useSearchParams()
@@ -22,7 +24,7 @@ function NotificationsList() {
 	const list = data?.data?.data
 	const page = useMemo(() => searchParams.get('page'), [searchParams]) || 1
 	const { getVariant } = requestsModel
-
+	const { shop: { currency } } = useAppStore();
 	const fetch = useCallback(() => mutate({ page }), [page, searchParams])
 
 	useEffect(() => fetch(), [page])
@@ -99,7 +101,7 @@ function NotificationsList() {
 															Requested Quantity: {el?.quantity || '---'}
 														</AppTypography>
 														<AppTypography fontSize="12px">
-															Price: {`$${sku?.price.toFixed(2)} USD`}
+															Price: {`${currency?.symbol}${currencyConvertion(sku?.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}
 														</AppTypography>
 														<AppTypography fontSize="12px">
 															Commission: {sku?.recordData?.commision + '%'}

@@ -10,8 +10,11 @@ import { useMutation } from 'react-query'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import PaymentModal from './parts/payment-modal/PaymentModal'
 import classes from "./style.module.scss"
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function ProductOrderShipments() {
+    const { shop: { currency } } = useAppStore();
     const { params: { shipmentRates, rateId }, methods: { updateState } } = useContext(productOrderContext)
     const { params: { taxAmount } } = useContext(productOrderContext)
     const { mutateAsync, isLoading, data } = useMutation((params: IupdateSampleService) => updateSampleService(params))
@@ -49,7 +52,7 @@ function ProductOrderShipments() {
                                                 <Flex alignItems="center" gap="8px">
                                                     <AppTypography color="#878787">Price</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
-                                                    <AppTypography>{`$${el.price.toFixed(2)} USD`}</AppTypography>
+                                                    <AppTypography>{`${currency?.symbol}${currencyConvertion(el.price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}</AppTypography>
                                                 </Flex>
                                             </Flex>
                                         </Flex>
@@ -58,7 +61,7 @@ function ProductOrderShipments() {
                             ))}
                             <Flex justifyContent="space-between" alignItems="center">
                                 <AppTypography fontSize="16px" color="#C2C2C2">Tax</AppTypography>
-                                <AppTypography fontSize="16px" color="#C2C2C2">{`$${taxAmount.toFixed(2)} USD`}</AppTypography>
+                                <AppTypography fontSize="16px" color="#C2C2C2">{`${currency?.symbol}${currencyConvertion(taxAmount, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`}</AppTypography>
                             </Flex>
                         </Flex>
                     </RadioGroup>

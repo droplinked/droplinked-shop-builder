@@ -5,12 +5,14 @@ export const technicalContextState = {
     imsType: 'DROPLINKED',
     paymentMethods: [],
     loginMethods: [],
+    currencyAbbreviation: "",
 }
 
 interface IStates {
     imsType: string;
     paymentMethods: Array<any>;
     loginMethods: Array<IAuthSupportedWalletsService>;
+    currencyAbbreviation: string;
 }
 
 interface IProps {
@@ -19,6 +21,7 @@ interface IProps {
     updateState: Function
     // updatePayment: Function
 }
+
 
 const technicalContext = createContext<IProps>({
     state: technicalContextState,

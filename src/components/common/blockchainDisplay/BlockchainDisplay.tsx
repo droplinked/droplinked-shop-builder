@@ -36,8 +36,8 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				name: 'XRPL Sidechain',
 			},
 			BINANCE: {
-				icon: <AppIcons.Binance {...props} />,
-				name: 'Binance',
+				icon: <AppIcons.BnbChain {...props} />,
+				name: 'Bnb Chain',
 			},
 			BASE: {
 				icon: (

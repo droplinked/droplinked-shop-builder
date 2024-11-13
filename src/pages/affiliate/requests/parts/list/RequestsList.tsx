@@ -14,6 +14,8 @@ import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import RequestSkeleton from "../skeleton/RequestSkeleton";
 import requestsModel from "./model";
+import useAppStore from "lib/stores/app/appStore";
+import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 
 function RequestsList() {
   const [searchParams] = useSearchParams()
@@ -21,7 +23,7 @@ function RequestsList() {
   const list = data?.data?.data
   const page = useMemo(() => searchParams.get("page"), [searchParams]) || 1
   const { getVariant } = requestsModel
-
+  const { shop: { currency } } = useAppStore();
   const fetch = useCallback(() => mutate({ page }), [page, searchParams])
 
 
@@ -75,8 +77,8 @@ function RequestsList() {
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
-                        <AppTypography fontSize="12px">Price: ${sku?.price.toFixed(2)} USD</AppTypography>
-                        <AppTypography fontSize="12px" display="flex">Your earning: <AppTypography padding="0 3px" fontSize="12px" fontWeight="bold">${parseFloat(el?.publisherEarning).toFixed(2)} USD / each</AppTypography></AppTypography>
+                        <AppTypography fontSize="12px">Price: {currency?.symbol}{currencyConvertion(sku?.price, currency?.conversionRateToUSD, false)}  {currency?.abbreviation}</AppTypography>
+                        <AppTypography fontSize="12px" display="flex">Your earning: <AppTypography padding="0 3px" fontSize="12px" fontWeight="bold">{currency?.symbol}{currencyConvertion(parseFloat(el?.publisherEarning), currency?.conversionRateToUSD, false)}  {currency?.abbreviation} / each</AppTypography></AppTypography>
                       </VStack>
                     </Flex>
                   </Flex>
