@@ -5,7 +5,7 @@ import { deepEqual } from 'lib/utils/helpers/helpers'
 import { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/helpers/helpers'
 import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useCreateInvoice'
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import ToggleableSection from '../../ToggleableSection'
 import ShippingMethodList from './components/ShippingMethodList'
 import ShippingMethodsLoading from './components/ShippingMethodsLoading'
@@ -18,53 +18,49 @@ export default function InvoiceShippingMethods() {
     const { isInvoiceDataValid } = useCreateInvoice({ trigger: "SHIPPING_METHODS_SWITCH" })
     const { showToast } = useAppToast()
 
-    const activateSwitch = async () => {
-        const validationResult = await validateForm()
-        if (Object.entries(validationResult).length > 0) return
-        if (!isInvoiceDataValid(values)) return
+    const validateAndActivate = async () => {
+        const validationErrors = await validateForm()
+        if (Object.keys(validationErrors).length > 0 || !isInvoiceDataValid(values)) return
         setExpanded(true)
-        updateInvoice()
+        await updateInvoice()
     }
 
-    function renderContent() {
-        if (isLoading) return <ShippingMethodsLoading />
-        if (!cart.shippings?.length) return null
-        return <ShippingMethodList />
-    }
+    const updateInvoice = useCallback(async () => {
+        const { _id, easyPostAddressID, ...addressDetails } = cart.address ?? {}
 
-    async function updateInvoice() {
-        const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
-
-        if ((isEditMode && !deepEqual(rest, values.address)) || (isExpanded && !cart.address)) {
+        if ((isEditMode && !deepEqual(addressDetails, values.address)) || (isExpanded && !cart.address)) {
+            setLoading(true)
             try {
-                setLoading(true)
                 const { data: createdAddress } = await createAddressService(values.address)
-                const { data } = await addAddressToCartService(cart._id, createdAddress._id)
-                updateCart(data)
+                const { data: updatedCart } = await addAddressToCartService(cart._id, createdAddress._id)
+                updateCart(updatedCart)
                 updateShippingMethod(null)
-            }
-            catch (error) {
-                if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
-                else showToast({ message: (error as Error).message, type: "error" })
+            } catch (error) {
+                const errorMessage = error.response?.data?.data?.message || error.message
+                showToast({ message: errorMessage, type: "error" })
                 setExpanded(false)
-            }
-            finally {
+            } finally {
                 setLoading(false)
             }
         }
-    }
+    }, [cart.address, isEditMode, values.address, isExpanded, updateCart, updateShippingMethod, showToast])
 
     useEffect(() => {
-        const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
-        if (!deepEqual(rest, values.address)) setExpanded(false)
-    }, [values.address])
+        const { _id, easyPostAddressID, ...addressDetails } = cart.address ?? {}
+        setExpanded(deepEqual(addressDetails, values.address))
+    }, [cart.address, values.address])
+
+    const renderContent = () => {
+        if (isLoading) return <ShippingMethodsLoading />
+        return cart.shippings?.length ? <ShippingMethodList /> : null
+    }
 
     return (
         <ToggleableSection
             title='Shipping'
             description='Shipping methods are based on the type of inventory and address on the invoice.'
             isExpanded={isExpanded}
-            onToggle={isExpanded ? () => setExpanded(false) : activateSwitch}
+            onToggle={isExpanded ? () => setExpanded(false) : validateAndActivate}
         >
             {renderContent()}
         </ToggleableSection>
