@@ -64,7 +64,7 @@ export default function CreateInvoice() {
     return (
         <>
             <Formik
-                initialValues={getInvoiceFormInitialValues(invoiceId, data)}
+                initialValues={getInvoiceFormInitialValues(data)}
                 validationSchema={getInvoiceValidationSchema(isAddressSwitchToggled)}
                 validateOnChange={false}
                 onSubmit={handleSubmit}
@@ -73,14 +73,14 @@ export default function CreateInvoice() {
                     <FormikProvider value={formik}>
                         <Form>
                             <Flex direction={{ base: "column", lg: "row" }} gap={6}>
-                                <Flex flex={1} direction={"column"} gap={"inherit"}>
+                                <Flex flex={1} direction="column" gap="inherit">
                                     <InvoiceProductTable />
                                     <InvoiceClientDetails />
                                 </Flex>
 
-                                <Flex direction={"column"} gap={6}>
+                                <Flex direction="column" gap={6}>
                                     <InvoiceSummary />
-                                    <Flex direction={"column"} gap={4}>
+                                    <Flex direction="column" gap={4}>
                                         <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</Button>
                                         <Button type='button' variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
                                     </Flex>

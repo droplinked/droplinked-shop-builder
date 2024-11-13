@@ -45,7 +45,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
 
     const actionButtonElement = (
         <Button
-            size={"sm"}
+            size="sm"
             borderRadius={4}
             paddingBlock={2}
             paddingInline={3}
@@ -84,7 +84,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
 
     return (
         <InputGroup display="flex" flexDirection="column" gap={2}>
-            <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">
+            <FormLabel width="fit-content" m={0} fontSize={14} fontWeight={500} color="white">
                 {label}
             </FormLabel>
             {!icon && !actionButton ?
@@ -96,7 +96,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
                     {actionButton && actionButtonElement}
                 </Flex>
             }
-            {error && <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+            {error && <AppTypography fontSize={14} color="#E53E3E">{error}</AppTypography>}
         </InputGroup>
     )
 }
