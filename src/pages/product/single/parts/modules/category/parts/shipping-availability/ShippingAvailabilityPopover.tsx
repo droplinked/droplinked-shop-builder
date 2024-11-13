@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Popover, PopoverTrigger, PopoverArrow, PopoverContent, useDisclosure } from '@chakra-ui/react';
+import { Popover, PopoverArrow, PopoverContent, useDisclosure } from '@chakra-ui/react';
+import React, { useEffect, useRef } from 'react';
 import ShippingAvailabilityButton from './ShippingAvailabilityButton';
 import ShippingAvailabilityContent from './content/ShippingAvailabilityContent';
 
@@ -20,11 +20,7 @@ function ShippingAvailabilityPopover() {
 
     return (
         <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
-            <PopoverTrigger>
-                <div onClick={onOpen}>
-                    <ShippingAvailabilityButton />
-                </div>
-            </PopoverTrigger>
+            <ShippingAvailabilityButton />
             <PopoverContent
                 ref={popoverRef}
                 w={{ base: "360px", md: "660px" }}
