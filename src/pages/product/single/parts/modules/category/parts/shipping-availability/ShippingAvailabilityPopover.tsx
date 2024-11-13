@@ -1,13 +1,28 @@
-import { Popover, PopoverArrow, PopoverContent } from '@chakra-ui/react'
-import React from 'react'
-import ShippingAvailabilityButton from './ShippingAvailabilityButton'
-import ShippingAvailabilityContent from './content/ShippingAvailabilityContent'
+import { Popover, PopoverArrow, PopoverContent, useDisclosure } from '@chakra-ui/react';
+import React, { useEffect, useRef } from 'react';
+import ShippingAvailabilityButton from './ShippingAvailabilityButton';
+import ShippingAvailabilityContent from './content/ShippingAvailabilityContent';
 
 function ShippingAvailabilityPopover() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const popoverRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+                onClose();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [onClose]);
+
     return (
-        <Popover>
+        <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
             <ShippingAvailabilityButton />
             <PopoverContent
+                ref={popoverRef}
                 w={{ base: "360px", md: "660px" }}
                 margin={4}
                 border="1px solid #292929"
@@ -31,7 +46,7 @@ function ShippingAvailabilityPopover() {
                 <ShippingAvailabilityContent />
             </PopoverContent>
         </Popover>
-    )
+    );
 }
 
-export default ShippingAvailabilityPopover
+export default ShippingAvailabilityPopover;
