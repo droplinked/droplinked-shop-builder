@@ -1,4 +1,4 @@
-import { SimpleGrid, useDisclosure } from '@chakra-ui/react'
+import { SimpleGrid } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices'
 import { IcitiesService, IsatatesService } from 'lib/apis/address/interfaces'
@@ -11,12 +11,9 @@ import useInvoiceStore from '../../store/invoiceStore'
 import ToggleableSection from '../ToggleableSection'
 
 function InvoiceAddress() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { updateIsAddressSwitchToggled, isAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
     const { values, errors, setFieldValue } = useFormikContext<InvoiceFormSchema>()
-    const { updateIsAddressSwitchToggled, updateCountryISO2 } = useInvoiceStore()
-    const { isFetching: isFetchingCountries, data: countriesData } = useQuery({
-        queryFn: allCountriesService,
-    })
+    const { isFetching: isFetchingCountries, data: countriesData } = useQuery({ queryFn: allCountriesService })
     const { isLoading: isFetchingStates, mutateAsync: getStates, data: statesData } = useMutation((params: IsatatesService) => statesService(params))
     const { isLoading: isFetchingCities, mutateAsync: getCities, data: citiesData } = useMutation((params: IcitiesService) => citiesService(params))
 
@@ -25,29 +22,23 @@ function InvoiceAddress() {
     const cities = useMemo(() => citiesData?.data?.data?.cities || [], [citiesData])
 
     useEffect(() => {
-        if (values.address.state && !states.length) {
+        if (values.address.state && !states.length)
             getStates({ country_name: values.address.country })
-        }
 
-        if (values.address.city && !cities.length) {
+        if (values.address.city && !cities.length)
             getCities({ country_name: values.address.country, state_name: values.address.state })
-        }
     }, [values.address.state, values.address.city, states, cities])
-
-    useEffect(() => {
-        updateIsAddressSwitchToggled(isOpen)
-    }, [isOpen, updateIsAddressSwitchToggled])
 
     return (
         <ToggleableSection
             title='Address'
             description='Enable this option if you want to enter the customers address details.'
-            isExpanded={isOpen}
-            onToggle={isOpen ? onClose : onOpen}
+            isExpanded={isAddressSwitchToggled}
+            onToggle={() => updateIsAddressSwitchToggled(!isAddressSwitchToggled)}
         >
             <SimpleGrid
                 columns={{ base: 1, md: 2 }}
-                alignItems={"flex-start"}
+                alignItems="flex-start"
                 columnGap={6}
                 rowGap={4}
             >
@@ -73,11 +64,9 @@ function InvoiceAddress() {
                 <Select
                     label='Country'
                     items={countries}
-                    value={values.address.country}
+                    value={countries?.find(c => c.name === values.address.country)}
                     valueAccessor='name'
-                    dataAttributes={{
-                        'data-iso2': 'iso2'
-                    }}
+                    dataAttributes={{ 'data-iso2': 'iso2' }}
                     isLoading={isFetchingCountries}
                     error={errors.address?.country}
                     selectProps={{
@@ -97,7 +86,7 @@ function InvoiceAddress() {
                 <Select
                     label='State'
                     items={states}
-                    value={values.address.state}
+                    value={states?.find(s => s.name === values.address.state)}
                     valueAccessor='name'
                     isLoading={isFetchingStates}
                     error={errors.address?.state}
@@ -114,7 +103,7 @@ function InvoiceAddress() {
                 <Select
                     label='City'
                     items={cities}
-                    value={values.address.city}
+                    value={cities?.find(c => c.name === values.address.city)}
                     valueAccessor='name'
                     isLoading={isFetchingCities}
                     error={errors.address?.city}

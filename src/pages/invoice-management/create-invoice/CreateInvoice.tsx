@@ -18,7 +18,7 @@ export default function CreateInvoice() {
     const navigate = useNavigate()
     const { invoiceId } = useParams()
     const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
-    const { updateCart, resetCart, isAddressSwitchToggled, updateShippingMethod, isEditMode, updateIsEditMode } = useInvoiceStore()
+    const { updateCart, resetCart, updateIsAddressSwitchToggled, isAddressSwitchToggled, updateShippingMethod, isEditMode, updateIsEditMode } = useInvoiceStore()
     const { isInvoiceDataValid, createInvoice, updateInvoice, isLoading } = useCreateInvoice({ trigger: "CREATE_BUTTON", onSuccess: openInvoiceDetailsModal })
     const { data, isFetching } = useInvoiceInformation(invoiceId)
     const { showToast } = useAppToast()
@@ -38,6 +38,9 @@ export default function CreateInvoice() {
             }
             updateCart(data)
             updateIsEditMode(true)
+
+            if (data.address?._id) updateIsAddressSwitchToggled(true)
+
             const selectedShippingGroup = findSelectedShippingMethod(data.shippings)
             if (selectedShippingGroup) updateShippingMethod(selectedShippingGroup)
         }

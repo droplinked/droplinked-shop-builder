@@ -54,13 +54,13 @@ function Select({
 
     const selectElement = (
         <ChakraSelect
-            value={valueAccessor ? value?.[valueAccessor] : JSON.stringify(value)}  // Update the value prop
+            value={valueAccessor ? value?.[valueAccessor] : JSON.stringify(value)}
             height={12}
-            border={"1px solid #292929"}
-            borderWidth={"1.5px"}
+            border="1px solid #292929"
+            borderWidth="1.5px"
             borderRadius={8}
-            color={"#7B7B7B"}
-            icon={isLoading ? <Spinner size={"sm"} color='#7B7B7B' /> : <AppIcons.SelectChevronDown />}
+            color="#7B7B7B"
+            icon={isLoading ? <Spinner size="sm" color='#7B7B7B' /> : <AppIcons.SelectChevronDown />}
             _placeholder={{ color: "#7B7B7B" }}
             _hover={{}}
             _focus={{}}
@@ -75,20 +75,20 @@ function Select({
     if (!label) return (
         <>
             {selectElement}
-            {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+            {error && <AppTypography mt={2} fontSize={14} color="#E53E3E">{error}</AppTypography>}
         </>
     )
 
     return (
         <InputGroup
-            display={"flex"}
-            flexDirection={"column"}
+            display="flex"
+            flexDirection="column"
             gap={2}
             {...inputGroupProps}
         >
-            <FormLabel width={"fit-content"} m={0} fontSize={14} fontWeight={500} color="white">{label}</FormLabel>
+            <FormLabel width="fit-content" m={0} fontSize={14} fontWeight={500} color="white">{label}</FormLabel>
             {selectElement}
-            {error && <AppTypography fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+            {error && <AppTypography fontSize={14} color="#E53E3E">{error}</AppTypography>}
         </InputGroup>
     )
 }
