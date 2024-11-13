@@ -27,11 +27,12 @@ export default function InvoiceShippingMethods() {
         value: selectedShippingMethod?.shipmentId,
     })
 
-    const handleToggle = async () => {
+    const activateSwitch = async () => {
         const validationResult = await validateForm()
         if (Object.entries(validationResult).length > 0) return
         if (!isInvoiceDataValid(values)) return
         setExpanded(true)
+        updateInvoice()
     }
 
     const renderContent = () => {
@@ -52,29 +53,27 @@ export default function InvoiceShippingMethods() {
         )
     }
 
-    useEffect(() => {
-        (async () => {
-            const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
+    const updateInvoice = async () => {
+        const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
 
-            if ((isEditMode && !deepEqual(rest, values.address)) || (isExpanded && !cart.address)) {
-                try {
-                    setLoading(true)
-                    const { data: createdAddress } = await createAddressService(values.address)
-                    const { data } = await addAddressToCartService(cart._id, createdAddress._id)
-                    updateCart(data)
-                    updateShippingMethod(null)
-                }
-                catch (error) {
-                    if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
-                    else showToast({ message: (error as Error).message, type: "error" })
-                    setExpanded(false)
-                }
-                finally {
-                    setLoading(false)
-                }
+        if ((isEditMode && !deepEqual(rest, values.address)) || (isExpanded && !cart.address)) {
+            try {
+                setLoading(true)
+                const { data: createdAddress } = await createAddressService(values.address)
+                const { data } = await addAddressToCartService(cart._id, createdAddress._id)
+                updateCart(data)
+                updateShippingMethod(null)
             }
-        })()
-    }, [isExpanded])
+            catch (error) {
+                if (error.response) showToast({ message: error.response.data.data.message, type: "error" })
+                else showToast({ message: (error as Error).message, type: "error" })
+                setExpanded(false)
+            }
+            finally {
+                setLoading(false)
+            }
+        }
+    }
 
     useEffect(() => {
         const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
@@ -86,7 +85,7 @@ export default function InvoiceShippingMethods() {
             title='Shipping'
             description='Shipping methods are based on the type of inventory and address on the invoice.'
             isExpanded={isExpanded}
-            onToggle={isExpanded ? () => setExpanded(false) : handleToggle}
+            onToggle={isExpanded ? () => setExpanded(false) : activateSwitch}
         >
             {renderContent()}
         </ToggleableSection>
