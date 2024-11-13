@@ -8,11 +8,11 @@ import Button from '../components/Button'
 import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
 import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
-import InvoiceProductTable from './components/form/InvoiceProductTable'
 import InvoiceSummary from './components/form/InvoiceSummary'
 import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
+import InvoiceProductTable from './components/form/product-table/InvoiceProductTable'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
