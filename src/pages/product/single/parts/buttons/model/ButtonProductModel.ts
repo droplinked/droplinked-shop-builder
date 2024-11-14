@@ -104,12 +104,25 @@ const ButtonsProductClass = ({
     },
 
     makeData: ({ state: { publish_status, commission, ...rest }, draft, productID, currency }: ImakeData) => {
-        const state: IproductState = { ...rest, commission: commission || 0, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
+        const state: IproductState = {
+            ...rest,
+            commission: commission || 0,
+            properties: rest?.properties.map((state_property) => ({ ...state_property, child: null })),
+            publish_status: draft ? 'DRAFTED' : publish_status // Set publish_status to DRAFT if draft is true
+        };
+
         // Check PRINT_ON_DEMAND
-        if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
-        const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product }, currency: currency })
-        const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku, currency }) }
-        return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
+        if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID;
+
+        const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product }, currency: currency });
+        const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku, currency }) };
+
+        // Ensure publish_product is false when draft is true
+        if (draft) {
+            return productID ? updateData(false) : { ...data, publish_product: false };
+        } else {
+            return productID ? updateData(true) : { ...data, publish_product: true };
+        }
     },
 
     record: async ({ method, product, stacks, shop }: Irecord) => {
