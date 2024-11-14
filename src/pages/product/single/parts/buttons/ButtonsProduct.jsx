@@ -100,7 +100,7 @@ function ButtonsProduct() {
             if (state.product_type === "DIGITAL") {
                 if (!productID) {
                     checkProductTypeLegalUsage()
-                    const createResponse = await create.mutateAsync({ ...requestData, publish_product: shouldRecordDigitalProduct ? false : true });
+                    const createResponse = await create.mutateAsync({ ...requestData, publish_product: shouldRecordDigitalProduct ? false : draft ? false : true });
                     createdProductRef.current = refactorData(createResponse.data?.data);
                 }
                 else if (productID && !isChanged) {
