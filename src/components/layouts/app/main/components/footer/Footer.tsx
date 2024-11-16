@@ -3,6 +3,7 @@ import * as React from 'react';
 import NewsLetter from './components/newsLetter/NewsLetter';
 import IconsSection from './components/iconsSection/IconsSection';
 import LinksSection from './components/links/LinksSection';
+import Copyright from './components/copyright/Copyright';
 
 function Footer() {
     return (
@@ -12,6 +13,7 @@ function Footer() {
                 <IconsSection />
                 <LinksSection />
             </Box>
+            <Copyright />
         </Box>
     );
 }
