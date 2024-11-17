@@ -8,10 +8,17 @@ export interface SubOptionId {
     }[]
 }
 
+export interface IPrice {
+    month: number,
+    discount?: number,
+    price: string,
+    discountPrice?: string
+}
+
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: any[],
+    price: Array<IPrice>,
     description: string;
     subOptionIds: SubOptionId[]
 }
