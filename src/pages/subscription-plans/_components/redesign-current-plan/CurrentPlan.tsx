@@ -20,9 +20,9 @@ function NewCurrentPlan() {
     const currentSubData: ICurrentSubData = getSubscriptionIcon(type);
     return (
         <VStack backgroundColor={"#1C1C1C"} borderRadius={"8px"} padding={"36px"} justifyItems={"start"} alignItems={"start"}>
-            <HStack justifyContent={"space-between"} width={"100%"}>
+            <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentSubData} data={data} />
-                <HStack gap={"1rem"}>
+                <HStack gap={"1rem"} flexWrap={"wrap"}>
                     <Button backgroundColor={"transparent"} border={"none"} color={"white"}>Cancel Subscription</Button>
                     <StatisticModal data={data} />
                 </HStack>

@@ -239,6 +239,8 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as Available } from "./available.svg";
 import { ReactComponent as Statistics } from "./statistics.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
+import { ReactComponent as Alert } from "./alert.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -481,7 +483,8 @@ const AppIcons = {
     CircleWithdraw,
     DeliveryTruck,
     Available,
-    Statistics
+    Statistics,
+    Infinity,
 };
 
 export default AppIcons;

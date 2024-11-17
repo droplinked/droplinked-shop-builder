@@ -21,7 +21,7 @@ export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_d
 export interface LegalUsage {
     all: string;
     key: LegalUsageKey;
-    remaining: string;
+    remaining: number | string;
     used: number;
     value: string;
 }

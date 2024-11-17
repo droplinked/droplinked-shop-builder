@@ -4,13 +4,14 @@ import React, { ReactNode } from 'react';
 
 interface Props {
     icon?: ReactNode;
+    backgroundColor?: string;
     title: string;
     description: string;
 }
 
-function ModalHeaderData({ icon, title, description }: Props) {
+function ModalHeaderData({ icon, title, description, backgroundColor }: Props) {
     return (
-        <ModalHeader>
+        <ModalHeader {...backgroundColor && { backgroundColor: backgroundColor }}>
             <Flex justifyContent={"space-between"}>
                 {icon ? icon : <AppTypography fontSize={24} fontWeight={700} color={"white"}>{title}</AppTypography>}
                 <ModalCloseButton

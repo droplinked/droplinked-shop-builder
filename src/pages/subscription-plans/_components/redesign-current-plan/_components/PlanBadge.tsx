@@ -14,23 +14,25 @@ interface props {
     };
 }
 function PlanBadge({ currentSubData, data }: props) {
-    return (<HStack gap={"1rem"}>
-        <HStack>
-            <currentSubData.icon />
-            <AppTypography color={"#fff"} fontWeight={500} fontSize={"24px"}>
-                {currentSubData.title}
-            </AppTypography>
+    return (
+        <HStack gap={"1rem"} flexWrap={"wrap"}>
+            <HStack>
+                <currentSubData.icon />
+                <AppTypography color={"#fff"} fontWeight={500} fontSize={"24px"}>
+                    {currentSubData.title}
+                </AppTypography>
+            </HStack>
+            <AppBadge
+                backgroundColor={"#80EDCF1A"}
+                color={"#2BCFA1"}
+                padding={"8px"}
+                pr={"10px"}
+                variant={"default"}
+                status={data.data.status === "ACTIVE" ? "green" : "red"}
+                text={data.data.status}
+                icon={AppIcons.Available} />
         </HStack>
-        <AppBadge
-            backgroundColor={"#80EDCF1A"}
-            color={"#2BCFA1"}
-            padding={"8px"}
-            pr={"10px"}
-            variant={"default"}
-            status={data.data.status === "ACTIVE" ? "green" : "red"}
-            text={data.data.status}
-            icon={AppIcons.Available} />
-    </HStack>);
+    );
 }
 
 export default PlanBadge;
