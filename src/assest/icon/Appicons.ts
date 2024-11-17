@@ -237,6 +237,8 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as Available } from "./available.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -477,7 +479,9 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-    DeliveryTruck
+    DeliveryTruck,
+    Available,
+    Statistics
 };
 
 export default AppIcons;

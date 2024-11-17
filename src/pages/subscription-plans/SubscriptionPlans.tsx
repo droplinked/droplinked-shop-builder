@@ -2,11 +2,13 @@ import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import CurrentPlan from './_components/current-plan/CurrentPlan'
+import NewCurrentPlan from './_components/redesign-current-plan/CurrentPlan'
 import Plans from './_components/plans/Plans'
 
 function SubscriptionPlans() {
     return (
         <Flex direction={"column"} gap={9}>
+            <NewCurrentPlan />
             <Flex
                 direction={"column"}
                 gap={6}

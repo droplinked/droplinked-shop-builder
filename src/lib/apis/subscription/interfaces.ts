@@ -40,6 +40,8 @@ export interface ShopSubscriptionData {
         }[];
     };
     purchaseStatus: string;
+    monthLength: number;
+    paidAmount: number;
     status: string;
     daysUntilExpiration: string;
     startsAt: string;
