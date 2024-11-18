@@ -5,6 +5,7 @@ import AppTypography from '../typography/AppTypography'
 interface Iprops extends BadgeProps {
     text: string | number
     status?: "green" | "red" | "gray"
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
 
 function AppBadge(props: Iprops) {
@@ -23,7 +24,8 @@ function AppBadge(props: Iprops) {
     }, [props.status])
 
     return (
-        <Badge variant='outline' colorScheme={props.status ? handleStatus : "green"} textTransform="capitalize" padding="10px 20px" borderRadius="100px" {...props}>
+        <Badge variant='outline' display={props.icon ? "flex" : "block"} alignItems={"center"} gap={props.icon ? "5px" : "0px"} colorScheme={props.status ? handleStatus : "green"} textTransform="capitalize" padding="10px 20px" borderRadius="100px" {...props}>
+            {props.icon && <props.icon />}
             <AppTypography fontWeight='bold'>{props.text}</AppTypography>
         </Badge>
     )

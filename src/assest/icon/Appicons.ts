@@ -241,6 +241,12 @@ import { ReactComponent as XOutlined } from "./x-outlined.svg";
 import { ReactComponent as TelegramOutlined } from "./telegram-outlined.svg";
 import { ReactComponent as InstagramOutlined } from "./instagram-outlined.svg";
 import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
+import { ReactComponent as Available } from "./available.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
+import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as AvailableFilled } from "./available-filled.svg";
+import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -486,6 +492,12 @@ const AppIcons = {
     TelegramOutlined,
     InstagramOutlined,
     LinkedInOutlined,
+    Available,
+    Statistics,
+    Infinity,
+    MedalStar,
+    AvailableFilled,
+    NotAvailableFilled,
 };
 
 export default AppIcons;
