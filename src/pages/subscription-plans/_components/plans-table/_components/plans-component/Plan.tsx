@@ -11,7 +11,7 @@ import { useProfile } from "functions/hooks/useProfile/useProfile";
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
 import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import useAppStore from 'lib/stores/app/appStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { navigating_user_based_on_status } from 'lib/utils/helpers/helpers';
@@ -34,6 +34,7 @@ function Plan({ plan, plans }: IProps) {
     const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
     const [searchParams] = useSearchParams();
+    const isPlansPage = useLocation().pathname === "/plans"
 
     const handlePlanPurchase = () => {
         updateSelectedPlan(plan);
@@ -58,24 +59,26 @@ function Plan({ plan, plans }: IProps) {
                 access_token: paramsVariables?.access_token,
                 refresh_token: paramsVariables?.refresh_token,
                 params: { access_token: paramsVariables?.access_token }
-            });
-            const { user } = res;
-            const status = user.status;
+            })
+            const { user } = res
+            const status = user.status
 
             if (status === "DELETED")
-                return showToast({ message: "This account has been deleted", type: "error" });
+                return showToast({ message: "This account has been deleted", type: "error" })
 
             if (user.type !== "SHOPBUILDER")
-                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
-            const { href, dashboard } = navigating_user_based_on_status(status, res);
-            dashboard ? shopNavigate(href) : navigate(href);
+            if (!isPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, res)
+                dashboard ? shopNavigate(href) : navigate(href)
+            }
         } catch (err) {
-            showToast({ message: err.message, type: "error" });
+            showToast({ message: err.message, type: "error" })
         } finally {
-            signInModal.onClose();
+            signInModal.onClose()
         }
-    }, [login, paramsVariables, showToast, navigate, shopNavigate, signInModal]);
+    }, [login, paramsVariables, showToast, isPlansPage, navigate, shopNavigate, signInModal])
 
     React.useEffect(() => {
         if (
@@ -85,15 +88,15 @@ function Plan({ plan, plans }: IProps) {
             paramsVariables?.subscription_id &&
             !loading
         ) {
-            const foundPlan = plans.find((p) => p._id === paramsVariables?.subscription_id);
+            const foundPlan = plans.find((p) => p._id === paramsVariables?.subscription_id)
             if (foundPlan) {
-                updateSelectedPlan(foundPlan);
-                setIsLoggedInViaGoogle(true);
-                loginWithGoogle();
-                purchaseModal.onOpen();
+                updateSelectedPlan(foundPlan)
+                setIsLoggedInViaGoogle(true)
+                loginWithGoogle()
+                purchaseModal.onOpen()
             }
         }
-    }, [paramsVariables, searchParams, loading, loginWithGoogle, plans, purchaseModal]);
+    }, [paramsVariables, searchParams, loading, loginWithGoogle, plans, purchaseModal])
 
     return (
         <VStack gap={plan.type === "BUSINESS" ? "1rem" : "1.2rem"} alignItems={"start"} justifyContent={"start"} padding={"25px"} width={"270px"} height={"180px"}>
@@ -107,7 +110,7 @@ function Plan({ plan, plans }: IProps) {
                 <SubscriptionPlanCheckoutModal
                     isOpen={purchaseModal.isOpen}
                     close={purchaseModal.onClose}
-                    isFromPlansPage={false}
+                    isFromPlansPage={isPlansPage}
                     isLoggedInViaGoogle={isLoggedInViaGoogle}
                     hasProfile={profile}
                 />
@@ -117,7 +120,7 @@ function Plan({ plan, plans }: IProps) {
                     show={signInModal.isOpen}
                     close={signInModal.onClose}
                     type={MODAL_TYPE.SIGNUP}
-                    isFromPlansPage={false}
+                    isFromPlansPage={isPlansPage}
                     openPlanPurchaseModal={purchaseModal.onOpen}
                 />
             )}

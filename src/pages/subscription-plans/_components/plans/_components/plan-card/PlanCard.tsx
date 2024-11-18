@@ -5,18 +5,19 @@ import AuthModal from "components/modals/auth-modal/AuthModal"
 import useAppToast from "functions/hooks/toast/useToast"
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate"
 import { useProfile } from "functions/hooks/useProfile/useProfile"
-import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
+import { IFeature, SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import useAppStore from "lib/stores/app/appStore"
 import { navigating_user_based_on_status, subscriptionPlanMap } from "lib/utils/helpers/helpers"
 import Button from "pages/invoice-management/components/Button"
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
-import React, { Fragment, useCallback, useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import useSubscriptionPlanPurchaseStore from "../../store/planPurchaseStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
 import PlanPrice from "../plan-price/PlanPrice"
 import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
+import { cardData } from "pages/subscription-plans/data/cardData"
 
 interface Props {
     plan: SubscriptionPlan
@@ -24,9 +25,16 @@ interface Props {
     prevPlanType: string
     features: SubOptionId[]
 }
+interface IPlanFeatures {
+    STARTER: IFeature,
+    BUSINESS: IFeature,
+    BUSINESS_PRO: IFeature,
+    ENTERPRISE: IFeature,
+}
 
-const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
+const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
+    const planFeature: IPlanFeatures = cardData;
     const { profile } = useProfile()
     const purchaseModal = useDisclosure()
     const signInModal = useDisclosure()
@@ -35,7 +43,6 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
     const { title, icon: SubscriptionIcon } = subscriptionPlanMap[plan.type]
-    const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
     const navigate = useNavigate()
@@ -143,24 +150,15 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
                 <Flex direction="column" gap={4}>
                     <AppTypography fontSize={14} color="#B1B1B1">
-                        {isStarter ? "Included in all plans:" : `Includes everything in ${prevPlanTitle}, plus:`}
+                        {planFeature[plan.type].title}
                     </AppTypography>
-
-                    {features.map((featureGroup) =>
-                        featureGroup.value.some((feature) => feature.value) ?
-                            <Fragment key={featureGroup.key}>
-                                {featureGroup.value
-                                    .filter((feature) => feature.value)
-                                    .map((feature) => (
-                                        <Flex key={feature.key} gap={2}>
-                                            <AppIcons.Tick style={{ flexShrink: 0 }} />
-                                            <AppTypography fontSize={14} color="white">
-                                                {`${feature.title} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
-                                            </AppTypography>
-                                        </Flex>
-                                    ))}
-                            </Fragment> :
-                            null
+                    {planFeature[plan.type].items.map((item: Array<string>) =>
+                        <Flex gap={2}>
+                            <AppIcons.Tick style={{ flexShrink: 0 }} />
+                            <AppTypography fontSize={14} color="white">
+                                {item}
+                            </AppTypography>
+                        </Flex>
                     )}
                 </Flex>
             </Flex>
