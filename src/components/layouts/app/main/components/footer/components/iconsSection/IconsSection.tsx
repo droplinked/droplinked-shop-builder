@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 function IconsSection() {
     const links = [
-        { href: "https://t.me/droplinked", icon: <AppIcons.TelegramOutlined /> },
         { href: "https://twitter.com/droplinked", icon: <AppIcons.XOutlined /> },
         { href: "https://www.linkedin.com/company/droplinked", icon: <AppIcons.LinkedInOutlined /> },
         { href: "https://www.instagram.com/drop_linked", icon: <AppIcons.InstagramOutlined /> },
+        { href: "https://t.me/droplinked", icon: <AppIcons.TelegramOutlined /> },
         { href: "https://discord.com/channels/1068939465025916959/1088500920406515763", icon: <AppIcons.DiscordOutlined /> },
     ];
 
@@ -24,7 +24,7 @@ function IconsSection() {
                 Commerce tools to sell and settle transparently.
             </AppTypography>
 
-            <Flex gap={"24px"} mt="1rem">
+            <Flex gap={"16px"} mt="1rem">
                 {links.map(({ href, icon }, index) => (
                     <Link key={index} to={href} target='_blank'>
                         <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>

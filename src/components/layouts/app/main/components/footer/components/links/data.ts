@@ -37,10 +37,10 @@ export const data: Array<IData> = [
                 title: "Tokenizing Products",
                 link: "/tokenizing-products"
             },
-            // {
-            //     title: "Onchain Subscriptions",
-            //     link: "https://www.linkedin.com/company/droplinked"
-            // },
+            {
+                title: "Onchain Subscriptions",
+                link: "/plans"
+            },
         ]
     },
     {
@@ -71,10 +71,10 @@ export const data: Array<IData> = [
     {
         parentTitle: "Support",
         childs: [
-            // {
-            //     title: "Contact Us",
-            //     link: "/"
-            // },
+            {
+                title: "Contact Us",
+                link: "mailto:support@droplinked.com"
+            },
             {
                 title: "Brand Assets",
                 link: "https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing"
