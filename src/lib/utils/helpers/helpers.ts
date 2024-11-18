@@ -266,6 +266,21 @@ export const subscriptionPlanMap: Record<
     ENTERPRISE: { icon: AppIcons.EnterprisePlan, title: "Enterprise", description: "Contact us to explore integration." },
 };
 
+export const getSubscriptionIcon = (type: string) => {
+    switch (type) {
+        case "ENTERPRISE":
+            return { icon: AppIcons.EnterprisePlan, title: "Enterprise" }
+        case "BUSINESS_PRO":
+            return { icon: AppIcons.PremiumPlan, title: "Premium" }
+        case "BUSINESS":
+            return { icon: AppIcons.ProPlan, title: "Pro" }
+        case "STARTER":
+            return { icon: AppIcons.StarterPlan, title: "Starter" }
+        default:
+            break;
+    }
+}
+
 export const formattedCurrency = (number: number) => new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

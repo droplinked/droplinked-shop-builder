@@ -237,6 +237,12 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as Available } from "./available.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
+import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as AvailableFilled } from "./available-filled.svg";
+import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -477,7 +483,13 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-    DeliveryTruck
+    DeliveryTruck,
+    Available,
+    Statistics,
+    Infinity,
+    MedalStar,
+    AvailableFilled,
+    NotAvailableFilled,
 };
 
 export default AppIcons;
