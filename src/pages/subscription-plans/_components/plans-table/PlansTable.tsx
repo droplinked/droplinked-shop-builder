@@ -1,4 +1,4 @@
-import { Skeleton, VStack } from '@chakra-ui/react';
+import { Box, Skeleton, VStack } from '@chakra-ui/react';
 import * as React from 'react';
 import TableHeading from './_components/TableHeading';
 import { useQuery } from 'react-query';
@@ -14,9 +14,11 @@ function PlansTable() {
         return <Skeleton />
     }
     return (
-        <VStack>
+        <VStack overflow={"auto"} display={{ md: "none", lg: "flex" }} >
             <TableHeading />
-            <PlansTableContainer data={data.data} />
+            <Box overflow="auto" width="100%">
+                <PlansTableContainer data={data.data} />
+            </Box>
         </VStack>
     );
 }
