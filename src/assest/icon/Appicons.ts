@@ -247,6 +247,7 @@ import { ReactComponent as Infinity } from "./infinity.svg";
 import { ReactComponent as MedalStar } from "./medalStar.svg";
 import { ReactComponent as AvailableFilled } from "./available-filled.svg";
 import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
+import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -498,6 +499,7 @@ const AppIcons = {
     MedalStar,
     AvailableFilled,
     NotAvailableFilled,
+    DiscordOutlined
 };
 
 export default AppIcons;
