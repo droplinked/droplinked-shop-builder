@@ -2,6 +2,7 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 function IconsSection() {
     return (
@@ -15,18 +16,26 @@ function IconsSection() {
                 Commerce tools to sell and settle transparently.
             </AppTypography>
             <Flex gap={"24px"} mt="1rem">
-                <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
-                    <AppIcons.TelegramOutlined />
-                </Box>
-                <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
-                    <AppIcons.XOutlined />
-                </Box>
-                <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
-                    <AppIcons.LinkedInOutlined />
-                </Box>
-                <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
-                    <AppIcons.InstagramOutlined />
-                </Box>
+                <Link to={"https://t.me/droplinked"} target='_blank'>
+                    <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
+                        <AppIcons.TelegramOutlined />
+                    </Box>
+                </Link>
+                <Link to={"https://twitter.com/droplinked"} target='_blank'>
+                    <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
+                        <AppIcons.XOutlined />
+                    </Box>
+                </Link>
+                <Link to={"https://www.linkedin.com/company/droplinked"} target='_blank'>
+                    <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
+                        <AppIcons.LinkedInOutlined />
+                    </Box>
+                </Link>
+                <Link to={"https://www.instagram.com/drop_linked"} target='_blank'>
+                    <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
+                        <AppIcons.InstagramOutlined />
+                    </Box>
+                </Link>
             </Flex>
         </Flex>
     );

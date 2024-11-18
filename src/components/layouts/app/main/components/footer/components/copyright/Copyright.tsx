@@ -16,11 +16,9 @@ function Copyright() {
             }}>
             <AppTypography color={"#B1B1B1"} fontWeight={"400"} fontSize={"12px"}>© 2024 All Rights Reserved</AppTypography>
             <HStack alignItems={"center"}>
-                <CopyrightItem href='/' title='Cookies' />
+                <CopyrightItem href='/privacy' title='Privacy & Data Collection' />
                 <DotSpacer />
-                <CopyrightItem href='/' title='Privacy & Data Collection' />
-                <DotSpacer />
-                <CopyrightItem href='/' title='Terms of service' />
+                <CopyrightItem href='/terms' title='Terms of service' />
             </HStack>
         </HStack >
     );

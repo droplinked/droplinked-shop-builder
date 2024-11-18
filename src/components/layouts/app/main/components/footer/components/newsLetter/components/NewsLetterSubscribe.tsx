@@ -6,9 +6,29 @@ import * as React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { subscribeFeature } from 'lib/apis/user/services';
+import { useLocation } from 'react-router-dom';
+import { useMutation } from 'react-query';
 
 function NewsLetterSubscribe() {
-    const { showToast } = useAppToast()
+    const { showToast } = useAppToast();
+    const location = useLocation().pathname;
+    const pathname = location !== "/" ? location : "/home"
+    console.log(location)
+    const { mutateAsync, isLoading } = useMutation(subscribeFeature, {
+        onSuccess: () => {
+            showToast({ type: "success", message: "Your email address successfully subscribed" });
+            formik.setValues({ email: '' });
+        },
+        onError: () => {
+            showToast({ type: "error", message: "Something went wrong" });
+        }
+    });
+
+    const handleSubmit = async () => {
+        mutateAsync({ feature: pathname.replace(/^\/|[\/?]+$/g, ''), email: formik.values.email });
+    };
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -16,15 +36,7 @@ function NewsLetterSubscribe() {
         validationSchema: Yup.object({
             email: Yup.string().email('Invalid email address').required('Required'),
         }),
-        onSubmit: (values) => {
-            try {
-                showToast({ message: "Your email address successfully subscribed", type: "success" })
-            } catch (error) {
-                showToast({ message: "Something went wrong", type: "error" })
-            } finally {
-                formik.setValues({ email: '' })
-            }
-        },
+        onSubmit: handleSubmit,
     });
 
     return (
@@ -50,10 +62,10 @@ function NewsLetterSubscribe() {
                     _focusVisible={{ border: `1px solid ${formik.values.email && formik.errors.email ? "red" : "#FFFFFF3D"}` }}
                 />
                 <InputRightElement display={{ sm: "none", md: "flex" }} height={"100%"} m="auto">
-                    <Button type='submit' borderRadius={"36px"} fontSize={"12px"} fontWeight={"500"} width={"82px"} height={"32px"}>Subscribe</Button>
+                    <Button type='submit' isDisabled={isLoading} borderRadius={"36px"} fontSize={"12px"} fontWeight={"500"} width={"82px"} height={"32px"}>{isLoading ? "Sending" : "Subscribe"}</Button>
                 </InputRightElement>
             </InputGroup>
-            <Button type='submit' mt={"1rem"} display={{ sm: "flex", md: "none" }} borderRadius={"36px"} fontSize={"14px"} fontWeight={"500"} width={"100%"}>Subscribe</Button>
+            <Button isDisabled={isLoading} type='submit' mt={"1rem"} display={{ sm: "flex", md: "none" }} borderRadius={"36px"} fontSize={"14px"} fontWeight={"500"} width={"100%"}>{isLoading ? "Sending" : "Subscribe"}</Button>
         </form>
     );
 }
