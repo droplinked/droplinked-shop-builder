@@ -16,6 +16,7 @@ import Networks from './parts/networks/Networks';
 import Partners from './parts/partners/Partners';
 import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
+import Footer from 'components/layouts/app/main/components/footer/Footer';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
@@ -100,7 +101,7 @@ function HomePage() {
 
       </ParallaxProvider>
       {isOpen && <AuthModal show={true} type={States.typeOfModal} close={onClose} />}
-      <FooterLayout />
+      <Footer />
     </>
   )
 }

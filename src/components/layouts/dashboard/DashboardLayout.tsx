@@ -5,6 +5,7 @@ import FooterLayout from "../app/main/parts/footer/FooterLayout";
 import DashboardLayoutSidebar from "./DashboardLayoutSidebar";
 import DashboardLayoutHeader from "./DashboardLayoutHeader";
 import AdminHoc from "functions/hoc/admin/adminHoc";
+import Footer from "../app/main/components/footer/Footer";
 
 const DashboardLayout = () => {
     const location = useLocation().pathname
@@ -17,7 +18,7 @@ const DashboardLayout = () => {
                     <Box width="100%" minH="80vh" padding="24px 36px 24px 36px" borderColor="line"><Outlet /></Box>
                 </VStack>
             </HStack>
-            <FooterLayout />
+            <Footer />
         </VStack>
     );
 };
