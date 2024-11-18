@@ -3,10 +3,10 @@ import * as React from 'react';
 import TableHeading from './_components/TableHeading';
 import { useQuery } from 'react-query';
 import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
-import PlansTableContainer from './_components/plans/PlansTableContainer';
+import PlansTableContainer from './_components/plans-component/PlansTableContainer';
 
 function PlansTable() {
-    const { isFetching, isError, data } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService()
     })
