@@ -7,7 +7,10 @@ export interface SubOptionId {
         value: boolean | string;
     }[]
 }
-
+export interface IFeature {
+    title: string;
+    items: Array<string>
+}
 export interface IPrice {
     month: number,
     discount?: number,
@@ -18,8 +21,8 @@ export interface IPrice {
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: Array<IPrice>,
-    description: string;
+    price: Array<IPrice> | Array<string>,
+    description?: string;
     subOptionIds: SubOptionId[]
 }
 
