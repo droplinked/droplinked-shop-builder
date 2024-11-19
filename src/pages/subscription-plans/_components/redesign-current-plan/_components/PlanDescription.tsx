@@ -16,9 +16,14 @@ function PlanDescription({ currentSubData, data }: props) {
     };
     if (data.data.subscriptionId.type === "STARTER") { return null }
     return (
-        <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
-            {`You are subscribed to the ${currentSubData.title} for $${data.data.paidAmount.toFixed(2)} per ${data.data.monthLength === 1 ? "month" : data.data.monthLength === 12 ? "year" : "5-Year"}, active from ${formatDate(data.data.startsAt)}, to ${formatDate(data.data.expiresAt)}.`}
-        </AppTypography>
+        currentSubData.title === "Enterprise" ?
+            <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
+                {`You are subscribed to the ${currentSubData.title}, active from ${formatDate(data.data.startsAt)}, to ${formatDate(data.data.expiresAt)}.`}
+            </AppTypography>
+            :
+            <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
+                {`You are subscribed to the ${currentSubData.title} for $${data.data.paidAmount?.toFixed(2)} per ${data.data.monthLength === 1 ? "month" : data.data.monthLength === 12 ? "year" : "5-Year"}, active from ${formatDate(data.data.startsAt)}, to ${formatDate(data.data.expiresAt)}.`}
+            </AppTypography>
     );
 }
 
