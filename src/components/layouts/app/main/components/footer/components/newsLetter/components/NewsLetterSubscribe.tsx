@@ -14,7 +14,6 @@ function NewsLetterSubscribe() {
     const { showToast } = useAppToast();
     const location = useLocation().pathname;
     const pathname = location !== "/" ? location : "/home"
-    console.log(location)
     const { mutateAsync, isLoading } = useMutation(subscribeFeature, {
         onSuccess: () => {
             showToast({ type: "success", message: "Your email address successfully subscribed" });
