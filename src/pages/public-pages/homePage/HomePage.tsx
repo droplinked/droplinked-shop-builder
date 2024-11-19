@@ -1,5 +1,5 @@
 import { Flex, Image, useDisclosure } from '@chakra-ui/react';
-import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import Footer from 'components/layouts/app/main/components/footer/Footer';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppStore from 'lib/stores/app/appStore';
@@ -16,7 +16,6 @@ import Networks from './parts/networks/Networks';
 import Partners from './parts/partners/Partners';
 import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
-import Footer from 'components/layouts/app/main/components/footer/Footer';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
