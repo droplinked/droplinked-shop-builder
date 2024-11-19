@@ -44,7 +44,7 @@ export const data: Array<IData> = [
         ]
     },
     {
-        parentTitle: "Resources",
+        parentTitle: "Enterprise",
         childs: [
             {
                 title: "DPP",

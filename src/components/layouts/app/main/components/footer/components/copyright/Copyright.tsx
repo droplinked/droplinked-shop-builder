@@ -10,11 +10,11 @@ function Copyright() {
             flexDirection={{ sm: "column", md: "row" }}
             justifyContent={"space-between"}
             background={"#292929"}
-            py={"18px"}
+            py={"22px"}
             px={{
                 sm: "1rem", md: "6rem"
             }}>
-            <AppTypography color={"#B1B1B1"} fontWeight={"400"} fontSize={"12px"}>© 2024 All Rights Reserved</AppTypography>
+            <AppTypography color={"#B1B1B1"} fontWeight={"400"} fontSize={"14px"}>© 2024 All Rights Reserved</AppTypography>
             <HStack alignItems={"center"}>
                 <CopyrightItem href='/privacy' title='Privacy & Data Collection' />
                 <DotSpacer />
