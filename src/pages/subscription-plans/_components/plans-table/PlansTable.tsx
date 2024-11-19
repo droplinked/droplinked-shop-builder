@@ -14,9 +14,9 @@ function PlansTable() {
         return <Skeleton />
     }
     return (
-        <VStack overflow={"auto"} display={{ md: "none", lg: "flex" }} >
+        <VStack overflow={"hidden"} display={{ sm: "none", md: "flex" }} >
             <TableHeading />
-            <Box overflow="auto" width="100%">
+            <Box width="100%">
                 <PlansTableContainer data={data.data} />
             </Box>
         </VStack>

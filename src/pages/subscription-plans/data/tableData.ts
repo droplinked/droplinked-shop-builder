@@ -286,12 +286,12 @@ export const tableData = {
                             {
                                 "title": "Physical products",
                                 "key": "Physical products",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Digital goods",
                                 "key": "Digital goods",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Production-on-Demand",
@@ -301,7 +301,7 @@ export const tableData = {
                             {
                                 "title": "Product tokenization",
                                 "key": "digital_product",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Login methods",
@@ -514,22 +514,22 @@ export const tableData = {
                             {
                                 "title": "Physical products",
                                 "key": "Physical products",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Digital goods",
                                 "key": "Digital goods",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Production-on-Demand",
                                 "key": "Production-on-Demand",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Product tokenization",
                                 "key": "digital_product",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Login methods",
@@ -585,7 +585,7 @@ export const tableData = {
                             {
                                 "title": "Crypto payments",
                                 "key": "crypto_payments",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Credit card payments",
@@ -742,27 +742,27 @@ export const tableData = {
                             {
                                 "title": "Physical products",
                                 "key": "Physical products",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Digital goods",
                                 "key": "Digital goods",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Production-on-Demand",
                                 "key": "Production-on-Demand",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Product tokenization",
                                 "key": "digital_product",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Login methods",
                                 "key": "print_on_demand",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Post Purchase Data Gathering",
@@ -813,7 +813,7 @@ export const tableData = {
                             {
                                 "title": "Crypto payments",
                                 "key": "crypto_payments",
-                                "value": "unlimited"
+                                "value": "Unlimited"
                             },
                             {
                                 "title": "Credit card payments",
