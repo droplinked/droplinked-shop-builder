@@ -6,7 +6,7 @@ import { ILandingPageTemplate } from '../types/interfaces'
 function TokenizingProductsPage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
-            image: "https://upload-file-droplinked.s3.amazonaws.com/2344fa8e1a4cf393e62bed5a458ed9543c31dff85d02cba30fb0994405a1d43c.png",
+            image: "https://upload-file-droplinked.s3.amazonaws.com/233dfacd6a24711f0a8e4eec91f53915a3949bbf8c8553e542fca1fc0f3ed1de_or.png",
             title: "Better Attribution for Inventory",
             description: "Leverage onchain technology to tokenize inventory ensuring ownership and transparency while unlocking working capital for the business.",
             CTAButtonText: "Get Started"
@@ -34,17 +34,17 @@ function TokenizingProductsPage() {
         },
         dualSideFlexData: [
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/3f9b272c6436e721fed899d9dec680d05a7bb657e65bb2328e49ff5811359b4b.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/d808c51c0933ea64ec9a51ba603e2ab0efaf00df77f08d2522e2d871ec1f4d93_or.png",
                 title: "Secure Custody and Ownership",
                 description: "Work with trusted custodians to securely store assets with the tokenized product records for onchain ownership and availability."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/2fd25a51290cae0d89fa5fb1512975cea3193c599cda080d65b09f4f0897454d.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/1302f6a21b39fa84afa03b500226208133a0066d296a433003323368439b331f_or.png",
                 title: "Transparent and Immutable Records",
                 description: "Tokenization ensures all relevant product information, transaction history and ownership are stored immutably for accurate attribution."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/12babd8cd671cd4587bd8cab7e78f31e725415fcc84544ded45b07f9fe3d74d2.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/72fffcd155f435c271ec9afb90546534f9b8723dbbf6d8c9e9f4ed5026b7027b_or.png",
                 title: "Simple and Secure Transfers",
                 description: "Send and trade tokenized physical and digital items across platforms with onchain transparency to ensure trust between parties."
             }
