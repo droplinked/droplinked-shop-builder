@@ -1,5 +1,7 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import React from 'react'
 
 interface options {
@@ -17,6 +19,7 @@ interface IProps {
 }
 
 function AffiliateDetailCard({ decript, earning, image, options, price, title }: IProps) {
+    const { shop: { currency } } = useAppStore();
     return (
         <Flex alignItems={"center"} gap={7}>
             <Box width={["50%", "30%"]} maxWidth="230px">
@@ -32,7 +35,8 @@ function AffiliateDetailCard({ decript, earning, image, options, price, title }:
                         </Flex>
                     </Box>
                     <Box><Text fontSize={["sm", "md"]}>Price: {price}</Text></Box>
-                    <Box><Text fontSize={["sm", "md"]}>Your earning: ${parseFloat(earning).toFixed(2)} USD / each</Text></Box>
+                    <Box><Text fontSize={["sm", "md"]}>Your earning: {currency?.symbol}{currencyConvertion(parseFloat(earning), currency?.conversionRateToUSD, false)}  {currency?.abbreviation} / each</Text></Box>
+
                 </VStack>
             </Box>
         </Flex>

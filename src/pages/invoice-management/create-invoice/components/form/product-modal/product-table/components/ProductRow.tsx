@@ -1,9 +1,11 @@
-import { Button, Flex, Td, Tr, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Td, Tr } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import useAppToast from 'functions/hooks/toast/useToast'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import Input from 'pages/invoice-management/components/Input'
 import React, { forwardRef, useEffect, useState } from 'react'
-import ProductTitleCell from '../../../ProductTitleCell'
+import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
 
 interface Props {
@@ -19,7 +21,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
     const { showToast } = useAppToast()
     const isDigitalProduct = product.product_type === "DIGITAL"
     const firstSkuPrice = product.skuIDs?.[0]?.price
-
+    const { shop: { currency } } = useAppStore();
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
             if (cart.some(item => item.skuId === skuId)) {
@@ -81,7 +83,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 />
             </Td>
             <Td color={"#fff"}>
-                {firstSkuPrice ? `$${firstSkuPrice.toFixed(2)} USD` : "-"}
+                {firstSkuPrice ? `${currency?.symbol}${currencyConvertion(firstSkuPrice, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}` : "-"}
             </Td>
             <Td>
                 <Button

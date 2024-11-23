@@ -2,8 +2,8 @@ import { Box, Flex } from '@chakra-ui/react'
 import AdminHoc from 'functions/hoc/admin/adminHoc'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import FooterLayout from '../main/parts/footer/FooterLayout'
 import DashboardLayoutHeader from 'components/layouts/dashboard/DashboardLayoutHeader'
+import Footer from '../main/components/footer/Footer'
 
 function ShopManagementLayout() {
     return (
@@ -19,7 +19,7 @@ function ShopManagementLayout() {
             >
                 <Outlet />
             </Box>
-            <FooterLayout />
+            <Footer />
         </Flex>
     )
 }

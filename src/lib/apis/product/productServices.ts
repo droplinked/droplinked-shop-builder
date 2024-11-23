@@ -110,3 +110,7 @@ export const importProductsWithCSV = (formData: FormData) => {
         }
     });
 };
+export const getPODShippingAvailability = (product_id: string) =>
+    axiosInstance
+        .post<{ data: string[] }>("product/printful-available-shipping", { product_id })
+        .then(res => res.data)

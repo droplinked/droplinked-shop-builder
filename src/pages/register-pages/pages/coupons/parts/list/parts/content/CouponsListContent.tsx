@@ -14,6 +14,8 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import { AxiosError } from 'axios'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'functions/hooks/toast/useToast'
+import useAppStore from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)
@@ -22,7 +24,7 @@ function CouponsListContent() {
     const [isFetchingCouponsReport, setIsFetchingCouponsReport] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { showToast } = useAppToast()
-
+    const { shop: { currency } } = useAppStore();
     const handleExportCouponsReport = async (couponID: string) => {
         try {
             setIsFetchingCouponsReport(true)
@@ -65,7 +67,7 @@ function CouponsListContent() {
                                     </Flex>
                                     <VStack align="stretch">
                                         <AppTypography fontSize='12px'>{coupon.codes.length} {coupon.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
-                                        <AppTypography fontSize='12px'>{coupon.balance} {coupon.type === "DISCOUNT" ? '%' : 'USD'}</AppTypography>
+                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : currencyConvertion(coupon.balance, currency?.conversionRateToUSD, false)} {coupon.type === "DISCOUNT" ? '%' : currency?.abbreviation}</AppTypography>
                                     </VStack>
                                     <Flex alignItems={"center"} gap={9}>
                                         <AppIcons.EditIcon

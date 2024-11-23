@@ -146,3 +146,5 @@ export const getCircleWallet = () => axiosInstance.get('/shop/circle/wallet')
 export const postWithdrawCircle = (props: IPostWithdrawCircleWallet) => axiosInstance.post('/shop/circle/withdraw', { ...props })
 
 export const deployCircleContract = (network: string) => axiosInstance.post('shop/circle/deploy', { type: network })
+
+export const getCurrencyList = () => axiosInstance.get('shop/currency-list');

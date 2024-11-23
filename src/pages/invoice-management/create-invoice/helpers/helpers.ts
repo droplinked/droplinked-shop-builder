@@ -60,23 +60,23 @@ export function getInvoiceValidationSchema(isAddressSwitchToggled: boolean) {
     })
 }
 
-export function getInvoiceFormInitialValues(invoiceId: string | undefined, data: any) {
+export function getInvoiceFormInitialValues(data: any) {
     return {
-        email: invoiceId ? data.email : '',
-        note: invoiceId ? data.note ?? '' : '',
+        email: data.email ?? '',
+        note: data.note ?? '',
         address: {
-            firstName: invoiceId ? data.address?.firstName : '',
-            lastName: invoiceId ? data.address?.lastName : '',
-            addressLine1: invoiceId ? data.address?.addressLine1 : '',
-            addressLine2: invoiceId ? data.address?.addressLine2 : '',
-            country: invoiceId ? data.address?.country : '',
-            city: invoiceId ? data.address?.city : '',
-            state: invoiceId ? data.address?.state : '',
-            zip: invoiceId ? data.address?.zip : '',
+            firstName: data.address?.firstName ?? '',
+            lastName: data.address?.lastName ?? '',
+            addressLine1: data.address?.addressLine1 ?? '',
+            addressLine2: data.address?.addressLine2 ?? '',
+            country: data.address?.country ?? '',
+            city: data.address?.city ?? '',
+            state: data.address?.state ?? '',
+            zip: data.address?.zip ?? '',
             addressType: 'CUSTOMER',
-            phoneNumber: invoiceId ? data.address?.phoneNumber : ''
+            phoneNumber: data.address?.phoneNumber ?? ''
         }
-    } as InvoiceFormSchema
+    }
 }
 
 export function findSelectedShippingMethod(shippings) {

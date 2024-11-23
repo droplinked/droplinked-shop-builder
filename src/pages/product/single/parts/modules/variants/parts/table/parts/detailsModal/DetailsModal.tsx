@@ -11,6 +11,7 @@ import requestsModel from "pages/affiliate/requests/parts/list/model"
 import React, { useMemo } from "react"
 import { useQuery } from "react-query"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
+import useAppStore from "lib/stores/app/appStore"
 
 interface Props {
     open: boolean
@@ -20,6 +21,7 @@ interface Props {
 
 function DetailsModal({ open, close, sku }: Props) {
     const { showToast } = useAppToast()
+    const { shop: { currency } } = useAppStore();
     const { getVariant } = requestsModel
     const { isLoading, data } = useQuery({
         queryKey: ["sku", sku._id],
@@ -32,7 +34,7 @@ function DetailsModal({ open, close, sku }: Props) {
     const response = useMemo(() => data?.data.data, [data])
     const variant = getVariant(response?.sku)
     const skuAttributes = [
-        { label: "Variant Price:", value: `$${response?.sku.price} USD` },
+        { label: "Variant Price:", value: `${currency?.symbol}${response?.sku.price} ${currency?.abbreviation}` },
         { label: "Commission:", value: `%${response?.sku.recordData.commision}` },
         { label: "Deploy Hash:", value: response?.sku.deploy_hash_link },
     ]

@@ -96,98 +96,32 @@ const recordModel = {
 				? '0x0000000000000000000000000000000000000000'
 				: skaleUSDCAddress;
 
-		if (products.length === 1) {
-			// ----------------------------------------------------------
-			if (blockchain === 'CASPER') {
-				throw new ChainNotImplementedException(
-					'Casper is not implemented'
-				);
-			} else {
-				const sku = products[0].skuProperties;
-				const imageUrl = products[0].image_url;
-				const quantity = products[0].amount;
-				if (pod)
-					beneficiaries = [
-						{
-							isPercentage: false,
-							value: sku.rawPrice * 100,
-							wallet: droplink_wallet,
-						},
-					];
-				const skuId = sku['_id']; // TODO: check here
-				console.log(quantity, sku.quantity);
-				record = await provider.recordProduct(
-					{
-						acceptsManageWallet: acceptsManageWallet,
-						commission: commission * 100,
-						royalty: royalty * 100,
-						currencyAddress:
-							toEthAddress(currencyAddress),
-						description: product.description,
-						productTitle: product.title,
-						type: type,
-					},
-					[
-						{
-							amount: pod
-								? quantity
-								: sku.quantity,
-							imageUrl:
-								imageUrl ||
-								product.media[0].url,
-							beneficiaries,
-							price: sku.price * 100,
-							skuID: skuId,
-							skuProperties: sku,
-						},
-					]
-				);
-			}
+		if (blockchain === 'CASPER') {
+			throw new ChainNotImplementedException(
+				'Casper is not implemented'
+			);
 		} else {
-			if (blockchain === 'CASPER') {
-				throw new ChainNotImplementedException(
-					'Casper is not implemented'
-				);
-			} else {
-				const skus: ISKUDetails[] = products.map((sku) => {
-					return {
-						amount: pod
-							? sku.amount
-							: sku.skuProperties.quantity,
-						imageUrl: sku.image_url,
-						beneficiaries: !pod
-							? sku.beneficiaries
-							: [
-									{
-										isPercentage:
-											false,
-										value:
-											sku
-												.skuProperties
-												.rawPrice *
-											100,
-										wallet: droplink_wallet,
-									},
-							  ],
-						price: sku.price * 100,
-						skuID: sku.skuProperties['_id'],
-						skuProperties: sku.skuProperties,
-					};
-				});
-				record = await provider.recordProduct(
-					{
-						acceptsManageWallet: acceptsManageWallet,
-						commission: commission * 100,
-						royalty: royalty * 100,
-						currencyAddress:
-							toEthAddress(currencyAddress),
-						description: product.description,
-						productTitle: product.title,
-						type: type,
-					},
-					skus
-				);
-			}
+			const skus: ISKUDetails[] = products.map((sku) => {
+				return {
+					amount: pod
+						? sku.amount
+						: sku.skuProperties.quantity,
+					imageUrl: sku.image_url,
+					skuID: sku.skuProperties['_id'],
+					skuProperties: sku.skuProperties,
+				};
+			});
+			record = await provider.recordProduct(
+				{
+					acceptsManageWallet: acceptsManageWallet,
+					commission: commission * 100,
+					royalty: royalty * 100,
+					description: product.description,
+					productTitle: product.title,
+					type: type,
+				},
+				skus
+			);
 		}
 
 		return record;

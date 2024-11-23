@@ -70,6 +70,7 @@ import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 import { ReactComponent as Delete } from "./delete.svg";
+import { ReactComponent as DeliveryTruck } from "./delivery-truck.svg";
 import { ReactComponent as DescSorting } from "./desc-sorting.svg";
 import { ReactComponent as Desktop } from "./desktop-icon.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
@@ -237,6 +238,17 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as XOutlined } from "./x-outlined.svg";
+import { ReactComponent as TelegramOutlined } from "./telegram-outlined.svg";
+import { ReactComponent as InstagramOutlined } from "./instagram-outlined.svg";
+import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
+import { ReactComponent as Available } from "./available.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
+import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as AvailableFilled } from "./available-filled.svg";
+import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
+import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -477,7 +489,19 @@ const AppIcons = {
     CirclePolygon,
     CircleWithdraw,
     Document,
-    ImportProduct
-}
+    ImportProduct,
+    DeliveryTruck,
+    XOutlined,
+    TelegramOutlined,
+    InstagramOutlined,
+    LinkedInOutlined,
+    Available,
+    Statistics,
+    Infinity,
+    MedalStar,
+    AvailableFilled,
+    NotAvailableFilled,
+    DiscordOutlined
+};
 
 export default AppIcons

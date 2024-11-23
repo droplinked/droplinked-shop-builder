@@ -12,6 +12,7 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import AppModal from "components/common/modal/AppModal";
 import ConnectWallets from "./parts/connect/ConnectWallets";
 import Circle from "./circle/Circle";
+import DefaultCurrency from "./parts/default-currency/DefaultCurrency";
 
 function Technical() {
     const userPaymentsService = useMutation(() => paymentMethodsService());
@@ -37,7 +38,8 @@ function Technical() {
         <technicalContext.Provider value={{ state: technical, updateState }}>
             <PageContent>
                 <VStack spacing={4} align="stretch">
-                    <Circle/>
+                    <Circle />
+                    <DefaultCurrency />
                     <FinancialAccounts />
                     <Wallets />
                     <BasicButton onClick={onOpen} textAlign={"left"} width={"auto"} maxW={"100px"} variant="link" color={"#179EF8"} fontWeight={"600"} fontSize={"14px"}>
