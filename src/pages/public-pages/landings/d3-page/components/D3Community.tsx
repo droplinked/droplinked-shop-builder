@@ -20,19 +20,19 @@ function Details() {
             icon: <AppIcons.D3Victorin className='d3-icon' />,
             title: "Victorin",
             description: ".vic",
-            image: "https://upload-file-droplinked.s3.amazonaws.com/54f499e01d6a1f4620c79dd8edeae98b03184f12c9e64e832e3a8419b5837ae4.png"
+            image: "https://upload-file-droplinked.s3.amazonaws.com/9b5b310685dd2f480b27b8980ce892908037b38a5c246d2f8dcbfd2e7f4c0eab.png"
         },
         {
             icon: <AppIcons.D3CoreChain className='d3-icon' />,
             title: "Core Chain",
             description: ".core",
-            image: "https://upload-file-droplinked.s3.amazonaws.com/f7062432e8e990ae5af2996ec1927aad8f1d90c7040736b2b99f3db5c9b339e0.png"
+            image: "https://upload-file-droplinked.s3.amazonaws.com/c5753e8c166c078687805a45636260bd6480333d40a446352d092fca7e5fce0b.png"
         },
         {
             icon: <AppIcons.D3Shiba className='d3-icon' />,
             title: "Shiba Inu",
             description: ".shib",
-            image: "https://upload-file-droplinked.s3.amazonaws.com/7b69b415e009bafec4b13c76ddd012af4a174efa7b96cf59d9a3db030bac0e0c.png"
+            image: "https://upload-file-droplinked.s3.amazonaws.com/5e3838825b62d47c642ea1f773bbf04f40778d4330fcd78914eaaccf1544e83f.png"
         }
     ]
 
