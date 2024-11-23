@@ -5,7 +5,10 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { useState } from 'react'
 import ImportProductModalBody from './components/ImportProductModalBody'
 import ImportProductModalFooter from './components/ImportProductModalFooter'
-
+import { useMutation } from 'react-query'
+import { importProductsWithCSV } from 'lib/apis/product/productServices'
+import useAppToast from 'functions/hooks/toast/useToast'
+import fileTemplate from "assest/samples/Import_Product_template.xlsx"
 interface Props {
     isOpen: boolean
     closeModal: () => void
@@ -13,7 +16,20 @@ interface Props {
 
 function ImportProductModal({ isOpen, closeModal }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
-
+    const formdata = new FormData()
+    const { showToast } = useAppToast()
+    const { mutateAsync, isLoading } = useMutation(() => importProductsWithCSV(formdata))
+    const uploadPicture = () => {
+        formdata.append("file", uploadedFile)
+        mutateAsync().then((res) => {
+            showToast({ message: res.data.message, type: 'success' })
+            setUploadedFile(null)
+            closeModal();
+        }).catch((error) => {
+            const message = error.response.data.data.message;
+            showToast({ message: message, type: 'error' })
+        })
+    }
     return (
         <AppModal
             modalRootProps={{ isOpen, onClose: closeModal, size: "2xl", isCentered: true }}
@@ -22,26 +38,26 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
             <ModalHeaderData
                 icon={<AppIcons.ImportProduct />}
                 title="Import Products"
-                description="Easily import products using a CSV or Excel file. Download our sample template to ensure your file is formatted correctly."
+                description="Easily import products using a CSV file. Download our sample template to ensure your file is formatted correctly."
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
             >
                 <Link
-                    href='https://upload-file-flatlay.s3.us-west-2.amazonaws.com/622e15c810c2e7fb08c93b7ffa185228feb223ea821a3a596dfdd64c63854597_or.xlsx'
+                    href={fileTemplate}
                     textDecoration="underline"
                     fontSize={14}
                     fontWeight={600}
                     color="#179EF8"
                     cursor="pointer"
-                    download="Droplinked-Shipping-Template.xlsx"
+                    download="Import_Product_template.xlsx"
                 >
                     Download Template
                 </Link>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} />
-            <ImportProductModalFooter file={uploadedFile} closeModal={closeModal} />
+            <ImportProductModalFooter file={uploadedFile} closeModal={closeModal} onClick={uploadPicture} isLoading={isLoading} />
         </AppModal>
     )
 }

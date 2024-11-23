@@ -9,7 +9,8 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
         onDrop: (acceptedFiles: File[]) => {
             const selectedFile = acceptedFiles[0]
             onFileChange(selectedFile)
-        }
+        },
+        multiple: false,
     })
 
     const dropMessage = isDragActive ?
@@ -20,7 +21,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
                 <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">Click</Box> {" "}
                 to add a new file or drag and drop it here.
             </AppTypography>
-            <AppTypography color="#7B7B7B">CSV, XLS or XLSX (Up to 1MB)</AppTypography>
+            <AppTypography color="#7B7B7B">Just CSV (Up to 1MB)</AppTypography>
         </>
 
 
@@ -36,7 +37,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             cursor="pointer"
             {...getRootProps()}
         >
-            <input {...getInputProps()} type="file" name="file" accept=".xlsx" aria-label="Upload file" />
+            <input {...getInputProps()} type="file" name="file" accept=".csv" aria-label="Upload file" />
             <AppIcons.HeaderImage />
             {dropMessage}
         </Flex>

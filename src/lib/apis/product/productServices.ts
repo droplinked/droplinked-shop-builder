@@ -102,3 +102,11 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
     const queryString = createQueryString(params).toString();
     return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
 };
+
+export const importProductsWithCSV = (formData: FormData) => {
+    return axiosInstance.post("/product/import-csv", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+};

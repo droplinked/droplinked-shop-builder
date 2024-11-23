@@ -5,9 +5,11 @@ import React from 'react'
 interface Props {
     file: File | null
     closeModal: () => void
+    onClick: () => void;
+    isLoading: boolean;
 }
 
-function ImportProductModalFooter({ file, closeModal }: Props) {
+function ImportProductModalFooter({ file, closeModal, onClick, isLoading }: Props) {
     return (
         <ModalFooter
             display="flex"
@@ -15,8 +17,8 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button variant='secondary' onClick={closeModal}>Discard</Button>
-            <Button isDisabled={!file}>Validate</Button>
+            <Button variant='secondary' disabled={isLoading} onClick={closeModal}>Discard</Button>
+            <Button onClick={onClick} isDisabled={!file || isLoading}>{isLoading ? "Uploading" : "Validate"}</Button>
         </ModalFooter>
     )
 }
