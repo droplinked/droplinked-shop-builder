@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { Box, HStack, useDisclosure } from '@chakra-ui/react';
 import { useCheckPermission } from 'lib/stores/app/appStore';
 import React from 'react';
 import CollectionCreate from '../create/CollectionCreate';
@@ -23,7 +23,10 @@ function ControlsListCollection({ collection, fetch }) {
     }
 
     return (
-        <>
+        <HStack>
+            <Box onClick={() => editModal.onOpen()}>
+                <AppIcons.Eye stroke='#2BCFA1' />
+            </Box>
             <PopOverMenu items={[
                 {
                     caption: "Edit",
@@ -45,7 +48,7 @@ function ControlsListCollection({ collection, fetch }) {
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />
             {ruleModal.isOpen && <RuleModal collectionId={collection?._id} ruleId={collection?.ruleSetID?._id} close={ruleModal.onClose} show={ruleModal.isOpen} />}
             <CollectionCreate close={editModal.onClose} collection={collection} open={editModal.isOpen} />
-        </>
+        </HStack>
     )
 }
 
