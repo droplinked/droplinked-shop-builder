@@ -1,18 +1,21 @@
-import { Box, HStack, useDisclosure } from '@chakra-ui/react';
-import { useCheckPermission } from 'lib/stores/app/appStore';
+import { Box, Divider, HStack, useDisclosure } from '@chakra-ui/react';
+import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
 import React from 'react';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';
 import RuleModal from './parts/rulesets/RuleModal';
 import PopOverMenu from 'components/redesign/PopoverMenu/PopOverMenu';
 import AppIcons from 'assest/icon/Appicons';
+import { Link } from 'react-router-dom';
+import { appDevelopment } from 'lib/utils/app/variable';
 
 function ControlsListCollection({ collection, fetch }) {
     const checkPermissionAndShowToast = useCheckPermission()
     const deleteModal = useDisclosure()
     const ruleModal = useDisclosure()
     const editModal = useDisclosure()
-
+    const { shop: { name } } = useAppStore();
+    const redirectUrl = `https://${appDevelopment ? "dev." : ""}droplinked.io/${name}/collection/${collection._id}`
     const handleOpenRulesetModal = () => {
         if (collection.ruleSetID) {
             ruleModal.onOpen()
@@ -23,10 +26,16 @@ function ControlsListCollection({ collection, fetch }) {
     }
 
     return (
-        <HStack>
-            <Box onClick={() => editModal.onOpen()}>
+        <HStack gap={"16px"}>
+            <Box cursor={"pointer"} onClick={() => editModal.onOpen()}>
                 <AppIcons.Eye stroke='#2BCFA1' />
             </Box>
+            <Box height={"40px"}>
+                <Divider orientation='vertical' borderColor={"#292929"} />
+            </Box>
+            <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
+                <AppIcons.Share />
+            </Link>
             <PopOverMenu items={[
                 {
                     caption: "Edit",
