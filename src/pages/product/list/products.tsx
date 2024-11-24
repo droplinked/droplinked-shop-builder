@@ -2,115 +2,86 @@ import { useDisclosure } from '@chakra-ui/hooks'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
 import useCollections from 'functions/hooks/useCollections/useCollections'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { Collection } from 'lib/apis/collection/interfaces'
-import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
 import { useUpdateShopLegalUsage } from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useMutation } from 'react-query'
+import React, { useCallback, useMemo, useState } from 'react'
+import { useQuery, useQueryClient } from 'react-query'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 import ProductEmpty from './parts/empty/ProductEmpty'
+import ImportProductModal from './parts/import-product-modal/ImportProductModal'
 import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
-    const { isFetching: isFetchingCollections, error, data: collectionsData } = useCollections()
+    const queryClient = useQueryClient()
+    const refetchProducts = () => queryClient.invalidateQueries({ queryKey: ["product-list"] })
+    const { shopRoute } = useCustomNavigate()
+    const { isFetching: isFetchingCollections, data: collectionsData } = useCollections()
     const updateShopLegalUsage = useUpdateShopLegalUsage()
-    const { mutate, isLoading, data } = useMutation({
-        mutationFn: (params: IproductList) => productServices(params),
+    const [searchParams] = useSearchParams()
+    const pageNumber = useMemo(() => parseInt(searchParams.get("page")) || 1, [searchParams])
+    const filter = useMemo(() => searchParams.get("filter"), [searchParams])
+    const { isFetching, data } = useQuery({
+        queryKey: ["product-list", { pageNumber, filter }],
+        queryFn: () => productServices({ limit: 15, page: pageNumber, filter }),
         onSuccess: (data) => updateShopLegalUsage(data.data.data.legalUsage)
     })
-    const [searchParams] = useSearchParams()
-    const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
-    const products = useMemo(() => data?.data?.data, [data])
+    const products = data?.data?.data
     const location = useLocation()
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { refactorData } = ProductListModel
-    const [States, setStates] = useState({ checkboxes: [] })
-    const { shop } = useProfile()
-    const { shopRoute } = useCustomNavigate()
+    const [selectedProducts, setSelectedProducts] = useState([])
     const productReorderModal = useDisclosure()
+    const importProductModal = useDisclosure()
 
-    // Fetch service
-    const fetch = useCallback(() => {
-        const filter = searchParams.get("filter")
-        mutate({ limit: 15, page: page, ...filter && { filter } })
-    }, [page, searchParams])
-
-    useEffect(() => fetch(), [mutate, page, searchParams])
-
-    // Handle search and without search
     const rows = useMemo(() => {
-        return data ? refactorData({
-            data: products?.data,
-            fetch,
-        }) : []
-    }, [products, fetch])
+        return data ? refactorData({ data: products?.data, fetch: refetchProducts }) : []
+    }, [products, refetchProducts])
 
-    // Update parametrs url 
     const updateFilters = useCallback((key: string, value: string) => {
         const filter = `${key}:${value}`
-        if (searchParams.get("filter") === filter || !value) {
-            searchParams.delete("filter")
-        } else {
-            searchParams.set("filter", filter)
-            searchParams.set("page", "1")
-        }
+        searchParams.set("filter", filter)
         navigate(`${location.pathname}?${searchParams.toString()}`)
     }, [searchParams, location])
 
-    // Handle delete button
     const buttons = useMemo(() => {
         const data: any = [
-            {
-                caption: "Add Product",
-                to: `${shopRoute}/products/types`
-            },
-            {
-                caption: "Reorder Products",
-                onClick: productReorderModal.onOpen,
-                buttonProps: {
-                    variant: "outline",
-                }
-            }
+            { caption: "Add Product", to: `${shopRoute}/products/types` },
+            { caption: "Reorder Products", onClick: productReorderModal.onOpen, buttonProps: { variant: "outline" } },
+            { caption: "Import", onClick: importProductModal.onOpen, buttonProps: { variant: "outline" } }
         ]
 
-        if (States.checkboxes.length) data.push({
-            caption: "Delete Products" + ` (${States.checkboxes.length})`,
+        if (selectedProducts.length) data.push({
+            caption: `Delete Products (${selectedProducts.length})`,
             onClick: onOpen,
-            buttonProps: {
-                variant: "outline",
-                color: "red.300"
-            }
+            buttonProps: { variant: "outline", color: "red.300" }
         })
 
         return data
-    }, [States.checkboxes, shop])
+    }, [selectedProducts])
 
     return (
         <>
             <AppDataGrid
-                loading={isLoading || isFetchingCollections}
+                loading={isFetching || isFetchingCollections}
                 buttons={buttons}
                 rows={rows}
                 checkbox={{
-                    state: States.checkboxes,
-                    update: (value) => setStates(prev => ({ ...prev, checkboxes: value }))
+                    state: selectedProducts,
+                    update: (value) => setSelectedProducts(value)
                 }}
                 filters={[
                     {
                         title: "Collections",
-                        list: collectionsData?.data ? collectionsData.data.map((collection: Collection) => (
-                            {
-                                title: collection.title,
-                                onClick: () => updateFilters("productCollectionID", collection._id),
-                                isActive: searchParams.get("filter") === `productCollectionID:${collection._id}`
-                            }
-                        )) : []
+                        list: collectionsData?.data?.map((collection: Collection) => ({
+                            title: collection.title,
+                            onClick: () => updateFilters("productCollectionID", collection._id),
+                            isActive: searchParams.get("filter") === `productCollectionID:${collection._id}`
+                        })) || []
                     },
                     {
                         title: "Status",
@@ -118,8 +89,7 @@ function Products() {
                             title: capitalizeFirstLetter(el),
                             onClick: () => updateFilters("publish_status", el),
                             isActive: searchParams.get("filter") === `publish_status:${el}`
-                        }
-                        ))
+                        }))
                     }
                 ]}
                 search={{
@@ -129,26 +99,35 @@ function Products() {
                 empty={<ProductEmpty />}
                 pagination={{
                     lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,
-                    current: page,
+                    current: pageNumber,
                     nextPage: products?.hasNextPage || false,
                     prevPage: products?.hasPreviousPage || false
                 }}
             />
-            {isOpen && <ConfirmDeleteAll close={onClose} open={isOpen} productIDs={States.checkboxes} fetch={() => {
-                fetch()
-                setStates(prev => ({ ...prev, checkboxes: [] }))
-            }} />}
 
-            {
-                productReorderModal.isOpen &&
+            {isOpen &&
+                <ConfirmDeleteAll
+                    close={onClose}
+                    open={isOpen}
+                    productIDs={selectedProducts}
+                    fetch={() => {
+                        refetchProducts()
+                        setSelectedProducts([])
+                    }}
+                />
+            }
+
+            {productReorderModal.isOpen &&
                 <ProductReorderModal
                     isOpen={productReorderModal.isOpen}
                     close={() => {
                         productReorderModal.onClose()
-                        fetch()
+                        refetchProducts()
                     }}
                 />
             }
+
+            <ImportProductModal isOpen={importProductModal.isOpen} closeModal={importProductModal.onClose} />
         </>
     )
 }

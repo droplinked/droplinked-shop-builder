@@ -122,7 +122,7 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 	);
 
 	return show === 'icon'
-		? chains[blockchain]?.icon || <AppIcons.File {...props} />
+		? chains[blockchain]?.icon || <AppIcons.Document {...props} />
 		: chains[blockchain]?.name || blockchain;
 }
 
