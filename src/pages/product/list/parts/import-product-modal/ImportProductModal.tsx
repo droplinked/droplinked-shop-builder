@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import ImportProductModalBody from './components/ImportProductModalBody'
 import ImportProductModalFooter from './components/ImportProductModalFooter'
 import { useMutation } from 'react-query'
-import { importProductsWithCSV } from 'lib/apis/product/productServices'
+import { uploadCsvFile } from 'lib/apis/product/productServices'
 import useAppToast from 'functions/hooks/toast/useToast'
 import fileTemplate from "assest/samples/Import_Product_template.xlsx"
 interface Props {
@@ -18,7 +18,7 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
     const formdata = new FormData()
     const { showToast } = useAppToast()
-    const { mutateAsync, isLoading } = useMutation(() => importProductsWithCSV(formdata))
+    const { mutateAsync, isLoading } = useMutation(() => uploadCsvFile(formdata))
     const uploadPicture = () => {
         formdata.append("file", uploadedFile)
         mutateAsync().then((res) => {
