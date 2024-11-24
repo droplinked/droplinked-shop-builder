@@ -1,4 +1,4 @@
-import { Box, Checkbox, Text, VStack } from '@chakra-ui/react'
+import { Box, Checkbox, HStack, Switch, Text, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext } from 'react'
@@ -11,19 +11,18 @@ function RulesetType() {
 
     return (
         <AppSkeleton isLoaded={loading}>
-            <VStack align="stretch" spacing={5}>
-                <Checkbox onChange={e => setFieldValue("rule", e.target.checked ? "DISCOUNT" : "GATED")} size='md' alignItems="flex-start" colorScheme='green' isChecked={values.rule === "DISCOUNT"}>
-                    <VStack align='stretch' paddingLeft={2} spacing={2}>
-                        <TextLabelBold>Discount</TextLabelBold>
-                        <Text fontSize="sm" color="lightGray">Set an exclusive discount offer for the NFT holders</Text>
-                    </VStack>
-                </Checkbox>
-                {values.rule === RuleTypes.DISCOUNT && (
-                    <Box width={"100%"}>
-                        <TextboxRule element={"discount"} onChange={e => setFieldValue('discount', parseInt(e.target.value))} placeholder="20%" label="Discount Value" />
+            <HStack align="stretch" spacing={2}>
+                <Switch onChange={e => setFieldValue("type", e.target.checked ? "DISCOUNT" : "GATING")} size='md' colorScheme='green' isChecked={values.type === "DISCOUNT"} />
+                <VStack align='stretch' paddingLeft={2} spacing={2}>
+                    <TextLabelBold>Discount</TextLabelBold>
+                    <Text fontSize="14px" color="#7b7b7b">Enable this function to offer an exclusive discount to holders that meet the requirements.</Text>
+                </VStack>
+                {values.type === RuleTypes.DISCOUNT && (
+                    <Box width={"20%"}>
+                        <TextboxRule isRequired={false} element={"discountPercentage"} onChange={e => setFieldValue('discountPercentage', parseInt(e.target.value))} placeholder="20%" />
                     </Box>
                 )}
-            </VStack>
+            </HStack>
         </AppSkeleton>
     )
 }

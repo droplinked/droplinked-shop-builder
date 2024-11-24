@@ -36,10 +36,12 @@ function ControlsListCollection({ collection, fetch }) {
             <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
                 <AppIcons.Share />
             </Link>
+            {/* FIXME: The edit icon not show in second item */}
             <PopOverMenu items={[
                 {
                     caption: "Edit",
                     onClick: editModal.onOpen,
+                    color: "#fff",
                     icon: <AppIcons.Edit />
                 },
                 {

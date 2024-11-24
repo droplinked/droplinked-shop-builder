@@ -1,4 +1,4 @@
 export const RuleTypes = {
-    GATED: "GATED",
+    GATED: "GATING",
     DISCOUNT: "DISCOUNT",
 };

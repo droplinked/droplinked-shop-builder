@@ -10,7 +10,7 @@ import Select from 'components/redesign/select/AppSelect'
 interface IAppSelectBoxItems {
     value: string | number | null
     caption: string
-    [prop: string]: any
+    [prop: string]: any;
 }
 
 type combine = IAppForm & SelectProps
@@ -37,6 +37,7 @@ function AppSelectBox(props: Iprops) {
                     items={items}
                     labelAccessor='caption'
                     valueAccessor='value'
+
                 />
             </AppSkeleton>
             <ErrorLabel message={error} />

@@ -1,64 +1,70 @@
-import { Flex, HStack, Input, VStack } from '@chakra-ui/react';
+import { Flex, HStack, Input, VStack, IconButton, Box } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
-import ErrorLabel from 'components/common/form/errorLabel/errorLabel';
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import ErrorLabel from 'components/redesign/form/errorLabel/errorLabel';
+import FieldLabel from 'components/redesign/form/fieldLabel/FieldLabel';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import ruleModelContext from '../../context';
+import AppInput from 'components/redesign/form/textbox/AppInput';
+import { FaPlus } from 'react-icons/fa6';
 
 function RulesetAddress() {
-    const { loading, setFieldValue, values, errors } = useContext(ruleModelContext)
-    const [Keywrod, setKeywrod] = useState('')
-    const { showToast } = useAppToast()
-    const inputRef = useRef<any>()
+    const { loading, setFieldValue, values, errors } = useContext(ruleModelContext);
 
-    const submit = useCallback((e: any) => {
-        e.preventDefault()
-        if (!Keywrod.length) return false
-        const address = values.address
-        const keywrod = Keywrod.trim()
+    const addInput = () => {
+        setFieldValue("address", [...values.address, '']);
+    };
 
-        try {
-            let error = new Error()
-            if (address.find(el => el === keywrod)) {
-                error.message = "These identifiers are repeated"
-                throw error
-            }
-            setFieldValue("address", [...address, keywrod])
-            setKeywrod("")
-        } catch (error) {
-            showToast({ message: error.message, type: "error" })
-        }
-    }, [values, Keywrod])
+    const handleInputChange = (index: number, value: string) => {
+        const newInputs = [...values.address];
+        newInputs[index] = value;
+        setFieldValue("address", newInputs.filter(input => input.trim().length > 0));
+    };
 
-    const deleted = useCallback((element: any) => {
-        setFieldValue("address", values.address.filter(el => el !== element))
-    }, [values])
+    const handleDelete = (index: number) => {
+        const newInputs = values.address.filter((_, i) => i !== index);
+        setFieldValue("address", newInputs);
+    };
 
     return (
-        <form onSubmit={submit}>
-            <VStack align={"stretch"} spacing={1}>
-                <VStack align="stretch" spacing={1}>
-                    <FieldLabel label='NFT Contract Address' isRequired loading={loading} />
-                    <AppTypography fontSize="12px" color="#9C9C9C">Provide NFT contract addresses and separate them with enter. <a style={{ color: "#2EC99E" }} target="_blank">Learn more</a></AppTypography>
-                </VStack>
-                <AppSkeleton isLoaded={loading} >
-                    <Flex backgroundColor="#141414" style={{ cursor: "text", ...errors?.address && { border: "1px solid #FEB2B2" } }} borderRadius="8px" onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
-                        {values.address.length ? values.address.map(el => (
-                            <HStack backgroundColor="#1c1c1c" padding="4px 10px" borderRadius="4px">
-                                <AppTypography fontSize='14px' color="#777">{el}</AppTypography>
-                                <AppIcons.Close onClick={() => deleted(el)} cursor="pointer" />
-                            </HStack>
-                        )) : null}
-                        <Input type="text" ref={inputRef} width="200px" value={Keywrod} placeholder="enter..." onChange={e => setKeywrod(e.target.value)} variant="unstyled" color="#777" />
-                    </Flex>
-                </AppSkeleton>
-                <ErrorLabel message={errors?.address} />
+        <VStack align={"stretch"} spacing={1} width={"100%"}>
+            <VStack align="stretch" spacing={1}>
+                <FieldLabel label='Contract Address' isRequired loading={loading} />
+                <AppTypography fontSize="14px" color="#7b7b7b">Enter the contract addresses to be used for validation of possession or ownership.</AppTypography>
             </VStack>
-        </form>
-    )
+            <AppSkeleton isLoaded={loading} width={"100%"}>
+                <VStack alignItems="center" justifyContent={"center"} width={"100%"} style={{ cursor: "text", ...errors?.address && { border: "1px solid #FEB2B2" } }} borderRadius="8px">
+                    {values.address.map((input, index) => (
+                        <HStack width={"100%"} key={index} borderRadius="4px" justifyContent={"center"} alignItems="center">
+                            <AppInput
+                                name={"text"}
+                                width="100%"
+                                height="48px"
+                                value={input}
+                                placeholder={`Option ${index + 1}`}
+                                onChange={e => handleInputChange(index, e.target.value)}
+                                variant="unstyled"
+                                color="#777"
+                            />
+                            {values.address.length > 1 && index < values.address.length - 1 && (
+                                <Box cursor={"pointer"} mt={"1rem"} onClick={() => handleDelete(index)}>
+                                    <AppIcons.TrashRed />
+                                </Box>
+                            )}
+                            {index === values.address.length - 1 && (
+                                <Box cursor={"pointer"} mt={"1rem"} onClick={addInput}>
+                                    <FaPlus color='#2BCFA1' />
+                                </Box>
+                            )}
+                        </HStack>
+                    ))}
+                </VStack>
+            </AppSkeleton>
+            <ErrorLabel message={errors?.address} />
+        </VStack>
+    );
 }
 
-export default RulesetAddress
+export default RulesetAddress;

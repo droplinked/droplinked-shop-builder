@@ -7,23 +7,23 @@ import {
 } from './interfaces';
 
 export const ruleService = () => {
-    return axiosInstance.get(`rule-set`);
+    return axiosInstance.get(`rule-set/v2`);
 };
 
 export const getRuleService = ({ ruleID }: IgetRuleService) => {
-    return axiosInstance.get(`rule-set/${ruleID}`);
+    return axiosInstance.get(`rule-set/v2/${ruleID}`);
 };
 
 export const createRuleService = (params: IcreateRuleService) => {
-    return axiosInstance.post(`rule-set`, params);
+    return axiosInstance.post(`rule-set/v2`, params);
 };
 
 export const updateRuleService = ({ data, ruleID }: IupdateRuleService) => {
-    return axiosInstance.put(`rule-set/${ruleID}`, data);
+    return axiosInstance.patch(`rule-set/v2/${ruleID}`, data);
 };
 
 export const rulesetChainsService = () => {
-    return axiosInstance.get(`rule-set/available-chains`);
+    return axiosInstance.get(`rule-set/v2/public/available`);
 };
 
 export const rulesetTypeService = ({ chain }: IgetRuleTypeService) => {

@@ -3,21 +3,16 @@ export interface IgetRuleService {
 }
 
 export interface IcreateRuleService {
-    collectionID: string;
-    gated: boolean;
-    rules: [
-        {
-            addresses: any;
-            discountPercentage: number;
-            nftsCount: number;
-            type: string;
-            description: string;
-        }
-    ];
-    type: string;
-    ruleType: string;
-    webUrl: string;
-    redeemedNFTs: [];
+    "name": string,
+    "type": RuleTypes,
+    "discountPercentage": number,
+    "nftPurchaseLink": string,
+    "network": string,
+    "blockchainType": string,
+    "nftContractAddresses": string[],
+    "minimumNftRequired": number,
+    "description": string,
+    "collectionID": string
 }
 
 export interface IupdateRuleService {
@@ -28,3 +23,8 @@ export interface IupdateRuleService {
 export interface IgetRuleTypeService {
     chain: string;
 }
+
+export enum RuleTypes {
+    GATED = "GATING",
+    DISCOUNT = "DISCOUNT",
+};

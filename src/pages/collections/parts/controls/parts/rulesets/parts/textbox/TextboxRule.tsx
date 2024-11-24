@@ -1,10 +1,10 @@
-import AppInput from 'components/common/form/textbox/AppInput'
+import AppInput from 'components/redesign/form/textbox/AppInput'
 import React, { useContext } from 'react'
 import ruleModelContext from '../../context'
 
-function TextboxRule({ element, ...props }) {
+function TextboxRule({ element, isRequired, ...props }) {
     const { errors, setFieldValue, values, loading } = useContext(ruleModelContext)
-    
+
     return (
         <AppInput
             name={element}
@@ -13,7 +13,7 @@ function TextboxRule({ element, ...props }) {
             error={errors[element]}
             {...props}
             loading={loading}
-            isRequired
+            isRequired={isRequired}
         />
     )
 }
