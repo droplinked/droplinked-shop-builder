@@ -14,7 +14,7 @@ function AppModal({ modalRootProps, modalContentProps, children }: Props) {
             <ModalContent
                 display="flex"
                 flexDirection="column"
-                gap={{ lg: 12, base: 8 }}
+                gap={{ lg: 12, md: 8, base: 4 }}
                 margin={4}
                 box-shadow="0px 0px 20px 0px #00000033"
                 borderRadius={24}
@@ -26,7 +26,7 @@ function AppModal({ modalRootProps, modalContentProps, children }: Props) {
                         paddingBlock: 0,
                         paddingInline: { lg: 12, md: 8, base: 4 }
                     },
-                    ".chakra-modal__body": { flex: 1, overflow: "auto" },
+                    ".chakra-modal__body": { flex: 1, overflow: "auto" }
                 }}
                 {...modalContentProps}
             >

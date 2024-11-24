@@ -72,7 +72,7 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                 gap={{ xl: 6, base: 3 }}
                 sx={{ button: { fontWeight: 500 } }}
             >
-                <Button variant="ghost" onClick={onClose}>Cancel</Button>
+                <Button variant="secondary" onClick={onClose}>Cancel</Button>
                 <Button
                     isDisabled={!selectedWallet || hasSelectedCircleWallet || isProcessing}
                     isLoading={isProcessing}

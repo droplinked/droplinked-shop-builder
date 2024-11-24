@@ -1,14 +1,14 @@
-import React from 'react'
-import { Box, HStack, Text } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
-import ProductListModel from '../../model';
 import AppTypography from 'components/common/typography/AppTypography';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import React from 'react';
+import ProductListModel from '../../model';
 
 function ImageListProduct({ product }) {
     const { shopRoute } = useCustomNavigate()
-    const { getMain } = ProductListModel
-    const main = getMain(product)
+    const { getProductMainImage } = ProductListModel
+    const main = getProductMainImage(product)
 
     return (
         <a href={`${shopRoute}/products/${product._id}`} target="_blank">
