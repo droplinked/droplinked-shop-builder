@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Spinner } from '@chakra-ui/react';
 import { closestCorners, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
@@ -15,6 +15,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import { getAllCollectionsService, reorderCollectionsService } from 'lib/apis/collection/services';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import AppIcons from 'assest/icon/Appicons';
 
 interface Props {
     isOpen: boolean;
@@ -72,18 +73,14 @@ function CollectionReorderModal({ isOpen, close }: Props) {
 
 
     return (
-        <AppModal modalRootProps={{ isOpen, onClose: close, isCentered: false }} >
+        <AppModal modalRootProps={{ isOpen, onClose: close, isCentered: false, size: "2xl" }} modalContentProps={{ background: "#141414", px: "0px", paddingInline: "0px", sx: { paddingInline: "0px", paddingBlock: "0px", paddingTop: "48px" } }}>
+            <ModalHeaderData icon={<AppIcons.ReorderDesigned />}
+                backgroundColor='#141414'
+                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                title='Visibility and Reorder Collections'
+                description='Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.'
+            />
             <Flex direction={"column"} gap={9}>
-                <ModalHeaderData>
-                    <Flex direction={"column"} gap={6}>
-                        <AppTypography fontSize={16} fontWeight={500} color={"#fff"}>Visibility and Reorder Collections</AppTypography>
-                        <Flex direction={"column"} gap={3}>
-                            <AppTypography fontSize={14} color={"#fff"}>
-                                Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.
-                            </AppTypography>
-                        </Flex>
-                    </Flex>
-                </ModalHeaderData>
                 {isLoading ? (
                     <Flex alignItems="center" justifyContent="center" direction="column" gap={4}>
                         <Spinner size="lg" color="#FFF" />
@@ -97,9 +94,9 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                         onDragEnd={handleDragEnd}
                     >
                         <SortableContext items={collections?.map((i) => i._id)} strategy={verticalListSortingStrategy}>
-                            <Flex direction={"column"} gap={"24px"}>
-                                {collections?.map((collection) => (
-                                    <SortableCollection key={collection._id} collection={collection} />
+                            <Flex direction={"column"}>
+                                {collections?.map((collection, index) => (
+                                    <SortableCollection key={collection._id} index={index} collection={collection} />
                                 ))}
                             </Flex>
                         </SortableContext>

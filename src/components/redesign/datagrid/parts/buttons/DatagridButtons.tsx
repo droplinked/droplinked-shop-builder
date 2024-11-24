@@ -21,7 +21,7 @@ function DatagridButtons({ buttons }: IDatagridButtons) {
                 const Tag = el.to ? Link : Fragment
                 return (
                     <Tag key={key} {...el.to && { to: el.to }}>
-                        <BasicButton sizes='medium' {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</BasicButton>
+                        <BasicButton _hover={{ backgroundColor: el?.backgroundColor, opacity: "0.8" }} sizes='medium' {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</BasicButton>
                     </Tag>
                 )
             })}

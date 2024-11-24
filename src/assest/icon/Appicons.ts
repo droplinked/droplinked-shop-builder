@@ -250,6 +250,7 @@ import { ReactComponent as AvailableFilled } from "./available-filled.svg";
 import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
 import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
 import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
+import { ReactComponent as ReorderDesigned } from "./reorderDesigned.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -503,7 +504,8 @@ const AppIcons = {
     AvailableFilled,
     NotAvailableFilled,
     DiscordOutlined,
-    SearchOutlined
+    SearchOutlined,
+    ReorderDesigned
 };
 
 export default AppIcons

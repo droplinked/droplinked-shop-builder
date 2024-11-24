@@ -41,7 +41,7 @@ function Collections() {
                         buttonProps: {
                             leftIcon: <FaPlus color='#000' />,
                             height: "36px",
-                            borderRadius: "8px"
+                            borderRadius: "8px",
                         }
                     },
                     {
