@@ -5,7 +5,6 @@ import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifi
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 // Components
-import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
 import SortableCollection from './sortable-collection/SortableCollection';
 
@@ -14,6 +13,8 @@ import useAppToast from 'functions/hooks/toast/useToast';
 
 // APIs
 import { getAllCollectionsService, reorderCollectionsService } from 'lib/apis/collection/services';
+import AppModal from 'components/redesign/modal/AppModal';
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 
 interface Props {
     isOpen: boolean;
@@ -71,26 +72,28 @@ function CollectionReorderModal({ isOpen, close }: Props) {
 
 
     return (
-        <AppModal open={isOpen} close={close} size="3xl" isCentered={false} contentProps={{ paddingX: 3, paddingY: 6 }}>
+        <AppModal modalRootProps={{ isOpen, onClose: close, isCentered: false }} >
             <Flex direction={"column"} gap={9}>
-                <Flex direction={"column"} gap={6}>
-                    <AppTypography fontSize={16} fontWeight={500} color={"#fff"}>Visibility and Reorder Collections</AppTypography>
-                    <Flex direction={"column"} gap={3}>
-                        <AppTypography fontSize={14} color={"#fff"}>
-                            Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.
-                        </AppTypography>
+                <ModalHeaderData>
+                    <Flex direction={"column"} gap={6}>
+                        <AppTypography fontSize={16} fontWeight={500} color={"#fff"}>Visibility and Reorder Collections</AppTypography>
+                        <Flex direction={"column"} gap={3}>
+                            <AppTypography fontSize={14} color={"#fff"}>
+                                Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.
+                            </AppTypography>
+                        </Flex>
                     </Flex>
-                </Flex>
+                </ModalHeaderData>
                 {isLoading ? (
                     <Flex alignItems="center" justifyContent="center" direction="column" gap={4}>
                         <Spinner size="lg" color="#FFF" />
                         <AppTypography color={"#FFF"}>Loading collections...</AppTypography>
                     </Flex>
                 ) : (
-                    <DndContext 
-                        modifiers={[restrictToVerticalAxis, restrictToParentElement]} 
-                        sensors={sensors} 
-                        collisionDetection={closestCorners} 
+                    <DndContext
+                        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+                        sensors={sensors}
+                        collisionDetection={closestCorners}
                         onDragEnd={handleDragEnd}
                     >
                         <SortableContext items={collections?.map((i) => i._id)} strategy={verticalListSortingStrategy}>

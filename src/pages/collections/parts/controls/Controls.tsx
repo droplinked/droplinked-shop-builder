@@ -1,10 +1,11 @@
 import { useDisclosure } from '@chakra-ui/react';
-import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
 import { useCheckPermission } from 'lib/stores/app/appStore';
 import React from 'react';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';
 import RuleModal from './parts/rulesets/RuleModal';
+import PopOverMenu from 'components/redesign/PopoverMenu/PopOverMenu';
+import AppIcons from 'assest/icon/Appicons';
 
 function ControlsListCollection({ collection, fetch }) {
     const checkPermissionAndShowToast = useCheckPermission()
@@ -26,15 +27,19 @@ function ControlsListCollection({ collection, fetch }) {
             <PopOverMenu items={[
                 {
                     caption: "Edit",
-                    onClick: editModal.onOpen
+                    onClick: editModal.onOpen,
+                    icon: <AppIcons.Edit />
                 },
                 {
                     caption: "Ruleset",
-                    onClick: handleOpenRulesetModal
+                    onClick: handleOpenRulesetModal,
+                    icon: <AppIcons.RulesetsIcon />
                 },
                 {
                     caption: "Delete",
-                    onClick: deleteModal.onOpen
+                    onClick: deleteModal.onOpen,
+                    color: "#FF2244",
+                    icon: <AppIcons.TrashRed />
                 }
             ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />

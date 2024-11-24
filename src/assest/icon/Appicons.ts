@@ -176,7 +176,7 @@ import { ReactComponent as Redbelly } from "./redbelly.svg";
 import { ReactComponent as Refresh } from "./refresh.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
-import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
+import { ReactComponent as RulesetsIcon } from "./ruleset.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
