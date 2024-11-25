@@ -6,7 +6,7 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSo
 
 // Components
 import AppTypography from 'components/common/typography/AppTypography';
-import SortableCollection from './sortable-collection/SortableCollection';
+import SortableCollection from './components/SortableCollection';
 
 // Toast
 import useAppToast from 'functions/hooks/toast/useToast';
