@@ -36,7 +36,6 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
     const { showToast } = useAppToast()
 
     const create = useCallback(async (file: File) => {
-        console.log(file)
         try {
             UploadImageModel.validate(file)
             const formData = new FormData();

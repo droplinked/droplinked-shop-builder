@@ -10,7 +10,7 @@ const ruleModelContext = createContext<IruleModelContext>({
     errors: null,
     values: null,
     setFieldValue: () => { },
-    loading: true
+    loading: false
 })
 
 export default ruleModelContext

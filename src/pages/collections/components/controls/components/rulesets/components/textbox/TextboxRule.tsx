@@ -4,7 +4,6 @@ import ruleModelContext from '../../context'
 
 function TextboxRule({ element, isRequired, ...props }) {
     const { errors, setFieldValue, values, loading } = useContext(ruleModelContext)
-
     return (
         <AppInput
             name={element}
