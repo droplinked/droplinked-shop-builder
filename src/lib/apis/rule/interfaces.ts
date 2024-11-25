@@ -3,7 +3,6 @@ export interface IgetRuleService {
 }
 
 export interface IcreateRuleService {
-    "name": string,
     "type": RuleTypes,
     "discountPercentage": number,
     "nftPurchaseLink": string,

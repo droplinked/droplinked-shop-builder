@@ -62,8 +62,6 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                 nftContractAddresses: address,
                 nftPurchaseLink: nftPurchaseLink,
                 network: chain,
-                //FIXME: NAME MUST REMOVED FROM BACKEND.
-                name: description
             };
             if (ruleId) {
                 await updateRule.mutateAsync({ ruleID: ruleId, data: requestBody });
