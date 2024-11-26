@@ -12,7 +12,6 @@ interface Iprops {
 }
 
 function PopOverMenu({ items }: Iprops) {
-  console.log(items)
   return (
     <Menu placement='left-start'>
       <MenuButton as={AppIcons.MoreIcon} width="15px" position={"relative"} top={1} />
