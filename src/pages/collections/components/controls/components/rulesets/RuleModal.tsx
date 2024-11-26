@@ -74,7 +74,7 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                     <LoadingComponent />
                     :
                     <Formik
-                        initialValues={makeInitialValues(getRule.data.data.data)}
+                        initialValues={makeInitialValues(getRule?.data?.data?.data)}
                         enableReinitialize
                         validateOnChange={false}
                         validationSchema={ruleModalFormConfig}
