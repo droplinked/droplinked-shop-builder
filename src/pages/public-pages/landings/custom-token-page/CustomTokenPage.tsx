@@ -6,7 +6,7 @@ import { ILandingPageTemplate } from '../types/interfaces'
 function CustomTokenPage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
-            image: "https://upload-file-droplinked.s3.amazonaws.com/92e73c26229520df01d80732f877ca364db71af706c714ff5ed7fc35f6b70fc5.png",
+            image: "https://upload-file-droplinked.s3.amazonaws.com/80b5e5949e046c3d0d7a6216e162907adc89cc800e75ccc07bb1273a05406b4a_or.png",
             title: "True Utility for Custom Tokens",
             description: "Enable custom token payment options that drive utility, usage and value across an ecosystem.",
             CTAButtonText: "Get Started"
@@ -34,17 +34,17 @@ function CustomTokenPage() {
         },
         dualSideFlexData: [
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/1afc5895dd26fee7f24ac9aa99d94491f1406eaa385d82d990b5811a42136b6f.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/88db5c843ca6683916d2c110293bf1539bd7da7f89671d178eb609580656c337_or.png",
                 title: "Game Developers and Startups",
                 description: "Whether you're a game studio or tech company, enhance any token's utility by enabling it as a payment option for fans and customers"
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/9b024430190768e9dc273b755659c6cf4d874381f082befa784ee74d116d3591.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/e877c70387348094408e558d72032f0201dfa3a569d775dfe2168924230d3107_or.png",
                 title: "Real Use, Real Value",
                 description: "The more utility that it begins to provide, the more the token is used. Give customers a reason to hold and spend the token while the community grows."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/8ff199fc0ea6731799587c1255cee77adb21aa086207f815dc8b48672b5d539e.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/a15a8a870843603461b90656297e51f3e4e0838e63510e915bca3a3654a40a59_or.png",
                 title: "Frictionless Payments",
                 description: "Provide the community with a seamless way to use the token with smooth and simple custom payment gateway that accepts transactions across any platform."
             }

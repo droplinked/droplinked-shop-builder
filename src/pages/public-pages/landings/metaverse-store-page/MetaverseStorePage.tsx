@@ -6,7 +6,7 @@ import { ILandingPageTemplate } from '../types/interfaces'
 function MetaverseStorePage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
-            image: "https://upload-file-droplinked.s3.amazonaws.com/651d6e5690bba4d9b48c041ced2944d7704cfb41bf3fa2507c7d3adb1da068ec.png",
+            image: "https://upload-file-droplinked.s3.amazonaws.com/592c32c9822f20852dad6260680fd091c79ff7cba1a372d043f5410fe0bc0423_or.png",
             title: "The future of commerce is immersive",
             description: "Enable existing and future customers to explore and shop in virtual stores and environments. Create and manage inventory alongside interactive AR/VR 3D shopping experiences that are metaverse- ready.",
             CTAButtonText: "Get Started"
@@ -34,17 +34,17 @@ function MetaverseStorePage() {
         },
         dualSideFlexData: [
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/628242f142e75f070e286b4faa9774cae89a7c54bca21946da6ed13a0c8e660e.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/bb1c5cad5efc86f2ccca3a5952e89911478888a9caeaf90d4138c05691964e7a_or.png",
                 title: "Virtual Showrooms",
                 description: "Create fully immersive shopping environments where customers can explore, browse and engage."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/b3f7e15a12c2d81be3fe9e39ed0265d083845906e03982a7b1bccfc79f96d92e.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/c9308a13011d8a774f2affdf53f83b4c825f5bd2d791535bc8477920917a7468_or.png",
                 title: "Boost Engagement",
                 description: "Enhance the customer experience with interactive 3D showrooms that offer a more dynamic way to interact with items."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/95e997eba6c1ce99515e3576697b3b6e8ebb13166fc425d07004ccf96e3371bd.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/33bf3bf105b88697cebea4357965b84dead76023706666196785801e82172771_or.png",
                 title: "Next-Gen Retail",
                 description: "Embrace the future of commerce by offering an interactive experience that stands out."
             }

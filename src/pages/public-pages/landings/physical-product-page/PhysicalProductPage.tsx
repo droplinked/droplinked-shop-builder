@@ -16,7 +16,7 @@ function PhysicalProductPage() {
     return (
         <Layout>
             <AboveTheFoldSection
-                image="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6130227ff2a466c5ee160b8e5e52953f9c8b249d7ca0a37b336a823bc63f00c7.png_or.png"
+                image="https://upload-file-droplinked.s3.amazonaws.com/43da5c3bee55cabbcbb7e470866a0f869b5e10862edb3cc3c1075d73885045dc.png"
                 title="Monetize Inventory with Tailored Storefronts"
                 description="Maximize sales value of inventory with a comprehensive storefront and onchain inventory management system. Leverage tokenization and product minting to gain deeper insights on your customer base and distribution"
                 CTAButtonText="Get Started"
