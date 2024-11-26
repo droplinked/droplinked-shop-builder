@@ -27,5 +27,11 @@ const CollectionsModel = {
         return products.map((el: any): ITableRows => CollectionsModel.makeData(el, fetch))
     }
 }
+export const collectionsColumns = [
+    { header: 'Collection', accessorKey: 'collection' },
+    { header: 'Rulesets', accessorKey: 'rulesets' },
+    { header: 'Products', accessorKey: 'products' },
+    { header: '', accessorKey: 'controls' },
+];
 
 export default CollectionsModel

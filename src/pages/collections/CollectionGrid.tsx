@@ -3,6 +3,7 @@ import PageGrid from "components/redesign/pageGrid/PageGrid";
 import { FaPlus } from "react-icons/fa6";
 import { Box, Td, Tr } from "@chakra-ui/react";
 import Table from "components/redesign/table-v2/TableV2"; // Updated import
+import { collectionsColumns } from "./model";
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -21,12 +22,6 @@ function CollectionGrid({
     onCreateCollection,
     onReorderClick,
 }: CollectionGridProps) {
-    const columns = [
-        { header: 'Collection', accessorKey: 'collection' },
-        { header: 'Rulesets', accessorKey: 'rulesets' },
-        { header: 'Products', accessorKey: 'products' },
-        { header: '', accessorKey: 'controls' },
-    ];
 
     return (
         <PageGrid.Root loading={isFetching}>
@@ -41,6 +36,8 @@ function CollectionGrid({
                             leftIcon: <FaPlus color="#000" />,
                             height: "36px",
                             borderRadius: "8px",
+                            width: "156px",
+                            fontSize: "14px"
                         },
                     },
                     {
@@ -53,6 +50,7 @@ function CollectionGrid({
                             color: "#fff",
                             height: "36px",
                             borderRadius: "8px",
+                            fontSize: "14px"
                         },
                     },
                 ]}
@@ -65,12 +63,12 @@ function CollectionGrid({
             />
             <PageGrid.Content loading={isFetching}>
                 <Box width={"100%"}>
-                    <Table.Root columns={columns}>
+                    <Table.Root columns={collectionsColumns}>
                         <Table.Head data={rows} />
                         <Table.Body isLoading={isFetching}>
                             {rows.map((row, index) => (
                                 <Tr key={index}>
-                                    {columns.map((col) => (
+                                    {collectionsColumns.map((col) => (
                                         <Td key={col.accessorKey}>{row[col.accessorKey].value}</Td>
                                     ))}
                                 </Tr>

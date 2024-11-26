@@ -1,5 +1,5 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import BasicButton from "components/redesign/BasicButton/BasicButton";
+import Button from "components/redesign/Button/Button";
 import FieldLabel from "components/redesign/form/fieldLabel/FieldLabel";
 import AppSelectBox from "components/redesign/form/select/AppSelectBox";
 import LoadingComponent from "components/common/loading-component/LoadingComponent";
@@ -92,12 +92,12 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                         <RulesetType />
                                     </Box>
                                     <HStack borderTop={"1px solid #292929"} py={"2rem"} justifyContent={"space-between"}>
-                                        <BasicButton width={"79px"} onClick={close} variant="outline">
+                                        <Button fontSize={"14px"} width={"79px"} onClick={close} variant="outline">
                                             Cancel
-                                        </BasicButton>
-                                        <BasicButton width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
+                                        </Button>
+                                        <Button fontSize={"14px"} width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
                                             Save
-                                        </BasicButton>
+                                        </Button>
                                     </HStack>
                                 </VStack>
                             </ruleModelContext.Provider>

@@ -47,7 +47,7 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
                         <Th
                             key={header.id}
                             textTransform="capitalize"
-                            fontSize={16}
+                            fontSize={14}
                             fontWeight={400}
                             color="#7B7B7B"
                             cursor={enableSorting ? "pointer" : "default"}

@@ -1,5 +1,5 @@
-import { Flex } from '@chakra-ui/react'
-import BasicButton, { IBasicButton } from 'components/common/BasicButton/BasicButton'
+import { ButtonProps, Flex } from '@chakra-ui/react'
+import Button from 'components/redesign/Button/Button'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ export interface IDatagridButtonsitems {
     caption: string
     onClick?: Function
     to?: string
-    buttonProps?: IBasicButton
+    buttonProps?: ButtonProps
 }
 
 export interface IDatagridButtons {
@@ -21,7 +21,7 @@ function DatagridButtons({ buttons }: IDatagridButtons) {
                 const Tag = el.to ? Link : Fragment
                 return (
                     <Tag key={key} {...el.to && { to: el.to }}>
-                        <BasicButton _hover={{ backgroundColor: el?.backgroundColor, opacity: "0.8" }} sizes='medium' {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</BasicButton>
+                        <Button _hover={{ backgroundColor: el?.backgroundColor, opacity: "0.8" }} sizes='medium' {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</Button>
                     </Tag>
                 )
             })}

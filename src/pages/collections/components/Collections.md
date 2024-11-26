@@ -15,9 +15,8 @@ The `Collections` component is responsible for displaying and managing collectio
 
 ### 🧩 Components Used
 
-- `AppDataGrid`: Custom data grid component for displaying collections.
+- `CollectionGrid`: Custom grid component for displaying collections.
 - `CollectionCreate`: Modal component for creating a new collection.
-- `CollectionsEmpty`: Component displayed when there are no collections.
 - `CollectionReorderModal`: Modal component for reordering collections.
 
 ## 📝 Notes
@@ -25,7 +24,8 @@ The `Collections` component is responsible for displaying and managing collectio
 - The component uses the `useDisclosure` hook from `@chakra-ui/react` to manage the visibility of modals.
 - The `useCollections` hook is used to fetch and manage the collections data.
 - The `useCheckPermission` hook is used to check user permissions before allowing certain actions.
-- The `AppDataGrid` component is used to display the collections in a tabular format with search and action buttons.
+- The `CollectionGrid` component is used to display the collections in a tabular format with search and action buttons.
 - The `CollectionCreate` and `CollectionReorderModal` components are used for creating and reordering collections, respectively.
+- The `TableV2` component is used within `CollectionGrid` for rendering the collections table.
 
 This component provides a comprehensive interface for managing collections, including creating new collections, reordering them, and searching through existing collections.

@@ -78,7 +78,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                                     />
                                 ))}
                                 <ImageUploader errors={errors} setFieldValue={setFieldValue} values={values} />
-                                <ModalButtons collection={collection} createService={createService} updateService={updateService} />
+                                <ModalButtons collection={collection} createService={createService} updateService={updateService} close={close} />
                             </Flex>
                         </VStack>
                     </Form>
