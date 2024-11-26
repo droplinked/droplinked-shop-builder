@@ -1,6 +1,6 @@
-import { Box, ButtonProps, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import BasicButton, { IBasicButton } from 'components/common/BasicButton/BasicButton'
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 export interface IDatagridButtonsitems {

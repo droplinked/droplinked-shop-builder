@@ -26,7 +26,7 @@ function ControlsListCollection({ collection, fetch }) {
     }
 
     return (
-        <HStack gap={"16px"}>
+        <HStack gap={"16px"} justifyContent={"end"}>
             <Box cursor={"pointer"} onClick={() => editModal.onOpen()}>
                 <AppIcons.Eye stroke='#2BCFA1' />
             </Box>
