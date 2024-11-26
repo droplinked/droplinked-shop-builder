@@ -17,7 +17,7 @@ const CollectionRulesetColumn = ({ ruleset }) => {
         {isGated ? <AppIcons.GatingRuleset /> : <AppIcons.DiscountRuleset />}
         <AppTypography color={"#2BCFA1"} fontSize={"14px"}>{rulesetsValue}</AppTypography>
         {!isGated && <AppIcons.DotSpacer />}
-        {/* //TODO: NUMBER HERE */}
+        {!isGated && <AppTypography color={"#2BCFA1"}>{ruleset.discountPercentage}%</AppTypography>}
       </Flex>
     </Flex>
   )
