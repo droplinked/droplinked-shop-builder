@@ -4,10 +4,11 @@ import React, { PropsWithChildren, ReactNode } from 'react';
 interface Props extends PropsWithChildren {
     modalRootProps: Omit<ModalProps, "children">;
     modalContentProps?: ModalContentProps;
-    children: ReactNode
+    children: ReactNode,
+    paddingInline?: boolean;
 }
 
-function AppModal({ modalRootProps, modalContentProps, children }: Props) {
+function AppModal({ modalRootProps, modalContentProps, children, paddingInline }: Props) {
     return (
         <Modal {...modalRootProps}>
             <ModalOverlay bg="rgba(0,0,0,.9)" />

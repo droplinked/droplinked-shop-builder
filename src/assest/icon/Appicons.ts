@@ -177,7 +177,7 @@ import { ReactComponent as Redbelly } from "./redbelly.svg";
 import { ReactComponent as Refresh } from "./refresh.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
-import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
+import { ReactComponent as RulesetsIcon } from "./ruleset.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
@@ -249,6 +249,14 @@ import { ReactComponent as MedalStar } from "./medalStar.svg";
 import { ReactComponent as AvailableFilled } from "./available-filled.svg";
 import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
 import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
+import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
+import { ReactComponent as ReorderDesigned } from "./reorderDesigned.svg";
+import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
+import { ReactComponent as RulesetModalIcon } from "./ruleSetModalIcon.svg";
+import { ReactComponent as DiscountRuleset } from "./discount-ruleset.svg";
+import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
+import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
+import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -501,7 +509,15 @@ const AppIcons = {
     MedalStar,
     AvailableFilled,
     NotAvailableFilled,
-    DiscordOutlined
+    DiscordOutlined,
+    SearchOutlined,
+    ReorderDesigned,
+    CollectionModalIcon,
+    RulesetModalIcon,
+    DiscountRuleset,
+    GatingRuleset,
+    DotSpacer,
+    EditOutlined
 };
 
 export default AppIcons
