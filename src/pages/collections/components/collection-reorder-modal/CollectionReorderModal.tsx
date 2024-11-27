@@ -69,7 +69,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
         setIsLoading(false);
 
         return () => controller.abort();
-    }, []);
+    }, [isOpen]);
 
 
     return (
@@ -82,9 +82,8 @@ function CollectionReorderModal({ isOpen, close }: Props) {
             />
             <Flex direction={"column"} gap={9}>
                 {isLoading ? (
-                    <Flex alignItems="center" justifyContent="center" direction="column" gap={4}>
-                        <Spinner size="lg" color="#FFF" />
-                        <AppTypography color={"#FFF"}>Loading collections...</AppTypography>
+                    <Flex alignItems="center" justifyContent="center" direction="column" my={10} gap={4}>
+                        <Spinner size={"xl"} color='#2BCFA1' />
                     </Flex>
                 ) : (
                     <DndContext

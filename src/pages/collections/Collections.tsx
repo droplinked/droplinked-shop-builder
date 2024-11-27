@@ -41,15 +41,13 @@ function Collections() {
                 onReorderClick={collectionReorderModal.onOpen}
             />
             <CollectionCreate close={onClose} open={isOpen} />
-            {collectionReorderModal.isOpen && (
-                <CollectionReorderModal
-                    isOpen={collectionReorderModal.isOpen}
-                    close={() => {
-                        collectionReorderModal.onClose();
-                        refetch();
-                    }}
-                />
-            )}
+            <CollectionReorderModal
+                isOpen={collectionReorderModal.isOpen}
+                close={() => {
+                    collectionReorderModal.onClose();
+                    refetch();
+                }}
+            />
         </>
     );
 }
