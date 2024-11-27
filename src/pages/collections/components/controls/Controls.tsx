@@ -1,4 +1,4 @@
-import { Box, Divider, HStack, useDisclosure } from '@chakra-ui/react';
+import { Box, Divider, HStack, Spinner, useDisclosure } from '@chakra-ui/react';
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
 import React, { useState } from 'react';
 import CollectionCreate from '../create/CollectionCreate';
@@ -10,78 +10,77 @@ import { Link } from 'react-router-dom';
 import { appDevelopment } from 'lib/utils/app/variable';
 import { updateCollectionVisiblityService } from 'lib/apis/collection/services';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { useMutation } from 'react-query';
 
 function ControlsListCollection({ collection, fetch }) {
     const { showToast } = useAppToast();
-    const checkPermissionAndShowToast = useCheckPermission()
-    const deleteModal = useDisclosure()
-    const ruleModal = useDisclosure()
-    const editModal = useDisclosure()
-    const [isPublished, setIsPublished] = useState<boolean>(collection.published)
-    const { shop: { name } } = useAppStore();
-    const redirectUrl = `https://${appDevelopment ? "dev." : ""}droplinked.io/${name}/collection/${collection._id}`
-    const handleOpenRulesetModal = () => {
-        if (collection.ruleSetID) {
-            ruleModal.onOpen()
-            return
-        }
-        if (!checkPermissionAndShowToast("rulesets")) return
-        ruleModal.onOpen()
-    }
-
-    const handleVisibleSwitch = async () => {
-        try {
-            await updateCollectionVisiblityService({
-                collectionID: collection?._id,
-                published: !isPublished
-            });
-            setIsPublished(!isPublished)
-        } catch (error) {
-            showToast({
+    const checkPermissionAndShowToast = useCheckPermission();
+    const deleteModal = useDisclosure();
+    const ruleModal = useDisclosure();
+    const editModal = useDisclosure();
+    const [isPublished, setIsPublished] = useState<boolean>(collection.published);
+    const { mutateAsync, isLoading } = useMutation(
+        () => updateCollectionVisiblityService({
+            collectionID: collection?._id,
+            published: !isPublished
+        }),
+        {
+            onSuccess: () => setIsPublished(!isPublished),
+            onError: () => showToast({
                 message: "You cannot change your collection status at this time. Please try again later",
                 type: "error"
-            });
+            })
+        }
+    );
+    const { shop: { name } } = useAppStore();
+    const redirectUrl = `https://${appDevelopment ? "dev." : ""}droplinked.io/${name}/collection/${collection._id}`;
+
+    const handleOpenRulesetModal = () => {
+        if (collection.ruleSetID || checkPermissionAndShowToast("rulesets")) {
+            ruleModal.onOpen();
         }
     };
 
+    const renderVisibilityIcon = () => (
+        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon />
+    );
+
+    const renderPopOverMenuItems = () => ([
+        {
+            caption: "Edit",
+            onClick: editModal.onOpen,
+            icon: <AppIcons.EditOutlined />
+        },
+        {
+            caption: "Ruleset",
+            onClick: handleOpenRulesetModal,
+            icon: <AppIcons.RulesetsIcon />
+        },
+        {
+            caption: "Delete",
+            onClick: deleteModal.onOpen,
+            color: "#FF2244",
+            icon: <AppIcons.TrashRed />
+        }
+    ]);
+
     return (
         <HStack gap={"16px"} justifyContent={"end"}>
-            <Box cursor={"pointer"} onClick={handleVisibleSwitch}>
-                {isPublished ? (
-                    <AppIcons.Eye stroke='#2BCFA1' />
-                ) : (
-                    <AppIcons.Eye stroke='#FF2244' />
-                )}
-            </Box>
+            {isLoading ? <Spinner size={"sm"} /> : <Box cursor={"pointer"} onClick={() => mutateAsync()}>
+                {renderVisibilityIcon()}
+            </Box>}
             <Box height={"40px"}>
                 <Divider orientation='vertical' borderColor={"#292929"} />
             </Box>
             <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
                 <AppIcons.Share />
             </Link>
-            <PopOverMenu key={collection._id} items={[
-                {
-                    caption: "Edit",
-                    onClick: editModal.onOpen,
-                    icon: <AppIcons.EditOutlined />
-                },
-                {
-                    caption: "Ruleset",
-                    onClick: handleOpenRulesetModal,
-                    icon: <AppIcons.RulesetsIcon />
-                },
-                {
-                    caption: "Delete",
-                    onClick: deleteModal.onOpen,
-                    color: "#FF2244",
-                    icon: <AppIcons.TrashRed />
-                }
-            ]} />
+            <PopOverMenu key={collection._id} items={renderPopOverMenuItems()} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />
             {ruleModal.isOpen && <RuleModal collectionId={collection?._id} ruleId={collection?.ruleSetID?._id} close={ruleModal.onClose} show={ruleModal.isOpen} />}
             <CollectionCreate close={editModal.onClose} collection={collection} open={editModal.isOpen} />
         </HStack>
-    )
+    );
 }
 
-export default ControlsListCollection
+export default ControlsListCollection;
