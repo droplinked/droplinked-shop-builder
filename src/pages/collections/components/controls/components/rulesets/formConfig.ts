@@ -18,7 +18,10 @@ export const ruleModalFormConfig = Yup.object().shape({
     chain: Yup.string().required("Required"),
     type: Yup.string().required("Required"),
     discountPercentage: Yup.number().min(0).optional(),
-    address: Yup.array().min(1, "Required").required("Required"),
+    address: Yup.array()
+        .min(1, "Required")
+        .of(Yup.string().required("Address cannot be empty"))
+        .required("Required"),
     minimumNftRequired: Yup.number().min(1).max(99).typeError("Please correct value").required("Required"),
 });
 

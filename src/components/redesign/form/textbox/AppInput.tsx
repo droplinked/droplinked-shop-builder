@@ -29,6 +29,7 @@ function AppInput(props: Iprops) {
           {...FormModel.styleProps()}
           {...props}
           value={props?.value || ""}
+          _invalid={{ borderColor: "#FF2244" }}
         />
       </AppSkeleton>
       <ErrorLabel message={error} />
