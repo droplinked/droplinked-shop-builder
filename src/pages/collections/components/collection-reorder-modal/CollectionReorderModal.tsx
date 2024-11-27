@@ -69,7 +69,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
         setIsLoading(false);
 
         return () => controller.abort();
-    }, [isOpen]);
+    }, []);
 
 
     return (
