@@ -20,8 +20,7 @@ interface Iprops extends combine {
 }
 
 function AppSelectBox(props: Iprops) {
-    const { error, label, items, loading } = props
-
+    const { error, label, items, loading, value } = props
     return (
         <VStack align={"stretch"} width="100%" spacing={1}>
             <FieldLabel textProps={{ opacity: props.isDisabled ? ".4" : "", size: "16px" }} loading={loading} isRequired={props.isRequired} label={label} />
@@ -34,10 +33,10 @@ function AppSelectBox(props: Iprops) {
                     iconSize={"30px"}
                     padding={0}
                     {...props}
+                    value={value ? items.find((el) => el.value === value) : value}
                     items={items}
                     labelAccessor='caption'
                     valueAccessor='value'
-
                 />
             </AppSkeleton>
             <ErrorLabel message={error} />
