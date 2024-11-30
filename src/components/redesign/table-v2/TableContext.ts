@@ -4,6 +4,7 @@ import { createContext, useContext } from 'react'
 interface TableConfiguration {
     columns: ColumnDef<any>[]
     hasActionColumn: boolean
+    isFetchingNextPage?: boolean
 }
 
 type TableContextType = TableConfiguration | null

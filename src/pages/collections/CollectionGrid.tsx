@@ -61,7 +61,7 @@ function CollectionGrid({
                     onChange: onSearchChange
                 }}
             />
-            <PageGrid.Content loading={isFetching}>
+            <PageGrid.Content loading={isFetching} >
                 <Box width={"100%"}>
                     <Table.Root columns={collectionsColumns}>
                         <Table.Head data={rows} />

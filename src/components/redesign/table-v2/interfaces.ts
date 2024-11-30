@@ -5,6 +5,12 @@ export interface TableRootProps<T extends object> {
     columns: ColumnDef<T>[]
     hasActionColumn?: boolean
     children: ReactNode
+    infiniteScroll?: {
+        isFetchingNextPage: boolean
+        dataLength: number
+        hasMore: boolean
+        next: () => void
+    }
 }
 
 export interface TableHeadProps<T extends object> {
@@ -17,10 +23,4 @@ export interface TableHeadProps<T extends object> {
 export interface TableBodyProps {
     children: ReactNode
     isLoading?: boolean
-    infiniteScroll?: {
-        isFetchingNextPage: boolean
-        dataLength: number
-        hasMore: boolean
-        next: () => void
-    }
 }

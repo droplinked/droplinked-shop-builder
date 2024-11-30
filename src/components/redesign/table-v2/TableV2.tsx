@@ -6,25 +6,33 @@ import useTableContext, { TableContext } from './TableContext'
 import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-function TableRoot<T extends object>({ children, columns, hasActionColumn = false }: TableRootProps<T>) {
+function TableRoot<T extends object>({ children, columns, hasActionColumn = false, infiniteScroll }: TableRootProps<T>) {
+    const { isFetchingNextPage, dataLength, next, hasMore } = infiniteScroll || {}
     return (
-        <TableContext.Provider value={{ columns, hasActionColumn }}>
+        <TableContext.Provider value={{ columns, hasActionColumn, isFetchingNextPage }}>
             <TableContainer
                 border="1px solid #262626"
                 borderRadius={8}
                 overflow="hidden"
             >
-                <ChakraTable
-                    variant="unstyled"
-                    sx={{
-                        "th, td": { paddingInline: 6, paddingBlock: 4 },
-                        userSelect: "none",
-                    }}
+                <InfiniteScroll
+                    dataLength={dataLength}
+                    next={next}
+                    hasMore={hasMore}
+                    loader={null}
                 >
-                    {children}
-                </ChakraTable>
+                    <ChakraTable
+                        variant="unstyled"
+                        sx={{
+                            "th, td": { paddingInline: 6, paddingBlock: 4 },
+                            userSelect: "none",
+                        }}
+                    >
+                        {children}
+                    </ChakraTable>
+                </InfiniteScroll>
             </TableContainer>
-        </TableContext.Provider >
+        </TableContext.Provider>
     )
 }
 
@@ -73,8 +81,8 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
     )
 }
 
-function TableBody({ children, isLoading, infiniteScroll }: TableBodyProps) {
-    const { columns, hasActionColumn } = useTableContext()
+function TableBody({ children, isLoading }: TableBodyProps) {
+    const { columns, hasActionColumn, isFetchingNextPage } = useTableContext()
     const tableLoading = (
         Array.from({ length: 3 }).map((_, index) => (
             <Tr key={index}>
@@ -89,22 +97,13 @@ function TableBody({ children, isLoading, infiniteScroll }: TableBodyProps) {
     )
 
     const renderTableBody = () => {
-        const { isFetchingNextPage, dataLength, next, hasMore } = infiniteScroll || {}
-        if (isLoading && !isFetchingNextPage) return tableLoading
-        if (infiniteScroll) {
-            return (
-                <InfiniteScroll
-                    dataLength={dataLength}
-                    next={next}
-                    hasMore={hasMore}
-                    loader={tableLoading}
-                >
-                    {children}
-                </InfiniteScroll>
-            )
-        }
-
-        return children
+        if (isLoading) return tableLoading
+        return (
+            <>
+                {children}
+                {isFetchingNextPage && tableLoading}
+            </>
+        )
     }
 
     return (
