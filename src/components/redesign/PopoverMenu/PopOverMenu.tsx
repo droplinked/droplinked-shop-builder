@@ -18,7 +18,7 @@ function PopOverMenu({ items }: Iprops) {
       <MenuList borderRadius={"8px"} zIndex={"1000"} minWidth={"auto"} backgroundColor={"#141414"} border="none">
         {items.map((el, key) => (
           <MenuItem
-            width={"146px"}
+            width={"184px"}
             height={"48px"}
             padding={"14px 16px"}
             iconSpacing={"8px"}
