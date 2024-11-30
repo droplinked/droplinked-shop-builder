@@ -1,17 +1,17 @@
 import { Flex, HStack, VStack } from '@chakra-ui/react'
 import React, { createContext, useContext } from 'react'
-import DatagridButtons, { IDatagridButtons } from './components/buttons/DatagridButtons'
-import FiltersDatagrid, { IFiltersDatagridItems } from './components/filters/FiltersDatagrid'
-import SearchDatagrid, { ISearchDatagrid } from './components/search/SearchDatagrid'
-import DatagridSkeleton from './components/skeleton/DatagridSkeleton'
+import DataGridButtons, { IDataGridButtons } from './components/buttons/DatagridButtons'
+import FiltersDataGrid, { IFiltersDataGridItems } from './components/filters/FiltersDatagrid'
+import SearchDataGrid, { ISearchDataGrid } from './components/search/SearchDatagrid'
+import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 
-type mergeType = IDatagridButtons
+type mergeType = IDataGridButtons
 
 export interface IdataGrid extends mergeType {
-    filters?: Array<IFiltersDatagridItems>
+    filters?: Array<IFiltersDataGridItems>
     loading: boolean
-    search?: ISearchDatagrid
+    search?: ISearchDataGrid
     description?: string
     title?: string
 }
@@ -39,7 +39,7 @@ function PageGridHeader({
 }: {
     title?: string,
     description?: string,
-    buttons?: IDatagridButtons['buttons']
+    buttons?: IDataGridButtons['buttons']
 }) {
     return (
         <HStack mb={"36px"} alignItems={"start"} justifyContent={"space-between"} width={"100%"}>
@@ -55,7 +55,7 @@ function PageGridHeader({
                     </AppTypography>
                 )}
             </VStack>
-            {buttons && <DatagridButtons buttons={buttons} />}
+            {buttons && <DataGridButtons buttons={buttons} />}
         </HStack>
     )
 }
@@ -65,14 +65,14 @@ function PageGridActions({
     search,
     filters
 }: {
-    search?: ISearchDatagrid,
-    filters?: Array<IFiltersDatagridItems>
+    search?: ISearchDataGrid,
+    filters?: Array<IFiltersDataGridItems>
 }) {
     return (
         <Flex mb={"24px"} justifyContent={"space-between"}>
             <HStack spacing={8}>
-                {search && <SearchDatagrid onChange={search.onChange} value={search.value} />}
-                {filters && <FiltersDatagrid item={filters} />}
+                {search && <SearchDataGrid onChange={search.onChange} value={search.value} />}
+                {filters && <FiltersDataGrid item={filters} />}
             </HStack>
         </Flex>
     )
@@ -91,7 +91,7 @@ function PageGridContent({
 
     return (
         <VStack borderRadius={"8px"} width={"100%"} background={"#1C1C1C"} align={"stretch"} spacing={6}>
-            {isLoading ? <DatagridSkeleton /> : children}
+            {isLoading ? <DataGridSkeleton /> : children}
         </VStack>
     )
 }

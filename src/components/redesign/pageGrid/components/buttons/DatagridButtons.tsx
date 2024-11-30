@@ -3,18 +3,18 @@ import Button from 'components/redesign/Button/Button'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
-export interface IDatagridButtonsitems {
+export interface IDataGridButtonsitems {
     caption: string
     onClick?: Function
     to?: string
     buttonProps?: ButtonProps
 }
 
-export interface IDatagridButtons {
-    buttons?: Array<IDatagridButtonsitems>
+export interface IDataGridButtons {
+    buttons?: Array<IDataGridButtonsitems>
 }
 
-function DatagridButtons({ buttons }: IDatagridButtons) {
+function DataGridButtons({ buttons }: IDataGridButtons) {
     return (
         <Flex gap="10px" flexDirection="row-reverse">
             {buttons.map((el: any, key: number) => {
@@ -29,4 +29,4 @@ function DatagridButtons({ buttons }: IDatagridButtons) {
     )
 }
 
-export default DatagridButtons
+export default DataGridButtons
