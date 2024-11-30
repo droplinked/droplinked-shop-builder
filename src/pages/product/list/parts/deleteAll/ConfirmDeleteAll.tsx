@@ -39,7 +39,7 @@ function ConfirmDeleteAll({ productIDs, fetch, open, close }: Iprops) {
               setLoading(true)
               const promises = productIDs.map(id => mutateAsync({ productID: id }))
               await Promise.allSettled(promises)
-              showToast({ message: "Products has been deleted!", type: "success" })
+              showToast({ message: "Product successfully deleted.", type: "success" })
               fetch()
               close()
             } catch (error) {

@@ -77,6 +77,7 @@ import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
+import { ReactComponent as Document } from "./document.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
@@ -91,7 +92,6 @@ import { ReactComponent as EventHost } from "./event-host.svg";
 import { ReactComponent as EventLocation } from "./event-location.svg";
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
-import { ReactComponent as File } from "./file.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
@@ -117,6 +117,7 @@ import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
 import { ReactComponent as ImportFile } from "./import-file.svg";
+import { ReactComponent as ImportProduct } from "./import-product.svg";
 import { ReactComponent as InfoIcon } from "./info-icon.svg";
 import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
@@ -176,7 +177,7 @@ import { ReactComponent as Redbelly } from "./redbelly.svg";
 import { ReactComponent as Refresh } from "./refresh.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
-import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
+import { ReactComponent as RulesetsIcon } from "./ruleset.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
@@ -237,6 +238,25 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as XOutlined } from "./x-outlined.svg";
+import { ReactComponent as TelegramOutlined } from "./telegram-outlined.svg";
+import { ReactComponent as InstagramOutlined } from "./instagram-outlined.svg";
+import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
+import { ReactComponent as Available } from "./available.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
+import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as AvailableFilled } from "./available-filled.svg";
+import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
+import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
+import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
+import { ReactComponent as ReorderDesigned } from "./reorderDesigned.svg";
+import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
+import { ReactComponent as RulesetModalIcon } from "./ruleSetModalIcon.svg";
+import { ReactComponent as DiscountRuleset } from "./discount-ruleset.svg";
+import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
+import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
+import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -284,7 +304,6 @@ const AppIcons = {
     Info,
     Bitcoin,
     Stripe,
-    File,
     EditIconWhite,
     Discord,
     Web,
@@ -477,7 +496,28 @@ const AppIcons = {
     CircleSolana,
     CirclePolygon,
     CircleWithdraw,
-    DeliveryTruck
+    Document,
+    ImportProduct,
+    DeliveryTruck,
+    XOutlined,
+    TelegramOutlined,
+    InstagramOutlined,
+    LinkedInOutlined,
+    Available,
+    Statistics,
+    Infinity,
+    MedalStar,
+    AvailableFilled,
+    NotAvailableFilled,
+    DiscordOutlined,
+    SearchOutlined,
+    ReorderDesigned,
+    CollectionModalIcon,
+    RulesetModalIcon,
+    DiscountRuleset,
+    GatingRuleset,
+    DotSpacer,
+    EditOutlined
 };
 
-export default AppIcons;
+export default AppIcons

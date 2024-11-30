@@ -55,8 +55,8 @@ export const reorderProductsService = (data: IProductReorder) => {
     return axiosInstance.post("product/reorder", data);
 };
 
-export const getAllProductsService = (signal: AbortSignal) => {
-    return axiosInstance.get("/product/all", { signal });
+export const getAllProductsService = () => {
+    return axiosInstance.get("/product/all").then(res => res.data)
 };
 
 export const createProductTileService = (data: IProductTile) => {
@@ -103,6 +103,13 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
     return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
 };
 
+export const uploadCsvFile = (formData: FormData) => {
+    return axiosInstance.post("/product/import-csv", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+};
 export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
         .post<{ data: string[] }>("product/printful-available-shipping", { product_id })

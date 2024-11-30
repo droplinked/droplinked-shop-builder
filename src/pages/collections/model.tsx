@@ -1,9 +1,9 @@
 import { ITableRows } from 'components/common/table/AppTable'
 import { Collection } from "lib/apis/collection/interfaces"
 import React from "react"
-import ControlsListCollection from "./parts/controls/Controls"
-import CollectionRulesetColumn from './parts/ruleset-column/CollectionRulesetColumn'
-import CollectionTitleColumn from './parts/title-column/CollectionTitleColumn'
+import ControlsListCollection from "./components/controls/Controls"
+import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn'
+import CollectionTitleColumn from './components/title-column/CollectionTitleColumn'
 
 interface IrefactorData {
     data: any

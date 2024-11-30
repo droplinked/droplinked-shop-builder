@@ -20,6 +20,7 @@ import {
 	DropWeb3,
 	Network,
 	Web3Actions,
+	toEthAddress,
 } from 'droplinked-web3';
 
 const updateShopDeployedContracts = (deployedContracts) => {
@@ -456,16 +457,16 @@ const web3Model = {
 					// })
 					// resolve(request.txId)
 				} else {
-					const request = await getNetworkProvider(
-						Chain[blockchain],
-						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
-						],
-						accountAddress
-					).publishRequest(productId, shopAddress);
-
+					const web3 = new DropWeb3(Network[appDevelopment ? 'TESTNET' : 'MAINNET']);
+					const chainInstance = web3.web3Instance({
+						method: Web3Actions.RECORD_AFFILIATE,
+						preferredWallet: ChainWallet.Metamask,
+						chain: Chain[blockchain],
+						userAddress: accountAddress,
+						nftContractAddress: '',
+						shopContractAddress: shopAddress
+					});
+					const request = await chainInstance.publishRequest(productId, toEthAddress(shopAddress));
 					resolve(request.transactionHash);
 				}
 			} catch (error) {
@@ -504,26 +505,29 @@ const web3Model = {
 					deployHash = request.txId;
 					resolve(deployHash);
 				} else if (blockchain === 'SOLANA') {
-					const accept = await new SolanaProvider(
-						Chain.SOLANA,
-						Network.TESTNET
-					)
-						.setAddress(accountAddress)
-						.setModal(new defaultModal())
-						.approveRequest(shop, sku, recordData);
-					deployHash = accept;
-					resolve(deployHash);
+					//const web3 = new DropWeb3(Network.TESTNET);
+
+					//const accept = await new SolanaProvider(
+					//	Chain.SOLANA,
+					//	Network.TESTNET
+					//)
+					//	.setAddress(accountAddress)
+					//	.setModal(new defaultModal())
+					//	.approveRequest(shop, sku, recordData);
+					//deployHash = accept;
+					//resolve(deployHash);
 				} else {
 					//    approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
-					const accept = await getNetworkProvider(
-						Chain[blockchain],
-						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
-						],
-						accountAddress
-					).approveRequest(requestID, deployShopContract);
+					const web3 = new DropWeb3(Network[appDevelopment ? 'TESTNET' : 'MAINNET']);
+					const chainInstance = web3.web3Instance({
+						method: Web3Actions.RECORD_AFFILIATE,
+						shopContractAddress: deployShopContract,
+						nftContractAddress: '',
+						userAddress: accountAddress,
+						chain: Chain[blockchain],
+						preferredWallet: ChainWallet.Metamask
+					});
+					const accept = await chainInstance.approveRequest(requestID, deployShopContract);
 					deployHash = accept;
 					resolve(deployHash);
 				}

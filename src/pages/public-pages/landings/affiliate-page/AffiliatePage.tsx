@@ -6,7 +6,7 @@ import { ILandingPageTemplate } from '../types/interfaces'
 function AffiliatePage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
-            image: "https://upload-file-droplinked.s3.amazonaws.com/4bf3354ca17f51fc16f09c39d7b1e48d56c066892c9ff947c0af83326153630c.png",
+            image: "https://upload-file-droplinked.s3.amazonaws.com/d2b7a187744a39f4b679c8b5991c2386bbee4670b5ad95a6f9f2098be290c36e.png",
             title: "Transparent commerce to earn the most from every sale",
             description: "Unlock new opportunities as a merchant or co-seller with the latest onchain technology. As a community-driven platform, droplinked empowers anyone with the tools needed to earn more on every sale while getting paid faster.",
             CTAButtonText: "Get Started"
@@ -34,7 +34,7 @@ function AffiliatePage() {
         },
         dualSideFlexData: [
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/650df9ac5fa7e05854ade840474e6fdaa44b56eb490cc819afc050bb50d0d653.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/70d19afed26f8ee609c162ee9f04a908ebde6f91ea8933d452ef5f2dc7793fe6.png",
                 title: "Merchant Benefits",
                 description: [
                     { boldText: "Expand reach", rest: "by connecting with trusted co-sellers you whitelist to access inventory" },
@@ -43,7 +43,7 @@ function AffiliatePage() {
                 ]
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/74a595f41e38b4da60d2e46c82c20460d964949d3f13cf01c30a41ac99f193f9.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/32a1b8030634cb50dea0865d693c9cea176e03394657192f091510f71e5478bf.png",
                 title: "Co-selling Benefits",
                 description: [
                     { boldText: "Easily discover and promote", rest: "products based on personalized offers made by merchants" },
@@ -52,7 +52,7 @@ function AffiliatePage() {
                 ]
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/5ce553d6ee2d9024d844f08f0779dcb874d506bb9aeabd38ef6b55e43bb9d5eb.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/967845604ed02d8c12b5cb16ad8d5138fdf8a26345658848dcfed024341cf7e3.png",
                 title: "Easy Setup",
                 description: "Begin your affiliate marketing journey in no time without any coding needed. Simply customize your preferred settings on your account and let the system do the rest."
             }

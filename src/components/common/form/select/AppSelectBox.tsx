@@ -1,10 +1,11 @@
-import { SelectProps, Select, VStack } from '@chakra-ui/react'
+import { SelectProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
 import classes from './style.module.scss'
+import Select from 'components/redesign/select/AppSelect'
 
 interface IAppSelectBoxItems {
     value: string | number | null
@@ -32,13 +33,11 @@ function AppSelectBox(props: Iprops) {
                     size="lg"
                     iconSize={"30px"}
                     padding={0}
-                    className={classes.selectbox}
                     {...props}
-                >
-                    {items.map((e, key) => (
-                        <option style={{background:"#141414"}} key={key} {...e}>{e.caption}</option>
-                    ))}
-                </Select>
+                    items={items}
+                    labelAccessor='caption'
+                    valueAccessor='value'
+                />
             </AppSkeleton>
             <ErrorLabel message={error} />
         </VStack>

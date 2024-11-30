@@ -34,7 +34,7 @@ function Pagination({ current, lastPage, nextPage, prevPage }: IPagination) {
             )
         }
         return result
-    }, [lastPage])
+    }, [lastPage, current])
 
     return (
         <>

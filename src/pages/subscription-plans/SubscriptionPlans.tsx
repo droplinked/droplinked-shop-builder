@@ -1,24 +1,19 @@
-import { Flex } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
+import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
-import CurrentPlan from './_components/current-plan/CurrentPlan'
+import NewCurrentPlan from './_components/redesign-current-plan/CurrentPlan'
 import Plans from './_components/plans/Plans'
-
+import PricingPlanBg from "assest/image/pricingPlans/background.png"
+import PlansTable from './_components/plans-table/PlansTable'
 function SubscriptionPlans() {
     return (
-        <Flex direction={"column"} gap={9}>
-            <Flex
-                direction={"column"}
-                gap={6}
-                borderRadius={8}
-                padding={"24px 36px"}
-                bgColor={"#262626"}
-            >
-                <AppTypography fontSize={16} fontWeight={600} color={"white"}>Current subscription plan</AppTypography>
-                <CurrentPlan />
+        <Box position="relative" width="100%">
+            <Box zIndex={-1} backgroundImage={`url(${PricingPlanBg})`} backgroundRepeat={"no-repeat"} backgroundSize={"cover"} backgroundPosition={{ md: "center", lg: "center -6rem" }} width={"100%"} height={"654px"} position={"absolute"} />
+            <Flex direction={"column"} gap={9} position="relative" zIndex={1}>
+                <NewCurrentPlan />
+                <Plans />
+                <PlansTable />
             </Flex>
-            <Plans />
-        </Flex>
+        </Box>
     )
 }
 

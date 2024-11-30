@@ -1,5 +1,5 @@
 import { Flex, Image, useDisclosure } from '@chakra-ui/react';
-import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import Footer from 'components/layouts/app/main/components/footer/Footer';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppStore from 'lib/stores/app/appStore';
@@ -100,7 +100,7 @@ function HomePage() {
 
       </ParallaxProvider>
       {isOpen && <AuthModal show={true} type={States.typeOfModal} close={onClose} />}
-      <FooterLayout />
+      <Footer />
     </>
   )
 }

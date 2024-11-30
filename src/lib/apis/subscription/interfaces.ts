@@ -7,12 +7,22 @@ export interface SubOptionId {
         value: boolean | string;
     }[]
 }
+export interface IFeature {
+    title: string;
+    items: Array<string>
+}
+export interface IPrice {
+    month: number,
+    discount?: number,
+    price: string,
+    discountPrice?: string
+}
 
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: any[],
-    description: string;
+    price: Array<IPrice> | Array<string>,
+    description?: string;
     subOptionIds: SubOptionId[]
 }
 
@@ -21,7 +31,7 @@ export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_d
 export interface LegalUsage {
     all: string;
     key: LegalUsageKey;
-    remaining: string;
+    remaining: number | string;
     used: number;
     value: string;
 }
@@ -40,6 +50,8 @@ export interface ShopSubscriptionData {
         }[];
     };
     purchaseStatus: string;
+    monthLength: number;
+    paidAmount: number;
     status: string;
     daysUntilExpiration: string;
     startsAt: string;

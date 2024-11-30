@@ -15,7 +15,7 @@ function TokanpayPage() {
     return (
         <Layout>
             <AboveTheFoldSection
-                image="https://upload-file-droplinked.s3.amazonaws.com/265336fb6702384264635267b4d490a66e93627ec6c646aaa9769e740229169c.png"
+                image="https://upload-file-droplinked.s3.amazonaws.com/51c344e1159facd26589efba426ffd829074e6bfe84cea08f4042e2625dccdcb_or.png"
                 title="Token Powered Commerce Driven by Your Community"
                 description="Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities."
                 CTAButtonText="Get Started"
@@ -29,7 +29,7 @@ function TokanpayPage() {
 
             <TokenpayFeatures />
 
-            <Image src="https://upload-file-droplinked.s3.amazonaws.com/f69bc2b8d23993287248a4d13ce91596c34c6d4b910471fdf81bb676e0c5d3e5.png" />
+            <Image src="https://upload-file-droplinked.s3.amazonaws.com/0986e21b7c30093ae869581f68231307778821f8ddddd2ec68533757e9e63425_or.png" />
 
             <Details
                 title="Empower Communities"
