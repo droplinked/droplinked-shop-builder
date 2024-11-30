@@ -2,7 +2,6 @@ import { Flex, HStack, VStack } from '@chakra-ui/react'
 import React, { createContext, useContext } from 'react'
 import DatagridButtons, { IDatagridButtons } from './components/buttons/DatagridButtons'
 import FiltersDatagrid, { IFiltersDatagridItems } from './components/filters/FiltersDatagrid'
-import { IPagination } from './components/pagination/Pagination'
 import SearchDatagrid, { ISearchDatagrid } from './components/search/SearchDatagrid'
 import DatagridSkeleton from './components/skeleton/DatagridSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -13,7 +12,6 @@ export interface IdataGrid extends mergeType {
     filters?: Array<IFiltersDatagridItems>
     loading: boolean
     search?: ISearchDatagrid
-    pagination?: IPagination
     description?: string
     title?: string
 }

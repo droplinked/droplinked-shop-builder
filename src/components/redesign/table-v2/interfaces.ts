@@ -19,5 +19,8 @@ export interface TableBodyProps {
     isLoading?: boolean
     infiniteScroll?: {
         isFetchingNextPage: boolean
+        dataLength: number
+        hasMore: boolean
+        next: () => void
     }
 }

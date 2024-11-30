@@ -4,6 +4,7 @@ import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
 import useTableContext, { TableContext } from './TableContext'
 import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function TableRoot<T extends object>({ children, columns, hasActionColumn = false }: TableRootProps<T>) {
     return (
@@ -88,14 +89,18 @@ function TableBody({ children, isLoading, infiniteScroll }: TableBodyProps) {
     )
 
     const renderTableBody = () => {
-        const { isFetchingNextPage } = infiniteScroll || {}
+        const { isFetchingNextPage, dataLength, next, hasMore } = infiniteScroll || {}
         if (isLoading && !isFetchingNextPage) return tableLoading
         if (infiniteScroll) {
             return (
-                <>
+                <InfiniteScroll
+                    dataLength={dataLength}
+                    next={next}
+                    hasMore={hasMore}
+                    loader={tableLoading}
+                >
                     {children}
-                    {isFetchingNextPage && tableLoading}
-                </>
+                </InfiniteScroll>
             )
         }
 
