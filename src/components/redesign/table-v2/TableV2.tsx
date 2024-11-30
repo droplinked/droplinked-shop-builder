@@ -16,7 +16,7 @@ function TableRoot<T extends object>({ children, columns, hasActionColumn = fals
                 overflow="hidden"
             >
                 <InfiniteScroll
-                    dataLength={dataLength}
+                    dataLength={dataLength ?? null}
                     next={next}
                     hasMore={hasMore}
                     loader={null}
