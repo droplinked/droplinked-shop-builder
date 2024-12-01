@@ -8,9 +8,11 @@ import PopOverMenu from 'components/redesign/PopoverMenu/PopOverMenu';
 import AppIcons from 'assest/icon/Appicons';
 import { Link } from 'react-router-dom';
 import { appDevelopment } from 'lib/utils/app/variable';
+import useAppToast from 'functions/hooks/toast/useToast';
 
 function ControlsListCollection({ collection, fetch }) {
     const checkPermissionAndShowToast = useCheckPermission()
+    const { showToast } = useAppToast()
     const deleteModal = useDisclosure()
     const ruleModal = useDisclosure()
     const editModal = useDisclosure()
@@ -23,6 +25,10 @@ function ControlsListCollection({ collection, fetch }) {
         }
         if (!checkPermissionAndShowToast("rulesets")) return
         ruleModal.onOpen()
+    }
+    const handleCopy = () => {
+        navigator.clipboard.writeText(collection._id)
+        showToast({ message: "Collection ID copied successfully", type: "success" })
     }
 
     return (
@@ -46,6 +52,11 @@ function ControlsListCollection({ collection, fetch }) {
                     caption: "Ruleset",
                     onClick: handleOpenRulesetModal,
                     icon: <AppIcons.RulesetsIcon />
+                },
+                {
+                    caption: "Copy Collection ID",
+                    onClick: handleCopy,
+                    icon: <AppIcons.Copy />
                 },
                 {
                     caption: "Delete",
