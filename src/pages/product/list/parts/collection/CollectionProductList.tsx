@@ -12,7 +12,7 @@ function CollectionProductList({ data }: IProps) {
 
     return (
         <HStack>
-            {data?.productCollectionID?.ruleSetID ? data?.productCollectionID?.ruleSetID?.gated ? <AppIcons.GatedIcon /> : <AppIcons.DiscountIcon /> : null}
+            {data?.productCollectionID?.ruleSetID ? data?.productCollectionID?.ruleSetID?.type === "GATING" ? <AppIcons.GatedIcon /> : <AppIcons.DiscountIcon /> : null}
             <AppTypography fontSize='12px'>{data?.productCollectionID?.title}</AppTypography>
         </HStack>
     )
