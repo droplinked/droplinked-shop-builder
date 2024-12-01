@@ -44,25 +44,10 @@ function ControlsListCollection({ collection, fetch }) {
     const renderVisibilityIcon = () => (
         isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon />
     );
-
-    const renderPopOverMenuItems = () => ([
-        {
-            caption: "Edit",
-            onClick: editModal.onOpen,
-            icon: <AppIcons.EditOutlined />
-        },
-        {
-            caption: "Ruleset",
-            onClick: handleOpenRulesetModal,
-            icon: <AppIcons.RulesetsIcon />
-        },
-        {
-            caption: "Delete",
-            onClick: deleteModal.onOpen,
-            color: "#FF2244",
-            icon: <AppIcons.TrashRed />
-        }
-    ]);
+    const handleCopy = () => {
+        navigator.clipboard.writeText(collection._id)
+        showToast({ message: "Collection ID copied successfully", type: "success" })
+    }
 
     return (
         <HStack gap={"16px"} justifyContent={"end"}>
@@ -75,7 +60,29 @@ function ControlsListCollection({ collection, fetch }) {
             <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
                 <AppIcons.Share />
             </Link>
-            <PopOverMenu key={collection._id} items={renderPopOverMenuItems()} />
+            <PopOverMenu key={collection._id} items={[
+                {
+                    caption: "Edit",
+                    onClick: editModal.onOpen,
+                    icon: <AppIcons.EditOutlined />
+                },
+                {
+                    caption: "Ruleset",
+                    onClick: handleOpenRulesetModal,
+                    icon: <AppIcons.RulesetsIcon />
+                },
+                {
+                    caption: "Copy Collection ID",
+                    onClick: handleCopy,
+                    icon: <AppIcons.Copy />
+                },
+                {
+                    caption: "Delete",
+                    onClick: deleteModal.onOpen,
+                    color: "#FF2244",
+                    icon: <AppIcons.TrashRed />
+                }
+            ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />
             {ruleModal.isOpen && <RuleModal collectionId={collection?._id} ruleId={collection?.ruleSetID?._id} close={ruleModal.onClose} show={ruleModal.isOpen} />}
             <CollectionCreate close={editModal.onClose} collection={collection} open={editModal.isOpen} />

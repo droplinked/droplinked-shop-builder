@@ -1,14 +1,18 @@
 import { Box, HStack, Switch, Text, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { TextLabelBold } from 'pages/register-pages/RegisterPages-style'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ruleModelContext from '../../context'
 import { RuleTypes } from '../../RuleModel'
 import TextboxRule from '../textbox/TextboxRule'
 
 function RulesetType() {
     const { values, setFieldValue, loading } = useContext(ruleModelContext)
-
+    useEffect(() => {
+        if (values.type !== RuleTypes.DISCOUNT) {
+            setFieldValue('discountPercentage', 0)
+        }
+    }, [values.type])
     return (
         <AppSkeleton isLoaded={loading}>
             <HStack align="stretch" spacing={2}>
