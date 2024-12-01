@@ -17,7 +17,12 @@ export const ruleModalFormConfig = Yup.object().shape({
     nftPurchaseLink: Yup.string().optional(),
     chain: Yup.string().required("Required"),
     type: Yup.string().required("Required"),
-    discountPercentage: Yup.number().min(0).optional(),
+    discountPercentage: Yup.number().nullable().optional()
+        .when("type", {
+            is: (value: string) => value === "DISCOUNT",
+            then: schema => schema.min(1, "Min 1").max(100, "Max 100").required("Required").typeError("Please Enter a number"),
+            otherwise: schema => schema
+        }),
     address: Yup.array().min(1, "Required").required("Required"),
     minimumNftRequired: Yup.number().min(1).max(99).typeError("Please correct value").required("Required"),
 });
