@@ -12,7 +12,7 @@ export default function D3AboveTheFoldSection() {
             minHeight="600px"
             height="100dvh"
             placeContent="center"
-            bgImg="https://upload-file-droplinked.s3.amazonaws.com/b982940b80e90c56f277848bf50e1bfb3cb1414dfd89271924bce098d7427043.png"
+            bgImg="https://upload-file-droplinked.s3.amazonaws.com/145845cc06183af4e2cc76892c744e6fe8e258c6b4e4905ad1d6102a10cf5ab9.png"
             bgSize="cover"
             bgPos="center"
         >
@@ -39,7 +39,7 @@ export default function D3AboveTheFoldSection() {
             <Image
                 position="absolute"
                 bottom={0}
-                src="https://upload-file-droplinked.s3.amazonaws.com/2cd66491a6f9b72875d21b0d723f5737002a186562a3fabab0eb9b3b3ce0e1ed.png"
+                src="https://upload-file-droplinked.s3.amazonaws.com/961dc9e15e29cadb56eed323d25be4aec396882358b11bec70cba07e4e9e55b1.png"
             />
         </Grid>
     );

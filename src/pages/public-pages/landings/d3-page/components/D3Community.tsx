@@ -11,7 +11,7 @@ export default function D3Community() {
       <D3Heading textAlign="center">Join Your Community Today</D3Heading>
       <Details />
     </Flex>
-  );
+  )
 }
 
 function Details() {
@@ -20,31 +20,27 @@ function Details() {
       icon: <AppIcons.D3Ape className="d3-icon" />,
       title: "ApeCoin",
       description: ".ape",
-      image:
-        "https://upload-file-droplinked.s3.amazonaws.com/7179b6c4eb84dc0b1cdc420023b8382388545baff830ac8b6e7cf39a0bfc871c.png",
+      image: "https://upload-file-droplinked.s3.amazonaws.com/7179b6c4eb84dc0b1cdc420023b8382388545baff830ac8b6e7cf39a0bfc871c.png"
     },
     {
       icon: <AppIcons.D3Shiba className="d3-icon" />,
       title: "Shiba Inu",
       description: ".shib",
-      image:
-        "https://upload-file-droplinked.s3.amazonaws.com/7b69b415e009bafec4b13c76ddd012af4a174efa7b96cf59d9a3db030bac0e0c.png",
+      image: "https://upload-file-droplinked.s3.amazonaws.com/7b69b415e009bafec4b13c76ddd012af4a174efa7b96cf59d9a3db030bac0e0c.png"
     },
     {
       icon: <AppIcons.D3CoreChain className="d3-icon" />,
       title: "Core Chain",
       description: ".core",
-      image:
-        "https://upload-file-droplinked.s3.amazonaws.com/f7062432e8e990ae5af2996ec1927aad8f1d90c7040736b2b99f3db5c9b339e0.png",
+      image: "https://upload-file-droplinked.s3.amazonaws.com/f7062432e8e990ae5af2996ec1927aad8f1d90c7040736b2b99f3db5c9b339e0.png"
     },
     {
       icon: <AppIcons.D3Victorin className="d3-icon" />,
       title: "Viction",
       description: ".vic",
-      image:
-        "https://upload-file-droplinked.s3.amazonaws.com/54f499e01d6a1f4620c79dd8edeae98b03184f12c9e64e832e3a8419b5837ae4.png",
-    },
-  ];
+      image: "https://upload-file-droplinked.s3.amazonaws.com/54f499e01d6a1f4620c79dd8edeae98b03184f12c9e64e832e3a8419b5837ae4.png"
+    }
+  ]
 
   return (
     <SimpleGrid
@@ -56,7 +52,7 @@ function Details() {
         <DetailItem key={detail.title} {...detail} />
       ))}
     </SimpleGrid>
-  );
+  )
 }
 
 function DetailItem({ icon, title, description, image }) {
@@ -82,5 +78,5 @@ function DetailItem({ icon, title, description, image }) {
       </AppTypography>
       <D3Paragraph>{description as string}</D3Paragraph>
     </Flex>
-  );
+  )
 }

@@ -15,6 +15,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import D3Context, { D3StepsType } from '../../context/d3.context';
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import useAppToast from 'functions/hooks/toast/useToast';
+
 const D3Modal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
 	const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) =>

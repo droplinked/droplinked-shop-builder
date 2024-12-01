@@ -6,7 +6,7 @@ import { ILandingPageTemplate } from '../types/interfaces'
 function AffiliateSassPage() {
     const data: ILandingPageTemplate = {
         aboveTheFoldSection: {
-            image: "https://upload-file-droplinked.s3.amazonaws.com/fe6dffd33b07044bf7086f981ff458825c93b6c1a4aba2fbd135520873253062.png",
+            image: "https://upload-file-droplinked.s3.amazonaws.com/08d08ec5e26dc51c86569841494cb2fa21833a71f6fd2909c187118a8a4b06ca_or.png",
             title: "Sell online with confidence",
             description: "Empower partners by using onchain technology to ensure delivery and payout distributions are securely attributed. Assign roles and identities to 3rd parties like manufacturers, distributors and co-sellers to seamlessly track commissions and settlements while eliminating fraud and clickjacking.",
             CTAButtonText: "Get Started"
@@ -34,17 +34,17 @@ function AffiliateSassPage() {
         },
         dualSideFlexData: [
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/86ecdf7f548f77d8caefd921673d1ed3e9bf136e3498e18d254ef781c95ec714.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/a135a53cd10483f31b1fd6d85f1e790b9937861ee0d8b93bec469bb30a1894f3_or.png",
                 title: "Protected Commissions",
                 description: "Partners and co-sellers earn their fair share with secure affiliate tracking that prevents any loss of commissions for their verified work."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/fbc1a0f80517be7923be0bd98c48f32cab2014ae16d51fcf64765e126473fbb6.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/2ae55b116b86a3faaf05b509f87a1c5f723dc74e7f5cd5d42fc673b9e5addf49_or.png",
                 title: "Affiliate Made Easy",
                 description: "Integrate inventory and a rewards system with various SaaS platforms and services to expand earning potential across networks."
             },
             {
-                image: "https://upload-file-droplinked.s3.amazonaws.com/9d778e3ca2496abac09ea73be96c01f11cbe08dfba63b2b481b503196f1c69a6.png",
+                image: "https://upload-file-droplinked.s3.amazonaws.com/18cc2335873d93b925503687f50964632022c6e5136b37525645fd96d7914e78_or.png",
                 title: "Real-Time Analytics",
                 description: "Monitor subscription referrals and performance metrics in real time to maintain and keep complete control of the affiliate side of the business."
             }

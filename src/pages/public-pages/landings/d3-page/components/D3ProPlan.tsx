@@ -17,7 +17,7 @@ export default function D3ProPlan() {
             <Content />
             <Image
                 maxWidth={{ base: "100%", lg: "50%" }}
-                src="https://upload-file-droplinked.s3.amazonaws.com/cded84efaf4143699f3c30e14ee252f674184586a00a2c8085861125427b201d.png"
+                src="https://upload-file-droplinked.s3.amazonaws.com/a27dff144c2ed4e705c1941ec92244ccdd6514bfc28e31c8e35763d6f2f94867.png"
                 objectFit="contain"
             />
         </Flex>

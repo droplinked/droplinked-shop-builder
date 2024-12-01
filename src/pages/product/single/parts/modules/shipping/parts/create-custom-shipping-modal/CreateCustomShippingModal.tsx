@@ -1,4 +1,4 @@
-import { Box, Flex, Link } from '@chakra-ui/react';
+import { Flex, Link } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppInput from 'components/common/form/textbox/AppInput';
@@ -62,7 +62,8 @@ function CreateCustomShippingModal({ isOpen, close, refetchCustomShippings }: Pr
                                 cursor={"pointer"}
                                 download={"Droplinked-Shipping-Template.xlsx"}
                             >
-                                Download our template</Link> {" "}
+                                Download our template
+                            </Link> {" "}
                             to ensure correct file format and details.
                         </AppTypography>
                     </Flex>
@@ -80,7 +81,7 @@ function CreateCustomShippingModal({ isOpen, close, refetchCustomShippings }: Pr
                     </BasicButton>
                 </Flex>
             </Flex>
-        </AppModal >
+        </AppModal>
     )
 }
 

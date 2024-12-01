@@ -10,22 +10,22 @@ export default function D3CollaborationFeatures() {
             icon: <AppIcons.D3ProPlan className='d3-icon' />,
             title: "6 Month Pro Plan",
             description: "Enjoy premium features for six months for being a loyal D3 customer.",
-            image: "https://upload-file-droplinked.s3.amazonaws.com/b2ab77f6817eda666fbf91efc298620a93f7688df5592c2c048e916dd357beb5.png"
+            image: "https://upload-file-droplinked.s3.amazonaws.com/333a3fac7efdf0af33855603c3cf412949a26b2a648772bf0caa4e1effa75742.png"
         },
         {
             icon: <AppIcons.D3Access className='d3-icon' />,
             title: "Access +10k Products Instantly",
             description: "Choose from a vast catalog to customize and sell unique merchandise on demand.",
             image: {
-                base: "https://upload-file-droplinked.s3.amazonaws.com/04efd571a6aa665289570959c00e702266d4f749c44883c8c68949eb8f77cc8e.png",
-                md: "https://upload-file-droplinked.s3.amazonaws.com/8273463bd617dd09cabee8bfb3a018e476b8113c35621fafe1d094f40d6871b5.png"
+                base: "https://upload-file-droplinked.s3.amazonaws.com/b237d01671a1d6a4ae95d5ea0ecfe9a60357e8c7303038cb49325a07ea24e0e1.png",
+                md: "https://upload-file-droplinked.s3.amazonaws.com/b237d01671a1d6a4ae95d5ea0ecfe9a60357e8c7303038cb49325a07ea24e0e1.png"
             }
         },
         {
             icon: <AppIcons.D3Web3Support className='d3-icon' />,
             title: "Web3 Technology Support",
             description: "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer.",
-            image: "https://upload-file-droplinked.s3.amazonaws.com/f93a05cd57cf7f8ae3ff77e5e86685e93fa8f2a76c5f1e74beaaf13641a68e19.png"
+            image: "https://upload-file-droplinked.s3.amazonaws.com/89cf86dd82ff59b8377f12e4ee58f2d51cda9acc3aca8e1e5c31c6698a6fc1bc.png"
         }
     ]
 
