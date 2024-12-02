@@ -4,15 +4,15 @@ import React from 'react'
 
 function DataGridSkeleton() {
     return (
-        <VStack py={"24px"} px={"16px"} align={"stretch"} spacing={5}>
+        <VStack py="24px" px="16px" align="stretch" spacing={5}>
             {[1, 1, 1].map((el, key) => (
-                <Flex key={key} justifyContent={"space-between"} paddingTop="15px">
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
-                    <AppSkeleton isLoaded={false} width={"15%"} height="20px">{''}</AppSkeleton>
+                <Flex key={key} justifyContent="space-between" paddingTop="15px">
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
+                    <AppSkeleton isLoaded={false} width="15%" height="20px">{''}</AppSkeleton>
                 </Flex>
             ))}
         </VStack>

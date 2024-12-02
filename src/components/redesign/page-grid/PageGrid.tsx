@@ -1,38 +1,24 @@
-import { Flex, HStack, VStack } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React, { createContext, useContext } from 'react'
-import DataGridButtons, { IDataGridButtons } from './components/buttons/DatagridButtons'
-import FiltersDataGrid, { IFiltersDataGridItems } from './components/filters/FiltersDatagrid'
+import DataGridButtons from './components/buttons/DatagridButtons'
+import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import Input from './components/input/Input'
 import AppIcons from 'assest/icon/Appicons'
-
-
-interface SearchInput {
-    onChange(e: any): void
-    value?: string
-    placeholder?: string
-}
-
-export interface IdataGrid extends IDataGridButtons {
-    filters?: Array<IFiltersDataGridItems>
-    loading: boolean
-    search?: SearchInput
-    description?: string
-    title?: string
-}
+import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
 
 // Context - simplified since we're not passing everything through context
 const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
 // Root Component - simplified
-function PageGridRoot({ children, loading }: { children: React.ReactNode; loading?: boolean }) {
+function PageGridRoot({ children, loading }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <VStack width={"100%"} alignItems={"start"}>
+            <Flex flexDirection="column" width="100%" alignItems="start">
                 {children}
-            </VStack>
+            </Flex>
         </PageGridContext.Provider>
     )
 }
@@ -42,27 +28,23 @@ function PageGridHeader({
     title,
     description,
     buttons
-}: {
-    title?: string,
-    description?: string,
-    buttons?: IDataGridButtons['buttons']
-}) {
+}: PageGridHeaderProps) {
     return (
-        <HStack mb={"36px"} alignItems={"start"} justifyContent={"space-between"} width={"100%"}>
-            <VStack alignItems={"start"}>
+        <Flex flexDirection="row" mb="36px" alignItems="start" justifyContent="space-between" width="100%">
+            <Flex alignItems="start" flexDirection="column">
                 {title && (
-                    <AppTypography color={"#fff"} fontSize={"24px"} fontWeight={700}>
+                    <AppTypography color="#fff" fontSize="24px" fontWeight={700}>
                         {title}
                     </AppTypography>
                 )}
                 {description && (
-                    <AppTypography color={"#b1b1b1"} fontSize={"16px"}>
+                    <AppTypography color="#b1b1b1" fontSize="16px">
                         {description}
                     </AppTypography>
                 )}
-            </VStack>
+            </Flex>
             {buttons && <DataGridButtons buttons={buttons} />}
-        </HStack>
+        </Flex>
     )
 }
 
@@ -70,12 +52,9 @@ function PageGridHeader({
 function PageGridActions({
     search,
     filters
-}: {
-    search?: SearchInput,
-    filters?: Array<IFiltersDataGridItems>
-}) {
+}: PageGridActionsProps) {
     return (
-        <Flex mb={"24px"} justifyContent={"space-between"} width={"100%"}>
+        <Flex mb="24px" justifyContent="space-between" width="100%">
             {search && <Input inputProps={{ onChange: search.onChange, value: search.value, placeholder: search.placeholder ?? "Search" }} icon={<AppIcons.SearchOutlined />} inputGroupProps={{ width: "300px", height: 12, bgColor: "#1C1C1C" }} />}
             {filters && <FiltersDataGrid items={filters} />}
         </Flex>
@@ -86,17 +65,14 @@ function PageGridActions({
 function PageGridContent({
     children,
     loading
-}: {
-    children: React.ReactNode
-    loading?: boolean
-}) {
+}: PageGridContentProps) {
     const contextLoading = usePageGridContext().loading
     const isLoading = loading ?? contextLoading
 
     return (
-        <VStack borderRadius={"8px"} width={"100%"} background={"#1C1C1C"} align={"stretch"} spacing={6}>
+        <Flex flexDirection="column" borderRadius="8px" width="100%" background="#1C1C1C" align="stretch">
             {isLoading ? <DataGridSkeleton /> : children}
-        </VStack>
+        </Flex>
     )
 }
 

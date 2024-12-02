@@ -1,18 +1,8 @@
-import { ButtonProps, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-
-export interface IDataGridButtonsitems {
-    caption: string
-    onClick?: Function
-    to?: string
-    buttonProps?: ButtonProps
-}
-
-export interface IDataGridButtons {
-    buttons?: Array<IDataGridButtonsitems>
-}
+import { IDataGridButtons } from './interface'
 
 function DataGridButtons({ buttons }: IDataGridButtons) {
     return (

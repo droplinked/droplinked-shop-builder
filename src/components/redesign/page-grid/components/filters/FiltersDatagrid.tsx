@@ -1,21 +1,9 @@
 import { HStack } from '@chakra-ui/react'
 import Select from 'components/redesign/select/AppSelect'
 import React from 'react'
+import { IFiltersDataGrid, IFiltersDataGridItems } from './interface'
 
-export interface IFiltersDataGridItems {
-    placeHolder: string
-    onClick: (value: any) => void
-    filterItems: Array<{
-        title: string
-        value: string,
-    }>
-}
-
-export interface IFiltersDatagrid {
-    items: Array<IFiltersDataGridItems>
-}
-
-function FiltersDataGrid({ items }: IFiltersDatagrid) {
+function FiltersDataGrid({ items }: IFiltersDataGrid) {
     return (
         <HStack spacing={8} alignItems="center">
             {items.map((item: IFiltersDataGridItems, key) => (
