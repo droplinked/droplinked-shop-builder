@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './components/delete/ConfirmDeleteCollection';
 import RuleModal from './components/rulesets/RuleModal';
-import PopOverMenu from 'components/redesign/PopoverMenu/PopOverMenu';
+import TableMenu from 'components/redesign/table-menu/TableMenu';
 import AppIcons from 'assest/icon/Appicons';
 import { Link } from 'react-router-dom';
 import { appDevelopment } from 'lib/utils/app/variable';
@@ -60,24 +60,24 @@ function ControlsListCollection({ collection, fetch }) {
             <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
                 <AppIcons.Share />
             </Link>
-            <PopOverMenu key={collection._id} items={[
+            <TableMenu key={collection._id} items={[
                 {
-                    caption: "Edit",
+                    title: "Edit",
                     onClick: editModal.onOpen,
                     icon: <AppIcons.EditOutlined />
                 },
                 {
-                    caption: "Ruleset",
+                    title: "Ruleset",
                     onClick: handleOpenRulesetModal,
                     icon: <AppIcons.RulesetsIcon />
                 },
                 {
-                    caption: "Copy Collection ID",
+                    title: "Copy Collection ID",
                     onClick: handleCopy,
                     icon: <AppIcons.Copy />
                 },
                 {
-                    caption: "Delete",
+                    title: "Delete",
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
                     icon: <AppIcons.TrashRed />

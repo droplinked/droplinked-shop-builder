@@ -1,0 +1,87 @@
+import { Flex } from '@chakra-ui/react'
+import React, { createContext, useContext } from 'react'
+import DataGridButtons from './components/buttons/DatagridButtons'
+import FiltersDataGrid from './components/filters/FiltersDatagrid'
+import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
+import AppTypography from 'components/common/typography/AppTypography'
+import Input from './components/input/Input'
+import AppIcons from 'assest/icon/Appicons'
+import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
+
+// Context - simplified since we're not passing everything through context
+const PageGridContext = createContext<{ loading?: boolean }>({})
+const usePageGridContext = () => useContext(PageGridContext)
+
+// Root Component - simplified
+function PageGridRoot({ children, loading }: PageGridRootProps) {
+    return (
+        <PageGridContext.Provider value={{ loading }}>
+            <Flex flexDirection="column" width="100%" alignItems="start">
+                {children}
+            </Flex>
+        </PageGridContext.Provider>
+    )
+}
+
+// Header Component
+function PageGridHeader({
+    title,
+    description,
+    buttons
+}: PageGridHeaderProps) {
+    return (
+        <Flex flexDirection="row" mb="36px" alignItems="start" justifyContent="space-between" width="100%">
+            <Flex alignItems="start" flexDirection="column">
+                {title && (
+                    <AppTypography color="#fff" fontSize="24px" fontWeight={700}>
+                        {title}
+                    </AppTypography>
+                )}
+                {description && (
+                    <AppTypography color="#b1b1b1" fontSize="16px">
+                        {description}
+                    </AppTypography>
+                )}
+            </Flex>
+            {buttons && <DataGridButtons buttons={buttons} />}
+        </Flex>
+    )
+}
+
+// Actions Component
+function PageGridActions({
+    search,
+    filters
+}: PageGridActionsProps) {
+    return (
+        <Flex mb="24px" justifyContent="space-between" width="100%">
+            {search && <Input inputProps={{ onChange: search.onChange, value: search.value, placeholder: search.placeholder ?? "Search" }} icon={<AppIcons.SearchOutlined />} inputGroupProps={{ width: "300px", height: 12, bgColor: "#1C1C1C" }} />}
+            {filters && <FiltersDataGrid items={filters} />}
+        </Flex>
+    )
+}
+
+// Content Component
+function PageGridContent({
+    children,
+    loading
+}: PageGridContentProps) {
+    const contextLoading = usePageGridContext().loading
+    const isLoading = loading ?? contextLoading
+
+    return (
+        <Flex flexDirection="column" borderRadius="8px" width="100%" background="#1C1C1C" align="stretch">
+            {isLoading ? <DataGridSkeleton /> : children}
+        </Flex>
+    )
+}
+
+// Compound Component
+const PageGrid = {
+    Root: PageGridRoot,
+    Header: PageGridHeader,
+    Actions: PageGridActions,
+    Content: PageGridContent
+}
+
+export default PageGrid

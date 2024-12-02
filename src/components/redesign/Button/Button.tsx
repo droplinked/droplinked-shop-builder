@@ -57,6 +57,7 @@ const Button = ({ variant = "primary", children, ...props }: Props) => {
         "p": { fontSize: "14px", fontWeight: "500" }
       }}
       {...props}
+      iconSpacing={0}
     >
       {children}
     </ChakraButton>

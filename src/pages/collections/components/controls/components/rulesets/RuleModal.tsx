@@ -1,5 +1,5 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import Button from "components/redesign/Button/Button";
+import Button from "components/redesign/button/Button";
 import FieldLabel from "components/redesign/form/fieldLabel/FieldLabel";
 import AppSelectBox from "components/redesign/form/select/AppSelectBox";
 import LoadingComponent from "components/common/loading-component/LoadingComponent";

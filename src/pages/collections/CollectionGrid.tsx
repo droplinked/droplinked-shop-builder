@@ -1,17 +1,23 @@
 import React from "react";
-import PageGrid from "components/redesign/pageGrid/PageGrid";
+import PageGrid from "components/redesign/page-grid/PageGrid";
 import { FaPlus } from "react-icons/fa6";
-import { Box, Td, Tr } from "@chakra-ui/react";
-import Table from "components/redesign/table-v2/TableV2"; // Updated import
-import { collectionsColumns } from "./model";
+import { Box } from "@chakra-ui/react";
+import Table from "components/redesign/table/Table";
+import AppTypography from "components/common/typography/AppTypography";
+import { ColumnDef } from '@tanstack/react-table';
+import { Collection } from "lib/apis/collection/interfaces";
+import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
+import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
+import ControlsListCollection from "./components/controls/Controls";
 
 interface CollectionGridProps {
     isFetching: boolean;
-    rows: any[];
+    rows: Collection[];
     searchTerm: string;
     onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onCreateCollection: () => void;
     onReorderClick: () => void;
+    refetch: () => void;
 }
 
 function CollectionGrid({
@@ -21,10 +27,33 @@ function CollectionGrid({
     onSearchChange,
     onCreateCollection,
     onReorderClick,
+    refetch,
 }: CollectionGridProps) {
+    const columns: ColumnDef<Collection>[] = [
+        {
+            accessorKey: 'title',
+            header: 'Collection',
+            cell: info => <CollectionTitleColumn collection={info.row.original} />
+        },
+        {
+            accessorKey: 'ruleSetID',
+            header: 'Rulesets',
+            cell: info => info.getValue() ? <CollectionRulesetColumn ruleset={info.getValue()} /> : "-"
+        },
+        {
+            accessorKey: 'productsCount',
+            header: 'Products',
+            cell: info => info.getValue() || "-"
+        },
+        {
+            accessorKey: 'controls',
+            header: '',
+            cell: info => <ControlsListCollection collection={info.row.original} fetch={refetch} />
+        }
+    ];
 
     return (
-        <PageGrid.Root loading={isFetching}>
+        <PageGrid.Root>
             <PageGrid.Header
                 title="Collections"
                 description="Create and view inventory collections here."
@@ -61,20 +90,18 @@ function CollectionGrid({
                     onChange: onSearchChange
                 }}
             />
-            <PageGrid.Content loading={isFetching} >
+            <PageGrid.Content>
                 <Box width={"100%"}>
-                    <Table.Root columns={collectionsColumns}>
-                        <Table.Head data={rows} />
-                        <Table.Body isLoading={isFetching}>
-                            {rows.map((row, index) => (
-                                <Tr key={index}>
-                                    {collectionsColumns.map((col) => (
-                                        <Td key={col.accessorKey}>{row[col.accessorKey].value}</Td>
-                                    ))}
-                                </Tr>
-                            ))}
-                        </Table.Body>
-                    </Table.Root>
+                    <Table
+                        columns={columns}
+                        data={rows}
+                        isLoading={isFetching}
+                        emptyView={
+                            <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                                No collections available. Create a new collection to get started.
+                            </AppTypography>
+                        }
+                    />
                 </Box>
             </PageGrid.Content>
         </PageGrid.Root>

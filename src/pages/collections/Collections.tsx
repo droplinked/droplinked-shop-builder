@@ -2,7 +2,6 @@ import { useDisclosure } from "@chakra-ui/react";
 import useCollections from "functions/hooks/useCollections/useCollections";
 import { useCheckPermission } from "lib/stores/app/appStore";
 import React, { useMemo, useState } from "react";
-import CollectionsModel from "./model";
 import CollectionCreate from "./components/create/CollectionCreate";
 import CollectionReorderModal from "./components/collection-reorder-modal/CollectionReorderModal";
 import CollectionGrid from "./CollectionGrid";
@@ -19,26 +18,23 @@ function Collections() {
         onOpen();
     };
 
-    const rows = useMemo(() => {
-        const collections = data?.data;
-        return collections
-            ? CollectionsModel.refactorData({
-                data: collections,
-                fetch,
-                search: searchTerm,
-            })
-            : [];
+    const filteredData = useMemo(() => {
+        const collections = data?.data || [];
+        return searchTerm
+            ? collections.filter(collection => collection.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            : collections;
     }, [searchTerm, data]);
 
     return (
         <>
             <CollectionGrid
                 isFetching={isFetching}
-                rows={rows}
+                rows={filteredData}
                 searchTerm={searchTerm}
                 onSearchChange={(e) => setSearchTerm(e.target.value)}
                 onCreateCollection={handleOpenCreateCollectionModal}
                 onReorderClick={collectionReorderModal.onOpen}
+                refetch={() => refetch()}
             />
             <CollectionCreate close={onClose} open={isOpen} />
             {collectionReorderModal.isOpen &&
