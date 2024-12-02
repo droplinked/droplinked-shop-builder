@@ -1,5 +1,5 @@
 import { ButtonProps, Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/Button/Button'
+import Button from 'components/redesign/button/Button'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 

@@ -2,16 +2,22 @@ import { Flex, HStack, VStack } from '@chakra-ui/react'
 import React, { createContext, useContext } from 'react'
 import DataGridButtons, { IDataGridButtons } from './components/buttons/DatagridButtons'
 import FiltersDataGrid, { IFiltersDataGridItems } from './components/filters/FiltersDatagrid'
-import SearchDataGrid, { ISearchDataGrid } from './components/search/SearchDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import Input from './components/input/Input'
+import AppIcons from 'assest/icon/Appicons'
 
-type mergeType = IDataGridButtons
 
-export interface IdataGrid extends mergeType {
+interface SearchInput {
+    onChange(e: any): void
+    value?: string
+    placeholder?: string
+}
+
+export interface IdataGrid extends IDataGridButtons {
     filters?: Array<IFiltersDataGridItems>
     loading: boolean
-    search?: ISearchDataGrid
+    search?: SearchInput
     description?: string
     title?: string
 }
@@ -65,15 +71,13 @@ function PageGridActions({
     search,
     filters
 }: {
-    search?: ISearchDataGrid,
+    search?: SearchInput,
     filters?: Array<IFiltersDataGridItems>
 }) {
     return (
-        <Flex mb={"24px"} justifyContent={"space-between"}>
-            <HStack spacing={8}>
-                {search && <SearchDataGrid onChange={search.onChange} value={search.value} />}
-                {filters && <FiltersDataGrid item={filters} />}
-            </HStack>
+        <Flex mb={"24px"} justifyContent={"space-between"} width={"100%"}>
+            {search && <Input inputProps={{ onChange: search.onChange, value: search.value, placeholder: search.placeholder ?? "Search" }} icon={<AppIcons.SearchOutlined />} inputGroupProps={{ width: "300px", height: 12, bgColor: "#1C1C1C" }} />}
+            {filters && <FiltersDataGrid items={filters} />}
         </Flex>
     )
 }
