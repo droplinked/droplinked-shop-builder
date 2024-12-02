@@ -1,12 +1,9 @@
-import { ButtonProps } from "@chakra-ui/react"
+import { AppButtonProps } from "components/redesign/button/Button"
 
-export interface IDataGridButtonsitems {
+export interface IDataGridButton extends AppButtonProps {
     caption: string
-    onClick?: Function
-    to?: string
-    buttonProps?: ButtonProps
 }
 
 export interface IDataGridButtons {
-    buttons?: Array<IDataGridButtonsitems>
+    buttons?: Array<IDataGridButton>
 }

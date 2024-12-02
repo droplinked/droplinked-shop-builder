@@ -1,6 +1,6 @@
-import { ModalFooter } from '@chakra-ui/react'
-import Button from 'pages/invoice-management/components/Button'
-import React from 'react'
+import { ModalFooter } from '@chakra-ui/react';
+import Button from 'components/redesign/button/Button';
+import React from 'react';
 
 interface Props {
     file: File | null

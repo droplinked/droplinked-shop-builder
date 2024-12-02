@@ -1,10 +1,10 @@
 import { Menu, MenuButton, MenuItem, MenuList, ModalBody, ModalFooter, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { deleteInvoiceService } from 'lib/apis/invoice/invoiceServices'
-import Button from 'pages/invoice-management/components/Button'
 import React from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
@@ -84,7 +84,7 @@ function ConfirmInvoiceDeleteModal({ invoiceId, isOpen, onClose }) {
                 <AppTypography textAlign={"center"} fontSize={16} fontWeight={500} color={"white"}>Are you sure you want to delete this invoice?</AppTypography>
             </ModalBody>
             <ModalFooter display={"flex"} justifyContent={"space-between"}>
-                <Button variant='ghost' isDisabled={isLoading} onClick={onClose}>Cancel</Button>
+                <Button variant='outline' isDisabled={isLoading} onClick={onClose}>Cancel</Button>
                 <Button isDisabled={isLoading} isLoading={isLoading} onClick={handleDelete}>Delete</Button>
             </ModalFooter>
         </AppModal>

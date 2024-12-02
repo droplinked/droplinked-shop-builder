@@ -1,7 +1,7 @@
 import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import Button from 'components/redesign/button/Button';
 import React from 'react';
-import Button from './Button';
 
 interface Props {
     label?: string;

@@ -1,14 +1,14 @@
-import React from "react";
-import PageGrid from "components/redesign/page-grid/PageGrid";
-import { FaPlus } from "react-icons/fa6";
 import { Box } from "@chakra-ui/react";
-import Table from "components/redesign/table/Table";
-import AppTypography from "components/common/typography/AppTypography";
 import { ColumnDef } from '@tanstack/react-table';
+import AppTypography from "components/common/typography/AppTypography";
+import PageGrid from "components/redesign/page-grid/PageGrid";
+import Table from "components/redesign/table/Table";
 import { Collection } from "lib/apis/collection/interfaces";
-import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
-import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
+import React from "react";
+import { FaPlus } from "react-icons/fa6";
 import ControlsListCollection from "./components/controls/Controls";
+import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
+import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -60,27 +60,13 @@ function CollectionGrid({
                 buttons={[
                     {
                         caption: "New Collection",
-                        onClick: onCreateCollection,
-                        buttonProps: {
-                            leftIcon: <FaPlus color="#000" />,
-                            height: "36px",
-                            borderRadius: "8px",
-                            width: "156px",
-                            fontSize: "14px"
-                        },
+                        leftIcon: <FaPlus color="#000" />,
+                        onClick: onCreateCollection
                     },
                     {
                         caption: "Visibility and reorder",
-                        onClick: onReorderClick,
-                        buttonProps: {
-                            variant: "solid",
-                            backgroundColor: "#292929",
-                            border: "none",
-                            color: "#fff",
-                            height: "36px",
-                            borderRadius: "8px",
-                            fontSize: "14px"
-                        },
+                        variant: "secondary",
+                        onClick: onReorderClick
                     },
                 ]}
             />

@@ -1,7 +1,7 @@
 import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react'
 import React from 'react'
 
-interface Props extends ButtonProps {
+export interface AppButtonProps extends ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
 }
 
@@ -33,7 +33,7 @@ const getStyles = (variant: string, isDisabled: boolean) => {
   return styles[variant] || styles.outline
 }
 
-const Button = ({ variant = "primary", children, ...props }: Props) => {
+const Button = ({ variant = "primary", children, ...props }: AppButtonProps) => {
   const { border, background, text } = getStyles(variant, props.isDisabled)
 
   return (

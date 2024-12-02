@@ -1,13 +1,13 @@
-import React from "react";
 import { Box, ModalBody } from "@chakra-ui/react";
+import AppTypography from "components/common/typography/AppTypography";
+import WalletStatus from "components/common/walletStatus/WalletStatus";
+import Button from "components/redesign/button/Button";
+import AppModal from "components/redesign/modal/AppModal";
+import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
+import useAppStore from "lib/stores/app/appStore";
+import React from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import AppTypography from "components/common/typography/AppTypography";
-import AppModal from "components/redesign/modal/AppModal";
-import Button from "pages/invoice-management/components/Button";
-import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
-import WalletStatus from "components/common/walletStatus/WalletStatus";
-import useAppStore from "lib/stores/app/appStore";
 
 function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: boolean }) {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
         },
     });
     return (
-        <AppModal modalRootProps={{ isOpen: true, onClose: () => {}, size: "3xl", isCentered: true }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
+        <AppModal modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
             <ModalBody
                 display="flex"
                 width={{ base: "360px", md: "625px" }}
