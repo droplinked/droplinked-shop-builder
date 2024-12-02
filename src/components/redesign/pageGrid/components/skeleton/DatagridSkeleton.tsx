@@ -1,8 +1,8 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Flex, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
 
-function DatagridSkeleton() {
+function DataGridSkeleton() {
     return (
         <VStack py={"24px"} px={"16px"} align={"stretch"} spacing={5}>
             {[1, 1, 1].map((el, key) => (
@@ -19,4 +19,4 @@ function DatagridSkeleton() {
     )
 }
 
-export default DatagridSkeleton
+export default DataGridSkeleton

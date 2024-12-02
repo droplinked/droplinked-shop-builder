@@ -3,7 +3,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React, { useCallback, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export interface IFiltersDatagridItems {
+export interface IFiltersDataGridItems {
     title: string
     list: Array<{
         title: string
@@ -13,18 +13,18 @@ export interface IFiltersDatagridItems {
 }
 
 export interface IFiltersDatagrid {
-    item: Array<IFiltersDatagridItems>
+    item: Array<IFiltersDataGridItems>
 }
 
-function FiltersDatagrid({ item }: IFiltersDatagrid) {
+function FiltersDataGrid({ item }: IFiltersDatagrid) {
     const location = useLocation()
     const navigate = useNavigate()
     const existFilter = useMemo(() => item.find(el => el.list.find(item => item.isActive)), [item])
-    const checkActive = useCallback((item: IFiltersDatagridItems) => item.list.find(el => el.isActive), [])
+    const checkActive = useCallback((item: IFiltersDataGridItems) => item.list.find(el => el.isActive), [])
 
     return (
         <HStack spacing={8} alignItems="center">
-            {item.map((el: IFiltersDatagridItems, key) => (
+            {item.map((el: IFiltersDataGridItems, key) => (
                 <Box key={key}>
                     <Menu isLazy>
                         <MenuButton fontSize={"sm"}>
@@ -71,4 +71,4 @@ function FiltersDatagrid({ item }: IFiltersDatagrid) {
     )
 }
 
-export default FiltersDatagrid
+export default FiltersDataGrid

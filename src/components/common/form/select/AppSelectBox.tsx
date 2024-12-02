@@ -4,7 +4,6 @@ import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
-import classes from './style.module.scss'
 import Select from 'components/redesign/select/AppSelect'
 
 interface IAppSelectBoxItems {

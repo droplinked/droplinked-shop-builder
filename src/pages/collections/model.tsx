@@ -14,22 +14,10 @@ interface IrefactorData {
 const CollectionsModel = {
     makeData: (element: any, fetch: any) => {
         return {
-            Collection: {
-                value: <CollectionTitleColumn collection={element} />
-            },
-            rulesets: {
-                value: element?.ruleSetID ? <CollectionRulesetColumn ruleset={element?.ruleSetID} /> : "-"
-            },
-            Products: {
-                value: element.productsCount || "-"
-            },
-            controls: {
-                props: {
-                    width: "70px"
-                },
-                caption: "",
-                value: <ControlsListCollection collection={element} fetch={fetch} />
-            }
+            collection: { value: <CollectionTitleColumn collection={element} /> },
+            rulesets: { value: element?.ruleSetID ? <CollectionRulesetColumn ruleset={element?.ruleSetID} /> : "-" },
+            products: { value: element.productsCount || "-" },
+            controls: { value: <ControlsListCollection collection={element} fetch={fetch} /> }
         };
     },
 
@@ -39,5 +27,11 @@ const CollectionsModel = {
         return products.map((el: any): ITableRows => CollectionsModel.makeData(el, fetch))
     }
 }
+export const collectionsColumns = [
+    { header: 'Collection', accessorKey: 'collection' },
+    { header: 'Rulesets', accessorKey: 'rulesets' },
+    { header: 'Products', accessorKey: 'products' },
+    { header: '', accessorKey: 'controls' },
+];
 
 export default CollectionsModel

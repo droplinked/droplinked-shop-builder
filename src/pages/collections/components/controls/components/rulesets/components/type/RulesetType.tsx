@@ -1,4 +1,4 @@
-import { Box, Checkbox, HStack, Switch, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, Switch, Text, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useEffect } from 'react'

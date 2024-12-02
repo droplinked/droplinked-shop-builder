@@ -4,10 +4,8 @@ import { useCheckPermission } from "lib/stores/app/appStore";
 import React, { useMemo, useState } from "react";
 import CollectionsModel from "./model";
 import CollectionCreate from "./components/create/CollectionCreate";
-import CollectionsEmpty from "./components/empty/CollectionsEmpty";
 import CollectionReorderModal from "./components/collection-reorder-modal/CollectionReorderModal";
-import AppDataGrid from "components/redesign/datagrid/DataGrid";
-import { FaPlus } from "react-icons/fa6";
+import CollectionGrid from "./CollectionGrid";
 
 function Collections() {
     const checkPermissionAndShowToast = useCheckPermission();
@@ -34,43 +32,16 @@ function Collections() {
 
     return (
         <>
-            <AppDataGrid
-                loading={isFetching}
-                buttons={[
-                    {
-                        caption: "New Collection",
-                        onClick: handleOpenCreateCollectionModal,
-                        buttonProps: {
-                            leftIcon: <FaPlus color="#000" />,
-                            height: "36px",
-                            borderRadius: "8px",
-                        },
-                    },
-                    {
-                        caption: "Visibility and reorder",
-                        onClick: collectionReorderModal.onOpen,
-                        buttonProps: {
-                            variant: "solid",
-                            backgroundColor: "#292929",
-                            border: "none",
-                            color: "#fff",
-                            height: "36px",
-                            borderRadius: "8px",
-                        },
-                    },
-                ]}
+            <CollectionGrid
+                isFetching={isFetching}
                 rows={rows}
-                search={{ onChange: (e) => setSearchTerm(e.target.value) }}
-                empty={
-                    <CollectionsEmpty
-                        handleOpenCreateCollectionModal={handleOpenCreateCollectionModal}
-                    />
-                }
-                title="Collections"
-                description="Create and view inventory collections here."
+                searchTerm={searchTerm}
+                onSearchChange={(e) => setSearchTerm(e.target.value)}
+                onCreateCollection={handleOpenCreateCollectionModal}
+                onReorderClick={collectionReorderModal.onOpen}
             />
             <CollectionCreate close={onClose} open={isOpen} />
-            {collectionReorderModal.isOpen && (
+            {collectionReorderModal.isOpen &&
                 <CollectionReorderModal
                     isOpen={collectionReorderModal.isOpen}
                     close={() => {
@@ -78,7 +49,7 @@ function Collections() {
                         refetch();
                     }}
                 />
-            )}
+            }
         </>
     );
 }

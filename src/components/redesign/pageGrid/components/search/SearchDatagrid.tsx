@@ -1,14 +1,13 @@
-import { Image, Input, InputGroup, InputLeftElement, InputProps } from '@chakra-ui/react'
-import React from 'react'
-import searchIcon from "assest/icon/search-icon.svg";
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import React from 'react';
 
-export interface ISearchDatagrid {
+export interface ISearchDataGrid {
     onChange(e: any): void
     value?: string
 }
 
-function SearchDatagrid({ onChange, value }: ISearchDatagrid) {
+function SearchDataGrid({ onChange, value }: ISearchDataGrid) {
     return (
         <InputGroup w="288px">
             <InputLeftElement
@@ -36,4 +35,4 @@ function SearchDatagrid({ onChange, value }: ISearchDatagrid) {
     )
 }
 
-export default SearchDatagrid
+export default SearchDataGrid

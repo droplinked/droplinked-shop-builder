@@ -15,6 +15,7 @@ export const collectionCreateInputFields = [
         description: 'Provide the message to display to visitors.',
         placeholder: 'e.g., StreamWave',
         maxLength: 100,
+        rows: 2
     },
 ];
 
