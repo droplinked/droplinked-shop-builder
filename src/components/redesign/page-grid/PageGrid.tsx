@@ -4,9 +4,9 @@ import DataGridButtons from './components/buttons/DatagridButtons'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import Input from './components/input/Input'
 import AppIcons from 'assest/icon/Appicons'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
+import Input from '../input/Input'
 
 // Context - simplified since we're not passing everything through context
 const PageGridContext = createContext<{ loading?: boolean }>({})
