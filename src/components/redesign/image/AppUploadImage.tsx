@@ -5,7 +5,7 @@ import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
 import appUploadImageContext, { IUploadImageDefault, ImodeUploadImage } from './context';
 import UploadImageModel from './model';
-import FileUpload from '../fileUpload/FileUpload';
+import FileUpload from '../file-upload/FileUpload';
 
 type sizes = "small" | "original" | "standard"
 

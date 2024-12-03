@@ -257,6 +257,7 @@ import { ReactComponent as DiscountRuleset } from "./discount-ruleset.svg";
 import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
+import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -517,7 +518,8 @@ const AppIcons = {
     DiscountRuleset,
     GatingRuleset,
     DotSpacer,
-    EditOutlined
+    EditOutlined,
+    HidedIcon
 };
 
 export default AppIcons

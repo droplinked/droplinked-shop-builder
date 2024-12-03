@@ -1,20 +1,20 @@
 import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
+import Button from 'components/redesign/button/Button';
 import AppModal from 'components/redesign/modal/AppModal';
+import { DropWeb3, Network } from 'droplinked-web3';
+import useAppToast from 'functions/hooks/toast/useToast';
 import { IPostUserVerifyD3 } from 'lib/apis/user/interfaces';
 import { postUserVerifyD3 } from 'lib/apis/user/services';
 import { appDevelopment } from 'lib/utils/app/variable';
-import { DropWeb3, Network } from 'droplinked-web3';
-import Button from 'pages/invoice-management/components/Button';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import D3Context, { D3StepsType } from '../../context/d3.context';
-import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
-import useAppToast from 'functions/hooks/toast/useToast';
 
 const D3Modal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();

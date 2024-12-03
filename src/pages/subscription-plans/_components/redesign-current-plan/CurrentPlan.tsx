@@ -1,11 +1,11 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import Button from 'components/redesign/button/Button';
 import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData';
 import { getSubscriptionIcon } from 'lib/utils/helpers/helpers';
 import * as React from 'react';
-import PlanDescription from './_components/PlanDescription';
-import Button from 'pages/invoice-management/components/Button';
 import PlanBadge from './_components/PlanBadge';
+import PlanDescription from './_components/PlanDescription';
 import StatisticModal from './_components/statistics/StatisticModal';
 interface ICurrentSubData {
     icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,

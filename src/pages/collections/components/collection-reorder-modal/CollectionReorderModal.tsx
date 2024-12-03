@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, Spinner } from '@chakra-ui/react';
+import { Flex, Spinner } from '@chakra-ui/react';
 import { closestCorners, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 // Components
-import AppTypography from 'components/common/typography/AppTypography';
 import SortableCollection from './components/SortableCollection';
 
 // Toast
@@ -82,9 +81,8 @@ function CollectionReorderModal({ isOpen, close }: Props) {
             />
             <Flex direction={"column"} gap={9}>
                 {isLoading ? (
-                    <Flex alignItems="center" justifyContent="center" direction="column" gap={4}>
-                        <Spinner size="lg" color="#FFF" />
-                        <AppTypography color={"#FFF"}>Loading collections...</AppTypography>
+                    <Flex alignItems="center" justifyContent="center" direction="column" my={10} gap={4}>
+                        <Spinner size={"xl"} color='#2BCFA1' />
                     </Flex>
                 ) : (
                     <DndContext

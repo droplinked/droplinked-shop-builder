@@ -2,12 +2,9 @@ import { useDisclosure } from "@chakra-ui/react";
 import useCollections from "functions/hooks/useCollections/useCollections";
 import { useCheckPermission } from "lib/stores/app/appStore";
 import React, { useMemo, useState } from "react";
-import CollectionsModel from "./model";
 import CollectionCreate from "./components/create/CollectionCreate";
-import CollectionsEmpty from "./components/empty/CollectionsEmpty";
 import CollectionReorderModal from "./components/collection-reorder-modal/CollectionReorderModal";
-import AppDataGrid from "components/redesign/datagrid/DataGrid";
-import { FaPlus } from "react-icons/fa6";
+import CollectionGrid from "./CollectionGrid";
 
 function Collections() {
     const checkPermissionAndShowToast = useCheckPermission();
@@ -21,56 +18,26 @@ function Collections() {
         onOpen();
     };
 
-    const rows = useMemo(() => {
-        const collections = data?.data;
-        return collections
-            ? CollectionsModel.refactorData({
-                data: collections,
-                fetch,
-                search: searchTerm,
-            })
-            : [];
+    const filteredData = useMemo(() => {
+        const collections = data?.data || [];
+        return searchTerm
+            ? collections.filter(collection => collection.title.toLowerCase().includes(searchTerm.toLowerCase()))
+            : collections;
     }, [searchTerm, data]);
 
     return (
         <>
-            <AppDataGrid
-                loading={isFetching}
-                buttons={[
-                    {
-                        caption: "New Collection",
-                        onClick: handleOpenCreateCollectionModal,
-                        buttonProps: {
-                            leftIcon: <FaPlus color="#000" />,
-                            height: "36px",
-                            borderRadius: "8px",
-                        },
-                    },
-                    {
-                        caption: "Visibility and reorder",
-                        onClick: collectionReorderModal.onOpen,
-                        buttonProps: {
-                            variant: "solid",
-                            backgroundColor: "#292929",
-                            border: "none",
-                            color: "#fff",
-                            height: "36px",
-                            borderRadius: "8px",
-                        },
-                    },
-                ]}
-                rows={rows}
-                search={{ onChange: (e) => setSearchTerm(e.target.value) }}
-                empty={
-                    <CollectionsEmpty
-                        handleOpenCreateCollectionModal={handleOpenCreateCollectionModal}
-                    />
-                }
-                title="Collections"
-                description="Create and view inventory collections here."
+            <CollectionGrid
+                isFetching={isFetching}
+                rows={filteredData}
+                searchTerm={searchTerm}
+                onSearchChange={(e) => setSearchTerm(e.target.value)}
+                onCreateCollection={handleOpenCreateCollectionModal}
+                onReorderClick={collectionReorderModal.onOpen}
+                refetch={() => refetch()}
             />
             <CollectionCreate close={onClose} open={isOpen} />
-            {collectionReorderModal.isOpen && (
+            {collectionReorderModal.isOpen &&
                 <CollectionReorderModal
                     isOpen={collectionReorderModal.isOpen}
                     close={() => {
@@ -78,7 +45,7 @@ function Collections() {
                         refetch();
                     }}
                 />
-            )}
+            }
         </>
     );
 }

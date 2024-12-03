@@ -1,9 +1,9 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import BasicButton from "components/redesign/BasicButton/BasicButton";
-import FieldLabel from "components/redesign/form/fieldLabel/FieldLabel";
-import AppSelectBox from "components/redesign/form/select/AppSelectBox";
 import LoadingComponent from "components/common/loading-component/LoadingComponent";
 import AppTypography from "components/common/typography/AppTypography";
+import Button from "components/redesign/button/Button";
+import FieldLabel from "components/redesign/form/fieldLabel/FieldLabel";
+import AppSelectBox from "components/redesign/form/select/AppSelectBox";
 import { Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
@@ -12,12 +12,12 @@ import { useCheckPermission } from "lib/stores/app/appStore";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import ruleModelContext from "./context";
 import RulesetAddress from "./components/address/RulesetAddress";
+import ModalWrapper from "./components/ModalWrapper";
 import TextboxRule from "./components/textbox/TextboxRule";
 import RulesetType from "./components/type/RulesetType";
+import ruleModelContext from "./context";
 import { IFormData, makeInitialValues, ruleModalFormConfig } from "./formConfig";
-import ModalWrapper from "./components/ModalWrapper";
 
 // This modal is used to add a new rule or edit an existing rule
 const RuleModal = ({ show, collectionId, close, ruleId }) => {
@@ -92,12 +92,12 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                         <RulesetType />
                                     </Box>
                                     <HStack borderTop={"1px solid #292929"} py={"2rem"} justifyContent={"space-between"}>
-                                        <BasicButton width={"79px"} onClick={close} variant="outline">
+                                        <Button fontSize={"14px"} width={"79px"} onClick={close} variant="outline">
                                             Cancel
-                                        </BasicButton>
-                                        <BasicButton width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
+                                        </Button>
+                                        <Button fontSize={"14px"} width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
                                             Save
-                                        </BasicButton>
+                                        </Button>
                                     </HStack>
                                 </VStack>
                             </ruleModelContext.Provider>

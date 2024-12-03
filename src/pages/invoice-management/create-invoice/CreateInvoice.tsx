@@ -1,18 +1,18 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
+import Button from 'components/redesign/button/Button'
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading'
 import { Form, Formik, FormikProvider } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Button from '../components/Button'
 import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
 import useInvoiceInformation from '../hooks/useInvoiceInformation'
 import InvoiceClientDetails from './components/form/InvoiceClientDetails'
 import InvoiceSummary from './components/form/InvoiceSummary'
+import InvoiceProductTable from './components/form/product-table/InvoiceProductTable'
 import { InvoiceFormSchema, findSelectedShippingMethod, getInvoiceFormInitialValues, getInvoiceValidationSchema } from './helpers/helpers'
 import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
-import InvoiceProductTable from './components/form/product-table/InvoiceProductTable'
 
 export default function CreateInvoice() {
     const navigate = useNavigate()
@@ -85,7 +85,7 @@ export default function CreateInvoice() {
                                     <InvoiceSummary />
                                     <Flex direction="column" gap={4}>
                                         <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</Button>
-                                        <Button type='button' variant='ghost' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                        <Button type='button' variant='outline' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
                                     </Flex>
                                 </Flex>
                             </Flex>

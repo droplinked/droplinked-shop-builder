@@ -1,8 +1,8 @@
-import { Heading, Image, Show } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'pages/invoice-management/components/Button'
-import React from 'react'
-import Container from '../container/Container'
+import { Heading, Image, Show } from '@chakra-ui/react';
+import AppTypography from 'components/common/typography/AppTypography';
+import Button from 'components/redesign/button/Button';
+import React from 'react';
+import Container from '../container/Container';
 
 interface Props {
     title: string;
