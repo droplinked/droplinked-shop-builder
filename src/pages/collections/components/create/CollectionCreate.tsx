@@ -15,6 +15,7 @@ import { ICollectionForm } from './interface/interfaces';
 import ImageUploader from './_components/ImageUploader';
 import ModalButtons from './_components/ModalButtons';
 import AppTextarea from 'components/redesign/textarea/AppTextarea';
+import Input from 'components/redesign/input/Input';
 
 interface IProps {
     close: () => void;
@@ -66,28 +67,32 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                             <Flex gap={8} flexDirection="column" width="100%">
                                 {collectionCreateInputFields.map((field) => (
                                     !field?.rows ?
-                                        <AppInput
+                                        <Input
+                                            inputProps={{
+                                                name: field.name,
+                                                value: values[field.name],
+                                                onChange: (e) => setFieldValue(field.name, e.target.value),
+                                                maxLength: field.maxLength,
+                                                placeholder: field.placeholder,
+                                                isRequired: field.isRequired,
+                                            }}
                                             key={field.name}
-                                            name={field.name}
-                                            value={values[field.name]}
-                                            onChange={(e) => setFieldValue(field.name, e.target.value)}
-                                            maxLength={field.maxLength}
                                             label={field.label}
                                             description={field.description}
-                                            placeholder={field.placeholder}
-                                            isRequired={field.isRequired}
                                             error={errors[field.name]}
-                                        /> : <AppTextarea key={field.name}
-                                            name={field.name}
-                                            value={values[field.name]}
-                                            onChange={(e) => setFieldValue(field.name, e.target.value)}
-                                            maxLength={field.maxLength}
+                                        /> : <AppTextarea
+                                            textareaProps={{
+                                                name: field.name,
+                                                value: values[field.name],
+                                                onChange: (e) => setFieldValue(field.name, e.target.value),
+                                                maxLength: field.maxLength,
+                                                placeholder: field.placeholder,
+                                                isRequired: field.isRequired,
+                                            }}
+                                            key={field.name}
                                             label={field.label}
                                             description={field.description}
-                                            placeholder={field.placeholder}
-                                            isRequired={field.isRequired}
                                             error={errors[field.name]}
-                                            padding={"10px 17px"}
                                         />
                                 ))}
                                 <ImageUploader errors={errors} setFieldValue={setFieldValue} values={values} />

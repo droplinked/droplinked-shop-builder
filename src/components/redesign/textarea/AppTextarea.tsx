@@ -1,37 +1,67 @@
-import { Textarea, TextareaProps, VStack } from '@chakra-ui/react'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
-import React from 'react'
-import ErrorLabel from '../form/errorLabel/errorLabel'
-import FieldLabel from '../form/fieldLabel/FieldLabel'
-import FormModel, { IAppForm } from '../form/FormModel'
+import { FormLabel, InputGroup, Textarea as ChakraTextarea, TextareaProps } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
+import React from 'react'
 
-type combine = IAppForm & TextareaProps
-
-interface Iprops extends combine { }
-
-function AppTextarea(props: Iprops) {
-  const { error, name, label, loading, description } = props
-
-  return (
-    <VStack align={"stretch"} width="100%" spacing={4}>
-      <VStack align={"stretch"} spacing={"4px"}>
-        <FieldLabel loading={loading} isRequired={props.isRequired} label={label} />
-        {description && <AppTypography color={"#7B7B7B"} fontSize={"14px"}>{description}</AppTypography>}
-      </VStack>
-      <AppSkeleton isLoaded={loading}>
-        <Textarea
-          style={{ boxShadow: "unset" }}
-          isInvalid={error ? true : false}
-          placeholder={capitalizeFirstLetter(name)}
-          {...FormModel.styleProps()}
-          {...props}
-        />
-      </AppSkeleton>
-      <ErrorLabel message={error} />
-    </VStack>
-  )
+interface Props {
+  label?: string;
+  textareaProps?: TextareaProps;
+  description?: string;
+  error?: string;
 }
 
-export default AppTextarea
+export default function Textarea({ label, textareaProps, description, error }: Props) {
+  const maxCharacters = 100
+
+  const baseTextareaProps: TextareaProps = {
+    maxLength: maxCharacters,
+    rows: 3,
+    mt: 4,
+    border: "1px solid #292929",
+    paddingBlock: 3,
+    paddingInline: 4,
+    placeholder: "What’s up?",
+    color: "#7B7B7B",
+    resize: "none" as "none",
+    _placeholder: { color: "#7B7B7B" },
+    _hover: {
+      borderColor: "none",
+      backgroundColor: "#1E1E1E",
+      border: "1px solid #3C3C3C"
+    },
+    _focusVisible: {},
+    _focus: {
+      borderColor: "none",
+      backgroundColor: "#1E1E1E",
+      border: "1px solid #7B7B7B"
+    },
+    ...textareaProps
+  }
+
+  const textareaElement = (
+    <ChakraTextarea
+      {...baseTextareaProps}
+    />
+  )
+
+  return (
+    <InputGroup display="flex" flexDirection="column">
+      {label && (
+        <FormLabel margin={0} fontSize={16} color="white">
+          {label}
+          {description && <AppTypography mt={1} color={"#7B7B7B"} fontSize={"14px"}>{description}</AppTypography>}
+        </FormLabel>
+      )}
+      {textareaElement}
+      <AppTypography
+        mt={2}
+        mr={4}
+        alignSelf="flex-end"
+        color="#7B7B7B"
+        userSelect="none"
+      >
+        {textareaProps.value.toString().length}/{maxCharacters}
+      </AppTypography>
+      {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+    </InputGroup>
+  )
+}
