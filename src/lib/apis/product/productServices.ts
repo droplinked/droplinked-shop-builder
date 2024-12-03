@@ -8,16 +8,15 @@ import {
     IimportAffiliateProduct,
     IproductByIdServices,
     IproductDeleteServices,
-    IproductList,
+    IProductFetchParams,
     IProductReorder,
     IproductState,
     IProductTile,
     IproductUpdateServices,
 } from "./interfaces";
 
-export const productServices = ({ page, limit, filter }: IproductList) => {
-    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`);
-};
+export const getShopProductsService = ({ page, limit, filter }: IProductFetchParams) =>
+    axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`)
 
 export const productCreateServices = (params: IproductState) => {
     return axiosInstance.post("product", params);

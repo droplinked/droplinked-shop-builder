@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
+import Input from '../input/Input'
 import DataGridButtons from './components/buttons/DatagridButtons'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
-import AppTypography from 'components/common/typography/AppTypography'
-import AppIcons from 'assest/icon/Appicons'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
-import Input from '../input/Input'
 
 // Context - simplified since we're not passing everything through context
 const PageGridContext = createContext<{ loading?: boolean }>({})
@@ -60,7 +60,7 @@ function PageGridContent({ children, loading }: PageGridContentProps) {
     const isLoading = loading ?? contextLoading
 
     return (
-        <Flex flexDirection="column" borderRadius="8px" width="100%" background="#1C1C1C" align="stretch">
+        <Flex w="full" flexDirection="column">
             {isLoading ? <DataGridSkeleton /> : children}
         </Flex>
     )

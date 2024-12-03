@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import { ColumnDef } from '@tanstack/react-table';
 import AppTypography from "components/common/typography/AppTypography";
 import PageGrid from "components/redesign/page-grid/PageGrid";
@@ -50,7 +49,7 @@ function CollectionGrid({
             header: '',
             cell: info => <ControlsListCollection collection={info.row.original} fetch={refetch} />
         }
-    ];
+    ]
 
     return (
         <PageGrid.Root>
@@ -77,21 +76,19 @@ function CollectionGrid({
                 }}
             />
             <PageGrid.Content>
-                <Box width={"100%"}>
-                    <Table
-                        columns={columns}
-                        data={rows}
-                        isLoading={isFetching}
-                        emptyView={
-                            <AppTypography fontSize={16} fontWeight={500} color={"white"}>
-                                No collections available. Create a new collection to get started.
-                            </AppTypography>
-                        }
-                    />
-                </Box>
+                <Table
+                    columns={columns}
+                    data={rows}
+                    isLoading={isFetching}
+                    emptyView={
+                        <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                            No collections available. Create a new collection to get started.
+                        </AppTypography>
+                    }
+                />
             </PageGrid.Content>
         </PageGrid.Root>
-    );
+    )
 }
 
-export default CollectionGrid;
+export default CollectionGrid

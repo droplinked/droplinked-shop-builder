@@ -2,16 +2,15 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import Table from 'components/redesign/table/Table'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
+import useAppStore from 'lib/stores/app/appStore'
 import { SHOP_URL } from 'lib/utils/app/variable'
-import { formattedCurrency } from 'lib/utils/helpers/helpers'
-import Table from 'pages/invoice-management/components/Table'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
 import React, { useRef } from 'react'
 import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 interface Props {
     invoices: Invoice[]
@@ -27,7 +26,6 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
-        { accessorKey: '_id', header: 'ID Number', cell: info => info.getValue() },
         {
             accessorKey: 'email',
             header: 'Client',
@@ -84,7 +82,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 data={invoices}
                 renderActions={renderActions}
                 emptyView={
-                    <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                    <AppTypography fontSize={16} fontWeight={500} color="white">
                         No invoices available. Create a new invoice to get started.
                     </AppTypography>
                 }

@@ -19,6 +19,7 @@ function InvoiceManagement() {
         queryFn: ({ pageParam = 1 }) => getInvoicesService({ ...invoiceFilters, page: pageParam }),
         getNextPageParam: (lastPage) => lastPage.data.nextPage,
     })
+    console.log("hasNextPage", hasNextPage)
 
     const invoices = data?.pages.flatMap(page => page.data.data) || []
     const shouldShowEmptyView = !invoices.length && !invoiceFilters.search && !invoiceFilters.status && !isFetching
