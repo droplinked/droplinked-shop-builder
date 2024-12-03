@@ -1,6 +1,5 @@
 import { HStack, VStack, Box } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
-import ErrorLabel from '../labels/errorLabel/errorLabel';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import React, { useContext } from 'react';
 import ruleModelContext from '../../context';
@@ -28,7 +27,7 @@ function RulesetAddress() {
     return (
         <VStack align={"stretch"} spacing={1} width={"100%"}>
             <AppSkeleton isLoaded={loading} width={"100%"}>
-                <VStack alignItems="center" justifyContent={"center"} width={"100%"} style={{ cursor: "text", ...errors?.address && { border: "1px solid #FF2244" } }} borderRadius="8px">
+                <VStack alignItems="center" justifyContent={"center"} width={"100%"} style={{ cursor: "text", ...errors?.address && { border: "1px solid #FF2244", padding: 10 } }} borderRadius="8px">
                     {values.address.map((input, index) => (
                         <HStack gap={0} width={"100%"} key={index} borderRadius="4px" justifyContent="center" alignItems="end">
                             <Input
@@ -57,7 +56,6 @@ function RulesetAddress() {
                     ))}
                 </VStack>
             </AppSkeleton>
-            <ErrorLabel message={errors?.address} />
         </VStack>
     );
 }
