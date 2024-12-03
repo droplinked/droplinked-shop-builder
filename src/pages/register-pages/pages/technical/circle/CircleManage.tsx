@@ -1,17 +1,17 @@
-import { Box, ModalBody, ModalCloseButton, ModalHeader, useDisclosure, Spinner, Skeleton, SkeletonCircle } from "@chakra-ui/react";
+import { Box, ModalBody, ModalCloseButton, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
+import Button from "components/redesign/button/Button";
 import AppModal from "components/redesign/modal/AppModal";
+import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
 import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
-import Button from "pages/invoice-management/components/Button";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "../parts/connect/ConnectWallets";
-import { motion } from "framer-motion";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
@@ -118,9 +118,9 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                                     display: "flex",
                                                     ...(chain?.amount &&
                                                         chain?.amount !== "0" && {
-                                                            "&:hover .hover-amount": { maxWidth: "100%", transition: "max-width .5s ease" },
-                                                            "&:hover .hover-symbol": { opacity: "0", transition: "opacity .5s ease" },
-                                                        }),
+                                                        "&:hover .hover-amount": { maxWidth: "100%", transition: "max-width .5s ease" },
+                                                        "&:hover .hover-symbol": { opacity: "0", transition: "opacity .5s ease" },
+                                                    }),
                                                 }}
                                             >
                                                 <AppTypography
@@ -192,7 +192,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                                             .then(async (res) => {
                                                                 if (res?.data?.data === true) await refetch();
                                                             })
-                                                            .catch((e) => {})
+                                                            .catch((e) => { })
                                                             .finally(() => {
                                                                 setWithdrawingChain(null);
                                                             });

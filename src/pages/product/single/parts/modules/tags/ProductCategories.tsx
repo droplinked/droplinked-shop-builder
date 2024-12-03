@@ -4,7 +4,7 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productCategoryervices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from 'react-query'
 
 function ProductCategories() {

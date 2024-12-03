@@ -1,4 +1,3 @@
-import { InputProps } from "@chakra-ui/react"
 
 export interface IAppForm {
     error?: string
@@ -31,12 +30,12 @@ const FormModel = ({
             _focus: {
                 borderColor: "none",
                 backgroundColor: "#1E1E1E",
-                border: "1px solid #292929"
+                border: "1px solid #7B7B7B"
             },
             _hover: {
                 borderColor: "none",
                 backgroundColor: "#1E1E1E",
-                border: "1px solid #292929"
+                border: "1px solid #3C3C3C"
             }
         }
     }
