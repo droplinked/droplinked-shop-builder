@@ -17,7 +17,7 @@ import TextboxRule from "./components/textbox/TextboxRule";
 import RulesetType from "./components/type/RulesetType";
 import ruleModelContext from "./context";
 import { IFormData, makeInitialValues, ruleModalFormConfig } from "./formConfig";
-import Select from "components/redesign/select/AppSelect";
+import Select from "components/redesign/select/Select";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 
 // This modal is used to add a new rule or edit an existing rule

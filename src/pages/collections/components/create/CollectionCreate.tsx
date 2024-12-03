@@ -13,7 +13,7 @@ import ModalWrapper from './_components/ModalWrapper';
 import { ICollectionForm } from './interface/interfaces';
 import ImageUploader from './_components/ImageUploader';
 import ModalButtons from './_components/ModalButtons';
-import AppTextarea from 'components/redesign/textarea/AppTextarea';
+import Textarea from 'components/redesign/textarea/Textarea';
 import Input from 'components/redesign/input/Input';
 
 interface IProps {
@@ -79,7 +79,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                                             label={field.label}
                                             description={field.description}
                                             error={errors[field.name]}
-                                        /> : <AppTextarea
+                                        /> : <Textarea
                                             textareaProps={{
                                                 name: field.name,
                                                 value: values[field.name],
