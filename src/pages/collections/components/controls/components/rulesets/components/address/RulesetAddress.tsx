@@ -1,13 +1,11 @@
 import { HStack, VStack, Box } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
-import ErrorLabel from 'components/redesign/form/errorLabel/errorLabel';
-import FieldLabel from 'components/redesign/form/fieldLabel/FieldLabel';
+import ErrorLabel from '../labels/errorLabel/errorLabel';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import AppTypography from 'components/common/typography/AppTypography';
 import React, { useContext } from 'react';
 import ruleModelContext from '../../context';
-import AppInput from 'components/redesign/form/textbox/AppInput';
 import { FaPlus } from 'react-icons/fa6';
+import Input from 'components/redesign/input/Input';
 
 function RulesetAddress() {
     const { loading, setFieldValue, values, errors } = useContext(ruleModelContext);
@@ -29,31 +27,29 @@ function RulesetAddress() {
 
     return (
         <VStack align={"stretch"} spacing={1} width={"100%"}>
-            <VStack align="stretch" spacing={1}>
-                <FieldLabel label='Contract Address' isRequired loading={loading} />
-                <AppTypography fontSize="14px" color="#7b7b7b">Enter the contract addresses to be used for validation of possession or ownership.</AppTypography>
-            </VStack>
             <AppSkeleton isLoaded={loading} width={"100%"}>
                 <VStack alignItems="center" justifyContent={"center"} width={"100%"} style={{ cursor: "text", ...errors?.address && { border: "1px solid #FF2244" } }} borderRadius="8px">
                     {values.address.map((input, index) => (
-                        <HStack gap={0} width={"100%"} key={index} borderRadius="4px" justifyContent={"center"} alignItems="center">
-                            <AppInput
-                                name={"text"}
-                                width="100%"
-                                height="48px"
-                                value={input}
-                                placeholder={`Option ${index + 1}`}
-                                onChange={e => handleInputChange(index, e.target.value)}
-                                variant="unstyled"
-                                color="#777"
+                        <HStack gap={0} width={"100%"} key={index} borderRadius="4px" justifyContent="center" alignItems="end">
+                            <Input
+                                inputProps={{
+                                    name: "text",
+                                    value: input,
+                                    placeholder: `Option ${index + 1}`,
+                                    onChange: e => handleInputChange(index, e.target.value),
+                                    isRequired: true,
+                                    height: "48px"
+                                }}
+                                label={index === 0 && 'Contract Address'}
+                                description={index === 0 && 'Enter the contract addresses to be used for validation of possession or ownership.'}
                             />
                             {values.address.length > 1 && index < values.address.length - 1 && (
-                                <Box cursor={"pointer"} mt={"1rem"} onClick={() => handleDelete(index)}>
+                                <Box ml={2} mb={4} cursor={"pointer"} onClick={() => handleDelete(index)}>
                                     <AppIcons.TrashRed />
                                 </Box>
                             )}
                             {index === values.address.length - 1 && (
-                                <Box cursor={"pointer"} mt={"1rem"} onClick={addInput}>
+                                <Box ml={2} mb={4} cursor={"pointer"} onClick={addInput}>
                                     <FaPlus color='#2BCFA1' />
                                 </Box>
                             )}

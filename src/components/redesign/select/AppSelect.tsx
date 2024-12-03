@@ -56,7 +56,7 @@ function Select({
         <ChakraSelect
             value={valueAccessor ? value?.[valueAccessor] : JSON.stringify(value)}  // Update the value prop
             height={12}
-            border={"1px solid #292929"}
+            border={`1px solid ${error ? "#E53E3E" : "#292929"}`}
             borderWidth={"1.5px"}
             borderRadius={8}
             color={"#7B7B7B"}

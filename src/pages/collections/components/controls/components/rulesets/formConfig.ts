@@ -31,7 +31,7 @@ export const makeInitialValues = (state: IcreateRuleService) => {
     return {
         description: state?.description || "",
         nftPurchaseLink: state?.nftPurchaseLink || "",
-        chain: state?.network || "ETH",
+        chain: state?.network || null,
         blockchainType: state?.blockchainType || "NFT",
         type: state?.type || "GATING",
         discountPercentage: state?.discountPercentage || 0,

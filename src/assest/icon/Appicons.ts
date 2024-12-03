@@ -258,6 +258,7 @@ import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
 import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
+import { ReactComponent as Required } from "./required.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -519,7 +520,8 @@ const AppIcons = {
     GatingRuleset,
     DotSpacer,
     EditOutlined,
-    HidedIcon
+    HidedIcon,
+    Required
 };
 
 export default AppIcons

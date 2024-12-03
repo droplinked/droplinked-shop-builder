@@ -1,5 +1,4 @@
 import { Flex, VStack } from '@chakra-ui/react';
-import AppInput from 'components/redesign/form/textbox/AppInput';
 import { Form, Formik } from 'formik';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { Collection } from 'lib/apis/collection/interfaces';

@@ -1,4 +1,5 @@
 import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps } from '@chakra-ui/react';
+import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import Button from 'components/redesign/button/Button';
 import React from 'react';
@@ -29,7 +30,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         _hover: {
             borderColor: "none",
             backgroundColor: "#1E1E1E",
-            border: "1px solid #3C3C3C"
+            border: `1px solid ${error ? "#E53E3E" : "#3C3C3C"}`
         },
         _focusVisible: {},
         _focus: {
@@ -45,11 +46,10 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         display: "flex",
         alignItems: "center",
         gap: 2,
-        border: "1.5px solid #292929",
         borderRadius: 8,
-        py: actionButton ? 2 : 3,
-        pl: 4,
-        pr: actionButton ? 2 : 4,
+        py: actionButton ? 2 : error ? 0 : 3,
+        pl: error ? 0 : 4,
+        pr: actionButton ? 2 : error ? 0 : 4,
         ...inputGroupProps
     }
 
@@ -71,7 +71,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
 
     const inputElement = (
         <ChakraInput
-            border={icon || actionButton ? "none" : "1.5px solid #292929"}
+            border={icon || actionButton ? "none" : `1.5px solid ${error ? "#E53E3E" : "#292929"}`}
             px={icon || actionButton ? 0 : 4}
             {...baseInputProps}
         />
@@ -95,7 +95,9 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
     return (
         <InputGroup display="flex" flexDirection="column" gap={2}>
             <FormLabel mb={4} width="fit-content" fontSize={14} fontWeight={500} color="white">
-                {label}
+                <Flex justifyItems="center" alignItems="center" gap="0.5rem">
+                    {label} {inputProps.isRequired && <AppIcons.Required />}
+                </Flex>
                 {description && <AppTypography mt={1} color={"#7B7B7B"} fontSize={"14px"}>{description}</AppTypography>}
             </FormLabel>
 
