@@ -1,7 +1,7 @@
 import { Box, VStack } from '@chakra-ui/react'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import ProductTypeModel from '../../model'
 import ProductTypeDetail from './parts/details/ProductTypeDetail'
 

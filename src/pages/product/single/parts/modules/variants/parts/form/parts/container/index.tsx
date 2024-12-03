@@ -1,10 +1,10 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import React, { useContext, useMemo } from 'react'
-import TextBoxVariantForm from './parts/textbox/textBoxVariantForm'
-import variontFormContext from '../../context'
 import ErrorLabel from 'components/common/form/errorLabel/errorLabel'
-import AppTypography from 'components/common/typography/AppTypography'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
+import AppTypography from 'components/common/typography/AppTypography'
+import React, { useContext, useMemo } from 'react'
+import variontFormContext from '../../context'
+import TextBoxVariantForm from './parts/textbox/textBoxVariantForm'
 
 function VariantMakeForm({ caption, property }) {
     const { form } = useContext(variontFormContext)

@@ -1,10 +1,10 @@
 import { SelectProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import Select from 'components/redesign/select/AppSelect'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
-import Select from 'components/redesign/select/AppSelect'
 
 interface IAppSelectBoxItems {
     value: string | number | null

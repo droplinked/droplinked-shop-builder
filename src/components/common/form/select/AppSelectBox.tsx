@@ -15,23 +15,17 @@ interface Iprops extends Omit<IAppForm, "name">, SelectProps {
 }
 
 function AppSelectBox(props: Iprops) {
-    const { error, items, loading } = props
+    const { error, items, loading, value } = props
 
     return (
         <VStack align="stretch" width="100%" spacing={1}>
             <AppSkeleton isLoaded={loading}>
                 <Select
-                    // style={{ boxShadow: "unset" }}
-                    // isInvalid={error ? true : false}
-                    // {...FormModel.styleProps()}
-                    // size="lg"
-                    // iconSize={"30px"}
-                    // padding={0}
                     items={items}
                     labelAccessor='caption'
                     valueAccessor='value'
                     {...props}
-                    selectProps={{ onChange: props.onChange }}
+                    selectProps={{ onChange: props.onChange, value }}
                 />
             </AppSkeleton>
             <ErrorLabel message={error} />
