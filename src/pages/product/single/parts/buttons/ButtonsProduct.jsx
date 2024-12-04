@@ -50,8 +50,8 @@ function ButtonsProduct() {
     }
 
     const recordCreatedProduct = async () => {
+        const product = createdProductRef.current
         try {
-            const product = createdProductRef.current
             const { commission, sku } = state
             const hashkey = await web3({
                 method: "record_batch",
@@ -71,8 +71,9 @@ function ButtonsProduct() {
             onOpen()
         }
         catch (error) {
-            shopNavigate("products")
             showToast({ message: error.message || "Something went wrong during the recording process", type: "error" })
+            await update.mutateAsync({ productID: productID || product._id, params: { publish_product: false, digitalDetail: {chain: null}} })
+            shopNavigate(`products/${product._id}`)
         }
     }
 
