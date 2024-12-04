@@ -13,6 +13,9 @@ import { ReactComponent as AffiliateStoreTwitter } from "./affiliate-store-twitt
 import { ReactComponent as AffiliateStoreYoutube } from "./affiliate-store-youtube.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
 import { ReactComponent as AscSorting } from "./asc-sorting.svg";
+import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
+import { ReactComponent as AvailableFilled } from "./available-filled.svg";
+import { ReactComponent as Available } from "./available.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
@@ -45,6 +48,7 @@ import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
+import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
@@ -76,15 +80,19 @@ import { ReactComponent as DeliveryTruck } from "./delivery-truck.svg";
 import { ReactComponent as DescSorting } from "./desc-sorting.svg";
 import { ReactComponent as Desktop } from "./desktop-icon.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
+import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
+import { ReactComponent as DiscountRuleset } from "./discount-ruleset.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
 import { ReactComponent as Document } from "./document.svg";
+import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIconWhite } from "./edit-icon-white.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
+import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
 import { ReactComponent as Edit } from "./edit.svg";
 import { ReactComponent as Email } from "./email.svg";
 import { ReactComponent as EnterprisePlan } from "./enterprise-plan.svg";
@@ -92,11 +100,13 @@ import { ReactComponent as ETH } from "./eth.svg";
 import { ReactComponent as EventCalendar } from "./event-calendar.svg";
 import { ReactComponent as EventHost } from "./event-host.svg";
 import { ReactComponent as EventLocation } from "./event-location.svg";
+import { ReactComponent as EventTicket } from "./event-ticket.svg";
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
+import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
 import { ReactComponent as GrayDollor } from "./gray-dollar.svg";
@@ -118,12 +128,15 @@ import { ReactComponent as HeaderShirt } from "./header-shirt.svg";
 import { ReactComponent as HeaderTokenCoin } from "./header-token-coin.svg";
 import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
+import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
 import { ReactComponent as ImportFile } from "./import-file.svg";
 import { ReactComponent as ImportProduct } from "./import-product.svg";
+import { ReactComponent as Infinity } from "./infinity.svg";
 import { ReactComponent as InfoIcon } from "./info-icon.svg";
 import { ReactComponent as Info } from "./info.svg";
 import { ReactComponent as InformationIcon } from "./information-icon.svg";
+import { ReactComponent as InstagramOutlined } from "./instagram-outlined.svg";
 import { ReactComponent as InstagramIcon } from "./instagram.svg";
 import { ReactComponent as InvisibleIcon } from "./invisible-icon.svg";
 import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
@@ -136,10 +149,12 @@ import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-ni
 import { ReactComponent as LandingPageLink } from "./landing-page-link.svg";
 import { ReactComponent as LandingPageTemplate } from "./landing-page-template.svg";
 import { ReactComponent as Linea } from "./linea.svg";
+import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as Maximize } from "./maximize.svg";
+import { ReactComponent as MedalStar } from "./medalStar.svg";
 import { ReactComponent as MetaverseStore } from "./metaverse-store.svg";
 import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
@@ -178,11 +193,16 @@ import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
 import { ReactComponent as RedTrash } from "./red-trash.svg";
 import { ReactComponent as Redbelly } from "./redbelly.svg";
 import { ReactComponent as Refresh } from "./refresh.svg";
+import { ReactComponent as ReorderDesigned } from "./reorderDesigned.svg";
+import { ReactComponent as Required } from "./required.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
-import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
+import { ReactComponent as RulesetModalIcon } from "./ruleSetModalIcon.svg";
 import { ReactComponent as RulesetsIcon } from "./ruleset.svg";
+import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
+import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
+import { ReactComponent as Services } from "./services.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
 import { ReactComponent as ShareIcon } from "./share-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
@@ -213,12 +233,15 @@ import { ReactComponent as StarOn } from "./star-on.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
 import { ReactComponent as StarterPlan } from "./starter-plan.svg";
+import { ReactComponent as Statistics } from "./statistics.svg";
 import { ReactComponent as StripePayment } from "./stripe-payment.svg";
 import { ReactComponent as StripeS } from "./stripe-s-icon.svg";
 import { ReactComponent as Stripe } from "./stripe.svg";
 import { ReactComponent as Stacks } from "./stx.svg";
 import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
+import { ReactComponent as Subscription } from "./subscription.svg";
 import { ReactComponent as TearIcon } from "./tear-icon.svg";
+import { ReactComponent as TelegramOutlined } from "./telegram-outlined.svg";
 import { ReactComponent as ThreeStars } from "./three-stars.svg";
 import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
@@ -237,31 +260,11 @@ import { ReactComponent as NFT } from "./white-nft-icon.svg";
 import { ReactComponent as WhiteOpenWallet } from "./white-open-wallet.svg";
 import { ReactComponent as WhiteShopIcon } from "./white-shop.svg";
 import { ReactComponent as WhiteTrash } from "./white-trash.svg";
+import { ReactComponent as XOutlined } from "./x-outlined.svg";
 import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as XOutlined } from "./x-outlined.svg";
-import { ReactComponent as TelegramOutlined } from "./telegram-outlined.svg";
-import { ReactComponent as InstagramOutlined } from "./instagram-outlined.svg";
-import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
-import { ReactComponent as Available } from "./available.svg";
-import { ReactComponent as Statistics } from "./statistics.svg";
-import { ReactComponent as Infinity } from "./infinity.svg";
-import { ReactComponent as MedalStar } from "./medalStar.svg";
-import { ReactComponent as AvailableFilled } from "./available-filled.svg";
-import { ReactComponent as NotAvailableFilled } from "./available-filled-off.svg";
-import { ReactComponent as DiscordOutlined } from "./discord-outlined.svg";
-import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
-import { ReactComponent as ReorderDesigned } from "./reorderDesigned.svg";
-import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
-import { ReactComponent as RulesetModalIcon } from "./ruleSetModalIcon.svg";
-import { ReactComponent as DiscountRuleset } from "./discount-ruleset.svg";
-import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
-import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
-import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
-import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
-import { ReactComponent as Required } from "./required.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -527,7 +530,10 @@ const AppIcons = {
     DotSpacer,
     EditOutlined,
     HidedIcon,
-    Required
-};
+    Required,
+    EventTicket,
+    Services,
+    Subscription
+}
 
 export default AppIcons
