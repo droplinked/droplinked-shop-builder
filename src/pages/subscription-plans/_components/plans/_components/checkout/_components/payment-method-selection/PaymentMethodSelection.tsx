@@ -18,7 +18,14 @@ import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
-import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from 'droplinked-web3';
+import {
+	Chain,
+	ChainWallet,
+	DropWeb3,
+	Network,
+	Web3Actions,
+	ZERO_ADDRESS,
+} from 'droplinked-web3';
 
 interface Props {
 	setModalData: React.Dispatch<React.SetStateAction<ModalState>>;
@@ -133,9 +140,10 @@ export default function PaymentMethodSelection({
 					recurring: false,
 				},
 			});
-			const { transactionHash } = await paymentProvider.customPayment(
-				paymentData
-			);
+			const { transactionHash } = await paymentProvider.customPayment({
+				tokenAddress: ZERO_ADDRESS,
+				...paymentData,
+			});
 			await sendPlanPurchaseTransactionToWeb3Service(
 				paymentMethodType,
 				{
