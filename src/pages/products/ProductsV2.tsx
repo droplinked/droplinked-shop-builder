@@ -3,13 +3,15 @@ import AppIcons from 'assest/icon/Appicons'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
 import React, { useState } from 'react'
+import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable'
 import ProductTypesModal from './components/ProductTypesModal/ProductTypesModal'
 
 function ProductsV2() {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const productTypeModal = useDisclosure()
+    const productReorderModal = useDisclosure()
 
     return (
         <>
@@ -21,22 +23,18 @@ function ProductsV2() {
                         {
                             caption: "New Product",
                             leftIcon: <AppIcons.BlackPlus />,
-                            onClick: onOpen
+                            onClick: productTypeModal.onOpen
                         },
                         {
                             caption: "Import",
                             variant: "secondary",
-                            leftIcon: (
-                                <Box sx={{ svg: { path: { stroke: 'white' } } }}>
-                                    <AppIcons.Download />
-                                </Box>
-                            ),
+                            leftIcon: <Box sx={{ svg: { path: { stroke: 'white' } } }}><AppIcons.Download /></Box>,
                             onClick: () => console.log("import")
                         },
                         {
                             caption: "Reorder Products",
                             variant: "secondary",
-                            onClick: () => console.log("Reorder Products")
+                            onClick: productReorderModal.onOpen
                         }
                     ]}
                 />
@@ -45,7 +43,8 @@ function ProductsV2() {
                     <ProductTable searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
             </PageGrid.Root>
-            <ProductTypesModal isOpen={isOpen} onClose={onClose} />
+            <ProductTypesModal isOpen={productTypeModal.isOpen} onClose={productTypeModal.onClose} />
+            <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
         </>
     )
 }

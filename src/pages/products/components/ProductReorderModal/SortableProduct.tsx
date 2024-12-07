@@ -6,7 +6,12 @@ import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
-function SortableProduct({ product }) {
+interface Props {
+    product: any
+    isLastOne: boolean
+}
+
+function SortableProduct({ product, isLastOne }: Props) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
         id: product._id,
         animateLayoutChanges: () => false
@@ -15,22 +20,23 @@ function SortableProduct({ product }) {
     return (
         <Flex
             ref={setNodeRef}
-            justifyContent="space-between"
             alignItems="center"
+            gap={6}
+            paddingBlock={5}
+            paddingInline={12}
             transform={CSS.Transform.toString(transform)}
             transition={transition}
             {...attributes}
             {...listeners}
+            {...(!isLastOne && { borderBottom: "1px solid #3C3C3C" })}
         >
-            <Flex alignItems="center" gap={3}>
-                <AppImage
-                    src={product.media.find(image => image.isMain === "true")?.thumbnail}
-                    width={12}
-                    height={12}
-                    borderRadius={1}
-                />
-                <AppTypography fontSize={16} fontWeight={500} color="#c2c2c2">{product.title}</AppTypography>
-            </Flex>
+            <AppImage
+                src={product.media.find(image => image.isMain === "true")?.thumbnail}
+                width={12}
+                height={12}
+                borderRadius={8}
+            />
+            <AppTypography flex={1} fontSize={16} color="#FFF">{product.title}</AppTypography>
             <AppIcons.VerticalMove />
         </Flex>
     )

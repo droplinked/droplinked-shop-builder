@@ -166,7 +166,6 @@ import { ReactComponent as NewSolana } from "./new-solana.svg";
 import { ReactComponent as NewStripe } from "./new-stripe.svg";
 import { ReactComponent as NotSorted } from "./not-sorted.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
-import { ReactComponent as Order } from "./order.svg";
 import { ReactComponent as Paint } from "./paint.svg";
 import { ReactComponent as PaymentMethodSelection } from "./payment-method-selection.svg";
 import { ReactComponent as Pen } from "./pen.svg";
@@ -254,6 +253,7 @@ import { ReactComponent as Unlock } from "./unlock.svg";
 import { ReactComponent as UnstoppableDomainsIcon } from "./unstoppableDomains.svg";
 import { ReactComponent as Upload } from "./upload-icon.svg";
 import { ReactComponent as UserInvitation } from "./user-invitation.svg";
+import { ReactComponent as VerticalMove } from "./vertical-move.svg";
 import { ReactComponent as VisibleIcon } from "./visible-icon.svg";
 import { ReactComponent as Web } from "./web.svg";
 import { ReactComponent as NFT } from "./white-nft-icon.svg";
@@ -353,7 +353,7 @@ const AppIcons = {
     GreenAlert,
     YellowAlert,
     StripeS,
-    Order,
+    VerticalMove,
     BluePlus,
     WhiteTrash,
     StarOff,
