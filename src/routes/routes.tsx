@@ -1,7 +1,6 @@
 import MainLayout from "components/layouts/app/main/mainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
-import CreateWallet from "components/modals/create-wallet/CreateWallet";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import NotFound from "pages/404/404";
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage";
@@ -73,6 +72,7 @@ function AppRoutes() {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<HomePage />} />
+                    <Route path="signup" element={<HomePage isAuth={true} />} />
                     <Route path="enquiry" element={<Enquiry />} />
                     <Route path="terms" element={<TermsPage />} />
                     <Route path="about" element={<AboutUs />} />

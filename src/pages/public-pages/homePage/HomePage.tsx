@@ -4,7 +4,7 @@ import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Banner from './parts/banner/Banner';
 import Community from './parts/community/Community';
@@ -19,9 +19,10 @@ import Supported from './parts/supported/Supported';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
-function HomePage() {
+function HomePage({ isAuth }: { isAuth?: boolean }) {
   const { user, shop } = useAppStore()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate()
   const [States, setStates] = useState({
     pause: false,
     loaded: [],
@@ -42,7 +43,18 @@ function HomePage() {
       setStates((prev) => ({ ...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN }))
       onOpen();
     }
-  }, [searchParams]);
+    if (isAuth) {
+      setStates((prev) => ({ ...prev, typeOfModal: MODAL_TYPE.SIGNUP }))
+      onOpen();
+    }
+  }, [searchParams, isAuth]);
+
+  const handleCloseModal = () => {
+    onClose()
+    if (isAuth) {
+      navigate("/")
+    }
+  }
 
 
   const effects = useMemo(() => (
@@ -99,7 +111,7 @@ function HomePage() {
         </Flex>
 
       </ParallaxProvider>
-      {isOpen && <AuthModal show={true} type={States.typeOfModal} close={onClose} />}
+      {isOpen && <AuthModal show={true} type={States.typeOfModal} close={handleCloseModal} />}
       <Footer />
     </>
   )
