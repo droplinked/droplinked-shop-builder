@@ -3,13 +3,13 @@ import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import AppModal from 'components/redesign/modal/AppModal';
-import Button from 'pages/invoice-management/components/Button';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import PartnerContext, { StepsType } from '../../context/partner.context';
 import { useWalletVerification } from './useWalletVerification';
+import Button from 'components/redesign/button/Button';
 
 const WalletVerificationModal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
