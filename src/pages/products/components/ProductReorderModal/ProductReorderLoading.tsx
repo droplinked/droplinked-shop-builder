@@ -13,11 +13,15 @@ export default function ProductReorderLoading() {
 }
 
 const LoadingItem = () => (
-    <Flex justifyContent="space-between" alignItems="center">
-        <Flex alignItems="center" gap={3}>
-            <AppSkeleton isLoaded={false} width={12} height={12} />
-            <AppSkeleton isLoaded={false} width="200px" height={6} />
-        </Flex>
+    <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        gap={6}
+        paddingBlock={5}
+        paddingInline={12}
+    >
+        <AppSkeleton isLoaded={false} width={12} height={12} borderRadius={8} />
+        <AppSkeleton isLoaded={false} flex={1} height={6} />
         <AppSkeleton isLoaded={false} width={6} height={6} />
     </Flex>
 )
