@@ -19,7 +19,7 @@ import Supported from './parts/supported/Supported';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
-function HomePage({ shouldShowAuthModal }: { shouldShowAuthModal?: boolean }) {
+function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
   const { user, shop } = useAppStore()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate()
@@ -43,15 +43,15 @@ function HomePage({ shouldShowAuthModal }: { shouldShowAuthModal?: boolean }) {
       setStates((prev) => ({ ...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN }))
       onOpen();
     }
-    if (shouldShowAuthModal) {
+    if (showAuthModal) {
       setStates((prev) => ({ ...prev, typeOfModal: MODAL_TYPE.SIGNUP }))
       onOpen();
     }
-  }, [searchParams, shouldShowAuthModal]);
+  }, [searchParams, showAuthModal]);
 
   const handleCloseModal = () => {
     onClose()
-    if (shouldShowAuthModal) {
+    if (showAuthModal) {
       navigate("/")
     }
   }
