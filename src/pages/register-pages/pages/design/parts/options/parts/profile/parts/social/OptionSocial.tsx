@@ -11,9 +11,9 @@ function OptionSocial() {
     const { items } = optionSocialModel
 
     const change = useCallback((e) => {
-        const value = e.value
+        const value = e.target.value
         if (value) setSocials(value)
-        e.value = ''
+            e.target.value = ''
     }, [])
 
     return (
