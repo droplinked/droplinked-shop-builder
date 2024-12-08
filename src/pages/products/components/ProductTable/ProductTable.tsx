@@ -6,9 +6,9 @@ import Table from 'components/redesign/table/Table'
 import useProducts, { productStatusMap, productTypeMap } from 'functions/hooks/useProducts/useProducts'
 import useAppStore from 'lib/stores/app/appStore'
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
-import React from 'react'
-import ProductActionMenu from './ProductActionMenu'
+import React, { memo } from 'react'
 import ProductStatusBadge from './ProductStatusBadge'
+import ProductTableActionMenu from './ProductTableActionMenu'
 
 interface Props {
     searchTerm: string
@@ -17,7 +17,6 @@ interface Props {
 function ProductTable({ searchTerm }: Props) {
     const { shop: { currency } } = useAppStore()
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
-    console.log({ hasNextPage, fetchNextPage })
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
@@ -55,10 +54,10 @@ function ProductTable({ searchTerm }: Props) {
             isLoading={isFetching}
             columns={columns}
             data={products}
-            renderActions={(product: any) => <ProductActionMenu product={product} />}
+            renderActions={(product: any) => <ProductTableActionMenu product={product} />}
             infiniteScroll={{ dataLength: products.length, hasMore: hasNextPage, next: fetchNextPage, isFetchingNextPage }}
         />
     )
 }
 
-export default ProductTable
+export default memo(ProductTable)

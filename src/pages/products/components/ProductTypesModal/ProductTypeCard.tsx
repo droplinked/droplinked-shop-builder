@@ -9,9 +9,10 @@ interface ProductTypeCardProps {
         text: string
         variant: string
     }
+    onProductTypeSelection: (productType: string) => void
 }
 
-function ProductTypeCard({ icon, title, description, badge }: ProductTypeCardProps) {
+function ProductTypeCard({ icon, title, description, badge, onProductTypeSelection }: ProductTypeCardProps) {
     const getBadgeProps = (variant: string) => {
         const variants = {
             new: { bg: 'rgba(6, 78, 59, 0.5)', color: '#34D399' },
@@ -21,7 +22,20 @@ function ProductTypeCard({ icon, title, description, badge }: ProductTypeCardPro
     }
 
     return (
-        <Flex direction="column" padding={4}>
+        <Flex
+            width="100%"
+            direction="column"
+            padding={4}
+            border="1px solid transparent"
+            borderRadius={8}
+            cursor="pointer"
+            transition="all 400ms ease-in-out"
+            _hover={{
+                borderColor: "#292929",
+                background: "#1C1C1C"
+            }}
+            onClick={() => onProductTypeSelection("hello")}
+        >
             <Center
                 w="56px"
                 h="56px"

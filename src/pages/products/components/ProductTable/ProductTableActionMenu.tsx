@@ -2,7 +2,7 @@ import AppIcons from 'assest/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React from 'react'
 
-function ProductActionMenu({ product }: { product: any }) {
+function ProductTableActionMenu({ product }: { product: any }) {
     const actions = [
         {
             title: "Edit",
@@ -16,4 +16,4 @@ function ProductActionMenu({ product }: { product: any }) {
     )
 }
 
-export default ProductActionMenu
+export default ProductTableActionMenu

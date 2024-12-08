@@ -11,9 +11,11 @@ function DataGridButtons({ buttons }: IDataGridButtons) {
                 return (
                     <Button
                         key={index}
+                        _hover={{ opacity: "0.8" }}
+                        paddingBlock="10px"
+                        paddingInline="14px"
                         fontSize={14}
                         fontWeight={500}
-                        _hover={{ opacity: "0.8" }}
                         {...buttonProps}
                     >
                         {caption}

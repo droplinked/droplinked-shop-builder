@@ -1,54 +1,27 @@
-import { useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
-import PageGrid from 'components/redesign/page-grid/PageGrid'
-import useDebounce from 'functions/hooks/debounce/useDebounce'
-import React, { useState } from 'react'
-import ImportProductModal from './components/ImportProductModal/ImportProductModal'
-import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
-import ProductTable from './components/ProductTable'
-import ProductTypesModal from './components/ProductTypesModal/ProductTypesModal'
+import { Form, Formik, FormikProvider } from 'formik'
+import React from 'react'
+import ProductPageLayout from './components/ProductPageLayout/ProductPageLayout'
 
 function ProductsV2() {
-    const [searchTerm, setSearchTerm] = useState("")
-    const debouncedSearchTerm = useDebounce(searchTerm)
-    const productTypeModal = useDisclosure()
-    const productReorderModal = useDisclosure()
-    const importProductModal = useDisclosure()
+    const handleSubmit = (values: any) => {
+
+    }
 
     return (
-        <>
-            <PageGrid.Root>
-                <PageGrid.Header
-                    title="Products"
-                    description="Manage products all in one place. Easily create, view, and track them here."
-                    buttons={[
-                        {
-                            caption: "New Product",
-                            leftIcon: <AppIcons.BlackPlus />,
-                            onClick: productTypeModal.onOpen
-                        },
-                        {
-                            caption: "Import",
-                            variant: "secondary",
-                            leftIcon: <AppIcons.Download />,
-                            onClick: importProductModal.onOpen
-                        },
-                        {
-                            caption: "Reorder Products",
-                            variant: "secondary",
-                            onClick: productReorderModal.onOpen
-                        }
-                    ]}
-                />
-                <PageGrid.Actions search={{ value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }} />
-                <PageGrid.Content>
-                    <ProductTable searchTerm={debouncedSearchTerm} />
-                </PageGrid.Content>
-            </PageGrid.Root>
-            <ProductTypesModal isOpen={productTypeModal.isOpen} onClose={productTypeModal.onClose} />
-            <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
-            <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
-        </>
+        <Formik
+            initialValues={{}}
+            validationSchema={{}}
+            validateOnChange={false}
+            onSubmit={handleSubmit}
+        >
+            {formik =>
+                <FormikProvider value={formik}>
+                    <Form>
+                        <ProductPageLayout />
+                    </Form>
+                </FormikProvider>
+            }
+        </Formik>
     )
 }
 

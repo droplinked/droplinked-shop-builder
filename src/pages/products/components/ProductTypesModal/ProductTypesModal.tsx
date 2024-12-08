@@ -7,6 +7,7 @@ import ProductTypeCard from './ProductTypeCard'
 interface ProductTypesModalProps {
     isOpen: boolean
     onClose: () => void
+    onProductTypeSelection: (productType: string) => void
 }
 
 const productTypes = [
@@ -29,33 +30,17 @@ const productTypes = [
         icon: <AppIcons.EventTicket />,
         title: "Events",
         description: "Sell tickets for events, concerts, and other gatherings."
-    },
-    {
-        icon: <AppIcons.Subscription />,
-        title: "Subscription",
-        description: "Offer recurring subscriptions for software or content.",
-        badge: { text: "New", variant: "new" }
-    },
-    {
-        icon: <AppIcons.Services />,
-        title: "Services",
-        description: "Provide services like mentorship, coaching, and teaching.",
-        badge: { text: "Soon", variant: "soon" }
     }
 ]
 
-function ProductTypesModal({ isOpen, onClose }: ProductTypesModalProps) {
+function ProductTypesModal({ isOpen, onClose, onProductTypeSelection }: ProductTypesModalProps) {
     return (
         <AppModal
-            modalRootProps={{
-                isOpen,
-                onClose,
-                isCentered: true,
-                size: "xl"
-            }}
+            modalRootProps={{ isOpen, onClose, isCentered: true, size: "xl" }}
             modalContentProps={{
-                width: "444px",
+                width: "500px",
                 paddingBlock: "0px !important",
+                bgColor: "#141414",
                 sx: { ".chakra-modal__body": { padding: 4 } }
             }}
         >
@@ -64,13 +49,11 @@ function ProductTypesModal({ isOpen, onClose }: ProductTypesModalProps) {
                     templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
                     gap={4}
                 >
-                    {productTypes.map((product, index) => (
+                    {productTypes.map((productType, index) => (
                         <ProductTypeCard
                             key={index}
-                            icon={product.icon}
-                            title={product.title}
-                            description={product.description}
-                            badge={product.badge}
+                            {...productType}
+                            onProductTypeSelection={onProductTypeSelection}
                         />
                     ))}
                 </Grid>
