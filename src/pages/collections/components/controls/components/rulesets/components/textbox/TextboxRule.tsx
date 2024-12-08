@@ -1,21 +1,18 @@
+import AppInput from 'components/redesign/form/textbox/AppInput'
 import React, { useContext } from 'react'
 import ruleModelContext from '../../context'
-import Input from 'components/redesign/input/Input'
 
 function TextboxRule({ element, isRequired, ...props }) {
-    const { errors, setFieldValue, values } = useContext(ruleModelContext)
+    const { errors, setFieldValue, values, loading } = useContext(ruleModelContext)
     return (
-        <Input
-            inputProps={{
-                isRequired: isRequired,
-                name: element,
-                onChange: (e) => setFieldValue(element, e.target.value),
-                value: values[element] || "",
-                placeholder: props.placeholder,
-            }}
-            description={props.description}
-            label={props.label}
+        <AppInput
+            name={element}
+            onChange={(e) => setFieldValue(element, e.target.value)}
+            value={values[element] || ""}
             error={errors[element]}
+            {...props}
+            loading={loading}
+            isRequired={isRequired}
         />
     )
 }

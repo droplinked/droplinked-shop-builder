@@ -2,7 +2,8 @@ import { Box, HStack, VStack } from "@chakra-ui/react";
 import LoadingComponent from "components/common/loading-component/LoadingComponent";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
-import FieldLabel from "./components/labels/fieldLabel/FieldLabel";
+import FieldLabel from "components/redesign/form/fieldLabel/FieldLabel";
+import AppSelectBox from "components/redesign/form/select/AppSelectBox";
 import { Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
@@ -17,8 +18,6 @@ import TextboxRule from "./components/textbox/TextboxRule";
 import RulesetType from "./components/type/RulesetType";
 import ruleModelContext from "./context";
 import { IFormData, makeInitialValues, ruleModalFormConfig } from "./formConfig";
-import Select from "components/redesign/select/Select";
-import AppSkeleton from "components/common/skeleton/AppSkeleton";
 
 // This modal is used to add a new rule or edit an existing rule
 const RuleModal = ({ show, collectionId, close, ruleId }) => {
@@ -120,37 +119,40 @@ const BlockchainNetworkSelect = ({ chains, values, errors, setFieldValue, getRul
                 Choose a blockchain to verify possession or ownership of a required digital asset/NFT.
             </AppTypography>
         </VStack>
-        <AppSkeleton isLoaded={!getRule.isLoading && !chains.isLoading}>
-            <Select
-                selectProps={{
-                    name: "chain",
-                    placeholder: "Select chain",
-                    onChange: (e) => {
-                        setFieldValue("chain", e.target.value)
-                    },
-                    isRequired: true,
-                    value: values["chain"]
-                }}
-                items={
-                    chains?.data
-                        ? chains?.data?.data?.data?.networks?.map((el) => {
-                            return {
-                                value: el.chain,
-                                caption: el.name,
-                            };
-                        })
-                        : []
-                }
-                valueAccessor="value"
-                labelAccessor="caption"
-                error={typeof errors["chain"] === "string" ? errors["chain"] : null}
-            />
-        </AppSkeleton>
+        <AppSelectBox
+            name={"chain"}
+            placeholder="Select chain"
+            onChange={(data) => {
+                setFieldValue("chain", data?.value)
+            }}
+            items={
+                chains?.data
+                    ? chains?.data?.data?.data?.networks?.map((el) => {
+                        return {
+                            value: el.chain,
+                            caption: el.name,
+                        };
+                    })
+                    : []
+            }
+            value={values["chain"]}
+            error={typeof errors["chain"] === "string" ? errors["chain"] : null}
+            loading={!getRule.isLoading && !chains.isLoading}
+            isRequired
+        />
     </VStack>
 );
 
 const GatingMessageInput = () => (
-    <TextboxRule isRequired={true} label="Gating Message" description="Provide the text to display to visitors that will appear inside the access modal." element={"description"} placeholder="e.g., StreamWave" />
+    <VStack align="stretch" spacing={1}>
+        <VStack align="stretch" spacing={1}>
+            <FieldLabel label="Gating Message" isRequired />
+            <AppTypography fontSize="14px" color="#7b7b7b">
+                Provide the text to display to visitors that will appear inside the access modal.
+            </AppTypography>
+        </VStack>
+        <TextboxRule isRequired={true} element={"description"} placeholder="e.g., StreamWave" />
+    </VStack>
 );
 
 const MinimumAssetsRequiredInput = () => (
@@ -168,5 +170,13 @@ const MinimumAssetsRequiredInput = () => (
 );
 
 const NftUrlInput = () => (
-    <TextboxRule label={"NFT URL"} description="Choose this option to display the marketplace listing page to visitors where the collection is officially being traded." isRequired={false} element={"nftPurchaseLink"} placeholder="Paste link to your NFT page or marketplace here" />
+    <VStack align="stretch" spacing={1}>
+        <VStack align="stretch" spacing={1}>
+            <FieldLabel label="NFT URL" />
+            <AppTypography fontSize="14px" color="#7b7b7b">
+                Choose this option to display the marketplace listing page to visitors where the collection is officially being traded.
+            </AppTypography>
+        </VStack>
+        <TextboxRule isRequired={false} element={"nftPurchaseLink"} placeholder="Paste link to your NFT page or marketplace here" />
+    </VStack>
 );

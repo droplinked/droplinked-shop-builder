@@ -40,7 +40,6 @@ function HeaderMain() {
             label: "Partners",
             links: [
                 { label: "D3", description: "Droplinked & D3", icon: <AppIcons.HeaderD3 />, href: "/d3" },
-                { label: "Unstoppable Domains", description: "Droplinked & Unstoppable Domains", icon: <AppIcons.HeaderUd />, href: "/unstoppable-domains" },
             ]
         }
     ]

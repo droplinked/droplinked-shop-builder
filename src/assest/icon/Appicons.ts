@@ -52,8 +52,6 @@ import { ReactComponent as D3Access } from "./d3-access.svg";
 import { ReactComponent as D3CoreChain } from "./d3-core-chain.svg";
 import { ReactComponent as D3D3BorderRed } from "./d3-d3-border-red.svg";
 import { ReactComponent as D3D3Border } from "./d3-d3-border.svg";
-import { ReactComponent as UDBorderRed } from "./ud-border-red.svg";
-import { ReactComponent as UDBorder } from "./ud-border.svg";
 import { ReactComponent as D3DroplinkedBorderRed } from "./d3-droplinked-border-red.svg";
 import { ReactComponent as D3DroplinkedBorder } from "./d3-droplinked-border.svg";
 import { ReactComponent as D3EnterpriseTools } from "./d3-enterprise-tools.svg";
@@ -112,7 +110,6 @@ import { ReactComponent as HeaderBag } from "./header-bag.svg";
 import { ReactComponent as HeaderCoins } from "./header-coins.svg";
 import { ReactComponent as HeaderCreditCard } from "./header-credit.svg";
 import { ReactComponent as HeaderD3 } from "./header-d3.svg";
-import { ReactComponent as HeaderUd } from "./header-ud.svg";
 import { ReactComponent as HeaderImage } from "./header-image.svg";
 import { ReactComponent as HeaderProductBox } from "./header-product-box.svg";
 import { ReactComponent as HeaderShirt } from "./header-shirt.svg";
@@ -262,7 +259,6 @@ import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as EditOutlined } from "./edit-outlined.svg";
 import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
-import { ReactComponent as Required } from "./required.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -475,10 +471,8 @@ const AppIcons = {
     D3Logo,
     D3DroplinkedBorder,
     D3D3Border,
-    UDBorder,
     D3DroplinkedBorderRed,
     D3D3BorderRed,
-    UDBorderRed,
     Circle,
     CircleShield,
     CircleDashboard,
@@ -496,7 +490,6 @@ const AppIcons = {
     HeaderShirt,
     HeaderTokenCoin,
     HeaderD3,
-    HeaderUd,
     HeaderProductBox,
     MetaverseStore,
     CircleModal,
@@ -528,8 +521,7 @@ const AppIcons = {
     GatingRuleset,
     DotSpacer,
     EditOutlined,
-    HidedIcon,
-    Required
+    HidedIcon
 };
 
 export default AppIcons
