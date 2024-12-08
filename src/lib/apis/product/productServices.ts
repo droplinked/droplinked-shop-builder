@@ -102,13 +102,14 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
     return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
 };
 
-export const uploadCsvFile = (formData: FormData) => {
+export const uploadProductCSV = (formData: FormData) => {
     return axiosInstance.post("/product/import-csv", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
-    });
-};
+    })
+}
+
 export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
         .post<{ data: string[] }>("product/printful-available-shipping", { product_id })

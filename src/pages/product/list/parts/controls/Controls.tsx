@@ -13,7 +13,6 @@ import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
-import PaymentLinkModal from '../payment-link/PaymentLinkModal';
 import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
@@ -33,7 +32,6 @@ function ControlsListProduct({ productID, product, fetch }) {
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
     const { user: { wallets } } = useAppStore()
-    const paymentLinkModal = useDisclosure()
     const productOrdersModal = useDisclosure()
     const handleShareModal = useDisclosure()
 
@@ -94,10 +92,6 @@ function ControlsListProduct({ productID, product, fetch }) {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
             },
-            // {
-            //     caption: "Get payment link",
-            //     onClick: () => paymentLinkModal.onOpen()
-            // },
             {
                 caption: "Share",
                 onClick: () => handleShareModal.onOpen()
@@ -124,11 +118,8 @@ function ControlsListProduct({ productID, product, fetch }) {
             <PopOverMenu items={items} />
             <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
-            {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
             {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
             {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} product={product} />}
-
-
         </>
     )
 }

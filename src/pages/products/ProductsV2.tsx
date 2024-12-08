@@ -1,8 +1,9 @@
-import { Box, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
 import React, { useState } from 'react'
+import ImportProductModal from './components/ImportProductModal/ImportProductModal'
 import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable'
 import ProductTypesModal from './components/ProductTypesModal/ProductTypesModal'
@@ -12,6 +13,7 @@ function ProductsV2() {
     const debouncedSearchTerm = useDebounce(searchTerm)
     const productTypeModal = useDisclosure()
     const productReorderModal = useDisclosure()
+    const importProductModal = useDisclosure()
 
     return (
         <>
@@ -28,8 +30,8 @@ function ProductsV2() {
                         {
                             caption: "Import",
                             variant: "secondary",
-                            leftIcon: <Box sx={{ svg: { path: { stroke: 'white' } } }}><AppIcons.Download /></Box>,
-                            onClick: () => console.log("import")
+                            leftIcon: <AppIcons.Download />,
+                            onClick: importProductModal.onOpen
                         },
                         {
                             caption: "Reorder Products",
@@ -44,6 +46,7 @@ function ProductsV2() {
                 </PageGrid.Content>
             </PageGrid.Root>
             <ProductTypesModal isOpen={productTypeModal.isOpen} onClose={productTypeModal.onClose} />
+            <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
             <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
         </>
     )
