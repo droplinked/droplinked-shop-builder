@@ -31,9 +31,11 @@ export const useWalletVerification = () => {
       new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
         .getWalletInfo()
         .then(async (res) => {
+          const walletType = partnerName === 'D3' ? 'EVM' : 'UNSTOPPABLEDOMAIN';
+
           await mutation.mutateAsync({
            walletAddress: res?.address,
-            walletType: 'EVM',
+            walletType: walletType,
           }).then((verifyRes) => {
             if (!verifyRes?.data?.data || verifyRes?.data?.data === 'false' || verifyRes?.data?.data === false) {
               updateStates({
@@ -56,7 +58,6 @@ export const useWalletVerification = () => {
               value: 'done',
             });
           }).catch((error) => {
-    
             updateStates({
               key: 'currentStep',
               value: 'error',
@@ -82,7 +83,6 @@ export const useWalletVerification = () => {
               value: 'error',
             });
           }
-
           reject(error);
         });
     });

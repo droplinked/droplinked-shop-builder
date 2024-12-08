@@ -9,32 +9,33 @@ const FeaturedTlds = () => {
     const center = totalItems / 2;
     const distanceFromCenter = Math.abs(index - center);
     const maxOpacity = 0.8;
-    const minOpacity = 0.1; 
+    const minOpacity = 0.1;
     return maxOpacity - (distanceFromCenter / center) * (maxOpacity - minOpacity);
   };
 
   return (
-    <Box h="212px" display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap="16">
+    <Box h={{ base: "auto", md: "212px" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: "4", md: "16" }} p={{ base: "4", md: "0" }} mb={{ base: "16px", md: "32px" }} >
       {/* Title Section */}
-      <Flex direction="column" justify="start" align="center" gap="6">
-        <Text fontSize="32px" fontWeight="bold" fontFamily="Inter" textAlign="center" color="white" lineHeight="48px">
+      <Flex direction="column" justify="start" align="center" gap={{ base: "2", md: "6" }}>
+        <Text fontSize={{ base: "20px", md: "32px" }} fontWeight="bold" fontFamily="Inter" textAlign="center" color="white" lineHeight={{ base: "8px", md: "48px" }} >
           Featured TLD's
         </Text>
       </Flex>
 
       {/* TLD List Section */}
-      <Box h="100px" display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap="9">
+      <Box h={{ base: "auto", md: "100px" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: "4", md: "9" }}
+      >
         {/* First Row of TLDs */}
-        <Flex wrap="nowrap" justify="center" align="center" gap="16">
+        <Flex wrap="wrap" justify="center" align="center" gap={{ base: "4" ,lg:"16"}}>
           {tldsRow1.map((tld, index) => (
             <Text
               key={tld}
-              fontSize="xl"
+              fontSize={{ base: "md", md: "xl",  }}
               fontWeight="bold"
               fontFamily="Inter"
               lineHeight="loose"
               color="white"
-              opacity={calculateOpacity(index, tldsRow1.length)} 
+              opacity={calculateOpacity(index, tldsRow1.length)}
             >
               {tld}
             </Text>
@@ -42,11 +43,11 @@ const FeaturedTlds = () => {
         </Flex>
 
         {/* Second Row of TLDs */}
-        <Flex wrap="nowrap" justify="center" align="center" gap="16">
+        <Flex wrap="wrap" justify="center" align="center" gap={{ base: "4" ,lg:"16"}}>
           {tldsRow2.map((tld, index) => (
             <Text
               key={tld}
-              fontSize="xl"
+              fontSize={{ base: "md", md: "xl" }}
               fontWeight="bold"
               fontFamily="Inter"
               lineHeight="loose"
