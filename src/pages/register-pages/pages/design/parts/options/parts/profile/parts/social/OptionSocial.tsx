@@ -13,7 +13,7 @@ function OptionSocial() {
     const change = useCallback((e) => {
         const value = e.target.value
         if (value) setSocials(value)
-            e.target.value = ''
+        e.target.value = ''
     }, [])
 
     return (
