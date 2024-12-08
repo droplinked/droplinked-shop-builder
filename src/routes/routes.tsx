@@ -1,6 +1,7 @@
 import MainLayout from "components/layouts/app/main/mainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
+import CreateWallet from "components/modals/create-wallet/CreateWallet";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import NotFound from "pages/404/404";
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage";
@@ -28,7 +29,7 @@ import HomePage from "pages/public-pages/homePage/HomePage";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
-import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page";
+import D3Page from "pages/public-pages/landings/d3-page/D3Page";
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
@@ -58,7 +59,6 @@ import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -90,8 +90,7 @@ function AppRoutes() {
                     <Route path="custom-tokens" element={<CustomTokenPage />} />
                     <Route path="metaverse-store" element={<MetaverseStorePage />} />
                     <Route path="onchain-affiliate" element={<AffiliatePage />} />
-                    <Route path="/d3" element={<D3Page />} />
-                    <Route path="/unstoppable-domains" element={<UdPage />} />
+                    <Route path="d3" element={<D3Page />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />

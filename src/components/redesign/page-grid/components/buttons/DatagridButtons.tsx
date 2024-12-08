@@ -5,14 +5,12 @@ import { IDataGridButtons } from './interface'
 
 function DataGridButtons({ buttons }: IDataGridButtons) {
     return (
-        <Flex flexDirection="row-reverse" gap={4}>
+        <Flex gap="10px" flexDirection="row-reverse">
             {buttons.map((button, index: number) => {
                 const { caption, ...buttonProps } = button
                 return (
                     <Button
                         key={index}
-                        fontSize={14}
-                        fontWeight={500}
                         _hover={{ opacity: "0.8" }}
                         {...buttonProps}
                     >

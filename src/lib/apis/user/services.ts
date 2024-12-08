@@ -3,6 +3,7 @@ import {
     IAcceptInvitation,
     IGetUserService,
     IInvitation,
+    IPostUserVerifyD3,
     ISubscribeFeature,
     IRetrieveNFTs,
     IchangePasswordService,
@@ -10,7 +11,6 @@ import {
     IforgetPasswordService,
     IresendEmailService,
     IuserUpdateService,
-    IPostUserVerifyPartner,
 } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
@@ -65,8 +65,6 @@ export const getInvitationDetails = (invitationId: string) => {
     return axiosInstance.post(`rbac/invitations/${invitationId}/info`);
 };
 
-export const postUserVerifyD3 = (props: IPostUserVerifyPartner) => axiosInstance.post(`user/d3/verify`, props);
-
-export const postUserVerifyUD = (props: IPostUserVerifyPartner) => axiosInstance.post(`user/ud/verify`, props);
+export const postUserVerifyD3 = (props: IPostUserVerifyD3) => axiosInstance.post(`user/d3/verify`, props);
 
 export const subscribeFeature = (subscribeData: ISubscribeFeature) => axiosInstance.post("/user/add/email/landing", subscribeData);

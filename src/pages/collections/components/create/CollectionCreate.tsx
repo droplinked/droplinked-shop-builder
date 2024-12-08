@@ -1,4 +1,5 @@
 import { Flex, VStack } from '@chakra-ui/react';
+import AppInput from 'components/redesign/form/textbox/AppInput';
 import { Form, Formik } from 'formik';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { Collection } from 'lib/apis/collection/interfaces';
@@ -13,8 +14,7 @@ import ModalWrapper from './_components/ModalWrapper';
 import { ICollectionForm } from './interface/interfaces';
 import ImageUploader from './_components/ImageUploader';
 import ModalButtons from './_components/ModalButtons';
-import Textarea from 'components/redesign/textarea/Textarea';
-import Input from 'components/redesign/input/Input';
+import AppTextarea from 'components/redesign/textarea/AppTextarea';
 
 interface IProps {
     close: () => void;
@@ -66,32 +66,28 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
                             <Flex gap={8} flexDirection="column" width="100%">
                                 {collectionCreateInputFields.map((field) => (
                                     !field?.rows ?
-                                        <Input
-                                            inputProps={{
-                                                name: field.name,
-                                                value: values[field.name],
-                                                onChange: (e) => setFieldValue(field.name, e.target.value),
-                                                maxLength: field.maxLength,
-                                                placeholder: field.placeholder,
-                                                isRequired: field.isRequired,
-                                            }}
+                                        <AppInput
                                             key={field.name}
+                                            name={field.name}
+                                            value={values[field.name]}
+                                            onChange={(e) => setFieldValue(field.name, e.target.value)}
+                                            maxLength={field.maxLength}
                                             label={field.label}
                                             description={field.description}
+                                            placeholder={field.placeholder}
+                                            isRequired={field.isRequired}
                                             error={errors[field.name]}
-                                        /> : <Textarea
-                                            textareaProps={{
-                                                name: field.name,
-                                                value: values[field.name],
-                                                onChange: (e) => setFieldValue(field.name, e.target.value),
-                                                maxLength: field.maxLength,
-                                                placeholder: field.placeholder,
-                                                isRequired: field.isRequired,
-                                            }}
-                                            key={field.name}
+                                        /> : <AppTextarea key={field.name}
+                                            name={field.name}
+                                            value={values[field.name]}
+                                            onChange={(e) => setFieldValue(field.name, e.target.value)}
+                                            maxLength={field.maxLength}
                                             label={field.label}
                                             description={field.description}
+                                            placeholder={field.placeholder}
+                                            isRequired={field.isRequired}
                                             error={errors[field.name]}
+                                            padding={"10px 17px"}
                                         />
                                 ))}
                                 <ImageUploader errors={errors} setFieldValue={setFieldValue} values={values} />
