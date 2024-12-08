@@ -1,18 +1,8 @@
 import hashkeyModel from 'components/common/hashKey/model';
 import { recordBatchCasperService, recordCasperService } from 'lib/apis/sku/services';
 import { appDevelopment } from 'lib/utils/app/variable';
-import {
-	ChainNotImplementedException,
-	getNetworkProvider,
-} from 'lib/utils/chains/chainProvider';
-import { Beneficiary } from 'lib/utils/chains/dto/chainStructs';
-import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
-import {
-	SkaleUsdcAddressForMainnet,
-	SkaleUsdcAddressForTestnet,
-} from 'lib/utils/chains/providers/evm/evmConstants';
-import { droplink_wallet } from 'lib/utils/statics/adresses';
-import { IRecordParamsData } from '../..';
+import { ChainNotImplementedException } from 'droplinked-web3';
+import { IRecordParamsData, RecordProduct } from '../..';
 import {
 	DropWeb3,
 	Network,
@@ -20,7 +10,6 @@ import {
 	Web3Actions,
 	ChainWallet,
 	ProductType,
-	toEthAddress,
 	RecordResponse,
 	ISKUDetails,
 } from 'droplinked-web3';
@@ -65,6 +54,7 @@ const recordModel = {
 		shopAddress,
 		products,
 	}: Irecord) => {
+		console.log({ blockchain });
 		const web3 = new DropWeb3(
 			appDevelopment ? Network.TESTNET : Network.MAINNET
 		);
@@ -79,22 +69,12 @@ const recordModel = {
 		// ---------------- new parameters: ------------------------
 		// get these parameters from recorder:
 		const type = ProductType.DIGITAL; // type of the product
-		const paymentWallet = accountAddress; // the wallet in which the funds would go
-		let beneficiaries: Beneficiary[] = []; // this is the value added services
 		const acceptsManageWallet = true; // if user accepts the manage wallet
 		const pod = product.product_type === 'PRINT_ON_DEMAND';
 
 		let record: RecordResponse;
 		const commission = products[0].commission;
 		const royalty = products[0].royalty;
-		const skaleUSDCAddress = appDevelopment
-			? SkaleUsdcAddressForTestnet
-			: SkaleUsdcAddressForMainnet;
-		// we want to set the usdc address for payment currency in skale
-		const currencyAddress =
-			Chain[blockchain] !== Chain.SKALE
-				? '0x0000000000000000000000000000000000000000'
-				: skaleUSDCAddress;
 
 		if (blockchain === 'CASPER') {
 			throw new ChainNotImplementedException(

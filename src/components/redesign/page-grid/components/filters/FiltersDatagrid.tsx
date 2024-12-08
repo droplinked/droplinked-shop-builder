@@ -1,5 +1,5 @@
 import { HStack } from '@chakra-ui/react'
-import Select from 'components/redesign/select/AppSelect'
+import Select from 'components/redesign/select/Select'
 import React from 'react'
 import { IFiltersDataGrid, IFiltersDataGridItems } from './interface'
 
