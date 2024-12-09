@@ -90,7 +90,8 @@ export const useWalletVerification = () => {
 	const connectUnstoppableWallet = () => {
 		return new Promise<void>((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			console.log({ UNSTOPPABLE_CLIENT_ID });
+			console.log("client Id" ,UNSTOPPABLE_CLIENT_ID );
+			console.log("location origin",window.location.origin);
 			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
 				.web3Instance({
 					method: Web3Actions.LOGIN,
