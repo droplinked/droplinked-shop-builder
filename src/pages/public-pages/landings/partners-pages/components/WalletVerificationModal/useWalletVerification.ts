@@ -8,6 +8,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import { appDevelopment } from 'lib/utils/app/variable';
 import { IPostUserVerifyPartner } from 'lib/apis/user/interfaces';
 
+
 export const useWalletVerification = () => {
 	const { showToast } = useAppToast();
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -89,7 +90,7 @@ export const useWalletVerification = () => {
 	const connectUnstoppableWallet = () => {
 		return new Promise<void>((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-
+			console.log({ UNSTOPPABLE_CLIENT_ID });
 			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
 				.web3Instance({
 					method: Web3Actions.LOGIN,
