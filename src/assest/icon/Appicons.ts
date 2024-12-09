@@ -152,6 +152,7 @@ import { ReactComponent as Linea } from "./linea.svg";
 import { ReactComponent as LinkedInOutlined } from "./linkedin-outlined.svg";
 import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
+import { ReactComponent as MagicWind } from "./magic-wind.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as Maximize } from "./maximize.svg";
 import { ReactComponent as MedalStar } from "./medalStar.svg";
@@ -533,7 +534,8 @@ const AppIcons = {
     Required,
     EventTicket,
     Services,
-    Subscription
+    Subscription,
+    MagicWind
 }
 
 export default AppIcons

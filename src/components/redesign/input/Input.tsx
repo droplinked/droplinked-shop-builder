@@ -1,25 +1,24 @@
-import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
-import Button from 'components/redesign/button/Button';
-import React from 'react';
+import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import Button from 'components/redesign/button/Button'
+import React, { ReactNode } from 'react'
 
 interface Props {
-    label?: string;
-    inputProps?: InputProps;
-    inputGroupProps?: InputGroupProps;
-    icon?: React.ReactNode;
-    description?: string;
+    label?: string
+    inputProps?: InputProps
+    inputGroupProps?: InputGroupProps
+    icon?: ReactNode
+    description?: string
     actionButton?: {
-        label: string;
-        onClick: () => void;
-        isDisabled?: boolean;
-        isLoading?: boolean;
-    };
-    error?: string;
+        label: string
+        onClick: () => void
+        isDisabled?: boolean
+        isLoading?: boolean
+    }
+    error?: string
 }
 
-export default function Input({ label, inputProps, inputGroupProps, icon, actionButton, error, description }: Props) {
+const Input = ({ label, inputProps, inputGroupProps, icon, actionButton, error, description }: Props) => {
     const baseInputProps = {
         borderRadius: 8,
         py: 3,
@@ -28,16 +27,11 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         color: "#7B7B7B",
         spellCheck: false,
         _hover: {
-            borderColor: "none",
-            backgroundColor: "#1E1E1E",
-            border: `1px solid ${error ? "#E53E3E" : "#3C3C3C"}`
+            borderColor: error ? "#E53E3E" : "#3C3C3C",
+            backgroundColor: "#1E1E1E"
         },
-        _focusVisible: {},
-        _focus: {
-            borderColor: "none",
-            backgroundColor: "#1E1E1E",
-            border: "1px solid #7B7B7B"
-        },
+        _focus: { borderColor: "#7B7B7B", backgroundColor: "#1E1E1E" },
+        _focusVisible: { outline: "none" },
         _placeholder: { color: "#7B7B7B" },
         ...inputProps
     }
@@ -53,7 +47,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         ...inputGroupProps
     }
 
-    const actionButtonElement = (
+    const renderActionButton = actionButton && (
         <Button
             size="sm"
             borderRadius={4}
@@ -69,7 +63,7 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         </Button>
     )
 
-    const inputElement = (
+    const renderInputElement = (
         <ChakraInput
             border={icon || actionButton ? "none" : `1.5px solid ${error ? "#E53E3E" : "#292929"}`}
             px={icon || actionButton ? 0 : 4}
@@ -77,40 +71,56 @@ export default function Input({ label, inputProps, inputGroupProps, icon, action
         />
     )
 
-    if (!label) {
-        if (!icon && !actionButton && !error) return inputElement
+    const renderInputWithoutLabel = () => {
+        if (!icon && !actionButton && !error) return renderInputElement
 
         return (
             <>
                 <Flex {...baseInputGroupProps}>
                     {icon}
-                    {inputElement}
-                    {actionButton && actionButtonElement}
+                    {renderInputElement}
+                    {renderActionButton}
                 </Flex>
-                {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+                {error && <Text mt={2} fontSize={14} color="#E53E3E">{error}</Text>}
             </>
         )
     }
 
-    return (
-        <InputGroup display="flex" flexDirection="column" gap={2}>
-            <FormLabel mb={4} width="fit-content" fontSize={14} fontWeight={500} color="white">
-                <Flex justifyItems="center" alignItems="center" gap="0.5rem">
-                    {label} {inputProps.isRequired && <AppIcons.Required />}
-                </Flex>
-                {description && <AppTypography mt={1} color={"#7B7B7B"} fontSize={"14px"}>{description}</AppTypography>}
+    const renderInputWithLabel = () => (
+        <InputGroup display="flex" flexDirection="column">
+            <FormLabel
+                width="fit-content"
+                mb={description ? 0 : 4}
+                display="flex"
+                alignItems="center"
+                gap={1}
+                fontSize={14}
+                fontWeight={500}
+                color="white"
+            >
+                {label} {inputProps?.isRequired && <AppIcons.Required />}
             </FormLabel>
 
+            {description && (
+                <Text mt={1} mb={4} color="#7B7B7B" fontSize={14}>
+                    {description}
+                </Text>
+            )}
+
             {!icon && !actionButton ?
-                inputElement
-                :
+                renderInputElement :
                 <Flex {...baseInputGroupProps}>
                     {icon}
-                    {inputElement}
-                    {actionButton && actionButtonElement}
+                    {renderInputElement}
+                    {renderActionButton}
                 </Flex>
             }
-            {error && <AppTypography fontSize={14} color="#E53E3E">{error}</AppTypography>}
+
+            {error && <Text fontSize={14} color="#E53E3E">{error}</Text>}
         </InputGroup>
     )
+
+    return label ? renderInputWithLabel() : renderInputWithoutLabel()
 }
+
+export default Input
