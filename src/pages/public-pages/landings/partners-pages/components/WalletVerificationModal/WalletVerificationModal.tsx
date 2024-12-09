@@ -21,6 +21,7 @@ const WalletVerificationModal = () => {
 	} = useDisclosure();
 	const [searchParams] = useSearchParams();
 	const {
+		planDurationMonths,
 		states: { currentStep },
 		methods: { updateStates }, 
 	} = useContext(PartnerContext);
@@ -49,7 +50,7 @@ const WalletVerificationModal = () => {
 		connect: {
 			title: 'Connect Wallet for Verification',
 			description:
-				"Connect your wallet to check if you're eligible for the 6 month Pro Plan.",
+				`Connect your wallet to check if you're eligible for the  ${planDurationMonths} month Pro Plan`,
 			buttons: {
 				left: {
 					label: 'Close',
@@ -112,7 +113,7 @@ const WalletVerificationModal = () => {
 		done: {
 			title: 'Congrats, Wallet Offer Verified',
 			description:
-				'You can now create an account and enjoy 6 months of a Pro Plan.',
+				`You can now create an account and enjoy ${planDurationMonths}  months of a Pro Plan.`,
 			buttons: {
 				left: null,
 				right: {
@@ -289,7 +290,7 @@ const WalletVerificationModal = () => {
 										fontWeight="400"
 										lineHeight="20px"
 									>
-										6 Month
+										{planDurationMonths} Month
 										Pro Plan
 									</AppTypography>
 								</Box>

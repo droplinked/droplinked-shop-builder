@@ -41,7 +41,7 @@ function Content({planDurationMonths}) {
                     Free {planDurationMonths} Month Pro Plan
                 </AppTypography>
                 <D3Paragraph>
-                    Unlock 6 months of the Pro Plan absolutely free!<br />
+                    Unlock  {planDurationMonths} months of the Pro Plan absolutely free!<br />
                     Redeem the exclusive offer today.
                 </D3Paragraph>
             </Flex>

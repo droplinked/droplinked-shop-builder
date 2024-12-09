@@ -14,7 +14,7 @@ export default function CollaborationFeatures() {
         {
             icon: <AppIcons.D3ProPlan className='d3-icon' />,
             title: `${planDurationMonths} Month ${planType} Plan`,
-            description: `Enjoy premium features for six months for being a loyal ${partnerName} customer.`,
+            description: `Enjoy premium features for ${planDurationMonths} months for being a loyal ${partnerName} customer.`,
             image: "https://upload-file-droplinked.s3.amazonaws.com/333a3fac7efdf0af33855603c3cf412949a26b2a648772bf0caa4e1effa75742.png"
         },
         {
