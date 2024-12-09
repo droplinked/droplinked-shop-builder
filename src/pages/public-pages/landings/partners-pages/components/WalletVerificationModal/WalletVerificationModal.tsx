@@ -118,18 +118,20 @@ const WalletVerificationModal = () => {
 				right: {
 					label: 'Claim Now',
 					onClick: () => {
-						if (searchParams.get('d3-id')) {
-							navigate(
-								`/d3/?d3-id=${searchParams
-									.get('d3-id')
-									.toString()}`
-							);
-							if (searchParams.get('d3-id')) {
-								onClose();
-								signupModalOnOpen();
-							}
+						const d3Id = searchParams.get('d3-id');
+						const udId = searchParams.get('ud-id');
+					
+						if (d3Id) {
+							navigate(`/d3/?d3-id=${d3Id.toString()}`);
+							onClose();
+							signupModalOnOpen();
+						} else if (udId) {
+							navigate(`/unstoppable-domains/?ud-id=${udId.toString()}`);
+							onClose();
+							signupModalOnOpen();
 						}
 					},
+					
 				},
 			},
 		},
