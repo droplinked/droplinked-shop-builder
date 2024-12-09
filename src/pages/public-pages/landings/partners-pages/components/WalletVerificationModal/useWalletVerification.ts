@@ -90,8 +90,6 @@ export const useWalletVerification = () => {
 	const connectUnstoppableWallet = () => {
 		return new Promise<void>((resolve, reject) => {
 			updateStates({ key: 'currentStep', value: 'loading' });
-			console.log("client Id" ,UNSTOPPABLE_CLIENT_ID );
-			console.log("location origin",window.location.origin);
 			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
 				.web3Instance({
 					method: Web3Actions.LOGIN,
@@ -99,7 +97,7 @@ export const useWalletVerification = () => {
 					preferredWallet: ChainWallet.Metamask,
 				})
 				.unstoppableLogin(
-					"e0b39369-e69a-4442-ae77-c7a3e1d25c6d",
+					UNSTOPPABLE_CLIENT_ID as string,
 					window.location.origin
 				)
 				.then(async (res) => {
