@@ -27,6 +27,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
   const toggleShowField = useCallback((field: any) => setPasswordVisibility((prev) => ({ ...prev, [field]: !prev[field] })), [])
   const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
   const d3_id_from_params = useMemo(() => searchParams.get("d3-id"), [searchParams])
+  const ud_id_from_params = useMemo(() => searchParams.get("ud-id"), [searchParams])
 
   const { login } = useAppStore()
   const { shopNavigate } = useCustomNavigate()
@@ -65,7 +66,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
     try {
       setLoading(true)
       const { email, password, referral } = data;
-      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined });
+      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined , udUserId: ud_id_from_params || undefined});
       isFromPlansPage && await handleLogin({ email, password })
       localStorage.setItem("registerEmail", JSON.stringify(email));
       showToast({ message: "Account successfully created", type: "success" });
@@ -159,6 +160,9 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
 
                   if (d3_id_from_params && d3_id_from_params !== "") {
                     googleAuthUrl.searchParams.append("d3UserId", d3_id_from_params);
+                  }
+                  else if (ud_id_from_params && ud_id_from_params !== "") {
+                    googleAuthUrl.searchParams.append("udUserId", ud_id_from_params);
                   }
 
                   window.location.href = googleAuthUrl.toString();

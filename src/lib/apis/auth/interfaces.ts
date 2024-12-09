@@ -24,5 +24,6 @@ export interface IsignupService {
     referralCode?: string
     hasProducerAccount: boolean
     d3UserId?: string
+    udUserId?: string
     subscriptionId?: string
 }

@@ -98,7 +98,7 @@ export const useWalletVerification = () => {
 					preferredWallet: ChainWallet.Metamask,
 				})
 				.unstoppableLogin(
-					UNSTOPPABLE_CLIENT_ID as string,
+					"e0b39369-e69a-4442-ae77-c7a3e1d25c6d",
 					window.location.origin
 				)
 				.then(async (res) => {
