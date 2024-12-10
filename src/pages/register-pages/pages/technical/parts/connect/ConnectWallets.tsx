@@ -9,7 +9,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { supportedChainsService } from 'lib/apis/sku/services';
 import useAppStore from 'lib/stores/app/appStore';
-import { isWalletInstalled } from 'lib/utils/chains/providers/evm/evmLogin';
+import { isWalletInstalled } from 'droplinked-web3';
 import React, { useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { ConnectWalletsLoading } from './connect.wallets.loading';
@@ -116,9 +116,13 @@ function ConnectWallets() {
 													isExist
 														?.address
 														.length -
-													6
+														6
 												)}`}</AppTypography>
-												<ClipboardText text={isExist?.address} />
+												<ClipboardText
+													text={
+														isExist?.address
+													}
+												/>
 											</Flex>
 										) : (
 											<BasicButton

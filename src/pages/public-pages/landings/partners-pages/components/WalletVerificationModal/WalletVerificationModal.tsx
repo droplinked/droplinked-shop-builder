@@ -1,25 +1,18 @@
 import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
-import Button from 'components/redesign/button/Button';
 import AppModal from 'components/redesign/modal/AppModal';
-import { DropWeb3, Network } from 'droplinked-web3';
-import useAppToast from 'functions/hooks/toast/useToast';
-import { IPostUserVerifyD3 } from 'lib/apis/user/interfaces';
-import { postUserVerifyD3 } from 'lib/apis/user/services';
-import { appDevelopment } from 'lib/utils/app/variable';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
-import { useMutation } from 'react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import D3Context, { D3StepsType } from '../../context/d3.context';
-const D3Modal = () => {
+import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
+import PartnerContext, { StepsType } from '../../context/partner.context';
+import { useWalletVerification } from './useWalletVerification';
+import Button from 'components/redesign/button/Button';
+
+const WalletVerificationModal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
-	const { mutateAsync, isLoading } = useMutation((props: IPostUserVerifyD3) =>
-		postUserVerifyD3(props)
-	);
 	const navigate = useNavigate();
 	const {
 		isOpen: signupModalIsOpen,
@@ -28,65 +21,15 @@ const D3Modal = () => {
 	} = useDisclosure();
 	const [searchParams] = useSearchParams();
 	const {
+		planDurationMonths,
 		states: { currentStep },
-		methods: { updateStates },
-	} = useContext(D3Context);
-	const { showToast } = useAppToast();
-	const connect_d3_wallet = () => {
-		return new Promise((resolve, reject) => {
-			updateStates({ key: 'currentStep', value: 'loading' });
-			new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
-				.getWalletInfo()
-				.then(async (res) => {
-					await mutateAsync({
-						walletAddress: res?.address,
-						walletType: 'EVM',
-					}).then((verifyRes) => {
-						if (
-							!verifyRes?.data?.data ||
-							verifyRes?.data?.data ===
-							'false' ||
-							verifyRes?.data?.data === false
-						)
-							return updateStates({
-								key: 'currentStep',
-								value: 'error',
-							});
-						searchParams.set(
-							'd3-id',
-							verifyRes?.data?.data
-						);
-						updateStates({
-							key: 'currentStep',
-							value: 'done',
-						});
-					});
-					resolve(res);
-				})
-				.catch((error) => {
-					if (
-						error?.message ===
-						'No EVM Wallet is installed'
-					) {
-						showToast({
-							type: 'error',
-							message: 'Metamask wallet is not installed!',
-						});
-						updateStates({
-							key: 'currentStep',
-							value: 'connect',
-						});
-					} else {
-						updateStates({
-							key: 'currentStep',
-							value: 'error',
-						});
-					}
-				});
-		});
-	};
+		methods: { updateStates }, 
+	} = useContext(PartnerContext);
+
+	const { connectWallet } = useWalletVerification();
+
 	const connect_wallet_steps: {
-		[K in D3StepsType]: {
+		[K in StepsType]: {
 			title: string;
 			description: string;
 			buttons: {
@@ -107,7 +50,7 @@ const D3Modal = () => {
 		connect: {
 			title: 'Connect Wallet for Verification',
 			description:
-				"Connect your wallet to check if you're eligible for the 6 month Pro Plan.",
+				`Connect your wallet to check if you're eligible for the  ${planDurationMonths} month Pro Plan`,
 			buttons: {
 				left: {
 					label: 'Close',
@@ -116,7 +59,7 @@ const D3Modal = () => {
 				},
 				right: {
 					label: 'Check Wallet Eligibility',
-					onClick: async () => await connect_d3_wallet(),
+					onClick: async () => await connectWallet(),
 					rightIcon: <AppIcons.SidebarNext />,
 					styles: {},
 				},
@@ -170,28 +113,32 @@ const D3Modal = () => {
 		done: {
 			title: 'Congrats, Wallet Offer Verified',
 			description:
-				'You can now create an account and enjoy 6 months of a Pro Plan.',
+				`You can now create an account and enjoy ${planDurationMonths}  months of a Pro Plan.`,
 			buttons: {
 				left: null,
 				right: {
 					label: 'Claim Now',
 					onClick: () => {
-						if (searchParams.get('d3-id')) {
-							navigate(
-								`/d3/?d3-id=${searchParams
-									.get('d3-id')
-									.toString()}`
-							);
-							if (searchParams.get('d3-id')) {
-								onClose();
-								signupModalOnOpen();
-							}
+						const d3Id = searchParams.get('d3-id');
+						const udId = searchParams.get('ud-id');
+					
+						if (d3Id) {
+							navigate(`/d3/?d3-id=${d3Id.toString()}`);
+							onClose();
+							signupModalOnOpen();
+						} else if (udId) {
+							navigate(`/unstoppable-domains/?ud-id=${udId.toString()}`);
+							onClose();
+							signupModalOnOpen();
 						}
 					},
+					
 				},
 			},
 		},
 	};
+
+
 	const current_state = useMemo(
 		() => connect_wallet_steps?.[currentStep],
 		[currentStep, updateStates]
@@ -244,6 +191,7 @@ const D3Modal = () => {
 								: 'wallet'
 						}
 					/>
+	
 					<Box
 						display="flex"
 						padding={{
@@ -342,7 +290,7 @@ const D3Modal = () => {
 										fontWeight="400"
 										lineHeight="20px"
 									>
-										6 Month
+										{planDurationMonths} Month
 										Pro Plan
 									</AppTypography>
 								</Box>
@@ -513,4 +461,4 @@ const D3Modal = () => {
 	);
 };
 
-export default D3Modal;
+export default WalletVerificationModal;
