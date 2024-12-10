@@ -9,7 +9,7 @@ function GenerateWithAI() {
             alignItems="center"
             borderRadius={8}
             padding="12px 16px"
-            bg="linear-gradient(to right, #2BCFA100, #2BCFA11A, #2BCFA1)"
+            bg="linear-gradient(to right, #2BCFA100, #2BCFA11A)"
         >
             <Flex alignItems="center" gap="6px">
                 <AppIcons.MagicWind />
@@ -20,7 +20,7 @@ function GenerateWithAI() {
                     Generate with AI
                 </Text>
             </Flex>
-            <Text fontSize={12} fontWeight={500} color="B1B1B1">Coming Soon</Text>
+            <Text fontSize={12} fontWeight={500} color="#B1B1B1">Coming Soon</Text>
         </Flex>
     )
 }

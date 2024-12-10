@@ -1,0 +1,47 @@
+import { Box, Flex } from '@chakra-ui/react'
+import { Editor } from '@tinymce/tinymce-react'
+import { useFormikContext } from 'formik'
+import { ProductFormValues } from 'pages/products/utils/formSchema'
+import React from 'react'
+import ProductFieldWrapper from '../../common/ProductFieldWrapper'
+import classes from './ProductDescription.module.scss'
+import GenerateWithAI from '../../common/GenerateWithAI'
+
+function ProductDescription() {
+    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+
+    return (
+        <ProductFieldWrapper
+            label='Description'
+            description="Describe product features and details to help customers understand what they're buying."
+        >
+            <Flex direction="column" gap={4} className={classes.editor}>
+                <Editor
+                    onEditorChange={(content) => setFieldValue('description', content)}
+                    apiKey='cnv918vz9pvfdm6584873k8ixx4du3hom8x6p2ljb2h8p1gf'
+                    initialValue={values.description}
+                    disabled={values.product_type === "EVENT" ? true : false}
+                    init={{
+                        skin: "oxide-dark",
+                        content_css: "dark",
+                        height: 200,
+                        placeholder: 'Stylish, and Comfortable Long Sleeve T-Shirt...',
+                        menubar: false,
+                        plugins: [
+                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'importcss', 'image'
+                        ],
+                        toolbar: 'undo redo | blocks | ' +
+                            'bold italic forecolor | alignleft aligncenter ' +
+                            'alignright alignjustify | bullist numlist outdent indent table image',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background: #141414 } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {color: #777}',
+                    }}
+                />
+                <GenerateWithAI />
+            </Flex>
+        </ProductFieldWrapper>
+    )
+}
+
+export default ProductDescription

@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import React from 'react'
-import GeneralInformationAccordion from './GeneralInformationAccordion'
+import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
 
 function FormContent() {
     return (

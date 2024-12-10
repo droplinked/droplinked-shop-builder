@@ -1,10 +1,10 @@
 import { Form, Formik, FormikProvider } from 'formik'
 import { initialValues, ProductFormValues, validationSchema } from 'pages/products/utils/formSchema'
 import React from 'react'
-import DrawerFooter from './components/Drawer/DrawerFooter'
-import DrawerHeader from './components/Drawer/DrawerHeader'
-import DrawerRoot from './components/Drawer/DrawerRoot'
 import FormContent from './components/FormContent'
+import DrawerFooter from './components/common/DrawerFooter'
+import DrawerHeader from './components/common/DrawerHeader'
+import DrawerRoot from './components/common/DrawerRoot'
 
 interface Props {
     isOpen: boolean

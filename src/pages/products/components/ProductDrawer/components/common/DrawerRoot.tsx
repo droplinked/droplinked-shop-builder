@@ -20,6 +20,12 @@ function DrawerRoot({ isOpen, onClose, children }: Props) {
                 marginInline={10}
                 borderRadius={16}
                 bgColor="#141414"
+                sx={{
+                    overflowY: "scroll",
+                    "&::-webkit-scrollbar": { display: "none" },
+                    msOverflowStyle: "none",
+                    scrollbarWidth: "none"
+                }}
             >
                 {children}
             </DrawerContent>
