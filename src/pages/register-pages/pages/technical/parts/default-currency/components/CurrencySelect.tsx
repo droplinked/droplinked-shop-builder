@@ -1,4 +1,4 @@
-import Select from "components/redesign/select/AppSelect";
+import Select from "components/redesign/select/Select";
 import * as React from 'react';
 
 export const CurrencySelect = ({ isLoading, shopInfoLoading, currencyAbbreviation, updateState, currencyData }) => (

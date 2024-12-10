@@ -1,6 +1,6 @@
 import { SelectProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import Select from 'components/redesign/select/AppSelect'
+import Select from 'components/redesign/select/Select'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import { IAppForm } from '../FormModel'
