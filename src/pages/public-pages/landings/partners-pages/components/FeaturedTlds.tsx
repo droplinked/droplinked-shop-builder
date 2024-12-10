@@ -1,11 +1,36 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FeaturedTlds = () => {
   const tldsRow1 = ['.tech', '.moon', '.store', '.pudgy', '.unstoppable', '.io', '.com', '.net', '.org', '.pro', '.site'];
   const tldsRow2 = ['.dream', '.live', '.space', '.group', '.life', '.digital', '.secret', '.polygon', '.pw', '.info'];
 
-  const calculateOpacity = (index: number, totalItems: number) => {
+  const [visibleItems, setVisibleItems] = useState({ row1: tldsRow1.length, row2: tldsRow2.length });
+
+  useEffect(() => {
+    const updateVisibleItems = () => {
+      const width = window.innerWidth;
+
+      if (width < 600) {
+        setVisibleItems({ row1: 5, row2: 5 });
+      } else if (width < 900) {
+        setVisibleItems({ row1: 8, row2: 7 });
+      } else if (width < 1200) {
+        setVisibleItems({ row1: 11, row2: 10 });
+      } else {
+        setVisibleItems({ row1: tldsRow1.length, row2: tldsRow2.length });
+      }
+    };
+
+    updateVisibleItems();
+    window.addEventListener('resize', updateVisibleItems);
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleItems);
+    };
+  }, [tldsRow1.length, tldsRow2.length]);
+
+  const calculateOpacity = (index, totalItems) => {
     const center = totalItems / 2;
     const distanceFromCenter = Math.abs(index - center);
     const maxOpacity = 0.8;
@@ -13,52 +38,36 @@ const FeaturedTlds = () => {
     return maxOpacity - (distanceFromCenter / center) * (maxOpacity - minOpacity);
   };
 
-  return (
-    <Box h={{ base: "auto", md: "212px" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: "4", md: "16" }} p={{ base: "4", md: "0" }} mb={{ base: "16px", md: "32px" }} >
-      {/* Title Section */}
-      <Flex direction="column" justify="start" align="center" gap={{ base: "2", md: "6" }}>
-        <Text fontSize={{ base: "20px", md: "32px" }} fontWeight="bold" fontFamily="Inter" textAlign="center" color="white" lineHeight={{ base: "8px", md: "48px" }} >
-          Featured TLD's
-        </Text>
-      </Flex>
-
-      {/* TLD List Section */}
-      <Box h={{ base: "auto", md: "100px" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={{ base: "4", md: "9" }}
+  const renderTlds = (tlds, visibleCount) =>
+    tlds.slice(0, visibleCount).map((tld, index) => (
+      <Text
+        key={tld}
+        fontSize={{ base: 'md', md: 'xl' }}
+        fontWeight="bold"
+        fontFamily="Inter"
+        lineHeight="loose"
+        color="white"
+        opacity={calculateOpacity(index, visibleCount)}
       >
-        {/* First Row of TLDs */}
-        <Flex wrap="wrap" justify="center" align="center" gap={{ base: "4" ,lg:"16"}}>
-          {tldsRow1.map((tld, index) => (
-            <Text
-              key={tld}
-              fontSize={{ base: "md", md: "xl",  }}
-              fontWeight="bold"
-              fontFamily="Inter"
-              lineHeight="loose"
-              color="white"
-              opacity={calculateOpacity(index, tldsRow1.length)}
-            >
-              {tld}
-            </Text>
-          ))}
-        </Flex>
+        {tld}
+      </Text>
+    ));
 
-        {/* Second Row of TLDs */}
-        <Flex wrap="wrap" justify="center" align="center" gap={{ base: "4" ,lg:"16"}}>
-          {tldsRow2.map((tld, index) => (
-            <Text
-              key={tld}
-              fontSize={{ base: "md", md: "xl" }}
-              fontWeight="bold"
-              fontFamily="Inter"
-              lineHeight="loose"
-              color="white"
-              opacity={calculateOpacity(index, tldsRow2.length)}
-            >
-              {tld}
-            </Text>
-          ))}
-        </Flex>
-      </Box>
+  return (
+    <Box
+      h={{ base: 'auto', md: '100px' }}
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap={{ base: '4', md: '9' }}
+    >
+      <Flex wrap="wrap" justify="center" align="center" gap={{ base: '4', lg: '16' }}>
+        {renderTlds(tldsRow1, visibleItems.row1)}
+      </Flex>
+      <Flex wrap="wrap" justify="center" align="center" gap={{ base: '4', lg: '16' }}>
+        {renderTlds(tldsRow2, visibleItems.row2)}
+      </Flex>
     </Box>
   );
 };

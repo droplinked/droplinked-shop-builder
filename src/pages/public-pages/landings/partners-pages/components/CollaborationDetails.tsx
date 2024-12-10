@@ -3,9 +3,10 @@ import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import { IDetailsItem } from '../../types/interfaces';
-import D3Paragraph from './common/D3Paragraph';
+
 import PrimaryHeading from './common/PrimaryHeading';
 import { usePartnerContext } from '../context/partner.context';
+import LandingText from './common/LandingText';
 
 
 interface props {
@@ -66,7 +67,7 @@ function DetailItem({ icon, title, description }: IDetailsItem) {
                 <AppTypography mt={{ base: 4, md: 8 }} fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
                     {title}
                 </AppTypography>
-                <D3Paragraph mt={1}>{description as string}</D3Paragraph>
+                <LandingText mt={1}>{description as string}</LandingText>
             </Flex>
         </Box>
     )
