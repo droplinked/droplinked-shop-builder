@@ -5,12 +5,8 @@ import {
 } from 'lib/apis/shop/shopServices';
 import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
-import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
-import { Beneficiary, ProductType } from 'lib/utils/chains/dto/chainStructs';
-import { RecordProduct } from 'lib/utils/chains/dto/recordDTO';
+import { ProductType } from 'droplinked-web3';
 import { droplink_wallet } from 'lib/utils/statics/adresses';
-import { defaultModal } from '../../../../lib/utils/chains/dto/modalInterface';
-import { SolanaProvider } from '../../../../lib/utils/chains/providers/solana/solana.provider';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
 import {
@@ -22,6 +18,21 @@ import {
 	Web3Actions,
 	toEthAddress,
 } from 'droplinked-web3';
+
+export type RecordProduct = {
+	sku_id: string;
+	skuProperties: any;
+	productTitle: string;
+	description: string;
+	image_url: string;
+	price: number;
+	amount: number;
+	commission: number;
+	type: ProductType;
+	acceptsManageWallet: boolean;
+	royalty: number;
+	currencyAddress: string;
+};
 
 const updateShopDeployedContracts = (deployedContracts) => {
 	const { shop, updateState } = useAppStore.getState();
@@ -221,15 +232,6 @@ const web3Model = {
 
 					const products: RecordProduct[] = [];
 
-					const beneficiaries: Beneficiary[] = [];
-					if (product.product_type === 'PRINT_ON_DEMAND') {
-						beneficiaries.push({
-							isPercentage: false,
-							value: sku.rawPrice * 100,
-							wallet: droplink_wallet,
-						});
-					}
-
 					const productType = ProductType.DIGITAL; // TODO: update this
 
 					products.push({
@@ -238,7 +240,6 @@ const web3Model = {
 						commission: commission,
 						royalty: data.royalty,
 						image_url: imageUrl,
-						beneficiaries: beneficiaries,
 						currencyAddress: currencyAddress,
 						description: product.description,
 						price: sku.price * 100,
@@ -369,14 +370,6 @@ const web3Model = {
 					const prod = data;
 					let quantity: any = prod.quantity;
 					if (!royalty) royalty = 0;
-					const beneficiaries: Beneficiary[] = [];
-					if (product.product_type === 'PRINT_ON_DEMAND') {
-						beneficiaries.push({
-							isPercentage: false,
-							value: prod.sku.rawPrice * 100,
-							wallet: droplink_wallet,
-						});
-					}
 					let productType = ProductType.DIGITAL; // TODO: update this
 					if (product.product_type === 'PRINT_ON_DEMAND') {
 						productType = ProductType.POD;
@@ -388,7 +381,6 @@ const web3Model = {
 						commission: commission,
 						royalty: royalty,
 						image_url: prod.imageUrl,
-						beneficiaries: beneficiaries,
 						currencyAddress: currencyAddress,
 						description: product.description,
 						price: prod.sku.price * 100,
@@ -438,7 +430,7 @@ const web3Model = {
 				const productId =
 					sku?.recordData?.data?.details?.productId;
 				const blockchain: string = sku?.recordData?.recordNetwork;
-				const quantity = sku.recorded_quantity;
+				// const quantity = sku.recorded_quantity;
 				if (!deployedContractAddress) {
 					reject('Contract not deployed');
 				}
@@ -457,16 +449,26 @@ const web3Model = {
 					// })
 					// resolve(request.txId)
 				} else {
-					const web3 = new DropWeb3(Network[appDevelopment ? 'TESTNET' : 'MAINNET']);
+					const web3 = new DropWeb3(
+						Network[
+							appDevelopment
+								? 'TESTNET'
+								: 'MAINNET'
+						]
+					);
 					const chainInstance = web3.web3Instance({
 						method: Web3Actions.RECORD_AFFILIATE,
 						preferredWallet: ChainWallet.Metamask,
 						chain: Chain[blockchain],
 						userAddress: accountAddress,
 						nftContractAddress: '',
-						shopContractAddress: shopAddress
+						shopContractAddress: shopAddress,
 					});
-					const request = await chainInstance.publishRequest(productId, toEthAddress(shopAddress));
+					const request =
+						await chainInstance.publishRequest(
+							productId,
+							toEthAddress(shopAddress)
+						);
 					resolve(request.transactionHash);
 				}
 			} catch (error) {
@@ -506,7 +508,6 @@ const web3Model = {
 					resolve(deployHash);
 				} else if (blockchain === 'SOLANA') {
 					//const web3 = new DropWeb3(Network.TESTNET);
-
 					//const accept = await new SolanaProvider(
 					//	Chain.SOLANA,
 					//	Network.TESTNET
@@ -518,16 +519,25 @@ const web3Model = {
 					//resolve(deployHash);
 				} else {
 					//    approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
-					const web3 = new DropWeb3(Network[appDevelopment ? 'TESTNET' : 'MAINNET']);
+					const web3 = new DropWeb3(
+						Network[
+							appDevelopment
+								? 'TESTNET'
+								: 'MAINNET'
+						]
+					);
 					const chainInstance = web3.web3Instance({
 						method: Web3Actions.RECORD_AFFILIATE,
 						shopContractAddress: deployShopContract,
 						nftContractAddress: '',
 						userAddress: accountAddress,
 						chain: Chain[blockchain],
-						preferredWallet: ChainWallet.Metamask
+						preferredWallet: ChainWallet.Metamask,
 					});
-					const accept = await chainInstance.approveRequest(requestID, deployShopContract);
+					const accept = await chainInstance.approveRequest(
+						requestID,
+						deployShopContract
+					);
 					deployHash = accept;
 					resolve(deployHash);
 				}

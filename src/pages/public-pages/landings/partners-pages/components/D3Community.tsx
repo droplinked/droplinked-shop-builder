@@ -2,7 +2,7 @@ import { Flex, SimpleGrid } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import D3Heading from './common/D3Heading'
+import D3Heading from './common/PrimaryHeading'
 import D3Paragraph from './common/D3Paragraph'
 
 export default function D3Community() {

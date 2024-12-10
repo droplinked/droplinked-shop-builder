@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Image, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import ErrorLabel from 'components/redesign/form/errorLabel/errorLabel';
+import ErrorLabel from '../../controls/components/rulesets/components/labels/errorLabel/errorLabel';
 import AppUploadImage from 'components/redesign/image/AppUploadImage';
 import * as React from 'react';
 import { IFileData } from '../interface/interfaces';

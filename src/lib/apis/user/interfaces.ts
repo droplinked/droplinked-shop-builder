@@ -62,7 +62,7 @@ export interface IAcceptInvitation {
     password: string;
 }
 
-export interface IPostUserVerifyD3 {
+export interface IPostUserVerifyPartner {
     walletAddress: string;
     walletType: string;
 }
