@@ -36,20 +36,22 @@ export const useWalletVerification = () => {
 				walletAddress,
 				walletType,
 			});
-
+	
 			const data = verifyRes?.data?.data;
+	
 			if (!data || data === 'false' || data === false) {
 				updateStates({ key: 'currentStep', value: 'error' });
 			}
-
-			const paramKey = partnerName === 'D3' ? 'd3-id' : 'ud-id';
-			searchParams.set(paramKey, data);
-			setSearchParams(searchParams);
-
-			updateStates({ key: 'currentStep', value: 'done' });
+			else {
+				const paramKey = partnerName === 'D3' ? 'd3-id' : 'ud-id';
+				searchParams.set(paramKey, data);
+				setSearchParams(searchParams);
+	
+				updateStates({ key: 'currentStep', value: 'done' });
+			}
 		} catch (error) {
 			updateStates({ key: 'currentStep', value: 'error' });
-			throw error;
+			throw error; 
 		}
 	};
 
