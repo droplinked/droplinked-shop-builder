@@ -54,7 +54,6 @@ export const useWalletVerification = () => {
 			throw error; 
 		}
 	};
-	
 
 	const connectD3Wallet = () => {
 		return new Promise<void>((resolve, reject) => {
