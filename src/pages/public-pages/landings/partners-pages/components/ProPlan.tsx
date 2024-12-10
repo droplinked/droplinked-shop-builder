@@ -5,8 +5,6 @@ import { usePartnerContext } from '../context/partner.context'
 import WalletVerificationModal from './WalletVerificationModal/WalletVerificationModal'
 import LandingText from './common/LandingText'
 
-
-
 export default function ProPlan() {
     const { planDurationMonths } = usePartnerContext();
     return (
@@ -28,7 +26,7 @@ export default function ProPlan() {
     )
 }
 
-function Content({planDurationMonths}) {
+function Content({ planDurationMonths }) {
     return (
         <Flex
             direction="column"
@@ -41,11 +39,11 @@ function Content({planDurationMonths}) {
                     Free {planDurationMonths} Month Pro Plan
                 </AppTypography>
                 <LandingText>
-                    Unlock  {planDurationMonths} months of the Pro Plan absolutely free!<br />
+                    Unlock {planDurationMonths} months of the Pro Plan absolutely free!<br />
                     Redeem the exclusive offer today.
                 </LandingText>
             </Flex>
-            <WalletVerificationModal/>
+            <WalletVerificationModal />
         </Flex>
     )
 }
