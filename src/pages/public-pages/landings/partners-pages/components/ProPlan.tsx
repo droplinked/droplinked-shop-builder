@@ -1,9 +1,9 @@
 import { Flex, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import D3Paragraph from './common/D3Paragraph'
 import { usePartnerContext } from '../context/partner.context'
 import WalletVerificationModal from './WalletVerificationModal/WalletVerificationModal'
+import LandingText from './common/LandingText'
 
 
 
@@ -40,10 +40,10 @@ function Content({planDurationMonths}) {
                 <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
                     Free {planDurationMonths} Month Pro Plan
                 </AppTypography>
-                <D3Paragraph>
+                <LandingText>
                     Unlock  {planDurationMonths} months of the Pro Plan absolutely free!<br />
                     Redeem the exclusive offer today.
-                </D3Paragraph>
+                </LandingText>
             </Flex>
             <WalletVerificationModal/>
         </Flex>

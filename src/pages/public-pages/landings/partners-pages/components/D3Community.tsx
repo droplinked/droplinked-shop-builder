@@ -3,7 +3,8 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import D3Heading from './common/PrimaryHeading'
-import D3Paragraph from './common/D3Paragraph'
+import LandingText from './common/LandingText'
+
 
 export default function D3Community() {
     return (
@@ -63,7 +64,7 @@ function DetailItem({ icon, title, description, image }) {
             <AppTypography mt={{ base: 4, md: 6 }} fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
                 {title}
             </AppTypography>
-            <D3Paragraph>{description as string}</D3Paragraph>
+            <LandingText>{description as string}</LandingText>
         </Flex>
     )
 }

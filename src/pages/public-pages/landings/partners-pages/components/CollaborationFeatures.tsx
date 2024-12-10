@@ -2,8 +2,8 @@ import { Box, Flex, Grid, Image, SimpleGrid, useMediaQuery } from '@chakra-ui/re
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import D3Paragraph from './common/D3Paragraph'
 import { usePartnerContext } from '../context/partner.context'
+import LandingText from './common/LandingText'
 
 
 
@@ -65,7 +65,7 @@ function FeatureCard({ icon, title, description, image }) {
                     <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
                         {title}
                     </AppTypography>
-                    <D3Paragraph mt={1}>{description as string}</D3Paragraph>
+                    <LandingText mt={1}>{description as string}</LandingText>
                 </Box>
             </Flex>
             <Image src={imageUrl} alt={title} />
