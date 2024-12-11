@@ -1,6 +1,7 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import { fileSizeInMB } from 'lib/utils/helpers/helpers'
 import React from 'react'
 import FileUpload from './FileUpload'
 
@@ -26,8 +27,6 @@ export default function ImportProductModalBody({ file, onFileChange }: Props) {
 }
 
 function FilePreview({ file, onFileChange }: Props) {
-    const fileSizeInMB = (file.size / (1024 * 1024)).toFixed(2)
-
     return (
         <Flex
             justifyContent="space-between"
@@ -47,7 +46,7 @@ function FilePreview({ file, onFileChange }: Props) {
                         {file.name}
                     </AppTypography>
                     <AppTypography mt={2} fontSize={12} color="#7B7B7B">
-                        {fileSizeInMB} MB
+                        {fileSizeInMB(file)} MB
                     </AppTypography>
                 </Box>
             </Flex>

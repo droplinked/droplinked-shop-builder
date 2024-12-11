@@ -12,7 +12,6 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 import ProductEmpty from './parts/empty/ProductEmpty'
-import ImportProductModal from './parts/import-product-modal/ImportProductModal'
 import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
@@ -36,7 +35,6 @@ function Products() {
     const { refactorData } = ProductListModel
     const [selectedProducts, setSelectedProducts] = useState([])
     const productReorderModal = useDisclosure()
-    const importProductModal = useDisclosure()
 
     const rows = useMemo(() => {
         return data ? refactorData({ data: products?.data, fetch: refetchProducts }) : []
@@ -52,7 +50,6 @@ function Products() {
         const data: any = [
             { caption: "Add Product", to: `${shopRoute}/products/types` },
             { caption: "Reorder Products", onClick: productReorderModal.onOpen, buttonProps: { variant: "outline" } },
-            { caption: "Import", onClick: importProductModal.onOpen, buttonProps: { variant: "outline" } }
         ]
 
         if (selectedProducts.length) data.push({
@@ -126,8 +123,6 @@ function Products() {
                     }}
                 />
             }
-
-            <ImportProductModal isOpen={importProductModal.isOpen} closeModal={importProductModal.onClose} />
         </>
     )
 }

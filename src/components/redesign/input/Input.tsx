@@ -2,6 +2,7 @@ import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, Inp
 import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import React, { ReactNode } from 'react'
+import ErrorMessage from '../error-message/ErrorMessage'
 
 interface Props {
     label?: string
@@ -81,7 +82,7 @@ const Input = ({ label, inputProps, inputGroupProps, icon, actionButton, error, 
                     {renderInputElement}
                     {renderActionButton}
                 </Flex>
-                {error && <Text mt={2} fontSize={14} color="#E53E3E">{error}</Text>}
+                {error && <ErrorMessage mt={2} fontSize={14} color="#E53E3E">{error}</ErrorMessage>}
             </>
         )
     }
@@ -116,7 +117,7 @@ const Input = ({ label, inputProps, inputGroupProps, icon, actionButton, error, 
                 </Flex>
             }
 
-            {error && <Text fontSize={14} color="#E53E3E">{error}</Text>}
+            {error && <ErrorMessage fontSize={14} color="#E53E3E">{error}</ErrorMessage>}
         </InputGroup>
     )
 

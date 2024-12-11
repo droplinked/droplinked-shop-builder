@@ -56,8 +56,6 @@ import { ReactComponent as D3Access } from "./d3-access.svg";
 import { ReactComponent as D3CoreChain } from "./d3-core-chain.svg";
 import { ReactComponent as D3D3BorderRed } from "./d3-d3-border-red.svg";
 import { ReactComponent as D3D3Border } from "./d3-d3-border.svg";
-import { ReactComponent as UDBorderRed } from "./ud-border-red.svg";
-import { ReactComponent as UDBorder } from "./ud-border.svg";
 import { ReactComponent as D3DroplinkedBorderRed } from "./d3-droplinked-border-red.svg";
 import { ReactComponent as D3DroplinkedBorder } from "./d3-droplinked-border.svg";
 import { ReactComponent as D3EnterpriseTools } from "./d3-enterprise-tools.svg";
@@ -111,6 +109,7 @@ import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
 import { ReactComponent as GrayDollor } from "./gray-dollar.svg";
 import { ReactComponent as GrayPercent } from "./gray-percent.svg";
+import { ReactComponent as GrayStar } from "./gray-star.svg";
 import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
@@ -121,11 +120,11 @@ import { ReactComponent as HeaderBag } from "./header-bag.svg";
 import { ReactComponent as HeaderCoins } from "./header-coins.svg";
 import { ReactComponent as HeaderCreditCard } from "./header-credit.svg";
 import { ReactComponent as HeaderD3 } from "./header-d3.svg";
-import { ReactComponent as HeaderUd } from "./header-ud.svg";
 import { ReactComponent as HeaderImage } from "./header-image.svg";
 import { ReactComponent as HeaderProductBox } from "./header-product-box.svg";
 import { ReactComponent as HeaderShirt } from "./header-shirt.svg";
 import { ReactComponent as HeaderTokenCoin } from "./header-token-coin.svg";
+import { ReactComponent as HeaderUd } from "./header-ud.svg";
 import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
@@ -249,6 +248,8 @@ import { ReactComponent as Token } from "./token.svg";
 import { ReactComponent as TrashRed } from "./trash-red.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
+import { ReactComponent as UDBorderRed } from "./ud-border-red.svg";
+import { ReactComponent as UDBorder } from "./ud-border.svg";
 import { ReactComponent as Unisat } from "./unisat.svg";
 import { ReactComponent as Unlock } from "./unlock.svg";
 import { ReactComponent as UnstoppableDomainsIcon } from "./unstoppableDomains.svg";
@@ -266,6 +267,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
+import { ReactComponent as YellowStar } from "./yellow-star.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -535,7 +537,9 @@ const AppIcons = {
     EventTicket,
     Services,
     Subscription,
-    MagicWind
+    MagicWind,
+    YellowStar,
+    GrayStar
 }
 
 export default AppIcons

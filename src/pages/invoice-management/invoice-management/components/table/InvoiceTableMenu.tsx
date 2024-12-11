@@ -48,7 +48,7 @@ export default function InvoiceTableMenu({ invoice }) {
                         </MenuItem>
                     }
 
-                    <MenuItem icon={<AppIcons.RedTrash />} color={"#FF2244"} onClick={onOpen}>
+                    <MenuItem icon={<AppIcons.RedTrash />} color="#FF2244" onClick={onOpen}>
                         Delete
                     </MenuItem>
                 </MenuList>
