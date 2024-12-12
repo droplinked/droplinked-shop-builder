@@ -1,4 +1,4 @@
-import { array, object, string } from 'yup'
+import { array, boolean, number, object, string } from 'yup'
 
 export interface ProductMedia {
     _id?: string
@@ -16,6 +16,8 @@ export interface ProductFormValues {
     description: string
     media: ProductMedia[]
     productCollectionID: string
+    canBeAffiliated: boolean
+    commission: number
 }
 
 export const validationSchema = object({
@@ -25,7 +27,9 @@ export const validationSchema = object({
     media: array()
         .min(1, 'An image is required to ensure your product is displayed correctly')
         .required('An image is required to ensure your product is displayed correctly'),
-    productCollectionID: string().required('A product collection is required')
+    productCollectionID: string().required('A product collection is required'),
+    canBeAffiliated: boolean(),
+    commission: number()
 })
 
 export const initialValues: ProductFormValues = {
@@ -34,5 +38,7 @@ export const initialValues: ProductFormValues = {
     title: "",
     description: "",
     media: [],
-    productCollectionID: ""
+    productCollectionID: "",
+    canBeAffiliated: false,
+    commission: 1,
 }
