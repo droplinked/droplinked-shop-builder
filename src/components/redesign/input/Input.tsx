@@ -1,127 +1,88 @@
-import { Input as ChakraInput, Flex, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import Button from 'components/redesign/button/Button'
 import React, { ReactNode } from 'react'
-import ErrorMessage from '../error-message/ErrorMessage'
 
 interface Props {
-    label?: string
-    inputProps?: InputProps
     inputGroupProps?: InputGroupProps
-    icon?: ReactNode
+    label?: string
+    labelProps?: FormLabelProps
     description?: string
-    actionButton?: {
-        label: string
-        onClick: () => void
-        isDisabled?: boolean
-        isLoading?: boolean
-    }
-    error?: string
+    inputContainerProps?: FlexProps
+    inputProps?: InputProps
+    leftElement?: ReactNode
+    rightElement?: ReactNode
+    actionButton?: ReactNode
+    hasError?: boolean
+    message?: string
+    maxCharacters?: number
 }
 
-const Input = ({ label, inputProps, inputGroupProps, icon, actionButton, error, description }: Props) => {
-    const baseInputProps = {
-        borderRadius: 8,
-        py: 3,
-        fontSize: 16,
-        fontWeight: 400,
-        color: "#7B7B7B",
-        spellCheck: false,
-        _hover: {
-            borderColor: error ? "#E53E3E" : "#3C3C3C",
-            backgroundColor: "#1E1E1E"
-        },
-        _focus: { borderColor: "#7B7B7B", backgroundColor: "#1E1E1E" },
-        _focusVisible: { outline: "none" },
-        _placeholder: { color: "#7B7B7B" },
-        ...inputProps
-    }
-
-    const baseInputGroupProps = {
-        display: "flex",
-        alignItems: "center",
-        gap: 2,
-        borderRadius: 8,
-        py: actionButton ? 2 : error ? 0 : 3,
-        pl: error ? 0 : 4,
-        pr: actionButton ? 2 : error ? 0 : 4,
-        ...inputGroupProps
-    }
-
-    const renderActionButton = actionButton && (
-        <Button
-            size="sm"
-            borderRadius={4}
-            paddingBlock={2}
-            paddingInline={3}
-            fontSize={12}
-            fontWeight={500}
-            isDisabled={actionButton?.isDisabled}
-            isLoading={actionButton?.isLoading}
-            onClick={actionButton?.onClick}
-        >
-            {actionButton?.label}
-        </Button>
-    )
-
-    const renderInputElement = (
-        <ChakraInput
-            border={icon || actionButton ? "none" : `1.5px solid ${error ? "#E53E3E" : "#292929"}`}
-            px={icon || actionButton ? 0 : 4}
-            {...baseInputProps}
-        />
-    )
-
-    const renderInputWithoutLabel = () => {
-        if (!icon && !actionButton && !error) return renderInputElement
-
-        return (
-            <>
-                <Flex {...baseInputGroupProps}>
-                    {icon}
-                    {renderInputElement}
-                    {renderActionButton}
-                </Flex>
-                {error && <ErrorMessage mt={2} fontSize={14} color="#E53E3E">{error}</ErrorMessage>}
-            </>
-        )
-    }
-
-    const renderInputWithLabel = () => (
-        <InputGroup display="flex" flexDirection="column">
-            <FormLabel
-                width="fit-content"
-                mb={description ? 0 : 4}
-                display="flex"
-                alignItems="center"
-                gap={1}
-                fontSize={14}
-                fontWeight={500}
-                color="white"
-            >
-                {label} {inputProps?.isRequired && <AppIcons.Required />}
-            </FormLabel>
-
-            {description && (
-                <Text mt={1} mb={4} color="#7B7B7B" fontSize={14}>
-                    {description}
-                </Text>
+const Input = ({ inputGroupProps, label, labelProps, description, inputContainerProps, inputProps, leftElement, rightElement, hasError, message, maxCharacters }: Props) => {
+    return (
+        <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
+            {label && (
+                <FormLabel
+                    mb={description ? 1 : 4}
+                    display="flex" alignItems="center" gap={1}
+                    fontSize={16} fontWeight={500} color="#FFF"
+                    {...labelProps}
+                >
+                    {label} {inputProps?.isRequired && <AppIcons.Required />}
+                </FormLabel>
             )}
 
-            {!icon && !actionButton ?
-                renderInputElement :
-                <Flex {...baseInputGroupProps}>
-                    {icon}
-                    {renderInputElement}
-                    {renderActionButton}
-                </Flex>
-            }
+            {description && <Text mb={4} fontSize={14} color="#7B7B7B">{description}</Text>}
 
-            {error && <ErrorMessage fontSize={14} color="#E53E3E">{error}</ErrorMessage>}
+            <Flex
+                alignItems="center" gap={2}
+                borderRadius={8} border="1px solid" borderColor={hasError ? "#F24" : "#292929"}
+                padding="12px 16px"
+                transition="border-color 0.1s ease-out"
+                _hover={{ borderColor: hasError ? "#F24" : "#3C3C3C" }}
+                _focus={{ borderColor: hasError ? "#F24" : "#7B7B7B" }}
+                {...inputContainerProps}
+            >
+                {leftElement}
+                <ChakraInput
+                    height="auto"
+                    outline="none"
+                    border="none"
+                    borderRadius={0}
+                    padding={0}
+                    fontSize={14}
+                    fontWeight={400}
+                    color="#fff"
+                    maxLength={maxCharacters}
+                    spellCheck={false}
+                    _placeholder={{ color: "#7B7B7B" }}
+                    _focusVisible={{}}
+                    {...inputProps}
+                />
+                {rightElement}
+            </Flex>
+
+            {(message || maxCharacters) && (
+                <Flex
+                    mt={2}
+                    paddingInline={4}
+                    css={{ p: { fontSize: 12, fontWeight: 400, color: "#fff" } }}
+                >
+                    {message && (
+                        <Flex alignItems="center" gap={2}>
+                            <AppIcons.WhiteWarning />
+                            <Text>{message}</Text>
+                        </Flex>
+                    )}
+
+                    {maxCharacters && (
+                        <Text marginLeft="auto">
+                            {`${inputProps?.value?.toString()?.length}/${maxCharacters}`}
+                        </Text>
+                    )}
+                </Flex>
+            )}
         </InputGroup>
     )
-
-    return label ? renderInputWithLabel() : renderInputWithoutLabel()
 }
 
 export default Input

@@ -262,6 +262,7 @@ import { ReactComponent as NFT } from "./white-nft-icon.svg";
 import { ReactComponent as WhiteOpenWallet } from "./white-open-wallet.svg";
 import { ReactComponent as WhiteShopIcon } from "./white-shop.svg";
 import { ReactComponent as WhiteTrash } from "./white-trash.svg";
+import { ReactComponent as WhiteWarning } from "./white-warning.svg";
 import { ReactComponent as XOutlined } from "./x-outlined.svg";
 import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
@@ -539,7 +540,8 @@ const AppIcons = {
     Subscription,
     MagicWind,
     YellowStar,
-    GrayStar
+    GrayStar,
+    WhiteWarning
 }
 
 export default AppIcons

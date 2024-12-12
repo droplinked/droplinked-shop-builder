@@ -4,7 +4,6 @@ import useCollections from 'functions/hooks/useCollections/useCollections'
 import { ProductFormValues } from 'pages/products/utils/formSchema'
 import React from 'react'
 import ProductFieldWrapper from '../common/ProductFieldWrapper'
-import ErrorMessage from 'components/redesign/error-message/ErrorMessage'
 
 function ProductCollection() {
     const { data } = useCollections()
@@ -14,6 +13,7 @@ function ProductCollection() {
         <ProductFieldWrapper
             label='Collections'
             description='Select the collection that will feature this product.'
+            errorMessage={errors.productCollectionID}
         >
             <Select
                 items={data?.data ?? []}
@@ -25,7 +25,6 @@ function ProductCollection() {
                     onChange: (e) => setFieldValue("productCollectionID", e.target.value)
                 }}
             />
-            <ErrorMessage mt={2}>{errors.productCollectionID}</ErrorMessage>
         </ProductFieldWrapper>
     )
 }

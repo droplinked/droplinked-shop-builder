@@ -23,6 +23,7 @@ function ProductDrawer({ isOpen, onClose }: Props) {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 validateOnChange={false}
+                validateOnBlur={false}
                 onSubmit={handleSubmit}
             >
                 {formik =>

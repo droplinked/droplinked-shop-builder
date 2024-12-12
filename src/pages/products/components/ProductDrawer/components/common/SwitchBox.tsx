@@ -11,7 +11,7 @@ interface Props extends PropsWithChildren {
 
 const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
     const content = (
-        <Flex gap={4}>
+        <Flex flex={1} gap={4}>
             <Switch
                 size="lg"
                 isChecked={isChecked}
@@ -32,7 +32,7 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
     if (!rightContent) return content
 
     return (
-        <Flex justify="space-between" align="flex-start" gap={4}>
+        <Flex align="flex-start" gap={4}>
             {content}
             {rightContent}
         </Flex>

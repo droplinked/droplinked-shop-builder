@@ -1,19 +1,20 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import { useFormikContext } from 'formik'
 import { ProductFormValues } from 'pages/products/utils/formSchema'
 import React from 'react'
+import GenerateWithAI from '../../common/GenerateWithAI'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import classes from './ProductDescription.module.scss'
-import GenerateWithAI from '../../common/GenerateWithAI'
 
 function ProductDescription() {
-    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, errors, setFieldValue } = useFormikContext<ProductFormValues>()
 
     return (
         <ProductFieldWrapper
             label='Description'
             description="Describe product features and details to help customers understand what they're buying."
+            errorMessage={errors.description}
         >
             <Flex direction="column" gap={4} className={classes.editor}>
                 <Editor

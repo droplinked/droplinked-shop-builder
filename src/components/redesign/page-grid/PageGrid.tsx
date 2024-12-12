@@ -48,7 +48,19 @@ function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
 function PageGridActions({ search, filters }: PageGridActionsProps) {
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
-            {search && <Input inputProps={{ onChange: search.onChange, value: search.value, placeholder: search.placeholder ?? "Search" }} icon={<AppIcons.SearchOutlined />} inputGroupProps={{ width: "300px", height: 12, bgColor: "#1C1C1C" }} />}
+            {search && (
+                <Input
+                    inputGroupProps={{ width: "300px" }}
+                    inputContainerProps={{ bgColor: "#1C1C1C", padding: 3 }}
+                    inputProps={{
+                        fontSize: 16,
+                        placeholder: search.placeholder ?? "Search",
+                        value: search.value,
+                        onChange: search.onChange,
+                    }}
+                    leftElement={<AppIcons.SearchOutlined />}
+                />
+            )}
             {filters && <FiltersDataGrid items={filters} />}
         </Flex>
     )

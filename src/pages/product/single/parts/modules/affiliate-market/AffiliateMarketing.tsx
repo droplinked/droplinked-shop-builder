@@ -47,7 +47,7 @@ function CommissionDetails({ commission, onCommissionChange }) {
     return (
         <Flex justifyContent="space-between" gap={4}>
             <Flex flex={1} direction="column" gap={1}>
-                <AppTypography fontSize={14} fontWeight={500}>Commission</AppTypography>
+                <AppTypography fontSize={14} fontWeight={500}>Commissiogggg</AppTypography>
                 <AppTypography fontSize={14}>Set the commission percentage affiliates will earn for each sale.</AppTypography>
             </Flex>
 

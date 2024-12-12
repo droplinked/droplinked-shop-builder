@@ -1,17 +1,45 @@
+import AppIcons from 'assest/icon/Appicons'
+import Input from 'components/redesign/input/Input'
 import { useFormikContext } from 'formik'
 import { ProductFormValues } from 'pages/products/utils/formSchema'
 import React from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductAffiliate() {
-    const { values: { canBeAffiliated }, errors, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+
+    const preventInvalidKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        const invalidKeys = ['+', '-', 'e']
+        if (invalidKeys.includes(e.key)) e.preventDefault()
+    }
+
+    const handleCommissionChange = ({ target: { value, validity } }) => {
+        if (!validity.valid) return
+        const parsedValue = parseInt(value)
+        setFieldValue('commission', isNaN(parsedValue) ? 0 : parsedValue)
+    }
 
     return (
         <SwitchBox
             title='Affiliate Market'
             description='Enable this to allow co-sellers to import and sell this product.'
-            isChecked={canBeAffiliated}
+            isChecked={values.canBeAffiliated}
             onToggle={(e) => setFieldValue("canBeAffiliated", e.target.checked)}
+            rightContent={
+                <Input
+                    inputGroupProps={{ width: "88px" }}
+                    inputProps={{
+                        type: "number",
+                        min: 1,
+                        max: 99,
+                        onKeyDown: preventInvalidKeys,
+                        placeholder: "100",
+                        value: values.commission,
+                        onChange: handleCommissionChange
+                    }}
+                    rightElement={<AppIcons.GrayPercent />}
+                />
+            }
         />
     )
 }

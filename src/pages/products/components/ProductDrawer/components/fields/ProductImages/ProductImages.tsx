@@ -1,5 +1,4 @@
 import { Flex } from '@chakra-ui/react'
-import ErrorMessage from 'components/redesign/error-message/ErrorMessage'
 import { useFormikContext } from 'formik'
 import useFileUpload from 'functions/hooks/useFileUpload/useFileUpload'
 import { fileSizeInMB } from 'lib/utils/helpers/helpers'
@@ -34,6 +33,7 @@ export default function ProductImages() {
         <ProductFieldWrapper
             label='Product Images'
             description='Upload images or videos that visually showcase the product.'
+            errorMessage={errors.media?.toString()}
         >
             <Flex direction="column" gap={4}>
                 <FileUpload
@@ -46,7 +46,6 @@ export default function ProductImages() {
                     flexProps={{ minH: "135px" }}
                 />
                 {media.map(i => <ProductImage image={i} />)}
-                {errors.media && <ErrorMessage>{errors.media.toString()}</ErrorMessage>}
             </Flex>
         </ProductFieldWrapper>
     )

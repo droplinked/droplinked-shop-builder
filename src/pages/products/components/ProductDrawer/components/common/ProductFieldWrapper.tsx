@@ -1,15 +1,17 @@
 import { Box, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
 import AppIcons from "assest/icon/Appicons"
+import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { PropsWithChildren } from "react"
 
 interface FieldWrapperProps extends PropsWithChildren {
     label: string
-    description?: string
     labelProps?: FormLabelProps
+    description?: string
     isRequired?: boolean
+    errorMessage?: string
 }
 
-function ProductFieldWrapper({ label, description, children, labelProps, isRequired = false }: FieldWrapperProps) {
+function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, children }: FieldWrapperProps) {
     return (
         <Box>
             <FormLabel
@@ -30,6 +32,7 @@ function ProductFieldWrapper({ label, description, children, labelProps, isRequi
                 </Text>
             )}
             {children}
+            {errorMessage && <ErrorMessage mt={2}>{errorMessage}</ErrorMessage>}
         </Box>
     )
 }
