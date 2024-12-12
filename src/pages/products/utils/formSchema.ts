@@ -10,11 +10,12 @@ export interface ProductMedia {
 }
 
 export interface ProductFormValues {
-    action: string,
-    product_type: string,
-    title: string,
-    description: string,
+    action: string
+    product_type: string
+    title: string
+    description: string
     media: ProductMedia[]
+    productCollectionID: string
 }
 
 export const validationSchema = object({
@@ -23,7 +24,8 @@ export const validationSchema = object({
     description: string().required('Description is required'),
     media: array()
         .min(1, 'An image is required to ensure your product is displayed correctly')
-        .required('An image is required to ensure your product is displayed correctly')
+        .required('An image is required to ensure your product is displayed correctly'),
+    productCollectionID: string().required('A product collection is required')
 })
 
 export const initialValues: ProductFormValues = {
@@ -32,4 +34,5 @@ export const initialValues: ProductFormValues = {
     title: "",
     description: "",
     media: [],
+    productCollectionID: ""
 }

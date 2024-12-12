@@ -3,11 +3,12 @@ import React, { PropsWithChildren } from 'react'
 
 interface Props extends PropsWithChildren {
     label: string
+    defaultOpen?: boolean
 }
 
-function ProductFormAccordion({ label, children }: Props) {
+function ProductFormAccordion({ label, defaultOpen = false, children }: Props) {
     return (
-        <AppAccordionItem itemId={label}>
+        <AppAccordionItem itemId={label} defaultOpen={defaultOpen}>
             <AppAccordionTrigger
                 borderRadius={8}
                 bgColor="#1C1C1C"
