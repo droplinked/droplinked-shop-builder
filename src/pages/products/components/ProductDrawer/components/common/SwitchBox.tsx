@@ -11,7 +11,7 @@ interface Props extends PropsWithChildren {
 
 const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
     const content = (
-        <Flex flex={1} gap={4}>
+        <Flex flex={1} alignItems="start" gap={4}>
             <Switch
                 size="lg"
                 isChecked={isChecked}
@@ -23,7 +23,7 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
             />
             <Flex direction="column">
                 <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                <Text mb={4} fontSize={14} fontWeight={400} color="#7B7B7B">{description}</Text>
+                <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
                 {children}
             </Flex>
         </Flex>

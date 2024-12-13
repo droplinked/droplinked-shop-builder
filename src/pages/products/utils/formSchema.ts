@@ -17,7 +17,8 @@ export interface ProductFormValues {
     media: ProductMedia[]
     productCollectionID: string
     canBeAffiliated: boolean
-    commission: number
+    commission: number,
+    keywords: string[]
 }
 
 export const validationSchema = object({
@@ -29,7 +30,8 @@ export const validationSchema = object({
         .required('An image is required to ensure your product is displayed correctly'),
     productCollectionID: string().required('A product collection is required'),
     canBeAffiliated: boolean(),
-    commission: number()
+    commission: number(),
+    keywords: array()
 })
 
 export const initialValues: ProductFormValues = {
@@ -41,4 +43,5 @@ export const initialValues: ProductFormValues = {
     productCollectionID: "",
     canBeAffiliated: false,
     commission: 1,
+    keywords: []
 }

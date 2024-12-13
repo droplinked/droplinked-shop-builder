@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import React from 'react'
+import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
 
 function FormContent() {
@@ -18,8 +19,10 @@ function FormContent() {
                 flexDirection="column"
                 alignItems="flex-start"
                 gap={12}
+                multiCollapse
             >
                 <GeneralInformationAccordion />
+                <AdditionalDetailsAccordion />
             </AppAccordion>
         </Flex>
     )

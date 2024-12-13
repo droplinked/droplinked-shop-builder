@@ -65,7 +65,7 @@ const Input = ({ inputGroupProps, label, labelProps, description, inputContainer
                 <Flex
                     mt={2}
                     paddingInline={4}
-                    css={{ p: { fontSize: 12, fontWeight: 400, color: "#fff" } }}
+                    css={{ p: { fontSize: 12, color: "#FFF" } }}
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
