@@ -11,7 +11,7 @@ function ProductDeliveryMessage() {
             title='Delivery Message'
             description='Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions.'
             isChecked={showMore}
-            onToggle={() => setShowMore(prev => !prev)}
+            onToggle={(e) => setShowMore(e.target.checked)}
         >
             {showMore && (
                 <>

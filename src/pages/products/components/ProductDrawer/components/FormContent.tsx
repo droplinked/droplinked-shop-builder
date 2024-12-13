@@ -3,6 +3,7 @@ import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import React from 'react'
 import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
+import Web3SettingsAccordion from './accordions/Web3SettingsAccordion'
 
 function FormContent() {
     return (
@@ -22,6 +23,7 @@ function FormContent() {
                 multiCollapse
             >
                 <GeneralInformationAccordion />
+                <Web3SettingsAccordion />
                 <AdditionalDetailsAccordion />
             </AppAccordion>
         </Flex>

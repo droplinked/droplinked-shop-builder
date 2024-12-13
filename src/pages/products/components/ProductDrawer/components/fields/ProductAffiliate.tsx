@@ -1,7 +1,7 @@
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/formSchema'
+import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import SwitchBox from '../common/SwitchBox'
 

@@ -10,7 +10,7 @@ function ProductTermsAndConditions() {
             title='Custom Term of Service'
             description='Display custom terms specific to this product, such as return policies or disclaimers, during checkout.'
             isChecked={showMore}
-            onToggle={() => setShowMore(prev => !prev)}
+            onToggle={(e) => setShowMore(e.target.checked)}
         >
             {showMore && (
                 <Textarea

@@ -1,5 +1,6 @@
 import { Form, Formik, FormikProvider } from 'formik'
-import { initialValues, ProductFormValues, validationSchema } from 'pages/products/utils/formSchema'
+import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
+import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import FormContent from './components/FormContent'
 import DrawerFooter from './components/common/DrawerFooter'

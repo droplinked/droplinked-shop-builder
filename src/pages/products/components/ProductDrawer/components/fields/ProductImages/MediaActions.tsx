@@ -1,7 +1,7 @@
 import { Button, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import { useFormikContext } from 'formik'
-import { ProductFormValues, ProductMedia } from 'pages/products/utils/formSchema'
+import { ProductFormValues, ProductMedia } from 'pages/products/utils/types'
 import React from 'react'
 
 function MediaActions({ image }: { image: ProductMedia }) {

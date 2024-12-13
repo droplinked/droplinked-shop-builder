@@ -1,7 +1,7 @@
 import Select from 'components/redesign/select/Select'
 import { useFormikContext } from 'formik'
 import useCollections from 'functions/hooks/useCollections/useCollections'
-import { ProductFormValues } from 'pages/products/utils/formSchema'
+import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import ProductFieldWrapper from '../common/ProductFieldWrapper'
 

@@ -1,7 +1,7 @@
-import { Box, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
+import { Box, Flex, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
 import AppIcons from "assest/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
-import React, { PropsWithChildren } from "react"
+import React, { PropsWithChildren, ReactNode } from "react"
 
 interface FieldWrapperProps extends PropsWithChildren {
     label: string
@@ -9,10 +9,11 @@ interface FieldWrapperProps extends PropsWithChildren {
     description?: string
     isRequired?: boolean
     errorMessage?: string
+    rightContent?: ReactNode
 }
 
-function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, children }: FieldWrapperProps) {
-    return (
+function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: FieldWrapperProps) {
+    const content = (
         <Box>
             <FormLabel
                 display="flex"
@@ -34,6 +35,15 @@ function ProductFieldWrapper({ label, labelProps, description, isRequired = fals
             {children}
             {errorMessage && <ErrorMessage mt={2}>{errorMessage}</ErrorMessage>}
         </Box>
+    )
+
+    if (!rightContent) return content
+
+    return (
+        <Flex align="flex-start" gap={4}>
+            {content}
+            {rightContent}
+        </Flex>
     )
 }
 
