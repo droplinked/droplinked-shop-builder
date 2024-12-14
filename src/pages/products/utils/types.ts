@@ -36,7 +36,8 @@ export interface ProductFormValues {
     canBeAffiliated: boolean
     commission: number,
     keywords: string[],
-    sku: SKU[]
+    sku: SKU[],
+    shippingType: string,
     digitalDetail?: {
         chain: string
     }

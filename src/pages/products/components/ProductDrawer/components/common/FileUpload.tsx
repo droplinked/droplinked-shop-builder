@@ -10,10 +10,7 @@ interface Props {
     isLoading?: boolean
     flexProps?: FlexProps
     icon?: React.ReactNode
-    text?: {
-        dragActiveText?: string
-        footerText?: string
-    };
+    text?: { dragActiveText?: string, footerText?: string }
     accept?: Accept
 }
 
@@ -30,18 +27,16 @@ function FileUpload({
     accept = {}
 }: Props) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        multiple,
+        accept,
         onDrop: (acceptedFiles: File[]) => {
             const selectedFile = acceptedFiles[0]
             onFileChange(selectedFile)
-        },
-        multiple,
-        accept
+        }
     })
 
     const dropMessage = isDragActive ?
-        <AppTypography fontSize={14} color="#fff">
-            {text.dragActiveText}
-        </AppTypography>
+        <AppTypography fontSize={14} color="#fff">{text.dragActiveText}</AppTypography>
         :
         <>
             <AppTypography fontSize={14} color="#fff">
@@ -57,6 +52,7 @@ function FileUpload({
             justifyContent="center"
             alignItems="center"
             gap={3}
+            border="1px dashed #292929"
             borderRadius={8}
             padding="24px 16px"
             bgColor="#1C1C1C"

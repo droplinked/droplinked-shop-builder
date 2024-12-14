@@ -13,37 +13,30 @@ interface FieldWrapperProps extends PropsWithChildren {
 }
 
 function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: FieldWrapperProps) {
-    const content = (
+    return (
         <Box>
-            <FormLabel
-                display="flex"
-                alignItems="center"
-                gap="6px"
-                mb={description ? 1 : 4}
-                fontSize="16px"
-                fontWeight="500"
-                color="#FFF"
-                {...labelProps}
-            >
-                {label} {isRequired && <AppIcons.Required />}
-            </FormLabel>
-            {description && (
-                <Text mb={4} fontSize="14px" fontWeight="400" color="#7B7B7B">
-                    {description}
-                </Text>
-            )}
+            <Flex mb={4} align="flex-start" gap={4}>
+                <Flex flex={1} direction="column" gap={1}>
+                    <FormLabel
+                        display="flex"
+                        alignItems="center"
+                        gap="6px"
+                        fontSize={16}
+                        fontWeight={500}
+                        color="#FFF"
+                        {...labelProps}
+                    >
+                        {label} {isRequired && <AppIcons.Required />}
+                    </FormLabel>
+                    {description && <Text fontSize={14} fontWeight={400} color="#7B7B7B">{description}</Text>}
+                </Flex>
+                {rightContent}
+            </Flex>
+
             {children}
+
             {errorMessage && <ErrorMessage mt={2}>{errorMessage}</ErrorMessage>}
         </Box>
-    )
-
-    if (!rightContent) return content
-
-    return (
-        <Flex align="flex-start" gap={4}>
-            {content}
-            {rightContent}
-        </Flex>
     )
 }
 

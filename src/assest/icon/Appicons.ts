@@ -101,6 +101,7 @@ import { ReactComponent as EventLocation } from "./event-location.svg";
 import { ReactComponent as EventTicket } from "./event-ticket.svg";
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
+import { ReactComponent as FileUpload } from "./file-upload.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
@@ -129,7 +130,6 @@ import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
-import { ReactComponent as ImportFile } from "./import-file.svg";
 import { ReactComponent as ImportProduct } from "./import-product.svg";
 import { ReactComponent as Infinity } from "./infinity.svg";
 import { ReactComponent as InfoIcon } from "./info-icon.svg";
@@ -371,7 +371,6 @@ const AppIcons = {
     ThreeStars,
     CheckCircle,
     UserInvitation,
-    ImportFile,
     BlackInformation,
     RedCircleCross,
     CircleCheck,
@@ -543,7 +542,8 @@ const AppIcons = {
     YellowStar,
     GrayStar,
     WhiteWarning,
-    YellowWarning
+    YellowWarning,
+    FileUpload
 }
 
 export default AppIcons

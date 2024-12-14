@@ -26,10 +26,7 @@ function MediaActions({ image }: { image: ProductMedia }) {
     }
 
     return (
-        <Flex
-            gap={1}
-            sx={{ button: { padding: '10px', bg: 'none', _hover: { bg: 'none' } } }}
-        >
+        <Flex gap={1}>
             <Button onClick={setDefaultImage}>
                 {isMainImage ? <AppIcons.YellowStar /> : <AppIcons.GrayStar />}
             </Button>

@@ -6,7 +6,8 @@ import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import FileUpload from '../../common/FileUpload'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
-import ProductImage from './ProductImage'
+import SelectedFileCard from '../../common/SelectedFileCard'
+import MediaActions from './MediaActions'
 
 export default function ProductImages() {
     const { values: { media }, errors, setFieldValue } = useFormikContext<ProductFormValues>()
@@ -43,9 +44,14 @@ export default function ProductImages() {
                         'image/jpeg': ['.jpeg', '.jpg'],
                         'image/png': ['.png']
                     }}
-                    flexProps={{ minH: "135px" }}
+                    flexProps={{ minH: "140px" }}
                 />
-                {media.map(i => <ProductImage image={i} />)}
+
+                {media.map(i => (
+                    <SelectedFileCard key={i.url} previewImage={i.thumbnail} {...i}>
+                        <MediaActions image={i} />
+                    </SelectedFileCard>
+                ))}
             </Flex>
         </ProductFieldWrapper>
     )

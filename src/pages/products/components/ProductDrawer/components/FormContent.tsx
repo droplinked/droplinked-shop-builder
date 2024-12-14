@@ -4,6 +4,7 @@ import React from 'react'
 import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
 import Web3SettingsAccordion from './accordions/Web3SettingsAccordion'
+import ShippingAccordion from './accordions/ShippingAccordion'
 
 function FormContent() {
     return (
@@ -23,6 +24,7 @@ function FormContent() {
                 multiCollapse
             >
                 <GeneralInformationAccordion />
+                <ShippingAccordion />
                 <Web3SettingsAccordion />
                 <AdditionalDetailsAccordion />
             </AppAccordion>

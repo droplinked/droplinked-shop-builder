@@ -1,6 +1,6 @@
 import { Flex, Skeleton } from '@chakra-ui/react'
+import MessageBox from 'components/redesign/message-box/MessageBox'
 import Select from 'components/redesign/select/Select'
-import WarningBox from 'components/redesign/warning-box/WarningBox'
 import { supportedChainsService } from 'lib/apis/sku/services'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
@@ -36,9 +36,10 @@ function ProductDrop() {
                             </Skeleton>
                         }
                     />
-                    <WarningBox
+                    <MessageBox
                         title='Product Lock Notice'
                         description='Once this product is dropped, all details will be permanently locked and cannot be changed.'
+                        theme='warning'
                     />
                 </Flex>
             )}

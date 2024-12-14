@@ -28,6 +28,7 @@ export const initialValues: ProductFormValues = {
     commission: 1,
     keywords: [],
     sku: [],
+    shippingType: "EASY_POST",
     digitalDetail: {
         chain: ""
     }
