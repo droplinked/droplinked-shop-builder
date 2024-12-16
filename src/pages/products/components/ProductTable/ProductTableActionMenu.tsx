@@ -3,6 +3,7 @@ import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React, { useState } from 'react'
 import ConfirmationModal from './components/ConfirmationModal'
 import { useDisclosure } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     product: any // this was any. I just added refetch interface
@@ -12,6 +13,7 @@ interface Props {
 function ProductTableActionMenu({ product, refetch }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
+    const navigate = useNavigate()
     const actions = [
         {
             title: "Edit",
@@ -20,7 +22,8 @@ function ProductTableActionMenu({ product, refetch }: Props) {
         },
         {
             title: "Order POD Sample",
-            onClick: () => console.log("Hi"),
+            //FIXME: Fix this route when you changed route from V2 to normal products route
+            onClick: () => navigate("/analytics/products/order/" + product._id),
             icon: <AppIcons.Shirt />
         },
         {
