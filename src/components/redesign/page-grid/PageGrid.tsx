@@ -24,7 +24,7 @@ function PageGridRoot({ children, loading }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, buttons, rightContent }: PageGridHeaderProps) {
     return (
         <Flex w="full" mb="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
             <Flex flexDirection="column" alignItems="start">
@@ -39,7 +39,9 @@ function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
                     </AppTypography>
                 )}
             </Flex>
+            {/* If you want use your own modified content, you can use rightContent Prop */}
             {buttons && <DataGridButtons buttons={buttons} />}
+            {rightContent}
         </Flex>
     )
 }

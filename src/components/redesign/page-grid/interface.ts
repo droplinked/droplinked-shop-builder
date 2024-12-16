@@ -24,6 +24,7 @@ export interface PageGridHeaderProps {
     title?: string;
     description?: string;
     buttons?: IDataGridButtons['buttons'];
+    rightContent?: React.ReactNode;
 }
 
 export interface PageGridActionsProps {
