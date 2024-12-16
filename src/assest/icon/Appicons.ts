@@ -271,6 +271,7 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as YellowStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as GreenPlus } from "./greenPlus.svg";
+import { ReactComponent as Shirt } from "./shirt.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -545,7 +546,8 @@ const AppIcons = {
     WhiteWarning,
     YellowWarning,
     FileUpload,
-    GreenPlus
+    GreenPlus,
+    Shirt
 }
 
 export default AppIcons
