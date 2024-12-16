@@ -8,12 +8,15 @@ import ProductDrawer from './components/ProductDrawer/ProductDrawer'
 import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable/ProductTable'
 import ProductTypesModal from './components/ProductTypesModal/ProductTypesModal'
+import useProducts from 'functions/hooks/useProducts/useProducts'
 
 function ProductsV2() {
     const [searchTerm, setSearchTerm] = useState("")
     const [selectedProductType, setSelectedProductType] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { productTypeModal, productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
+    const productsList = useProducts(debouncedSearchTerm)
+    const products = productsList.data?.pages?.flatMap(page => page.data.data.data) || []
 
     const handleProductTypeSelection = () => {
         productTypeModal.onClose()
@@ -28,11 +31,13 @@ function ProductsV2() {
                     onImportModalOpen={importProductModal.onOpen}
                     onReorderModalOpen={productReorderModal.onOpen}
                 />
-                <PageGrid.Actions
-                    search={{ value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }}
-                />
+                {(products.length || productsList.isLoading) &&
+                    <PageGrid.Actions
+                        search={{ value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }}
+                    />
+                }
                 <PageGrid.Content>
-                    <ProductTable searchTerm={debouncedSearchTerm} />
+                    <ProductTable onProductTypeModalOpen={productTypeModal.onOpen} productsList={productsList} searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
             </PageGrid.Root>
             <ProductTypesModal isOpen={productTypeModal.isOpen} onClose={productTypeModal.onClose} onProductTypeSelection={handleProductTypeSelection} />

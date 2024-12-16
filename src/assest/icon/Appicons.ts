@@ -270,6 +270,7 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as YellowStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
+import { ReactComponent as GreenPlus } from "./greenPlus.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -543,7 +544,8 @@ const AppIcons = {
     GrayStar,
     WhiteWarning,
     YellowWarning,
-    FileUpload
+    FileUpload,
+    GreenPlus
 }
 
 export default AppIcons

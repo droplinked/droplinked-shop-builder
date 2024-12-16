@@ -3,20 +3,25 @@ import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
-import useProducts, { productStatusMap, productTypeMap } from 'functions/hooks/useProducts/useProducts'
+import { productStatusMap, productTypeMap } from 'functions/hooks/useProducts/useProducts'
 import useAppStore from 'lib/stores/app/appStore'
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import React, { memo } from 'react'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
+import { UseInfiniteQueryResult } from 'react-query'
+import { AxiosResponse } from 'axios'
+import EmptyProductList from './EmptyProductList'
 
 interface Props {
-    searchTerm: string
+    searchTerm: string,
+    productsList: UseInfiniteQueryResult<AxiosResponse<any, any>, unknown>
+    onProductTypeModalOpen: () => void
 }
 
-function ProductTable({ searchTerm }: Props) {
+function ProductTable({ searchTerm, productsList, onProductTypeModalOpen }: Props) {
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = productsList
     const { shop: { currency } } = useAppStore()
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
@@ -48,6 +53,9 @@ function ProductTable({ searchTerm }: Props) {
         { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
         { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
     ]
+    if (!products.length && !isFetching) {
+        return <EmptyProductList onProductTypeModalOpen={onProductTypeModalOpen} />
+    }
 
     return (
         <Table
