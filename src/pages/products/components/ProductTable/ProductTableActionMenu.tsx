@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import ConfirmationModal from './components/ConfirmationModal'
 import { useDisclosure } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import ProductShareModal from './components/share-modal/ShareModal'
 
 interface Props {
     product: any // this was any. I just added refetch interface
@@ -13,6 +14,7 @@ interface Props {
 function ProductTableActionMenu({ product, refetch }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
+    const { onOpen: onShareModalOpen, onClose: onShareModalClose, isOpen: isShareModalOpen } = useDisclosure()
     const navigate = useNavigate()
     const actions = [
         {
@@ -28,7 +30,7 @@ function ProductTableActionMenu({ product, refetch }: Props) {
         },
         {
             title: "Share",
-            onClick: () => console.log("Hi"),
+            onClick: onShareModalOpen,
             icon: <AppIcons.Share />
         },
         {
@@ -54,6 +56,7 @@ function ProductTableActionMenu({ product, refetch }: Props) {
         <>
             <TableMenu items={actions} />
             <ConfirmationModal reFetch={refetch} onClose={onClose} isOpen={isOpen} product={product} type={isDeleteModal ? "DELETE" : "DUPLICATE"} />
+            <ProductShareModal product={product} key={product._id} close={onShareModalClose} open={isShareModalOpen} />
         </>
     )
 }
