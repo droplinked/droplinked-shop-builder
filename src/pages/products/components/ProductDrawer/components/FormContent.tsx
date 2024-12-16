@@ -5,6 +5,7 @@ import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
 import Web3SettingsAccordion from './accordions/Web3SettingsAccordion'
 import ShippingAccordion from './accordions/ShippingAccordion'
+import PhysicalProductVariants from './accordions/PhysicalProductVariants'
 
 function FormContent() {
     return (
@@ -24,6 +25,7 @@ function FormContent() {
                 multiCollapse
             >
                 <GeneralInformationAccordion />
+                <PhysicalProductVariants />
                 <ShippingAccordion />
                 <Web3SettingsAccordion />
                 <AdditionalDetailsAccordion />

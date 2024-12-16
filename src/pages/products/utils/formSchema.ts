@@ -26,10 +26,10 @@ export const initialValues: ProductFormValues = {
     productCollectionID: "",
     canBeAffiliated: false,
     commission: 1,
-    keywords: [],
+    properties: [],
     sku: [],
     shippingType: "EASY_POST",
-    digitalDetail: {
-        chain: ""
-    }
+    digitalDetail: { chain: "" },
+    keywords: [],
 }
+

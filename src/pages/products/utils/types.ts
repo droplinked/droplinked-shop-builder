@@ -7,8 +7,19 @@ export interface ProductMedia {
     fileSize?: string
 }
 
-interface SKUOption {
+export interface ProductProperty {
+    value: string
+    title: string
+    isCustom: boolean
+    items: { value: string, caption: string }[]
+}
 
+interface SKUOption {
+    variantID?: string
+    variantName: string
+    value: string
+    caption: string
+    isCustom: boolean
 }
 
 interface SKU {
@@ -19,10 +30,11 @@ interface SKU {
     quantity: number
     record?: boolean
     recordData?: any
-    recorded_quantity?: number
     weight?: number
-    deploy_hash?: string
     dimensions: { width?: number, height?: number, length?: number }
+
+    deploy_hash?: string
+    recorded_quantity?: number
     royalty?: number
 }
 
@@ -35,10 +47,9 @@ export interface ProductFormValues {
     productCollectionID: string
     canBeAffiliated: boolean
     commission: number,
-    keywords: string[],
+    properties: ProductProperty[],
     sku: SKU[],
     shippingType: string,
-    digitalDetail?: {
-        chain: string
-    }
+    digitalDetail?: { chain: string },
+    keywords: string[]
 }
