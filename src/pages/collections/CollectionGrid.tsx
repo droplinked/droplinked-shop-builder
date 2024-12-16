@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa6";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
+import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -56,18 +57,22 @@ function CollectionGrid({
             <PageGrid.Header
                 title="Collections"
                 description="Create and view inventory collections here."
-                buttons={[
-                    {
-                        caption: "New Collection",
-                        leftIcon: <FaPlus color="#000" />,
-                        onClick: onCreateCollection
-                    },
-                    {
-                        caption: "Visibility and reorder",
-                        variant: "secondary",
-                        onClick: onReorderClick
-                    },
-                ]}
+                rightContent={
+                    <ButtonGrid buttons={
+                        [
+                            {
+                                caption: "New Collection",
+                                leftIcon: <FaPlus color="#000" />,
+                                onClick: onCreateCollection
+                            },
+                            {
+                                caption: "Visibility and reorder",
+                                variant: "secondary",
+                                onClick: onReorderClick
+                            },
+                        ]
+                    } />
+                }
             />
             <PageGrid.Actions
                 search={{

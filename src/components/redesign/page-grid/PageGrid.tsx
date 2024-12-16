@@ -3,7 +3,6 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
 import Input from '../input/Input'
-import DataGridButtons from './components/buttons/DatagridButtons'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
@@ -24,7 +23,7 @@ function PageGridRoot({ children, loading }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, buttons, rightContent }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
     return (
         <Flex w="full" mb="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
             <Flex flexDirection="column" alignItems="start">
@@ -39,8 +38,6 @@ function PageGridHeader({ title, description, buttons, rightContent }: PageGridH
                     </AppTypography>
                 )}
             </Flex>
-            {/* If you want use your own modified content, you can use rightContent Prop */}
-            {buttons && <DataGridButtons buttons={buttons} />}
             {rightContent}
         </Flex>
     )
