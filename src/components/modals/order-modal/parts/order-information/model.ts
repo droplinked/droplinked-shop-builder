@@ -78,7 +78,9 @@ namespace OrderInformationModel {
 					appDevelopment ? 'sepolia.' : ''
 				}etherscan.io/tx/${transactionId}`;
 			case 'REDBELLY':
-				return `https://explorer.testnet.redbelly.network/transaction/${transactionId}`;
+				return appDevelopment
+					? `https://redbelly.testnet.routescan.io/tx/${transactionId}`
+					: `https://redbelly.routescan.io/tx/${transactionId}`;
 			case 'SKALE':
 				return `https://${
 					appDevelopment

@@ -45,7 +45,9 @@ const hashkeyModel = {
 			case 'SOLANA':
 				return `https://explorer.solana.com/tx/${hashkey}?cluster=devnet`;
 			case 'REDBELLY':
-				return `https://explorer.testnet.redbelly.network/transaction/${hashkey}`;
+				return appDevelopment
+					? `https://redbelly.testnet.routescan.io/tx/${hashkey}`
+					: `https://redbelly.routescan.io/tx/${hashkey}`;
 			case 'SKALE':
 				return `https://${
 					appDevelopment
