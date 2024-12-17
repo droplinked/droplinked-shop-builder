@@ -59,6 +59,7 @@ import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
+import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -93,6 +94,7 @@ function AppRoutes() {
                     <Route path="onchain-affiliate" element={<AffiliatePage />} />
                     <Route path="/d3" element={<D3Page />} />
                     <Route path="/unstoppable-domains" element={<UdPage />} />
+                    <Route path="/Polygon" element={<PolygonPage />} />
                     <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
                     <Route path="roi" element={<ROIPage />} />
                     <Route path="dpp" element={<DppPage />} />
