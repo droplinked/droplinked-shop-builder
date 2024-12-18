@@ -87,6 +87,10 @@ namespace OrderInformationModel {
 						? 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
 						: 'honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
 				}/tx/${transactionId}`;
+			case 'BITLAYER':
+				return appDevelopment
+					? `https://testnet.btrscan.com/tx/${transactionId}`
+					: `https://www.btrscan.com/tx/${transactionId}`;
 			default:
 				return '';
 		}

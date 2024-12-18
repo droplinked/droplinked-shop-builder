@@ -54,6 +54,10 @@ const hashkeyModel = {
 						? 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
 						: 'honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
 				}/tx/${hashkey}`;
+			case 'BITLAYER':
+				return appDevelopment
+					? `https://testnet.btrscan.com/tx/${hashkey}`
+					: `https://www.btrscan.com/tx/${hashkey}`;
 			default:
 				return '';
 		}
