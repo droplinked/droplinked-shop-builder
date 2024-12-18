@@ -112,6 +112,7 @@ import { ReactComponent as HeaderCoins } from "./header-coins.svg";
 import { ReactComponent as HeaderCreditCard } from "./header-credit.svg";
 import { ReactComponent as HeaderD3 } from "./header-d3.svg";
 import { ReactComponent as HeaderUd } from "./header-ud.svg";
+import { ReactComponent as HeaderPolygon } from "./HeaderPolygon.svg";
 import { ReactComponent as HeaderImage } from "./header-image.svg";
 import { ReactComponent as HeaderProductBox } from "./header-product-box.svg";
 import { ReactComponent as HeaderShirt } from "./header-shirt.svg";
@@ -496,6 +497,7 @@ const AppIcons = {
     HeaderTokenCoin,
     HeaderD3,
     HeaderUd,
+    HeaderPolygon,
     HeaderProductBox,
     MetaverseStore,
     CircleModal,
