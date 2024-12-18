@@ -14,7 +14,7 @@ function ProductVariants() {
             isRequired
         >
             {showVariantForm ?
-                <VariantForm />
+                <VariantForm handleDiscard={() => setShowVariantForm(false)} />
                 :
                 <BlueButton
                     w="full"

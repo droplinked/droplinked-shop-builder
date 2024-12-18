@@ -1,200 +1,144 @@
-import { Box, Button, HStack, IconButton, VStack } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
 import { useFormikContext } from 'formik'
 import { ProductFormValues, ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
-import CreatableSelect from 'react-select/creatable'
+import ColorPicker from './ColorPicker'
+import VariantSelector from './VariantSelector'
 
-interface LocalProperty extends ProductProperty {
-    isAdded: boolean
-}
-
-function VariantForm() {
-    const [dropdownOptions, setDropdownOptions] = useState([
-        { label: 'Color', value: 'Color' },
-        { label: 'Size', value: 'Size' }
-    ])
-
+function VariantForm({ handleDiscard }: { handleDiscard: () => void }) {
     const { values: { properties }, setFieldValue } = useFormikContext<ProductFormValues>()
-    const [localProperties, setLocalProperties] = useState<LocalProperty[]>([])
+    const [localProperty, setLocalProperty] = useState<ProductProperty | null>(null)
     const [selectedVariant, setSelectedVariant] = useState<string>('')
 
-    const handleTypeSelect = (newValue: any) => {
-        console.log({ newValue })
-        setLocalProperties([])
-        const isCustomVariant = newValue.value !== 'Size' && newValue.value !== 'Color'
+    const handleItemChange = (itemIndex: number, field: 'value' | 'caption', value: string) => {
+        if (!localProperty) return
+        const updatedItems = [...localProperty.items]
 
-        const newProperty: LocalProperty = {
-            title: newValue.value,
-            value: isCustomVariant ? newValue.value : 'id',
-            items: [{ value: '', caption: '' }],
-            isCustom: isCustomVariant,
-            isAdded: false
-        }
-        setLocalProperties([newProperty])
+        updatedItems[itemIndex][field] = value
+        if (field === 'value' && selectedVariant !== 'Color')
+            updatedItems[itemIndex]['caption'] = value
+
+        setLocalProperty({ ...localProperty, items: updatedItems })
     }
 
-    const isFieldsComplete = (items: { value: string, caption: string }[]) => {
-        return items.every(item => item.value.trim() && (item.caption === undefined || item.caption.trim()))
+    const addItem = () => {
+        if (!localProperty) return
+        const updatedItems = [...localProperty.items, { value: '', caption: '' }]
+        setLocalProperty({ ...localProperty, items: updatedItems })
     }
 
-    const handleItemChange = (
-        propIndex: number,
-        itemIndex: number,
-        field: 'value' | 'caption',
-        value: string
-    ) => {
-        const updatedProperties = [...localProperties]
-
-        // اگر تایپ چیزی غیر از Color بود، مقدار value باید به caption هم ست بشه
-        if (updatedProperties[propIndex].title !== 'Color' && field === 'value') {
-            updatedProperties[propIndex].items[itemIndex].caption = value
-        }
-
-        // حالا مقدار value یا caption که تغییر کرده رو ست می‌کنیم
-        updatedProperties[propIndex].items[itemIndex][field] = value
-        setLocalProperties(updatedProperties)
+    const removeItem = (itemIndex: number) => {
+        if (!localProperty) return
+        const updatedItems = [...localProperty.items]
+        updatedItems.splice(itemIndex, 1)
+        setLocalProperty({ ...localProperty, items: updatedItems })
     }
 
-    // اضافه کردن item جدید به localProperties
-    const addToLocalProperties = (propIndex: number) => {
-        const updatedProperties = [...localProperties]
-
-        // وقتی دکمه "Add" زده میشه، فقط یک item جدید به items اضافه میشه
-        updatedProperties[propIndex].items.push({ value: '', caption: '' })
-        updatedProperties[propIndex].isAdded = true  // بعد از اضافه کردن، وضعیت isAdded را به true تغییر می‌دهیم
-        setLocalProperties(updatedProperties)
-    }
-
-    // حذف یک property از localProperties
-    const removeItem = (propIndex: number) => {
-        const updatedProperties = [...localProperties]
-        updatedProperties[propIndex].items.pop() // حذف آخرین item
-        updatedProperties[propIndex].isAdded = false  // وقتی آیتم‌ها حذف شدند، وضعیت isAdded به false تغییر می‌کند
-        setLocalProperties(updatedProperties)
-    }
-
-    // ذخیره کردن در کانتکست
     const saveToContext = () => {
+        if (!localProperty) return
+
+        const filteredItems = localProperty.items.filter(item => item.value.trim() !== '')
+        if (filteredItems.length === 0) return
+
         const updatedProperties = [...properties]
+        const updatedProperty = { ...localProperty, items: filteredItems }
+        const existingIndex = updatedProperties.findIndex(p => p.value === localProperty.value)
 
-        // برای هر property در localProperties، یک شیء جدید ساخته می‌شود
-        localProperties.forEach(property => {
-            // حذف فیلد isAdded قبل از ذخیره
-            const { isAdded, ...propertyWithoutIsAdded } = property
+        if (existingIndex > -1) updatedProperties[existingIndex] = updatedProperty
+        else updatedProperties.push(updatedProperty)
 
-            const newProperty = {
-                value: `${property.title}_id`,  // اینجا می‌تونید یک ID خاص برای سایز یا رنگ بذارید
-                title: property.title,
-                isCustom: property.isCustom,  // از isCustom مقدار درست استفاده می‌شود
-                items: property.items.map(item => ({
-                    value: item.value,
-                    caption: item.caption || item.value,  // اگر Caption وجود نداشت، از value به عنوان caption استفاده می‌کنیم
-                })),
-            }
-
-            updatedProperties.push(newProperty)
-        })
-
-        // به کانتکست فرستادن
         setFieldValue('properties', updatedProperties)
-        setLocalProperties([])  // بعد از ذخیره کردن در کانتکست، localProperties پاک می‌شود
+        setLocalProperty(null)
+        setSelectedVariant('')
+    }
+
+    const renderInputFields = (item: { value: string; caption: string }, itemIndex: number) => {
+        return selectedVariant === 'Color' ?
+            <>
+                <ColorPicker
+                    color={item.value}
+                    onColorChange={(color) => handleItemChange(itemIndex, 'value', color)}
+                    containerProps={{ height: "50px" }}
+                />
+                <Input
+                    inputProps={{
+                        placeholder: 'Color Name',
+                        value: item.caption,
+                        onChange: (e) => handleItemChange(itemIndex, 'caption', e.target.value),
+                    }}
+                />
+            </>
+            :
+            <Input
+                inputProps={{
+                    placeholder: 'Enter Value',
+                    value: item.value,
+                    onChange: (e) => handleItemChange(itemIndex, 'value', e.target.value),
+                }}
+            />
+    }
+
+    const renderItemButton = (itemIndex: number) => {
+        const isLastItem = itemIndex === localProperty!.items.length - 1
+        const isValidItem =
+            localProperty!.items[itemIndex].value.trim() &&
+            (selectedVariant !== 'Color' || localProperty!.items[itemIndex].caption.trim())
+
+        return isLastItem ?
+            <button type='button' disabled={!isValidItem} onClick={addItem}>
+                <AppIcons.GreenPlus />
+            </button>
+            :
+            <button type='button' onClick={() => removeItem(itemIndex)}>
+                <AppIcons.RedTrash />
+            </button>
     }
 
     return (
-        <Box color="white" borderRadius="md">
-            {/* Dropdown برای انتخاب Type */}
-            <CreatableSelect
-                placeholder="Select or type"
-                formatCreateLabel={(e) => `Create ${e}`}
-                onChange={handleTypeSelect}
-                options={dropdownOptions}
-                isValidNewOption={(inputValue, _, options) =>
-                    inputValue.trim() && !options.some(option => option.value === inputValue)
-                }
+        <Flex
+            direction="column"
+            gap={9}
+            border="1px solid #292929"
+            borderRadius={8}
+            padding={4}
+        >
+            <VariantSelector
+                key={selectedVariant}
+                selectedVariant={selectedVariant}
+                setSelectedVariant={setSelectedVariant}
+                properties={properties}
+                setLocalProperty={setLocalProperty}
             />
 
-            {/* نمایش Properties */}
-            <VStack spacing={4} mt={4} align="stretch">
-                {localProperties.map((property, propIndex) => (
-                    <Box key={propIndex} border="1px solid gray" p={3} borderRadius="md">
-                        <strong>{property.title}</strong>
+            {localProperty && (
+                <Flex w="full" direction="column" gap={4}>
+                    {localProperty.items.map((item, itemIndex) => (
+                        <Flex
+                            key={itemIndex}
+                            flex={1}
+                            alignItems="center"
+                            gap={4}
+                            sx={{ input: { fontSize: 16 } }}
+                        >
+                            {renderInputFields(item, itemIndex)}
+                            {renderItemButton(itemIndex)}
+                        </Flex>
+                    ))}
+                </Flex>
+            )}
 
-                        {/* برای Color */}
-                        {property.title === 'Color' &&
-                            property.items.map((item, itemIndex) => (
-                                <HStack key={itemIndex} mt={2}>
-                                    {/* Color Picker */}
-                                    <Input
-                                        inputProps={{
-                                            type: 'color',
-                                            value: item.value,
-                                            onChange: (e) =>
-                                                handleItemChange(propIndex, itemIndex, 'value', e.target.value),
-                                        }}
-                                    />
-                                    {/* Caption */}
-                                    <Input
-                                        inputProps={{
-                                            placeholder: 'Color Name',
-                                            value: item.caption || '',
-                                            onChange: (e) =>
-                                                handleItemChange(propIndex, itemIndex, 'caption', e.target.value),
-                                        }}
-                                    />
-                                </HStack>
-                            ))}
-
-                        {/* برای سایر انواع */}
-                        {property.title !== 'Color' && (
-                            <HStack mt={2}>
-                                <Input
-                                    inputProps={{
-                                        placeholder: 'Enter Value',
-                                        value: property.items[0]?.value || '',
-                                        onChange: (e) =>
-                                            handleItemChange(propIndex, 0, 'value', e.target.value),
-                                    }}
-                                />
-                            </HStack>
-                        )}
-
-                        {/* دکمه افزودن */}
-                        {!property.isAdded && (
-                            <Button
-                                mt={2}
-                                colorScheme="blue"
-                                onClick={() => addToLocalProperties(propIndex)}
-                                isDisabled={!isFieldsComplete(property.items)}
-                            >
-                                Add
-                            </Button>
-                        )}
-
-                        {/* دکمه حذف */}
-                        {property.isAdded && (
-                            <IconButton
-                                mt={2}
-                                aria-label="Delete Item"
-                                icon={<AppIcons.Delete />}
-                                onClick={() => removeItem(propIndex)}
-                            />
-                        )}
-                    </Box>
-                ))}
-            </VStack>
-
-            {/* دکمه ذخیره به کانتکست */}
-            <Button
-                mt={4}
-                colorScheme="green"
-                onClick={saveToContext}
-                isDisabled={localProperties.length === 0}
+            <Flex
+                justifyContent="flex-end"
+                gap={4}
+                sx={{ button: { padding: '8px 12px', fontSize: 12, fontWeight: 500 } }}
             >
-                Create
-            </Button>
-        </Box>
+                <Button variant="secondary" onClick={handleDiscard}>Discard</Button>
+                <Button onClick={saveToContext}>Create</Button>
+            </Flex>
+        </Flex>
     )
 }
 
