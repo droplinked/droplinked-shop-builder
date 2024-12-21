@@ -53,7 +53,7 @@ function ProductTable({ searchTerm, handleProductTypeSelection, productsList }: 
         { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
         { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
     ]
-    if (true) {
+    if (!products.length && !isFetching) {
         return <EmptyProductList handleProductTypeSelection={handleProductTypeSelection} />
     }
 
