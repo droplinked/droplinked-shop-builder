@@ -278,6 +278,7 @@ import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
 import { ReactComponent as ColonIcon } from "./colonIcon.svg";
 import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
 import { ReactComponent as ChevronRight } from "./chevron-right.svg";
+import { ReactComponent as Calendar } from "./calendar.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -560,6 +561,7 @@ const AppIcons = {
     ColonIcon,
     ChevronRight,
     ChevronLeft,
+    Calendar
 }
 
 export default AppIcons

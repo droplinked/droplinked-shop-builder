@@ -1,0 +1,157 @@
+.input {
+    width: 100%;
+    background-color: #141414;
+    color: #FFF;
+    padding-left: 2rem !important;
+    font-size: 14px;
+    color: #808080;
+    border-radius: 8px;
+    border: none !important;
+    outline: none !important;
+    margin: 0 !important;
+
+    &::placeholder {
+        color: #808080;
+        opacity: .9;
+    }
+}
+
+.datepicker {
+    :global {
+        .react-datepicker__tab-loop {
+            position: absolute;
+        }
+
+        .react-datepicker__month-container {
+            width: 100%;
+        }
+
+        .react-datepicker__month {
+            margin: 0.4rem 0 !important;
+        }
+
+        .react-datepicker-popper {
+            padding: 0;
+            z-index: 100;
+        }
+
+        .react-datepicker__day {
+            width: 9.8%;
+            margin: 2.2%;
+            font-size: 14px;
+            padding: 2px;
+        }
+
+        .react-datepicker__day--keyboard-selected {
+            background-color: #f8f8f8;
+            color: #333 !important;
+        }
+
+        .react-datepicker__navigation {
+            width: 19px;
+        }
+
+        .react-datepicker {
+            background-color: #0f0f0f;
+            border: none;
+            border-radius: 16px;
+            min-width: 296px;
+
+            .react-datepicker__day-name,
+            .react-datepicker__day,
+            .react-datepicker__time-name {
+                width: 9.8%;
+                margin: 2.2%;
+                color: #727272;
+                font-family: "Inter" !important;
+            }
+
+            .react-datepicker__day-name {
+                color: #FFF;
+            }
+        }
+        .react-datepicker__day--today {
+            color: #2BCFA1 !important;
+            border: 1px solid #333333;
+            border-radius: 4px;
+        }
+        .react-datepicker__header {
+            background-color: #0d0d0d;
+            border: none;
+            border-top-left-radius: 16px;
+            padding: 0px;
+            border-top-right-radius: 16px;
+        }
+        .react-datepicker__day-names {
+            background-color: #0f0f0f;
+            margin-top: 10px;
+        }
+
+        .react-datepicker__day--outside-month {
+            opacity: 0.5;
+        }
+
+        .react-datepicker__triangle {
+            display: none;
+        }
+
+        .react-datepicker__current-month {
+            color: #808080;
+            font-size: .8rem;
+            padding: 10px 0;
+        }
+
+        .react-datepicker__navigation {
+            top: 17px;
+        }
+        .react-datepicker-time__caption {
+            color: #fff;
+        }
+        .react-datepicker-time__input-container {
+            color: #fff;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .react-datepicker-time__input input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(100%);
+        }
+        .react-datepicker__input-time-container {
+            margin: 0px 0px 10px 0px;
+            border-top: 1px solid #292929;
+        }
+        .react-datepicker-time__input {
+            margin-left: 0px !important;
+            width: 90%;
+        }
+          
+        .react-datepicker__day:hover,
+        .react-datepicker__month-text:hover,
+        .react-datepicker__quarter-text:hover,
+        .react-datepicker__year-text:hover {
+            background-color: #3f3f3f;
+            color: #FFF !important;
+        }
+
+        .style_datepicker__EN4et .react-datepicker__day:hover,
+        .style_datepicker__EN4et .react-datepicker__month-text:hover,
+        .style_datepicker__EN4et .react-datepicker__quarter-text:hover,
+        .style_datepicker__EN4et .react-datepicker__year-text:hover {
+            color: #FFF;
+        }
+
+        .react-datepicker__day--selected {
+            color: #eeeeee !important;
+            background-color: #292929 !important;
+        }
+
+        .react-datepicker__day--disabled {
+            opacity: .4;
+
+            &:hover {
+                background: none !important;
+            }
+        }
+    }
+}
