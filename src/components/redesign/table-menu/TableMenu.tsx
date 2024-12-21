@@ -33,7 +33,7 @@ export default function TableMenu({ items }: Props) {
                     }}
                 >
                     {items.map((item, index) => (
-                        <MenuItem key={index} {...item}>{item.title}</MenuItem>
+                        !!Object.keys(item).length && <MenuItem key={index} {...item}>{item.title}</MenuItem>
                     ))}
                 </MenuList>
             </Menu>

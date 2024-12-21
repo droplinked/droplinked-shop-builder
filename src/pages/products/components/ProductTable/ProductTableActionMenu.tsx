@@ -23,10 +23,12 @@ function ProductTableActionMenu({ product, refetch }: Props) {
             icon: <AppIcons.EditOutlined />
         },
         {
-            title: "Order POD Sample",
-            //FIXME: Fix this route when you changed route from V2 to normal products route
-            onClick: () => navigate("/analytics/products/order/" + product._id),
-            icon: <AppIcons.Shirt />
+            ...product.product_type === "PRINT_ON_DEMAND" && {
+                title: "Order POD Sample",
+                //FIXME: Fix this route when you changed route from V2 to normal products route
+                onClick: () => navigate("/analytics/products/order/" + product._id),
+                icon: <AppIcons.Shirt />
+            },
         },
         {
             title: "Share",
