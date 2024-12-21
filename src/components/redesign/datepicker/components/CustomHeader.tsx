@@ -14,7 +14,7 @@ function CustomHeader({
     nextMonthButtonDisabled,
 }: ReactDatePickerCustomHeaderProps) {
     const year = date.getFullYear();
-    const month = date.toLocaleString('default', { month: 'long' }); // Changed line
+    const month = date.toLocaleString('default', { month: 'long' });
 
     return (
         <Flex bg={"#0d0d0d"} px={3} py={4} borderTopRadius={"16px"} borderBottom={"1px solid #292929"} justifyContent={"space-between"} alignItems={"center"}>
