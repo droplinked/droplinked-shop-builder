@@ -24,6 +24,7 @@ function VisibilityStatus() {
             value: "private",
         }
     ]
+
     return (
         <ProductFieldWrapper
             label='Visibility Status'
