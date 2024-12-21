@@ -275,6 +275,9 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as YellowStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
+import { ReactComponent as ColonIcon } from "./colonIcon.svg";
+import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
+import { ReactComponent as ChevronRight } from "./chevron-right.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -553,7 +556,10 @@ const AppIcons = {
     Shirt,
     GrayInfinity,
     GreenInfinity,
-    TooltipIcon
+    TooltipIcon,
+    ColonIcon,
+    ChevronRight,
+    ChevronLeft,
 }
 
 export default AppIcons
