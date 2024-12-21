@@ -5,7 +5,6 @@ import * as React from 'react';
 import ProductTypesPopover from '../ProductTypesPopover/ProductTypesPopover';
 
 interface Props {
-
     handleProductTypeSelection: (productType: string) => void;
     onImportModalOpen: () => void;
     onReorderModalOpen: () => void;

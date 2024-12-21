@@ -31,5 +31,6 @@ export const initialValues: ProductFormValues = {
     shippingType: "EASY_POST",
     digitalDetail: { chain: "" },
     keywords: [],
+    purchaseAvailable: true
 }
 

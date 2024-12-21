@@ -57,4 +57,5 @@ export interface ProductFormValues {
     shippingType: string,
     digitalDetail?: { chain: string },
     keywords: string[]
+    purchaseAvailable: boolean
 }

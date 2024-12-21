@@ -4,6 +4,7 @@ import SwitchBox from '../common/SwitchBox'
 import ProductDeliveryMessage from '../fields/ProductDeliveryMessage'
 import ProductKeywords from '../fields/ProductKeywords'
 import ProductTermsAndConditions from '../fields/ProductTermsAndConditions'
+import VisibilityStatus from '../fields/VisibilityStatus'
 
 function AdditionalDetailsAccordion() {
     const [customField, setCustomField] = useState(false)
@@ -11,8 +12,8 @@ function AdditionalDetailsAccordion() {
 
     return (
         <ProductFormAccordion label='Additional Details'>
+            <VisibilityStatus />
             <ProductKeywords />
-
             <SwitchBox
                 title='Custom Field'
                 description='Add custom information to display during checkout.'

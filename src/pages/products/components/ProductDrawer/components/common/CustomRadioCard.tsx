@@ -1,4 +1,6 @@
 import { Circle, Flex, FormLabel, FormLabelProps, Text, useRadio, UseRadioProps } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import React from 'react'
 
 interface Props extends UseRadioProps {
@@ -32,12 +34,18 @@ function CustomRadioCard(props: Props) {
                 <Circle size={2.5} bgColor="#2BCFA1" opacity={isChecked ? 1 : 0} />
             </Circle>
 
-            <Flex direction="column" gap={2} sx={{ p: { fontSize: 14 } }}>
+            <Flex width={"100%"} direction="column" gap={2} sx={{ p: { fontSize: 14 } }}>
                 <Text fontWeight={500} color={isChecked ? "#2BCFA1" : "#fff"}>{label}</Text>
                 {description && <Text color="#fff">{description}</Text>}
             </Flex>
 
-            {tooltipText && null}
+            {tooltipText &&
+                <AppTooltip placement='bottom' label={tooltipText}>
+                    <AppIcons.TooltipIcon
+                        fill={isChecked ? "#2BCEA133" : "#292929"}
+                    />
+                </AppTooltip>
+            }
         </FormLabel>
     )
 }
