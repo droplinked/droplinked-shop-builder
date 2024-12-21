@@ -16,10 +16,10 @@ import EmptyProductList from './EmptyProductList'
 interface Props {
     searchTerm: string,
     productsList: UseInfiniteQueryResult<AxiosResponse<any, any>, unknown>
-    onProductTypeModalOpen: () => void
+    handleProductTypeSelection: (productType: string) => void
 }
 
-function ProductTable({ searchTerm, productsList, onProductTypeModalOpen }: Props) {
+function ProductTable({ searchTerm, handleProductTypeSelection, productsList }: Props) {
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, refetch } = productsList
     const { shop: { currency } } = useAppStore()
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
@@ -53,8 +53,8 @@ function ProductTable({ searchTerm, productsList, onProductTypeModalOpen }: Prop
         { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
         { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
     ]
-    if (!products.length && !isFetching) {
-        return <EmptyProductList onProductTypeModalOpen={onProductTypeModalOpen} />
+    if (true) {
+        return <EmptyProductList handleProductTypeSelection={handleProductTypeSelection} />
     }
 
     return (

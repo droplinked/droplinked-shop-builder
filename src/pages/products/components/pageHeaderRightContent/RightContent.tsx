@@ -2,28 +2,32 @@ import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import Button from 'components/redesign/button/Button';
 import * as React from 'react';
+import ProductTypesPopover from '../ProductTypesPopover/ProductTypesPopover';
 
 interface Props {
-    onProductTypeModalOpen: () => void;
+
+    handleProductTypeSelection: (productType: string) => void;
     onImportModalOpen: () => void;
     onReorderModalOpen: () => void;
 }
 
-function RightContent({ onProductTypeModalOpen, onImportModalOpen, onReorderModalOpen }: Props) {
+function RightContent({ handleProductTypeSelection, onImportModalOpen, onReorderModalOpen }: Props) {
 
     return (
         <Flex flexDirection="row-reverse" gap={4}>
-            <Button
-                _hover={{ opacity: "0.8" }}
-                paddingBlock="10px"
-                paddingInline="14px"
-                fontSize={14}
-                fontWeight={500}
-                leftIcon={<AppIcons.BlackPlus />}
-                onClick={onProductTypeModalOpen}
-            >
-                New Product
-            </Button>
+            <ProductTypesPopover onProductTypeSelection={(productType) => handleProductTypeSelection(productType)}>
+                <Button
+                    _hover={{ opacity: "0.8" }}
+                    paddingBlock="10px"
+                    paddingInline="14px"
+                    fontSize={14}
+                    fontWeight={500}
+                    leftIcon={<AppIcons.BlackPlus />}
+
+                >
+                    New Product
+                </Button>
+            </ProductTypesPopover>
             <Button
                 _hover={{ opacity: "0.8" }}
                 paddingBlock="10px"

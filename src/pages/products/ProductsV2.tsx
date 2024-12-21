@@ -7,7 +7,6 @@ import PageHeader from './components/PageHeader'
 import ProductDrawer from './components/ProductDrawer/ProductDrawer'
 import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable/ProductTable'
-import ProductTypesModal from './components/ProductTypesModal/ProductTypesModal'
 import useProducts from 'functions/hooks/useProducts/useProducts'
 
 function ProductsV2() {
@@ -18,8 +17,7 @@ function ProductsV2() {
     const productsList = useProducts(debouncedSearchTerm)
     const products = productsList.data?.pages?.flatMap(page => page.data.data.data) || []
 
-    const handleProductTypeSelection = () => {
-        productTypeModal.onClose()
+    const handleProductTypeSelection = (productType: string) => {
         productFormDrawer.onOpen()
     }
 
@@ -27,7 +25,7 @@ function ProductsV2() {
         <>
             <PageGrid.Root>
                 <PageHeader
-                    onProductTypeModalOpen={productTypeModal.onOpen}
+                    handleProductTypeSelection={handleProductTypeSelection}
                     onImportModalOpen={importProductModal.onOpen}
                     onReorderModalOpen={productReorderModal.onOpen}
                 />
@@ -37,10 +35,9 @@ function ProductsV2() {
                     />
                 }
                 <PageGrid.Content>
-                    <ProductTable onProductTypeModalOpen={productTypeModal.onOpen} productsList={productsList} searchTerm={debouncedSearchTerm} />
+                    <ProductTable handleProductTypeSelection={handleProductTypeSelection} productsList={productsList} searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
             </PageGrid.Root>
-            <ProductTypesModal isOpen={productTypeModal.isOpen} onClose={productTypeModal.onClose} onProductTypeSelection={handleProductTypeSelection} />
             <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
             <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
