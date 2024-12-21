@@ -1,3 +1,8 @@
+export const attributeToIdMap = {
+    Color: "62a989ab1f2c2bbc5b1e7153",
+    Size: "62a989ab1f2c2bbc5b1e7154"
+}
+
 export interface ProductMedia {
     _id?: string
     url: string
@@ -14,7 +19,7 @@ export interface ProductProperty {
     items: { value: string, caption: string }[]
 }
 
-interface SKUOption {
+export interface SKUOption {
     variantID?: string
     variantName: string
     value: string
@@ -22,7 +27,7 @@ interface SKUOption {
     isCustom: boolean
 }
 
-interface SKU {
+export interface SKU {
     externalID?: string
     index?: number
     options?: SKUOption[]

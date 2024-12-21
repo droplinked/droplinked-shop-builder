@@ -16,6 +16,8 @@ function DrawerRoot({ isOpen, onClose, children }: Props) {
         >
             <DrawerOverlay />
             <DrawerContent
+                maxWidth="780px"
+                width="780px"
                 marginBlock={4}
                 marginInline={10}
                 borderRadius={16}

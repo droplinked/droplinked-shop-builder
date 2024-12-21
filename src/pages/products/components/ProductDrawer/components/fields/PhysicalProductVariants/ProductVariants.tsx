@@ -1,35 +1,47 @@
-import AppIcons from 'assest/icon/Appicons'
-import BlueButton from 'components/redesign/button/BlueButton'
+import { Flex } from '@chakra-ui/react'
+import MessageBox from 'components/redesign/message-box/MessageBox'
+import { useFormikContext } from 'formik'
+import { ProductFormValues } from 'pages/products/utils/types'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
+import AddVariantsButton from './AddVariantsButton'
+import ProductSKUSettings from './SKUSettings/ProductSKUSettings'
+import VariantCard from './VariantCard'
 import VariantForm from './VariantForm'
 
 function ProductVariants() {
-    const [showVariantForm, setShowVariantForm] = useState(false)
+    const [isVariantFormVisible, setVariantFormVisibility] = useState(false)
+    const { values: { properties, sku } } = useFormikContext<ProductFormValues>()
+
+    const canAddVariants = properties.length < 2
+    const handleAddVariantClick = () => setVariantFormVisibility(true)
+    const handleDiscardVariant = () => setVariantFormVisibility(false)
 
     return (
         <ProductFieldWrapper
-            label='Variants'
-            description='Add different versions of this product (e.g., size, color).'
+            label="Variants"
+            description="Add different versions of this product (e.g., size, color)."
             isRequired
         >
-            {showVariantForm ?
-                <VariantForm handleDiscard={() => setShowVariantForm(false)} />
-                :
-                <BlueButton
-                    w="full"
-                    gap={2}
-                    border="1px solid #292929"
-                    borderRadius={8}
-                    padding="12px 16px"
-                    fontSize={16}
-                    sx={{ path: { stroke: "#179EF8" } }}
-                    onClick={() => setShowVariantForm(true)}
-                >
-                    <AppIcons.BlackPlus />
-                    Add Varaints
-                </BlueButton>
-            }
+            <Flex direction="column" gap={4}>
+                {isVariantFormVisible ?
+                    <VariantForm handleDiscard={handleDiscardVariant} />
+                    :
+                    canAddVariants && <AddVariantsButton onClick={handleAddVariantClick} />
+                }
+
+                {properties.map((property, index) => <VariantCard key={index} variant={property} />)}
+
+                {!canAddVariants && (
+                    <MessageBox
+                        title="Variant Limit Warning"
+                        description="Can’t add any more variants. You can only add up to 2 variants."
+                        theme="warning"
+                    />
+                )}
+
+                {sku.length > 0 && <ProductSKUSettings />}
+            </Flex>
         </ProductFieldWrapper>
     )
 }

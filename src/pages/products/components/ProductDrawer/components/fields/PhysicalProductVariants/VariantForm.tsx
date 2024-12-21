@@ -3,13 +3,14 @@ import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
 import { useFormikContext } from 'formik'
+import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductFormValues, ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
 import ColorPicker from './ColorPicker'
 import VariantSelector from './VariantSelector'
 
 function VariantForm({ handleDiscard }: { handleDiscard: () => void }) {
-    const { values: { properties }, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { properties, sku }, setFieldValue } = useFormikContext<ProductFormValues>()
     const [localProperty, setLocalProperty] = useState<ProductProperty | null>(null)
     const [selectedVariant, setSelectedVariant] = useState<string>('')
 
@@ -51,8 +52,10 @@ function VariantForm({ handleDiscard }: { handleDiscard: () => void }) {
         else updatedProperties.push(updatedProperty)
 
         setFieldValue('properties', updatedProperties)
+        setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
         setLocalProperty(null)
         setSelectedVariant('')
+        handleDiscard()
     }
 
     const renderInputFields = (item: { value: string; caption: string }, itemIndex: number) => {

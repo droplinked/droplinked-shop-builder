@@ -108,12 +108,15 @@ import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
-import { ReactComponent as GrayDollor } from "./gray-dollar.svg";
+import { ReactComponent as GrayDollar } from "./gray-dollar.svg";
+import { ReactComponent as GrayInfinity } from "./gray-infinity.svg";
 import { ReactComponent as GrayPercent } from "./gray-percent.svg";
 import { ReactComponent as GrayStar } from "./gray-star.svg";
 import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
+import { ReactComponent as GreenInfinity } from "./green-infinity.svg";
+import { ReactComponent as GreenPlus } from "./greenPlus.svg";
 import { ReactComponent as Hand } from "./hand.svg";
 import { ReactComponent as HeaderAffiliateSass } from "./header-affiliate-sass.svg";
 import { ReactComponent as HeaderAffiliate } from "./header-affiliate.svg";
@@ -205,6 +208,7 @@ import { ReactComponent as Services } from "./services.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
 import { ReactComponent as ShareIcon } from "./share-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
+import { ReactComponent as Shirt } from "./shirt.svg";
 import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
 import { ReactComponent as SidebarAffiliate } from "./sidebar-affiliate.svg";
 import { ReactComponent as SidebarAnalytics } from "./sidebar-analytics.svg";
@@ -270,8 +274,6 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as YellowStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
-import { ReactComponent as GreenPlus } from "./greenPlus.svg";
-import { ReactComponent as Shirt } from "./shirt.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -376,7 +378,7 @@ const AppIcons = {
     BlackInformation,
     RedCircleCross,
     CircleCheck,
-    GrayDollor,
+    GrayDollar,
     BlackCircleI,
     GrayPercent,
     BlackChevronDown,
@@ -547,7 +549,9 @@ const AppIcons = {
     YellowWarning,
     FileUpload,
     GreenPlus,
-    Shirt
+    Shirt,
+    GrayInfinity,
+    GreenInfinity
 }
 
 export default AppIcons

@@ -17,13 +17,13 @@ export default function InvoiceTableMenu({ invoice }) {
     return (
         <>
             <Menu isLazy>
-                <MenuButton as={"button"}><AppIcons.Dots /></MenuButton>
+                <MenuButton as="button"><AppIcons.Dots /></MenuButton>
                 <MenuList
-                    border={"1px solid #292929"}
+                    border="1px solid #292929"
                     borderRadius={8}
                     padding={0}
-                    overflow={"hidden"}
-                    bgColor={"#1C1C1C"}
+                    overflow="hidden"
+                    bgColor="#1C1C1C"
                     zIndex={10}
                     sx={{
                         "button": {
@@ -81,9 +81,9 @@ function ConfirmInvoiceDeleteModal({ invoiceId, isOpen, onClose }) {
     return (
         <AppModal modalRootProps={{ isOpen, onClose, size: "md", isCentered: true }}>
             <ModalBody>
-                <AppTypography textAlign={"center"} fontSize={16} fontWeight={500} color={"white"}>Are you sure you want to delete this invoice?</AppTypography>
+                <AppTypography textAlign="center" fontSize={16} fontWeight={500} color="white">Are you sure you want to delete this invoice?</AppTypography>
             </ModalBody>
-            <ModalFooter display={"flex"} justifyContent={"space-between"}>
+            <ModalFooter display="flex" justifyContent="space-between">
                 <Button variant='outline' isDisabled={isLoading} onClick={onClose}>Cancel</Button>
                 <Button isDisabled={isLoading} isLoading={isLoading} onClick={handleDelete}>Delete</Button>
             </ModalFooter>

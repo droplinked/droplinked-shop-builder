@@ -29,8 +29,6 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
         </Flex>
     )
 
-    if (!rightContent) return content
-
     return (
         <Flex align="flex-start" gap={4}>
             {content}
