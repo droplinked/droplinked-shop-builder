@@ -54,7 +54,7 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
                     fontWeight={600}
                     color="#179EF8"
                     cursor="pointer"
-                    download="Import_Product_template.xlsx"
+                    download="import_product_template.xlsx"
                 >
                     Download Template
                 </Link>
