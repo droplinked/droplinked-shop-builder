@@ -1,14 +1,15 @@
 import { Link } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import fileTemplate from "assest/samples/import_product_template.xlsx"
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { uploadCsvFile } from 'lib/apis/product/productServices'
 import React, { useState } from 'react'
+import { useMutation } from 'react-query'
 import ImportProductModalBody from './components/ImportProductModalBody'
 import ImportProductModalFooter from './components/ImportProductModalFooter'
-import { useMutation } from 'react-query'
-import { uploadCsvFile } from 'lib/apis/product/productServices'
-import useAppToast from 'functions/hooks/toast/useToast'
-import fileTemplate from "assest/samples/Import_Product_template.xlsx"
+
 interface Props {
     isOpen: boolean
     closeModal: () => void
@@ -19,6 +20,7 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
     const formdata = new FormData()
     const { showToast } = useAppToast()
     const { mutateAsync, isLoading } = useMutation(() => uploadCsvFile(formdata))
+
     const uploadPicture = () => {
         formdata.append("file", uploadedFile)
         mutateAsync().then((res) => {
@@ -30,6 +32,7 @@ function ImportProductModal({ isOpen, closeModal }: Props) {
             showToast({ message: message, type: 'error' })
         })
     }
+
     return (
         <AppModal
             modalRootProps={{ isOpen, onClose: closeModal, size: "2xl", isCentered: true }}
