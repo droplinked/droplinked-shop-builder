@@ -60,4 +60,5 @@ export interface ProductFormValues {
     digitalDetail?: { chain: string },
     keywords: string[]
     purchaseAvailable: boolean
+    pod_blank_product_id?: number
 }

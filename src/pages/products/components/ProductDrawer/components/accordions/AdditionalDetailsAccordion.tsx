@@ -1,3 +1,5 @@
+import AppDatepicker from 'components/redesign/datepicker/AppDatepicker'
+import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import SwitchBox from '../common/SwitchBox'
@@ -5,13 +7,13 @@ import ProductDeliveryMessage from '../fields/ProductDeliveryMessage'
 import ProductKeywords from '../fields/ProductKeywords'
 import ProductTermsAndConditions from '../fields/ProductTermsAndConditions'
 import VisibilityStatus from '../fields/VisibilityStatus'
-import AppDatepicker from 'components/redesign/datepicker/AppDatepicker'
-import { AnimatePresence, motion } from "framer-motion"
+
 function AdditionalDetailsAccordion() {
     const [customField, setCustomField] = useState(false)
     const [discountAllowance, setDiscountAllowance] = useState(false)
     const [releaseDateSwitch, setReleaseDateSwitch] = useState(false)
     const [date, setDate] = useState("")
+
     return (
         <ProductFormAccordion label='Additional Details'>
             <VisibilityStatus />

@@ -19,7 +19,7 @@ export const validationSchema = object({
 
 export const initialValues: ProductFormValues = {
     action: "",
-    product_type: "",
+    product_type: "NORMAL",
     title: "",
     description: "",
     media: [],
@@ -31,6 +31,7 @@ export const initialValues: ProductFormValues = {
     shippingType: "EASY_POST",
     digitalDetail: { chain: "" },
     keywords: [],
-    purchaseAvailable: true
+    purchaseAvailable: true,
+    pod_blank_product_id: null
 }
 
