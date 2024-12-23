@@ -1,6 +1,6 @@
 import { Link } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import fileTemplate from "assest/samples/Import_Product_template.xlsx"
+import fileTemplate from "assest/samples/import_product_template.xlsx"
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
