@@ -3,6 +3,8 @@ export const attributeToIdMap = {
     Size: "62a989ab1f2c2bbc5b1e7154"
 }
 
+export type ProductType = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL" | "EVENT"
+
 export interface ProductMedia {
     _id?: string
     url: string
@@ -45,7 +47,7 @@ export interface SKU {
 
 export interface ProductFormValues {
     action: string
-    product_type: string
+    product_type: ProductType
     title: string
     description: string
     media: ProductMedia[]

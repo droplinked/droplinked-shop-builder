@@ -107,11 +107,12 @@ import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
+import { ReactComponent as GoldenStar } from "./golden-star.svg";
 import { ReactComponent as Google } from "./google.svg";
 import { ReactComponent as GrayDollar } from "./gray-dollar.svg";
 import { ReactComponent as GrayInfinity } from "./gray-infinity.svg";
 import { ReactComponent as GrayPercent } from "./gray-percent.svg";
-import { ReactComponent as GrayStar } from "./gray-star.svg";
+import { ReactComponent as GrayOutlineStar } from "./gray-star.svg";
 import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
@@ -231,8 +232,6 @@ import { ReactComponent as SidebarUser } from "./sidebar-user.svg";
 import { ReactComponent as Skale } from "./skale.svg";
 import { ReactComponent as SnapchatIcon } from "./snapchat.svg";
 import { ReactComponent as Solana } from "./solana.svg";
-import { ReactComponent as StarOff } from "./star-off.svg";
-import { ReactComponent as StarOn } from "./star-on.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
 import { ReactComponent as StarterPlan } from "./starter-plan.svg";
@@ -272,7 +271,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as YellowStar } from "./yellow-star.svg";
+import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
 import { ReactComponent as ColonIcon } from "./colonIcon.svg";
@@ -370,8 +369,6 @@ const AppIcons = {
     VerticalMove,
     BluePlus,
     WhiteTrash,
-    StarOff,
-    StarOn,
     Personalize,
     Brain,
     Unlock,
@@ -548,8 +545,9 @@ const AppIcons = {
     Services,
     Subscription,
     MagicWind,
-    YellowStar,
-    GrayStar,
+    GoldenStar,
+    OutlinedStar,
+    GrayOutlineStar,
     WhiteWarning,
     YellowWarning,
     FileUpload,

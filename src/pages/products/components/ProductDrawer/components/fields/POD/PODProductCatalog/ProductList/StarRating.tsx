@@ -4,10 +4,12 @@ import React from 'react'
 
 function StarRating({ rate }: { rate: number }) {
     return (
-        <Flex alignItems="center" gap={1}>
+        <Flex alignItems="center">
             {
                 Array.from({ length: 5 }).map((_, index) =>
-                    index < rate ? <AppIcons.OutlinedStar /> : <AppIcons.GrayOutlineStar />
+                    index < rate ?
+                        <AppIcons.GoldenStar /> :
+                        <AppIcons.OutlinedStar width={16} height={16} />
                 )
             }
         </Flex>
