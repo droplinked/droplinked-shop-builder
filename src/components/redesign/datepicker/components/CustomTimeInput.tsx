@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
-import AppInput from "components/common/form/textbox/AppInput";
 import AppTypography from "components/common/typography/AppTypography";
+import Input from "components/redesign/input/Input";
 import { forwardRef, useState } from "react";
 import React from "react";
-export const ExampleCustomTimeInput = forwardRef((props: any, ref) => {
+export const CustomTimeInput = forwardRef((props: any, ref) => {
     const { value, onChange } = props;
     const [hours, setHours] = useState<string>(value.split(":")[0] || "00");
     const [minutes, setMinutes] = useState<string>(value.split(":")[1] || "00");
@@ -34,28 +34,42 @@ export const ExampleCustomTimeInput = forwardRef((props: any, ref) => {
                 Time
             </AppTypography>
             <Flex gap={2} alignItems={"center"}>
-                <AppInput
-                    border={"1px solid #292929"}
-                    borderRadius={"8px"}
-                    padding={"16px 12px"}
-                    width={"2.7rem !important"}
-                    value={hours}
-                    onChange={handleHoursChange}
-                    name="hours"
-                    background={"transparent !important"}
+                <Input
+                    inputProps={{
+                        border: "1px solid #292929",
+                        borderRadius: "8px",
+                        padding: "12px 12px",
+                        width: "2.7rem !important",
+                        textAlign: "center",
+                        value: hours,
+                        onChange: handleHoursChange,
+                        name: "hours",
+                        background: "transparent !important",
+                    }}
+                    inputContainerProps={{
+                        border: "none",
+                        padding: "0px"
+                    }}
                 />
                 <AppTypography color={"#7B7B7B"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
-                <AppInput
-                    background={"transparent !important"}
-                    border={"1px solid #292929"}
-                    borderRadius={"8px"}
-                    padding={"16px 12px"}
-                    width={"2.7rem !important"}
-                    value={minutes}
-                    onChange={handleMinutesChange}
-                    name="minutes"
+                <Input
+                    inputProps={{
+                        border: "1px solid #292929",
+                        borderRadius: "8px",
+                        padding: "12px 12px",
+                        width: "2.7rem !important",
+                        textAlign: "center",
+                        value: minutes,
+                        onChange: handleMinutesChange,
+                        name: "minutes",
+                        background: "transparent !important",
+                    }}
+                    inputContainerProps={{
+                        border: "none",
+                        padding: "0px"
+                    }}
                 />
             </Flex>
         </Flex>

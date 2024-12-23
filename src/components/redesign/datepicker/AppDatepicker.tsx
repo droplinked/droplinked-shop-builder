@@ -3,7 +3,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import classes from "./style.module.scss";
-import { ExampleCustomTimeInput } from "./components/CustomTimeInput";
+import { CustomTimeInput } from "./components/CustomTimeInput";
 import CustomHeader from "./components/CustomHeader";
 import AppIcons from "assest/icon/Appicons";
 
@@ -36,6 +36,7 @@ function AppDatepicker({
             alignItems={"center"}
             className={`${classes.datepicker} ${className || ""}`}
             border={"1px solid #292929"}
+            _hover={{ border: "1px solid #3C3C3C" }}
             width={"210px"}
             borderRadius={"8px"}
             px={2}
@@ -56,7 +57,7 @@ function AppDatepicker({
                 }}
                 className={classes.input}
                 timeInputLabel=""
-                customTimeInput={<ExampleCustomTimeInput />}
+                customTimeInput={<CustomTimeInput />}
                 autoFocus={false}
                 focusSelectedMonth={false}
                 disabledKeyboardNavigation={true}
