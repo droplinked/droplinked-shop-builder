@@ -1,58 +1,40 @@
-import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import Button from 'components/redesign/button/Button';
-import * as React from 'react';
-import ProductTypesPopover from '../ProductTypesPopover/ProductTypesPopover';
+import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import React from 'react'
+import ActionButton from './ActionButton'
+import ProductTypesPopover from './ProductTypesPopover/ProductTypesPopover'
 
 interface Props {
-    handleProductTypeSelection: (productType: string) => void;
-    onImportModalOpen: () => void;
-    onReorderModalOpen: () => void;
+    handleProductTypeSelection: (productType: string) => void
+    onImportModalOpen: () => void
+    onReorderModalOpen: () => void
 }
 
 function RightContent({ handleProductTypeSelection, onImportModalOpen, onReorderModalOpen }: Props) {
-
     return (
         <Flex flexDirection="row-reverse" gap={4}>
-            <ProductTypesPopover onProductTypeSelection={(productType) => handleProductTypeSelection(productType)}>
-                <Button
-                    _hover={{ opacity: "0.8" }}
-                    paddingBlock="10px"
-                    paddingInline="14px"
-                    fontSize={14}
-                    fontWeight={500}
-                    leftIcon={<AppIcons.BlackPlus />}
-
-                >
-                    New Product
-                </Button>
+            <ProductTypesPopover onProductTypeSelection={handleProductTypeSelection}>
+                <ActionButton
+                    icon={<AppIcons.BlackPlus />}
+                    label="New Product"
+                />
             </ProductTypesPopover>
-            <Button
-                _hover={{ opacity: "0.8" }}
-                paddingBlock="10px"
-                paddingInline="14px"
-                fontSize={14}
-                fontWeight={500}
-                leftIcon={<AppIcons.Download />}
+
+            <ActionButton
+                variant="secondary"
+                icon={<AppIcons.Download />}
+                label="Import"
                 onClick={onImportModalOpen}
-                variant='secondary'
-            >
-                Import
-            </Button>
-            <Button
-                _hover={{ opacity: "0.8" }}
-                paddingBlock="10px"
-                paddingInline="14px"
-                fontSize={14}
-                fontWeight={500}
-                leftIcon={<AppIcons.VerticalMove />}
+            />
+
+            <ActionButton
+                variant="secondary"
+                icon={<AppIcons.VerticalMove />}
+                label="Reorder Products"
                 onClick={onReorderModalOpen}
-                variant='secondary'
-            >
-                Reorder Products
-            </Button>
+            />
         </Flex>
-    );
+    )
 }
 
-export default RightContent;
+export default RightContent

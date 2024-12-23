@@ -32,7 +32,6 @@ const productTypes = [
 
 function ProductTypes({ onProductTypeSelection }: ProductTypesProps) {
     return (
-
         <Grid
             templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
             gap={4}

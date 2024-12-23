@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
+import { AxiosResponse } from 'axios'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
@@ -7,11 +8,10 @@ import { productStatusMap, productTypeMap } from 'functions/hooks/useProducts/us
 import useAppStore from 'lib/stores/app/appStore'
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import React, { memo } from 'react'
+import { UseInfiniteQueryResult } from 'react-query'
+import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
-import { UseInfiniteQueryResult } from 'react-query'
-import { AxiosResponse } from 'axios'
-import EmptyProductList from './EmptyProductList'
 
 interface Props {
     searchTerm: string,
@@ -53,6 +53,7 @@ function ProductTable({ searchTerm, handleProductTypeSelection, productsList }: 
         { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
         { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
     ]
+
     if (!products.length && !isFetching) {
         return <EmptyProductList handleProductTypeSelection={handleProductTypeSelection} />
     }
