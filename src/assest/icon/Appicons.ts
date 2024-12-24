@@ -25,12 +25,16 @@ import { ReactComponent as BlackInformation } from "./black-information.svg";
 import { ReactComponent as BlackPlus } from "./black-plus.svg";
 import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BlueBase } from "./blue-base.svg";
+import { ReactComponent as BlueBrush } from "./blue-brush.svg";
 import { ReactComponent as BlueLinea } from "./blue-linea.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as BnbChain } from "./bnb-chain.svg";
 import { ReactComponent as Brain } from "./brain.svg";
+import { ReactComponent as Calendar } from "./calendar.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
+import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
+import { ReactComponent as ChevronRight } from "./chevron-right.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
 import { ReactComponent as CircleCopy } from "./circle-copy.svg";
 import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
@@ -49,6 +53,7 @@ import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
+import { ReactComponent as ColonIcon } from "./colonIcon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
@@ -248,6 +253,7 @@ import { ReactComponent as ThreeStars } from "./three-stars.svg";
 import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
 import { ReactComponent as Token } from "./token.svg";
+import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
 import { ReactComponent as TrashRed } from "./trash-red.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
@@ -273,11 +279,6 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
-import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
-import { ReactComponent as ColonIcon } from "./colonIcon.svg";
-import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
-import { ReactComponent as ChevronRight } from "./chevron-right.svg";
-import { ReactComponent as Calendar } from "./calendar.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -559,7 +560,8 @@ const AppIcons = {
     ColonIcon,
     ChevronRight,
     ChevronLeft,
-    Calendar
+    Calendar,
+    BlueBrush
 }
 
 export default AppIcons

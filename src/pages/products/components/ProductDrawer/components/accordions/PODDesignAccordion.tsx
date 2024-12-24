@@ -2,8 +2,8 @@ import { useFormikContext } from 'formik'
 import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
-import ProductCatalog from '../fields/POD/PODProductCatalog/ProductCatalog'
-import PODDesignMaker from '../fields/POD/PODProductTemplate/PODDesignMaker'
+import PODProductCatalog from '../fields/POD/PODProductCatalog/PODProductCatalog'
+import PODProductTemplate from '../fields/POD/PODProductTemplate/PODProductTemplate'
 
 function PODDesignAccordion() {
     const { values: { product_type } } = useFormikContext<ProductFormValues>()
@@ -13,8 +13,8 @@ function PODDesignAccordion() {
             label='POD Design'
             defaultOpen={product_type === "PRINT_ON_DEMAND"}
         >
-            <ProductCatalog />
-            <PODDesignMaker />
+            <PODProductCatalog />
+            <PODProductTemplate />
         </ProductFormAccordion>
     )
 }

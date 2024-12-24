@@ -61,4 +61,6 @@ export interface ProductFormValues {
     keywords: string[]
     purchaseAvailable: boolean
     pod_blank_product_id?: number
+    printful_template_id?: string
+    technique?: string
 }

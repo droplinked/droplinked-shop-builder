@@ -32,6 +32,8 @@ export const initialValues: ProductFormValues = {
     digitalDetail: { chain: "" },
     keywords: [],
     purchaseAvailable: true,
-    pod_blank_product_id: null
+    pod_blank_product_id: null,
+    printful_template_id: null,
+    technique: null
 }
 

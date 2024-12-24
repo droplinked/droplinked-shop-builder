@@ -4,7 +4,7 @@ import CategoryTree from './CategoryTree/CategoryTree'
 import ProductList from './ProductList/ProductList'
 import SelectedProductDetails from './SelectedProductDetails'
 
-function ProductCatalog() {
+function PODProductCatalog() {
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [selectedProduct, setSelectedProduct] = useState(null)
 
@@ -42,4 +42,4 @@ function ProductCatalog() {
     )
 }
 
-export default ProductCatalog
+export default PODProductCatalog
