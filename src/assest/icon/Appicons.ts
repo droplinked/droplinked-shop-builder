@@ -1,4 +1,5 @@
 import { ReactComponent as CasperWalletIcon } from './CasperWallet.svg';
+import { ReactComponent as HeaderPolygon } from './HeaderPolygon.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as WalletConnectIcon } from './WalletConnect.svg';
 import { ReactComponent as ActiveIcon } from './active.svg';
@@ -530,6 +531,7 @@ const AppIcons = {
     EditOutlined,
     HidedIcon,
     Required,
+    HeaderPolygon
 }
 
 export default AppIcons
