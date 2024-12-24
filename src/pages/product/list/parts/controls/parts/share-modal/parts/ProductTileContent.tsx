@@ -9,7 +9,7 @@ interface ProductTileContentProps {
 
 const ProductTileContent: React.FC<ProductTileContentProps> = ({ productTile }) => {
   // تولید کد تعبیه شده (Embed Code) با استفاده از productTile
-  const embedCode = `<div id="droplinked-product-tiles">\n  <droplinked-product \n  tileId="${productTile}">\n  </droplinked-product>\n</div>`;
+  const embedCode = `<droplinked-product \n  tileId="${productTile}">\n  </droplinked-product>`;
 
   return (
     <Box width="100%" bg="#292929" padding="32px">
