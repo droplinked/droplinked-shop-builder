@@ -117,6 +117,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.Redbelly {...props} />,
 				name: 'Redbelly',
 			},
+			BITLAYER: {
+				icon: <AppIcons.Bitlayer {...props} />,
+				name: 'Bitlayer',
+			},
 		}),
 		[props]
 	);

@@ -3,7 +3,7 @@ import React from "react";
 import EmbedCodeSection from "./EmbedCodeSection";
 
 const SocialTileContent = () => {
-  const embedCode = `<div id="droplinked-product-tiles">\n  <droplinked-product \n  tileId="66cda2055200359ae43ae62b">\n  </droplinked-product>\n</div>`;
+  const embedCode = `<droplinked-product \n  tileId="66cda2055200359ae43ae62b">\n  </droplinked-product>`;
 
   return (
     <Box width="100%" bg="#292929" padding="32px">

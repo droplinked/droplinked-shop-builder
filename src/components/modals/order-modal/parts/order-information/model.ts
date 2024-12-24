@@ -78,13 +78,19 @@ namespace OrderInformationModel {
 					appDevelopment ? 'sepolia.' : ''
 				}etherscan.io/tx/${transactionId}`;
 			case 'REDBELLY':
-				return `https://explorer.testnet.redbelly.network/transaction/${transactionId}`;
+				return appDevelopment
+					? `https://redbelly.testnet.routescan.io/tx/${transactionId}`
+					: `https://redbelly.routescan.io/tx/${transactionId}`;
 			case 'SKALE':
 				return `https://${
 					appDevelopment
 						? 'giant-half-dual-testnet.explorer.testnet.skalenodes.com'
 						: 'honorable-steel-rasalhague.explorer.mainnet.skalenodes.com'
 				}/tx/${transactionId}`;
+			case 'BITLAYER':
+				return appDevelopment
+					? `https://testnet.btrscan.com/tx/${transactionId}`
+					: `https://www.btrscan.com/tx/${transactionId}`;
 			default:
 				return '';
 		}
