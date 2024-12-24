@@ -7,7 +7,12 @@ import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
 
-function CompletedMissions({ isLoading, missions }: { isLoading: boolean, missions: Participation[] }) {
+interface Props {
+    isLoading: boolean,
+    missions: Participation[]
+}
+
+function CompletedMissions({ isLoading, missions }: Props) {
     const { shop } = useAppStore()
     const totalPoints = missions.reduce((acc, curr) => acc + +curr.rewards.find((reward) => reward.type === "CREDIT")?.value ?? 0, 0)
     const pointsEarned = missions
@@ -45,8 +50,19 @@ function CompletedMissions({ isLoading, missions }: { isLoading: boolean, missio
                     }}
                 >
                     <AppTypography fontSize={20} fontWeight={700}>Missions Completed</AppTypography>
-                    <Progress width={"320px"} isIndeterminate={isLoading} min={0} max={100} value={(100 * pointsEarned) / totalPoints} colorScheme={"linear(to-b, #C0FFEE, #17FFBF , #00FFB8)"} />
-                    <AppSkeleton width={"fit-content"} isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700}>{pointsEarned.toFixed(2)}/{totalPoints}</AppTypography></AppSkeleton>
+                    <Progress
+                        width="320px"
+                        isIndeterminate={isLoading}
+                        min={0}
+                        max={100}
+                        value={(100 * pointsEarned) / totalPoints}
+                        colorScheme={"linear(to-b, #C0FFEE, #17FFBF , #00FFB8)"}
+                    />
+                    <AppSkeleton width="fit-content" isLoaded={!isLoading}>
+                        <AppTypography fontSize={20} fontWeight={700}>
+                            {`${pointsEarned.toFixed(2)} / ${totalPoints.toFixed(2)}`}
+                        </AppTypography>
+                    </AppSkeleton>
                 </Flex>
             </GamificationCard>
         </Flex>
