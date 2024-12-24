@@ -60,7 +60,7 @@ function CompletedMissions({ isLoading, missions }: Props) {
                     />
                     <AppSkeleton width="fit-content" isLoaded={!isLoading}>
                         <AppTypography fontSize={20} fontWeight={700}>
-                            {`${pointsEarned.toFixed(2)} / ${totalPoints.toFixed(2)}`}
+                            {`${Math.ceil(pointsEarned)} / ${Math.ceil(totalPoints)}`}
                         </AppTypography>
                     </AppSkeleton>
                 </Flex>
