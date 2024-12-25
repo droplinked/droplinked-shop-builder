@@ -1,11 +1,10 @@
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 import PODDesignMaker from './PODDesignMaker'
 
 function PODProductTemplate() {
-    const { values: { pod_blank_product_id } } = useFormikContext<ProductFormValues>()
+    const { values: { pod_blank_product_id } } = useProductForm()
 
     if (!pod_blank_product_id) return null
 

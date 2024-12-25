@@ -1,12 +1,11 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { useFormikContext } from 'formik'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import SKURow from './SKURow'
 
 export default function SKUTable() {
-    const { values: { sku }, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { sku }, setFieldValue } = useProductForm()
     const columns: ColumnDef<any>[] = [
         { accessorKey: '', header: 'Variant' },
         { accessorKey: '', header: 'Price' },

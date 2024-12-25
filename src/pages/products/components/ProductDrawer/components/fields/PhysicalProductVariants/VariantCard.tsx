@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import { useFormikContext } from 'formik'
-import { ProductFormValues, ProductProperty } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import { ProductProperty } from 'pages/products/utils/types'
 import React from 'react'
 
 interface Props {
@@ -19,7 +19,7 @@ interface VariantItemProps {
 }
 
 export default function VariantCard({ variant }: Props) {
-    const { values: { properties }, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { properties }, setFieldValue } = useProductForm()
 
     const handleRemoveVariant = () => {
         const updatedProperties = properties.filter((prop) => prop.title !== variant.title)

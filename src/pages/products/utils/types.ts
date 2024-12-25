@@ -45,6 +45,23 @@ export interface SKU {
     royalty?: number
 }
 
+export interface ProductPosition {
+    area_width: number
+    area_height: number
+    width: number
+    height: number
+    top: number
+    left: number
+}
+
+export interface DigitalDetails {
+    file_url?: string
+    message?: string
+    chain?: string
+}
+
+export type PublishStatus = "PUBLISHED" | "DRAFTED"
+
 export interface ProductFormValues {
     action: string
     product_type: ProductType
@@ -53,14 +70,34 @@ export interface ProductFormValues {
     media: ProductMedia[]
     productCollectionID: string
     canBeAffiliated: boolean
-    commission: number,
-    properties: ProductProperty[],
-    sku: SKU[],
+    commission: number
+    properties: ProductProperty[]
+    sku: SKU[]
     shippingType: string,
-    digitalDetail?: { chain: string },
+    digitalDetail?: DigitalDetails
     keywords: string[]
     purchaseAvailable: boolean
-    pod_blank_product_id?: number
+    publish_product: boolean
+
+    prodviderID: string
+    pod_blank_product_id?: string
     printful_template_id?: string
     technique?: string
+    artwork: string
+    artwork2: string
+    artwork_position: string
+    artwork2_position: string
+    m2m_positions: string[]
+    thumb: string
+    m2m_services?: string[]
+    positions?: ProductPosition
+    custome_external_id: string
+    m2m_positions_options: any[]
+    mainCategory?: string
+    subCategories?: string[]
+    isAddToCartDisabled?: boolean
+    pre_purchase_data_fetch?: boolean
+    printful_option_data?: any
+    launchDate?: string
+    publish_status?: PublishStatus
 }

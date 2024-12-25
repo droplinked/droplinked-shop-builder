@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import MessageBox from 'components/redesign/message-box/MessageBox'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import AddVariantsButton from './AddVariantsButton'
@@ -11,7 +10,7 @@ import VariantForm from './VariantForm'
 
 function ProductVariants() {
     const [isVariantFormVisible, setVariantFormVisibility] = useState(false)
-    const { values: { properties, sku } } = useFormikContext<ProductFormValues>()
+    const { values: { properties, sku } } = useProductForm()
 
     const canAddVariants = properties.length < 2
     const handleAddVariantClick = () => setVariantFormVisibility(true)

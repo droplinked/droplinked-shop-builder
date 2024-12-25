@@ -21,12 +21,12 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
 
     const products = data?.data?.data?.data || []
 
-    function renderProductList() {
+    function renderContent() {
         if (isFetching) return <ProductLoading numberOfSkeletons={4} h="82px" />
 
         return (
             <Flex direction="column" gap={3}>
-                {products.map((product, index) => (
+                {products.map((product: any, index: number) => (
                     <BaseProductCard
                         key={index}
                         product={product}
@@ -40,7 +40,7 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
     return (
         <Flex direction="column" gap={4}>
             <BackButton onBackClick={onBack} />
-            {renderProductList()}
+            {renderContent()}
         </Flex>
     )
 }

@@ -1,8 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import { useFormikContext } from 'formik'
 import useFileUpload from 'functions/hooks/useFileUpload/useFileUpload'
 import { fileSizeInMB } from 'lib/utils/helpers/helpers'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import FileUpload from '../../common/FileUpload'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
@@ -10,7 +9,7 @@ import SelectedFileCard from '../../common/SelectedFileCard'
 import MediaActions from './MediaActions'
 
 export default function ProductImages() {
-    const { values: { media }, errors, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { media }, errors, setFieldValue } = useProductForm()
     const { mutateAsync, isLoading } = useFileUpload()
 
     const handleFileChange = async (file: File) => {

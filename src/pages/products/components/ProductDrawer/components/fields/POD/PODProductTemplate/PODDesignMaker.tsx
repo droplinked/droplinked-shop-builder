@@ -1,18 +1,17 @@
-import AppIcons from 'assest/icon/Appicons'
-import BlueButton from 'components/redesign/button/BlueButton'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import { useDisclosure } from '@chakra-ui/react'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
+import DesignMakerButton from './DesignMakerButton'
+import DesignMakerModal from './DesignMakerModal/DesignMakerModal'
 
 function PODDesignMaker() {
-    const { values: { printful_template_id } } = useFormikContext<ProductFormValues>()
+    const { values: { printful_template_id } } = useProductForm()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <>
-            <BlueButton w="full" gap={2} border="1px solid #292929" borderRadius={8} padding="12px 16px" fontSize={16}>
-                <AppIcons.BlueBrush />
-                {printful_template_id ? "Edit Design" : "Design Maker"}
-            </BlueButton>
+            <DesignMakerButton printful_template_id={printful_template_id} onClick={onOpen} />
+            <DesignMakerModal isOpen={isOpen} onClose={onClose} />
         </>
     )
 }

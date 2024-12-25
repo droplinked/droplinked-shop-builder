@@ -1,13 +1,12 @@
 import Select from 'components/redesign/select/Select'
-import { useFormikContext } from 'formik'
 import useCollections from 'functions/hooks/useCollections/useCollections'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ProductFieldWrapper from '../common/ProductFieldWrapper'
 
 function ProductCollection() {
     const { data } = useCollections()
-    const { values, errors, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, errors, setFieldValue } = useProductForm()
 
     return (
         <ProductFieldWrapper

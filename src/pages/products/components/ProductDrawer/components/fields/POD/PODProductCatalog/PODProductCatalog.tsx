@@ -8,12 +8,30 @@ function PODProductCatalog() {
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [selectedProduct, setSelectedProduct] = useState(null)
 
-    const handleCategorySelect = categoryId => setSelectedCategory(categoryId)
-    const handleProductSelect = product => setSelectedProduct(product)
+    const handleCategorySelect = (categoryId: number) => setSelectedCategory(categoryId)
 
     const handleBack = () => {
         if (selectedProduct) setSelectedProduct(null)
         else if (selectedCategory) setSelectedCategory(null)
+    }
+
+    const renderContent = () => {
+        if (selectedProduct) return (
+            <SelectedProductDetails
+                product={selectedProduct}
+                onBack={handleBack}
+            />
+        )
+
+        else if (selectedCategory) return (
+            <ProductList
+                categoryId={selectedCategory}
+                onProductSelect={(product) => setSelectedProduct(product)}
+                onBack={handleBack}
+            />
+        )
+
+        return <CategoryTree onCategorySelect={handleCategorySelect} />
     }
 
     return (
@@ -22,22 +40,7 @@ function PODProductCatalog() {
             description="Select a category, product, or view product details."
             isRequired
         >
-            {
-                selectedProduct ?
-                    <SelectedProductDetails
-                        product={selectedProduct}
-                        onBack={handleBack}
-                    />
-                    :
-                    selectedCategory ?
-                        <ProductList
-                            categoryId={selectedCategory}
-                            onProductSelect={handleProductSelect}
-                            onBack={handleBack}
-                        />
-                        :
-                        <CategoryTree onCategorySelect={handleCategorySelect} />
-            }
+            {renderContent()}
         </ProductFieldWrapper>
     )
 }

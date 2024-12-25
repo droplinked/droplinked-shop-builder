@@ -1,10 +1,9 @@
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 
 function ProductTitle() {
-    const { values, errors, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, errors, setFieldValue } = useProductForm()
 
     return (
         <Input

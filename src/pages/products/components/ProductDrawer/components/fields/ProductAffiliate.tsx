@@ -1,12 +1,11 @@
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductAffiliate() {
-    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, setFieldValue } = useProductForm()
 
     const preventInvalidKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const invalidKeys = ['+', '-', 'e']

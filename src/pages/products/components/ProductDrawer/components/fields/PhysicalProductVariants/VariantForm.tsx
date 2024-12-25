@@ -2,15 +2,15 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
-import { ProductFormValues, ProductProperty } from 'pages/products/utils/types'
+import { ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
 import ColorPicker from './ColorPicker'
 import VariantSelector from './VariantSelector'
 
 function VariantForm({ handleDiscard }: { handleDiscard: () => void }) {
-    const { values: { properties, sku }, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { properties, sku }, setFieldValue } = useProductForm()
     const [localProperty, setLocalProperty] = useState<ProductProperty | null>(null)
     const [selectedVariant, setSelectedVariant] = useState<string>('')
 

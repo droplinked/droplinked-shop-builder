@@ -1,7 +1,6 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
-import { useFormikContext } from 'formik'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import { ShippingMethod } from 'pages/products/hooks/useShippingMethods'
-import { ProductFormValues } from 'pages/products/utils/types'
 import React from 'react'
 import CustomRadioCard from '../../common/CustomRadioCard'
 
@@ -10,7 +9,7 @@ interface Props {
 }
 
 function ShippingMethodSelector({ shippingMethods }: Props) {
-    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, setFieldValue } = useProductForm()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-variants-style',
         onChange: (value: string) => setFieldValue('shippingType', value),

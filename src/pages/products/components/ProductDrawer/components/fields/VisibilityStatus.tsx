@@ -1,17 +1,18 @@
-import * as React from 'react';
-import ProductFieldWrapper from '../common/ProductFieldWrapper';
-import { useFormikContext } from 'formik';
-import { ProductFormValues } from 'pages/products/utils/types';
-import { Flex, useRadioGroup } from '@chakra-ui/react';
-import CustomRadioCard from '../common/CustomRadioCard';
+import { Flex, useRadioGroup } from '@chakra-ui/react'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import * as React from 'react'
+import CustomRadioCard from '../common/CustomRadioCard'
+import ProductFieldWrapper from '../common/ProductFieldWrapper'
 
 function VisibilityStatus() {
-    const { values, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, setFieldValue } = useProductForm()
+
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
         onChange: (value: string) => setFieldValue('purchaseAvailable', value === "public" ? true : false),
         value: values.purchaseAvailable ? "public" : "private",
     })
+
     const statusList = [
         {
             label: "Public",
@@ -46,7 +47,7 @@ function VisibilityStatus() {
                 ))}
             </Flex>
         </ProductFieldWrapper>
-    );
+    )
 }
 
-export default VisibilityStatus;
+export default VisibilityStatus

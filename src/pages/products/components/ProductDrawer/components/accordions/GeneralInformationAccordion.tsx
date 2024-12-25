@@ -1,5 +1,4 @@
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import ProductAffiliate from '../fields/ProductAffiliate'
@@ -9,7 +8,7 @@ import ProductImages from '../fields/ProductImages/ProductImages'
 import ProductTitle from '../fields/ProductTitle'
 
 function GeneralInformationAccordion() {
-    const { values: { product_type } } = useFormikContext<ProductFormValues>()
+    const { values: { product_type } } = useProductForm()
 
     return (
         <ProductFormAccordion

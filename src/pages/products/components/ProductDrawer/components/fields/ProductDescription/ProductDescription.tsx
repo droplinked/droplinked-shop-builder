@@ -1,14 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import GenerateWithAI from '../../common/GenerateWithAI'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import classes from './ProductDescription.module.scss'
 
 function ProductDescription() {
-    const { values, errors, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values, errors, setFieldValue } = useProductForm()
 
     return (
         <ProductFieldWrapper

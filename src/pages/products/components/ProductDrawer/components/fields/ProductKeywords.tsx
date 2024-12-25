@@ -1,12 +1,11 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 
 function ProductKeywords() {
-    const { values: { keywords }, setFieldValue } = useFormikContext<ProductFormValues>()
+    const { values: { keywords }, setFieldValue } = useProductForm()
     const [newKeyword, setNewKeyword] = useState("")
 
     const handleAddKeyword = () => {

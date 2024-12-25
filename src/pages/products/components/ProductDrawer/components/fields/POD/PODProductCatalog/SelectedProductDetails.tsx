@@ -1,24 +1,30 @@
-import { useFormikContext } from 'formik'
 import { podProductService } from 'lib/apis/pod/services'
-import { ProductFormValues } from 'pages/products/utils/types'
-import React, { useEffect } from 'react'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import React from 'react'
 import { useQuery } from 'react-query'
 import BaseProductCard from './ProductList/BaseProductCard'
 import ProductLoading from './ProductList/ProductLoading'
 
 const SelectedProductDetails = ({ product, onBack }) => {
-    const { setFieldValue } = useFormikContext<ProductFormValues>()
-    const { data, isFetching } = useQuery({
+    const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
+    const { setFieldValue } = useProductForm()
+    const { isFetching } = useQuery({
         queryKey: ['POD_PRODUCT_DETAILS', product.id],
         queryFn: () => podProductService({ pod_blank_product_id: product.id }),
-        enabled: !!product.id
+        enabled: !!product.id,
+        onSuccess: (data) => {
+            const fetchedProduct = data.data.data
+            updateProductPageState("selectedPODProduct", fetchedProduct)
+            setFieldValue('pod_blank_product_id', product.id)
+        }
     })
-    const fetchedProduct = data?.data?.data
-    console.log(fetchedProduct)
 
-    useEffect(() => {
-        setFieldValue('pod_blank_product_id', product.id)
-    }, [product])
+    const deleteProduct = () => {
+        updateProductPageState("selectedPODProduct", null)
+        setFieldValue("pod_blank_product_id", null)
+        onBack()
+    }
 
     if (isFetching) return <ProductLoading h="83px" />
 
@@ -26,7 +32,7 @@ const SelectedProductDetails = ({ product, onBack }) => {
         <BaseProductCard
             product={product}
             showShippingPopover
-            onProductDelete={onBack}
+            onProductDelete={deleteProduct}
         />
     )
 }
