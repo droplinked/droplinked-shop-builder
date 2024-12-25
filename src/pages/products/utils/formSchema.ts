@@ -34,6 +34,25 @@ export const initialValues: ProductFormValues = {
     purchaseAvailable: true,
     pod_blank_product_id: null,
     printful_template_id: null,
-    technique: null
+    technique: null,
+    publish_product: true,
+    prodviderID: null,
+    artwork: null,
+    artwork2: null,
+    m2m_positions: [],
+    artwork_position: null,
+    artwork2_position: null,
+    thumb: "",
+    m2m_services: [],
+    positions: null,
+    custome_external_id: null,
+    m2m_positions_options: [],
+    mainCategory: null,
+    subCategories: [],
+    isAddToCartDisabled: false,
+    pre_purchase_data_fetch: false,
+    printful_option_data: null,
+    launchDate: null,
+    publish_status: "PUBLISHED"
 }
 

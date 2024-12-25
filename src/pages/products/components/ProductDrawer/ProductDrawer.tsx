@@ -1,6 +1,6 @@
 import { Form, Formik, FormikProvider } from 'formik'
 import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
-import { ProductFormValues } from 'pages/products/utils/types'
+import { ProductFormValues, ProductType } from 'pages/products/utils/types'
 import React from 'react'
 import FormContent from './components/FormContent'
 import DrawerFooter from './components/common/DrawerFooter'
@@ -8,11 +8,17 @@ import DrawerHeader from './components/common/DrawerHeader'
 import DrawerRoot from './components/common/DrawerRoot'
 
 interface Props {
+    selectedProductType: ProductType
     isOpen: boolean
     onClose: () => void
 }
 
-function ProductDrawer({ isOpen, onClose }: Props) {
+function ProductDrawer({ selectedProductType, isOpen, onClose }: Props) {
+    const formInitialValues: ProductFormValues = {
+        ...initialValues,
+        product_type: selectedProductType,
+    }
+
     const handleSubmit = (values: ProductFormValues) => {
         const action = values.action
         console.log(action)
@@ -21,7 +27,7 @@ function ProductDrawer({ isOpen, onClose }: Props) {
     return (
         <DrawerRoot isOpen={isOpen} onClose={onClose}>
             <Formik
-                initialValues={initialValues}
+                initialValues={formInitialValues}
                 validationSchema={validationSchema}
                 validateOnChange={false}
                 validateOnBlur={false}

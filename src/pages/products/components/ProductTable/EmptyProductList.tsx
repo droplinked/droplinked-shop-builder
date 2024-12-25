@@ -3,11 +3,7 @@ import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
 import ProductTypesPopover from '../PageHeaderRightContent/ProductTypesPopover/ProductTypesPopover'
 
-interface Props {
-    handleProductTypeSelection: (productType: string) => void
-}
-
-function EmptyProductList({ handleProductTypeSelection }: Props) {
+function EmptyProductList() {
     return (
         <Flex
             width="100%"
@@ -27,10 +23,7 @@ function EmptyProductList({ handleProductTypeSelection }: Props) {
                 Get started by adding your first product
             </Text>
 
-            <ProductTypesPopover
-                onProductTypeSelection={(productType) => handleProductTypeSelection(productType)}
-                placement='top'
-            >
+            <ProductTypesPopover placement='top'>
                 <Flex
                     as="button"
                     alignItems="center"

@@ -28,7 +28,6 @@ function FormContent() {
                 multiCollapse
             >
                 {product_type === "PRINT_ON_DEMAND" && <PODDesignAccordion />}
-                <PODDesignAccordion />
                 <GeneralInformationAccordion />
                 <PhysicalProductVariants />
                 <ShippingAccordion />

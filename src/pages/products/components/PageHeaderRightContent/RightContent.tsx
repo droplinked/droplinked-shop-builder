@@ -5,15 +5,14 @@ import ActionButton from './ActionButton'
 import ProductTypesPopover from './ProductTypesPopover/ProductTypesPopover'
 
 interface Props {
-    handleProductTypeSelection: (productType: string) => void
     onImportModalOpen: () => void
     onReorderModalOpen: () => void
 }
 
-function RightContent({ handleProductTypeSelection, onImportModalOpen, onReorderModalOpen }: Props) {
+function RightContent({ onImportModalOpen, onReorderModalOpen }: Props) {
     return (
         <Flex flexDirection="row-reverse" gap={4}>
-            <ProductTypesPopover onProductTypeSelection={handleProductTypeSelection}>
+            <ProductTypesPopover>
                 <ActionButton
                     icon={<AppIcons.BlackPlus />}
                     label="New Product"

@@ -14,12 +14,10 @@ import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
 
 interface Props {
-    searchTerm: string,
     productsList: UseInfiniteQueryResult<AxiosResponse<any, any>, unknown>
-    handleProductTypeSelection: (productType: string) => void
 }
 
-function ProductTable({ searchTerm, handleProductTypeSelection, productsList }: Props) {
+function ProductTable({ productsList }: Props) {
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, refetch } = productsList
     const { shop: { currency } } = useAppStore()
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
@@ -55,7 +53,7 @@ function ProductTable({ searchTerm, handleProductTypeSelection, productsList }: 
     ]
 
     if (!products.length && !isFetching) {
-        return <EmptyProductList handleProductTypeSelection={handleProductTypeSelection} />
+        return <EmptyProductList />
     }
 
     return (

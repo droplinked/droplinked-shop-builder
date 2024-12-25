@@ -3,11 +3,10 @@ import React, { PropsWithChildren } from 'react'
 import ProductTypes from './ProductTypes'
 
 interface Props extends PropsWithChildren {
-    onProductTypeSelection: (productType: string) => void
     placement?: PlacementWithLogical
 }
 
-function ProductTypesPopover({ onProductTypeSelection, placement = 'bottom-start', children }: Props) {
+function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
     return (
         <Popover placement={placement}>
             <PopoverTrigger>
@@ -23,7 +22,7 @@ function ProductTypesPopover({ onProductTypeSelection, placement = 'bottom-start
                 padding={0}
             >
                 <PopoverBody padding={4}>
-                    <ProductTypes onProductTypeSelection={onProductTypeSelection} />
+                    <ProductTypes />
                 </PopoverBody>
             </PopoverContent>
         </Popover>

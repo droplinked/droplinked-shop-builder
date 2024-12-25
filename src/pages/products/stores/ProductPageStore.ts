@@ -1,6 +1,8 @@
 import { create } from 'zustand'
+import { ProductType } from '../utils/types'
 
 interface ProductPageState {
+    selectedProductType: ProductType
     selectedPODProduct: any
     variants: any[]
 }
@@ -16,6 +18,7 @@ interface Action {
 
 const useProductPageStore = create<State & Action>((set) => ({
     productPageState: {
+        selectedProductType: null,
         selectedPODProduct: null,
         variants: []
     },
@@ -27,6 +30,7 @@ const useProductPageStore = create<State & Action>((set) => ({
     resetProductPageState() {
         set(() => ({
             productPageState: {
+                selectedProductType: null,
                 selectedPODProduct: null,
                 variants: []
             }
