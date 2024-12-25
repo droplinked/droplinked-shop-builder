@@ -1,4 +1,5 @@
 import { Form, Formik, FormikProvider } from 'formik'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
 import { ProductFormValues, ProductType } from 'pages/products/utils/types'
 import React from 'react'
@@ -14,9 +15,16 @@ interface Props {
 }
 
 function ProductDrawer({ selectedProductType, isOpen, onClose }: Props) {
+    const resetProductPageState = useProductPageStore(s => s.resetProductPageState)
+
     const formInitialValues: ProductFormValues = {
         ...initialValues,
         product_type: selectedProductType,
+    }
+
+    const handleClose = () => {
+        resetProductPageState()
+        onClose()
     }
 
     const handleSubmit = (values: ProductFormValues) => {
@@ -25,7 +33,7 @@ function ProductDrawer({ selectedProductType, isOpen, onClose }: Props) {
     }
 
     return (
-        <DrawerRoot isOpen={isOpen} onClose={onClose}>
+        <DrawerRoot isOpen={isOpen} onClose={handleClose}>
             <Formik
                 initialValues={formInitialValues}
                 validationSchema={validationSchema}
