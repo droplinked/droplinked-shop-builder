@@ -1,48 +1,21 @@
-import AppDatepicker from 'components/redesign/datepicker/AppDatepicker'
-import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import SwitchBox from '../common/SwitchBox'
 import ProductDeliveryMessage from '../fields/ProductDeliveryMessage'
 import ProductKeywords from '../fields/ProductKeywords'
+import ProductReleaseDate from '../fields/ProductReleaseDate'
 import ProductTermsAndConditions from '../fields/ProductTermsAndConditions'
-import VisibilityStatus from '../fields/VisibilityStatus'
+import ProductVisibilityStatus from '../fields/ProductVisibilityStatus'
 
 function AdditionalDetailsAccordion() {
     const [customField, setCustomField] = useState(false)
     const [discountAllowance, setDiscountAllowance] = useState(false)
-    const [releaseDateSwitch, setReleaseDateSwitch] = useState(false)
-    const [date, setDate] = useState("")
 
     return (
         <ProductFormAccordion label='Additional Details'>
-            <VisibilityStatus />
+            <ProductVisibilityStatus />
             <ProductKeywords />
-
-            <SwitchBox
-                title='Release Date'
-                description='Select a specific release date for this product.'
-                isChecked={releaseDateSwitch}
-                onToggle={() => setReleaseDateSwitch(prev => !prev)}
-            >
-                <AnimatePresence initial={false}>
-                    {releaseDateSwitch &&
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "linear" }}
-                        >
-                            <AppDatepicker
-                                onChange={(value) => setDate(value.toISOString())}
-                                minDate={new Date()}
-                                value={date ? new Date(date) : new Date()}
-                                showTimeInput
-                            />
-                        </motion.div>
-                    }
-                </AnimatePresence>
-            </SwitchBox>
+            <ProductReleaseDate />
 
             <SwitchBox
                 title='Custom Field'

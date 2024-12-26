@@ -1,10 +1,10 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import * as React from 'react'
+import React from 'react'
 import CustomRadioCard from '../common/CustomRadioCard'
 import ProductFieldWrapper from '../common/ProductFieldWrapper'
 
-function VisibilityStatus() {
+function ProductVisibilityStatus() {
     const { values, setFieldValue } = useProductForm()
 
     const { getRootProps, getRadioProps } = useRadioGroup({
@@ -22,7 +22,7 @@ function VisibilityStatus() {
         {
             label: "Private",
             tooltipText: "Customers won't be able to add it to their cart",
-            value: "private",
+            value: "private"
         }
     ]
 
@@ -50,4 +50,4 @@ function VisibilityStatus() {
     )
 }
 
-export default VisibilityStatus
+export default ProductVisibilityStatus

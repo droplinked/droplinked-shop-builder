@@ -1,48 +1,47 @@
-import { HStack } from "@chakra-ui/react";
-import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import classes from "./style.module.scss";
-import { CustomTimeInput } from "./components/CustomTimeInput";
-import CustomHeader from "./components/CustomHeader";
-import AppIcons from "assest/icon/Appicons";
+import { Box } from "@chakra-ui/react"
+import AppIcons from "assest/icon/Appicons"
+import React from "react"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import CustomHeader from "./components/CustomHeader"
+import { CustomTimeInput } from "./components/CustomTimeInput"
+import classes from "./styles.module.scss"
 
-interface IProps {
-    value?: Date;
-    endDate?: Date;
-    onChange: any;
-    minDate?: Date;
-    className?: any;
-    inline?: boolean;
-    selectsRange?: boolean;
-    placeholderText?: string;
-    showTimeInput?: boolean;
+interface Props {
+    value?: Date
+    endDate?: Date
+    onChange: any
+    minDate?: Date
+    inline?: boolean
+    selectsRange?: boolean
+    placeholderText?: string
+    showTimeInput?: boolean
 }
 
-function AppDatepicker({
+function AppDatePicker({
     onChange,
     value,
     minDate,
     placeholderText,
     inline,
-    className,
     endDate,
     selectsRange,
-    showTimeInput,
-}: IProps) {
+    showTimeInput
+}: Props) {
 
     return (
-        <HStack
-            alignItems={"center"}
-            className={`${classes.datepicker} ${className || ""}`}
-            border={"1px solid #292929"}
-            _hover={{ border: "1px solid #3C3C3C" }}
-            width={"210px"}
-            borderRadius={"8px"}
+        <Box
+            className={classes.datepicker}
+            width="210px"
+            border="1px solid #292929"
+            borderRadius={8}
             px={2}
             py={1}
+            transition="border-color 0.1s ease-out"
+            _hover={{ borderColor: "#3C3C3C" }}
         >
             <DatePicker
+                className={classes.input}
                 {...(typeof endDate && { endDate })}
                 {...(selectsRange && { selectsRange: true })}
                 selected={value}
@@ -52,22 +51,19 @@ function AppDatepicker({
                 placeholderText={placeholderText}
                 {...(minDate && { minDate })}
                 onKeyDown={(e) => e.preventDefault()}
-                onChange={(date) => {
-                    onChange(date);
-                }}
-                className={classes.input}
+                onChange={(date) => onChange(date)}
                 timeInputLabel=""
                 customTimeInput={<CustomTimeInput />}
                 autoFocus={false}
                 focusSelectedMonth={false}
                 disabledKeyboardNavigation={true}
                 shouldCloseOnSelect={false}
-                renderCustomHeader={(props) => (<CustomHeader {...props} />)}
-                icon={<AppIcons.Calendar style={{ marginRight: "8px" }} />}
+                renderCustomHeader={(props) => <CustomHeader {...props} />}
+                icon={<AppIcons.Calendar />}
                 showIcon
             />
-        </HStack>
-    );
+        </Box>
+    )
 }
 
-export default AppDatepicker;
+export default AppDatePicker
