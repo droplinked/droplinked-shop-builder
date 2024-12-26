@@ -40,10 +40,8 @@ function CustomRadioCard(props: Props) {
             </Flex>
 
             {tooltipText &&
-                <AppTooltip placement='bottom' label={tooltipText}>
-                    <AppIcons.TooltipIcon
-                        fill={isChecked ? "#2BCEA133" : "#292929"}
-                    />
+                <AppTooltip flexShrink={0} placement='bottom-start' label={tooltipText}>
+                    <AppIcons.TooltipIcon fill={isChecked ? "#2BCEA133" : "#292929"} />
                 </AppTooltip>
             }
         </FormLabel>
