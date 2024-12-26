@@ -1,9 +1,19 @@
-import { DrawerHeader as ChakraDrawerHeader, DrawerCloseButton, Text } from '@chakra-ui/react'
-import { useFormikContext } from 'formik'
+import { DrawerHeader as ChakraDrawerHeader, DrawerCloseButton, Heading } from '@chakra-ui/react'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
 
-const DrawerHeader = () => {
-    const { values } = useFormikContext()
+const ProductDrawerHeader = () => {
+    const { values: { product_type: productType } } = useProductForm()
+
+    const productTitleMap: Record<ProductType, string> = {
+        NORMAL: 'Physical Product',
+        DIGITAL: 'Digital Product',
+        PRINT_ON_DEMAND: 'POD Product',
+        EVENT: 'Event'
+    }
+
+    const productTitle = productTitleMap[productType] || 'Product'
 
     return (
         <ChakraDrawerHeader
@@ -13,12 +23,12 @@ const DrawerHeader = () => {
             borderBottom="1px solid #292929"
             padding={9}
         >
-            <Text fontSize={24} fontWeight={700} color="#FFF">
-                Add Physical Product
-            </Text>
+            <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
+                Add {productTitle}
+            </Heading>
             <DrawerCloseButton position="static" color="white" />
         </ChakraDrawerHeader>
     )
 }
 
-export default DrawerHeader
+export default ProductDrawerHeader
