@@ -31,9 +31,9 @@ function ProductAffiliate() {
                         type: "number",
                         min: 1,
                         max: 99,
-                        onKeyDown: preventInvalidKeys,
                         placeholder: "100",
                         value: values.commission,
+                        onKeyDown: preventInvalidKeys,
                         onChange: handleCommissionChange
                     }}
                     rightElement={<AppIcons.GrayPercent />}
