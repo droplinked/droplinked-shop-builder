@@ -1,10 +1,10 @@
+import { ModalBody } from '@chakra-ui/react'
 import AppModal from 'components/redesign/modal/AppModal'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
-import DesignMakerContent from './DesignMakerContent'
+import DesignMakerContent from './DesignMakerContent/DesignMakerContent'
 import TechniqueSelection from './TechniqueSelection'
-import { ModalBody } from '@chakra-ui/react'
 
 interface Props {
     isOpen: boolean
@@ -13,20 +13,26 @@ interface Props {
 
 function DesignMakerModal({ isOpen, onClose }: Props) {
     const { values: { technique, printful_template_id } } = useProductForm()
-    const selectedPODProduct = useProductPageStore(s => s.productPageState.selectedPODProduct)
+    const selectedPODProduct = useProductPageStore(state => state.productPageState.selectedPODProduct)
 
-    const renderDesignTools = technique || printful_template_id || !selectedPODProduct?.techniques?.length
+    const shouldRenderDesignTools = Boolean(
+        technique || printful_template_id || !selectedPODProduct?.techniques?.length
+    )
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, isCentered: true, size: renderDesignTools ? "5xl" : "xl" }}
+            modalRootProps={{
+                isOpen,
+                onClose,
+                isCentered: !shouldRenderDesignTools,
+                size: shouldRenderDesignTools ? '6xl' : 'xl',
+            }}
             modalContentProps={{ padding: 4 }}
         >
             <ModalBody>
-                {renderDesignTools ?
-                    <DesignMakerContent />
-                    :
-                    <TechniqueSelection selectedPODProduct={selectedPODProduct} />
+                {shouldRenderDesignTools
+                    ? <DesignMakerContent onClose={onClose} />
+                    : <TechniqueSelection selectedPODProduct={selectedPODProduct} />
                 }
             </ModalBody>
         </AppModal>

@@ -2,12 +2,12 @@ import { Box, Circle, Flex, PopoverBody } from '@chakra-ui/react'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getPODShippingAvailability } from 'lib/apis/product/productServices'
-import { productContext } from 'pages/product/single/context'
-import React, { useContext } from 'react'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import React from 'react'
 import { useQuery } from 'react-query'
 
 export default function ShippingAvailabilityContent() {
-    const { state: { pod_blank_product_id } } = useContext(productContext)
+    const { values: { pod_blank_product_id } } = useProductForm()
     const { data, isLoading } = useQuery({
         queryKey: ["POD-shipping-availability", pod_blank_product_id],
         queryFn: () => getPODShippingAvailability(pod_blank_product_id)

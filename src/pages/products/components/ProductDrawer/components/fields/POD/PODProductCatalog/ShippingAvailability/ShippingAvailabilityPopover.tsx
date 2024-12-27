@@ -1,7 +1,7 @@
 import { Popover, PopoverArrow, PopoverContent } from '@chakra-ui/react'
 import React from 'react'
 import ShippingAvailabilityButton from './ShippingAvailabilityButton'
-import ShippingAvailabilityContent from './content/ShippingAvailabilityContent'
+import ShippingAvailabilityContent from './ShippingAvailabilityContent'
 
 function ShippingAvailabilityPopover() {
     return (
@@ -11,6 +11,7 @@ function ShippingAvailabilityPopover() {
             <ShippingAvailabilityButton />
             <PopoverContent
                 w={{ base: "360px", md: "660px" }}
+                mt={2}
                 border="1px solid #292929"
                 borderRadius={16}
                 padding={0}

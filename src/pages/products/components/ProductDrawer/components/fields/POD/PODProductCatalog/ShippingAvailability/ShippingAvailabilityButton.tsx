@@ -6,15 +6,17 @@ import React from 'react'
 function ShippingAvailabilityButton() {
     return (
         <PopoverTrigger>
-            <BlueButton
-                height="fit-content"
-                gap={2}
-                padding={0}
-                sx={{ svg: { flexShrink: 0 } }}
-            >
-                <AppIcons.DeliveryTruck />
-                Shipping Availability
-            </BlueButton>
+            <div>
+                <BlueButton
+                    height="fit-content"
+                    gap={2}
+                    padding={0}
+                    sx={{ svg: { flexShrink: 0 } }}
+                >
+                    <AppIcons.DeliveryTruck />
+                    Shipping Availability
+                </BlueButton>
+            </div>
         </PopoverTrigger>
     )
 }

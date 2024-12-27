@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import { SKU } from 'pages/products/utils/types'
-import React, { memo, useEffect } from 'react'
+import useSetFormDefaultValues from 'pages/products/hooks/useSetFormDefaultValues'
+import React, { memo } from 'react'
 import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
 import PhysicalProductVariants from './accordions/PhysicalProductVariants'
@@ -11,24 +11,8 @@ import ShippingAccordion from './accordions/ShippingAccordion'
 import Web3SettingsAccordion from './accordions/Web3SettingsAccordion'
 
 function FormContent() {
-    const { values: { product_type, sku }, setFieldValue } = useProductForm()
-
-    useEffect(() => {
-        if (product_type === "DIGITAL" && !sku.length) {
-            let DigitalProductSKU: SKU = {
-                externalID: "",
-                price: 0,
-                dimensions: { height: 0, length: 0, width: 0 },
-                quantity: 0,
-                recorded_quantity: 0,
-                recordData: { status: "NOT_RECORDED" },
-                deploy_hash: '',
-                royalty: null
-            }
-
-            setFieldValue('sku', [DigitalProductSKU])
-        }
-    }, [product_type, sku, setFieldValue])
+    const { values: { product_type } } = useProductForm()
+    useSetFormDefaultValues()
 
     return (
         <Flex
