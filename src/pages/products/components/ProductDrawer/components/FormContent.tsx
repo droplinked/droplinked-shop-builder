@@ -32,7 +32,7 @@ function FormContent() {
                 {product_type === "PRINT_ON_DEMAND" && <PODDesignAccordion />}
                 <GeneralInformationAccordion />
                 <PhysicalProductVariants />
-                <ShippingAccordion />
+                {product_type === "NORMAL" && <ShippingAccordion />}
                 <Web3SettingsAccordion />
                 <AdditionalDetailsAccordion />
             </AppAccordion>

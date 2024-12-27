@@ -1,28 +1,47 @@
-import { Button, Flex, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, Link } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import MessageBox from 'components/redesign/message-box/MessageBox'
+import useAppStore from 'lib/stores/app/appStore'
 import { fileSizeInMB } from 'lib/utils/helpers/helpers'
-import React from 'react'
+import { parseShippingFileData } from 'pages/products/utils/shippingFileParser'
+import React, { useEffect, useState } from 'react'
 import FileUpload from '../../common/FileUpload'
 import SelectedFileCard from '../../common/SelectedFileCard'
+import SectionHeader from './SectionHeader'
 
 interface Props {
-    selectedFile?: File
-    onFileChange: (file: File) => void
+    onFileParsed: (data: any) => void
 }
 
-function CustomShippingFileUpload({ selectedFile, onFileChange }: Props) {
-    const handleFileRemove = () => onFileChange(null)
+function CustomShippingFileUpload({ onFileParsed }: Props) {
+    const [selectedFile, setSelectedFile] = useState<File | null>(null)
+    const { shop: { currency } } = useAppStore()
+
+    const handleFileRemove = () => {
+        setSelectedFile(null)
+        onFileParsed(null)
+    }
+
+    useEffect(() => {
+        if (selectedFile) {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                const parsedData = parseShippingFileData(e.target.result as ArrayBufferLike, currency?.abbreviation)
+                onFileParsed(parsedData)
+            }
+            reader.readAsArrayBuffer(selectedFile)
+        }
+    }, [selectedFile, currency, onFileParsed])
 
     return (
         <Flex direction="column" gap={4}>
-            <Flex flexDirection="column" gap={1}>
-                <Text fontSize={14} fontWeight={500} color="#FFF">File</Text>
-                <Text fontSize={14} color="#7B7B7B">Upload Shipping Details File.</Text>
-            </Flex>
+            <SectionHeader
+                title='File'
+                description='Upload Shipping Details File.'
+            />
 
             <FileUpload
-                onFileChange={onFileChange}
+                onFileChange={(file) => setSelectedFile(file)}
                 icon={<AppIcons.FileUpload />}
                 accept={{ 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }}
                 text={{ footerText: 'xlsx' }}

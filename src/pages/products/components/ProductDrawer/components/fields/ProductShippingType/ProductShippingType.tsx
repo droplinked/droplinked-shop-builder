@@ -1,19 +1,19 @@
 import AppIcons from 'assest/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
-import useShippingMethods from 'pages/products/hooks/useShippingMethods'
+import { useShippingTypes } from 'pages/products/hooks/useShippingTypes'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import CustomShippingForm from './CustomShippingForm'
-import ShippingMethodSelector from './ShippingMethodSelector'
+import ShippingTypeSelector from './ShippingTypeSelector'
 
-function ProductShippingMethod() {
-    const [showCustomShippingForm, setShowCustomShippingForm] = useState(false)
-    const { hasCustomShippingPermission, shippingMethods } = useShippingMethods()
+function ProductShippingType() {
+    const [isFormVisible, setFormVisibility] = useState(false)
+    const { hasCustomShippingPermission, shippingTypes } = useShippingTypes()
 
     const rightContent = (
         <BlueButton
             sx={{ path: { stroke: "#179EF8" } }}
-            onClick={() => hasCustomShippingPermission && setShowCustomShippingForm(true)}
+            onClick={() => hasCustomShippingPermission && setFormVisibility(true)}
         >
             <AppIcons.BlackPlus />
             Custom Shipping
@@ -27,13 +27,13 @@ function ProductShippingMethod() {
             isRequired
             {...hasCustomShippingPermission && { rightContent }}
         >
-            <ShippingMethodSelector shippingMethods={shippingMethods} />
+            <ShippingTypeSelector shippingTypes={shippingTypes} />
 
-            {showCustomShippingForm &&
-                <CustomShippingForm handleDiscard={() => setShowCustomShippingForm(false)} />
+            {isFormVisible &&
+                <CustomShippingForm onDiscard={() => setFormVisibility(false)} />
             }
         </ProductFieldWrapper>
     )
 }
 
-export default ProductShippingMethod
+export default ProductShippingType

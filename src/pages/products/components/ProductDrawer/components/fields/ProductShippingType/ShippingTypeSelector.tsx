@@ -1,17 +1,17 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import { ShippingMethod } from 'pages/products/hooks/useShippingMethods'
+import { ShippingType } from 'pages/products/hooks/useShippingTypes'
 import React from 'react'
 import CustomRadioCard from '../../common/CustomRadioCard'
 
 interface Props {
-    shippingMethods: ShippingMethod[]
+    shippingTypes: ShippingType[]
 }
 
-function ShippingMethodSelector({ shippingMethods }: Props) {
+function ShippingTypeSelector({ shippingTypes }: Props) {
     const { values, setFieldValue } = useProductForm()
     const { getRootProps, getRadioProps } = useRadioGroup({
-        name: 'selected-variants-style',
+        name: 'selected-shipping-type',
         onChange: (value: string) => setFieldValue('shippingType', value),
         value: values.shippingType
     })
@@ -22,7 +22,7 @@ function ShippingMethodSelector({ shippingMethods }: Props) {
             gap={4}
             {...getRootProps()}
         >
-            {shippingMethods.map(m => (
+            {shippingTypes.map(m => (
                 <CustomRadioCard
                     key={m.value}
                     label={m.label}
@@ -34,4 +34,4 @@ function ShippingMethodSelector({ shippingMethods }: Props) {
     )
 }
 
-export default ShippingMethodSelector
+export default ShippingTypeSelector

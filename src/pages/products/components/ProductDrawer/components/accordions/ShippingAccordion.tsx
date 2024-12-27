@@ -1,11 +1,11 @@
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
-import ProductShippingMethod from '../fields/ProductShippingMethod/ProductShippingMethod'
+import ProductShippingType from '../fields/ProductShippingType/ProductShippingType'
 
 function ShippingAccordion() {
     return (
         <ProductFormAccordion label='Shipping'>
-            <ProductShippingMethod />
+            <ProductShippingType />
         </ProductFormAccordion>
     )
 }
