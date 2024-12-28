@@ -14,7 +14,7 @@ function DrawerRoot({ isOpen, onClose, children }: Props) {
             size="lg"
             onClose={onClose}
         >
-            <DrawerOverlay />
+            <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
             <DrawerContent
                 maxWidth="780px"
                 width="780px"
