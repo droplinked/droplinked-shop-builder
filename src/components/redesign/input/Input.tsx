@@ -1,13 +1,15 @@
 import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import React, { ReactNode } from 'react'
+import React, { KeyboardEvent, ReactNode } from 'react'
 
 interface Props {
     inputGroupProps?: InputGroupProps
     label?: string
     description?: string
     inputContainerProps?: FlexProps
-    inputProps?: InputProps
+    inputProps?: InputProps & {
+        numberType?: 'int' | 'float'
+    }
     leftElement?: ReactNode
     rightElement?: ReactNode
     actionButton?: ReactNode
@@ -55,6 +57,25 @@ function InputContainer(props: Props) {
     const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state } = props
     const borderColorMap = { success: "#2BCFA1", error: "#F24" }
 
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (inputProps?.type === 'number') {
+            const invalidChars = ['e', 'E', '+', '-', ',']
+            if (inputProps.numberType === 'int') invalidChars.push('.')
+            if (invalidChars.includes(event.key)) event.preventDefault()
+        }
+    }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, validity } = event.target
+
+        if (inputProps?.type === 'number') {
+            const numericValue = inputProps.numberType === 'float' ? parseFloat(value) : parseInt(value, 10)
+            if (!isNaN(numericValue) && validity.valid) inputProps?.onChange?.(event)
+        }
+        else inputProps?.onChange?.(event)
+
+    }
+
     return (
         <Flex
             alignItems="center"
@@ -82,6 +103,8 @@ function InputContainer(props: Props) {
                 spellCheck={false}
                 _placeholder={{ color: "#7B7B7B" }}
                 _focusVisible={{}}
+                onKeyDown={handleKeyDown}
+                onChange={handleChange}
                 {...inputProps}
             />
             {rightElement}

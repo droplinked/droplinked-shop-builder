@@ -8,9 +8,9 @@ import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 export default function BulkDimensionsAdjuster() {
     const { values: { sku }, setFieldValue } = useProductForm()
 
-    const updateSkus = (field: string, value: string, isDimensionField: boolean) => {
+    const updateSkus = (field: string, value: string) => {
         const updatedSkus = sku.map((s) => {
-            if (isDimensionField) {
+            if (['width', 'length', 'height'].includes(field)) {
                 return {
                     ...s,
                     dimensions: { ...s.dimensions, [field]: value === '' ? '' : parseFloat(value) },
@@ -21,41 +21,20 @@ export default function BulkDimensionsAdjuster() {
         setFieldValue('sku', updatedSkus)
     }
 
-    const handleInputChange = (field: string, isDimensionField: boolean = false) =>
-        (e: React.ChangeEvent<HTMLInputElement>) => {
-            const value = e.target.value
-            isValidNumber(value) && updateSkus(field, value, isDimensionField)
-        }
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (['e', 'E', '+', '-'].includes(e.key)) e.preventDefault()
-    }
-
-    const isValidNumber = (value: string) => !isNaN(Number(value)) && /^[0-9]*\.?[0-9]*$/.test(value)
-
     return (
         <Flex wrap="wrap" gap={9} css={{ input: { fontSize: 16 } }}>
             <ProductFieldWrapper label="Packaging" isRequired>
                 <Flex gap={4}>
-                    <DimensionInput field="width" placeholder="Width" handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
-                    <DimensionInput field="length" placeholder="Length" handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
-                    <DimensionInput field="height" placeholder="Height" handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
+                    <SkuAttributeInput field="width" placeholder="Width" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.width || ''} />
+                    <SkuAttributeInput field="length" placeholder="Length" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.length || ''} />
+                    <SkuAttributeInput field="height" placeholder="Height" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.height || ''} />
                     <ConvertUnitButton label="Inch" />
                 </Flex>
             </ProductFieldWrapper>
 
             <ProductFieldWrapper label="Weight" isRequired>
                 <Flex gap={4}>
-                    <Input
-                        inputContainerProps={{ width: '92px' }}
-                        inputProps={{
-                            type: 'number',
-                            step: '0.01',
-                            placeholder: 'Weight',
-                            onChange: handleInputChange('weight'),
-                            onKeyDown: handleKeyDown,
-                        }}
-                    />
+                    <SkuAttributeInput field="weight" placeholder="Weight" updateSkus={updateSkus} initialValue={sku[0]?.weight || ''} />
                     <ConvertUnitButton label="kg" />
                 </Flex>
             </ProductFieldWrapper>
@@ -63,25 +42,16 @@ export default function BulkDimensionsAdjuster() {
     )
 }
 
-const DimensionInput = ({
-    field,
-    placeholder,
-    handleInputChange,
-    handleKeyDown,
-}: {
-    field: string
-    placeholder: string
-    handleInputChange: (field: string, isDimensionField: boolean) => (e: React.ChangeEvent<HTMLInputElement>) => void
-    handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
-}) => (
+const SkuAttributeInput = ({ field, placeholder, updateSkus, initialValue }) => (
     <Input
         inputContainerProps={{ width: '92px' }}
         inputProps={{
             type: 'number',
-            step: '0.01',
+            step: 0.01,
             placeholder,
-            onChange: handleInputChange(field, true),
-            onKeyDown: handleKeyDown,
+            numberType: 'float',
+            value: initialValue,
+            onChange: (e) => updateSkus(field, e.target.value)
         }}
     />
 )
