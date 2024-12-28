@@ -10,7 +10,6 @@ import SwitchBox from '../common/SwitchBox'
 
 function ProductDrop() {
     const { values: { digitalDetail }, setFieldValue } = useProductForm()
-    console.log({ digitalDetail })
     const [isDropEnabled, setIsDropEnabled] = useState<boolean>(false)
     const { data, isFetching } = useQuery({
         queryFn: supportedChainsService,

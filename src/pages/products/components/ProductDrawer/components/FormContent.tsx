@@ -5,8 +5,8 @@ import useSetFormDefaultValues from 'pages/products/hooks/useSetFormDefaultValue
 import React, { memo } from 'react'
 import AdditionalDetailsAccordion from './accordions/AdditionalDetailsAccordion'
 import GeneralInformationAccordion from './accordions/GeneralInformationAccordion'
-import PhysicalProductVariants from './accordions/PhysicalProductVariants'
 import PODDesignAccordion from './accordions/PODDesignAccordion'
+import ProductVariantsAccordion from './accordions/ProductVariantsAccordion'
 import ShippingAccordion from './accordions/ShippingAccordion'
 import Web3SettingsAccordion from './accordions/Web3SettingsAccordion'
 
@@ -31,7 +31,7 @@ function FormContent() {
             >
                 {product_type === "PRINT_ON_DEMAND" && <PODDesignAccordion />}
                 <GeneralInformationAccordion />
-                <PhysicalProductVariants />
+                <ProductVariantsAccordion />
                 {product_type === "NORMAL" && <ShippingAccordion />}
                 <Web3SettingsAccordion />
                 <AdditionalDetailsAccordion />

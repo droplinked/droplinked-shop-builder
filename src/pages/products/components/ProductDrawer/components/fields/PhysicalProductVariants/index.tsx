@@ -8,7 +8,7 @@ import ProductSKUSettings from './SKUSettings/ProductSKUSettings'
 import VariantCard from './VariantCard'
 import VariantForm from './VariantForm'
 
-function ProductVariants() {
+function PhysicalProductVariants() {
     const [isVariantFormVisible, setVariantFormVisibility] = useState(false)
     const { values: { properties, sku } } = useProductForm()
 
@@ -22,22 +22,23 @@ function ProductVariants() {
             description="Add different versions of this product (e.g., size, color)."
             isRequired
         >
-            <Flex direction="column" gap={4}>
-                {isVariantFormVisible ?
-                    <VariantForm handleDiscard={handleDiscardVariant} />
-                    :
-                    canAddVariants && <AddVariantsButton onClick={handleAddVariantClick} />
-                }
+            <Flex direction="column" gap={9}>
+                <Flex direction="column" gap={4}>
+                    {isVariantFormVisible
+                        ? <VariantForm handleDiscard={handleDiscardVariant} />
+                        : canAddVariants && <AddVariantsButton onClick={handleAddVariantClick} />
+                    }
 
-                {properties.map((property, index) => <VariantCard key={index} variant={property} />)}
+                    {properties.map((property, index) => <VariantCard key={index} variant={property} />)}
 
-                {!canAddVariants && (
-                    <MessageBox
-                        title="Variant Limit Warning"
-                        description="Can’t add any more variants. You can only add up to 2 variants."
-                        theme="warning"
-                    />
-                )}
+                    {!canAddVariants && (
+                        <MessageBox
+                            title="Variant Limit Warning"
+                            description="Can’t add any more variants. You can only add up to 2 variants."
+                            theme="warning"
+                        />
+                    )}
+                </Flex>
 
                 {sku.length > 0 && <ProductSKUSettings />}
             </Flex>
@@ -45,4 +46,4 @@ function ProductVariants() {
     )
 }
 
-export default ProductVariants
+export default PhysicalProductVariants

@@ -1,31 +1,36 @@
-import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React, { ReactNode } from 'react'
 
 interface Props {
     inputGroupProps?: InputGroupProps
     label?: string
-    labelProps?: FormLabelProps
     description?: string
     inputContainerProps?: FlexProps
     inputProps?: InputProps
     leftElement?: ReactNode
     rightElement?: ReactNode
     actionButton?: ReactNode
-    hasError?: boolean
+    state?: "success" | "error"
     message?: string
     maxCharacters?: number
 }
 
-const Input = ({ inputGroupProps, label, labelProps, description, inputContainerProps, inputProps, leftElement, rightElement, hasError, message, maxCharacters }: Props) => {
+function Input(props: Props) {
+    const { inputGroupProps, label, description, inputContainerProps, inputProps, leftElement, rightElement, state, message, maxCharacters } = props
+    const borderColorMap = { success: "#2BCFA1", error: "#F24" }
+
     return (
-        <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
+        <InputGroup
+            display="flex"
+            flexDirection="column"
+            {...inputGroupProps}
+        >
             {label && (
                 <FormLabel
                     mb={description ? 1 : 4}
                     display="flex" alignItems="center" gap={1}
                     fontSize={16} fontWeight={500} color="#FFF"
-                    {...labelProps}
                 >
                     {label} {inputProps?.isRequired && <AppIcons.Required />}
                 </FormLabel>
@@ -35,11 +40,11 @@ const Input = ({ inputGroupProps, label, labelProps, description, inputContainer
 
             <Flex
                 alignItems="center" gap={2}
-                borderRadius={8} border="1px solid" borderColor={hasError ? "#F24" : "#292929"}
+                border="1px solid" borderRadius={8} borderColor={borderColorMap[state] || "#292929"}
                 padding="12px 16px"
                 transition="border-color 0.1s ease-out"
-                _hover={{ borderColor: hasError ? "#F24" : "#3C3C3C" }}
-                _focus={{ borderColor: hasError ? "#F24" : "#7B7B7B" }}
+                _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
+                _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
                 {...inputContainerProps}
             >
                 {leftElement}

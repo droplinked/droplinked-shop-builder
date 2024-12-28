@@ -55,6 +55,7 @@ import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
 import { ReactComponent as ColonIcon } from "./colonIcon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
+import { ReactComponent as Convert } from "./convert.svg";
 import { ReactComponent as Copy } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as D3Access } from "./d3-access.svg";
@@ -561,7 +562,8 @@ const AppIcons = {
     ChevronRight,
     ChevronLeft,
     Calendar,
-    BlueBrush
+    BlueBrush,
+    Convert
 }
 
 export default AppIcons

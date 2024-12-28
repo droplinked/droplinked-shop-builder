@@ -18,9 +18,9 @@ function ProductTitle() {
                 fontSize: 16,
                 onChange: (e) => setFieldValue("title", e.target.value)
             }}
-            hasError={!!errors.title}
             message={errors.title}
             maxCharacters={100}
+            {...errors.title && { state: "error" }}
         />
     )
 }
