@@ -13,22 +13,6 @@ interface SKURowProps {
 }
 
 export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
-    const handleInputChange = (field: keyof SKU) => (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target
-        if (value === '') return onInputChange(index, field, 0)
-        if (field === 'quantity') {
-            const numericValue = parseInt(value, 10)
-            if (!isNaN(numericValue) && numericValue >= 0)
-                onInputChange(index, field, numericValue)
-        }
-        else if (field === 'price') {
-            const numericValue = parseFloat(value)
-            if (!isNaN(numericValue) && numericValue >= 0)
-                onInputChange(index, field, numericValue)
-        }
-        else onInputChange(index, field, value)
-    }
-
     const toggleQuantity = () => {
         const newQuantity = sku.quantity === 1000000 ? 0 : 1000000
         onInputChange(index, 'quantity', newQuantity)
@@ -44,8 +28,9 @@ export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
                     inputProps={{
                         type: 'number',
                         step: '0.01',
-                        value: sku.price !== undefined ? sku.price : '',
-                        onChange: handleInputChange('price')
+                        numberType: 'float',
+                        value: sku.price ?? '',
+                        onChange: (e) => onInputChange(index, 'price', parseFloat(e.target.value) || 0),
                     }}
                     leftElement={<AppIcons.GrayDollar />}
                 />
@@ -56,8 +41,9 @@ export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
                     inputProps={{
                         type: 'number',
                         step: '1',
-                        value: sku.quantity !== undefined ? sku.quantity : '',
-                        onChange: handleInputChange('quantity')
+                        numberType: 'int',
+                        value: sku.quantity ?? '',
+                        onChange: (e) => onInputChange(index, 'quantity', parseInt(e.target.value, 10) || 0),
                     }}
                     rightElement={
                         <InfinityToggleButton
@@ -71,7 +57,7 @@ export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
                 <Input
                     inputProps={{
                         value: sku.externalID || '',
-                        onChange: handleInputChange('externalID')
+                        onChange: (e) => onInputChange(index, 'externalID', e.target.value),
                     }}
                 />
             </Td>
