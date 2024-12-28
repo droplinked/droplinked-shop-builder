@@ -3,15 +3,17 @@ import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 
 function ProductTitle() {
-    const { values, errors, setFieldValue } = useProductForm()
+    const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
+
+    const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
 
     return (
         <Input
-            label='Product Name'
+            label={label}
             description='Enter a unique product name. This will be visible to customers.'
             inputProps={{
                 placeholder: "e.g., Handmade Ceramic Mug",
-                value: values.title,
+                value: title,
                 isRequired: true,
                 fontSize: 16,
                 onChange: (e) => setFieldValue("title", e.target.value)

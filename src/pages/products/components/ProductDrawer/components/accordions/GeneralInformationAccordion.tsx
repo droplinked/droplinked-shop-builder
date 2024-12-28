@@ -1,3 +1,4 @@
+import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
@@ -15,6 +16,14 @@ function GeneralInformationAccordion() {
             label='General Information'
             defaultOpen={product_type !== "PRINT_ON_DEMAND"}
         >
+            {product_type === "EVENT" && (
+                <MessageBox
+                    title='Event Sync Notice'
+                    description='The event name and description are synced with your connected event account. To make updates, please edit directly in your event account. Changes will automatically appear here.'
+                    theme='warning'
+                />
+            )}
+
             <ProductTitle />
             <ProductDescription />
             <ProductImages />
