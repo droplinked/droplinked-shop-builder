@@ -125,6 +125,12 @@ export const sidebar_constants: SidebarGroup[] = [
                 list: [],
             },
             {
+                title: "Account Settings",
+                icon: AppIcons.SettingGear,
+                linkTo: "/analytics/account-settings",
+                list: [],
+            },
+            {
                 title: "Management Panel",
                 icon: AppIcons.SidebarSetting,
                 linkTo: null,

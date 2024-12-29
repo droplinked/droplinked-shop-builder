@@ -13,10 +13,10 @@ const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
 // Root Component - simplified
-function PageGridRoot({ children, loading }: PageGridRootProps) {
+function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex width="100%" flexDirection="column" alignItems="start">
+            <Flex {...flexProps} width="100%" flexDirection="column" alignItems="start">
                 {children}
             </Flex>
         </PageGridContext.Provider>
@@ -24,9 +24,9 @@ function PageGridRoot({ children, loading }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, buttons, flexProps }: PageGridHeaderProps) {
     return (
-        <Flex w="full" mb="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
+        <Flex {...flexProps} w="full" marginBottom={flexProps.marginBottom || "36px"} flexDirection={flexProps.flexDirection || "row"} justifyContent={flexProps.justifyContent || "space-between"} alignItems={flexProps.alignItems || "start"}>
             <Flex flexDirection="column" alignItems="start">
                 {title && (
                     <AppTypography color="#fff" fontSize="24px" fontWeight={700}>

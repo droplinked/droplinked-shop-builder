@@ -59,6 +59,7 @@ import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
+import SettingsPage from "pages/settings/SettingsPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -117,6 +118,7 @@ function AppRoutes() {
                         <Route path="admins" element={<Admins />} />
                         <Route path="payment-link-design" element={<PaymentLink />} />
                     </Route>
+                    <Route path="account-settings" element={<SettingsPage />} />
                     <Route path="products">
                         <Route index element={<Products />} />
                         <Route path="types" element={<ProductTypes />} />
