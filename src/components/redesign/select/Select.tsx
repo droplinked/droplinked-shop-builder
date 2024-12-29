@@ -6,8 +6,6 @@ import ErrorMessage from '../error-message/ErrorMessage'
 interface Props {
     label?: string
     items: any[]
-    value?: any
-    onChange?: (value: any) => void
     labelAccessor?: string
     valueAccessor?: string
     dataAttributes?: Record<string, string>
@@ -17,19 +15,10 @@ interface Props {
     selectProps?: SelectProps
 }
 
-function Select({
-    label,
-    items,
-    value,
-    onChange,
-    labelAccessor = "name",
-    valueAccessor,
-    dataAttributes,
-    isLoading,
-    error,
-    inputGroupProps,
-    selectProps
-}: Props) {
+function Select(props: Props) {
+    const { label, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, selectProps } = props
+    const { value, onChange } = selectProps
+
     const options = useMemo(() => {
         return items.map((item, index) => {
             const isString = typeof item === "string"
@@ -55,7 +44,7 @@ function Select({
             ? selectedValue
             : valueAccessor
                 ? items.find(item => item[valueAccessor] === selectedValue)
-                : JSON.parse(selectedValue);
+                : JSON.parse(selectedValue)
 
         onChange?.(selectedItem)
     }

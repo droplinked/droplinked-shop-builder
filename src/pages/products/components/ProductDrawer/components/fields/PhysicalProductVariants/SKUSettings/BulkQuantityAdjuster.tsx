@@ -1,7 +1,7 @@
 import Input from 'components/redesign/input/Input'
 import React, { useState } from 'react'
+import InfinityToggleButton from '../../../common/InfinityToggleButton'
 import SwitchBox from '../../../common/SwitchBox'
-import InfinityToggleButton from '../SKUTable/InfinityToggleButton'
 
 function BulkQuantityAdjuster() {
     const [fixedQuantity, setFixedQuantity] = useState(false)

@@ -3,7 +3,7 @@ import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
-import InfinityToggleButton from './InfinityToggleButton'
+import InfinityToggleButton from '../../../common/InfinityToggleButton'
 import SKUDisplay from './SKUDisplay'
 
 interface SKURowProps {
