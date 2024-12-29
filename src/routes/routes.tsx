@@ -59,6 +59,12 @@ import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
+import SettingsPageWrapper from "pages/settings/SettingsPageWrapper";
+import General from "pages/settings/components/pages/general/General";
+import PrivacyAndSecurity from "pages/settings/components/pages/privacy-and-security/PrivacyAndSecurity";
+import PaymentAndWallets from "pages/settings/components/pages/payment-and-wallets/PaymentAndWallets";
+import CreditAndCoupons from "pages/settings/components/pages/credit-and-coupons/CreditAndCoupons";
+import UserManagement from "pages/settings/components/pages/user-management/PrivacyAndSecurity";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -116,6 +122,13 @@ function AppRoutes() {
                         <Route path="coupons" element={<CouponsSetting />} />
                         <Route path="admins" element={<Admins />} />
                         <Route path="payment-link-design" element={<PaymentLink />} />
+                    </Route>
+                    <Route path="account-settings" element={<SettingsPageWrapper />}>
+                        <Route path="general" element={<General />} />
+                        <Route path="privacy-and-security" element={<PrivacyAndSecurity />} />
+                        <Route path="payments-and-wallets" element={<PaymentAndWallets />} />
+                        <Route path="credits-and-coupons" element={<CreditAndCoupons />} />
+                        <Route path="user-management" element={<UserManagement />} />
                     </Route>
                     <Route path="products">
                         <Route index element={<Products />} />

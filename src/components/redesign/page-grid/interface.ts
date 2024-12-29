@@ -1,3 +1,4 @@
+import { FlexProps } from "@chakra-ui/react"
 import { IDataGridButtons } from "./components/buttons/interface"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
@@ -24,6 +25,7 @@ export interface PageGridHeaderProps {
     title?: string;
     description?: string;
     buttons?: IDataGridButtons['buttons'];
+    flexProps?: FlexProps;
 }
 
 export interface PageGridActionsProps {
