@@ -11,7 +11,7 @@ const DashboardLayout = () => {
     const { user } = useAppStore()
     const location = useLocation().pathname
     const navigate = useNavigate()
-
+    const notSettingPage = !location.endsWith("account-settings")
     useEffect(() => {
         if (["PROFILE_COMPLETED", "VERIFIED"].includes(user?.status)) navigate("/analytics/registration")
     }, [user, navigate])
@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 <DashboardLayoutSidebar />
                 <VStack width="full" height="full" {...location.endsWith("/plans") && { overflow: "auto" }}>
                     <DashboardLayoutHeader />
-                    <Box width="100%" minH="80vh" padding={6} borderColor="line"><Outlet /></Box>
+                    <Box width="100%" minH="80vh" {...notSettingPage && { padding: 6 }} borderColor="line"><Outlet /></Box>
                 </VStack>
             </HStack>
             <Footer />

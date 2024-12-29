@@ -13,10 +13,10 @@ const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
 // Root Component - simplified
-function PageGridRoot({ children, loading }: PageGridRootProps) {
+function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex width="100%" flexDirection="column" alignItems="start">
+            <Flex {...flexProps} width="100%" flexDirection="column" alignItems="start">
                 {children}
             </Flex>
         </PageGridContext.Provider>

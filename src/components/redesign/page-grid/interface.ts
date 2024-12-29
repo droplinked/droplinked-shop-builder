@@ -19,6 +19,7 @@ export interface IdataGrid extends IDataGridButtons {
 export interface PageGridRootProps {
     children: React.ReactNode;
     loading?: boolean;
+    flexProps?: FlexProps;
 }
 
 export interface PageGridHeaderProps {
