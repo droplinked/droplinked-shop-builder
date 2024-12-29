@@ -1,14 +1,13 @@
 # Settings Page Components 🛠️
 
 ## Overview 📝
-The Settings page is a nested routing structure that includes several configuration sections. The main component `SettingsPageWrapper` serves as the parent container and uses Chakra UI components for styling.
+The Settings page uses a tab-based layout to organize different configuration sections. The main component `SettingsPage` uses Chakra UI components for styling and tab management.
 
 ## Component Structure 🏗️
 ```
-SettingsPageWrapper
+SettingsPage
 ├── PageGrid
-├── TabsContainer
-└── Outlet (Renders child routes)
+└── TabsContent
     ├── General
     ├── Privacy and Security
     ├── Payments and Wallets
@@ -16,28 +15,28 @@ SettingsPageWrapper
     └── User Management
 ```
 
-## Routing Structure 🔄
-Settings pages are nested under the `/analytics/account-settings/*` route:
-```
-/analytics/account-settings/general
-/analytics/account-settings/privacy-and-security
-/analytics/account-settings/payments-and-wallets
-/analytics/account-settings/credits-and-coupons
-/analytics/account-settings/user-management
-```
+## Tab Structure 🔄
+Settings are organized into the following tabs:
+- General
+- Privacy and Security
+- Payments and Wallets
+- Credits and Coupons
+- User Management
 
 ## Components Details 🔍
 
-### SettingsPageWrapper
+### SettingsPage
 - Main container component using PageGrid layout
-- Renders the header, tabs navigation, and child routes
-- Uses React Router's `Outlet` for rendering child components
+- Renders the header and TabsContent component
+- Uses Chakra UI for consistent styling
 
-### TabsContainer
-- Handles tab navigation using Chakra UI Tabs
-- Uses React Router's `useNavigate` and `useLocation` for navigation
-- Styled with custom border and color schemes
-- Active tab is highlighted with bottom border
+### TabsContent
+- Handles tab management using Chakra UI Tabs
+- Maintains selected tab state
+- Custom styling with border treatments
+- Props for each tab:
+  - `title`: Tab label
+  - `content`: Component to render in tab panel
 
 ### SectionContainer
 - Container component for settings sections
@@ -64,27 +63,42 @@ Settings pages are nested under the `/analytics/account-settings/*` route:
 
 ## Usage Example 💡
 ```tsx
-<Route path="account-settings" element={<SettingsPageWrapper />}>
-    <Route path="general" element={<General />} />
-    <Route path="privacy-and-security" element={<PrivacyAndSecurity />} />
-    // ... other routes
-</Route>
---------------------------------------------------------------------------------
+// Tab implementation
+<Tabs variant="unstyled" width="100%">
+    <TabList>
+        {tabs.map((tab, index) => (
+            <Tab key={index}>
+                {tab.title}
+            </Tab>
+        ))}
+    </TabList>
+    <TabPanels>
+        {tabs.map((tab, index) => (
+            <TabPanel key={index}>
+                {tab.content}
+            </TabPanel>
+        ))}
+    </TabPanels>
+</Tabs>
+
+// Section usage remains the same
 <SectionContainer
-  title="Store Details"
-  description="Configure your store settings"
-  badge={<PremiumBadge />}
+    title="Store Details"
+    description="Configure your store settings"
+    badge={<PremiumBadge />}
 >
-  <SectionContent
-    title="Shop Name"
-    description="Enter your store name"
-    rightContent={<Input />}
-  >
-    <AlertProduct />
-  </SectionContent>
+    <SectionContent
+        title="Shop Name"
+        description="Enter your store name"
+        rightContent={<Input />}
+    >
+        <AlertProduct />
+    </SectionContent>
 </SectionContainer>
 ```
 
 ## Notes 📌
-- Uses Chakra UI for consistent styling
+- Uses Chakra UI Tabs for navigation
+- Custom styling with border treatments
+- State management for selected tab
 - Responsive design ready
