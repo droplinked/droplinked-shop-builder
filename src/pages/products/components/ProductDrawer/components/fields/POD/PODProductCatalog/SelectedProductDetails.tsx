@@ -3,8 +3,8 @@ import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useQuery } from 'react-query'
+import LoadingPlaceholder from '../../../common/LoadingPlaceholder'
 import BaseProductCard from './ProductList/BaseProductCard'
-import ProductLoading from './ProductList/ProductLoading'
 
 const SelectedProductDetails = ({ product, onBack }) => {
     const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
@@ -26,7 +26,7 @@ const SelectedProductDetails = ({ product, onBack }) => {
         onBack()
     }
 
-    if (isFetching) return <ProductLoading h="83px" />
+    if (isFetching) return <LoadingPlaceholder h="83px" />
 
     return (
         <BaseProductCard

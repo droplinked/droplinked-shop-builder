@@ -22,12 +22,12 @@ function ShippingTypeSelector({ shippingTypes }: Props) {
             gap={4}
             {...getRootProps()}
         >
-            {shippingTypes.map(m => (
+            {shippingTypes.map(st => (
                 <CustomRadioCard
-                    key={m.value}
-                    label={m.label}
-                    description={m.description}
-                    {...getRadioProps({ value: m.value })}
+                    key={st.shippingType}
+                    label={st.title}
+                    description={st.description}
+                    {...getRadioProps({ value: st.shippingType })}
                 />
             ))}
         </Flex>

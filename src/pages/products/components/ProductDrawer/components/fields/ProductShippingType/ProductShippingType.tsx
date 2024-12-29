@@ -2,13 +2,14 @@ import AppIcons from 'assest/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
 import { useShippingTypes } from 'pages/products/hooks/useShippingTypes'
 import React, { useState } from 'react'
+import LoadingPlaceholder from '../../common/LoadingPlaceholder'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import CustomShippingForm from './CustomShippingForm'
 import ShippingTypeSelector from './ShippingTypeSelector'
 
 function ProductShippingType() {
     const [isFormVisible, setFormVisibility] = useState(false)
-    const { hasCustomShippingPermission, shippingTypes } = useShippingTypes()
+    const { hasCustomShippingPermission, shippingTypes, shippingTypesQuery } = useShippingTypes()
 
     const rightContent = (
         <BlueButton
@@ -27,7 +28,10 @@ function ProductShippingType() {
             isRequired
             {...hasCustomShippingPermission && { rightContent }}
         >
-            <ShippingTypeSelector shippingTypes={shippingTypes} />
+            {shippingTypesQuery.isFetching
+                ? <LoadingPlaceholder numberOfSkeletons={3} />
+                : <ShippingTypeSelector shippingTypes={shippingTypes} />
+            }
 
             {isFormVisible &&
                 <CustomShippingForm onDiscard={() => setFormVisibility(false)} />

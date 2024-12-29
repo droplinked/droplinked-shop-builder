@@ -2,9 +2,9 @@ import { Flex } from '@chakra-ui/react'
 import { podCategoryProductService } from 'lib/apis/pod/services'
 import React from 'react'
 import { useQuery } from 'react-query'
+import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'
 import BackButton from '../BackButton'
 import BaseProductCard from './BaseProductCard'
-import ProductLoading from './ProductLoading'
 
 interface Props {
     categoryId: string
@@ -22,7 +22,7 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
     const products = data?.data?.data?.data || []
 
     function renderContent() {
-        if (isFetching) return <ProductLoading numberOfSkeletons={4} h="82px" />
+        if (isFetching) return <LoadingPlaceholder numberOfSkeletons={4} h="82px" />
 
         return (
             <Flex direction="column" gap={3}>

@@ -15,7 +15,6 @@ interface Props {
 
 function CustomShippingFileUpload({ onFileParsed }: Props) {
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
-    const { shop: { currency } } = useAppStore()
 
     const handleFileRemove = () => {
         setSelectedFile(null)
@@ -26,12 +25,12 @@ function CustomShippingFileUpload({ onFileParsed }: Props) {
         if (selectedFile) {
             const reader = new FileReader()
             reader.onload = (e) => {
-                const parsedData = parseShippingFileData(e.target.result as ArrayBufferLike, currency?.abbreviation)
+                const parsedData = parseShippingFileData(e.target.result as ArrayBufferLike)
                 onFileParsed(parsedData)
             }
             reader.readAsArrayBuffer(selectedFile)
         }
-    }, [selectedFile, currency, onFileParsed])
+    }, [selectedFile, onFileParsed])
 
     return (
         <Flex direction="column" gap={4}>

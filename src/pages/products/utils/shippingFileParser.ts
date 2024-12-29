@@ -1,9 +1,6 @@
 import * as XLSX from 'xlsx'
 
-export const parseShippingFileData = (
-    arrayBuffer: ArrayBufferLike,
-    currencyAbbreviation?: string
-): any => {
+export const parseShippingFileData = (arrayBuffer: ArrayBufferLike): any => {
     const data = new Uint8Array(arrayBuffer)
     const workbook = XLSX.read(data, { type: 'array' })
 
@@ -21,8 +18,8 @@ export const parseShippingFileData = (
         return {
             name: rule['Service Name'],
             pricePerUnit:
-                rule[`Price (${currencyAbbreviation}) Per KG`] ||
-                rule[`Price (${currencyAbbreviation}) per Package Size`],
+                rule[`Price (USD) Per KG`] ||
+                rule[`Price (USD) per Package Size`],
             estimatedDeliveryDate: rule['Estimated Delivary Date'],
             countries: group
                 ? group['Countries'].split(',').map((country) => country.trim())
@@ -37,10 +34,10 @@ export const parseShippingFileData = (
         isActive: true,
     }
 
-    if (shippingRules.some((rule) => rule[`Price (${currencyAbbreviation}) Per KG`] !== undefined))
+    if (shippingRules.some((rule) => rule[`Price (USD) Per KG`] !== undefined))
         createShippingDto.weightUnit = 'KG'
 
-    if (shippingRules.some((rule) => rule[`Price (${currencyAbbreviation}) per Package Size`] !== undefined))
+    if (shippingRules.some((rule) => rule[`Price (USD) per Package Size`] !== undefined))
         createShippingDto.sizeUnit = 'CM'
 
     return createShippingDto
