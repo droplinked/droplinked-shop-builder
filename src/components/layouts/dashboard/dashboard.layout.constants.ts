@@ -127,7 +127,7 @@ export const sidebar_constants: SidebarGroup[] = [
             {
                 title: "Account Settings",
                 icon: AppIcons.SettingGear,
-                linkTo: "/analytics/account-settings/general",
+                linkTo: "/analytics/account-settings",
                 list: [],
             },
             {

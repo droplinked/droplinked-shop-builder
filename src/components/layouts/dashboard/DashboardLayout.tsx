@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 <DashboardLayoutSidebar />
                 <VStack width="full" height="full" {...location.endsWith("/plans") && { overflow: "auto" }}>
                     <DashboardLayoutHeader />
-                    <Box width="100%" minH="80vh" padding="24px 36px 24px 36px" borderColor="line"><Outlet /></Box>
+                    <Box width="100%" minH="80vh" padding={6} borderColor="line"><Outlet /></Box>
                 </VStack>
             </HStack>
             <Footer />

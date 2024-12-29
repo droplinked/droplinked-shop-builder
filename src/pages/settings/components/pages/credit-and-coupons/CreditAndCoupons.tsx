@@ -1,5 +1,5 @@
 import AppTypography from 'components/common/typography/AppTypography';
-import * as React from 'react';
+import React from "react"
 
 function CreditAndCoupons() {
     return (

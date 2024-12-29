@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import * as React from 'react';
+import React from "react"
 
 interface Props {
     title: string;
