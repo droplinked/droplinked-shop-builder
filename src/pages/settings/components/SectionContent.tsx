@@ -7,12 +7,12 @@ interface Props {
     description?: string;
     badge?: React.ReactNode;
     rightContent?: React.ReactNode;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 function SectionContent({ title, badge, rightContent, description, children }: Props) {
     return (
-        <Flex width={"100%"} gap={4} justifyContent={"space-between"} flexDirection={{ base: "column", lg: "row" }} alignItems={"start"}>
+        <Flex width={"100%"} gap={{ base: 4, md: 6, lg: "48px", xl: "180px" }} justifyContent={"space-between"} flexDirection={{ base: "column", md: "row" }} alignItems={"start"}>
             <Flex width={"50%"} flexDirection={"column"}>
                 <Flex gap={4} alignItems={"center"}>
                     <AppTypography fontSize={{ base: "16px", md: "18px" }} fontWeight={500} color={"#fff"}>{title}</AppTypography>
@@ -27,7 +27,9 @@ function SectionContent({ title, badge, rightContent, description, children }: P
                     {children}
                 </Flex>
             </Flex>
-            {rightContent && rightContent}
+            <Box width={"100%"}>
+                {rightContent && rightContent}
+            </Box>
         </Flex>
     );
 }

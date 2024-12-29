@@ -25,7 +25,7 @@ function SectionContainer({ title, badge, rightContent, description, children }:
                 </Box>
                 {rightContent && rightContent}
             </Flex>
-            <Flex gap={{ base: "24px", md: "36px", lg: "48px" }} my={{ base: "24px", md: "36px", lg: "48px" }}>
+            <Flex flexDirection={"column"} gap={{ base: "24px", md: "36px", lg: "48px" }} my={{ base: "24px", md: "36px", lg: "48px" }}>
                 {children}
             </Flex>
         </Flex>
