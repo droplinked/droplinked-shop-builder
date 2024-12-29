@@ -69,7 +69,7 @@ Settings pages are nested under the `/analytics/account-settings/*` route:
     <Route path="privacy-and-security" element={<PrivacyAndSecurity />} />
     // ... other routes
 </Route>
-
+--------------------------------------------------------------------------------
 <SectionContainer
   title="Store Details"
   description="Configure your store settings"
