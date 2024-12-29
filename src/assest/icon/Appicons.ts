@@ -280,6 +280,7 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
+import { ReactComponent as Invoice } from "./Invoice.svg";
 
 const AppIcons = {
     ProductsIcon,
@@ -563,7 +564,8 @@ const AppIcons = {
     ChevronLeft,
     Calendar,
     BlueBrush,
-    Convert
+    Convert,
+    Invoice
 }
 
 export default AppIcons

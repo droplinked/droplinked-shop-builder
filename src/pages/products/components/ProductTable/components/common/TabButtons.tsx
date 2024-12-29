@@ -1,27 +1,19 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import TABS from '../tabsConstants';
+
 
 interface TabButtonsProps {
   onTabChange: (tabName: string) => void;
   activeTab: string;
+  tabs: { name: string }[];
 }
 
-const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab }) => {
-  // لیست تب‌ها و نام‌های آنها
-  const tabs = [
-    { name: TABS.DIRECT_LINK },
-    { name: TABS.PAYMENT_LINK },
-    { name: TABS.PRODUCT_TILE },
-    // { name: TABS.SOCIAL_TILE },
-  ];
-
+const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab, tabs }) => {
   return (
     <Box paddingX="16px" paddingTop='16px' paddingBottom='0px' width="100%">
       <Flex justifyContent="space-between">
         {tabs.map((tab) => (
-          <Box key={tab.name} textAlign="center">
-            {/* دکمه تب */}
+          <Box key={tab.name} textAlign="center" flex="1">
             <Text
               onClick={() => onTabChange(tab.name)}
               cursor="pointer"
@@ -34,7 +26,6 @@ const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab }) => {
             >
               {tab.name}
             </Text>
-            {/* خط سفید زیر دکمه فعال */}
             {activeTab === tab.name && (
               <Box
                 marginTop="16px"
