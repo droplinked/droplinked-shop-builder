@@ -6,7 +6,7 @@ interface Props extends PropsWithChildren {
     onClose: () => void
 }
 
-function DrawerRoot({ isOpen, onClose, children }: Props) {
+function ProductDrawerLayout({ isOpen, onClose, children }: Props) {
     return (
         <Drawer
             isOpen={isOpen}
@@ -23,10 +23,10 @@ function DrawerRoot({ isOpen, onClose, children }: Props) {
                 borderRadius={16}
                 bgColor="#141414"
                 sx={{
-                    overflowY: "scroll",
-                    "&::-webkit-scrollbar": { display: "none" },
-                    msOverflowStyle: "none",
-                    scrollbarWidth: "none"
+                    overflowY: 'scroll',
+                    '&::-webkit-scrollbar': { display: 'none' },
+                    msOverflowStyle: 'none',
+                    scrollbarWidth: 'none',
                 }}
             >
                 {children}
@@ -35,4 +35,4 @@ function DrawerRoot({ isOpen, onClose, children }: Props) {
     )
 }
 
-export default DrawerRoot
+export default ProductDrawerLayout

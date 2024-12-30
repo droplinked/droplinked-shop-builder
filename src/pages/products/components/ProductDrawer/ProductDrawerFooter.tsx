@@ -7,7 +7,7 @@ interface Props {
     onClose: () => void
 }
 
-const DrawerFooter = ({ onClose }: Props) => {
+const ProductDrawerFooter = ({ onClose }: Props) => {
     const { setFieldValue, handleSubmit } = useFormikContext()
 
     const handleAction = (action: string) => {
@@ -48,4 +48,4 @@ const DrawerFooter = ({ onClose }: Props) => {
     )
 }
 
-export default DrawerFooter
+export default ProductDrawerFooter

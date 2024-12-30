@@ -3,7 +3,7 @@ import useProductForm from 'pages/products/hooks/useProductForm'
 import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
 
-const DrawerHeader = () => {
+const ProductDrawerHeader = () => {
     const { values: { product_type: productType } } = useProductForm()
 
     const productTitleMap: Record<ProductType, string> = {
@@ -31,4 +31,4 @@ const DrawerHeader = () => {
     )
 }
 
-export default DrawerHeader
+export default ProductDrawerHeader
