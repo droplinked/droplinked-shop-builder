@@ -54,14 +54,14 @@ function ROIPage() {
                         </Container>
 
                         <Container title='Product Details'>
-                            <Input label='Service Fee' value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollor />} tooltipText='Baseline cost associated with plan selected' onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
+                            <Input label='Service Fee' value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollar />} tooltipText='Baseline cost associated with plan selected' onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
                             <Input label='Total SKUs' value={productDetails.totalSkus} errorMessage={totalSkusErrorMessage} onChange={handleTotalSkusChange} />
                             <Input label='Product Record Count' value={productDetails.productRecordCount} onChange={(e) => updateProductDetails("productRecordCount", e.target.value)} />
                             <Input label='Transaction Count' value={productDetails.transactionCount} onChange={(e) => updateProductDetails("transactionCount", e.target.value)} />
                         </Container>
 
                         <Container title='Financial and Performance Metrics'>
-                            <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollor />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
+                            <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollar />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
                             <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales' onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
                             <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySalesPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales captured' onChange={(e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value)} />
                         </Container>

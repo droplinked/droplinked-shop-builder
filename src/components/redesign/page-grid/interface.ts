@@ -1,5 +1,4 @@
 import { FlexProps } from "@chakra-ui/react"
-import { IDataGridButtons } from "./components/buttons/interface"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
 export interface SearchInput {
@@ -8,7 +7,7 @@ export interface SearchInput {
     placeholder?: string
 }
 
-export interface IdataGrid extends IDataGridButtons {
+export interface IdataGrid {
     filters?: Array<IFiltersDataGridItems>
     loading: boolean
     search?: SearchInput
@@ -25,8 +24,7 @@ export interface PageGridRootProps {
 export interface PageGridHeaderProps {
     title?: string;
     description?: string;
-    buttons?: IDataGridButtons['buttons'];
-    flexProps?: FlexProps;
+    rightContent?: React.ReactNode;
 }
 
 export interface PageGridActionsProps {

@@ -55,3 +55,13 @@ export interface IpodCategoryService {
 export interface IpodCategoryProductService {
     subCategoryId: string
 }
+
+export interface PODCategory {
+    id: number
+    parent_id: number
+    image_url: string
+    catalog_position: number
+    size: string
+    title: string
+    sub_categories?: PODCategory[]
+}

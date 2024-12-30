@@ -1,14 +1,9 @@
-import { Avatar, AvatarGroup, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { ColumnDef } from "@tanstack/react-table";
-import AppIcons from "assest/icon/Appicons";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
-import { InvoiceStatus } from "lib/apis/invoice/interfaces";
-import { SHOP_URL } from "lib/utils/app/variable";
-import { formattedCurrency } from "lib/utils/helpers/helpers";
-import Table from "pages/invoice-management/components/Table";
-import StatusBadge from "pages/invoice-management/invoice-management/components/table/StatusBadge";
-import React, { useRef } from "react";
+import Table from "components/redesign/table/Table";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface ICommunityShop {

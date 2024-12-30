@@ -8,16 +8,15 @@ import {
     IimportAffiliateProduct,
     IproductByIdServices,
     IproductDeleteServices,
-    IproductList,
+    IProductFetchParams,
     IProductReorder,
     IproductState,
     IProductTile,
     IproductUpdateServices,
 } from "./interfaces";
 
-export const productServices = ({ page, limit, filter }: IproductList) => {
-    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`);
-};
+export const getShopProductsService = ({ page, limit, filter }: IProductFetchParams) =>
+    axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`)
 
 export const productCreateServices = (params: IproductState) => {
     return axiosInstance.post("product", params);
@@ -103,13 +102,14 @@ export const getHotProducts = (params: IGetHotProductsParams) => {
     return axiosInstance.get(`/product/community/view/hot?${queryString?.toString()}`);
 };
 
-export const uploadCsvFile = (formData: FormData) => {
+export const uploadProductCSV = (formData: FormData) => {
     return axiosInstance.post("/product/import-csv", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
-    });
-};
+    })
+}
+
 export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
         .post<{ data: string[] }>("product/printful-available-shipping", { product_id })

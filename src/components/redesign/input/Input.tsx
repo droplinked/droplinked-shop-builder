@@ -123,6 +123,7 @@ function InputFooter({ message, maxCharacters, inputProps }: Props) {
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
+                            <AppIcons.WhiteWarning />
                             <Text>{message}</Text>
                         </Flex>
                     )}

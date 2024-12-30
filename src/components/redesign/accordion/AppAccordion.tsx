@@ -1,7 +1,7 @@
-import React, { useState, createContext, useContext, ReactNode } from "react";
-import { Box, Flex, BoxProps } from "@chakra-ui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface IAppAccordionProps extends BoxProps {
     multiCollapse?: boolean;
@@ -120,42 +120,3 @@ export const AppAccordionPanel = ({ children, ...props }: BoxProps) => {
         </AnimatePresence>
     );
 };
-
-const ExampleAccordion = () => {
-    return (
-        <AppAccordion multiCollapse={true} alwaysOpen={false}>
-            <AppAccordionItem itemId="1">
-                <AppAccordionTrigger>
-                    <Box as="span">Item 1</Box>
-                </AppAccordionTrigger>
-                <AppAccordionPanel>
-                    <Box p={4} border="1px solid #ccc">
-                        Content for Item 1
-                    </Box>
-                </AppAccordionPanel>
-            </AppAccordionItem>
-            <AppAccordionItem itemId="2">
-                <AppAccordionTrigger>
-                    <Box as="span">Item 2</Box>
-                </AppAccordionTrigger>
-                <AppAccordionPanel>
-                    <Box p={4} border="1px solid #ccc">
-                        Content for Item 2
-                    </Box>
-                </AppAccordionPanel>
-            </AppAccordionItem>
-            <AppAccordionItem itemId="3">
-                <AppAccordionTrigger>
-                    <Box as="span">Item 3</Box>
-                </AppAccordionTrigger>
-                <AppAccordionPanel>
-                    <Box p={4} border="1px solid #ccc">
-                        Content for Item 3
-                    </Box>
-                </AppAccordionPanel>
-            </AppAccordionItem>
-        </AppAccordion>
-    );
-};
-
-export default ExampleAccordion;

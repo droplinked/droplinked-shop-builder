@@ -1,5 +1,5 @@
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
 import * as React from 'react';
 
 interface Props {
@@ -10,13 +10,13 @@ export default function TableMenu({ items }: Props) {
     return (
         <>
             <Menu isLazy>
-                <MenuButton as={"button"}><AppIcons.Dots /></MenuButton>
+                <MenuButton as="button" type="button"><AppIcons.Dots /></MenuButton>
                 <MenuList
-                    border={"1px solid #292929"}
+                    border="1px solid #292929"
                     borderRadius={8}
                     padding={0}
-                    overflow={"hidden"}
-                    bgColor={"#1C1C1C"}
+                    overflow="hidden"
+                    bgColor="#1C1C1C"
                     zIndex={10}
                     sx={{
                         "button": {
@@ -32,13 +32,9 @@ export default function TableMenu({ items }: Props) {
                         }
                     }}
                 >
-                    {items.map((item, index) => {
-                        return (
-                            <MenuItem icon={item.icon} color={item.color} onClick={item.onClick}>
-                                {item.title}
-                            </MenuItem>
-                        )
-                    })}
+                    {items.map((item, index) => (
+                        !!Object.keys(item).length && <MenuItem key={index} {...item}>{item.title}</MenuItem>
+                    ))}
                 </MenuList>
             </Menu>
         </>

@@ -1,30 +1,27 @@
-import { Flex, ModalCloseButton, ModalHeader, ModalHeaderProps } from '@chakra-ui/react';
-import AppTypography from 'components/common/typography/AppTypography';
-import React, { ReactNode } from 'react';
+import { Flex, ModalCloseButton, ModalHeader, ModalHeaderProps, Text } from '@chakra-ui/react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 
-interface Props {
+interface Props extends PropsWithChildren {
     icon?: ReactNode;
     backgroundColor?: string;
     title: string;
     description: string;
     modalHeaderProps?: ModalHeaderProps
-    children?: ReactNode;
 }
 
 function ModalHeaderData({ icon, title, description, backgroundColor, modalHeaderProps, children }: Props) {
     return (
-        <ModalHeader {...backgroundColor && { backgroundColor: backgroundColor }} {...modalHeaderProps}>
-            <Flex justifyContent={"space-between"}>
-                {icon ? icon : <AppTypography fontSize={24} fontWeight={700} color={"white"}>{title}</AppTypography>}
-                <ModalCloseButton
-                    width={"fit-content"}
-                    height={"fit-content"}
-                    position={"relative"}
-                    color={"white"}
-                />
+        <ModalHeader
+            {...backgroundColor && { backgroundColor: backgroundColor }}
+            {...modalHeaderProps}
+            css={{ p: { color: 'white' } }}
+        >
+            <Flex justifyContent="space-between">
+                {icon ? icon : <Text fontSize={24} fontWeight={700}>{title}</Text>}
+                <ModalCloseButton position="static" color="white" />
             </Flex>
-            {icon && <AppTypography mt={6} fontSize={24} fontWeight={700} color={"white"}>{title}</AppTypography>}
-            <AppTypography mt={2} fontSize={16} color={"white"}>{description}</AppTypography>
+            {icon && <Text mt={6} fontSize={24} fontWeight={700}>{title}</Text>}
+            <Text mt={2} fontSize={16}>{description}</Text>
             {children}
         </ModalHeader>
     )

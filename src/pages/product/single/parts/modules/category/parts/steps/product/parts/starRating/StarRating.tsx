@@ -7,7 +7,7 @@ function StarRating({ rate }: { rate: number }) {
         <Flex alignItems="center" gap={1}>
             {
                 Array.from({ length: 5 }).map((_, index) =>
-                    index < rate ? <AppIcons.StarOn /> : <AppIcons.StarOff />
+                    index < rate ? <AppIcons.OutlinedStar /> : <AppIcons.GrayOutlineStar />
                 )
             }
         </Flex>

@@ -1,5 +1,5 @@
-import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react'
-import React from 'react'
+import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
+import React from 'react';
 
 export interface AppButtonProps extends ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
@@ -51,13 +51,13 @@ const Button = ({ variant = "primary", children, ...props }: AppButtonProps) => 
       fontSize={{ base: 14, lg: 16 }}
       fontWeight={400}
       color={text}
+      iconSpacing={0}
       _hover={{}}
       _active={{}}
       sx={{
         "p": { fontSize: "14px", fontWeight: "500" }
       }}
       {...props}
-      iconSpacing={0}
     >
       {children}
     </ChakraButton>
