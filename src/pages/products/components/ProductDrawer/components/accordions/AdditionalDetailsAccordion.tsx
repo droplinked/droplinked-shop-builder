@@ -9,7 +9,6 @@ import ProductVisibilityStatus from '../fields/ProductVisibilityStatus'
 
 function AdditionalDetailsAccordion() {
     const [customField, setCustomField] = useState(false)
-    const [discountAllowance, setDiscountAllowance] = useState(false)
 
     return (
         <ProductFormAccordion label='Additional Details'>
@@ -22,13 +21,6 @@ function AdditionalDetailsAccordion() {
                 description='Add custom information to display during checkout.'
                 isChecked={customField}
                 onToggle={() => setCustomField(prev => !prev)}
-            />
-
-            <SwitchBox
-                title='Discount Allowance'
-                description='Allow customers to apply discount codes for this product during checkout.'
-                isChecked={discountAllowance}
-                onToggle={() => setDiscountAllowance(prev => !prev)}
             />
 
             <ProductDeliveryMessage />

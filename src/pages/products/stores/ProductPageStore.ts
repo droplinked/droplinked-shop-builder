@@ -1,41 +1,36 @@
 import { create } from 'zustand'
 import { ProductType } from '../utils/types'
 
-interface ProductPageState {
-    selectedProductType: ProductType
-    selectedPODProduct: any
-    variants: any[]
-}
-
 interface State {
-    productPageState: ProductPageState
+    selectedProductType: ProductType | null
+    selectedPODProduct: any | null
+    variants: any[]
+    available_variant: any[]
+    print_positions: any[]
 }
 
 interface Action {
-    updateProductPageState: <K extends keyof ProductPageState>(key: K, value: ProductPageState[K]) => void
+    updateProductPageState: <K extends keyof State>(key: K, value: State[K]) => void
     resetProductPageState: () => void
 }
 
+const initialState: State = {
+    selectedProductType: null,
+    selectedPODProduct: null,
+    variants: [],
+    available_variant: [],
+    print_positions: []
+}
+
 const useProductPageStore = create<State & Action>((set) => ({
-    productPageState: {
-        selectedProductType: null,
-        selectedPODProduct: null,
-        variants: []
-    },
-    updateProductPageState(key, value) {
-        set(state => ({
-            productPageState: { ...state.productPageState, [key]: value }
+    ...initialState,
+    updateProductPageState: (key, value) => {
+        set((state) => ({
+            ...state,
+            [key]: value
         }))
     },
-    resetProductPageState() {
-        set(() => ({
-            productPageState: {
-                selectedProductType: null,
-                selectedPODProduct: null,
-                variants: []
-            }
-        }))
-    }
+    resetProductPageState: () => set(() => ({ ...initialState }))
 }))
 
 export default useProductPageStore

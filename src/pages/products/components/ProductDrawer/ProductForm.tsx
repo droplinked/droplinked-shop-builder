@@ -13,7 +13,7 @@ interface Props {
 
 function ProductForm({ onClose }: Props) {
     const { selectedProductType, resetProductPageState } = useProductPageStore(s => ({
-        selectedProductType: s.productPageState.selectedProductType,
+        selectedProductType: s.selectedProductType,
         resetProductPageState: s.resetProductPageState
     }))
 

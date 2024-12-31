@@ -11,7 +11,7 @@ import ProductTable from './components/ProductTable/ProductTable'
 import useProductPageStore from './stores/ProductPageStore'
 
 function ProductsV2() {
-    const selectedProductType = useProductPageStore(s => s.productPageState.selectedProductType)
+    const selectedProductType = useProductPageStore(s => s.selectedProductType)
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
@@ -46,7 +46,7 @@ function ProductsV2() {
 
             <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
             <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
-            <ProductDrawer selectedProductType={selectedProductType} isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
+            <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
         </>
     )
 }

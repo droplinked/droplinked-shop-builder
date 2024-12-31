@@ -26,7 +26,7 @@ const SelectedProductDetails = ({ product, onBack }) => {
         onBack()
     }
 
-    if (isFetching) return <LoadingPlaceholder h="83px" />
+    if (isFetching) return <LoadingPlaceholder skeletonProps={{ h: "83px" }} />
 
     return (
         <BaseProductCard

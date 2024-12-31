@@ -50,7 +50,7 @@ function ProductTableActionMenu({ product, refetch }: Props) {
                 onOpen()
             },
             color: "#F24",
-            icon: <AppIcons.TrashRed />
+            icon: <AppIcons.RedTrash />
         },
     ]
 

@@ -10,9 +10,10 @@ interface Props extends PropsWithChildren {
 }
 
 const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
-    const content = (
-        <Flex flex={1} alignItems="start" gap={4}>
+    return (
+        <Flex gap={4}>
             <Switch
+                flexShrink={0}
                 size="lg"
                 isChecked={isChecked}
                 onChange={onToggle}
@@ -21,18 +22,16 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
                     ".chakra-switch__thumb": { width: "20px", height: "100%" }
                 }}
             />
-            <Flex direction="column">
-                <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
+            <Flex flex={1} direction="column" gap={4}>
+                <Flex flex={1} gap={4}>
+                    <Flex flex={1} direction="column" gap={1}>
+                        <Text fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
+                        <Text fontSize={14} color="#7B7B7B">{description}</Text>
+                    </Flex>
+                    {rightContent}
+                </Flex>
                 {children}
             </Flex>
-        </Flex>
-    )
-
-    return (
-        <Flex align="flex-start" gap={4}>
-            {content}
-            {rightContent}
         </Flex>
     )
 }

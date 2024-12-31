@@ -22,7 +22,7 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
     const products = data?.data?.data?.data || []
 
     function renderContent() {
-        if (isFetching) return <LoadingPlaceholder numberOfSkeletons={4} h="82px" />
+        if (isFetching) return <LoadingPlaceholder numberOfSkeletons={4} skeletonProps={{ h: "82px" }} />
 
         return (
             <Flex direction="column" gap={3}>

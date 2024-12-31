@@ -34,7 +34,7 @@ export const productByIdServices = ({ productID, shopname }: IproductByIdService
     return axiosInstance.get(`product/public/${productID}?shopname=${shopname}&recorded=true`);
 };
 
-export const printServicesServices = () => {
+export const printServices = () => {
     return axiosInstance.get(`product/public/print-services`);
 };
 

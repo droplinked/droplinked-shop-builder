@@ -1,6 +1,4 @@
-import { ReactComponent as CasperWalletIcon } from "./CasperWallet.svg";
 import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
-import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as AffiliateProductsArrow } from "./affiliate-products-arrow.svg";
@@ -37,23 +35,14 @@ import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
 import { ReactComponent as ChevronRight } from "./chevron-right.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
 import { ReactComponent as CircleCopy } from "./circle-copy.svg";
-import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
-import { ReactComponent as CircleEth } from "./circle-eth.svg";
 import { ReactComponent as CircleModal } from "./circle-modal.svg";
-import { ReactComponent as CirclePolygon } from "./circle-polygon.svg";
-import { ReactComponent as CircleRefresh } from "./circle-refresh.svg";
-import { ReactComponent as CircleShield } from "./circle-shield.svg";
-import { ReactComponent as CircleSolana } from "./circle-solana.svg";
-import { ReactComponent as CircleUsdc } from "./circle-usdc.svg";
 import { ReactComponent as CircleWithdraw } from "./circle-withdraw.svg";
 import { ReactComponent as Circle } from "./circle.svg";
 import { ReactComponent as Clock } from "./clock.svg";
-import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
-import { ReactComponent as ColonIcon } from "./colonIcon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Convert } from "./convert.svg";
 import { ReactComponent as Copy } from "./copy.svg";
@@ -236,7 +225,6 @@ import { ReactComponent as SidebarSetting } from "./sidebar-setting.svg";
 import { ReactComponent as SidebarTickedCircle } from "./sidebar-ticked-circle.svg";
 import { ReactComponent as SidebarUser } from "./sidebar-user.svg";
 import { ReactComponent as Skale } from "./skale.svg";
-import { ReactComponent as SnapchatIcon } from "./snapchat.svg";
 import { ReactComponent as Solana } from "./solana.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
@@ -255,7 +243,6 @@ import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
 import { ReactComponent as Token } from "./token.svg";
 import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
-import { ReactComponent as TrashRed } from "./trash-red.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
 import { ReactComponent as UDBorderRed } from "./ud-border-red.svg";
@@ -294,7 +281,6 @@ const AppIcons = {
     VariantsIcon,
     Xverse,
     RuleIcon,
-    TrashRed,
     EditIcon,
     DeleteIcon,
     ShopIcon,
@@ -302,12 +288,9 @@ const AppIcons = {
     FacebookIcon,
     TwitterIcon,
     PintrestIcon,
-    SnapchatIcon,
     MetaMaskIcon,
     SaveIcon,
     CasperIcon,
-    CasperWalletIcon,
-    WalletConnectIcon,
     NearWalletIcon,
     UnstoppableDomainsIcon,
     MoreIcon,
@@ -388,7 +371,6 @@ const AppIcons = {
     BlackChevronDown,
     BackArrow,
     Blog,
-    CloseRed,
     Clock,
     Pen,
     Delete,
@@ -494,9 +476,6 @@ const AppIcons = {
     D3D3BorderRed,
     UDBorderRed,
     Circle,
-    CircleShield,
-    CircleDashboard,
-    CircleRefresh,
     CircleCopy,
     D3Shiba,
     D3Victorin,
@@ -514,10 +493,6 @@ const AppIcons = {
     HeaderProductBox,
     MetaverseStore,
     CircleModal,
-    CircleUsdc,
-    CircleEth,
-    CircleSolana,
-    CirclePolygon,
     CircleWithdraw,
     Document,
     ImportProduct,
@@ -558,7 +533,6 @@ const AppIcons = {
     GrayInfinity,
     GreenInfinity,
     TooltipIcon,
-    ColonIcon,
     ChevronRight,
     ChevronLeft,
     Calendar,
