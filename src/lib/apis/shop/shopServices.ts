@@ -10,6 +10,7 @@ import {
 	IPostWithdrawCircleWallet,
 	IproductService,
 	IrecordedShopService,
+	IShopApiKey,
 	IshopInfoService,
 	IshopPublicRecordedService,
 	IShopRecordedService,
@@ -80,7 +81,7 @@ export const shopSellerService = () =>
 export const bestPartnersService = () =>
 	axiosInstance.get(`shop/dashboard/product-types`);
 
-export const getShopAPIKeyService = () => axiosInstance.get(`shop/client/oauth2`);
+export const getShopAPIKeyService = () => axiosInstance.get<{ data: IShopApiKey }>(`shop/client/oauth2`);
 
 export const updateShopAPIKeyService = (data: ShopOAuth2Client) =>
 	axiosInstance.put('shop/client/oauth2 ', data);

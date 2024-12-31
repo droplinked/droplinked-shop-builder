@@ -22,7 +22,6 @@ export default function LoginMethods() {
     // );
     // console.log(walletsData)
     const walletsData = data?.data?.data
-    console.log(walletsData)
 
     return (
         <SectionContent

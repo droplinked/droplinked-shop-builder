@@ -103,6 +103,11 @@ export interface IDeployContract {
     deployedNFTAddress: string;
 }
 
+export interface IShopApiKey {
+    clientId: string;
+    domains: Array<string>;
+}
+
 export interface IUpdateShopName {
     id: string;
     shopName: string;
