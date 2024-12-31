@@ -47,6 +47,7 @@ export interface IshopUpdateService extends IshopSocial {
     backgroundText?: string;
     backgroundImage?: string;
     backgroundImageSecondary?: string;
+    isAgeRestricted?: boolean;
     templateID?: string;
     tags?: Array<string>;
     infoEmail?: string;

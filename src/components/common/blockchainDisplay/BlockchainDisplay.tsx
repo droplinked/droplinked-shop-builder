@@ -81,6 +81,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
 				name: 'Unstoppable domain',
 			},
+			'UNSTOPPABLEDOMAIN': {
+				icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
+				name: 'Unstoppable domain',
+			},
 			XUMM: {
 				icon: <AppIcons.Xumm {...props} />,
 				name: 'Xumm',
@@ -120,6 +124,22 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 			BITLAYER: {
 				icon: <AppIcons.Bitlayer {...props} />,
 				name: 'Bitlayer',
+			},
+			METAMASK: {
+				icon: <AppIcons.MetaMaskIcon {...props} />,
+				name: 'MetaMask'
+			},
+			'METAMASK (XRPLSIDECHAIN)': {
+				icon: <AppIcons.MetaMaskIcon {...props} />,
+				name: 'MetaMask (XRPLSidechain)'
+			},
+			XVERSE: {
+				icon: <AppIcons.Xverse {...props} />,
+				name: 'Xverse'
+			},
+			PHANTOM: {
+				icon: <AppIcons.Phantom width="24px" height="24px" {...props} />,
+				name: 'Phantom'
 			},
 		}),
 		[props]

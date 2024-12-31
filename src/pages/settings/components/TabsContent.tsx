@@ -65,7 +65,7 @@ function TabsContent() {
             </TabList>
             <TabPanels>
                 {tabs.map((tab, index) => (
-                    <TabPanel px={{ base: 4, md: 6 }} key={index}>
+                    <TabPanel padding={0} key={index}>
                         {tab.content}
                     </TabPanel>
                 ))}

@@ -282,9 +282,11 @@ import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as SettingGear } from "./setting-gear.svg";
 import { ReactComponent as Location } from "./location.svg";
+import { ReactComponent as Bitlayer } from "./bitlayer.svg";
 
 const AppIcons = {
     SettingGear,
+    Bitlayer,
     Location,
     ProductsIcon,
     CollectionIcon,
