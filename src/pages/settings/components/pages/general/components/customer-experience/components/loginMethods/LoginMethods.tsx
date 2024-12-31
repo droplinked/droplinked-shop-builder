@@ -12,6 +12,7 @@ export default function LoginMethods() {
     // const shopLoginMethods: string[] = loginMethods.flatMap((item) =>
     //     item.wallets.map((wallet) => wallet.name)
     // )
+    //TODO: Don't forgot to check the permissions 
     const { isFetching, data } = useQuery(
         "supported-login-methods",
         authSupportedWalletsService
