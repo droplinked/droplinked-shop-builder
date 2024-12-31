@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useAppStore from 'lib/stores/app/appStore'
 import { SHOP_URL } from 'lib/utils/app/variable'
-import SectionContent from 'pages/settings/components/SectionContent'
+import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import { Link } from 'react-router-dom'
 

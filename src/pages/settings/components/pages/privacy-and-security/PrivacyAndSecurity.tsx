@@ -1,9 +1,15 @@
-import AppTypography from 'components/common/typography/AppTypography';
+import { Box, Divider } from '@chakra-ui/react';
 import React from "react"
+import PrivateKey from './components/private-key/PrivateKey';
 
 function PrivacyAndSecurity() {
     return (
-        <AppTypography>PrivacyAndSecurity Component</AppTypography>
+        <>
+            <Box px={{ base: 4, md: 6 }} >
+                <PrivateKey />
+            </Box>
+            <Divider borderColor={"#292929"} />
+        </>
     );
 }
 

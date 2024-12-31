@@ -1,6 +1,6 @@
 import Input from 'components/redesign/input/Input'
 import useAppStore from 'lib/stores/app/appStore'
-import SectionContent from 'pages/settings/components/SectionContent'
+import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 
 export default function EmailAddress() {

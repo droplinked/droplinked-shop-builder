@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
 import { addressByIdService, createAddressService, updateAddressService } from "lib/apis/address/addressServices";
 import useAppStore from "lib/stores/app/appStore";
-import SectionContent from "pages/settings/components/SectionContent";
+import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { formValidation, IAddressInputs, initialValues } from "./formConfigs";

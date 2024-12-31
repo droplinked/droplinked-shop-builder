@@ -1,5 +1,5 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid';
-import TabsContent from './components/TabsContent';
+import TabsContent from './components/common/TabsContent';
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 

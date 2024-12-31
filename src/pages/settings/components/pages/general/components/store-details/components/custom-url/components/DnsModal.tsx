@@ -31,7 +31,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
             if (status === "Finalized") setButtonVisibility(false)
         }
     })
-    const { NS_records, domain_name } = data?.dnsData
+    const { NS_records, domain_name } = data?.dnsData ?? {}
 
     const handleCopyLink = (dns: string, index: number) => {
         navigator.clipboard.writeText(dns)
@@ -48,7 +48,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
             >
                 <Flex marginTop={"2rem"} flexDirection={"column"} gap={4}>
                     {
-                        NS_records.map((record, index) => {
+                        NS_records?.map((record, index) => {
                             return (
                                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                                     <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>DNS {index}</AppTypography>

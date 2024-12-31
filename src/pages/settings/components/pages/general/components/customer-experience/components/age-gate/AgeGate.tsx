@@ -1,4 +1,4 @@
-import SectionContent from 'pages/settings/components/SectionContent';
+import SectionContent from 'pages/settings/components/common/SectionContent';
 import React, { useState } from 'react';
 import useAppStore from 'lib/stores/app/appStore';
 import { Flex } from '@chakra-ui/react';

@@ -283,8 +283,12 @@ import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as SettingGear } from "./setting-gear.svg";
 import { ReactComponent as Location } from "./location.svg";
 import { ReactComponent as Bitlayer } from "./bitlayer.svg";
+import { ReactComponent as ExternalLink } from "./external-link.svg";
+import { ReactComponent as Asterisk } from "./asterisk.svg";
 
 const AppIcons = {
+    Asterisk,
+    ExternalLink,
     SettingGear,
     Bitlayer,
     Location,

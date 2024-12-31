@@ -1,11 +1,11 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import React, { useState } from "react";
-import General from "./pages/general/General";
-import PrivacyAndSecurity from "./pages/privacy-and-security/PrivacyAndSecurity";
-import PaymentAndWallets from "./pages/payment-and-wallets/PaymentAndWallets";
-import CreditAndCoupons from "./pages/credit-and-coupons/CreditAndCoupons";
-import UserManagement from "./pages/user-management/PrivacyAndSecurity";
+import General from "../pages/general/General";
+import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity";
+import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
+import CreditAndCoupons from "../pages/credit-and-coupons/CreditAndCoupons";
+import UserManagement from "../pages/user-management/PrivacyAndSecurity";
 
 function TabsContent() {
     const [selectedTab, setSelectedTab] = useState("General");

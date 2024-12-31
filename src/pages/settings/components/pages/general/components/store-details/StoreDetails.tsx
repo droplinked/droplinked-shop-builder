@@ -1,4 +1,4 @@
-import SectionContainer from 'pages/settings/components/SectionContainer'
+import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
 import StoreURL from './components/StoreURL'
 import StoreName from './components/StoreName'

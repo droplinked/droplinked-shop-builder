@@ -1,6 +1,6 @@
-import SectionContent from 'pages/settings/components/SectionContent';
+import SectionContent from 'pages/settings/components/common/SectionContent';
 import React, { useState } from 'react';
-import PremiumBadge from './PremiumBadge';
+import PremiumBadge from 'pages/settings/components/common/PremiumBadge';
 import Input from 'components/redesign/input/Input';
 import { useHasPermission } from 'lib/stores/app/appStore';
 
