@@ -1,17 +1,20 @@
-import { Flex, Switch, Text } from "@chakra-ui/react"
-import React, { ChangeEvent, PropsWithChildren, ReactNode } from "react"
+import { Flex, FlexProps, Switch, Text } from "@chakra-ui/react"
+import React, { ChangeEvent, ReactNode } from "react"
 
-interface Props extends PropsWithChildren {
-    isChecked: boolean
-    onToggle: (e: ChangeEvent<HTMLInputElement>) => void
+interface Props extends FlexProps {
     title: string
     description: string
+    isChecked: boolean
+    onToggle: (e: ChangeEvent<HTMLInputElement>) => void
     rightContent?: ReactNode
 }
 
-const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
+const SwitchBox = ({ title, description, isChecked, onToggle, rightContent, children, ...containerProps }: Props) => {
     return (
-        <Flex gap={4}>
+        <Flex
+            gap={4}
+            {...containerProps}
+        >
             <Switch
                 flexShrink={0}
                 size="lg"

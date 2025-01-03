@@ -9,7 +9,7 @@ export default function BulkDimensionsAdjuster() {
     const { values: { sku }, setFieldValue } = useProductForm()
 
     const updateSkus = (field: string, value: string) => {
-        const updatedSkus = sku.map((s) => {
+        const updatedSKUs = sku.map((s) => {
             if (['width', 'length', 'height'].includes(field)) {
                 return {
                     ...s,
@@ -18,7 +18,7 @@ export default function BulkDimensionsAdjuster() {
             }
             return { ...s, [field]: value === '' ? '' : parseFloat(value) }
         })
-        setFieldValue('sku', updatedSkus)
+        setFieldValue('sku', updatedSKUs)
     }
 
     return (

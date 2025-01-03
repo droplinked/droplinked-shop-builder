@@ -22,12 +22,7 @@ function RoyaltyInput() {
     const { values: { sku }, setFieldValue } = useProductForm()
     const [royalty, setRoyalty] = useState(sku?.[0]?.royalty ?? null)
 
-    function preventInvalidKeys(e) {
-        const invalidKeys = ['+', '-', 'e']
-        if (invalidKeys.includes(e.key)) e.preventDefault()
-    }
-
-    function handleInputChange(e) {
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { value, validity } = e.target
         if (!validity.valid) return
 
@@ -43,20 +38,19 @@ function RoyaltyInput() {
             const updatedSkus = sku.map(item => ({ ...item, royalty: null }))
             setFieldValue('sku', updatedSkus)
         }
-    }, [sku, setFieldValue])
+    }, [])
 
     return (
         <Input
             inputGroupProps={{ width: '104px' }}
             inputProps={{
                 type: 'number',
+                numberType: 'float',
                 min: 0,
                 max: 99.99,
                 step: 0.01,
                 placeholder: '15',
                 value: royalty !== null ? royalty : '',
-                pattern: '^[0-9]*\\.?[0-9]*$',
-                onKeyDown: preventInvalidKeys,
                 onChange: handleInputChange
             }}
             rightElement={<AppIcons.GrayPercent />}
