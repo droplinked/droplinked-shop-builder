@@ -14,11 +14,15 @@ export interface ProductMedia {
     fileSize?: string
 }
 
+export interface ProductPropertyItem {
+    value: string, caption: string
+}
+
 export interface ProductProperty {
     value: string
     title: string
     isCustom: boolean
-    items: { value: string, caption: string }[]
+    items: ProductPropertyItem[]
 }
 
 export interface SKUOption {

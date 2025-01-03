@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
 import React from 'react'
 
@@ -19,11 +20,12 @@ interface VariantItemProps {
 }
 
 export default function VariantCard({ variant }: Props) {
-    const { values: { properties }, setFieldValue } = useProductForm()
+    const { values: { properties, sku }, setFieldValue } = useProductForm()
 
     const handleRemoveVariant = () => {
         const updatedProperties = properties.filter((prop) => prop.title !== variant.title)
         setFieldValue('properties', updatedProperties)
+        setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
     }
 
     const handleEditVariant = () => {

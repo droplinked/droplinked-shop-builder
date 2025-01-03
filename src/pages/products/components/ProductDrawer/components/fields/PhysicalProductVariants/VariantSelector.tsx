@@ -11,32 +11,29 @@ interface Props {
 }
 
 function VariantSelector({ selectedVariant, setSelectedVariant, properties, setLocalProperty }: Props) {
-    const dropdownOptions = [
-        { label: 'Color', value: 'Color' },
-        { label: 'Size', value: 'Size' }
-    ]
+    const dropdownOptions = ["Color", "Size"]
     const [inputValue, setInputValue] = useState(selectedVariant)
     const inputRef = useRef<HTMLInputElement>(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const handleTypeSelect = (newValue: { label: string; value: string }) => {
+    const handleTypeSelect = (selectedVariant: string) => {
         setInputValue('')
-        const existingProperty = properties.find(property => property.value === newValue.value)
+        const existingProperty = properties.find(property => property.title === selectedVariant)
 
         if (existingProperty) setLocalProperty({ ...existingProperty })
         else {
             setLocalProperty({
-                title: newValue.value,
-                value: attributeToIdMap[newValue.value] || newValue.value,
-                items: [{ value: '', caption: '' }],
-                isCustom: !['Size', 'Color'].includes(newValue.value)
+                title: selectedVariant,
+                value: attributeToIdMap[selectedVariant] || selectedVariant,
+                items: [],
+                isCustom: !['Size', 'Color'].includes(selectedVariant)
             })
         }
 
-        setSelectedVariant(newValue.value)
+        setSelectedVariant(selectedVariant)
     }
 
-    const handleDropdownOptionClick = (option: { label: string; value: string }) => {
+    const handleDropdownOptionClick = (option: string) => {
         handleTypeSelect(option)
         onClose()
     }
@@ -98,14 +95,14 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                     }
                 }}
             >
-                {dropdownOptions.map(option => (
+                {dropdownOptions.map(variant => (
                     <Button
-                        key={option.value}
-                        bgColor={selectedVariant === option.value ? '#292929' : 'unset'}
+                        key={variant}
+                        bgColor={selectedVariant === variant ? '#292929' : 'unset'}
                         color="#FFF"
-                        onClick={() => handleDropdownOptionClick(option)}
+                        onClick={() => handleDropdownOptionClick(variant)}
                     >
-                        {option.label}
+                        {variant}
                     </Button>
                 ))}
 
@@ -117,7 +114,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                         color="#179EF8"
                         sx={{ path: { stroke: '#179EF8' } }}
                         bg="unset"
-                        onClick={() => handleDropdownOptionClick({ label: inputValue, value: inputValue })}
+                        onClick={() => handleDropdownOptionClick(inputValue)}
                     >
                         <AppIcons.BlackPlus />
                         {`Create "${inputValue}"`}

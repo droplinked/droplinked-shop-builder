@@ -46,5 +46,41 @@ export function convertPropertiesToSKUs(properties: ProductProperty[]): SKU[] {
 
 export function updateSKUsOnVariantChange(params: { properties: ProductProperty[], currentSKUs: SKU[] }): SKU[] {
     const { properties, currentSKUs } = params
-    return createSKUs(properties, [], currentSKUs)
+    return properties.length === 0 ? [] : createSKUs(properties, [], currentSKUs)
+}
+
+export function updatePropertiesOnSKUDelete(
+    properties: ProductProperty[],
+    skus: SKU[]
+): ProductProperty[] {
+    const usedOptions = new Set<string>()
+
+    // Collect all options used in remaining SKUs
+    skus.forEach(sku => {
+        sku.options.forEach(option => {
+            const key = `${option.variantName}-${option.value}-${option.caption || ''}`
+            usedOptions.add(key)
+        })
+    })
+
+    // Update properties to remove unused options
+    const updatedProperties = properties
+        .map(property => {
+            const filteredItems = property.items.filter(item => {
+                const key = `${property.title}-${item.value}-${item.caption || ''}`
+                return usedOptions.has(key)
+            })
+
+            if (filteredItems.length === 0) {
+                return null // Remove this property if no items are left
+            }
+
+            return {
+                ...property,
+                items: filteredItems
+            }
+        })
+        .filter((property): property is ProductProperty => property !== null)
+
+    return updatedProperties
 }

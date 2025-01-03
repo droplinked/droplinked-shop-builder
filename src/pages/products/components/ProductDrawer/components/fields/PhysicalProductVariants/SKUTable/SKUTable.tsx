@@ -1,11 +1,14 @@
 import { ColumnDef } from '@tanstack/react-table'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import React from 'react'
+import { updatePropertiesOnSKUDelete } from 'pages/products/utils/skuUtils'
+import { ProductProperty, SKU } from 'pages/products/utils/types'
+import React, { useCallback } from 'react'
 import SKURow from './SKURow'
 
 export default function SKUTable() {
-    const { values: { sku }, setFieldValue } = useProductForm()
+    const { values: { sku, properties }, setFieldValue } = useProductForm()
+
     const columns: ColumnDef<any>[] = [
         { accessorKey: '', header: 'Variant' },
         { accessorKey: '', header: 'Price' },
@@ -13,25 +16,40 @@ export default function SKUTable() {
         { accessorKey: '', header: 'External ID' }
     ]
 
-    const handleInputChange = (index: number, field: string, value: any) => {
+    const handleInputChange = useCallback((index: number, field: string, value: any) => {
         const updatedSKUs = [...sku]
         updatedSKUs[index] = {
             ...updatedSKUs[index],
             [field]: value
         }
-        setFieldValue("sku", updatedSKUs)
-    }
+        setFieldValue('sku', updatedSKUs)
+    }, [sku, setFieldValue])
+
+    const toggleQuantity = useCallback((index: number) => {
+        const currentSKU = sku[index]
+        const newQuantity = currentSKU.quantity === 1000000 ? 0 : 1000000
+        handleInputChange(index, 'quantity', newQuantity)
+    }, [handleInputChange, sku])
+
+    const handleRemoveSKU = useCallback((index: number) => {
+        const updatedSKUs = sku.filter((_, skuIndex) => skuIndex !== index)
+        const updatedProperties: ProductProperty[] = updatePropertiesOnSKUDelete(properties, updatedSKUs)
+        setFieldValue('sku', updatedSKUs)
+        setFieldValue('properties', updatedProperties)
+    }, [sku, properties, setFieldValue])
 
     return (
-        <Table.Root columns={columns}>
+        <Table.Root columns={columns} hasActionColumn>
             <Table.Head data={sku} />
             <Table.Body>
-                {sku.map((sku, index) => (
+                {sku.map((currentSKU: SKU, index: number) => (
                     <SKURow
                         key={index}
-                        sku={sku}
-                        onInputChange={handleInputChange}
+                        currentSKU={currentSKU}
                         index={index}
+                        onInputChange={handleInputChange}
+                        onToggleQuantity={toggleQuantity}
+                        onRemoveSKU={handleRemoveSKU}
                     />
                 ))}
             </Table.Body>
