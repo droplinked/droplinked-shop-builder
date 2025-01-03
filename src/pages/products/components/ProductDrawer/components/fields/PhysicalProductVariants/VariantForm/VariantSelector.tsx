@@ -16,7 +16,11 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
     const inputRef = useRef<HTMLInputElement>(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const handleTypeSelect = (selectedVariant: string) => {
+    const canAddVariants = properties.length < 2
+
+    const handlePopoverOpen = () => canAddVariants && onOpen()
+
+    const handleDropdownOptionClick = (selectedVariant: string) => {
         setInputValue('')
         const existingProperty = properties.find(property => property.title === selectedVariant)
 
@@ -31,10 +35,6 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
         }
 
         setSelectedVariant(selectedVariant)
-    }
-
-    const handleDropdownOptionClick = (option: string) => {
-        handleTypeSelect(option)
         onClose()
     }
 
@@ -48,7 +48,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
     return (
         <Popover
             isOpen={isOpen}
-            onOpen={onOpen}
+            onOpen={handlePopoverOpen}
             onClose={onClose}
             placement="bottom-start"
             initialFocusRef={inputRef}
@@ -66,9 +66,10 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                 >
                     <input
                         ref={inputRef}
-                        placeholder="Color, Size or Custom Variant"
                         value={inputValue}
+                        disabled={!canAddVariants}
                         maxLength={30}
+                        placeholder="Color, Size or Custom Variant"
                         onChange={e => setInputValue(e.target.value)}
                     />
                     <AppIcons.SelectChevronDown />

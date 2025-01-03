@@ -5,31 +5,18 @@ import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
 import React from 'react'
 
-interface Props {
+interface VariantCardProps {
     variant: ProductProperty
+    onEdit: (variantTitle: string) => void
 }
 
-interface VariantActionsProps {
-    onEdit: () => void
-    onRemove: () => void
-}
-
-interface VariantItemProps {
-    item: { value: string, caption: string }
-    isColorVariant: boolean
-}
-
-export default function VariantCard({ variant }: Props) {
+export default function VariantCard({ variant, onEdit }: VariantCardProps) {
     const { values: { properties, sku }, setFieldValue } = useProductForm()
 
     const handleRemoveVariant = () => {
         const updatedProperties = properties.filter((prop) => prop.title !== variant.title)
         setFieldValue('properties', updatedProperties)
         setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
-    }
-
-    const handleEditVariant = () => {
-        console.log(`Edit variant: ${variant.title}`)
     }
 
     return (
@@ -40,9 +27,12 @@ export default function VariantCard({ variant }: Props) {
             borderRadius={8}
             padding={4}
         >
-            <Flex gap={4}>
+            <Flex justifyContent="space-between" alignItems="center">
                 <Text flex={1} fontWeight={500} color="#FFF">{variant.title}</Text>
-                <VariantActions onEdit={handleEditVariant} onRemove={handleRemoveVariant} />
+                <VariantActions
+                    onEdit={() => onEdit(variant.title)}
+                    onRemove={handleRemoveVariant}
+                />
             </Flex>
 
             <Flex wrap="wrap" gap={2}>
@@ -54,7 +44,7 @@ export default function VariantCard({ variant }: Props) {
     )
 }
 
-function VariantActions({ onEdit, onRemove }: VariantActionsProps) {
+function VariantActions({ onEdit, onRemove }) {
     return (
         <Box sx={{ button: { padding: '10px' } }}>
             <button type="button" onClick={onEdit}>
@@ -67,7 +57,7 @@ function VariantActions({ onEdit, onRemove }: VariantActionsProps) {
     )
 }
 
-function VariantItem({ item, isColorVariant }: VariantItemProps) {
+function VariantItem({ item, isColorVariant }) {
     return (
         <Flex
             alignItems="center"

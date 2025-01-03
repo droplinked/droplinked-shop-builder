@@ -6,14 +6,25 @@ import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import AddVariantsButton from './AddVariantsButton'
 import ProductSKUSettings from './SKUSettings/ProductSKUSettings'
 import VariantCard from './VariantCard'
-import VariantForm from './VariantForm'
+import VariantForm from './VariantForm/VariantForm'
 
 function PhysicalProductVariants() {
     const [isVariantFormVisible, setVariantFormVisibility] = useState(false)
+    const [editingVariant, setEditingVariant] = useState<string | null>(null)
     const { values: { properties, sku } } = useProductForm()
 
     const canAddVariants = properties.length < 2
-    const handleAddVariantClick = () => setVariantFormVisibility(true)
+
+    const handleAddVariant = () => {
+        setEditingVariant(null)
+        setVariantFormVisibility(true)
+    }
+
+    const handleEditVariant = (variantTitle: string) => {
+        setEditingVariant(variantTitle)
+        setVariantFormVisibility(true)
+    }
+
     const handleDiscardVariant = () => setVariantFormVisibility(false)
 
     return (
@@ -24,12 +35,22 @@ function PhysicalProductVariants() {
         >
             <Flex direction="column" gap={9}>
                 <Flex direction="column" gap={4}>
-                    {isVariantFormVisible
-                        ? <VariantForm handleDiscard={handleDiscardVariant} />
-                        : canAddVariants && <AddVariantsButton onClick={handleAddVariantClick} />
+                    {isVariantFormVisible ?
+                        <VariantForm
+                            handleDiscard={handleDiscardVariant}
+                            editingVariant={editingVariant}
+                        />
+                        :
+                        canAddVariants && <AddVariantsButton onClick={handleAddVariant} />
                     }
 
-                    {properties.map((property, index) => <VariantCard key={index} variant={property} />)}
+                    {properties.map((property, index) => (
+                        <VariantCard
+                            key={index}
+                            variant={property}
+                            onEdit={handleEditVariant}
+                        />
+                    ))}
 
                     {!canAddVariants && (
                         <MessageBox
