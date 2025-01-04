@@ -39,7 +39,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
       >
         {/* تصویر محصول */}
         <Image
-          src={product.image}
+          src={product.image} 
           alt="Product"
           width="56px"
           height="56px"
