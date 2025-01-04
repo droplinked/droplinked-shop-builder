@@ -4,25 +4,34 @@ import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import DomainField from './DomainField'
 import { Box, Flex } from '@chakra-ui/react'
-import Domain from './Domain'
+import Domains from './Domains'
 import { getShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useQuery } from 'react-query'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import { appDevelopment } from 'lib/utils/app/variable'
+import DocumentationLink from 'pages/settings/components/common/DocumentationLink'
 
 
 export default function PublicApiKey() {
     const hasPermission = useHasPermission()
     const hasShopApiPermission = hasPermission("shopfront_apis")
-    const { isFetching, data: { data }, refetch } = useQuery("shopAPIKey", getShopAPIKeyService, { enabled: hasShopApiPermission })
-    const { domains } = data.data
+    const { isFetching, data, refetch } = useQuery("shopAPIKey", getShopAPIKeyService, { enabled: hasShopApiPermission })
+    const { domains, clientId } = data?.data?.data || {}
 
     return (
         <SectionContainer
             title="Public API Key"
             badge={
                 <PremiumBadge />
-            }>
+            }
+            rightContent={
+                <DocumentationLink
+                    to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
+                    target='_blank'
+                />
+            }
+        >
             <SectionContent
                 title="Domain"
                 description="Add a domain to generate a unique API key for secure store access."
@@ -34,7 +43,7 @@ export default function PublicApiKey() {
                             </AppSkeleton>
                         </Box>
                         <AppSkeleton borderRadius={8} isLoaded={!isFetching}>
-                            <Domain />
+                            <Domains refetch={refetch} clientId={clientId} domains={domains} />
                         </AppSkeleton>
                     </Flex>
                 }

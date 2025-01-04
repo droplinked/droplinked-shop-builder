@@ -13,9 +13,12 @@ interface Props {
 function SectionContainer({ title, badge, rightContent, description, children }: Props) {
     return (
         <Flex my={{ base: "24px", md: "36px", lg: "48px" }} width={"100%"} flexDirection={"column"}>
-            <Flex gap={4} alignItems={"center"}>
-                <AppTypography fontSize={{ base: "18px", md: "20px" }} fontWeight={700} color={"#fff"}>{title}</AppTypography>
-                {badge && badge}
+            <Flex justifyContent={"space-between"} width={"100%"}>
+                <Flex gap={4} alignItems={"center"}>
+                    <AppTypography fontSize={{ base: "18px", md: "20px" }} fontWeight={700} color={"#fff"}>{title}</AppTypography>
+                    {badge && badge}
+                </Flex>
+                {rightContent && rightContent}
             </Flex>
             <Flex width={"100%"} gap={4} justifyContent={"space-between"} alignItems={"center"}>
                 <Box flex={1} marginTop={"6px"}>
@@ -23,7 +26,6 @@ function SectionContainer({ title, badge, rightContent, description, children }:
                         {description && description}
                     </AppTypography>
                 </Box>
-                {rightContent && rightContent}
             </Flex>
             <Flex flexDirection={"column"} gap={{ base: "24px", md: "36px", lg: "48px" }} my={{ base: "24px", md: "36px", lg: "48px" }}>
                 {children}
