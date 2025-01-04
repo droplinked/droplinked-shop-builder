@@ -22,7 +22,7 @@ function PODMint2MerchAccordion() {
                 title='Mint to Merch'
                 description='Enable customers to directly print their NFT artwork on the POD product.'
                 isChecked={flag}
-                onToggle={setFlag.toggle}
+                onToggle={handleToggle}
             >
                 {flag && (
                     <Flex direction="column" gap={9} mt={5}>

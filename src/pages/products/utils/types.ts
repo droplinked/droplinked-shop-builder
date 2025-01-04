@@ -43,6 +43,7 @@ export interface SKU {
     recordData?: any
     weight?: number
     dimensions: { width?: number, height?: number, length?: number }
+    rawPrice?: number
 
     deploy_hash?: string
     recorded_quantity?: number
@@ -73,6 +74,7 @@ export interface ProductFormValues {
     description: string
     media: ProductMedia[]
     productCollectionID: string
+    priceUnit:string
     canBeAffiliated: boolean
     commission: number
     properties: ProductProperty[]
