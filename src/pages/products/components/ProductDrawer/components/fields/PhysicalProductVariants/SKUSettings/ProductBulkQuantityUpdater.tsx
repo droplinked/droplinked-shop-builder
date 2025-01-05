@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import InfinityToggleButton from '../../../common/InfinityToggleButton'
 import SwitchBox from '../../../common/SwitchBox'
 
-function BulkQuantityAdjuster() {
+function ProductBulkQuantityUpdater() {
     const { values: { sku }, setFieldValue } = useProductForm()
     const [fixedQuantity, setFixedQuantity] = useState(false)
     const [inputValue, setInputValue] = useState<string | number>('')
@@ -69,4 +69,4 @@ function BulkQuantityAdjuster() {
     )
 }
 
-export default BulkQuantityAdjuster
+export default ProductBulkQuantityUpdater

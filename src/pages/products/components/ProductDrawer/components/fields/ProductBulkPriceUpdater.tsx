@@ -2,9 +2,9 @@ import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useState } from 'react'
-import SwitchBox from '../../../common/SwitchBox'
+import SwitchBox from '../common/SwitchBox'
 
-function BulkPriceAdjuster() {
+function ProductBulkPriceUpdater() {
     const { values: { sku }, setFieldValue } = useProductForm()
     const [fixedPrice, setFixedPrice] = useState(false)
     const [inputValue, setInputValue] = useState<string | number>('')
@@ -55,4 +55,4 @@ function BulkPriceAdjuster() {
     )
 }
 
-export default BulkPriceAdjuster
+export default ProductBulkPriceUpdater

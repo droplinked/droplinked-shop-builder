@@ -24,7 +24,7 @@ export const initialValues: ProductFormValues = {
     description: "",
     media: [],
     productCollectionID: "",
-    priceUnit:"USD",
+    priceUnit: "USD",
     canBeAffiliated: false,
     commission: 1,
     properties: [],
@@ -56,4 +56,3 @@ export const initialValues: ProductFormValues = {
     launchDate: null,
     publish_status: "PUBLISHED"
 }
-

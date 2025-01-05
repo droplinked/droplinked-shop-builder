@@ -1,14 +1,18 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
-import { SKUOption } from "pages/products/utils/types"
-import React, { Fragment } from "react"
+import { Box, Flex, Text } from '@chakra-ui/react'
+import { SKUOption } from 'pages/products/utils/types'
+import React, { Fragment } from 'react'
 
 interface Props {
     options: SKUOption[]
 }
 
-export default function SKUDisplay({ options }: Props) {
+export default function SkuVariants({ options }: Props) {
     return (
-        <Flex align="center" gap={4} color="white">
+        <Flex
+            align="center"
+            gap={4}
+            color="white"
+        >
             {options.map((option, index) => (
                 <Fragment key={`${option.variantName}-${option.value}`}>
                     <OptionRenderer option={option} />

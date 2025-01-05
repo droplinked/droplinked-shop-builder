@@ -3,9 +3,9 @@ import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
+import ProductVariantCard from '../ProductVariantCard'
 import AddVariantsButton from './AddVariantsButton'
 import ProductSKUSettings from './SKUSettings/ProductSKUSettings'
-import VariantCard from './VariantCard'
 import VariantForm from './VariantForm/VariantForm'
 
 function PhysicalProductVariants() {
@@ -45,7 +45,7 @@ function PhysicalProductVariants() {
                     }
 
                     {properties.map((property, index) => (
-                        <VariantCard
+                        <ProductVariantCard
                             key={index}
                             variant={property}
                             onEdit={handleEditVariant}

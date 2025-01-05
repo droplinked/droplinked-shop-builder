@@ -5,7 +5,7 @@ import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 
-export default function BulkDimensionsAdjuster() {
+export default function ProductBulkDimensionsUpdater() {
     const { values: { sku }, setFieldValue } = useProductForm()
 
     const updateSkus = (field: string, value: string) => {

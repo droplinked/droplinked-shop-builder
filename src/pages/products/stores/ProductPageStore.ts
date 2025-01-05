@@ -5,7 +5,7 @@ interface State {
     selectedProductType: ProductType | null
     selectedPODProduct: any | null
     variants: any[]
-    available_variant: any[]
+    available_variants: any[]
     print_positions: any[]
     isProductTypePopoverOpen: boolean
 }
@@ -19,7 +19,7 @@ const initialState: State = {
     selectedProductType: null,
     selectedPODProduct: null,
     variants: [],
-    available_variant: [],
+    available_variants: [],
     print_positions: [],
     isProductTypePopoverOpen: false
 }

@@ -34,6 +34,7 @@ function useDesignMakerHooks(onClose: () => void) {
                 external_customer_id: custome_external_id
             })
 
+            //@ts-ignore
             const designMaker = new PFDesignMaker({
                 elemId: iframeRef.current?.id,
                 nonce: response?.data?.data?.nonce,
@@ -112,7 +113,7 @@ function useDesignMakerHooks(onClose: () => void) {
                 }))
             )
 
-            updateProductPageState('available_variant', variantsData)
+            updateProductPageState('available_variants', variantsData)
             setFieldValue('artwork', 'printful')
             setFieldValue('artwork_position', 'front')
             setFieldValue('printful_template_id', templateId)
@@ -139,7 +140,7 @@ function useDesignMakerHooks(onClose: () => void) {
         }
         catch (error) {
             setTemplateId(null)
-            updateProductPageState('available_variant', [])
+            updateProductPageState('available_variants', [])
             setFieldValue('printful_template_id', null)
             showToast({ message: error.message, type: 'error' })
         }

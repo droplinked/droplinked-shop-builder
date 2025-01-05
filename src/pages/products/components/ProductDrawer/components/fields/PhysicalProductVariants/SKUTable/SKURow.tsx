@@ -4,7 +4,7 @@ import Input from 'components/redesign/input/Input'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
 import InfinityToggleButton from '../../../common/InfinityToggleButton'
-import SKUDisplay from './SKUDisplay'
+import SkuVariants from '../../../common/SkuVariants'
 
 interface SKURowProps {
     currentSKU: SKU
@@ -18,9 +18,9 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
     return (
         <Tr>
             <Td>
-                <SKUDisplay options={currentSKU.options} />
+                <SkuVariants options={currentSKU.options} />
             </Td>
-            <Td>
+            <Td css={{ path: { stroke: "#7B7B7B" } }}>
                 <Input
                     inputProps={{
                         type: 'number',

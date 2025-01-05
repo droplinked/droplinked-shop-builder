@@ -7,7 +7,7 @@ import LoadingPlaceholder from '../../../common/LoadingPlaceholder'
 import BaseProductCard from './ProductList/BaseProductCard'
 
 const SelectedProductDetails = ({ product, onBack }) => {
-    const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
+    const { updateProductPageState, resetProductPageState } = useProductPageStore()
     const { setFieldValue } = useProductForm()
     const { isFetching } = useQuery({
         queryKey: ['POD_PRODUCT_DETAILS', product.id],
@@ -21,8 +21,12 @@ const SelectedProductDetails = ({ product, onBack }) => {
     })
 
     const deleteProduct = () => {
-        updateProductPageState("selectedPODProduct", null)
+        resetProductPageState()
         setFieldValue("pod_blank_product_id", null)
+        setFieldValue("printful_template_id", null)
+        setFieldValue("technique", null)
+        setFieldValue("m2m_positions", [])
+        setFieldValue("m2m_positions_options", [])
         onBack()
     }
 

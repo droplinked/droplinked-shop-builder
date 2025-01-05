@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updatePropertiesOnSKUDelete } from 'pages/products/utils/skuUtils'
-import { ProductProperty, SKU } from 'pages/products/utils/types'
+import { ProductProperty } from 'pages/products/utils/types'
 import React, { useCallback } from 'react'
 import SKURow from './SKURow'
 
@@ -42,7 +42,7 @@ export default function SKUTable() {
         <Table.Root columns={columns} hasActionColumn>
             <Table.Head data={sku} />
             <Table.Body>
-                {sku.map((currentSKU: SKU, index: number) => (
+                {sku.map((currentSKU, index) => (
                     <SKURow
                         key={index}
                         currentSKU={currentSKU}

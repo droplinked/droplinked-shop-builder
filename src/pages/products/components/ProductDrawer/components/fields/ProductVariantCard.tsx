@@ -5,15 +5,18 @@ import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
 import React from 'react'
 
-interface VariantCardProps {
+interface Props {
     variant: ProductProperty
-    onEdit: (variantTitle: string) => void
+    onEdit?: (variantTitle: string) => void
 }
 
-export default function VariantCard({ variant, onEdit }: VariantCardProps) {
-    const { values: { properties, sku }, setFieldValue } = useProductForm()
+export default function ProductVariantCard({ variant, onEdit }: Props) {
+    const { values: { properties, sku, product_type }, setFieldValue } = useProductForm()
+
+    const isNormalProduct = product_type === 'NORMAL'
 
     const handleRemoveVariant = () => {
+        if (!isNormalProduct) return
         const updatedProperties = properties.filter((prop) => prop.title !== variant.title)
         setFieldValue('properties', updatedProperties)
         setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
@@ -29,15 +32,21 @@ export default function VariantCard({ variant, onEdit }: VariantCardProps) {
         >
             <Flex justifyContent="space-between" alignItems="center">
                 <Text flex={1} fontWeight={500} color="#FFF">{variant.title}</Text>
-                <VariantActions
-                    onEdit={() => onEdit(variant.title)}
-                    onRemove={handleRemoveVariant}
-                />
+                {isNormalProduct && (
+                    <VariantActions
+                        onEdit={() => onEdit?.(variant.title)}
+                        onRemove={handleRemoveVariant}
+                    />
+                )}
             </Flex>
 
             <Flex wrap="wrap" gap={2}>
                 {variant.items.map((item, index) => (
-                    <VariantItem key={index} item={item} isColorVariant={variant.title === 'Color'} />
+                    <VariantItem
+                        key={index}
+                        item={item}
+                        isColorVariant={variant.title === 'Color'}
+                    />
                 ))}
             </Flex>
         </Flex>
