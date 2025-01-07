@@ -33,9 +33,11 @@ function ProductTableActionMenu({ product, refetch }: Props) {
             icon: <AppIcons.EditOutlined />
         },
         {
-            title: "DROP Information",
-            onClick: onDropInfoModalOpen,
-            icon: <AppIcons.NFT />
+            ...product.nftData && {
+                title: "DROP Information",
+                onClick: onDropInfoModalOpen,
+                icon: <AppIcons.DropProduct />
+            }
         },
         {
             ...product.product_type === "PRINT_ON_DEMAND" && {
@@ -73,9 +75,9 @@ function ProductTableActionMenu({ product, refetch }: Props) {
         <>
             <TableMenu items={actions} />
             <ConfirmationModal reFetch={refetch} onClose={onClose} isOpen={isOpen} product={product} type={isDeleteModal ? "DELETE" : "DUPLICATE"} />
-            <ProductShareModal product={product} key={product._id} close={onShareModalClose} open={isShareModalOpen} />
-            <DetailsModal product={product} key={product._id} close={onDetailsModalClose} open={isDetailsModalOpen} />
-            <DropInfoModal product={product} key={product._id} close={onDropInfoModalClose} open={isDropInfoModalOpen} />
+            <ProductShareModal product={product} close={onShareModalClose} open={isShareModalOpen} />
+            <DetailsModal product={product} close={onDetailsModalClose} open={isDetailsModalOpen} />
+            <DropInfoModal product={product} close={onDropInfoModalClose} open={isDropInfoModalOpen} />
         </>
     )
 }

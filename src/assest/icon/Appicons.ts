@@ -268,9 +268,10 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
 import { ReactComponent as Invoice } from "./Invoice.svg";
+import { ReactComponent as DropProduct } from "./drop-product.svg";
 
 const AppIcons = {
-    ProductsIcon,
+    ProductsIcon, 
     CollectionIcon,
     SettingIcon,
     OrderIcon,
@@ -539,7 +540,8 @@ const AppIcons = {
     Calendar,
     BlueBrush,
     Convert,
-    Invoice
+    Invoice,
+    DropProduct
 }
 
 export default AppIcons

@@ -27,9 +27,8 @@ function DropInfoModal({ close, open, product }: IProps) {
       }}
     >
       <ModalBody padding="0px !important">
-        <Box pt="48px">
-          <Header />
-          <Box mb="24px" />
+        <Box pt="48px" pb="36px" bg="#141414">
+          <Header product={product} />
         </Box>
         <DropInfoContent product={product} />
       </ModalBody>
