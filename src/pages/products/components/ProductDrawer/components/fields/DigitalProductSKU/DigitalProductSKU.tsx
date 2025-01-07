@@ -12,8 +12,7 @@ function DigitalProductSKU() {
 
     const updateSkuField = (field: string, value: any) => {
         const updatedSku = [...sku]
-        if (field === 'price' || field === 'quantity')
-            updatedSku[0][field] = parseFloat(value) || 0
+        updatedSku[0][field] = value
         setFieldValue('sku', updatedSku)
     }
 
@@ -31,7 +30,7 @@ function DigitalProductSKU() {
                     type: 'number',
                     numberType: 'float',
                     value: sku?.[0]?.price || '',
-                    onChange: (e) => updateSkuField('price', e.target.value)
+                    onChange: (e) => updateSkuField('price', parseFloat(e.target.value))
                 }}
             />
 
@@ -47,7 +46,7 @@ function DigitalProductSKU() {
                     numberType: 'int',
                     min: 0,
                     value: sku?.[0]?.quantity || '',
-                    onChange: (e) => updateSkuField('quantity', e.target.value)
+                    onChange: (e) => updateSkuField('quantity', parseInt(e.target.value))
                 }}
                 rightElement={
                     <InfinityToggleButton
