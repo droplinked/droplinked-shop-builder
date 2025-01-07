@@ -51,8 +51,8 @@ function createSKUs(
                 record: false,
                 weight: 0,
                 dimensions: { width: 0, height: 0, length: 0 },
-                royalty: null,
-            },
+                royalty: null
+            }
         ]
     }
 

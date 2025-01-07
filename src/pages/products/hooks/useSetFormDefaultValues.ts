@@ -23,6 +23,7 @@ const useSetFormDefaultValues = () => {
 
         if (product_type === "PRINT_ON_DEMAND") {
             setFieldValue("prodviderID", "PRINTFUL")
+            setFieldValue("shippingType", "PRINTFUL")
             setFieldValue("custome_external_id", Date.now() + nanoid(13))
         }
     }, [product_type, sku, setFieldValue])

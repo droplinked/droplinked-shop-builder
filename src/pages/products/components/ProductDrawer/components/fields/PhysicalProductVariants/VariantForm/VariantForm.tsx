@@ -70,7 +70,7 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             >
                 <Button variant="secondary" onClick={handleDiscard}>Discard</Button>
                 <Button onClick={saveToContext}>
-                    {editingVariant ? 'Edit' : 'Create'}
+                    {editingVariant ? 'Edit' : 'Save'}
                 </Button>
             </Flex>
         </Flex>

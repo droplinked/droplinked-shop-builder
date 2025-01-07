@@ -1,6 +1,6 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
-import { useFormikContext } from 'formik'
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 
 interface Props {
@@ -8,10 +8,13 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { setFieldValue, handleSubmit } = useFormikContext()
+    const { values: { publish_product }, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
 
     const handleAction = (action: string) => {
-        setFieldValue('action', action)
+        const isSavingAsDraft = action === 'save-as-draft'
+
+        setFieldValue('publish_status', isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED')
+        setFieldValue('publish_product', !isSavingAsDraft)
         handleSubmit()
     }
 
@@ -24,22 +27,26 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
             css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
-            <Button variant="secondary" type="button" onClick={onClose}>
+            <Button type="button" variant="secondary" disabled={isSubmitting} onClick={onClose}>
                 Discard
             </Button>
             <Flex gap={4}>
                 <Button
+                    type="button"
                     variant="outline"
                     borderColor="#2BCFA1"
                     color="#2BCFA1"
-                    type="button"
-                    onClick={() => handleAction('save-as-draft')}  // Set action to 'save-as-draft' and submit the form
+                    isDisabled={isSubmitting}
+                    isLoading={isSubmitting && !publish_product}
+                    onClick={() => handleAction('save-as-draft')}
                 >
                     Save as draft
                 </Button>
                 <Button
                     type="button"
-                    onClick={() => handleAction('save-product')}  // Set action to 'save-product' and submit the form
+                    isDisabled={isSubmitting}
+                    isLoading={isSubmitting && publish_product}
+                    onClick={() => handleAction('publish-product')}
                 >
                     Add Product
                 </Button>

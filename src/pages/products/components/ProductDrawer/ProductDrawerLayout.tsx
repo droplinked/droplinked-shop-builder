@@ -1,26 +1,18 @@
 import { Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { PropsWithChildren } from 'react'
 
 interface Props extends PropsWithChildren {
     isOpen: boolean
-    onClose: () => void
+    onDrawerClose: () => void
 }
 
-function ProductDrawerLayout({ isOpen, onClose, children }: Props) {
-    const resetProductPageState = useProductPageStore(s => s.resetProductPageState)
-
-    const handleDrawerClose = () => {
-        resetProductPageState()
-        onClose()
-    }
-
+function ProductDrawerLayout({ isOpen, onDrawerClose, children }: Props) {
     return (
         <Drawer
             isOpen={isOpen}
             placement="right"
             size="lg"
-            onClose={handleDrawerClose}
+            onClose={onDrawerClose}
         >
             <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
             <DrawerContent

@@ -1,3 +1,4 @@
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import ProductDrawerLayout from './ProductDrawerLayout'
 import ProductForm from './ProductForm'
@@ -8,9 +9,16 @@ interface Props {
 }
 
 function ProductDrawer({ isOpen, onClose }: Props) {
+    const resetProductPageState = useProductPageStore(s => s.resetProductPageState)
+
+    const handleDrawerClose = () => {
+        resetProductPageState()
+        onClose()
+    }
+
     return (
-        <ProductDrawerLayout isOpen={isOpen} onClose={onClose}>
-            <ProductForm onClose={onClose} />
+        <ProductDrawerLayout isOpen={isOpen} onDrawerClose={handleDrawerClose}>
+            <ProductForm onDrawerClose={handleDrawerClose} />
         </ProductDrawerLayout>
     )
 }

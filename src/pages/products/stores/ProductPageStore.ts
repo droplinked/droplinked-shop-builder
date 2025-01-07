@@ -8,6 +8,7 @@ interface State {
     available_variants: any[]
     print_positions: any[]
     isProductTypePopoverOpen: boolean
+    editingProductId: string
 }
 
 interface Action {
@@ -21,17 +22,13 @@ const initialState: State = {
     variants: [],
     available_variants: [],
     print_positions: [],
-    isProductTypePopoverOpen: false
+    isProductTypePopoverOpen: false,
+    editingProductId: null
 }
 
 const useProductPageStore = create<State & Action>((set) => ({
     ...initialState,
-    updateProductPageState: (key, value) => {
-        set((state) => ({
-            ...state,
-            [key]: value
-        }))
-    },
+    updateProductPageState: (key, value) => set(state => ({ ...state, [key]: value })),
     resetProductPageState: () => set(() => ({ ...initialState }))
 }))
 

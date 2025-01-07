@@ -34,6 +34,7 @@ export interface SKUOption {
 }
 
 export interface SKU {
+    _id?: string
     externalID?: string
     index?: number
     options?: SKUOption[]
@@ -44,7 +45,6 @@ export interface SKU {
     weight?: number
     dimensions: { width?: number, height?: number, length?: number }
     rawPrice?: number
-
     deploy_hash?: string
     recorded_quantity?: number
     royalty?: number
@@ -68,13 +68,12 @@ export interface DigitalDetails {
 export type PublishStatus = "PUBLISHED" | "DRAFTED"
 
 export interface ProductFormValues {
-    action: string
     product_type: ProductType
     title: string
     description: string
     media: ProductMedia[]
     productCollectionID: string
-    priceUnit:string
+    priceUnit: string
     canBeAffiliated: boolean
     commission: number
     properties: ProductProperty[]
