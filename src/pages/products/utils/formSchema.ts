@@ -10,26 +10,28 @@ export const validationSchema = object().shape({
         .required('At least one media item is required'),
     productCollectionID: string().required('Product collection is required'),
     canBeAffiliated: boolean(),
-    commission: number().when('canBeAffiliated', {
-        is: true,
-        then: (schema) => schema
-            .min(1, 'Commission must be at least 1%')
-            .max(100, 'Commission must not exceed 100%')
-            .typeError('Please enter a valid number')
-            .required('Please enter a valid commission percentage between 1 and 100'),
-        otherwise: (schema) => schema.nullable(),
-    }),
+    commission: number()
+        .when('canBeAffiliated', {
+            is: true,
+            then: (schema) => schema
+                .min(1, 'Commission must be at least 1%')
+                .max(100, 'Commission must not exceed 100%')
+                .typeError('Please enter a valid number')
+                .required('Please enter a valid commission percentage between 1 and 100'),
+            otherwise: (schema) => schema.nullable(),
+        }),
     sku: array().of(object().shape({
         price: number()
             .required('Price is required for all SKUs')
             .positive('Price must be greater than 0'),
-        quantity: number().when('product_type', {
-            is: 'PRINT_ON_DEMAND',
-            then: (schema) => schema.nullable(),
-            otherwise: (schema) => schema
-                .required('Quantity is required for all SKUs')
-                .min(1, 'Quantity must be at least 1'),
-        }),
+        quantity: number()
+            .when('product_type', {
+                is: 'PRINT_ON_DEMAND',
+                then: (schema) => schema.nullable(),
+                otherwise: (schema) => schema
+                    .required('Quantity is required for all SKUs')
+                    .min(1, 'Quantity must be at least 1'),
+            }),
         dimensions: object().shape({
             height: number().required('Height is required').positive('Height must be greater than 0'),
             width: number().required('Width is required').positive('Width must be greater than 0'),
@@ -37,13 +39,14 @@ export const validationSchema = object().shape({
         }).when('product_type', {
             is: 'NORMAL',
             then: (schema) => schema.required('Please enter packaging size property for all SKUs'),
-            otherwise: (schema) => schema.nullable(),
+            otherwise: (schema) => schema.strip()
         }),
-        weight: number().nullable().when('product_type', {
-            is: 'NORMAL',
-            then: (schema) => schema.required('Weight is required').positive('Weight must be greater than 0'),
-            otherwise: (schema) => schema.nullable()
-        }),
+        weight: number()
+            .nullable().when('product_type', {
+                is: 'NORMAL',
+                then: (schema) => schema.required('Weight is required').positive('Weight must be greater than 0'),
+                otherwise: (schema) => schema.nullable()
+            }),
     })
     ).min(1, 'At least one SKU is required').required('SKU information is required'),
     m2m_positions: array()
@@ -55,9 +58,7 @@ export const validationSchema = object().shape({
                 return !positions.length || (m2m_services && m2m_services.length > 0)
             }
         ),
-    artwork: string()
-        .nullable(), // Artwork is optional and does not depend on position
-
+    artwork: string().nullable(), // Artwork is optional and does not depend on position
     artwork_position: string()
         .nullable() // Artwork position is optional unless artwork is provided
         .when('artwork', {
@@ -65,10 +66,7 @@ export const validationSchema = object().shape({
             then: (schema) => schema.required('Artwork position is required when artwork is provided'),
             otherwise: (schema) => schema.nullable(), // Keep optional if no artwork
         }),
-
-    artwork2: string()
-        .nullable(), // Artwork2 is optional and does not depend on position
-
+    artwork2: string().nullable(), // Artwork2 is optional and does not depend on position
     artwork2_position: string()
         .nullable() // Artwork2 position is optional unless artwork2 is provided
         .when('artwork2', {
@@ -76,7 +74,6 @@ export const validationSchema = object().shape({
             then: (schema) => schema.required('Artwork2 position is required when artwork2 is provided'),
             otherwise: (schema) => schema.nullable(), // Keep optional if no artwork2
         }),
-
     launchDate: string()
         .nullable()
         .test(
