@@ -4,7 +4,7 @@ import AppTypography from '../typography/AppTypography'
 
 interface Iprops extends BadgeProps {
     text: string | number
-    status?: "green" | "red" | "gray"
+    status?: "green" | "red" | "gray" | "yellow" | "custom" 
     icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
 
@@ -18,6 +18,10 @@ function AppBadge(props: Iprops) {
                 return "red"
             case "gray":
                 return "gray"
+            case "yellow":
+                return "#ffd9511a"
+            case "custom":
+                return " "    
             default:
                 return "green"
         }
