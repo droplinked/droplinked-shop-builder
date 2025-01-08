@@ -21,7 +21,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
     const handlePopoverOpen = () => canAddVariants && onOpen()
 
     const handleDropdownOptionClick = (selectedVariant: string) => {
-        setInputValue('')
+        setInputValue(selectedVariant)
         const existingProperty = properties.find(property => property.title === selectedVariant)
 
         if (existingProperty) setLocalProperty({ ...existingProperty })
@@ -77,7 +77,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
             </PopoverTrigger>
 
             <PopoverContent
-                width="534px"
+                width="642px"
                 display="flex"
                 flexDirection="column"
                 gap={2}
