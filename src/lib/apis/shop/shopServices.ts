@@ -8,7 +8,6 @@ import {
 	IGetShopsCommunityService,
 	IpaymentCreateService,
 	IPostWithdrawCircleWallet,
-	IproductService,
 	IrecordedShopService,
 	IshopInfoService,
 	IshopPublicRecordedService,
@@ -20,7 +19,7 @@ import {
 	ShopDNSInformation,
 	ShopOAuth2Client,
 	UserExtraShopResponse,
-	UserShop,
+	UserShop
 } from './interfaces';
 
 export const shopService = ({ shopName }: IshopService) =>
@@ -42,8 +41,8 @@ export const shopPublicRecordedService = ({ page, s }: IshopPublicRecordedServic
 export const recordedShopService = ({ shopName }: IrecordedShopService) =>
 	axiosInstance.get(`shop/public/recorded/${shopName}`);
 
-export const productService = ({ productID }: IproductService) =>
-	axiosInstance.get(`product/${productID}`);
+export const productService = (productId: string) =>
+	axiosInstance.get(`product/${productId}`)
 
 export const shopInfoService = ({ shopName }: IshopInfoService) =>
 	axiosInstance.get(`shop/shopInfo/${shopName}`);

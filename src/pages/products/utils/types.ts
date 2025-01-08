@@ -68,42 +68,58 @@ export interface DigitalDetails {
 export type PublishStatus = "PUBLISHED" | "DRAFTED"
 
 export interface Product {
+    // Identifiers
     _id?: string
     ownerID?: string
+    prodviderID: string
+    custome_external_id: string
+
+    // Product Type and Classification
     product_type: ProductType
+    productCollectionID: string
+    mainCategory?: string
+    subCategories?: string[]
+
+    // Product Details
     title: string
     description: string
+    keywords: string[]
     media: ProductMedia[]
-    productCollectionID: string
+    thumb: string
+
+    // Pricing and Commission
     priceUnit: string
-    canBeAffiliated: boolean
+    shippingType: string
+    shippingPrice: number
     commission: number
+    canBeAffiliated: boolean
+
+    // Availability and Status
+    purchaseAvailable: boolean
+    isAddToCartDisabled?: boolean
+    publish_product: boolean
+    publish_status?: PublishStatus
+    pre_purchase_data_fetch?: boolean
+    launchDate?: string
+
+    // Properties and Variants
     properties: ProductProperty[]
     sku: SKU[]
-    shippingType: string,
-    digitalDetail?: DigitalDetails
-    keywords: string[]
-    purchaseAvailable: boolean
-    publish_product: boolean
-    prodviderID: string
+
+    // POD and Printing Details
     pod_blank_product_id?: string
     printful_template_id?: string
     technique?: string
+    printful_option_data?: any
     artwork: string
     artwork2: string
     artwork_position: string
     artwork2_position: string
     m2m_positions: string[]
-    thumb: string
+    m2m_positions_options: any[]
     m2m_services?: string[]
     positions?: ProductPosition
-    custome_external_id: string
-    m2m_positions_options: any[]
-    mainCategory?: string
-    subCategories?: string[]
-    isAddToCartDisabled?: boolean
-    pre_purchase_data_fetch?: boolean
-    printful_option_data?: any
-    launchDate?: string
-    publish_status?: PublishStatus
+
+    // Digital Product Details
+    digitalDetail?: DigitalDetails
 }

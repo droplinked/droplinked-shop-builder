@@ -1,6 +1,6 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
-import useProducts from 'functions/hooks/useProducts/useProducts'
+import useProducts from 'functions/hooks/products/useProducts'
 import useModalHandlers from 'pages/products/hooks/useModalHandlers'
 import React, { useEffect, useState } from 'react'
 import ImportProductModal from './components/ImportProductModal/ImportProductModal'
@@ -11,16 +11,23 @@ import ProductTable from './components/ProductTable/ProductTable'
 import useProductPageStore from './stores/ProductPageStore'
 
 function ProductsV2() {
-    const selectedProductType = useProductPageStore(s => s.selectedProductType)
+    const { selectedProductType, editingProductId } = useProductPageStore(s => ({
+        selectedProductType: s.selectedProductType,
+        editingProductId: s.editingProductId
+    }))
+
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
+
     const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
+
     const productsList = useProducts(debouncedSearchTerm)
     const products = productsList.data?.pages?.flatMap(page => page.data.data.data) || []
 
     useEffect(() => {
-        if (selectedProductType) productFormDrawer.onOpen()
-    }, [selectedProductType])
+        if (selectedProductType || editingProductId)
+            productFormDrawer.onOpen()
+    }, [selectedProductType, editingProductId])
 
     return (
         <>
@@ -30,20 +37,21 @@ function ProductsV2() {
                     onReorderModalOpen={productReorderModal.onOpen}
                 />
 
-                {(products.length || productsList.isLoading) &&
+                {(products.length || productsList.isLoading) && (
                     <PageGrid.Actions
                         search={{
                             value: searchTerm,
                             onChange: (e) => setSearchTerm(e.target.value)
                         }}
                     />
-                }
+                )}
 
                 <PageGrid.Content>
                     <ProductTable productsList={productsList} />
                 </PageGrid.Content>
             </PageGrid.Root>
 
+            {/* Modals */}
             <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
             <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />

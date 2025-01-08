@@ -89,40 +89,58 @@ export const validationSchema = object().shape({
 })
 
 export const initialValues: Product = {
+    // Identifiers
+    _id: undefined,
+    ownerID: undefined,
+    prodviderID: null,
+    custome_external_id: null,
+
+    // Product Type and Classification
     product_type: "NORMAL",
+    productCollectionID: "",
+    mainCategory: null,
+    subCategories: [],
+
+    // Product Details
     title: "",
     description: "",
+    keywords: [],
     media: [],
-    productCollectionID: "",
+    thumb: "",
+
+    // Pricing and Commission
     priceUnit: "USD",
-    canBeAffiliated: false,
+    shippingType: "EASY_POST",
+    shippingPrice: 0,
     commission: 1,
+    canBeAffiliated: false,
+
+    // Availability and Status
+    purchaseAvailable: true,
+    isAddToCartDisabled: false,
+    publish_product: true,
+    publish_status: "PUBLISHED",
+    pre_purchase_data_fetch: false,
+    launchDate: null,
+
+    // Properties and Variants
     properties: [],
     sku: [],
-    shippingType: "EASY_POST",
-    digitalDetail: { chain: "" },
-    keywords: [],
-    purchaseAvailable: true,
+
+    // POD and Printing Details
     pod_blank_product_id: null,
     printful_template_id: null,
     technique: null,
-    publish_product: true,
-    prodviderID: null,
+    printful_option_data: null,
     artwork: null,
     artwork2: null,
-    m2m_positions: [],
     artwork_position: null,
     artwork2_position: null,
-    thumb: "",
+    m2m_positions: [],
+    m2m_positions_options: [],
     m2m_services: [],
     positions: null,
-    custome_external_id: null,
-    m2m_positions_options: [],
-    mainCategory: null,
-    subCategories: [],
-    isAddToCartDisabled: false,
-    pre_purchase_data_fetch: false,
-    printful_option_data: null,
-    launchDate: null,
-    publish_status: "PUBLISHED"
+
+    // Digital Product Details
+    digitalDetail: { chain: "" }
 }

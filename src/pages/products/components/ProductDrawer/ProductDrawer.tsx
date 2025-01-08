@@ -1,3 +1,5 @@
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import useProduct from 'functions/hooks/products/useProduct'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import ProductDrawerLayout from './ProductDrawerLayout'
@@ -9,7 +11,14 @@ interface Props {
 }
 
 function ProductDrawer({ isOpen, onClose }: Props) {
-    const resetProductPageState = useProductPageStore(s => s.resetProductPageState)
+    const { selectedProductType, editingProductId, resetProductPageState } = useProductPageStore(state => ({
+        selectedProductType: state.selectedProductType,
+        editingProductId: state.editingProductId,
+        resetProductPageState: state.resetProductPageState
+    }))
+
+    const { isFetching, data } = useProduct(editingProductId)
+    const editingProduct = data?.data?.data
 
     const handleDrawerClose = () => {
         resetProductPageState()
@@ -17,8 +26,20 @@ function ProductDrawer({ isOpen, onClose }: Props) {
     }
 
     return (
-        <ProductDrawerLayout isOpen={isOpen} onDrawerClose={handleDrawerClose}>
-            <ProductForm onDrawerClose={handleDrawerClose} />
+        <ProductDrawerLayout
+            isOpen={isOpen}
+            onDrawerClose={handleDrawerClose}
+        >
+            {
+                isFetching ?
+                    <LoadingComponent height="100%" />
+                    :
+                    <ProductForm
+                        selectedProductType={selectedProductType}
+                        onDrawerClose={handleDrawerClose}
+                        product={editingProduct}
+                    />
+            }
         </ProductDrawerLayout>
     )
 }

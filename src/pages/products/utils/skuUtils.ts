@@ -86,13 +86,13 @@ export function convertPropertiesToPODSKUs(formValues: Product): SKU[] {
     return createSKUs(properties, formValues, [], true)
 }
 
-// Function to update SKUs on variant change (unchanged)
+// Function to update SKUs on variant change
 export function updateSKUsOnVariantChange(params: { properties: ProductProperty[], currentSKUs: SKU[] }): SKU[] {
     const { properties, currentSKUs } = params
     return properties.length === 0 ? [] : createSKUs(properties, { properties, sku: currentSKUs } as any)
 }
 
-// Function to update properties on SKU deletion (unchanged)
+// Function to update properties on SKU deletion
 export function updatePropertiesOnSKUDelete(properties: ProductProperty[], skus: SKU[]): ProductProperty[] {
     const usedOptions = new Set<string>()
 
@@ -124,4 +124,41 @@ export function updatePropertiesOnSKUDelete(properties: ProductProperty[], skus:
         .filter((property): property is ProductProperty => property !== null)
 
     return updatedProperties
+}
+
+// Converts an array of SKUs into ProductProperty format
+export function convertSKUsToProperties(items: Array<any>): ProductProperty[] {
+    const propertiesMap: Record<string, ProductProperty> = {}
+
+    items.forEach((sku) => {
+        sku.options?.forEach((option) => {
+            const variantName = option.variantName || ""
+
+            if (!variantName) return
+
+            // Initialize the property if it doesn't exist
+            if (!propertiesMap[variantName]) {
+                propertiesMap[variantName] = {
+                    title: variantName,
+                    value: option.variantID || variantName,
+                    isCustom: !['Size', 'Color'].includes(variantName),
+                    items: [],
+                }
+            }
+
+            // Avoid adding duplicate items
+            const alreadyExists = propertiesMap[variantName].items.some(
+                (item) => item.value === option.value && item.caption === option.caption
+            )
+            if (!alreadyExists) {
+                propertiesMap[variantName].items.push({
+                    value: option.value,
+                    caption: option.caption,
+                })
+            }
+        })
+    })
+
+    // Convert properties map into an array
+    return Object.values(propertiesMap)
 }

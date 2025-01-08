@@ -29,7 +29,6 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
     let recordTransactionHash = null
 
     const handleSubmit = async (values: Product) => {
-        console.log("values", values)
         const { product_type, publish_status, sku } = values
         const isSavingAsDraft = publish_status === 'DRAFTED'
 
@@ -46,7 +45,6 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
                 const response = await createProductService({ ...values, publish_product: !shouldRecordProduct })
                 const { _id, ownerID, skuIDs } = response.data.data
                 savedProduct = { ...values, _id, ownerID, sku: skuIDs }
-                console.log("savedProduct", savedProduct)
             }
 
             if (shouldRecordProduct) {

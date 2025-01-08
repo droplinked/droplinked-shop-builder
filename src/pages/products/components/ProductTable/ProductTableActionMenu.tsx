@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ConfirmationModal from './components/ConfirmationModal'
@@ -13,13 +14,15 @@ interface Props {
 }
 
 function ProductTableActionMenu({ product }: Props) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
+    const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const { onOpen: onShareModalOpen, onClose: onShareModalClose, isOpen: isShareModalOpen } = useDisclosure()
     const { onOpen: onDetailsModalOpen, onClose: onDetailsModalClose, isOpen: isDetailsModalOpen } = useDisclosure()
     const { onOpen: onDropInfoModalOpen, onClose: onDropInfoModalClose, isOpen: isDropInfoModalOpen } = useDisclosure()
 
-    const navigate = useNavigate()
     const actions = [
         {
             title: "Details",
@@ -28,7 +31,7 @@ function ProductTableActionMenu({ product }: Props) {
         },
         {
             title: "Edit",
-            onClick: () => console.log("Hi"),
+            onClick: () => updateProductPageState("editingProductId", product._id),
             icon: <AppIcons.EditOutlined />
         },
         {

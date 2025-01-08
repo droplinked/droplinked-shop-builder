@@ -1,24 +1,25 @@
 import { useDisclosure } from '@chakra-ui/react'
 import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecordModal'
 import { Form, Formik, FormikProvider } from 'formik'
+import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
 import useProductSubmission from 'pages/products/hooks/useProductSubmission'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
-import { Product } from 'pages/products/utils/types'
+import getFormInitialValues from 'pages/products/utils/formHelpers'
+import { validationSchema } from 'pages/products/utils/formSchema'
+import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
-import { useQueryClient } from 'react-query'
 import FormContent from './FormContent'
 import ProductDrawerFooter from './ProductDrawerFooter'
 import ProductDrawerHeader from './ProductDrawerHeader'
 
 interface Props {
+    selectedProductType: ProductType
     onDrawerClose: () => void
+    product?: any
 }
 
-function ProductForm({ onDrawerClose }: Props) {
-    const queryClient = useQueryClient()
+function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
+    const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const selectedProductType = useProductPageStore(s => s.selectedProductType)
 
     const { handleSubmit, selectedChain, recordProduct } = useProductSubmission({
         closeProductFormDrawer: onDrawerClose,
@@ -26,21 +27,16 @@ function ProductForm({ onDrawerClose }: Props) {
         closeCircleModal: handleCircleModalClose
     })
 
-    const formInitialValues: Product = {
-        ...initialValues,
-        product_type: selectedProductType
-    }
-
     function handleCircleModalClose() {
         onClose()
         onDrawerClose()
-        queryClient.invalidateQueries(["PRODUCTS"])
+        invalidateProductsQuery()
     }
 
     return (
         <>
             <Formik
-                initialValues={formInitialValues}
+                initialValues={getFormInitialValues({ product, selectedProductType })}
                 validationSchema={validationSchema}
                 validateOnChange={false}
                 validateOnBlur={false}

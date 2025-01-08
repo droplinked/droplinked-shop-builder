@@ -18,10 +18,6 @@ export interface IrecordedShopService {
     shopName: string;
 }
 
-export interface IproductService {
-    productID: string;
-}
-
 export interface IshopSocial {
     discordURL?: string;
     instagramURL?: string;

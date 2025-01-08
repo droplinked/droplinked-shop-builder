@@ -4,11 +4,11 @@ import Button from 'components/redesign/button/Button'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IproductState } from 'lib/apis/product/interfaces'
 import { duplicateProductService, productDeleteServices } from 'lib/apis/product/productServices'
 import React, { useState } from 'react'
-import { useQueryClient } from 'react-query'
 
 interface Props {
     isOpen: boolean
@@ -18,7 +18,7 @@ interface Props {
 }
 
 function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
-    const queryClient = useQueryClient()
+    const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { showToast } = useAppToast()
     const [isLoading, setIsLoading] = useState(false)
 
@@ -43,7 +43,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
             if (action === "DELETE") await productDeleteServices({ productID: product._id })
             else await duplicateProductService(product._id)
             showToast({ message: actionMessages[action].successMessage, type: "success" })
-            queryClient.invalidateQueries(["PRODUCTS"])
+            invalidateProductsQuery()
         }
         catch (error) {
             showToast({ message: "Something went wrong. Please refresh or try again later.", type: "error" })
