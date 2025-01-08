@@ -12,7 +12,6 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
 
     const handleAction = (action: string) => {
         const isSavingAsDraft = action === 'save-as-draft'
-
         setFieldValue('publish_status', isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED')
         setFieldValue('publish_product', !isSavingAsDraft)
         handleSubmit()
@@ -27,7 +26,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
             css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
-            <Button type="button" variant="secondary" disabled={isSubmitting} onClick={onClose}>
+            <Button type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
                 Discard
             </Button>
             <Flex gap={4}>

@@ -16,7 +16,7 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
 
     // Automatically set default color value when the selected variant is "Color"
     useEffect(() => {
-        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#ffffff' : '' })
+        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
     }, [selectedVariant, setNewItem])
 
     function handleItemChange(field: 'value' | 'caption', value: string) {
@@ -30,7 +30,7 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
         if (!localProperty || isDuplicateItem(newItem)) return
         const updatedItems = [...localProperty.items, newItem]
         setLocalProperty({ ...localProperty, items: updatedItems })
-        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#ffffff' : '' })
+        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
     }
 
     function removeItem(itemIndex: number) {

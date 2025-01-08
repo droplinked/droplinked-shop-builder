@@ -1,6 +1,6 @@
 import { Box, Flex, FlexProps, Popover, PopoverContent, PopoverTrigger, Text } from "@chakra-ui/react"
 import React from "react"
-import { SketchPicker } from "react-color"
+import { ColorResult, SketchPicker } from "react-color"
 
 interface ColorPickerProps {
     color: string
@@ -9,6 +9,11 @@ interface ColorPickerProps {
 }
 
 function ColorPicker({ color, onColorChange, containerProps }: ColorPickerProps) {
+    function handleColorChange(updatedColor: ColorResult) {
+        const upperCaseColor = updatedColor.hex.toUpperCase()
+        onColorChange(upperCaseColor)
+    }
+
     return (
         <Popover placement="bottom-start" closeOnBlur>
             <PopoverTrigger>
@@ -45,7 +50,7 @@ function ColorPicker({ color, onColorChange, containerProps }: ColorPickerProps)
             >
                 <SketchPicker
                     color={color}
-                    onChange={(updatedColor) => onColorChange(updatedColor.hex)}
+                    onChange={handleColorChange}
                     disableAlpha
                 />
             </PopoverContent>
