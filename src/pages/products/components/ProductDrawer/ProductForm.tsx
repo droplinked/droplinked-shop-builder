@@ -4,7 +4,7 @@ import { Form, Formik, FormikProvider } from 'formik'
 import useProductSubmission from 'pages/products/hooks/useProductSubmission'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
-import { ProductFormValues } from 'pages/products/utils/types'
+import { Product } from 'pages/products/utils/types'
 import React from 'react'
 import { useQueryClient } from 'react-query'
 import FormContent from './FormContent'
@@ -26,7 +26,7 @@ function ProductForm({ onDrawerClose }: Props) {
         closeCircleModal: handleCircleModalClose
     })
 
-    const formInitialValues: ProductFormValues = {
+    const formInitialValues: Product = {
         ...initialValues,
         product_type: selectedProductType
     }

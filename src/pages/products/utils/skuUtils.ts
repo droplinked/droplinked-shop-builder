@@ -1,8 +1,8 @@
 import useProductPageStore from "../stores/ProductPageStore"
-import { attributeToIdMap, ProductFormValues, ProductProperty, SKU, SKUOption } from "./types"
+import { attributeToIdMap, Product, ProductProperty, SKU, SKUOption } from "./types"
 
 // Helper function to calculate rawPrice and externalID for POD
-function calculatePODDetails(options: SKUOption[], formValues: ProductFormValues): {
+function calculatePODDetails(options: SKUOption[], formValues: Product): {
     rawPrice: number,
     externalID: string
 } {
@@ -31,7 +31,7 @@ function calculatePODDetails(options: SKUOption[], formValues: ProductFormValues
 // Function to create SKUs recursively
 function createSKUs(
     properties: ProductProperty[],
-    formValues: ProductFormValues,
+    formValues: Product,
     currentOptions: SKUOption[] = [],
     isPOD: boolean = false
 ): SKU[] {
@@ -76,7 +76,7 @@ function createSKUs(
 }
 
 // Updated function specifically for POD products
-export function convertPropertiesToPODSKUs(formValues: ProductFormValues): SKU[] {
+export function convertPropertiesToPODSKUs(formValues: Product): SKU[] {
     const { properties, product_type } = formValues
 
     if (product_type !== "PRINT_ON_DEMAND") {

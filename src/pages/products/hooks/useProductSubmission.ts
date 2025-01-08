@@ -7,7 +7,7 @@ import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
 import useProductPageStore from '../stores/ProductPageStore'
-import { ProductFormValues, ProductType } from '../utils/types'
+import { Product, ProductType } from '../utils/types'
 
 interface Params {
     closeProductFormDrawer: () => void
@@ -28,7 +28,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
     let selectedChain = null
     let recordTransactionHash = null
 
-    const handleSubmit = async (values: ProductFormValues) => {
+    const handleSubmit = async (values: Product) => {
         console.log("values", values)
         const { product_type, publish_status, sku } = values
         const isSavingAsDraft = publish_status === 'DRAFTED'

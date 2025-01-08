@@ -9,17 +9,16 @@ import DropInfoModal from './components/drop-info-modal/DropInfoModal'
 import ProductShareModal from './components/share-modal/ShareModal'
 
 interface Props {
-    product: any // this was any. I just added refetch interface
-    refetch: () => void
+    product: any
 }
 
-function ProductTableActionMenu({ product, refetch }: Props) {
+function ProductTableActionMenu({ product }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
     const { onOpen: onShareModalOpen, onClose: onShareModalClose, isOpen: isShareModalOpen } = useDisclosure()
     const { onOpen: onDetailsModalOpen, onClose: onDetailsModalClose, isOpen: isDetailsModalOpen } = useDisclosure()
     const { onOpen: onDropInfoModalOpen, onClose: onDropInfoModalClose, isOpen: isDropInfoModalOpen } = useDisclosure()
-    
+
     const navigate = useNavigate()
     const actions = [
         {
@@ -42,7 +41,6 @@ function ProductTableActionMenu({ product, refetch }: Props) {
         {
             ...product.product_type === "PRINT_ON_DEMAND" && {
                 title: "Order POD Sample",
-                //FIXME: Fix this route when you changed route from V2 to normal products route
                 onClick: () => navigate("/analytics/products/order/" + product._id),
                 icon: <AppIcons.Shirt />
             },
@@ -74,7 +72,7 @@ function ProductTableActionMenu({ product, refetch }: Props) {
     return (
         <>
             <TableMenu items={actions} />
-            <ConfirmationModal reFetch={refetch} onClose={onClose} isOpen={isOpen} product={product} type={isDeleteModal ? "DELETE" : "DUPLICATE"} />
+            <ConfirmationModal product={product} onClose={onClose} isOpen={isOpen} action={isDeleteModal ? "DELETE" : "DUPLICATE"} />
             <ProductShareModal product={product} close={onShareModalClose} open={isShareModalOpen} />
             <DetailsModal product={product} close={onDetailsModalClose} open={isDetailsModalOpen} />
             <DropInfoModal product={product} close={onDropInfoModalClose} open={isDropInfoModalOpen} />

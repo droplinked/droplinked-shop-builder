@@ -1,4 +1,4 @@
-import { ProductFormValues } from "pages/products/utils/types";
+import { Product } from "pages/products/utils/types";
 import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
 import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
@@ -19,7 +19,7 @@ import {
 export const getShopProductsService = ({ page, limit, filter }: IProductFetchParams) =>
     axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ""}`)
 
-export const createProductService = (productData: IproductState | ProductFormValues) =>
+export const createProductService = (productData: IproductState | Product) =>
     axiosInstance.post("product", productData)
 
 export const updateProductService = ({ productID, params }: IproductUpdateServices) =>

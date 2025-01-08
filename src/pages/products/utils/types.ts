@@ -67,7 +67,9 @@ export interface DigitalDetails {
 
 export type PublishStatus = "PUBLISHED" | "DRAFTED"
 
-export interface ProductFormValues {
+export interface Product {
+    _id?: string
+    ownerID?: string
     product_type: ProductType
     title: string
     description: string
@@ -83,7 +85,6 @@ export interface ProductFormValues {
     keywords: string[]
     purchaseAvailable: boolean
     publish_product: boolean
-
     prodviderID: string
     pod_blank_product_id?: string
     printful_template_id?: string

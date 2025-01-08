@@ -1,5 +1,5 @@
 import { array, boolean, number, object, string } from 'yup'
-import { ProductFormValues } from './types'
+import { Product } from './types'
 
 export const validationSchema = object().shape({
     product_type: string().required('Product type is required'),
@@ -88,7 +88,7 @@ export const validationSchema = object().shape({
         )
 })
 
-export const initialValues: ProductFormValues = {
+export const initialValues: Product = {
     product_type: "NORMAL",
     title: "",
     description: "",

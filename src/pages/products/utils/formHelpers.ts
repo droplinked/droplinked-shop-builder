@@ -1,6 +1,6 @@
-import { ProductFormValues } from "./types";
+import { Product } from "./types";
 
-export function processInitialValues(product: any): ProductFormValues {
+export function processInitialValues(product: any): Product {
     return {
         action: '',
     }

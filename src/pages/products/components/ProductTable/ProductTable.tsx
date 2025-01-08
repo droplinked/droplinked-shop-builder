@@ -18,7 +18,7 @@ interface Props {
 }
 
 function ProductTable({ productsList }: Props) {
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, refetch } = productsList
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = productsList
     const { shop: { currency } } = useAppStore()
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
@@ -61,7 +61,7 @@ function ProductTable({ productsList }: Props) {
             isLoading={isFetching}
             columns={columns}
             data={products}
-            renderActions={(product: any) => <ProductTableActionMenu refetch={refetch} product={product} />}
+            renderActions={(product: any) => <ProductTableActionMenu product={product} />}
             infiniteScroll={{ dataLength: products.length, hasMore: hasNextPage, next: fetchNextPage, isFetchingNextPage }}
         />
     )
