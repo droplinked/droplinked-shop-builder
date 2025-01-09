@@ -15,22 +15,32 @@ interface Props {
 function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: Props) {
     const [newItem, setNewItem] = useState<ProductPropertyItem>({ caption: '', value: '' })
 
-    // Automatically set default color value when the selected variant is "Color"
     useEffect(() => {
         setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
-    }, [selectedVariant, setNewItem])
+    }, [selectedVariant])
 
-    function handleItemChange(field: 'value' | 'caption', value: string) {
-        if (selectedVariant !== 'Color' && field === 'value') {
-            setNewItem({ value, caption: value })
+    function handleItemChange(field: 'value' | 'caption', value: string, itemIndex: number) {
+        const isLastItem = itemIndex === localProperty.items.length
+
+        if (isLastItem) {
+            setNewItem(prev => selectedVariant === 'Color'
+                ? { ...prev, [field]: value }
+                : { value, caption: value }
+            )
         }
-        else setNewItem(prevItem => ({ ...prevItem, [field]: value }))
+        else {
+            const updatedItems = [...localProperty.items]
+            updatedItems[itemIndex] = selectedVariant === 'Color'
+                ? { ...updatedItems[itemIndex], [field]: value }
+                : { value, caption: value }
+            setLocalProperty({ ...localProperty, items: updatedItems })
+        }
     }
 
     function addItem() {
-        if (!localProperty || isDuplicateItem(newItem)) return
-        const updatedItems = [...localProperty.items, newItem]
-        setLocalProperty({ ...localProperty, items: updatedItems })
+        if (!newItem.value.trim() || (selectedVariant === 'Color' && !newItem.caption.trim())) return
+        if (isDuplicateItem(newItem)) return
+        setLocalProperty({ ...localProperty, items: [...localProperty.items, newItem] })
         setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
     }
 
@@ -40,24 +50,24 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
     }
 
     function isDuplicateItem(item: ProductPropertyItem) {
-        return localProperty?.items.some(
+        return localProperty.items.some(
             existingItem => existingItem.caption === item.caption && existingItem.value === item.value
         )
     }
 
-    function renderInputFields(item: ProductPropertyItem) {
+    function renderInputFields(item: ProductPropertyItem, itemIndex: number) {
         return selectedVariant === 'Color' ?
             <>
                 <ColorPicker
                     color={item.value}
-                    onColorChange={color => handleItemChange('value', color)}
+                    onColorChange={color => handleItemChange('value', color, itemIndex)}
                     containerProps={{ height: '50px' }}
                 />
                 <Input
                     inputProps={{
                         placeholder: 'Color Name',
                         value: item.caption,
-                        onChange: e => handleItemChange('caption', e.target.value)
+                        onChange: e => handleItemChange('caption', e.target.value, itemIndex)
                     }}
                 />
             </>
@@ -66,40 +76,50 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
                 inputProps={{
                     placeholder: 'Enter Value',
                     value: item.value,
-                    onChange: e => handleItemChange('value', e.target.value)
+                    onChange: e => handleItemChange('value', e.target.value, itemIndex)
                 }}
             />
     }
 
     function renderItemButton(itemIndex: number) {
-        const isLastItem = itemIndex === (localProperty?.items?.length || 0)
+        const isLastItem = itemIndex === localProperty.items.length
         const isValidItem = newItem.value.trim() && (selectedVariant !== 'Color' || newItem.caption.trim())
 
         return isLastItem ?
-            <button type='button' disabled={!isValidItem} onClick={addItem}>
+            <button type="button" disabled={!isValidItem} onClick={addItem}>
                 <AppIcons.GreenPlus />
             </button>
             :
-            <button type='button' onClick={() => removeItem(itemIndex)}>
+            <button type="button" onClick={() => removeItem(itemIndex)}>
                 <AppIcons.RedTrash />
             </button>
     }
 
     return (
-        <FormControl label='Value'>
+        <FormControl label="Value">
             <Flex direction="column" gap={4}>
-                {[...(localProperty?.items || []), newItem].map((item, itemIndex) => (
+                {localProperty.items.map((item, index) => (
                     <Flex
-                        key={itemIndex}
+                        key={index}
                         flex={1}
                         alignItems="center"
                         gap={4}
                         sx={{ input: { fontSize: 16 } }}
                     >
-                        {renderInputFields(item)}
-                        {renderItemButton(itemIndex)}
+                        {renderInputFields(item, index)}
+                        {renderItemButton(index)}
                     </Flex>
                 ))}
+                {/* Render the newItem inputs separately as the last row */}
+                <Flex
+                    flex={1}
+                    alignItems="center"
+                    gap={4}
+                    sx={{ input: { fontSize: 16 } }}
+                >
+                    {renderInputFields(newItem, localProperty.items.length)}
+                    {renderItemButton(localProperty.items.length)}
+                </Flex>
             </Flex>
         </FormControl>
     )
