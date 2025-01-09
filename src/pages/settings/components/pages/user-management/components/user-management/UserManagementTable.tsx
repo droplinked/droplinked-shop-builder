@@ -1,15 +1,17 @@
 import { ColumnDef } from '@tanstack/react-table'
 import Table from 'components/redesign/table/Table'
 import { IInvitation } from 'lib/apis/user/interfaces'
-import { getInvitationsService } from 'lib/apis/user/services'
 import React from 'react'
-import { useQuery } from 'react-query'
 import UserNameColumn from './UserNameColumn'
 import StatusBadge from './StatusBadge'
 import EmptyView from './EmptyView'
 
-export default function UserManagementTable() {
-    const { isFetching, data } = useQuery({ queryKey: ["userManagementTable"], queryFn: () => getInvitationsService() })
+interface Props {
+    data: { data: IInvitation[] }
+    isFetching: boolean
+}
+
+export default function UserManagementTable({ data, isFetching }: Props) {
     const tableData = data?.data ?? []
 
     const columns: ColumnDef<IInvitation>[] = [
@@ -29,7 +31,7 @@ export default function UserManagementTable() {
         },
     ]
 
-    if (tableData.length === 0) {
+    if (tableData.length === 0 && !isFetching) {
         return <EmptyView />
     }
 

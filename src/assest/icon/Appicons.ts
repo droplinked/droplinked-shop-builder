@@ -287,8 +287,14 @@ import { ReactComponent as ExternalLink } from "./external-link.svg";
 import { ReactComponent as Asterisk } from "./asterisk.svg";
 import { ReactComponent as GreenSpeedometer } from "./green-speedometer.svg";
 import { ReactComponent as MedalStarOutline } from "./medal-star-outlined.svg";
+import { ReactComponent as AddUser } from "./add-user.svg";
+import { ReactComponent as EmailSign } from "./email-sign.svg";
+import { ReactComponent as SystemWarning } from "./system-warning.svg";
 
 const AppIcons = {
+    SystemWarning,
+    EmailSign,
+    AddUser,
     MedalStarOutline,
     GreenSpeedometer,
     Asterisk,
