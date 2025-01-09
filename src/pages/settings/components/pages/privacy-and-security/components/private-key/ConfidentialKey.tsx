@@ -1,5 +1,5 @@
 import { appDevelopment } from 'lib/utils/app/variable'
-import LearnMore from 'pages/settings/components/common/LearnMore'
+import LearnMore from 'pages/settings/components/common/NavigationLink'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import KeyContainer from './KeyContainer'
@@ -13,7 +13,7 @@ export default function ConfidentialKey() {
                 <KeyContainer />
             }
         >
-            <LearnMore to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`} target='_blank' />
+            <LearnMore title='Learn More' to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`} target='_blank' />
         </SectionContent>
     )
 }

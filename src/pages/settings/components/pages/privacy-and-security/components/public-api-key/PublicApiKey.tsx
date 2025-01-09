@@ -10,7 +10,7 @@ import { useQuery } from 'react-query'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { appDevelopment } from 'lib/utils/app/variable'
-import DocumentationLink from 'pages/settings/components/common/DocumentationLink'
+import NavigationLink from 'pages/settings/components/common/NavigationLink'
 
 
 export default function PublicApiKey() {
@@ -26,9 +26,10 @@ export default function PublicApiKey() {
                 <PremiumBadge />
             }
             rightContent={
-                <DocumentationLink
+                <NavigationLink
                     to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
                     target='_blank'
+                    title='API Documentation'
                 />
             }
         >

@@ -2,7 +2,13 @@ import AppIcons from "assest/icon/Appicons";
 import React from "react";
 import { Link, LinkProps } from "react-router-dom";
 
-export default function LearnMore(props: LinkProps) {
+interface NavigationLinkProps extends LinkProps {
+    reverse?: boolean;
+}
+
+export default function NavigationLink(props: NavigationLinkProps) {
+    const { reverse, ...linkProps } = props;
+
     return (
         <Link
             style={{
@@ -10,11 +16,12 @@ export default function LearnMore(props: LinkProps) {
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                fontWeight: 500
+                fontWeight: 500,
+                flexDirection: reverse ? 'row-reverse' : 'row'
             }}
-            {...props}
+            {...linkProps}
         >
-            Learn More
+            {props.title}
             <AppIcons.ExternalLink style={{ display: "inline-block" }} />
         </Link>
     );

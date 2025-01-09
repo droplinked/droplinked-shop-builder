@@ -5,7 +5,7 @@ import General from "../pages/general/General";
 import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity";
 import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
 import CreditAndCoupons from "../pages/credit-and-coupons/CreditAndCoupons";
-import UserManagement from "../pages/user-management/PrivacyAndSecurity";
+import UserManagement from "../pages/user-management/UserManagement";
 
 function TabsContent() {
     const [selectedTab, setSelectedTab] = useState("General");
