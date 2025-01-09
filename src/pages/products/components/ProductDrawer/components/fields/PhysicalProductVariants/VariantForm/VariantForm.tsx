@@ -14,18 +14,16 @@ interface Props {
 
 function VariantForm({ handleDiscard, editingVariant }: Props) {
     const { values: { properties, sku }, setFieldValue } = useProductForm()
-
-    const [selectedVariant, setSelectedVariant] = useState(editingVariant ?? '')
     const [localProperty, setLocalProperty] = useState(
-        properties.find(p => p.title === selectedVariant)
+        properties.find(p => p.title === editingVariant) || null
     )
 
     function saveToContext() {
-        if (!localProperty) return
+        if (!localProperty?.title) return
 
         const updatedProperties = [...properties]
-        const existingIndex = updatedProperties.findIndex(p => p.value === localProperty.value)
-        const isEmptyProperty = localProperty.items.length === 0
+        const existingIndex = updatedProperties.findIndex(p => p.value === localProperty?.value)
+        const isEmptyProperty = localProperty?.items?.length === 0
 
         if (existingIndex > -1) {
             isEmptyProperty
@@ -39,8 +37,6 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
         setFieldValue('properties', updatedProperties)
         setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
 
-        setLocalProperty(null)
-        setSelectedVariant('')
         handleDiscard()
     }
 
@@ -55,10 +51,8 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             {/* Allows selecting the variant type */}
             <FormControl label='Type'>
                 <VariantSelector
-                    key={selectedVariant}
-                    selectedVariant={selectedVariant}
-                    setSelectedVariant={setSelectedVariant}
                     properties={properties}
+                    localProperty={localProperty}
                     setLocalProperty={setLocalProperty}
                 />
             </FormControl>
@@ -68,7 +62,6 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
                 <VariantItemList
                     localProperty={localProperty}
                     setLocalProperty={setLocalProperty}
-                    selectedVariant={selectedVariant}
                 />
             )}
 

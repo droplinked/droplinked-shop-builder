@@ -9,28 +9,30 @@ import ColorPicker from './ColorPicker'
 interface Props {
     localProperty: ProductProperty
     setLocalProperty: (property: ProductProperty) => void
-    selectedVariant: string
 }
 
-function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: Props) {
+function VariantItemList({ localProperty, setLocalProperty }: Props) {
     const [newItem, setNewItem] = useState<ProductPropertyItem>({ caption: '', value: '' })
 
+    // Store the condition in a variable
+    const isColorVariant = localProperty?.title === 'Color' && !localProperty?.isCustom
+
     useEffect(() => {
-        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
-    }, [selectedVariant])
+        setNewItem({ caption: '', value: isColorVariant ? '#FFFFFF' : '' })
+    }, [isColorVariant])
 
     function handleItemChange(field: 'value' | 'caption', value: string, itemIndex: number) {
         const isLastItem = itemIndex === localProperty.items.length
 
         if (isLastItem) {
-            setNewItem(prev => selectedVariant === 'Color'
+            setNewItem(prev => isColorVariant
                 ? { ...prev, [field]: value }
                 : { value, caption: value }
             )
         }
         else {
             const updatedItems = [...localProperty.items]
-            updatedItems[itemIndex] = selectedVariant === 'Color'
+            updatedItems[itemIndex] = isColorVariant
                 ? { ...updatedItems[itemIndex], [field]: value }
                 : { value, caption: value }
             setLocalProperty({ ...localProperty, items: updatedItems })
@@ -38,10 +40,10 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
     }
 
     function addItem() {
-        if (!newItem.value.trim() || (selectedVariant === 'Color' && !newItem.caption.trim())) return
+        if (!newItem.value.trim() || (isColorVariant && !newItem.caption.trim())) return
         if (isDuplicateItem(newItem)) return
         setLocalProperty({ ...localProperty, items: [...localProperty.items, newItem] })
-        setNewItem({ caption: '', value: selectedVariant === 'Color' ? '#FFFFFF' : '' })
+        setNewItem({ caption: '', value: isColorVariant ? '#FFFFFF' : '' })
     }
 
     function removeItem(itemIndex: number) {
@@ -56,7 +58,7 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
     }
 
     function renderInputFields(item: ProductPropertyItem, itemIndex: number) {
-        return selectedVariant === 'Color' ?
+        return isColorVariant ?
             <>
                 <ColorPicker
                     color={item.value}
@@ -83,7 +85,7 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
 
     function renderItemButton(itemIndex: number) {
         const isLastItem = itemIndex === localProperty.items.length
-        const isValidItem = newItem.value.trim() && (selectedVariant !== 'Color' || newItem.caption.trim())
+        const isValidItem = newItem.value.trim() && (!isColorVariant || newItem.caption.trim())
 
         return isLastItem ?
             <button type="button" disabled={!isValidItem} onClick={addItem}>

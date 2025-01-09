@@ -1,24 +1,26 @@
 import { Button, Flex, Popover, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import Input from 'components/redesign/input/Input'
 import { attributeToIdMap, ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface Props {
-    selectedVariant: string
-    setSelectedVariant: (value: string) => void
     properties: ProductProperty[]
+    localProperty: ProductProperty | null
     setLocalProperty: (property: ProductProperty | null) => void
 }
 
-function VariantSelector({ selectedVariant, setSelectedVariant, properties, setLocalProperty }: Props) {
+function VariantSelector({ properties, setLocalProperty, localProperty }: Props) {
     const dropdownOptions = ["Color", "Size"]
-    const [inputValue, setInputValue] = useState(selectedVariant)
+    const [inputValue, setInputValue] = useState(localProperty?.title)
     const inputRef = useRef<HTMLInputElement>(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const canAddVariants = properties.length < 2
-
-    const handlePopoverOpen = () => canAddVariants && onOpen()
+    const isPredefinedOrEmpty = dropdownOptions.includes(inputValue) || !inputValue
+    const buttonText = isPredefinedOrEmpty
+        ? 'Create Custom Variant'
+        : `Create "${inputValue}"`
 
     const handleDropdownOptionClick = (selectedVariant: string) => {
         setInputValue(selectedVariant)
@@ -34,21 +36,38 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
             })
         }
 
-        setSelectedVariant(selectedVariant)
         onClose()
+    }
+
+    const handleCustomVariantChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        setLocalProperty({ ...localProperty, value, title: value })
     }
 
     useEffect(() => {
         if (!isOpen) {
             inputRef.current?.blur()
-            setInputValue(selectedVariant)
+            setInputValue(localProperty?.title || '')
         }
-    }, [isOpen, inputRef, setInputValue, selectedVariant])
+    }, [isOpen, inputRef, setInputValue, localProperty])
+
+    if (localProperty?.isCustom) {
+        return (
+            <Input
+                inputProps={{
+                    fontSize: 16,
+                    placeholder: 'e.g., Storage, Material',
+                    value: localProperty.value,
+                    onChange: handleCustomVariantChange
+                }}
+            />
+        )
+    }
 
     return (
         <Popover
             isOpen={isOpen}
-            onOpen={handlePopoverOpen}
+            onOpen={canAddVariants ? onOpen : () => { }}
             onClose={onClose}
             placement="bottom-start"
             initialFocusRef={inputRef}
@@ -69,6 +88,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                         value={inputValue}
                         disabled={!canAddVariants}
                         maxLength={30}
+                        autoCorrect="off"
                         placeholder="Color, Size or Custom Variant"
                         onChange={e => setInputValue(e.target.value)}
                     />
@@ -99,7 +119,7 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                 {dropdownOptions.map(variant => (
                     <Button
                         key={variant}
-                        bgColor={selectedVariant === variant ? '#292929' : 'unset'}
+                        bgColor={localProperty?.title === variant ? '#292929' : 'unset'}
                         color="#FFF"
                         onClick={() => handleDropdownOptionClick(variant)}
                     >
@@ -107,20 +127,20 @@ function VariantSelector({ selectedVariant, setSelectedVariant, properties, setL
                     </Button>
                 ))}
 
-                {inputValue !== selectedVariant && (
-                    <Button
-                        display="flex"
-                        alignItems="center"
-                        gap={3}
-                        color="#179EF8"
-                        sx={{ path: { stroke: '#179EF8' } }}
-                        bg="unset"
-                        onClick={() => handleDropdownOptionClick(inputValue)}
-                    >
-                        <AppIcons.BlackPlus />
-                        {`Create "${inputValue}"`}
-                    </Button>
-                )}
+                <Button
+                    display="flex"
+                    alignItems="center"
+                    gap={3}
+                    bg="unset"
+                    color="#179EF8"
+                    sx={{ path: { stroke: '#179EF8' } }}
+                    onClick={() =>
+                        handleDropdownOptionClick(isPredefinedOrEmpty ? '' : inputValue)
+                    }
+                >
+                    <AppIcons.BlackPlus />
+                    {buttonText}
+                </Button>
             </PopoverContent>
         </Popover>
     )
