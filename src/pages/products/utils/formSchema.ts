@@ -104,8 +104,8 @@ export const initialValues: Product = {
     // Product Details
     title: "",
     description: "",
-    keywords: [],
     media: [],
+    tags: [],
     thumb: "",
 
     // Pricing and Commission

@@ -28,8 +28,8 @@ export default function getFormInitialValues({ product, selectedProductType }: P
         // Product Details
         title: product.title,
         description: product.description,
-        keywords: [],
         media: product.media,
+        tags: product.tags || [],
         thumb: product.thumb,
 
         // Pricing and Commission

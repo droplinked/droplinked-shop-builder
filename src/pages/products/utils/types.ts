@@ -83,8 +83,8 @@ export interface Product {
     // Product Details
     title: string
     description: string
-    keywords: string[]
     media: ProductMedia[]
+    tags?: string[]
     thumb: string
 
     // Pricing and Commission
