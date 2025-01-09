@@ -3,6 +3,7 @@ import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import { ProductProperty, ProductPropertyItem } from 'pages/products/utils/types'
 import React, { useEffect, useState } from 'react'
+import FormControl from '../../../common/FormControl'
 import ColorPicker from './ColorPicker'
 
 interface Props {
@@ -85,20 +86,22 @@ function VariantItemList({ localProperty, setLocalProperty, selectedVariant }: P
     }
 
     return (
-        <Flex direction="column" gap={4}>
-            {[...(localProperty?.items || []), newItem].map((item, itemIndex) => (
-                <Flex
-                    key={itemIndex}
-                    flex={1}
-                    alignItems="center"
-                    gap={4}
-                    sx={{ input: { fontSize: 16 } }}
-                >
-                    {renderInputFields(item)}
-                    {renderItemButton(itemIndex)}
-                </Flex>
-            ))}
-        </Flex>
+        <FormControl label='Value'>
+            <Flex direction="column" gap={4}>
+                {[...(localProperty?.items || []), newItem].map((item, itemIndex) => (
+                    <Flex
+                        key={itemIndex}
+                        flex={1}
+                        alignItems="center"
+                        gap={4}
+                        sx={{ input: { fontSize: 16 } }}
+                    >
+                        {renderInputFields(item)}
+                        {renderItemButton(itemIndex)}
+                    </Flex>
+                ))}
+            </Flex>
+        </FormControl>
     )
 }
 

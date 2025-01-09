@@ -3,8 +3,8 @@ import { printServices } from 'lib/apis/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import { useQuery } from 'react-query'
+import FormControl from '../../../common/FormControl'
 import LoadingPlaceholder from '../../../common/LoadingPlaceholder'
-import M2MConfigSection from './M2MConfigSection'
 
 export default function WalletOptions() {
     const { data, isFetching } = useQuery({
@@ -25,7 +25,7 @@ export default function WalletOptions() {
     }
 
     return (
-        <M2MConfigSection title="Wallet Options">
+        <FormControl label="Wallet Options">
             {
                 isFetching ?
                     <LoadingPlaceholder
@@ -45,7 +45,7 @@ export default function WalletOptions() {
                         ))}
                     </SimpleGrid>
             }
-        </M2MConfigSection>
+        </FormControl>
     )
 }
 

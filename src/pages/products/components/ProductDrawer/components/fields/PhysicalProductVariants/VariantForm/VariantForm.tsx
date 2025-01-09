@@ -3,6 +3,7 @@ import Button from 'components/redesign/button/Button'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import React, { useState } from 'react'
+import FormControl from '../../../common/FormControl'
 import VariantItemList from './VariantItemList'
 import VariantSelector from './VariantSelector'
 
@@ -45,13 +46,15 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             padding={4}
         >
             {/* Allows selecting the variant type */}
-            <VariantSelector
-                key={selectedVariant}
-                selectedVariant={selectedVariant}
-                setSelectedVariant={setSelectedVariant}
-                properties={properties}
-                setLocalProperty={setLocalProperty}
-            />
+            <FormControl label='Type'>
+                <VariantSelector
+                    key={selectedVariant}
+                    selectedVariant={selectedVariant}
+                    setSelectedVariant={setSelectedVariant}
+                    properties={properties}
+                    setLocalProperty={setLocalProperty}
+                />
+            </FormControl>
 
             {/* Item list */}
             {localProperty && (
