@@ -24,10 +24,17 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
         if (!localProperty) return
 
         const updatedProperties = [...properties]
-        const existingIndex = properties.findIndex(p => p.value === localProperty.value)
+        const existingIndex = updatedProperties.findIndex(p => p.value === localProperty.value)
+        const isEmptyProperty = localProperty.items.length === 0
 
-        if (existingIndex > -1) updatedProperties[existingIndex] = localProperty
-        else updatedProperties.push(localProperty)
+        if (existingIndex > -1) {
+            isEmptyProperty
+                ? updatedProperties.splice(existingIndex, 1) // Remove if empty
+                : updatedProperties[existingIndex] = localProperty // Update existing
+        }
+        else if (!isEmptyProperty) {
+            updatedProperties.push(localProperty) // Add new property only if not empty
+        }
 
         setFieldValue('properties', updatedProperties)
         setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
