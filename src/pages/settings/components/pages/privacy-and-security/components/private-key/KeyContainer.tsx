@@ -15,7 +15,7 @@ export default function KeyContainer() {
         getShopPrivateKeyService,
         { enabled: hasPermission("shopfront_apis") }
     );
-    const privateKey = data?.data.data.privateKey;
+    const privateKey = data?.data.data.privateKey ?? "";
     const [isVisible, setIsVisible] = useState(false);
 
     if (isFetching) {

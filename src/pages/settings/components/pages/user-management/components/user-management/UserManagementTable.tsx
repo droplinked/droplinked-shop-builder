@@ -6,6 +6,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import UserNameColumn from './UserNameColumn'
 import StatusBadge from './StatusBadge'
+import EmptyView from './EmptyView'
 
 export default function UserManagementTable() {
     const { isFetching, data } = useQuery({ queryKey: ["userManagementTable"], queryFn: () => getInvitationsService() })
@@ -27,6 +28,10 @@ export default function UserManagementTable() {
             cell: info => <StatusBadge status={info.row.original.status} />
         },
     ]
+
+    if (tableData.length === 0) {
+        return <EmptyView />
+    }
 
     return (
         <Table isLoading={isFetching} data={tableData} columns={columns} />

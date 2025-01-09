@@ -285,8 +285,12 @@ import { ReactComponent as Location } from "./location.svg";
 import { ReactComponent as Bitlayer } from "./bitlayer.svg";
 import { ReactComponent as ExternalLink } from "./external-link.svg";
 import { ReactComponent as Asterisk } from "./asterisk.svg";
+import { ReactComponent as GreenSpeedometer } from "./green-speedometer.svg";
+import { ReactComponent as MedalStarOutline } from "./medal-star-outlined.svg";
 
 const AppIcons = {
+    MedalStarOutline,
+    GreenSpeedometer,
     Asterisk,
     ExternalLink,
     SettingGear,

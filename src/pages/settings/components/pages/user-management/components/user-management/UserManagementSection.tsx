@@ -4,8 +4,14 @@ import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
 import UserManagementTable from './UserManagementTable'
+import UpgradePlan from './upgrade-plan/UpgradePlan'
+import useAppStore from 'lib/stores/app/appStore'
 
 export default function UserManagementSection() {
+    const { shop } = useAppStore()
+    const { subscriptionId } = shop ?? {}
+    const isPremiumOrHigher = subscriptionId?.type !== "STARTER" || subscriptionId?.type !== "BUSINESS"
+
     return (
         <SectionContainer
             title="User Management"
@@ -26,7 +32,7 @@ export default function UserManagementSection() {
                 </Box>
             }
         >
-            <UserManagementTable />
+            {subscriptionId?.type && isPremiumOrHigher ? <UserManagementTable /> : <UpgradePlan />}
         </SectionContainer>
     )
 }

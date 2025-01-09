@@ -12,7 +12,7 @@ export default function Referrals() {
         <SectionContainer title='Referrals'>
             <ReferralLink />
             <CustomCodes />
-            {(count !== 0 || count) && <ReferredPartners />}
+            {(count !== 0 || !!count) && <ReferredPartners />}
         </SectionContainer>
     )
 }
