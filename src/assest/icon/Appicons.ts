@@ -1,3 +1,4 @@
+import { ReactComponent as Invoice } from "./Invoice.svg";
 import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
@@ -82,6 +83,7 @@ import { ReactComponent as Document } from "./document.svg";
 import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
+import { ReactComponent as DropProduct } from "./drop-product.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIconWhite } from "./edit-icon-white.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
@@ -98,6 +100,7 @@ import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as FileUpload } from "./file-upload.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
+import { ReactComponent as Furniture } from "./furniture.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
@@ -114,6 +117,7 @@ import { ReactComponent as GreenAlert } from "./green-alert.svg";
 import { ReactComponent as GreenInfinity } from "./green-infinity.svg";
 import { ReactComponent as GreenPlus } from "./greenPlus.svg";
 import { ReactComponent as Hand } from "./hand.svg";
+import { ReactComponent as Hat } from "./hat.svg";
 import { ReactComponent as HeaderAffiliateSass } from "./header-affiliate-sass.svg";
 import { ReactComponent as HeaderAffiliate } from "./header-affiliate.svg";
 import { ReactComponent as HeaderBag } from "./header-bag.svg";
@@ -141,6 +145,7 @@ import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as InvoiceProduct } from "./invoice-product.svg";
+import { ReactComponent as KidClothing } from "./kid-clothing.svg";
 import { ReactComponent as LandingPageCode } from "./landing-page-code.svg";
 import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
 import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-nib.svg";
@@ -154,6 +159,7 @@ import { ReactComponent as MagicWind } from "./magic-wind.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as Maximize } from "./maximize.svg";
 import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as MenClothing } from "./men-clothing.svg";
 import { ReactComponent as MetaverseStore } from "./metaverse-store.svg";
 import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
@@ -254,12 +260,14 @@ import { ReactComponent as Upload } from "./upload-icon.svg";
 import { ReactComponent as UserInvitation } from "./user-invitation.svg";
 import { ReactComponent as VerticalMove } from "./vertical-move.svg";
 import { ReactComponent as VisibleIcon } from "./visible-icon.svg";
+import { ReactComponent as Watch } from "./watch.svg";
 import { ReactComponent as Web } from "./web.svg";
 import { ReactComponent as NFT } from "./white-nft-icon.svg";
 import { ReactComponent as WhiteOpenWallet } from "./white-open-wallet.svg";
 import { ReactComponent as WhiteShopIcon } from "./white-shop.svg";
 import { ReactComponent as WhiteTrash } from "./white-trash.svg";
 import { ReactComponent as WhiteWarning } from "./white-warning.svg";
+import { ReactComponent as WomenClothing } from "./women-clothing.svg";
 import { ReactComponent as XOutlined } from "./x-outlined.svg";
 import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
@@ -267,11 +275,9 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
-import { ReactComponent as Invoice } from "./Invoice.svg";
-import { ReactComponent as DropProduct } from "./drop-product.svg";
 
 const AppIcons = {
-    ProductsIcon, 
+    ProductsIcon,
     CollectionIcon,
     SettingIcon,
     OrderIcon,
@@ -541,7 +547,13 @@ const AppIcons = {
     BlueBrush,
     Convert,
     Invoice,
-    DropProduct
+    DropProduct,
+    Hat,
+    MenClothing,
+    WomenClothing,
+    Furniture,
+    KidClothing,
+    Watch
 }
 
 export default AppIcons

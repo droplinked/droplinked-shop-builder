@@ -1,43 +1,31 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
-import AppImage from 'components/common/image/AppImage'
 import { PODCategory } from 'lib/apis/pod/interfaces'
 import React from 'react'
-import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'
+import CategoryIcon from './CategoryIcon'
 
 interface Props {
-    isLoading: boolean
     categories: PODCategory[]
     onSelect: (category: PODCategory) => void
+    isFirstLevel: boolean
 }
 
-const CategoryList = ({ isLoading, categories, onSelect }: Props) => {
-    if (isLoading) return (
-        <LoadingPlaceholder
-            numberOfSkeletons={4}
-            containerProps={{ columns: 2 }}
-            skeletonProps={{ h: "74px" }}
-        />
-    )
-
+function CategoryList({ categories, onSelect, isFirstLevel }: Props) {
     return (
-        <SimpleGrid
-            columns={{ base: 1, lg: 2 }}
-            gap={4}
-        >
-            {categories.map((category, index) => (
+        <SimpleGrid columns={{ base: 1, lg: 2 }} gap={4}>
+            {categories.map((category) => (
                 <Flex
-                    key={index}
+                    key={category.id}
                     as="button"
-                    type='button'
+                    type="button"
                     w="full"
                     alignItems="center"
                     gap={3}
                     border="1px solid #292929"
                     borderRadius={8}
-                    padding={3}
+                    padding={isFirstLevel ? 3 : '12px 16px'}
                     onClick={() => onSelect(category)}
                 >
-                    <AppImage w={12} h={12} borderRadius={4} bg="#1C1C1C" src={category.image_url} objectFit="cover" />
+                    {isFirstLevel && <CategoryIcon category={category.title} />}
                     <Text fontSize={14} color="#FFF">{category.title}</Text>
                 </Flex>
             ))}
