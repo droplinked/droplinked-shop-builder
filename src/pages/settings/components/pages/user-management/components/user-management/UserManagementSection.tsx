@@ -4,7 +4,7 @@ import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
 import UserManagementTable from './UserManagementTable'
-import UpgradePlan from './upgrade-plan/UpgradePlan'
+import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
 import useAppStore from 'lib/stores/app/appStore'
 import InviteUserModal from './InviteUserModal'
 import Button from 'components/redesign/button/Button'
@@ -18,8 +18,6 @@ export default function UserManagementSection() {
     const { subscriptionId } = subscription ?? {}
     const isPremiumOrHigher = (subscriptionId?.type && subscriptionId?.type !== "STARTER" && subscriptionId?.type !== "BUSINESS")
     const { isOpen, onClose, onOpen } = useDisclosure()
-    console.log(subscriptionId)
-    console.log(isPremiumOrHigher)
 
     return (
         <SectionContainer

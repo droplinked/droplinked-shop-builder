@@ -11,8 +11,8 @@ interface Props {
 
 export default function PlanCard({ icon, title, description, styles }: Props) {
     return (
-        <Flex {...styles}>
-            <Box bg="#292929" p={2} borderRadius="8px">
+        <Flex alignItems={"center"} {...styles}>
+            <Box height={"min-content"} bg="#292929" p={2} borderRadius="8px">
                 {icon}
             </Box>
             <Flex flexDir="column">

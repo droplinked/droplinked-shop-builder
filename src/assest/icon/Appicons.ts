@@ -290,8 +290,10 @@ import { ReactComponent as MedalStarOutline } from "./medal-star-outlined.svg";
 import { ReactComponent as AddUser } from "./add-user.svg";
 import { ReactComponent as EmailSign } from "./email-sign.svg";
 import { ReactComponent as SystemWarning } from "./system-warning.svg";
+import { ReactComponent as DiscountCouponIcon } from "./discount-coupon-icon.svg";
 
 const AppIcons = {
+    DiscountCouponIcon,
     SystemWarning,
     EmailSign,
     AddUser,

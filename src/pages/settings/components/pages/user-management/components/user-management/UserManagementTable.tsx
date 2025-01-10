@@ -4,7 +4,7 @@ import { IInvitation } from 'lib/apis/user/interfaces'
 import React from 'react'
 import UserNameColumn from './UserNameColumn'
 import StatusBadge from './StatusBadge'
-import EmptyView from './EmptyView'
+import EmptyView from '../../../../common/EmptyView'
 
 interface Props {
     data: { data: IInvitation[] }

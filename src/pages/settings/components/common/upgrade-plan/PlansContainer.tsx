@@ -45,8 +45,8 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                 justifyContent="space-between"
                 p={4}
             >
-                <Flex gap={4}>
-                    <Box bg="#2BCEA11A" p={2} borderRadius="8px">
+                <Flex gap={4} alignItems="center">
+                    <Box height={"min-content"} bg="#2BCEA11A" p={2} borderRadius="8px">
                         <AppIcons.PremiumPlan stroke="#fff" />
                     </Box>
                     <Flex flexDir="column">
