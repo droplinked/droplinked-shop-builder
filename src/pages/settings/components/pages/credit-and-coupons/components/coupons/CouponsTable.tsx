@@ -13,7 +13,7 @@ export default function CouponsTable() {
     const [data, setData] = useState<Coupon[]>([])
     const { data: giftCardsData, isFetching } = useQuery(
         ["giftCard", page],
-        () => giftcardsService({ page: page, limit: 5, search: undefined }),
+        () => giftcardsService({ page: page, limit: 20, search: undefined }),
         {
             onSuccess: (data) => { setData((prev) => [...prev, ...data?.data?.data?.data]) }
         }
