@@ -7,10 +7,14 @@ import AmountColumn from './columns/AmountColumn';
 import TypeColumn from './columns/TypeColumn';
 import Table from 'components/redesign/table/Table';
 import EmptyView from 'pages/settings/components/common/EmptyView';
+import { useDisclosure } from '@chakra-ui/react';
+import DropDownColumn from './columns/DropDownColumn';
 
 export default function CouponsTable() {
     const [page, setPage] = useState("1");
     const [data, setData] = useState<Coupon[]>([])
+    const { isOpen: isCreateModalOpen, onClose: onCreateModalClose, onOpen: onCreateModalOpen } = useDisclosure()
+    const { isOpen: isDetailModalOpen, onClose: onDetailModalClose, onOpen: onDetailModalOpen } = useDisclosure()
     const { data: giftCardsData, isFetching } = useQuery(
         ["giftCard", page],
         () => giftcardsService({ page: page, limit: 20, search: undefined }),
@@ -65,6 +69,19 @@ export default function CouponsTable() {
                     isExpired={info.row.original.isExpired}
                 />
             ),
+        },
+        {
+            accessorKey: "codes",
+            header: "",
+            cell: (info) => (
+                <DropDownColumn
+                    codes={info.row.original.codes}
+                    onDetailModalOpen={onDetailModalOpen}
+                    onCreateModalOpen={onCreateModalOpen}
+                    couponId={info.row.original._id}
+                />
+            ),
+            id: "ActionButtons"
         },
     ];
 

@@ -291,8 +291,10 @@ import { ReactComponent as AddUser } from "./add-user.svg";
 import { ReactComponent as EmailSign } from "./email-sign.svg";
 import { ReactComponent as SystemWarning } from "./system-warning.svg";
 import { ReactComponent as DiscountCouponIcon } from "./discount-coupon-icon.svg";
+import { ReactComponent as Export } from "./export.svg";
 
 const AppIcons = {
+    Export,
     DiscountCouponIcon,
     SystemWarning,
     EmailSign,
