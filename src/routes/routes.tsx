@@ -59,6 +59,7 @@ import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
+import Rewards from "pages/rewards/rewards";
 import SettingsPage from "pages/settings/SettingsPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
@@ -104,6 +105,7 @@ function AppRoutes() {
                     <Route path="email-verification/:token" element={<VerifyEmailPage />} />
                     <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
                     <Route path="plans" element={<PricingPage />} />
+                    <Route path="rewards" element={<Rewards></Rewards>}/>
                 </Route>
 
                 <Route path="analytics" element={<DashboardLayout />}>
