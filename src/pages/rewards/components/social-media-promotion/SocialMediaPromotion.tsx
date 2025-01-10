@@ -61,40 +61,40 @@ const SocialMediaPromotion = () => {
   const [allFollowed, setAllFollow] = useState<boolean>(false);
   const { shop } = useAppStore();
 
-
   const fetchFollowStatus = async () => {
     try {
       const response = await getFollowStatusService();
-      const formattedStatus = response.data.reduce((acc, item) => {
+      const formattedStatus = response.data.reduce((acc: { [key: string]: boolean }, item: any) => {
         acc[item.platform] = item.followed;
         return acc;
       }, {});
       setFollowStatus(formattedStatus);
+      setAllFollow(Object.values(formattedStatus).every(Boolean));
     } catch (error) {
       console.error('Error fetching follow status:', error);
     }
   };
 
+  
+
   useEffect(() => {
     if (shop) {
       fetchFollowStatus();
-      setAllFollow(Object.values(followStatus).every(Boolean));
     }
-  }, [shop, followStatus]);
+  }, [shop]);
 
   const handleCardClick = async (platform: string, link: string) => {
     if (!shop) return;
     window.open(link, '_blank');
     try {
-      await trackFollowService({ platform });
-      setFollowStatus((prev) => ({
-        ...prev,
-        [platform]: true
-      }));
+        await trackFollowService({ platform });
+        const updatedFollowStatus = { ...followStatus, [platform]: true };
+        setFollowStatus(updatedFollowStatus);
+        setAllFollow(Object.values(updatedFollowStatus).every(Boolean)); 
     } catch (error) {
-      console.error('Error tracking follow:', error);
+        console.error('Error tracking follow:', error);
     }
-  };
+};
 
   const renderSocialMediaCards = () => {
     return socialMediaPromotions.map((promo, index) => (
