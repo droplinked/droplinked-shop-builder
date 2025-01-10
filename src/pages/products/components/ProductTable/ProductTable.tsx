@@ -1,25 +1,23 @@
 import { Flex } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
-import { AxiosResponse } from 'axios'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
-import { productStatusMap, productTypeMap } from 'functions/hooks/products/useProducts'
+import useProducts, { productStatusMap, productTypeMap } from 'functions/hooks/products/useProducts'
 import useAppStore from 'lib/stores/app/appStore'
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import React, { memo } from 'react'
-import { UseInfiniteQueryResult } from 'react-query'
 import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
 
 interface Props {
-    productsList: UseInfiniteQueryResult<AxiosResponse<any, any>, unknown>
+    searchTerm: string
 }
 
-function ProductTable({ productsList }: Props) {
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = productsList
+function ProductTable({ searchTerm }: Props) {
     const { shop: { currency } } = useAppStore()
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
@@ -52,9 +50,7 @@ function ProductTable({ productsList }: Props) {
         { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
     ]
 
-    if (!products.length && !isFetching) {
-        return <EmptyProductList />
-    }
+    if (!isFetching && !products.length) return <EmptyProductList />
 
     return (
         <Table

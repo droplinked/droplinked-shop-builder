@@ -1,6 +1,5 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
-import useProducts from 'functions/hooks/products/useProducts'
 import useModalHandlers from 'pages/products/hooks/useModalHandlers'
 import React, { useEffect, useState } from 'react'
 import ImportProductModal from './components/ImportProductModal/ImportProductModal'
@@ -16,13 +15,9 @@ function ProductsV2() {
         editingProductId: s.editingProductId
     }))
 
+    const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
-
-    const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
-
-    const productsList = useProducts(debouncedSearchTerm)
-    const products = productsList.data?.pages?.flatMap(page => page.data.data.data) || []
 
     useEffect(() => {
         if (selectedProductType || editingProductId)
@@ -36,18 +31,14 @@ function ProductsV2() {
                     onImportModalOpen={importProductModal.onOpen}
                     onReorderModalOpen={productReorderModal.onOpen}
                 />
-
-                {(products.length || productsList.isLoading) && (
-                    <PageGrid.Actions
-                        search={{
-                            value: searchTerm,
-                            onChange: (e) => setSearchTerm(e.target.value)
-                        }}
-                    />
-                )}
-
+                <PageGrid.Actions
+                    search={{
+                        value: searchTerm,
+                        onChange: (e) => setSearchTerm(e.target.value)
+                    }}
+                />
                 <PageGrid.Content>
-                    <ProductTable productsList={productsList} />
+                    <ProductTable searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
             </PageGrid.Root>
 
