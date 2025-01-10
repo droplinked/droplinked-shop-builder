@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import ProductVariantCard from '../ProductVariantCard'
@@ -31,8 +32,8 @@ export default function PhysicalProductVariants() {
         <ProductFieldWrapper
             label="Variants"
             description="Add different versions of this product (e.g., size, color)."
-            errorMessage={getFirstErrorMessage(errors.sku)}
             isRequired
+            errorMessage={getFieldErrorMessage(errors.sku)}
         >
             <Flex direction="column" gap={9}>
                 <Flex direction="column" gap={4}>
@@ -66,17 +67,4 @@ export default function PhysicalProductVariants() {
             </Flex>
         </ProductFieldWrapper>
     )
-}
-
-function getFirstErrorMessage(error: any): string {
-    if (!error) return '' // No error
-    if (typeof error === 'string') return error // Error is a single string
-    if (Array.isArray(error) && error.length > 0) {
-        return getFirstErrorMessage(error[0]) // Recursively check the first element
-    }
-    if (typeof error === 'object' && error !== null) {
-        const firstKey = Object.keys(error)[0] // Get the first key
-        if (firstKey) return getFirstErrorMessage(error[firstKey]) // Recursively check the first property
-    }
-    return '' // Fallback in case of unexpected input
 }

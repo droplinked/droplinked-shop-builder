@@ -3,7 +3,7 @@ import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecor
 import { Form, Formik, FormikProvider } from 'formik'
 import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
 import useProductSubmission from 'pages/products/hooks/useProductSubmission'
-import getFormInitialValues from 'pages/products/utils/formHelpers'
+import { getFormInitialValues } from 'pages/products/utils/formHelpers'
 import { validationSchema } from 'pages/products/utils/formSchema'
 import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
@@ -33,11 +33,14 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
         invalidateProductsQuery()
     }
 
+    const initialValues = getFormInitialValues({ product, selectedProductType })
+
     return (
         <>
             <Formik
-                initialValues={getFormInitialValues({ product, selectedProductType })}
+                initialValues={initialValues}
                 validationSchema={validationSchema}
+                context={{ product_type: initialValues.product_type }}
                 validateOnChange={false}
                 validateOnBlur={false}
                 onSubmit={handleSubmit}

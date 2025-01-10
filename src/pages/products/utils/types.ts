@@ -107,7 +107,7 @@ export interface Product {
     sku: SKU[]
 
     // POD and Printing Details
-    pod_blank_product_id?: number
+    pod_blank_product_id?: string
     printful_template_id?: string
     technique?: string
     printful_option_data?: any

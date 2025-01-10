@@ -7,7 +7,7 @@ interface Params {
     selectedProductType: ProductType
 }
 
-export default function getFormInitialValues({ product, selectedProductType }: Params): Product {
+export function getFormInitialValues({ product, selectedProductType }: Params): Product {
     if (!product) {
         return { ...initialValues, product_type: selectedProductType }
     }
@@ -68,4 +68,17 @@ export default function getFormInitialValues({ product, selectedProductType }: P
         // Digital Product Details
         digitalDetail: product.digitalDetail || { chain: "" }
     }
+}
+
+export function getFieldErrorMessage(error: any): string {
+    if (!error) return '' // No error
+    if (typeof error === 'string') return error // Error is a single string
+    if (Array.isArray(error) && error.length > 0) {
+        return getFieldErrorMessage(error[0]) // Recursively check the first element
+    }
+    if (typeof error === 'object' && error !== null) {
+        const firstKey = Object.keys(error)[0] // Get the first key
+        if (firstKey) return getFieldErrorMessage(error[firstKey]) // Recursively check the first property
+    }
+    return '' // Fallback in case of unexpected input
 }

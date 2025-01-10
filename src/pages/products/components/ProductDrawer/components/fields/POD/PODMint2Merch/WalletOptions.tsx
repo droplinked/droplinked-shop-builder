@@ -1,6 +1,7 @@
 import { Flex, SimpleGrid, Switch, Text } from '@chakra-ui/react'
 import { printServices } from 'lib/apis/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import React from 'react'
 import { useQuery } from 'react-query'
 import FormControl from '../../../common/FormControl'
@@ -10,13 +11,14 @@ export default function WalletOptions() {
     const { data, isFetching } = useQuery({
         queryFn: printServices,
         queryKey: 'printServices',
-        cacheTime: 60 * 60 * 1000,
+        staleTime: 1000 * 60 * 60 * 24, // Data is fresh for 24 hours
+        cacheTime: 1000 * 60 * 60 * 24 * 7 // Cache persists for 7 days
     })
 
-    const { values: { m2m_services }, setFieldValue } = useProductForm()
+    const { values: { m2m_services }, setFieldValue, errors } = useProductForm()
     const walletOptions = data?.data?.data || []
 
-    function handleSwitchChange(optionId, checked) {
+    function handleSwitchChange(optionId: string, checked: boolean) {
         const updatedServices = checked
             ? [...m2m_services, optionId]
             : m2m_services.filter(id => id !== optionId)
@@ -25,7 +27,10 @@ export default function WalletOptions() {
     }
 
     return (
-        <FormControl label="Wallet Options">
+        <FormControl
+            label="Wallet Options"
+            errorMessage={getFieldErrorMessage(errors.m2m_positions)}
+        >
             {
                 isFetching ?
                     <LoadingPlaceholder

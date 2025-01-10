@@ -20,59 +20,74 @@ export const validationSchema = object().shape({
                 .required('Please enter a valid commission percentage between 1 and 100'),
             otherwise: (schema) => schema.nullable(),
         }),
-    sku: array().of(object().shape({
-        price: number()
-            .required('Price is required for all SKUs')
-            .positive('Price must be greater than 0'),
-        quantity: number()
-            .when('product_type', {
-                is: 'PRINT_ON_DEMAND',
-                then: (schema) => schema.nullable(),
-                otherwise: (schema) => schema
-                    .required('Quantity is required for all SKUs')
-                    .min(1, 'Quantity must be at least 1'),
-            }),
-        dimensions: object().shape({
-            height: number().required('Height is required').positive('Height must be greater than 0'),
-            width: number().required('Width is required').positive('Width must be greater than 0'),
-            length: number().required('Length is required').positive('Length must be greater than 0'),
-        }).when('product_type', {
-            is: 'NORMAL',
-            then: (schema) => schema.required('Please enter packaging size property for all SKUs'),
-            otherwise: (schema) => schema.strip()
-        }),
-        weight: number()
-            .nullable().when('product_type', {
+    sku: array().of(
+        object().shape({
+            price: number()
+                .required('Price is required for all SKUs')
+                .positive('Price must be greater than 0')
+                .when('$product_type', {
+                    is: 'PRINT_ON_DEMAND',
+                    then: (schema) =>
+                        schema.test(
+                            'price-greater-than-rawPrice',
+                            'Price must be greater than raw price for POD products',
+                            function (value) {
+                                const { rawPrice } = this.parent // Access rawPrice from the same SKU object
+                                return !rawPrice || value > rawPrice // Ensure price > rawPrice
+                            }
+                        ),
+                    otherwise: (schema) => schema, // No additional validation for non-POD products
+                }),
+            quantity: number()
+                .when('$product_type', {
+                    is: 'PRINT_ON_DEMAND',
+                    then: (schema) => schema.strip(),
+                    otherwise: (schema) =>
+                        schema
+                            .required('Quantity is required for all SKUs')
+                            .min(1, 'Quantity must be at least 1'),
+                }),
+            dimensions: object().shape({
+                height: number().required('Height is required').positive('Height must be greater than 0'),
+                width: number().required('Width is required').positive('Width must be greater than 0'),
+                length: number().required('Length is required').positive('Length must be greater than 0'),
+            }).when('$product_type', {
                 is: 'NORMAL',
-                then: (schema) => schema.required('Weight is required').positive('Weight must be greater than 0'),
-                otherwise: (schema) => schema.nullable()
+                then: (schema) => schema.required('Please enter packaging size property for all SKUs'),
+                otherwise: (schema) => schema.strip(),
             }),
-    })
+            weight: number()
+                .nullable()
+                .when('$product_type', {
+                    is: 'NORMAL',
+                    then: (schema) => schema.required('Weight is required').positive('Weight must be greater than 0'),
+                    otherwise: (schema) => schema.nullable(),
+                }),
+        })
     ).min(1, 'At least one SKU is required').required('SKU information is required'),
-    m2m_positions: array()
-        .test(
-            'm2m-positions-require-services',
-            'Please choose customer wallet options',
-            function (positions) {
-                const { m2m_services } = this.parent
-                return !positions.length || (m2m_services && m2m_services.length > 0)
-            }
-        ),
-    artwork: string().nullable(), // Artwork is optional and does not depend on position
+    m2m_positions: array().test(
+        'm2m-positions-require-services',
+        'Please choose customer wallet options',
+        function (positions) {
+            const { m2m_services } = this.parent
+            return !positions.length || (m2m_services && m2m_services.length > 0)
+        }
+    ),
+    artwork: string().nullable(),
     artwork_position: string()
-        .nullable() // Artwork position is optional unless artwork is provided
+        .nullable()
         .when('artwork', {
-            is: (artwork) => !!artwork, // When artwork is provided (truthy)
+            is: (artwork) => !!artwork,
             then: (schema) => schema.required('Artwork position is required when artwork is provided'),
-            otherwise: (schema) => schema.nullable(), // Keep optional if no artwork
+            otherwise: (schema) => schema.nullable(),
         }),
-    artwork2: string().nullable(), // Artwork2 is optional and does not depend on position
+    artwork2: string().nullable(),
     artwork2_position: string()
-        .nullable() // Artwork2 position is optional unless artwork2 is provided
+        .nullable()
         .when('artwork2', {
-            is: (artwork2) => !!artwork2, // When artwork2 is provided (truthy)
+            is: (artwork2) => !!artwork2,
             then: (schema) => schema.required('Artwork2 position is required when artwork2 is provided'),
-            otherwise: (schema) => schema.nullable(), // Keep optional if no artwork2
+            otherwise: (schema) => schema.nullable(),
         }),
     launchDate: string()
         .nullable()
@@ -80,12 +95,12 @@ export const validationSchema = object().shape({
             'is-future-date',
             'Please choose a further date for launch time',
             (value) => {
-                if (!value) return true // Skip validation if no date is provided
+                if (!value) return true
                 const now = new Date()
                 const selectedDate = new Date(value)
-                return selectedDate > now // Validate if the date is in the future
+                return selectedDate > now
             }
-        )
+        ),
 })
 
 export const initialValues: Product = {

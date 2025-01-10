@@ -16,7 +16,7 @@ function CategoryTree({ onCategorySelect }: CategoryTreeProps) {
         queryKey: ['POD_CATEGORIES'],
         queryFn: () => podCategoryService({}),
         staleTime: 1000 * 60 * 60 * 24, // Data is fresh for 24 hours
-        cacheTime: 1000 * 60 * 60 * 24 * 7, // Cache persists for 7 days
+        cacheTime: 1000 * 60 * 60 * 24 * 7 // Cache persists for 7 days
     })
 
     const [currentCategories, setCurrentCategories] = useState<PODCategory[]>([])

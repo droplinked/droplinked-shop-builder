@@ -9,14 +9,12 @@ import { useEffect, useRef, useState } from 'react'
 function useDesignMakerHooks(onClose: () => void) {
     const { values, setFieldValue } = useProductForm()
     const { variants, updateProductPageState } = useProductPageStore()
-
     const {
         printful_template_id,
         publish_product,
         pod_blank_product_id,
         custome_external_id,
         technique,
-        media,
     } = values
 
     const [designMakerInstance, setDesignMakerInstance] = useState(null)
@@ -155,10 +153,10 @@ function useDesignMakerHooks(onClose: () => void) {
             const originals = response?.data?.data?.originals || []
             const thumbnails = response?.data?.data?.thumbs || []
 
-            const images = originals.map((imgURL: string, key: number) => ({
+            const images = originals.map((imgURL: string, index: number) => ({
                 url: imgURL,
-                thumbnail: thumbnails[key],
-                isMain: key === 0 && !media.length,
+                thumbnail: thumbnails[index],
+                isMain: index === 0,
                 isMockup: true
             }))
 
@@ -189,10 +187,36 @@ function useDesignMakerHooks(onClose: () => void) {
     const handleBack = () => {
         setFieldValue('technique', null)
         setFieldValue('media', [])
+        setFieldValue("pod_blank_product_id", pod_blank_product_id)
+        setFieldValue("sku", [])
+        setFieldValue("title", ' ')
+        setFieldValue("description", '')
+        setFieldValue("artwork", null)
+        setFieldValue("artwork2", null)
+        setFieldValue("artwork_position", null)
+        setFieldValue("artwork2_position", null)
+        setFieldValue("m2m_services", [])
+        setFieldValue("m2m_positions", [])
+        setFieldValue("printful_template_id", null)
+        setFieldValue("m2m_positions_options", [])
+        setFieldValue("positions", [])
+        setFieldValue("properties", [
+            {
+                "value": "62a989ab1f2c2bbc5b1e7153",
+                "title": "Color",
+                "items": []
+            },
+            {
+                "value": "62a989e21f2c2bbc5b1e7154",
+                "title": "Size",
+                "items": []
+            }
+        ])
     }
 
     useEffect(() => {
         if (!designMakerInstance) initializeDesignMaker()
+        return () => { setDesignMakerInstance(null) }
     }, [variants])
 
     useEffect(() => {
@@ -200,14 +224,12 @@ function useDesignMakerHooks(onClose: () => void) {
         script.src = 'https://files.cdn.printful.com/embed/embed.js'
         script.async = true
         document.body.appendChild(script)
-        return () => {
-            document.body.removeChild(script)
-        }
+        return () => { document.body.removeChild(script) }
     }, [])
 
     useEffect(() => {
         if (templateId) generateMockups()
-    }, [templateId, generateMockups])
+    }, [templateId])
 
     return {
         iframeRef,

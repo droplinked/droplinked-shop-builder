@@ -24,8 +24,7 @@ function ProductBulkPriceUpdater() {
         }
     }, [sku])
 
-    function handleInputChange(value) {
-        if (isNaN(value)) return
+    function handleInputChange(value: number) {
         setInputValue(value)
         const updatedSKUs = sku.map(item => ({ ...item, price: value }))
         setFieldValue("sku", updatedSKUs)
@@ -46,7 +45,7 @@ function ProductBulkPriceUpdater() {
                         numberType: "float",
                         value: inputValue,
                         placeholder: "0.00",
-                        onChange: (e) => handleInputChange(e.target.value)
+                        onChange: (e) => handleInputChange((parseFloat(e.target.value)))
                     }}
                     leftElement={<AppIcons.GrayDollar />}
                 />
