@@ -8,11 +8,7 @@ import ProductReleaseDate from '../fields/ProductReleaseDate'
 import ProductVisibilityStatus from '../fields/ProductVisibilityStatus'
 
 function AdditionalDetailsAccordion() {
-    const { values: { pre_purchase_data_fetch }, setFieldValue } = useProductForm()
-
-    function handleTogglePrePurchaseDataFetch() {
-        setFieldValue('pre_purchase_data_fetch', !pre_purchase_data_fetch)
-    }
+    const { values: { pre_purchase_data_fetch, product_type }, setFieldValue } = useProductForm()
 
     return (
         <ProductFormAccordion label="Additional Details">
@@ -24,10 +20,10 @@ function AdditionalDetailsAccordion() {
                 title="Custom Field"
                 description="Add custom information to display during checkout."
                 isChecked={pre_purchase_data_fetch}
-                onToggle={handleTogglePrePurchaseDataFetch}
+                onToggle={() => setFieldValue('pre_purchase_data_fetch', !pre_purchase_data_fetch)}
             />
 
-            <ProductDeliveryMessage />
+            {product_type === "DIGITAL" && <ProductDeliveryMessage />}
             {/* <ProductTermsAndConditions /> */}
         </ProductFormAccordion>
     )
