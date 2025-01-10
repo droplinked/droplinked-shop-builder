@@ -1,7 +1,6 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 
 interface Props {
@@ -9,8 +8,7 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { values: { publish_product }, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
-    const editingProductId = useProductPageStore(state => state.editingProductId)
+    const { values: { _id: editingProductId, publish_product }, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
 
     const handleAction = (action: string) => {
         const isSavingAsDraft = action === 'save-as-draft'

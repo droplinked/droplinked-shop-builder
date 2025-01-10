@@ -1,34 +1,33 @@
 import { Flex } from '@chakra-ui/react'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { convertPropertiesToPODSKUs } from 'pages/products/utils/skuUtils'
+import { ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect } from 'react'
 import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 import ProductBulkPriceUpdater from '../../ProductBulkPriceUpdater'
 import ProductVariantCard from '../../ProductVariantCard'
 import PODSKUTable from './PODSKUTable'
 
-function PODProductVariants() {
+export default function PODProductVariants() {
     const { values, setFieldValue } = useProductForm()
-    const availableVariants = useProductPageStore(s => s.available_variants)
+    const { _id, properties } = values
 
+    // Synchronize SKUs if the product is new
     useEffect(() => {
-        const createdSKUs = convertPropertiesToPODSKUs(values)
-        setFieldValue("sku", createdSKUs)
-    }, [convertPropertiesToPODSKUs, availableVariants])
+        if (!_id) {
+            const createdSKUs = convertPropertiesToPODSKUs(values)
+            setFieldValue('sku', createdSKUs)
+        }
+    }, [_id, values, setFieldValue])
 
     return (
         <ProductFieldWrapper
             label="Variants"
-            description='Product variants, like colors and sizes, are automatically added by POD provider.'
+            description="Product variants, like colors and sizes, are automatically added by the POD provider."
             isRequired
         >
             <Flex direction="column" gap={9}>
-                <Flex direction="column" gap={4}>
-                    {values.properties.map((property, index) => (
-                        <ProductVariantCard variant={property} key={index} />
-                    ))}
-                </Flex>
+                <VariantList properties={properties} />
                 <PODSKUTable />
                 <ProductBulkPriceUpdater />
             </Flex>
@@ -36,4 +35,12 @@ function PODProductVariants() {
     )
 }
 
-export default PODProductVariants
+function VariantList({ properties }: { properties: ProductProperty[] }) {
+    return (
+        <Flex direction="column" gap={4}>
+            {properties.map((property, index) => (
+                <ProductVariantCard variant={property} key={index} />
+            ))}
+        </Flex>
+    )
+}

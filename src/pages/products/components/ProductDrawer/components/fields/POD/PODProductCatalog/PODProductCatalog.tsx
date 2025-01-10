@@ -1,3 +1,4 @@
+import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 import CategoryTree from './CategoryTree/CategoryTree'
@@ -5,31 +6,41 @@ import ProductList from './ProductList/ProductList'
 import SelectedProductDetails from './SelectedProductDetails'
 
 function PODProductCatalog() {
-    const [selectedCategory, setSelectedCategory] = useState(null)
-    const [selectedProduct, setSelectedProduct] = useState(null)
+    const { values: { pod_blank_product_id } } = useProductForm()
+    const [selection, setSelection] = useState({ categoryId: null, productId: null })
 
-    const handleCategorySelect = (categoryId: number) => setSelectedCategory(categoryId)
+    const handleCategorySelect = (categoryId: number) =>
+        setSelection(() => ({ categoryId, productId: null }))
+
+    const handleProductSelect = (productId: number) =>
+        setSelection((prev) => ({ ...prev, productId }))
 
     const handleBack = () => {
-        if (selectedProduct) setSelectedProduct(null)
-        else if (selectedCategory) setSelectedCategory(null)
+        if (selection.productId) setSelection((prev) => ({ ...prev, productId: null }))
+        else if (selection.categoryId) setSelection((prev) => ({ ...prev, categoryId: null }))
     }
 
     const renderContent = () => {
-        if (selectedProduct) return (
-            <SelectedProductDetails
-                product={selectedProduct}
-                onBack={handleBack}
-            />
-        )
+        const { categoryId, productId } = selection
 
-        else if (selectedCategory) return (
-            <ProductList
-                categoryId={selectedCategory}
-                onProductSelect={(product) => setSelectedProduct(product)}
-                onBack={handleBack}
-            />
-        )
+        if (productId || pod_blank_product_id) {
+            return (
+                <SelectedProductDetails
+                    productId={productId || pod_blank_product_id}
+                    onBack={handleBack}
+                />
+            )
+        }
+
+        if (categoryId) {
+            return (
+                <ProductList
+                    categoryId={categoryId}
+                    onProductSelect={handleProductSelect}
+                    onBack={handleBack}
+                />
+            )
+        }
 
         return <CategoryTree onCategorySelect={handleCategorySelect} />
     }

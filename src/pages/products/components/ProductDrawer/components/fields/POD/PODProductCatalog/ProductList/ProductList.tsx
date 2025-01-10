@@ -4,7 +4,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'
 import BackButton from '../BackButton'
-import BaseProductCard from './BaseProductCard'
+import PODProductCard from './PODProductCard'
 
 interface Props {
     categoryId: string
@@ -27,10 +27,10 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
         return (
             <Flex direction="column" gap={3}>
                 {products.map((product: any, index: number) => (
-                    <BaseProductCard
+                    <PODProductCard
                         key={index}
                         product={product}
-                        onProductSelect={() => onProductSelect(product)}
+                        onProductSelect={() => onProductSelect(product.id)}
                     />
                 ))}
             </Flex>
