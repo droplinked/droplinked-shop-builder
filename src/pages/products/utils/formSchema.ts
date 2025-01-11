@@ -93,12 +93,12 @@ export const validationSchema = object().shape({
         .nullable()
         .test(
             'is-future-date',
-            'Please choose a further date for launch time',
+            'Launch date and time must be in the future',
             (value) => {
                 if (!value) return true
                 const now = new Date()
                 const selectedDate = new Date(value)
-                return selectedDate > now
+                return selectedDate.getTime() > now.getTime()
             }
         ),
 })
