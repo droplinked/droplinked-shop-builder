@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import Input, { InputHeader } from 'components/redesign/input/Input';
 
 export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
-    const { values, handleChange, errors, setFieldValue } = useFormikContext<CouponFormValues>();
+    const { values, handleChange, errors } = useFormikContext<CouponFormValues>();
 
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"}>
