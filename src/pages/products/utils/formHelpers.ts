@@ -1,6 +1,7 @@
+import { nanoid } from "nanoid";
 import { initialValues } from "./formSchema";
 import { convertSKUsToProperties } from "./skuUtils";
-import { Product, ProductType } from "./types";
+import { Product, ProductType, SKU } from "./types";
 
 interface Params {
     product?: any
@@ -9,7 +10,31 @@ interface Params {
 
 export function getFormInitialValues({ product, selectedProductType }: Params): Product {
     if (!product) {
-        return { ...initialValues, product_type: selectedProductType }
+        const digitalProductSKU: SKU = {
+            externalID: "",
+            price: 0,
+            dimensions: { height: 0, length: 0, width: 0 },
+            quantity: 0,
+            recorded_quantity: 0,
+            recordData: { status: "NOT_RECORDED" },
+            deploy_hash: '',
+            royalty: null,
+        }
+
+        const productTypeFields = {
+            ...(selectedProductType === "DIGITAL" && { sku: [digitalProductSKU] }),
+            ...(selectedProductType === "PRINT_ON_DEMAND" && {
+                prodviderID: "PRINTFUL",
+                shippingType: "PRINTFUL",
+                custome_external_id: Date.now() + nanoid(13)
+            })
+        }
+
+        return {
+            ...initialValues,
+            product_type: selectedProductType,
+            ...productTypeFields
+        }
     }
 
     return {
