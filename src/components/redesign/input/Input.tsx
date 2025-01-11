@@ -32,7 +32,7 @@ export default function Input(props: Props) {
     )
 }
 
-function InputHeader({ label, description, inputProps }: Props) {
+export function InputHeader({ label, description, inputProps }: Props) {
     return (
         <>
             {label && (

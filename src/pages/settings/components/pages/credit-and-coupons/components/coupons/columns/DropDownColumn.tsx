@@ -8,15 +8,17 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import { Coupon } from '../interface';
 import { useDisclosure } from '@chakra-ui/react';
 import CouponsInformationModal from '../modals/coupons-information/CouponsInformationModal';
+import CouponsEditCreationModal from '../modals/coupons-edit-creation/CouponsEditCreationModal';
 
 interface Props {
     couponId: string;
     rowData: Coupon
+    refetch: () => void
 }
 
-export default function DropDownColumn({ couponId, rowData }: Props) {
+export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
     const { showToast } = useAppToast();
-    const { isOpen: isCreateModalOpen, onClose: onCreateModalClose, onOpen: onCreateModalOpen } = useDisclosure()
+    const { isOpen: isEditModalOpen, onClose: onEditModalClose, onOpen: onEditModalOpen } = useDisclosure()
     const { isOpen: isInformationModalOpen, onClose: onInformationModalClose, onOpen: onInformationModalOpen } = useDisclosure()
 
     const exportMutation = useMutation(
@@ -51,7 +53,7 @@ export default function DropDownColumn({ couponId, rowData }: Props) {
                     },
                     {
                         icon: <AppIcons.Edit />,
-                        onClick: onCreateModalOpen,
+                        onClick: onEditModalOpen,
                         title: "Edit"
                     },
                     {
@@ -62,6 +64,7 @@ export default function DropDownColumn({ couponId, rowData }: Props) {
                 ]}
             />
             <CouponsInformationModal coupon={rowData} key={rowData._id} isOpen={isInformationModalOpen} onClose={onInformationModalClose} />
+            <CouponsEditCreationModal refetch={refetch} isEdit={true} coupon={rowData} isOpen={isEditModalOpen} onClose={onEditModalClose} />
         </>
     )
 }

@@ -8,11 +8,17 @@ import TypeColumn from './columns/TypeColumn';
 import Table from 'components/redesign/table/Table';
 import EmptyView from 'pages/settings/components/common/EmptyView';
 import DropDownColumn from './columns/DropDownColumn';
+import CouponsEditCreationModal from './modals/coupons-edit-creation/CouponsEditCreationModal';
 
-export default function CouponsTable() {
+interface Props {
+    isOpen: boolean
+    onClose: () => void
+}
+
+export default function CouponsTable({ isOpen, onClose }: Props) {
     const [page, setPage] = useState("1");
     const [data, setData] = useState<Coupon[]>([])
-    const { data: giftCardsData, isFetching } = useQuery(
+    const { data: giftCardsData, isFetching, refetch } = useQuery(
         ["giftCard", page],
         () => giftcardsService({ page: page, limit: 20, search: undefined }),
         {
@@ -23,6 +29,11 @@ export default function CouponsTable() {
     const handleNextPage = () => {
         setPage(nextPage);
     };
+    const handleRefetchData = () => {
+        setData([]);
+        refetch();
+    }
+
     const columns: ColumnDef<Coupon>[] = [
         {
             accessorKey: "name",
@@ -72,6 +83,7 @@ export default function CouponsTable() {
             header: "",
             cell: (info) => (
                 <DropDownColumn
+                    refetch={handleRefetchData}
                     couponId={info.row.original._id}
                     rowData={info.row.original}
                 />
@@ -85,16 +97,19 @@ export default function CouponsTable() {
     }
 
     return (
-        <Table
-            infiniteScroll={{
-                hasMore: hasNextPage,
-                next: handleNextPage,
-                isFetchingNextPage: isFetching,
-                dataLength: totalDocuments ?? 0,
-            }}
-            isLoading={isFetching}
-            data={data ?? []}
-            columns={columns}
-        />
+        <>
+            <Table
+                infiniteScroll={{
+                    hasMore: hasNextPage,
+                    next: handleNextPage,
+                    isFetchingNextPage: isFetching,
+                    dataLength: totalDocuments ?? 0,
+                }}
+                isLoading={isFetching}
+                data={data ?? []}
+                columns={columns}
+            />
+            <CouponsEditCreationModal refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+        </>
     )
 }
