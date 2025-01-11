@@ -1,21 +1,23 @@
 import AppIcons from 'assest/icon/Appicons';
 import TableMenu from 'components/redesign/table-menu/TableMenu';
 import React from 'react';
-import { Codes } from '../interface';
 import { useMutation } from 'react-query';
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices';
 import { AxiosError } from 'axios';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { Coupon } from '../interface';
+import { useDisclosure } from '@chakra-ui/react';
+import CouponsInformationModal from '../modals/coupons-information/CouponsInformationModal';
 
 interface Props {
-    onCreateModalOpen: () => void;
-    onDetailModalOpen: () => void;
-    codes: Codes[];
     couponId: string;
+    rowData: Coupon
 }
 
-export default function DropDownColumn({ onCreateModalOpen, onDetailModalOpen, codes, couponId }: Props) {
+export default function DropDownColumn({ couponId, rowData }: Props) {
     const { showToast } = useAppToast();
+    const { isOpen: isCreateModalOpen, onClose: onCreateModalClose, onOpen: onCreateModalOpen } = useDisclosure()
+    const { isOpen: isInformationModalOpen, onClose: onInformationModalClose, onOpen: onInformationModalOpen } = useDisclosure()
 
     const exportMutation = useMutation(
         () => exportCouponsReport({ giftCardId: couponId }),
@@ -44,7 +46,7 @@ export default function DropDownColumn({ onCreateModalOpen, onDetailModalOpen, c
                 items={[
                     {
                         icon: <AppIcons.Eye stroke='#fff' style={{ width: "20px", height: "20px" }} />,
-                        onClick: onDetailModalOpen,
+                        onClick: onInformationModalOpen,
                         title: "Details"
                     },
                     {
@@ -59,6 +61,7 @@ export default function DropDownColumn({ onCreateModalOpen, onDetailModalOpen, c
                     }
                 ]}
             />
+            <CouponsInformationModal coupon={rowData} key={rowData._id} isOpen={isInformationModalOpen} onClose={onInformationModalClose} />
         </>
     )
 }
