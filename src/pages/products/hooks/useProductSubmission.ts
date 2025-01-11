@@ -6,6 +6,7 @@ import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscripti
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
+import { useRef } from 'react'
 import useProductPageStore from '../stores/ProductPageStore'
 import { Product, ProductType } from '../utils/types'
 
@@ -24,27 +25,28 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
     const shopLegalUsage = useLegalUsage()
     const { user: { wallets }, shop } = useAppStore()
     const { currency } = shop
-    let savedProduct = null
-    let selectedChain = null
-    let recordTransactionHash = null
+    const selectedChain = useRef<string>(null)
+    const savedProduct = useRef<Product>(null)
+    const transactionHash = useRef<string | null>(null)
 
     const handleSubmit = async (values: Product) => {
-        const { product_type, publish_status, sku } = values
+        const { publish_status, digitalDetail, product_type, sku, } = values
         const isSavingAsDraft = publish_status === 'DRAFTED'
+        const selectedChain = digitalDetail.chain
 
         const shouldRecordProduct = selectedChain && !isSavingAsDraft && sku[0].recordData.status === "NOT_RECORDED"
 
         try {
             if (editingProductId) {
                 const response = await updateProductService({ productID: editingProductId, params: values })
-                const { _id, ownerID, skuIDs } = response.data.data
-                savedProduct = { ...values, _id, ownerID, sku: skuIDs }
+                const { skuIDs, ...rest } = response.data.data
+                savedProduct.current = { ...rest, sku: skuIDs }
             }
             else {
                 checkProductTypeLegalUsage(product_type)
                 const response = await createProductService({ ...values, publish_product: !shouldRecordProduct })
-                const { _id, ownerID, skuIDs } = response.data.data
-                savedProduct = { ...values, _id, ownerID, sku: skuIDs }
+                const { skuIDs, ...rest } = response.data.data
+                savedProduct.current = { ...rest, sku: skuIDs }
             }
 
             if (shouldRecordProduct) {
@@ -79,28 +81,30 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
     }
 
     const recordProduct = async () => {
+        const product = savedProduct.current
+
         try {
-            const hashKey = await web3({
+            transactionHash.current = await web3({
                 method: 'record_batch',
                 params: [{
-                    quantity: savedProduct.sku[0].quantity,
-                    sku: savedProduct.sku[0],
-                    imageUrl: savedProduct.media[0].thumbnail,
+                    quantity: product.sku[0].quantity,
+                    sku: product.sku[0],
+                    imageUrl: product.media[0].thumbnail,
                 }],
-                product: savedProduct,
+                product: product,
                 shop,
-                commission: savedProduct.commission,
-                royalty: savedProduct.sku[0].royalty,
-                chain: selectedChain,
+                commission: product.commission,
+                royalty: product.sku[0].royalty,
+                chain: selectedChain.current,
                 wallets,
                 stack: stacks,
             })
-            await updateProductService({ productID: savedProduct._id, params: { publish_product: true } })
+            await updateProductService({ productID: product._id, params: { publish_product: true } })
             await getShopSubscriptionDataService()
             showToast({ message: 'The product has been successfully recorded!', type: 'success' })
         }
         catch (error) {
-            await updateProductService({ productID: savedProduct._id, params: { digitalDetail: { chain: null } } })
+            await updateProductService({ productID: product._id, params: { digitalDetail: { chain: null } } })
             showToast({ message: error.message || 'Failed to record the product.', type: 'error' })
         }
         finally {
@@ -118,7 +122,8 @@ const useProductSubmission = ({ closeProductFormDrawer, openCircleModal, closeCi
 
     return {
         handleSubmit,
-        selectedChain,
+        selectedChain: selectedChain.current,
+        transactionHash: selectedChain.current,
         recordProduct
     }
 }

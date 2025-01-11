@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
-import ProductDrop from '../fields/ProductDrop'
+import ProductDrop from '../fields/ProductDrop/ProductDrop'
 import ProductRoyalty from '../fields/ProductRoyalty'
 
 function Web3SettingsAccordion() {
