@@ -13,10 +13,6 @@ function ProductReleaseDate() {
         setFieldValue("launchDate", e.target.checked ? new Date().toISOString() : null)
     }
 
-    useEffect(() => {
-        console.log(errors)
-    }, [errors])
-
     return (
         <SwitchBox
             title='Release Date'
