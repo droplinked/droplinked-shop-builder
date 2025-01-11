@@ -1,27 +1,51 @@
 import { authSupportedWalletsService } from "lib/apis/auth/services";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import MethodItem from "./MethodItem";
 import { Grid } from "@chakra-ui/react";
 import SkeletonLoading from "./SkeletonLoading";
-import useAppStore from "lib/stores/app/appStore";
+import { useGetPermissionValue } from "lib/stores/app/appStore";
+import AppErrors from "lib/utils/statics/errors/errors";
+import useAppToast from "functions/hooks/toast/useToast";
 
 export default function LoginMethods() {
-    const { shop: { loginMethods } } = useAppStore()
-    // const shopLoginMethods: string[] = loginMethods.flatMap((item) =>
-    //     item.wallets.map((wallet) => wallet.name)
-    // )
-    //TODO: Don't forgot to check the permissions 
-    const { isFetching, data } = useQuery(
+    const getPermissionValue = useGetPermissionValue();
+    const [walletData, setWalletData] = useState([]);
+    const { showToast } = useAppToast()
+    const { isFetching } = useQuery(
         "supported-login-methods",
-        authSupportedWalletsService
+        authSupportedWalletsService,
+        {
+            onSuccess(data) {
+                setWalletData(data.data.data)
+            },
+        }
     );
-    // const walletsData = data?.data?.data.flatMap((item) =>
-    //     item.wallets.map((wallet) => { return { ...wallet, isActivated: shopLoginMethods.includes(wallet.name) } })
-    // );
-    // console.log(walletsData)
-    const walletsData = data?.data?.data
+
+    const handleToggle = (methodName: string) => {
+        const method = walletData.find(m => m.name === methodName);
+        const maxActiveLoginMethodCount = getPermissionValue("web3_network_login");
+
+        if (!method.isActivated) {
+            const activeMethodsCount = walletData.filter(m => m.isActivated && m.type === "WALLET").length;
+
+            if (!(maxActiveLoginMethodCount === "Unlimited" || method.type === "SOCIAL")) {
+                if (!(activeMethodsCount < +maxActiveLoginMethodCount)) {
+                    showToast({
+                        message: AppErrors.permission.maxActiveLoginMethods(maxActiveLoginMethodCount),
+                        type: "error"
+                    });
+                    return;
+                }
+            }
+        }
+
+        const updatedMethods = walletData.map(m =>
+            m.name === methodName ? { ...m, isActivated: !m.isActivated } : m
+        );
+        setWalletData(updatedMethods);
+    };
 
     return (
         <SectionContent
@@ -36,8 +60,8 @@ export default function LoginMethods() {
                     {isFetching ? (
                         <SkeletonLoading />
                     ) : (
-                        walletsData?.map((item, index) => {
-                            return <MethodItem wallets={item.wallets} key={index} />;
+                        walletData?.map((item, index) => {
+                            return <MethodItem method={item} key={index} onToggle={handleToggle} />;
                         })
                     )}
                 </Grid>

@@ -6,10 +6,8 @@ export interface IauthLoginService {
 
 export interface IAuthSupportedWalletsService {
     name: string;
-    wallets: {
-        name: string;
-        isActivated: boolean;
-    }[];
+    isActivated: boolean;
+    type: "SOCIAL" | "WALLET";
 }
 
 export interface ICompleteGoogleSignupService {
