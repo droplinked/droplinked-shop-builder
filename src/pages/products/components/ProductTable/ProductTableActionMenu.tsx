@@ -78,7 +78,7 @@ function ProductTableActionMenu({ product }: Props) {
             <ConfirmationModal product={product} onClose={onClose} isOpen={isOpen} action={isDeleteModal ? "DELETE" : "DUPLICATE"} />
             <ProductShareModal product={product} close={onShareModalClose} open={isShareModalOpen} />
             <DetailsModal product={product} close={onDetailsModalClose} open={isDetailsModalOpen} />
-            <DropInfoModal product={product} close={onDropInfoModalClose} open={isDropInfoModalOpen} />
+            <DropInfoModal product={product} isOpen={isDropInfoModalOpen} onClose={onDropInfoModalClose} />
         </>
     )
 }

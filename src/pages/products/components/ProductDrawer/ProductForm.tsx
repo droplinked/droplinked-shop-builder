@@ -7,6 +7,7 @@ import { getFormInitialValues } from 'pages/products/utils/formHelpers'
 import { validationSchema } from 'pages/products/utils/formSchema'
 import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
+import DropInfoModal from '../ProductTable/components/drop-info-modal/DropInfoModal'
 import FormContent from './FormContent'
 import ProductDrawerFooter from './ProductDrawerFooter'
 import ProductDrawerHeader from './ProductDrawerHeader'
@@ -19,20 +20,32 @@ interface Props {
 
 function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const { handleSubmit, selectedChain, recordProduct } = useProductSubmission({
+    const { isOpen: isDropModalOpen, onOpen: openDropModal, onClose: closeDropModal } = useDisclosure()
+    const { isOpen: isCircleModalOpen, onOpen: openCircleModal, onClose: closeCircleModal } = useDisclosure()
+
+    // Hook Integration for form submission and modals
+    const { handleSubmit, recordProduct, savedProduct, selectedChain, transactionHash } = useProductSubmission({
         closeProductFormDrawer: onDrawerClose,
-        openCircleModal: onOpen,
+        openDropModal,
+        openCircleModal,
         closeCircleModal: handleCircleModalClose
     })
 
-    function handleCircleModalClose() {
-        onClose()
+    // Handling modal closures and cache invalidation
+    function handleDropModalClose() {
+        closeDropModal()
         onDrawerClose()
         invalidateProductsQuery()
     }
 
+    function handleCircleModalClose() {
+        closeCircleModal()
+        onDrawerClose()
+        invalidateProductsQuery()
+    }
+
+    // Initial values for Formik
     const initialValues = getFormInitialValues({ product, selectedProductType })
 
     return (
@@ -40,9 +53,9 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                context={{ product_type: initialValues.product_type }}
                 validateOnChange={false}
-                validateOnBlur={false}
+                validateOnBlur={true}
+                context={{ product_type: initialValues.product_type }}
                 onSubmit={handleSubmit}
             >
                 {formik => (
@@ -56,9 +69,20 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
                 )}
             </Formik>
 
-            {isOpen && (
+            {/* DropInfoModal: Opens only after successful record */}
+            {isDropModalOpen && (
+                <DropInfoModal
+                    product={savedProduct}
+                    isOpen={isDropModalOpen}
+                    onClose={handleDropModalClose}
+                    transactionHash={transactionHash}
+                />
+            )}
+
+            {/* CircleRecordModal: Opens conditionally for Circle */}
+            {isCircleModalOpen && (
                 <CircleRecordModal
-                    isOpen={isOpen}
+                    isOpen={isCircleModalOpen}
                     onClose={handleCircleModalClose}
                     selectedChain={selectedChain}
                     recordFunction={recordProduct}

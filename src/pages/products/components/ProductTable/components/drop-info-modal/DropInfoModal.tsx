@@ -5,17 +5,18 @@ import DropInfoContent from "./components/DropInfoContent";
 import Header from "./components/Header";
 
 interface IProps {
-  close: () => void;
-  open: boolean;
   product: any;
+  isOpen: boolean;
+  onClose: () => void;
+  transactionHash?: string
 }
 
-function DropInfoModal({ close, open, product }: IProps) {
+function DropInfoModal({ product, isOpen, onClose, transactionHash }: IProps) {
   return (
     <AppModal
       modalRootProps={{
-        isOpen: open,
-        onClose: close,
+        isOpen,
+        onClose,
         size: "xl",
         scrollBehavior: "outside",
         isCentered: true,

@@ -3,7 +3,12 @@ import AppIcons from 'assest/icon/Appicons';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import React from 'react';
 
-const DropInfoContent = ({ product }) => {
+interface Props {
+  product: any
+  transactionHash?: string
+}
+
+const DropInfoContent = ({ product, transactionHash }: Props) => {
   return product && product.nftData ? (
     <Flex p="12" direction="column" justify="start" align="start" gap="4" bg="">
       <Box w="full" border="1px solid #292929" borderRadius="2xl" overflow="hidden" bg="transparent">
@@ -37,25 +42,6 @@ const DropInfoContent = ({ product }) => {
             </HStack>
           </HStack>
 
-          {/* Affiliate Collaborators */}
-          {/* <HStack w="full" justify="space-between">
-            <Text color="#7b7b7b" fontSize="sm">
-              Affiliate Collaborators:
-            </Text>
-            <Text color="#179ef8" fontSize="sm" fontWeight="medium">
-              12 Stores
-            </Text>
-          </HStack> */}
-
-          {/* Commission */}
-          {/* <HStack w="full" justify="space-between">
-            <Text color="#7b7b7b" fontSize="sm">
-              Commission
-            </Text>
-            <Text color="white" fontSize="sm" fontWeight="medium">
-              12%
-            </Text>
-          </HStack> */}
         </VStack>
       </Box>
     </Flex>
