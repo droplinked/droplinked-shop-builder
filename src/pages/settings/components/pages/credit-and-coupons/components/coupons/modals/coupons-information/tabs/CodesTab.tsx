@@ -12,8 +12,8 @@ import Select from 'components/redesign/select/Select'
 
 export enum Filters {
     All = 'All',
-    Redeemed = 'Redeemed',
-    NotRedeemed = 'Not Redeemed'
+    NotActive = 'Not Active',
+    Available = 'Available'
 }
 
 interface Props {
@@ -58,12 +58,12 @@ export default function CodesTab({ coupon, onClose }: Props) {
                                 value: Filters.All
                             },
                             {
-                                label: Filters.Redeemed,
-                                value: Filters.Redeemed
+                                label: Filters.NotActive,
+                                value: Filters.NotActive
                             },
                             {
-                                label: Filters.NotRedeemed,
-                                value: Filters.NotRedeemed
+                                label: Filters.Available,
+                                value: Filters.Available
                             }
                         ]}
                         labelAccessor='label'
