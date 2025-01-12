@@ -91,7 +91,8 @@ export function getFormInitialValues({ product, selectedProductType }: Params): 
         positions: product.positions,
 
         // Digital Product Details
-        digitalDetail: product.digitalDetail || { chain: "" }
+        digitalDetail: product.digitalDetail || { chain: "" },
+        nftData: product.nftData
     }
 }
 

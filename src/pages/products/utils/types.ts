@@ -67,6 +67,12 @@ export interface DigitalDetails {
 
 export type PublishStatus = "PUBLISHED" | "DRAFTED"
 
+export interface NFTData {
+    deployHash?: string
+    transactionUrl?: string
+    networkName?: string
+}
+
 export interface Product {
     // Identifiers
     _id?: string
@@ -122,4 +128,5 @@ export interface Product {
 
     // Digital Product Details
     digitalDetail?: DigitalDetails
+    nftData?: NFTData
 }

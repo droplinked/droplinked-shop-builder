@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
-    const { values: { digitalDetail }, setFieldValue } = useProductForm()
+    const { values: { digitalDetail, nftData }, setFieldValue } = useProductForm()
     const { data, isFetching } = useQuery({
         queryFn: supportedChainsService,
         enabled: isDropEnabled
@@ -36,7 +36,7 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
                         selectProps={{
                             width: '174px',
                             placeholder: 'Select network',
-                            value: digitalDetail.chain,
+                            value: digitalDetail?.chain || nftData?.networkName,
                             onChange: (e) => handleNetworkChange(e.target.value)
                         }}
                     />

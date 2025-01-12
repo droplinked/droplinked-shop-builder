@@ -156,6 +156,7 @@ export const initialValues: Product = {
     m2m_services: [],
     positions: null,
 
-    // Digital Product Details
-    digitalDetail: { chain: "" }
+    // Record Details
+    digitalDetail: { chain: "" },
+    nftData: undefined
 }
