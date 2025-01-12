@@ -2,12 +2,12 @@ import { Flex, HStack, Spinner, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
 import useAppToast from 'functions/hooks/toast/useToast'
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
 
 interface Props {
     showDetails: boolean

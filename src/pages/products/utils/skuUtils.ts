@@ -75,7 +75,7 @@ function createSKUs(
     return newSKUs
 }
 
-// Updated function specifically for POD products
+// Function to create SKUs for POD products
 export function convertPropertiesToPODSKUs(formValues: Product): SKU[] {
     const { properties, product_type } = formValues
 
@@ -161,4 +161,9 @@ export function convertSKUsToProperties(items: Array<any>): ProductProperty[] {
 
     // Convert properties map into an array
     return Object.values(propertiesMap)
+}
+
+export function checkIfProductIsRecorded(skus: SKU[]) {
+    console.log(skus)
+    return skus.some(s => ['RECORDED', 'PENDING'].includes(s?.recordData?.status))
 }

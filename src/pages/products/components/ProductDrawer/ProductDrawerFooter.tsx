@@ -1,6 +1,7 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React from 'react'
 
 interface Props {
@@ -8,16 +9,19 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { values: { _id: editingProductId, publish_product }, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
+    const { values, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
+    const { _id: editingProductId, sku, publish_product } = values
+
+    const isProductRecorded = checkIfProductIsRecorded(sku)
+    const isButtonDisabled = isProductRecorded || isSubmitting
 
     const handleAction = (action: string) => {
         const isSavingAsDraft = action === 'save-as-draft'
-        setFieldValue('publish_status', isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED')
+        const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
+        setFieldValue('publish_status', publishStatus)
         setFieldValue('publish_product', !isSavingAsDraft)
         handleSubmit()
     }
-
-    const actionLabel = editingProductId ? 'Update Product' : 'Add Product'
 
     return (
         <ChakraDrawerFooter
@@ -31,13 +35,14 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             <Button type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
                 Discard
             </Button>
+
             <Flex gap={4}>
                 <Button
                     type="button"
                     variant="outline"
                     borderColor="#2BCFA1"
                     color="#2BCFA1"
-                    isDisabled={isSubmitting}
+                    isDisabled={isButtonDisabled}
                     isLoading={isSubmitting && !publish_product}
                     onClick={() => handleAction('save-as-draft')}
                 >
@@ -45,11 +50,11 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                 </Button>
                 <Button
                     type="button"
-                    isDisabled={isSubmitting}
+                    isDisabled={isButtonDisabled}
                     isLoading={isSubmitting && publish_product}
                     onClick={() => handleAction('publish-product')}
                 >
-                    {actionLabel}
+                    {editingProductId ? 'Update Product' : 'Add Product'}
                 </Button>
             </Flex>
         </ChakraDrawerFooter>
