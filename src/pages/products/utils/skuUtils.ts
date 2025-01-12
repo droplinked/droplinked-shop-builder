@@ -164,6 +164,5 @@ export function convertSKUsToProperties(items: Array<any>): ProductProperty[] {
 }
 
 export function checkIfProductIsRecorded(skus: SKU[]) {
-    console.log(skus)
     return skus.some(s => ['RECORDED', 'PENDING'].includes(s?.recordData?.status))
 }

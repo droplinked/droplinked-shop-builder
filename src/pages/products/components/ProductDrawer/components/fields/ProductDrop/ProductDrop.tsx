@@ -1,6 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import MessageBox from 'components/redesign/message-box/MessageBox'
+import useAppToast from 'functions/hooks/toast/useToast'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useProductTypeLegality from 'pages/products/hooks/useProductTypeLegality'
 import React from 'react'
 import SwitchBox from '../../common/SwitchBox'
 import BlockchainNetworkSelector from './BlockchainNetworkSelector'
@@ -11,9 +13,18 @@ interface Props {
 }
 
 function ProductDrop({ isDropEnabled, onToggleDrop }: Props) {
-    const { values: { digitalDetail, sku }, setFieldValue } = useProductForm()
+    const { values, setFieldValue } = useProductForm()
+    const { _id, product_type, publish_status, digitalDetail, sku } = values
+    const { showToast } = useAppToast()
+    const { isLegal, errorMessage } = useProductTypeLegality("drop")
 
     const handleDropToggle = (checked: boolean) => {
+        if (_id && product_type === "DIGITAL" && publish_status === "PUBLISHED")
+            return showToast({ type: "error", message: "This product has already been published." })
+
+        if (!isLegal && checked)
+            return showToast({ type: "error", message: errorMessage })
+
         onToggleDrop(checked)
         if (!checked) {
             setFieldValue('digitalDetail', { ...digitalDetail, chain: '' })
