@@ -12,7 +12,7 @@ import Select from 'components/redesign/select/Select'
 
 export enum Filters {
     All = 'All',
-    NotActive = 'Not Active',
+    Used = 'Used',
     Available = 'Available'
 }
 
@@ -58,8 +58,8 @@ export default function CodesTab({ coupon, onClose }: Props) {
                                 value: Filters.All
                             },
                             {
-                                label: Filters.NotActive,
-                                value: Filters.NotActive
+                                label: Filters.Used,
+                                value: Filters.Used
                             },
                             {
                                 label: Filters.Available,

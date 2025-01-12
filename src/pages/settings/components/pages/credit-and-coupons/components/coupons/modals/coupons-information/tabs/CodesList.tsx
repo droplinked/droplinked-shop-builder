@@ -15,7 +15,7 @@ export default function CodesList({ codes, currentFilter }: Props) {
     const { showToast } = useAppToast();
     const getFilteredCodes = () => {
         switch (currentFilter) {
-            case Filters.NotActive:
+            case Filters.Used:
                 return codes.filter(code => code.isRedeemed);
             case Filters.Available:
                 return codes.filter(code => !code.isRedeemed);
