@@ -30,9 +30,9 @@ function ProductDrop({ isDropEnabled, onToggleDrop }: Props) {
         >
             {isDropEnabled && (
                 <Flex
+                    mt={2}
                     direction="column"
                     gap={6}
-                    mt={2}
                 >
                     <BlockchainNetworkSelector isDropEnabled={isDropEnabled} />
                     <MessageBox

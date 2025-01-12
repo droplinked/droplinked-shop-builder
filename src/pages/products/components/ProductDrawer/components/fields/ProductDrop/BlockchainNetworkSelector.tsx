@@ -15,7 +15,9 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
     const { values: { digitalDetail, nftData }, setFieldValue } = useProductForm()
     const { data, isFetching } = useQuery({
         queryFn: supportedChainsService,
-        enabled: isDropEnabled
+        enabled: isDropEnabled,
+        staleTime: 1000 * 60 * 60 * 24, // Data is fresh for 24 hours
+        cacheTime: 1000 * 60 * 60 * 24 * 2 // Cache persists for 2 days
     })
 
     const blockchainNetworks = formatBlockchainNetworks(data)

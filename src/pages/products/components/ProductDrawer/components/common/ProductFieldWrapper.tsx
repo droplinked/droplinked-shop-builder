@@ -15,7 +15,11 @@ interface FieldWrapperProps extends PropsWithChildren {
 function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: FieldWrapperProps) {
     return (
         <Box>
-            <Flex mb={4} align="flex-start" gap={4}>
+            <Flex
+                mb={children ? 4 : 0}
+                align="flex-start"
+                gap={4}
+            >
                 <Flex flex={1} direction="column" gap={1}>
                     <FormLabel
                         display="flex"
