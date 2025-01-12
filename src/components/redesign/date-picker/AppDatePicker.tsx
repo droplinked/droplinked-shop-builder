@@ -16,6 +16,7 @@ interface Props {
     selectsRange?: boolean
     placeholderText?: string
     showTimeInput?: boolean
+    dateFormat?: string
 }
 
 function AppDatePicker({
@@ -26,7 +27,8 @@ function AppDatePicker({
     inline,
     endDate,
     selectsRange,
-    showTimeInput
+    showTimeInput,
+    dateFormat
 }: Props) {
 
     return (
@@ -45,7 +47,7 @@ function AppDatePicker({
                 {...(typeof endDate && { endDate })}
                 {...(selectsRange && { selectsRange: true })}
                 selected={value}
-                dateFormat="d MMM, yyyy - HH:mm"
+                dateFormat={dateFormat ? dateFormat : "d MMM, yyyy - HH:mm"}
                 {...(showTimeInput && { showTimeInput: true })}
                 inline={inline}
                 placeholderText={placeholderText}
