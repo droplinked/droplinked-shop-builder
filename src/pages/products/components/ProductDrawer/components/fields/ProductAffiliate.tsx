@@ -1,44 +1,45 @@
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductAffiliate() {
-    const { values, setFieldValue } = useProductForm()
+    const { values, setFieldValue, errors } = useProductForm()
 
-    const preventInvalidKeys = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        const invalidKeys = ['+', '-', 'e']
-        if (invalidKeys.includes(e.key)) e.preventDefault()
-    }
-
-    const handleCommissionChange = ({ target: { value, validity } }) => {
+    const handleCommissionChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value, validity } = e.target
         if (!validity.valid) return
-        const parsedValue = parseInt(value)
-        setFieldValue('commission', isNaN(parsedValue) ? 0 : parsedValue)
+
+        const parsedValue = parseFloat(value)
+        setFieldValue('commission', isNaN(parsedValue) ? null : parsedValue)
     }
 
     return (
         <SwitchBox
             title='Affiliate Market'
             description='Enable this to allow co-sellers to import and sell this product.'
-            isChecked={values.canBeAffiliated}
-            onToggle={(e) => setFieldValue("canBeAffiliated", e.target.checked)}
+            switchProps={{
+                isChecked: values.canBeAffiliated,
+                onChange: (e) => setFieldValue("canBeAffiliated", e.target.checked)
+            }}
             rightContent={
                 <Input
                     inputGroupProps={{ width: "88px" }}
                     inputProps={{
-                        type: "number",
-                        min: 1,
-                        max: 99,
-                        placeholder: "100",
+                        type: 'number',
+                        numberType: 'float',
+                        min: 0,
+                        max: 99.99,
+                        step: 0.01,
+                        placeholder: '15',
                         value: values.commission,
-                        onKeyDown: preventInvalidKeys,
                         onChange: handleCommissionChange
                     }}
                     rightElement={<AppIcons.GrayPercent />}
                 />
             }
+            errorMessage={errors.commission}
         />
     )
 }

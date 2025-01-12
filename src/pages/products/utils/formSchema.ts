@@ -14,10 +14,10 @@ export const validationSchema = object().shape({
         .when('canBeAffiliated', {
             is: true,
             then: (schema) => schema
-                .min(1, 'Commission must be at least 1%')
+                .min(0, 'Commission must be at least 1%')
                 .max(100, 'Commission must not exceed 100%')
                 .typeError('Please enter a valid number')
-                .required('Please enter a valid commission percentage between 1 and 100'),
+                .required('Please enter a valid commission percentage between 0 and 100'),
             otherwise: (schema) => schema.nullable(),
         }),
     sku: array().of(

@@ -25,8 +25,10 @@ function ProductDrop({ isDropEnabled, onToggleDrop }: Props) {
         <SwitchBox
             title="Drop"
             description="Enable onchain records for this digital product."
-            isChecked={isDropEnabled}
-            onToggle={e => handleDropToggle(e.target.checked)}
+            switchProps={{
+                isChecked: isDropEnabled,
+                onChange: e => handleDropToggle(e.target.checked)
+            }}
         >
             {isDropEnabled && (
                 <Flex

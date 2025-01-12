@@ -1,15 +1,17 @@
-import { Flex, FlexProps, Switch, Text } from "@chakra-ui/react"
-import React, { ChangeEvent, ReactNode } from "react"
+import { Flex, FlexProps, Switch, SwitchProps, Text } from "@chakra-ui/react"
+import ErrorMessage from "components/redesign/error-message/ErrorMessage"
+import React, { PropsWithChildren, ReactNode } from "react"
 
-interface Props extends FlexProps {
+interface Props extends PropsWithChildren {
     title: string
     description: string
-    isChecked: boolean
-    onToggle: (e: ChangeEvent<HTMLInputElement>) => void
+    switchProps: SwitchProps
+    containerProps?: FlexProps
     rightContent?: ReactNode
+    errorMessage?: string
 }
 
-const SwitchBox = ({ title, description, isChecked, onToggle, rightContent, children, ...containerProps }: Props) => {
+const SwitchBox = ({ title, description, switchProps, containerProps, rightContent, errorMessage, children }: Props) => {
     return (
         <Flex
             gap={4}
@@ -18,8 +20,7 @@ const SwitchBox = ({ title, description, isChecked, onToggle, rightContent, chil
             <Switch
                 flexShrink={0}
                 size="lg"
-                isChecked={isChecked}
-                onChange={onToggle}
+                {...switchProps}
                 sx={{
                     ".chakra-switch__track": { width: "42px", height: "20px" },
                     ".chakra-switch__thumb": { width: "20px", height: "100%" }
@@ -34,6 +35,7 @@ const SwitchBox = ({ title, description, isChecked, onToggle, rightContent, chil
                     {rightContent}
                 </Flex>
                 {children}
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </Flex>
         </Flex>
     )

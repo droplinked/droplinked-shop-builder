@@ -9,8 +9,10 @@ function ProductTermsAndConditions() {
         <SwitchBox
             title='Custom Term of Service'
             description='Display custom terms specific to this product, such as return policies or disclaimers, during checkout.'
-            isChecked={showMore}
-            onToggle={(e) => setShowMore(e.target.checked)}
+            switchProps={{
+                isChecked: showMore,
+                onChange: (e) => setShowMore(e.target.checked)
+            }}
         >
             {showMore && (
                 <Textarea
@@ -18,7 +20,6 @@ function ProductTermsAndConditions() {
                     rows={8}
                 />
             )}
-
         </SwitchBox>
     )
 }

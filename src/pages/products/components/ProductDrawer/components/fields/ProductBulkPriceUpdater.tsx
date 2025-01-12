@@ -10,7 +10,7 @@ function ProductBulkPriceUpdater() {
     const [inputValue, setInputValue] = useState<string | number>('')
 
     // Check if all SKUs have the same price on mount
-    useEffect(function initializePricingState() {
+    useEffect(() => {
         const allPrices = sku.map(item => item.price)
         const uniquePrices = new Set(allPrices)
 
@@ -34,9 +34,11 @@ function ProductBulkPriceUpdater() {
         <SwitchBox
             title="Fixed Price"
             description="Apply a fixed price to all variants, overriding individual variant prices."
-            isChecked={fixedPrice}
-            onToggle={(e) => setFixedPrice(e.target.checked)}
-            css={{ path: { stroke: "#7B7B7B" } }}
+            switchProps={{
+                isChecked: fixedPrice,
+                onChange: (e) => setFixedPrice(e.target.checked)
+            }}
+            containerProps={{ css: { path: { stroke: "#7B7B7B" } } }}
             rightContent={fixedPrice && (
                 <Input
                     inputGroupProps={{ width: "104px" }}

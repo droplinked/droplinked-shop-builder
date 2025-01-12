@@ -23,7 +23,7 @@ export default function WalletOptions() {
             ? [...m2m_services, optionId]
             : m2m_services.filter(id => id !== optionId)
 
-        setFieldValue('m2m_services', updatedServices)
+        setFieldValue("m2m_services", updatedServices)
     }
 
     return (

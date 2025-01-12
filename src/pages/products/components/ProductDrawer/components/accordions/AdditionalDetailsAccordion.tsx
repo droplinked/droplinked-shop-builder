@@ -19,8 +19,10 @@ function AdditionalDetailsAccordion() {
             <SwitchBox
                 title="Custom Field"
                 description="Add custom information to display during checkout."
-                isChecked={pre_purchase_data_fetch}
-                onToggle={() => setFieldValue('pre_purchase_data_fetch', !pre_purchase_data_fetch)}
+                switchProps={{
+                    isChecked: pre_purchase_data_fetch,
+                    onChange: () => setFieldValue("pre_purchase_data_fetch", !pre_purchase_data_fetch)
+                }}
             />
 
             {product_type === "DIGITAL" && <ProductDeliveryMessage />}

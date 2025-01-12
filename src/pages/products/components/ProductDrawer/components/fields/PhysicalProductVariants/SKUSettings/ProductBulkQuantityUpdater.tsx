@@ -30,7 +30,7 @@ function ProductBulkQuantityUpdater() {
     function handleInputChange(value) {
         if (isNaN(value)) return
         setInputValue(value)
-        setIsInfinite(value === 1000000)  // Sync the toggle state with the input
+        setIsInfinite(value === 1000000) // Sync the toggle state with the input
         const updatedSKUs = sku.map(item => ({ ...item, quantity: value }))
         setFieldValue("sku", updatedSKUs)
     }
@@ -44,8 +44,10 @@ function ProductBulkQuantityUpdater() {
         <SwitchBox
             title="Fixed Quantity"
             description="Apply a fixed quantity to all variants, overriding individual variant quantities."
-            isChecked={fixedQuantity}
-            onToggle={() => setFixedQuantity(prev => !prev)}
+            switchProps={{
+                isChecked: fixedQuantity,
+                onChange: () => setFixedQuantity(prev => !prev)
+            }}
             rightContent={fixedQuantity && (
                 <Input
                     inputGroupProps={{ width: "104px" }}

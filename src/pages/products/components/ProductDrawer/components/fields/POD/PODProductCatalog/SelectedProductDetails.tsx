@@ -35,8 +35,9 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
         setFieldValue("description", "")
         setFieldValue("printful_template_id", null)
         setFieldValue("technique", null)
-        setFieldValue("m2m_positions", [])
         setFieldValue("m2m_positions_options", [])
+        setFieldValue("m2m_positions", [])
+        setFieldValue("m2m_services", [])
         onBack()
     }
 

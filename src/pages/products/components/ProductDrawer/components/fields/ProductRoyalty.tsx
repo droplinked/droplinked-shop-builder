@@ -1,9 +1,9 @@
-import AppIcons from 'assest/icon/Appicons'
-import Input from 'components/redesign/input/Input'
-import useAppToast from 'functions/hooks/toast/useToast'
-import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { ChangeEvent, useState } from 'react'
-import SwitchBox from '../common/SwitchBox'
+import AppIcons from "assest/icon/Appicons"
+import Input from "components/redesign/input/Input"
+import useAppToast from "functions/hooks/toast/useToast"
+import useProductForm from "pages/products/hooks/useProductForm"
+import React, { ChangeEvent, useState } from "react"
+import SwitchBox from "../common/SwitchBox"
 
 export default function ProductRoyalty() {
     const { values: { sku } } = useProductForm()
@@ -22,8 +22,10 @@ export default function ProductRoyalty() {
         <SwitchBox
             title="Royalty"
             description="Activate royalties on this product to receive a percentage on each resale."
-            isChecked={showInput}
-            onToggle={(e) => handleRoyaltyToggle(e.target.checked)}
+            switchProps={{
+                isChecked: showInput,
+                onChange: (e) => handleRoyaltyToggle(e.target.checked)
+            }}
             {...(showInput && { rightContent: <RoyaltyInput /> })}
         />
     )
@@ -37,24 +39,24 @@ function RoyaltyInput() {
         const { value, validity } = e.target
         if (!validity.valid) return
 
-        const numericValue = value === '' ? null : parseFloat(value)
-        setRoyalty(numericValue)
+        const parsedValue = value === "" ? null : parseFloat(value)
+        setRoyalty(parsedValue)
 
-        const updatedSkus = sku.map(item => ({ ...item, royalty: numericValue }))
-        setFieldValue('sku', updatedSkus)
+        const updatedSkus = sku.map(item => ({ ...item, royalty: parsedValue }))
+        setFieldValue("sku", updatedSkus)
     }
 
     return (
         <Input
-            inputGroupProps={{ width: '104px' }}
+            inputGroupProps={{ width: "104px" }}
             inputProps={{
-                type: 'number',
-                numberType: 'float',
+                type: "number",
+                numberType: "float",
                 min: 0,
                 max: 99.99,
                 step: 0.01,
-                placeholder: '15',
-                value: royalty !== null ? royalty : '',
+                placeholder: "15",
+                value: royalty !== null ? royalty : "",
                 onChange: handleInputChange
             }}
             rightElement={<AppIcons.GrayPercent />}
