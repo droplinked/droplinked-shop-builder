@@ -62,7 +62,6 @@ export default function EVMWallet() {
                 <Button
                     onClick={handleAddWallet}
                     color={"#179EF8"}
-                    sx={{ path: { stroke: "#179EF8" } }}
                     variant="outline"
                     border={"none"}
                 >

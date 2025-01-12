@@ -1,5 +1,5 @@
 import React from 'react'
-import { WalletAddress } from './EVMWallet';
+import { WalletAddress } from './SolanaWallet';
 import { Box, Flex } from '@chakra-ui/react';
 import Input from 'components/redesign/input/Input';
 import Button from 'components/redesign/button/Button';
