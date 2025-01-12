@@ -13,7 +13,7 @@ interface Props {
 function ProductDrop({ isDropEnabled, onToggleDrop }: Props) {
     const { values: { digitalDetail, sku }, setFieldValue } = useProductForm()
 
-    const handleDropToggle = (checked: boolean): void => {
+    const handleDropToggle = (checked: boolean) => {
         onToggleDrop(checked)
         if (!checked) {
             setFieldValue('digitalDetail', { ...digitalDetail, chain: '' })

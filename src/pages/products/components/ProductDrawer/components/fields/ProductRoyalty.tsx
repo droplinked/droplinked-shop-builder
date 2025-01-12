@@ -1,18 +1,29 @@
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
+import useAppToast from 'functions/hooks/toast/useToast'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 export default function ProductRoyalty() {
+    const { values: { sku } } = useProductForm()
     const [showInput, setShowInput] = useState(false)
+    const { showToast } = useAppToast()
+
+    const handleRoyaltyToggle = (checked: boolean) => {
+        if (!sku.length) {
+            showToast({ type: "error", message: "Please add at least one SKU before activating royalties." })
+            return
+        }
+        setShowInput(checked)
+    }
 
     return (
         <SwitchBox
             title="Royalty"
             description="Activate royalties on this product to receive a percentage on each resale."
             isChecked={showInput}
-            onToggle={(e) => setShowInput(e.target.checked)}
+            onToggle={(e) => handleRoyaltyToggle(e.target.checked)}
             {...(showInput && { rightContent: <RoyaltyInput /> })}
         />
     )
@@ -22,7 +33,7 @@ function RoyaltyInput() {
     const { values: { sku }, setFieldValue } = useProductForm()
     const [royalty, setRoyalty] = useState(sku?.[0]?.royalty ?? null)
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { value, validity } = e.target
         if (!validity.valid) return
 
@@ -32,13 +43,6 @@ function RoyaltyInput() {
         const updatedSkus = sku.map(item => ({ ...item, royalty: numericValue }))
         setFieldValue('sku', updatedSkus)
     }
-
-    useEffect(() => {
-        return () => {
-            const updatedSkus = sku.map(item => ({ ...item, royalty: null }))
-            setFieldValue('sku', updatedSkus)
-        }
-    }, [])
 
     return (
         <Input
