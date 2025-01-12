@@ -5,14 +5,9 @@ import { useQuery } from "react-query";
 import MethodItem from "./MethodItem";
 import { Grid } from "@chakra-ui/react";
 import SkeletonLoading from "./SkeletonLoading";
-import { useGetPermissionValue } from "lib/stores/app/appStore";
-import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "functions/hooks/toast/useToast";
 
 export default function LoginMethods() {
-    const getPermissionValue = useGetPermissionValue();
     const [walletData, setWalletData] = useState([]);
-    const { showToast } = useAppToast()
     const { isFetching } = useQuery(
         "supported-login-methods",
         authSupportedWalletsService,
@@ -24,23 +19,6 @@ export default function LoginMethods() {
     );
 
     const handleToggle = (methodName: string) => {
-        const method = walletData.find(m => m.name === methodName);
-        const maxActiveLoginMethodCount = getPermissionValue("web3_network_login");
-
-        if (!method.isActivated) {
-            const activeMethodsCount = walletData.filter(m => m.isActivated && m.type === "WALLET").length;
-
-            if (!(maxActiveLoginMethodCount === "Unlimited" || method.type === "SOCIAL")) {
-                if (!(activeMethodsCount < +maxActiveLoginMethodCount)) {
-                    showToast({
-                        message: AppErrors.permission.maxActiveLoginMethods(maxActiveLoginMethodCount),
-                        type: "error"
-                    });
-                    return;
-                }
-            }
-        }
-
         const updatedMethods = walletData.map(m =>
             m.name === methodName ? { ...m, isActivated: !m.isActivated } : m
         );

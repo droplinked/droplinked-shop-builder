@@ -7,25 +7,22 @@ interface CurrencyCardProps {
   isPrimary: boolean;
   currencyList: string[];
   onToggle: () => void;
+  isLoading?: boolean;
+  selectedItem: string | null;
+  setSelectedItem: (value: string) => void;
 }
 
-const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, currencyList, onToggle }) => {
+const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, currencyList, onToggle, isLoading, setSelectedItem, selectedItem }) => {
   return (
-    <Box flex="1" border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
+    <Box width={{ base: "100%", sm: "100%", md: "448px" }} ml={"auto"} border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
       <HStack p="6" justify="space-between">
         <Flex align="center" gap="4">
           <Text color={isPrimary ? 'white' : '#4f4f4f'} fontSize="base" fontWeight="medium">
             {currencyName}
           </Text>
-          {isPrimary ? (
-            <Badge bg="#ffd9511a" color="#ffd850" borderRadius="full" px="2">
-              Primary
-            </Badge>
-          ) : (
-            <Badge bg="gray.800" color="#4f4f4f" borderRadius="full" px="2">
-              Make Primary
-            </Badge>
-          )}
+          <Badge textTransform={"unset"} bg={isPrimary ? "#ffd9511a" : "grey.800"} color={isPrimary ? "#ffd850" : "#4f4f4f"} borderRadius="4px" fontWeight={400} px="2">
+            {isPrimary ? "Primary" : "Make Primary"}
+          </Badge>
         </Flex>
         <SwitchBox isChecked={isPrimary} onToggle={onToggle} />
       </HStack>
@@ -46,12 +43,15 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
           appearance="none"
           textAlign="center"
           _focus={{ boxShadow: 'none' }}
+          isDisabled={isLoading}
+          onChange={(e) => setSelectedItem(e.target.value)}
+          value={selectedItem}
         >
-          <option value="select" style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md' }}>
+          <option value="select" style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
             Select
           </option>
           {currencyList.map((currency) => (
-            <option key={currency} value={currency} style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md' }}>
+            <option key={currency} value={currency} style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
               {currency}
             </option>
           ))}

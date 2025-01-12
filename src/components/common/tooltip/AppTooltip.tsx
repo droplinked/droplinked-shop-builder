@@ -7,7 +7,8 @@ function AppTooltip(props: TooltipProps) {
             backgroundColor="#292929"
             padding="4px 16px"
             color="#C2C2C2"
-            borderRadius="100px"
+            borderRadius="6px"
+            border={"1px solid #3C3C3C"}
             placement='auto-start'
             {...props}
         />

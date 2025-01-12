@@ -3,18 +3,29 @@ import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import SectionContent from 'pages/settings/components/common/SectionContent';
 import React, { useState } from 'react';
 import CurrencyCard from './components/currency-card/CurrencyCard';
+import { useQuery } from 'react-query';
+import { getCurrencyList } from 'lib/apis/shop/shopServices';
+import useAppStore from 'lib/stores/app/appStore';
 
 const StoreDisplay: React.FC = () => {
+  const { shop: { currency } } = useAppStore()
+  const [selectedCurrency, setSelectedCurrency] = useState(currency?.abbreviation)
+  const { isLoading, data } = useQuery({
+    queryKey: ["currency-list"],
+    queryFn: () => getCurrencyList()
+  })
+
+  const currencyList = data?.data || []
   const [switchState, setSwitchState] = useState({
     fiat: true,
-    crypto: false
+    // crypto: false
   });
 
   // Handle the toggle such that only one currency can be primary at a time
   const handleToggle = (key: 'fiat' | 'crypto') => {
     setSwitchState({
       fiat: key === 'fiat',
-      crypto: key === 'crypto'
+      // crypto: key === 'crypto'
     });
   };
 
@@ -29,15 +40,18 @@ const StoreDisplay: React.FC = () => {
               <CurrencyCard
                 currencyName="Fiat"
                 isPrimary={switchState.fiat}
-                currencyList={['USD']}
+                currencyList={currencyList}
                 onToggle={() => handleToggle('fiat')}
+                isLoading={isLoading}
+                selectedItem={selectedCurrency}
+                setSelectedItem={(value: string) => setSelectedCurrency(value)}
               />
-              <CurrencyCard
+              {/* <CurrencyCard
                 currencyName="Crypto"
                 isPrimary={switchState.crypto}
                 currencyList={['BTC', 'ETH']}
                 onToggle={() => handleToggle('crypto')}
-              />
+              /> */}
             </Flex>
           }
         />

@@ -68,7 +68,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             fontStyle="normal"
                             fontWeight="500"
                             lineHeight={{ base: "16px", md: "24px" }}
-                            onClick={() => !isCreatingWallet && !isError && navigate("/analytics/settings/technical")}
+                            onClick={() => !isCreatingWallet && !isError && navigate("/analytics/account-settings")}
                             {...((isCreatingWallet || isError) && { background: "#292929", color: "#737373", cursor: "not-allowed" })}
                         >
                             Access Wallet
