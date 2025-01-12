@@ -34,13 +34,13 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
 
     return (
         <Badge
-            border={"1px solid"}
+            border="1px solid"
             borderRadius={24}
             paddingBlock={1}
             paddingInline={4}
             fontSize={14}
             fontWeight={400}
-            textTransform={"capitalize"}
+            textTransform="capitalize"
             {...styles}
         >
             {label}

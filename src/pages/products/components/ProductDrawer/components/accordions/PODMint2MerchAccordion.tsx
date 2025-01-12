@@ -34,7 +34,10 @@ function PODMint2MerchAccordion() {
     }
 
     return (
-        <ProductFormAccordion label="Mint to Merch">
+        <ProductFormAccordion
+            label="Mint to Merch"
+            accessLevel='Premium'
+        >
             <SwitchBox
                 title="Mint to Merch"
                 description="Enable customers to directly print their NFT artwork on the POD product."

@@ -1,5 +1,6 @@
 import { ReactComponent as Invoice } from "./Invoice.svg";
 import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
+import { ReactComponent as PremiumPlanGreenStarIcon } from "./PremiumPlanGreenStarIcon.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as AffiliateProductsArrow } from "./affiliate-products-arrow.svg";
@@ -553,7 +554,8 @@ const AppIcons = {
     WomenClothing,
     Furniture,
     KidClothing,
-    Watch
+    Watch,
+    PremiumPlanGreenStarIcon
 }
 
 export default AppIcons

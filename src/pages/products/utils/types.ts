@@ -1,6 +1,6 @@
 export const attributeToIdMap = {
     Color: "62a989ab1f2c2bbc5b1e7153",
-    Size: "62a989ab1f2c2bbc5b1e7154"
+    Size: "62a989e21f2c2bbc5b1e7154"
 }
 
 export type ProductType = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL" | "EVENT"
