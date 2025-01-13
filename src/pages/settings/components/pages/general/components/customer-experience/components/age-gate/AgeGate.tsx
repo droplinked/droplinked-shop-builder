@@ -10,8 +10,8 @@ export default function AgeGate() {
 
     return (
         <SectionContent
-            title="Post-Purchase Information"
-            description="Create custom fields for collecting additional information after a customer makes a purchase."
+            title="Age Gate"
+            description="Filter visitors based on setting a minimum age criteria to grant access to a storefront or particular products."
             rightContent={
                 <Flex alignItems={"center"} gap={4}>
                     <SwitchBox isChecked={value} title='Restrict Users Under 18' description='' onToggle={(e) => setValue(e.target.checked)} />
