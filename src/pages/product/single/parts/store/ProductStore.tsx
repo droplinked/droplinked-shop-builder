@@ -1,6 +1,6 @@
 import { IpodAvailableVariantsService, IpodPrintPositionsService, IpodProductService, IproviderIDService } from 'lib/apis/pod/interfaces'
 import { podAvailableVariantsService, podPrintPositionsService, podProductService, providerIDService } from 'lib/apis/pod/services'
-import React, { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { productContext } from '../../context'
 import ProductModel from '../../model'

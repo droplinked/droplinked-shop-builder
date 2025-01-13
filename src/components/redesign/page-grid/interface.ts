@@ -8,7 +8,7 @@ export interface SearchInput {
     placeholder?: string
 }
 
-export interface IdataGrid extends IDataGridButtons {
+export interface IdataGrid {
     filters?: Array<IFiltersDataGridItems>
     loading: boolean
     search?: SearchInput

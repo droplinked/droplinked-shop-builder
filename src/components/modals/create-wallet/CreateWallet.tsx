@@ -25,7 +25,10 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
         },
     });
     return (
-        <AppModal modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }} modalContentProps={{ width: "auto !important", padding: "0px !important" }}>
+        <AppModal
+            modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }}
+            modalContentProps={{ width: "auto !important", padding: "0px !important" }}
+        >
             <ModalBody
                 display="flex"
                 width={{ base: "360px", md: "625px" }}

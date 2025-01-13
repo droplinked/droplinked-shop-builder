@@ -4,7 +4,7 @@ import uploadImage from "assest/icon/upload-icon.svg";
 import axios from "axios";
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import useAppToast from "functions/hooks/toast/useToast";
-import { toMb } from "lib/utils/helpers/helpers";
+import { mbToBytes } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useRef, useState } from "react";
 import { DeleteIcon, ImagesInputWrapper, InputAddImage, ItemImage } from "./Input-images-style";
@@ -29,7 +29,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
 
   const changeImage = (e) => {
     const file = e.target.files[0];
-    if (file.size > toMb({ value: 5 })) {
+    if (file.size > mbToBytes(5)) {
       showToast({ message: AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), type: "error" });
       setLoading(false);
       return;

@@ -1,6 +1,6 @@
 import { LegalUsage } from "../subscription/interfaces";
 
-export interface IproductList {
+export interface IProductFetchParams {
     page: number;
     limit: number;
     filter?: string;

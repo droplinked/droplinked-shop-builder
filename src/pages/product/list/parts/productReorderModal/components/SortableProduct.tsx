@@ -31,7 +31,7 @@ function SortableProduct({ product }) {
                 />
                 <AppTypography fontSize={16} fontWeight={500} color="#c2c2c2">{product.title}</AppTypography>
             </Flex>
-            <AppIcons.Order />
+            <AppIcons.VerticalMove />
         </Flex>
     )
 }

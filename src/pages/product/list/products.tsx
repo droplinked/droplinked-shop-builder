@@ -3,7 +3,7 @@ import AppDataGrid from 'components/common/datagrid/DataGrid'
 import useCollections from 'functions/hooks/useCollections/useCollections'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { Collection } from 'lib/apis/collection/interfaces'
-import { productServices } from 'lib/apis/product/productServices'
+import { getShopProductsService } from 'lib/apis/product/productServices'
 import { useUpdateShopLegalUsage } from 'lib/stores/app/appStore'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -12,7 +12,6 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 import ProductEmpty from './parts/empty/ProductEmpty'
-import ImportProductModal from './parts/import-product-modal/ImportProductModal'
 import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
@@ -26,7 +25,7 @@ function Products() {
     const filter = useMemo(() => searchParams.get("filter"), [searchParams])
     const { isFetching, data } = useQuery({
         queryKey: ["product-list", { pageNumber, filter }],
-        queryFn: () => productServices({ limit: 15, page: pageNumber, filter }),
+        queryFn: () => getShopProductsService({ limit: 15, page: pageNumber, filter }),
         onSuccess: (data) => updateShopLegalUsage(data.data.data.legalUsage)
     })
     const products = data?.data?.data
@@ -36,7 +35,6 @@ function Products() {
     const { refactorData } = ProductListModel
     const [selectedProducts, setSelectedProducts] = useState([])
     const productReorderModal = useDisclosure()
-    const importProductModal = useDisclosure()
 
     const rows = useMemo(() => {
         return data ? refactorData({ data: products?.data, fetch: refetchProducts }) : []
@@ -52,7 +50,6 @@ function Products() {
         const data: any = [
             { caption: "Add Product", to: `${shopRoute}/products/types` },
             { caption: "Reorder Products", onClick: productReorderModal.onOpen, buttonProps: { variant: "outline" } },
-            { caption: "Import", onClick: importProductModal.onOpen, buttonProps: { variant: "outline" } }
         ]
 
         if (selectedProducts.length) data.push({
@@ -126,8 +123,6 @@ function Products() {
                     }}
                 />
             }
-
-            <ImportProductModal isOpen={importProductModal.isOpen} closeModal={importProductModal.onClose} />
         </>
     )
 }

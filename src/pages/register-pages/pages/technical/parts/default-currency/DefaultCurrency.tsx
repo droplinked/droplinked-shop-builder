@@ -1,55 +1,34 @@
-import * as React from "react";
-import { Flex } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import AppCard from "components/common/card/AppCard";
-import { useQuery } from "react-query";
-import { getCurrencyList } from "lib/apis/shop/shopServices";
-
-import technicalContext from "../../context";
-import { DefaultCurrencyDescription } from "./components/DefaultCurrencyDecsription";
-import { CurrencySelect } from "./components/CurrencySelect";
-import useAppStore from "lib/stores/app/appStore";
+import { Flex } from "@chakra-ui/react"
+import AppCard from "components/common/card/AppCard"
+import AppTypography from "components/common/typography/AppTypography"
+import CurrencySelect from "components/redesign/select/CurrencySelect"
+import useAppStore from "lib/stores/app/appStore"
+import React, { useContext } from "react"
+import technicalContext from "../../context"
+import { DefaultCurrencyDescription } from "./components/DefaultCurrencyDecsription"
 
 function DefaultCurrency() {
-  const { isLoading, data } = useQuery({
-    queryKey: ["currencyList"],
-    queryFn: () => getCurrencyList(),
-  });
-
-  const { shop: shopInfoData, loading: shopInfoLoading } = useAppStore();
-  const { updateState, state: { currencyAbbreviation } } = React.useContext(technicalContext)
-
-  React.useEffect(() => {
-    if (!shopInfoLoading && !isLoading) {
-      updateState("currencyAbbreviation", shopInfoData?.currency?.abbreviation)
-    }
-  }, [shopInfoLoading, isLoading, shopInfoData])
-
-  const currencyData = data?.data?.data ?? [];
+  const { shop: { currency } } = useAppStore()
+  const { updateState, state: { currencyAbbreviation } } = useContext(technicalContext)
 
   return (
     <AppCard>
-      <Flex direction={"column"} gap={"5px"}>
-        <AppTypography
-          fontSize="24px"
-          fontWeight="bold"
-          color={"white"}
-          mb={"48px"}
-        >
+      <Flex direction="column">
+        <AppTypography mb={12} fontSize={24} fontWeight="bold" color="white">
           Store Currency
         </AppTypography>
-        <Flex direction={"row"}>
+
+        <Flex gap={4}>
           <DefaultCurrencyDescription />
           <CurrencySelect
-            isLoading={isLoading}
-            shopInfoLoading={shopInfoLoading}
-            currencyAbbreviation={currencyAbbreviation}
-            updateState={updateState}
-            currencyData={currencyData} />
+            width="50%"
+            value={currencyAbbreviation || currency?.abbreviation}
+            onChange={(e) => updateState("currencyAbbreviation", e.target.value)}
+          />
         </Flex>
       </Flex>
     </AppCard>
-  );
+  )
 }
 
-export default DefaultCurrency;
+export default DefaultCurrency

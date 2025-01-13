@@ -6,6 +6,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
 import { getCustomShippingsService } from 'lib/apis/custom-shipping/CustomShippingServices'
 import useAppStore, { useHasPermission } from 'lib/stores/app/appStore'
+import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import { productContext } from 'pages/product/single/context'
 import { BlackBox, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useEffect, useState } from 'react'
@@ -13,7 +14,6 @@ import { useQuery } from 'react-query'
 import CreateCustomShippingModal from '../create-custom-shipping-modal/CreateCustomShippingModal'
 import Loading from '../loading/Loading'
 import RemoveCustomShippingModal from '../remove-custom-shipping-modal/RemoveCustomShippingModal'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 
 function Shipping() {
     const hasPermission = useHasPermission();

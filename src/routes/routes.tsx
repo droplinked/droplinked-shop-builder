@@ -20,6 +20,7 @@ import ProductOrder from "pages/product/order/ProductOrder";
 import ConnectEventAccount from "pages/product/single/parts/event/connect-event-account/ConnectEventAccount";
 import EventsList from "pages/product/single/parts/event/events-list/EventsList";
 import ProductTypes from "pages/product/types/ProductTypes";
+import ProductsV2 from "pages/products/ProductsV2";
 import AboutUs from "pages/public-pages/about/AboutUs";
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation";
 import ContactUs from "pages/public-pages/contact-us/ContactUs";
@@ -129,6 +130,9 @@ function AppRoutes() {
                         <Route path=":productId" element={<ProductSingle />} />
                         <Route path="connect-event-account" element={<ConnectEventAccount />} />
                         <Route path="events-list" element={<EventsList />} />
+                    </Route>
+                    <Route path="productsV2">
+                        <Route index element={<ProductsV2 />} />
                     </Route>
                     <Route path="collections" element={<Collections />} />
                     <Route path="orders" element={<Orders />} />

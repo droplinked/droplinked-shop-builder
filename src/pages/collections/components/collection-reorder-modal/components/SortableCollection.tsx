@@ -36,7 +36,7 @@ function SortableCollection({ collection, index }: { collection: Collection, ind
                     <CollectionTitle title={collection?.title} />
                 </Flex>
                 <Flex {...listeners}>
-                    <AppIcons.Order />
+                    <AppIcons.VerticalMove />
                 </Flex>
             </Flex>
         </div>
