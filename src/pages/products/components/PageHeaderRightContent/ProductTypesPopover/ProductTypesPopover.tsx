@@ -1,6 +1,6 @@
-import { PlacementWithLogical, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
+import { PlacementWithLogical, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure, useOutsideClick } from '@chakra-ui/react'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useRef } from 'react'
 import ProductTypes from './ProductTypes'
 
 interface Props extends PropsWithChildren {
@@ -8,16 +8,19 @@ interface Props extends PropsWithChildren {
 }
 
 function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
+    const popoverRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isProductTypePopoverOpen, updateProductPageState, resetProductPageState } = useProductPageStore()
 
-    const openPopover = () => {
+    useOutsideClick({ ref: popoverRef, handler: closePopover })
+
+    function openPopover() {
         if (isProductTypePopoverOpen) return
         updateProductPageState("isProductTypePopoverOpen", true)
         onOpen()
     }
 
-    const closePopover = () => {
+    function closePopover() {
         resetProductPageState()
         onClose()
     }
@@ -30,9 +33,7 @@ function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
             placement={placement}
         >
             <PopoverTrigger>
-                <div>
-                    {children}
-                </div>
+                <div ref={popoverRef}>{children}</div>
             </PopoverTrigger>
             <PopoverContent
                 width="500px"
