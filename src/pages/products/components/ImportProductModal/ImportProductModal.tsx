@@ -1,6 +1,6 @@
-import { Link } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import fileTemplate from "assest/samples/import_product_template.xlsx"
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
@@ -30,17 +30,14 @@ function ImportProductModal({ isOpen, onClose }: Props) {
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
             >
-                <Link
-                    href={fileTemplate}
-                    textDecoration="underline"
+                <ExternalLink
                     fontSize={14}
                     fontWeight={600}
-                    color="#179EF8"
-                    cursor="pointer"
+                    href={fileTemplate}
                     download="import_product_template.xlsx"
                 >
                     Download Template
-                </Link>
+                </ExternalLink>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} />
             <ImportProductModalFooter file={uploadedFile} closeModal={onClose} />
