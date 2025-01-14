@@ -11,10 +11,9 @@ function useDesignMakerHooks(onClose: () => void) {
     const { variants, updateProductPageState } = useProductPageStore()
     const {
         printful_template_id,
-        publish_product,
         pod_blank_product_id,
         custome_external_id,
-        technique,
+        technique
     } = values
 
     const [designMakerInstance, setDesignMakerInstance] = useState(null)
@@ -51,7 +50,8 @@ function useDesignMakerHooks(onClose: () => void) {
             })
 
             setDesignMakerInstance(designMaker)
-        } catch (error) {
+        }
+        catch (error) {
             setIsLoading(false)
         }
     }
@@ -184,35 +184,6 @@ function useDesignMakerHooks(onClose: () => void) {
         }
     }
 
-    const handleBack = () => {
-        setFieldValue('technique', null)
-        setFieldValue('media', [])
-        setFieldValue("pod_blank_product_id", pod_blank_product_id)
-        setFieldValue("sku", [])
-        setFieldValue("title", '')
-        setFieldValue("description", '')
-        setFieldValue("artwork", null)
-        setFieldValue("artwork2", null)
-        setFieldValue("artwork_position", null)
-        setFieldValue("artwork2_position", null)
-        setFieldValue("m2m_positions_options", [])
-        setFieldValue("m2m_positions", [])
-        setFieldValue("m2m_services", [])
-        setFieldValue("positions", [])
-        setFieldValue("properties", [
-            {
-                "value": "62a989ab1f2c2bbc5b1e7153",
-                "title": "Color",
-                "items": []
-            },
-            {
-                "value": "62a989e21f2c2bbc5b1e7154",
-                "title": "Size",
-                "items": []
-            }
-        ])
-    }
-
     useEffect(() => {
         if (!designMakerInstance) initializeDesignMaker()
         return () => { setDesignMakerInstance(null) }
@@ -234,9 +205,7 @@ function useDesignMakerHooks(onClose: () => void) {
         iframeRef,
         isIframeLoaded,
         isLoading,
-        publish_product,
         handleSave,
-        handleBack
     }
 }
 

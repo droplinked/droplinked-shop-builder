@@ -31,13 +31,20 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
     const deleteProduct = () => {
         updateProductPageState("selectedPODProduct", null)
         setFieldValue("pod_blank_product_id", null)
-        setFieldValue("title", "")
-        setFieldValue("description", "")
-        setFieldValue("printful_template_id", null)
         setFieldValue("technique", null)
+        setFieldValue("printful_template_id", null)
         setFieldValue("m2m_positions_options", [])
         setFieldValue("m2m_positions", [])
         setFieldValue("m2m_services", [])
+        setFieldValue("artwork", null)
+        setFieldValue("artwork2", null)
+        setFieldValue("artwork_position", null)
+        setFieldValue("artwork2_position", null)
+        setFieldValue("positions", [])
+        setFieldValue("title", "")
+        setFieldValue("description", "")
+        setFieldValue("properties", [])
+        setFieldValue("sku", [])
         onBack()
     }
 

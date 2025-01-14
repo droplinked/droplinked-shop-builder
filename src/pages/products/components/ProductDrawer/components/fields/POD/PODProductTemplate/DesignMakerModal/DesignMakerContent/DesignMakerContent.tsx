@@ -10,14 +10,7 @@ interface Props {
 }
 
 function DesignMakerContent({ onClose }: Props) {
-    const {
-        iframeRef,
-        isIframeLoaded,
-        isLoading,
-        publish_product,
-        handleSave,
-        handleBack
-    } = useDesignMakerHooks(onClose)
+    const { iframeRef, isIframeLoaded, isLoading, handleSave } = useDesignMakerHooks(onClose)
 
     return (
         <Flex direction="column" gap={4}>
@@ -30,8 +23,6 @@ function DesignMakerContent({ onClose }: Props) {
                 isLoading={isLoading}
                 isIframeLoaded={isIframeLoaded}
                 handleSave={handleSave}
-                handleBack={handleBack}
-                publishProduct={publish_product}
             />
         </Flex>
     )
