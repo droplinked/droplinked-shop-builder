@@ -6,6 +6,11 @@ import { ProductTypeObj } from './ProductTypes'
 function ProductTypeCard({ icon, title, description, productType }: ProductTypeObj) {
     const updateProductPageState = useProductPageStore(e => e.updateProductPageState)
 
+    const isDisabled = productType === "EVENT"
+
+    const handleClick = () =>
+        !isDisabled && updateProductPageState("selectedProductType", productType)
+
     return (
         <Flex
             width="100%"
@@ -13,13 +18,11 @@ function ProductTypeCard({ icon, title, description, productType }: ProductTypeO
             padding={4}
             border="1px solid transparent"
             borderRadius={8}
-            cursor="pointer"
             transition="all 400ms ease-in-out"
-            _hover={{
-                borderColor: "#292929",
-                background: "#1C1C1C"
-            }}
-            onClick={() => updateProductPageState("selectedProductType", productType)}
+            _hover={isDisabled ? {} : { borderColor: "#292929", background: "#1C1C1C" }}
+            opacity={isDisabled ? 0.6 : 1}
+            cursor={isDisabled ? "not-allowed" : "pointer"}
+            onClick={handleClick}
         >
             <Center
                 w="56px"
