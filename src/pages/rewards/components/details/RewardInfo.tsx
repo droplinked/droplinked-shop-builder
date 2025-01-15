@@ -4,11 +4,11 @@ import CustomizableSection from './components/CustomizableSection';
 import ProPlanSection from './components/ProPlanSection';
 import SellingSection from './components/SellingSection';
 
-const RewardInfo = () => {
+const RewardDetails = () => {
   return (
-    <Flex justify="start" align="start" gap={6} overflow="hidden" flexDirection={{ base: 'column', lg: 'row' }}>
+    <Flex justify="start" align="start" gap={6} overflow="hidden" flexDirection={{ base: 'column', lg: 'row' }} alignItems="stretch">
       <ProPlanSection />
-      <Flex flexDirection="column" gap={6} flex="1">
+      <Flex flexDirection="column" gap={6} flex="1" >
         <SellingSection />
         <CustomizableSection />
       </Flex>
@@ -16,4 +16,4 @@ const RewardInfo = () => {
   );
 };
 
-export default RewardInfo;
+export default RewardDetails;
