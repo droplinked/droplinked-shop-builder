@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import useAppStore from 'lib/stores/app/appStore';
 import React from 'react';
@@ -16,6 +16,7 @@ interface SocialMediaCardProps {
 
 const SocialMediaCard: React.FC<SocialMediaCardProps> = ({ title, description, duration, icon, onClick, cursor = 'pointer', isFollowed, allFollowed }) => {
   const { shop } = useAppStore();
+  const [isSmallerThan1280] = useMediaQuery('(max-width: 1280px)')
 
   const renderStatus = React.useMemo(() => {
     if (shop) {
@@ -30,7 +31,7 @@ const SocialMediaCard: React.FC<SocialMediaCardProps> = ({ title, description, d
         return <AppIcons.Tick width="24px" height="24px" />;
       }
     }
-    return <AppIcons.ExternalArrow/>;
+    return <AppIcons.ExternalArrow />;
   }, [allFollowed, isFollowed, shop]);
 
   return (
@@ -50,8 +51,31 @@ const SocialMediaCard: React.FC<SocialMediaCardProps> = ({ title, description, d
       onClick={onClick}
     >
       {/* Mobile Icon Section */}
-      <Flex w="full" justifyContent="space-between" alignItems="center" display={{ base: 'flex', lg: 'none' }}>
-        {/* Icon */}
+      {isSmallerThan1280 &&
+        <Flex w="full" justifyContent="space-between" alignItems="center" display={{ base: 'flex', lg: 'none' }}>
+          {/* Icon */}
+          <Flex
+            w="56px"
+            h="56px"
+            bg={isFollowed && !allFollowed ? '#2BCFA11A' : '#141414'}
+            borderRadius="xl"
+            border="1px solid"
+            borderColor={isFollowed && !allFollowed ? '#2BCFA11A' : '#222222'}
+            backdropFilter="blur(10px)"
+            justifyContent="center"
+            alignItems="center"
+          >
+            {icon}
+          </Flex>
+          {/* Status Indicator */}
+          <Flex p={3} borderRadius="lg" justifyContent="center" alignItems="center">
+            {renderStatus}
+          </Flex>
+        </Flex>}
+
+      {/* Desktop Icon Section */}
+
+      {!isSmallerThan1280 &&
         <Flex
           w="56px"
           h="56px"
@@ -62,31 +86,11 @@ const SocialMediaCard: React.FC<SocialMediaCardProps> = ({ title, description, d
           backdropFilter="blur(10px)"
           justifyContent="center"
           alignItems="center"
+          display={{ base: 'none', lg: 'flex' }}
         >
           {icon}
         </Flex>
-        {/* Status Indicator */}
-        <Flex p={3} borderRadius="lg" justifyContent="center" alignItems="center">
-          {renderStatus}
-        </Flex>
-      </Flex>
-
-      {/* Desktop Icon Section */}
-
-      <Flex
-        w="56px"
-        h="56px"
-        bg={isFollowed && !allFollowed ? '#2BCFA11A' : '#141414'}
-        borderRadius="xl"
-        border="1px solid"
-        borderColor={isFollowed && !allFollowed ? '#2BCFA11A' : '#222222'}
-        backdropFilter="blur(10px)"
-        justifyContent="center"
-        alignItems="center"
-        display={{ base: 'none', lg: 'flex' }}
-      >
-        {icon}
-      </Flex>
+      }
 
       {/* Content Section */}
       <VStack align="flex-start" spacing={1} flex="1" w="full" mt={{ base: 4, lg: 0 }}>
