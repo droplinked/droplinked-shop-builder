@@ -6,6 +6,7 @@ import useFollowStatus from 'pages/rewards/hook/useFollowStatus';
 import { trackFollowService } from 'lib/apis/quests/services';
 import useAppStore from 'lib/stores/app/appStore';
 import AppIcons from 'assest/icon/Appicons';
+import useAppToast from 'functions/hooks/toast/useToast';
 
 const promotions = [
   { title: 'Follow us on X', description: 'Free Pro Plan', duration: '1 month', platform: 'X', link: 'https://twitter.com/droplinked', icon: <AppIcons.ColorfulXTwitter width="24px" height="24px" /> },
@@ -20,6 +21,7 @@ function SocialMediaList() {
   const [columns, setColumns] = useState('repeat(1, 1fr)');
   const {followStatus, allPlatformsFollowed, updateFollowStatus } = useFollowStatus();
   const {shop } = useAppStore();
+  const { showToast } = useAppToast()
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,7 +39,7 @@ function SocialMediaList() {
       await trackFollowService({ platform });
       updateFollowStatus(platform);
     } catch (error) {
-      console.error('Error tracking follow:', error);
+      showToast({message: `Failed to track follow on ${platform}. Please try again later.`,type: "error" });
     }
   };
 
