@@ -1,13 +1,13 @@
 import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
 import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { createProductService, updateProductService } from 'lib/apis/product/productServices'
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
 
@@ -19,7 +19,6 @@ interface Params {
 }
 
 const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircleModal, closeCircleModal }: Params) => {
-    const { editingProductId } = useProductPageStore()
     const { growthHackData, fetchGrowthHackData } = useGrowthHackStore()
     const { showToast } = useAppToast()
     const { web3 } = useAppWeb3()
@@ -27,6 +26,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     const shopLegalUsage = useLegalUsage()
     const { user: { wallets }, shop } = useAppStore()
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
+    const { convertPrice } = useCurrencyConverter()
 
     // Refs for global state inside the hook
     const shouldOpenCircleModal = useRef(false)
@@ -41,7 +41,11 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
         const shouldRecordProduct = selectedChain.current && !isSavingAsDraft
 
         try {
-            await saveProduct(values, shouldRecordProduct, isSavingAsDraft)
+            const convertedValues = {
+                ...values,
+                sku: values.sku.map(sku => ({ ...sku, price: convertPrice({ amount: sku.price, toUSD: true }) }))
+            }
+            await saveProduct(convertedValues, shouldRecordProduct, isSavingAsDraft)
 
             if (shouldRecordProduct) {
                 shouldOpenCircleModal.current = checkCircleModalCondition()
@@ -55,12 +59,14 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const saveProduct = async (values: Product, shouldRecordProduct: boolean, isSavingAsDraft: boolean) => {
-        if (editingProductId) {
-            const response = await updateProductService({ productID: editingProductId, params: values })
+        const { _id, product_type } = values
+
+        if (_id) {
+            const response = await updateProductService({ productID: _id, params: values })
             savedProduct.current = formatProductResponse(response.data.data)
         }
         else {
-            checkProductTypeLegalUsage(values.product_type)
+            checkProductTypeLegalUsage(product_type)
             const response = await createProductService({
                 ...values,
                 publish_product: shouldRecordProduct ? false : !isSavingAsDraft

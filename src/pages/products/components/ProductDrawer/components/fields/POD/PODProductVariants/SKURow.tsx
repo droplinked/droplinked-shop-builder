@@ -1,6 +1,7 @@
 import { Td, Text, Tr } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
 import SkuVariants from '../../../common/SkuVariants'
@@ -12,6 +13,10 @@ interface Props {
 }
 
 function SKURow({ currentSKU, index, onPriceInputChange }: Props) {
+    const { symbol, convertPrice, abbreviation } = useCurrencyConverter()
+
+    const convertedPrice = `${symbol}${convertPrice({ amount: currentSKU.rawPrice, toUSD: false })}`
+
     return (
         <Tr>
             <Td>
@@ -36,7 +41,7 @@ function SKURow({ currentSKU, index, onPriceInputChange }: Props) {
                     color="#FFF"
                     css={{ span: { color: '#7B7B7B' } }}
                 >
-                    ${currentSKU.rawPrice} <span>USD</span>
+                    {convertedPrice} <span>{abbreviation}</span>
                 </Text>
             </Td>
             <Td>

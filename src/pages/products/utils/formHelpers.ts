@@ -1,3 +1,4 @@
+import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import { nanoid } from "nanoid";
 import { initialValues } from "./formSchema";
 import { convertSKUsToProperties } from "./skuUtils";
@@ -5,10 +6,11 @@ import { Product, ProductType, SKU } from "./types";
 
 interface Params {
     product?: any
-    selectedProductType: ProductType
+    selectedProductType: ProductType,
+    convertPrice: (params: PriceConversionParams) => number
 }
 
-export function getFormInitialValues({ product, selectedProductType }: Params): Product {
+export function getFormInitialValues({ product, selectedProductType, convertPrice }: Params): Product {
     if (!product) {
         const digitalProductSKU: SKU = {
             externalID: "",
@@ -36,6 +38,11 @@ export function getFormInitialValues({ product, selectedProductType }: Params): 
             ...productTypeFields
         }
     }
+
+    const convertedSKUs = product.skuIDs.map((sku: SKU) => ({
+        ...sku,
+        price: convertPrice({ amount: sku.price, toUSD: false })
+    }))
 
     return {
         // Identifiers
@@ -74,7 +81,7 @@ export function getFormInitialValues({ product, selectedProductType }: Params): 
 
         // Properties and Variants
         properties: convertSKUsToProperties(product.skuIDs),
-        sku: product.skuIDs,
+        sku: convertedSKUs,
 
         // POD and Printing Details
         pod_blank_product_id: product.pod_blank_product_id,

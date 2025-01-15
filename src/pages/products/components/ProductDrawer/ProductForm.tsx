@@ -2,6 +2,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecordModal'
 import { Form, Formik, FormikProvider } from 'formik'
 import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import useProductSubmission from 'pages/products/hooks/useProductSubmission'
 import { getFormInitialValues } from 'pages/products/utils/formHelpers'
 import { validationSchema } from 'pages/products/utils/formSchema'
@@ -20,6 +21,7 @@ interface Props {
 
 function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
+    const { convertPrice } = useCurrencyConverter()
 
     const { isOpen: isDropModalOpen, onOpen: openDropModal, onClose: closeDropModal } = useDisclosure()
     const { isOpen: isCircleModalOpen, onOpen: openCircleModal, onClose: closeCircleModal } = useDisclosure()
@@ -46,7 +48,7 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
     }
 
     // Initial values for Formik
-    const initialValues = getFormInitialValues({ product, selectedProductType })
+    const initialValues = getFormInitialValues({ product, selectedProductType, convertPrice })
 
     return (
         <>
