@@ -29,10 +29,11 @@ import HomePage from "pages/public-pages/homePage/HomePage";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
-import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page";
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
+import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page";
+import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage";
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage";
@@ -55,13 +56,12 @@ import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink";
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration";
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign";
+import Rewards from "pages/rewards/rewards";
+import SettingsPage from "pages/settings/SettingsPage";
 import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
-import Rewards from "pages/rewards/rewards";
-import SettingsPage from "pages/settings/SettingsPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -106,7 +106,7 @@ function AppRoutes() {
                     <Route path="email-verification/:token" element={<VerifyEmailPage />} />
                     <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
                     <Route path="plans" element={<PricingPage />} />
-                    <Route path="rewards" element={<Rewards></Rewards>}/>
+                    <Route path="rewards" element={<Rewards></Rewards>} />
                 </Route>
 
                 <Route path="analytics" element={<DashboardLayout />}>
@@ -122,7 +122,7 @@ function AppRoutes() {
                         <Route path="payment-link-design" element={<PaymentLink />} />
                     </Route>
                     <Route path="account-settings" element={<SettingsPage />} />
-                    <Route path="products">
+                    <Route path="productsV2">
                         <Route index element={<Products />} />
                         <Route path="types" element={<ProductTypes />} />
                         <Route path="order/:productID" element={<ProductOrder />} />
@@ -131,7 +131,7 @@ function AppRoutes() {
                         <Route path="connect-event-account" element={<ConnectEventAccount />} />
                         <Route path="events-list" element={<EventsList />} />
                     </Route>
-                    <Route path="productsV2">
+                    <Route path="products">
                         <Route index element={<ProductsV2 />} />
                     </Route>
                     <Route path="collections" element={<Collections />} />
