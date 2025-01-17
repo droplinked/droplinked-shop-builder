@@ -35,7 +35,7 @@ export default function Domains({ domains, clientId, refetch }: Props) {
                         <ClientIdDisplay clientId={clientId} />
                     </Flex>
                     <Box cursor={"pointer"} onClick={() => handleDeleteDomain(domain)}>
-                        <AppIcons.TrashRed />
+                        <AppIcons.RedTrash />
                     </Box>
                 </Flex>
             ))}

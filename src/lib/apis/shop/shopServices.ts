@@ -7,6 +7,7 @@ import {
 	IGetShopCommunityProfile,
 	IGetShopsCommunityService,
 	IpaymentCreateService,
+	IPaymentPublicService,
 	IPostWithdrawCircleWallet,
 	IrecordedShopService,
 	IShopApiKey,
@@ -28,6 +29,8 @@ export const shopService = ({ shopName }: IshopService) =>
 
 export const paymentPublicService = async () =>
 	axiosInstance.get(`shop/public/available-payment-methods`);
+export const paymentPublicServiceV2 = async () =>
+	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);
 
 export const paymentMethodsService = () => axiosInstance.get(`shop/payment-methods`);
 

@@ -104,6 +104,19 @@ export interface IShopApiKey {
     domains: Array<string>;
 }
 
+export interface IPaymentPublicService {
+    name?: string;
+    symbol?: string;
+    _id?: string;
+    description?: string
+    supportedChains?: SupportedChains[]
+}
+
+export interface SupportedChains {
+    group: string;
+    type: string;
+    _id: string;
+}
 export interface IUpdateShopName {
     id: string;
     shopName: string;

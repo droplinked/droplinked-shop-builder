@@ -299,8 +299,14 @@ import { ReactComponent as SystemWarning } from "./system-warning.svg";
 import { ReactComponent as DiscountCouponIcon } from "./discount-coupon-icon.svg";
 import { ReactComponent as Export } from "./export.svg";
 import { ReactComponent as Secure } from "./secure.svg";
+import { ReactComponent as Usdc } from "./usdc.svg";
+import { ReactComponent as DollarSign } from "./dollar-sign.svg";
+import { ReactComponent as Slash } from "./slash.svg";
 
 const AppIcons = {
+  Slash,
+  Usdc,
+  DollarSign,
   Location,
   ExternalLink,
   Asterisk,

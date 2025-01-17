@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Grid } from '@chakra-ui/react';
+import { Image, Grid, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import Button from 'components/redesign/button/Button';
 import useAppStore from 'lib/stores/app/appStore';
@@ -8,17 +8,29 @@ import React, { useState } from 'react';
 import TokenPayInformation from './TokenPayInformation';
 import PaymentToken from './PaymentToken';
 import TokensModal from './tokens-modal/TokensModal';
+import { useQuery } from 'react-query';
+import { paymentPublicServiceV2 } from 'lib/apis/shop/shopServices';
+import { IPaymentPublicService } from 'lib/apis/shop/interfaces';
 
 const TokenPay: React.FC = () => {
+  const [paymentMethodsData, setPaymentMethodsData] = useState<IPaymentPublicService[]>([]);
+  const { onClose, onOpen, isOpen } = useDisclosure()
   const { shop: { paymentMethods } } = useAppStore()
-  // const [paymentList, setPaymentList] = useState([])
+  const { isFetching } = useQuery({
+    queryKey: "PaymentMethods",
+    queryFn: () => paymentPublicServiceV2(),
+    onSuccess(data) {
+      console.log(data.data.data)
+      setPaymentMethodsData(data.data.data)
+    },
+  });
 
   return (
     <>
       <SectionContainer
         title="Tokenpay"
         rightContent={
-          <Button variant="outline" border={"none"} color="#179ef8" size="sm">
+          <Button onClick={onOpen} isLoading={isFetching} variant="outline" border={"none"} color="#179ef8" size="sm">
             <AppIcons.BluePlus />
             Payment Token
           </Button>
@@ -39,13 +51,18 @@ const TokenPay: React.FC = () => {
                 }}
                 gap={4}
               >
-                <PaymentToken title='USDC' icon={<AppIcons.CircleUsdc />} onClick={() => console.log("hi")} />
-                <PaymentToken title='USDC' icon={<AppIcons.CircleUsdc />} onClick={() => console.log("hi")} />
+                <PaymentToken title='USDC' icon={<AppIcons.Usdc />} onClick={() => console.log("hi")} />
+                <PaymentToken title='USDC' icon={<AppIcons.Usdc />} onClick={() => console.log("hi")} />
               </Grid>
           }
         >
           <TokenPayInformation />
-          <TokensModal />
+          <TokensModal
+            paymentMethodsData={paymentMethodsData}
+            setPaymentMethodData={(value) => setPaymentMethodsData(value)}
+            isOpen={isOpen}
+            onClose={onClose}
+          />
         </SectionContent>
       </SectionContainer>
     </>
