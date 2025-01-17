@@ -7,7 +7,8 @@ import useAppStore from 'lib/stores/app/appStore'
 
 export default function Referrals() {
     const { shop: { referralDetails } } = useAppStore()
-    const { count } = referralDetails
+    const { count } = referralDetails ?? {}
+
     return (
         <SectionContainer title='Referrals'>
             <ReferralLink />

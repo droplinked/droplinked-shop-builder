@@ -20,7 +20,6 @@ const TokenPay: React.FC = () => {
     queryKey: "PaymentMethods",
     queryFn: () => paymentPublicServiceV2(),
     onSuccess(data) {
-      console.log(data.data.data)
       setPaymentMethodsData(data.data.data)
     },
   });

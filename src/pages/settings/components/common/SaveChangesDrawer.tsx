@@ -4,13 +4,24 @@ import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useFormikContext } from 'formik'
 
 const MotionFlex = motion(Flex)
 
 export default function SaveChangesDrawer() {
+    const { dirty, handleSubmit, resetForm, isSubmitting } = useFormikContext()
+
+    const handleSaveClick = () => {
+        handleSubmit()
+    }
+
+    const handleDiscardClick = () => {
+        resetForm()
+    }
+
     return (
         <AnimatePresence initial={false}>
-            <MotionFlex
+            {dirty && <MotionFlex
                 position={"fixed"}
                 bottom={0}
                 left={0}
@@ -40,10 +51,11 @@ export default function SaveChangesDrawer() {
                     </Flex>
                 </Flex>
                 <Flex gap={4}>
-                    <Button fontSize={14} fontWeight={500} variant='secondary'>Discard</Button>
-                    <Button width={{ base: "80%", lg: "max-content" }} fontSize={14} fontWeight={500}>Save Changes</Button>
+                    <Button isDisabled={isSubmitting} onClick={handleDiscardClick} fontSize={14} fontWeight={500} variant='secondary'>Discard</Button>
+                    <Button isLoading={isSubmitting} onClick={handleSaveClick} width={{ base: "80%", lg: "max-content" }} fontSize={14} fontWeight={500}>Save Changes</Button>
                 </Flex>
             </MotionFlex>
+            }
         </AnimatePresence>
     )
 }

@@ -13,7 +13,7 @@ import { useMutation } from 'react-query'
 export default function CustomCodesGenerator() {
     const { mutateAsync, isLoading } = useMutation((params: ICustomReferralCode) => updateCustomReferralCodeService(params))
     const { shop, updateState } = useAppStore()
-    const { customCode } = shop.referralDetails
+    const { customCode } = shop.referralDetails ?? {}
     const [value, setValue] = useState(customCode)
     const { showToast } = useAppToast()
 

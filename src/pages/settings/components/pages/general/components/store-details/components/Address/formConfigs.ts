@@ -38,7 +38,6 @@ export const formValidation = () => {
 
 export const initialValues = ({ data }: InitialValue) => {
     const { addressLine1, addressLine2, city, country, zip, state, firstName, lastName } = data ?? {}
-    console.log(data)
     return {
         firstName: firstName || "",
         lastName: lastName || "",

@@ -1,18 +1,27 @@
 import Input from 'components/redesign/input/Input'
-import useAppStore from 'lib/stores/app/appStore'
+import { useFormikContext } from 'formik';
 import SectionContent from 'pages/settings/components/common/SectionContent'
+import { SettingsPageInterface } from 'pages/settings/formConfigs';
 import React from 'react'
 
 export default function EmailAddress() {
-    const { user } = useAppStore()
-    const { email } = user
+    const { errors, values, handleChange } = useFormikContext<SettingsPageInterface>();
 
     return (
         <SectionContent
             title="Email Address"
             description='Provide an email address to manage the account and receive updates.'
             rightContent={
-                <Input inputProps={{ placeholder: "Email Address", value: email }} />
+                <Input
+                    inputProps={{
+                        placeholder: "Email Address",
+                        value: values.email,
+                        onChange: handleChange,
+                        name: "email",
+                    }}
+                    {...errors.email && { state: "error" }}
+                    message={errors.email}
+                />
             }
         />
     )

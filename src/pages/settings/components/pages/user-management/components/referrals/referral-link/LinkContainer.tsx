@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom'
 
 export default function LinkContainer() {
     const { shop: { referralDetails } } = useAppStore()
-    const { code } = referralDetails
+    const { code } = referralDetails ?? {}
     const { showToast } = useAppToast()
-    const link = `${BUILDER_URL}/?modal=signup&referral=${code.toLowerCase()}`
+    const link = `${BUILDER_URL}/?modal=signup&referral=${code?.toLowerCase()}`
     const handleCopyLink = () => {
         navigator.clipboard.writeText(link)
         showToast({ type: "success", message: "Referral link copied successfully" })

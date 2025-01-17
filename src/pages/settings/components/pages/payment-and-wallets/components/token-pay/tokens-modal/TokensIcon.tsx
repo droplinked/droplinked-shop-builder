@@ -6,7 +6,6 @@ import React from 'react'
 export default function TokensIcon({ chains }: { chains: SupportedChains[] }) {
 
     const renderIcon = (type: string) => {
-        console.log(type)
         switch (type) {
             case 'SKALE':
                 return <AppIcons.Skale />;

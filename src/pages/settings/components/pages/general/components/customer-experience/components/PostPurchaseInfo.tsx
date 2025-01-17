@@ -1,11 +1,13 @@
 import SectionContent from 'pages/settings/components/common/SectionContent';
-import React, { useState } from 'react';
+import React from 'react';
 import PremiumBadge from 'pages/settings/components/common/PremiumBadge';
 import Input from 'components/redesign/input/Input';
 import { useHasPermission } from 'lib/stores/app/appStore';
+import { useFormikContext } from 'formik';
+import { SettingsPageInterface } from 'pages/settings/formConfigs';
 
 export default function PostPurchaseInfo() {
-    const [value, setValue] = useState("");
+    const { errors, values, handleChange } = useFormikContext<SettingsPageInterface>();
     const hasPermission = useHasPermission()
 
     return (
@@ -16,11 +18,14 @@ export default function PostPurchaseInfo() {
             rightContent={
                 <Input
                     inputProps={{
-                        value: value,
-                        onChange: (event) => setValue(event.target.value),
+                        value: values.pre_purchase_data_fetch,
+                        onChange: handleChange,
                         placeholder: "Add a note for your purchase",
-                        isDisabled: !hasPermission("post_purchase_data_gathering")
+                        isDisabled: !hasPermission("post_purchase_data_gathering"),
+                        name: "pre_purchase_data_fetch",
                     }}
+                    {...errors.pre_purchase_data_fetch && { state: "error" }}
+                    message={errors.pre_purchase_data_fetch}
                 />
             }
         />
