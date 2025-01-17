@@ -1,6 +1,8 @@
 import { Badge, Box, Divider, Flex, HStack, Select, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
-import React from 'react';
+import { useFormikContext } from 'formik';
+import { ISettings } from 'pages/settings/formConfigs';
+import React, { useEffect } from 'react';
 
 interface CurrencyCardProps {
   currencyName: string;
@@ -13,6 +15,8 @@ interface CurrencyCardProps {
 }
 
 const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, currencyList, onToggle, isLoading, setSelectedItem, selectedItem }) => {
+  const { values, setFieldValue } = useFormikContext<ISettings>()
+
   return (
     <Box width={{ base: "100%", sm: "100%", md: "448px" }} ml={"auto"} border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
       <HStack p="6" justify="space-between">
@@ -35,6 +39,7 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
           color="#4f4f4f"
           fontSize="base"
           p="3"
+          name='currencyAbbreviation'
           width="100%"
           height={'100%'}
           borderRadius="lg"
@@ -44,10 +49,10 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
           textAlign="center"
           _focus={{ boxShadow: 'none' }}
           isDisabled={isLoading}
-          onChange={(e) => setSelectedItem(e.target.value)}
-          value={selectedItem}
+          onChange={(e) => setFieldValue("currencyAbbreviation", e.target.value)}
+          value={values.currencyAbbreviation}
         >
-          <option value="select" style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
+          <option disabled value="select" style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
             Select
           </option>
           {currencyList.map((currency) => (

@@ -1,11 +1,11 @@
 import Input from 'components/redesign/input/Input'
 import { useFormikContext } from 'formik';
 import SectionContent from 'pages/settings/components/common/SectionContent'
-import { SettingsPageInterface } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/formConfigs';
 import React from 'react'
 
 export default function EmailAddress() {
-    const { errors, values, handleChange } = useFormikContext<SettingsPageInterface>();
+    const { errors, values, handleChange } = useFormikContext<ISettings>();
 
     return (
         <SectionContent

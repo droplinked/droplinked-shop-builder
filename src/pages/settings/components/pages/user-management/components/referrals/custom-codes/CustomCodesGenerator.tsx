@@ -17,7 +17,7 @@ export default function CustomCodesGenerator() {
     const [value, setValue] = useState(customCode)
     const { showToast } = useAppToast()
 
-    const isValidLength = value.length >= 8
+    const isValidLength = value?.length >= 8
 
     const handleCreateCustomCode = async () => {
         try {

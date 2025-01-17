@@ -16,6 +16,7 @@ function SettingsPage() {
         const { setSubmitting, resetForm } = submitProps
         setSubmitting(true)
         try {
+            //TODO: Must update user too
             await updateShop({ ...values });
             await fetchShop({ shopName: shop.name })
             resetForm({ values })
@@ -39,7 +40,7 @@ function SettingsPage() {
                 onSubmit={handleSubmit}
             >
                 {({ errors, values, setFieldValue }) => (
-                    <Form>
+                    <Form style={{ width: "100%" }}>
                         <TabsContent />
                         <SaveChangesDrawer />
                     </Form>

@@ -4,10 +4,10 @@ import PremiumBadge from 'pages/settings/components/common/PremiumBadge';
 import Input from 'components/redesign/input/Input';
 import { useHasPermission } from 'lib/stores/app/appStore';
 import { useFormikContext } from 'formik';
-import { SettingsPageInterface } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/formConfigs';
 
 export default function PostPurchaseInfo() {
-    const { errors, values, handleChange } = useFormikContext<SettingsPageInterface>();
+    const { errors, values, handleChange } = useFormikContext<ISettings>();
     const hasPermission = useHasPermission()
 
     return (
