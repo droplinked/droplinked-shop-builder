@@ -22,11 +22,11 @@ const Circle = () => {
               </Box>
               <Box display="flex" alignItems="flex-start" gap="36px" alignSelf="stretch">
                 {[["CircleShield", "Secure"], ["CircleDashboard", "Instant Access"], ["CircleRefresh", "Automatic Conversion"]].map(([Icon, text]) => {
-                  const LabelIcon = AppIcons[Icon]
+                  // const LabelIcon = AppIcons[Icon]
                   return (
                     <Box key={text} display="flex" alignItems="center" gap="8px">
                       <Box display="flex" padding="8px" justifyContent="center" alignItems="center" gap="8px" borderRadius="50px" background="rgba(43, 207, 161, 0.10)">
-                        <LabelIcon />
+                        {/* <LabelIcon /> */}
                       </Box>
                       <AppTypography color="#FFF" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">{text}</AppTypography>
                     </Box>
