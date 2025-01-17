@@ -302,8 +302,10 @@ import { ReactComponent as Secure } from "./secure.svg";
 import { ReactComponent as Usdc } from "./usdc.svg";
 import { ReactComponent as DollarSign } from "./dollar-sign.svg";
 import { ReactComponent as Slash } from "./slash.svg";
+import { ReactComponent as WhiteSave } from "./white-save.svg";
 
 const AppIcons = {
+  WhiteSave,
   Slash,
   Usdc,
   DollarSign,

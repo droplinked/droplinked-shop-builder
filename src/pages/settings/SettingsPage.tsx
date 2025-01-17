@@ -2,6 +2,7 @@ import PageGrid from 'components/redesign/page-grid/PageGrid';
 import TabsContent from './components/common/TabsContent';
 import React from 'react';
 import { Box } from '@chakra-ui/react';
+import SaveChangesDrawer from './components/common/SaveChangesDrawer';
 
 function SettingsPage() {
     return (
@@ -10,6 +11,7 @@ function SettingsPage() {
                 <PageGrid.Header title='Settings' description='Customize the platform to your Preferences' />
             </Box>
             <TabsContent />
+            <SaveChangesDrawer />
         </PageGrid.Root>
     );
 }
