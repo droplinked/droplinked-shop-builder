@@ -303,8 +303,16 @@ import { ReactComponent as Usdc } from "./usdc.svg";
 import { ReactComponent as DollarSign } from "./dollar-sign.svg";
 import { ReactComponent as Slash } from "./slash.svg";
 import { ReactComponent as WhiteSave } from "./white-save.svg";
+import { ReactComponent as CircleUsdc } from "./circle-usdc.svg"
+import { ReactComponent as CircleEth } from "./circle-eth.svg"
+import { ReactComponent as CircleSolana } from "./circle-solana.svg"
+import { ReactComponent as CirclePolygon } from "./circle-polygon.svg"
 
 const AppIcons = {
+  CircleUsdc,
+  CircleSolana,
+  CircleEth,
+  CirclePolygon,
   WhiteSave,
   Slash,
   Usdc,

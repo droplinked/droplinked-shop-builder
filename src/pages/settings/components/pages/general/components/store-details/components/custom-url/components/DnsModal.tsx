@@ -50,7 +50,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                     {
                         NS_records?.map((record, index) => {
                             return (
-                                <Flex justifyContent={"space-between"} alignItems={"center"}>
+                                <Flex key={record} justifyContent={"space-between"} alignItems={"center"}>
                                     <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>DNS {index}</AppTypography>
                                     <Flex gap={4}>
                                         <AppTypography fontSize={"14px"} color={"#fff"}>{record}</AppTypography>

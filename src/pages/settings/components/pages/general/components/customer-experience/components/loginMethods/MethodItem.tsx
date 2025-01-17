@@ -26,7 +26,7 @@ export default function MethodItem({ method, onToggle }: Props) {
             flexDirection={{ base: "column", md: "row" }}
             alignItems={"center"}
         >
-            <Flex gap={4} alignItems={"center"}>
+            <Flex gap={4} flex={1} alignItems={"center"}>
                 <Box
                     p={3}
                     background={"#1c1c1c"}

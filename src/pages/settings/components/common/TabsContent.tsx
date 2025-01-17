@@ -41,8 +41,6 @@ function TabsContent() {
         >
             <TabList borderBottom={"1px solid #292929"}>
                 {tabs.map((tab, index) => {
-                    const isSelected = selectedTab === tab.title;
-
                     return (
                         <Tab
                             isDisabled={isSubmitting}
@@ -52,16 +50,18 @@ function TabsContent() {
                                 borderBottom: "1px solid #fff",
                             }}
                             _selected={{
-                                borderBottom: `1px solid #fff`
+                                borderBottom: `1px solid #fff`,
+                                color: "#fff",
+                                fontWeight: 500
                             }}
                             px={6} py={4}
+                            color={"#7b7b7b"}
+                            fontWeight={400}
+                            fontSize={14}
                             key={index}
                             onClick={() => setSelectedTab(tab.title)}
                         >
-                            <AppTypography color={isSelected ? "#fff" : "#7B7B7B"} fontWeight={isSelected ? 500 : 400} fontSize={16}
-                            >
-                                {tab.title}
-                            </AppTypography>
+                            {tab.title}
                         </Tab>
                     );
                 })}
