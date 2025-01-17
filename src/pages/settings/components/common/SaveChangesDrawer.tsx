@@ -2,14 +2,14 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFormikContext } from 'formik'
 
 const MotionFlex = motion(Flex)
 
 export default function SaveChangesDrawer() {
-    const { dirty, handleSubmit, resetForm, isSubmitting } = useFormikContext()
+    const { dirty, handleSubmit, values, errors, resetForm, isSubmitting } = useFormikContext()
 
     const handleSaveClick = () => {
         handleSubmit()
@@ -18,6 +18,11 @@ export default function SaveChangesDrawer() {
     const handleDiscardClick = () => {
         resetForm()
     }
+
+    useEffect(() => {
+        console.log("errors", errors)
+        console.log("values", values)
+    }, [errors, values])
 
     return (
         <AnimatePresence initial={false}>

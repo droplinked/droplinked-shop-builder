@@ -106,6 +106,7 @@ export interface IShopApiKey {
 
 export interface IPaymentPublicService {
     name?: string;
+    isActive?: boolean;
     symbol?: string;
     _id?: string;
     description?: string

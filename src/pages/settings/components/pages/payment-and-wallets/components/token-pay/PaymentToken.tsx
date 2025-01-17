@@ -20,7 +20,7 @@ export default function PaymentToken({ icon, title, onClick }: Props) {
                     {title}
                 </AppTypography>
             </Flex>
-            <AppIcons.RedTrash style={{ marginRight: "16px", width: "24px", height: "24px", cursor: "pointer" }} />
+            <AppIcons.RedTrash style={{ marginRight: "16px", width: "24px", height: "24px", cursor: "pointer" }} onClick={onClick} />
         </Flex>
     )
 }

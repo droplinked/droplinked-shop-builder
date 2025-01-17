@@ -7,13 +7,15 @@ interface Props extends PropsWithChildren {
     title?: string
     description?: string
     rightContent?: ReactNode
+    isDisabled?: boolean
 }
 
-const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
+const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children, isDisabled }: Props) => {
     const content = (
         <Flex flex={1} alignItems="start" gap={4}>
             <Switch
                 size="lg"
+                isDisabled={isDisabled}
                 isChecked={isChecked}
                 onChange={onToggle}
                 sx={{
