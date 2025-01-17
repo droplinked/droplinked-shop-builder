@@ -1,6 +1,6 @@
 export const attributeToIdMap = {
     Color: "62a989ab1f2c2bbc5b1e7153",
-    Size: "62a989ab1f2c2bbc5b1e7154"
+    Size: "62a989e21f2c2bbc5b1e7154"
 }
 
 export type ProductType = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL" | "EVENT"
@@ -14,11 +14,15 @@ export interface ProductMedia {
     fileSize?: string
 }
 
+export interface ProductPropertyItem {
+    value: string, caption: string
+}
+
 export interface ProductProperty {
     value: string
     title: string
     isCustom: boolean
-    items: { value: string, caption: string }[]
+    items: ProductPropertyItem[]
 }
 
 export interface SKUOption {
@@ -30,6 +34,7 @@ export interface SKUOption {
 }
 
 export interface SKU {
+    _id?: string
     externalID?: string
     index?: number
     options?: SKUOption[]
@@ -39,7 +44,7 @@ export interface SKU {
     recordData?: any
     weight?: number
     dimensions: { width?: number, height?: number, length?: number }
-
+    rawPrice?: number
     deploy_hash?: string
     recorded_quantity?: number
     royalty?: number
@@ -62,42 +67,66 @@ export interface DigitalDetails {
 
 export type PublishStatus = "PUBLISHED" | "DRAFTED"
 
-export interface ProductFormValues {
-    action: string
+export interface NFTData {
+    deployHash?: string
+    transactionUrl?: string
+    networkName?: string
+}
+
+export interface Product {
+    // Identifiers
+    _id?: string
+    ownerID?: string
+    prodviderID: string
+    custome_external_id: string
+
+    // Product Type and Classification
     product_type: ProductType
+    productCollectionID: string
+    mainCategory?: string
+    subCategories?: string[]
+
+    // Product Details
     title: string
     description: string
     media: ProductMedia[]
-    productCollectionID: string
-    canBeAffiliated: boolean
+    tags?: string[]
+    thumb: string
+
+    // Pricing and Commission
+    priceUnit: string
+    shippingType: string
+    shippingPrice: number
     commission: number
+    canBeAffiliated: boolean
+
+    // Availability and Status
+    purchaseAvailable: boolean
+    isAddToCartDisabled?: boolean
+    publish_product: boolean
+    publish_status?: PublishStatus
+    pre_purchase_data_fetch?: boolean
+    launchDate?: string
+
+    // Properties and Variants
     properties: ProductProperty[]
     sku: SKU[]
-    shippingType: string,
-    digitalDetail?: DigitalDetails
-    keywords: string[]
-    purchaseAvailable: boolean
-    publish_product: boolean
 
-    prodviderID: string
+    // POD and Printing Details
     pod_blank_product_id?: string
     printful_template_id?: string
     technique?: string
+    printful_option_data?: any
     artwork: string
     artwork2: string
     artwork_position: string
     artwork2_position: string
     m2m_positions: string[]
-    thumb: string
+    m2m_positions_options: any[]
     m2m_services?: string[]
     positions?: ProductPosition
-    custome_external_id: string
-    m2m_positions_options: any[]
-    mainCategory?: string
-    subCategories?: string[]
-    isAddToCartDisabled?: boolean
-    pre_purchase_data_fetch?: boolean
-    printful_option_data?: any
-    launchDate?: string
-    publish_status?: PublishStatus
+
+    // Digital Product Details
+    digitalDetail?: DigitalDetails
+    nftData?: NFTData
 }

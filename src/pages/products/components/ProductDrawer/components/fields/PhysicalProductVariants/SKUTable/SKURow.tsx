@@ -4,33 +4,31 @@ import Input from 'components/redesign/input/Input'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
 import InfinityToggleButton from '../../../common/InfinityToggleButton'
-import SKUDisplay from './SKUDisplay'
+import SkuVariants from '../../../common/SkuVariants'
 
 interface SKURowProps {
-    sku: SKU
+    currentSKU: SKU
     index: number
-    onInputChange: (index: number, field: keyof SKU, value: any) => void
+    onInputChange: (index: number, field: string, value: any) => void
+    onToggleQuantity: (index: number) => void
+    onRemoveSKU: (index: number) => void
 }
 
-export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
-    const toggleQuantity = () => {
-        const newQuantity = sku.quantity === 1000000 ? 0 : 1000000
-        onInputChange(index, 'quantity', newQuantity)
-    }
-
+export default function SKURow({ currentSKU, index, onInputChange, onToggleQuantity, onRemoveSKU }: SKURowProps) {
     return (
         <Tr>
             <Td>
-                <SKUDisplay options={sku.options} />
+                <SkuVariants options={currentSKU.options} />
             </Td>
-            <Td>
+            <Td css={{ path: { stroke: "#7B7B7B" } }}>
                 <Input
                     inputProps={{
                         type: 'number',
                         step: '0.01',
                         numberType: 'float',
-                        value: sku.price ?? '',
-                        onChange: (e) => onInputChange(index, 'price', parseFloat(e.target.value) || 0),
+                        value: currentSKU.price ?? '',
+                        onChange: (e) =>
+                            onInputChange(index, 'price', parseFloat(e.target.value) || 0),
                     }}
                     leftElement={<AppIcons.GrayDollar />}
                 />
@@ -42,13 +40,14 @@ export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
                         type: 'number',
                         step: '1',
                         numberType: 'int',
-                        value: sku.quantity ?? '',
-                        onChange: (e) => onInputChange(index, 'quantity', parseInt(e.target.value, 10) || 0),
+                        value: currentSKU.quantity ?? '',
+                        onChange: (e) =>
+                            onInputChange(index, 'quantity', parseInt(e.target.value, 10) || 0),
                     }}
                     rightElement={
                         <InfinityToggleButton
-                            isActive={sku.quantity === 1000000}
-                            onToggle={toggleQuantity}
+                            isActive={currentSKU.quantity === 1000000}
+                            onToggle={() => onToggleQuantity(index)}
                         />
                     }
                 />
@@ -56,10 +55,15 @@ export default function SKURow({ sku, index, onInputChange }: SKURowProps) {
             <Td>
                 <Input
                     inputProps={{
-                        value: sku.externalID || '',
+                        value: currentSKU.externalID || '',
                         onChange: (e) => onInputChange(index, 'externalID', e.target.value),
                     }}
                 />
+            </Td>
+            <Td sx={{ path: { fill: '#FF2244' } }}>
+                <button type="button" onClick={() => onRemoveSKU(index)}>
+                    <AppIcons.Close />
+                </button>
             </Td>
         </Tr>
     )

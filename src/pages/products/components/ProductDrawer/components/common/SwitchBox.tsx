@@ -1,38 +1,42 @@
-import { Flex, Switch, Text } from "@chakra-ui/react"
-import React, { ChangeEvent, PropsWithChildren, ReactNode } from "react"
+import { Flex, FlexProps, Switch, SwitchProps, Text } from "@chakra-ui/react"
+import ErrorMessage from "components/redesign/error-message/ErrorMessage"
+import React, { PropsWithChildren, ReactNode } from "react"
 
 interface Props extends PropsWithChildren {
-    isChecked: boolean
-    onToggle: (e: ChangeEvent<HTMLInputElement>) => void
     title: string
     description: string
+    switchProps: SwitchProps
+    containerProps?: FlexProps
     rightContent?: ReactNode
+    errorMessage?: string
 }
 
-const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, children }: Props) => {
-    const content = (
-        <Flex flex={1} alignItems="start" gap={4}>
+const SwitchBox = ({ title, description, switchProps, containerProps, rightContent, errorMessage, children }: Props) => {
+    return (
+        <Flex
+            gap={4}
+            {...containerProps}
+        >
             <Switch
+                flexShrink={0}
                 size="lg"
-                isChecked={isChecked}
-                onChange={onToggle}
+                {...switchProps}
                 sx={{
                     ".chakra-switch__track": { width: "42px", height: "20px" },
                     ".chakra-switch__thumb": { width: "20px", height: "100%" }
                 }}
             />
-            <Flex direction="column">
-                <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
+            <Flex flex={1} direction="column" gap={4}>
+                <Flex flex={1} gap={4}>
+                    <Flex flex={1} direction="column" gap={1}>
+                        <Text fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
+                        <Text fontSize={14} color="#7B7B7B">{description}</Text>
+                    </Flex>
+                    {rightContent}
+                </Flex>
                 {children}
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </Flex>
-        </Flex>
-    )
-
-    return (
-        <Flex align="flex-start" gap={4}>
-            {content}
-            {rightContent}
         </Flex>
     )
 }

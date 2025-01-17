@@ -1,11 +1,8 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "jest.runMode": "on-demand",
-    "cSpell.words": [
-        "droplink",
-        "droplinked",
-        "LINEA",
-        "SKALE",
-        "XRPLSIDECHAIN"
-    ]
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "jest.runMode": "on-demand",
+  "cSpell.words": ["droplink", "droplinked", "LINEA", "SKALE", "XRPLSIDECHAIN"],
+  "css.format.preserveNewLines": false,
+  "prettier.printWidth": 200,
+  "prettier.proseWrap": "never"
 }

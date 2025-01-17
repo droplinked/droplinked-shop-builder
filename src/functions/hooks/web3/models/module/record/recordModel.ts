@@ -44,7 +44,6 @@ const recordModel = {
 		shopAddress,
 		products,
 	}: Irecord) => {
-		console.log({ blockchain });
 		const web3 = new DropWeb3(
 			appDevelopment ? Network.TESTNET : Network.MAINNET
 		);

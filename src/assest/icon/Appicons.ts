@@ -1,6 +1,12 @@
-import { ReactComponent as CasperWalletIcon } from "./CasperWallet.svg";
+import { ReactComponent as ColorfulYouTube } from './Colorful-YouTube.svg';
+import { ReactComponent as ColorfulDiscord } from './ColorfulDiscord.svg';
+import { ReactComponent as ColorfulInstagram } from './ColorfulInstagram.svg';
+import { ReactComponent as ColorfulLinkedin } from './ColorfulLinkedin.svg';
+import { ReactComponent as ColorfulTelegram } from './ColorfulTelegram.svg';
+import { ReactComponent as ColorfulXTwitter } from './ColorfulX-Twitter.svg';
+import { ReactComponent as Invoice } from "./Invoice.svg";
 import { ReactComponent as MetaMaskIcon } from "./MetaMask.svg";
-import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
+import { ReactComponent as PremiumPlanGreenStarIcon } from "./PremiumPlanGreenStarIcon.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as AffiliateProductsArrow } from "./affiliate-products-arrow.svg";
@@ -19,6 +25,7 @@ import { ReactComponent as Available } from "./available.svg";
 import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
+import { ReactComponent as Bitlayer } from './bitlayer.svg';
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
 import { ReactComponent as BlackInformation } from "./black-information.svg";
@@ -37,23 +44,14 @@ import { ReactComponent as ChevronLeft } from "./chevron-left.svg";
 import { ReactComponent as ChevronRight } from "./chevron-right.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
 import { ReactComponent as CircleCopy } from "./circle-copy.svg";
-import { ReactComponent as CircleDashboard } from "./circle-dashboard.svg";
-import { ReactComponent as CircleEth } from "./circle-eth.svg";
 import { ReactComponent as CircleModal } from "./circle-modal.svg";
-import { ReactComponent as CirclePolygon } from "./circle-polygon.svg";
-import { ReactComponent as CircleRefresh } from "./circle-refresh.svg";
-import { ReactComponent as CircleShield } from "./circle-shield.svg";
-import { ReactComponent as CircleSolana } from "./circle-solana.svg";
-import { ReactComponent as CircleUsdc } from "./circle-usdc.svg";
 import { ReactComponent as CircleWithdraw } from "./circle-withdraw.svg";
 import { ReactComponent as Circle } from "./circle.svg";
 import { ReactComponent as Clock } from "./clock.svg";
-import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as CollectionModalIcon } from "./collectionModalIcon.svg";
-import { ReactComponent as ColonIcon } from "./colonIcon.svg";
 import { ReactComponent as ConfirmPlan } from "./confirm-plan.svg";
 import { ReactComponent as Convert } from "./convert.svg";
 import { ReactComponent as Copy } from "./copy.svg";
@@ -93,6 +91,8 @@ import { ReactComponent as Document } from "./document.svg";
 import { ReactComponent as DotSpacer } from "./dotSpacer.svg";
 import { ReactComponent as Dots } from "./dots.svg";
 import { ReactComponent as Download } from "./download.svg";
+import { ReactComponent as DropProduct } from "./drop-product.svg";
+import { ReactComponent as DROP_LINKED_LOGO } from './droplinked-logo.svg';
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIconWhite } from "./edit-icon-white.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
@@ -105,17 +105,19 @@ import { ReactComponent as EventCalendar } from "./event-calendar.svg";
 import { ReactComponent as EventHost } from "./event-host.svg";
 import { ReactComponent as EventLocation } from "./event-location.svg";
 import { ReactComponent as EventTicket } from "./event-ticket.svg";
+import { ReactComponent as ExternalArrow } from './external-arrow.svg';
 import { ReactComponent as Eye } from "./eye.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as FileUpload } from "./file-upload.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
+import { ReactComponent as Furniture } from "./furniture.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GatingRuleset } from "./gated-ruleset.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as GoldenStar } from "./golden-star.svg";
 import { ReactComponent as Google } from "./google.svg";
-import { ReactComponent as GrayDollar } from "./gray-dollar.svg";
+import { ReactComponent as GrayDollar, ReactComponent as GrayDollor } from './gray-dollar.svg';
 import { ReactComponent as GrayInfinity } from "./gray-infinity.svg";
 import { ReactComponent as GrayPercent } from "./gray-percent.svg";
 import { ReactComponent as GrayOutlineStar } from "./gray-star.svg";
@@ -125,6 +127,7 @@ import { ReactComponent as GreenAlert } from "./green-alert.svg";
 import { ReactComponent as GreenInfinity } from "./green-infinity.svg";
 import { ReactComponent as GreenPlus } from "./greenPlus.svg";
 import { ReactComponent as Hand } from "./hand.svg";
+import { ReactComponent as Hat } from "./hat.svg";
 import { ReactComponent as HeaderAffiliateSass } from "./header-affiliate-sass.svg";
 import { ReactComponent as HeaderAffiliate } from "./header-affiliate.svg";
 import { ReactComponent as HeaderBag } from "./header-bag.svg";
@@ -140,6 +143,7 @@ import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as HidedIcon } from "./hidedIcon.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
+import { ReactComponent as ImportFile } from './import-file.svg';
 import { ReactComponent as ImportProduct } from "./import-product.svg";
 import { ReactComponent as Infinity } from "./infinity.svg";
 import { ReactComponent as InfoIcon } from "./info-icon.svg";
@@ -152,6 +156,7 @@ import { ReactComponent as InvoiceCreated } from "./invoice-created.svg";
 import { ReactComponent as InvoiceDiscount } from "./invoice-discount.svg";
 import { ReactComponent as InvoiceManagement } from "./invoice-management.svg";
 import { ReactComponent as InvoiceProduct } from "./invoice-product.svg";
+import { ReactComponent as KidClothing } from "./kid-clothing.svg";
 import { ReactComponent as LandingPageCode } from "./landing-page-code.svg";
 import { ReactComponent as LandingPageCreditCard } from "./landing-page-credit-card.svg";
 import { ReactComponent as LandingPageDesignNib } from "./landing-page-design-nib.svg";
@@ -165,6 +170,7 @@ import { ReactComponent as MagicWind } from "./magic-wind.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as Maximize } from "./maximize.svg";
 import { ReactComponent as MedalStar } from "./medalStar.svg";
+import { ReactComponent as MenClothing } from "./men-clothing.svg";
 import { ReactComponent as MetaverseStore } from "./metaverse-store.svg";
 import { ReactComponent as Mobile } from "./mobile-icon.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
@@ -176,6 +182,7 @@ import { ReactComponent as NewSolana } from "./new-solana.svg";
 import { ReactComponent as NewStripe } from "./new-stripe.svg";
 import { ReactComponent as NotSorted } from "./not-sorted.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
+import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as Paint } from "./paint.svg";
 import { ReactComponent as PaymentMethodSelection } from "./payment-method-selection.svg";
 import { ReactComponent as Pen } from "./pen.svg";
@@ -212,6 +219,7 @@ import { ReactComponent as SearchOutlined } from "./search-redesign.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as SelectChevronDown } from "./select-chevron-down.svg";
 import { ReactComponent as Services } from "./services.svg";
+import { ReactComponent as SettingGear } from './setting-gear.svg';
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
 import { ReactComponent as ShareIcon } from "./share-icon.svg";
 import { ReactComponent as Share } from "./share.svg";
@@ -236,7 +244,6 @@ import { ReactComponent as SidebarSetting } from "./sidebar-setting.svg";
 import { ReactComponent as SidebarTickedCircle } from "./sidebar-ticked-circle.svg";
 import { ReactComponent as SidebarUser } from "./sidebar-user.svg";
 import { ReactComponent as Skale } from "./skale.svg";
-import { ReactComponent as SnapchatIcon } from "./snapchat.svg";
 import { ReactComponent as Solana } from "./solana.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
@@ -255,7 +262,6 @@ import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
 import { ReactComponent as Token } from "./token.svg";
 import { ReactComponent as TooltipIcon } from "./tooltipIcon.svg";
-import { ReactComponent as TrashRed } from "./trash-red.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
 import { ReactComponent as UDBorderRed } from "./ud-border-red.svg";
@@ -267,12 +273,14 @@ import { ReactComponent as Upload } from "./upload-icon.svg";
 import { ReactComponent as UserInvitation } from "./user-invitation.svg";
 import { ReactComponent as VerticalMove } from "./vertical-move.svg";
 import { ReactComponent as VisibleIcon } from "./visible-icon.svg";
+import { ReactComponent as Watch } from "./watch.svg";
 import { ReactComponent as Web } from "./web.svg";
 import { ReactComponent as NFT } from "./white-nft-icon.svg";
 import { ReactComponent as WhiteOpenWallet } from "./white-open-wallet.svg";
 import { ReactComponent as WhiteShopIcon } from "./white-shop.svg";
 import { ReactComponent as WhiteTrash } from "./white-trash.svg";
 import { ReactComponent as WhiteWarning } from "./white-warning.svg";
+import { ReactComponent as WomenClothing } from "./women-clothing.svg";
 import { ReactComponent as XOutlined } from "./x-outlined.svg";
 import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
@@ -280,9 +288,7 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
-import { ReactComponent as SettingGear } from "./setting-gear.svg";
 import { ReactComponent as Location } from "./location.svg";
-import { ReactComponent as Bitlayer } from "./bitlayer.svg";
 import { ReactComponent as ExternalLink } from "./external-link.svg";
 import { ReactComponent as Asterisk } from "./asterisk.svg";
 import { ReactComponent as GreenSpeedometer } from "./green-speedometer.svg";
@@ -295,301 +301,308 @@ import { ReactComponent as Export } from "./export.svg";
 import { ReactComponent as Secure } from "./secure.svg";
 
 const AppIcons = {
-    Secure,
-    Export,
-    DiscountCouponIcon,
-    SystemWarning,
-    EmailSign,
-    AddUser,
-    MedalStarOutline,
-    GreenSpeedometer,
-    Asterisk,
-    ExternalLink,
-    SettingGear,
-    Bitlayer,
-    Location,
-    ProductsIcon,
-    CollectionIcon,
-    SettingIcon,
-    OrderIcon,
-    InformationIcon,
-    RulesetsIcon,
-    InvisibleIcon,
-    VisibleIcon,
-    AddIcon,
-    VariantsIcon,
-    Xverse,
-    RuleIcon,
-    TrashRed,
-    EditIcon,
-    DeleteIcon,
-    ShopIcon,
-    InstagramIcon,
-    FacebookIcon,
-    TwitterIcon,
-    PintrestIcon,
-    SnapchatIcon,
-    MetaMaskIcon,
-    SaveIcon,
-    CasperIcon,
-    CasperWalletIcon,
-    WalletConnectIcon,
-    NearWalletIcon,
-    UnstoppableDomainsIcon,
-    MoreIcon,
-    DiscountIcon,
-    GatedIcon,
-    PlusIcon,
-    MinusIcon,
-    Solana,
-    Phantom,
-    TearIcon,
-    InfoIcon,
-    ManageIcon,
-    ActiveIcon,
-    ArrowDown,
-    Close,
-    Stacks,
-    Info,
-    Bitcoin,
-    Stripe,
-    EditIconWhite,
-    Discord,
-    Web,
-    LinkedIn,
-    TikTok,
-    Cover,
-    Upload,
-    Polygon,
-    Google,
-    DiscountSetting,
-    GiftSetting,
-    Ripple,
-    StarOutline,
-    StarFilled,
-    BnbChain,
-    Email,
-    Base,
-    Hand,
-    Dashboard,
-    DatepickerDashboard,
-    Linea,
-    WhiteShopIcon,
-    RedAlert,
-    WhiteOpenWallet,
-    HelpCenter,
-    Logout,
-    Coinbase,
-    NFT,
-    Unisat,
-    Droplinked,
-    Hedera,
-    Skale,
-    Xumm,
-    ETH,
-    GrayGatedIcon,
-    GrayDiscountIcon,
-    RedTrash,
-    XRPL,
-    GreenAlert,
-    YellowAlert,
-    StripeS,
-    VerticalMove,
-    BluePlus,
-    WhiteTrash,
-    Personalize,
-    Brain,
-    Unlock,
-    Trust,
-    Diamond,
-    ThreeStars,
-    CheckCircle,
-    UserInvitation,
-    BlackInformation,
-    RedCircleCross,
-    CircleCheck,
-    GrayDollar,
-    BlackCircleI,
-    GrayPercent,
-    BlackChevronDown,
-    BackArrow,
-    Blog,
-    CloseRed,
-    Clock,
-    Pen,
-    Delete,
-    Tick,
-    SubscriptionPlan,
-    MultiShopManagement,
-    EventCalendar,
-    EventLocation,
-    EventHost,
-    Gamification,
-    Paint,
-    Redbelly,
-    Eye,
-    Maximize,
-    Mobile,
-    Desktop,
-    Refresh,
-    Download,
-    Share,
-    StarterPlan,
-    ProPlan,
-    PremiumPlan,
-    EnterprisePlan,
-    ConfirmPlan,
-    Token,
-    NewPolygon,
-    NewRedbelly,
-    NewSolana,
-    NewStripe,
-    BlueBase,
-    BlueLinea,
-    PaymentMethodSelection,
-    StripePayment,
-    PopularPlanMedal,
-    InvoiceManagement,
-    BlackPlus,
-    Dots,
-    Search,
-    InvoiceDiscount,
-    InvoiceCreated,
-    Copy,
-    SelectChevronDown,
-    InvoiceProduct,
-    NotSorted,
-    AscSorting,
-    DescSorting,
-    Edit,
-    SidebarDroplinked,
-    SidebarAffiliate,
-    SidebarAnalytics,
-    SidebarBlog,
-    SidebarProducts,
-    SidebarChat,
-    SidebarChevrondown,
-    SidebarNote,
-    SidebarPlan,
-    SidebarRewards,
-    SidebarSetting,
-    SidebarUser,
-    ProfileCredit,
-    ProfileDocument,
-    ProfileEnterprise,
-    ProfileLogout,
-    ProfileSetting,
-    ProfileShop,
-    ProfileSupport,
-    ProfileSwitch,
-    AffiliateProductsArrow,
-    AffiliateProductsSeparator,
-    AffiliateProductsDollar,
-    AffiliateProductsPercent,
-    ShareIcon,
-    SidebarBrush,
-    AffiliateStoreInstagram,
-    AffiliateStoreTwitter,
-    AffiliateStoreYoutube,
-    AffiliateStoreTiktok,
-    LandingPageLink,
-    LandingPageDesignNib,
-    LandingPageCreditCard,
-    LandingPageCode,
-    LandingPageTemplate,
-    SidebarCircle,
-    SidebarTickedCircle,
-    SidebarChevronright,
-    SidebarNext,
-    SidebarGo,
-    D3Main,
-    D3Spinner,
-    D3Wallet,
-    D3Tick,
-    D3ShopSetup,
-    D3EnterpriseTools,
-    D3NFTIntegration,
-    D3Access,
-    D3ProPlan,
-    D3Web3Support,
-    D3Logo,
-    D3DroplinkedBorder,
-    D3D3Border,
-    UDBorder,
-    D3DroplinkedBorderRed,
-    D3D3BorderRed,
-    UDBorderRed,
-    Circle,
-    CircleShield,
-    CircleDashboard,
-    CircleRefresh,
-    CircleCopy,
-    D3Shiba,
-    D3Victorin,
-    D3CoreChain,
-    HeaderAffiliate,
-    HeaderAffiliateSass,
-    HeaderBag,
-    HeaderCoins,
-    HeaderCreditCard,
-    HeaderImage,
-    HeaderShirt,
-    HeaderTokenCoin,
-    HeaderD3,
-    HeaderUd,
-    HeaderProductBox,
-    MetaverseStore,
-    CircleModal,
-    CircleUsdc,
-    CircleEth,
-    CircleSolana,
-    CirclePolygon,
-    CircleWithdraw,
-    Document,
-    ImportProduct,
-    DeliveryTruck,
-    XOutlined,
-    TelegramOutlined,
-    InstagramOutlined,
-    LinkedInOutlined,
-    Available,
-    Statistics,
-    Infinity,
-    MedalStar,
-    AvailableFilled,
-    NotAvailableFilled,
-    DiscordOutlined,
-    SearchOutlined,
-    ReorderDesigned,
-    CollectionModalIcon,
-    RulesetModalIcon,
-    DiscountRuleset,
-    GatingRuleset,
-    DotSpacer,
-    EditOutlined,
-    HidedIcon,
-    Required,
-    EventTicket,
-    Services,
-    Subscription,
-    MagicWind,
-    GoldenStar,
-    OutlinedStar,
-    GrayOutlineStar,
-    WhiteWarning,
-    YellowWarning,
-    FileUpload,
-    GreenPlus,
-    Shirt,
-    GrayInfinity,
-    GreenInfinity,
-    TooltipIcon,
-    ColonIcon,
-    ChevronRight,
-    ChevronLeft,
-    Calendar,
-    BlueBrush,
-    Convert
+  Location,
+  ExternalLink,
+  Asterisk,
+  GreenSpeedometer,
+  MedalStarOutline,
+  AddUser,
+  EmailSign,
+  SystemWarning,
+  DiscountCouponIcon,
+  Export,
+  Secure,
+  ProductsIcon,
+  CollectionIcon,
+  SettingIcon,
+  OrderIcon,
+  InformationIcon,
+  RulesetsIcon,
+  InvisibleIcon,
+  VisibleIcon,
+  AddIcon,
+  VariantsIcon,
+  Xverse,
+  RuleIcon,
+  EditIcon,
+  DeleteIcon,
+  ShopIcon,
+  InstagramIcon,
+  FacebookIcon,
+  TwitterIcon,
+  PintrestIcon,
+  MetaMaskIcon,
+  SaveIcon,
+  CasperIcon,
+  NearWalletIcon,
+  UnstoppableDomainsIcon,
+  MoreIcon,
+  DiscountIcon,
+  GatedIcon,
+  PlusIcon,
+  MinusIcon,
+  Solana,
+  Phantom,
+  TearIcon,
+  InfoIcon,
+  ManageIcon,
+  ActiveIcon,
+  ArrowDown,
+  Close,
+  Stacks,
+  Info,
+  Bitcoin,
+  Stripe,
+  EditIconWhite,
+  Discord,
+  Web,
+  LinkedIn,
+  TikTok,
+  Cover,
+  Upload,
+  Polygon,
+  Google,
+  DiscountSetting,
+  GiftSetting,
+  Ripple,
+  StarOutline,
+  StarFilled,
+  BnbChain,
+  Email,
+  Base,
+  Hand,
+  Dashboard,
+  DatepickerDashboard,
+  Linea,
+  WhiteShopIcon,
+  RedAlert,
+  WhiteOpenWallet,
+  HelpCenter,
+  Logout,
+  Coinbase,
+  NFT,
+  Unisat,
+  Droplinked,
+  Hedera,
+  Skale,
+  Xumm,
+  ETH,
+  GrayGatedIcon,
+  GrayDiscountIcon,
+  RedTrash,
+  XRPL,
+  GreenAlert,
+  YellowAlert,
+  StripeS,
+  VerticalMove,
+  BluePlus,
+  WhiteTrash,
+  Personalize,
+  Brain,
+  Unlock,
+  Trust,
+  Diamond,
+  ThreeStars,
+  CheckCircle,
+  UserInvitation,
+  BlackInformation,
+  RedCircleCross,
+  CircleCheck,
+  GrayDollar,
+  BlackCircleI,
+  GrayPercent,
+  BlackChevronDown,
+  BackArrow,
+  Blog,
+  Clock,
+  Pen,
+  Delete,
+  Tick,
+  SubscriptionPlan,
+  MultiShopManagement,
+  EventCalendar,
+  EventLocation,
+  EventHost,
+  Gamification,
+  Paint,
+  Redbelly,
+  Eye,
+  Maximize,
+  Mobile,
+  Desktop,
+  Refresh,
+  Download,
+  Share,
+  StarterPlan,
+  ProPlan,
+  PremiumPlan,
+  EnterprisePlan,
+  ConfirmPlan,
+  Token,
+  NewPolygon,
+  NewRedbelly,
+  NewSolana,
+  NewStripe,
+  BlueBase,
+  BlueLinea,
+  PaymentMethodSelection,
+  StripePayment,
+  PopularPlanMedal,
+  InvoiceManagement,
+  BlackPlus,
+  Dots,
+  Search,
+  InvoiceDiscount,
+  InvoiceCreated,
+  Copy,
+  SelectChevronDown,
+  InvoiceProduct,
+  NotSorted,
+  AscSorting,
+  DescSorting,
+  Edit,
+  SidebarDroplinked,
+  SidebarAffiliate,
+  SidebarAnalytics,
+  SidebarBlog,
+  SidebarProducts,
+  SidebarChat,
+  SidebarChevrondown,
+  SidebarNote,
+  SidebarPlan,
+  SidebarRewards,
+  SidebarSetting,
+  SidebarUser,
+  ProfileCredit,
+  ProfileDocument,
+  ProfileEnterprise,
+  ProfileLogout,
+  ProfileSetting,
+  ProfileShop,
+  ProfileSupport,
+  ProfileSwitch,
+  AffiliateProductsArrow,
+  AffiliateProductsSeparator,
+  AffiliateProductsDollar,
+  AffiliateProductsPercent,
+  ShareIcon,
+  SidebarBrush,
+  AffiliateStoreInstagram,
+  AffiliateStoreTwitter,
+  AffiliateStoreYoutube,
+  AffiliateStoreTiktok,
+  LandingPageLink,
+  LandingPageDesignNib,
+  LandingPageCreditCard,
+  LandingPageCode,
+  LandingPageTemplate,
+  SidebarCircle,
+  SidebarTickedCircle,
+  SidebarChevronright,
+  SidebarNext,
+  SidebarGo,
+  D3Main,
+  D3Spinner,
+  D3Wallet,
+  D3Tick,
+  D3ShopSetup,
+  D3EnterpriseTools,
+  D3NFTIntegration,
+  D3Access,
+  D3ProPlan,
+  D3Web3Support,
+  D3Logo,
+  D3DroplinkedBorder,
+  D3D3Border,
+  UDBorder,
+  D3DroplinkedBorderRed,
+  D3D3BorderRed,
+  UDBorderRed,
+  Circle,
+  CircleCopy,
+  D3Shiba,
+  D3Victorin,
+  D3CoreChain,
+  HeaderAffiliate,
+  HeaderAffiliateSass,
+  HeaderBag,
+  HeaderCoins,
+  HeaderCreditCard,
+  HeaderImage,
+  HeaderShirt,
+  HeaderTokenCoin,
+  HeaderD3,
+  HeaderUd,
+  HeaderProductBox,
+  MetaverseStore,
+  CircleModal,
+  CircleWithdraw,
+  Document,
+  ImportProduct,
+  DeliveryTruck,
+  XOutlined,
+  TelegramOutlined,
+  InstagramOutlined,
+  LinkedInOutlined,
+  Available,
+  Statistics,
+  Infinity,
+  MedalStar,
+  AvailableFilled,
+  NotAvailableFilled,
+  DiscordOutlined,
+  SearchOutlined,
+  ReorderDesigned,
+  CollectionModalIcon,
+  RulesetModalIcon,
+  DiscountRuleset,
+  GatingRuleset,
+  DotSpacer,
+  EditOutlined,
+  HidedIcon,
+  Required,
+  EventTicket,
+  Services,
+  Subscription,
+  MagicWind,
+  GoldenStar,
+  OutlinedStar,
+  GrayOutlineStar,
+  WhiteWarning,
+  YellowWarning,
+  FileUpload,
+  GreenPlus,
+  Shirt,
+  GrayInfinity,
+  GreenInfinity,
+  TooltipIcon,
+  ChevronRight,
+  ChevronLeft,
+  Calendar,
+  BlueBrush,
+  Convert,
+  Invoice,
+  DropProduct,
+  Hat,
+  MenClothing,
+  WomenClothing,
+  Furniture,
+  KidClothing,
+  Watch,
+  PremiumPlanGreenStarIcon,
+  SettingGear,
+  Order,
+  ImportFile,
+  GrayDollor,
+  Bitlayer,
+  ColorfulXTwitter,
+  ColorfulDiscord,
+  ColorfulTelegram,
+  ColorfulInstagram,
+  ColorfulYouTube,
+  ColorfulLinkedin,
+  DROP_LINKED_LOGO,
+  ExternalArrow
 }
 
-export default AppIcons
+export default AppIcons;

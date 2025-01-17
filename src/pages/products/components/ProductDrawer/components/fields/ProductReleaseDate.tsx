@@ -1,23 +1,26 @@
 import AppDatePicker from 'components/redesign/date-picker/AppDatePicker'
+import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductReleaseDate() {
-    const { values: { launchDate }, setFieldValue } = useProductForm()
+    const { values: { launchDate }, setFieldValue, errors } = useProductForm()
     const [releaseDateSwitch, setReleaseDateSwitch] = useState(launchDate ? true : false)
 
-    const handleToggleSwitch = (e) => {
-        setReleaseDateSwitch(e.target.checked)
-        setFieldValue("launchDate", e.target.checked ? new Date().toISOString() : null)
+    const handleToggleSwitch = (checked: boolean) => {
+        setReleaseDateSwitch(checked)
+        setFieldValue("launchDate", checked ? new Date().toISOString() : null)
     }
 
     return (
         <SwitchBox
             title='Release Date'
             description='Select a specific release date for this product.'
-            isChecked={releaseDateSwitch}
-            onToggle={handleToggleSwitch}
+            switchProps={{
+                isChecked: releaseDateSwitch,
+                onChange: (e) => handleToggleSwitch(e.target.checked)
+            }}
         >
             {releaseDateSwitch &&
                 <AppDatePicker
@@ -25,6 +28,12 @@ function ProductReleaseDate() {
                     minDate={new Date()}
                     value={launchDate ? new Date(launchDate) : new Date()}
                     showTimeInput
+                />
+            }
+            {(errors.launchDate && releaseDateSwitch) &&
+                <MessageBox
+                    title={errors.launchDate}
+                    theme='warning'
                 />
             }
         </SwitchBox>

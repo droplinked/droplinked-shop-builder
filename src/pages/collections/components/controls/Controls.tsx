@@ -80,7 +80,7 @@ function ControlsListCollection({ collection, fetch }) {
                     title: "Delete",
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
-                    icon: <AppIcons.TrashRed />
+                    icon: <AppIcons.RedTrash />
                 }
             ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />

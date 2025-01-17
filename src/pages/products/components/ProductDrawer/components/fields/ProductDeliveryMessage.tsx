@@ -6,7 +6,7 @@ import SwitchBox from '../common/SwitchBox'
 
 function ProductDeliveryMessage() {
     const { values: { digitalDetail }, setFieldValue } = useProductForm()
-    const { message, file_url } = digitalDetail
+    const { message, file_url } = digitalDetail ?? {}
     const [showDeliveryMessage, setShowDeliveryMessage] = useState(Boolean(message || file_url))
 
     const updateField = (field: keyof typeof digitalDetail, value: string) => {
@@ -29,8 +29,10 @@ function ProductDeliveryMessage() {
         <SwitchBox
             title="Delivery Message"
             description="Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions."
-            isChecked={showDeliveryMessage}
-            onToggle={(e) => handleToggle(e.target.checked)}
+            switchProps={{
+                isChecked: showDeliveryMessage,
+                onChange: (e) => handleToggle(e.target.checked),
+            }}
         >
             {showDeliveryMessage && (
                 <>

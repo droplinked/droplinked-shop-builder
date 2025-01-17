@@ -1,27 +1,26 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
 import React, { useState } from "react";
-import DirectLinkContent from "./parts/DirectLinkContent";
-import Header from "./parts/Header";
-import PaymentLinkContent from "./parts/PaymentLinkContent";
-import ProductTileContent from "./parts/ProductTileContent";
-import SocialTileContent from "./parts/SocialTileContent";
-import TabButtons from "./parts/TabButtons";
+import DirectLinkContent from "./components/DirectLinkContent";
 import { transformProductData } from "./productUtils";
-import TABS from "./tabsConstants"; // وارد کردن مقادیر ثابت از فایل جدید
+import TABS from "./tabsConstants"; 
+import PaymentLinkContent from "./components/PaymentLinkContent";
+import ProductTileContent from "./components/ProductTileContent";
+import SocialTileContent from "./components/SocialTileContent";
+import Header from "./components/Header";
+import TabButtons from "../common/TabButtons";
 
 interface IProps {
   close: () => void;
   open: boolean;
-  product: any; // این نوع داده باید به نوع داده صحیح تغییر کند
+  product: any; 
 }
 
 function ProductShareModal({ close, open, product }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
-  // استفاده از تابع transformProductData برای تبدیل داده‌های ورودی
   const transformedProduct = transformProductData(product);
 
-  if (!transformedProduct) return <></>; // نمایش پیام اگر داده محصول موجود نبود
+  if (!transformedProduct) return <></>;
 
   const handleTabChange = (tabName: string) => setActiveTab(tabName);
 
@@ -57,7 +56,7 @@ function ProductShareModal({ close, open, product }: IProps) {
         <Box pt="48px" pr="48px" pl="48px" pb="0px">
           <Header product={transformedProduct} />
           <Box mb="24px" />
-          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} />
+          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} tabs={Object.keys(TABS).map(key => ({ name: TABS[key] }))} />
         </Box>
         {renderTabContent()}
       </ModalBody>

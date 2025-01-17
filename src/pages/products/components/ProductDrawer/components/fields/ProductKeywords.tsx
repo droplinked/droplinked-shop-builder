@@ -5,19 +5,19 @@ import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 
 function ProductKeywords() {
-    const { values: { keywords }, setFieldValue } = useProductForm()
+    const { values: { tags }, setFieldValue } = useProductForm()
     const [newKeyword, setNewKeyword] = useState("")
 
     const handleAddKeyword = () => {
         if (!newKeyword) return
-        setFieldValue("keywords", [...keywords, newKeyword.trim()])
+        setFieldValue("tags", [...tags, newKeyword.trim()])
         setNewKeyword("")
     }
 
     const handleRemoveKeyword = (index: number) => {
-        const copiedKeywords = [...keywords]
+        const copiedKeywords = [...tags]
         copiedKeywords.splice(index, 1)
-        setFieldValue("keywords", copiedKeywords)
+        setFieldValue("tags", copiedKeywords)
     }
 
     return (
@@ -33,9 +33,9 @@ function ProductKeywords() {
                 }}
             />
 
-            {keywords.length > 0 && (
+            {tags.length > 0 && (
                 <Flex flexWrap="wrap" gap={3}>
-                    {keywords.map((keyword, index) =>
+                    {tags.map((keyword, index) =>
                         <Flex
                             key={index}
                             alignItems="center"

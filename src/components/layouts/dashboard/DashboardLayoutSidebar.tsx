@@ -28,7 +28,7 @@ const DashboardLayoutSidebar = () => {
                                 <AppAccordionTrigger width={"full"}>
                                     <DashboardLayoutDecideFragmentOrLink linkTo={item?.linkTo}>
                                         <Flex width={"full"} padding="12px" alignItems="center" gap="8px" alignSelf="stretch" _hover={{ backgroundColor: "#222" }} rounded="8px">
-                                            <Box width="20px" height="20px"><item.icon /></Box>
+                                            <Box width="20px" height="20px"><item.icon color="#FFF" /></Box>
                                             <AppTypography cursor="pointer" width="full" color="#FFF" fontFamily="Inter" fontSize="14px" _groupHover={{ letterSpacing: "0.2px", fontWeight: "500" }} style={{ transition: "letter-spacing .1s linear" }} fontWeight="400" lineHeight="20px">{item?.title}</AppTypography>
                                             {item?.list?.length > 0 && <AppAccordionChevron width="20px" height="20px" />}
                                         </Flex>

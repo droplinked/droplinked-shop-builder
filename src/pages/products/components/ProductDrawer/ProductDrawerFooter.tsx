@@ -1,6 +1,7 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
-import { useFormikContext } from 'formik'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React from 'react'
 
 interface Props {
@@ -8,10 +9,17 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { setFieldValue, handleSubmit } = useFormikContext()
+    const { values, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
+    const { _id: editingProductId, sku, publish_product } = values
+
+    const isProductRecorded = checkIfProductIsRecorded(sku)
+    const isButtonDisabled = isProductRecorded || isSubmitting
 
     const handleAction = (action: string) => {
-        setFieldValue('action', action)
+        const isSavingAsDraft = action === 'save-as-draft'
+        const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
+        setFieldValue('publish_status', publishStatus)
+        setFieldValue('publish_product', !isSavingAsDraft)
         handleSubmit()
     }
 
@@ -24,24 +32,29 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
             css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
-            <Button variant="secondary" type="button" onClick={onClose}>
+            <Button type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
                 Discard
             </Button>
+
             <Flex gap={4}>
                 <Button
+                    type="button"
                     variant="outline"
                     borderColor="#2BCFA1"
                     color="#2BCFA1"
-                    type="button"
-                    onClick={() => handleAction('save-as-draft')}  // Set action to 'save-as-draft' and submit the form
+                    isDisabled={isButtonDisabled}
+                    isLoading={isSubmitting && !publish_product}
+                    onClick={() => handleAction('save-as-draft')}
                 >
                     Save as draft
                 </Button>
                 <Button
                     type="button"
-                    onClick={() => handleAction('save-product')}  // Set action to 'save-product' and submit the form
+                    isDisabled={isButtonDisabled}
+                    isLoading={isSubmitting && publish_product}
+                    onClick={() => handleAction('publish-product')}
                 >
-                    Add Product
+                    {editingProductId ? 'Update Product' : 'Add Product'}
                 </Button>
             </Flex>
         </ChakraDrawerFooter>

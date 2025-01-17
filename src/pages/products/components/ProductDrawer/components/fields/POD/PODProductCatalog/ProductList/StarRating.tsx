@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
 
-function StarRating({ rate }: { rate: number }) {
+function StarRating({ rate = 0 }: { rate?: number }) {
     return (
         <Flex alignItems="center">
             {

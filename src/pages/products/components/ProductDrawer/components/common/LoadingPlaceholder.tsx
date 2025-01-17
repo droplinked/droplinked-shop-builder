@@ -1,13 +1,19 @@
-import { Flex, Skeleton, SkeletonProps } from "@chakra-ui/react"
+import { SimpleGrid, SimpleGridProps, Skeleton, SkeletonProps } from "@chakra-ui/react"
 import React from "react"
 
-interface Props extends SkeletonProps {
+interface Props {
     numberOfSkeletons?: number
+    containerProps?: SimpleGridProps
+    skeletonProps?: SkeletonProps
 }
 
-function LoadingPlaceholder({ numberOfSkeletons = 1, ...rest }: Props) {
+function LoadingPlaceholder({ numberOfSkeletons = 1, containerProps, skeletonProps }: Props) {
     return (
-        <Flex direction="column" gap={4}>
+        <SimpleGrid
+            columns={1}
+            gap={4}
+            {...containerProps}
+        >
             {Array.from({ length: numberOfSkeletons }).map((_, index) =>
                 <Skeleton
                     key={index}
@@ -15,12 +21,12 @@ function LoadingPlaceholder({ numberOfSkeletons = 1, ...rest }: Props) {
                     height={20}
                     borderRadius={8}
                     isLoaded={false}
-                    {...rest}
+                    {...skeletonProps}
                 >
                     {" "}
                 </Skeleton>
             )}
-        </Flex>
+        </SimpleGrid>
     )
 }
 

@@ -6,10 +6,10 @@ export const theme = extendTheme({
         Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({
             baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({
                 container: { border: "none", outline: "none" },
-                thumb: { backgroundColor: "#1E1E1E" },
+                thumb: { backgroundColor: "#000" },
                 track: {
-                    backgroundColor: "#5E5E5E",
-                    _checked: { bg: "green.500" }
+                    backgroundColor: "#333",
+                    _checked: { bg: "#2BCFA1" }
                 }
             })
         }),

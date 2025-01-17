@@ -1,38 +1,32 @@
-import React, { useState } from 'react'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import React from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
 import SwitchBox from '../common/SwitchBox'
 import ProductDeliveryMessage from '../fields/ProductDeliveryMessage'
 import ProductKeywords from '../fields/ProductKeywords'
 import ProductReleaseDate from '../fields/ProductReleaseDate'
-import ProductTermsAndConditions from '../fields/ProductTermsAndConditions'
 import ProductVisibilityStatus from '../fields/ProductVisibilityStatus'
 
 function AdditionalDetailsAccordion() {
-    const [customField, setCustomField] = useState(false)
-    const [discountAllowance, setDiscountAllowance] = useState(false)
+    const { values: { pre_purchase_data_fetch, product_type }, setFieldValue } = useProductForm()
 
     return (
-        <ProductFormAccordion label='Additional Details'>
+        <ProductFormAccordion label="Additional Details">
             <ProductVisibilityStatus />
             <ProductKeywords />
             <ProductReleaseDate />
 
             <SwitchBox
-                title='Custom Field'
-                description='Add custom information to display during checkout.'
-                isChecked={customField}
-                onToggle={() => setCustomField(prev => !prev)}
+                title="Custom Field"
+                description="Add custom information to display during checkout."
+                switchProps={{
+                    isChecked: pre_purchase_data_fetch,
+                    onChange: () => setFieldValue("pre_purchase_data_fetch", !pre_purchase_data_fetch)
+                }}
             />
 
-            <SwitchBox
-                title='Discount Allowance'
-                description='Allow customers to apply discount codes for this product during checkout.'
-                isChecked={discountAllowance}
-                onToggle={() => setDiscountAllowance(prev => !prev)}
-            />
-
-            <ProductDeliveryMessage />
-            <ProductTermsAndConditions />
+            {product_type === "DIGITAL" && <ProductDeliveryMessage />}
+            {/* <ProductTermsAndConditions /> */}
         </ProductFormAccordion>
     )
 }

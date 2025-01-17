@@ -3,16 +3,16 @@ import React, { PropsWithChildren } from 'react'
 
 interface Props extends PropsWithChildren {
     isOpen: boolean
-    onClose: () => void
+    onDrawerClose: () => void
 }
 
-function ProductDrawerLayout({ isOpen, onClose, children }: Props) {
+function ProductDrawerLayout({ isOpen, onDrawerClose, children }: Props) {
     return (
         <Drawer
             isOpen={isOpen}
             placement="right"
             size="lg"
-            onClose={onClose}
+            onClose={onDrawerClose}
         >
             <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
             <DrawerContent
@@ -22,6 +22,7 @@ function ProductDrawerLayout({ isOpen, onClose, children }: Props) {
                 marginInline={10}
                 borderRadius={16}
                 bgColor="#141414"
+                overflow="hidden"
                 sx={{
                     overflowY: 'scroll',
                     '&::-webkit-scrollbar': { display: 'none' },

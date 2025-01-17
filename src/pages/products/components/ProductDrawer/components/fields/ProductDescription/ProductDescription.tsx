@@ -7,7 +7,7 @@ import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import classes from './ProductDescription.module.scss'
 
 function ProductDescription() {
-    const { values, errors, setFieldValue } = useProductForm()
+    const { values: { product_type, description }, errors, setFieldValue } = useProductForm()
 
     return (
         <ProductFieldWrapper
@@ -17,10 +17,10 @@ function ProductDescription() {
         >
             <Flex direction="column" gap={4} className={classes.editor}>
                 <Editor
-                    onEditorChange={(content) => setFieldValue('description', content)}
                     apiKey='cnv918vz9pvfdm6584873k8ixx4du3hom8x6p2ljb2h8p1gf'
-                    initialValue={values.description}
-                    disabled={values.product_type === "EVENT" ? true : false}
+                    disabled={product_type === "EVENT" ? true : false}
+                    initialValue={description}
+                    onEditorChange={(content) => setFieldValue('description', content)}
                     init={{
                         skin: "oxide-dark",
                         content_css: "dark",

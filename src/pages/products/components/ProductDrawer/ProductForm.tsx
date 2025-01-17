@@ -1,54 +1,96 @@
+import { useDisclosure } from '@chakra-ui/react'
+import CircleRecordModal from 'components/modals/circle-record-modal/CircleRecordModal'
 import { Form, Formik, FormikProvider } from 'formik'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import { initialValues, validationSchema } from 'pages/products/utils/formSchema'
-import { ProductFormValues } from 'pages/products/utils/types'
+import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import useProductSubmission from 'pages/products/hooks/useProductSubmission'
+import { getFormInitialValues } from 'pages/products/utils/formHelpers'
+import { validationSchema } from 'pages/products/utils/formSchema'
+import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
+import DropInfoModal from '../ProductTable/components/drop-info-modal/DropInfoModal'
 import FormContent from './FormContent'
 import ProductDrawerFooter from './ProductDrawerFooter'
 import ProductDrawerHeader from './ProductDrawerHeader'
 
 interface Props {
-    onClose: () => void
+    selectedProductType: ProductType
+    onDrawerClose: () => void
+    product?: any
 }
 
-function ProductForm({ onClose }: Props) {
-    const { selectedProductType, resetProductPageState } = useProductPageStore(s => ({
-        selectedProductType: s.productPageState.selectedProductType,
-        resetProductPageState: s.resetProductPageState
-    }))
+function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
+    const { invalidateProductsQuery } = useInvalidateProductsQuery()
+    const { convertPrice } = useCurrencyConverter()
 
-    const formInitialValues: ProductFormValues = {
-        ...initialValues,
-        product_type: selectedProductType,
+    const { isOpen: isDropModalOpen, onOpen: openDropModal, onClose: closeDropModal } = useDisclosure()
+    const { isOpen: isCircleModalOpen, onOpen: openCircleModal, onClose: closeCircleModal } = useDisclosure()
+
+    // Hook Integration for form submission and modals
+    const { handleSubmit, recordProduct, savedProduct, selectedChain, transactionHash } = useProductSubmission({
+        closeProductFormDrawer: onDrawerClose,
+        openDropModal,
+        openCircleModal,
+        closeCircleModal: handleCircleModalClose
+    })
+
+    // Handling modal closures and cache invalidation
+    function handleDropModalClose() {
+        closeDropModal()
+        onDrawerClose()
+        invalidateProductsQuery()
     }
 
-    const handleSubmit = (values: ProductFormValues) => {
-        console.log(values.action)
+    function handleCircleModalClose() {
+        closeCircleModal()
+        onDrawerClose()
+        invalidateProductsQuery()
     }
 
-    const handleClose = () => {
-        resetProductPageState()
-        onClose()
-    }
+    // Initial values for Formik
+    const initialValues = getFormInitialValues({ product, selectedProductType, convertPrice })
 
     return (
-        <Formik
-            initialValues={formInitialValues}
-            validationSchema={validationSchema}
-            validateOnChange={false}
-            validateOnBlur={false}
-            onSubmit={handleSubmit}
-        >
-            {formik => (
-                <FormikProvider value={formik}>
-                    <Form>
-                        <ProductDrawerHeader />
-                        <FormContent />
-                        <ProductDrawerFooter onClose={handleClose} />
-                    </Form>
-                </FormikProvider>
+        <>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                validateOnChange={false}
+                validateOnBlur={true}
+                context={{ product_type: initialValues.product_type }}
+                onSubmit={handleSubmit}
+            >
+                {formik => (
+                    <FormikProvider value={formik}>
+                        <Form>
+                            <ProductDrawerHeader />
+                            <FormContent />
+                            <ProductDrawerFooter onClose={onDrawerClose} />
+                        </Form>
+                    </FormikProvider>
+                )}
+            </Formik>
+
+            {/* DropInfoModal: Opens only after successful record */}
+            {isDropModalOpen && (
+                <DropInfoModal
+                    product={savedProduct}
+                    isOpen={isDropModalOpen}
+                    onClose={handleDropModalClose}
+                    transactionHash={transactionHash}
+                />
             )}
-        </Formik>
+
+            {/* CircleRecordModal: Opens conditionally for Circle */}
+            {isCircleModalOpen && (
+                <CircleRecordModal
+                    isOpen={isCircleModalOpen}
+                    onClose={handleCircleModalClose}
+                    selectedChain={selectedChain}
+                    recordFunction={recordProduct}
+                />
+            )}
+        </>
     )
 }
 

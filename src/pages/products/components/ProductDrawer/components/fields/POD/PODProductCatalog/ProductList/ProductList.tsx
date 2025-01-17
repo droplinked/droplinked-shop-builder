@@ -4,7 +4,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'
 import BackButton from '../BackButton'
-import BaseProductCard from './BaseProductCard'
+import PODProductCard from './PODProductCard'
 
 interface Props {
     categoryId: string
@@ -22,15 +22,15 @@ function ProductList({ categoryId, onProductSelect, onBack }: Props) {
     const products = data?.data?.data?.data || []
 
     function renderContent() {
-        if (isFetching) return <LoadingPlaceholder numberOfSkeletons={4} h="82px" />
+        if (isFetching) return <LoadingPlaceholder numberOfSkeletons={4} skeletonProps={{ h: "82px" }} />
 
         return (
             <Flex direction="column" gap={3}>
                 {products.map((product: any, index: number) => (
-                    <BaseProductCard
+                    <PODProductCard
                         key={index}
                         product={product}
-                        onProductSelect={() => onProductSelect(product)}
+                        onProductSelect={() => onProductSelect(product.id)}
                     />
                 ))}
             </Flex>

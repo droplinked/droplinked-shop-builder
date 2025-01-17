@@ -1,18 +1,31 @@
-import AppIcons from 'assest/icon/Appicons'
-import Input from 'components/redesign/input/Input'
-import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { useEffect, useState } from 'react'
-import SwitchBox from '../common/SwitchBox'
+import AppIcons from "assest/icon/Appicons"
+import Input from "components/redesign/input/Input"
+import useAppToast from "functions/hooks/toast/useToast"
+import useProductForm from "pages/products/hooks/useProductForm"
+import React, { ChangeEvent, useState } from "react"
+import SwitchBox from "../common/SwitchBox"
 
 export default function ProductRoyalty() {
+    const { values: { sku } } = useProductForm()
     const [showInput, setShowInput] = useState(false)
+    const { showToast } = useAppToast()
+
+    const handleRoyaltyToggle = (checked: boolean) => {
+        if (!sku.length) {
+            showToast({ type: "error", message: "Please add at least one SKU before activating royalties." })
+            return
+        }
+        setShowInput(checked)
+    }
 
     return (
         <SwitchBox
             title="Royalty"
             description="Activate royalties on this product to receive a percentage on each resale."
-            isChecked={showInput}
-            onToggle={(e) => setShowInput(e.target.checked)}
+            switchProps={{
+                isChecked: showInput,
+                onChange: (e) => handleRoyaltyToggle(e.target.checked)
+            }}
             {...(showInput && { rightContent: <RoyaltyInput /> })}
         />
     )
@@ -22,41 +35,28 @@ function RoyaltyInput() {
     const { values: { sku }, setFieldValue } = useProductForm()
     const [royalty, setRoyalty] = useState(sku?.[0]?.royalty ?? null)
 
-    function preventInvalidKeys(e) {
-        const invalidKeys = ['+', '-', 'e']
-        if (invalidKeys.includes(e.key)) e.preventDefault()
-    }
-
-    function handleInputChange(e) {
+    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { value, validity } = e.target
         if (!validity.valid) return
 
-        const numericValue = value === '' ? null : parseFloat(value)
-        setRoyalty(numericValue)
+        const parsedValue = value === "" ? null : parseFloat(value)
+        setRoyalty(parsedValue)
 
-        const updatedSkus = sku.map(item => ({ ...item, royalty: numericValue }))
-        setFieldValue('sku', updatedSkus)
+        const updatedSkus = sku.map(item => ({ ...item, royalty: parsedValue }))
+        setFieldValue("sku", updatedSkus)
     }
-
-    useEffect(() => {
-        return () => {
-            const updatedSkus = sku.map(item => ({ ...item, royalty: null }))
-            setFieldValue('sku', updatedSkus)
-        }
-    }, [sku, setFieldValue])
 
     return (
         <Input
-            inputGroupProps={{ width: '104px' }}
+            inputGroupProps={{ width: "104px" }}
             inputProps={{
-                type: 'number',
+                type: "number",
+                numberType: "float",
                 min: 0,
                 max: 99.99,
                 step: 0.01,
-                placeholder: '15',
-                value: royalty !== null ? royalty : '',
-                pattern: '^[0-9]*\\.?[0-9]*$',
-                onKeyDown: preventInvalidKeys,
+                placeholder: "15",
+                value: royalty !== null ? royalty : "",
                 onChange: handleInputChange
             }}
             rightElement={<AppIcons.GrayPercent />}

@@ -89,7 +89,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 <Button
                     size="sm"
                     border="1px solid #2BCFA1"
-                    bg={"none"}
+                    bg="none"
                     fontSize={12}
                     fontWeight={500}
                     color="#2BCFA1"

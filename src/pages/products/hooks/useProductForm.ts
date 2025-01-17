@@ -1,8 +1,8 @@
 import { useFormikContext } from 'formik'
-import { ProductFormValues } from '../utils/types'
+import { Product } from '../utils/types'
 
 const useProductForm = () => {
-    const formik = useFormikContext<ProductFormValues>()
+    const formik = useFormikContext<Product>()
 
     if (!formik) {
         throw new Error('useProductForm must be used within a Formik context')
