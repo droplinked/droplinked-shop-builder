@@ -30,6 +30,8 @@ export default function TokenIcon({ symbol }: { symbol: string }) {
                 return <AppIcons.Redbelly />;
             case 'USDC':
                 return <AppIcons.Usdc />;
+            case 'USDT':
+                return <AppIcons.Usdt />;
             default:
                 return null;
         }
