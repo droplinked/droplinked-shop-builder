@@ -56,12 +56,12 @@ import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink";
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration";
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign";
-import Rewards from "pages/rewards/rewards";
-import SettingsPage from "pages/settings/SettingsPage";
 import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import Rewards from "pages/public-pages/rewards/rewards";
+import SettingsPage from "pages/settings/SettingsPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
