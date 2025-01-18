@@ -12,38 +12,29 @@ interface WalletRowProps {
     isSingleWallet: boolean;
 }
 
-export const WalletRow = ({
-    wallet,
-    onChange,
-    onDelete,
-    isSingleWallet
-}: WalletRowProps) => {
+export const WalletRow = ({ wallet, onChange, onDelete, isSingleWallet }: WalletRowProps) => {
     // Initialize editing mode if wallet address is empty
     const [isEditing, setIsEditing] = useState(!wallet.destinationAddress);
     // Temporary state to handle editing without affecting parent state immediately
     const [tempWallet, setTempWallet] = useState(wallet);
 
+    // Enter edit mode and store current wallet data as temporary state
     const handleEdit = () => {
-        // Enter edit mode and store current wallet data as temporary state
         setIsEditing(true);
         setTempWallet(wallet);
     };
 
+    // Update parent component with temporary state values and exit edit mode
     const handleSave = () => {
-        // Update parent component with temporary state values and exit edit mode
         onChange("destinationAddress", tempWallet.destinationAddress);
         onChange("percent", tempWallet.percent.toString());
         setIsEditing(false);
     };
 
     const handleChange = (field: WalletField, value: string) => {
-        // Convert percentage to number if the field is "percent"
         const newValue = field === "percent" ? Number(value) : value;
         // Update temporary state and parent state simultaneously
-        setTempWallet(prev => ({
-            ...prev,
-            [field]: newValue
-        }));
+        setTempWallet(prev => ({ ...prev, [field]: newValue }));
         onChange(field, value);
     };
 

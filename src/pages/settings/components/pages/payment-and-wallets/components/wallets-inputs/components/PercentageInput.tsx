@@ -16,6 +16,7 @@ export const PercentageInput = ({ value, onChange, isEditing }: PercentageInputP
                 placeholder: "100",
                 value,
                 onChange: (e) => onChange(e.target.value),
+                // Disable input when not in editing mode
                 isDisabled: !isEditing
             }}
             inputContainerProps={{ sx: { path: { stroke: "#4F4F4F" } } }}
