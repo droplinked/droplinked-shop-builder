@@ -17,6 +17,11 @@ export interface ISettings {
             percent: number
         }[]
     }[]
+    loginMethods: {
+        name: string;
+        isActivated: boolean;
+        type: string;
+    }[]
 }
 
 export const settingsPageSchema = Yup.object().shape({
@@ -41,11 +46,18 @@ export const settingsPageSchema = Yup.object().shape({
                 })
             )
         })
-    ).nullable().optional()
+    ).nullable().optional(),
+    loginMethods: Yup.array().of(
+        Yup.object().shape({
+            name: Yup.string().required(),
+            isActivated: Yup.boolean().required(),
+            type: Yup.string().required()
+        })
+    ).nullable().optional(),
 });
 
 export const getSettingsPageInitValues = (shopData, userData) => {
-    const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods, paymentWallets } = shopData;
+    const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods, loginMethods, paymentWallets } = shopData;
     const { email } = userData;
 
     return ({
@@ -55,6 +67,7 @@ export const getSettingsPageInitValues = (shopData, userData) => {
         email: email || '',
         currencyAbbreviation: currency?.abbreviation || null,
         paymentMethods: paymentMethods || [],
-        paymentWallets: paymentWallets || []
+        paymentWallets: paymentWallets || [],
+        loginMethods: loginMethods || []
     })
 }

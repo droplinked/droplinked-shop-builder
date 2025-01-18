@@ -2,7 +2,9 @@ import { Box, Flex } from "@chakra-ui/react";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppTypography from "components/common/typography/AppTypography";
 import SwitchBox from "components/redesign/switch-box/SwitchBox";
-import React from "react";
+import { useFormikContext } from "formik";
+import { ISettings } from "pages/settings/formConfigs";
+import React, { ChangeEvent } from "react";
 
 interface Props {
     method: {
@@ -10,10 +12,19 @@ interface Props {
         isActivated: boolean;
         type: "SOCIAL" | "WALLET";
     };
-    onToggle: (methodName: string) => void;
 }
 
-export default function MethodItem({ method, onToggle }: Props) {
+export default function MethodItem({ method }: Props) {
+    const { values, setFieldValue } = useFormikContext<ISettings>();
+
+    const onToggle = (e: ChangeEvent<HTMLInputElement>, name: string) => {
+        const isChecked = e.target.checked;
+        const updatedMethods = isChecked
+            ? [...values.loginMethods, { ...method, isActivated: true }]
+            : values.loginMethods.filter((method) => method.name !== name);
+
+        setFieldValue('loginMethods', updatedMethods);
+    };
 
     return (
         <Flex
@@ -45,8 +56,9 @@ export default function MethodItem({ method, onToggle }: Props) {
             </Flex>
             <Box>
                 <SwitchBox
-                    isChecked={method.isActivated}
-                    onToggle={() => onToggle(method.name)}
+                    isChecked={!!values.loginMethods.find(item => item.name === method.name)}
+                    isDisabled={!method.isActivated}
+                    onToggle={(e) => onToggle(e, method.name)}
                 />
             </Box>
         </Flex>

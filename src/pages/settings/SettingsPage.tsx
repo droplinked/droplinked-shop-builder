@@ -21,8 +21,8 @@ function SettingsPage() {
             await fetchShop({ shopName: shop.name })
             resetForm({ values })
             showToast({ type: "success", message: "Settings updated successfully" })
-        } catch {
-            showToast({ type: "error", message: "Oops! Something went wrong." })
+        } catch (error) {
+            showToast({ type: "error", message: error.message || "Oops! Something went wrong." })
         } finally {
             setSubmitting(false)
         }

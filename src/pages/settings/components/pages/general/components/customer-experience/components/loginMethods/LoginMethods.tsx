@@ -1,29 +1,17 @@
+import { Grid } from "@chakra-ui/react";
 import { authSupportedWalletsService } from "lib/apis/auth/services";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import MethodItem from "./MethodItem";
-import { Grid } from "@chakra-ui/react";
 import SkeletonLoading from "./SkeletonLoading";
 
 export default function LoginMethods() {
-    const [walletData, setWalletData] = useState([]);
-    const { isFetching } = useQuery(
+    const { isFetching, data } = useQuery(
         "supported-login-methods",
         authSupportedWalletsService,
-        {
-            onSuccess(data) {
-                setWalletData(data.data.data)
-            },
-        }
     );
-
-    const handleToggle = (methodName: string) => {
-        const updatedMethods = walletData.map(m =>
-            m.name === methodName ? { ...m, isActivated: !m.isActivated } : m
-        );
-        setWalletData(updatedMethods);
-    };
+    const loginMethodsData = data?.data?.data ?? []
 
     return (
         <SectionContent
@@ -38,8 +26,8 @@ export default function LoginMethods() {
                     {isFetching ? (
                         <SkeletonLoading />
                     ) : (
-                        walletData?.map((item, index) => {
-                            return <MethodItem method={item} key={index} onToggle={handleToggle} />;
+                        loginMethodsData?.map((item, index) => {
+                            return <MethodItem method={item} key={index} />;
                         })
                     )}
                 </Grid>
