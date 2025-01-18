@@ -17,9 +17,10 @@ function ProductDescription() {
         >
             <Flex direction="column" gap={4} className={classes.editor}>
                 <Editor
-                    apiKey='cnv918vz9pvfdm6584873k8ixx4du3hom8x6p2ljb2h8p1gf'
+                    // apiKey='cnv918vz9pvfdm6584873k8ixx4du3hom8x6p2ljb2h8p1gf'
+                    apiKey='r4cgib74mcr1i0twnfwdoeadukqd7ln8173wea43acokjfc4'
                     disabled={product_type === "EVENT" ? true : false}
-                    initialValue={description}
+                    value={description}
                     onEditorChange={(content) => setFieldValue('description', content)}
                     init={{
                         skin: "oxide-dark",
@@ -35,7 +36,7 @@ function ProductDescription() {
                         toolbar: 'undo redo | blocks | ' +
                             'bold italic forecolor | alignleft aligncenter ' +
                             'alignright alignjustify | bullist numlist outdent indent table image',
-                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background: #141414 } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {color: #777}',
+                        content_style: 'body { font-family: Helvetica,Arial,sans-serif; font-size: 14px; background: #141414; } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before { color: #777 }',
                     }}
                 />
                 <GenerateWithAI />
