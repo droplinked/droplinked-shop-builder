@@ -18,6 +18,7 @@ export default function EmailAddress() {
                         value: values.email,
                         onChange: handleChange,
                         name: "email",
+                        isDisabled: true
                     }}
                     {...errors.email && { state: "error" }}
                     message={errors.email}

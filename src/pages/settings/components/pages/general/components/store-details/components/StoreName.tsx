@@ -18,6 +18,7 @@ export default function StoreName() {
                         value: values.name,
                         onChange: handleChange,
                         name: "name",
+                        isDisabled: true
                     }}
                     {...errors.name && { state: "error" }}
                     message={errors.name}
