@@ -11,12 +11,11 @@ import TokensListContainer from "./TokensListContainer";
 
 interface Props {
     paymentMethodsData: IPaymentPublicService[];
-    setPaymentMethodData: (value: IPaymentPublicService[]) => void;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export default function TokensModal({ paymentMethodsData, setPaymentMethodData, isOpen, onClose }: Props) {
+export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Props) {
     const allNetworksItem = { name: "All Networks" };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);

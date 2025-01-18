@@ -1,32 +1,29 @@
-import { Image, Grid, useDisclosure } from "@chakra-ui/react";
+import { Grid, Image, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import Button from "components/redesign/button/Button";
+import { useFormikContext } from "formik";
+import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React, { useState } from "react";
-import TokenPayInformation from "./TokenPayInformation";
-import PaymentToken from "./PaymentToken";
-import TokensModal from "./tokens-modal/TokensModal";
-import { useQuery } from "react-query";
-import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
-import { IPaymentPublicService } from "lib/apis/shop/interfaces";
-import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
+import React from "react";
+import { useQuery } from "react-query";
+import PaymentToken from "./PaymentToken";
 import TokenIcon from "./TokenIcon";
+import TokenPayInformation from "./TokenPayInformation";
+import TokensModal from "./tokens-modal/TokensModal";
 
 const TokenPay: React.FC = () => {
-  const [paymentMethodsData, setPaymentMethodsData] = useState<IPaymentPublicService[]>([]);
   const { values, setFieldValue } = useFormikContext<ISettings>();
   const { onClose, onOpen, isOpen } = useDisclosure();
   const { shop: { paymentMethods } } = useAppStore();
-  const { isFetching } = useQuery({
+  const { isFetching, data } = useQuery({
     queryKey: "PaymentMethods",
     queryFn: () => paymentPublicServiceV2(),
-    onSuccess(data) {
-      setPaymentMethodsData(data.data.data);
-    },
+
   });
+  const paymentMetodsData = data?.data?.data ?? []
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));
@@ -67,7 +64,7 @@ const TokenPay: React.FC = () => {
         }
       >
         <TokenPayInformation />
-        <TokensModal paymentMethodsData={paymentMethodsData} setPaymentMethodData={(value) => setPaymentMethodsData(value)} isOpen={isOpen} onClose={onClose} />
+        <TokensModal paymentMethodsData={paymentMetodsData} isOpen={isOpen} onClose={onClose} />
       </SectionContent>
     </SectionContainer>
   );
