@@ -39,7 +39,7 @@ function SettingsPage() {
                 validationSchema={settingsPageSchema}
                 onSubmit={handleSubmit}
             >
-                {({ errors, values, setFieldValue }) => (
+                {() => (
                     <Form style={{ width: "100%" }}>
                         <TabsContent />
                         <SaveChangesDrawer />

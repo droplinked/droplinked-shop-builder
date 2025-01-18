@@ -1,6 +1,5 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { useState } from "react";
+import React from "react";
 import General from "../pages/general/General";
 import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity";
 import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
@@ -9,7 +8,6 @@ import UserManagement from "../pages/user-management/UserManagement";
 import { useFormikContext } from "formik";
 
 function TabsContent() {
-    const [selectedTab, setSelectedTab] = useState("General");
     const { isSubmitting } = useFormikContext()
 
     const tabs = [
@@ -59,7 +57,6 @@ function TabsContent() {
                             fontWeight={400}
                             fontSize={14}
                             key={index}
-                            onClick={() => setSelectedTab(tab.title)}
                         >
                             {tab.title}
                         </Tab>

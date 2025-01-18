@@ -5,16 +5,12 @@ import React from 'react';
 import WalletFeatures from './components/WalletFeatures';
 import WalletInput from './components/WalletInput';
 import ManageRechargeButtons from './components/manage-recharge/ManageRechargeButtons';
-import DefaultBadge from '../../../../common/DefaultBadge';
 
 const MerchantWallet: React.FC = () => {
   return (
     <>
       <SectionContainer
         title=" Merchant Wallet"
-        badge={
-          <DefaultBadge isDefault={true} onClick={() => console.log("hi")} />
-        }
         rightContent={
           <ManageRechargeButtons />
         }

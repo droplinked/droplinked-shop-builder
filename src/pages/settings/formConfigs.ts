@@ -10,13 +10,13 @@ export interface ISettings {
         type: string;
         isActive: boolean;
     }[];
-    // paymentWallets: {
-    //     type: string;
-    //     destinationAddress: {
-    //         destinationAddress: string;
-    //         percent: number
-    //     }[]
-    // }[]
+    paymentWallets: {
+        type: string;
+        destinationAddress: {
+            destinationAddress: string;
+            percent: number
+        }[]
+    }[]
 }
 
 export const settingsPageSchema = Yup.object().shape({
@@ -31,11 +31,21 @@ export const settingsPageSchema = Yup.object().shape({
             isActive: Yup.boolean().required()
         })
     ).nullable().optional(),
-    // paymentWallets: Yup.array().nullable().optional()
+    paymentWallets: Yup.array().of(
+        Yup.object().shape({
+            type: Yup.string().required(),
+            destinationAddress: Yup.array().of(
+                Yup.object().shape({
+                    destinationAddress: Yup.string().optional(),
+                    percent: Yup.number().optional()
+                })
+            )
+        })
+    ).nullable().optional()
 });
 
 export const getSettingsPageInitValues = (shopData, userData) => {
-    const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods } = shopData;
+    const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods, paymentWallets } = shopData;
     const { email } = userData;
     console.log(shopData)
 
@@ -45,7 +55,7 @@ export const getSettingsPageInitValues = (shopData, userData) => {
         isAgeRestricted: isAgeRestricted || false,
         email: email || '',
         currencyAbbreviation: currency?.abbreviation || null,
-        paymentMethods: paymentMethods || []
-        // paymentWallets: paymentWallets || []
+        paymentMethods: paymentMethods || [],
+        paymentWallets: paymentWallets || []
     })
 }

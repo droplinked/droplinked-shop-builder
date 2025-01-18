@@ -4,8 +4,8 @@ import FinancialServices from './components/financial-services/FinancialServices
 import MerchantWallet from './components/merchant-wallet/MerchantWallet';
 import StoreDisplay from './components/store-display/StoreDisplay';
 import TokenPay from './components/token-pay/TokenPay';
-import EVMWallet from './components/evm-wallet/EVMWallet';
-import SolanaWallet from './components/solana-wallet/SolanaWallet';
+import WalletInputs from './components/wallets-inputs/WalletsInputs';
+
 
 function PaymentAndWallets() {
   return (
@@ -13,8 +13,8 @@ function PaymentAndWallets() {
       <StoreDisplay />
       <FinancialServices />
       <MerchantWallet />
-      <EVMWallet />
-      <SolanaWallet />
+      <WalletInputs />
+      <WalletInputs isSolana />
       <TokenPay />
     </Box>
   );
