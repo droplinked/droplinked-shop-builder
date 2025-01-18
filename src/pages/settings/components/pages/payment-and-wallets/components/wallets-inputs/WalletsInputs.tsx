@@ -22,14 +22,16 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const walletType = isSolana ? "SOL" : "EVM";
     const description = getDescription(isSolana);
     const walletsData = getWalletsData(values, walletType);
+
+    // Temporarily store wallet data (we use it to prevent direct state mutation)
     const [tempData, setTempData] = useState(walletsData.destinationAddress)
 
-    // Add a new wallet address entry with 0% allocation
+    // Add new wallet with 0% allocation
     const handleAddWallet = () => {
         setTempData((prevState) => [...prevState, { destinationAddress: "", percent: 0 }]);
     };
 
-    // Remove a wallet address entry, preventing deletion of the last address
+    // Remove wallet at specified index
     const handleDelete = (index: number) => {
         if (tempData.length <= 1) return;
         const updatedAddresses = tempData.filter((_, i) => i !== index);
@@ -37,7 +39,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
         updateWallets(updatedAddresses);
     };
 
-    // Update wallet address or percentage for a specific index
+    // Update wallet field value at index
     const handleChange = (index: number, field: "destinationAddress" | "percent", value: string) => {
         const updatedAddresses = tempData.map((addr, i) => {
             if (i === index) {
@@ -51,17 +53,18 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
         setTempData(updatedAddresses);
     };
 
+    // Save current wallet config
     const handleSave = () => {
         updateWallets(tempData);
     };
 
-    // Update the entire wallets array in Formik while preserving other wallet types
+    // Update wallets while keeping other types
     const updateWallets = (addresses: WalletData[]) => {
         const newWallets = values.paymentWallets?.filter(w => w.type !== walletType) || [];
         setFieldValue("paymentWallets", [...newWallets, { type: walletType, destinationAddress: addresses }]);
     };
 
-    // Set the merchant's Circle wallet as the default wallet
+    // Set Circle wallet as default
     const handleSetDefault = () => {
         if (!circleWalletAddress) {
             showToast({ type: "error", message: "Please activate your Merchant Wallet first" });
@@ -95,6 +98,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     );
 }
 
+// Render wallet input rows list
 const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function) => (
     <Flex direction="column" gap={4}>
         {wallets.map((wallet, index) => (
