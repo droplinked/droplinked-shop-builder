@@ -10,7 +10,6 @@ import { ISettings } from 'pages/settings/formConfigs';
 
 interface Props {
     token: IPaymentPublicService;
-    onChange: Function;
 }
 
 export default function TokenCard({ token }: Props) {

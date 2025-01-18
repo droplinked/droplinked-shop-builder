@@ -9,7 +9,7 @@ import { useFormikContext } from 'formik'
 const MotionFlex = motion(Flex)
 
 export default function SaveChangesDrawer() {
-    const { dirty, handleSubmit, values, errors, resetForm, isSubmitting } = useFormikContext()
+    const { dirty, handleSubmit, resetForm, isSubmitting } = useFormikContext()
 
     const handleSaveClick = () => {
         handleSubmit()
@@ -18,11 +18,6 @@ export default function SaveChangesDrawer() {
     const handleDiscardClick = () => {
         resetForm()
     }
-
-    useEffect(() => {
-        console.log("errors", errors)
-        console.log("values", values)
-    }, [errors, values])
 
     return (
         <AnimatePresence initial={false}>

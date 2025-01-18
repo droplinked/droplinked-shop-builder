@@ -47,7 +47,6 @@ export const settingsPageSchema = Yup.object().shape({
 export const getSettingsPageInitValues = (shopData, userData) => {
     const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods, paymentWallets } = shopData;
     const { email } = userData;
-    console.log(shopData)
 
     return ({
         name: name || '',

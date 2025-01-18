@@ -9,10 +9,9 @@ import AppTooltip from 'components/common/tooltip/AppTooltip';
 interface Props {
     isEvm?: boolean;
     tokens: IPaymentPublicService[];
-    onChange: (value: IPaymentPublicService[]) => void;
 }
 
-export default function TokensListContainer({ isEvm, tokens, onChange }: Props) {
+export default function TokensListContainer({ isEvm, tokens }: Props) {
     const evmTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'EVM'));
     const solanaTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'SOLANA'));
     const filteredList = isEvm ? evmTokens : solanaTokens
@@ -35,7 +34,7 @@ export default function TokensListContainer({ isEvm, tokens, onChange }: Props) 
                 {
                     filteredList.map((item) => {
                         return (
-                            <TokenCard key={item._id} onChange={onChange} token={item} />
+                            <TokenCard key={item._id} token={item} />
                         )
                     })
                 }

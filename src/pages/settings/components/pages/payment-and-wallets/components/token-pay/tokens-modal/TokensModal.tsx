@@ -69,8 +69,8 @@ export default function TokensModal({ paymentMethodsData, setPaymentMethodData, 
                     />
                     <Select items={[allNetworksItem, ...paymentMethodsData]} labelAccessor="name" valueAccessor="name" selectProps={{ width: "200px", onChange: handleFilterData }} />
                 </Flex>
-                <TokensListContainer isEvm onChange={(value) => console.log(value)} tokens={filteredPaymentMethods} />
-                <TokensListContainer onChange={(value) => console.log(value)} tokens={filteredPaymentMethods} />
+                <TokensListContainer isEvm tokens={filteredPaymentMethods} />
+                <TokensListContainer tokens={filteredPaymentMethods} />
             </ModalBody>
         </AppModal>
     );
