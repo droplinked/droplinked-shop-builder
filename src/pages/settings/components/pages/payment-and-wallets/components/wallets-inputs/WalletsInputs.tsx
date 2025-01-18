@@ -5,18 +5,14 @@ import DefaultBadge from "pages/settings/components/common/DefaultBadge";
 import NavigationLink from "pages/settings/components/common/NavigationLink";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React from "react";
+import React, { useState } from "react";
 import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
 import useAppStore from "lib/stores/app/appStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { getDescription, getWalletsData } from "./helpers";
-
-export interface WalletAddress {
-    destinationAddress: string;
-    percent: number;
-}
+import { WalletData } from "./types";
 
 export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const { values, setFieldValue } = useFormikContext<ISettings>();
@@ -26,23 +22,24 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const walletType = isSolana ? "SOL" : "EVM";
     const description = getDescription(isSolana);
     const walletsData = getWalletsData(values, walletType);
+    const [tempData, setTempData] = useState(walletsData.destinationAddress)
 
     // Add a new wallet address entry with 0% allocation
     const handleAddWallet = () => {
-        const updatedAddresses = [...walletsData.destinationAddress, { destinationAddress: "", percent: 0 }];
-        updateWallets(updatedAddresses);
+        setTempData((prevState) => [...prevState, { destinationAddress: "", percent: 0 }]);
     };
 
     // Remove a wallet address entry, preventing deletion of the last address
     const handleDelete = (index: number) => {
-        if (walletsData.destinationAddress.length <= 1) return;
-        const updatedAddresses = walletsData.destinationAddress.filter((_, i) => i !== index);
+        if (tempData.length <= 1) return;
+        const updatedAddresses = tempData.filter((_, i) => i !== index);
+        setTempData(updatedAddresses);
         updateWallets(updatedAddresses);
     };
 
     // Update wallet address or percentage for a specific index
     const handleChange = (index: number, field: "destinationAddress" | "percent", value: string) => {
-        const updatedAddresses = walletsData.destinationAddress.map((addr, i) => {
+        const updatedAddresses = tempData.map((addr, i) => {
             if (i === index) {
                 return {
                     ...addr,
@@ -51,11 +48,15 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
             }
             return addr;
         });
-        updateWallets(updatedAddresses);
+        setTempData(updatedAddresses);
+    };
+
+    const handleSave = () => {
+        updateWallets(tempData);
     };
 
     // Update the entire wallets array in Formik while preserving other wallet types
-    const updateWallets = (addresses: WalletAddress[]) => {
+    const updateWallets = (addresses: WalletData[]) => {
         const newWallets = values.paymentWallets?.filter(w => w.type !== walletType) || [];
         setFieldValue("paymentWallets", [...newWallets, { type: walletType, destinationAddress: addresses }]);
     };
@@ -67,6 +68,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
             return;
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
+        setTempData(updatedAddresses)
         updateWallets(updatedAddresses);
     };
 
@@ -86,22 +88,23 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
             }
             title={`${walletType} Wallet`}
         >
-            <SectionContent title="Address" description={description} rightContent={renderWalletRows(walletsData, handleChange, handleDelete)} >
+            <SectionContent title="Address" description={description} rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)} >
                 <NavigationLink title="Learn more" to={"#"} />
             </SectionContent>
         </SectionContainer>
     );
 }
 
-const renderWalletRows = (walletsData: { destinationAddress: WalletAddress[] }, handleChange: any, handleDelete: any) => (
+const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function) => (
     <Flex direction="column" gap={4}>
-        {walletsData.destinationAddress.map((wallet, index) => (
+        {wallets.map((wallet, index) => (
             <WalletRow
                 key={index}
                 wallet={wallet}
                 onChange={(field, value) => handleChange(index, field, value)}
                 onDelete={() => handleDelete(index)}
-                isSingleWallet={walletsData.destinationAddress.length <= 1}
+                onSave={() => handleSave()}
+                isSingleWallet={wallets.length <= 1}
             />
         ))}
     </Flex>

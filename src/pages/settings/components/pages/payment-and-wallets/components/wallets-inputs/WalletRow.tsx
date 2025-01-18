@@ -9,46 +9,33 @@ interface WalletRowProps {
     wallet: WalletData;
     onChange: (field: WalletField, value: string) => void;
     onDelete: () => void;
+    onSave: () => void;
     isSingleWallet: boolean;
 }
 
-export const WalletRow = ({ wallet, onChange, onDelete, isSingleWallet }: WalletRowProps) => {
-    // Initialize editing mode if wallet address is empty
+export const WalletRow = ({ wallet, onChange, onDelete, onSave, isSingleWallet }: WalletRowProps) => {
     const [isEditing, setIsEditing] = useState(!wallet.destinationAddress);
-    // Temporary state to handle editing without affecting parent state immediately
-    const [tempWallet, setTempWallet] = useState(wallet);
 
-    // Enter edit mode and store current wallet data as temporary state
     const handleEdit = () => {
         setIsEditing(true);
-        setTempWallet(wallet);
     };
 
-    // Update parent component with temporary state values and exit edit mode
     const handleSave = () => {
-        onChange("destinationAddress", tempWallet.destinationAddress);
-        onChange("percent", tempWallet.percent.toString());
         setIsEditing(false);
-    };
-
-    const handleChange = (field: WalletField, value: string) => {
-        const newValue = field === "percent" ? Number(value) : value;
-        // Update temporary state and parent state simultaneously
-        setTempWallet(prev => ({ ...prev, [field]: newValue }));
-        onChange(field, value);
+        onSave();
     };
 
     return (
         <Flex alignItems={"center"} gap={4}>
             <WalletAddressInput
-                value={isEditing ? tempWallet.destinationAddress : wallet.destinationAddress}
-                onChange={(value) => handleChange("destinationAddress", value)}
+                value={wallet.destinationAddress}
+                onChange={(value) => onChange("destinationAddress", value)}
                 isEditing={isEditing}
                 onSave={handleSave}
             />
             <PercentageInput
-                value={isEditing ? tempWallet.percent : wallet.percent}
-                onChange={(value) => handleChange("percent", value)}
+                value={wallet.percent}
+                onChange={(value) => onChange("percent", value)}
                 isEditing={isEditing}
             />
             <ActionButtons
