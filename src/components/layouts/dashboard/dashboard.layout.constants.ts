@@ -130,30 +130,30 @@ export const sidebar_constants: SidebarGroup[] = [
                 linkTo: "/analytics/account-settings",
                 list: [],
             },
-            {
-                title: "Management Panel",
-                icon: AppIcons.SidebarSetting,
-                linkTo: null,
-                list: [
-                    {
-                        listTitle: "Account Information",
-                        linkTo: "/analytics/settings/shop-info",
-                    },
+            // {
+            //     title: "Management Panel",
+            //     icon: AppIcons.SidebarSetting,
+            //     linkTo: null,
+            //     list: [
+            //         {
+            //             listTitle: "Account Information",
+            //             linkTo: "/analytics/settings/shop-info",
+            //         },
 
-                    {
-                        listTitle: "Wallet and Payments",
-                        linkTo: "/analytics/settings/technical",
-                    },
-                    {
-                        listTitle: "User Management",
-                        linkTo: "/analytics/settings/admins",
-                    },
-                    {
-                        listTitle: "Digital Coupons",
-                        linkTo: "/analytics/settings/coupons",
-                    },
-                ],
-            },
+            //         {
+            //             listTitle: "Wallet and Payments",
+            //             linkTo: "/analytics/settings/technical",
+            //         },
+            //         {
+            //             listTitle: "User Management",
+            //             linkTo: "/analytics/settings/admins",
+            //         },
+            //         {
+            //             listTitle: "Digital Coupons",
+            //             linkTo: "/analytics/settings/coupons",
+            //         },
+            //     ],
+            // },
 
             // { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/analytics/", list: [] },
         ],
