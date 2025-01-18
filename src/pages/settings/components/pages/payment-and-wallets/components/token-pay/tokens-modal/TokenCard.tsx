@@ -60,7 +60,7 @@ export default function TokenCard({ token }: Props) {
                 borderBottom="1px solid #292929"
             >
                 <AppTypography fontSize="16px" fontWeight={500} color="#fff">
-                    {token.name}
+                    {token.type}
                 </AppTypography>
                 <SwitchBox
                     isDisabled={token.isActive}

@@ -23,7 +23,8 @@ const TokenPay: React.FC = () => {
     queryFn: () => paymentPublicServiceV2(),
 
   });
-  const paymentMetodsData = data?.data?.data ?? []
+  const paymentMethodsData = data?.data?.data ?? []
+  console.log(paymentMethodsData)
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));
@@ -55,16 +56,20 @@ const TokenPay: React.FC = () => {
               gap={4}
             >
               {values.paymentMethods.map(
-                (item) =>
-                  item.type !== "STRIPE" &&
-                  item.type !== "COINBASE" && <PaymentToken key={item.type} title={item.type} icon={<TokenIcon name={item.type.toUpperCase()} />} onClick={() => handleRemovePaymentToken(item.type)} />
+                (item) => (item.type !== "STRIPE" && item.type !== "COINBASE") &&
+                  <PaymentToken
+                    key={item.type}
+                    title={item.type}
+                    icon={<TokenIcon symbol={item.type.toUpperCase()} />}
+                    onClick={() => handleRemovePaymentToken(item.type)}
+                  />
               )}
             </Grid>
           )
         }
       >
         <TokenPayInformation />
-        <TokensModal paymentMethodsData={paymentMetodsData} isOpen={isOpen} onClose={onClose} />
+        <TokensModal paymentMethodsData={paymentMethodsData} isOpen={isOpen} onClose={onClose} />
       </SectionContent>
     </SectionContainer>
   );

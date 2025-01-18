@@ -16,23 +16,24 @@ interface Props {
 }
 
 export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Props) {
-    const allNetworksItem = { name: "All Networks" };
+    console.log(paymentMethodsData)
+    const allNetworksItem = { type: "All Networks" };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);
 
     useEffect(() => {
         const filteredData = paymentMethodsData.filter((item) =>
-            item.name?.toLowerCase().includes(searchTerm.toLowerCase())
+            item.type?.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredPaymentMethods(filteredData);
     }, [paymentMethodsData, searchTerm]);
 
     const handleFilterData = (e: ChangeEvent<HTMLSelectElement>) => {
-        const name = e.target.value;
-        if (name === "All Networks") {
+        const type = e.target.value;
+        if (type === "All Networks") {
             setFilteredPaymentMethods(paymentMethodsData);
         } else {
-            const filteredData = paymentMethodsData.filter((item) => item.name?.toLowerCase().includes(name.toLowerCase()));
+            const filteredData = paymentMethodsData.filter((item) => item.type?.toLowerCase().includes(type.toLowerCase()));
             setFilteredPaymentMethods(filteredData);
         }
     };
@@ -66,7 +67,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                         inputContainerProps={{ width: "300px" }}
                         inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
                     />
-                    <Select items={[allNetworksItem, ...paymentMethodsData]} labelAccessor="name" valueAccessor="name" selectProps={{ width: "200px", onChange: handleFilterData }} />
+                    <Select items={[allNetworksItem, ...paymentMethodsData]} labelAccessor="type" valueAccessor="type" selectProps={{ width: "200px", onChange: handleFilterData }} />
                 </Flex>
                 <TokensListContainer isEvm tokens={filteredPaymentMethods} />
                 <TokensListContainer tokens={filteredPaymentMethods} />

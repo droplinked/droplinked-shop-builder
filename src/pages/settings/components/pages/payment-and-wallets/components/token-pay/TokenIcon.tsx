@@ -1,9 +1,9 @@
 import AppIcons from 'assest/icon/Appicons';
 import React from 'react'
 
-export default function TokenIcon({ name }: { name: string }) {
-    const renderIcon = (name: string) => {
-        switch (name) {
+export default function TokenIcon({ symbol }: { symbol: string }) {
+    const renderIcon = (symbol: string) => {
+        switch (symbol) {
             case 'SKALE':
                 return <AppIcons.Skale />;
             case 'BNB':
@@ -28,11 +28,13 @@ export default function TokenIcon({ name }: { name: string }) {
                 return <AppIcons.Redbelly />;
             case 'RBNT':
                 return <AppIcons.Redbelly />;
+            case 'USDC':
+                return <AppIcons.Usdc />;
             default:
                 return null;
         }
     };
     return (
-        renderIcon(name)
+        renderIcon(symbol)
     )
 }
