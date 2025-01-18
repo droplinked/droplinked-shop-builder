@@ -24,7 +24,6 @@ export interface PageGridRootProps {
 export interface PageGridHeaderProps {
     title?: string;
     description?: string;
-    flexProps?: FlexProps;
     rightContent?: React.ReactNode;
 }
 

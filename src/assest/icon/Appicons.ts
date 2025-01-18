@@ -288,8 +288,46 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as OutlinedStar } from "./yellow-star.svg";
 import { ReactComponent as YellowWarning } from "./yellow-warning.svg";
+import { ReactComponent as Location } from "./location.svg";
+import { ReactComponent as ExternalLink } from "./external-link.svg";
+import { ReactComponent as Asterisk } from "./asterisk.svg";
+import { ReactComponent as GreenSpeedometer } from "./green-speedometer.svg";
+import { ReactComponent as MedalStarOutline } from "./medal-star-outlined.svg";
+import { ReactComponent as AddUser } from "./add-user.svg";
+import { ReactComponent as EmailSign } from "./email-sign.svg";
+import { ReactComponent as SystemWarning } from "./system-warning.svg";
+import { ReactComponent as DiscountCouponIcon } from "./discount-coupon-icon.svg";
+import { ReactComponent as Export } from "./export.svg";
+import { ReactComponent as Secure } from "./secure.svg";
+import { ReactComponent as Usdc } from "./usdc.svg";
+import { ReactComponent as DollarSign } from "./dollar-sign.svg";
+import { ReactComponent as Slash } from "./slash.svg";
+import { ReactComponent as WhiteSave } from "./white-save.svg";
+import { ReactComponent as CircleUsdc } from "./circle-usdc.svg"
+import { ReactComponent as CircleEth } from "./circle-eth.svg"
+import { ReactComponent as CircleSolana } from "./circle-solana.svg"
+import { ReactComponent as CirclePolygon } from "./circle-polygon.svg"
 
 const AppIcons = {
+  CircleUsdc,
+  CircleSolana,
+  CircleEth,
+  CirclePolygon,
+  WhiteSave,
+  Slash,
+  Usdc,
+  DollarSign,
+  Location,
+  ExternalLink,
+  Asterisk,
+  GreenSpeedometer,
+  MedalStarOutline,
+  AddUser,
+  EmailSign,
+  SystemWarning,
+  DiscountCouponIcon,
+  Export,
+  Secure,
   ProductsIcon,
   CollectionIcon,
   SettingIcon,

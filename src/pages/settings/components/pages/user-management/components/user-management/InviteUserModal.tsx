@@ -1,0 +1,83 @@
+import { Divider, ModalBody, ModalFooter } from '@chakra-ui/react';
+import AppIcons from 'assest/icon/Appicons';
+import Input from 'components/redesign/input/Input';
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
+import AppModal from 'components/redesign/modal/AppModal';
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import { sendInvitaionEmailService } from 'lib/apis/user/services';
+import AccessWarning from './AccessWarning';
+import Button from 'components/redesign/button/Button';
+import useAppToast from 'functions/hooks/toast/useToast';
+
+interface Props {
+    isOpen: boolean;
+    onClose: () => void;
+    refetch: () => void;
+}
+
+export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
+    const [email, setEmail] = useState("");
+    const { showToast } = useAppToast()
+    const { mutateAsync, isLoading } = useMutation((email: string) => sendInvitaionEmailService(email));
+
+    const handleSubmit = async () => {
+        if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            showToast({ message: "Please enter a valid email address", type: "error" })
+            return;
+        }
+
+        try {
+            await mutateAsync(email);
+            showToast({ type: "success", message: "An invitation has been sent to this email." })
+            setEmail("");
+            refetch();
+            onClose();
+        } catch (e) {
+            showToast({ message: e.response?.status === 409 ? e.response?.data?.data?.message : "Oops! Something went wrong.", type: "error" })
+        }
+    };
+
+    return (
+        <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
+            <ModalHeaderData
+                backgroundColor='#141414'
+                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                title='Invite New Member'
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.AddUser />
+                    </ModalHeaderIconWrapper>
+                }
+                description='Add a new member by entering their email address below.'
+            />
+            <ModalBody>
+                <Input
+                    label='Email Address'
+                    inputProps={{
+                        isRequired: true,
+                        placeholder: "Enter email address",
+                        value: email,
+                        onChange: (e) => setEmail(e.target.value)
+                    }}
+                    leftElement={<AppIcons.EmailSign />}
+                />
+                <AccessWarning />
+            </ModalBody>
+            <Divider borderColor={"#292929"} />
+            <ModalFooter display={"flex"} justifyContent={"space-between"}>
+                <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Discard</Button>
+                <Button
+                    fontWeight={500}
+                    fontSize={14}
+                    onClick={handleSubmit}
+                    isLoading={isLoading}
+                    isDisabled={!email}
+                >
+                    Send Invitation
+                </Button>
+            </ModalFooter>
+        </AppModal>
+    )
+}

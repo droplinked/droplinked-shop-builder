@@ -20,7 +20,7 @@ function PlanHeading({ planTitle, fontSize = 16, iconSize = 16 }: Props) {
                 svg: { width: `${iconSize}px`, height: `${iconSize}px` }
             }}
         >
-            <SubscriptionIcon />
+            <SubscriptionIcon stroke='#fff' />
             <AppTypography fontSize={fontSize} fontWeight={700} color={"white"}>{title}</AppTypography>
         </Flex>
     )

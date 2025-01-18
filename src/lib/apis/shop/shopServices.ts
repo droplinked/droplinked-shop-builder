@@ -7,8 +7,10 @@ import {
 	IGetShopCommunityProfile,
 	IGetShopsCommunityService,
 	IpaymentCreateService,
+	IPaymentPublicService,
 	IPostWithdrawCircleWallet,
 	IrecordedShopService,
+	IShopApiKey,
 	IshopInfoService,
 	IshopPublicRecordedService,
 	IShopRecordedService,
@@ -27,6 +29,8 @@ export const shopService = ({ shopName }: IshopService) =>
 
 export const paymentPublicService = async () =>
 	axiosInstance.get(`shop/public/available-payment-methods`);
+export const paymentPublicServiceV2 = async () =>
+	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);
 
 export const paymentMethodsService = () => axiosInstance.get(`shop/payment-methods`);
 
@@ -79,7 +83,7 @@ export const shopSellerService = () =>
 export const bestPartnersService = () =>
 	axiosInstance.get(`shop/dashboard/product-types`);
 
-export const getShopAPIKeyService = () => axiosInstance.get(`shop/client/oauth2`);
+export const getShopAPIKeyService = () => axiosInstance.get<{ data: IShopApiKey }>(`shop/client/oauth2`);
 
 export const updateShopAPIKeyService = (data: ShopOAuth2Client) =>
 	axiosInstance.put('shop/client/oauth2 ', data);

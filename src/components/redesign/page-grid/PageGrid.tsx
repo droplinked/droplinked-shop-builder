@@ -23,9 +23,9 @@ function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, flexProps, rightContent }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
     return (
-        <Flex {...flexProps} w="full" marginBottom={flexProps?.marginBottom || "36px"} flexDirection={flexProps?.flexDirection || "row"} justifyContent={flexProps?.justifyContent || "space-between"} alignItems={flexProps?.alignItems || "start"}>
+        <Flex w="full" marginBottom={"36px"} flexDirection={"row"} justifyContent={"space-between"} alignItems={"start"}>
             <Flex flexDirection="column" alignItems="start">
                 {title && (
                     <AppTypography color="#fff" fontSize="24px" fontWeight={700}>

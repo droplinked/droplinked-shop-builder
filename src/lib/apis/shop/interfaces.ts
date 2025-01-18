@@ -43,6 +43,7 @@ export interface IshopUpdateService extends IshopSocial {
     backgroundText?: string;
     backgroundImage?: string;
     backgroundImageSecondary?: string;
+    isAgeRestricted?: boolean;
     templateID?: string;
     tags?: Array<string>;
     infoEmail?: string;
@@ -98,6 +99,25 @@ export interface IDeployContract {
     deployedNFTAddress: string;
 }
 
+export interface IShopApiKey {
+    clientId: string;
+    domains: Array<string>;
+}
+
+export interface IPaymentPublicService {
+    name?: string;
+    isActive?: boolean;
+    symbol?: string;
+    _id?: string;
+    description?: string
+    supportedChains?: SupportedChains[]
+}
+
+export interface SupportedChains {
+    group: string;
+    type: string;
+    _id: string;
+}
 export interface IUpdateShopName {
     id: string;
     shopName: string;

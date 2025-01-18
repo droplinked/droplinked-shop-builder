@@ -52,6 +52,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false)
 
     const handlePlanPurchase = () => {
+        console.log(plan)
         updateSelectedPlan(plan)
         if (!profile) return signInModal.onOpen()
         if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com")
@@ -134,7 +135,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
 
                 <Flex direction="column" gap={4}>
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        <SubscriptionIcon color="white"/>
+                        <SubscriptionIcon color="white" />
                     </Center>
                     <Box>
                         <AppTypography fontSize={20} fontWeight={700} color="white">{title}</AppTypography>

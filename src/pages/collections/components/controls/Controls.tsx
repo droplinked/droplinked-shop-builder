@@ -42,7 +42,7 @@ function ControlsListCollection({ collection, fetch }) {
     };
 
     const renderVisibilityIcon = () => (
-        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon />
+        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon stroke='#FF2244' />
     );
     const handleCopy = () => {
         navigator.clipboard.writeText(collection._id)

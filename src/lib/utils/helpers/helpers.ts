@@ -32,6 +32,18 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
     }
 };
 
+export const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    }).replace(',', ' -').replace('at', '');
+}
+
 export function sort_by_date<T extends { [key: string]: any }>(data: T[], date_key: keyof T, order: "asc" | "desc" = "asc"): T[] {
     return data.sort((a, b) => {
         const date_a = new Date(a[date_key]);

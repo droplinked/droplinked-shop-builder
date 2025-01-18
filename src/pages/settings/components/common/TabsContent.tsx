@@ -1,14 +1,14 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { useState } from "react";
-import General from "./pages/general/General";
-import PrivacyAndSecurity from "./pages/privacy-and-security/PrivacyAndSecurity";
-import PaymentAndWallets from "./pages/payment-and-wallets/PaymentAndWallets";
-import CreditAndCoupons from "./pages/credit-and-coupons/CreditAndCoupons";
-import UserManagement from "./pages/user-management/PrivacyAndSecurity";
+import React from "react";
+import General from "../pages/general/General";
+import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity";
+import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
+import CreditAndCoupons from "../pages/credit-and-coupons/CreditAndCoupons";
+import UserManagement from "../pages/user-management/UserManagement";
+import { useFormikContext } from "formik";
 
 function TabsContent() {
-    const [selectedTab, setSelectedTab] = useState("General");
+    const { isSubmitting } = useFormikContext()
 
     const tabs = [
         {
@@ -39,33 +39,33 @@ function TabsContent() {
         >
             <TabList borderBottom={"1px solid #292929"}>
                 {tabs.map((tab, index) => {
-                    const isSelected = selectedTab === tab.title;
-
                     return (
                         <Tab
+                            isDisabled={isSubmitting}
                             aria-selected={"false"}
                             _focusWithin={{
                                 background: "transparent",
                                 borderBottom: "1px solid #fff",
                             }}
                             _selected={{
-                                borderBottom: `1px solid #fff`
+                                borderBottom: `1px solid #fff`,
+                                color: "#fff",
+                                fontWeight: 500
                             }}
                             px={6} py={4}
+                            color={"#7b7b7b"}
+                            fontWeight={400}
+                            fontSize={14}
                             key={index}
-                            onClick={() => setSelectedTab(tab.title)}
                         >
-                            <AppTypography color={isSelected ? "#fff" : "#7B7B7B"} fontWeight={isSelected ? 500 : 400} fontSize={16}
-                            >
-                                {tab.title}
-                            </AppTypography>
+                            {tab.title}
                         </Tab>
                     );
                 })}
             </TabList>
             <TabPanels>
                 {tabs.map((tab, index) => (
-                    <TabPanel key={index}>
+                    <TabPanel padding={0} key={index}>
                         {tab.content}
                     </TabPanel>
                 ))}
