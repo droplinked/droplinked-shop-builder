@@ -10,7 +10,8 @@ export default function ShippingAvailabilityContent() {
     const { values: { pod_blank_product_id } } = useProductForm()
     const { data, isLoading } = useQuery({
         queryKey: ["POD-shipping-availability", pod_blank_product_id],
-        queryFn: () => getPODShippingAvailability(pod_blank_product_id)
+        queryFn: () => getPODShippingAvailability(pod_blank_product_id),
+        enabled: !!pod_blank_product_id
     })
     const regions = data?.data || []
 

@@ -1,3 +1,4 @@
+import useAppToast from "functions/hooks/toast/useToast"
 import { podProductService } from "lib/apis/pod/services"
 import useProductForm from "pages/products/hooks/useProductForm"
 import useProductPageStore from "pages/products/stores/ProductPageStore"
@@ -12,10 +13,11 @@ interface Props {
 }
 
 const SelectedProductDetails = ({ productId, onBack }: Props) => {
-    const { editingProductId, selectedPODProduct, updateProductPageState } = useProductPageStore()
+    const { editingProductId, updateProductPageState } = useProductPageStore()
     const { setFieldValue } = useProductForm()
+    const { showToast } = useAppToast()
 
-    const { isFetching } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ["POD_PRODUCT_DETAILS", productId],
         queryFn: () => podProductService({ pod_blank_product_id: productId }),
         enabled: !!productId,
@@ -25,8 +27,13 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
             setFieldValue("pod_blank_product_id", productId)
             setFieldValue("title", fetchedProduct.title)
             setFieldValue("description", fetchedProduct.description)
+        },
+        onError: () => {
+            showToast({ message: "Unable to retrieve details for the selected product.", type: "error" })
+            onBack()
         }
     })
+    const fetchedProduct = data?.data?.data
 
     const deleteProduct = () => {
         updateProductPageState("selectedPODProduct", null)
@@ -52,8 +59,8 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
 
     return (
         <PODProductCard
-            product={selectedPODProduct}
-            showShippingPopover={true}
+            product={fetchedProduct}
+            showShippingPopover
             onProductDelete={editingProductId ? undefined : deleteProduct}
         />
     )

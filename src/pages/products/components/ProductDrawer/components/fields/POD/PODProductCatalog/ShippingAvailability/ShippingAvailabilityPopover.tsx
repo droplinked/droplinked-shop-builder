@@ -5,9 +5,7 @@ import ShippingAvailabilityContent from './ShippingAvailabilityContent'
 
 function ShippingAvailabilityPopover() {
     return (
-        <Popover
-            placement="bottom-start"
-        >
+        <Popover placement="bottom-start">
             <ShippingAvailabilityButton />
             <PopoverContent
                 w={{ base: "360px", md: "660px" }}
