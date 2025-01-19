@@ -85,7 +85,7 @@ Settings are organized into the following tabs:
 <SectionContainer
     title="Store Details"
     description="Configure your store settings"
-    badge={<PremiumBadge />}
+    badge={<AccessLevelBadge justLevel level="Premium" />}
 >
     <SectionContent
         title="Shop Name"

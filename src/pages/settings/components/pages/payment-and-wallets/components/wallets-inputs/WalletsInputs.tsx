@@ -1,8 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import Button from "components/redesign/button/Button";
 import DefaultBadge from "pages/settings/components/common/DefaultBadge";
-import NavigationLink from "pages/settings/components/common/NavigationLink";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React, { useState } from "react";
@@ -13,6 +11,8 @@ import useAppStore from "lib/stores/app/appStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { getDescription, getWalletsData } from "./helpers";
 import { WalletData } from "./types";
+import ExternalLink from "components/redesign/external-link/ExternalLink";
+import BlueButton from "components/redesign/button/BlueButton";
 
 export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const { values, setFieldValue } = useFormikContext<ISettings>();
@@ -83,15 +83,31 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                 />
             }
             rightContent={
-                <Button onClick={handleAddWallet} color={"#179EF8"} variant="outline" border={"none"}>
+                <BlueButton
+                    fontSize={16}
+                    fontWeight={500}
+                    onClick={handleAddWallet}
+                >
                     <AppIcons.BluePlus />
                     Target Wallet
-                </Button>
+                </BlueButton>
             }
             title={`${walletType} Wallet`}
         >
             <SectionContent title="Address" description={description} rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)} >
-                <NavigationLink title="Learn more" to={"#"} />
+                <ExternalLink
+                    href={"#"}
+                    textDecor={"none"}
+                    display={"flex"}
+                    alignItems={"center"}
+                    fontSize={16}
+                    fontWeight={500}
+                    gap={"6px"}
+                    target='_blank'
+                >
+                    Learn More
+                    <AppIcons.ExternalLink style={{ display: "inline-block" }} />
+                </ExternalLink>
             </SectionContent>
         </SectionContainer>
     );

@@ -1,6 +1,5 @@
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
-import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import DomainField from './DomainField'
 import { Box, Flex } from '@chakra-ui/react'
@@ -10,7 +9,9 @@ import { useQuery } from 'react-query'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { appDevelopment } from 'lib/utils/app/variable'
-import NavigationLink from 'pages/settings/components/common/NavigationLink'
+import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import AppIcons from 'assest/icon/Appicons'
 
 
 export default function PublicApiKey() {
@@ -23,14 +24,22 @@ export default function PublicApiKey() {
         <SectionContainer
             title="Public API Key"
             badge={
-                <PremiumBadge />
+                <AccessLevelBadge justLevel level="Premium" />
             }
             rightContent={
-                <NavigationLink
-                    to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
+                <ExternalLink
+                    href={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
+                    textDecor={"none"}
+                    display={"flex"}
+                    alignItems={"center"}
+                    fontSize={16}
+                    fontWeight={500}
+                    gap={"6px"}
                     target='_blank'
-                    title='API Documentation'
-                />
+                >
+                    API Documentation
+                    <AppIcons.ExternalLink style={{ display: "inline-block" }} />
+                </ExternalLink>
             }
         >
             <SectionContent

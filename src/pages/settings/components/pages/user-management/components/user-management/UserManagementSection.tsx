@@ -1,15 +1,15 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
 import UserManagementTable from './UserManagementTable'
 import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
 import useAppStore from 'lib/stores/app/appStore'
 import InviteUserModal from './InviteUserModal'
-import Button from 'components/redesign/button/Button'
 import { useQuery } from 'react-query'
 import { getInvitationsService } from 'lib/apis/user/services'
+import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
+import BlueButton from 'components/redesign/button/BlueButton'
 
 export default function UserManagementSection() {
     const { isFetching, data, refetch } = useQuery({ queryKey: ["userManagementTable"], queryFn: () => getInvitationsService() })
@@ -24,24 +24,20 @@ export default function UserManagementSection() {
             title="User Management"
             description='Add or remove team members by entering their email addresses. An invite with the required instructions to join the account will be sent.'
             badge={
-                <PremiumBadge />
+                <AccessLevelBadge justLevel level="Premium" />
             }
             rightContent={
-                <Button
-                    variant={"outline"}
-                    border={"none"}
-                    bg={"none"}
-                    color={"#179ef8"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    gap={"6px"}
-                    fontWeight={500}
-                    onClick={onOpen}
-                    isDisabled={!isPremiumOrHigher}
-                >
-                    <AppIcons.BluePlus style={{ display: "inline-block" }} />
-                    New User
-                </Button>
+                <>
+                    <BlueButton
+                        fontSize={16}
+                        fontWeight={500}
+                        onClick={onOpen}
+                        isDisabled={!isPremiumOrHigher}
+                    >
+                        <AppIcons.BluePlus style={{ display: "inline-block" }} />
+                        New User
+                    </BlueButton>
+                </>
             }
         >
             {isPremiumOrHigher ? <UserManagementTable data={data} isFetching={isFetching} /> : <UpgradePlan />}

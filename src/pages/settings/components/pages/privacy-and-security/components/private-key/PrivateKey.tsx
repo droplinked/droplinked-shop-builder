@@ -1,7 +1,7 @@
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import React from 'react'
-import PremiumBadge from 'pages/settings/components/common/PremiumBadge'
 import ConfidentialKey from './ConfidentialKey'
+import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 
 export default function PrivateKey() {
 
@@ -9,7 +9,7 @@ export default function PrivateKey() {
         <SectionContainer
             title="Private Key"
             badge={
-                <PremiumBadge />
+                <AccessLevelBadge justLevel level="Premium" />
             }>
             <ConfidentialKey />
         </SectionContainer>

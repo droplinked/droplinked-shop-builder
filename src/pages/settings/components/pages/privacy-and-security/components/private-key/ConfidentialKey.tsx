@@ -1,8 +1,9 @@
 import { appDevelopment } from 'lib/utils/app/variable'
-import LearnMore from 'pages/settings/components/common/NavigationLink'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import KeyContainer from './KeyContainer'
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import AppIcons from 'assest/icon/Appicons'
 
 export default function ConfidentialKey() {
     return (
@@ -13,7 +14,19 @@ export default function ConfidentialKey() {
                 <KeyContainer />
             }
         >
-            <LearnMore title='Learn More' to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`} target='_blank' />
+            <ExternalLink
+                href={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/api/privateapis#/`}
+                textDecor={"none"}
+                display={"flex"}
+                alignItems={"center"}
+                fontSize={16}
+                fontWeight={500}
+                gap={"6px"}
+                target='_blank'
+            >
+                Learn More
+                <AppIcons.ExternalLink style={{ display: "inline-block" }} />
+            </ExternalLink>
         </SectionContent>
     )
 }

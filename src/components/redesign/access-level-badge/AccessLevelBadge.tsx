@@ -4,9 +4,10 @@ import React from 'react'
 
 export interface AccessLevelBadgeProps {
     level: 'Pro' | 'Premium' | 'Enterprise'
+    justLevel?: boolean
 }
 
-function AccessLevelBadge({ level }: AccessLevelBadgeProps) {
+function AccessLevelBadge({ level, justLevel }: AccessLevelBadgeProps) {
     // TODO: Replace Pro and Enterprise with respective icons
     const iconMap: Record<string, JSX.Element> = {
         "Pro": <AppIcons.PremiumPlanGreenStarIcon />,
@@ -28,7 +29,7 @@ function AccessLevelBadge({ level }: AccessLevelBadgeProps) {
             textTransform="capitalize"
         >
             {iconMap[level]}
-            {level} Feature
+            {level} {!justLevel && "Feature"}
         </Badge>
     )
 }

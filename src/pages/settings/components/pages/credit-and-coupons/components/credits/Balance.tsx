@@ -6,6 +6,7 @@ import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 import React, { useState } from "react";
 import AddBalanceModal from "./add-balance-modal/AddBalanceModal";
 import useAppToast from "functions/hooks/toast/useToast";
+import BlueButton from "components/redesign/button/BlueButton";
 
 export default function Balance() {
     const { shop: { currency, credit, name }, fetchShop } = useAppStore();
@@ -41,18 +42,16 @@ export default function Balance() {
                     src="https://upload-file-droplinked.s3.amazonaws.com/f9d54d7454b232b915a90bbd7e3c75df6f2fb2a728bcd364daecca3feb61bb47.png"
                     alt="droplinked logo"
                 />
-                <Flex
-                    cursor={"pointer"}
-                    alignItems={"center"}
+                <BlueButton
+                    fontSize={14}
+                    fontWeight={500}
+                    onClick={onOpen}
                     gap={1}
                     sx={{ path: { stroke: "#179EF8" } }}
-                    onClick={onOpen}
                 >
                     <AppIcons.Refresh />
-                    <AppTypography fontWeight={500} color={"#179EF8"}>
-                        Charge
-                    </AppTypography>
-                </Flex>
+                    Charge
+                </BlueButton>
             </Flex>
             {loading ?
                 <Spinner color="white" />

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, Divider, Flex, HStack, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
-import NavigationLink from 'pages/settings/components/common/NavigationLink';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppIcons from 'assest/icon/Appicons';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
+import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
 const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon }) => {
   const { values } = useFormikContext<ISettings>();
@@ -35,7 +35,19 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
       </HStack>
       <Divider borderColor="#282828" />
       <Flex p={2} textAlign="center" justifyContent={"center"}>
-        <NavigationLink to={link} title={buttonText} />
+        <ExternalLink
+          href={link}
+          textDecor={"none"}
+          display={"flex"}
+          alignItems={"center"}
+          fontSize={16}
+          fontWeight={500}
+          gap={"6px"}
+          target='_blank'
+        >
+          {buttonText}
+          <AppIcons.ExternalLink style={{ display: "inline-block" }} />
+        </ExternalLink>
       </Flex>
     </Box>
   );

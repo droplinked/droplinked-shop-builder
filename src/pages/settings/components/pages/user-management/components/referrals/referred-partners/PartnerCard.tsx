@@ -3,8 +3,8 @@ import { Partner } from './PartnerList'
 import { Avatar, Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppIcons from 'assest/icon/Appicons'
-import NavigationLink from 'pages/settings/components/common/NavigationLink'
 import { appDevelopment } from 'lib/utils/app/variable'
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
 
 export default function PartnerCard({ partner }: { partner: Partner }) {
     const { amount, shopName } = partner
@@ -20,7 +20,19 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                 <AppIcons.DotSpacer />
                 <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>${amount} <span style={{ color: "#B1B1B1" }}>USD</span></AppTypography>
             </Flex>
-            <NavigationLink target='_blank' reverse to={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`} title='Visit' />
+            <ExternalLink
+                href={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`}
+                textDecor={"none"}
+                display={"flex"}
+                alignItems={"center"}
+                fontSize={16}
+                fontWeight={500}
+                gap={"6px"}
+                target='_blank'
+            >
+                Visit
+                <AppIcons.ExternalLink style={{ display: "inline-block" }} />
+            </ExternalLink>
         </Flex>
     )
 }

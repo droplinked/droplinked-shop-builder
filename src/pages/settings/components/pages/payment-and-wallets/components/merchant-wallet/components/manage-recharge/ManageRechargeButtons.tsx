@@ -5,6 +5,7 @@ import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CircleManage from './CircleManage'
+import BlueButton from 'components/redesign/button/BlueButton'
 
 export default function ManageRechargeButtons() {
     const { shop } = useAppStore()
@@ -18,10 +19,14 @@ export default function ManageRechargeButtons() {
                     Manage
                 </Button>
                 <Link to={"https://www.binance.com/en/crypto/buy"} target='_blank'>
-                    <Button variant="outline" border={"none"} color="#179ef8" size="sm" sx={{ path: { stroke: "#179ef8" } }}>
+                    <BlueButton
+                        fontSize={16}
+                        fontWeight={500}
+                        sx={{ path: { stroke: "#179ef8" } }}
+                    >
                         <AppIcons.Refresh />
                         Recharge
-                    </Button>
+                    </BlueButton>
                 </Link>
                 <CircleManage {...{ isOpen, onClose, onOpen }} />
             </Flex>

@@ -1,7 +1,6 @@
 import { Grid, Image, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
-import Button from "components/redesign/button/Button";
 import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
@@ -13,6 +12,7 @@ import { useQuery } from "react-query";
 import PaymentToken from "./PaymentToken";
 import TokenPayInformation from "./TokenPayInformation";
 import TokensModal from "./tokens-modal/TokensModal";
+import BlueButton from "components/redesign/button/BlueButton";
 
 const TokenPay: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
@@ -33,10 +33,15 @@ const TokenPay: React.FC = () => {
     <SectionContainer
       title="Tokenpay"
       rightContent={
-        <Button onClick={onOpen} isLoading={isFetching} variant="outline" border={"none"} color="#179ef8" size="sm">
+        <BlueButton
+          fontSize={16}
+          fontWeight={500}
+          onClick={onOpen}
+          isLoading={isFetching}
+        >
           <AppIcons.BluePlus />
           Payment Token
-        </Button>
+        </BlueButton>
       }
     >
       <SectionContent

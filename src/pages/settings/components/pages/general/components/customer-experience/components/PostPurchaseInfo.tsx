@@ -1,10 +1,10 @@
 import SectionContent from 'pages/settings/components/common/SectionContent';
 import React from 'react';
-import PremiumBadge from 'pages/settings/components/common/PremiumBadge';
 import Input from 'components/redesign/input/Input';
 import { useHasPermission } from 'lib/stores/app/appStore';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
+import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge';
 
 export default function PostPurchaseInfo() {
     const { errors, values, handleChange } = useFormikContext<ISettings>();
@@ -14,7 +14,7 @@ export default function PostPurchaseInfo() {
         <SectionContent
             title="Post-Purchase Information"
             description="Create custom fields for collecting additional information after a customer makes a purchase."
-            badge={<PremiumBadge />}
+            badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <Input
                     inputProps={{
