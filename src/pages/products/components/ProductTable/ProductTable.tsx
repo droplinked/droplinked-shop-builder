@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
-import useProducts, { productStatusMap, productTypeMap } from 'functions/hooks/products/useProducts'
+import useProducts, { productTypeMap } from 'functions/hooks/products/useProducts'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
@@ -46,7 +46,14 @@ function ProductTable({ searchTerm }: Props) {
         },
         { accessorKey: 'productCollectionID', header: 'Collection', cell: info => (info.getValue() as any).title },
         { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
-        { accessorKey: 'publish_status', header: 'Status', cell: info => <ProductStatusBadge status={productStatusMap[info.getValue() as string]} /> }
+        {
+            accessorKey: 'publish_status',
+            header: 'Status',
+            cell: info => {
+                const { publish_status, purchaseAvailable } = info.row.original
+                return <ProductStatusBadge status={publish_status} purchaseAvailable={purchaseAvailable} />
+            }
+        }
     ]
 
     if (!isFetching && !products.length) return <EmptyProductList />
