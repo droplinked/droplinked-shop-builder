@@ -4,8 +4,7 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
 import useProducts, { productStatusMap, productTypeMap } from 'functions/hooks/products/useProducts'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
@@ -16,9 +15,9 @@ interface Props {
 }
 
 function ProductTable({ searchTerm }: Props) {
-    const { shop: { currency } } = useAppStore()
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
+    const { getFormattedPrice } = useCurrencyConverter()
 
     const columns: ColumnDef<any>[] = [
         {
@@ -37,11 +36,11 @@ function ProductTable({ searchTerm }: Props) {
             }
         },
         {
-            accessorKey: 'lowestPrice',
+            accessorKey: 'lowestSkuPrice',
             header: 'Price',
             cell: (info) => {
                 const price = info.getValue() as number
-                if (price) return `${currency?.symbol} ${currencyConvertion(price, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`
+                if (price) return getFormattedPrice({ amount: price, toUSD: false })
                 return "-"
             }
         },
