@@ -93,7 +93,12 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
     ];
 
     if (totalDocuments === 0 && !isFetching) {
-        return <EmptyView />
+        return (
+            <>
+                <EmptyView />
+                <CouponsEditCreationModal refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+            </>
+        )
     }
 
     return (
