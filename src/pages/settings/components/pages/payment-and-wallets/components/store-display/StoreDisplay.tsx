@@ -5,11 +5,8 @@ import React, { useState } from 'react';
 import CurrencyCard from './components/currency-card/CurrencyCard';
 import { useQuery } from 'react-query';
 import { getCurrencyList } from 'lib/apis/shop/shopServices';
-import useAppStore from 'lib/stores/app/appStore';
 
 const StoreDisplay: React.FC = () => {
-  const { shop: { currency } } = useAppStore()
-  const [selectedCurrency, setSelectedCurrency] = useState(currency?.abbreviation)
   const { isLoading, data } = useQuery({
     queryKey: ["currency-list"],
     queryFn: () => getCurrencyList()
@@ -36,22 +33,18 @@ const StoreDisplay: React.FC = () => {
           title="Default Currency"
           description="Choose a default currency to display to customers for products. During the checkout process, visitors will be able to see the total price in their local currency."
           rightContent={
-            <Flex gap="4">
+            <Flex flexDir={{ base: "column", lg: "row" }} gap="4">
               <CurrencyCard
                 currencyName="Fiat"
                 isPrimary={switchState.fiat}
                 currencyList={currencyList}
                 onToggle={() => handleToggle('fiat')}
                 isLoading={isLoading}
-                selectedItem={selectedCurrency}
-                setSelectedItem={(value: string) => setSelectedCurrency(value)}
               />
-              {/* <CurrencyCard
+              <CurrencyCard
                 currencyName="Crypto"
-                isPrimary={switchState.crypto}
-                currencyList={['BTC', 'ETH']}
-                onToggle={() => handleToggle('crypto')}
-              /> */}
+                isSoon={true}
+              />
             </Flex>
           }
         />
