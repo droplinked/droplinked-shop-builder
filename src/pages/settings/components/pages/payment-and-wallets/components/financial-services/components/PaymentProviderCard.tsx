@@ -18,7 +18,7 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
   };
 
   return (
-    <Box width={{ base: "100%", lg: "448px" }} border="1px solid #282828" borderRadius="lg" overflow="hidden">
+    <Box flex={1} width={{ base: "100%", xxl: "448px" }} border="1px solid #282828" borderRadius="lg" overflow="hidden">
       <HStack p="4" spacing="4">
         <Flex alignItems={"center"} justifyContent={"center"} w="12" h="12" p="3" bg="#1b1b1b" border="1px solid #282828" borderRadius="lg">
           {icon}
