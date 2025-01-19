@@ -11,6 +11,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             onFileChange(selectedFile)
         },
         multiple: false,
+        accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }
     })
 
     const dropMessage = isDragActive ?
@@ -37,7 +38,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             cursor="pointer"
             {...getRootProps()}
         >
-            <input {...getInputProps()} type="file" name="file" accept=".csv" aria-label="Upload file" />
+            <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
             <AppIcons.HeaderImage />
             {dropMessage}
         </Flex>
