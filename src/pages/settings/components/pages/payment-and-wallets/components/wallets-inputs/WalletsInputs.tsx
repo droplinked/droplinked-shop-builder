@@ -92,7 +92,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     Target Wallet
                 </BlueButton>
             }
-            title={`${walletType} Wallet`}
+            title={`${isSolana ? "Solana" : "EVM"} Wallet`}
         >
             <SectionContent title="Address" description={description} rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)} >
                 <ExternalLink
