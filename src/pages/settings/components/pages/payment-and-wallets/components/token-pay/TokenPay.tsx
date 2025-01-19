@@ -24,7 +24,6 @@ const TokenPay: React.FC = () => {
 
   });
   const paymentMethodsData = data?.data?.data ?? []
-  console.log(paymentMethodsData)
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));

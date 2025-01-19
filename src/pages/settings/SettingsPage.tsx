@@ -16,8 +16,8 @@ function SettingsPage() {
         const { setSubmitting, resetForm } = submitProps
         setSubmitting(true)
         try {
-            //TODO: Must update user too
-            await updateShop({ ...values });
+            //we use !!values.pre_purchase_data_fetch to handle active/deactive state of pre_purchase_data_fetch 
+            await updateShop({ ...values, pre_purchase_data_fetch: { active: !!values.pre_purchase_data_fetch, title: values.pre_purchase_data_fetch } });
             await fetchShop({ shopName: shop.name })
             resetForm({ values })
             showToast({ type: "success", message: "Settings updated successfully" })

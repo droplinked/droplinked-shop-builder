@@ -62,7 +62,7 @@ export const getSettingsPageInitValues = (shopData, userData) => {
 
     return ({
         name: name || '',
-        pre_purchase_data_fetch: pre_purchase_data_fetch || '',
+        pre_purchase_data_fetch: pre_purchase_data_fetch?.title || '',
         isAgeRestricted: isAgeRestricted || false,
         email: email || '',
         currencyAbbreviation: currency?.abbreviation || null,

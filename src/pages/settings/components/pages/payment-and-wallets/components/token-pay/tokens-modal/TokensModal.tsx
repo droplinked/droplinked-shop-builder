@@ -16,7 +16,6 @@ interface Props {
 }
 
 export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Props) {
-    console.log(paymentMethodsData)
     const allNetworksItem = { type: "All Networks" };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);
