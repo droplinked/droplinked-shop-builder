@@ -177,6 +177,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.Phantom width="24px" height="24px" {...props} />,
 				name: 'Phantom'
 			},
+			PARAM: {
+				icon: <AppIcons.Param width="24px" height="24px" {...props} />,
+				name: 'Param'
+			},
 		}),
 		[props]
 	);

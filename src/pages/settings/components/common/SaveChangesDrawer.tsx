@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFormikContext } from 'formik'
 

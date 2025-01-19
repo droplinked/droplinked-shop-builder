@@ -308,9 +308,11 @@ import { ReactComponent as CircleEth } from "./circle-eth.svg"
 import { ReactComponent as CircleSolana } from "./circle-solana.svg"
 import { ReactComponent as CirclePolygon } from "./circle-polygon.svg"
 import { ReactComponent as Usdt } from "./usdt.svg"
+import { ReactComponent as Param } from "./param.svg"
 
 const AppIcons = {
   Usdt,
+  Param,
   CircleUsdc,
   CircleSolana,
   CircleEth,
