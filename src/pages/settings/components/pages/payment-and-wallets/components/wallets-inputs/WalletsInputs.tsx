@@ -72,6 +72,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
         setTempData(updatedAddresses)
+        updateWallets(updatedAddresses);
     };
 
     return (
@@ -79,7 +80,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
             badge={
                 <DefaultBadge
                     onClick={handleSetDefault}
-                    isDefault={walletsData.destinationAddress[0]?.destinationAddress === circleWalletAddress}
+                    isDefault={tempData[0].destinationAddress === circleWalletAddress}
                 />
             }
             rightContent={
