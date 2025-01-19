@@ -14,6 +14,14 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.CasperIcon {...props} />,
 				name: 'Casper',
 			},
+			USDT: {
+				icon: <AppIcons.Usdt {...props} />,
+				name: 'USDT',
+			},
+			USDC: {
+				icon: <AppIcons.Usdc {...props} />,
+				name: 'USDT',
+			},
 			STACKS: {
 				icon: <AppIcons.Stacks {...props} />,
 				name: 'Stacks',
@@ -23,6 +31,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				name: 'Near',
 			},
 			POLYGON: {
+				icon: <AppIcons.Polygon {...props} />,
+				name: 'Polygon',
+			},
+			MATIC: {
 				icon: <AppIcons.Polygon {...props} />,
 				name: 'Polygon',
 			},
@@ -36,6 +48,14 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				name: 'XRPL Sidechain',
 			},
 			BINANCE: {
+				icon: <AppIcons.BnbChain {...props} />,
+				name: 'Bnb Chain',
+			},
+			BINANCE_PEG_BSC_USD: {
+				icon: <AppIcons.BnbChain {...props} />,
+				name: 'Bnb Chain',
+			},
+			BNB: {
 				icon: <AppIcons.BnbChain {...props} />,
 				name: 'Bnb Chain',
 			},
@@ -97,7 +117,15 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.XRPL {...props} />,
 				name: 'Xrpl',
 			},
+			XRP: {
+				icon: <AppIcons.XRPL {...props} />,
+				name: 'Xrpl',
+			},
 			BITCOIN: {
+				icon: <AppIcons.Bitcoin {...props} />,
+				name: 'Bitcoin',
+			},
+			BDC: {
 				icon: <AppIcons.Bitcoin {...props} />,
 				name: 'Bitcoin',
 			},
@@ -113,11 +141,19 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
 				icon: <AppIcons.Solana {...props} />,
 				name: 'Solana',
 			},
+			SOL: {
+				icon: <AppIcons.Solana {...props} />,
+				name: 'Solana',
+			},
 			GOOGLE: {
 				icon: <AppIcons.Google {...props} />,
 				name: 'Google',
 			},
 			REDBELLY: {
+				icon: <AppIcons.Redbelly {...props} />,
+				name: 'Redbelly',
+			},
+			RBNT: {
 				icon: <AppIcons.Redbelly {...props} />,
 				name: 'Redbelly',
 			},

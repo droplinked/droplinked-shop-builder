@@ -1,5 +1,6 @@
 import { Grid, Image, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import Button from "components/redesign/button/Button";
 import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
@@ -10,7 +11,6 @@ import { ISettings } from "pages/settings/formConfigs";
 import React from "react";
 import { useQuery } from "react-query";
 import PaymentToken from "./PaymentToken";
-import TokenIcon from "./TokenIcon";
 import TokenPayInformation from "./TokenPayInformation";
 import TokensModal from "./tokens-modal/TokensModal";
 
@@ -59,7 +59,7 @@ const TokenPay: React.FC = () => {
                   <PaymentToken
                     key={item.type}
                     title={item.type}
-                    icon={<TokenIcon symbol={item.type.toUpperCase()} />}
+                    icon={<BlockchainDisplay blockchain={item.type} show="icon" />}
                     onClick={() => handleRemovePaymentToken(item.type)}
                   />
               )}

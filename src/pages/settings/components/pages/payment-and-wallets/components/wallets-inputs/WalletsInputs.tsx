@@ -18,8 +18,8 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const { values, setFieldValue } = useFormikContext<ISettings>();
     const { shop: { circleWallets } } = useAppStore();
     const { showToast } = useAppToast();
-    const circleWalletAddress = circleWallets?.find(wallet => wallet?.chain === "ETH")?.address || "";
     const walletType = isSolana ? "SOL" : "EVM";
+    const circleWalletAddress = circleWallets?.find(wallet => wallet?.chain === (isSolana ? "SOLANA" : "ETH"))?.address || "";
     const description = getDescription(isSolana);
     const walletsData = getWalletsData(values, walletType);
 
@@ -72,7 +72,6 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
         setTempData(updatedAddresses)
-        updateWallets(updatedAddresses);
     };
 
     return (
