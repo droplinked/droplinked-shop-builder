@@ -3,7 +3,6 @@ import AppIcons from "assest/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
-import useAppStore from "lib/stores/app/appStore";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import { ISettings } from "pages/settings/formConfigs";
@@ -17,14 +16,13 @@ import BlueButton from "components/redesign/button/BlueButton";
 const TokenPay: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
   const { onClose, onOpen, isOpen } = useDisclosure();
-  const { shop: { paymentMethods } } = useAppStore();
   const { isFetching, data } = useQuery({
     queryKey: "PaymentMethods",
     queryFn: () => paymentPublicServiceV2(),
 
   });
   const paymentMethodsData = data?.data?.data ?? []
-  const isPaymentMethodsEmpty = paymentMethods?.filter((item) => item.type !== "STRIPE" || item.type !== "COINBASE").length > 0;
+  const isPaymentMethodsEmpty = values.paymentMethods?.filter((item) => item.type !== "STRIPE" && item.type !== "COINBASE").length === 0;
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));
