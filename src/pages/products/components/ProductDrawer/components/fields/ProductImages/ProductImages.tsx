@@ -12,27 +12,35 @@ export default function ProductImages() {
     const { values: { media }, errors, setFieldValue } = useProductForm()
     const { mutateAsync, isLoading } = useFileUpload()
 
+    const sortedMedia = media.slice().sort((a, b) => (b.isMain ? 1 : 0) - (a.isMain ? 1 : 0))
+
     const handleFileChange = async (file: File) => {
         try {
             const formData = new FormData()
             formData.append("image", file)
+
             const { original, small } = await mutateAsync(formData)
-            const newMedia = [...media, {
+
+            const newMediaItem = {
                 thumbnail: small,
                 url: original,
                 isMain: !media.some(m => [true, "true"].includes(m.isMain)),
                 fileName: file.name,
-                fileSize: fileSizeInMB(file)
-            }]
-            setFieldValue("media", newMedia)
+                fileSize: fileSizeInMB(file),
+            }
+
+            const updatedMedia = [...media, newMediaItem]
+            setFieldValue("media", updatedMedia)
         }
-        catch { }
+        catch (error) {
+            console.error("File upload failed:", error)
+        }
     }
 
     return (
         <ProductFieldWrapper
-            label='Product Images'
-            description='Upload images or videos that visually showcase the product.'
+            label="Product Images"
+            description="Upload images or videos that visually showcase the product."
             errorMessage={errors.media?.toString()}
         >
             <Flex direction="column" gap={4}>
@@ -41,14 +49,14 @@ export default function ProductImages() {
                     isLoading={isLoading}
                     accept={{
                         'image/jpeg': ['.jpeg', '.jpg'],
-                        'image/png': ['.png']
+                        'image/png': ['.png'],
                     }}
                     flexProps={{ minH: "140px" }}
                 />
 
-                {media.map(i => (
-                    <SelectedFileCard key={i.url} previewImage={i.thumbnail} {...i}>
-                        <MediaActions image={i} />
+                {sortedMedia.map((mediaItem) => (
+                    <SelectedFileCard key={mediaItem.url} previewImage={mediaItem.thumbnail} {...mediaItem}>
+                        <MediaActions image={mediaItem} />
                     </SelectedFileCard>
                 ))}
             </Flex>
