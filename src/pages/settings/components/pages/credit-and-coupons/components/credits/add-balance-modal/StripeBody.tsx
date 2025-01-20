@@ -13,7 +13,7 @@ interface Props {
 
 export default function StripeBody({ handleSuccessPayment, handleCancelPayment, paymentData }: Props) {
     return (
-        <ModalBody>
+        <ModalBody pt={"48px"}>
             <AppStripe cancel={handleCancelPayment} onSuccess={handleSuccessPayment} clientSecret={paymentData.clientSecret} amount={paymentData.amount} />
         </ModalBody>
     )

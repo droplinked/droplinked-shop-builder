@@ -31,11 +31,13 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
                     }
                 }}
             />
-            <Flex direction="column">
-                <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
-                {children}
-            </Flex>
+            {(title || description || children) &&
+                <Flex direction="column">
+                    <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
+                    <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
+                    {children}
+                </Flex>
+            }
         </Flex>
     )
 

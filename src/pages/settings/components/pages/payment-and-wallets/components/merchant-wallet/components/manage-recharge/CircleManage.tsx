@@ -1,4 +1,4 @@
-import { Box, ModalBody, ModalCloseButton, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
+import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
@@ -12,6 +12,8 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
@@ -62,12 +64,25 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
 
     return (
         <>
-            <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "3xl" }}>
-                <ModalHeader display="flex" height="48px" justifyContent="space-between" alignItems="flex-start" alignSelf="stretch">
-                    <AppIcons.CircleModal />
-                    <ModalCloseButton width="fit-content" height="fit-content" position="relative" color="white" />
-                </ModalHeader>
-                <ModalBody display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" gap="24px">
+            <AppModal
+                modalRootProps={{ isOpen, onClose, isCentered: true, size: "4xl" }}
+                modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
+            >
+                <ModalHeaderData
+                    icon={
+                        <ModalHeaderIconWrapper>
+                            <AppIcons.CircleModal />
+                        </ModalHeaderIconWrapper>
+                    }
+                    modalHeaderProps={{
+                        bgColor: "#141414",
+                        paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
+                    }}
+                    descriptionColor="#B1B1B1 !important"
+                    title={"Manage Wallet"}
+                    description="Manage USDC powered wallet by Circle"
+                />
+                <ModalBody mt={"48px"} display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" gap="24px">
                     <Box display="flex" flexDirection="column" alignItems="flex-start" gap="8px" alignSelf="stretch">
                         <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
                             Manage Circle Wallet

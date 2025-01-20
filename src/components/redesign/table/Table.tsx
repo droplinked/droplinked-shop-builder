@@ -20,10 +20,11 @@ interface Props<T extends object> {
         next: () => void
         isFetchingNextPage: boolean
     }
+    tableFontSize?: number | string;
 }
 
 function Table<T extends object>(props: Props<T>) {
-    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
+    const { tableFontSize, columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
     const table = useReactTable({
         data,
         columns,
@@ -101,7 +102,7 @@ function Table<T extends object>(props: Props<T>) {
         <ChakraTable
             variant="unstyled"
             sx={{
-                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: 14, fontWeight: 400 },
+                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: tableFontSize ? tableFontSize : 14, fontWeight: 400 },
                 userSelect: "none"
             }}
         >

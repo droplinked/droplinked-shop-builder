@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Divider } from '@chakra-ui/react';
 import React from 'react';
 import FinancialServices from './components/financial-services/FinancialServices';
 import MerchantWallet from './components/merchant-wallet/MerchantWallet';
@@ -14,7 +14,9 @@ function PaymentAndWallets() {
       <FinancialServices />
       <MerchantWallet />
       <WalletInputs />
+      <Divider borderColor={"#292929"} />
       <WalletInputs isSolana />
+      <Divider borderColor={"#292929"} />
       <TokenPay />
     </Box>
   );

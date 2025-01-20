@@ -20,13 +20,13 @@ export default function Coupons() {
             badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <BlueButton
-                    fontSize={16}
+                    fontSize={12}
                     fontWeight={500}
                     sx={{ path: { stroke: "#179ef8" } }}
                     isDisabled={!isPremiumOrHigher}
                     onClick={onOpen}
                 >
-                    <AppIcons.BluePlus />
+                    <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
                     Create
                 </BlueButton>
             }

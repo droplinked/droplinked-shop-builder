@@ -15,8 +15,15 @@ export default function KeyContainer() {
         getShopPrivateKeyService,
         { enabled: hasPermission("shopfront_apis") }
     );
-    const privateKey = data?.data.data.privateKey ?? "";
+
+    //we use a fake value to prevent the empty private key when we don't have private key
+    const privateKey = data?.data.data.privateKey ?? "1234567890123456";
     const [isVisible, setIsVisible] = useState(false);
+
+    const handleVisibility = () => {
+        if (!hasPermission("shopfront_apis")) return;
+        setIsVisible(!isVisible)
+    }
 
     if (isFetching) {
         return (
@@ -64,7 +71,7 @@ export default function KeyContainer() {
                 )}
             </Flex>
             <Box
-                onClick={() => setIsVisible(!isVisible)}
+                onClick={handleVisibility}
                 cursor={hasPermission("shopfront_apis") && "pointer"}
             >
                 {isVisible ? (

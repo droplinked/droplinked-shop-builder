@@ -43,11 +43,11 @@ export default function Balance() {
                     alt="droplinked logo"
                 />
                 <BlueButton
-                    fontSize={14}
+                    fontSize={12}
                     fontWeight={500}
                     onClick={onOpen}
                     gap={1}
-                    sx={{ path: { stroke: "#179EF8" } }}
+                    sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
                     <AppIcons.Refresh />
                     Charge

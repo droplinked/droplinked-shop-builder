@@ -85,17 +85,20 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
             }
             rightContent={
                 <BlueButton
-                    fontSize={16}
+                    fontSize={12}
                     fontWeight={500}
                     onClick={handleAddWallet}
                 >
-                    <AppIcons.BluePlus />
+                    <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
                     Target Wallet
                 </BlueButton>
             }
             title={`${isSolana ? "Solana" : "EVM"} Wallet`}
         >
-            <SectionContent title="Address" description={description} rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)} >
+            <SectionContent
+                title="Address"
+                description={description}
+                rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)}>
                 <ExternalLink
                     href={"#"}
                     textDecor={"none"}

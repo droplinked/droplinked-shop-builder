@@ -1,4 +1,4 @@
-import { Box, Flex, ModalBody } from "@chakra-ui/react";
+import { Flex, ModalBody } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import Input from "components/redesign/input/Input";
 import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
@@ -42,27 +42,28 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
     };
 
     return (
-        <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "xxl" }} modalContentProps={{ p: 0, background: "#141414" }}>
+        <AppModal
+            modalRootProps={{ isOpen, onClose, size: "xxl", isCentered: true }}
+            modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
+        >
             <ModalHeaderData
-                backgroundColor="#141414"
                 icon={
                     <ModalHeaderIconWrapper>
                         <AppIcons.DollarSign />
                     </ModalHeaderIconWrapper>
                 }
-                modalHeaderProps={{ padding: "0px", paddingBlock: "0px", style: { paddingInline: "36px" } }}
+                modalHeaderProps={{
+                    bgColor: "#141414",
+                    paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
+                }}
+                descriptionColor="#B1B1B1 !important"
                 title={"Tokens"}
                 description="Select token options you want to use for payments."
             />
             <ModalBody maxHeight={"60dvh"} display={"flex"} gap={9} flexDir={"column"}>
-                <Flex alignItems={"center"} justifyContent={"space-between"}>
+                <Flex py={"48px"} alignItems={"center"} justifyContent={"space-between"}>
                     <Input
                         leftElement={<AppIcons.Search />}
-                        rightElement={
-                            <Box borderRadius={"4px"} bg={"#292929"} p={1}>
-                                <AppIcons.Slash />
-                            </Box>
-                        }
                         inputContainerProps={{ width: "300px" }}
                         inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
                     />

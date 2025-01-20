@@ -20,14 +20,16 @@ function SectionContainer({ title, badge, rightContent, description, children }:
                 </Flex>
                 {rightContent && rightContent}
             </Flex>
-            <Flex width={"100%"} gap={4} justifyContent={"space-between"} alignItems={"center"}>
-                <Box flex={1} marginTop={"6px"}>
-                    <AppTypography color={"#7B7B7B"} fontSize={{ base: "14px", md: "16px" }}>
-                        {description && description}
-                    </AppTypography>
-                </Box>
-            </Flex>
-            <Flex flexDirection={"column"} gap={{ base: "24px", md: "36px", lg: "48px" }} my={{ base: "24px", md: "36px", lg: "48px" }}>
+            {description &&
+                <Flex width={"100%"} gap={4} justifyContent={"space-between"} alignItems={"center"}>
+                    <Box flex={1} marginTop={"6px"}>
+                        <AppTypography color={"#7B7B7B"} fontSize={{ base: "14px", md: "16px" }}>
+                            {description && description}
+                        </AppTypography>
+                    </Box>
+                </Flex>
+            }
+            <Flex flexDirection={"column"} gap={{ base: "24px", md: "36px", lg: "48px" }} mt={{ base: "24px", md: "36px", lg: "48px" }}>
                 {children}
             </Flex>
         </Flex>

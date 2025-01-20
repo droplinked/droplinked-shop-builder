@@ -31,10 +31,13 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetchShop }: 
     }
 
     return (
-        <AppModal modalRootProps={{ isOpen, onClose: handleCancelPayment, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
+        <AppModal modalRootProps={{ isOpen, onClose: handleCancelPayment, isCentered: true, size: "lg" }} modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}>
             <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    bgColor: "#141414",
+                    paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
+                }}
+                descriptionColor="#B1B1B1 !important"
                 title='Add Credit'
                 icon={
                     <ModalHeaderIconWrapper>

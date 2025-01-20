@@ -1,4 +1,4 @@
-import { Divider, ModalBody, ModalFooter } from '@chakra-ui/react'
+import { Divider, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
@@ -28,7 +28,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
     }
 
     return (
-        <>
+        <Flex flexDir={"column"} gap={"36px"} pt={"48px"}>
             <ModalBody>
                 <Input
                     label='Amount'
@@ -55,6 +55,6 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                     Pay
                 </Button>
             </ModalFooter>
-        </>
+        </Flex>
     )
 }

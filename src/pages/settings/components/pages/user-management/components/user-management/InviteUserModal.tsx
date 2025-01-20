@@ -40,10 +40,13 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
     };
 
     return (
-        <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
+        <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "xl" }} modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}>
             <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    bgColor: "#141414",
+                    paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
+                }}
+                descriptionColor='#B1B1B1 !important'
                 title='Invite New Member'
                 icon={
                     <ModalHeaderIconWrapper>
@@ -52,7 +55,7 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 }
                 description='Add a new member by entering their email address below.'
             />
-            <ModalBody>
+            <ModalBody py={"48px !important"}>
                 <Input
                     label='Email Address'
                     inputProps={{
@@ -66,7 +69,7 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 <AccessWarning />
             </ModalBody>
             <Divider borderColor={"#292929"} />
-            <ModalFooter display={"flex"} justifyContent={"space-between"}>
+            <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
                 <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Discard</Button>
                 <Button
                     fontWeight={500}

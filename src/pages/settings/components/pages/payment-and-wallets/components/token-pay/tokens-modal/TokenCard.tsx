@@ -73,7 +73,7 @@ export default function TokenCard({ token }: Props) {
                     <AppTypography color="#7b7b7b" fontSize="12px">
                         Networks
                     </AppTypography>
-                    <Flex gap={2} alignItems="center">
+                    <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"} sx={{ rect: { fill: "#292929" } }}>
                         {token.supportedChains.map((chain, index) => (
                             <React.Fragment key={index}>
                                 <AppTypography color="#fff" fontSize="12px">

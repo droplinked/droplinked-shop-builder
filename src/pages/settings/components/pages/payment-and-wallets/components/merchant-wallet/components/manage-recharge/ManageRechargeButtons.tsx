@@ -13,18 +13,18 @@ export default function ManageRechargeButtons() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         circleWallets.length && (
-            <Flex gap="2">
-                <Button onClick={onOpen} variant="outline" border={"none"} color="white" size="sm">
-                    <AppIcons.SidebarSetting />
+            <Flex gap="2" alignItems={"center"}>
+                <Button paddingInline={0} px={3} py={2} fontSize={12} onClick={onOpen} variant="outline" border={"none"} color="white" size="sm">
+                    <AppIcons.SidebarSetting style={{ width: "16px", height: "16px" }} />
                     Manage
                 </Button>
                 <Link to={"https://www.binance.com/en/crypto/buy"} target='_blank'>
                     <BlueButton
-                        fontSize={16}
+                        fontSize={12}
                         fontWeight={500}
                         sx={{ path: { stroke: "#179ef8" } }}
                     >
-                        <AppIcons.Refresh />
+                        <AppIcons.Refresh style={{ width: "16px", height: "16px" }} />
                         Recharge
                     </BlueButton>
                 </Link>

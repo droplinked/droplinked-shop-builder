@@ -10,14 +10,15 @@ interface ActionButtonsProps {
 }
 
 export const ActionButtons = ({ onEdit, onDelete, isEditing, isSingleWallet }: ActionButtonsProps) => (
-    <Flex gap={3} alignItems={"center"}>
+    <Flex gap={1} alignItems={"center"}>
         {/* Edit button is disabled during editing mode */}
         <Box
             as="button"
             type='button'
             onClick={onEdit}
-            opacity={isEditing ? 0.5 : 1}
-            cursor={isEditing ? "not-allowed" : "pointer"}
+            disabled={isEditing}
+            _disabled={{ cursor: "not-allowed" }}
+            sx={{ path: { stroke: isEditing ? "#4f4f4f" : "#fff" } }}
         >
             <AppIcons.Edit style={{ width: "24px", height: "24px" }} />
         </Box>
@@ -26,8 +27,9 @@ export const ActionButtons = ({ onEdit, onDelete, isEditing, isSingleWallet }: A
             as="button"
             type='button'
             onClick={onDelete}
-            opacity={isSingleWallet ? 0.5 : 1}
-            cursor={isSingleWallet ? "not-allowed" : "pointer"}
+            disabled={isSingleWallet}
+            _disabled={{ cursor: "not-allowed" }}
+            sx={{ path: { stroke: isSingleWallet ? "#4f4f4f" : "#FF2244" } }}
         >
             <AppIcons.RedTrash style={{ width: "24px", height: "24px" }} />
         </Box>

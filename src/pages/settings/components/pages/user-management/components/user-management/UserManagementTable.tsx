@@ -36,6 +36,6 @@ export default function UserManagementTable({ data, isFetching }: Props) {
     }
 
     return (
-        <Table isLoading={isFetching} data={tableData} columns={columns} />
+        <Table tableFontSize={16} isLoading={isFetching} data={tableData} columns={columns} />
     )
 }

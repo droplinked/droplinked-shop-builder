@@ -29,12 +29,12 @@ export default function UserManagementSection() {
             rightContent={
                 <>
                     <BlueButton
-                        fontSize={16}
+                        fontSize={12}
                         fontWeight={500}
                         onClick={onOpen}
                         isDisabled={!isPremiumOrHigher}
                     >
-                        <AppIcons.BluePlus style={{ display: "inline-block" }} />
+                        <AppIcons.BluePlus style={{ display: "inline-block", width: "16px", height: "16px" }} />
                         New User
                     </BlueButton>
                 </>

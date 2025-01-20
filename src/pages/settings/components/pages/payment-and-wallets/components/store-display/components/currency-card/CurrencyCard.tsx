@@ -17,7 +17,7 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
   const { values, setFieldValue } = useFormikContext<ISettings>()
 
   return (
-    <Box flex={1} width={{ base: "100%", lg: "100%", xl: "448px" }} ml={"auto"} border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
+    <Box flex={1} width={"100%"} ml={"auto"} border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
       <HStack p="6" justify="space-between">
         <Flex align="center" gap="4">
           <Text color={isPrimary ? 'white' : '#4f4f4f'} fontSize="base" fontWeight="medium">

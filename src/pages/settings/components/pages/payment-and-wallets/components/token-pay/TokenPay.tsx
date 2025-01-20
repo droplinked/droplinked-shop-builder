@@ -24,6 +24,7 @@ const TokenPay: React.FC = () => {
 
   });
   const paymentMethodsData = data?.data?.data ?? []
+  const isPaymentMethodsEmpty = paymentMethods?.filter((item) => item.type !== "STRIPE" || item.type !== "COINBASE").length > 0;
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));
@@ -34,12 +35,12 @@ const TokenPay: React.FC = () => {
       title="Tokenpay"
       rightContent={
         <BlueButton
-          fontSize={16}
+          fontSize={12}
           fontWeight={500}
           onClick={onOpen}
           isLoading={isFetching}
         >
-          <AppIcons.BluePlus />
+          <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
           Payment Token
         </BlueButton>
       }
@@ -48,7 +49,7 @@ const TokenPay: React.FC = () => {
         title="Payment Tokens"
         description="Enable checkout payments for any native ERC20, BRC20 and SPL (Solana) based tokens."
         rightContent={
-          !paymentMethods?.length ? (
+          isPaymentMethodsEmpty ? (
             <Image src="/assets/images/Revenue Sharing.svg" height="100%" width="100%" />
           ) : (
             <Grid

@@ -113,6 +113,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
                 isLoading={isFetching}
                 data={data ?? []}
                 columns={columns}
+                tableFontSize={16}
             />
             <CouponsEditCreationModal refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
         </>

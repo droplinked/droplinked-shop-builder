@@ -22,7 +22,7 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
             icon: <AppIcons.GreenSpeedometer />
         },
         {
-            title: "Advanced tools",
+            title: "Priority Support",
             icon: <AppIcons.MedalStarOutline />
         },
     ]

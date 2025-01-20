@@ -19,7 +19,6 @@ export default function Domains({ domains, clientId, refetch }: Props) {
 
     const handleDeleteDomain = (domain: string) => {
         if (!checkPermissionAndShowToast("shopfront_apis")) return
-        if (domains.length === 1) return
         setSelectedDomain(domain)
         onOpen()
     }
