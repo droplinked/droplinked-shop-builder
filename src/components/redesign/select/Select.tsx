@@ -56,7 +56,7 @@ function Select(props: Props) {
             border={`1px solid ${error ? "#F24" : "#292929"}`}
             borderWidth="1.5px"
             borderRadius={8}
-            color="#7B7B7B"
+            color="#FFF"
             icon={isLoading ? <Spinner size="sm" color='#7B7B7B' /> : <AppIcons.SelectChevronDown />}
             _placeholder={{ color: "#7B7B7B" }}
             _hover={{}}

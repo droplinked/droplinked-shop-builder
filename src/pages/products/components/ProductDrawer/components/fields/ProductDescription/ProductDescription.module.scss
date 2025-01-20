@@ -5,18 +5,28 @@
     z-index: 1;
 
     :global {
-        .tox,
-        .tox-editor-container,
-        .tox-toolbar__primary,
-        .tox-editor-header,
-        .tox-statusbar,
-        .tox-tbtn {
-            border: none !important;
-            background: #141414 !important;
+        .tox {
+            border: 1px solid #292929; // Adds a border around the text editor area
+            border-radius: 8px !important;
+            overflow: hidden;
         }
 
-        .tox-statusbar__branding {
-            display: none;
+        .tox-editor-header{
+            border-bottom: 1px solid #292929 !important;
+        }
+
+        .tox-toolbar__primary,
+        .tox-editor-header,
+        .tox-tbtn {
+            background: #1C1C1C !important;
+        }
+
+        .tox-edit-area iframe{
+            background: #141414; // Ensures the background matches the editor theme
+        }
+
+        .tox-statusbar {
+            display: none !important; // Removes the footer/status bar
         }
     }
 }
