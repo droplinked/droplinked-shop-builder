@@ -36,7 +36,7 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
       <Box p="2">
         <Select
           bg="transparent"
-          color="#4f4f4f"
+          color="#fff"
           fontSize="base"
           p="3"
           name='currencyAbbreviation'
@@ -52,11 +52,11 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
           onChange={(e) => setFieldValue("currencyAbbreviation", e.target.value)}
           value={values.currencyAbbreviation}
         >
-          <option disabled value="select" style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
+          <option disabled value="select" style={{ backgroundColor: '#1a202c', color: '#fff', fontSize: 'md', textAlign: "start" }}>
             Select
           </option>
           {currencyList?.map((currency) => (
-            <option key={currency} value={currency} style={{ backgroundColor: '#1a202c', color: '#4f4f4f', fontSize: 'md', textAlign: "start" }}>
+            <option key={currency} value={currency} style={{ backgroundColor: '#1a202c', color: '#fff', fontSize: 'md', textAlign: "start" }}>
               {currency}
             </option>
           ))}

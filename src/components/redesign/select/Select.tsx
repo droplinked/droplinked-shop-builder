@@ -13,10 +13,12 @@ interface Props {
     error?: string
     inputGroupProps?: InputGroupProps
     selectProps?: SelectProps
+    itemBackgroundColor?: string
+    itemColor?: string;
 }
 
 function Select(props: Props) {
-    const { label, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, selectProps } = props
+    const { itemColor, itemBackgroundColor, label, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, selectProps } = props
     const { value, onChange } = selectProps
 
     const options = useMemo(() => {
@@ -28,6 +30,7 @@ function Select(props: Props) {
             return (
                 <option
                     key={index}
+                    {...(itemBackgroundColor || itemColor) && { style: { backgroundColor: itemBackgroundColor, color: itemColor } }}
                     value={optionValue}
                     {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}
                 >
