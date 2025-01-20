@@ -32,7 +32,7 @@ const statusMap: Record<string, BadgeProps & { label: string }> = {
         borderColor: '#2BCFA1',
         label: 'Public'
     },
-    "DRAFT": {
+    "DRAFTED": {
         bg: '#292929',
         color: '#fff',
         borderColor: '#616161',

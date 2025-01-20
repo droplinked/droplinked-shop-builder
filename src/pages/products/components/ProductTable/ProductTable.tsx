@@ -26,11 +26,12 @@ function ProductTable({ searchTerm }: Props) {
             cell: info => {
                 const { media, title } = info.row.original
                 const imageURL = (media.find(m => m.isMain === "true") ?? media[0]).thumbnail
+                const truncatedTitle = title.length <= 25 ? title : `${title.slice(0, 25)}...`
 
                 return (
                     <Flex alignItems="center" gap={4}>
                         <AppImage src={imageURL} width={14} height={14} borderRadius={8} />
-                        <AppTypography fontSize={16}>{title}</AppTypography>
+                        <AppTypography fontSize={16}>{truncatedTitle}</AppTypography>
                     </Flex>
                 )
             }
