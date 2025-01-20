@@ -309,6 +309,7 @@ import { ReactComponent as CircleSolana } from "./circle-solana.svg"
 import { ReactComponent as CirclePolygon } from "./circle-polygon.svg"
 import { ReactComponent as Usdt } from "./usdt.svg"
 import { ReactComponent as Param } from "./param.svg"
+import {ReactComponent as Soon} from "./soon.svg"
 
 const AppIcons = {
   Usdt,
@@ -622,7 +623,8 @@ const AppIcons = {
   ColorfulYouTube,
   ColorfulLinkedin,
   DROP_LINKED_LOGO,
-  ExternalArrow
+  ExternalArrow,
+  Soon
 }
 
 export default AppIcons;

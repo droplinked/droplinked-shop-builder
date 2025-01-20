@@ -6,10 +6,12 @@ import useAppStore from 'lib/stores/app/appStore';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React from 'react';
 import useFollowStatus from '../../hook/useFollowStatus';
+import ProPlanModal from '../ProPlanModal/ProPlanModal';
 
 const RewardHero = () => {
   const { shop } = useAppStore();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isProPlanOpen, setProPlanOpen] = React.useState(false);
+  const [isAuthModalOpen, setAuthModalOpen] = React.useState(false);
   const { allPlatformsFollowed, grantProPlan, loading } = useFollowStatus();
   const textMessage = shop ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to Qualify';
   const buttonMessage = shop ? 'Activate Account' : 'Get Started';
@@ -20,7 +22,7 @@ const RewardHero = () => {
         grantProPlan();
       }
     } else {
-      onOpen();
+      setProPlanOpen(true);
     }
   };
 
@@ -60,7 +62,16 @@ const RewardHero = () => {
           </BasicButton>
         </VStack>
       </VStack>
-      <AuthModal show={isOpen} close={onClose} type={MODAL_TYPE.SIGNIN} />
+      <ProPlanModal
+        isOpen={isProPlanOpen}
+        onClose={() => setProPlanOpen(false)}
+        openAuthModal={() => setAuthModalOpen(true)}
+      />
+      <AuthModal
+        show={isAuthModalOpen}
+        close={() => setAuthModalOpen(false)}
+        type={MODAL_TYPE.SIGNIN}
+      />
     </>
   );
 };
