@@ -25,7 +25,7 @@ function FormContent() {
             display="flex"
             flexDirection="column"
             alignItems="flex-start"
-            gap={12}
+            gap={4}
             paddingBlock={12}
             paddingInline={9}
             multiCollapse

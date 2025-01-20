@@ -40,6 +40,7 @@ function ProductFormAccordion({ label, accessLevel, defaultOpen = false, childre
                 gap={9}
                 mt={9}
                 paddingInline={4}
+                paddingBottom={8}
             >
                 {children}
             </AppAccordionPanel>
