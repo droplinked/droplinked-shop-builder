@@ -15,11 +15,7 @@ import Gamification from "pages/gamification/Gamification";
 import { CreateInvoice, InvoiceManagement } from "pages/invoice-management";
 import NFTs from "pages/nfts/NFTs";
 import Orders from "pages/orders/Orders";
-import Products from "pages/product/list/products";
 import ProductOrder from "pages/product/order/ProductOrder";
-import ConnectEventAccount from "pages/product/single/parts/event/connect-event-account/ConnectEventAccount";
-import EventsList from "pages/product/single/parts/event/events-list/EventsList";
-import ProductTypes from "pages/product/types/ProductTypes";
 import ProductsV2 from "pages/products/ProductsV2";
 import AboutUs from "pages/public-pages/about/AboutUs";
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation";
@@ -43,6 +39,7 @@ import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-produ
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage";
+import Rewards from "pages/public-pages/rewards/rewards";
 import ShopPage from "pages/public-pages/shop-page/ShopPage";
 import TermsPage from "pages/public-pages/terms-page/TermsPage";
 import AffiliateMarket from "pages/redesign-affiliate/market/AffiliateMarket";
@@ -56,12 +53,11 @@ import PaymentLink from "pages/register-pages/pages/payment-link/PaymentLink";
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration";
 import TileDesign from "pages/register-pages/pages/tile-design/TileDesign";
+import SettingsPage from "pages/settings/SettingsPage";
 import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Rewards from "pages/public-pages/rewards/rewards";
-import SettingsPage from "pages/settings/SettingsPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -122,17 +118,9 @@ function AppRoutes() {
                         <Route path="payment-link-design" element={<PaymentLink />} />
                     </Route>
                     <Route path="account-settings" element={<SettingsPage />} />
-                    <Route path="productsV2">
-                        <Route index element={<Products />} />
-                        <Route path="types" element={<ProductTypes />} />
-                        <Route path="order/:productID" element={<ProductOrder />} />
-                        <Route path="create/:type" element={<ProductSingle />} />
-                        <Route path=":productId" element={<ProductSingle />} />
-                        <Route path="connect-event-account" element={<ConnectEventAccount />} />
-                        <Route path="events-list" element={<EventsList />} />
-                    </Route>
                     <Route path="products">
                         <Route index element={<ProductsV2 />} />
+                        <Route path="order/:productID" element={<ProductOrder />} />
                     </Route>
                     <Route path="collections" element={<Collections />} />
                     <Route path="orders" element={<Orders />} />
