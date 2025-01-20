@@ -15,7 +15,7 @@ function SectionContent({ title, badge, rightContent, description, children }: P
         <Flex width={"100%"} gap={{ base: 4, lg: "48px", xl: "80px" }} justifyContent={"space-between"} flexDirection={{ base: "column", lg: "row" }} alignItems={"start"}>
             <Flex width={{ base: "100%", lg: "50%" }} flexDirection={"column"}>
                 <Flex gap={4} alignItems={"center"}>
-                    <AppTypography fontSize={{ base: "16px", md: "18px" }} fontWeight={500} color={"#fff"}>{title}</AppTypography>
+                    <AppTypography width={"max-content"} fontSize={{ base: "16px", md: "18px" }} fontWeight={500} color={"#fff"}>{title}</AppTypography>
                     {badge && badge}
                 </Flex>
                 <Box flex={1} marginTop={"4px"}>
