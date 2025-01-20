@@ -22,7 +22,7 @@ export default function Coupons() {
                 <BlueButton
                     fontSize={12}
                     fontWeight={500}
-                    sx={{ path: { stroke: "#179ef8" } }}
+                    sx={{ path: { stroke: !isPremiumOrHigher && "#4F4F4F" } }}
                     isDisabled={!isPremiumOrHigher}
                     onClick={onOpen}
                 >

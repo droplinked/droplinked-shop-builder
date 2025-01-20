@@ -12,6 +12,7 @@ function BlueButton({ children, ...rest }: ButtonProps) {
             fontSize={12}
             fontWeight={500}
             color="#179EF8"
+            _disabled={{ color: "#4F4F4F" }}
             _hover={{ bg: "none" }}
             {...rest}
         >

@@ -32,6 +32,7 @@ export default function UserManagementSection() {
                         fontSize={12}
                         fontWeight={500}
                         onClick={onOpen}
+                        sx={{ path: { stroke: !isPremiumOrHigher && "#4F4F4F" } }}
                         isDisabled={!isPremiumOrHigher}
                     >
                         <AppIcons.BluePlus style={{ display: "inline-block", width: "16px", height: "16px" }} />
