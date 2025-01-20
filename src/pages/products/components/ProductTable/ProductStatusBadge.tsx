@@ -20,7 +20,7 @@ export default function ProductStatusBadge({ status, purchaseAvailable }: Props)
             textTransform="capitalize"
             {...badgeProps}
         >
-            {badgeProps.label}
+            {badgeProps?.label}
         </Badge>
     )
 }
