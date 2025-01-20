@@ -34,7 +34,7 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
         <SwitchBox isChecked={isChecked} onToggle={handleToggle} />
       </HStack>
       <Divider borderColor="#282828" />
-      <Flex p={2} textAlign="center" justifyContent={"center"}>
+      <Flex py={"14px"} textAlign="center" justifyContent={"center"}>
         <ExternalLink
           href={link}
           textDecor={"none"}

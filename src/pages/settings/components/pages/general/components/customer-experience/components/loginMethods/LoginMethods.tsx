@@ -19,7 +19,7 @@ export default function LoginMethods() {
             description="Allow customers to log in and connect from the following options to interact with the storefront."
             rightContent={
                 <Grid
-                    templateColumns={{ base: "1fr", md: "1fr", lg: "repeat(2, 1fr)" }}
+                    templateColumns={{ base: "1fr", md: "1fr", xl: "repeat(2, 1fr)" }}
                     gap={4}
                     width="100%"
                 >

@@ -56,7 +56,7 @@ const PaymentProviderList: React.FC = () => {
   };
 
   return (
-    <Flex flexDir={{ base: "column", sm: "row" }} gap={4} height="128px" overflow="hidden">
+    <Flex flexDir={{ base: "column", xl: "row" }} gap={4} overflow="hidden">
       {providers.map(({ title, buttonText, link, type, tooltip, icon }) => (
         <PaymentProviderCard
           key={type}

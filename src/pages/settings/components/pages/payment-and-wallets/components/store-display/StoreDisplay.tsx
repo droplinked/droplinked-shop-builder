@@ -33,7 +33,7 @@ const StoreDisplay: React.FC = () => {
           title="Default Currency"
           description="Choose a default currency to display to customers for products. During the checkout process, visitors will be able to see the total price in their local currency."
           rightContent={
-            <Flex flexDir={{ base: "column", lg: "row" }} gap="4">
+            <Flex flexDir={{ base: "column", xl: "row" }} gap="4">
               <CurrencyCard
                 currencyName="Fiat"
                 isPrimary={switchState.fiat}

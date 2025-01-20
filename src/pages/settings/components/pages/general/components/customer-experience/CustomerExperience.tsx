@@ -7,7 +7,6 @@ import AgeGate from './components/age-gate/AgeGate'
 export default function CustomerExperience() {
     return (
         <SectionContainer title="Customer Experience">
-            {/* //TODO: Fix the login methods */}
             <LoginMethods />
             <PostPurchaseInfo />
             <AgeGate />
