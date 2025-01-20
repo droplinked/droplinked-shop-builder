@@ -7,8 +7,8 @@ import { AxiosError } from 'axios';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { Coupon } from '../interface';
 import { useDisclosure } from '@chakra-ui/react';
-import CouponsInformationModal from '../modals/coupons-information/CouponsInformationModal';
-import CouponsEditCreationModal from '../modals/coupons-edit-creation/CouponsEditCreationDrawer';
+import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer';
+import CouponsEditCreationDrawer from '../modals/coupons-edit-creation/CouponsEditCreationDrawer';
 
 interface Props {
     couponId: string;
@@ -63,8 +63,8 @@ export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
                     }
                 ]}
             />
-            <CouponsInformationModal coupon={rowData} key={rowData._id} isOpen={isInformationModalOpen} onClose={onInformationModalClose} />
-            <CouponsEditCreationModal refetch={refetch} isEdit={true} coupon={rowData} isOpen={isEditModalOpen} onClose={onEditModalClose} />
+            <CouponsInformationDrawer coupon={rowData} key={rowData._id} isOpen={isInformationModalOpen} onClose={onInformationModalClose} />
+            <CouponsEditCreationDrawer refetch={refetch} isEdit={true} coupon={rowData} isOpen={isEditModalOpen} onClose={onEditModalClose} />
         </>
     )
 }

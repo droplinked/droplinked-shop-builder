@@ -1,4 +1,4 @@
-import { Drawer as ChakraDrawer, DrawerContent, DrawerOverlay, DrawerHeader, DrawerCloseButton, DrawerFooter, Flex, Heading, DrawerContentProps } from '@chakra-ui/react'
+import { Drawer as ChakraDrawer, DrawerContent, DrawerOverlay, DrawerHeader, DrawerCloseButton, DrawerFooter, Flex, Heading, DrawerContentProps, ChakraProps } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React, { PropsWithChildren } from 'react'
 
@@ -10,7 +10,10 @@ interface Props extends PropsWithChildren {
     saveButtonText?: string
     isLoading?: boolean
     onClick?: () => void
+    headerContent?: React.ReactNode;
     drawerContentStyle?: DrawerContentProps
+    drawerHeaderStyle?: ChakraProps
+    isInformationDrawer?: boolean
 }
 
 function Drawer({
@@ -22,7 +25,10 @@ function Drawer({
     saveButtonText = 'Save',
     isLoading = false,
     onClick,
+    headerContent,
     drawerContentStyle,
+    drawerHeaderStyle,
+    isInformationDrawer,
 }: Props) {
     return (
         <ChakraDrawer
@@ -48,47 +54,52 @@ function Drawer({
             >
                 <DrawerHeader
                     display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
+                    flexDirection="column"
+                    gap={6}
                     borderBottom="1px solid #292929"
                     padding={9}
+                    {...drawerHeaderStyle}
                 >
-                    <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
-                        {title}
-                    </Heading>
-                    <DrawerCloseButton position="static" color="white" />
+                    <Flex justifyContent="space-between" alignItems="center" width="100%">
+                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
+                            {title}
+                        </Heading>
+                        <DrawerCloseButton position="static" color="white" />
+                    </Flex>
+                    {headerContent}
                 </DrawerHeader>
 
                 {children}
 
-                <DrawerFooter
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    borderTop="1px solid #292929"
-                    padding={9}
-                    css={{ button: { fontSize: 14, fontWeight: 500 } }}
-                >
-                    <Button
-                        type="button"
-                        variant="secondary"
-                        isDisabled={isLoading}
-                        onClick={onClose}
+                {!isInformationDrawer &&
+                    <DrawerFooter
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        borderTop="1px solid #292929"
+                        padding={9}
+                        css={{ button: { fontSize: 14, fontWeight: 500 } }}
                     >
-                        {discardButtonText}
-                    </Button>
-
-                    <Flex gap={4}>
                         <Button
                             type="button"
+                            variant="secondary"
                             isDisabled={isLoading}
-                            isLoading={isLoading}
-                            onClick={onClick}
+                            onClick={onClose}
                         >
-                            {saveButtonText}
+                            {discardButtonText}
                         </Button>
-                    </Flex>
-                </DrawerFooter>
+
+                        <Flex gap={4}>
+                            <Button
+                                type="button"
+                                isDisabled={isLoading}
+                                isLoading={isLoading}
+                                onClick={onClick}
+                            >
+                                {saveButtonText}
+                            </Button>
+                        </Flex>
+                    </DrawerFooter>}
             </DrawerContent>
         </ChakraDrawer>
     )

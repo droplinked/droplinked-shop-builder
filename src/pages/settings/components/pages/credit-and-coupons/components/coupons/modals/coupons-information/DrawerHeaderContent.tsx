@@ -9,12 +9,12 @@ interface Props {
     isExpired: boolean;
 }
 
-export default function ModalHeaderContent({ createdAt, isExpired }: Props) {
+export default function DrawerHeaderContent({ createdAt, isExpired }: Props) {
     const color = isExpired ? '#FF2244 !important' : "#2BCFA1 !important"
     const bg = isExpired ? "#FF22440D" : "#2BCFA11A"
 
     return (
-        <Flex my={6} justifyContent={"space-between"}>
+        <Flex justifyContent={"space-between"}>
             <Flex gap={2} alignItems={"center"}>
                 <AppTypography fontSize={"14px !important"} color={"#B1B1B1 !important"}>
                     Creation Date

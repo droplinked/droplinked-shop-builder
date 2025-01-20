@@ -30,7 +30,7 @@ export default function CodesList({ codes, currentFilter }: Props) {
     }
 
     return (
-        <Box maxHeight={{ base: "10rem", md: "15rem", lg: "30rem" }} overflowY={"auto"}>
+        <Box>
             {
                 getFilteredCodes().map((item, index) => {
                     return (

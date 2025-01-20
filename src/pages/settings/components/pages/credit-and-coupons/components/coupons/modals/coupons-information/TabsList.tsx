@@ -10,7 +10,7 @@ interface Props {
 
 export default function TabsList({ tabs }: Props) {
     return (
-        <TabList borderBottom={"1px solid #292929"}>
+        <TabList borderBottom={"none"}>
             {tabs.map((tab, index) => {
                 return (
                     <Tab
@@ -26,8 +26,6 @@ export default function TabsList({ tabs }: Props) {
                         }}
                         color={"#7B7B7B"}
                         fontSize={16}
-                        px={6}
-                        py={4}
                         key={index}
                         width={"100%"}
                     >
