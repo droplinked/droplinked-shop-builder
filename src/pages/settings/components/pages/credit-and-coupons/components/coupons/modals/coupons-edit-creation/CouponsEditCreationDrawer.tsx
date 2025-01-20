@@ -1,12 +1,9 @@
 import React from 'react'
 import { Coupon } from '../../interface'
-import AppModal from 'components/redesign/modal/AppModal'
-import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import { Divider, Flex, ModalBody } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { Formik } from 'formik'
 import { getInitialValues, getValidationSchema } from './formConfigs'
 import CouponForm from './CouponForm'
-import Button from 'components/redesign/button/Button'
 import { useMutation } from 'react-query'
 import { IgiftcardCreateService, IGiftCardExpiryDate } from 'lib/apis/coupons/interfaces'
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
@@ -14,6 +11,7 @@ import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import moment from 'moment/moment'
+import Drawer from 'components/common/Drawer/Drawer'
 
 interface Props {
     isEdit?: boolean
@@ -23,7 +21,7 @@ interface Props {
     refetch: () => void
 }
 
-export default function CouponsEditCreationModal({ isEdit, coupon, isOpen, onClose, refetch }: Props) {
+export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onClose, refetch }: Props) {
     const createGiftcard = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const updateGiftcardExpiryDate = useMutation((params: IGiftCardExpiryDate) => updateGiftCartExpiryDateService(params))
     const isLoading = createGiftcard.isLoading || updateGiftcardExpiryDate.isLoading
@@ -31,7 +29,7 @@ export default function CouponsEditCreationModal({ isEdit, coupon, isOpen, onClo
     const { shop } = useAppStore()
     const { showToast } = useAppToast()
 
-    async function onSubmit(params: any) {
+    async function onSubmit(params: any, { resetForm }) {
         try {
             if (isEdit) {
                 await updateGiftcardExpiryDate.mutateAsync({
@@ -59,48 +57,33 @@ export default function CouponsEditCreationModal({ isEdit, coupon, isOpen, onClo
             onClose()
         } catch (error) {
             showToast({ message: error?.message || "Oops! Something went wrong.", type: 'error' });
+        } finally {
+            resetForm()
         }
     }
 
     return (
-        <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "xl" }} modalContentProps={{ p: 0, background: "#141414" }}>
-            <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ padding: "0px", paddingBlock: "0px", style: { paddingInline: "36px" } }}
-                title={isEdit ? "Edit Discount" : "Create Discount"}
-                description=''
-            />
-            <ModalBody style={{ paddingInline: 0 }}>
-                <Formik
-                    initialValues={getInitialValues(coupon)}
-                    validateOnChange={false}
-                    validationSchema={getValidationSchema({ isEdit })}
-                    onSubmit={onSubmit}
+        <Formik
+            initialValues={getInitialValues(coupon)}
+            validateOnChange={false}
+            validationSchema={getValidationSchema({ isEdit })}
+            onSubmit={onSubmit}
+        >
+            {({ handleSubmit }) => (
+                <Drawer
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    title={isEdit ? "Edit Discount" : "Create Discount"}
+                    discardButtonText={isEdit ? "Cancel" : "Discard"}
+                    saveButtonText={isEdit ? "Update" : "Create"}
+                    isLoading={isLoading}
+                    onClick={handleSubmit}
                 >
-                    {({ handleSubmit }) => (
-                        <Flex flexDir={"column"} gap={9}>
-                            <CouponForm isEdit={isEdit} />
-                            <Divider borderColor={"#292929"} />
-                            <Flex px={9} justifyContent={"space-between"}>
-                                <Button onClick={onClose} isDisabled={isLoading} fontWeight={500} variant='secondary'>
-                                    {isEdit ? "Cancel" : "Discard"}
-                                </Button>
-                                <Button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleSubmit();
-                                    }}
-                                    type='submit'
-                                    isLoading={isLoading}
-                                    fontWeight={500}
-                                >
-                                    {isEdit ? "Update" : "Create"}
-                                </Button>
-                            </Flex>
-                        </Flex>
-                    )}
-                </Formik>
-            </ModalBody>
-        </AppModal>
+                    <Flex my={9} height={"100%"} px={9} flexDir="column">
+                        <CouponForm isEdit={isEdit} />
+                    </Flex>
+                </Drawer>
+            )}
+        </Formik>
     )
 }

@@ -8,7 +8,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import { Coupon } from '../interface';
 import { useDisclosure } from '@chakra-ui/react';
 import CouponsInformationModal from '../modals/coupons-information/CouponsInformationModal';
-import CouponsEditCreationModal from '../modals/coupons-edit-creation/CouponsEditCreationModal';
+import CouponsEditCreationModal from '../modals/coupons-edit-creation/CouponsEditCreationDrawer';
 
 interface Props {
     couponId: string;

@@ -30,6 +30,7 @@ function Select(props: Props) {
             return (
                 <option
                     key={index}
+                    style={{ background: "#1a202c" }}
                     {...(itemBackgroundColor || itemColor) && { style: { backgroundColor: itemBackgroundColor, color: itemColor } }}
                     value={optionValue}
                     {...Object.fromEntries(Object.entries(dataAttributes ?? {}).map(([key, accessor]) => [key, item[accessor]]))}

@@ -8,7 +8,7 @@ import TypeColumn from './columns/TypeColumn';
 import Table from 'components/redesign/table/Table';
 import EmptyView from 'pages/settings/components/common/EmptyView';
 import DropDownColumn from './columns/DropDownColumn';
-import CouponsEditCreationModal from './modals/coupons-edit-creation/CouponsEditCreationModal';
+import CouponsEditCreationDrawer from './modals/coupons-edit-creation/CouponsEditCreationDrawer';
 
 interface Props {
     isOpen: boolean
@@ -30,6 +30,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         setPage(nextPage);
     };
     const handleRefetchData = () => {
+        setPage("1");
         setData([]);
         refetch();
     }
@@ -96,7 +97,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         return (
             <>
                 <EmptyView />
-                <CouponsEditCreationModal refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+                <CouponsEditCreationDrawer refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
             </>
         )
     }
@@ -115,7 +116,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
                 columns={columns}
                 tableFontSize={16}
             />
-            <CouponsEditCreationModal refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+            <CouponsEditCreationDrawer refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
         </>
     )
 }

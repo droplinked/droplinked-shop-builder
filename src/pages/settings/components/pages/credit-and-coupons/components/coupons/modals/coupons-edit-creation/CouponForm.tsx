@@ -16,7 +16,7 @@ export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
     }, [isEdit])
 
     return (
-        <Flex flexDirection={"column"} gap={9} px={9}>
+        <Flex flexDirection={"column"} gap={9}>
             <Input
                 label="Title"
                 description="Enter a unique name for the discount."
