@@ -106,7 +106,8 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
                 stack
             })
 
-            await updateProductService({ productID: product._id, params: { publish_product: true } })
+            const response = await updateProductService({ productID: product._id, params: { publish_product: true } })
+            savedProduct.current = response.data.data
             await getShopSubscriptionDataService()
             showToast({ message: 'The product has been successfully recorded!', type: 'success' })
         }

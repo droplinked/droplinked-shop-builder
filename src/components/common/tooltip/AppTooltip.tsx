@@ -4,11 +4,11 @@ import React from 'react'
 function AppTooltip(props: TooltipProps) {
     return (
         <Tooltip
-            backgroundColor="#292929"
-            padding="4px 16px"
-            color="#C2C2C2"
+            border="1px solid #3C3C3C"
             borderRadius="6px"
-            border={"1px solid #3C3C3C"}
+            padding="4px 16px"
+            backgroundColor="#292929"
+            color="#C2C2C2"
             placement='auto-start'
             {...props}
         />

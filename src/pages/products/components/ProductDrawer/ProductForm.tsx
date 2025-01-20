@@ -77,7 +77,6 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
                     product={savedProduct}
                     isOpen={isDropModalOpen}
                     onClose={handleDropModalClose}
-                    transactionHash={transactionHash}
                 />
             )}
 

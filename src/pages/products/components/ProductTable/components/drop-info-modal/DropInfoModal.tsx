@@ -1,40 +1,28 @@
-import { Box, ModalBody } from "@chakra-ui/react";
-import AppModal from "components/redesign/modal/AppModal";
-import React from "react";
-import DropInfoContent from "./components/DropInfoContent";
-import Header from "./components/Header";
+import { ModalBody } from "@chakra-ui/react"
+import AppModal from "components/redesign/modal/AppModal"
+import React from "react"
+import ModalContent from "./ModalContent"
+import ModalHeader from "./ModalHeader"
 
 interface IProps {
-  product: any;
-  isOpen: boolean;
-  onClose: () => void;
-  transactionHash?: string
+  product: any
+  isOpen: boolean
+  onClose: () => void
 }
 
-function DropInfoModal({ product, isOpen, onClose, transactionHash }: IProps) {
+function DropInfoModal({ product, isOpen, onClose }: IProps) {
   return (
     <AppModal
-      modalRootProps={{
-        isOpen,
-        onClose,
-        size: "xl",
-        scrollBehavior: "outside",
-        isCentered: true,
-      }}
-      modalContentProps={{
-        width: "100%",
-        padding: "0px !important",
-        overflow: "hidden",
-      }}
+      modalRootProps={{ isOpen, onClose, size: "xl", isCentered: true }}
+      modalContentProps={{ width: "600px", gap: 0, paddingBlock: 0 }}
     >
-      <ModalBody padding="0px !important">
-        <Box pt="48px" pb="36px" bg="#141414">
-          <Header product={product} />
-        </Box>
-        <DropInfoContent product={product} />
+      <ModalHeader product={product} />
+
+      <ModalBody padding="48px !important">
+        <ModalContent product={product} />
       </ModalBody>
     </AppModal>
-  );
+  )
 }
 
-export default DropInfoModal;
+export default DropInfoModal
