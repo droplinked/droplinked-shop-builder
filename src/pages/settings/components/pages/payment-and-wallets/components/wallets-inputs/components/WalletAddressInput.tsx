@@ -20,7 +20,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
         }}
         inputContainerProps={{ padding: 2, paddingLeft: 4 }}
         rightElement={
-            isEditing && (
+            isEditing && value.trim().length > 0 && (
                 <Button
                     borderRadius={4}
                     fontSize={12}

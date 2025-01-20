@@ -3,7 +3,7 @@ import AppIcons from "assest/icon/Appicons";
 import DefaultBadge from "pages/settings/components/common/DefaultBadge";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
@@ -25,6 +25,11 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
 
     // Temporarily store wallet data (we use it to prevent direct state mutation)
     const [tempData, setTempData] = useState(walletsData.destinationAddress)
+
+    // we use UseEffect to update the tempData when the values change (like when we press discard button)
+    useEffect(() => {
+        setTempData(walletsData.destinationAddress)
+    }, [values])
 
     // Add new wallet with 0% allocation
     const handleAddWallet = () => {

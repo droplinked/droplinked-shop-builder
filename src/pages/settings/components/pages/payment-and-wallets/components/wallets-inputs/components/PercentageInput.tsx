@@ -17,7 +17,8 @@ export const PercentageInput = ({ value, onChange, isEditing }: PercentageInputP
                 value,
                 onChange: (e) => onChange(e.target.value),
                 // Disable input when not in editing mode
-                isDisabled: !isEditing
+                isDisabled: !isEditing,
+                type: "number"
             }}
             inputContainerProps={{ sx: { path: { stroke: "#4F4F4F" } } }}
             rightElement={<AppIcons.GrayPercent />}

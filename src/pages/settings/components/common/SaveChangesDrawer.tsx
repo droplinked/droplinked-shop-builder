@@ -5,14 +5,31 @@ import Button from 'components/redesign/button/Button'
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFormikContext } from 'formik'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { ISettings } from 'pages/settings/formConfigs'
 
 const MotionFlex = motion(Flex)
 
 export default function SaveChangesDrawer() {
-    const { dirty, handleSubmit, resetForm, isSubmitting } = useFormikContext()
-
+    const { dirty, handleSubmit, resetForm, isSubmitting, values } = useFormikContext<ISettings>()
+    const { showToast } = useAppToast()
     const handleSaveClick = () => {
-        handleSubmit()
+        //we ensure that the total percentage of the wallets does not exceed 100
+        const walletOverLimit = values.paymentWallets.find((wallet) => {
+            const sumPercent = wallet.destinationAddress.reduce((sum, d) => sum + (d.percent || 0), 0);
+            return sumPercent > 100;
+        });
+        const walletType = walletOverLimit?.type === "SOL" ? "Solana" : "EVM"
+        if (walletOverLimit) {
+            showToast({
+                type: "error",
+                message: `Please double-check your ${walletType} wallets section, the total percentage must not exceed 100.`,
+                options: { autoClose: 5000 }
+            });
+            return;
+        }
+
+        handleSubmit();
     }
 
     const handleDiscardClick = () => {

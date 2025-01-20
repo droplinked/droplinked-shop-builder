@@ -34,9 +34,9 @@ export const WalletRow = ({ wallet, onChange, onDelete, onSave, isSingleWallet }
                 onSave={handleSave}
             />
             <PercentageInput
-                value={wallet.percent}
+                value={isSingleWallet ? 100 : wallet.percent}
                 onChange={(value) => onChange("percent", value)}
-                isEditing={isEditing}
+                isEditing={!isSingleWallet && isEditing}
             />
             <ActionButtons
                 onEdit={handleEdit}

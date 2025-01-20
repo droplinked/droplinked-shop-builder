@@ -10,7 +10,7 @@ interface ActionButtonsProps {
 }
 
 export const ActionButtons = ({ onEdit, onDelete, isEditing, isSingleWallet }: ActionButtonsProps) => (
-    <Flex gap={1} alignItems={"center"}>
+    <Flex gap={4} alignItems={"center"}>
         {/* Edit button is disabled during editing mode */}
         <Box
             as="button"
