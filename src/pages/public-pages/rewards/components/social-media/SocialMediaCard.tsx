@@ -3,8 +3,8 @@ import AppIcons from 'assest/icon/Appicons'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { trackFollowService } from 'lib/apis/quests/services'
 import useAppStore from 'lib/stores/app/appStore'
-import useFollowStatus from 'pages/rewards/hook/useFollowStatus'
 import React from 'react'
+import useFollowStatus from '../../hook/useFollowStatus'
 
 function SocialMediaCard({ promotion }: { promotion: any }) {
   const { shop } = useAppStore()
