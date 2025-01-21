@@ -2,8 +2,8 @@ import { create } from 'zustand'
 import { ProductType } from '../utils/types'
 
 interface State {
-    selectedProductType: ProductType | null
-    selectedPODProduct: any | null
+    selectedProductType: ProductType
+    selectedPODProduct: any
     variants: any[]
     available_variants: any[]
     print_positions: any[]

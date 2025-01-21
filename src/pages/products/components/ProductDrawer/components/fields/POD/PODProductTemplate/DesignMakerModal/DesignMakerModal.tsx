@@ -13,7 +13,7 @@ interface Props {
 
 function DesignMakerModal({ isOpen, onClose }: Props) {
     const { values: { technique, printful_template_id } } = useProductForm()
-    const selectedPODProduct = useProductPageStore(state => state.selectedPODProduct)
+    const selectedPODProduct = useProductPageStore(s => s.selectedPODProduct)
 
     const shouldRenderDesignTools = Boolean(
         technique || printful_template_id || !selectedPODProduct?.techniques?.length

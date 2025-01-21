@@ -13,8 +13,8 @@ interface Props {
 }
 
 const SelectedProductDetails = ({ productId, onBack }: Props) => {
-    const { editingProductId, updateProductPageState } = useProductPageStore()
-    const { setFieldValue } = useProductForm()
+    const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
+    const { values: { _id: editingProductId }, setFieldValue } = useProductForm()
     const { showToast } = useAppToast()
 
     const { data, isFetching } = useQuery({

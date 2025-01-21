@@ -21,8 +21,10 @@ function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
     }
 
     function closePopover() {
-        resetProductPageState()
-        onClose()
+        if (isProductTypePopoverOpen) {
+            resetProductPageState()
+            onClose()
+        }
     }
 
     return (

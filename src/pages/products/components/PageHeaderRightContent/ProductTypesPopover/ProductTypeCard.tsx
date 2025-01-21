@@ -4,7 +4,7 @@ import React from 'react'
 import { ProductTypeObj } from './ProductTypes'
 
 function ProductTypeCard({ icon, title, description, productType }: ProductTypeObj) {
-    const updateProductPageState = useProductPageStore(e => e.updateProductPageState)
+    const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
 
     const isDisabled = productType === "EVENT"
 

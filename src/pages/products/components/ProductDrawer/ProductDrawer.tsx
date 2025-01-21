@@ -11,13 +11,9 @@ interface Props {
 }
 
 function ProductDrawer({ isOpen, onClose }: Props) {
-    const { selectedProductType, editingProductId, resetProductPageState } = useProductPageStore(state => ({
-        selectedProductType: state.selectedProductType,
-        editingProductId: state.editingProductId,
-        resetProductPageState: state.resetProductPageState
-    }))
-
+    const { selectedProductType, editingProductId, resetProductPageState } = useProductPageStore()
     const { isFetching, data } = useProduct(editingProductId)
+
     const editingProduct = data?.data?.data
 
     const handleDrawerClose = () => {
