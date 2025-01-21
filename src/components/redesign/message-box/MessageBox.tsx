@@ -2,7 +2,7 @@ import { Box, Flex, FlexProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
 
-type Theme = "info" | "warning"
+type Theme = "info" | "warning" | "systemWarning"
 
 interface Props extends FlexProps {
     title: string
@@ -17,6 +17,10 @@ const themeMap: Record<Theme, { icon: React.ReactNode, styles: FlexProps }> = {
     },
     "warning": {
         icon: <AppIcons.YellowWarning />,
+        styles: { bg: 'rgba(255, 217, 81, 0.10)', borderColor: '#FFD951' }
+    },
+    "systemWarning": {
+        icon: <AppIcons.SystemWarning />,
         styles: { bg: 'rgba(255, 217, 81, 0.10)', borderColor: '#FFD951' }
     }
 }

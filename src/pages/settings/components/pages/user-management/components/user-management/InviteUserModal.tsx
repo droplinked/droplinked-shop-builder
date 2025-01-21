@@ -7,9 +7,9 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { sendInvitaionEmailService } from 'lib/apis/user/services';
-import AccessWarning from './AccessWarning';
 import Button from 'components/redesign/button/Button';
 import useAppToast from 'functions/hooks/toast/useToast';
+import MessageBox from 'components/redesign/message-box/MessageBox';
 
 interface Props {
     isOpen: boolean;
@@ -62,11 +62,18 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                         isRequired: true,
                         placeholder: "Enter email address",
                         value: email,
-                        onChange: (e) => setEmail(e.target.value)
+                        onChange: (e) => setEmail(e.target.value),
+                    }}
+                    inputContainerProps={{
+                        mb: 4
                     }}
                     leftElement={<AppIcons.EmailSign />}
                 />
-                <AccessWarning />
+                <MessageBox
+                    theme='systemWarning'
+                    title='Access Warning'
+                    description='The following user will have access to all sections of the account. Invite with caution!'
+                />
             </ModalBody>
             <Divider borderColor={"#292929"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
