@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useFormikContext } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { ISettings } from 'pages/settings/formConfigs'
-import { handleValidations } from '../../handleValidations'
+import { handleValidations } from '../../validationHandlers'
 
 const MotionFlex = motion(Flex)
 
