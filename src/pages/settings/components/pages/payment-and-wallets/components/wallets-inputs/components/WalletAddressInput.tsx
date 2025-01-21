@@ -9,18 +9,20 @@ interface WalletAddressInputProps {
     onSave: () => void;
 }
 
-export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: WalletAddressInputProps) => (
-    <Input
-        inputProps={{
-            placeholder: "Enter your wallet address",
-            value,
-            onChange: (e) => onChange(e.target.value),
-            // Disable input when not in editing mode
-            isDisabled: !isEditing
-        }}
-        inputContainerProps={{ padding: 2, paddingLeft: 4 }}
-        rightElement={
-            isEditing && value.trim().length > 0 && (
+export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: WalletAddressInputProps) => {
+    const isButtonDisabled = isEditing && value.trim().length > 0
+
+    return (
+        <Input
+            inputProps={{
+                placeholder: "Enter your wallet address",
+                value,
+                onChange: (e) => onChange(e.target.value),
+                // Disable input when not in editing mode
+                isDisabled: !isEditing
+            }}
+            inputContainerProps={{ padding: 2, paddingLeft: 4 }}
+            rightElement={
                 <Button
                     borderRadius={4}
                     fontSize={12}
@@ -28,12 +30,14 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
                     paddingBlock={2}
                     px={3}
                     height={"min-content"}
-                    isDisabled={!value}
+                    isDisabled={!isButtonDisabled}
                     onClick={onSave}
+                    visibility={isButtonDisabled ? "visible" : "hidden"}
                 >
                     Save
                 </Button>
-            )
-        }
-    />
-);
+            }
+        />
+    )
+}
+
