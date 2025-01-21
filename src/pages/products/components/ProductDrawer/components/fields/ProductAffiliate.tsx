@@ -7,7 +7,7 @@ import SwitchBox from '../common/SwitchBox'
 function ProductAffiliate() {
     const { values, setFieldValue, errors } = useProductForm()
 
-    function handleToggle(checked) {
+    function handleToggle(checked: boolean) {
         setFieldValue('canBeAffiliated', checked)
         if (!checked) setFieldValue('commission', null)
     }
