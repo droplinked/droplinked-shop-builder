@@ -2,39 +2,33 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFormikContext } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { ISettings } from 'pages/settings/formConfigs'
+import { handleValidations } from '../../handleValidations'
 
 const MotionFlex = motion(Flex)
 
 export default function SaveChangesDrawer() {
     const { dirty, handleSubmit, resetForm, isSubmitting, values } = useFormikContext<ISettings>()
     const { showToast } = useAppToast()
-    const handleSaveClick = () => {
-        //we ensure that the total percentage of the wallets does not exceed 100
-        const walletOverLimit = values.paymentWallets.find((wallet) => {
-            const sumPercent = wallet.destinationAddress.reduce((sum, d) => sum + (d.percent || 0), 0);
-            return sumPercent > 100;
-        });
-        const walletType = walletOverLimit?.type === "SOL" ? "Solana" : "EVM"
-        if (walletOverLimit) {
-            showToast({
-                type: "error",
-                message: `Please double-check your ${walletType} wallets section, the total percentage must not exceed 100.`,
-                options: { autoClose: 5000 }
-            });
-            return;
-        }
 
-        handleSubmit();
+    const handleSaveClick = () => {
+        const isValid = handleValidations({ values, showToast })
+        if (isValid) {
+            handleSubmit();
+        }
     }
 
     const handleDiscardClick = () => {
         resetForm()
     }
+
+    useEffect(() => {
+        console.log(values)
+    }, [values])
 
     return (
         <AnimatePresence initial={false}>

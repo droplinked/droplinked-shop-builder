@@ -22,7 +22,7 @@ function SettingsPage() {
             resetForm({ values })
             showToast({ type: "success", message: "Settings updated successfully" })
         } catch (error) {
-            showToast({ type: "error", message: error.message || "Oops! Something went wrong." })
+            showToast({ type: "error", message: error.message || error?.data?.message || "Oops! Something went wrong." })
         } finally {
             setSubmitting(false)
         }
