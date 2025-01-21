@@ -127,7 +127,7 @@ export const initialValues: Product = {
     priceUnit: "USD",
     shippingType: "EASY_POST",
     shippingPrice: 0,
-    commission: 1,
+    commission: 0,
     canBeAffiliated: false,
 
     // Availability and Status
