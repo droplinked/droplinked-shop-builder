@@ -12,6 +12,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import moment from 'moment/moment'
 import Drawer from 'components/common/Drawer/Drawer'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     isEdit?: boolean
@@ -25,6 +26,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
     const createGiftcard = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const updateGiftcardExpiryDate = useMutation((params: IGiftCardExpiryDate) => updateGiftCartExpiryDateService(params))
     const isLoading = createGiftcard.isLoading || updateGiftcardExpiryDate.isLoading
+    const { convertPrice } = useCurrencyConverter()
     const checkPermissionAndShowToast = useCheckPermission()
     const { shop } = useAppStore()
     const { showToast } = useAppToast()
@@ -39,7 +41,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             } else {
                 if (!checkPermissionAndShowToast("coupon_creation")) return
                 const body: IgiftcardCreateService = {
-                    balance: params.balance,
+                    balance: params.type === "CREDIT" ? +convertPrice({ amount: params.balance, toUSD: true }).toFixed(2) : params.balance,
                     name: params.name,
                     quantity: params.quantity,
                     ...params.expiryDate && { expiryDate: moment(params.expiryDate).format('Y/M/D') },
@@ -64,7 +66,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
 
     return (
         <Formik
-            initialValues={getInitialValues(coupon)}
+            initialValues={getInitialValues({ coupon, convertPrice })}
             validateOnChange={false}
             validationSchema={getValidationSchema({ isEdit })}
             onSubmit={onSubmit}

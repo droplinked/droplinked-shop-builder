@@ -1,3 +1,4 @@
+import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import { Coupon } from "../../interface";
 import * as Yup from "yup";
 
@@ -9,13 +10,19 @@ export interface CouponFormValues {
     type: "DISCOUNT" | "CREDIT"
 }
 
-export const getInitialValues = (coupon: Coupon) => {
+interface InitialValues {
+    coupon: Coupon,
+    convertPrice: ({ amount, toUSD }: PriceConversionParams) => Number
+}
+
+export const getInitialValues = ({ coupon, convertPrice }: InitialValues) => {
     const { balance, codes, expiryDate, name, type } = coupon ?? {}
+    const convertedPrice = convertPrice({ amount: balance, toUSD: false }).toFixed(2)
 
     return {
         name: name || "",
         quantity: codes?.length || null,
-        balance: balance || null,
+        balance: (type === "CREDIT" ? convertedPrice : balance) || null,
         expiryDate: expiryDate || null,
         type: type || "DISCOUNT"
     }

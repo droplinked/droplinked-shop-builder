@@ -4,9 +4,11 @@ import Select from 'components/redesign/select/Select'
 import { useFormikContext } from 'formik';
 import React from 'react'
 import { CouponFormValues } from './formConfigs';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 
 export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
     const { values, handleChange, errors } = useFormikContext<CouponFormValues>();
+    const { abbreviation } = useCurrencyConverter()
 
     return (
         <Flex flexDirection={"column"}>
@@ -26,7 +28,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                 <Select
                     items={[
                         { label: "Percentage", value: "DISCOUNT" },
-                        { label: "USD", value: "CREDIT" }
+                        { label: abbreviation, value: "CREDIT" }
                     ]}
                     labelAccessor="label"
                     valueAccessor="value"
