@@ -187,7 +187,7 @@ export const createProfileConstants = (shop: { credit: number; name: string; sho
     {
         title: { label: "Settings", style: {} },
         icon: { svg: AppIcons.ProfileSetting, style: {} },
-        linkTo: "/analytics/settings/shop-info",
+        linkTo: "/analytics/account-settings",
         isExternalLink: false,
         rightSide: { value: null, style: {} },
     },
