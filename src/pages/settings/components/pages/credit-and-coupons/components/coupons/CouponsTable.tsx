@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Coupon } from './interface';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { giftcardsService } from 'lib/apis/coupons/addressServices';
 import { ColumnDef } from '@tanstack/react-table';
 import AmountColumn from './columns/AmountColumn';
@@ -16,24 +16,18 @@ interface Props {
 }
 
 export default function CouponsTable({ isOpen, onClose }: Props) {
-    const [page, setPage] = useState("1");
-    const [data, setData] = useState<Coupon[]>([])
-    const { data: giftCardsData, isFetching, refetch } = useQuery(
-        ["giftCard", page],
-        () => giftcardsService({ page: page, limit: 20, search: undefined }),
-        {
-            onSuccess: (data) => { setData((prev) => [...prev, ...data?.data?.data?.data]) }
-        }
-    );
-    const { hasNextPage, totalDocuments, nextPage } = giftCardsData?.data?.data ?? {};
-    const handleNextPage = () => {
-        setPage(nextPage);
-    };
-    const handleRefetchData = () => {
-        setPage("1");
-        setData([]);
-        refetch();
-    }
+    const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+        queryKey: ["giftCard"],
+        queryFn: ({ pageParam = 1 }) => giftcardsService({
+            page: pageParam.toString(),
+            limit: 20,
+            search: undefined
+        }),
+        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
+    });
+
+    const coupons = data?.pages.flatMap(page => page.data.data.data) || [];
+    const totalDocuments = data?.pages[0]?.data.data.totalDocuments;
 
     const columns: ColumnDef<Coupon>[] = [
         {
@@ -84,7 +78,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
             header: "",
             cell: (info) => (
                 <DropDownColumn
-                    refetch={handleRefetchData}
+                    refetch={refetch}
                     couponId={info.row.original._id}
                     rowData={info.row.original}
                 />
@@ -97,7 +91,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         return (
             <>
                 <EmptyView />
-                <CouponsEditCreationDrawer refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+                <CouponsEditCreationDrawer refetch={refetch} isOpen={isOpen} onClose={onClose} />
             </>
         )
     }
@@ -107,16 +101,16 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
             <Table
                 infiniteScroll={{
                     hasMore: hasNextPage,
-                    next: handleNextPage,
-                    isFetchingNextPage: isFetching,
-                    dataLength: totalDocuments ?? 0,
+                    next: fetchNextPage,
+                    isFetchingNextPage: isFetchingNextPage,
+                    dataLength: coupons.length,
                 }}
                 isLoading={isFetching}
-                data={data ?? []}
+                data={coupons}
                 columns={columns}
                 tableFontSize={16}
             />
-            <CouponsEditCreationDrawer refetch={handleRefetchData} isOpen={isOpen} onClose={onClose} />
+            <CouponsEditCreationDrawer refetch={refetch} isOpen={isOpen} onClose={onClose} />
         </>
     )
 }
