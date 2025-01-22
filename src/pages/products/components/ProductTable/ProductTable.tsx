@@ -2,13 +2,13 @@ import { Flex } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import Table from 'components/redesign/table/Table'
 import useProducts, { productTypeMap } from 'functions/hooks/products/useProducts'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 
 interface Props {
     searchTerm: string

@@ -22,7 +22,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
         ? 'Create Custom Variant'
         : `Create "${inputValue}"`
 
-    const handleDropdownOptionClick = (selectedVariant: string) => {
+    const handleDropdownOptionClick = ({ selectedVariant, isCustomVariant }) => {
         setInputValue(selectedVariant)
         const existingProperty = properties.find(property => property.title === selectedVariant)
 
@@ -30,9 +30,9 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
         else {
             setLocalProperty({
                 title: selectedVariant,
-                value: attributeToIdMap[selectedVariant] || selectedVariant,
+                value: isCustomVariant ? selectedVariant : attributeToIdMap[selectedVariant],
                 items: [],
-                isCustom: !['Size', 'Color'].includes(selectedVariant)
+                isCustom: isCustomVariant
             })
         }
 
@@ -41,7 +41,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
 
     const handleCustomVariantChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
-        setLocalProperty({ ...localProperty, value, title: value })
+        setLocalProperty({ ...localProperty, title: value, value })
     }
 
     useEffect(() => {
@@ -121,7 +121,10 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                         key={variant}
                         bgColor={localProperty?.title === variant ? '#292929' : 'unset'}
                         color="#FFF"
-                        onClick={() => handleDropdownOptionClick(variant)}
+                        onClick={() => handleDropdownOptionClick({
+                            selectedVariant: variant,
+                            isCustomVariant: false
+                        })}
                     >
                         {variant}
                     </Button>
@@ -134,9 +137,10 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                     bg="unset"
                     color="#179EF8"
                     sx={{ path: { stroke: '#179EF8' } }}
-                    onClick={() =>
-                        handleDropdownOptionClick(isPredefinedOrEmpty ? '' : inputValue)
-                    }
+                    onClick={() => handleDropdownOptionClick({
+                        selectedVariant: isPredefinedOrEmpty ? '' : inputValue,
+                        isCustomVariant: true
+                    })}
                 >
                     <AppIcons.BlackPlus />
                     {buttonText}

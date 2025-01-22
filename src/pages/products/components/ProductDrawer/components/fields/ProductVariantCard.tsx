@@ -45,7 +45,7 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
                     <VariantItem
                         key={index}
                         item={item}
-                        isColorVariant={variant.title === 'Color'}
+                        isColorVariant={variant.title === 'Color' && !variant.isCustom}
                     />
                 ))}
             </Flex>
