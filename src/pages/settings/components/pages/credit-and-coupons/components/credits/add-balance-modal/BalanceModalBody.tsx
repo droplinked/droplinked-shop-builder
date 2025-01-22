@@ -1,6 +1,6 @@
 import { Divider, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
-import Currencyicon from 'components/redesign/currency-icon/CurrencyIcon'
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
@@ -42,7 +42,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                         type: "number",
                         onChange: (e) => setValue(e.target.value)
                     }}
-                    leftElement={<Currencyicon />}
+                    leftElement={<CurrencyIcon />}
                 />
             </ModalBody>
             <Divider borderColor={"#292929"} />
