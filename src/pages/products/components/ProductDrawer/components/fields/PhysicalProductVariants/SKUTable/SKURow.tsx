@@ -1,5 +1,6 @@
 import { Td, Tr } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
@@ -20,17 +21,16 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
             <Td>
                 <SkuVariants options={currentSKU.options} />
             </Td>
-            <Td css={{ path: { stroke: "#7B7B7B" } }}>
+            <Td>
                 <Input
                     inputProps={{
                         type: 'number',
                         step: '0.01',
                         numberType: 'float',
                         value: currentSKU.price ?? '',
-                        onChange: (e) =>
-                            onInputChange(index, 'price', parseFloat(e.target.value) || 0),
+                        onChange: (e) => onInputChange(index, 'price', parseFloat(e.target.value) || 0)
                     }}
-                    leftElement={<AppIcons.GrayDollar />}
+                    leftElement={<CurrencyIcon />}
                 />
             </Td>
             <Td>
@@ -41,8 +41,7 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                         step: '1',
                         numberType: 'int',
                         value: currentSKU.quantity ?? '',
-                        onChange: (e) =>
-                            onInputChange(index, 'quantity', parseInt(e.target.value, 10) || 0),
+                        onChange: (e) => onInputChange(index, 'quantity', parseInt(e.target.value, 10) || 0)
                     }}
                     rightElement={
                         <InfinityToggleButton
