@@ -34,6 +34,7 @@ export default function CurrencyIcon({ strokeColor = "#7b7b7b", svgStyle = { wid
                 return null;
         }
     }
+
     return (
         <Box sx={{ path: { stroke: strokeColor }, svg: svgStyle }}>
             {renderIcon()}
