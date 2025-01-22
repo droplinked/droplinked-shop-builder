@@ -309,9 +309,23 @@ import { ReactComponent as CircleSolana } from "./circle-solana.svg"
 import { ReactComponent as CirclePolygon } from "./circle-polygon.svg"
 import { ReactComponent as Usdt } from "./usdt.svg"
 import { ReactComponent as Param } from "./param.svg"
-import {ReactComponent as Soon} from "./soon.svg"
+import { ReactComponent as Soon } from "./soon.svg"
+import { ReactComponent as Euro } from "./euro.svg"
+import { ReactComponent as Dirham } from "./dirham.svg"
+import { ReactComponent as ChineseYuan } from "./cny.svg"
+import { ReactComponent as JapaneseYen } from "./jpy.svg"
+import { ReactComponent as Pound } from "./pound.svg"
+import { ReactComponent as AustralianDollar } from "./aud.svg"
+import { ReactComponent as CanadianDollar } from "./cad.svg"
 
 const AppIcons = {
+  Euro,
+  ChineseYuan,
+  JapaneseYen,
+  Pound,
+  Dirham,
+  CanadianDollar,
+  AustralianDollar,
   Usdt,
   Param,
   CircleUsdc,

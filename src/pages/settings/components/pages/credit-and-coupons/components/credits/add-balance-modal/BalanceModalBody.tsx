@@ -1,8 +1,9 @@
 import { Divider, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
+import Currencyicon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import { IchargeCreditService } from 'lib/apis/shop/interfaces'
 import { chargeCreditService } from 'lib/apis/shop/shopServices'
 import React, { useState } from 'react'
@@ -14,14 +15,16 @@ interface Props {
 }
 
 export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
-    const [value, setValue] = useState<number | null>(null)
+    const [value, setValue] = useState(null)
     const { mutateAsync, isLoading } = useMutation((params: IchargeCreditService) => chargeCreditService(params))
     const { showToast } = useAppToast()
+    const { convertPrice } = useCurrencyConverter()
 
     const onSubmit = async () => {
+        const amount = Math.floor(convertPrice({ amount: value, toUSD: true }))
         try {
-            const query = await mutateAsync({ amount: value })
-            handleSetPayment(query.data.data.clientSecret, value)
+            const query = await mutateAsync({ amount })
+            handleSetPayment(query.data.data.clientSecret, amount)
         } catch (error) {
             showToast({ message: error?.message || 'Oops! Something went wrong', type: 'error' })
         }
@@ -37,9 +40,9 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                         placeholder: "100",
                         value: value,
                         type: "number",
-                        onChange: (e) => setValue(+e.target.value)
+                        onChange: (e) => setValue(e.target.value)
                     }}
-                    leftElement={<AppIcons.GrayDollar />}
+                    leftElement={<Currencyicon />}
                 />
             </ModalBody>
             <Divider borderColor={"#292929"} />

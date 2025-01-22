@@ -38,12 +38,12 @@ function CheckoutForm({ onSuccess, cancel, amount, onError }: IFormStripe) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
             <VStack align="stretch" spacing="30px">
                 <PaymentElement onChange={(e) => setStates((prev) => ({ ...prev, complete: e.complete }))} />
                 <Flex justifyContent="space-between">
                     <Button variant='secondary' onClick={() => cancel()}>Cancel</Button>
-                    <Button type='submit' isDisabled={!States.complete} isLoading={States.loading}>Pay {amount ? `$${amount.toFixed(2)}` : ""}</Button>
+                    <Button type='button' onClick={(e) => handleSubmit(e)} isDisabled={!States.complete} isLoading={States.loading}>Pay {amount ? `$${amount.toFixed(2)}` : ""}</Button>
                 </Flex>
             </VStack>
         </form>
