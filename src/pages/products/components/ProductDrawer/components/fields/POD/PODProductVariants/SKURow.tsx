@@ -1,5 +1,5 @@
 import { Td, Text, Tr } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import { SKU } from 'pages/products/utils/types'
@@ -22,16 +22,16 @@ function SKURow({ currentSKU, index, onPriceInputChange }: Props) {
             <Td>
                 <SkuVariants options={currentSKU.options} />
             </Td>
-            <Td css={{ path: { stroke: "#7B7B7B" } }}>
+            <Td>
                 <Input
                     inputProps={{
                         type: 'number',
                         numberType: 'float',
                         step: '0.01',
                         value: currentSKU.price ?? '',
-                        onChange: (e) => onPriceInputChange(index, parseFloat(e.target.value) || 0),
+                        onChange: (e) => onPriceInputChange(index, parseFloat(e.target.value) || 0)
                     }}
-                    leftElement={<AppIcons.GrayDollar />}
+                    leftElement={<CurrencyIcon />}
                 />
             </Td>
             <Td>

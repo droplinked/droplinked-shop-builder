@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useState } from 'react'
@@ -38,7 +38,6 @@ function ProductBulkPriceUpdater() {
                 isChecked: fixedPrice,
                 onChange: (e) => setFixedPrice(e.target.checked)
             }}
-            containerProps={{ css: { path: { stroke: "#7B7B7B" } } }}
             rightContent={fixedPrice && (
                 <Input
                     inputGroupProps={{ width: "104px" }}
@@ -49,7 +48,7 @@ function ProductBulkPriceUpdater() {
                         placeholder: "0.00",
                         onChange: (e) => handleInputChange((parseFloat(e.target.value)))
                     }}
-                    leftElement={<AppIcons.GrayDollar />}
+                    leftElement={<CurrencyIcon />}
                 />
             )}
         />
