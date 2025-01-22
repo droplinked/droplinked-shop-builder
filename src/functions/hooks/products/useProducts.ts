@@ -10,7 +10,7 @@ export default function useProducts(searchTerm: string) {
             limit: 15,
             filter: searchTerm
         }),
-        getNextPageParam: (lastPage) => lastPage.data.nextPage
+        getNextPageParam: (lastPage) => lastPage?.data?.data?.nextPage ?? null
     })
 }
 
