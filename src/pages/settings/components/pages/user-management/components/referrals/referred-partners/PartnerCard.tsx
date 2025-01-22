@@ -5,6 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import AppIcons from 'assest/icon/Appicons'
 import { appDevelopment } from 'lib/utils/app/variable'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 
 export default function PartnerCard({ partner }: { partner: Partner }) {
     const { amount, shopName } = partner
@@ -18,7 +19,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
             <Flex gap={3} alignItems={"center"} flex={1}>
                 <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>Your Earning</AppTypography>
                 <AppIcons.DotSpacer />
-                <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>${amount} <span style={{ color: "#B1B1B1" }}>USD</span></AppTypography>
+                <FormattedPrice price={amount} fontSize={16} fontWeight={500} />
             </Flex>
             <ExternalLink
                 href={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`}

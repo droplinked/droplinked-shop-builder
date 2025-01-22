@@ -1,15 +1,14 @@
 import { Flex, Image, Spinner, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import AppTypography from "components/common/typography/AppTypography";
 import useAppStore from "lib/stores/app/appStore";
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 import React, { useState } from "react";
 import AddBalanceModal from "./add-balance-modal/AddBalanceModal";
 import useAppToast from "functions/hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
+import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
 
 export default function Balance() {
-    const { shop: { currency, credit, name }, fetchShop } = useAppStore();
+    const { shop: { credit, name }, fetchShop } = useAppStore();
     const { isOpen, onClose, onOpen } = useDisclosure()
     const { showToast } = useAppToast()
     const [loading, setLoading] = useState(false);
@@ -56,11 +55,7 @@ export default function Balance() {
             {loading ?
                 <Spinner color="white" />
                 :
-                <AppTypography fontSize={"16px"} color={"#fff"} sx={{ span: { color: "#7B7B7B" } }}>
-                    {currency?.symbol}{" "}
-                    {currencyConvertion(credit, currency?.conversionRateToUSD, false)}{" "}
-                    <span>{currency?.abbreviation}</span>
-                </AppTypography>
+                <FormattedPrice price={credit} fontSize={16} />
             }
             <AddBalanceModal handleRefetchShop={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
         </Flex>
