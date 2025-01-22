@@ -4,11 +4,11 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
 import useProducts, { productTypeMap } from 'functions/hooks/products/useProducts'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 
 interface Props {
     searchTerm: string
@@ -17,7 +17,6 @@ interface Props {
 function ProductTable({ searchTerm }: Props) {
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
-    const { getFormattedPrice } = useCurrencyConverter()
 
     const columns: ColumnDef<any>[] = [
         {
@@ -41,7 +40,7 @@ function ProductTable({ searchTerm }: Props) {
             header: 'Price',
             cell: (info) => {
                 const price = info.getValue() as number
-                if (price) return getFormattedPrice({ amount: price, toUSD: false })
+                if (price) return <FormattedPrice price={price} />
                 return "-"
             }
         },
