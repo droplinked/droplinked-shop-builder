@@ -52,7 +52,6 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const [isLoggedInViaGoogle, setIsLoggedInViaGoogle] = useState<boolean>(false)
 
     const handlePlanPurchase = () => {
-        console.log(plan)
         updateSelectedPlan(plan)
         if (!profile) return signInModal.onOpen()
         if (isEnterprise) return (window.location.href = "mailto:Support@droplinked.com")
