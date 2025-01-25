@@ -34,7 +34,7 @@ function InvoiceSummary() {
     return (
         <SectionedContent as={"aside"} width={{ base: "100%", lg: "380px" }} title="Summary">
             <Input
-                icon={<AppIcons.InvoiceDiscount />}
+                icon={<AppIcons.InvoiceDiscount color='white' />}
                 inputGroupProps={{ height: 12 }}
                 inputProps={{
                     value: giftCardCode,
