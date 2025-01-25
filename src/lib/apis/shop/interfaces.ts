@@ -18,6 +18,12 @@ export interface IrecordedShopService {
     shopName: string;
 }
 
+export interface IShopCredit {
+    data: {
+        credit: number;
+    }
+}
+
 export interface IshopSocial {
     discordURL?: string;
     instagramURL?: string;

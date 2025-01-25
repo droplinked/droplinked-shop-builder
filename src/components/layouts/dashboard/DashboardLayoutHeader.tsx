@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Image, Menu, MenuButton, MenuList } from "@chakra-ui/react";
+import { Box, Divider, Flex, Image, Menu, MenuButton, MenuList, Spinner } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTooltip from "components/common/tooltip/AppTooltip";
 import AppTypography from "components/common/typography/AppTypography";
@@ -10,12 +10,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { createProfileConstants, createSubscriptionStatusConstants } from "./dashboard.layout.constants";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
+import { useQuery } from "react-query";
+import { getShopCredit } from "lib/apis/shop/shopServices";
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 
 const DashboardLayoutHeader = () => {
+    const { isFetching, data, refetch } = useQuery({
+        queryKey: ["shop-credit"],
+        queryFn: () => getShopCredit(),
+        refetchOnMount: true,
+    })
+    const { getFormattedPrice } = useCurrencyConverter()
     const { shopNavigate } = useCustomNavigate();
     const { shop, user } = useAppStore();
     const { logoutUser } = useProfile();
     const { icon: SubscriptionIcon, title: subscriptionTitle, rightSide: subscriptionRightSide } = createSubscriptionStatusConstants({ STARTER: () => shopNavigate("/dashboard/plans") }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
+
     const profileConstants = createProfileConstants(shop, logoutUser);
     const getShopInfo = () => {
         const text = shop?.description || shop?.name
@@ -28,7 +38,7 @@ const DashboardLayoutHeader = () => {
     return (
         <Flex position="sticky" top={0} width="full" justifyContent="flex-end" alignItems="center" gap="16px" padding="16px 36px 16px 24px" borderBottom="1px solid #292929" backgroundColor="#141414" zIndex={999}>
             <Menu variant="unstyled">
-                <MenuButton cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C">
+                <MenuButton onClick={() => refetch()} cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C">
                     <AppIcons.SidebarUser width="20px" height="20px" />
                 </MenuButton>
                 <MenuList right="32px" borderRadius="8px" background="#222" border="none" width="352px" boxShadow="0px 4px 6px -4px rgba(23, 34, 62, 0.08), 0px 8px 12px -6px rgba(23, 34, 62, 0.08)">
@@ -51,15 +61,28 @@ const DashboardLayoutHeader = () => {
                         </Link>
                         <Divider display="flex" flexDirection="column" alignItems="flex-start" gap="10px" alignSelf="stretch" height={"1px"} borderColor={"#292929"} />
                         <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch">
-                            {profileConstants?.map((profile_list) => (
-                                <DashboardLayoutDecideFragmentOrLink key={profile_list?.title?.label} isExternalLink={profile_list?.isExternalLink} linkTo={profile_list?.linkTo}>
-                                    <Box display="flex" height="52px" padding="16px" justifyContent="center" alignItems="center" gap="12px" alignSelf="stretch" cursor={(profile_list?.linkTo || profile_list?.action) && "pointer"} onClick={() => profile_list?.action?.()}>
-                                        <profile_list.icon.svg width={"20px"} height={"20px"} {...profile_list?.title?.style} />
-                                        <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px" {...profile_list?.title.style}>{profile_list?.title?.label}</AppTypography>
-                                        {profile_list?.rightSide?.value && <Box {...profile_list?.rightSide?.style}>{profile_list?.rightSide?.value}</Box>}
-                                    </Box>
-                                </DashboardLayoutDecideFragmentOrLink>
-                            ))}
+                            {profileConstants?.map((profile_list) => {
+
+                                return (
+                                    <DashboardLayoutDecideFragmentOrLink key={profile_list?.title?.label} isExternalLink={profile_list?.isExternalLink} linkTo={profile_list?.linkTo}>
+                                        <Box display="flex" height="52px" padding="16px" justifyContent="center" alignItems="center" gap="12px" alignSelf="stretch" cursor={(profile_list?.linkTo || profile_list?.action) && "pointer"} onClick={() => profile_list?.action?.()}>
+                                            <profile_list.icon.svg width={"20px"} height={"20px"} {...profile_list?.title?.style} />
+                                            <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px" {...profile_list?.title.style}>{profile_list?.title?.label}</AppTypography>
+                                            {
+                                                profile_list?.rightSide?.value &&
+                                                <Box {...profile_list?.rightSide?.style}>
+                                                    {
+                                                        profile_list.title.label === "Credit" ?
+                                                            (isFetching ? <Spinner /> : getFormattedPrice({ amount: data.data.data.credit, toUSD: false }))
+                                                            :
+                                                            profile_list?.rightSide?.value
+                                                    }
+                                                </Box>
+                                            }
+                                        </Box>
+                                    </DashboardLayoutDecideFragmentOrLink>
+                                )
+                            })}
                         </Box>
                         <Divider display="flex" flexDirection="column" alignItems="flex-start" gap="10px" alignSelf="stretch" height={"1px"} borderColor={"#292929"} />
                         <Box display="flex" padding="0px 16px" justifyContent="space-between" alignItems="center" alignSelf="stretch">

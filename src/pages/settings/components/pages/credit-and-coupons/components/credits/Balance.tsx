@@ -1,21 +1,31 @@
-import { Flex, Image, Spinner, useDisclosure } from "@chakra-ui/react";
+import { Flex, Image, Spinner, useDisclosure, useTabsContext } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import useAppStore from "lib/stores/app/appStore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddBalanceModal from "./add-balance-modal/AddBalanceModal";
 import useAppToast from "functions/hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
+import { useQuery } from "react-query";
+import { getShopCredit } from "lib/apis/shop/shopServices";
 
 export default function Balance() {
-    const { shop: { credit, name }, fetchShop } = useAppStore();
+    const { shop: { name }, fetchShop } = useAppStore();
+    const { selectedIndex } = useTabsContext()
     const { isOpen, onClose, onOpen } = useDisclosure()
     const { showToast } = useAppToast()
     const [loading, setLoading] = useState(false);
+    const { isFetching, data, refetch } = useQuery({
+        queryKey: ["shop-remaining-balance", selectedIndex],
+        queryFn: () => getShopCredit(),
+        enabled: selectedIndex === 3,
+        refetchOnMount: true,
+    })
     const handleRefetchShop = async () => {
         setLoading(true);
         try {
             await fetchShop({ shopName: name });
+            await refetch()
         }
         catch {
             showToast({ message: "Oops! Something went wrong", type: "error" })
@@ -52,10 +62,10 @@ export default function Balance() {
                     Charge
                 </BlueButton>
             </Flex>
-            {loading ?
+            {(isFetching || loading) ?
                 <Spinner color="white" />
                 :
-                <FormattedPrice price={credit} fontSize={16} />
+                <FormattedPrice price={data?.data?.data?.credit} fontSize={16} />
             }
             <AddBalanceModal handleRefetchShop={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
         </Flex>

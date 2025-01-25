@@ -21,7 +21,8 @@ import {
 	ShopDNSInformation,
 	ShopOAuth2Client,
 	UserExtraShopResponse,
-	UserShop
+	UserShop,
+	IShopCredit
 } from './interfaces';
 
 export const shopService = ({ shopName }: IshopService) =>
@@ -44,6 +45,9 @@ export const shopPublicRecordedService = ({ page, s }: IshopPublicRecordedServic
 
 export const recordedShopService = ({ shopName }: IrecordedShopService) =>
 	axiosInstance.get(`shop/public/recorded/${shopName}`);
+
+export const getShopCredit = () =>
+	axiosInstance.get<IShopCredit>(`shop/credit`);
 
 export const productService = (productId: string) =>
 	axiosInstance.get(`product/${productId}`)
