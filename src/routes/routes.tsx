@@ -7,7 +7,6 @@ import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Lazy-loaded Components
-const NotFound = lazy(() => import("pages/404/404"));
 const ResetPassPage = lazy(() => import("pages/auth-pages/reset-pass-page/ResetPassPage"));
 const ThankForRegisterPage = lazy(() => import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"));
 const VerifyEmailPage = lazy(() => import("pages/auth-pages/verify-email-page/Email-verification-page"));
