@@ -24,7 +24,7 @@ function ProductTable({ searchTerm }: Props) {
             header: 'Product Name',
             cell: info => {
                 const { media, title } = info.row.original
-                const imageURL = (media.find(m => m.isMain === "true") ?? media[0]).thumbnail
+                const imageURL = (media.find(m => m.isMain === "true") ?? media[0])?.thumbnail
                 const truncatedTitle = title.length <= 25 ? title : `${title.slice(0, 25)}...`
 
                 return (
