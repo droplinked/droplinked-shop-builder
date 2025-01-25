@@ -1,13 +1,13 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import AdminHoc from "functions/hoc/admin/adminHoc";
 import useAppStore from "lib/stores/app/appStore";
-import React, { useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Footer from "../app/main/components/footer/Footer";
 import DashboardLayoutHeader from "./DashboardLayoutHeader";
 import DashboardLayoutSidebar from "./DashboardLayoutSidebar";
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ children }: { children?: ReactNode }) => {
     const { user } = useAppStore()
     const location = useLocation().pathname
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 <DashboardLayoutSidebar />
                 <VStack width="full" height="full" {...location.endsWith("/plans") && { overflow: "auto" }}>
                     <DashboardLayoutHeader />
-                    <Box width="100%" minH="80vh" {...notSettingPage && { padding: 6 }} borderColor="line"><Outlet /></Box>
+                    <Box width="100%" minH="80vh" {...notSettingPage && { padding: 6 }} borderColor="line">{children ? children : <Outlet />}</Box>
                 </VStack>
             </HStack>
             <Footer />

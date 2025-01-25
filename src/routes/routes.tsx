@@ -58,7 +58,8 @@ import SettingsPage from "pages/settings/SettingsPage";
 import ShopManagement from "pages/shop-management/ShopManagement";
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans";
 import React, { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ScrollToTop from "components/layouts/scroll-to-top/ScrollToTop";
 
 const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
@@ -67,101 +68,157 @@ const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: (
+            <ScrollToTop>
+                <MainLayout />
+            </ScrollToTop>
+        ),
+        errorElement: (
+            <MainLayout>
+                <Maintenance />
+            </MainLayout>
+        ),
+        children: [
+            { index: true, element: <HomePage /> },
+            { path: "signup", element: <HomePage showAuthModal={true} /> },
+            { path: "enquiry", element: <Enquiry /> },
+            { path: "terms", element: <TermsPage /> },
+            { path: "about", element: <AboutUs /> },
+            { path: "contact-us", element: <ContactUs /> },
+            { path: "privacy", element: <PrivacyPage /> },
+            { path: "email-confirmation", element: <ThankForRegisterPage /> },
+            { path: "physical-product", element: <PhysicalProductPage /> },
+            { path: "digital-product", element: <DigitalProductPage /> },
+            { path: "pod-product", element: <PODProductPage /> },
+            { path: "tokenpay", element: <TokanpayPage /> },
+            { path: "payment-links", element: <PaymentLinkPage /> },
+            { path: "product-tiles", element: <ProductTilePage /> },
+            { path: "tokenizing-products", element: <TokenizingProductsPage /> },
+            { path: "affiliate-sass", element: <AffiliateSassPage /> },
+            { path: "custom-tokens", element: <CustomTokenPage /> },
+            { path: "metaverse-store", element: <MetaverseStorePage /> },
+            { path: "onchain-affiliate", element: <AffiliatePage /> },
+            { path: "/d3", element: <D3Page /> },
+            { path: "/unstoppable-domains", element: <UdPage /> },
+            { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
+            { path: "roi", element: <ROIPage /> },
+            { path: "dpp", element: <DppPage /> },
+            {
+                path: "blogs",
+                children: [
+                    { index: true, element: <PublicBlogs /> },
+                    { path: ":slug", element: <PublicBlog /> },
+                ],
+            },
+            { path: "email-verification/:token", element: <VerifyEmailPage /> },
+            { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
+            { path: "plans", element: <PricingPage /> },
+            { path: "rewards", element: <Rewards /> },
+        ],
+    },
+    {
+        path: "analytics",
+        element: (
+            <ScrollToTop>
+                <DashboardLayout />
+            </ScrollToTop>
+        ),
+        errorElement: (
+            <DashboardLayout>
+                <Maintenance />
+            </DashboardLayout>
+        ),
+        children: [
+            { index: true, element: <DashboardPage /> },
+            { path: "registration", element: <SimpleRegistration /> },
+            {
+                path: "settings",
+                element: <RegisterPagesWrapper />,
+                children: [
+                    { path: "shop-info", element: <RegisterShopInfo /> },
+                    { path: "design", element: <DesignPage /> },
+                    { path: "tile", element: <TileDesign /> },
+                    { path: "technical", element: <TechnicalPage /> },
+                    { path: "coupons", element: <CouponsSetting /> },
+                    { path: "admins", element: <Admins /> },
+                    { path: "payment-link-design", element: <PaymentLink /> },
+                ],
+            },
+            { path: "account-settings", element: <SettingsPage /> },
+            {
+                path: "products",
+                children: [
+                    { index: true, element: <ProductsV2 /> },
+                    { path: "order/:productID", element: <ProductOrder /> },
+                ],
+            },
+            { path: "collections", element: <Collections /> },
+            { path: "orders", element: <Orders /> },
+            {
+                path: "affiliate",
+                children: [
+                    { path: "market", element: <AffiliateMarket /> },
+                    {
+                        path: "products",
+                        children: [
+                            { index: true, element: <AffiliateProductsLayout /> },
+                            { path: ":slug", element: <AffiliateProductsSinglePage /> },
+                        ],
+                    },
+                    {
+                        path: "stores",
+                        children: [
+                            { index: true, element: <AffiliateStores /> },
+                            {
+                                path: ":shopId",
+                                children: [
+                                    { index: true, element: <AffiliateStoresProfile /> },
+                                    { path: ":slug", element: <AffiliateProductsSinglePage /> },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+            { path: "nfts", element: <NFTs /> },
+            {
+                path: "blogs",
+                children: [
+                    { index: true, element: <Blogs /> },
+                    { path: "create", element: <BlogForm /> },
+                    { path: ":slug", element: <Blog /> },
+                ],
+            },
+            { path: "plans", element: <SubscriptionPlans /> },
+            { path: "gamification", element: <Gamification /> },
+            { path: "invoice-management", element: <InvoiceManagement /> },
+            { path: "invoice-management/create", element: <CreateInvoice /> },
+            { path: "invoice-management/edit/:invoiceId", element: <CreateInvoice /> },
+        ],
+    },
+    {
+        path: "shop-management",
+        element: (
+            <ScrollToTop>
+                <ShopManagementLayout />
+            </ScrollToTop>
+        ),
+        errorElement: <Maintenance />,
+        children: [
+            { index: true, element: <ShopManagement /> },
+        ],
+    },
+    { path: ":shopname", element: <ShopPage /> },
+    { path: "*", element: <NotFound /> },
+]);
+
 function AppRoutes() {
     return (
         <Suspense fallback={<FullScreenLoading />}>
-            <Routes>
-                <Route path="/" element={<MainLayout />}>
-                    <Route errorElement path="maintenance" element={<Maintenance />} />
-                    <Route index element={<HomePage />} />
-                    <Route path="signup" element={<HomePage showAuthModal={true} />} />
-                    <Route path="enquiry" element={<Enquiry />} />
-                    <Route path="terms" element={<TermsPage />} />
-                    <Route path="about" element={<AboutUs />} />
-                    <Route path="contact-us" element={<ContactUs />} />
-                    <Route path="privacy" element={<PrivacyPage />} />
-                    <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-                    <Route path="physical-product" element={<PhysicalProductPage />} />
-                    <Route path="digital-product" element={<DigitalProductPage />} />
-                    <Route path="pod-product" element={<PODProductPage />} />
-                    <Route path="tokenpay" element={<TokanpayPage />} />
-                    <Route path="payment-links" element={<PaymentLinkPage />} />
-                    <Route path="product-tiles" element={<ProductTilePage />} />
-                    <Route path="tokenizing-products" element={<TokenizingProductsPage />} />
-                    <Route path="affiliate-sass" element={<AffiliateSassPage />} />
-                    <Route path="custom-tokens" element={<CustomTokenPage />} />
-                    <Route path="metaverse-store" element={<MetaverseStorePage />} />
-                    <Route path="onchain-affiliate" element={<AffiliatePage />} />
-                    <Route path="/d3" element={<D3Page />} />
-                    <Route path="/unstoppable-domains" element={<UdPage />} />
-                    <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
-                    <Route path="roi" element={<ROIPage />} />
-                    <Route path="dpp" element={<DppPage />} />
-                    <Route path="blogs">
-                        <Route index element={<PublicBlogs />} />
-                        <Route path=":slug" element={<PublicBlog />} />
-                    </Route>
-                    <Route path="email-verification/:token" element={<VerifyEmailPage />} />
-                    <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
-                    <Route path="plans" element={<PricingPage />} />
-                    <Route path="rewards" element={<Rewards></Rewards>} />
-                </Route>
-
-                <Route path="analytics" element={<DashboardLayout />}>
-                    <Route errorElement path="maintenance" element={<Maintenance />} />
-                    <Route index element={<DashboardPage />} />
-                    <Route path="registration" element={<SimpleRegistration />} />
-                    <Route path="settings" element={<RegisterPagesWrapper />}>
-                        <Route path="shop-info" element={<RegisterShopInfo />} />
-                        <Route path="design" element={<DesignPage />} />
-                        <Route path="tile" element={<TileDesign />} />
-                        <Route path="technical" element={<TechnicalPage />} />
-                        <Route path="coupons" element={<CouponsSetting />} />
-                        <Route path="admins" element={<Admins />} />
-                        <Route path="payment-link-design" element={<PaymentLink />} />
-                    </Route>
-                    <Route path="account-settings" element={<SettingsPage />} />
-                    <Route path="products">
-                        <Route index element={<ProductsV2 />} />
-                        <Route path="order/:productID" element={<ProductOrder />} />
-                    </Route>
-                    <Route path="collections" element={<Collections />} />
-                    <Route path="orders" element={<Orders />} />
-                    <Route path="affiliate">
-                        <Route path="market" element={<AffiliateMarket />} />
-                        <Route path="products">
-                            <Route index element={<AffiliateProductsLayout />} />
-                            <Route path=":slug" element={<AffiliateProductsSinglePage />} />
-                        </Route>
-                        <Route path="stores">
-                            <Route index element={<AffiliateStores />} />
-                            <Route path=":shopId">
-                                <Route index element={<AffiliateStoresProfile />} />
-                                <Route path=":slug" element={<AffiliateProductsSinglePage />} />
-                            </Route>
-                        </Route>
-                    </Route>
-                    <Route path="nfts" element={<NFTs />} />
-                    <Route path="blogs">
-                        <Route index element={<Blogs />} />
-                        <Route path="create" element={<BlogForm />} />
-                        <Route path=":slug" element={<Blog />} />
-                    </Route>
-                    <Route path="plans" element={<SubscriptionPlans />} />
-                    <Route path="gamification" element={<Gamification />} />
-                    <Route path="invoice-management" element={<InvoiceManagement />} />
-                    <Route path="invoice-management/create" element={<CreateInvoice />} />
-                    <Route path="invoice-management/edit/:invoiceId" element={<CreateInvoice />} />
-                </Route>
-
-                <Route path="shop-management" element={<ShopManagementLayout />}>
-                    <Route errorElement path="maintenance" element={<Maintenance />} />
-                    <Route index element={<ShopManagement />} />
-                </Route>
-
-                <Route path=":shopname" element={<ShopPage />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
+            <RouterProvider router={router} />
         </Suspense>
     );
 }
