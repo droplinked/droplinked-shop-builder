@@ -73,7 +73,7 @@ const DashboardLayoutHeader = () => {
                                                 <Box {...profile_list?.rightSide?.style}>
                                                     {
                                                         profile_list.title.label === "Credit" ?
-                                                            (isFetching ? <Spinner /> : getFormattedPrice({ amount: data.data.data.credit, toUSD: false }))
+                                                            (isFetching ? <Spinner /> : getFormattedPrice({ amount: data.data.data.credit, toUSD: false, toFixed: true }))
                                                             :
                                                             profile_list?.rightSide?.value
                                                     }

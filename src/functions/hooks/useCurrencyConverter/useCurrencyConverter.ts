@@ -3,6 +3,7 @@ import useAppStore from "lib/stores/app/appStore"
 export type PriceConversionParams = {
     amount: number | string
     toUSD?: boolean
+    toFixed?: boolean
 }
 
 export function useCurrencyConverter() {
@@ -22,9 +23,14 @@ export function useCurrencyConverter() {
         return convertedAmount
     }
 
-    function getFormattedPrice({ amount, toUSD = false }: PriceConversionParams): string {
+    function getFormattedPrice({ amount, toUSD = false, toFixed = false }: PriceConversionParams): string {
         const convertedPrice = convertPrice({ amount, toUSD })
-        return `${symbol}${convertedPrice} ${abbreviation}`
+
+        if (toFixed) {
+            return `${symbol}${convertedPrice.toFixed(2)} ${abbreviation}`
+        } else {
+            return `${symbol}${convertedPrice} ${abbreviation}`
+        }
     }
 
     return {

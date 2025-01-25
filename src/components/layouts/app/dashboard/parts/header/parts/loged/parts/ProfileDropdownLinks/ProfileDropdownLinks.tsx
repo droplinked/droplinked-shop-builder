@@ -61,7 +61,7 @@ function ProfileDropdownLinks({ shop, close, isOpen }: Props) {
                                         fontWeight={600}
                                         textAlign={"right"}
                                     >
-                                        {getFormattedPrice({ amount: data.data.data.credit, toUSD: false })}
+                                        {getFormattedPrice({ amount: data.data.data.credit, toUSD: false, toFixed: true })}
                                     </AppTypography>
                                 }
                             </Flex>
