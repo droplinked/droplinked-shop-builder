@@ -22,7 +22,7 @@ export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
                         value: values.quantity,
                         isDisabled: isEdit
                     }}
-                    {...errors.name && { error: errors.quantity, state: "error" }}
+                    {...errors.quantity && { error: errors.quantity, state: "error" }}
                 />
             </Box>
         </Flex>

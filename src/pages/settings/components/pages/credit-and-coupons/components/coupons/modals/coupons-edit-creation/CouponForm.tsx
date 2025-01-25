@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import React, { useEffect } from "react";
+import React from "react";
 import { CouponFormValues } from "./formConfigs";
 import { Box, Flex } from "@chakra-ui/react";
 import Input, { InputHeader } from "components/redesign/input/Input";
@@ -9,11 +9,6 @@ import QuantityInput from "./QuantityInput";
 
 export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
     const { values, handleChange, errors, setFieldValue } = useFormikContext<CouponFormValues>();
-    useEffect(() => {
-        if (!isEdit) {
-            setFieldValue("expiryDate", new Date());
-        }
-    }, [isEdit])
 
     return (
         <Flex flexDirection={"column"} gap={9}>

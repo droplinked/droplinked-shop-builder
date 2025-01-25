@@ -23,7 +23,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                         isDisabled: isEdit,
                         type: "number",
                     }}
-                    {...errors.name && { error: errors.balance, state: "error" }}
+                    {...errors.balance && { error: errors.balance, state: "error" }}
                 />
                 <Select
                     items={[
