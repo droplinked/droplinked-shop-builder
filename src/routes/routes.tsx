@@ -13,6 +13,7 @@ import Collections from "pages/collections/Collections";
 import DashboardPage from "pages/dashboard/DashboardPage";
 import Gamification from "pages/gamification/Gamification";
 import { CreateInvoice, InvoiceManagement } from "pages/invoice-management";
+import Maintenance from "pages/maintenance/Maintenance";
 import NFTs from "pages/nfts/NFTs";
 import Orders from "pages/orders/Orders";
 import ProductOrder from "pages/product/order/ProductOrder";
@@ -71,6 +72,7 @@ function AppRoutes() {
         <Suspense fallback={<FullScreenLoading />}>
             <Routes>
                 <Route path="/" element={<MainLayout />}>
+                    <Route errorElement path="maintenance" element={<Maintenance />} />
                     <Route index element={<HomePage />} />
                     <Route path="signup" element={<HomePage showAuthModal={true} />} />
                     <Route path="enquiry" element={<Enquiry />} />
@@ -106,6 +108,7 @@ function AppRoutes() {
                 </Route>
 
                 <Route path="analytics" element={<DashboardLayout />}>
+                    <Route errorElement path="maintenance" element={<Maintenance />} />
                     <Route index element={<DashboardPage />} />
                     <Route path="registration" element={<SimpleRegistration />} />
                     <Route path="settings" element={<RegisterPagesWrapper />}>
@@ -152,6 +155,7 @@ function AppRoutes() {
                 </Route>
 
                 <Route path="shop-management" element={<ShopManagementLayout />}>
+                    <Route errorElement path="maintenance" element={<Maintenance />} />
                     <Route index element={<ShopManagement />} />
                 </Route>
 
