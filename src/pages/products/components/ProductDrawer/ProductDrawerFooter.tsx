@@ -15,11 +15,15 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
     const isProductRecorded = checkIfProductIsRecorded(sku)
     const isButtonDisabled = isProductRecorded || isSubmitting
 
-    const handleAction = (action: string) => {
+    const handleAction = async (action: string) => {
         const isSavingAsDraft = action === 'save-as-draft'
         const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
-        setFieldValue('publish_status', publishStatus)
-        setFieldValue('publish_product', !isSavingAsDraft)
+
+        await Promise.all([
+            setFieldValue('publish_status', publishStatus),
+            setFieldValue('publish_product', !isSavingAsDraft)
+        ])
+
         handleSubmit()
     }
 
@@ -48,6 +52,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                 >
                     Save as draft
                 </Button>
+
                 <Button
                     type="button"
                     isDisabled={isButtonDisabled}

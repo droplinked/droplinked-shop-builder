@@ -2,13 +2,21 @@ import { array, boolean, number, object, string } from 'yup'
 import { Product } from './types'
 
 export const validationSchema = object().shape({
-    product_type: string().required('Please select a product type'),
-    title: string().required('Please enter a title for the product'),
-    description: string().required('Please provide a description for the product'),
-    media: array()
-        .min(1, 'Please upload at least one image to proceed')
-        .required('At least one image is required'),
-    productCollectionID: string().required('Please select a product collection'),
+    product_type: string().required('Please select a product type'), // Always required
+    title: string().required('Please enter a title for the product'), // Always required
+    description: string().when('$publish_product', {
+        is: false,
+        then: (schema) => schema.nullable(),
+        otherwise: (schema) => schema.required('Please provide a description for the product'),
+    }),
+    media: array().when('$publish_product', {
+        is: false,
+        then: (schema) => schema.nullable(),
+        otherwise: (schema) => schema
+            .min(1, 'Please upload at least one image to proceed')
+            .required('At least one image is required'),
+    }),
+    productCollectionID: string().required('Please select a product collection'), // Always required
     canBeAffiliated: boolean(),
     commission: number()
         .when('canBeAffiliated', {
@@ -20,53 +28,60 @@ export const validationSchema = object().shape({
                 .required('Please enter a commission percentage between 0 and 100'),
             otherwise: (schema) => schema.nullable(),
         }),
-    sku: array().of(
-        object().shape({
-            price: number()
-                .required('Please enter a price for the SKU')
-                .positive('Price must be greater than 0')
-                .typeError('Please enter a valid numeric value for the price')
-                .when('$product_type', {
-                    is: 'PRINT_ON_DEMAND',
-                    then: (schema) =>
-                        schema.test(
-                            'price-greater-than-rawPrice',
-                            'Price must be greater than the raw price for POD products',
-                            function (value) {
-                                const { rawPrice } = this.parent // Access rawPrice from the same SKU object
-                                return !rawPrice || value > rawPrice // Ensure price > rawPrice
-                            }
-                        ),
-                    otherwise: (schema) => schema, // No additional validation for non-POD products
-                }),
-            quantity: number()
-                .when('$product_type', {
-                    is: 'PRINT_ON_DEMAND',
-                    then: (schema) => schema.strip(),
-                    otherwise: (schema) =>
-                        schema
-                            .required('Please enter a quantity for the SKU')
-                            .min(1, 'Quantity must be at least 1')
-                            .typeError('Please enter a valid numeric value for the quantity')
-                }),
-            dimensions: object().shape({
-                height: number().required('Please enter the height').positive('Height must be greater than 0'),
-                width: number().required('Please enter the width').positive('Width must be greater than 0'),
-                length: number().required('Please enter the length').positive('Length must be greater than 0'),
-            }).when('$product_type', {
-                is: 'NORMAL',
-                then: (schema) => schema.required('Please provide packaging dimensions for the SKU'),
-                otherwise: (schema) => schema.strip(),
-            }),
-            weight: number()
-                .nullable()
-                .when('$product_type', {
-                    is: 'NORMAL',
-                    then: (schema) => schema.required('Please enter the weight').positive('Weight must be greater than 0'),
-                    otherwise: (schema) => schema.nullable(),
-                }),
-        })
-    ).min(1, 'Please add at least one SKU').required('SKU information is required'),
+    sku: array().when('$publish_product', {
+        is: false,
+        then: (schema) => schema.nullable(),
+        otherwise: (schema) => schema
+            .of(
+                object().shape({
+                    price: number()
+                        .required('Please enter a price for the SKU')
+                        .positive('Price must be greater than 0')
+                        .typeError('Please enter a valid numeric value for the price')
+                        .when('$product_type', {
+                            is: 'PRINT_ON_DEMAND',
+                            then: (schema) =>
+                                schema.test(
+                                    'price-greater-than-rawPrice',
+                                    'Price must be greater than the raw price for POD products',
+                                    function (value) {
+                                        const { rawPrice } = this.parent // Access rawPrice from the same SKU object
+                                        return !rawPrice || value > rawPrice // Ensure price > rawPrice
+                                    }
+                                ),
+                            otherwise: (schema) => schema, // No additional validation for non-POD products
+                        }),
+                    quantity: number()
+                        .when('$product_type', {
+                            is: 'PRINT_ON_DEMAND',
+                            then: (schema) => schema.strip(),
+                            otherwise: (schema) =>
+                                schema
+                                    .required('Please enter a quantity for the SKU')
+                                    .min(1, 'Quantity must be at least 1')
+                                    .typeError('Please enter a valid numeric value for the quantity')
+                        }),
+                    dimensions: object().shape({
+                        height: number().required('Please enter the height').positive('Height must be greater than 0'),
+                        width: number().required('Please enter the width').positive('Width must be greater than 0'),
+                        length: number().required('Please enter the length').positive('Length must be greater than 0'),
+                    }).when('$product_type', {
+                        is: 'NORMAL',
+                        then: (schema) => schema.required('Please provide packaging dimensions for the SKU'),
+                        otherwise: (schema) => schema.strip(),
+                    }),
+                    weight: number()
+                        .nullable()
+                        .when('$product_type', {
+                            is: 'NORMAL',
+                            then: (schema) => schema.required('Please enter the weight').positive('Weight must be greater than 0'),
+                            otherwise: (schema) => schema.nullable(),
+                        }),
+                })
+            )
+            .min(1, 'Please add at least one SKU')
+            .required('SKU information is required'),
+    }),
     m2m_positions: array().test(
         'm2m-positions-require-services',
         'Please select customer wallet options',
@@ -102,7 +117,7 @@ export const validationSchema = object().shape({
                 const selectedDate = new Date(value)
                 return selectedDate.getTime() > now.getTime()
             }
-        ),
+        )
 })
 
 export const initialValues: Product = {
