@@ -2,35 +2,36 @@ import { array, boolean, number, object, string } from 'yup'
 import { Product } from './types'
 
 export const validationSchema = object().shape({
-    product_type: string().required('Product type is required'),
-    title: string().required('Title is required'),
-    description: string().required('Description is required'),
+    product_type: string().required('Please select a product type'),
+    title: string().required('Please enter a title for the product'),
+    description: string().required('Please provide a description for the product'),
     media: array()
-        .min(1, 'Please upload an image to proceed')
-        .required('At least one media item is required'),
-    productCollectionID: string().required('Product collection is required'),
+        .min(1, 'Please upload at least one image to proceed')
+        .required('At least one image is required'),
+    productCollectionID: string().required('Please select a product collection'),
     canBeAffiliated: boolean(),
     commission: number()
         .when('canBeAffiliated', {
             is: true,
             then: (schema) => schema
-                .min(0, 'Commission must be at least 1%')
-                .max(100, 'Commission must not exceed 100%')
+                .min(0, 'Commission must be at least 0%')
+                .max(100, 'Commission cannot exceed 100%')
                 .typeError('Please enter a valid number')
-                .required('Please enter a valid commission percentage between 0 and 100'),
+                .required('Please enter a commission percentage between 0 and 100'),
             otherwise: (schema) => schema.nullable(),
         }),
     sku: array().of(
         object().shape({
             price: number()
-                .required('Price is required for all SKUs')
+                .required('Please enter a price for the SKU')
                 .positive('Price must be greater than 0')
+                .typeError('Please enter a valid numeric value for the price')
                 .when('$product_type', {
                     is: 'PRINT_ON_DEMAND',
                     then: (schema) =>
                         schema.test(
                             'price-greater-than-rawPrice',
-                            'Price must be greater than raw price for POD products',
+                            'Price must be greater than the raw price for POD products',
                             function (value) {
                                 const { rawPrice } = this.parent // Access rawPrice from the same SKU object
                                 return !rawPrice || value > rawPrice // Ensure price > rawPrice
@@ -44,30 +45,31 @@ export const validationSchema = object().shape({
                     then: (schema) => schema.strip(),
                     otherwise: (schema) =>
                         schema
-                            .required('Quantity is required for all SKUs')
-                            .min(1, 'Quantity must be at least 1'),
+                            .required('Please enter a quantity for the SKU')
+                            .min(1, 'Quantity must be at least 1')
+                            .typeError('Please enter a valid numeric value for the quantity')
                 }),
             dimensions: object().shape({
-                height: number().required('Height is required').positive('Height must be greater than 0'),
-                width: number().required('Width is required').positive('Width must be greater than 0'),
-                length: number().required('Length is required').positive('Length must be greater than 0'),
+                height: number().required('Please enter the height').positive('Height must be greater than 0'),
+                width: number().required('Please enter the width').positive('Width must be greater than 0'),
+                length: number().required('Please enter the length').positive('Length must be greater than 0'),
             }).when('$product_type', {
                 is: 'NORMAL',
-                then: (schema) => schema.required('Please enter packaging size property for all SKUs'),
+                then: (schema) => schema.required('Please provide packaging dimensions for the SKU'),
                 otherwise: (schema) => schema.strip(),
             }),
             weight: number()
                 .nullable()
                 .when('$product_type', {
                     is: 'NORMAL',
-                    then: (schema) => schema.required('Weight is required').positive('Weight must be greater than 0'),
+                    then: (schema) => schema.required('Please enter the weight').positive('Weight must be greater than 0'),
                     otherwise: (schema) => schema.nullable(),
                 }),
         })
-    ).min(1, 'At least one SKU is required').required('SKU information is required'),
+    ).min(1, 'Please add at least one SKU').required('SKU information is required'),
     m2m_positions: array().test(
         'm2m-positions-require-services',
-        'Please choose customer wallet options',
+        'Please select customer wallet options',
         function (positions) {
             const { m2m_services } = this.parent
             return !positions.length || (m2m_services && m2m_services.length > 0)
@@ -78,7 +80,7 @@ export const validationSchema = object().shape({
         .nullable()
         .when('artwork', {
             is: (artwork) => !!artwork,
-            then: (schema) => schema.required('Artwork position is required when artwork is provided'),
+            then: (schema) => schema.required('Please specify the position for the artwork'),
             otherwise: (schema) => schema.nullable(),
         }),
     artwork2: string().nullable(),
@@ -86,14 +88,14 @@ export const validationSchema = object().shape({
         .nullable()
         .when('artwork2', {
             is: (artwork2) => !!artwork2,
-            then: (schema) => schema.required('Artwork2 position is required when artwork2 is provided'),
+            then: (schema) => schema.required('Please specify the position for the second artwork'),
             otherwise: (schema) => schema.nullable(),
         }),
     launchDate: string()
         .nullable()
         .test(
             'is-future-date',
-            'Launch date and time must be in the future',
+            'The launch date and time must be in the future',
             (value) => {
                 if (!value) return true
                 const now = new Date()

@@ -1,69 +1,82 @@
-import { GridItem, SimpleGrid } from '@chakra-ui/react'
+import { Flex, GridItem, SimpleGrid } from '@chakra-ui/react'
+import ErrorMessage from 'components/redesign/error-message/ErrorMessage'
 import Input from 'components/redesign/input/Input'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import useAppStore from 'lib/stores/app/appStore'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import React from 'react'
 import InfinityToggleButton from '../../common/InfinityToggleButton'
 
 function DigitalProductSKU() {
-    const { values: { sku }, setFieldValue } = useProductForm()
+    const { values: { sku }, errors, setFieldValue } = useProductForm()
     const { shop: { currency } } = useAppStore()
 
-    const updateSkuField = (field: string, value: any) => {
+    // As you know, digital products have only 1 SKU, and we initialize it in the `getFormInitialValues` function in formHelpers.ts
+    const skuData = sku[0]
+    const errorMessage = getFieldErrorMessage(errors.sku)
+
+    const handleFieldUpdate = (field: string, value: any) => {
         const updatedSku = [...sku]
         updatedSku[0][field] = value
         setFieldValue('sku', updatedSku)
     }
 
     return (
-        <SimpleGrid
-            columns={{ base: 1, md: 2 }}
-            rowGap={9}
-            columnGap={4}
-            sx={{ input: { fontSize: 16 } }}
-        >
-            <Input
-                label="Price"
-                inputProps={{
-                    isRequired: true,
-                    type: 'number',
-                    numberType: 'float',
-                    value: sku?.[0]?.price || '',
-                    onChange: (e) => updateSkuField('price', parseFloat(e.target.value))
-                }}
-            />
+        <Flex direction="column" gap={2}>
+            <SimpleGrid
+                columns={{ base: 1, md: 2 }}
+                rowGap={9}
+                columnGap={4}
+                sx={{ input: { fontSize: 16 } }}
+            >
+                <Input
+                    label="Price"
+                    inputProps={{
+                        isRequired: true,
+                        type: 'number',
+                        numberType: 'float',
+                        placeholder: '0.00',
+                        value: skuData.price || '',
+                        onChange: (e) => handleFieldUpdate('price', parseFloat(e.target.value))
+                    }}
+                />
 
-            <GridItem alignSelf="flex-end">
-                <CurrencySelect h="50px" value={currency?.abbreviation} isDisabled />
-            </GridItem>
+                <GridItem alignSelf="flex-end">
+                    <CurrencySelect h="50px" value={currency?.abbreviation} isDisabled />
+                </GridItem>
 
-            <Input
-                label="Quantity"
-                inputContainerProps={{ padding: '10px' }}
-                inputProps={{
-                    type: 'number',
-                    numberType: 'int',
-                    min: 0,
-                    value: sku?.[0]?.quantity || '',
-                    onChange: (e) => updateSkuField('quantity', parseInt(e.target.value))
-                }}
-                rightElement={
-                    <InfinityToggleButton
-                        isActive={sku?.[0].quantity === 1000000}
-                        onToggle={() => updateSkuField('quantity', 1000000)}
-                    />
-                }
-            />
+                <Input
+                    label="Quantity"
+                    inputContainerProps={{ padding: '10px' }}
+                    inputProps={{
+                        type: 'number',
+                        numberType: 'int',
+                        min: 0,
+                        placeholder: '1',
+                        value: skuData.quantity || '',
+                        onChange: (e) => handleFieldUpdate('quantity', parseInt(e.target.value))
+                    }}
+                    rightElement={
+                        <InfinityToggleButton
+                            isActive={skuData.quantity === 1000000}
+                            onToggle={() => handleFieldUpdate('quantity', 1000000)}
+                        />
+                    }
+                />
 
-            <Input
-                label="External ID"
-                inputProps={{
-                    value: sku?.[0]?.externalID || '',
-                    onChange: (e) => updateSkuField('externalID', e.target.value)
-                }}
-            />
-        </SimpleGrid>
+                <Input
+                    label="External ID"
+                    inputProps={{
+                        placeholder: '1',
+                        value: skuData.externalID || '',
+                        onChange: (e) => handleFieldUpdate('externalID', e.target.value)
+                    }}
+                />
+            </SimpleGrid>
+
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+        </Flex>
     )
 }
 
