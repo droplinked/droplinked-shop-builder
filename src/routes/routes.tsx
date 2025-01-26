@@ -62,7 +62,6 @@ const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
-const ProductSingle = lazy(() => import("pages/product/single"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
