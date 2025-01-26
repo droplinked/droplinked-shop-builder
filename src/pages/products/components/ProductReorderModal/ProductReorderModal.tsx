@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import ProductList from './ProductList';
 import ProductReorderLoading from './ProductReorderLoading';
+import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts';
 
 interface Props {
     isOpen: boolean;
@@ -17,6 +18,7 @@ interface Props {
 
 function ProductReorderModal({ isOpen, onClose }: Props) {
     const [products, setProducts] = useState([])
+    const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { showToast } = useAppToast()
     const { isFetching } = useQuery({
         queryFn: getAllProductsService,
@@ -27,9 +29,14 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
         }
     })
 
+    const handleCloseModal = () => {
+        invalidateProductsQuery()
+        onClose()
+    }
+
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "2xl" }}
+            modalRootProps={{ isOpen, onClose: handleCloseModal, size: "2xl" }}
             modalContentProps={{ width: "600px", gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
