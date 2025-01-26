@@ -1,9 +1,18 @@
 import { Grid } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import React from 'react'
-import SocialMediaCard from './SocialMediaCard'
+import SocialMediaCard from './components/SocialMediaCard'
 
-const promotions = [
+export interface Promotion {
+  title: string;
+  description: string;
+  duration: string;
+  platform: string;
+  link: string;
+  icon: JSX.Element;
+}
+
+const promotions : Promotion[] = [
   { title: 'Follow us on X', description: 'Free Pro Plan', duration: '1 month', platform: 'X', link: 'https://twitter.com/droplinked', icon: <AppIcons.ColorfulXTwitter width="24px" height="24px" /> },
   { title: 'Join our Discord', description: 'Free Pro Plan', duration: '1 month', platform: 'DISCORD', link: 'https://discord.com/channels/1068939465025916959/1088500920406515763', icon: <AppIcons.ColorfulDiscord width="24px" height="24px" /> },
   { title: 'Join our Telegram', description: 'Free Pro Plan', duration: '1 month', platform: 'TELEGRAM', link: 'https://t.me/droplinked', icon: <AppIcons.ColorfulTelegram width="24px" height="24px" style={{ flexShrink: 0 }} /> },
@@ -13,11 +22,13 @@ const promotions = [
 ]
 
 function SocialMediaList() {
+  
   return (
     <Grid
       templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
       gap={6}
       pb="160px"
+      zIndex={100}
     >
       {promotions.map((promotion, index) => <SocialMediaCard key={index} promotion={promotion} />)}
     </Grid>
