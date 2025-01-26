@@ -11,7 +11,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             onFileChange(selectedFile)
         },
         multiple: false,
-        accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }
+        accept: { 'text/csv': ['.csv'] }
     })
 
     const dropMessage = isDragActive ?
