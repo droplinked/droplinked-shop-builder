@@ -1,4 +1,4 @@
-import MainLayout from "components/layouts/app/main/mainLayout";
+import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
