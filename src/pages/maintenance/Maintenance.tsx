@@ -8,15 +8,11 @@ import AppIcons from "assest/icon/Appicons";
 
 export default function Maintenance() {
     const navigate = useNavigate();
-    const location = useLocation();
-    const isInDashboard = location.pathname.startsWith("/analytics") || location.pathname.startsWith("/shop-management");
+    const { pathname } = useLocation();
+    const isInDashboard = pathname.startsWith("/analytics") || pathname.startsWith("/shop-management");
 
     const handleNavigate = () => {
-        if (isInDashboard) {
-            navigate("/analytics");
-        } else {
-            navigate("/");
-        }
+        navigate(isInDashboard ? "/analytics" : "/");
     };
 
     return (
