@@ -15,6 +15,9 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
     useEffect(() => {
         if (["PROFILE_COMPLETED", "VERIFIED"].includes(user?.status)) navigate("/analytics/registration")
     }, [user, navigate])
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [location]);
 
     return (
         <VStack width="full" height="full" alignItems="flex-start" justifyContent="flex-start">

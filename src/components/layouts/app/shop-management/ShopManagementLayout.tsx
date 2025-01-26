@@ -1,11 +1,16 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AdminHoc from 'functions/hoc/admin/adminHoc'
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import DashboardLayoutHeader from 'components/layouts/dashboard/DashboardLayoutHeader'
 import Footer from '../main/components/footer/Footer'
 
 function ShopManagementLayout() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, [pathname]);
+
     return (
         <Flex minHeight={"100dvh"} direction={"column"} bgColor={"bG"}>
             <DashboardLayoutHeader />

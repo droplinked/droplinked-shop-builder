@@ -2,7 +2,6 @@ import MainLayout from "components/layouts/app/main/mainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
-import ScrollToTop from "components/layouts/scroll-to-top/ScrollToTop";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -73,11 +72,7 @@ const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const router = createBrowserRouter([
     {
         path: "/",
-        element: (
-            <ScrollToTop>
-                <MainLayout />
-            </ScrollToTop>
-        ),
+        element: <MainLayout />,
         errorElement: (
             <MainLayout>
                 <Maintenance />
@@ -123,11 +118,7 @@ const router = createBrowserRouter([
     },
     {
         path: "analytics",
-        element: (
-            <ScrollToTop>
-                <DashboardLayout />
-            </ScrollToTop>
-        ),
+        element: <DashboardLayout />,
         errorElement: (
             <DashboardLayout>
                 <Maintenance />
@@ -203,11 +194,7 @@ const router = createBrowserRouter([
     },
     {
         path: "shop-management",
-        element: (
-            <ScrollToTop>
-                <ShopManagementLayout />
-            </ScrollToTop>
-        ),
+        element: <ShopManagementLayout />,
         errorElement: <Maintenance />,
         children: [
             { index: true, element: <ShopManagement /> },
