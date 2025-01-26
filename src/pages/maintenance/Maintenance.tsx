@@ -1,6 +1,6 @@
 import { Flex, Image } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import Illustration from "assest/image/maintenance-illustration.svg";
+import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
 import React from "react";
@@ -23,7 +23,7 @@ function Maintenance() {
             gap={9}
             my={!isInDashboard ? "4rem" : undefined}
         >
-            <Image src={Illustration} alt="Maintenance Illustration" />
+            <AppImage src="https://upload-file-droplinked.s3.amazonaws.com/73e41aa957001b34d9101d8dce854372d9660273f767466466f11bf5c1c7cbf9.png" alt="Maintenance Illustration" />
             <Flex maxWidth="600px" direction="column" gap={4} textAlign="center">
                 <AppTypography fontSize={20} fontWeight={700} color="#fff">
                     We’re Temporarily Unavailable
