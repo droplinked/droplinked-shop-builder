@@ -10,17 +10,17 @@ import RewardDivider from './components/RewardDivider';
 import RewardHeader from './components/RewardHeader';
 
 const RewardHero = () => {
-  const { shop } = useAppStore();
+  const { isLoggedIn } = useAppStore();
   const [isProPlanOpen, setProPlanOpen] = useState(false);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const { grantProPlan, loading } = useFollowStatus();
   const [unlockedMonths, setUnlockedMonths] = useState<number | undefined>();
 
-  const textMessage = shop ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to Qualify';
-  const buttonMessage = shop ? 'Activate Account' : 'Get Started';
+  const textMessage =  isLoggedIn ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to Qualify';
+  const buttonMessage =  isLoggedIn ? 'Activate Account' : 'Get Started';
 
   const onClick = async () => {
-    if (shop) {
+    if ( isLoggedIn) {
       try {
         const result = await grantProPlan();
         console.log(result);
@@ -47,7 +47,7 @@ const RewardHero = () => {
           </BasicButton>
         </VStack>
       </VStack>
-      <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={() => setProPlanOpen(false)} />
+      { isLoggedIn && <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={() => setProPlanOpen(false)} /> }
       <AuthModal show={isAuthModalOpen} close={() => setAuthModalOpen(false)} type={MODAL_TYPE.SIGNIN} />
     </>
   );
