@@ -62,7 +62,7 @@ function NFTs() {
                 Looks like you haven't connected a wallet yet!
                 To get started, connect a wallet by clicking {" "}
                 <Box as={"span"} color={"#33A9EC"} textDecoration={"underline"}>
-                    <Link to={"/analytics/settings/technical"}>here</Link>
+                    <Link to={"/analytics/account-settings"}>here</Link>
                 </Box>
             </AppTypography>
         </AppCard>
