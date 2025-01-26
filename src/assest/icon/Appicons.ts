@@ -317,6 +317,7 @@ import { ReactComponent as JapaneseYen } from "./jpy.svg"
 import { ReactComponent as Pound } from "./pound.svg"
 import { ReactComponent as AustralianDollar } from "./aud.svg"
 import { ReactComponent as CanadianDollar } from "./cad.svg"
+import { ReactComponent as SideBarQuests} from './sidebar-quests.svg'
 
 const AppIcons = {
   Euro,
@@ -638,7 +639,8 @@ const AppIcons = {
   ColorfulLinkedin,
   DROP_LINKED_LOGO,
   ExternalArrow,
-  Soon
+  Soon,
+  SideBarQuests
 }
 
 export default AppIcons;

@@ -130,6 +130,12 @@ export const sidebar_constants: SidebarGroup[] = [
                 linkTo: "/analytics/account-settings",
                 list: [],
             },
+            {
+                title: "Quests",
+                icon: AppIcons.SideBarQuests,
+                linkTo: "/rewards",
+                list: [],
+            },
             // {
             //     title: "Management Panel",
             //     icon: AppIcons.SidebarSetting,

@@ -7,8 +7,11 @@ import { Link } from "react-router-dom";
 import DashboardLayoutDecideFragmentOrLink from "./DashboardLayoutDecideBoxOrLink";
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger, AppAccordionPanel, AppAccordionChevron } from "components/redesign/accordion/AppAccordion";
 import DashboardLayoutSidebarGrowthHack from "./DashboardLayoutSidebarGrowthHack";
+import useAppStore from "lib/stores/app/appStore";
 
 const DashboardLayoutSidebar = () => {
+    const {shop} = useAppStore();
+    
     return (
         <Flex width="288px" height="100vh" flexDirection="column" alignItems="flex-start" position="sticky" top={0}>
             <Box padding="28px 16px 24px 16px">
@@ -23,7 +26,11 @@ const DashboardLayoutSidebar = () => {
                 {sidebar_constants?.map((sidebar_group) => (
                     <Box key={sidebar_group.group} display="flex" flexDirection="column" alignItems="flex-start" gap="8px" alignSelf="stretch" width={"full"}>
                         <Flex display="flex" height="16px" paddingLeft="12px" alignItems="center" gap="10px" alignSelf="stretch"><AppTypography color="#7B7B7B" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px">{sidebar_group.group}</AppTypography></Flex>
-                        {sidebar_group?.items?.map((item) => (
+                        {sidebar_group?.items?.map((item) => {
+                            if (item.title === "Quests" && shop.hasCompletedQuests) {
+                                return null;
+                            }
+                            return( 
                             <AppAccordionItem width={"full"} key={item?.title} itemId={item?.title} isCollapsable={item?.list?.length > 0}>
                                 <AppAccordionTrigger width={"full"}>
                                     <DashboardLayoutDecideFragmentOrLink linkTo={item?.linkTo}>
@@ -42,10 +49,12 @@ const DashboardLayoutSidebar = () => {
                                     </AppAccordionPanel>
                                 )}
                             </AppAccordionItem>
-                        ))}
+                        )})
+                           
+                    }
                     </Box>
                 ))}
-                <DashboardLayoutSidebarGrowthHack />
+                 <DashboardLayoutSidebarGrowthHack />
             </AppAccordion>
         </Flex>
     );
