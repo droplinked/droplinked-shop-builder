@@ -1,4 +1,4 @@
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
