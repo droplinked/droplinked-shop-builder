@@ -16,7 +16,7 @@ export interface Props {
 
 const ProPlanModal = ({ isOpen, onClose, unlockedMonths }: Props) => {
   const navigate = useNavigate();
-  const { refetch, isLoading } = useShopSubscriptionData();
+  const { refetch, isFetching } = useShopSubscriptionData();
 
   const handleButtonClick = async () => {
     try {
@@ -36,7 +36,7 @@ const ProPlanModal = ({ isOpen, onClose, unlockedMonths }: Props) => {
           <ModalHeader />
           <PlanDetails unlockedMonths={unlockedMonths} />
           <FeaturesSection />
-          <ModalFooter isLoading={isLoading} handleButtonClick={handleButtonClick} />
+          <ModalFooter isLoading={isFetching} handleButtonClick={handleButtonClick} />
         </Box>
       </ModalBody>
     </AppModal>

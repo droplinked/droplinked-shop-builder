@@ -2,7 +2,7 @@ import { Box, Button, Text, VStack, Image } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import React from 'react';
 
-const CustomizableSection = () => (
+const CustomizableSection = ({ openAuthModal }) => (
   <Box flex="1" borderRadius="3xl" border="1px solid #222222" display="flex" flexDirection="column" overflow="hidden">
     <Box p="8" display="flex" flexDirection="column" gap={6}>
       <Box w={`56px`} h={`56px`} bg="#141414" borderRadius="xl" border="1px solid #222222" backdropFilter="blur(10px)" display="flex" justifyContent="center" alignItems="center">
@@ -15,7 +15,7 @@ const CustomizableSection = () => (
         <Text fontSize="base" color="#7b7b7b">
           Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity.
         </Text>
-        <Button bg="#2bcea1" color="black" size="md" borderRadius="lg">
+        <Button bg="#2bcea1" color="black" size="md" borderRadius="lg" onClick={openAuthModal}>
           Create Store
         </Button>
       </VStack>
