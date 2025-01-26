@@ -6,14 +6,16 @@ import Button from "components/redesign/button/Button";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Maintenance() {
+function MaintenancePage() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    const isInDashboard = pathname.startsWith("/analytics") || pathname.startsWith("/shop-management");
-    const buttonText = isInDashboard ? "Dashboard" : "Homepage";
+    // Checks if the user is in a dashboard route
+    const isDashboardRoute = pathname.startsWith("/analytics") || pathname.startsWith("/shop-management");
+    const buttonText = isDashboardRoute ? "Dashboard" : "Homepage";
 
-    const handleNavigate = () => navigate(isInDashboard ? "/analytics" : "/");
+    // Handles navigation to the appropriate page
+    const handleNavigate = () => navigate(isDashboardRoute ? "/analytics" : "/");
 
     return (
         <Flex
@@ -21,7 +23,7 @@ function Maintenance() {
             justify="center"
             align="center"
             gap={9}
-            my={!isInDashboard ? "4rem" : undefined}
+            my={!isDashboardRoute ? "4rem" : undefined}
         >
             <AppImage src="https://upload-file-droplinked.s3.amazonaws.com/73e41aa957001b34d9101d8dce854372d9660273f767466466f11bf5c1c7cbf9.png" alt="Maintenance Illustration" />
             <Flex maxWidth="600px" direction="column" gap={4} textAlign="center">
@@ -47,4 +49,4 @@ function Maintenance() {
     );
 }
 
-export default Maintenance
+export default MaintenancePage

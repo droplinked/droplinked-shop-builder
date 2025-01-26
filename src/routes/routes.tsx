@@ -17,7 +17,7 @@ const DashboardPage = lazy(() => import("pages/dashboard/DashboardPage"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
-const Maintenance = lazy(() => import("pages/maintenance/Maintenance"));
+const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
 const NFTs = lazy(() => import("pages/nfts/NFTs"));
 const Orders = lazy(() => import("pages/orders/Orders"));
 const ProductOrder = lazy(() => import("pages/product/order/ProductOrder"));
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         errorElement: (
             <MainLayout>
-                <Maintenance />
+                <MaintenancePage />
             </MainLayout>
         ),
         children: [
@@ -120,7 +120,7 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         errorElement: (
             <DashboardLayout>
-                <Maintenance />
+                <MaintenancePage />
             </DashboardLayout>
         ),
         children: [
@@ -194,7 +194,7 @@ const router = createBrowserRouter([
     {
         path: "shop-management",
         element: <ShopManagementLayout />,
-        errorElement: <Maintenance />,
+        errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
         ],
