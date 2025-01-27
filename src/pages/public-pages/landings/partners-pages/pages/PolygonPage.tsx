@@ -1,13 +1,13 @@
-import React from "react";
-import LandingHero from "../components/landing-hero/LandingHero";
 import AppIcons from "assest/icon/Appicons";
+import React from "react";
 import CollaborationDetails from "../components/CollaborationDetails";
 import CollaborationFeatures from "../components/CollaborationFeatures";
-import ProPlan from "../components/ProPlan";
+import LandingHero from "../components/landing-hero/LandingHero";
 import Layout from "../components/Layout";
+import ProPlan from "../components/ProPlan";
 import { PartnerProvider } from "../context/partner.context";
 
-function UdPage() {
+function PolygonPage() {
   return (
     <PartnerProvider
       partnerName="Polygon"
@@ -28,4 +28,4 @@ function UdPage() {
   );
 }
 
-export default UdPage;
+export default PolygonPage;

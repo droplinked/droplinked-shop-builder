@@ -1,9 +1,7 @@
 import { Flex, Image, useDisclosure } from '@chakra-ui/react';
-import Footer from 'components/layouts/app/main/components/footer/Footer';
-import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppStore from 'lib/stores/app/appStore';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Banner from './parts/banner/Banner';
@@ -51,22 +49,18 @@ function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
 
   const handleCloseModal = () => {
     onClose()
-    if (showAuthModal) {
-      navigate("/")
-    }
+    if (showAuthModal) navigate("/")
   }
 
-
-  const effects = useMemo(() => (
+  const effects = (
     <>
       <Image src='/assets/images/homepage/ef1.png' position="absolute" top="0" right={0} zIndex="0" />
       <Image src='/assets/images/homepage/ef2.png' position="absolute" top="50vh" left="0" zIndex="0" />
     </>
-  ), [])
+  )
 
   return user && shop ? <Navigate to="/analytics" /> : (
     <>
-      <HeaderMain />
       <ParallaxProvider>
         <Flex direction={"column"}>
 
@@ -112,7 +106,6 @@ function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
 
       </ParallaxProvider>
       {isOpen && <AuthModal show={true} type={States.typeOfModal} close={handleCloseModal} />}
-      <Footer />
     </>
   )
 }
