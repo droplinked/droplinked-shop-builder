@@ -35,6 +35,7 @@ const DppPage = lazy(() => import("pages/public-pages/landings/dpp-page/DppPage"
 const MetaverseStorePage = lazy(() => import("pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"));
 const D3Page = lazy(() => import("pages/public-pages/landings/partners-pages/pages/D3Page"));
 const UdPage = lazy(() => import("pages/public-pages/landings/partners-pages/pages/UdPage"));
+const PolygonPage = lazy(() => import("pages/public-pages/landings/partners-pages/pages/PolygonPage"));
 const PaymentLinkPage = lazy(() => import("pages/public-pages/landings/payment-link-page/PaymentLinkPage"));
 const PhysicalProductPage = lazy(() => import("pages/public-pages/landings/physical-product-page/PhysicalProductPage"));
 const PODProductPage = lazy(() => import("pages/public-pages/landings/pod-product-page/PODProductPage"));
@@ -99,6 +100,7 @@ const router = createBrowserRouter([
             { path: "onchain-affiliate", element: <AffiliatePage /> },
             { path: "/d3", element: <D3Page /> },
             { path: "/unstoppable-domains", element: <UdPage /> },
+            { path: "/polygon", element: <PolygonPage /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             { path: "roi", element: <ROIPage /> },
             { path: "dpp", element: <DppPage /> },
