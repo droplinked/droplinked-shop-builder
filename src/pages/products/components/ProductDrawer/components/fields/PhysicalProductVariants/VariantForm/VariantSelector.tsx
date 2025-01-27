@@ -6,8 +6,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 interface Props {
     properties: ProductProperty[]
-    localProperty: ProductProperty | null
-    setLocalProperty: (property: ProductProperty | null) => void
+    localProperty: ProductProperty
+    setLocalProperty: (property: ProductProperty) => void
 }
 
 function VariantSelector({ properties, setLocalProperty, localProperty }: Props) {
@@ -81,7 +81,12 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                     padding="12px 16px"
                     transition="border-color 0.1s ease-out"
                     _hover={{ borderColor: '#3C3C3C' }}
-                    sx={{ input: { color: '#FFF', _placeholder: { color: '#7B7B7B' } } }}
+                    sx={{
+                        input: {
+                            flex: 1, outline: 'none', border: 'none', bg: 'transparent', color: '#FFF',
+                            _placeholder: { color: '#7B7B7B' }
+                        }
+                    }}
                 >
                     <input
                         ref={inputRef}

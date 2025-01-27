@@ -39,7 +39,10 @@ export default function SKUTable() {
     }, [sku, properties, setFieldValue])
 
     return (
-        <Table.Root columns={columns} hasActionColumn>
+        <Table.Root
+            columns={columns}
+        // hasActionColumn
+        >
             <Table.Head data={sku} />
             <Table.Body>
                 {sku.map((currentSKU, index) => (
