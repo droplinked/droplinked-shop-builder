@@ -46,40 +46,6 @@ function HeaderMain() {
       ]
     }
   ];
-    const headerMenuItems = [
-        {
-            label: "Platform Functionalities",
-            links: [
-                { label: "Physical Products", description: "All our items in one place", icon: <AppIcons.HeaderBag />, href: "/physical-product" },
-                { label: "Digital Goods", description: "Shop by type and interest", icon: <AppIcons.HeaderImage />, href: "/digital-product" },
-                { label: "Products on Demand", description: "Themed and seasonal product selections", icon: <AppIcons.HeaderShirt />, href: "/pod-product" },
-                { label: "Onchain Affiliate", description: "Transparent Commerce to Earn the Most", icon: <AppIcons.HeaderAffiliate />, href: "/onchain-affiliate" },
-                { label: "Payment Links", description: "Seamless Payments, Anytime, Anywhere", icon: <AppIcons.HeaderCreditCard />, href: "/payment-links" },
-                { label: "Product Tiles", description: "Embed and Sell Anywhere Effortlessly", icon: <AppIcons.HeaderProductBox />, href: "/product-tiles" },
-                { label: "Tokenizing Products", description: "Tokenize Your Physical Assets Seamlessly", icon: <AppIcons.HeaderTokenCoin />, href: "/tokenizing-products" },
-                { label: "Affiliate SaaS Subscriptions", description: "Affiliate SaaS Subscriptions with Confidence", icon: <AppIcons.HeaderAffiliateSass />, href: "/affiliate-sass" },
-                { label: "Custom Tokens", description: "Unlock the Power of Custom Tokens", icon: <AppIcons.HeaderTokenCoin />, href: "/custom-tokens" },
-                { label: "Social Quests", description: "Grow the community to earn more", icon: <AppIcons.SideBarQuests />, href: "/rewards" }
-            ]
-        },
-        {
-            label: "Enterprise",
-            links: [
-                { label: "DIMST", description: "Onchain inventory management", icon: <AppIcons.HeaderCoins />, href: "/roi" },
-                { label: "Tokenpay", description: "All our items in one place", icon: <AppIcons.HeaderCoins />, href: "/tokenpay" },
-                { label: "Metaverse Store", description: "Step Into Your Metaverse Store", icon: <AppIcons.MetaverseStore />, href: "/metaverse-store" },
-                { label: "DPP", description: "Digital product passport", icon: <AppIcons.HeaderImage />, href: "/dpp" }
-            ]
-        },
-        {
-            label: "Partners",
-            links: [
-                { label: "D3", description: "Droplinked & D3", icon: <AppIcons.HeaderD3 />, href: "/d3" },
-                { label: "Unstoppable Domains", description: "Droplinked & Unstoppable Domains", icon: <AppIcons.HeaderUd />, href: "/unstoppable-domains" },
-                { label: "Polygon", description: "Droplinked & Polygon", icon: <AppIcons.HeaderPolygon />, href: "/Polygon" },
-            ]
-        }
-    ]
 
   return (
     <>
