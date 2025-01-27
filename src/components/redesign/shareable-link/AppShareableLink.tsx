@@ -21,7 +21,7 @@ export default function AppShareableLink({ link, buttonBgColor }: Props) {
 function LinkInput({ link }: Props) {
     return (
         <Flex className={styles["input-group"]}>
-            <input defaultValue={`${link.slice(0, 22)}...`} placeholder=" " readOnly />
+            <input style={{ background: "transparent" }} defaultValue={`${link.slice(0, 22)}...`} placeholder=" " readOnly />
             <FormLabel>Payment Link</FormLabel>
             <ClipboardText text={link} />
         </Flex>
