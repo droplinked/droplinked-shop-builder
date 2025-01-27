@@ -6,6 +6,7 @@ import MobileHeader from './_components/mobile-header/MobileHeader';
 
 function HeaderMain() {
   const [isScrolled, setIsScrolled] = useState(false);
+
   window.onscroll = () => {
     if (window.scrollY > 10) setIsScrolled(true);
     else setIsScrolled(false);
@@ -42,36 +43,34 @@ function HeaderMain() {
       links: [
         { label: 'D3', description: 'Droplinked & D3', icon: <AppIcons.HeaderD3 />, href: '/d3' },
         { label: 'Unstoppable Domains', description: 'Droplinked & Unstoppable Domains', icon: <AppIcons.HeaderUd />, href: '/unstoppable-domains' },
-        { label: 'Polygon', description: 'Droplinked & Polygon', icon: <AppIcons.HeaderPolygon />, href: '/Polygon' }
+        { label: 'Polygon', description: 'Droplinked & Polygon', icon: <AppIcons.HeaderPolygon />, href: '/polygon' }
       ]
     }
   ];
 
   return (
-    <>
-      <Flex
-        as="header"
-        justifyContent="space-between"
-        alignItems="center"
-        position="fixed"
-        top={0}
-        left={0}
-        right={0}
-        borderBottom={isScrolled ? '1px solid #3C3C3C' : 'transparent'}
-        paddingBlock={{ base: 4, md: 6 }}
-        paddingInline={{ base: 4, md: 9, lg: '60px', xl: '72px' }}
-        backgroundColor={isScrolled ? '#141414' : 'transparent'}
-        zIndex={999}
-      >
-        <Hide below="lg">
-          <DesktopHeader headerMenuItems={headerMenuItems} />
-        </Hide>
+    <Flex
+      as="header"
+      justifyContent="space-between"
+      alignItems="center"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      borderBottom={isScrolled ? '1px solid #3C3C3C' : 'transparent'}
+      paddingBlock={{ base: 4, md: 6 }}
+      paddingInline={{ base: 4, md: 9, lg: '60px', xl: '72px' }}
+      backgroundColor={isScrolled ? '#141414' : 'transparent'}
+      zIndex={999}
+    >
+      <Hide below="lg">
+        <DesktopHeader headerMenuItems={headerMenuItems} />
+      </Hide>
 
-        <Show below="lg">
-          <MobileHeader headerMenuItems={headerMenuItems} />
-        </Show>
-      </Flex>
-    </>
+      <Show below="lg">
+        <MobileHeader headerMenuItems={headerMenuItems} />
+      </Show>
+    </Flex>
   );
 }
 
