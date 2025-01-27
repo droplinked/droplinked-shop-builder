@@ -15,7 +15,7 @@ import AddressHolder from "./components/AddressHolder";
 import { IcreateAddressService, IupdateAddressService } from "lib/apis/address/interfaces";
 
 export default function Address() {
-    const { shop, updateShop } = useAppStore();
+    const { shop, updateShop, loading } = useAppStore();
     const { addressBookID } = shop;
     const { showToast } = useAppToast();
     const { onOpen, onClose, isOpen } = useDisclosure();
@@ -60,9 +60,9 @@ export default function Address() {
             title="Address"
             description="Provide the store or warehouse address for delivery and tax calculations."
             rightContent={
-                isFetching ? (
+                (isFetching || loading) ? (
                     <AppSkeleton
-                        isLoaded={!isFetching}
+                        isLoaded={false}
                         borderRadius={"8px"}
                         width={"100%"}
                         height={"48px"}
