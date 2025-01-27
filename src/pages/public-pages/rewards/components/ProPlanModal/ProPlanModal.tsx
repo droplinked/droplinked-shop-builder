@@ -7,6 +7,7 @@ import FeaturesSection from './components/FeaturesSection';
 import ModalFooter from './components/Footer';
 import { ModalHeader } from './components/Header';
 import { PlanDetails } from './components/PlanDetails';
+import useAppStore from 'lib/stores/app/appStore';
 
 export interface Props {
   isOpen: boolean;
@@ -17,11 +18,12 @@ export interface Props {
 const ProPlanModal = ({ isOpen, onClose, unlockedMonths }: Props) => {
   const navigate = useNavigate();
   const { refetch, isFetching } = useShopSubscriptionData();
+  const { shop, fetchShop } = useAppStore();
 
   const handleButtonClick = async () => {
     try {
-      const { data } = await refetch();
-      console.log(data);
+      await refetch();
+      await fetchShop({ shopName: shop.name });
       navigate('/analytics');
       onClose();
     } catch (error) {
