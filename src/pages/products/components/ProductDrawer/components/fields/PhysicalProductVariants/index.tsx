@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
+import { ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import ProductVariantCard from '../ProductVariantCard'
@@ -11,7 +12,7 @@ import VariantForm from './VariantForm/VariantForm'
 
 export default function PhysicalProductVariants() {
     const [isVariantFormVisible, setVariantFormVisibility] = useState(false)
-    const [editingVariant, setEditingVariant] = useState<string | null>(null)
+    const [editingVariant, setEditingVariant] = useState<ProductProperty>(null)
     const { values: { properties, sku }, errors } = useProductForm()
 
     const canAddVariants = properties.length < 2
@@ -21,8 +22,8 @@ export default function PhysicalProductVariants() {
         setVariantFormVisibility(true)
     }
 
-    const handleEditVariant = (variantTitle: string) => {
-        setEditingVariant(variantTitle)
+    const handleEditVariant = (editingVariant: ProductProperty) => {
+        setEditingVariant(editingVariant)
         setVariantFormVisibility(true)
     }
 
@@ -37,22 +38,14 @@ export default function PhysicalProductVariants() {
         >
             <Flex direction="column" gap={9}>
                 <Flex direction="column" gap={4}>
-                    {isVariantFormVisible ?
-                        <VariantForm
-                            handleDiscard={handleDiscardVariant}
-                            editingVariant={editingVariant}
-                        />
-                        :
-                        canAddVariants && <AddVariantsButton onClick={handleAddVariant} />
+                    {isVariantFormVisible
+                        ? <VariantForm handleDiscard={handleDiscardVariant} editingVariant={editingVariant} />
+                        : canAddVariants && <AddVariantsButton onClick={handleAddVariant} />
                     }
 
-                    {properties.map((property, index) => (
-                        <ProductVariantCard
-                            key={index}
-                            variant={property}
-                            onEdit={handleEditVariant}
-                        />
-                    ))}
+                    {properties.map((property, index) =>
+                        <ProductVariantCard key={index} variant={property} onEdit={handleEditVariant} />
+                    )}
 
                     {!canAddVariants && (
                         <MessageBox

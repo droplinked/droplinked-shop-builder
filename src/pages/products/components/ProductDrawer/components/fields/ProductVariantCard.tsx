@@ -7,7 +7,7 @@ import React from 'react'
 
 interface Props {
     variant: ProductProperty
-    onEdit?: (variantTitle: string) => void
+    onEdit?: (editingVariant: ProductProperty) => void
 }
 
 export default function ProductVariantCard({ variant, onEdit }: Props) {
@@ -17,6 +17,7 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
 
     const handleRemoveVariant = () => {
         if (!isNormalProduct) return
+
         const updatedProperties = properties.filter((prop) => prop.title !== variant.title)
         setFieldValue('properties', updatedProperties)
         setFieldValue('sku', updateSKUsOnVariantChange({ properties: updatedProperties, currentSKUs: sku }))
@@ -34,7 +35,7 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
                 <Text flex={1} fontWeight={500} color="#FFF">{variant.title}</Text>
                 {isNormalProduct && (
                     <VariantActions
-                        onEdit={() => onEdit?.(variant.title)}
+                        onEdit={() => onEdit?.(variant)}
                         onRemove={handleRemoveVariant}
                     />
                 )}

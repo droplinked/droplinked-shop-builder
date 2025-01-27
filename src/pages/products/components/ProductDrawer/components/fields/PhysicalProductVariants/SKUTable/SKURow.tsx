@@ -59,11 +59,11 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                     }}
                 />
             </Td>
-            <Td sx={{ path: { fill: '#FF2244' } }}>
+            {/* <Td sx={{ path: { fill: '#FF2244' } }}>
                 <button type="button" onClick={() => onRemoveSKU(index)}>
                     <AppIcons.Close />
                 </button>
-            </Td>
+            </Td> */}
         </Tr>
     )
 }
