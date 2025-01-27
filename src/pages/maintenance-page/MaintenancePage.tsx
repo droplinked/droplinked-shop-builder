@@ -25,7 +25,7 @@ function MaintenancePage() {
             gap={9}
             my={!isDashboardRoute ? "4rem" : undefined}
         >
-            <AppImage src="https://upload-file-droplinked.s3.amazonaws.com/73e41aa957001b34d9101d8dce854372d9660273f767466466f11bf5c1c7cbf9.png" alt="Maintenance Illustration" />
+            <AppImage width="500px" height="500px" src="https://upload-file-droplinked.s3.amazonaws.com/73e41aa957001b34d9101d8dce854372d9660273f767466466f11bf5c1c7cbf9.png" alt="Maintenance Illustration" />
             <Flex maxWidth="600px" direction="column" gap={4} textAlign="center">
                 <AppTypography fontSize={20} fontWeight={700} color="#fff">
                     We’re Temporarily Unavailable
