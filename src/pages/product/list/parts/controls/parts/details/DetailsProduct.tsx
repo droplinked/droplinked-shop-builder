@@ -1,25 +1,24 @@
 import { Box, VStack } from '@chakra-ui/react'
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { productService } from 'lib/apis/shop/shopServices'
 import React, { useCallback, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import detailsProductContext from './context'
 import DetailsProductInformation from './parts/information/DetailsProductInformation'
 import DetailsProductInSku from './parts/sku/DetailsProductInSku'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { productService } from 'lib/apis/shop/shopServices'
-import { IproductService } from 'lib/apis/shop/interfaces'
 
 interface Iprops extends Omit<IAppModal, "children"> {
     productID: string
 }
 
 function DetailsProduct({ close, open, productID }: Iprops) {
-    const { mutate, isLoading, data } = useMutation((params: IproductService) => productService(params))
+    const { mutate, isLoading, data } = useMutation((productId: string) => productService(productId))
     const { shop } = useProfile()
 
-    const fetch = useCallback(() => mutate({ productID }), [productID, shop])
+    const fetch = useCallback(() => mutate(productID), [productID, shop])
 
     useEffect(() => fetch(), [])
 

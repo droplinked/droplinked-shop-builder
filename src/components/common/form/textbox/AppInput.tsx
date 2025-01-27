@@ -1,7 +1,7 @@
 import { Input, InputProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
-import React from 'react'
+import React, { MutableRefObject } from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
@@ -9,10 +9,12 @@ import classes from './style.module.scss'
 
 type combine = IAppForm & InputProps
 
-interface Iprops extends combine { }
+interface Iprops extends combine {
+  ref?: MutableRefObject<HTMLInputElement>
+}
 
 function AppInput(props: Iprops) {
-  const { error, name, label, loading } = props
+  const { error, name, label, loading, ref } = props
 
   return (
     <VStack align={"stretch"} width="100%" spacing="12px">
@@ -25,6 +27,7 @@ function AppInput(props: Iprops) {
           {...FormModel.styleProps()}
           {...props}
           value={props?.value || ""}
+          ref={ref}
         />
       </AppSkeleton>
       <ErrorLabel message={error} />

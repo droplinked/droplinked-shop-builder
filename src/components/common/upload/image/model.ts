@@ -1,9 +1,9 @@
-import { toMb } from "lib/utils/helpers/helpers";
+import { mbToBytes } from "lib/utils/helpers/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 
 const UploadImageModel = ({
     size: (file: any) => {
-        if (file.size > toMb({ value: 5 })) throw Error(AppErrors.store.size_limit({ fieldName: "Image", size: `5MB` }));
+        if (file.size > mbToBytes(5)) throw Error(AppErrors.store.size_limit({ fieldName: "Image", size: `5MB` }));
     },
 
     type: (file: any) => {

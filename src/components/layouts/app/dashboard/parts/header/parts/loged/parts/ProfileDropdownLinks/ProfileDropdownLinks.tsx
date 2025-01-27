@@ -1,10 +1,11 @@
-import { Link as ChakraLink, Flex } from '@chakra-ui/react';
+import { Link as ChakraLink, Flex, Spinner } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppStore from 'lib/stores/app/appStore';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { getShopCredit } from 'lib/apis/shop/shopServices';
 import { SHOP_URL } from 'lib/utils/app/variable';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
+import { useQuery } from 'react-query';
 import { Link as ReactLink } from 'react-router-dom';
 
 interface ILink {
@@ -13,12 +14,26 @@ interface ILink {
     icon: JSX.Element
 }
 
-function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void }) {
+interface Props {
+    shop: any
+    close: () => void
+    isOpen: boolean
+}
+
+function ProfileDropdownLinks({ shop, close, isOpen }: Props) {
+    const { isFetching, data } = useQuery({
+        queryKey: ["shop-credit", isOpen],
+        queryFn: () => getShopCredit(),
+        refetchOnMount: true,
+    })
+
+    const { getFormattedPrice } = useCurrencyConverter()
+
     const links: ILink[] = [
-        { label: "Credit", href: "/analytics/settings/coupons", icon: <AppIcons.WhiteOpenWallet /> },
+        { label: "Credit", href: "/analytics/account-settings", icon: <AppIcons.WhiteOpenWallet /> },
         { label: "View Shop", href: `${SHOP_URL}/${shop?.name}`, icon: <AppIcons.Eye stroke='#fff' /> },
         { label: "Change Shop", href: "/shop-management", icon: <AppIcons.WhiteShopIcon /> },
-        { label: "Settings", href: "/analytics/settings/shop-info", icon: <AppIcons.SettingIcon /> },
+        { label: "Settings", href: "/analytics/account-settings", icon: <AppIcons.SettingIcon /> },
         { label: "Help", href: "https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked", icon: <AppIcons.HelpCenter /> }
     ]
 
@@ -27,8 +42,6 @@ function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void })
             {link.icon}
             <AppTypography color={"#FFFFFF"} fontSize={16}>{link.label}</AppTypography>
         </Flex>
-    const { shop: shopData } = useAppStore();
-    const { currency } = shopData;
 
     return (
         <Flex direction={"column"} gap={6}>
@@ -39,7 +52,18 @@ function ProfileDropdownLinks({ shop, close }: { shop: any, close: () => void })
                         {link.label === "Credit" ?
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={16} fontWeight={600}>{currency?.symbol}{currencyConvertion(shop?.credit?.toFixed(2), currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
+                                {isFetching ?
+                                    <Spinner color='#2BCFA1' />
+                                    :
+                                    <AppTypography
+                                        color={"#2BCFA1"}
+                                        fontSize={16}
+                                        fontWeight={600}
+                                        textAlign={"right"}
+                                    >
+                                        {getFormattedPrice({ amount: data.data.data.credit, toUSD: false, toFixed: true })}
+                                    </AppTypography>
+                                }
                             </Flex>
                             :
                             renderLinkAttributes(link)

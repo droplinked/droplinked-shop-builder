@@ -17,7 +17,7 @@ function PlanBadge({ currentSubData, data }: props) {
     return (
         <HStack gap={"1rem"} flexWrap={"wrap"}>
             <HStack>
-                <currentSubData.icon />
+                <currentSubData.icon stroke='#fff' />
                 <AppTypography color={"#fff"} fontWeight={500} fontSize={"24px"}>
                     {currentSubData.title}
                 </AppTypography>

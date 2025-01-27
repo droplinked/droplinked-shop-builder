@@ -33,6 +33,7 @@ export interface IAppStore {
     user: IUser
     shop: any
     loading: boolean
+    isLoggedIn: boolean;
     // access_token: string | null
     // refresh_token: string | null
     login(method: { type: "default", params: IauthLoginService } | { type: "google", access_token: string, refresh_token: string, params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
@@ -52,6 +53,7 @@ const states = (set, get): IAppStore => ({
     user: null,
     shop: null,
     loading: false,
+    isLoggedIn: false,
     login: (method) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
@@ -70,6 +72,7 @@ const states = (set, get): IAppStore => ({
 
                 set({
                     loading: false,
+                    isLoggedIn: true,
                     ...status !== "NEW" && {
                         user: result?.user,
                         shop: result?.shop,
@@ -108,6 +111,7 @@ const states = (set, get): IAppStore => ({
             shop: null,
             access_token: null,
             loading: false,
+            isLoggedIn : false,
         })
     },
     updateShop: (params: IshopUpdateService) => {
@@ -179,6 +183,7 @@ const _persist = persist(states, {
     name: appStorePersistName, partialize: (state) => ({
         shop: state.shop,
         user: state.user,
+        isLoggedIn: state.isLoggedIn,
     })
 })
 const useAppStore = appDevelopment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)

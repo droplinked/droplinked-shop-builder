@@ -1,7 +1,7 @@
 import { Box, HStack, SimpleGrid, Switch, VStack } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import AppTypography from 'components/common/typography/AppTypography'
-import { printServicesServices } from 'lib/apis/product/productServices'
+import { printServices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext } from 'react'
 import { useQuery } from 'react-query'
@@ -9,8 +9,8 @@ import classes from './style.module.scss'
 
 function ProductM2m() {
     const { data } = useQuery({
-        queryFn: printServicesServices,
-        queryKey: "printServicesServices",
+        queryFn: printServices,
+        queryKey: "printServices",
         cacheTime: 60 * 60 * 1000,
     })
     const { state: { m2m_services }, methods: { updateState } } = useContext(productContext)

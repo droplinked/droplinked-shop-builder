@@ -7,9 +7,10 @@ import {
 	IGetShopCommunityProfile,
 	IGetShopsCommunityService,
 	IpaymentCreateService,
+	IPaymentPublicService,
 	IPostWithdrawCircleWallet,
-	IproductService,
 	IrecordedShopService,
+	IShopApiKey,
 	IshopInfoService,
 	IshopPublicRecordedService,
 	IShopRecordedService,
@@ -21,6 +22,7 @@ import {
 	ShopOAuth2Client,
 	UserExtraShopResponse,
 	UserShop,
+	IShopCredit
 } from './interfaces';
 
 export const shopService = ({ shopName }: IshopService) =>
@@ -28,6 +30,8 @@ export const shopService = ({ shopName }: IshopService) =>
 
 export const paymentPublicService = async () =>
 	axiosInstance.get(`shop/public/available-payment-methods`);
+export const paymentPublicServiceV2 = async () =>
+	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);
 
 export const paymentMethodsService = () => axiosInstance.get(`shop/payment-methods`);
 
@@ -42,8 +46,11 @@ export const shopPublicRecordedService = ({ page, s }: IshopPublicRecordedServic
 export const recordedShopService = ({ shopName }: IrecordedShopService) =>
 	axiosInstance.get(`shop/public/recorded/${shopName}`);
 
-export const productService = ({ productID }: IproductService) =>
-	axiosInstance.get(`product/${productID}`);
+export const getShopCredit = () =>
+	axiosInstance.get<IShopCredit>(`shop/credit`);
+
+export const productService = (productId: string) =>
+	axiosInstance.get(`product/${productId}`)
 
 export const shopInfoService = ({ shopName }: IshopInfoService) =>
 	axiosInstance.get(`shop/shopInfo/${shopName}`);
@@ -80,7 +87,7 @@ export const shopSellerService = () =>
 export const bestPartnersService = () =>
 	axiosInstance.get(`shop/dashboard/product-types`);
 
-export const getShopAPIKeyService = () => axiosInstance.get(`shop/client/oauth2`);
+export const getShopAPIKeyService = () => axiosInstance.get<{ data: IShopApiKey }>(`shop/client/oauth2`);
 
 export const updateShopAPIKeyService = (data: ShopOAuth2Client) =>
 	axiosInstance.put('shop/client/oauth2 ', data);
@@ -147,4 +154,5 @@ export const postWithdrawCircle = (props: IPostWithdrawCircleWallet) => axiosIns
 
 export const deployCircleContract = (network: string) => axiosInstance.post('shop/circle/deploy', { type: network })
 
-export const getCurrencyList = () => axiosInstance.get('shop/currency-list');
+export const getCurrencyList = () =>
+	axiosInstance.get<{ data: string[] }>('shop/currency-list').then(res => res.data)

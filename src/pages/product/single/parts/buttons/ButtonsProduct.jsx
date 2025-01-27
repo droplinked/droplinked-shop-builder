@@ -6,7 +6,7 @@ import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
-import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
+import { createProductService, updateProductService } from 'lib/apis/product/productServices'
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
@@ -25,8 +25,8 @@ function ButtonsProduct() {
     const shopLegalUsage = useLegalUsage()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isCircleRecordModalOpen, onOpen: openCircleRecordModal, onClose: closeCircleRecordModal } = useDisclosure()
-    const create = useMutation((params) => productCreateServices(params))
-    const update = useMutation((params) => productUpdateServices(params))
+    const create = useMutation((params) => createProductService(params))
+    const update = useMutation((params) => updateProductService(params))
     const [States, setStates] = useState({ loading: false, draft: false, hashkey: null })
     const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
@@ -72,7 +72,7 @@ function ButtonsProduct() {
         }
         catch (error) {
             showToast({ message: error.message || "Something went wrong during the recording process", type: "error" })
-            await update.mutateAsync({ productID: productID || product._id, params: { publish_product: false, digitalDetail: {chain: null}} })
+            await update.mutateAsync({ productID: productID || product._id, params: { publish_product: false, digitalDetail: { chain: null } } })
             shopNavigate(`products/${product._id}`)
         }
     }
@@ -91,7 +91,7 @@ function ButtonsProduct() {
             await validate({ state, draft })
 
             // Make and handle data for draft mode 
-            const formData = makeData({ state, draft, productID , currency})
+            const formData = makeData({ state, draft, productID, currency })
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData

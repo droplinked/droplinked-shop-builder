@@ -44,7 +44,7 @@ function RulesetAddress() {
                             />
                             {values.address.length > 1 && index < values.address.length - 1 && (
                                 <Box ml={2} mb={4} cursor={"pointer"} onClick={() => handleDelete(index)}>
-                                    <AppIcons.TrashRed />
+                                    <AppIcons.RedTrash />
                                 </Box>
                             )}
                             {index === values.address.length - 1 && (

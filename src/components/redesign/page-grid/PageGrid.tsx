@@ -1,22 +1,21 @@
 import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
-import DataGridButtons from './components/buttons/DatagridButtons'
+import Input from '../input/Input'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
-import AppTypography from 'components/common/typography/AppTypography'
-import AppIcons from 'assest/icon/Appicons'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
-import Input from '../input/Input'
 
 // Context - simplified since we're not passing everything through context
 const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
 // Root Component - simplified
-function PageGridRoot({ children, loading }: PageGridRootProps) {
+function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex width="100%" flexDirection="column" alignItems="start">
+            <Flex {...flexProps} width="100%" flexDirection="column" alignItems="start">
                 {children}
             </Flex>
         </PageGridContext.Provider>
@@ -24,9 +23,9 @@ function PageGridRoot({ children, loading }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
     return (
-        <Flex w="full" mb="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
+        <Flex w="full" marginBottom={"36px"} flexDirection={"row"} justifyContent={"space-between"} alignItems={"start"}>
             <Flex flexDirection="column" alignItems="start">
                 {title && (
                     <AppTypography color="#fff" fontSize="24px" fontWeight={700}>
@@ -39,7 +38,7 @@ function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
                     </AppTypography>
                 )}
             </Flex>
-            {buttons && <DataGridButtons buttons={buttons} />}
+            {rightContent}
         </Flex>
     )
 }
@@ -48,7 +47,19 @@ function PageGridHeader({ title, description, buttons }: PageGridHeaderProps) {
 function PageGridActions({ search, filters }: PageGridActionsProps) {
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
-            {search && <Input inputProps={{ onChange: search.onChange, value: search.value, placeholder: search.placeholder ?? "Search" }} icon={<AppIcons.SearchOutlined />} inputGroupProps={{ width: "300px", height: 12, bgColor: "#1C1C1C" }} />}
+            {search && (
+                <Input
+                    inputGroupProps={{ width: "300px" }}
+                    inputContainerProps={{ bgColor: "#1C1C1C", padding: 3 }}
+                    inputProps={{
+                        fontSize: 16,
+                        placeholder: search.placeholder ?? "Search",
+                        value: search.value,
+                        onChange: search.onChange,
+                    }}
+                    leftElement={<AppIcons.SearchOutlined />}
+                />
+            )}
             {filters && <FiltersDataGrid items={filters} />}
         </Flex>
     )
@@ -60,7 +71,7 @@ function PageGridContent({ children, loading }: PageGridContentProps) {
     const isLoading = loading ?? contextLoading
 
     return (
-        <Flex flexDirection="column" borderRadius="8px" width="100%" background="#1C1C1C" align="stretch">
+        <Flex w="full" flexDirection="column">
             {isLoading ? <DataGridSkeleton /> : children}
         </Flex>
     )

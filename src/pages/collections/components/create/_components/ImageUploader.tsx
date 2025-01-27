@@ -33,7 +33,7 @@ function ImageUploader({ errors, values, setFieldValue }: ImageUploaderProps) {
                         </VStack>
                     </Flex>
                     <Box onClick={() => setFieldValue('image', '')} cursor={"pointer"}>
-                        <AppIcons.TrashRed />
+                        <AppIcons.RedTrash />
                     </Box>
                 </HStack>
             }

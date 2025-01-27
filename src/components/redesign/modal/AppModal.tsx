@@ -1,14 +1,12 @@
 import { Modal, ModalContent, ModalContentProps, ModalOverlay, ModalProps } from '@chakra-ui/react';
-import React, { PropsWithChildren, ReactNode } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {
     modalRootProps: Omit<ModalProps, "children">;
     modalContentProps?: ModalContentProps;
-    children: ReactNode,
-    paddingInline?: boolean;
 }
 
-function AppModal({ modalRootProps, modalContentProps, children, paddingInline }: Props) {
+function AppModal({ modalRootProps, modalContentProps, children }: Props) {
     return (
         <Modal {...modalRootProps}>
             <ModalOverlay bg="rgba(0,0,0,.9)" />

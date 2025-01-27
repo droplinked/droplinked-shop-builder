@@ -35,9 +35,9 @@ const SelectPagesComponent = () => {
 
       <SideText
         cursor={isSettings && "pointer"}
-        color={currentPath.includes("technical") ? "primary" : "lightGray"}
+        color={currentPath.includes("account-settings") ? "primary" : "lightGray"}
         onClick={() => {
-          if (isSettings) shopNavigate("settings/technical");
+          if (isSettings) shopNavigate("/analytics/account-settings");
         }}
       >
         Wallet and Payment
@@ -66,9 +66,9 @@ const SelectPagesComponent = () => {
       {isSettings && (
         <SideText
           cursor={isSettings && "pointer"}
-          color={currentPath.includes("coupons") ? "primary" : "lightGray"}
+          color={currentPath.includes("account-settings") ? "primary" : "lightGray"}
           onClick={() => {
-            if (isSettings) shopNavigate("settings/coupons");
+            if (isSettings) shopNavigate("/analytics/account-settings");
           }}
         >
           Coupons
@@ -78,9 +78,9 @@ const SelectPagesComponent = () => {
       {isSettings && (
         <SideText
           cursor={isSettings && "pointer"}
-          color={currentPath.includes("admins") ? "primary" : "lightGray"}
+          color={currentPath.includes("account-settings") ? "primary" : "lightGray"}
           onClick={() => {
-            if (isSettings) shopNavigate("settings/admins");
+            if (isSettings) shopNavigate("/analytics/account-settings");
           }}
         >
           Admins

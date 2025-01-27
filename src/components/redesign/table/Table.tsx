@@ -20,10 +20,11 @@ interface Props<T extends object> {
         next: () => void
         isFetchingNextPage: boolean
     }
+    tableFontSize?: number | string;
 }
 
 function Table<T extends object>(props: Props<T>) {
-    const { columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
+    const { tableFontSize, columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
     const table = useReactTable({
         data,
         columns,
@@ -80,32 +81,28 @@ function Table<T extends object>(props: Props<T>) {
 
 
     const renderTableBody = () => {
-        const { isFetchingNextPage } = infiniteScroll || {};
-        const isTableEmpty = !table.getRowModel().rows.length;
+        const { isFetchingNextPage } = infiniteScroll || {}
+        const isTableEmpty = !table.getRowModel().rows.length
+        if (isTableEmpty && !isLoading) return tableEmptyView
 
-        if (isTableEmpty && !isLoading) return tableEmptyView;
-        if (isLoading && !isFetchingNextPage) return tableLoading;
+        if (isLoading && !isFetchingNextPage) return tableLoading
         if (infiniteScroll) {
             return (
                 <>
                     {tableRows}
                     {isFetchingNextPage && tableLoading}
                 </>
-            );
+            )
         }
 
-        return (
-            <>
-                {tableRows}
-            </>
-        );
-    };
+        return tableRows
+    }
 
     const tableContent = (
         <ChakraTable
             variant="unstyled"
             sx={{
-                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: 14, fontWeight: 400 },
+                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: tableFontSize ? tableFontSize : 14, fontWeight: 400 },
                 userSelect: "none"
             }}
         >
@@ -162,7 +159,7 @@ function Table<T extends object>(props: Props<T>) {
                 </Tfoot>
             )}
         </ChakraTable>
-    );
+    )
 
     return (
         <TableContainer

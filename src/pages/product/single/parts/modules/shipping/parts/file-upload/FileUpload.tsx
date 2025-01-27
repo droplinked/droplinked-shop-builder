@@ -87,7 +87,7 @@ function FileUpload({ label, setExcelData }: Props) {
                 cursor={"pointer"}
             >
                 <input {...getInputProps()} type='file' name='file' accept=".xlsx" />
-                <AppIcons.ImportFile />
+                <AppIcons.FileUpload />
                 {
                     file ?
                         <AppTypography fontSize={14}>{file.name}</AppTypography> :

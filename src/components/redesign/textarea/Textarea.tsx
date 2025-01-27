@@ -1,67 +1,46 @@
-import { FormLabel, InputGroup, Textarea as ChakraTextarea, TextareaProps } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
+import { Textarea as ChakraTextarea, FormLabel, InputGroup, Text, TextareaProps } from '@chakra-ui/react'
 import React from 'react'
 
-interface Props {
-  label?: string;
-  textareaProps?: TextareaProps;
-  description?: string;
-  error?: string;
+interface Props extends TextareaProps {
+  label?: string
+  description?: string
+  maxCharacters?: number
 }
 
-export default function Textarea({ label, textareaProps, description, error }: Props) {
-  const maxCharacters = 100
-
+export default function Textarea({ label, description, maxCharacters, ...rest }: Props) {
   const baseTextareaProps: TextareaProps = {
-    maxLength: maxCharacters,
-    rows: 3,
-    mt: 4,
+    padding: "12px 16px",
     border: "1px solid #292929",
-    paddingBlock: 3,
-    paddingInline: 4,
+    resize: "none",
+    rows: 3,
     placeholder: "What’s up?",
-    color: "#7B7B7B",
-    resize: "none" as "none",
+    maxLength: maxCharacters,
+    color: "#FFF",
+    transition: "border-color 0.1s ease-out",
     _placeholder: { color: "#7B7B7B" },
-    _hover: {
-      borderColor: "none",
-      backgroundColor: "#1E1E1E",
-      border: "1px solid #3C3C3C"
-    },
+    _hover: { borderColor: "#3C3C3C" },
+    _focus: { borderColor: "#7B7B7B" },
     _focusVisible: {},
-    _focus: {
-      borderColor: "none",
-      backgroundColor: "#1E1E1E",
-      border: "1px solid #7B7B7B"
-    },
-    ...textareaProps
+    ...rest
   }
-
-  const textareaElement = (
-    <ChakraTextarea
-      {...baseTextareaProps}
-    />
-  )
 
   return (
     <InputGroup display="flex" flexDirection="column">
       {label && (
-        <FormLabel margin={0} fontSize={16} color="white">
+        <FormLabel mb={description ? 1 : 4} fontSize={16} fontWeight={500} color="#FFF">
           {label}
-          {description && <AppTypography mt={1} color={"#7B7B7B"} fontSize={"14px"}>{description}</AppTypography>}
         </FormLabel>
       )}
-      {textareaElement}
-      <AppTypography
-        mt={2}
-        mr={4}
-        alignSelf="flex-end"
-        color="#7B7B7B"
-        userSelect="none"
-      >
-        {textareaProps.value.toString().length}/{maxCharacters}
-      </AppTypography>
-      {error && <AppTypography mt={2} fontSize={14} color={"#E53E3E"}>{error}</AppTypography>}
+
+      {description && <Text mb={4} fontSize={14} color="#7B7B7B">{description}</Text>}
+
+      <ChakraTextarea {...baseTextareaProps} />
+
+      {maxCharacters && (
+        <Text mt={2} mr={4} alignSelf="flex-end" fontSize={12} color="#FFF" userSelect="none">
+          {rest.value.toString().length}/{maxCharacters}
+        </Text>
+      )}
     </InputGroup>
   )
 }
