@@ -16,6 +16,8 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
     const isButtonDisabled = isProductRecorded || isSubmitting
 
     const handleAction = async (action: string) => {
+        if (isProductRecorded) return
+
         const isSavingAsDraft = action === 'save-as-draft'
         const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
 
