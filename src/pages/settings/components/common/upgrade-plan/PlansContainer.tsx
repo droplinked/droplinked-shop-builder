@@ -47,7 +47,7 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
             >
                 <Flex gap={4} alignItems="center">
                     <Box height={"min-content"} bg="#2BCEA11A" p={2} borderRadius="8px">
-                        <AppIcons.PremiumPlan stroke="#fff" />
+                        <AppIcons.PremiumPlan color="#fff" />
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize="18px" fontWeight={700}>
