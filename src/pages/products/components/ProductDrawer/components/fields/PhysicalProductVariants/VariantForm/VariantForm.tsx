@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
+import { ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
 import FormControl from '../../../common/FormControl'
 import VariantItemList from './VariantItemList'
@@ -9,14 +10,12 @@ import VariantSelector from './VariantSelector'
 
 interface Props {
     handleDiscard: () => void
-    editingVariant?: string
+    editingVariant?: ProductProperty
 }
 
 function VariantForm({ handleDiscard, editingVariant }: Props) {
     const { values: { properties, sku }, setFieldValue } = useProductForm()
-    const [localProperty, setLocalProperty] = useState(
-        properties.find(p => p.title === editingVariant) || null
-    )
+    const [localProperty, setLocalProperty] = useState(editingVariant)
 
     function saveToContext() {
         if (!localProperty?.title) return
@@ -58,12 +57,7 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
             </FormControl>
 
             {/* Item list */}
-            {localProperty && (
-                <VariantItemList
-                    localProperty={localProperty}
-                    setLocalProperty={setLocalProperty}
-                />
-            )}
+            {localProperty && <VariantItemList localProperty={localProperty} setLocalProperty={setLocalProperty} />}
 
             {/* Footer buttons */}
             <Flex
