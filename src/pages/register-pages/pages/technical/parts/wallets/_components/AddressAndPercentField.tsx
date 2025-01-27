@@ -63,7 +63,7 @@ const AddressAndPercentField = ({
               >
                 <SaveBtn onClickHandler={() => toggleEditMode(index)} />
               </MotionBox>
-            : 
+              :
               <MotionFlex
                 key="edit-delete-icons"
                 alignItems={"center"}
@@ -77,7 +77,7 @@ const AddressAndPercentField = ({
                   <AppIcons.EditIconWhite />
                 </Box>
                 <Box onClick={() => removeWallet(index)} cursor={"pointer"}>
-                  <AppIcons.TrashRed />
+                  <AppIcons.RedTrash />
                 </Box>
               </MotionFlex>
             }

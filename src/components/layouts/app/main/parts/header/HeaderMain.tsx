@@ -24,13 +24,14 @@ function HeaderMain() {
                 { label: "Product Tiles", description: "Embed and Sell Anywhere Effortlessly", icon: <AppIcons.HeaderProductBox />, href: "/product-tiles" },
                 { label: "Tokenizing Products", description: "Tokenize Your Physical Assets Seamlessly", icon: <AppIcons.HeaderTokenCoin />, href: "/tokenizing-products" },
                 { label: "Affiliate SaaS Subscriptions", description: "Affiliate SaaS Subscriptions with Confidence", icon: <AppIcons.HeaderAffiliateSass />, href: "/affiliate-sass" },
-                { label: "Custom Tokens", description: "Unlock the Power of Custom Tokens", icon: <AppIcons.HeaderTokenCoin />, href: "/custom-tokens" }
+                { label: "Custom Tokens", description: "Unlock the Power of Custom Tokens", icon: <AppIcons.HeaderTokenCoin />, href: "/custom-tokens" },
+                { label: "Social Quests", description: "Grow the community to earn more", icon: <AppIcons.SideBarQuests />, href: "/rewards" }
             ]
         },
         {
             label: "Enterprise",
             links: [
-                { label: "DIMST", description: "On chain inventory management", icon: <AppIcons.HeaderCoins />, href: "/roi" },
+                { label: "DIMST", description: "Onchain inventory management", icon: <AppIcons.HeaderCoins />, href: "/roi" },
                 { label: "Tokenpay", description: "All our items in one place", icon: <AppIcons.HeaderCoins />, href: "/tokenpay" },
                 { label: "Metaverse Store", description: "Step Into Your Metaverse Store", icon: <AppIcons.MetaverseStore />, href: "/metaverse-store" },
                 { label: "DPP", description: "Digital product passport", icon: <AppIcons.HeaderImage />, href: "/dpp" }

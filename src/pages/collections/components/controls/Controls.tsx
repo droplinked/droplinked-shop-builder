@@ -42,7 +42,7 @@ function ControlsListCollection({ collection, fetch }) {
     };
 
     const renderVisibilityIcon = () => (
-        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon />
+        isPublished ? <AppIcons.Eye stroke='#2BCFA1' /> : <AppIcons.HidedIcon stroke='#FF2244' />
     );
     const handleCopy = () => {
         navigator.clipboard.writeText(collection._id)
@@ -80,7 +80,7 @@ function ControlsListCollection({ collection, fetch }) {
                     title: "Delete",
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
-                    icon: <AppIcons.TrashRed />
+                    icon: <AppIcons.RedTrash />
                 }
             ]} />
             <ConfirmDeleteCollection close={deleteModal.onClose} open={deleteModal.isOpen} collectionID={collection?._id} fetch={fetch} />

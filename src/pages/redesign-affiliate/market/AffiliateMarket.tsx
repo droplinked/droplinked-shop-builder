@@ -1,12 +1,12 @@
 import { Box, Flex, SimpleGrid, VStack } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { useState } from "react";
-import AffiliateItem, { LAffiliateItem } from "../_components/AffiliateItems";
-import { useQuery } from "react-query";
-import { getNewShopsService } from "lib/apis/shop/shopServices";
-import { getHotProducts, getNewProducts } from "lib/apis/product/productServices";
 import AppImage from "components/common/image/AppImage";
+import AppTypography from "components/common/typography/AppTypography";
+import { getHotProducts, getNewProducts } from "lib/apis/product/productServices";
+import { getNewShopsService } from "lib/apis/shop/shopServices";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import AffiliateItem, { LAffiliateItem } from "../_components/AffiliateItems";
 
 type DateTypes = { label: "Today", value: "daily" } | { label: "This week", value: "weekly" } | { label: "This month", value: "monthly" }
 const dates_constant: DateTypes[] = [
@@ -31,7 +31,7 @@ const ProductGrid = ({ isLoading, products }) => (
 );
 
 const AffiliateMarket = () => {
-    const [date, setDate] = useState<DateTypes>({ label: "Today", value: "daily" });
+    const [date, setDate] = useState<DateTypes>({ label: "This month", value: "monthly" });
     const { data: newShops, isLoading: isLoadingNewShops } = useQuery({ queryKey: ["new-shops-service"], queryFn: getNewShopsService });
     const { data: newProducts, isLoading: isLoadingNewProducts } = useQuery({ queryKey: ["new-products"], queryFn: getNewProducts });
     const { data: hotProducts, isLoading: isLoadingHotProducts } = useQuery({ queryKey: ["hot-products", date?.value], queryFn: () => getHotProducts({ range: date?.value }) });
@@ -69,21 +69,20 @@ const AffiliateMarket = () => {
                             ))}
                     </SimpleGrid>
                 </Box>
-                {(isLoadingHotProducts || hotProducts?.data?.data?.length) && (
-                    <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
-                        <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
-                            <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">Hot Products</AppTypography>
-                            <Flex gap={"12px"}>
-                                {dates_constant?.map((date_constant) => (
-                                    <Box key={date_constant?.value} cursor="pointer" onClick={() => setDate(date_constant)} backgroundColor={date_constant?.value === date?.value ? "#2BCFA1" : "#292929"} display="flex" padding="6px 16px" justifyContent="center" alignItems="center" gap="10px" borderRadius="100px">
-                                        <AppTypography textAlign="center" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px" color={date_constant?.value === date?.value ? "#000" : "#7B7B7B"}>{date_constant?.label}</AppTypography>
-                                    </Box>
-                                ))}
-                            </Flex>
-                        </Box>
-                        <ProductGrid isLoading={isLoadingHotProducts} products={hotProducts?.data?.data} />
+
+                <Box display="flex" flexDirection="column" alignItems="flex-start" gap="24px" alignSelf="stretch">
+                    <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
+                        <AppTypography color="#F5F7FA" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">Hot Products</AppTypography>
+                        <Flex gap={"12px"}>
+                            {dates_constant?.map((date_constant) => (
+                                <Box key={date_constant?.value} cursor="pointer" onClick={() => setDate(date_constant)} backgroundColor={date_constant?.value === date?.value ? "#2BCFA1" : "#292929"} display="flex" padding="6px 16px" justifyContent="center" alignItems="center" gap="10px" borderRadius="100px">
+                                    <AppTypography textAlign="center" fontFamily="Inter" fontSize="14px" fontStyle="normal" fontWeight="500" lineHeight="20px" color={date_constant?.value === date?.value ? "#000" : "#7B7B7B"}>{date_constant?.label}</AppTypography>
+                                </Box>
+                            ))}
+                        </Flex>
                     </Box>
-                )}
+                    <ProductGrid isLoading={isLoadingHotProducts} products={hotProducts?.data?.data || []} />
+                </Box>
             </VStack>
         </VStack>
     );

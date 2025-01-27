@@ -5,7 +5,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
-import { productUpdateServices } from 'lib/apis/product/productServices';
+import { updateProductService } from 'lib/apis/product/productServices';
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap';
 import AppErrors from 'lib/utils/statics/errors/errors';
@@ -13,7 +13,6 @@ import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
-import PaymentLinkModal from '../payment-link/PaymentLinkModal';
 import ProductOrdersModal from '../product-orders/ProductOrdersModal';
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
@@ -24,7 +23,7 @@ export type action = "DELETE" | "DUPLICATE"
 function ControlsListProduct({ productID, product, fetch }) {
     const shopLegalUsage = useLegalUsage()
     const [action, setAction] = useState<action>("DELETE")
-    const { mutateAsync } = useMutation((params: IproductUpdateServices) => productUpdateServices(params))
+    const { mutateAsync } = useMutation((params: IproductUpdateServices) => updateProductService(params))
     const { isOpen, onOpen, onClose } = useDisclosure()
     const detailModal = useDisclosure()
     const { shopNavigate } = useCustomNavigate()
@@ -33,7 +32,6 @@ function ControlsListProduct({ productID, product, fetch }) {
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
     const { user: { wallets } } = useAppStore()
-    const paymentLinkModal = useDisclosure()
     const productOrdersModal = useDisclosure()
     const handleShareModal = useDisclosure()
 
@@ -94,10 +92,6 @@ function ControlsListProduct({ productID, product, fetch }) {
                 caption: "Duplicate Product",
                 onClick: () => handleActionSelect("DUPLICATE")
             },
-            // {
-            //     caption: "Get payment link",
-            //     onClick: () => paymentLinkModal.onOpen()
-            // },
             {
                 caption: "Share",
                 onClick: () => handleShareModal.onOpen()
@@ -124,11 +118,8 @@ function ControlsListProduct({ productID, product, fetch }) {
             <PopOverMenu items={items} />
             <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
-            {paymentLinkModal.isOpen && <PaymentLinkModal isOpen={paymentLinkModal.isOpen} onClose={paymentLinkModal.onClose} productID={product._id} />}
             {productOrdersModal.isOpen && <ProductOrdersModal open={productOrdersModal.isOpen} close={productOrdersModal.onClose} productId={product._id} />}
             {handleShareModal.isOpen && <ProductShareModal open={handleShareModal.isOpen} close={handleShareModal.onClose} product={product} />}
-
-
         </>
     )
 }

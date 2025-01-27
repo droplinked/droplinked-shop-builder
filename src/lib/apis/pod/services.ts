@@ -1,5 +1,6 @@
+import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
-import { ImockupGeneratorService, IpodAvailableVariantsService, IpodCategoryService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService, IpodCategoryProductService } from "./interfaces";
+import { ImockupGeneratorService, IpodAvailableVariantsService, IpodCategoryProductService, IpodCategoryService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService, PODCategory } from "./interfaces";
 
 export const providersService = () => {
     return axiosInstance.get("pod/providers")
@@ -33,9 +34,10 @@ export const mockupGeneratorService = ({ params, productID }: ImockupGeneratorSe
     return axiosInstance.post(`pod/generate-mockup/${productID}`, params)
 };
 
-export const podCategoryService = ({ mainCategoryId }: IpodCategoryService) => {
-    return axiosInstance.get(`pod/printful/categories${mainCategoryId ? `?mainCategoryId=${mainCategoryId}` : ''}`)
-};
+export const podCategoryService = (params: IpodCategoryService) => {
+    const queryString = createQueryString(params).toString()
+    return axiosInstance.get<{ data: { data: PODCategory[] } }>(`pod/printful/categories${queryString ? `?${queryString}` : ""}`)
+}
 
 export const podCategoryProductService = ({ subCategoryId }: IpodCategoryProductService) => {
     return axiosInstance.get(`pod/printful/products?subCategoryId=${subCategoryId}`)

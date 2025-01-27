@@ -1,8 +1,8 @@
 import { IproductState } from "lib/apis/product/interfaces";
-import { property_to_id } from "lib/utils/statics/types";
-import propertyFactor from "./modules/property";
-import { IShopCurrency } from "types/interface/shopCurrency.interface";
 import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
+import { property_to_id } from "lib/utils/statics/types";
+import { IShopCurrency } from "types/interface/shopCurrency.interface";
+import propertyFactor from "./modules/property";
 
 const ProductSingleModel = ({
     // Sync data for IproductState interface

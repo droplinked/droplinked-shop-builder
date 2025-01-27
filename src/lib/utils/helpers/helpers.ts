@@ -1,48 +1,16 @@
-import { isStyleProp } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 
-export const capitalizeFirstLetter = (value: string) => {
-    if (!value) return "";
-    return value
+export const capitalizeFirstLetter = (value: string = ""): string =>
+    value
         .split(" ")
-        .map((el) => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase())
-        .join(" ");
-};
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ")
 
-interface ItoMb {
-    value: number;
-}
-export const toMb = ({ value }: ItoMb) => {
-    return value * 1024 * 1024;
-};
+export const mbToBytes = (value: number) => value * 1024 * 1024;
 
-export const getMinMaxArray = (arr) => {
-    let min = arr[0];
-    let max = arr[0];
-    let i = arr.length;
-
-    while (i--) {
-        min = arr[i] < min ? arr[i] : min;
-        max = arr[i] > max ? arr[i] : max;
-    }
-    return { min, max };
-};
+export const fileSizeInMB = (file: File) => (file.size / (1024 * 1024)).toFixed(2)
 
 export const getPercentage = (number: number, max: number) => (number * 100) / max;
-
-const breakpoints = ["base", "xs", "sm", "md", "lg", "xl", "2xl"];
-function is_responsive_value(obj) {
-    if (obj && typeof obj === "object") if (breakpoints.some((key) => obj.hasOwnProperty(key))) return Object.values(obj).every((value) => typeof value === "string");
-    return false;
-}
-
-export const picker = (pick_from: any) =>
-    Object.keys(pick_from)
-        .filter((key) => isStyleProp(key))
-        .reduce((obj, key) => {
-            obj[key] = pick_from[key];
-            return obj;
-        }, {} as Record<string, any>);
 
 export const navigating_user_based_on_status = (status: string, data: any) => {
     switch (status) {
@@ -63,6 +31,18 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
             return { href: "", dashboard: false };
     }
 };
+
+export const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    }).replace(',', ' -').replace('at', '');
+}
 
 export function sort_by_date<T extends { [key: string]: any }>(data: T[], date_key: keyof T, order: "asc" | "desc" = "asc"): T[] {
     return data.sort((a, b) => {

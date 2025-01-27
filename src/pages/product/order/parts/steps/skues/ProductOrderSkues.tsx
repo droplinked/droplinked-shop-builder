@@ -2,26 +2,25 @@ import { Flex } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTable, { ITableRows } from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
-import { IproductService } from 'lib/apis/shop/interfaces'
 import { productService } from 'lib/apis/shop/shopServices'
+import useAppStore from 'lib/stores/app/appStore'
 import productOrderContext from 'pages/product/order/context'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
-import useAppStore from 'lib/stores/app/appStore'
 
 function ProductOrderSkues() {
     const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)
-    const { mutate, data } = useMutation((param: IproductService) => productService(param))
+    const { mutate, data } = useMutation((productId: string) => productService(productId))
     const { shop: { currency } } = useAppStore();
     const params = useParams()
     const product = data?.data?.data
     const [SkuesIDs, setSkuesIDs] = useState([])
 
     // Get product service
-    useEffect(() => { if (params?.productID) mutate({ productID: params?.productID }) }, [params])
+    useEffect(() => { if (params?.productID) mutate(params?.productID) }, [params])
 
     const updateSkus = (list: string[]) => {
         const result = {}

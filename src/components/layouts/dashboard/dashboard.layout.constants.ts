@@ -125,29 +125,41 @@ export const sidebar_constants: SidebarGroup[] = [
                 list: [],
             },
             {
-                title: "Management Panel",
-                icon: AppIcons.SidebarSetting,
-                linkTo: null,
-                list: [
-                    {
-                        listTitle: "Account Information",
-                        linkTo: "/analytics/settings/shop-info",
-                    },
-
-                    {
-                        listTitle: "Wallet and Payments",
-                        linkTo: "/analytics/settings/technical",
-                    },
-                    {
-                        listTitle: "User Management",
-                        linkTo: "/analytics/settings/admins",
-                    },
-                    {
-                        listTitle: "Digital Coupons",
-                        linkTo: "/analytics/settings/coupons",
-                    },
-                ],
+                title: "Account Settings",
+                icon: AppIcons.SettingGear,
+                linkTo: "/analytics/account-settings",
+                list: [],
             },
+            {
+                title: "Quests",
+                icon: AppIcons.SideBarQuests,
+                linkTo: "/rewards",
+                list: [],
+            },
+            // {
+            //     title: "Management Panel",
+            //     icon: AppIcons.SidebarSetting,
+            //     linkTo: null,
+            //     list: [
+            //         {
+            //             listTitle: "Account Information",
+            //             linkTo: "/analytics/settings/shop-info",
+            //         },
+
+            //         {
+            //             listTitle: "Wallet and Payments",
+            //             linkTo: "/analytics/settings/technical",
+            //         },
+            //         {
+            //             listTitle: "User Management",
+            //             linkTo: "/analytics/settings/admins",
+            //         },
+            //         {
+            //             listTitle: "Digital Coupons",
+            //             linkTo: "/analytics/settings/coupons",
+            //         },
+            //     ],
+            // },
 
             // { title: "Chat with Support", icon: AppIcons.SidebarChat, linkTo: "/analytics/", list: [] },
         ],
@@ -181,7 +193,7 @@ export const createProfileConstants = (shop: { credit: number; name: string; sho
     {
         title: { label: "Settings", style: {} },
         icon: { svg: AppIcons.ProfileSetting, style: {} },
-        linkTo: "/analytics/settings/shop-info",
+        linkTo: "/analytics/account-settings",
         isExternalLink: false,
         rightSide: { value: null, style: {} },
     },

@@ -12,7 +12,7 @@ export interface IFieldLabel {
     textProps?: IAppTypography
 }
 
-function FieldLabel({ isRequired, label, loading, color,textProps }: IFieldLabel) {
+function FieldLabel({ isRequired, label, loading, color, textProps }: IFieldLabel) {
     return (
         <>
             {label && (

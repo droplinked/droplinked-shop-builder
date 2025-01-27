@@ -1,23 +1,10 @@
+import { Chain, ChainWallet, DeployShopResponse, DropWeb3, Network, ProductType, Web3Actions, toEthAddress } from 'droplinked-web3';
 import { Isku } from 'lib/apis/product/interfaces';
-import {
-	deployShopContractService,
-	getDeployPermission,
-} from 'lib/apis/shop/shopServices';
+import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
 import useAppStore from 'lib/stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable';
-import { ProductType } from 'droplinked-web3';
-import { droplink_wallet } from 'lib/utils/statics/adresses';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
-import {
-	Chain,
-	ChainWallet,
-	DeployShopResponse,
-	DropWeb3,
-	Network,
-	Web3Actions,
-	toEthAddress,
-} from 'droplinked-web3';
 
 export type RecordProduct = {
 	sku_id: string;
@@ -208,16 +195,16 @@ const web3Model = {
 				};
 				if (data.blockchain === 'STACKS') {
 					// const query = await stacksRecord({
-					// 	isRequestPending,
-					// 	openContractCall,
-					// 	params: {
-					// 		price: sku.price * 100,
-					// 		amount: product.product_type === 'PRINT_ON_DEMAND' ? quantity : sku.quantity,
-					// 		commission,
-					// 		productID: product?._id,
-					// 		creator: stxAddress,
-					// 		uri: 'record',
-					// 	},
+					//  isRequestPending,
+					//  openContractCall,
+					//  params: {
+					//      price: sku.price * 100,
+					//      amount: product.product_type === 'PRINT_ON_DEMAND' ? quantity : sku.quantity,
+					//      commission,
+					//      productID: product?._id,
+					//      creator: stxAddress,
+					//      uri: 'record',
+					//  },
 					// })
 					// if (query) dataDeploy.deployHash = query.txId
 				} else {
@@ -438,22 +425,22 @@ const web3Model = {
 				const shopAddress = deployedContractAddress;
 				if (blockchain === 'STACKS') {
 					// const request = await stacksRequest({
-					// 	isRequestPending,
-					// 	openContractCall,
-					// 	params: {
-					// 		amount: quantity,
-					// 		commission: sku?.recordData?.data?.details?.commision,
-					// 		id: parseInt(productId),
-					// 		publisher: stxAddress,
-					// 	},
+					//  isRequestPending,
+					//  openContractCall,
+					//  params: {
+					//      amount: quantity,
+					//      commission: sku?.recordData?.data?.details?.commision,
+					//      id: parseInt(productId),
+					//      publisher: stxAddress,
+					//  },
 					// })
 					// resolve(request.txId)
 				} else {
 					const web3 = new DropWeb3(
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						]
 					);
 					const chainInstance = web3.web3Instance({
@@ -509,21 +496,21 @@ const web3Model = {
 				} else if (blockchain === 'SOLANA') {
 					//const web3 = new DropWeb3(Network.TESTNET);
 					//const accept = await new SolanaProvider(
-					//	Chain.SOLANA,
-					//	Network.TESTNET
+					//  Chain.SOLANA,
+					//  Network.TESTNET
 					//)
-					//	.setAddress(accountAddress)
-					//	.setModal(new defaultModal())
-					//	.approveRequest(shop, sku, recordData);
+					//  .setAddress(accountAddress)
+					//  .setModal(new defaultModal())
+					//  .approveRequest(shop, sku, recordData);
 					//deployHash = accept;
 					//resolve(deployHash);
 				} else {
 					//    approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
 					const web3 = new DropWeb3(
 						Network[
-							appDevelopment
-								? 'TESTNET'
-								: 'MAINNET'
+						appDevelopment
+							? 'TESTNET'
+							: 'MAINNET'
 						]
 					);
 					const chainInstance = web3.web3Instance({
