@@ -62,6 +62,7 @@ export default function AppDateRangePicker({ value, onChange }: Props) {
                 prevLabel: <AppIcons.ChevronLeft />,
                 formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
                 locale: "en-US",
+                activeStartDate: null,
               }}
               isOpen={true}
               onCalendarClose={onClose}
