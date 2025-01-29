@@ -1,19 +1,18 @@
-import { Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
-import AppTypography from "components/common/typography/AppTypography";
-import useAppStore from "lib/stores/app/appStore";
-import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
-import React from "react";
-import DashboardDate from "./parts/datepicker/DashboardDate";
-import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker";
+import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import useAppStore from 'lib/stores/app/appStore'
+import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import React from 'react'
+import DashboardDate from './parts/datepicker/DashboardDate'
 
 function WelcomeDashboard() {
-  const { shop } = useAppStore();
+  const { shop } = useAppStore()
   const getTime = () => {
-    const currentDate = new Date();
-    const currentHour = currentDate.getHours();
+    const currentDate = new Date()
+    const currentHour = currentDate.getHours()
 
-    let timeOfDay: string;
+    let timeOfDay: string
 
     if (currentHour >= 5 && currentHour < 12) {
       timeOfDay = "morning";
@@ -23,21 +22,18 @@ function WelcomeDashboard() {
       timeOfDay = "night";
     }
 
-    return timeOfDay;
-  };
+    return timeOfDay
+  }
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <AppDateRangePicker value={[new Date(), new Date()]} onChange={(value) => console.log(value)} />
       <Flex alignItems="center" gap="10px">
-        <AppTypography fontSize="32px" color="#FFF">
-          Good {getTime()}, <strong>{capitalizeFirstLetter(shop?.name)}</strong>
-        </AppTypography>
+        <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(shop?.name)}</strong></AppTypography>
         <AppIcons.Hand />
       </Flex>
       <DashboardDate />
     </Flex>
-  );
+  )
 }
 
-export default WelcomeDashboard;
+export default WelcomeDashboard
