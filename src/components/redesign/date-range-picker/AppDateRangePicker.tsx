@@ -49,7 +49,7 @@ export default function AppDateRangePicker({ value, onChange }: Props) {
           border={"none"}
           padding={0}
           margin={0}
-          borderBottomRadius="16px"
+          borderRadius="16px"
         >
           <SideControls setTempValue={setTempValue} />
           <Flex borderLeft={"1px solid #292929"} direction="column">
