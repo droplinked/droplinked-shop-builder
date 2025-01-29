@@ -319,8 +319,14 @@ import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
 import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
+import { ReactComponent as DayCalendar } from './day-calendar.svg';
+import { ReactComponent as WeekCalendar } from './week-calendar.svg';
+import { ReactComponent as Monthcalendar } from './month-calendar.svg';
 
 const AppIcons = {
+  DayCalendar,
+  WeekCalendar,
+  Monthcalendar,
   Euro,
   ChineseYuan,
   JapaneseYen,

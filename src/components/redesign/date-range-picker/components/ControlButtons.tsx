@@ -24,7 +24,7 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
   };
 
   return (
-    <Flex justifyContent={"end"} gap={4}>
+    <Flex mx={4} mb={4} justifyContent={"end"} gap={4}>
       <Button paddingInline={"12px"} fontSize={12} fontWeight={500} variant="secondary" onClick={handleDiscard}>
         Discard
       </Button>
