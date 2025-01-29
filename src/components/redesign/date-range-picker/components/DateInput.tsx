@@ -2,9 +2,11 @@ import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 interface Props {
-  selectedDate: Date[];
+  selectedDate: Value;
   onClick: () => void;
 }
 

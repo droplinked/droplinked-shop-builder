@@ -8,21 +8,29 @@ import DateInput from "./components/DateInput";
 import classes from "./styles.module.scss";
 import AppIcons from "assest/icon/Appicons";
 import DateRangeFooter from "./components/DateRangeFooter";
+import ControlButtons from "./components/ControlButtons";
 
 type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type Value = [ValuePiece, ValuePiece] | ValuePiece;
 
-export default function AppDateRangePicker({ minDate }: DateRangePickerProps) {
-  const [value, onChange] = useState<Value>([new Date(), new Date()]);
+interface Props extends DateRangePickerProps {
+  value: Value;
+  onChange: (value: Value) => void;
+}
+
+export default function AppDateRangePicker({ minDate, value, onChange }: Props) {
+  const [tempValue, setTempValue] = useState<Value>(value);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  if (value instanceof Array && value.length < 2) {
+    return null;
+  }
 
   return (
     <Box>
       <Popover isOpen={isOpen} onClose={onClose} placement="bottom-start" closeOnBlur={false} closeOnEsc={false}>
         <PopoverTrigger>
-          <Box>
-            <DateInput onClick={onOpen} selectedDate={[new Date(), new Date()]} />
-          </Box>
+          <DateInput onClick={onOpen} selectedDate={tempValue} />
         </PopoverTrigger>
         <PopoverContent background={"#1c1c1c"} border={"none"} padding={0} margin={0} borderBottomRadius="16px">
           <DateRangePicker
@@ -35,15 +43,16 @@ export default function AppDateRangePicker({ minDate }: DateRangePickerProps) {
               formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
               locale: "en-US",
             }}
-            isOpen={isOpen}
+            isOpen={true}
             onCalendarClose={onClose}
-            shouldCloseCalendar={({ reason }) => reason !== "select"}
+            shouldCloseCalendar={({ reason }) => false}
             minDate={minDate ? minDate : new Date()}
-            onChange={onChange}
-            value={value}
+            onChange={setTempValue}
+            value={tempValue}
           />
 
-          <DateRangeFooter value={value} />
+          <DateRangeFooter value={tempValue} />
+          <ControlButtons tempValue={tempValue} setTempValue={setTempValue} value={value} onChange={onChange} onClose={onClose} />
         </PopoverContent>
       </Popover>
     </Box>
