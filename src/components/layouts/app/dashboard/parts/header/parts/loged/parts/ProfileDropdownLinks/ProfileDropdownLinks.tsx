@@ -24,9 +24,9 @@ function ProfileDropdownLinks({ shop, close, isOpen }: Props) {
     const { isFetching, data } = useQuery({
         queryKey: ["shop-credit", isOpen],
         queryFn: () => getShopCredit(),
-        refetchOnMount: true,
+        enabled: isOpen
     })
-
+    const credit = data?.data?.data?.credit ?? 0
     const { getFormattedPrice } = useCurrencyConverter()
 
     const links: ILink[] = [
@@ -61,7 +61,7 @@ function ProfileDropdownLinks({ shop, close, isOpen }: Props) {
                                         fontWeight={600}
                                         textAlign={"right"}
                                     >
-                                        {getFormattedPrice({ amount: data.data.data.credit, toUSD: false, toFixed: true })}
+                                        {getFormattedPrice({ amount: credit, toUSD: false, toFixed: true })}
                                     </AppTypography>
                                 }
                             </Flex>
