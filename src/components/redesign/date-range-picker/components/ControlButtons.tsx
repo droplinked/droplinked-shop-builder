@@ -24,11 +24,11 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
   };
 
   return (
-    <Flex mx={4} mb={4} justifyContent={"end"} gap={4}>
-      <Button paddingInline={"12px"} fontSize={12} fontWeight={500} variant="secondary" onClick={handleDiscard}>
+    <Flex mx={4} mb={4} justifyContent={{ base: "center", md: "end" }} gap={4}>
+      <Button width={{ base: "50%", md: "min-content" }} paddingInline={"12px"} fontSize={12} fontWeight={500} variant="secondary" onClick={handleDiscard}>
         Discard
       </Button>
-      <Button paddingInline={"12px"} fontSize={12} fontWeight={500} variant="primary" onClick={handleConfirm}>
+      <Button width={{ base: "50%", md: "min-content" }} paddingInline={"12px"} fontSize={12} fontWeight={500} variant="primary" onClick={handleConfirm}>
         Confirm
       </Button>
     </Flex>

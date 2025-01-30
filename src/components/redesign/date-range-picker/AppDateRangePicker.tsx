@@ -3,13 +3,14 @@ import { useState } from "react";
 import DateRangePicker, { DateRangePickerProps } from "@wojtekmaj/react-daterange-picker";
 import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
 import "react-calendar/dist/Calendar.css";
-import { Box, Popover, PopoverTrigger, PopoverContent, useDisclosure, Flex } from "@chakra-ui/react";
+import { Box, Popover, PopoverTrigger, PopoverContent, useDisclosure, Flex, useMediaQuery } from "@chakra-ui/react";
 import DateInput from "./components/DateInput";
 import classes from "./styles.module.scss";
 import AppIcons from "assest/icon/Appicons";
 import DateRangeFooter from "./components/DateRangeFooter";
 import ControlButtons from "./components/ControlButtons";
 import SideControls from "./components/SideControls";
+import MobileDateRangePicker from "./mobile/MobileDateRangePicker";
 
 type ValuePiece = Date | null;
 type Value = [ValuePiece, ValuePiece] | ValuePiece;
@@ -22,6 +23,8 @@ interface Props extends DateRangePickerProps {
 export default function AppDateRangePicker({ value, onChange }: Props) {
   const [tempValue, setTempValue] = useState<Value>(value);
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [isSmallerThan768] = useMediaQuery('(max-width: 767px)')
+
 
   useEffect(() => {
     if (!isOpen) {
@@ -31,6 +34,22 @@ export default function AppDateRangePicker({ value, onChange }: Props) {
 
   if (value instanceof Array && value.length < 2) {
     return null;
+  }
+
+  if (isSmallerThan768) {
+    return (
+      <Box>
+        <DateInput onClick={onOpen} selectedDate={value} />
+        <MobileDateRangePicker
+          isOpen={isOpen}
+          onClose={onClose}
+          value={value}
+          tempValue={tempValue}
+          onChange={onChange}
+          setTempValue={setTempValue}
+        />
+      </Box>
+    );
   }
 
   return (

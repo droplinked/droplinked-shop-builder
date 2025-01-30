@@ -9,6 +9,9 @@
       }
       &__calendar {
         position: unset !important;
+        @media (max-width: 768px) {
+          width: 100% !important;
+        }
       }
     }
 
@@ -20,6 +23,10 @@
       background-color: #1c1c1c;
       color: #fff;
 
+      @media (max-width: 768px) {
+        width: 100% !important;
+      border-radius: 0px;
+      }
       &__tile {
         padding: 10px;
         background-color: transparent;

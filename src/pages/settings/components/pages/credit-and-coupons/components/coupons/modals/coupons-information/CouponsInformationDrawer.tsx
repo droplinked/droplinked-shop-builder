@@ -41,7 +41,6 @@ export default function CouponsInformationDrawer({ isOpen, onClose, coupon }: Pr
                 discardButtonText="Close"
                 saveButtonText="Save Changes"
                 drawerHeaderStyle={{ padding: 0, px: 9, py: 9, paddingBottom: 0 }}
-                isInformationDrawer
             >
                 <TabPanels>
                     {tabs.map((tab) => (
