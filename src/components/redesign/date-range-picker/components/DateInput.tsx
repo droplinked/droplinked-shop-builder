@@ -20,7 +20,13 @@ const formatDate = (date: Date) => {
 
 export default function DateInput({ selectedDate, onClick }: Props) {
   return (
-    <Flex px="14px" py="10px" border="1px solid #292929" borderRadius="8px" gap="6px" alignItems="center" userSelect="none" cursor="pointer" onClick={onClick}>
+    <Flex
+      px="14px" py="10px"
+      border="1px solid #292929" borderRadius="8px"
+      gap="6px" alignItems="center"
+      userSelect="none" cursor="pointer"
+      onClick={onClick}
+    >
       <AppIcons.Calendar color="#fff" />
       <Flex ml={2} gap={2}>
         {selectedDate?.[0] && (

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Tab, TabList } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props {
     tabs: { title: string; content: React.ReactNode }[];

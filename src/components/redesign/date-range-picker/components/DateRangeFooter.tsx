@@ -1,7 +1,7 @@
-import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
+import AppTypography from "components/common/typography/AppTypography";
+import React from "react";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];

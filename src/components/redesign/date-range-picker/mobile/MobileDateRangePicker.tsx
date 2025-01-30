@@ -1,11 +1,11 @@
-import React from 'react';
-import { TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import Drawer from 'components/common/Drawer/Drawer';
-import TabsList from './TabsList';
-import DatePickerTab from './tabs/DatePickerTab';
-import FiltersTab from './tabs/FiltersTab';
-import DateRangeFooter from '../components/DateRangeFooter';
-import ControlButtons from '../components/ControlButtons';
+import { TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import Drawer from "components/common/Drawer/Drawer";
+import React from "react";
+import ControlButtons from "../components/ControlButtons";
+import DatePicker from "../components/DatePicker";
+import DateRangeFooter from "../components/DateRangeFooter";
+import TabsList from "./TabsList";
+import FiltersTab from "./tabs/FiltersTab";
 
 type ValuePiece = Date | null;
 type Value = [ValuePiece, ValuePiece] | ValuePiece;
@@ -23,16 +23,16 @@ export default function MobileDateRangePicker({ isOpen, onClose, value, tempValu
     const tabs = [
         {
             title: "Filters",
-            content: <FiltersTab setTempValue={setTempValue} />
+            content: <FiltersTab setTempValue={setTempValue} />,
         },
         {
             title: "Date Picker",
-            content: <DatePickerTab value={tempValue} onChange={setTempValue} />
+            content: <DatePicker setTempValue={setTempValue} tempValue={tempValue} />,
         },
     ];
 
     return (
-        <Tabs>
+        <Tabs isLazy>
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
