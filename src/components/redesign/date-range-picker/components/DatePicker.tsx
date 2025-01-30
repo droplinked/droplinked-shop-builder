@@ -41,7 +41,6 @@ export default function DatePicker({
                     prevLabel: <AppIcons.ChevronLeft />,
                     formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
                     locale: "en-US",
-                    activeStartDate: tempValue?.[0] ?? null,
                 }}
                 isOpen={true}
                 shouldCloseCalendar={() => false}
