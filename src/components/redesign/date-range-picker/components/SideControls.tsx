@@ -58,7 +58,7 @@ export default function SideControls({ setTempValue }: Props) {
     <Flex p={4} flexDir="column" gap={{ base: 3, md: 2 }} borderLeftRadius="16px" bg="#141414">
       {Items.map((item) => {
         return (
-          <Flex px={{ base: "14px", md: 3 }} py={{ base: "10px", md: 2 }} gap={1} border={{ base: "1px solid #292929", md: "none" }} borderRadius={{ base: "8px", md: "none" }} alignItems="center" cursor={"pointer"} onClick={item.onClick}>
+          <Flex px={{ base: "14px", md: 3 }} py={{ base: "10px", md: 2 }} gap={{ base: "6px", md: 1 }} border={{ base: "1px solid #292929", md: "none" }} borderRadius={{ base: "8px", md: "none" }} alignItems="center" cursor={"pointer"} onClick={item.onClick}>
             {item.icon}
             <AppTypography color="#fff" fontWeight={500} fontSize={{ base: 14, md: 12 }}>
               {item.title}
