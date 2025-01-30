@@ -5,7 +5,7 @@ import ControlButtons from "../components/ControlButtons";
 import DatePicker from "../components/DatePicker";
 import DateRangeFooter from "../components/DateRangeFooter";
 import TabsList from "./TabsList";
-import FiltersTab from "./tabs/FiltersTab";
+import SideControls from "../components/SideControls";
 
 type ValuePiece = Date | null;
 type Value = [ValuePiece, ValuePiece] | ValuePiece;
@@ -23,7 +23,7 @@ export default function MobileDateRangePicker({ isOpen, onClose, value, tempValu
     const tabs = [
         {
             title: "Filters",
-            content: <FiltersTab setTempValue={setTempValue} />,
+            content: <SideControls setTempValue={setTempValue} />,
         },
         {
             title: "Date Picker",
