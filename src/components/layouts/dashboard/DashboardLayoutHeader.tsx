@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Image, Menu, MenuButton, MenuList, Spinner } from "@chakra-ui/react";
+import { Box, Divider, Flex, Image, Menu, MenuButton, MenuList, Spinner, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTooltip from "components/common/tooltip/AppTooltip";
 import AppTypography from "components/common/typography/AppTypography";
@@ -15,11 +15,13 @@ import { getShopCredit } from "lib/apis/shop/shopServices";
 import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 
 const DashboardLayoutHeader = () => {
+    const { isOpen, onClose, onOpen } = useDisclosure()
     const { isFetching, data, refetch } = useQuery({
         queryKey: ["shop-credit"],
         queryFn: () => getShopCredit(),
-        refetchOnMount: true,
+        enabled: isOpen,
     })
+    const credit = data?.data?.data?.credit ?? 0
     const { getFormattedPrice } = useCurrencyConverter()
     const { shopNavigate } = useCustomNavigate();
     const { shop, user } = useAppStore();
@@ -37,8 +39,8 @@ const DashboardLayoutHeader = () => {
 
     return (
         <Flex position="sticky" top={0} width="full" justifyContent="flex-end" alignItems="center" gap="16px" padding="16px 36px 16px 24px" borderBottom="1px solid #292929" backgroundColor="#141414" zIndex={999}>
-            <Menu variant="unstyled">
-                <MenuButton onClick={() => refetch()} cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C">
+            <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose} variant="unstyled">
+                <MenuButton cursor="pointer" display="flex" padding="14px" justifyContent="center" alignItems="center" gap="4px" borderRadius="8px" border="1px solid #3C3C3C" background="#1C1C1C">
                     <AppIcons.SidebarUser width="20px" height="20px" />
                 </MenuButton>
                 <MenuList right="32px" borderRadius="8px" background="#222" border="none" width="352px" boxShadow="0px 4px 6px -4px rgba(23, 34, 62, 0.08), 0px 8px 12px -6px rgba(23, 34, 62, 0.08)">
@@ -73,7 +75,7 @@ const DashboardLayoutHeader = () => {
                                                 <Box {...profile_list?.rightSide?.style}>
                                                     {
                                                         profile_list.title.label === "Credit" ?
-                                                            (isFetching ? <Spinner /> : getFormattedPrice({ amount: data.data.data.credit, toUSD: false, toFixed: true }))
+                                                            (isFetching ? <Spinner /> : getFormattedPrice({ amount: credit, toUSD: false, toFixed: true }))
                                                             :
                                                             profile_list?.rightSide?.value
                                                     }
