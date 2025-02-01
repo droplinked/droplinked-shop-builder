@@ -7,33 +7,33 @@ import React from 'react'
 import DashboardDate from './parts/datepicker/DashboardDate'
 
 function WelcomeDashboard() {
-    const { shop } = useAppStore()
-    const getTime = () => {
-        const currentDate = new Date()
-        const currentHour = currentDate.getHours()
+  const { shop } = useAppStore()
+  const getTime = () => {
+    const currentDate = new Date()
+    const currentHour = currentDate.getHours()
 
-        let timeOfDay: string
+    let timeOfDay: string
 
-        if (currentHour >= 5 && currentHour < 12) {
-            timeOfDay = "morning";
-        } else if (currentHour >= 12 && currentHour < 18) {
-            timeOfDay = "evening";
-        } else {
-            timeOfDay = "night";
-        }
-
-        return timeOfDay
+    if (currentHour >= 5 && currentHour < 12) {
+      timeOfDay = "morning";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      timeOfDay = "evening";
+    } else {
+      timeOfDay = "night";
     }
 
-    return (
-        <Flex justifyContent="space-between" alignItems="center">
-            <Flex alignItems="center" gap="10px">
-                <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(shop?.name)}</strong></AppTypography>
-                <AppIcons.Hand />
-            </Flex>
-            <DashboardDate />
-        </Flex>
-    )
+    return timeOfDay
+  }
+
+  return (
+    <Flex justifyContent="space-between" alignItems="center">
+      <Flex alignItems="center" gap="10px">
+        <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(shop?.name)}</strong></AppTypography>
+        <AppIcons.Hand />
+      </Flex>
+      <DashboardDate />
+    </Flex>
+  )
 }
 
 export default WelcomeDashboard
