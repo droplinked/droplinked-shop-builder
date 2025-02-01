@@ -18,30 +18,16 @@ import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
-import {
-	Chain,
-	ChainWallet,
-	DropWeb3,
-	Network,
-	Web3Actions,
-	ZERO_ADDRESS,
-} from 'droplinked-web3';
+import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
 
 interface Props {
 	setModalData: React.Dispatch<React.SetStateAction<ModalState>>;
 	selectedPaymentMethod: SubscriptionPlanPaymentMethod;
 }
 
-export default function PaymentMethodSelection({
-	setModalData,
-	selectedPaymentMethod,
-}: Props) {
-	const { _id: selectedPlanId } = useSubscriptionPlanPurchaseStore(
-		(state) => state.selectedPlan
-	);
-	const preferredPlanDuration = useSubscriptionPlanPurchaseStore(
-		(state) => state.preferredPlanDuration
-	);
+export default function PaymentMethodSelection({ setModalData, selectedPaymentMethod }: Props) {
+	const { _id: selectedPlanId } = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan);
+	const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration);
 	const { showToast } = useAppToast();
 	const [isTransactionInProgress, setTransactionInProgress] = useState(false);
 	const {
@@ -73,9 +59,7 @@ export default function PaymentMethodSelection({
 		onChange: (type) =>
 			setModalData((prevData) => ({
 				...prevData,
-				selectedPaymentMethod: paymentMethods.data.find(
-					(method) => method.type === type
-				),
+				selectedPaymentMethod: paymentMethods.data.find((method) => method.type === type),
 			})),
 		value: selectedPaymentMethod?.type,
 	});
@@ -84,10 +68,7 @@ export default function PaymentMethodSelection({
 		if (!selectedPaymentMethod) refetchPaymentMethods();
 	}, [selectedPaymentMethod, refetchPaymentMethods]);
 
-	const handlePayment = () =>
-		selectedPaymentMethod.type === 'STRIPE'
-			? hndleStripePayment()
-			: handleCryptoPayment();
+	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? hndleStripePayment() : handleCryptoPayment());
 
 	const hndleStripePayment = async () => {
 		try {
@@ -111,15 +92,10 @@ export default function PaymentMethodSelection({
 		try {
 			setTransactionInProgress(true);
 			const paymentMethodType = selectedPaymentMethod.type;
-			const tokenType = selectedPaymentMethod.tokens?.find(
-				(t) => t.isNative
-			).type;
-			const dropWeb3 = new DropWeb3(
-				appDevelopment ? Network.TESTNET : Network.MAINNET
-			);
+			const tokenType = selectedPaymentMethod.tokens?.find((t) => t.isNative).type;
+			const dropWeb3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET);
 			const loginProvider = dropWeb3.web3Instance({
 				method: Web3Actions.LOGIN,
-				chain: Chain[paymentMethodType],
 				preferredWallet: ChainWallet.Metamask,
 			});
 			const { address } = await loginProvider.walletLogin();
@@ -144,15 +120,12 @@ export default function PaymentMethodSelection({
 				tokenAddress: ZERO_ADDRESS,
 				...paymentData,
 			});
-			await sendPlanPurchaseTransactionToWeb3Service(
-				paymentMethodType,
-				{
-					deploy_hash: transactionHash,
-					subscriptionId: shopSubscriptionId,
-					recurring: false,
-					walletAddress: address,
-				}
-			);
+			await sendPlanPurchaseTransactionToWeb3Service(paymentMethodType, {
+				deploy_hash: transactionHash,
+				subscriptionId: shopSubscriptionId,
+				recurring: false,
+				walletAddress: address,
+			});
 			setModalData((prevData) => ({
 				...prevData,
 				step: 'SuccessfulPayment',
@@ -172,42 +145,20 @@ export default function PaymentMethodSelection({
 		if (isError)
 			return (
 				<AppTypography fontSize={16} color={'red.400'}>
-					Oops! It looks like we can not access payment
-					methods at the moment. Give it another try soon?
+					Oops! It looks like we can not access payment methods at the moment. Give it another try soon?
 				</AppTypography>
 			);
 
-		return paymentMethods.data.map((paymentMethod) => (
-			<PaymentMethodRadio
-				key={paymentMethod.type}
-				paymentMethod={paymentMethod}
-				{...getRadioProps({ value: paymentMethod.type })}
-			/>
-		));
+		return paymentMethods.data.map((paymentMethod) => <PaymentMethodRadio key={paymentMethod.type} paymentMethod={paymentMethod} {...getRadioProps({ value: paymentMethod.type })} />);
 	};
 
 	return (
 		<>
-			<ModalHeaderData
-				icon={<AppIcons.PaymentMethodSelection />}
-				title="Payment methods"
-				description={
-					'How would you like to pay for your subscription?'
-				}
-			/>
-			<ModalBody
-				display={'flex'}
-				flexDirection={'column'}
-				gap={4}
-				{...getRootProps()}
-			>
+			<ModalHeaderData icon={<AppIcons.PaymentMethodSelection />} title="Payment methods" description={'How would you like to pay for your subscription?'} />
+			<ModalBody display={'flex'} flexDirection={'column'} gap={4} {...getRootProps()}>
 				{renderContent()}
 			</ModalBody>
-			<ModalFooter
-				display={'flex'}
-				alignItems={'center'}
-				gap={{ xl: 6, base: 3 }}
-			>
+			<ModalFooter display={'flex'} alignItems={'center'} gap={{ xl: 6, base: 3 }}>
 				<BasicButton
 					minWidth={'unset'}
 					width={'50%'}
@@ -222,13 +173,7 @@ export default function PaymentMethodSelection({
 				>
 					Back
 				</BasicButton>
-				<BasicButton
-					minWidth={'unset'}
-					width={'50%'}
-					isDisabled={isTransactionInProgress}
-					isLoading={isTransactionInProgress}
-					onClick={handlePayment}
-				>
+				<BasicButton minWidth={'unset'} width={'50%'} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>
 					Next
 				</BasicButton>
 			</ModalFooter>
