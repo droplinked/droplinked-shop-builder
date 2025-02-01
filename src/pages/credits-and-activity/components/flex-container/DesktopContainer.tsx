@@ -29,7 +29,7 @@ export default function DesktopContainer({ items }: Props) {
                         {...((isFullWidth || isSmallerThan768) && notLastItem) && { borderBottom: "1px solid #292929" }}
                         {...!isFullWidth && notLastItem && !isSmallerThan768 && { borderRight: "1px solid #292929" }}
                     >
-                        <Box p={{ base: 4, md: 6 }}>
+                        <Box>
                             {content}
                         </Box>
                     </Flex>

@@ -325,9 +325,13 @@ import { ReactComponent as Monthcalendar } from './month-calendar.svg';
 import { ReactComponent as Wallet } from './wallet.svg';
 import { ReactComponent as SendMoney } from './send-money.svg';
 import { ReactComponent as RecieveMoney } from './recieve-money.svg';
+import { ReactComponent as ArrowUp } from './arrow-up.svg';
+import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 
 const AppIcons = {
   SendMoney,
+  ArrowUp,
+  ArrowDownOutlined,
   RecieveMoney,
   Wallet,
   DayCalendar,

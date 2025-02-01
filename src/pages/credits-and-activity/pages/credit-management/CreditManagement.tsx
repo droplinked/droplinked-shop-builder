@@ -1,7 +1,8 @@
-import AppTypography from 'components/common/typography/AppTypography'
 import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
 import React from 'react'
 import AccountBalance from './components/account-balance/AccountBalance'
+import Inbound from './components/inbound/Inbound'
+import Outbound from './components/outbound/Outbound'
 
 export default function CreditManagement() {
     return (
@@ -12,11 +13,11 @@ export default function CreditManagement() {
                     isFullWidth: true
                 },
                 {
-                    content: <AppTypography color={"#fff"}>Content 2</AppTypography>,
+                    content: <Inbound />,
                     isFullWidth: false
                 },
                 {
-                    content: <AppTypography color={"#fff"}>Content 3</AppTypography>,
+                    content: <Outbound />,
                     isFullWidth: false
                 },
             ]}

@@ -10,6 +10,7 @@ export default function AccountBalance() {
     return (
         <Flex
             flexDirection={{ base: "column", md: "row" }}
+            p={{ base: 4, md: 6 }}
             gap={4}
             justifyContent="space-between"
             alignItems="start"

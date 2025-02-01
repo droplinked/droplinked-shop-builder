@@ -5,7 +5,7 @@ import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCu
 import React from "react";
 
 export const BalanceDisplay = () => {
-    const { abbreviation, convertPrice } = useCurrencyConverter();
+    const { abbreviation, convertPrice, symbol } = useCurrencyConverter();
 
     return (
         <Flex flexDirection="column" gap={{ base: 4, md: 6 }} alignItems="start">
@@ -18,10 +18,10 @@ export const BalanceDisplay = () => {
                 </AppTypography>
                 <Flex gap={1}>
                     <AppTypography color={"#fff"} fontSize={{ base: 20, md: 24 }} fontWeight={500}>
-                        {convertPrice({ amount: 20, toUSD: false }).toFixed(2)}
+                        {symbol}{convertPrice({ amount: 20, toUSD: false }).toFixed(2)}
                     </AppTypography>
                     <AppTypography color={"#7b7b7b"} fontSize={{ base: 20, md: 24 }} fontWeight={400}>
-                        {abbreviation}
+                        {abbreviation}/USDC
                     </AppTypography>
                 </Flex>
             </Flex>

@@ -24,7 +24,7 @@ export default function MobileContainer({ items }: Props) {
                         borderRadius={"8px"}
                         width="100%"
                     >
-                        <Box p={{ base: 4, md: 6 }}>
+                        <Box>
                             {content}
                         </Box>
                     </Box>
