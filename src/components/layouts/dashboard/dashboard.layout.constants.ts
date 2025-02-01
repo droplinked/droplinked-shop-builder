@@ -127,8 +127,11 @@ export const sidebar_constants: SidebarGroup[] = [
             {
                 title: "Account Settings",
                 icon: AppIcons.SettingGear,
-                linkTo: "/analytics/account-settings",
-                list: [],
+                linkTo: null,
+                list: [
+                    { listTitle: "Settings", linkTo: "/analytics/account-settings" },
+                    { listTitle: "Credits and Account Activity", linkTo: "/analytics/credits-and-activity" },
+                ],
             },
             {
                 title: "Quests",
