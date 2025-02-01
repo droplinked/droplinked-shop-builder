@@ -1,9 +1,9 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface TabItem {
     title: string;
-    content: React.ReactNode;
+    content: ReactNode;
 }
 
 interface AppTabProps {
