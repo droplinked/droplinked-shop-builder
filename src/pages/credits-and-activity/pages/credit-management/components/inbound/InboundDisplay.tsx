@@ -10,7 +10,7 @@ export default function InboundDisplay() {
     return (
         <Flex p={{ base: 4, md: 6 }} flexDirection="column" gap={{ base: 4, md: 6 }} alignItems="start">
             <Flex p={3} bg={"#2bcfa11a"} border={"1px solid #2bcfa11a"} borderRadius={"8px"}>
-                <AppIcons.ArrowUp color='#2BCFA1' />
+                <AppIcons.ArrowDownOutlined color='#2BCFA1' />
             </Flex>
             <Flex flexDirection={"column"} gap={2}>
                 <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>

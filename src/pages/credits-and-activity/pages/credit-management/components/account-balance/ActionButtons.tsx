@@ -15,6 +15,7 @@ export const ActionButtons = () => {
                 flex={{ base: 1, md: "unset" }}
                 fontSize={14}
                 fontWeight={500}
+                variant="secondary"
                 leftIcon={<AppIcons.SendMoney />}
                 width={{ base: "50%", md: "min-content" }}
             >
