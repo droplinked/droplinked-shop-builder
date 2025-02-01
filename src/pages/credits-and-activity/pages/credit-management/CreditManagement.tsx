@@ -1,7 +1,7 @@
 import AppTypography from 'components/common/typography/AppTypography'
 import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
 import React from 'react'
-import AccountBalance from './components/AccountBalance'
+import AccountBalance from './components/account-balance/AccountBalance'
 
 export default function CreditManagement() {
     return (
