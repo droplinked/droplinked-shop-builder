@@ -322,8 +322,14 @@ import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
 import { ReactComponent as DayCalendar } from './day-calendar.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as Monthcalendar } from './month-calendar.svg';
+import { ReactComponent as Wallet } from './wallet.svg';
+import { ReactComponent as SendMoney } from './send-money.svg';
+import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 
 const AppIcons = {
+  SendMoney,
+  RecieveMoney,
+  Wallet,
   DayCalendar,
   WeekCalendar,
   Monthcalendar,

@@ -8,15 +8,15 @@ import DesktopDateRangePicker from "./desktop/DesktopDateRangePicker";
 import MobileDateRangePicker from "./mobile/MobileDateRangePicker";
 
 type ValuePiece = Date | null;
-type Value = [ValuePiece, ValuePiece] | ValuePiece;
+export type DateRangeValue = [ValuePiece, ValuePiece] | ValuePiece;
 
 interface Props extends DateRangePickerProps {
-  value: Value;
-  onChange: (value: Value) => void;
+  value: DateRangeValue;
+  onChange: (value: DateRangeValue) => void;
 }
 
 export default function AppDateRangePicker({ value, onChange }: Props) {
-  const [tempValue, setTempValue] = useState<Value>(value);
+  const [tempValue, setTempValue] = useState<DateRangeValue>(value);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
 
@@ -30,7 +30,7 @@ export default function AppDateRangePicker({ value, onChange }: Props) {
 
   if (isSmallerThan768) {
     return (
-      <Box>
+      <Box width={"100%"}>
         <DateInput onClick={onOpen} selectedDate={value} />
         <MobileDateRangePicker
           isOpen={isOpen}

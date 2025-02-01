@@ -25,6 +25,7 @@ export default function DateInput({ selectedDate, onClick }: Props) {
       border="1px solid #292929" borderRadius="8px"
       gap="6px" alignItems="center"
       userSelect="none" cursor="pointer"
+      width={"100%"}
       onClick={onClick}
     >
       <AppIcons.Calendar color="#fff" />

@@ -16,6 +16,6 @@ export default function TabsContent() {
     ]
 
     return (
-        <AppTab tabs={tabs} />
+        <AppTab tabs={tabs} tabPanelStyle={{ p: { base: 4, md: 6 } }} />
     )
 }
