@@ -12,7 +12,7 @@ export default function AmountColumn({ type, balance }: Props) {
         type === "DISCOUNT" ? (
             <AppTypography fontSize={16}>{balance}%</AppTypography>
         ) : (
-            <FormattedPrice fontSize={16} price={balance} />
+            <FormattedPrice price={balance} />
         )
     );
 }
