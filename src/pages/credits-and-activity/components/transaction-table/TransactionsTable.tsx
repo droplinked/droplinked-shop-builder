@@ -4,7 +4,6 @@ import React from 'react'
 import { UseInfiniteQueryResult } from 'react-query'
 import TypeColumn from './TypeColumn'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import DetailsColumn from './DetailsColumn'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 
 interface Props {
