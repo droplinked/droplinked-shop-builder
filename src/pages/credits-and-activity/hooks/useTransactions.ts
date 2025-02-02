@@ -1,26 +1,15 @@
 import { useInfiniteQuery } from 'react-query';
 
-const mockTransactions = [
-    {
-        type: 'Credit',
-        amount: 500,
-        date: new Date('2024-01-15'),
-        transactionId: 'tx-001',
-        details: 'Payment received',
-        isInbound: true,
-        isOutbound: false,
-    },
-    {
-        type: 'Discount',
-        amount: 200,
-        date: new Date('2024-01-14'),
-        transactionId: 'tx-002',
-        details: 'Withdrawal',
-        isInbound: false,
-        isOutbound: true,
-    },
-    // Add more mock transactions as needed
-];
+const mockTransactions = Array(100).fill(null).map((_, index) => ({
+    type: index % 3 === 0 ? 'Credit' : index % 3 === 1 ? 'Discount' : 'Withdrawal',
+    amount: Math.floor(Math.random() * 1000) + 100,
+    date: new Date(2024, 0, Math.floor(Math.random() * 30) + 1),
+    transactionId: `tx-${(index + 1).toString().padStart(3, '0')}`,
+    details: index % 3 === 0 ? 'Payment received' :
+        index % 3 === 1 ? 'Discount applied' : 'Withdrawal processed',
+    isInbound: index % 3 === 0,
+    isOutbound: index % 3 !== 0
+}));
 
 export const useTransactions = () => {
     return useInfiniteQuery(
@@ -28,13 +17,13 @@ export const useTransactions = () => {
         ({ pageParam = 0 }) => {
             return Promise.resolve({
                 data: {
-                    data: mockTransactions.slice(pageParam * 10, (pageParam + 1) * 10)
+                    data: mockTransactions.slice(pageParam * 20, (pageParam + 1) * 20)
                 }
             });
         },
         {
             getNextPageParam: (lastPage, pages) => {
-                return pages.length < Math.ceil(mockTransactions.length / 10) ? pages.length : undefined;
+                return pages.length < Math.ceil(mockTransactions.length / 20) ? pages.length : undefined;
             },
         }
     );
