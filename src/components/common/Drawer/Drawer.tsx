@@ -14,6 +14,7 @@ interface Props extends PropsWithChildren {
     drawerContentStyle?: DrawerContentProps
     drawerHeaderStyle?: ChakraProps
     showSubmitButtons?: boolean
+    headingStyle?: ChakraProps
     placement?: 'top' | 'right' | 'bottom' | 'left'
 }
 
@@ -28,6 +29,7 @@ function Drawer({
     onClick,
     headerContent,
     drawerContentStyle,
+    headingStyle,
     drawerHeaderStyle,
     showSubmitButtons,
     placement = "right"
@@ -68,7 +70,7 @@ function Drawer({
                     {...drawerHeaderStyle}
                 >
                     <Flex justifyContent="space-between" alignItems="center" width="100%">
-                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
+                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF" {...headingStyle}>
                             {title}
                         </Heading>
                         <DrawerCloseButton position="static" color="white" />

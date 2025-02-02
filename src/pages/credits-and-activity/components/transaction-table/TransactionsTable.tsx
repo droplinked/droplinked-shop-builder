@@ -1,10 +1,14 @@
 import { ColumnDef } from '@tanstack/react-table'
 import Table from 'components/redesign/table/Table'
-import React from 'react'
+import React, { useState } from 'react'
 import { UseInfiniteQueryResult } from 'react-query'
 import TypeColumn from './TypeColumn'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
+import { Flex } from '@chakra-ui/react'
+import Input from 'components/redesign/input/Input'
+import AppIcons from 'assest/icon/Appicons'
+import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
 
 interface Props {
     infiniteQueryResult: UseInfiniteQueryResult
@@ -23,6 +27,7 @@ interface Transaction {
 export default function TransactionsTable({ infiniteQueryResult }: Props) {
     const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
     const transactions = data?.pages.flatMap((page: { data: { data: Transaction } }) => page.data.data) || [];
+    const [dataFilter, setDataFilter] = useState<string[]>([])
 
     const columns: ColumnDef<Transaction>[] = [
         {
@@ -52,19 +57,53 @@ export default function TransactionsTable({ infiniteQueryResult }: Props) {
         },
     ];
 
+    const Items = [
+        {
+            label: "Referral",
+            value: "referral"
+        }, {
+            label: "Credits",
+            value: "credits"
+        }, {
+            label: "Discount",
+            value: "discount"
+        },
+        {
+            label: "Voucher",
+            value: "voucher"
+        },
+        {
+            label: "Reward",
+            value: "reward"
+        },
+        {
+            label: "Subscription",
+            value: "subscription"
+        },
+        {
+            label: "Withdrawal",
+            value: "withdrawal"
+        }
+    ]
 
     return (
-        <Table
-            infiniteScroll={{
-                hasMore: hasNextPage,
-                next: fetchNextPage,
-                isFetchingNextPage: isFetchingNextPage,
-                dataLength: data?.pageParams?.length || 0,
-            }}
-            isLoading={isFetching}
-            data={transactions}
-            columns={columns}
-            tableFontSize={16}
-        />
+        <Flex mt={6} flexDirection={"column"} gap={4}>
+            <Flex justifyContent={"space-between"} alignItems={"center"} gap={3} flexDirection={{ base: "column", md: "row" }}>
+                <Input leftElement={<AppIcons.Search />} inputProps={{ placeholder: "Search" }} inputContainerProps={{ width: { base: "100%", md: "280px" } }} />
+                <MultiSelectMenu items={Items} onSelect={setDataFilter} selectedItems={dataFilter} />
+            </Flex>
+            <Table
+                infiniteScroll={{
+                    hasMore: hasNextPage,
+                    next: fetchNextPage,
+                    isFetchingNextPage: isFetchingNextPage,
+                    dataLength: data?.pageParams?.length || 0,
+                }}
+                isLoading={isFetching}
+                data={transactions}
+                columns={columns}
+                tableFontSize={16}
+            />
+        </Flex>
     )
 }
