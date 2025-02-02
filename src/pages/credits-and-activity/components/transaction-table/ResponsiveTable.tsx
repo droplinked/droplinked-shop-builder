@@ -7,7 +7,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import Table from 'components/redesign/table/Table';
 import { UseInfiniteQueryResult } from 'react-query';
-import MobileCard from './MobileCard';
+import TransactionsCards from './TransactionsCards';
 
 export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
@@ -51,7 +51,7 @@ export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQuery
     ];
     return (
         isSmallerThan768 ?
-            <MobileCard infiniteQueryResult={infiniteQueryResult} />
+            <TransactionsCards infiniteQueryResult={infiniteQueryResult} />
             : <Table
                 infiniteScroll={{
                     hasMore: hasNextPage,
