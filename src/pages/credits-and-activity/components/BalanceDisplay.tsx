@@ -4,7 +4,12 @@ import AppTypography from "components/common/typography/AppTypography";
 import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
 
-export const BalanceDisplay = () => {
+interface Props {
+    title: string;
+    amount: number;
+}
+
+export const BalanceDisplay = ({ title, amount }: Props) => {
     const { abbreviation, convertPrice, symbol } = useCurrencyConverter();
 
     return (
@@ -14,11 +19,11 @@ export const BalanceDisplay = () => {
             </Flex>
             <Flex flexDirection={"column"} gap={2}>
                 <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>
-                    Account Balance
+                    {title}
                 </AppTypography>
                 <Flex gap={1}>
                     <AppTypography color={"#fff"} fontSize={{ base: 20, md: 24 }} fontWeight={500}>
-                        {symbol}{convertPrice({ amount: 20, toUSD: false }).toFixed(2)}
+                        {symbol}{convertPrice({ amount: amount, toUSD: false }).toFixed(2)}
                     </AppTypography>
                     <AppTypography color={"#7b7b7b"} fontSize={{ base: 20, md: 24 }} fontWeight={400}>
                         {abbreviation}/USDC
