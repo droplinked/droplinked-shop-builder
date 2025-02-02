@@ -9,7 +9,11 @@ interface MetricDetailsProps {
 
 function MetricDetails({ metric }: MetricDetailsProps) {
     return (
-        <Flex direction="column" gap={2} sx={{ p: { fontSize: { base: 18, lg: 20 }, fontWeight: 500, color: "#fff" } }}>
+        <Flex
+            direction="column"
+            gap={2}
+            sx={{ p: { fontSize: { base: 18, lg: 20 }, fontWeight: 500, color: "#fff" } }}
+        >
             <Text fontSize={14} color="#fff">{metric.label}</Text>
             {metric.isPrice
                 ? <FormattedPrice price={metric.value} abbreviationProps={{ color: '#7B7B7B', fontWeight: 400 }} />
