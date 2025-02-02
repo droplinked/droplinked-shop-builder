@@ -1,20 +1,16 @@
-import { ColumnDef } from '@tanstack/react-table'
-import Table from 'components/redesign/table/Table'
+import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import Input from 'components/redesign/input/Input'
 import React, { useState } from 'react'
 import { UseInfiniteQueryResult } from 'react-query'
-import TypeColumn from './TypeColumn'
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import AppTooltip from 'components/common/tooltip/AppTooltip'
-import { Flex } from '@chakra-ui/react'
-import Input from 'components/redesign/input/Input'
-import AppIcons from 'assest/icon/Appicons'
 import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
+import ResponsiveTable from './ResponsiveTable'
 
 interface Props {
     infiniteQueryResult: UseInfiniteQueryResult
 }
 
-interface Transaction {
+export interface Transaction {
     type: string;
     amount: number;
     date: Date;
@@ -26,36 +22,7 @@ interface Transaction {
 
 export default function TransactionsTable({ infiniteQueryResult }: Props) {
     const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
-    const transactions = data?.pages.flatMap((page: { data: { data: Transaction } }) => page.data.data) || [];
     const [dataFilter, setDataFilter] = useState<string[]>([])
-
-    const columns: ColumnDef<Transaction>[] = [
-        {
-            accessorKey: "type",
-            header: "Type",
-            cell: (info) => <TypeColumn data={info.row.original} />,
-        },
-        {
-            accessorKey: "amount",
-            header: "Amount",
-            cell: (info) => <FormattedPrice price={info.row.original.amount} fontSize={16} />,
-        },
-        {
-            accessorKey: "date",
-            header: "Date",
-            cell: (info) => new Date(info.row.original.date).toDateString(),
-        },
-        {
-            accessorKey: "transactionId",
-            header: "Transaction ID",
-            cell: (info) => info.row.original.transactionId ?? "-",
-        },
-        {
-            accessorKey: "details",
-            header: "Details",
-            cell: (info) => <AppTooltip label={info.row.original.details} placement='bottom-start'>{info.row.original.details}</AppTooltip>,
-        },
-    ];
 
     const Items = [
         {
@@ -92,18 +59,7 @@ export default function TransactionsTable({ infiniteQueryResult }: Props) {
                 <Input leftElement={<AppIcons.Search />} inputProps={{ placeholder: "Search" }} inputContainerProps={{ width: { base: "100%", md: "280px" } }} />
                 <MultiSelectMenu items={Items} onSelect={setDataFilter} selectedItems={dataFilter} />
             </Flex>
-            <Table
-                infiniteScroll={{
-                    hasMore: hasNextPage,
-                    next: fetchNextPage,
-                    isFetchingNextPage: isFetchingNextPage,
-                    dataLength: data?.pageParams?.length || 0,
-                }}
-                isLoading={isFetching}
-                data={transactions}
-                columns={columns}
-                tableFontSize={16}
-            />
+            <ResponsiveTable infiniteQueryResult={infiniteQueryResult} />
         </Flex>
     )
 }

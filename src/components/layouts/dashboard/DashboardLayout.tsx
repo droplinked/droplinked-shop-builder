@@ -26,7 +26,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
     return (
         <VStack width="full" height="full" alignItems="flex-start" justifyContent="flex-start">
             <HStack width="full" height="full" alignItems="flex-start" justifyContent="flex-start">
-                <DashboardLayoutSidebar />
+                {/* <DashboardLayoutSidebar /> */}
                 <VStack width="full" height="full" {...location.endsWith("/plans") && { overflow: "auto" }}>
                     <DashboardLayoutHeader />
                     <Box width="100%" minH="80vh" {...shouldApplyPadding && { padding: 6 }} borderColor="line">{children ? children : <Outlet />}</Box>

@@ -10,8 +10,8 @@ import DashboardLayoutSidebarGrowthHack from "./DashboardLayoutSidebarGrowthHack
 import useAppStore from "lib/stores/app/appStore";
 
 const DashboardLayoutSidebar = () => {
-    const {shop} = useAppStore();
-    
+    const { shop } = useAppStore();
+
     return (
         <Flex width="288px" height="100vh" flexDirection="column" alignItems="flex-start" position="sticky" top={0}>
             <Box padding="28px 16px 24px 16px">
@@ -30,31 +30,32 @@ const DashboardLayoutSidebar = () => {
                             if (item.title === "Quests" && shop.hasCompletedQuests) {
                                 return null;
                             }
-                            return( 
-                            <AppAccordionItem width={"full"} key={item?.title} itemId={item?.title} isCollapsable={item?.list?.length > 0}>
-                                <AppAccordionTrigger width={"full"}>
-                                    <DashboardLayoutDecideFragmentOrLink linkTo={item?.linkTo}>
-                                        <Flex width={"full"} padding="12px" alignItems="center" gap="8px" alignSelf="stretch" _hover={{ backgroundColor: "#222" }} rounded="8px">
-                                            <Box width="20px" height="20px"><item.icon color="#FFF" /></Box>
-                                            <AppTypography cursor="pointer" width="full" color="#FFF" fontFamily="Inter" fontSize="14px" _groupHover={{ letterSpacing: "0.2px", fontWeight: "500" }} style={{ transition: "letter-spacing .1s linear" }} fontWeight="400" lineHeight="20px">{item?.title}</AppTypography>
-                                            {item?.list?.length > 0 && <AppAccordionChevron width="20px" height="20px" />}
-                                        </Flex>
-                                    </DashboardLayoutDecideFragmentOrLink>
-                                </AppAccordionTrigger>
-                                {item?.list?.length > 0 && (
-                                    <AppAccordionPanel width={"full"} padding={"10px 0px 12px 20px"}>
-                                        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="flex-start" gap="12px" padding="0px 20px" flex="1 0 0" borderLeft="1px solid #3C3C3C" width={"full"}>
-                                            {item?.list?.map((listItem) => <DashboardLayoutDecideFragmentOrLink key={listItem?.listTitle} linkTo={listItem?.linkTo}><AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color="#7B7B7B" _hover={{ color: "white" }}>{listItem?.listTitle}</AppTypography></DashboardLayoutDecideFragmentOrLink>)}
-                                        </Box>
-                                    </AppAccordionPanel>
-                                )}
-                            </AppAccordionItem>
-                        )})
-                           
-                    }
+                            return (
+                                <AppAccordionItem width={"full"} key={item?.title} itemId={item?.title} isCollapsable={item?.list?.length > 0}>
+                                    <AppAccordionTrigger width={"full"}>
+                                        <DashboardLayoutDecideFragmentOrLink linkTo={item?.linkTo}>
+                                            <Flex width={"full"} padding="12px" alignItems="center" gap="8px" alignSelf="stretch" _hover={{ backgroundColor: "#222" }} rounded="8px">
+                                                <Box width="20px" height="20px"><item.icon color="#FFF" /></Box>
+                                                <AppTypography cursor="pointer" width="full" color="#FFF" fontFamily="Inter" fontSize="14px" _groupHover={{ letterSpacing: "0.2px", fontWeight: "500" }} style={{ transition: "letter-spacing .1s linear" }} fontWeight="400" lineHeight="20px">{item?.title}</AppTypography>
+                                                {item?.list?.length > 0 && <AppAccordionChevron width="20px" height="20px" />}
+                                            </Flex>
+                                        </DashboardLayoutDecideFragmentOrLink>
+                                    </AppAccordionTrigger>
+                                    {item?.list?.length > 0 && (
+                                        <AppAccordionPanel width={"full"} padding={"10px 0px 12px 20px"}>
+                                            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="flex-start" gap="12px" padding="0px 20px" flex="1 0 0" borderLeft="1px solid #3C3C3C" width={"full"}>
+                                                {item?.list?.map((listItem) => <DashboardLayoutDecideFragmentOrLink key={listItem?.listTitle} linkTo={listItem?.linkTo}><AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color="#7B7B7B" _hover={{ color: "white" }}>{listItem?.listTitle}</AppTypography></DashboardLayoutDecideFragmentOrLink>)}
+                                            </Box>
+                                        </AppAccordionPanel>
+                                    )}
+                                </AppAccordionItem>
+                            )
+                        })
+
+                        }
                     </Box>
                 ))}
-                 <DashboardLayoutSidebarGrowthHack />
+                <DashboardLayoutSidebarGrowthHack />
             </AppAccordion>
         </Flex>
     );
