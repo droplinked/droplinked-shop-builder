@@ -1,47 +1,10 @@
-import { Checkbox, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@chakra-ui/react'
+import { Flex, Menu, MenuButton, MenuList, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from "react"
 import { styles } from '../styles'
 import { MultiSelectMenuProps } from '../types'
-
-function DesktopMenuItem({ label, value, isSelected, onSelect }) {
-    const handleSelectItem = () => {
-        onSelect(value)
-    }
-
-    const getCheckboxStyles = (isSelected: boolean) => ({
-        ...styles.checkbox,
-        __css: {
-            span: {
-                borderRadius: "6px",
-                display: "flex",
-                ...(isSelected && {
-                    background: "#2BCFA1 !important",
-                    borderColor: "#2BCFA1 !important"
-                })
-            }
-        }
-    })
-
-    return (
-        <MenuItem
-            key={value}
-            onClick={handleSelectItem}
-            {...styles.menuItem}
-        >
-            <Flex gap={3} alignItems="center">
-                <Checkbox
-                    isChecked={isSelected}
-                    {...getCheckboxStyles(isSelected)}
-                />
-                <AppTypography color="#FFF" fontSize={16} fontWeight={400}>
-                    {label}
-                </AppTypography>
-            </Flex>
-        </MenuItem>
-    )
-}
+import { DesktopMenuItem } from './DesktopMenuItem'
 
 export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect }: MultiSelectMenuProps) {
     const { isOpen, onClose, onOpen } = useDisclosure()
