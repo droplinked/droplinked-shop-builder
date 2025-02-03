@@ -322,6 +322,7 @@ import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
 import { ReactComponent as DayCalendar } from './day-calendar.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as Monthcalendar } from './month-calendar.svg';
+import { ReactComponent as Letter } from "./letter.svg";
 
 const AppIcons = {
   DayCalendar,
@@ -648,7 +649,8 @@ const AppIcons = {
   ExternalArrow,
   Soon,
   SideBarQuests,
-  HeaderPolygon
+  HeaderPolygon,
+  Letter
 };
 
 export default AppIcons;
