@@ -2,11 +2,10 @@ import { Box } from '@chakra-ui/react'
 import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
-import ImproveWithAi from '../common/improve-with-ai/ImproveWithAi'
+import ImproveTitle from './ImproveTitle'
 
 function ProductTitle() {
     const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
-
     const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
 
     return (
@@ -24,7 +23,12 @@ function ProductTitle() {
                 inputContainerProps={{
                     padding: "8px 8px 8px 16px",
                 }}
-                rightElement={<ImproveWithAi />}
+                rightElement={
+                    <ImproveTitle
+                        title={title}
+                        onTitleChange={(newTitle) => setFieldValue("title", newTitle)}
+                    />
+                }
                 message={errors.title}
                 maxCharacters={100}
                 {...errors.title && { state: "error" }}
