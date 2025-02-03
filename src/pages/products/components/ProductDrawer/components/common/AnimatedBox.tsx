@@ -21,7 +21,7 @@ const AnimatedContainer = styled(Flex)`
         border-radius: 8px;
         background: linear-gradient(45deg,#2BCFA1, #179EF8, #FFD951, #9C4EFF,#2BCFA1, #179EF8, #FFD951, #9C4EFF);
         background-size: 200% 200%;
-        animation: border 3s linear infinite;
+        animation: border 5s linear infinite;
         opacity: 0.2;
     }
 
@@ -32,7 +32,7 @@ const AnimatedContainer = styled(Flex)`
     @keyframes border {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        100% { background-position: 200% 100%; }
     }
 `
 
