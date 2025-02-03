@@ -1,9 +1,11 @@
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
+import GenerateWithAI from '../../common/GenerateWithAI'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import classes from './ProductDescription.module.scss'
+import ImproveWithAi from '../../common/improve-with-ai/ImproveWithAi'
 
 function ProductDescription() {
     const { values: { description }, errors, setFieldValue } = useProductForm()
@@ -36,6 +38,9 @@ function ProductDescription() {
                         content_style: 'body { font-family: Helvetica,Arial,sans-serif; font-size: 14px; background: #141414; } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before { color: #777 }',
                     }}
                 />
+                <Box position="absolute" bottom={2} right={2}>
+                    <ImproveWithAi BoxStyles={{ zIndex: 1 }} />
+                </Box>
             </Flex>
         </ProductFieldWrapper>
     )
