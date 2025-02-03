@@ -6,15 +6,7 @@ import PreviewFilterPanel from './components/PreviewFillterPanel';
 import PreviewProducts from './components/PreviewProducts';
 
 function PreviewHomepage() {
-  const {
-    state: {
-      shop: {
-        template_options,
-        shopDesign: { foreground }
-      },
-      device
-    }
-  } = useContext(designContext);
+  const { state: { shop: { template_options,shopDesign: { foreground }}, device}} = useContext(designContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
 
   return (
@@ -26,7 +18,8 @@ function PreviewHomepage() {
               <PreviewFilterPanel />
             </Box>
           )}
-          <Box width={isDesktop ? '80%' : '100%'}>
+
+          <Box width={isDesktop ? '85%' : '100%'}>
             <Flex flexDirection={'column'} gap={'16px'} alignItems={'flex-start'} alignSelf={'stretch'}>
               {isDesktop && <PreviewActionBar />}
               <PreviewProducts />

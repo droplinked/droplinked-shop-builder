@@ -323,6 +323,8 @@ import { ReactComponent as DayCalendar } from './day-calendar.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as Monthcalendar } from './month-calendar.svg';
 import { ReactComponent as Letter } from "./letter.svg";
+import { ReactComponent as ArrowRight } from "./arrow-right.svg";
+import { ReactComponent as DroplinkedLogo } from "./droplinked-front-logo.svg";
 
 const AppIcons = {
   DayCalendar,
@@ -650,7 +652,9 @@ const AppIcons = {
   Soon,
   SideBarQuests,
   HeaderPolygon,
-  Letter
+  Letter,
+  ArrowRight,
+  DroplinkedLogo
 };
 
 export default AppIcons;

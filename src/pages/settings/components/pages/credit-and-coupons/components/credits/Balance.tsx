@@ -58,7 +58,7 @@ export default function Balance() {
                     gap={1}
                     sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
-                    <AppIcons.Refresh />
+                    <AppIcons.Refresh color="#2BCFA1" />
                     Charge
                 </BlueButton>
             </Flex>

@@ -7,21 +7,13 @@ import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';
 
 function PreviewProducts() {
-  const {
-    state: {
-      shop: {
-        shopDesign: { textColorParagraphs }
-      },
-      device
-    }
-  } = useContext(designContext);
+  const { state: { shop: {shopDesign: { textColorParagraphs } }, device}} = useContext(designContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
-  const {
-    shop: { currency }
-  } = useAppStore();
+  const {shop: { currency } } = useAppStore();
+  
   return (
     <VStack align="stretch">
-      <SimpleGrid columns={isDesktop ? 4 : 2} rowGap="20px" spacing={isDesktop ? '25px' : '10px'}>
+      <SimpleGrid columns={isDesktop ? 4 : 2} rowGap="20px" spacing={isDesktop ? '15px' : '10px'}>
         {[...Array(7)].map((_, key: number) => (
           <VStack key={key} align="stretch" spacing="3px">
             <Image width="100%" paddingBottom="4px" borderRadius="4px" src="/assets/images/templated/sample.png" />
