@@ -8,24 +8,13 @@ import PreviewTypo from '../common/typo/PreviewTypo';
 import SocialMediaLinks from '../common/social-media-links/SocialMediaLinks';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import PreviewFooterNavigation from './PreviewFooterNavigation';
+import AppIcons from 'assest/icon/Appicons';
 
 function PreviewFooter() {
   const { shop } = useProfile();
-  const {
-    state: {
-      shop: {
-        headerIcon,
-        shopDesign: { foreground, textColorParagraphs },
-        template_options
-      },
-      device,
-      optionSelected
-    }
-  } = useContext(designContext);
+  const {  state: { shop: { headerIcon,shopDesign: { foreground, textColorParagraphs },  template_options }, device, optionSelected } } = useContext(designContext);
   const { scrollRef } = useContext(designPreviewContext);
-
   const isDesktop = useMemo(() => device === 'desktop', [device]);
-
   const licenceLinks = ['Terms & Conditions', 'Returns & FAQ'];
 
   return (
@@ -57,11 +46,11 @@ function PreviewFooter() {
         <Flex direction={isDesktop ? 'row' : 'column'} justify="space-between" flexGrow={{ md: 1 }} px={2} mt={isDesktop ? null : 4} bg={foreground}>
           {/* Powered by section */}
           <Flex align="center" fontSize="xs" className={'#7b7b7b'}>
-            <PreviewTypo>Powered by</PreviewTypo>
-            {/* <Box as={AppIcons.DroplinkedLogo} ml={2} h={5} className={logoColor} /> */}
+            <PreviewTypo mr={2}>Powered by</PreviewTypo>
+           <AppIcons.DroplinkedLogo width={"64px"}  color={textColorParagraphs}  > </AppIcons.DroplinkedLogo> 
           </Flex>
 
-          {/* Licence links section */}
+        {/*  Licence links section */}
           <Box mt={{ base: 2, md: 0 }} fontSize="xs">
             <List display="flex" flexWrap="wrap" alignItems="center" spacing={1}>
               {licenceLinks.map((link, index) => (

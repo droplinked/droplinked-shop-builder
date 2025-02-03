@@ -5,14 +5,7 @@ import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../common/typo/PreviewTypo';
 
 export default function PreviewFooterNavigation() {
-  const {
-    state: {
-      shop: {
-        shopDesign: { footerLinks, textColorParagraphs }
-      },
-      device
-    }
-  } = useContext(designContext);
+  const {state: { shop: { shopDesign: { footerLinks, textColorParagraphs } }, device }} = useContext(designContext);
 
   const isDesktop = useMemo(() => device === 'desktop', [device]);
 
@@ -44,12 +37,13 @@ export default function PreviewFooterNavigation() {
                     <Box
                       ml={1}
                       boxSize={4}
+                      alignContent={'center'}
                       transform="translateX(-4px)"
                       opacity={0}
                       transition="transform 0.2s ease-out, opacity 0.2s ease-out"
                       _groupHover={{ transform: 'translateX(0)', opacity: 1 }}
                     >
-                      <AppIcons.ArrowDown height={'12px'} width="12px" />
+                      <AppIcons.ArrowRight height={'12px'} width="12px" />
                     </Box>
                   </Link>
                 ))}
