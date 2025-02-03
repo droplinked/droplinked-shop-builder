@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IbestProducts, IClarityData, IgetRevenueServices } from "./interfaces"
+import { DashboardPageData, IbestProducts, IClarityData, IgetRevenueServices } from "./interfaces"
 
 export const getRevenueServices = ({ dateRange, from, to }: IgetRevenueServices) => {
     return axiosInstance.get(`shop/dashboard/revenue?from=${from.toISOString()}&to=${to.toISOString()}&dateRange=${dateRange}`)
@@ -12,3 +12,6 @@ export const getBestSelledProducts = ({ from, to }: IbestProducts) => {
 export const getClarityDataService = () => {
     return axiosInstance.get<IClarityData>("clarity/shop-info")
 }
+
+export const getDashboardPageData = () =>
+    axiosInstance.get<DashboardPageData>("analytics/dashboard").then(res => res.data)

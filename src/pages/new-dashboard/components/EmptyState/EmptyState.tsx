@@ -21,7 +21,7 @@ function EmptyState({ image, title, description, linkText, linkTo, isExternalLin
         >
             <AppImage height="161px" src={image} objectFit="contain" />
 
-            <Flex direction="column" alignItems="center" gap={1}>
+            <Flex direction="column" alignItems="center" gap={1} textAlign="center">
                 <Text fontWeight={500} color="#fff">{title}</Text>
 
                 <Text fontSize={14} color="#7B7B7B">{description}</Text>
