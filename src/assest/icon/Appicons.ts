@@ -291,6 +291,7 @@ import { ReactComponent as TearIcon } from './tear-icon.svg';
 import { ReactComponent as TelegramOutlined } from './telegram-outlined.svg';
 import { ReactComponent as ThreeStars } from './three-stars.svg';
 import { ReactComponent as Tick } from './tick.svg';
+import { ReactComponent as TikTokOutlined } from './tikTok-outlined.svg';
 import { ReactComponent as TikTok } from './tiktok.svg';
 import { ReactComponent as Token } from './token.svg';
 import { ReactComponent as TooltipIcon } from './tooltipIcon.svg';
@@ -325,6 +326,7 @@ import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
+import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 
 const AppIcons = {
   DayCalendar,
@@ -654,7 +656,9 @@ const AppIcons = {
   HeaderPolygon,
   Collection,
   Discount,
-  User
+  User,
+  YouTubeOutlined,
+  TikTokOutlined
 };
 
 export default AppIcons;
