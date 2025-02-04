@@ -331,8 +331,20 @@ import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
+import { ReactComponent as Refresh2 } from './refresh2.svg';
+import { ReactComponent as Light } from './light.svg';
+import { ReactComponent as Case } from './case.svg';
+import { ReactComponent as Smile } from './smile.svg';
+import { ReactComponent as Rocket } from './rocket.svg';
+import { ReactComponent as Robot } from './robot.svg';
 
 const AppIcons = {
+  Refresh2,
+  Light,
+  Case,
+  Smile,
+  Rocket,
+  Robot,
   DayCalendar,
   WeekCalendar,
   Monthcalendar,
