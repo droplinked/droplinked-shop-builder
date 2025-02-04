@@ -3,6 +3,7 @@ import React from 'react'
 import DashboardContent from './components/DashboardContent'
 import DashboardLoading from './components/DashboardLoading'
 import GreetingBanner from './components/GreetingBanner'
+import NoOrdersPlaceholder from './components/NoOrdersPlaceholder'
 import useDashboardPageData from './hooks/useDashboardPageData'
 import useDashboardPageStore from './stores/useDashboardStore'
 
@@ -12,7 +13,7 @@ function Dashboard() {
 
     function renderContent() {
         if (isFetching) return <DashboardLoading />
-        else if (isError || dashboardData?.shopStats?.orders === 0) return <div>Error</div>
+        else if (isError || dashboardData?.shopStats?.orders === 0) return <NoOrdersPlaceholder />
         else return <DashboardContent />
     }
 
