@@ -5,8 +5,6 @@ import React from 'react'
 import { usePartnerContext } from '../context/partner.context'
 import LandingText from './common/LandingText'
 
-
-
 export default function CollaborationFeatures() {
     const { partnerName, planType, planDurationMonths } = usePartnerContext();
 

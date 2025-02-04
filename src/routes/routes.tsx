@@ -14,6 +14,7 @@ const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
 const DashboardPage = lazy(() => import("pages/dashboard/DashboardPage"));
+const NewDashboard = lazy(() => import("pages/new-dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
@@ -127,6 +128,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <DashboardPage /> },
+            { path: "dashboard", element: <NewDashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
                 path: "settings",
