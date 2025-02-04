@@ -9,7 +9,7 @@ const PreviewFilterPanel = () => {
   const { state: {shop: { shopDesign: { foreground , textColorParagraphs } } }} = useContext(designContext);
 
   return (
-    <Box position="sticky" top="8" w="100%" flexShrink={0} borderWidth="1px" borderRadius="lg" borderColor={foreground} display={{ base: 'none', lg: 'block' }}>
+    <Box position="sticky" top="8" w="100%" flexShrink={0} borderWidth="1px" borderRadius="lg" borderColor={foreground} >
       <Flex alignItems="center" justifyContent="space-between" gap={6} p={4} borderBottomWidth="1px" borderBottomColor={foreground}>
         <PreviewTypo fontSize="sm" fontWeight="bold">
           Filters

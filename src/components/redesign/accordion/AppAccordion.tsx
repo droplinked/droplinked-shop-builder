@@ -117,6 +117,7 @@ export const AppAccordionChevron = ({ ...props }: any) => {
         <AppIcons.SidebarChevrondown
             width="20px"
             height="20px"
+            color="white"
             style={{ transition: ".5s", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
             {...props}
         />

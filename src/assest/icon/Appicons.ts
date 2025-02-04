@@ -329,6 +329,8 @@ import { ReactComponent as Case } from "./case.svg";
 import { ReactComponent as Rocket } from "./rocket.svg";
 import { ReactComponent as Robot } from "./robot.svg";
 import { ReactComponent as Refresh2 } from "./refresh2.svg";
+import { ReactComponent as ArrowRight } from "./arrow-right.svg";
+import { ReactComponent as DroplinkedLogo } from "./droplinked-front-logo.svg";
 
 const AppIcons = {
   Refresh2,
@@ -662,7 +664,9 @@ const AppIcons = {
   Soon,
   SideBarQuests,
   HeaderPolygon,
-  Letter
+  Letter,
+  ArrowRight,
+  DroplinkedLogo
 };
 
 export default AppIcons;

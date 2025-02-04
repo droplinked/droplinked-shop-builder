@@ -12,7 +12,7 @@ const DashboardLayoutSidebarItem = ({ item, isExpanded, toggleExpanded }) => {
             <Flex padding="12px" alignItems="center" gap="8px" alignSelf="stretch" _hover={{ backgroundColor: "#222" }} backgroundColor={isExpanded ? "#222" : "transparent"} rounded="8px" onClick={() => hasList && toggleExpanded()}>
                 <Box width="20px" height="20px"><item.icon /></Box>
                 <AppTypography cursor="pointer" width="full" color="#FFF" fontFamily="Inter" fontSize="14px" _groupHover={{ letterSpacing: "0.2px", fontWeight: "500" }} style={{ transition: "letter-spacing .1s linear" }} fontWeight="400" lineHeight="20px">{item?.title}</AppTypography>
-                {hasList && <AppIcons.SidebarChevrondown width="20px" height="20px" style={{ transition: ".5s", transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }} />}
+                {hasList && <AppIcons.SidebarChevrondown width="20px" height="20px" color="white" style={{ transition: ".5s", transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }} />}
             </Flex>
             {hasList && (
                 <Box display="flex" alignItems="flex-start" alignSelf="stretch" style={{ maxHeight: isExpanded ? `${item?.list?.length * 48}px` : "0px", padding: isExpanded ? "0px 0px 12px 20px" : "0px 0px 0px 20px", opacity: isExpanded ? "1" : "0", overflow: "hidden", transition: "max-height .5s linear, opacity .5s linear, padding .5s linear" }}>
