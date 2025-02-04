@@ -1,33 +1,19 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-query'
 import { IImproveTitle } from 'lib/apis/ai/interfaces'
-import { improveTitle } from 'lib/apis/ai/services'
-import useAppToast from 'functions/hooks/toast/useToast'
 import ImproveWithAi from '../../common/ImproveWithAi'
 
 interface ImproveTitleProps {
     title: string;
     onTitleChange: (newTitle: string) => void;
+    setIsLoaded: (isLoaded: boolean) => void;
+    isLoaded: boolean;
+    isLoading: boolean;
+    mutateAsync: (params: IImproveTitle) => Promise<any>;
 }
 
-function ImproveTitle({ title, onTitleChange }: ImproveTitleProps) {
-    const [isLoaded, setIsLoaded] = useState(false);
+function ImproveTitle({ title, onTitleChange, setIsLoaded, isLoaded, mutateAsync, isLoading }: ImproveTitleProps) {
     const [selectedItem, setSelectedItem] = useState("")
     const [tempTitleValue, setTempTitleValue] = useState("")
-    const { showToast } = useAppToast()
-
-    const { mutateAsync, isLoading } = useMutation(
-        (params: IImproveTitle) => improveTitle(params),
-        {
-            onSuccess: (response) => {
-                onTitleChange(response.data)
-                setIsLoaded(true)
-            },
-            onError: (error) => {
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
-            }
-        }
-    )
 
     const handleSelectItem = async (item: string) => {
         setTempTitleValue(title)

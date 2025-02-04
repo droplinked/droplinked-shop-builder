@@ -1,34 +1,27 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-query'
-import useAppToast from 'functions/hooks/toast/useToast'
 import ImproveWithAi from '../../common/ImproveWithAi'
 import { IImproveDescription } from 'lib/apis/ai/interfaces';
-import { improveDescription } from 'lib/apis/ai/services';
 import { Box } from '@chakra-ui/react';
 
 interface ImproveDescriptionProps {
     description: string;
     onDescriptionChange: (newTitle: string) => void;
+    isLoaded: boolean;
+    setIsLoaded: (isLoaded: boolean) => void;
+    isLoading: boolean;
+    mutateAsync: (params: IImproveDescription) => Promise<any>;
 }
 
-function ImproveDescription({ description, onDescriptionChange }: ImproveDescriptionProps) {
-    const [isLoaded, setIsLoaded] = useState(false);
+function ImproveDescription({
+    description,
+    onDescriptionChange,
+    isLoaded,
+    setIsLoaded,
+    isLoading,
+    mutateAsync
+}: ImproveDescriptionProps) {
     const [selectedItem, setSelectedItem] = useState("")
     const [tempTitleValue, setTempTitleValue] = useState("")
-    const { showToast } = useAppToast()
-
-    const { mutateAsync, isLoading } = useMutation(
-        (params: IImproveDescription) => improveDescription(params),
-        {
-            onSuccess: (response) => {
-                onDescriptionChange(response.data)
-                setIsLoaded(true)
-            },
-            onError: (error) => {
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
-            }
-        }
-    )
 
     const handleSelectItem = async (item: string) => {
         setTempTitleValue(description)

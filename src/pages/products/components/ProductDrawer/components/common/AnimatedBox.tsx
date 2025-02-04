@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { ChakraProps, Flex } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
 
@@ -36,9 +36,14 @@ const AnimatedContainer = styled(Flex)`
     }
 `
 
-export default function AnimatedBox({ children }) {
+interface Props {
+    children: React.ReactNode
+    flexProps?: ChakraProps
+}
+
+export default function AnimatedBox({ children, flexProps }: Props) {
     return (
-        <AnimatedContainer>
+        <AnimatedContainer {...flexProps}>
             {children}
         </AnimatedContainer>
     )

@@ -1,5 +1,6 @@
 import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
     state?: 'success' | 'error'
     message?: string
     maxCharacters?: number
+    showAnimatedBox?: boolean
 }
 
 export default function Input(props: Props) {
@@ -54,7 +56,7 @@ export function InputHeader({ label, description, inputProps }: Props) {
 }
 
 function InputContainer(props: Props) {
-    const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state } = props
+    const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state, showAnimatedBox } = props
     const borderColorMap = { success: "#2BCFA1", error: "#F24" }
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -77,38 +79,62 @@ function InputContainer(props: Props) {
     }
 
     return (
-        <Flex
-            alignItems="center"
-            gap={2}
-            border="1px solid"
-            borderRadius={8}
-            borderColor={borderColorMap[state] || "#292929"}
-            padding="12px 16px"
-            transition="border-color 0.1s ease-out"
-            _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
-            _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
-            {...inputContainerProps}
+        <AnimatedBox
+            flexProps={{
+                ...showAnimatedBox ?
+                    {
+                        _before: {
+                            width: "calc(100% + 0.1px) !important",
+                            height: "calc(100% + 0.1px) !important"
+                        },
+                        _after: {
+                            width: "calc(100% + 0.1px) !important",
+                            height: "calc(100% + 0.1px) !important",
+                        },
+                        padding: "0.1px !important"
+                    } :
+                    {
+                        _before: { display: "none" },
+                        _after: { display: "none" },
+                        background: "transparent !important"
+                    }
+            }}
         >
-            {leftElement}
-            <ChakraInput
-                height="auto"
-                outline="none"
-                border="none"
-                borderRadius={0}
-                padding={0}
-                fontSize={14}
-                fontWeight={400}
-                color="#fff"
-                maxLength={maxCharacters}
-                spellCheck={false}
-                _placeholder={{ color: "#7B7B7B" }}
-                _focusVisible={{}}
-                onKeyDown={handleKeyDown}
-                onChange={handleChange}
-                {...inputProps}
-            />
-            {rightElement}
-        </Flex>
+            <Flex
+                width={"100%"}
+                alignItems="center"
+                gap={2}
+                border="1px solid"
+                borderRadius={8}
+                borderColor={borderColorMap[state] || "#292929"}
+                padding="12px 16px"
+                transition="border-color 0.1s ease-out"
+                _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
+                _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
+                {...showAnimatedBox && { background: "#141414" }}
+                {...inputContainerProps}
+            >
+                {leftElement}
+                <ChakraInput
+                    height="auto"
+                    outline="none"
+                    border="none"
+                    borderRadius={0}
+                    padding={0}
+                    fontSize={14}
+                    fontWeight={400}
+                    color="#fff"
+                    maxLength={maxCharacters}
+                    spellCheck={false}
+                    _placeholder={{ color: "#7B7B7B" }}
+                    _focusVisible={{}}
+                    onKeyDown={handleKeyDown}
+                    onChange={handleChange}
+                    {...inputProps}
+                />
+                {rightElement}
+            </Flex>
+        </AnimatedBox>
     )
 }
 
