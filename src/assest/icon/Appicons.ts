@@ -264,6 +264,7 @@ import { ReactComponent as SidebarChat } from './sidebar-chat.svg';
 import { ReactComponent as SidebarChevrondown } from './sidebar-chevrondown.svg';
 import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.svg';
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
+import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
@@ -664,7 +665,8 @@ const AppIcons = {
   Discount,
   User,
   YouTubeOutlined,
-  TikTokOutlined
-};
+  TikTokOutlined,
+  SidebarDashboard
+}
 
-export default AppIcons;
+export default AppIcons

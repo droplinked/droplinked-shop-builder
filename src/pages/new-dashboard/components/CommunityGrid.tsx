@@ -15,7 +15,11 @@ export default function CommunityGrid() {
             borderRadius={16}
             overflow="hidden"
         >
-            <GridItem padding={{ base: 4, lg: 6 }} borderRight="1px solid #292929" borderBottom="1px solid #292929">
+            <GridItem
+                borderRight="1px solid #292929"
+                borderBottom="1px solid #292929"
+                padding={{ base: 4, lg: 6 }}
+            >
                 <Heading mb={1} fontSize={20} fontWeight={700} color="white">
                     Join the Community!
                 </Heading>
