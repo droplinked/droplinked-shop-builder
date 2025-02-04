@@ -336,6 +336,12 @@ import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
+import { ReactComponent as Refresh2 } from './refresh2.svg';
+import { ReactComponent as Light } from './light.svg';
+import { ReactComponent as Case } from './case.svg';
+import { ReactComponent as Smile } from './smile.svg';
+import { ReactComponent as Rocket } from './rocket.svg';
+import { ReactComponent as Robot } from './robot.svg';
 
 const AppIcons = {
   SendMoney,
@@ -343,6 +349,12 @@ const AppIcons = {
   ArrowDownOutlined,
   RecieveMoney,
   Wallet,
+  Refresh2,
+  Light,
+  Case,
+  Smile,
+  Rocket,
+  Robot,
   DayCalendar,
   WeekCalendar,
   Monthcalendar,

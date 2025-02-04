@@ -12,7 +12,7 @@ const RewardHeader = () => (
         droplinked rewards programs
       </Text>
     </VStack>
-    <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" color="white" fontFamily="Poppins" fontWeight="bold">
+    <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" color="white" fontWeight="bold">
       It’s Time to Level Up
     </Heading>
     <Text textAlign="center" color="#b1b1b1" fontSize={{ base: 'md', md: 'lg' }}>

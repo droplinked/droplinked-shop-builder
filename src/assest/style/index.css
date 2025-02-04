@@ -1,21 +1,11 @@
-* {
+/* Global Styles */
+* , *::before , *::after {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Inter";
+    font-family: "Inter" !important;
     font-weight: normal;
     font-style: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Poppins" !important;
-}
-
-p, button, input, a, li{
-    font-family: "Inter" !important;
 }
 
 :root {

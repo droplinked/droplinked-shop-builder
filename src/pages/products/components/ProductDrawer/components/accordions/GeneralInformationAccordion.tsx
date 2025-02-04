@@ -6,7 +6,8 @@ import ProductAffiliate from '../fields/ProductAffiliate'
 import ProductCollection from '../fields/ProductCollection'
 import ProductDescription from '../fields/ProductDescription/ProductDescription'
 import ProductImages from '../fields/ProductImages/ProductImages'
-import ProductTitle from '../fields/ProductTitle'
+import ProductTitle from '../fields/ProductTitle/ProductTitle'
+import GenerateWithAI from '../common/GenerateWithAI'
 
 function GeneralInformationAccordion() {
     const { values: { product_type } } = useProductForm()
@@ -23,6 +24,8 @@ function GeneralInformationAccordion() {
                     theme='warning'
                 />
             )}
+
+            <GenerateWithAI />
 
             <ProductTitle />
             <ProductDescription />

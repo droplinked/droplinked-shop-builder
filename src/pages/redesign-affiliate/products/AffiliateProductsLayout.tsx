@@ -53,7 +53,7 @@ const AffiliateProductsLayout = () => {
                     background="linear-gradient(93deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.00) 100%), url(https://upload-file-droplinked.s3.amazonaws.com/22b2a2e43dcf9d76c43ad427cd8f72a4a0db5dab76be1e1545140721aba0e018.jpg) lightgray 50% / cover no-repeat"
                 >
                     <Box width={"full"} display="flex" flexDirection="column" alignItems="flex-start" gap="36px" alignSelf="stretch">
-                        <AppTypography color="#FFF" fontFamily="Poppins" fontSize="24px" maxW={{ base: "70%", md: "50%" }} fontStyle="normal" fontWeight="400" lineHeight="36px">
+                        <AppTypography color="#FFF" fontSize="24px" maxW={{ base: "70%", md: "50%" }} fontStyle="normal" fontWeight="400" lineHeight="36px">
                             Showcase and sell your products in the most awesome affiliate marketplace
                         </AppTypography>
                         <HStack spacing={"8px"} alignItems={"center"} justifyContent={"center"}>
