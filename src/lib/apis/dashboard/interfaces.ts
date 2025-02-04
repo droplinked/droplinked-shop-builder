@@ -21,3 +21,18 @@ export interface IClarityData {
     activeTimeSpent: number;
     topCountries: Record<string, number>
 }
+
+export interface DashboardPageData {
+    shopStats: {
+        orders: number
+        totalRevenue: number
+        profit: number
+        customers: number
+    },
+    recentOrders: {
+        _id: string
+        status: string
+        totalPriceCart: number
+        updatedAt: string
+    }[]
+}

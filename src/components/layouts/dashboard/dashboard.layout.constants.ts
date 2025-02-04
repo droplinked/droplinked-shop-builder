@@ -54,6 +54,12 @@ export const sidebar_constants: SidebarGroup[] = [
                 linkTo: "/analytics",
                 list: [],
             },
+            {
+                title: "Dashboard",
+                icon: AppIcons.SidebarDashboard,
+                linkTo: "/analytics/dashboard",
+                list: [],
+            },
         ],
     },
     {

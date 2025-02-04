@@ -65,7 +65,7 @@ export default function Balance() {
             {(isFetching || loading) ?
                 <Spinner color="white" />
                 :
-                <FormattedPrice price={data?.data?.data?.credit} fontSize={16} />
+                <FormattedPrice price={data?.data?.data?.credit} />
             }
             <AddBalanceModal handleRefetchShop={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
         </Flex>
