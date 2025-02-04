@@ -1,47 +1,52 @@
 import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
-import React from 'react'
+import React, { useState } from 'react'
 import AccountBalance from './account-balance/AccountBalance'
 import { Flex } from '@chakra-ui/react'
 import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
 import { useTransactions } from '../../hooks/useTransactions'
 import OverallTransactionsDisplay from '../../components/OverallTransactionsDisplay'
+import { useQuery } from 'react-query'
+import { getCreditAnalytics } from 'lib/apis/credit/services'
+import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
 
 export default function CreditManagement() {
+    const [date, setDate] = useState<DateRangeValue>(() => {
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setMonth(startDate.getMonth() - 1);
+        return [startDate, endDate];
+    });
+    const { isFetching, data } = useQuery({
+        queryKey: ["shop-credit-analytics", date],
+        queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
+    })
+
+    const { additions, removals } = data?.data?.data ?? {}
     const transactionsQuery = useTransactions();
-
-    const inboundItems = [
-        { title: 'Sales', value: 2500, color: '#2BCFA1' },
-        { title: 'Refunds', value: 500, color: '#4A9FFF' },
-        { title: 'Affiliates', value: 1000, color: '#FF8A00' }
-    ];
-
-    const outboundItems = [
-        { title: 'Withdrawals', value: 1800, color: '#FF2244' },
-        { title: 'Fees', value: 200, color: '#9747FF' },
-        { title: 'Purchases', value: 500, color: '#4A9FFF' }
-    ];
 
     return (
         <Flex flexDirection={"column"} gap={6}>
             <FlexContainer
                 items={[
                     {
-                        content: <AccountBalance />,
+                        content: <AccountBalance date={date} setDate={setDate} isAnalyticsFetching={isFetching} />,
                         isFullWidth: true
                     },
                     {
                         content: <OverallTransactionsDisplay
                             type="inbound"
-                            total={4000}
-                            items={inboundItems}
+                            total={additions?.total}
+                            items={additions?.breakdown}
+                            isLoaded={!isFetching}
                         />,
                         isFullWidth: false
                     },
                     {
                         content: <OverallTransactionsDisplay
                             type="outbound"
-                            total={2500}
-                            items={outboundItems}
+                            total={removals?.total}
+                            items={removals?.breakdown}
+                            isLoaded={!isFetching}
                         />,
                         isFullWidth: false
                     },

@@ -13,7 +13,6 @@ interface Props {
 
 export default function TypeColumn({ data }: Props) {
     const { isInbound, isOutbound, type } = data
-    console.log(data)
 
     return (
         <Flex gap={4} alignItems={"center"}>

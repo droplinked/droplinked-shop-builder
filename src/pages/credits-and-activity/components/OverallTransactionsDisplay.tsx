@@ -4,18 +4,17 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 import React from 'react'
 import ProgressBar from './ProgressBar'
+import { IBreakDown } from 'lib/apis/credit/interfaces'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 interface Props {
     type: 'inbound' | 'outbound';
-    items?: {
-        title: string;
-        value: number;
-        color: string;
-    }[];
+    items: IBreakDown[]
     total: number;
+    isLoaded: boolean;
 }
 
-export default function OverallTransactionsDisplay({ type, items, total }: Props) {
+export default function OverallTransactionsDisplay({ type, items, total, isLoaded }: Props) {
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
     const hasData = items && items.length > 0
 
@@ -52,28 +51,32 @@ export default function OverallTransactionsDisplay({ type, items, total }: Props
                     <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>
                         {title}
                     </AppTypography>
-                    <Flex gap={1}>
-                        <AppTypography color={"#fff"} fontSize={{ base: 18, md: 20 }} fontWeight={500}>
-                            {symbol}{convertPrice({ amount: total, toUSD: false }).toFixed(2)}
-                        </AppTypography>
-                        <AppTypography color={"#7b7b7b"} fontSize={{ base: 18, md: 20 }} fontWeight={400}>
-                            {abbreviation}/USDC
-                        </AppTypography>
-                    </Flex>
+                    <AppSkeleton isLoaded={isLoaded} borderRadius={8}>
+                        <Flex gap={1}>
+                            <AppTypography color={"#fff"} fontSize={{ base: 18, md: 20 }} fontWeight={500}>
+                                {symbol}{convertPrice({ amount: total, toUSD: false }).toFixed(2)}
+                            </AppTypography>
+                            <AppTypography color={"#7b7b7b"} fontSize={{ base: 18, md: 20 }} fontWeight={400}>
+                                {abbreviation}/USDC
+                            </AppTypography>
+                        </Flex>
+                    </AppSkeleton>
                 </Flex>
             </Flex>
             {hasData && (
-                <Flex
-                    flexDirection={"column"}
-                    justify={{ base: "center", md: "end" }}
-                    alignItems="center"
-                    gap={6}
-                    width={"100%"}
-                    borderTop={"1px solid #292929"}
-                    p={{ base: 4, md: 6 }}
-                >
-                    <ProgressBar items={items} />
-                </Flex>
+                <AppSkeleton isLoaded={isLoaded} width={"100%"}>
+                    <Flex
+                        flexDirection={"column"}
+                        justify={{ base: "center", md: "end" }}
+                        alignItems="center"
+                        gap={6}
+                        width={"100%"}
+                        borderTop={"1px solid #292929"}
+                        p={{ base: 4, md: 6 }}
+                    >
+                        <ProgressBar items={items} type={type} />
+                    </Flex>
+                </AppSkeleton>
             )}
         </Flex>
     )

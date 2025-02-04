@@ -1,11 +1,24 @@
 import { Divider, Flex } from "@chakra-ui/react";
 import AppDateRangePicker, { DateRangeValue } from "components/redesign/date-range-picker/AppDateRangePicker";
-import React, { useState } from "react";
-import { ActionButtons } from "./ActionButtons";
 import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay";
+import React from "react";
+import { ActionButtons } from "./ActionButtons";
+import { useQuery } from "react-query";
+import { getShopCredit } from "lib/apis/shop/shopServices";
 
-export default function AccountBalance() {
-    const [date, setDate] = useState<DateRangeValue>([new Date(), new Date()]);
+interface Props {
+    date: DateRangeValue;
+    setDate: (date: DateRangeValue) => void;
+    isAnalyticsFetching?: boolean;
+}
+
+export default function AccountBalance({ date, setDate, isAnalyticsFetching }: Props) {
+    const { isFetching, data } = useQuery({
+        queryKey: ["get-shop-credit", date],
+        queryFn: () => getShopCredit(),
+    })
+    const credit = data?.data?.data?.credit ?? 0
+    const isLoading = isAnalyticsFetching || isFetching
 
     return (
         <Flex
@@ -15,7 +28,7 @@ export default function AccountBalance() {
             justifyContent="space-between"
             alignItems="start"
         >
-            <BalanceDisplay amount={20} title="Account Balance" />
+            <BalanceDisplay amount={credit} title="Account Balance" isLoaded={!isLoading} />
             <Flex
                 flexDirection={{ base: "column-reverse", md: "row" }}
                 justify={{ base: "center", md: "end" }}
@@ -23,14 +36,14 @@ export default function AccountBalance() {
                 gap={6}
                 width={"100%"}
             >
-                <ActionButtons />
+                <ActionButtons isLoading={isLoading} />
                 <Divider
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
                     borderColor={"#292929"}
                 />
-                <AppDateRangePicker value={date} onChange={setDate} />
+                <AppDateRangePicker value={date} onChange={setDate} disabled={isLoading} />
             </Flex>
         </Flex>
     );

@@ -3,7 +3,11 @@ import AppIcons from "assest/icon/Appicons";
 import Button from "components/redesign/button/Button";
 import React from "react";
 
-export const ActionButtons = () => {
+interface Props {
+    isLoading: boolean;
+}
+
+export const ActionButtons = ({ isLoading }: Props) => {
     return (
         <Flex
             flexDirection={"row"}
@@ -17,6 +21,7 @@ export const ActionButtons = () => {
                 fontWeight={500}
                 variant="secondary"
                 leftIcon={<AppIcons.SendMoney />}
+                isLoading={isLoading}
                 width={{ base: "50%", md: "min-content" }}
             >
                 Withdraw
@@ -26,6 +31,7 @@ export const ActionButtons = () => {
                 fontSize={14}
                 fontWeight={500}
                 leftIcon={<AppIcons.RecieveMoney />}
+                isLoading={isLoading}
                 width={{ base: "50%", md: "min-content" }}
             >
                 Add Credit

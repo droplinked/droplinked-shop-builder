@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
+import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
 import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
@@ -7,9 +8,10 @@ import React from "react";
 interface Props {
     title: string;
     amount: number;
+    isLoaded: boolean;
 }
 
-export const BalanceDisplay = ({ title, amount }: Props) => {
+export const BalanceDisplay = ({ title, amount, isLoaded }: Props) => {
     const { abbreviation, convertPrice, symbol } = useCurrencyConverter();
 
     return (
@@ -21,14 +23,16 @@ export const BalanceDisplay = ({ title, amount }: Props) => {
                 <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>
                     {title}
                 </AppTypography>
-                <Flex gap={1}>
-                    <AppTypography color={"#fff"} fontSize={{ base: 20, md: 24 }} fontWeight={500}>
-                        {symbol}{convertPrice({ amount: amount, toUSD: false }).toFixed(2)}
-                    </AppTypography>
-                    <AppTypography color={"#7b7b7b"} fontSize={{ base: 20, md: 24 }} fontWeight={400}>
-                        {abbreviation}/USDC
-                    </AppTypography>
-                </Flex>
+                <AppSkeleton isLoaded={isLoaded} borderRadius={8}>
+                    <Flex gap={1}>
+                        <AppTypography color={"#fff"} fontSize={{ base: 20, md: 24 }} fontWeight={500}>
+                            {symbol}{convertPrice({ amount: amount, toUSD: false }).toFixed(2)}
+                        </AppTypography>
+                        <AppTypography color={"#7b7b7b"} fontSize={{ base: 20, md: 24 }} fontWeight={400}>
+                            {abbreviation}/USDC
+                        </AppTypography>
+                    </Flex>
+                </AppSkeleton>
             </Flex>
         </Flex>
     );
