@@ -2,8 +2,6 @@ import { FlexProps, TextProps } from '@chakra-ui/react'
 import React from 'react'
 import { AnimatedTextContainer, TextContent } from './StyledComponents';
 
-
-
 interface Props extends FlexProps {
   text?: string | number | readonly string[];
   fontSize?: TextProps["fontSize"];

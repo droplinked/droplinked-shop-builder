@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import ImproveDescription from './ImproveDescription'
 import classes from './ProductDescription.module.scss'
@@ -10,11 +10,13 @@ import { useMutation } from 'react-query'
 import { improveDescription } from 'lib/apis/ai/services'
 import { IImproveDescription } from 'lib/apis/ai/interfaces'
 import useAppToast from 'functions/hooks/toast/useToast'
+import './loading.css'
 
 function ProductDescription() {
     const { values: { description }, errors, setFieldValue } = useProductForm()
     const [isLoaded, setIsLoaded] = useState(false);
     const { showToast } = useAppToast()
+    const editorRef = useRef(null);
 
     const { mutateAsync, isLoading } = useMutation(
         (params: IImproveDescription) => improveDescription(params),
@@ -28,6 +30,19 @@ function ProductDescription() {
             }
         }
     )
+
+    useEffect(() => {
+        if (editorRef.current) {
+            const body = document.querySelector('.tox-edit-area');
+            if (body) {
+                if (isLoading) {
+                    body.classList.add('loading');
+                } else {
+                    body.classList.remove('loading');
+                }
+            }
+        }
+    }, [isLoading]);
 
     return (
         <ProductFieldWrapper
@@ -57,12 +72,14 @@ function ProductDescription() {
             >
                 <Flex direction="column" gap={4} className={classes.editor}>
                     <Editor
+                        onInit={(evt, editor) => editorRef.current = editor}
                         apiKey='r4cgib74mcr1i0twnfwdoeadukqd7ln8173wea43acokjfc4'
                         value={description}
                         onEditorChange={(content) => setFieldValue('description', content)}
                         init={{
                             skin: "oxide-dark",
                             content_css: "dark",
+                            body_id: "loading",
                             height: 200,
                             placeholder: 'Add product information here...',
                             menubar: false,

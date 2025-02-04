@@ -26,7 +26,7 @@ export const TextContent = styled(Text) <{ isVertical?: boolean }>`
       rgba(20, 20, 20, 0.9) 80%,
       rgba(20, 20, 20, 0) 100%
     );
-    animation: shine 2s linear infinite alternate;
+    animation: shine 2s ease-in-out infinite alternate;
   }
 
   @keyframes shine {
