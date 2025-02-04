@@ -2,7 +2,7 @@ import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGrou
 import AppIcons from 'assest/icon/Appicons'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
-import AnimatedLoadingText from '../AnimatedLoadingText'
+import AnimatedLoadingText from '../../../pages/products/components/ProductDrawer/components/common/AnimatedLoadingText'
 
 interface Props {
     inputGroupProps?: InputGroupProps
