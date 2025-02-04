@@ -3,8 +3,12 @@ export interface IGetCreditAnalytics {
     endDate: Date;
     page?: number;
     limit?: number;
-    type?: "ORDER" | "CREDIT_BALANCE" | "AFFILIATE_SHARE" | "SUBSCRIPTION_UPDATE" | "GAMIFICATION_REWARD" | "WITHDRAW" | "REFERRAL";
+    type?: ITransactionType
     amountType?: "INCREASE" | "DECREASE";
+}
+
+export interface ITransactionType {
+    type?: "ORDER" | "CREDIT_BALANCE" | "AFFILIATE_SHARE" | "SUBSCRIPTION_UPDATE" | "GAMIFICATION_REWARD" | "WITHDRAW" | "REFERRAL";
 }
 
 export interface IBreakDown {
@@ -27,4 +31,32 @@ export interface ICreditAnalyticsData {
     removals: IAdditionsAndRemovals;
     totalCreditAdded: number;
     totalCreditRemoved: number;
+}
+
+export interface IDetailedTransaction {
+    shopId: string;
+    userId: object;
+    amount: number;
+    previousAmount: number;
+    newAmount: number;
+    status: string;
+    amountType: string;
+    type: string;
+    stripePaymentIntentId: string;
+    withdrawType: string;
+    orderId: {};
+    details: {};
+    createdAt: Date;
+    id: string;
+}
+export interface IDetailedAnalyticData {
+    data: IDetailedTransaction[];
+    currentPage: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    nextPage: number;
+    previousPage: number;
+    limit: number;
+    totalDocuments: number;
 } 

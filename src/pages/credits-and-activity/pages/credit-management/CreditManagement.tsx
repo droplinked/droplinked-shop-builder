@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import AccountBalance from './account-balance/AccountBalance'
 import { Flex } from '@chakra-ui/react'
 import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
-import { useTransactions } from '../../hooks/useTransactions'
 import OverallTransactionsDisplay from '../../components/OverallTransactionsDisplay'
-import { useQuery } from 'react-query'
-import { getCreditAnalytics } from 'lib/apis/credit/services'
+import { useQuery, useInfiniteQuery } from 'react-query'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
 import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
+import { ITransactionType } from 'lib/apis/credit/interfaces'
 
 export default function CreditManagement() {
     const [date, setDate] = useState<DateRangeValue>(() => {
@@ -16,13 +16,26 @@ export default function CreditManagement() {
         startDate.setMonth(startDate.getMonth() - 1);
         return [startDate, endDate];
     });
+    const [dataFilter, setDataFilter] = useState<ITransactionType>(null);
+
     const { isFetching, data } = useQuery({
         queryKey: ["shop-credit-analytics", date],
         queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
-    })
+    });
 
-    const { additions, removals } = data?.data?.data ?? {}
-    const transactionsQuery = useTransactions();
+    const transactionsQuery = useInfiniteQuery({
+        queryKey: ["credit-detailed-analytics", date, dataFilter],
+        queryFn: ({ pageParam = 1 }) => getCreditDetailedAnalytics({
+            endDate: date[1],
+            startDate: date[0],
+            page: pageParam,
+            limit: 20,
+            type: dataFilter
+        }),
+        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
+    });
+
+    const { additions, removals } = data?.data?.data ?? {};
 
     return (
         <Flex flexDirection={"column"} gap={6}>
@@ -52,7 +65,11 @@ export default function CreditManagement() {
                     },
                 ]}
             />
-            <TransactionsTable infiniteQueryResult={transactionsQuery} />
+            <TransactionsTable
+                infiniteQueryResult={transactionsQuery}
+                dataFilter={dataFilter}
+                setDataFilter={setDataFilter}
+            />
         </Flex>
     )
 }

@@ -5,7 +5,11 @@ import React from "react"
 
 export function MobileMenuItem({ label, value, isSelected, onSelect }) {
     const handleSelectItem = () => {
-        onSelect(value)
+        if (isSelected) {
+            onSelect(null)
+        } else {
+            onSelect(value)
+        }
     }
 
     const getCheckboxStyles = (isSelected: boolean) => ({

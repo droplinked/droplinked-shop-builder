@@ -10,7 +10,7 @@ export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect 
     const { isOpen, onClose, onOpen } = useDisclosure()
 
     return (
-        <Menu isOpen={isOpen} onClose={onClose} closeOnSelect={false}>
+        <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton onClick={onOpen}>
                 <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer">
                     <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
@@ -21,13 +21,12 @@ export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect 
             </MenuButton>
             <MenuList {...styles.menuList} display="flex" flexDirection="column">
                 {items.map(({ label, value }) => {
-                    const isSelected = selectedItems.includes(value);
                     return (
                         <DesktopMenuItem
                             key={value}
                             label={label}
                             value={value}
-                            isSelected={isSelected}
+                            isSelected={selectedItems === value}
                             onSelect={onSelect}
                         />
                     );

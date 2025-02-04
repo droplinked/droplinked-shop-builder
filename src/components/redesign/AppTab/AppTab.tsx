@@ -9,19 +9,21 @@ interface TabItem {
 interface AppTabProps {
     tabs: TabItem[];
     isDisabled?: boolean;
+    isLazy?: boolean;
     tabsStyle?: TabsProps,
     tabListStyle?: TabListProps,
     tabPanelsStyle?: TabPanelsProps,
     tabPanelStyle?: TabPanelProps,
 }
 
-function AppTab({ tabs, isDisabled = false, tabsStyle, tabListStyle, tabPanelStyle, tabPanelsStyle }: AppTabProps) {
+function AppTab({ tabs, isDisabled = false, isLazy, tabsStyle, tabListStyle, tabPanelStyle, tabPanelsStyle }: AppTabProps) {
     return (
         <Tabs
             variant={"unstyled"}
             width={"100%"}
             borderTop={"1px solid #292929"}
             borderBottom={"none"}
+            isLazy={isLazy || false}
             {...tabsStyle}
         >
             <TabList borderBottom={"1px solid #292929"} {...tabListStyle}>

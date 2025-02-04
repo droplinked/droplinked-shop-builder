@@ -1,55 +1,42 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Input from 'components/redesign/input/Input'
-import React, { useState } from 'react'
+import React from 'react'
 import { UseInfiniteQueryResult } from 'react-query'
 import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
 import ResponsiveTable from './ResponsiveTable'
+import { ITransactionType } from 'lib/apis/credit/interfaces'
 
 interface Props {
-    infiniteQueryResult: UseInfiniteQueryResult
+    infiniteQueryResult: UseInfiniteQueryResult;
+    dataFilter: ITransactionType;
+    setDataFilter: (filter: ITransactionType) => void;
 }
 
-export interface Transaction {
-    type: string;
-    amount: number;
-    date: Date;
-    transactionId: string;
-    details: string;
-    isInbound: boolean;
-    isOutbound: boolean;
-}
-
-export default function TransactionsTable({ infiniteQueryResult }: Props) {
-    const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
-    const [dataFilter, setDataFilter] = useState<string[]>([])
-
+export default function TransactionsTable({ infiniteQueryResult, dataFilter, setDataFilter }: Props) {
     const Items = [
         {
             label: "Referral",
-            value: "referral"
+            value: "REFERRAL"
         }, {
             label: "Credits",
-            value: "credits"
-        }, {
-            label: "Discount",
-            value: "discount"
-        },
-        {
-            label: "Voucher",
-            value: "voucher"
+            value: "CREDIT_BALANCE"
         },
         {
             label: "Reward",
-            value: "reward"
+            value: "GAMIFICATION_REWARD"
         },
         {
             label: "Subscription",
-            value: "subscription"
+            value: "SUBSCRIPTION_UPDATE"
         },
         {
             label: "Withdrawal",
-            value: "withdrawal"
+            value: "WITHDRAW"
+        },
+        {
+            label: "Order",
+            value: "ORDER"
         }
     ]
 
