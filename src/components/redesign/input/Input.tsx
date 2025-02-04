@@ -18,7 +18,7 @@ interface Props {
     state?: 'success' | 'error'
     message?: string
     maxCharacters?: number
-    showAnimatedBox?: boolean
+    showAnimatedLoading?: boolean
 }
 
 export default function Input(props: Props) {
@@ -57,7 +57,7 @@ export function InputHeader({ label, description, inputProps }: Props) {
 }
 
 function InputContainer(props: Props) {
-    const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state, showAnimatedBox } = props
+    const { leftElement, rightElement, inputContainerProps, inputProps, maxCharacters, state, showAnimatedLoading } = props
     const borderColorMap = { success: "#2BCFA1", error: "#F24" }
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -82,7 +82,7 @@ function InputContainer(props: Props) {
     return (
         <AnimatedBox
             flexProps={{
-                ...showAnimatedBox ?
+                ...showAnimatedLoading ?
                     {
                         _before: {
                             width: "calc(100% + 0.1px) !important",
@@ -112,11 +112,11 @@ function InputContainer(props: Props) {
                 transition="border-color 0.1s ease-out"
                 _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
                 _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
-                {...showAnimatedBox && { background: "#141414" }}
+                {...showAnimatedLoading && { background: "#141414" }}
                 {...inputContainerProps}
             >
                 {leftElement}
-                {!showAnimatedBox &&
+                {!showAnimatedLoading &&
                     <ChakraInput
                         height="auto"
                         outline="none"
@@ -134,7 +134,7 @@ function InputContainer(props: Props) {
                         onChange={handleChange}
                         {...inputProps}
                     />}
-                {showAnimatedBox &&
+                {showAnimatedLoading &&
                     <AnimatedLoadingText
                         text={inputProps.value}
                         fontSize={inputProps.fontSize ?? 14}

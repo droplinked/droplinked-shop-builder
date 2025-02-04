@@ -52,7 +52,7 @@ function ProductTitle() {
             message={errors.title}
             maxCharacters={100}
             {...errors.title && { state: "error" }}
-            {...isLoading && { showAnimatedBox: true }}
+            {...isLoading && { showAnimatedLoading: true }}
         />
     )
 }
