@@ -10,6 +10,8 @@ import ResourceGroup from './ResourceGroup/ResourceGroup'
 function DashboardContent() {
     const { blogs, helpLinks } = useDashboardPageStore()
 
+    const handleLinkClick = (url: string) => window.open(url, '_blank')
+
     return (
         <>
             <MetricsDashboard />
@@ -22,8 +24,16 @@ function DashboardContent() {
             <CommunityGrid />
 
             <DoubleColumnContainer>
-                <ResourceGroup title="Blog" items={blogs} />
-                <ResourceGroup title="Help Center" items={helpLinks} />
+                <ResourceGroup
+                    title="Blog"
+                    items={blogs}
+                    onLinkClick={() => handleLinkClick("https://droplinked.com/blogs")}
+                />
+                <ResourceGroup
+                    title="Help Center"
+                    items={helpLinks}
+                    onLinkClick={() => handleLinkClick("https://droplinked.gitbook.io/droplinked-store-front-help-center")}
+                />
             </DoubleColumnContainer>
         </>
     )

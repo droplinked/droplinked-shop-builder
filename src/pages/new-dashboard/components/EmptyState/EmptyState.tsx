@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     image: string
@@ -9,10 +10,17 @@ interface Props {
     description: string
     linkText: string
     linkTo: string
-    isExternalLink?: boolean
+    isExternal?: boolean // prop to handle external link logic
 }
 
-function EmptyState({ image, title, description, linkText, linkTo, isExternalLink }: Props) {
+function EmptyState({ image, title, description, linkText, linkTo, isExternal = false }: Props) {
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        if (isExternal || /^https?:\/\//.test(linkTo)) window.location.href = linkTo
+        else navigate(linkTo)
+    }
+
     return (
         <Flex
             direction="column"
@@ -23,18 +31,22 @@ function EmptyState({ image, title, description, linkText, linkTo, isExternalLin
 
             <Flex direction="column" alignItems="center" gap={1} textAlign="center">
                 <Text fontWeight={500} color="#fff">{title}</Text>
-
                 <Text fontSize={14} color="#7B7B7B">{description}</Text>
 
-                <ExternalLink
-                    textDecoration="none"
+                <Flex
+                    as="button"
+                    alignItems="center"
+                    gap={1}
                     padding="8px 12px"
                     fontSize={12}
                     fontWeight={500}
-                    hasArrow
+                    color="#179EF8"
+                    sx={{ svg: { boxSize: 4, path: { stroke: "#179EF8" } } }}
+                    onClick={handleClick}
                 >
                     {linkText}
-                </ExternalLink>
+                    <AppIcons.ExternalArrow />
+                </Flex>
             </Flex>
         </Flex>
     )

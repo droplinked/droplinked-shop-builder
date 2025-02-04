@@ -8,11 +8,16 @@ import OrderSummaryEmptyState from './EmptyState/OrderSummaryEmptyState'
 import SectionContainer from './SectionContainer'
 
 export default function OrderSummary() {
-    const dashboardData = useDashboardPageStore(s => s.dashboardData)
-    const { recentOrders } = dashboardData ?? {}
+    const navigate = useNavigate()
+    const { recentOrders } = useDashboardPageStore(state => state.dashboardData)
+
+    const handleNavigation = (path: string) => navigate(path)
 
     return (
-        <SectionContainer title='Order Summary'>
+        <SectionContainer
+            title="Order Summary"
+            onLinkClick={() => handleNavigation("/analytics/orders")}
+        >
             {recentOrders?.length === 0
                 ? <OrderSummaryEmptyState />
                 : (
@@ -23,23 +28,23 @@ export default function OrderSummary() {
                             scrollbarWidth: 'none', // For Firefox: hides the scrollbar
                         }}
                     >
-                        {recentOrders.map((order: any) => <OrderItem key={order._id} order={order} />)}
+                        {recentOrders.map((order: any) =>
+                            <OrderItem key={order._id} order={order} handleNavigation={handleNavigation} />
+                        )}
                     </Box>
-
                 )
             }
         </SectionContainer>
     )
 }
 
-function OrderItem({ order }: { order: any }) {
-    const navigate = useNavigate()
-
+function OrderItem({ order, handleNavigation }) {
     return (
         <Flex
             alignItems="center"
             gap={4}
             padding={{ base: 4, lg: "16px 24px" }}
+            sx={{ svg: { flexShrink: 0 } }}
         >
             <Flex flex={1} flexDirection="column" gap={1}>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
@@ -55,7 +60,7 @@ function OrderItem({ order }: { order: any }) {
                 </Flex>
             </Flex>
 
-            <AppIcons.ChevronRight cursor="pointer" onClick={() => navigate("/analytics/orders")} />
+            <AppIcons.ChevronRight cursor="pointer" onClick={() => handleNavigation("/analytics/orders")} />
         </Flex>
     )
 }

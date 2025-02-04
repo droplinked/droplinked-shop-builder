@@ -4,14 +4,13 @@ import SectionContainer, { SectionContainerProps } from "../SectionContainer"
 import ResourceItem, { ResourceItemProps } from "./ResourceItem"
 
 interface ResourceGroupProps extends SectionContainerProps {
-    title: string
     items: Partial<ResourceItemProps>[]
 }
 
 // Used for the Blog and Help Center sections in the Dashboard page.
-function ResourceGroup({ title, items }: ResourceGroupProps) {
+function ResourceGroup({ title, onLinkClick, items }: ResourceGroupProps) {
     return (
-        <SectionContainer title={title}>
+        <SectionContainer title={title} onLinkClick={onLinkClick}>
             <Flex direction="column">
                 {items.map((item, index) =>
                     <ResourceItem

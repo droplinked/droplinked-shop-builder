@@ -9,6 +9,7 @@ function OrderSummaryEmptyState() {
             description='Learn how to promote and grow across the network'
             linkText='Learn More'
             linkTo='https://www.google.com/'
+            isExternal
         />
     )
 }
