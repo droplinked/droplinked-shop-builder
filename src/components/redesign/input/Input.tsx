@@ -2,6 +2,7 @@ import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGrou
 import AppIcons from 'assest/icon/Appicons'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
+import AnimatedLoadingText from '../AnimatedLoadingText'
 
 interface Props {
     inputGroupProps?: InputGroupProps
@@ -115,23 +116,32 @@ function InputContainer(props: Props) {
                 {...inputContainerProps}
             >
                 {leftElement}
-                <ChakraInput
-                    height="auto"
-                    outline="none"
-                    border="none"
-                    borderRadius={0}
-                    padding={0}
-                    fontSize={14}
-                    fontWeight={400}
-                    color="#fff"
-                    maxLength={maxCharacters}
-                    spellCheck={false}
-                    _placeholder={{ color: "#7B7B7B" }}
-                    _focusVisible={{}}
-                    onKeyDown={handleKeyDown}
-                    onChange={handleChange}
-                    {...inputProps}
-                />
+                {!showAnimatedBox &&
+                    <ChakraInput
+                        height="auto"
+                        outline="none"
+                        border="none"
+                        borderRadius={0}
+                        padding={0}
+                        fontSize={14}
+                        fontWeight={400}
+                        color="#fff"
+                        maxLength={maxCharacters}
+                        spellCheck={false}
+                        _placeholder={{ color: "#7B7B7B" }}
+                        _focusVisible={{}}
+                        onKeyDown={handleKeyDown}
+                        onChange={handleChange}
+                        {...inputProps}
+                    />}
+                {showAnimatedBox &&
+                    <AnimatedLoadingText
+                        text={inputProps.value}
+                        fontSize={inputProps.fontSize ?? 14}
+                        fontWeight={inputProps.fontWeight ?? 400}
+                        color={inputProps.color ?? "#fff"}
+                    />
+                }
                 {rightElement}
             </Flex>
         </AnimatedBox>
