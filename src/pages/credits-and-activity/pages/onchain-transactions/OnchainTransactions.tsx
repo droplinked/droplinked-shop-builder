@@ -1,53 +1,75 @@
 import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex } from '@chakra-ui/react'
 import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
-import { useTransactions } from '../../hooks/useTransactions'
+import { useQuery, useInfiniteQuery } from 'react-query'
 import OverallTransactionsDisplay from '../../components/OverallTransactionsDisplay'
 import Earnings from './Earnings'
+import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
+import { ITransactionType } from 'lib/apis/credit/interfaces'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
 
-export default function CreditManagement() {
-    const transactionsQuery = useTransactions();
+export default function OnchainTransactions() {
+    const [date, setDate] = useState<DateRangeValue>(() => {
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setMonth(startDate.getMonth() - 1);
+        return [startDate, endDate];
+    });
+    const [dataFilter, setDataFilter] = useState<ITransactionType>(null);
 
-    const inboundItems = [
-        { title: 'Sales', value: 2500, color: '#2BCFA1' },
-        { title: 'Refunds', value: 500, color: '#4A9FFF' },
-        { title: 'Affiliates', value: 1000, color: '#FF8A00' }
-    ];
+    const { isFetching, data } = useQuery({
+        queryKey: ["onchain-analytics", date],
+        queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
+    });
 
-    const outboundItems = [
-        { title: 'Withdrawals', value: 1800, color: '#FF2244' },
-        { title: 'Fees', value: 200, color: '#9747FF' },
-        { title: 'Purchases', value: 500, color: '#4A9FFF' }
-    ];
+    const transactionsQuery = useInfiniteQuery({
+        queryKey: ["onchain-detailed-analytics", date, dataFilter],
+        queryFn: ({ pageParam = 1 }) => getCreditDetailedAnalytics({
+            endDate: date[1],
+            startDate: date[0],
+            page: pageParam,
+            limit: 20,
+            type: dataFilter
+        }),
+        getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
+    });
+
+    const { additions, removals } = data?.data?.data ?? {};
 
     return (
         <Flex flexDirection={"column"} gap={6}>
             <FlexContainer
                 items={[
                     {
-                        content: <Earnings />,
+                        content: <Earnings date={date} setDate={setDate} isAnalyticsFetching={isFetching} />,
                         isFullWidth: true
                     },
                     {
                         content: <OverallTransactionsDisplay
                             type="inbound"
-                            total={4000}
-                            items={inboundItems}
+                            total={additions?.total}
+                            items={additions?.breakdown}
+                            isLoaded={!isFetching}
                         />,
                         isFullWidth: false
                     },
                     {
                         content: <OverallTransactionsDisplay
                             type="outbound"
-                            total={2500}
-                            items={outboundItems}
+                            total={removals?.total}
+                            items={removals?.breakdown}
+                            isLoaded={!isFetching}
                         />,
                         isFullWidth: false
                     },
                 ]}
             />
-            <TransactionsTable infiniteQueryResult={transactionsQuery} />
+            <TransactionsTable
+                infiniteQueryResult={transactionsQuery}
+                dataFilter={dataFilter}
+                setDataFilter={setDataFilter}
+            />
         </Flex>
     )
 }
