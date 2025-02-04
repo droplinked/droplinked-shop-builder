@@ -3,7 +3,7 @@ import { useMutation } from 'react-query'
 import { IImproveTitle } from 'lib/apis/ai/interfaces'
 import { improveTitle } from 'lib/apis/ai/services'
 import useAppToast from 'functions/hooks/toast/useToast'
-import ImproveWithAi from '../../common/improve-with-ai/ImproveWithAi'
+import ImproveWithAi from '../../common/ImproveWithAi'
 
 interface ImproveTitleProps {
     title: string;
