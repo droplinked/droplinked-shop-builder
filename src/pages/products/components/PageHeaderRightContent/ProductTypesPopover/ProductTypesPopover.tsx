@@ -39,10 +39,10 @@ function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
             </PopoverTrigger>
             <PopoverContent
                 width="500px"
+                border="1px solid #292929"
                 borderRadius={16}
-                backgroundColor="#141414"
-                border="none"
                 padding={0}
+                backgroundColor="#141414"
             >
                 <PopoverBody padding={4}>
                     <ProductTypes />
