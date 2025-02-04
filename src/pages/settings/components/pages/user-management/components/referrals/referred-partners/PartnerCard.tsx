@@ -1,11 +1,11 @@
-import React from 'react'
-import { Partner } from './PartnerList'
 import { Avatar, Flex } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
 import AppIcons from 'assest/icon/Appicons'
-import { appDevelopment } from 'lib/utils/app/variable'
+import AppTypography from 'components/common/typography/AppTypography'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import { appDevelopment } from 'lib/utils/app/variable'
+import React from 'react'
+import { Partner } from './PartnerList'
 
 export default function PartnerCard({ partner }: { partner: Partner }) {
     const { amount, shopName } = partner
@@ -19,7 +19,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
             <Flex gap={3} alignItems={"center"} flex={1}>
                 <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>Your Earning</AppTypography>
                 <AppIcons.DotSpacer />
-                <FormattedPrice price={amount} fontSize={16} fontWeight={500} />
+                <FormattedPrice price={amount} fontWeight={500} />
             </Flex>
             <ExternalLink
                 href={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`}

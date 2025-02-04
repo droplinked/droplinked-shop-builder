@@ -37,7 +37,6 @@ function RulesetAddress() {
                                     placeholder: `Option ${index + 1}`,
                                     onChange: e => handleInputChange(index, e.target.value),
                                     isRequired: true,
-                                    height: "48px"
                                 }}
                                 label={index === 0 && 'Contract Address'}
                                 description={index === 0 && 'Enter the contract addresses to be used for validation of possession or ownership.'}

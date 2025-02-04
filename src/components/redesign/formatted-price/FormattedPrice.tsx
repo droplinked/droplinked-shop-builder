@@ -1,23 +1,32 @@
-import { BoxProps } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
-import React from "react";
+import { Box, BoxProps, Text, TextProps } from "@chakra-ui/react"
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
+import React from "react"
 
-interface Props {
-    price: number;
-    sx?: BoxProps;
-    fontSize?: number;
-    fontWeight?: number;
+interface Props extends TextProps {
+    price: number
+    abbreviationProps?: BoxProps
 }
 
-export default function FormattedPrice({ price, sx, fontSize, fontWeight }: Props) {
-    const { symbol, abbreviation, convertPrice } = useCurrencyConverter();
+export default function FormattedPrice({ price, abbreviationProps, ...rest }: Props) {
+    const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
+
+    // Convert and format the price
+    const formattedPrice = formatPrice(convertPrice({ amount: price, toUSD: false }))
 
     return (
-        <AppTypography sx={{ span: { color: "#B1B1B1" }, ...sx }} fontSize={fontSize || 14} {...(fontWeight && { fontWeight: fontWeight })} color={"#fff"}>
+        <Text color="#fff" {...rest}>
             {symbol}
-            {convertPrice({ amount: price, toUSD: false }).toFixed(2)}
-            <span> {abbreviation}</span>
-        </AppTypography>
-    );
+            {formattedPrice}{" "}
+            <Box as="span" color="#B1B1B1" {...abbreviationProps}>
+                {abbreviation}
+            </Box>
+        </Text>
+    )
+}
+
+function formatPrice(price: number): string {
+    return price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    })
 }

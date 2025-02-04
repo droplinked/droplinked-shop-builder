@@ -5,7 +5,7 @@ import React from 'react';
 const features = [
   { icon: <AppIcons.Secure color="#2BCFA1" />, text: 'Pro Access' },
   { icon: <AppIcons.GreenSpeedometer color="#2BCFA1" />, text: 'Cancel anytime' },
-  { icon: <AppIcons.Refresh style={{ height: '16px', width: '16px' }} />, text: 'Seamless Activation' }
+  { icon: <AppIcons.Refresh color='#2BCFA1' style={{ height: '16px', width: '16px' }} />, text: 'Seamless Activation' }
 ];
 
 const FeaturesSection = () => (

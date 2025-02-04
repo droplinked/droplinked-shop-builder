@@ -6,7 +6,7 @@ const useCollections = () => {
     const { shop } = useAppStore()
 
     return useQuery({
-        queryFn: () => collectionService(),
+        queryFn: collectionService,
         queryKey: ["collectionList", shop._id],
     })
 }

@@ -58,14 +58,14 @@ export default function Balance() {
                     gap={1}
                     sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
-                    <AppIcons.Refresh />
+                    <AppIcons.Refresh color="#2BCFA1" />
                     Charge
                 </BlueButton>
             </Flex>
             {(isFetching || loading) ?
                 <Spinner color="white" />
                 :
-                <FormattedPrice price={data?.data?.data?.credit} fontSize={16} />
+                <FormattedPrice price={data?.data?.data?.credit} />
             }
             <AddBalanceModal handleRefetchShop={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
         </Flex>
