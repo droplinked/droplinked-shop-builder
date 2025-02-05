@@ -1,7 +1,8 @@
-import { useDisclosure } from '@chakra-ui/react'
+import { Spinner, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ConfirmationModal from './components/ConfirmationModal'
@@ -9,75 +10,84 @@ import DetailsModal from './components/details-modal/DetailsModal'
 import DropInfoModal from './components/drop-info-modal/DropInfoModal'
 import ProductShareModal from './components/share-modal/ShareModal'
 
-interface Props {
-    product: any
-}
+export type action = "DELETE" | "DUPLICATE" | "PUBLISH" | "DRAFT"
 
-function ProductTableActionMenu({ product }: Props) {
+function ProductTableActionMenu({ product }: { product: any }) {
     const navigate = useNavigate()
+    const [action, setAction] = useState<action>("DELETE")
     const updateProductPageState = useProductPageStore(s => s.updateProductPageState)
-    const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { onOpen: onShareModalOpen, onClose: onShareModalClose, isOpen: isShareModalOpen } = useDisclosure()
     const { onOpen: onDetailsModalOpen, onClose: onDetailsModalClose, isOpen: isDetailsModalOpen } = useDisclosure()
     const { onOpen: onDropInfoModalOpen, onClose: onDropInfoModalClose, isOpen: isDropInfoModalOpen } = useDisclosure()
 
+    const isProductRecorded = checkIfProductIsRecorded(product?.skuIDs)
+    const isProductPublished = product?.publish_status === "PUBLISHED"
+
+    const handleActionClick = (selectedAction: action) => {
+        setAction(selectedAction)
+        onOpen()
+    }
+
     const actions = [
         {
+            icon: <AppIcons.Invoice />,
             title: "Details",
-            onClick: onDetailsModalOpen,
-            icon: <AppIcons.Invoice />
+            onClick: onDetailsModalOpen
         },
         {
+            icon: <AppIcons.EditOutlined />,
             title: "Edit",
-            onClick: () => updateProductPageState("editingProductId", product._id),
-            icon: <AppIcons.EditOutlined />
+            onClick: () => updateProductPageState("editingProductId", product._id)
         },
         {
             ...product.nftData && {
+                icon: <AppIcons.DropProduct />,
                 title: "DROP Information",
-                onClick: onDropInfoModalOpen,
-                icon: <AppIcons.DropProduct />
+                onClick: onDropInfoModalOpen
             }
         },
         {
-            ...product.product_type === "PRINT_ON_DEMAND" && {
+            ...product.product_type === "PRINT_ON_DEMAND" &&
+            {
+                icon: <AppIcons.Shirt />,
                 title: "Order POD Sample",
-                onClick: () => navigate("/analytics/products/order/" + product._id),
-                icon: <AppIcons.Shirt />
+                onClick: () => navigate("/analytics/products/order/" + product._id)
             },
         },
         {
+            icon: <AppIcons.Share />,
             title: "Share",
-            onClick: onShareModalOpen,
-            icon: <AppIcons.Share />
+            onClick: onShareModalOpen
         },
         {
+            icon: <AppIcons.Copy />,
             title: "Duplicate",
-            onClick: () => {
-                setIsDeleteModal(false)
-                onOpen()
-            },
-            icon: <AppIcons.Copy style={{ transform: "scaleX(-1)" }} />
+            onClick: () => handleActionClick("DUPLICATE")
         },
         {
-            title: "Remove",
-            onClick: () => {
-                setIsDeleteModal(true)
-                onOpen()
-            },
-            color: "#F24",
-            icon: <AppIcons.RedTrash />
+            ...!isProductRecorded &&
+            {
+                icon: <AppIcons.Transfer />,
+                title: `Make ${isProductPublished ? "Draft" : "Public"}`,
+                onClick: () => handleActionClick(isProductPublished ? "DRAFT" : "PUBLISH"),
+            }
         },
+        {
+            icon: <AppIcons.RedTrash />,
+            title: "Remove",
+            color: "#F24",
+            onClick: () => handleActionClick("DELETE")
+        }
     ]
 
     return (
         <>
             <TableMenu items={actions} />
-            <ConfirmationModal product={product} onClose={onClose} isOpen={isOpen} action={isDeleteModal ? "DELETE" : "DUPLICATE"} />
-            <ProductShareModal product={product} close={onShareModalClose} open={isShareModalOpen} />
-            <DetailsModal product={product} close={onDetailsModalClose} open={isDetailsModalOpen} />
+            <ConfirmationModal product={product} isOpen={isOpen} onClose={onClose} action={action} />
+            <ProductShareModal product={product} isOpen={isShareModalOpen} onClose={onShareModalClose} />
+            <DetailsModal product={product} isOpen={isDetailsModalOpen} onClose={onDetailsModalClose} />
             <DropInfoModal product={product} isOpen={isDropInfoModalOpen} onClose={onDropInfoModalClose} />
         </>
     )

@@ -1,16 +1,23 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import * as React from 'react';
+import React, { ReactElement } from 'react';
 
 interface Props {
-    items: Array<{ icon: React.ReactElement, onClick: () => void, title: string, color?: string }>
+    items: {
+        icon: ReactElement,
+        title: string,
+        color?: string,
+        onClick: () => void
+    }[]
 }
 
 export default function TableMenu({ items }: Props) {
     return (
         <>
             <Menu isLazy>
-                <MenuButton as="button" type="button"><AppIcons.Dots /></MenuButton>
+                <MenuButton as="button" type="button">
+                    <AppIcons.Dots />
+                </MenuButton>
                 <MenuList
                     border="1px solid #292929"
                     borderRadius={8}

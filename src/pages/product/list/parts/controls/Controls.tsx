@@ -4,7 +4,7 @@ import useStack from 'functions/hooks/stack/useStack';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
-import { IproductUpdateServices } from 'lib/apis/product/interfaces';
+import { IProductUpdateService } from 'lib/apis/product/interfaces';
 import { updateProductService } from 'lib/apis/product/productServices';
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap';
@@ -23,7 +23,7 @@ export type action = "DELETE" | "DUPLICATE"
 function ControlsListProduct({ productID, product, fetch }) {
     const shopLegalUsage = useLegalUsage()
     const [action, setAction] = useState<action>("DELETE")
-    const { mutateAsync } = useMutation((params: IproductUpdateServices) => updateProductService(params))
+    const { mutateAsync } = useMutation((params: IProductUpdateService) => updateProductService(params))
     const { isOpen, onOpen, onClose } = useDisclosure()
     const detailModal = useDisclosure()
     const { shopNavigate } = useCustomNavigate()

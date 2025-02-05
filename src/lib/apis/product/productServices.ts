@@ -13,7 +13,7 @@ import {
     IProductReorder,
     IproductState,
     IProductTile,
-    IproductUpdateServices,
+    IProductUpdateService,
 } from "./interfaces";
 
 export const getShopProductsService = ({ page, limit, filter }: IProductFetchParams) =>
@@ -22,7 +22,7 @@ export const getShopProductsService = ({ page, limit, filter }: IProductFetchPar
 export const createProductService = (productData: IproductState | Product) =>
     axiosInstance.post("product", productData)
 
-export const updateProductService = ({ productID, params }: IproductUpdateServices) =>
+export const updateProductService = ({ productID, params }: IProductUpdateService) =>
     axiosInstance.put(`product/${productID}`, params)
 
 export const productDeleteServices = ({ productID }: IproductDeleteServices) => {

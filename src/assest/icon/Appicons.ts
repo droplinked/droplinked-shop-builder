@@ -44,6 +44,7 @@ import { ReactComponent as BnbChain } from './bnb-chain.svg';
 import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CanadianDollar } from './cad.svg';
 import { ReactComponent as Calendar } from './calendar.svg';
+import { ReactComponent as Case } from './case.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CheckCircle } from './check-circle.svg';
 import { ReactComponent as ChevronLeft } from './chevron-left.svg';
@@ -187,6 +188,7 @@ import { ReactComponent as LandingPageDesignNib } from './landing-page-design-ni
 import { ReactComponent as LandingPageLink } from './landing-page-link.svg';
 import { ReactComponent as LandingPageTemplate } from './landing-page-template.svg';
 import { ReactComponent as Letter } from "./letter.svg";
+import { ReactComponent as Light } from './light.svg';
 import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as LinkedInOutlined } from './linkedin-outlined.svg';
 import { ReactComponent as LinkedIn } from './linkedin.svg';
@@ -239,9 +241,12 @@ import { ReactComponent as RedCircleCross } from './red-circle-cross.svg';
 import { ReactComponent as RedTrash } from './red-trash.svg';
 import { ReactComponent as Redbelly } from './redbelly.svg';
 import { ReactComponent as Refresh } from './refresh.svg';
+import { ReactComponent as Refresh2 } from './refresh2.svg';
 import { ReactComponent as ReorderDesigned } from './reorderDesigned.svg';
 import { ReactComponent as Required } from './required.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
+import { ReactComponent as Robot } from './robot.svg';
+import { ReactComponent as Rocket } from './rocket.svg';
 import { ReactComponent as RulesetModalIcon } from './ruleSetModalIcon.svg';
 import { ReactComponent as RulesetsIcon } from './ruleset.svg';
 import { ReactComponent as RuleIcon } from './rulesets-active-icon.svg';
@@ -278,6 +283,7 @@ import { ReactComponent as SidebarTickedCircle } from './sidebar-ticked-circle.s
 import { ReactComponent as SidebarUser } from './sidebar-user.svg';
 import { ReactComponent as Skale } from './skale.svg';
 import { ReactComponent as Slash } from './slash.svg';
+import { ReactComponent as Smile } from './smile.svg';
 import { ReactComponent as Solana } from './solana.svg';
 import { ReactComponent as Soon } from './soon.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
@@ -299,6 +305,7 @@ import { ReactComponent as TikTokOutlined } from './tikTok-outlined.svg';
 import { ReactComponent as TikTok } from './tiktok.svg';
 import { ReactComponent as Token } from './token.svg';
 import { ReactComponent as TooltipIcon } from './tooltipIcon.svg';
+import { ReactComponent as Transfer } from './transfer.svg';
 import { ReactComponent as Trust } from './trust.svg';
 import { ReactComponent as TwitterIcon } from './twitter.svg';
 import { ReactComponent as UDBorderRed } from './ud-border-red.svg';
@@ -331,12 +338,6 @@ import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
-import { ReactComponent as Refresh2 } from './refresh2.svg';
-import { ReactComponent as Light } from './light.svg';
-import { ReactComponent as Case } from './case.svg';
-import { ReactComponent as Smile } from './smile.svg';
-import { ReactComponent as Rocket } from './rocket.svg';
-import { ReactComponent as Robot } from './robot.svg';
 
 const AppIcons = {
   Refresh2,
@@ -678,7 +679,8 @@ const AppIcons = {
   User,
   YouTubeOutlined,
   TikTokOutlined,
-  SidebarDashboard
+  SidebarDashboard,
+  Transfer
 }
 
 export default AppIcons
