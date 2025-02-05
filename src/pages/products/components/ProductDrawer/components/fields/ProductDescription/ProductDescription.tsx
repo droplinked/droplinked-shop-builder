@@ -13,7 +13,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import './loading.css'
 
 function ProductDescription() {
-    const { values: { description }, errors, setFieldValue } = useProductForm()
+    const { values: { description, title }, errors, setFieldValue } = useProductForm()
     const [isLoaded, setIsLoaded] = useState(false);
     const { showToast } = useAppToast()
     const editorRef = useRef(null);
@@ -96,6 +96,7 @@ function ProductDescription() {
                     />
                     <ImproveDescription
                         description={description}
+                        title={title}
                         onDescriptionChange={(value) => setFieldValue("description", value)}
                         isLoaded={isLoaded}
                         setIsLoaded={setIsLoaded}

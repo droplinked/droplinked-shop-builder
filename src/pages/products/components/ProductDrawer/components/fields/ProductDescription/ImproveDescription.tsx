@@ -5,6 +5,7 @@ import { Box } from '@chakra-ui/react';
 
 interface ImproveDescriptionProps {
     description: string;
+    title: string;
     onDescriptionChange: (newTitle: string) => void;
     isLoaded: boolean;
     setIsLoaded: (isLoaded: boolean) => void;
@@ -14,6 +15,7 @@ interface ImproveDescriptionProps {
 
 function ImproveDescription({
     description,
+    title,
     onDescriptionChange,
     isLoaded,
     setIsLoaded,
@@ -26,7 +28,7 @@ function ImproveDescription({
     const handleSelectItem = async (item: string) => {
         setTempTitleValue(description)
         setSelectedItem(item)
-        await mutateAsync({ description, tone: item.toUpperCase() })
+        await mutateAsync({ description, tone: item.toUpperCase(), title })
     }
 
     const handleTryAgain = async () => {
@@ -45,7 +47,7 @@ function ImproveDescription({
         <Box position="absolute" bottom={2} right={2}>
             <ImproveWithAi
                 isLoaded={isLoaded}
-                isDisabled={description.length === 0}
+                isDisabled={description.length === 0 && title.length === 0}
                 isLoading={isLoading}
                 handleSelectItem={handleSelectItem}
                 handleTryAgain={handleTryAgain}

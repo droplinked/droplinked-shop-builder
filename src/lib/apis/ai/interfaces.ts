@@ -4,5 +4,6 @@ export interface IImproveTitle {
 }
 export interface IImproveDescription {
     description: string;
+    title?: string;
     tone: string;
 }
