@@ -13,7 +13,6 @@ import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
