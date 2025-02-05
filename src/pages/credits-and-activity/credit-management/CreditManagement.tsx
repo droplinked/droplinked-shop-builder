@@ -13,7 +13,7 @@ export default function CreditManagement() {
     const [date, setDate] = useState<DateRangeValue>(() => {
         const endDate = new Date();
         const startDate = new Date();
-        startDate.setMonth(startDate.getMonth() - 1);
+        startDate.setFullYear(startDate.getFullYear() - 1);
         return [startDate, endDate];
     });
     const [dataFilter, setDataFilter] = useState<ITransactionType>(null);
