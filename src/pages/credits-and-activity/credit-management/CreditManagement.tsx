@@ -18,7 +18,7 @@ export default function CreditManagement() {
     });
     const [dataFilter, setDataFilter] = useState<ITransactionType>(null);
 
-    const { isFetching, data } = useQuery({
+    const { isFetching, data, refetch } = useQuery({
         queryKey: ["shop-credit-analytics", date],
         queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
     });
@@ -35,6 +35,11 @@ export default function CreditManagement() {
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
     });
 
+    const handleRefetchData = () => {
+        refetch();
+        transactionsQuery.refetch();
+    }
+
     const { additions, removals } = data?.data?.data ?? {};
 
     return (
@@ -42,7 +47,7 @@ export default function CreditManagement() {
             <FlexContainer
                 items={[
                     {
-                        content: <AccountBalance date={date} setDate={setDate} isAnalyticsFetching={isFetching} />,
+                        content: <AccountBalance date={date} setDate={setDate} isAnalyticsFetching={isFetching} handleRefetchData={handleRefetchData} />,
                         isFullWidth: true
                     },
                     {

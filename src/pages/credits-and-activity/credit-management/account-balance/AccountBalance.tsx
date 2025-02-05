@@ -10,9 +10,10 @@ interface Props {
     date: DateRangeValue;
     setDate: (date: DateRangeValue) => void;
     isAnalyticsFetching?: boolean;
+    handleRefetchData: () => void;
 }
 
-export default function AccountBalance({ date, setDate, isAnalyticsFetching }: Props) {
+export default function AccountBalance({ date, setDate, isAnalyticsFetching, handleRefetchData }: Props) {
     const { isFetching, data } = useQuery({
         queryKey: ["get-shop-credit", date],
         queryFn: () => getShopCredit(),
@@ -36,7 +37,7 @@ export default function AccountBalance({ date, setDate, isAnalyticsFetching }: P
                 gap={6}
                 width={"100%"}
             >
-                <ActionButtons isLoading={isLoading} />
+                <ActionButtons isLoading={isLoading} handleRefetchData={handleRefetchData} />
                 <Divider
                     display={{ base: "none", md: "block" }}
                     height={6}
