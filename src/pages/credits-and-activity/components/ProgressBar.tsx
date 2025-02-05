@@ -1,10 +1,10 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import { IBreakDown } from 'lib/apis/credit/interfaces';
 import React from 'react';
 import { getColor } from '../utils/colorHelpers';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 
 interface Props {
     items: IBreakDown[]
@@ -12,24 +12,24 @@ interface Props {
 }
 
 export default function ProgressBar({ items, type }: Props) {
-    const { abbreviation, convertPrice, symbol } = useCurrencyConverter();
-    const total = items.reduce((sum, item) => sum + item.amount, 0);
+    const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
+    const total = sortedItems.reduce((sum, item) => sum + item.amount, 0);
 
     return (
         <VStack width="full" spacing={6} align="stretch">
             <HStack spacing={1.5}>
-                {items.map((item, index) => (
+                {sortedItems.map((item, index) => (
                     <Box
                         key={index}
                         width={`${(item.amount / total) * 100}%`}
-                        bg={getColor(index, items, type)}
+                        bg={getColor(index, sortedItems, type)}
                         height="16px"
                         borderRadius="4px"
                     />
                 ))}
             </HStack>
             <HStack justifyContent="space-between" flexDirection={{ base: "column", sm: "row" }} flexWrap="wrap">
-                {items.map((item, index) => (
+                {sortedItems.map((item, index) => (
                     <Flex
                         key={index}
                         alignItems="center"
@@ -43,7 +43,7 @@ export default function ProgressBar({ items, type }: Props) {
                             <Box
                                 width="4px"
                                 height="16px"
-                                backgroundColor={getColor(index, items, type)}
+                                backgroundColor={getColor(index, sortedItems, type)}
                                 borderRadius="4px"
                             />
                             <AppTypography color="#fff" fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
@@ -51,14 +51,7 @@ export default function ProgressBar({ items, type }: Props) {
                         <Box display={{ base: "none", sm: "block" }}>
                             <AppIcons.DotSpacer />
                         </Box>
-                        <HStack gap={1} alignItems="center">
-                            <AppTypography color="#fff" fontSize={14} fontWeight={400}>
-                                {symbol}{convertPrice({ amount: item.amount, toUSD: false })}
-                            </AppTypography>
-                            <AppTypography color="#7B7B7B" fontSize={14} fontWeight={400}>
-                                {abbreviation}
-                            </AppTypography>
-                        </HStack>
+                        <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
                     </Flex>
                 ))}
             </HStack>
