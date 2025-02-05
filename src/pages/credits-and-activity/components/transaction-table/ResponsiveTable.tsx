@@ -1,13 +1,12 @@
-import React from 'react'
 import { useMediaQuery } from '@chakra-ui/react';
-import TypeColumn from './TypeColumn';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import { ColumnDef } from '@tanstack/react-table';
-import AppTooltip from 'components/common/tooltip/AppTooltip';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import Table from 'components/redesign/table/Table';
+import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import React from 'react';
 import { UseInfiniteQueryResult } from 'react-query';
 import TransactionsCards from './TransactionsCards';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import TypeColumn from './TypeColumn';
 
 export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult

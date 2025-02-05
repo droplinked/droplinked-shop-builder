@@ -1,11 +1,11 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { IBreakDown } from 'lib/apis/credit/interfaces'
 import React from 'react'
 import ProgressBar from './ProgressBar'
-import { IBreakDown } from 'lib/apis/credit/interfaces'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 interface Props {
     type: 'inbound' | 'outbound';

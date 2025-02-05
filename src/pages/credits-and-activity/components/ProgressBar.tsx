@@ -1,9 +1,9 @@
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
-import React from 'react';
-import { Box, VStack, HStack, Flex } from '@chakra-ui/react';
-import AppTypography from 'components/common/typography/AppTypography';
+import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import AppTypography from 'components/common/typography/AppTypography';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import { IBreakDown } from 'lib/apis/credit/interfaces';
+import React from 'react';
 import { getColor } from '../utils/colorHelpers';
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react'
+import React from 'react';
 
 interface Props {
     amountType: string;

@@ -1,9 +1,9 @@
-import React from 'react'
 import { Flex } from '@chakra-ui/react'
-import TypeColumn from './TypeColumn'
 import AppTypography from 'components/common/typography/AppTypography'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
+import React from 'react'
+import TypeColumn from './TypeColumn'
 
 interface TransactionCardProps {
     transaction: IDetailedTransaction;

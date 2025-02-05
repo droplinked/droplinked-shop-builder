@@ -1,13 +1,13 @@
-import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
-import React, { useState } from 'react'
-import AccountBalance from './account-balance/AccountBalance'
 import { Flex } from '@chakra-ui/react'
-import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
-import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
-import { useQuery, useInfiniteQuery } from 'react-query'
-import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
 import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
 import { ITransactionType } from 'lib/apis/credit/interfaces'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
+import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
+import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
+import React, { useState } from 'react'
+import { useInfiniteQuery, useQuery } from 'react-query'
+import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
+import AccountBalance from './account-balance/AccountBalance'
 
 export default function CreditManagement() {
     const [date, setDate] = useState<DateRangeValue>(() => {

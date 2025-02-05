@@ -1,7 +1,7 @@
 import { Checkbox, Flex, MenuItem } from "@chakra-ui/react"
-import { styles } from "../styles"
 import AppTypography from "components/common/typography/AppTypography"
 import React from "react"
+import { styles } from "../styles"
 
 export function DesktopMenuItem({ label, value, isSelected, onSelect }) {
     const handleSelectItem = () => {

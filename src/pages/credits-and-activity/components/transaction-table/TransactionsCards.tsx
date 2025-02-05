@@ -1,10 +1,10 @@
-import { Flex } from '@chakra-ui/react'
-import React from 'react'
-import { UseInfiniteQueryResult } from 'react-query';
+import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import InfiniteScroll from "react-infinite-scroll-component";
-import TransactionCard from './TransactionCard';
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import React from 'react';
+import InfiniteScroll from "react-infinite-scroll-component";
+import { UseInfiniteQueryResult } from 'react-query';
+import TransactionCard from './TransactionCard';
 
 export default function TransactionsCards({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult

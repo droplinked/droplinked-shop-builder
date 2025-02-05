@@ -1,13 +1,13 @@
-import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
-import React, { useState } from 'react'
 import { Flex } from '@chakra-ui/react'
-import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
-import { useQuery, useInfiniteQuery } from 'react-query'
-import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
-import Earnings from './Earnings'
 import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
 import { ITransactionType } from 'lib/apis/credit/interfaces'
 import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
+import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
+import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
+import React, { useState } from 'react'
+import { useInfiniteQuery, useQuery } from 'react-query'
+import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
+import Earnings from './Earnings'
 
 export default function OnchainTransactions() {
     const [date, setDate] = useState<DateRangeValue>(() => {

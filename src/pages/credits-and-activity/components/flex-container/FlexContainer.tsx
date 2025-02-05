@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
-import MobileContainer from "./MobileContainer";
 import DesktopContainer from "./DesktopContainer";
+import MobileContainer from "./MobileContainer";
 
 interface Props {
     items: {
