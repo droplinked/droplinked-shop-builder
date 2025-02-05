@@ -9,9 +9,10 @@ import TransactionsCards from './TransactionsCards';
 import TypeColumn from './TypeColumn';
 
 export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
     const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+
     const formattedDate = (date: Date) => {
         return new Date(date).toLocaleDateString("en-US", {
             day: "numeric",
@@ -19,7 +20,6 @@ export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQuery
             year: "numeric",
         });
     }
-
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
