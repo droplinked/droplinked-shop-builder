@@ -3,10 +3,16 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from "react"
 import { styles } from '../styles'
-import { MultiSelectMenuProps } from '../types'
 import { DesktopMenuItem } from './DesktopMenuItem'
 
-export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect }: MultiSelectMenuProps) {
+interface Props {
+    items: {
+        label: string
+        value: string
+    }[]
+}
+
+export default function MultiSelectMenuDesktop({ items }: Props) {
     const { isOpen, onClose, onOpen } = useDisclosure()
 
     return (
@@ -26,8 +32,6 @@ export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect 
                             key={value}
                             label={label}
                             value={value}
-                            isSelected={selectedItems === value}
-                            onSelect={onSelect}
                         />
                     );
                 })}

@@ -1,13 +1,13 @@
 import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData';
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { UseInfiniteQueryResult } from 'react-query';
 import TransactionCard from './TransactionCard';
 
-export default function TransactionsCards({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
+export default function TransactionsCards() {
+    const { transactionsQuery: { data, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
     const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
 
     return (

@@ -1,19 +1,17 @@
 import { Divider, Flex } from "@chakra-ui/react";
-import AppDateRangePicker, { DateRangeValue } from "components/redesign/date-range-picker/AppDateRangePicker";
+import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker";
+import useCreditsData from "functions/hooks/credits-and-activity/useCreditsData";
 import { getShopCredit } from "lib/apis/shop/shopServices";
 import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay";
+import useCreditStore from "pages/credits-and-activity/stores/CreditStore";
 import React from "react";
 import { useQuery } from "react-query";
 import { ActionButtons } from "./ActionButtons";
 
-interface Props {
-    date: DateRangeValue;
-    setDate: (date: DateRangeValue) => void;
-    isAnalyticsFetching?: boolean;
-    handleRefetchData: () => void;
-}
-
-export default function AccountBalance({ date, setDate, isAnalyticsFetching, handleRefetchData }: Props) {
+export default function AccountBalance() {
+    const { date, isFetching: isAnalyticsFetching } = useCreditStore()
+    const { refetchAll } = useCreditsData()
+    const updateCreditState = useCreditStore(state => state.updateCreditState)
     const { isFetching, data } = useQuery({
         queryKey: ["get-shop-credit", date],
         queryFn: () => getShopCredit(),
@@ -37,14 +35,14 @@ export default function AccountBalance({ date, setDate, isAnalyticsFetching, han
                 gap={6}
                 width="100%"
             >
-                <ActionButtons isLoading={isLoading} handleRefetchData={handleRefetchData} />
+                <ActionButtons isLoading={isLoading} handleRefetchData={refetchAll} />
                 <Divider
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
                     borderColor="#292929"
                 />
-                <AppDateRangePicker value={date} onChange={setDate} disabled={isLoading} />
+                <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} />
             </Flex>
         </Flex>
     );

@@ -1,50 +1,20 @@
 import { Flex } from '@chakra-ui/react'
-import { ITransactionType } from 'lib/apis/credit/interfaces'
 import React from 'react'
-import { UseInfiniteQueryResult } from 'react-query'
 import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
 import ResponsiveTable from './ResponsiveTable'
 
-interface Props {
-    infiniteQueryResult: UseInfiniteQueryResult;
-    dataFilter: ITransactionType;
-    setDataFilter: (filter: ITransactionType) => void;
-}
-
-export default function TransactionsTable({ infiniteQueryResult, dataFilter, setDataFilter }: Props) {
-    const Items = [
-        {
-            label: "Referral",
-            value: "REFERRAL"
-        }, {
-            label: "Credits",
-            value: "CREDIT_BALANCE"
-        },
-        {
-            label: "Reward",
-            value: "GAMIFICATION_REWARD"
-        },
-        {
-            label: "Subscription",
-            value: "SUBSCRIPTION_UPDATE"
-        },
-        {
-            label: "Withdrawal",
-            value: "WITHDRAW"
-        },
-        {
-            label: "Order",
-            value: "ORDER"
-        }
-    ]
-
+export default function TransactionsTable() {
     return (
         <Flex mt={6} flexDirection="column" gap={4}>
-            <Flex justifyContent="flex-end" alignItems="center" gap={3} flexDirection={{ base: "column", md: "row" }}>
-                {/* <Input leftElement={<AppIcons.Search />} inputProps={{ placeholder: "Search" }} inputGroupProps={{ width: { base: "100%", md: "280px" } }} /> */}
-                <MultiSelectMenu items={Items} onSelect={setDataFilter} selectedItems={dataFilter} />
+            <Flex
+                justifyContent="flex-end"
+                alignItems="center"
+                gap={3}
+                flexDirection={{ base: "column", md: "row" }}
+            >
+                <MultiSelectMenu />
             </Flex>
-            <ResponsiveTable infiniteQueryResult={infiniteQueryResult} />
+            <ResponsiveTable />
         </Flex>
     )
 }

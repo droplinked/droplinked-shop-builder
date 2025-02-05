@@ -36,10 +36,6 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                     <AppTypography color="#7b7b7b" fontSize={14}>Transaction ID</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{id}</AppTypography>
                 </Flex>
-                {/* <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="#7b7b7b" fontSize={14}>Details</AppTypography>
-                    <AppTypography color="#fff" fontSize={14}>{details}</AppTypography>
-                </Flex> */}
             </Flex>
         </Flex>
     )

@@ -3,7 +3,7 @@ import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/
 import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 
 export default function useCreditsData() {
-    const { date, dataFilter } = useCreditStore()
+    const { date, selectedFilter } = useCreditStore()
 
     const analyticsQuery = useQuery({
         queryKey: ["credit-analytics", date],
@@ -18,13 +18,13 @@ export default function useCreditsData() {
     })
 
     const transactionsQuery = useInfiniteQuery({
-        queryKey: ["credit-detailed-analytics", date, dataFilter],
+        queryKey: ["credit-detailed-analytics", date, selectedFilter],
         queryFn: ({ pageParam = 1 }) => getCreditDetailedAnalytics({
             endDate: date[1],
             startDate: date[0],
             page: pageParam,
             limit: 20,
-            type: dataFilter
+            type: selectedFilter
         }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
     })
@@ -35,6 +35,7 @@ export default function useCreditsData() {
         refetchAll: () => {
             analyticsQuery.refetch()
             transactionsQuery.refetch()
-        }
+        },
+        isLoading: analyticsQuery.isFetching || transactionsQuery.isFetching,
     }
 }

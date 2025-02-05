@@ -3,19 +3,24 @@ import AppIcons from 'assest/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
-import { IBreakDown } from 'lib/apis/credit/interfaces'
 import React from 'react'
+import useCreditStore from '../stores/CreditStore'
 import ProgressBar from './ProgressBar'
+import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData'
 
 interface Props {
     type: 'inbound' | 'outbound';
-    items: IBreakDown[]
-    total: number;
-    isLoaded: boolean;
 }
 
-export default function OverallTransactionsDisplay({ type, items, total, isLoaded }: Props) {
+export default function OverallTransactionsDisplay({ type }: Props) {
+    const { isFetching, analyticsData } = useCreditStore()
+    const { isLoading } = useCreditsData()
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
+    const { additions, removals } = analyticsData ?? {}
+
+    const data = type === 'inbound' ? additions : removals
+    const items = data?.breakdown || []
+    const total = data?.total || 0
     const hasData = items && items.length > 0
 
     const config = {
@@ -51,7 +56,7 @@ export default function OverallTransactionsDisplay({ type, items, total, isLoade
                     <AppTypography color="#fff" fontSize={14} fontWeight={400}>
                         {title}
                     </AppTypography>
-                    <AppSkeleton isLoaded={isLoaded} borderRadius={8}>
+                    <AppSkeleton isLoaded={!isLoading} borderRadius={8}>
                         <Flex gap={1}>
                             <AppTypography color="#fff" fontSize={{ base: 18, md: 20 }} fontWeight={500}>
                                 {symbol}{convertPrice({ amount: total, toUSD: false }).toFixed(2)}
@@ -64,7 +69,7 @@ export default function OverallTransactionsDisplay({ type, items, total, isLoade
                 </Flex>
             </Flex>
             {hasData && (
-                <AppSkeleton isLoaded={isLoaded} width="100%">
+                <AppSkeleton isLoaded={!isLoading} width="100%">
                     <Flex
                         flexDirection="column"
                         justify={{ base: "center", md: "end" }}

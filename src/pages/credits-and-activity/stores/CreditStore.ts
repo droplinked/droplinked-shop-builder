@@ -4,7 +4,7 @@ import { ITransactionType } from 'lib/apis/credit/interfaces'
 
 interface State {
     date: DateRangeValue
-    dataFilter: ITransactionType
+    selectedFilter: ITransactionType
     isFetching: boolean
     analyticsData: any
 }
@@ -21,7 +21,7 @@ const initialState: State = {
         startDate.setFullYear(startDate.getFullYear() - 1)
         return [startDate, endDate]
     })(),
-    dataFilter: null,
+    selectedFilter: null,
     isFetching: false,
     analyticsData: null
 }

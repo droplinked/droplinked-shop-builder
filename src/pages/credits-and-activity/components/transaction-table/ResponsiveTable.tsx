@@ -2,15 +2,16 @@ import { useMediaQuery } from '@chakra-ui/react';
 import { ColumnDef } from '@tanstack/react-table';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import Table from 'components/redesign/table/Table';
+import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData';
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
 import React from 'react';
-import { UseInfiniteQueryResult } from 'react-query';
 import TransactionsCards from './TransactionsCards';
 import TypeColumn from './TypeColumn';
 
-export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
+export default function ResponsiveTable() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
+    const { transactionsQuery } = useCreditsData()
+    const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
     const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
 
     const formattedDate = (date: Date) => {
@@ -51,7 +52,7 @@ export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQuery
 
     return (
         isSmallerThan768 ?
-            <TransactionsCards infiniteQueryResult={infiniteQueryResult} />
+            <TransactionsCards />
             : <Table
                 infiniteScroll={{
                     hasMore: hasNextPage,

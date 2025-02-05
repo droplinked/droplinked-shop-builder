@@ -2,14 +2,15 @@ import { Checkbox, Flex } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
 import React from "react"
 import { styles } from "../styles"
+import useCreditStore from "pages/credits-and-activity/stores/CreditStore"
 
-export function MobileMenuItem({ label, value, isSelected, onSelect }) {
+export function MobileMenuItem({ label, value }) {
+    const { selectedFilter } = useCreditStore()
+    const isSelected = value === selectedFilter
+    const updateCreditState = useCreditStore(state => state.updateCreditState)
+
     const handleSelectItem = () => {
-        if (isSelected) {
-            onSelect(null)
-        } else {
-            onSelect(value)
-        }
+        updateCreditState('selectedFilter', isSelected ? null : value)
     }
 
     const getCheckboxStyles = (isSelected: boolean) => ({
