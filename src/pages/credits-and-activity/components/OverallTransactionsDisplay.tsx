@@ -39,24 +39,24 @@ export default function OverallTransactionsDisplay({ type, items, total, isLoade
 
     return (
         <Flex
-            flexDirection={"column"}
+            flexDirection="column"
             justifyContent="space-between"
             alignItems="start"
         >
             <Flex p={{ base: 4, md: 6 }} flexDirection="column" gap={{ base: 4, md: 6 }} alignItems="start">
-                <Flex p={3} bg={bgColor} border={`1px solid ${borderColor}`} borderRadius={"8px"}>
+                <Flex p={3} bg={bgColor} border={`1px solid ${borderColor}`} borderRadius="8px">
                     {icon}
                 </Flex>
-                <Flex flexDirection={"column"} gap={2}>
-                    <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>
+                <Flex flexDirection="column" gap={2}>
+                    <AppTypography color="#fff" fontSize={14} fontWeight={400}>
                         {title}
                     </AppTypography>
                     <AppSkeleton isLoaded={isLoaded} borderRadius={8}>
                         <Flex gap={1}>
-                            <AppTypography color={"#fff"} fontSize={{ base: 18, md: 20 }} fontWeight={500}>
+                            <AppTypography color="#fff" fontSize={{ base: 18, md: 20 }} fontWeight={500}>
                                 {symbol}{convertPrice({ amount: total, toUSD: false }).toFixed(2)}
                             </AppTypography>
-                            <AppTypography color={"#7b7b7b"} fontSize={{ base: 18, md: 20 }} fontWeight={400}>
+                            <AppTypography color="#7b7b7b" fontSize={{ base: 18, md: 20 }} fontWeight={400}>
                                 {abbreviation}/USDC
                             </AppTypography>
                         </Flex>
@@ -64,14 +64,14 @@ export default function OverallTransactionsDisplay({ type, items, total, isLoade
                 </Flex>
             </Flex>
             {hasData && (
-                <AppSkeleton isLoaded={isLoaded} width={"100%"}>
+                <AppSkeleton isLoaded={isLoaded} width="100%">
                     <Flex
-                        flexDirection={"column"}
+                        flexDirection="column"
                         justify={{ base: "center", md: "end" }}
                         alignItems="center"
                         gap={6}
-                        width={"100%"}
-                        borderTop={"1px solid #292929"}
+                        width="100%"
+                        borderTop="1px solid #292929"
                         p={{ base: 4, md: 6 }}
                     >
                         <ProgressBar items={items} type={type} />

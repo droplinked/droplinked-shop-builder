@@ -35,7 +35,7 @@ export default function Earnings({ date, setDate, isAnalyticsFetching }: Props) 
                 justify={{ base: "center", md: "end" }}
                 alignItems="center"
                 gap={6}
-                width={"100%"}
+                width="100%"
             >
                 <Select
                     items={[{ title: "Merchant Wallet", value: "teateat" }]}
@@ -51,7 +51,7 @@ export default function Earnings({ date, setDate, isAnalyticsFetching }: Props) 
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
-                    borderColor={"#292929"}
+                    borderColor="#292929"
                 />
                 <AppDateRangePicker value={date} onChange={setDate} disabled={isLoading} />
             </Flex>

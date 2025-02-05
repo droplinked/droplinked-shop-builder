@@ -13,10 +13,10 @@ export default function DesktopContainer({ items }: Props) {
 
     return (
         <Flex
-            width={"100%"}
-            border={"1px solid #292929"}
-            borderRadius={"8px"}
-            flexWrap={"wrap"}
+            width="100%"
+            border="1px solid #292929"
+            borderRadius="8px"
+            flexWrap="wrap"
         >
             {items.map((item, index) => {
                 const { isFullWidth, content } = item;
@@ -24,7 +24,7 @@ export default function DesktopContainer({ items }: Props) {
 
                 return (
                     <Flex
-                        flexDirection={"column"}
+                        flexDirection="column"
                         width={isFullWidth ? "100%" : { base: "100%", md: "50%" }}
                         {...((isFullWidth || isSmallerThan768) && notLastItem) && { borderBottom: "1px solid #292929" }}
                         {...!isFullWidth && notLastItem && !isSmallerThan768 && { borderRight: "1px solid #292929" }}

@@ -15,7 +15,7 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
     return (
         <>
             <Flex
-                flexDirection={"row"}
+                flexDirection="row"
                 gap={{ base: 4, md: 6 }}
                 alignItems="center"
                 width={{ base: "100%", md: "auto" }}

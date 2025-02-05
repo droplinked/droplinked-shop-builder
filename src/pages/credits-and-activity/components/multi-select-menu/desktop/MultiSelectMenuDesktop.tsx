@@ -32,6 +32,6 @@ export default function MultiSelectMenuDesktop({ items, selectedItems, onSelect 
                     );
                 })}
             </MenuList>
-        </Menu >
+        </Menu>
     )
 }

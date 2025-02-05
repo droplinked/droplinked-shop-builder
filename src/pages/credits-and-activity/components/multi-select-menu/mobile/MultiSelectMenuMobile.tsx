@@ -11,7 +11,7 @@ export default function MultiSelectMenuMobile({ items, selectedItems, onSelect }
     const { isOpen, onClose, onOpen } = useDisclosure()
 
     return (
-        <Box width={"100%"}>
+        <Box width="100%">
             <Flex {...styles.menuButton} onClick={onOpen} justifyContent="space-between" alignItems="center" cursor="pointer">
                 <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
                     Type
@@ -27,7 +27,7 @@ export default function MultiSelectMenuMobile({ items, selectedItems, onSelect }
                 drawerHeaderStyle={{ padding: 0, px: 4, py: 4, paddingBottom: 4, gap: 4, mb: 0.5 }}
                 headingStyle={{ fontSize: 14, fontWeight: 700, color: "#FFF" }}
             >
-                <Flex p={4} flexDirection={"column"} gap={2}>
+                <Flex p={4} flexDirection="column" gap={2}>
                     {items.map(({ label, value }) => {
                         return (
                             <MobileMenuItem

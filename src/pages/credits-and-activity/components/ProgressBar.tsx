@@ -23,39 +23,39 @@ export default function ProgressBar({ items, type }: Props) {
                         key={index}
                         width={`${(item.amount / total) * 100}%`}
                         bg={getColor(index, items, type)}
-                        height={"16px"}
+                        height="16px"
                         borderRadius="4px"
                     />
                 ))}
             </HStack>
-            <HStack justifyContent={"space-between"} flexDirection={{ base: "column", sm: "row" }} flexWrap={"wrap"}>
+            <HStack justifyContent="space-between" flexDirection={{ base: "column", sm: "row" }} flexWrap="wrap">
                 {items.map((item, index) => (
                     <Flex
                         key={index}
-                        alignItems={"center"}
+                        alignItems="center"
                         mr={{ base: "unset", sm: "auto" }}
                         width={{ base: "100%", sm: "unset" }}
                         gap={2}
                         justifyContent={{ base: "space-between", sm: "flex-start" }}
                         sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}
                     >
-                        <Flex gap={2} alignItems={"center"} >
+                        <Flex gap={2} alignItems="center" >
                             <Box
-                                width={"4px"}
-                                height={"16px"}
+                                width="4px"
+                                height="16px"
                                 backgroundColor={getColor(index, items, type)}
-                                borderRadius={"4px"}
+                                borderRadius="4px"
                             />
-                            <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
+                            <AppTypography color="#fff" fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
                         </Flex>
                         <Box display={{ base: "none", sm: "block" }}>
                             <AppIcons.DotSpacer />
                         </Box>
-                        <HStack gap={1} alignItems={"center"}>
-                            <AppTypography color={"#fff"} fontSize={14} fontWeight={400}>
+                        <HStack gap={1} alignItems="center">
+                            <AppTypography color="#fff" fontSize={14} fontWeight={400}>
                                 {symbol}{convertPrice({ amount: item.amount, toUSD: false })}
                             </AppTypography>
-                            <AppTypography color={"#7B7B7B"} fontSize={14} fontWeight={400}>
+                            <AppTypography color="#7B7B7B" fontSize={14} fontWeight={400}>
                                 {abbreviation}
                             </AppTypography>
                         </HStack>

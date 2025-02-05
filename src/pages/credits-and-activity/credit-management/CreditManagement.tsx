@@ -43,7 +43,7 @@ export default function CreditManagement() {
     const { additions, removals } = data?.data?.data ?? {};
 
     return (
-        <Flex flexDirection={"column"} gap={6}>
+        <Flex flexDirection="column" gap={6}>
             <FlexContainer
                 items={[
                     {

@@ -41,8 +41,8 @@ export default function TransactionsTable({ infiniteQueryResult, dataFilter, set
     ]
 
     return (
-        <Flex mt={6} flexDirection={"column"} gap={4}>
-            <Flex justifyContent={"space-between"} alignItems={"center"} gap={3} flexDirection={{ base: "column", md: "row" }}>
+        <Flex mt={6} flexDirection="column" gap={4}>
+            <Flex justifyContent="space-between" alignItems="center" gap={3} flexDirection={{ base: "column", md: "row" }}>
                 <Input leftElement={<AppIcons.Search />} inputProps={{ placeholder: "Search" }} inputGroupProps={{ width: { base: "100%", md: "280px" } }} />
                 <MultiSelectMenu items={Items} onSelect={setDataFilter} selectedItems={dataFilter} />
             </Flex>

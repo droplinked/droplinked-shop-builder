@@ -31,7 +31,7 @@ export function MobileMenuItem({ label, value, isSelected, onSelect }) {
             key={value}
             onClick={handleSelectItem}
             {...styles.menuItem}
-            py={"10px"}
+            py="10px"
             gap={2}
             justifyContent="start"
             alignItems="center"

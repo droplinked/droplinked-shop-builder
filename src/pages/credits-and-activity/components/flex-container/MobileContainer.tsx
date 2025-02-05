@@ -11,7 +11,7 @@ interface Props {
 export default function MobileContainer({ items }: Props) {
     return (
         <Flex
-            width={"100%"}
+            width="100%"
             flexDirection="column"
             gap="16px"
         >
@@ -20,8 +20,8 @@ export default function MobileContainer({ items }: Props) {
 
                 return (
                     <Box
-                        border={"1px solid #292929"}
-                        borderRadius={"8px"}
+                        border="1px solid #292929"
+                        borderRadius="8px"
                         width="100%"
                     >
                         <Box>

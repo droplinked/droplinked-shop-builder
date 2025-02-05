@@ -35,14 +35,14 @@ export default function AccountBalance({ date, setDate, isAnalyticsFetching, han
                 justify={{ base: "center", md: "end" }}
                 alignItems="center"
                 gap={6}
-                width={"100%"}
+                width="100%"
             >
                 <ActionButtons isLoading={isLoading} handleRefetchData={handleRefetchData} />
                 <Divider
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
-                    borderColor={"#292929"}
+                    borderColor="#292929"
                 />
                 <AppDateRangePicker value={date} onChange={setDate} disabled={isLoading} />
             </Flex>
