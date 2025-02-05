@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function OverallTransactionsDisplay({ type }: Props) {
-    const { isFetching, analyticsData } = useCreditStore()
+    const { analyticsData } = useCreditStore()
     const { isLoading } = useCreditsData()
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
     const { additions, removals } = analyticsData ?? {}
