@@ -70,9 +70,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
             >
                 <ModalHeaderData
                     icon={
-                        <ModalHeaderIconWrapper>
-                            <AppIcons.CircleModal />
-                        </ModalHeaderIconWrapper>
+                        <AppIcons.CircleModal />
                     }
                     modalHeaderProps={{
                         bgColor: "#141414",
