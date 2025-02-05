@@ -1,14 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { Transaction } from './TransactionsTable';
 import { UseInfiniteQueryResult } from 'react-query';
 import AppTypography from 'components/common/typography/AppTypography';
 import InfiniteScroll from "react-infinite-scroll-component";
 import TransactionCard from './TransactionCard';
+import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
 
 export default function TransactionsCards({ infiniteQueryResult }: { infiniteQueryResult: UseInfiniteQueryResult }) {
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = infiniteQueryResult
-    const transactions = data?.pages.flatMap((page: { data: { data: Transaction } }) => page.data.data) || [];
+    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
 
     return (
         <InfiniteScroll
@@ -31,7 +31,7 @@ export default function TransactionsCards({ infiniteQueryResult }: { infiniteQue
         >
             <Flex flexDirection={"column"} gap={4}>
                 {transactions.map((transaction) => (
-                    <TransactionCard key={transaction.transactionId} transaction={transaction} />
+                    <TransactionCard key={transaction.id} transaction={transaction} />
                 ))}
             </Flex>
         </InfiniteScroll>

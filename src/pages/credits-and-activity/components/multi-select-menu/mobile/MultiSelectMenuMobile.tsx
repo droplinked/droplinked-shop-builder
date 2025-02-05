@@ -29,13 +29,12 @@ export default function MultiSelectMenuMobile({ items, selectedItems, onSelect }
             >
                 <Flex p={4} flexDirection={"column"} gap={2}>
                     {items.map(({ label, value }) => {
-                        const isSelected = selectedItems.includes(value);
                         return (
                             <MobileMenuItem
                                 key={value}
                                 label={label}
                                 value={value}
-                                isSelected={isSelected}
+                                isSelected={value === selectedItems}
                                 onSelect={onSelect}
                             />
                         )
