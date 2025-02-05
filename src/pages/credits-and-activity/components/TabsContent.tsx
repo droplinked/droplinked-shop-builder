@@ -1,7 +1,7 @@
 import React from 'react'
 import AppTab from 'components/redesign/AppTab/AppTab'
 import CreditManagement from '../credit-management/CreditManagement'
-import OnchainTransactions from '../onchain-transactions/OnchainTransactions'
+// import OnchainTransactions from '../onchain-transactions/OnchainTransactions'
 
 export default function TabsContent() {
     const tabs = [
@@ -9,10 +9,10 @@ export default function TabsContent() {
             title: "Credit Management",
             content: <CreditManagement />
         },
-        {
-            title: "Onchain Transactions",
-            content: <OnchainTransactions />
-        }
+        // {
+        //     title: "Onchain Transactions",
+        //     content: <OnchainTransactions />
+        // }
     ]
 
     return (
