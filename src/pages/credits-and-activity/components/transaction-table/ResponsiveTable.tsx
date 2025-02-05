@@ -48,6 +48,7 @@ export default function ResponsiveTable({ infiniteQueryResult }: { infiniteQuery
         //     cell: (info) => <AppTooltip label={info.row.original.details} placement='bottom-start'>{info.row.original.details}</AppTooltip>,
         // },
     ];
+
     return (
         isSmallerThan768 ?
             <TransactionsCards infiniteQueryResult={infiniteQueryResult} />
