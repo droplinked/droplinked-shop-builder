@@ -1,7 +1,7 @@
 import React from 'react'
-import CreditManagement from '../pages/credit-management/CreditManagement'
-import OnchainTransactions from '../pages/onchain-transactions/OnchainTransactions'
 import AppTab from 'components/redesign/AppTab/AppTab'
+import CreditManagement from '../credit-management/CreditManagement'
+import OnchainTransactions from '../onchain-transactions/OnchainTransactions'
 
 export default function TabsContent() {
     const tabs = [

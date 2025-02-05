@@ -1,15 +1,15 @@
 import FlexContainer from 'pages/credits-and-activity/components/flex-container/FlexContainer'
 import React, { useState } from 'react'
-import AccountBalance from './account-balance/AccountBalance'
 import { Flex } from '@chakra-ui/react'
 import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
-import OverallTransactionsDisplay from '../../components/OverallTransactionsDisplay'
 import { useQuery, useInfiniteQuery } from 'react-query'
-import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
+import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
+import Earnings from './Earnings'
 import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
 import { ITransactionType } from 'lib/apis/credit/interfaces'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
 
-export default function CreditManagement() {
+export default function OnchainTransactions() {
     const [date, setDate] = useState<DateRangeValue>(() => {
         const endDate = new Date();
         const startDate = new Date();
@@ -19,12 +19,12 @@ export default function CreditManagement() {
     const [dataFilter, setDataFilter] = useState<ITransactionType>(null);
 
     const { isFetching, data } = useQuery({
-        queryKey: ["shop-credit-analytics", date],
+        queryKey: ["onchain-analytics", date],
         queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
     });
 
     const transactionsQuery = useInfiniteQuery({
-        queryKey: ["credit-detailed-analytics", date, dataFilter],
+        queryKey: ["onchain-detailed-analytics", date, dataFilter],
         queryFn: ({ pageParam = 1 }) => getCreditDetailedAnalytics({
             endDate: date[1],
             startDate: date[0],
@@ -42,7 +42,7 @@ export default function CreditManagement() {
             <FlexContainer
                 items={[
                     {
-                        content: <AccountBalance date={date} setDate={setDate} isAnalyticsFetching={isFetching} />,
+                        content: <Earnings date={date} setDate={setDate} isAnalyticsFetching={isFetching} />,
                         isFullWidth: true
                     },
                     {
