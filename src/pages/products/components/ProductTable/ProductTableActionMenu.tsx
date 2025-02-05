@@ -1,4 +1,4 @@
-import { Spinner, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
