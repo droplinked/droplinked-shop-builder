@@ -9,10 +9,6 @@ export default function TabsContent() {
             title: "Credit Management",
             content: <CreditManagement />
         },
-        // {
-        //     title: "Onchain Transactions",
-        //     content: <OnchainTransactions />
-        // }
     ]
 
     return (

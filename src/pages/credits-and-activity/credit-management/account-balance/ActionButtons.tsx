@@ -20,7 +20,7 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                 alignItems="center"
                 width={{ base: "100%", md: "auto" }}
             >
-                <Button
+                {/* <Button
                     flex={{ base: 1, md: "unset" }}
                     fontSize={14}
                     fontWeight={500}
@@ -30,7 +30,7 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                     width={{ base: "50%", md: "min-content" }}
                 >
                     Withdraw
-                </Button>
+                </Button> */}
                 <Button
                     flex={{ base: 1, md: "unset" }}
                     fontSize={14}
