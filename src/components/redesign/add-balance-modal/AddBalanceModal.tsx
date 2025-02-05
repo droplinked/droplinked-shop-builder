@@ -10,10 +10,10 @@ import useAppToast from 'functions/hooks/toast/useToast';
 interface Props {
     isOpen: boolean;
     onClose: () => void;
-    handleRefetchShop: () => void;
+    handleRefetch: () => void;
 }
 
-export default function AddBalanceModal({ isOpen, onClose, handleRefetchShop }: Props) {
+export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Props) {
     const [paymentData, setPaymentData] = useState({ clientSecret: null, amount: 0 })
     const { showToast } = useAppToast()
     const handleSetPayment = (clientSecret: string, amount: number) => {
@@ -27,7 +27,7 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetchShop }: 
         onClose()
         setPaymentData({ clientSecret: null, amount: null })
         showToast({ message: "Payment confirmed! Your credit has been updated successfully", type: 'success' });
-        handleRefetchShop()
+        handleRefetch()
     }
 
     return (

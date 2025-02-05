@@ -11,7 +11,11 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
     const { user } = useAppStore()
     const location = useLocation().pathname
     const navigate = useNavigate()
-    const notSettingPage = !location.endsWith("account-settings")
+    const unneededPaddingRoutes = [
+        "account-settings",
+        "credits-and-activity",
+    ]
+    const shouldApplyPadding = !unneededPaddingRoutes.some(path => location.includes(path))
     useEffect(() => {
         if (["PROFILE_COMPLETED", "VERIFIED"].includes(user?.status)) navigate("/analytics/registration")
     }, [user, navigate])
@@ -25,7 +29,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
                 <DashboardLayoutSidebar />
                 <VStack width="full" height="full" {...location.endsWith("/plans") && { overflow: "auto" }}>
                     <DashboardLayoutHeader />
-                    <Box width="100%" minH="80vh" {...notSettingPage && { padding: 6 }} borderColor="line">{children ? children : <Outlet />}</Box>
+                    <Box width="100%" minH="80vh" {...shouldApplyPadding && { padding: 6 }} borderColor="line">{children ? children : <Outlet />}</Box>
                 </VStack>
             </HStack>
             <Footer />

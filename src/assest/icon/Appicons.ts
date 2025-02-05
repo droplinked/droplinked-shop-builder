@@ -337,9 +337,19 @@ import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
+import { ReactComponent as Wallet } from './wallet.svg';
+import { ReactComponent as SendMoney } from './send-money.svg';
+import { ReactComponent as RecieveMoney } from './recieve-money.svg';
+import { ReactComponent as ArrowUp } from './arrow-up.svg';
+import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 
 const AppIcons = {
+  SendMoney,
+  ArrowUp,
+  ArrowDownOutlined,
+  RecieveMoney,
+  Wallet,
   Refresh2,
   Light,
   Case,

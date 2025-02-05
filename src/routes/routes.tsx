@@ -69,6 +69,7 @@ const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPa
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
+const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
 
 const router = createBrowserRouter([
     {
@@ -144,6 +145,7 @@ const router = createBrowserRouter([
                 ],
             },
             { path: "account-settings", element: <SettingsPage /> },
+            { path: "credits-and-activity", element: <CreditsAndActivity /> },
             {
                 path: "products",
                 children: [
