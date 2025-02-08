@@ -11,9 +11,11 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
     const { user } = useAppStore()
     const location = useLocation().pathname
     const navigate = useNavigate()
+    //TODO: Remove this when shop redesigned completely
     const unneededPaddingRoutes = [
         "account-settings",
         "credits-and-activity",
+        "onchain-records",
     ]
     const shouldApplyPadding = !unneededPaddingRoutes.some(path => location.includes(path))
     useEffect(() => {

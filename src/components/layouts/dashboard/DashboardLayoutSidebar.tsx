@@ -13,7 +13,7 @@ const DashboardLayoutSidebar = () => {
     const { shop } = useAppStore();
 
     return (
-        <Flex width="288px" height="100vh" flexDirection="column" alignItems="flex-start" position="sticky" top={0}>
+        <Flex display={{ base: "none", md: "flex" }} width="288px" height="100vh" flexDirection="column" alignItems="flex-start" position="sticky" top={0}>
             <Box padding="28px 16px 24px 16px">
                 <Link to={"/analytics"}>
                     <Box display="flex" width="257px" alignItems="center" gap="24px" cursor={"pointer"}>

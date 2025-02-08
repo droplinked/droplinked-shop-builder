@@ -75,7 +75,7 @@ export const sidebar_constants: SidebarGroup[] = [
                         listTitle: "Product Collections",
                         linkTo: "/analytics/collections",
                     },
-                    { listTitle: "Onchain Records", linkTo: "/analytics/nfts" },
+                    { listTitle: "Onchain Inventory", linkTo: "/analytics/onchain-records" },
                 ],
             },
 
