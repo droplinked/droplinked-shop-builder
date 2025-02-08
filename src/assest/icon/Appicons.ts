@@ -343,8 +343,10 @@ import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
+import { ReactComponent as NFTIcon } from './nft.svg';
 
 const AppIcons = {
+  NFTIcon,
   SendMoney,
   ArrowUp,
   ArrowDownOutlined,
