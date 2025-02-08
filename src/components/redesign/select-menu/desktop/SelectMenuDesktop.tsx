@@ -34,7 +34,7 @@ export default function SelectMenuDesktop({
         <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton onClick={onOpen}>
                 <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer">
-                    <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
+                    <AppTypography color="#fff" fontSize={14} fontWeight={400}>
                         {placeholder}
                     </AppTypography>
                     <AppIcons.SelectChevronDown />

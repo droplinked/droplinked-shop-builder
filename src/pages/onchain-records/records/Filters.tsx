@@ -44,7 +44,7 @@ export default function Filters() {
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
             <Input
                 leftElement={
-                    <AppIcons.SearchOutlined
+                    <AppIcons.Search
                         width={"20px"}
                         height={"20px"}
                     />
