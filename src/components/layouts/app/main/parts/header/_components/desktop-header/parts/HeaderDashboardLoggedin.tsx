@@ -6,7 +6,8 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useEffect, useRef } from 'react';
-import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
+import ProfileDropdownLinks from './ProfileDropdownLinks/ProfileDropdownLinks';
+
 
 function HeaderDashboardLoggedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();

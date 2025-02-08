@@ -1,7 +1,7 @@
 import { Flex, HStack, PopoverBody, SimpleGrid } from '@chakra-ui/react'
 import AppPopoverOnHover from 'components/common/PopoverMenu/PopOverOnHover'
 import AppTypography from 'components/common/typography/AppTypography'
-import HeaderDashboardLoggedin from 'components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLoggedin'
+import HeaderDashboardLoggedin from './parts/HeaderDashboardLoggedin'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
