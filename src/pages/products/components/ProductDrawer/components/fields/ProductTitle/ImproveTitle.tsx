@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { IImproveTitle } from 'lib/apis/ai/interfaces'
-import ImproveWithAi from '../../common/ImproveWithAi'
-import useProductPageStore from 'pages/products/stores/ProductPageStore';
-import useProductForm from 'pages/products/hooks/useProductForm';
 import useAppToast from 'functions/hooks/toast/useToast';
-import { useMutation } from 'react-query';
+import { IImproveTitle } from 'lib/apis/ai/interfaces';
 import { improveTitle } from 'lib/apis/ai/services';
+import useProductForm from 'pages/products/hooks/useProductForm';
+import useProductPageStore from 'pages/products/stores/ProductPageStore';
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import ImproveWithAi from '../../common/ImproveWithAi';
 
 function ImproveTitle() {
     const [selectedItem, setSelectedItem] = useState("");
@@ -55,11 +55,6 @@ function ImproveTitle() {
         setSelectedItem("");
         updateAiGenerationData({ ...aiGenerationData, isTitleLoaded: false });
     }
-
-    useEffect(() => {
-        console.log(aiGenerationData)
-        console.log(title)
-    }, [aiGenerationData, title])
 
     return (
         <ImproveWithAi
