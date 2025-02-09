@@ -1,10 +1,13 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
+import TransferModal from './transfer-modal/TransferModal'
 
 export default function TransferCard() {
+    const { onOpen, onClose, isOpen } = useDisclosure()
+
     return (
         <Flex
             py={4}
@@ -49,9 +52,11 @@ export default function TransferCard() {
                 fontSize={{ base: 14, lg: 16 }}
                 fontWeight={500}
                 paddingInline={"14px"}
+                onClick={onOpen}
             >
                 Transfer
             </Button>
+            <TransferModal isOpen={isOpen} onClose={onClose} />
         </Flex>
     )
 }

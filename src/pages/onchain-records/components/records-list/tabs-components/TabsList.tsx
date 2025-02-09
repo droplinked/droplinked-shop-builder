@@ -26,7 +26,7 @@ export default function TabsList({ tabs }: Props) {
                             fontWeight: 500,
                         }}
                         color={"#7B7B7B"}
-                        fontSize={16}
+                        fontSize={{ base: "14px", lg: "16px" }}
                         key={index}
                         width={"100%"}
                         pb={"14px"}
