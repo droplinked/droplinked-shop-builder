@@ -1,5 +1,6 @@
+import { Box, useMediaQuery } from "@chakra-ui/react";
+import { keyframes } from "@emotion/react";
 import React from "react";
-import { Box, keyframes, useMediaQuery } from "@chakra-ui/react";
 
 const sliceWrapperStyles = (length, index) => ({
   width: "50%",

@@ -13,7 +13,7 @@ const Blogs = lazy(() => import("pages/blogs/Blogs"));
 const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
-const DashboardPage = lazy(() => import("pages/dashboard/DashboardPage"));
+const NewAnalytics = lazy(() => import("pages/new-analytics/Analytics"));
 const NewDashboard = lazy(() => import("pages/new-dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
@@ -128,7 +128,7 @@ const router = createBrowserRouter([
             </DashboardLayout>
         ),
         children: [
-            { index: true, element: <DashboardPage /> },
+            { index: true, element: <NewAnalytics /> },
             { path: "dashboard", element: <NewDashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {

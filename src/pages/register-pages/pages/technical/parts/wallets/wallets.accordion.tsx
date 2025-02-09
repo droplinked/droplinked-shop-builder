@@ -1,4 +1,4 @@
-import { Flex, VStack } from "@chakra-ui/layout";
+import { Flex, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";

@@ -65,6 +65,7 @@ export const theme = extendTheme({
         }
     },
     breakpoints: {
+        base: "0px",
         sm: "360px",
         md: "768px",
         lg: "1280px",

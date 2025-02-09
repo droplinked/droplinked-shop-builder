@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from '@chakra-ui/layout'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppTypography from 'components/common/typography/AppTypography'

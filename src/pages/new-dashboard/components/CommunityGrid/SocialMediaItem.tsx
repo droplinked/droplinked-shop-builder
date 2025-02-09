@@ -1,8 +1,8 @@
 import { Box, Flex, GridItem, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { SocialMediaItemModel } from 'pages/new-dashboard/types/SocialMediaItem'
 import React from 'react'
-import IconWrapper from '../IconWrapper'
 
 interface Props {
     socialMediaItem: SocialMediaItemModel

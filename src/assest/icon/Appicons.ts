@@ -19,7 +19,9 @@ import { ReactComponent as AffiliateStoreInstagram } from './affiliate-store-ins
 import { ReactComponent as AffiliateStoreTiktok } from './affiliate-store-tiktok.svg';
 import { ReactComponent as AffiliateStoreTwitter } from './affiliate-store-twitter.svg';
 import { ReactComponent as AffiliateStoreYoutube } from './affiliate-store-youtube.svg';
+import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as ArrowRight } from "./arrow-right.svg";
+import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as AscSorting } from './asc-sorting.svg';
 import { ReactComponent as Asterisk } from './asterisk.svg';
@@ -138,6 +140,7 @@ import { ReactComponent as Gamification } from './gamification.svg';
 import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GatingRuleset } from './gated-ruleset.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Globe } from './globe.svg';
 import { ReactComponent as GoldenStar } from './golden-star.svg';
 import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDollar, ReactComponent as GrayDollor } from './gray-dollar.svg';
@@ -236,6 +239,7 @@ import { ReactComponent as ProfileSetting } from './profile-setting.svg';
 import { ReactComponent as ProfileShop } from './profile-shop.svg';
 import { ReactComponent as ProfileSupport } from './profile-support.svg';
 import { ReactComponent as ProfileSwitch } from './profile-switch.svg';
+import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 import { ReactComponent as RedAlert } from './red-alert.svg';
 import { ReactComponent as RedCircleCross } from './red-circle-cross.svg';
 import { ReactComponent as RedTrash } from './red-trash.svg';
@@ -254,6 +258,7 @@ import { ReactComponent as SearchOutlined } from './search-redesign.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Secure } from './secure.svg';
 import { ReactComponent as SelectChevronDown } from './select-chevron-down.svg';
+import { ReactComponent as SendMoney } from './send-money.svg';
 import { ReactComponent as Services } from './services.svg';
 import { ReactComponent as SettingGear } from './setting-gear.svg';
 import { ReactComponent as SettingIcon } from './setting-icon.svg';
@@ -320,6 +325,7 @@ import { ReactComponent as UserInvitation } from './user-invitation.svg';
 import { ReactComponent as User } from './user.svg';
 import { ReactComponent as VerticalMove } from './vertical-move.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
+import { ReactComponent as Wallet } from './wallet.svg';
 import { ReactComponent as Watch } from './watch.svg';
 import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
@@ -337,11 +343,6 @@ import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
-import { ReactComponent as Wallet } from './wallet.svg';
-import { ReactComponent as SendMoney } from './send-money.svg';
-import { ReactComponent as RecieveMoney } from './recieve-money.svg';
-import { ReactComponent as ArrowUp } from './arrow-up.svg';
-import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 
 const AppIcons = {
@@ -690,7 +691,8 @@ const AppIcons = {
   YouTubeOutlined,
   TikTokOutlined,
   SidebarDashboard,
-  Transfer
+  Transfer,
+  Globe
 }
 
 export default AppIcons
