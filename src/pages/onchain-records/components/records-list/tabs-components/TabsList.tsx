@@ -29,6 +29,7 @@ export default function TabsList({ tabs }: Props) {
                         fontSize={16}
                         key={index}
                         width={"100%"}
+                        pb={"14px"}
                     >
                         {tab.title}
                     </Tab>

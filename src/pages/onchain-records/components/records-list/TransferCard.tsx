@@ -1,0 +1,57 @@
+import { Flex } from '@chakra-ui/react'
+import AppImage from 'components/common/image/AppImage'
+import AppTypography from 'components/common/typography/AppTypography'
+import Button from 'components/redesign/button/Button'
+import React from 'react'
+
+export default function TransferCard() {
+    return (
+        <Flex
+            py={4}
+            pr={6}
+            pl={4}
+            bg={"#1c1c1c"}
+            border={"1px solid #292929"}
+            borderRadius={12}
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+        >
+            <Flex alignItems={"center"} gap={4}>
+                <AppImage
+                    width={"56px"}
+                    height={"56px"}
+                    borderRadius={6}
+                    src='https://upload-file-droplinked.s3.amazonaws.com/e1c6a3168548e724fa69574b83807d539b262af10f86a1de35683c2d0b56f0da.png'
+                    alt='Record Image'
+                />
+                <Flex flexDirection={"column"} gap={1}>
+                    <AppTypography
+                        color={"#fff"}
+                        fontSize={{ base: 14, lg: 16 }}
+                        fontWeight={700}
+                    >
+                        Poker Face Monkey
+                    </AppTypography>
+                    <AppTypography
+                        color={"#7b7b7b"}
+                        fontSize={{ base: 12, lg: 14 }}
+                    >
+                        Poker Face Monkey
+                    </AppTypography>
+                </Flex>
+            </Flex>
+            <Button
+                variant='secondary'
+                color={"#2BCFA1"}
+                bg={"none"}
+                border={"none"}
+                fontSize={{ base: 14, lg: 16 }}
+                fontWeight={500}
+                paddingInline={"14px"}
+            >
+                Transfer
+            </Button>
+        </Flex>
+    )
+}

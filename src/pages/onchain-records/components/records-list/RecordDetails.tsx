@@ -4,6 +4,7 @@ import React from 'react'
 import ActivityTab from './tabs-components/ActivityTab'
 import InformationTab from './tabs-components/InformationTab'
 import TabsList from './tabs-components/TabsList'
+import TransferCard from './TransferCard'
 
 interface Props {
     isOpen: boolean
@@ -31,7 +32,10 @@ export default function RecordDetails({ isOpen, onClose }: Props) {
                 title='Record Details'
                 drawerHeaderStyle={{ padding: 0, px: 9, py: 9, paddingBottom: 0 }}
                 headerContent={
-                    <TabsList tabs={tabs} />
+                    <>
+                        <TransferCard />
+                        <TabsList tabs={tabs} />
+                    </>
                 }
             >
                 <TabPanels>
