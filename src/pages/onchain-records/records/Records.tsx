@@ -2,6 +2,7 @@ import React from 'react';
 import EmptyView from '../components/EmptyView';
 import Filters from './Filters';
 import { Flex } from '@chakra-ui/react';
+import RecordsList from '../components/records-list/RecordsList';
 
 export default function Records() {
 
@@ -14,6 +15,7 @@ export default function Records() {
     return (
         <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }}>
             <Filters />
+            <RecordsList />
         </Flex>
     );
 }

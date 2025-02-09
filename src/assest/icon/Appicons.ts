@@ -344,8 +344,10 @@ import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 import { ReactComponent as NFTIcon } from './nft.svg';
+import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
 
 const AppIcons = {
+  ETHOutlined,
   NFTIcon,
   SendMoney,
   ArrowUp,
