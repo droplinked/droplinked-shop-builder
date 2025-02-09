@@ -1,54 +1,69 @@
 import React, { useState } from 'react'
+import { Box } from '@chakra-ui/react'
+import { IImproveDescription } from 'lib/apis/ai/interfaces'
 import ImproveWithAi from '../../common/ImproveWithAi'
-import { IImproveDescription } from 'lib/apis/ai/interfaces';
-import { Box } from '@chakra-ui/react';
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { useMutation } from 'react-query'
+import { improveDescription } from 'lib/apis/ai/services'
 
-interface ImproveDescriptionProps {
-    description: string;
-    title: string;
-    onDescriptionChange: (newTitle: string) => void;
-    isLoaded: boolean;
-    setIsLoaded: (isLoaded: boolean) => void;
-    isLoading: boolean;
-    mutateAsync: (params: IImproveDescription) => Promise<any>;
-}
-
-function ImproveDescription({
-    description,
-    title,
-    onDescriptionChange,
-    isLoaded,
-    setIsLoaded,
-    isLoading,
-    mutateAsync
-}: ImproveDescriptionProps) {
+function ImproveDescription() {
     const [selectedItem, setSelectedItem] = useState("")
-    const [tempTitleValue, setTempTitleValue] = useState("")
+    const [revertData, setRevertData] = useState("")
+    const { updateAiGenerationData, aiGenerationData } = useProductPageStore()
+    const { setFieldValue, values: { description, title } } = useProductForm()
+    const { showToast } = useAppToast()
+
+    const { mutateAsync } = useMutation(
+        (params: IImproveDescription) => improveDescription(params),
+        {
+            onMutate: () => {
+                setRevertData(description)
+                updateAiGenerationData({
+                    ...aiGenerationData,
+                    isDescriptionLoading: true,
+                    isDescriptionLoaded: false
+                })
+            },
+            onSuccess: (response) => {
+                setFieldValue("description", response.data)
+                updateAiGenerationData({
+                    ...aiGenerationData,
+                    description: response.data,
+                    isDescriptionLoaded: true,
+                    isDescriptionLoading: false
+                })
+            },
+            onError: () => {
+                updateAiGenerationData({ ...aiGenerationData, isDescriptionLoading: false, isDescriptionLoaded: false })
+                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
+            }
+        }
+    )
 
     const handleSelectItem = async (item: string) => {
-        setTempTitleValue(description)
         setSelectedItem(item)
-        await mutateAsync({ description, tone: item.toUpperCase(), title })
+        await mutateAsync({ description, title, tone: item.toUpperCase() })
     }
 
     const handleTryAgain = async () => {
-        setIsLoaded(false)
         setSelectedItem(selectedItem)
-        await mutateAsync({ description, tone: selectedItem.toUpperCase() })
+        await mutateAsync({ description, title, tone: selectedItem.toUpperCase() })
     }
 
     const handleRevert = () => {
-        onDescriptionChange(tempTitleValue)
+        setFieldValue("description", revertData)
         setSelectedItem("")
-        setIsLoaded(false)
+        updateAiGenerationData({ ...aiGenerationData, isDescriptionLoaded: false })
     }
 
     return (
         <Box position="absolute" bottom={2} right={2}>
             <ImproveWithAi
-                isLoaded={isLoaded}
-                isDisabled={description.length === 0 && title.length === 0}
-                isLoading={isLoading}
+                isLoaded={aiGenerationData.isDescriptionLoaded}
+                isDisabled={description?.length === 0}
+                isLoading={aiGenerationData.isDescriptionLoading}
                 handleSelectItem={handleSelectItem}
                 handleTryAgain={handleTryAgain}
                 handleRevert={handleRevert}

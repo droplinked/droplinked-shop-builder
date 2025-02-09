@@ -25,11 +25,12 @@ function GeneralInformationAccordion() {
                 />
             )}
 
+            <ProductImages />
+
             <GenerateWithAI />
 
             <ProductTitle />
             <ProductDescription />
-            <ProductImages />
             <ProductCollection />
             <ProductAffiliate />
         </ProductFormAccordion>

@@ -7,3 +7,7 @@ export interface IImproveDescription {
     title?: string;
     tone: string;
 }
+
+export interface IGenerateTitleDescription {
+    imageUrl: string;
+}
