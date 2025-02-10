@@ -40,10 +40,7 @@ function Earnings() {
     ]
 
     return (
-        <RuledGrid
-            columns={1}
-            borderRadius={16}
-        >
+        <RuledGrid columns={1} borderRadius={16}>
             {/* Row 1 */}
             <GridItem>
                 <EarningsSummary />

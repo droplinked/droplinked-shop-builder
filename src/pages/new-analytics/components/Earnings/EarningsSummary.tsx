@@ -16,7 +16,7 @@ function EarningsSummary() {
             flexDirection={{ base: "column", md: "row" }}
             justifyContent="space-between"
             alignItems="start"
-            gap={4}
+            gap={3}
             padding={{ base: 4, lg: 6 }}
         >
             {/* Left section: Earnings and Income period */}

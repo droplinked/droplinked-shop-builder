@@ -8,9 +8,16 @@ import Visitors from './components/Visitors'
 
 function Analytics() {
     return (
-        <Flex direction="column" gap={4}>
+        <Flex
+            direction="column"
+            gap={{ base: 6, md: 9, lg: 12 }}
+        >
             <Earnings />
-            <Flex gap={6}>
+            <Flex
+                direction={{ base: "column", lg: "row" }}
+                alignItems="start"
+                gap={{ base: 4, xl: 6 }}
+            >
                 <Visitors />
                 <InventoryOverview />
             </Flex>

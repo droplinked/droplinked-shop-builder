@@ -9,13 +9,13 @@ interface Props extends PropsWithChildren {
 
 function DataPointCard({ icon, title, children }: Props) {
     return (
-        <Box padding={6}>
+        <Box padding={{ base: 4, lg: 6 }}>
             <IconWrapper icon={icon} />
 
-            <Text marginTop={6} fontSize={14} color="#FFF">{title}</Text>
+            <Text marginTop={{ base: 4, md: 6 }} fontSize={14} color="#FFF">{title}</Text>
 
             {/* Content */}
-            <Box marginTop={2}>{children}</Box>
+            <Box marginTop={{ base: 1, md: 2 }}>{children}</Box>
         </Box>
     )
 }

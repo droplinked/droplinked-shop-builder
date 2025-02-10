@@ -15,15 +15,15 @@ function Visitors() {
 
     return (
         <RuledGrid
-            width="444px"
+            width={{ base: "100%", lg: "444px" }}
             columns={1}
             borderRadius={16}
         >
             <DataPointCard icon={<AppIcons.Globe />} title='Visitors'>
-                <Text fontSize={20} fontWeight={500} color="#FFF">1234</Text>
+                <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="#FFF">1111</Text>
             </DataPointCard>
 
-            <Flex direction="column" gap={6} padding={6}>
+            <Flex direction="column" gap={{ base: 4, xl: 6 }} padding={{ base: 4, lg: 6 }}>
                 {countryMetrics.map((metric, index) => (
                     <Flex key={index} justifyContent="space-between" alignItems="center">
                         <Flex alignItems="center" gap={2}>
