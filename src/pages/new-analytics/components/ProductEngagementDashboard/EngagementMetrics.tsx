@@ -2,7 +2,7 @@ import { GridItem, Text, useMediaQuery } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import React from "react"
 
-function AnalyticsSummary() {
+function EngagementMetrics() {
     const [isMobile] = useMediaQuery("(max-width: 767px)")
 
     const gridData = [
@@ -46,4 +46,4 @@ function AnalyticsSummary() {
     )
 }
 
-export default AnalyticsSummary
+export default EngagementMetrics

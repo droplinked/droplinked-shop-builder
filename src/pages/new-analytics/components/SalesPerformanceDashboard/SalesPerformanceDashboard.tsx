@@ -3,9 +3,9 @@ import AppIcons from "assest/icon/Appicons"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import React from "react"
 import EarningsSummary from "./EarningsSummary"
-import MetricCard from "./MetricCard"
+import MetricCard from "../MetricCard"
 
-function Earnings() {
+function SalesPerformanceDashboard() {
     const metricsData = [
         {
             icon: <AppIcons.HeaderCoins />,
@@ -75,4 +75,4 @@ function Earnings() {
     )
 }
 
-export default Earnings
+export default SalesPerformanceDashboard

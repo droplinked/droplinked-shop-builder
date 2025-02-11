@@ -3,10 +3,10 @@ import AppIcons from 'assest/icon/Appicons'
 import CountryFlag from 'assest/icon/flags/icons'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import React from 'react'
-import DataPointCard from './DataPointCard'
-import StatIndicator from './StatIndicator'
+import DataPointCard from '../DataPointCard'
+import StatIndicator from '../StatIndicator'
 
-function Visitors() {
+function VisitorStats() {
     const countryMetrics = [
         { country: "Germany", percentage: 65, value: 1345 },
         { country: "The United States", percentage: 65, value: 209 },
@@ -41,4 +41,4 @@ function Visitors() {
     )
 }
 
-export default Visitors
+export default VisitorStats

@@ -7,7 +7,7 @@ import React from 'react'
 import DataPointCard from '../DataPointCard'
 import StylizedTitle from '../StylizedTitle'
 
-function InventoryOverview() {
+function InventorySummary() {
     const productMetrics = [
         { name: "Physical Products", percentage: 50, count: 25, revenue: 1245, color: "#6FCF97" },
         { name: "Digital Goods", percentage: 20, count: 15, revenue: 1245, color: "#B88547" },
@@ -82,4 +82,4 @@ function InventoryOverview() {
     )
 }
 
-export default InventoryOverview
+export default InventorySummary

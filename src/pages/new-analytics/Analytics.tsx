@@ -1,10 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import AnalyticsSummary from './components/AnalyticsSummary'
-import Earnings from './components/Earnings/Earnings'
-import InventoryOverview from './components/Earnings/InventoryOverview'
-import ProductsOverview from './components/ProductsOverview'
-import Visitors from './components/Visitors'
+import OperationalMetricsDashboard from './components/OperationalMetricsDashboard/OperationalMetricsDashboard'
+import ProductEngagementDashboard from './components/ProductEngagementDashboard/ProductEngagementDashboard'
+import SalesPerformanceDashboard from './components/SalesPerformanceDashboard/SalesPerformanceDashboard'
 
 function Analytics() {
     return (
@@ -12,17 +10,9 @@ function Analytics() {
             direction="column"
             gap={{ base: 6, md: 9, lg: 12 }}
         >
-            <Earnings />
-            <Flex
-                direction={{ base: "column", lg: "row" }}
-                alignItems="start"
-                gap={{ base: 4, xl: 6 }}
-            >
-                <Visitors />
-                <InventoryOverview />
-            </Flex>
-            <ProductsOverview />
-            <AnalyticsSummary />
+            <SalesPerformanceDashboard />
+            <OperationalMetricsDashboard />
+            <ProductEngagementDashboard />
         </Flex>
     )
 }

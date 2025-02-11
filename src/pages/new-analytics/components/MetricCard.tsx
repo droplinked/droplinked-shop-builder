@@ -2,9 +2,9 @@ import { Box, Flex, Text } from "@chakra-ui/react"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import React, { ReactNode } from "react"
-import DataPointCard from "../DataPointCard"
-import StatIndicator from "../StatIndicator"
-import StylizedTitle from "../StylizedTitle"
+import DataPointCard from "./DataPointCard"
+import StatIndicator from "./StatIndicator"
+import StylizedTitle from "./StylizedTitle"
 
 interface Props {
     icon: ReactNode
@@ -53,8 +53,10 @@ function MetricCard(props: Props) {
                         (progress || value) && (
                             <Flex
                                 key={label}
+                                flexWrap="wrap"
                                 justifyContent="space-between"
-                                align="center"
+                                alignItems="center"
+                                gap={2}
                             >
                                 <StylizedTitle bgColor={color} title={label} />
                                 <StatIndicator percentage={progress}>{x2}</StatIndicator>
