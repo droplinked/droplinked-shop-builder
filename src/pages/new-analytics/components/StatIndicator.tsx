@@ -8,7 +8,7 @@ interface StatIndicatorProps extends FlexProps, PropsWithChildren {
 function StatIndicator({ percentage, children, ...rest }: StatIndicatorProps) {
     return (
         <Flex alignItems="center" gap={2} {...rest}>
-            <Text fontSize={14} color="#FFF">{percentage}%</Text>
+            <Text fontSize={14} color="#FFF">{percentage.toFixed(2)}%</Text>
             <Circle size={1} bgColor="#292929" />
             {children}
         </Flex>

@@ -9,9 +9,11 @@ import DataPointCard from "../DataPointCard"
 import ProductTypeBarChart from "./ProductTypeBarChart"
 
 export default function InventorySummary() {
-    const { totalInventoryValue, numberOfProducts } = useAnalyticsStore(
-        state => state.performanceReportResponse.data
-    )
+    const data = useAnalyticsStore(state => state.performanceReportResponse.data)
+    const { totalInventoryValue, numberOfProducts, productBreakdown } = data
+
+    // Determine if there are any product types with a percentage greater than 0
+    const hasActiveProductTypes = productBreakdown.some(item => item.percentageOfTotal > 0)
 
     return (
         <RuledGrid width="100%" columns={1} borderRadius={16}>
@@ -20,7 +22,7 @@ export default function InventorySummary() {
                 <ProductCountCard numberOfProducts={numberOfProducts} />
             </RuledGrid>
 
-            <ProductTypeBarChart />
+            {hasActiveProductTypes && <ProductTypeBarChart productTypes={productBreakdown} />}
         </RuledGrid>
     )
 }

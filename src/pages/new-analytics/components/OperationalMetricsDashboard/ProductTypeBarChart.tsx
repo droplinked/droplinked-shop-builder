@@ -1,7 +1,6 @@
 import { Box, Circle, Flex, SimpleGrid, Text } from "@chakra-ui/react"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
-import useAnalyticsStore from "pages/new-analytics/stores/useAnalyticsStore"
 import React from "react"
 import StylizedTitle from "../StylizedTitle"
 
@@ -12,14 +11,12 @@ const BADGE_COLORS: Record<string, string> = {
     "Event Products": "#CB94FF"
 }
 
-export default function ProductTypeBarChart() {
-    const { productBreakdown } = useAnalyticsStore(state => state.performanceReportResponse.data)
-
+export default function ProductTypeBarChart({ productTypes }: { productTypes: ProductBreakdown[] }) {
     return (
         <Flex direction="column" gap={6} padding={{ base: 4, lg: 6 }}>
             <Flex gap="6px">
                 {
-                    productBreakdown
+                    productTypes
                         .filter(item => item.percentageOfTotal > 0)
                         .map((item, index) => (
                             <Box
@@ -39,7 +36,7 @@ export default function ProductTypeBarChart() {
                 columnGap={14}
                 rowGap={4}
             >
-                {productBreakdown.map((item, index) => <BreakdownDetailsRow key={index} item={item} />)}
+                {productTypes.map((item, index) => <BreakdownDetailsRow key={index} item={item} />)}
             </SimpleGrid>
         </Flex>
     )
@@ -57,7 +54,7 @@ function BreakdownDetailsRow({ item }: { item: ProductBreakdown }) {
         >
             <StylizedTitle bgColor={badgeColor} title={item.productType} />
             <Flex alignItems="center" gap={2} fontSize={14} color="#FFF">
-                <Text>{item.percentageOfTotal.toFixed(2)}%</Text>
+                <Text>{item.percentageOfTotal?.toFixed(2)}%</Text>
                 <Circle size={1} bg="#292929" />
                 <Text>{item.quantity}</Text>
                 <Circle size={1} bg="#292929" />

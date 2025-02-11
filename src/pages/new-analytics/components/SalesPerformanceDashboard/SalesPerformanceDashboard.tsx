@@ -1,75 +1,37 @@
-import { GridItem, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import { GridItem } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
+import { getAnalyticsSalesReport } from "lib/apis/dashboard/dashboardServices"
+import useFormattedDateRange from "pages/new-analytics/hooks/useFormattedDateRange"
 import React from "react"
+import { useQuery } from "react-query"
 import EarningsSummary from "./EarningsSummary"
-import MetricCard from "../MetricCard"
+import KeySalesMetricsDesktop from "./KeySalesMetrics/KeySalesMetricsDesktop"
+import SalesChart from "./SalesChart"
 
 function SalesPerformanceDashboard() {
-    const metricsData = [
-        {
-            icon: <AppIcons.HeaderCoins />,
-            title: "Net Profit",
-            value: 425868.99,
-            changePercentage: 23.5,
-            progressDirect: 65,
-            progressAffiliate: 35,
-            directValue: 1245,
-            affiliateValue: 1245
-        },
-        {
-            icon: <AppIcons.HeaderCoins />,
-            title: "Customers",
-            value: 1234,
-            changePercentage: 23.5,
-            progressDirect: 65,
-            progressAffiliate: 35,
-            directValue: 34,
-            affiliateValue: 1200
-        },
-        {
-            icon: <AppIcons.HeaderCoins />,
-            title: "Orders",
-            value: 124,
-            changePercentage: 23.5,
-            progressDirect: 65,
-            progressAffiliate: 35,
-            directValue: 24,
-            affiliateValue: 100
-        }
-    ]
+    const { startDate, endDate } = useFormattedDateRange()
+    const { isFetching, isError, data } = useQuery({
+        queryKey: ["salesReport", startDate, endDate],
+        queryFn: () => getAnalyticsSalesReport({ startDate, endDate })
+    })
+
+    const earnings = data?.totalSalesInPeriod
 
     return (
         <RuledGrid columns={1} borderRadius={16}>
             {/* Row 1 */}
             <GridItem>
-                <EarningsSummary />
+                <EarningsSummary earnings={earnings} />
             </GridItem>
 
             {/* Row 2 */}
             <GridItem>
-                {/* Your content for Row 2 */}
-                <Text>Content for Row 2</Text>
+                <SalesChart />
             </GridItem>
 
             {/* Row 3 */}
             <GridItem>
-                <RuledGrid columns={3} nested>
-                    {metricsData.map((data, idx) => (
-                        <GridItem key={idx}>
-                            <MetricCard
-                                icon={data.icon}
-                                title={data.title}
-                                value={data.value}
-                                changePercentage={data.changePercentage}
-                                progressDirect={data.progressDirect}
-                                progressAffiliate={data.progressAffiliate}
-                                directValue={data.directValue}
-                                affiliateValue={data.affiliateValue}
-                            />
-                        </GridItem>
-                    ))}
-                </RuledGrid>
+                <KeySalesMetricsDesktop />
             </GridItem>
         </RuledGrid>
     )

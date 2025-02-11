@@ -1,18 +1,17 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import AppDateRangePicker from 'components/redesign/date-range-picker/AppDateRangePicker'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { formatDateLongStyle } from 'lib/utils/helpers/helpers'
+import useFormattedDateRange from 'pages/new-analytics/hooks/useFormattedDateRange'
 import useAnalyticsStore from 'pages/new-analytics/stores/useAnalyticsStore'
 import React from 'react'
 
-function EarningsSummary() {
-    const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore((state) => ({
-        selectedDateRange: state.selectedDateRange,
-        updateAnalyticsPageState: state.updateAnalyticsPageState
-    }))
+interface Props {
+    earnings?: number
+}
 
-    const startDate = selectedDateRange[0]
-    const endDate = selectedDateRange[1]
+function EarningsSummary({ earnings }: Props) {
+    const { selectedDateRange, startDate, endDate } = useFormattedDateRange()
+    const updateAnalyticsPageState = useAnalyticsStore(state => state.updateAnalyticsPageState)
 
     return (
         <Flex
@@ -27,7 +26,7 @@ function EarningsSummary() {
                 <Text fontSize={{ base: 14, lg: 16 }} color="#FFF">Earnings</Text>
 
                 <FormattedPrice
-                    price={425868.99}
+                    price={earnings ?? 0}
                     marginTop={{ base: -1, md: 'unset' }}
                     fontSize={{ base: 20, lg: 24 }}
                     fontWeight={500}
@@ -35,7 +34,7 @@ function EarningsSummary() {
                 />
 
                 <Text fontSize={14} color="#7B7B7B" sx={{ span: { fontWeight: 500, color: '#B1B1B1' } }}>
-                    Income from <Box as="span">{formatDateLongStyle(startDate)}</Box> to <Box as="span">{formatDateLongStyle(endDate)}</Box>.
+                    Income from <Box as="span">{startDate}</Box> to <Box as="span">{endDate}</Box>.
                 </Text>
             </Flex>
 

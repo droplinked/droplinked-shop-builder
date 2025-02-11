@@ -18,7 +18,7 @@ function useFormattedDateRange() {
         startDate = selectedDateRange ? formatDateLongStyle(selectedDateRange) : ''
     }
 
-    return { startDate, endDate }
+    return { selectedDateRange, startDate, endDate }
 }
 
 export default useFormattedDateRange
