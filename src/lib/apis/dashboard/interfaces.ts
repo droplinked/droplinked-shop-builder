@@ -39,7 +39,7 @@ export interface DashboardPageData {
 
 export interface AnalyticsQueryParams {
     startDate: string
-    endData: string
+    endDate: string
 }
 
 export interface SalesReportResponse {
@@ -92,12 +92,7 @@ interface ProductBreakdown {
     percentageOfTotal: number
 }
 
-
-export interface TopSellersResponse {
-    topSellers: TopSeller[]
-}
-
-interface TopSeller {
+export interface TopSeller {
     totalCount: number
     totalAmountCombined: number
     totalAmountDirect: number

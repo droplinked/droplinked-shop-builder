@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { AnalyticsQueryParams, DashboardPageData, IbestProducts, IClarityData, IgetRevenueServices, PerformanceReportResponse, SalesReportResponse, TopSellersResponse } from "./interfaces"
+import { AnalyticsQueryParams, DashboardPageData, IbestProducts, IClarityData, IgetRevenueServices, PerformanceReportResponse, SalesReportResponse, TopSeller } from "./interfaces"
 
 export const getRevenueServices = ({ dateRange, from, to }: IgetRevenueServices) => {
     return axiosInstance.get(`shop/dashboard/revenue?from=${from.toISOString()}&to=${to.toISOString()}&dateRange=${dateRange}`)
@@ -16,17 +16,17 @@ export const getClarityDataService = () => {
 export const getDashboardPageData = () =>
     axiosInstance.get<DashboardPageData>("analytics/dashboard").then(res => res.data)
 
-export const getAnalyticsSalesReport = ({ startDate, endData }: AnalyticsQueryParams) =>
+export const getAnalyticsSalesReport = ({ startDate, endDate }: AnalyticsQueryParams) =>
     axiosInstance
-        .get<SalesReportResponse>(`analytics/sales-report?startDate=${startDate}&endDate=${endData}`)
+        .get<SalesReportResponse>(`analytics/sales-report?startDate=${startDate}&endDate=${endDate}`)
         .then(res => res.data)
 
-export const getAnalyticsPerformanceReport = ({ startDate, endData }: AnalyticsQueryParams) =>
+export const getAnalyticsPerformanceReport = ({ startDate, endDate }: AnalyticsQueryParams) =>
     axiosInstance
-        .get<PerformanceReportResponse>(`analytics/performance-report?startDate=${startDate}&endDate=${endData}`)
+        .get<PerformanceReportResponse>(`analytics/performance-report?startDate=${startDate}&endDate=${endDate}`)
         .then(res => res.data)
 
-export const getAnalyticsTopSellers = ({ startDate, endData }: AnalyticsQueryParams) =>
+export const getAnalyticsTopSellers = ({ startDate, endDate }: AnalyticsQueryParams) =>
     axiosInstance
-        .get<TopSellersResponse>(`analytics/top-sellers?startDate=${startDate}&endDate=${endData}`)
+        .get<TopSeller[]>(`analytics/top-sellers?startDate=${startDate}&endDate=${endDate}`)
         .then(res => res.data)
