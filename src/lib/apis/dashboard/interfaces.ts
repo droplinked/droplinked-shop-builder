@@ -85,7 +85,7 @@ interface OrderStats {
     affiliateOrders: number
 }
 
-interface ProductBreakdown {
+export interface ProductBreakdown {
     productType: string
     totalValue: number
     quantity: number

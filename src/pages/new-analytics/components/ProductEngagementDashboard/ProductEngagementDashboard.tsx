@@ -12,6 +12,7 @@ function ProductEngagementDashboard() {
     const navigate = useNavigate()
     const { startDate, endDate } = useFormattedDateRange()
     const { isFetching, isError, data } = useQuery({
+        queryKey: ["analyticsTopSellers", startDate, endDate],
         queryFn: () => getAnalyticsTopSellers({ startDate, endDate })
     })
 
