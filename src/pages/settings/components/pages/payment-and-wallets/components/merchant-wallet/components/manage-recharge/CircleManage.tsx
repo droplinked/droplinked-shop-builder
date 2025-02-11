@@ -152,7 +152,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                                         WebkitLineClamp: 1,
                                                     }}
                                                 >
-                                                    {chain?.amount}
+                                                    {chain?.amount && Number(chain?.amount).toFixed(2)}
                                                 </AppTypography>
                                                 <AppTypography
                                                     className="hover-symbol"
