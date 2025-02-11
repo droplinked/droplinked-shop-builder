@@ -48,7 +48,11 @@ interface Props {
 
 export default function AnimatedBox({ children, flexProps, isDisabled, onClick }: Props) {
     return (
-        <AnimatedContainer isDisabled={isDisabled} {...flexProps} onClick={onClick}>
+        <AnimatedContainer
+            isDisabled={isDisabled}
+            {...flexProps}
+            {...(!isDisabled && { onClick: onClick })}
+        >
             {children}
         </AnimatedContainer>
     )
