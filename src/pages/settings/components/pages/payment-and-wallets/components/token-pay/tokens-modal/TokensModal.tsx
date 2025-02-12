@@ -48,15 +48,13 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
             modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
         >
             <ModalHeaderData
-                {
-                ...!isSmallerThan768 && {
+                {...!isSmallerThan768 && {
                     icon: (
                         <ModalHeaderIconWrapper>
                             <AppIcons.DollarSign />
                         </ModalHeaderIconWrapper>
                     )
-                }
-                }
+                }}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
