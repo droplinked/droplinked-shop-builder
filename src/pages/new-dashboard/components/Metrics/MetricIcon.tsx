@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React, { ReactNode } from 'react'
-import IconWrapper from '../IconWrapper'
 
 interface MetricIconProps {
     icon: ReactNode

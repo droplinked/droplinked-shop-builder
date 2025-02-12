@@ -1,5 +1,4 @@
-import { SimpleGrid, VStack } from '@chakra-ui/layout';
-import { Image } from '@chakra-ui/react';
+import { Image, SimpleGrid, VStack } from '@chakra-ui/react';
 import useAppStore from 'lib/stores/app/appStore';
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
@@ -7,10 +6,10 @@ import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';
 
 function PreviewProducts() {
-  const { state: { shop: {shopDesign: { textColorParagraphs } }, device}} = useContext(designContext);
+  const { state: { shop: { shopDesign: { textColorParagraphs } }, device } } = useContext(designContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
-  const {shop: { currency } } = useAppStore();
-  
+  const { shop: { currency } } = useAppStore();
+
   return (
     <VStack align="stretch">
       <SimpleGrid columns={isDesktop ? 4 : 2} rowGap="20px" spacing={isDesktop ? '15px' : '10px'}>

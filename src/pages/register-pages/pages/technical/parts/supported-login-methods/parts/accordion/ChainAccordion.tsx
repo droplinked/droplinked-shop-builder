@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppSwitch from 'components/common/swich';

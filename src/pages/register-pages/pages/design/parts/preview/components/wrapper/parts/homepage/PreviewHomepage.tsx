@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/layout';
+import { Box, Flex } from '@chakra-ui/react';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import PreviewActionBar from './components/PreviewActionBar';
@@ -6,7 +6,7 @@ import PreviewFilterPanel from './components/PreviewFillterPanel';
 import PreviewProducts from './components/PreviewProducts';
 
 function PreviewHomepage() {
-  const { state: { shop: { template_options,shopDesign: { foreground }}, device}} = useContext(designContext);
+  const { state: { shop: { template_options, shopDesign: { foreground } }, device } } = useContext(designContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
 
   return (
