@@ -1,0 +1,52 @@
+import { Box, Divider, Menu, MenuList, useDisclosure } from '@chakra-ui/react';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { getShopCredit } from 'lib/apis/shop/shopServices';
+import useAppStore from 'lib/stores/app/appStore';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import { PROFILE_CONSTANTS, SUBSCRIPTION_STATUS_CONSTANTS } from 'components/layouts/dashboard/constants';
+import UserMenuButton from './components/UserMenuButton';
+import UserInfo from './components/UserInfo';
+import SubscriptionInfo from './components/SubscriptionInfo';
+import ProfileMenuItems from './components/ProfileMenuItems';
+import AppVersion from './components/AppVersion';
+
+const UserMenu = () => {
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { isFetching, data } = useQuery({
+    queryKey: ['shop-credit'],
+    queryFn: () => getShopCredit(),
+    enabled: isOpen
+  });
+
+  const credit = data?.data?.data?.credit ?? 0;
+  const { getFormattedPrice } = useCurrencyConverter();
+  const { shopNavigate } = useCustomNavigate();
+  const { shop, user } = useAppStore();
+  const { logoutUser } = useProfile();
+
+  const subscription = SUBSCRIPTION_STATUS_CONSTANTS({ STARTER: () => shopNavigate('/dashboard/plans') }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
+
+  const profileConstants = PROFILE_CONSTANTS(shop, logoutUser);
+
+  return (
+    <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose} variant="unstyled">
+      <UserMenuButton />
+      <MenuList right="32px" borderRadius="8px" background="#222" border="none" width="352px">
+        <Box gap="16px" width="full" display="flex" padding="24px" flexDirection="column">
+          <UserInfo shop={shop} user={user} />
+          <Divider borderColor="#292929" />
+          <SubscriptionInfo subscription={subscription} />
+          <Divider borderColor="#292929" />
+          <ProfileMenuItems profileConstants={profileConstants} isFetching={isFetching} credit={credit} getFormattedPrice={getFormattedPrice} />
+          <Divider borderColor="#292929" />
+          <AppVersion />
+        </Box>
+      </MenuList>
+    </Menu>
+  );
+};
+
+export default UserMenu;
