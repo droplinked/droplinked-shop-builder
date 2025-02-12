@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import { TopSeller } from 'lib/apis/dashboard/interfaces'
 import React from 'react'
-import ProductItem from './ProductItem'
 import EmptyState from './EmptyState'
+import ProductItem from './ProductItem'
 
 interface Props {
     topSellers?: TopSeller[]
@@ -19,7 +19,7 @@ function BestSellingProductsList({ topSellers }: Props) {
 
     return (
         <Flex direction="column">
-            {topSellers?.map((product, index) => (
+            {topSellers.map((product, index) => (
                 <ProductItem
                     key={product.productID}
                     product={product}
