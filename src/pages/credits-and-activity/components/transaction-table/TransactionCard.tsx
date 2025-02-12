@@ -6,11 +6,11 @@ import React from 'react'
 import TypeColumn from './TypeColumn'
 
 interface TransactionCardProps {
-    transaction: IDetailedTransaction;
+    transaction?: IDetailedTransaction;
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
-    const { amount, createdAt, id, type, amountType } = transaction;
+    const { amount, createdAt, id, type, amountType } = transaction ?? {};
 
     const formattedDate = (date: Date) => {
         return new Date(date).toLocaleDateString("en-US", {
