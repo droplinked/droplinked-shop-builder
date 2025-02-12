@@ -1,4 +1,5 @@
 import { BarElement, CategoryScale, Chart as ChartJS, ChartOptions, Legend, LinearScale, Tooltip } from "chart.js"
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
 import { SalesData } from "lib/apis/dashboard/interfaces"
 import React from "react"
 import { Bar } from "react-chartjs-2"
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export default function StackedBarChart({ salesData }: Props) {
+    const { symbol, convertPrice, abbreviation } = useCurrencyConverter()
+
     // Prepare chart data from backend response
     const chartData = {
         labels: salesData?.map(item => item.date),
@@ -76,7 +79,7 @@ export default function StackedBarChart({ salesData }: Props) {
                         <div style="display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid #292929; padding: 12px">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
                                 <p>Total earning</p>
-                                <p style="font-weight: 500">${salesInfo.totalSales.toFixed(2)}</p>
+                                <p style="font-weight: 500">${symbol}${convertPrice({ amount: salesInfo.totalSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                             </div>
                         </div>
 
@@ -89,7 +92,7 @@ export default function StackedBarChart({ salesData }: Props) {
                                 <div style="display: flex; align-items: center; gap: 8px">
                                     <span>${directPercentage}%</span>
                                     <div style="width: 4px; height: 4px; border-radius: 50%; background-color: #292929"></div>
-                                    <span>${salesInfo.directSales.toFixed(2)}</span>
+                                    <p>${symbol}${convertPrice({ amount: salesInfo.directSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                                 </div>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center">
@@ -100,7 +103,7 @@ export default function StackedBarChart({ salesData }: Props) {
                                 <div style="display: flex; align-items: center; gap: 8px">
                                     <span>${affiliatePercentage}%</span>
                                     <div style="width: 4px; height: 4px; border-radius: 50%; background-color: #292929"></div>
-                                    <span>${salesInfo.affiliateSales.toFixed(2)}</span>
+                                    <p>${symbol}${convertPrice({ amount: salesInfo.affiliateSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -108,10 +111,10 @@ export default function StackedBarChart({ salesData }: Props) {
 
                     // Position the tooltip
                     tooltipEl.style.opacity = "1"
-                    tooltipEl.style.minWidth = '170px';
+                    tooltipEl.style.minWidth = '250px';
                     tooltipEl.style.position = 'absolute';
                     tooltipEl.style.top = tooltipModel.caretY + 150 + 'px';
-                    tooltipEl.style.left = tooltipModel.caretX + 250 + 'px';
+                    tooltipEl.style.left = tooltipModel.caretX + 220 + 'px';
                     tooltipEl.style.border = "1px solid #292929";
                     tooltipEl.style.borderRadius = "8px";
                     tooltipEl.style.padding = "0";
