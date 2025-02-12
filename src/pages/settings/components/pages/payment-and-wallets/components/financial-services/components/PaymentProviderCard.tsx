@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
-const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon }) => {
+const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon, isExternal }) => {
   const { values } = useFormikContext<ISettings>();
 
   // Determine if the switch is checked based on whether the token is active in paymentMethods
@@ -27,9 +27,11 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
           <Text color="white" fontSize="base" fontWeight="medium">
             {title}
           </Text>
-          <AppTooltip flexShrink={0} placement="bottom-start" label={tooltip}>
-            <AppIcons.TooltipIcon fill={'#292929'} />
-          </AppTooltip>
+          {tooltip &&
+            <AppTooltip flexShrink={0} placement="bottom-start" label={tooltip}>
+              <AppIcons.TooltipIcon fill={'#292929'} />
+            </AppTooltip>
+          }
         </Flex>
         <SwitchBox isChecked={isChecked} onToggle={handleToggle} />
       </HStack>
@@ -44,9 +46,10 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
           fontWeight={500}
           gap={"6px"}
           target='_blank'
+          color={isExternal ? "#179EF8" : "#2BCFA1"}
+          hasArrow={isExternal ? true : false}
         >
           {buttonText}
-          <AppIcons.ExternalLink style={{ display: "inline-block" }} />
         </ExternalLink>
       </Flex>
     </Box>

@@ -345,9 +345,11 @@ import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+import { ReactComponent as Paymob } from './paymob.svg';
 
 
 const AppIcons = {
+  Paymob,
   SendMoney,
   ArrowUp,
   ArrowDownOutlined,

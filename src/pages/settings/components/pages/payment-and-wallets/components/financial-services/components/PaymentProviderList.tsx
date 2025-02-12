@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assest/icon/Appicons";
@@ -9,9 +9,10 @@ interface Provider {
   title: string;
   buttonText: string;
   link: string;
-  tooltip: string;
+  tooltip?: string;
   icon: ReactElement;
   type: "stripe" | "coinbase";
+  isExternal: boolean;
 }
 
 const PaymentProviderList: React.FC = () => {
@@ -24,6 +25,7 @@ const PaymentProviderList: React.FC = () => {
       type: "stripe",
       buttonText: "View Account",
       link: "https://dashboard.stripe.com/login",
+      isExternal: true,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
     },
@@ -32,8 +34,17 @@ const PaymentProviderList: React.FC = () => {
       type: "coinbase",
       buttonText: "Learn More",
       link: "#",
+      isExternal: true,
       tooltip: "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
       icon: <AppIcons.Coinbase />,
+    },
+    {
+      title: "Paymob",
+      type: "coinbase",
+      buttonText: "Connect",
+      link: "#",
+      isExternal: false,
+      icon: <AppIcons.Paymob color="#004eff" />,
     },
   ];
 
@@ -56,8 +67,12 @@ const PaymentProviderList: React.FC = () => {
   };
 
   return (
-    <Flex flexDir={{ base: "column", xl: "row" }} gap={4} overflow="hidden">
-      {providers.map(({ title, buttonText, link, type, tooltip, icon }) => (
+    <Grid
+      templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+      gap={4}
+      overflow="hidden"
+    >
+      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal }) => (
         <PaymentProviderCard
           key={type}
           type={type}
@@ -67,9 +82,10 @@ const PaymentProviderList: React.FC = () => {
           link={link}
           tooltip={tooltip}
           icon={icon}
+          isExternal={isExternal}
         />
       ))}
-    </Flex>
+    </Grid>
   );
 };
 
