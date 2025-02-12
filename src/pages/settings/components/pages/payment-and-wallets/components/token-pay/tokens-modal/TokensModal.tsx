@@ -1,4 +1,4 @@
-import { Flex, ModalBody } from "@chakra-ui/react";
+import { Flex, ModalBody, useMediaQuery } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import Input from "components/redesign/input/Input";
 import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
@@ -19,6 +19,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
     const allNetworksItem = { type: "All Networks" };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
 
     useEffect(() => {
         const filteredData = paymentMethodsData.filter((item) =>
@@ -47,10 +48,14 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
             modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
         >
             <ModalHeaderData
-                icon={
-                    <ModalHeaderIconWrapper>
-                        <AppIcons.DollarSign />
-                    </ModalHeaderIconWrapper>
+                {
+                ...!isSmallerThan768 && {
+                    icon: (
+                        <ModalHeaderIconWrapper>
+                            <AppIcons.DollarSign />
+                        </ModalHeaderIconWrapper>
+                    )
+                }
                 }
                 modalHeaderProps={{
                     bgColor: "#141414",
