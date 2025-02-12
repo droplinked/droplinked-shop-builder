@@ -33,7 +33,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
 
   // Close sidebar when clicking outside (only in mobile view)
   useEffect(() => {
-    if (!isMobile || !isSidebarOpen) return;
+    if (!isSidebarOpen || !isMobile) return;
 
     const handleClickOutside = (event: MouseEvent) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
@@ -43,7 +43,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobile, isSidebarOpen]);
+  }, [isSidebarOpen]);
 
   return (
     <VStack width="full" height="full" {...(location.endsWith('/plans') && { overflow: 'auto' })}>
@@ -51,9 +51,12 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
         {/* Sidebar: Absolute in mobile, static in desktop */}
         {isMobile ? (
           isSidebarOpen && (
-            <Box ref={sidebarRef} position="absolute" top="76px" left="0" width="250px" height="100vh" bg="white" zIndex="modal">
-              <DashboardLayoutSidebar isSidebarOpen={isSidebarOpen} />
-            </Box>
+            <>
+              <Box position="fixed" top="0" left="0" width="100vw" height="100vh" bg="blackAlpha.600" zIndex="overlay" onClick={() => setIsSidebarOpen(false)} />
+              <Box ref={sidebarRef} position="fixed" top="74px" left="0" width="288" minHeight="calc(80vh - 76px)" maxHeight="calc(100vh - 76px)" bg="white" overflowY="auto" zIndex="modal">
+                <DashboardLayoutSidebar isSidebarOpen={isSidebarOpen} />
+              </Box>
+            </>
           )
         ) : (
           <DashboardLayoutSidebar isSidebarOpen={isSidebarOpen} />
