@@ -2,6 +2,7 @@ import React from 'react'
 import RecordItem from './RecordItem'
 import { Grid } from '@chakra-ui/react'
 import { IDroplinkedNFTs, IWalletNFTs } from 'lib/apis/onchain-inventory/interface'
+import { ICombinedNft } from 'pages/onchain-records/utils/interface';
 
 interface Props {
     droplinkedNFTs: IDroplinkedNFTs[];
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export default function RecordsList({ droplinkedNFTs, walletNFTs }: Props) {
+    const combinedNFTs: ICombinedNft[] = [...droplinkedNFTs, ...walletNFTs];
+
     return (
         <Grid
             templateColumns={{
@@ -18,13 +21,13 @@ export default function RecordsList({ droplinkedNFTs, walletNFTs }: Props) {
             }}
             gap={6}
         >
-            <RecordItem key={"fdsfsdffdsfsdf"} />
-            <RecordItem key={"fdsfsdf"} />
-            <RecordItem key={"record3"} />
-            <RecordItem key={"record4"} />
-            <RecordItem key={"record5"} />
-            <RecordItem key={"record6"} />
-            <RecordItem key={"record7"} />
+            {
+                combinedNFTs.map((item, index) => {
+                    return (
+                        <RecordItem />
+                    )
+                })
+            }
         </Grid>
     )
 }

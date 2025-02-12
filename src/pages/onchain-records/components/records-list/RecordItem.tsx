@@ -4,8 +4,13 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import RecordDetails from './RecordDetails'
+import { ICombinedNft } from 'pages/onchain-records/utils/interface'
 
-export default function RecordItem() {
+interface Props {
+    item?: ICombinedNft;
+}
+
+export default function RecordItem({ item }: Props) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     const { isOpen, onOpen, onClose } = useDisclosure()
     const endCount = isSmallerThan768 ? 8 : 15;

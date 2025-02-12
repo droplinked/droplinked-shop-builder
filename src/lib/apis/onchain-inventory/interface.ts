@@ -5,7 +5,7 @@ export interface IGetOnchainInventoryParams {
     search?: string;
 }
 
-interface IDroplinkedNftsVas {
+export interface IDroplinkedNftsVas {
     name: string;
     costType: string;
     value: number;
@@ -13,18 +13,18 @@ interface IDroplinkedNftsVas {
     receiver: string;
 }
 
-interface IDroplinkedNftsDimensions {
+export interface IDroplinkedNftsDimensions {
     height: number;
     length: number;
     width: number;
 }
 
-interface IDroplinkedNftsPartialOwner {
+export interface IDroplinkedNftsPartialOwner {
     user: string;
     quantity: number;
 }
 
-interface IDroplinkedNftsSkuOptions {
+export interface IDroplinkedNftsSkuOptions {
     variantID: string;
     variantName: string;
     value: string;
@@ -34,7 +34,7 @@ interface IDroplinkedNftsSkuOptions {
     _id: string;
 }
 
-interface IDroplinkedNftsRecordData {
+export interface IDroplinkedNftsRecordData {
     status: string;
     recordNetwork: string;
     currency: string;
@@ -50,7 +50,7 @@ interface IDroplinkedNftsRecordData {
     }
 }
 
-interface IDroplinkedNftsSkus {
+export interface IDroplinkedNftsSkus {
     _id: string;
     ownerID: string;
     shopIds: string[];
