@@ -61,13 +61,24 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                 description="Select token options you want to use for payments."
             />
             <ModalBody maxHeight={"60dvh"} display={"flex"} gap={9} flexDir={"column"}>
-                <Flex py={"48px"} alignItems={"center"} justifyContent={"space-between"}>
+                <Flex py={{ base: "24px", md: "48px" }} flexDirection={{ base: "column", md: "row" }}
+                    gap={4}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                >
                     <Input
                         leftElement={<AppIcons.Search />}
-                        inputContainerProps={{ width: "300px" }}
+                        inputGroupProps={{ width: { base: "100%", md: "300px" } }}
                         inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
                     />
-                    <Select itemColor="#fff" itemBackgroundColor="#1a202c" items={[allNetworksItem, ...paymentMethodsData]} labelAccessor="type" valueAccessor="type" selectProps={{ width: "200px", onChange: handleFilterData, color: "#fff" }} />
+                    <Select
+                        itemColor="#fff"
+                        itemBackgroundColor="#1a202c"
+                        items={[allNetworksItem, ...paymentMethodsData]}
+                        labelAccessor="type"
+                        valueAccessor="type"
+                        selectProps={{ width: { base: "100%", md: "200px" }, onChange: handleFilterData, color: "#fff" }}
+                    />
                 </Flex>
                 <TokensListContainer isEvm tokens={filteredPaymentMethods} />
                 <TokensListContainer tokens={filteredPaymentMethods} />
