@@ -34,7 +34,7 @@ const UserMenu = () => {
   return (
     <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose} variant="unstyled">
       <UserMenuButton />
-      <MenuList right="32px" borderRadius="8px" background="#222" border="none" width="352px">
+      <MenuList right="16px" borderRadius="8px" background="#222" border="none" width="352px">
         <Box gap="16px" width="full" display="flex" padding="24px" flexDirection="column">
           <UserInfo shop={shop} user={user} />
           <Divider borderColor="#292929" />

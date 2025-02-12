@@ -12,7 +12,7 @@ import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';
 const SidebarItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef(null);
-  const isMdOrSmaller = useBreakpointValue({ base: true, lg: false });
+  const isMdOrSmaller = useBreakpointValue({ base: false, md:true, lg: false });
   const { shop } = useAppStore();
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const MobileSidebarToggle = ({ isSidebarOpen, setIsSidebarOpen }) => {
       border="1px solid #3C3C3C"
       position="absolute"
       top="16px"
-      left="16px"
+      left="24px"
     />
   );
 };
