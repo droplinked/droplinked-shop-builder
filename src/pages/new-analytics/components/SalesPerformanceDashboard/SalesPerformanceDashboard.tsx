@@ -1,14 +1,15 @@
-import { GridItem } from "@chakra-ui/react"
+import { GridItem, useMediaQuery } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import { getAnalyticsSalesReport } from "lib/apis/dashboard/dashboardServices"
 import useFormattedDateRange from "pages/new-analytics/hooks/useFormattedDateRange"
 import React from "react"
 import { useQuery } from "react-query"
 import EarningsSummary from "./EarningsSummary"
-import KeySalesMetricsDesktop from "./KeySalesMetrics/KeySalesMetricsDesktop"
+import KeySalesMetrics from "./KeySalesMetrics"
 import SalesChart from "./SalesChart/SalesChart"
 
 function SalesPerformanceDashboard() {
+    const [isLargerThanLg] = useMediaQuery('(min-width: 1280px)')
     const { startDate, endDate } = useFormattedDateRange()
     const { isFetching, data } = useQuery({
         queryKey: ["salesReport", startDate, endDate],
@@ -31,9 +32,11 @@ function SalesPerformanceDashboard() {
             </GridItem>
 
             {/* Row 3 */}
-            <GridItem>
-                <KeySalesMetricsDesktop />
-            </GridItem>
+            {isLargerThanLg && (
+                <GridItem>
+                    <KeySalesMetrics />
+                </GridItem>
+            )}
         </RuledGrid>
     )
 }

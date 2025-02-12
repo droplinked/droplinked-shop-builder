@@ -1,12 +1,12 @@
 import { Box, Grid, GridProps } from "@chakra-ui/react"
 import React from "react"
 
-interface Props extends GridProps {
+export interface RuledGridProps extends GridProps {
     columns: number
     nested?: boolean
 }
 
-function RuledGrid({ columns, nested = false, children, ...rest }: Props) {
+function RuledGrid({ columns, nested = false, children, ...rest }: RuledGridProps) {
     // Convert children to an array
     const childrenArray = React.Children.toArray(children)
 
