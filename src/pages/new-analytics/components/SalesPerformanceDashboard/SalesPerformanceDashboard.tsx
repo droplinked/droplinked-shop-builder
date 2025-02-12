@@ -6,7 +6,7 @@ import React from "react"
 import { useQuery } from "react-query"
 import EarningsSummary from "./EarningsSummary"
 import KeySalesMetricsDesktop from "./KeySalesMetrics/KeySalesMetricsDesktop"
-import SalesChart from "./SalesChart"
+import SalesChart from "./SalesChart/SalesChart"
 
 function SalesPerformanceDashboard() {
     const { startDate, endDate } = useFormattedDateRange()
@@ -16,6 +16,7 @@ function SalesPerformanceDashboard() {
     })
 
     const earnings = data?.totalSalesInPeriod
+    const salesData = data?.salesData
 
     return (
         <RuledGrid columns={1} borderRadius={16}>
@@ -26,7 +27,7 @@ function SalesPerformanceDashboard() {
 
             {/* Row 2 */}
             <GridItem>
-                <SalesChart />
+                <SalesChart salesData={salesData} />
             </GridItem>
 
             {/* Row 3 */}

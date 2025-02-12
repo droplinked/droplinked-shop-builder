@@ -50,7 +50,7 @@ export interface SalesReportResponse {
     totalSalesInPeriod: number
 }
 
-interface SalesData {
+export interface SalesData {
     date: string
     totalSales: number
     affiliateSales: number
