@@ -22,7 +22,8 @@ const TokenPay: React.FC = () => {
 
   });
   const paymentMethodsData = data?.data?.data ?? []
-  const isPaymentMethodsEmpty = values.paymentMethods?.filter((item) => item.type !== "STRIPE" && item.type !== "COINBASE").length === 0;
+  const paymentProviders = ["STRIPE", "COINBASE", "PAYMOB"];
+  const isPaymentMethodsEmpty = values.paymentMethods?.filter((item) => !paymentProviders.includes(item.type)).length === 0;
 
   const handleRemovePaymentToken = (type: string) => {
     setFieldValue("paymentMethods", values.paymentMethods.filter((item) => item.type !== type));

@@ -11,7 +11,7 @@ interface Provider {
   link: string;
   tooltip?: string;
   icon: ReactElement;
-  type: "stripe" | "coinbase";
+  type: "stripe" | "coinbase" | "paymob";
   isExternal: boolean;
 }
 
@@ -40,7 +40,7 @@ const PaymentProviderList: React.FC = () => {
     },
     {
       title: "Paymob",
-      type: "coinbase",
+      type: "paymob",
       buttonText: "Connect",
       link: "#",
       isExternal: false,
@@ -52,18 +52,29 @@ const PaymentProviderList: React.FC = () => {
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     const isActive = e.target.checked;
 
-    // Update payment methods array based on toggle state
-    const updatedMethods = values.paymentMethods.map((item) =>
-      item.type === type.toUpperCase()
-        ? { ...item, isActive }
-        : item
-    );
+    // If turning on a provider, turn off all others
+    if (isActive) {
+      const updatedMethods = values.paymentMethods.map((item) => ({
+        ...item,
+        isActive: item.type === type.toUpperCase()
+      }));
 
-    if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
-      updatedMethods.push({ type: type.toUpperCase(), isActive });
+      // Add the new provider if it doesn't exist
+      if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
+        updatedMethods.push({ type: type.toUpperCase(), isActive: true });
+      }
+
+      setFieldValue("paymentMethods", updatedMethods);
+    } else {
+      // If turning off a provider, just update that one
+      const updatedMethods = values.paymentMethods.map((item) =>
+        item.type === type.toUpperCase()
+          ? { ...item, isActive: false }
+          : item
+      );
+
+      setFieldValue("paymentMethods", updatedMethods);
     }
-
-    setFieldValue("paymentMethods", updatedMethods);
   };
 
   return (
