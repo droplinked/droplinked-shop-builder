@@ -87,6 +87,7 @@ export interface IDroplinkedNFTs {
     productQuantity: number;
     productPrice: number;
     skus: IDroplinkedNftsSkus[];
+    ownerAddress: string;
 }
 
 export interface IWalletNFTs {
@@ -98,6 +99,7 @@ export interface IWalletNFTs {
     description: string;
     tokenType: string;
     chain: string;
+    ownerAddress: string;
 }
 
 export interface IGetOnchainInventoryResponse {

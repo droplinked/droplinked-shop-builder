@@ -3,8 +3,9 @@ import React from "react";
 import ContainerCard from "../../ContainerCard";
 import DateFormatter from "./DateFormatter";
 import ExternalLink from "components/redesign/external-link/ExternalLink";
+import { ICombinedNft } from "pages/onchain-records/utils/interface";
 
-export default function ActivityTab() {
+export default function ActivityTab({ item }: { item: ICombinedNft }) {
     const transferData = [
         {
             title: "Quantity",

@@ -2,11 +2,14 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
+import { ICombinedNft } from 'pages/onchain-records/utils/interface'
 import React from 'react'
 import TransferModal from './transfer-modal/TransferModal'
 
-export default function TransferCard() {
+export default function TransferCard({ item }: { item: ICombinedNft }) {
     const { onOpen, onClose, isOpen } = useDisclosure()
+    const { isDroplinkedProduct, name, description, imageUrl } = item;
+    const slicedDescription = description?.slice(0, 50) + (description?.length > 50 ? "..." : "");
 
     return (
         <Flex
@@ -25,8 +28,8 @@ export default function TransferCard() {
                     width={"56px"}
                     height={"56px"}
                     borderRadius={6}
-                    src='https://upload-file-droplinked.s3.amazonaws.com/e1c6a3168548e724fa69574b83807d539b262af10f86a1de35683c2d0b56f0da.png'
-                    alt='Record Image'
+                    src={imageUrl}
+                    alt={name}
                 />
                 <Flex flexDirection={"column"} gap={1}>
                     <AppTypography
@@ -34,14 +37,16 @@ export default function TransferCard() {
                         fontSize={{ base: 14, lg: 16 }}
                         fontWeight={700}
                     >
-                        Poker Face Monkey
+                        {name}
                     </AppTypography>
-                    <AppTypography
-                        color={"#7b7b7b"}
-                        fontSize={{ base: 12, lg: 14 }}
-                    >
-                        Poker Face Monkey
-                    </AppTypography>
+                    {description &&
+                        <AppTypography
+                            color={"#7b7b7b"}
+                            fontSize={{ base: 12, lg: 14 }}
+                        >
+                            {slicedDescription}
+                        </AppTypography>
+                    }
                 </Flex>
             </Flex>
             <Button
@@ -53,6 +58,7 @@ export default function TransferCard() {
                 fontWeight={500}
                 paddingInline={"14px"}
                 onClick={onOpen}
+                isDisabled={isDroplinkedProduct}
             >
                 Transfer
             </Button>

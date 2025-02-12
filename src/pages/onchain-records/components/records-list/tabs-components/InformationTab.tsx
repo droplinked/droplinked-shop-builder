@@ -2,59 +2,65 @@ import React from "react";
 import ContainerCard from "../../ContainerCard";
 import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import { Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import ExternalLink from "components/redesign/external-link/ExternalLink";
+import { ICombinedNft } from "pages/onchain-records/utils/interface";
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 
-export default function InformationTab() {
+export default function InformationTab({ item }: { item: ICombinedNft }) {
     const { getFormattedPrice } = useCurrencyConverter();
+    const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress } = item;
+    const slicedText = (text: string) => {
+        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
+    }
+
     const informationData = [
         {
             title: "Name",
-            content: "Poker Face Monkey",
+            content: name,
         },
         {
-            title: "Description",
-            content: "This is a description",
+            ...description && {
+                title: "Description",
+                content: slicedText(description),
+            }
         },
         {
             title: "Quantity",
-            content: "12",
+            content: quantity,
         },
         {
-            title: "Creator",
-            content: "0x1234567890",
+            ...tokenAddress && {
+                title: "Token Address",
+                content: slicedText(tokenAddress),
+            }
         },
         {
-            title: "Deploy Hash",
-            content: "0x1234567890",
+            ...tokenId && {
+                title: "Token ID",
+                content: tokenId,
+            }
         },
         {
-            title: "NFT Address",
-            content: "0x1234567890",
-        },
-        {
-            title: "Token ID",
-            content: "0x1234567890",
-        },
-        {
-            title: "Price",
-            content: getFormattedPrice({ amount: 20, toFixed: true }),
+            ...price && {
+                title: "Price",
+                content: getFormattedPrice({ amount: price, toFixed: true }),
+            }
         },
         {
             title: "Network",
             content: (
                 <Flex gap={2} alignItems="center">
-                    <AppIcons.ETHOutlined color="#6782EB" />
+                    <BlockchainDisplay blockchain={chain} show="icon" props={{ style: { width: "20px", height: "20px" } }} />
                     <AppTypography color={"#fff"} fontSize={14}>
-                        Ethereum
+                        <BlockchainDisplay blockchain={chain} show="name" />
                     </AppTypography>
                 </Flex>
             ),
         },
         {
-            title: "Wallet",
-            content: "0x1234567890",
+            title: "Owner Address",
+            content: slicedText(ownerAddress),
         },
     ];
 
@@ -65,10 +71,10 @@ export default function InformationTab() {
                 <ExternalLink
                     fontSize={14}
                     fontWeight={500}
-                    href="https://droplinked.io/bedi"
+                    href={productAddress}
                     hasArrow={true}
                 >
-                    https://droplinked.io/bedi/pr...
+                    {slicedText(productAddress)}
                 </ExternalLink>
             ),
         },
@@ -77,7 +83,7 @@ export default function InformationTab() {
     return (
         <Flex flexDirection={"column"} gap={4}>
             <ContainerCard title="Information" items={informationData} />
-            <ContainerCard title="Product Details" items={productDetails} />
+            {productAddress && <ContainerCard title="Product Details" items={productDetails} />}
         </Flex>
     );
 }

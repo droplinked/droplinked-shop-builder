@@ -30,6 +30,8 @@ export default function ContainerCard({ items, hasBorder, title, titleRightConte
             <Flex flexDirection={"column"} gap={4} px={6} pb={6}>
                 {items.map((item, index) => {
                     const isReactNode = typeof item.content === "object";
+                    if (!Object.keys(item).length) return null
+
                     return (
                         <Flex justifyContent={"space-between"} alignItems={"center"} key={index}>
                             <AppTypography color={"#7B7B7B"} fontSize={14} fontWeight={400}>
