@@ -44,6 +44,7 @@ const PaymentProviderList: React.FC = () => {
       buttonText: "Connect",
       link: "#",
       isExternal: false,
+      tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
       icon: <AppIcons.Paymob color="#004eff" />,
     },
   ];
