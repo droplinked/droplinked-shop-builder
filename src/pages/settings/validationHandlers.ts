@@ -10,6 +10,9 @@ export const handleValidations = ({ values, showToast }: IValidateHandlers): boo
     //we ensure that the total percentage of the wallets does not exceed 100
     if (!handleValidatePercentage({ values, showToast })) return false;
 
+    //we ensure there are no wallets with 0 percentage
+    if (!handleValidateZeroPercentage({ values, showToast })) return false;
+
     //we ensure that user has selected at least one payment method
     if (!handleValidatePaymentMethods({ values, showToast })) return false;
 
@@ -29,6 +32,24 @@ const handleValidatePercentage = ({ values, showToast }: IValidateHandlers): boo
         showToast({
             type: "error",
             message: `Please double-check your ${walletType} wallets section, the total percentage must not exceed 100.`,
+            options: { autoClose: 5000 }
+        });
+        return false;
+    }
+    return true;
+}
+
+// Add this new validation function
+const handleValidateZeroPercentage = ({ values, showToast }: IValidateHandlers): boolean => {
+    const walletWithZeroPercent = values.paymentWallets.find((wallet) => {
+        return wallet.destinationAddress.some(d => d.percent === 0);
+    });
+
+    const walletType = walletWithZeroPercent?.type === "SOL" ? "Solana" : "EVM"
+    if (walletWithZeroPercent) {
+        showToast({
+            type: "error",
+            message: `Please ensure all ${walletType} wallet percentages are greater than 0.`,
             options: { autoClose: 5000 }
         });
         return false;

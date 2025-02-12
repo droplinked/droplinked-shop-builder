@@ -130,3 +130,12 @@ export interface Product {
     digitalDetail?: DigitalDetails
     nftData?: NFTData
 }
+
+export interface AiGenerationData {
+    title?: string
+    isTitleLoading?: boolean
+    isTitleLoaded?: boolean
+    description?: string
+    isDescriptionLoading?: boolean
+    isDescriptionLoaded?: boolean
+}

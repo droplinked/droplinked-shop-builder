@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ProductType } from '../utils/types'
+import { AiGenerationData, ProductType } from '../utils/types'
 
 interface State {
     selectedProductType: ProductType
@@ -9,11 +9,14 @@ interface State {
     print_positions: any[]
     isProductTypePopoverOpen: boolean
     editingProductId: string
+    aiGenerationData: AiGenerationData
 }
 
 interface Action {
     updateProductPageState: <K extends keyof State>(key: K, value: State[K]) => void
     resetProductPageState: () => void
+    setGenerateTitleDescriptionLoading: (isLoading: boolean) => void
+    updateAiGenerationData: (aiGenerationData: AiGenerationData) => void
 }
 
 const initialState: State = {
@@ -23,13 +26,25 @@ const initialState: State = {
     available_variants: [],
     print_positions: [],
     isProductTypePopoverOpen: false,
-    editingProductId: null
+    editingProductId: null,
+    aiGenerationData: {},
 }
 
 const useProductPageStore = create<State & Action>((set) => ({
     ...initialState,
     updateProductPageState: (key, value) => set(state => ({ ...state, [key]: value })),
-    resetProductPageState: () => set(() => ({ ...initialState }))
+    resetProductPageState: () => set(() => ({ ...initialState })),
+    updateAiGenerationData: (aiGenerationData: AiGenerationData) => set(state => ({ ...state, aiGenerationData })),
+    setGenerateTitleDescriptionLoading: (isLoading) => set(state => ({
+        ...state,
+        aiGenerationData: {
+            ...state.aiGenerationData,
+            isDescriptionLoading: isLoading,
+            isTitleLoading: isLoading,
+            isDescriptionLoaded: false,
+            isTitleLoaded: false
+        }
+    }))
 }))
 
 export default useProductPageStore

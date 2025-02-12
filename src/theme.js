@@ -65,9 +65,11 @@ export const theme = extendTheme({
         }
     },
     breakpoints: {
-        sm: "360px",
-        md: "768px",
-        lg: "1280px",
-        xl: "1440px"
+        sm: "360px", // Mobile: 360px and above
+        md: "1024px", // Tablet: 1024px and above
+        lg: "1280px", // Small Desktop: 1280px and above
+        xl: "1440px", // Large Desktop: 1440px and above
+        "2xl": "1920px", // Desktop (FHD): 1920px and above
+        "3xl": "2560px", // Extra Large Desktop: 2560px and above
     }
 })

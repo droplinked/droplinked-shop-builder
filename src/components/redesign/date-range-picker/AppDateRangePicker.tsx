@@ -18,7 +18,7 @@ interface Props extends DateRangePickerProps {
 export default function AppDateRangePicker({ value, onChange, disabled }: Props) {
   const [tempValue, setTempValue] = useState<DateRangeValue>(value);
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
+  const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)')
 
   useEffect(() => {
     if (!isOpen) {
@@ -28,7 +28,7 @@ export default function AppDateRangePicker({ value, onChange, disabled }: Props)
 
   if (value instanceof Array && value.length < 2) return null;
 
-  if (isSmallerThan768) {
+  if (isSmallerThan1024) {
     return (
       <Box width={"100%"} opacity={disabled ? "0.5" : "1"}>
         <DateInput onClick={() => !disabled && onOpen()} selectedDate={value} />

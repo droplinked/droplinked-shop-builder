@@ -2,13 +2,16 @@ import { ChakraProps, Flex } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import React from 'react'
 
-const AnimatedContainer = styled(Flex)`
+const AnimatedContainer = styled(Flex) <{ isDisabled?: boolean }>`
     position: relative;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
     padding: 0.5px;
-    background: linear-gradient(to right, #2BCFA100, #2BCFA11A);
+    background: ${props => props.isDisabled ? 'transparent' : 'linear-gradient(to right, #2BCFA100, #2BCFA11A)'};
+    ${props => props.isDisabled && `
+        border: 1px solid var(--Neutral-Gray-800, #292929);
+    `}
 
     &:before, &:after {
         content: '';
@@ -22,7 +25,7 @@ const AnimatedContainer = styled(Flex)`
         background: linear-gradient(45deg,#2BCFA1, #179EF8, #FFD951, #9C4EFF,#2BCFA1, #179EF8, #FFD951, #9C4EFF);
         background-size: 200% 200%;
         animation: border 5s linear infinite;
-        opacity: 0.2;
+        opacity: ${props => props.isDisabled ? 0 : 0.2};
     }
 
     &:after {
@@ -39,11 +42,17 @@ const AnimatedContainer = styled(Flex)`
 interface Props {
     children: React.ReactNode
     flexProps?: ChakraProps
+    isDisabled?: boolean
+    onClick?: () => void
 }
 
-export default function AnimatedBox({ children, flexProps }: Props) {
+export default function AnimatedBox({ children, flexProps, isDisabled, onClick }: Props) {
     return (
-        <AnimatedContainer {...flexProps}>
+        <AnimatedContainer
+            isDisabled={isDisabled}
+            {...flexProps}
+            {...(!isDisabled && { onClick: onClick })}
+        >
             {children}
         </AnimatedContainer>
     )

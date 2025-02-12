@@ -1,48 +1,31 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import ImproveDescription from './ImproveDescription'
 import classes from './ProductDescription.module.scss'
 import AnimatedBox from '../../common/AnimatedBox'
-import { useMutation } from 'react-query'
-import { improveDescription } from 'lib/apis/ai/services'
-import { IImproveDescription } from 'lib/apis/ai/interfaces'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import './loading.css'
 
 function ProductDescription() {
-    const { values: { description, title }, errors, setFieldValue } = useProductForm()
-    const [isLoaded, setIsLoaded] = useState(false);
-    const { showToast } = useAppToast()
+    const { values: { description }, errors, setFieldValue } = useProductForm()
+    const { aiGenerationData: { isDescriptionLoading } } = useProductPageStore()
     const editorRef = useRef(null);
-
-    const { mutateAsync, isLoading } = useMutation(
-        (params: IImproveDescription) => improveDescription(params),
-        {
-            onSuccess: (response) => {
-                setFieldValue("description", response.data)
-                setIsLoaded(true)
-            },
-            onError: (error) => {
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
-            }
-        }
-    )
 
     useEffect(() => {
         if (editorRef.current) {
             const body = document.querySelector('.tox-edit-area');
             if (body) {
-                if (isLoading) {
+                if (isDescriptionLoading) {
                     body.classList.add('loading');
                 } else {
                     body.classList.remove('loading');
                 }
             }
         }
-    }, [isLoading]);
+    }, [isDescriptionLoading]);
 
     return (
         <ProductFieldWrapper
@@ -51,7 +34,7 @@ function ProductDescription() {
             errorMessage={errors.description}
         >
             <AnimatedBox flexProps={{
-                ...isLoading ?
+                ...isDescriptionLoading ?
                     {
                         _before: {
                             width: "calc(100% + 0.5px) !important",
@@ -68,8 +51,7 @@ function ProductDescription() {
                         _after: { display: "none" },
                         background: "transparent !important"
                     }
-            }}
-            >
+            }}>
                 <Flex direction="column" gap={4} className={classes.editor}>
                     <Editor
                         onInit={(evt, editor) => editorRef.current = editor}
@@ -94,18 +76,10 @@ function ProductDescription() {
                             content_style: 'body { font-family: Helvetica,Arial,sans-serif; font-size: 14px; background: #141414; } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before { color: #777 }',
                         }}
                     />
-                    <ImproveDescription
-                        description={description}
-                        title={title}
-                        onDescriptionChange={(value) => setFieldValue("description", value)}
-                        isLoaded={isLoaded}
-                        setIsLoaded={setIsLoaded}
-                        isLoading={isLoading}
-                        mutateAsync={mutateAsync}
-                    />
+                    <ImproveDescription />
                 </Flex>
             </AnimatedBox>
-        </ProductFieldWrapper >
+        </ProductFieldWrapper>
     )
 }
 

@@ -1,47 +1,70 @@
-import React, { useState } from 'react'
-import { IImproveTitle } from 'lib/apis/ai/interfaces'
-import ImproveWithAi from '../../common/ImproveWithAi'
+import useAppToast from 'functions/hooks/toast/useToast';
+import { IImproveTitle } from 'lib/apis/ai/interfaces';
+import { improveTitle } from 'lib/apis/ai/services';
+import useProductForm from 'pages/products/hooks/useProductForm';
+import useProductPageStore from 'pages/products/stores/ProductPageStore';
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
+import ImproveWithAi from '../../common/ImproveWithAi';
 
-interface ImproveTitleProps {
-    title: string;
-    onTitleChange: (newTitle: string) => void;
-    setIsLoaded: (isLoaded: boolean) => void;
-    isLoaded: boolean;
-    isLoading: boolean;
-    mutateAsync: (params: IImproveTitle) => Promise<any>;
-}
-
-function ImproveTitle({ title, onTitleChange, setIsLoaded, isLoaded, mutateAsync, isLoading }: ImproveTitleProps) {
-    const [selectedItem, setSelectedItem] = useState("")
-    const [tempTitleValue, setTempTitleValue] = useState("")
+function ImproveTitle() {
+    const [selectedItem, setSelectedItem] = useState("");
+    const [revertData, setRevertData] = useState("");
+    const { updateAiGenerationData, aiGenerationData } = useProductPageStore();
+    const { setFieldValue, values: { title } } = useProductForm();
+    const { showToast } = useAppToast()
+    const { mutateAsync } = useMutation(
+        (params: IImproveTitle) => improveTitle(params),
+        {
+            onMutate: () => {
+                setRevertData(title)
+                updateAiGenerationData({
+                    ...aiGenerationData,
+                    isTitleLoading: true,
+                    isTitleLoaded: false
+                })
+            },
+            onSuccess: (response) => {
+                setFieldValue("title", response.data)
+                updateAiGenerationData({
+                    ...aiGenerationData,
+                    title: response.data,
+                    isTitleLoaded: true,
+                    isTitleLoading: false
+                })
+            },
+            onError: () => {
+                updateAiGenerationData({ ...aiGenerationData, isTitleLoading: false, isTitleLoaded: false })
+                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
+            }
+        }
+    )
 
     const handleSelectItem = async (item: string) => {
-        setTempTitleValue(title)
         setSelectedItem(item)
         await mutateAsync({ title, tone: item.toUpperCase() })
     }
 
     const handleTryAgain = async () => {
-        setIsLoaded(false)
         setSelectedItem(selectedItem)
         await mutateAsync({ title, tone: selectedItem.toUpperCase() })
     }
 
     const handleRevert = () => {
-        onTitleChange(tempTitleValue)
-        setSelectedItem("")
-        setIsLoaded(false)
+        setFieldValue("title", revertData);
+        setSelectedItem("");
+        updateAiGenerationData({ ...aiGenerationData, isTitleLoaded: false });
     }
 
     return (
         <ImproveWithAi
-            isLoaded={isLoaded}
-            isDisabled={title.length === 0}
-            isLoading={isLoading}
+            isLoaded={aiGenerationData.isTitleLoaded}
+            isDisabled={title?.length === 0}
+            isLoading={aiGenerationData.isTitleLoading}
             handleSelectItem={handleSelectItem}
             handleTryAgain={handleTryAgain}
             handleRevert={handleRevert}
-            BoxStyles={{ width: isLoaded && "17.1rem" }}
+            BoxStyles={{ width: aiGenerationData?.isTitleLoaded && "17.1rem" }}
         />
     )
 }

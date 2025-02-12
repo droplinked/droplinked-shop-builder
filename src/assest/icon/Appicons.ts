@@ -271,6 +271,7 @@ import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.sv
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
 import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
+import { ReactComponent as SidebarDroplinked1 } from './droplinked1.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
@@ -345,6 +346,8 @@ import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 import { ReactComponent as NFTIcon } from './nft.svg';
 import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
+import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+
 
 const AppIcons = {
   ETHOutlined,
@@ -541,6 +544,7 @@ const AppIcons = {
   DescSorting,
   Edit,
   SidebarDroplinked,
+  SidebarDroplinked1,
   SidebarAffiliate,
   SidebarAnalytics,
   SidebarBlog,
@@ -694,7 +698,8 @@ const AppIcons = {
   YouTubeOutlined,
   TikTokOutlined,
   SidebarDashboard,
-  Transfer
+  Transfer,
+  SideBarExpand
 }
 
 export default AppIcons

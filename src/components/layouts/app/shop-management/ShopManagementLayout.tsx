@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import AdminHoc from 'functions/hoc/admin/adminHoc'
 import React, { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import DashboardLayoutHeader from 'components/layouts/dashboard/DashboardLayoutHeader'
+import DashboardLayoutHeader from 'components/layouts/dashboard/components/header/DashboardLayoutHeader'
 import Footer from '../main/components/footer/Footer'
 
 function ShopManagementLayout() {

@@ -1,4 +1,4 @@
-import { Tab, TabList, TabListProps, TabPanel, TabPanelProps, TabPanels, TabPanelsProps, Tabs, TabsProps } from "@chakra-ui/react";
+import { Tab, TabList, TabListProps, TabPanel, TabPanelProps, TabPanels, TabPanelsProps, TabProps, Tabs, TabsProps } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
 interface TabItem {
@@ -10,13 +10,14 @@ interface AppTabProps {
     tabs: TabItem[];
     isDisabled?: boolean;
     isLazy?: boolean;
-    tabsStyle?: TabsProps,
+    tabsStyle?: Omit<TabsProps, 'children'>,
     tabListStyle?: TabListProps,
     tabPanelsStyle?: TabPanelsProps,
     tabPanelStyle?: TabPanelProps,
+    tabStyle?: TabProps,
 }
 
-function AppTab({ tabs, isDisabled = false, isLazy, tabsStyle, tabListStyle, tabPanelStyle, tabPanelsStyle }: AppTabProps) {
+function AppTab({ tabs, isDisabled = false, isLazy, tabsStyle, tabListStyle, tabPanelStyle, tabPanelsStyle, tabStyle }: AppTabProps) {
     return (
         <Tabs
             variant={"unstyled"}
@@ -46,6 +47,7 @@ function AppTab({ tabs, isDisabled = false, isLazy, tabsStyle, tabListStyle, tab
                         color={"#7b7b7b"}
                         fontWeight={400}
                         fontSize={14}
+                        {...tabStyle}
                     >
                         {tab.title}
                     </Tab>

@@ -8,7 +8,7 @@ import CreditAndCoupons from "../pages/credit-and-coupons/CreditAndCoupons";
 import UserManagement from "../pages/user-management/UserManagement";
 
 function TabsContent() {
-    const { isSubmitting } = useFormikContext();
+    const { isSubmitting, dirty } = useFormikContext();
 
     const tabs = [
         {
@@ -33,7 +33,21 @@ function TabsContent() {
         },
     ];
 
-    return <AppTab tabs={tabs} isDisabled={isSubmitting} />;
+    return <AppTab
+        tabs={tabs}
+        isDisabled={isSubmitting}
+        tabListStyle={{
+            overflowY: "hidden",
+            sx: {
+                scrollbarWidth: 'none',
+                '::-webkit-scrollbar': {
+                    display: 'none',
+                },
+            }
+        }}
+        tabStyle={{ minWidth: { base: "13rem", lg: "unset" } }}
+        tabsStyle={{ marginBottom: dirty ? { base: "15rem", lg: "8rem" } : "unset" }}
+    />;
 }
 
 export default TabsContent;
