@@ -12,4 +12,5 @@ export interface SelectMenuProps {
     onChange?: (value: string | string[] | null) => void
     placeholder?: string
     mobileModeIcon?: React.ReactNode
+    showSelectedAsPlaceholder?: boolean
 }

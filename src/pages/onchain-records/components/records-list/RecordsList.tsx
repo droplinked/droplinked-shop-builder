@@ -1,8 +1,14 @@
 import React from 'react'
 import RecordItem from './RecordItem'
 import { Grid } from '@chakra-ui/react'
+import { IDroplinkedNFTs, IWalletNFTs } from 'lib/apis/onchain-inventory/interface'
 
-export default function RecordsList() {
+interface Props {
+    droplinkedNFTs: IDroplinkedNFTs[];
+    walletNFTs: IWalletNFTs[];
+}
+
+export default function RecordsList({ droplinkedNFTs, walletNFTs }: Props) {
     return (
         <Grid
             templateColumns={{

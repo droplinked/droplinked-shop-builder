@@ -1,16 +1,29 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import Input from 'components/redesign/input/Input';
 import AppIcons from 'assest/icon/Appicons';
 import useAppStore from 'lib/stores/app/appStore';
 
-export default function Filters() {
-    const [searchValue, setSearchValue] = useState("")
-    const [recordFilter, setRecordFilter] = useState(null)
-    const [walletFilter, setWalletFilter] = useState(null)
+interface FiltersProps {
+    searchValue: string;
+    setSearchValue: (value: string) => void;
+    recordFilter: string | null;
+    setRecordFilter: (value: string | null) => void;
+    walletFilter: string | null;
+    setWalletFilter: (value: string | null) => void;
+}
+
+export default function Filters({
+    searchValue,
+    setSearchValue,
+    recordFilter,
+    setRecordFilter,
+    walletFilter,
+    setWalletFilter
+}: FiltersProps) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const { shop: { paymentWallets } } = useAppStore()
+    const { user: { wallets } } = useAppStore()
 
     const recordItems = [
         {
@@ -29,16 +42,15 @@ export default function Filters() {
             value: null,
         }]
 
-        const walletOptions = paymentWallets.flatMap((wallet) =>
-            wallet.destinationAddress.map((address, index) => ({
-                label: `${wallet.type} Wallet ${index + 1}`,
-                labelDescription: `${address.destinationAddress.slice(0, isSmallerThan768 ? 20 : 6)}...`,
-                value: `${wallet._id}_${index}`,
+        const walletOptions =
+            wallets.map(({ address, type }, index) => ({
+                label: `${type}`,
+                labelDescription: `${address.slice(0, isSmallerThan768 ? 20 : 6)}...`,
+                value: address,
             }))
-        );
 
         return [...baseItems, ...walletOptions]
-    }, [paymentWallets, isSmallerThan768])
+    }, [wallets, isSmallerThan768])
 
     return (
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
@@ -61,14 +73,14 @@ export default function Filters() {
             <Flex gap={4} alignItems="center">
                 <SelectMenu
                     items={walletsItems}
-                    onChange={(value: string) => setWalletFilter(value)}
+                    onChange={setWalletFilter}
                     placeholder='Wallets'
                     value={walletFilter}
                     mobileModeIcon={<AppIcons.Wallet width={"20px"} height={"20px"} />}
                 />
                 <SelectMenu
                     items={recordItems}
-                    onChange={(value: string) => setRecordFilter(value)}
+                    onChange={setRecordFilter}
                     placeholder='Records'
                     value={recordFilter}
                     mobileModeIcon={<AppIcons.NFTIcon />}

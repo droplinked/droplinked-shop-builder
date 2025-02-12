@@ -11,7 +11,7 @@ export default function SelectMenu({
     value = multiple ? [] : null,
     onChange,
     placeholder = "Select",
-    mobileModeIcon
+    mobileModeIcon,
 }: SelectMenuProps) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
