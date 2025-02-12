@@ -9,7 +9,7 @@ import DataPointCard from "../DataPointCard"
 import ProductTypeBarChart from "./ProductTypeBarChart"
 
 export default function InventorySummary() {
-    const data = useAnalyticsStore(state => state.performanceReportResponse.data)
+    const { data, isLoading } = useAnalyticsStore(state => state.performanceReportResponse)
     const { totalInventoryValue, numberOfProducts, productBreakdown } = data
 
     // Determine if there are any product types with a percentage greater than 0
@@ -18,8 +18,8 @@ export default function InventorySummary() {
     return (
         <RuledGrid width="100%" columns={1} borderRadius={16}>
             <RuledGrid columns={2} nested>
-                <InventoryValueCard totalInventoryValue={totalInventoryValue} />
-                <ProductCountCard numberOfProducts={numberOfProducts} />
+                <InventoryValueCard totalInventoryValue={totalInventoryValue} isLoading={isLoading} />
+                <ProductCountCard numberOfProducts={numberOfProducts} isLoading={isLoading} />
             </RuledGrid>
 
             {hasActiveProductTypes && <ProductTypeBarChart productTypes={productBreakdown} />}
@@ -27,11 +27,12 @@ export default function InventorySummary() {
     )
 }
 
-function InventoryValueCard({ totalInventoryValue }: { totalInventoryValue: number }) {
+function InventoryValueCard({ totalInventoryValue, isLoading }) {
     return (
         <DataPointCard
             icon={<CurrencyIcon __css={{ path: { stroke: "#fff" } }} />}
             title="Total Inventory Value"
+            isLoading={isLoading}
         >
             <FormattedPrice
                 price={totalInventoryValue}
@@ -43,11 +44,12 @@ function InventoryValueCard({ totalInventoryValue }: { totalInventoryValue: numb
     )
 }
 
-function ProductCountCard({ numberOfProducts }: { numberOfProducts: number }) {
+function ProductCountCard({ numberOfProducts, isLoading }) {
     return (
         <DataPointCard
             icon={<AppIcons.HeaderCoins />}
             title="Number of Products"
+            isLoading={isLoading}
         >
             <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="#FFF">
                 {numberOfProducts}{" "}

@@ -6,7 +6,8 @@ import React from "react"
 import MetricCard from "../../MetricCard"
 
 function KeySalesMetricsDesktop() {
-    const performanceData = useAnalyticsStore(state => state.performanceReportResponse.data)
+    const { data, isLoading } = useAnalyticsStore(state => state.performanceReportResponse)
+    const { netProfit, customers, orders } = data
 
     return (
         <RuledGrid columns={3} nested>
@@ -14,9 +15,10 @@ function KeySalesMetricsDesktop() {
                 <MetricCard
                     icon={<AppIcons.HeaderCoins />}
                     title="Net Profit"
-                    totalValue={performanceData.netProfit.total}
-                    directValue={performanceData.netProfit.directSales}
-                    affiliateValue={performanceData.netProfit.affiliateSales}
+                    totalValue={netProfit.total}
+                    directValue={netProfit.directSales}
+                    affiliateValue={netProfit.affiliateSales}
+                    isLoading={isLoading}
                 />
             </GridItem>
 
@@ -24,9 +26,10 @@ function KeySalesMetricsDesktop() {
                 <MetricCard
                     icon={<AppIcons.User />}
                     title="Customers"
-                    totalValue={performanceData.customers.total}
-                    directValue={performanceData.customers.directCustomers}
-                    affiliateValue={performanceData.customers.affiliateCustomers}
+                    totalValue={customers.total}
+                    directValue={customers.directCustomers}
+                    affiliateValue={customers.affiliateCustomers}
+                    isLoading={isLoading}
                 />
             </GridItem>
 
@@ -34,9 +37,10 @@ function KeySalesMetricsDesktop() {
                 <MetricCard
                     icon={<AppIcons.InvoiceManagement />}
                     title="Orders"
-                    totalValue={performanceData.orders.totalOrders}
-                    directValue={performanceData.orders.directOrders}
-                    affiliateValue={performanceData.orders.affiliateOrders}
+                    totalValue={orders.totalOrders}
+                    directValue={orders.directOrders}
+                    affiliateValue={orders.affiliateOrders}
+                    isLoading={isLoading}
                 />
             </GridItem>
         </RuledGrid>

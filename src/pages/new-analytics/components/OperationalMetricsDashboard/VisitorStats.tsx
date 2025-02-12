@@ -6,7 +6,7 @@ import React from 'react'
 import DataPointCard from '../DataPointCard'
 
 function VisitorStats() {
-    const data = useAnalyticsStore(state => state.performanceReportResponse.data)
+    const { data, isLoading } = useAnalyticsStore(state => state.performanceReportResponse)
 
     return (
         <RuledGrid
@@ -14,7 +14,11 @@ function VisitorStats() {
             columns={1}
             borderRadius={16}
         >
-            <DataPointCard icon={<AppIcons.Globe />} title='Visitors'>
+            <DataPointCard
+                icon={<AppIcons.Globe />}
+                title='Visitors'
+                isLoading={isLoading}
+            >
                 <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="#FFF">{data.visitors}</Text>
             </DataPointCard>
 

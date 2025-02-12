@@ -11,7 +11,6 @@ import VisitorStats from "./VisitorStats"
 function OperationalMetricsDashboard() {
     const { startDate, endDate } = useFormattedDateRange()
     const updateAnalyticsPageState = useAnalyticsStore(state => state.updateAnalyticsPageState)
-
     const { isFetching, isError, data } = useQuery({
         queryKey: ["performanceReport", startDate, endDate],
         queryFn: () => getAnalyticsPerformanceReport({ startDate, endDate })

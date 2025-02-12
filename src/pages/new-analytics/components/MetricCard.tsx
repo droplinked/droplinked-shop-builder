@@ -12,9 +12,10 @@ interface MetricCardProps {
     totalValue: number
     directValue: number
     affiliateValue: number
+    isLoading: boolean
 }
 
-function MetricCard({ icon, title, totalValue, directValue, affiliateValue }: MetricCardProps) {
+function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLoading }: MetricCardProps) {
     // Calculate percentages relative to totalValue (avoid division by zero)
     const directPercentage = totalValue ? (directValue / totalValue) * 100 : 0
     const affiliatePercentage = totalValue ? (affiliateValue / totalValue) * 100 : 0
@@ -50,7 +51,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue }: Me
 
     return (
         <RuledGrid columns={1} nested color="white">
-            <DataPointCard icon={icon} title={title}>
+            <DataPointCard icon={icon} title={title} isLoading={isLoading}>
                 {primaryValueDisplay}
             </DataPointCard>
 

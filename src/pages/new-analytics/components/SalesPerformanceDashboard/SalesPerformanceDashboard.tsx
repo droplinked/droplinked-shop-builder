@@ -10,7 +10,7 @@ import SalesChart from "./SalesChart/SalesChart"
 
 function SalesPerformanceDashboard() {
     const { startDate, endDate } = useFormattedDateRange()
-    const { isFetching, isError, data } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: ["salesReport", startDate, endDate],
         queryFn: () => getAnalyticsSalesReport({ startDate, endDate })
     })
@@ -22,7 +22,7 @@ function SalesPerformanceDashboard() {
         <RuledGrid columns={1} borderRadius={16}>
             {/* Row 1 */}
             <GridItem>
-                <EarningsSummary earnings={earnings} />
+                <EarningsSummary earnings={earnings} isLoading={isFetching} />
             </GridItem>
 
             {/* Row 2 */}
