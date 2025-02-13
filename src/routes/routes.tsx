@@ -49,11 +49,11 @@ const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPa
 const Rewards = lazy(() => import("pages/public-pages/rewards/rewards"));
 const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
-const AffiliateMarket = lazy(() => import("pages/redesign-affiliate/market/AffiliateMarket"));
-const AffiliateProductsSinglePage = lazy(() => import("pages/redesign-affiliate/product-page/ProductPage"));
-const AffiliateProductsLayout = lazy(() => import("pages/redesign-affiliate/products/AffiliateProductsLayout"));
-const AffiliateStores = lazy(() => import("pages/redesign-affiliate/stores/AffiliateStores"));
-const AffiliateStoresProfile = lazy(() => import("pages/redesign-affiliate/stores/profile/AffiliateStoresProfile"));
+const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
+const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
+const AffiliateProductsLayout = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
+const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
+const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
 const Admins = lazy(() => import("pages/register-pages/pages/admins/Admins"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
