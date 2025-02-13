@@ -11,7 +11,7 @@ interface Props {
 
 export default function DesktopManualTransfer({ data, setData }: Props) {
     const handleAddWallet = () => {
-        setData([...data, { address: '', percent: 0 }]);
+        setData([...data, { receiver: '', amount: 0 }]);
     };
 
     const handleRemoveWallet = (index: number) => {
@@ -22,7 +22,7 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
 
     const handleUpdateWallet = (index: number, field: keyof Wallet, value: string) => {
         const newData = [...data];
-        if (field === 'percent') {
+        if (field === 'amount') {
             newData[index][field] = Number(value);
         } else {
             newData[index][field] = value;
@@ -37,20 +37,20 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
                     <Input
                         inputProps={{
                             placeholder: "Enter your wallet address",
-                            value: wallet.address,
-                            onChange: (e) => handleUpdateWallet(index, 'address', e.target.value)
+                            value: wallet.receiver,
+                            onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value)
                         }}
                     />
                     <Input
                         inputProps={{
                             placeholder: "0",
-                            value: wallet.percent,
-                            onChange: (e) => handleUpdateWallet(index, 'percent', e.target.value)
+                            value: wallet.amount,
+                            type: "number",
+                            onChange: (e) => handleUpdateWallet(index, 'amount', e.target.value)
                         }}
                         inputGroupProps={{
                             width: "20%"
                         }}
-                        rightElement={<AppIcons.GrayPercent />}
                     />
                     {index === data.length - 1 ? (
                         <AppIcons.GreenPlus

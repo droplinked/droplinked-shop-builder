@@ -11,6 +11,32 @@ export interface IGetActivityParams {
     tokenId: string;
 }
 
+export interface ICreateAirdropParams {
+    tokenAddress: string;
+    tokenId: string;
+    receivers: {
+        receiver: string;
+        amount: number;
+    }[]
+    chain: string;
+    network: "TESTNET" | "MAINNET";
+}
+
+export interface ICreateAirdropResponse {
+    tokenAddress: string;
+    tokenId: string;
+    receivers: {
+        receiver: string;
+        amount: number;
+    }[]
+    chain: string;
+    network: "TESTNET" | "MAINNET";
+    _id: string;
+    shopId: string;
+    //FIXME: Fix this
+    status: "CREATED" | string;
+}
+
 export interface IGetActivityResponse {
     id: string;
     chain: string;

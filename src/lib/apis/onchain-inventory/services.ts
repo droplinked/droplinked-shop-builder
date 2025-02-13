@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IGetActivityParams, IGetActivityResponse, IGetOnchainInventoryParams, IGetOnchainInventoryResponse } from "./interface";
+import { ICreateAirdropParams, ICreateAirdropResponse, IGetActivityParams, IGetActivityResponse, IGetOnchainInventoryParams, IGetOnchainInventoryResponse } from "./interface";
 
 export const getOnchainInventory = (params: IGetOnchainInventoryParams = {}) => {
     const queryParams = new URLSearchParams(
@@ -14,5 +14,9 @@ export const getOnchainInventory = (params: IGetOnchainInventoryParams = {}) => 
 }
 
 export const getAirdropActivity = ({ chain, tokenAddress, tokenId }: IGetActivityParams) => {
-    return axiosInstance.get<IGetActivityResponse[]>(`/nfts/activity/${chain}/${tokenAddress}/${tokenId}`)
+    return axiosInstance.get<IGetActivityResponse[]>(`nfts/activity/${chain}/${tokenAddress}/${tokenId}`)
+}
+
+export const createAirdropProcedure = (data: ICreateAirdropParams) => {
+    return axiosInstance.post<ICreateAirdropResponse>("nfts/airdrop", data)
 }

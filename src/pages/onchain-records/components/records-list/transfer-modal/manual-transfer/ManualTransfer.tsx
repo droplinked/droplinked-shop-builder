@@ -4,8 +4,8 @@ import MobileManualTransfer from './MobileManualTransfer';
 import DesktopManualTransfer from './DesktopManualTransfer';
 
 export interface Wallet {
-    address: string;
-    percent: number;
+    receiver: string;
+    amount: number;
 }
 
 interface Props {

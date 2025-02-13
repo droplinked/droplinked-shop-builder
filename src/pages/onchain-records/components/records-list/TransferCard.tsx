@@ -62,7 +62,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
             >
                 Transfer
             </Button>
-            <TransferModal isOpen={isOpen} onClose={onClose} />
+            <TransferModal item={item} isOpen={isOpen} onClose={onClose} />
         </Flex>
     )
 }

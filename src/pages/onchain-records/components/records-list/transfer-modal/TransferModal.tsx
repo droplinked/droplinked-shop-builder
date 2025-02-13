@@ -1,35 +1,67 @@
-import { Divider, ModalBody, ModalFooter, TabPanel, TabPanels, Tabs, useMediaQuery } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
-import Button from "components/redesign/button/Button";
+import { Divider, ModalBody, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import ExternalLink from "components/redesign/external-link/ExternalLink";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 import AppModal from "components/redesign/modal/AppModal";
-import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import useAppToast from "functions/hooks/toast/useToast";
+import { handleValidateManualTransfer } from "pages/onchain-records/utils/helpers";
+import { ICombinedNft } from "pages/onchain-records/utils/interface";
 import React, { useState } from "react";
 import TabsList from "../tabs-components/TabsList";
-import ManualTransfer from "./manual-transfer/ManualTransfer";
 import BulkUpload from "./bulk-upload/BulkUpload";
+import ManualTransfer from "./manual-transfer/ManualTransfer";
+import TransferModalFooter from "./TransferModalFooter";
+import TransferModalHeader from "./TransferModalHeader";
+import { useMutation } from "react-query";
+import { createAirdropProcedure } from "lib/apis/onchain-inventory/services";
+import { appDevelopment } from "lib/utils/app/variable";
+import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
+import { AxiosError } from "axios";
 
 interface Props {
     onClose: () => void;
     isOpen: boolean;
+    item: ICombinedNft;
 }
 
-export default function TransferModal({ onClose, isOpen }: Props) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
-    const [manualTransferData, setManualTransferData] = useState([{ address: '', percent: 0 }]);
+export default function TransferModal({ onClose, isOpen, item }: Props) {
+    const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
+    const { showToast } = useAppToast();
+
+    const { quantity, chain, tokenAddress, tokenId } = item ?? {};
+    const network = appDevelopment ? "TESTNET" : "MAINNET";
+    const web3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET);
+
+    const { mutateAsync, isLoading, data } = useMutation(() =>
+        createAirdropProcedure({ chain, network, receivers: manualTransferData, tokenAddress, tokenId }),
+        {
+            onSuccess: ({ data }) => {
+                const { chain, network, _id } = data;
+                web3.web3Instance({
+                    method: Web3Actions.AIRDROP,
+                    chain: Chain[chain],
+                    preferredWallet: ChainWallet.Metamask,
+                    airdropId: _id,
+                })
+            },
+            onError: (err: AxiosError<{ data: { message: string } }>) => {
+                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
+                console.log(err)
+            },
+        });
+
+    const handleSubmit = async () => {
+        if (handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })) {
+            await mutateAsync();
+        }
+    };
 
     const tabs = [
         {
             title: "Manual",
-            content: <ManualTransfer
-                data={manualTransferData}
-                setData={(values) => setManualTransferData(values)}
-            />
+            content: <ManualTransfer data={manualTransferData} setData={(values) => setManualTransferData(values)} />,
         },
         {
             title: "Bulk Upload",
-            content: <BulkUpload />
+            content: <BulkUpload />,
         },
     ];
 
@@ -39,34 +71,16 @@ export default function TransferModal({ onClose, isOpen }: Props) {
             modalContentProps={{
                 gap: 0,
                 paddingBlock: 0,
-                paddingBottom: { base: "16px", md: "36px" }
+                paddingBottom: { base: "16px", md: "36px" },
             }}
         >
             <Tabs isLazy={true}>
-                <ModalHeaderData
-                    modalHeaderProps={{
-                        bgColor: "#141414",
-                        paddingBlock: { md: "unset", base: "16px 0px !important" },
-                        borderBottom: "1px solid #292929",
-                        pt: { md: "48px !important", base: "16px !important" },
-                        pb: "0px !important",
-                    }}
-                    descriptionColor="#B1B1B1 !important"
-                    title="Transfer Records"
-                    {...(!isSmallerThan768 && {
-                        icon: (
-                            <ModalHeaderIconWrapper>
-                                <AppIcons.Transfer />
-                            </ModalHeaderIconWrapper>
-                        ),
-                    })}
-                    description="Send onchain records to one or multiple parties below."
-                >
+                <TransferModalHeader>
                     <ExternalLink fontSize={14} fontWeight={500} mt={2} pb={4}>
                         Download Sample Template
                     </ExternalLink>
                     <TabsList tabs={tabs} />
-                </ModalHeaderData>
+                </TransferModalHeader>
                 <ModalBody py={"16px !important"}>
                     <TabPanels>
                         {tabs.map((tab) => (
@@ -75,19 +89,7 @@ export default function TransferModal({ onClose, isOpen }: Props) {
                     </TabPanels>
                 </ModalBody>
                 <Divider borderColor={"#292929"} />
-                <ModalFooter
-                    pt={{ base: "16px !important", md: "36px !important" }}
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    gap={4}
-                >
-                    <Button width={{ base: "25%", md: "max-content" }} fontWeight={500} onClick={onClose} fontSize={14} variant="secondary">
-                        Cancel
-                    </Button>
-                    <Button width={{ base: "70%", md: "max-content" }} fontWeight={500} onClick={onClose} fontSize={14}>
-                        Validate
-                    </Button>
-                </ModalFooter>
+                <TransferModalFooter handleSubmit={handleSubmit} onClose={onClose} isLoading={isLoading} />
             </Tabs>
         </AppModal>
     );

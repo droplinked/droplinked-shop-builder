@@ -26,7 +26,6 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
         },
         retry: false,
     });
-    console.log(data)
 
     const transferData = [
         {
@@ -101,8 +100,8 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
         },
     ];
 
-    if (!isFetching && error.response.data.data.message && isError) {
-        return <AppTypography color={"#fff"} fontSize={16} fontWeight={500} textAlign={"center"}>{error.response.data.data.message}</AppTypography>
+    if (!isFetching && isError) {
+        return <AppTypography color={"#fff"} fontSize={16} fontWeight={500} textAlign={"center"}>{error.response.data.data.message ?? "Oops! Something went wrong."}</AppTypography>
     }
 
     return (
