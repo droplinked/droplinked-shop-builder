@@ -5,6 +5,7 @@ interface Props {
     tabs: Array<{
         title: string;
         content: any;
+        isDisabled?: boolean;
     }>
 }
 
@@ -30,6 +31,7 @@ export default function TabsList({ tabs }: Props) {
                         key={index}
                         width={"100%"}
                         pb={"14px"}
+                        isDisabled={tab.isDisabled}
                     >
                         {tab.title}
                     </Tab>

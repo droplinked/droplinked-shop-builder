@@ -10,7 +10,7 @@ import AppTooltip from 'components/common/tooltip/AppTooltip'
 export default function RecordItem({ item }: { item: ICombinedNft }) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { chain, imageUrl, name, ownerAddress } = item;
+    const { chain, imageUrl, name, ownerAddress } = item ?? {};
     const endCount = isSmallerThan768 ? 9 : 17;
     const walletAddress = ownerAddress?.slice(0, endCount) + "...";
 

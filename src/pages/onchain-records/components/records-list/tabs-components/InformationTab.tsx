@@ -9,7 +9,7 @@ import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDis
 
 export default function InformationTab({ item }: { item: ICombinedNft }) {
     const { getFormattedPrice } = useCurrencyConverter();
-    const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress } = item;
+    const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress } = item ?? {};
     const slicedText = (text: string) => {
         return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
     }

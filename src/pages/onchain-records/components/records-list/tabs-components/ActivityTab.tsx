@@ -1,11 +1,33 @@
 import { Flex } from "@chakra-ui/react";
-import React from "react";
-import ContainerCard from "../../ContainerCard";
-import DateFormatter from "./DateFormatter";
+import { AxiosError } from "axios";
+import AppTypography from "components/common/typography/AppTypography";
 import ExternalLink from "components/redesign/external-link/ExternalLink";
+import { getAirdropActivity } from "lib/apis/onchain-inventory/services";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
+import React from "react";
+import { useQuery } from "react-query";
+import ContainerCard from "../../ContainerCard";
+import ContainerCardSkelton from "../../records-skeleton/ContainerCardSkelton";
+import DateFormatter from "./DateFormatter";
 
 export default function ActivityTab({ item }: { item: ICombinedNft }) {
+    const { tokenId, tokenAddress, chain } = item ?? {};
+
+    const { isFetching, data, error, isError } = useQuery({
+        queryKey: ["records-activity", tokenId],
+        enabled: !!tokenId,
+        queryFn: () => getAirdropActivity({
+            chain,
+            tokenAddress,
+            tokenId,
+        }),
+        onError(err: AxiosError<{ data: { message: string } }>) {
+            console.log(err)
+        },
+        retry: false,
+    });
+    console.log(data)
+
     const transferData = [
         {
             title: "Quantity",
@@ -79,11 +101,14 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
         },
     ];
 
+    if (!isFetching && error.response.data.data.message && isError) {
+        return <AppTypography color={"#fff"} fontSize={16} fontWeight={500} textAlign={"center"}>{error.response.data.data.message}</AppTypography>
+    }
+
     return (
         <Flex flexDirection={"column"} gap={4}>
-            <ContainerCard title="Transfer" items={transferData} hasBorder={true} titleRightContent={<DateFormatter date={new Date().toISOString()} />} />
-            <ContainerCard title="Creation" items={creationData} hasBorder={true} titleRightContent={<DateFormatter date={new Date().toISOString()} />} />
-            <ContainerCard title="Airdrop" items={airdropData} hasBorder={true} titleRightContent={<DateFormatter date={new Date().toISOString()} />} />
+            {isFetching && <ContainerCardSkelton />}
+            {(!isFetching && !isError) && <ContainerCard title="Transfer" items={transferData} hasBorder={true} titleRightContent={<DateFormatter date={new Date().toISOString()} />} />}
         </Flex>
     );
 }

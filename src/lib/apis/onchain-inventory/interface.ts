@@ -5,6 +5,24 @@ export interface IGetOnchainInventoryParams {
     search?: string;
 }
 
+export interface IGetActivityParams {
+    chain: string;
+    tokenAddress: string;
+    tokenId: string;
+}
+
+export interface IGetActivityResponse {
+    id: string;
+    chain: string;
+    networkName: string;
+    receivers?: {
+        receiver: string;
+        amount: number;
+    }[];
+    status: string;
+    airdropTimestamp: string;
+}
+
 export interface IDroplinkedNftsVas {
     name: string;
     costType: string;

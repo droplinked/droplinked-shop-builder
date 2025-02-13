@@ -14,6 +14,7 @@ interface Props {
 }
 
 export default function RecordDetails({ item, isOpen, onClose }: Props) {
+    const { tokenId } = item ?? {}
 
     const tabs = [
         {
@@ -22,7 +23,8 @@ export default function RecordDetails({ item, isOpen, onClose }: Props) {
         },
         {
             title: "Activity",
-            content: <ActivityTab item={item} />
+            content: <ActivityTab item={item} />,
+            isDisabled: !tokenId
         }
     ]
 

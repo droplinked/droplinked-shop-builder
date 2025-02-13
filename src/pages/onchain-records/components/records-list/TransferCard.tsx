@@ -8,7 +8,7 @@ import TransferModal from './transfer-modal/TransferModal'
 
 export default function TransferCard({ item }: { item: ICombinedNft }) {
     const { onOpen, onClose, isOpen } = useDisclosure()
-    const { isDroplinkedProduct, name, description, imageUrl } = item;
+    const { isDroplinkedProduct, name, description, imageUrl } = item ?? {};
     const slicedDescription = description?.slice(0, 50) + (description?.length > 50 ? "..." : "");
 
     return (
