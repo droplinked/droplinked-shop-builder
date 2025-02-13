@@ -1,5 +1,4 @@
 import { PlacementWithLogical, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure, useOutsideClick } from '@chakra-ui/react'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { PropsWithChildren, useRef } from 'react'
 import ProductTypes from './ProductTypes'
 
@@ -10,28 +9,17 @@ interface Props extends PropsWithChildren {
 function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
     const popoverRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { isProductTypePopoverOpen, updateProductPageState, resetProductPageState } = useProductPageStore()
 
-    useOutsideClick({ ref: popoverRef, handler: closePopover })
-
-    function openPopover() {
-        if (isProductTypePopoverOpen) return
-        updateProductPageState("isProductTypePopoverOpen", true)
-        onOpen()
-    }
-
-    function closePopover() {
-        if (isProductTypePopoverOpen) {
-            resetProductPageState()
-            onClose()
-        }
-    }
+    useOutsideClick({
+        ref: popoverRef,
+        handler: () => isOpen && onClose()
+    })
 
     return (
         <Popover
             isOpen={isOpen}
-            onOpen={openPopover}
-            onClose={closePopover}
+            onOpen={onOpen}
+            onClose={onClose}
             placement={placement}
         >
             <PopoverTrigger>
