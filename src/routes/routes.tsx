@@ -50,7 +50,7 @@ const Rewards = lazy(() => import("pages/public-pages/rewards/rewards"));
 const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
 const AffiliateMarket = lazy(() => import("pages/redesign-affiliate/market/AffiliateMarket"));
-const AffiliateProductsSinglePage = lazy(() => import("pages/redesign-affiliate/product-page/ProductPage"));
+const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
 const AffiliateProductsLayout = lazy(() => import("pages/redesign-affiliate/products/AffiliateProductsLayout"));
 const AffiliateStores = lazy(() => import("pages/redesign-affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/redesign-affiliate/stores/profile/AffiliateStoresProfile"));
