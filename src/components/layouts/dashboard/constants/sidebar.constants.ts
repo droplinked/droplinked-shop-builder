@@ -103,7 +103,13 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         linkTo: '/rewards',
         list: []
       },
-      { title: 'Customer Support', icon: AppIcons.SidebarChat, linkTo: "#", list: [], onClick: () => window.Tawk_API.toggle() }
+      {
+        title: 'Customer Support',
+        icon: AppIcons.SidebarChat,
+        linkTo: "#",
+        list: [],
+        onClick: () => window.Tawk_API?.toggle()
+      }
     ]
   }
 ];
