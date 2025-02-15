@@ -37,7 +37,7 @@ export default function ContainerCardSkelton() {
     ];
 
     return (
-        <AppSkeleton borderRadius={8} isLoaded={false}>
+        <AppSkeleton borderRadius={16} isLoaded={false}>
             <ContainerCard title="Transfer" items={airdropData} hasBorder={true} titleRightContent={<DateFormatter date={new Date().toISOString()} />} />
         </AppSkeleton>
     )

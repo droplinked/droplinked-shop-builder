@@ -4,7 +4,7 @@ import ExternalLink from "components/redesign/external-link/ExternalLink";
 import AppModal from "components/redesign/modal/AppModal";
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
 import useAppToast from "functions/hooks/toast/useToast";
-import { createAirdropProcedure } from "lib/apis/onchain-inventory/services";
+import { createAirdropProcedure, processAirdropTransaction } from "lib/apis/onchain-inventory/services";
 import { appDevelopment } from "lib/utils/app/variable";
 import { handleValidateManualTransfer } from "pages/onchain-records/utils/helpers";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
@@ -45,11 +45,12 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
                         userAddress: ownerAddress,
                     })
                     const transfer = await provider.executeAirdrop(_id);
-                    console.log(transfer.transactionHashes)
+                    await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes });
+                    showToast({ message: "Airdrop successfully processed", type: "success" });
+                    onClose();
                 } catch (error) {
-                    console.log(error)
                     setIsExecuteLoading(false)
-                    showToast({ message: error.message || "Oops! Something went wrong", type: "error" });
+                    showToast({ message: "Oops! Something went wrong", type: "error" });
                 }
             },
             onError: (err: AxiosError<{ data: { message: string } }>) => {

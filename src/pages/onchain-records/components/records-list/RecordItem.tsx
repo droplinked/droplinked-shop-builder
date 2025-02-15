@@ -11,7 +11,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { chain, imageUrl, name, ownerAddress } = item ?? {};
-    const endCount = isSmallerThan768 ? 9 : 17;
+    const endCount = isSmallerThan768 ? 9 : 15;
     const walletAddress = ownerAddress && ownerAddress?.slice(0, endCount) + "...";
 
     return (

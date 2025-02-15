@@ -34,7 +34,14 @@ export interface ICreateAirdropResponse {
     _id: string;
     shopId: string;
     //FIXME: Fix this
-    status: "CREATED" | string;
+    status: "CREATED" | "PENDING" | "COMPLETED";
+}
+
+export interface IProcessAirdropResponse extends ICreateAirdropResponse {
+    transactions: {
+        deploy_hash: string;
+        validated: boolean;
+    }[]
 }
 
 export interface IGetActivityResponse {

@@ -58,7 +58,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                 fontWeight={500}
                 paddingInline={"14px"}
                 onClick={onOpen}
-                isDisabled={isDroplinkedProduct}
+                isDisabled={isDroplinkedProduct || item.quantity === "0"}
             >
                 Transfer
             </Button>

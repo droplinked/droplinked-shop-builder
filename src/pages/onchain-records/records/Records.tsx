@@ -15,12 +15,13 @@ export default function Records() {
     const [walletFilter, setWalletFilter] = useState(null)
     const debouncedSearch = useDebounce(searchValue, 1000)
     const { user: { wallets } } = useAppStore()
+
     const selectedWallet = useMemo(() => {
         if (!walletFilter) return null;
         return wallets.find((wallet) => wallet.address === walletFilter)
     }, [walletFilter, wallets]);
 
-    const { isFetching, data } = useQuery({
+    const { isFetching, data, refetch } = useQuery({
         queryKey: ["records", debouncedSearch, recordFilter, selectedWallet],
         queryFn: () => getOnchainInventory({
             search: searchValue ?? undefined,

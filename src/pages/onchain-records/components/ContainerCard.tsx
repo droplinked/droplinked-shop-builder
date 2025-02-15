@@ -16,7 +16,7 @@ interface Props {
 export default function ContainerCard({ items, hasBorder, title, titleRightContent, children }: Props) {
 
     return (
-        <Flex flexDirection={"column"} gap={6} border={"1px solid #292929"} borderRadius={16}>
+        <Flex width={"100%"} flexDirection={"column"} gap={6} border={"1px solid #292929"} borderRadius={16}>
             <Flex {...(hasBorder && { borderBottom: "1px solid #292929", pb: 6 })} px={6} pt={6} alignItems={"center"} justifyContent={"space-between"}>
                 <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>
                     {title}
