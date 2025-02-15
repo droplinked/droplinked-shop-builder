@@ -27,7 +27,7 @@ const DashboardLayoutSidebarGrowthHackModal = ({ section, isOpen, onClose, setCu
                   {subSection?.description}
                 </AppTypography>
                 {subSection?.link && (
-                  <DashboardLinkWrapper linkTo={subSection?.link?.linkTo} isExternalLink={subSection?.link?.isExternal}>
+                  <DashboardLinkWrapper linkTo={subSection?.link?.linkTo} isExternalLink={subSection?.link?.isExternal} onClick={subSection?.link?.onClick}>
                     <AppTypography color="#179EF8" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="500" lineHeight="24px" textDecorationLine="underline">
                       {subSection?.link?.linkTitle}
                     </AppTypography>

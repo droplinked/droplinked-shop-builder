@@ -12,7 +12,7 @@ import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';
 const SidebarItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef(null);
-  const isMdOrSmaller = useBreakpointValue({ base: false, md:true, lg: false });
+  const isMdOrSmaller = useBreakpointValue({ base: false, md: true, lg: false });
   const { shop } = useAppStore();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const SidebarItem = ({ item }) => {
   return (
     <AppAccordionItem width="100%" itemId={item.title} isCollapsable={!!item.list?.length}>
       <AppAccordionTrigger width="100%">
-        <DashboardLinkWrapper linkTo={item.linkTo}>
+        <DashboardLinkWrapper linkTo={item.linkTo} onClick={item.onClick}>
           <Flex width="100%" padding={{ base: '10px', lg: '12px' }} alignItems="center" gap="8px" _hover={{ backgroundColor: '#222' }} rounded="8px">
             {/* Sidebar Icon with Tooltip on Tablet */}
             <Box width="20px" height="20px">
