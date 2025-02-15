@@ -37,8 +37,8 @@ export default function DatePicker({
                 calendarProps={{
                     view: "month",
                     minDetail: "month",
-                    nextLabel: <AppIcons.ChevronRight />,
-                    prevLabel: <AppIcons.ChevronLeft />,
+                    nextLabel: <AppIcons.ChevronRight color="white"/>,
+                    prevLabel: <AppIcons.ChevronLeft color="white" />,
                     formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
                     locale: "en-US",
                 }}
