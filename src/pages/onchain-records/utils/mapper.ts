@@ -27,7 +27,7 @@ export const mapDroplinkedData = (droplinkedNfts: IDroplinkedNFTs): ICombinedNft
         price: droplinkedNfts.productPrice,
         sku: droplinkedNfts.skus,
         productAddress: droplinkedNfts.productAddress,
-        ownerAddress: droplinkedNfts.ownerAddress,
+        ownerAddress: undefined,
         isDroplinkedProduct: true,
         description: undefined,
         tokenAddress: undefined,

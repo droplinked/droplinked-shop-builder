@@ -12,7 +12,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { chain, imageUrl, name, ownerAddress } = item ?? {};
     const endCount = isSmallerThan768 ? 9 : 17;
-    const walletAddress = ownerAddress?.slice(0, endCount) + "...";
+    const walletAddress = ownerAddress && ownerAddress?.slice(0, endCount) + "...";
 
     return (
         <Flex flexDirection={"column"} gap={3} cursor={"pointer"} onClick={onOpen}>
