@@ -60,7 +60,7 @@ function OrderItem({ order, handleNavigation }) {
                 </Flex>
             </Flex>
 
-            <AppIcons.ChevronRight cursor="pointer" onClick={() => handleNavigation("/analytics/orders")} />
+            <AppIcons.ChevronRight color='white' cursor="pointer" onClick={() => handleNavigation("/analytics/orders")} />
         </Flex>
     )
 }

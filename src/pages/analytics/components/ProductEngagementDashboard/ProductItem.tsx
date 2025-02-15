@@ -49,7 +49,7 @@ function ProductItem({ product, isLastOne }: Props) {
                 flexShrink={0}
                 onClick={() => navigate("/analytics/products")}
             >
-                <AppIcons.ChevronRight />
+                <AppIcons.ChevronRight color="white" />
             </Box>
         </Flex>
     )
