@@ -15,6 +15,7 @@ import BulkUpload from "./bulk-upload/BulkUpload";
 import ManualTransfer from "./manual-transfer/ManualTransfer";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
+import { useOnchainRefetch } from '../../../context/OnchainRefetchContext';
 
 interface Props {
     onClose: () => void;
@@ -26,6 +27,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
     const [isExecuteLoading, setIsExecuteLoading] = useState(false);
     const { showToast } = useAppToast();
+    const { refetch } = useOnchainRefetch();
 
     const { quantity, chain, tokenAddress, tokenId, ownerAddress } = item ?? {};
     const network = appDevelopment ? "TESTNET" : "MAINNET";
@@ -47,6 +49,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
                     const transfer = await provider.executeAirdrop(_id);
                     await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes });
                     showToast({ message: "Airdrop successfully processed", type: "success" });
+                    refetch(); // Call refetch after successful transfer
                     onClose();
                 } catch (error) {
                     setIsExecuteLoading(false)

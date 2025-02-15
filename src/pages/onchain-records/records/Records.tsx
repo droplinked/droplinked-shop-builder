@@ -8,6 +8,7 @@ import { getOnchainInventory } from 'lib/apis/onchain-inventory/services';
 import useAppStore from 'lib/stores/app/appStore';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import FakeRecordsList from '../components/records-skeleton/RecordsSkeleton';
+import { OnchainRefetchProvider } from '../context/OnchainRefetchContext';
 
 export default function Records() {
     const [searchValue, setSearchValue] = useState(null)
@@ -35,18 +36,20 @@ export default function Records() {
     const hasNFT = (droplinkedNFTs?.length !== 0 || walletNFTs?.length !== 0);
 
     return (
-        <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }}>
-            <Filters
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                recordFilter={recordFilter}
-                setRecordFilter={setRecordFilter}
-                walletFilter={walletFilter}
-                setWalletFilter={setWalletFilter}
-            />
-            {(hasNFT && !isFetching) && <RecordsList droplinkedNFTs={droplinkedNFTs} walletNFTs={walletNFTs} />}
-            {(isFetching) && <FakeRecordsList />}
-            {(!hasNFT && !isFetching) && <EmptyView />}
-        </Flex>
+        <OnchainRefetchProvider refetch={refetch}>
+            <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }}>
+                <Filters
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                    recordFilter={recordFilter}
+                    setRecordFilter={setRecordFilter}
+                    walletFilter={walletFilter}
+                    setWalletFilter={setWalletFilter}
+                />
+                {(hasNFT && !isFetching) && <RecordsList droplinkedNFTs={droplinkedNFTs} walletNFTs={walletNFTs} />}
+                {(isFetching) && <FakeRecordsList />}
+                {(!hasNFT && !isFetching) && <EmptyView />}
+            </Flex>
+        </OnchainRefetchProvider>
     );
 }
