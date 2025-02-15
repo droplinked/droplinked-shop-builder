@@ -34,7 +34,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ showFilters, setShowFilters, filt
       </Button>
 
       {/* Search Input */}
-      <Flex   px="8px" py="12px" alignItems="center" fontWeight="medium" justifyContent="center" gap="8px" border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
+      <Flex px="8px" py="12px" alignItems="center" fontWeight="medium" justifyContent="center" gap="8px" border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
         <AppIcons.Search height="16px" />
         <Input
           fontSize="sm"

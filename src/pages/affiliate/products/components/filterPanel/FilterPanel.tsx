@@ -48,13 +48,13 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters
           maxHeight={isSmallScreen ? 'calc(100% - 50px)' : 'auto'}
           bg="#141414"
           zIndex={20}
-          borderLeft={'1.5px solid #292929' }
-          borderRight={'1.5px solid #292929' }
+          borderLeft={'1.5px solid #292929'}
+          borderRight={'1.5px solid #292929'}
           borderTop={isMediumScreen ? 'none' : '1.5px solid #292929'} // No top border for md
           borderBottom={isMediumScreen ? 'none' : '1.5px solid #292929'} // No bottom border for md
           borderRadius={isMediumScreen ? 0 : 8}
         >
-          <Flex alignItems="center" justifyContent="space-between" gap={6} p={4} borderBottomWidth="1px" borderBottomColor={'#292929'}>
+          <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'#292929'}>
             <AppTypography fontSize="base" fontWeight="bold" color={'white'}>
               Filters
             </AppTypography>
@@ -82,7 +82,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters
                   _hover={{ bg: '#282828' }}
                   onClick={() => setShowFilters(false)}
                 >
-                  <AppIcons.SideBarCollapse/>
+                  <AppIcons.SideBarCollapse />
                   <AppTypography color="white" fontSize="sm" fontWeight="medium" ml={2}>
                     Filters
                   </AppTypography>
@@ -91,7 +91,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters
             </HStack>
           </Flex>
           <Box flexShrink={0} padding={2}>
-            <AppAccordion multiCollapse display="flex" flexDir="column" gap="24px">
+            <AppAccordion multiCollapse display="flex" flexDir="column" gap={2}>
               {/* Type Section */}
               <FilterSection title="Type" itemId="1">
                 <CheckboxList categories={categories} filters={filters} handleFilterChange={handleFilterChange} />
