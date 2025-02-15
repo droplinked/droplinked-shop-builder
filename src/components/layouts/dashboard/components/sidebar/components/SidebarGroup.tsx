@@ -5,7 +5,7 @@ import SidebarItem from './SidebarItem';
 
 const SidebarGroup = ({ group }) => {
   return (
-    <Box width="100%" display="flex" flexDirection="column" gap="8px">
+    <Box width="232px" display="flex" flexDirection="column" gap="8px">
       {/* Sidebar Group Title */}
       <Flex height="16px" paddingLeft="12px" alignItems="center">
         <AppTypography color="#7B7B7B" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px" whiteSpace={'nowrap'} display={{ sm: 'block', md: 'none', lg: 'block' }}>
