@@ -11,7 +11,7 @@ const ProfileMenuItems = ({ profileConstants, isFetching, credit, getFormattedPr
         <DashboardLinkWrapper key={item?.title?.label} isExternalLink={item?.isExternalLink} linkTo={item?.linkTo}>
           <Box display="flex" height="52px" padding="16px" alignItems="center" gap="12px" cursor={item?.linkTo || item?.action ? 'pointer' : 'default'} onClick={() => item?.action?.()}>
             <item.icon.svg width="20px" height="20px" {...item?.title?.style} />
-            <AppTypography color="#FFF" flex="1" fontSize="14px">
+            <AppTypography color="#FFF" flex="1" fontSize="14px" {...item?.title?.style}>
               {item?.title?.label}
             </AppTypography>
             {item?.rightSide?.value && (
