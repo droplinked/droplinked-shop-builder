@@ -13,15 +13,16 @@ import { Link } from 'react-router-dom';
  * @param {string | null} linkTo - The URL to navigate to (internal or external)
  * @param {boolean} [isExternalLink] - Determines if the link is external (opens in a new tab)
  * @param {React.ReactNode} children - The content inside the link
+ * @param {() => void} [onClick] - Optional click handler for the link
  */
-const DashboardLinkWrapper = ({ linkTo, isExternalLink, children }: { linkTo: string | null; isExternalLink?: boolean; children: React.ReactNode }) => {
+const DashboardLinkWrapper = ({ linkTo, isExternalLink, children, onClick }: { linkTo: string | null; isExternalLink?: boolean; children: React.ReactNode; onClick?: () => void }) => {
   // If no link is provided, render children as-is
   if (!linkTo) return <>{children}</>;
 
   // Render a React Router Link for internal navigation
   if (!isExternalLink) {
     return (
-      <Link style={{ width: '100%' }} to={linkTo}>
+      <Link style={{ width: '100%' }} to={linkTo} onClick={onClick}>
         {children}
       </Link>
     );

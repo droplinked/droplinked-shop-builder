@@ -16,16 +16,17 @@ import { IAppTypography } from 'components/common/typography/AppTypography';
 export type SidebarItem = {
   title: string;
   icon: any;
-  linkTo: string | null;
+  linkTo?: string | null;
   list: Array<{ listTitle: string; linkTo: string }>;
+  onClick?: () => void;
 };
 
 /**
  * Represents a group of sidebar items, typically categorized under a section.
  */
-export type SidebarGroup = { 
-  group: string; 
-  items: SidebarItem[]; 
+export type SidebarGroup = {
+  group: string;
+  items: SidebarItem[];
 };
 
 /**
@@ -46,9 +47,9 @@ export type ProfileItem = {
 export type SubscriptionPlan = {
   icon: any;
   title: string;
-  rightSide: 
-    | { type: 'text'; style: IAppTypography; value: string }
-    | { type: 'button'; style: BoxProps; value: string; action: () => void };
+  rightSide:
+  | { type: 'text'; style: IAppTypography; value: string }
+  | { type: 'button'; style: BoxProps; value: string; action: () => void };
 };
 
 /**

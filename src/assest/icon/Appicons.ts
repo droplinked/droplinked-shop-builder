@@ -19,7 +19,9 @@ import { ReactComponent as AffiliateStoreInstagram } from './affiliate-store-ins
 import { ReactComponent as AffiliateStoreTiktok } from './affiliate-store-tiktok.svg';
 import { ReactComponent as AffiliateStoreTwitter } from './affiliate-store-twitter.svg';
 import { ReactComponent as AffiliateStoreYoutube } from './affiliate-store-youtube.svg';
+import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as ArrowRight } from "./arrow-right.svg";
+import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as AscSorting } from './asc-sorting.svg';
 import { ReactComponent as Asterisk } from './asterisk.svg';
@@ -113,6 +115,7 @@ import { ReactComponent as DropProduct } from './drop-product.svg';
 import { ReactComponent as DroplinkedLogo } from "./droplinked-front-logo.svg";
 import { ReactComponent as DROP_LINKED_LOGO } from './droplinked-logo.svg';
 import { ReactComponent as Droplinked } from './droplinked.svg';
+import { ReactComponent as SidebarDroplinked1 } from './droplinked1.svg';
 import { ReactComponent as EditIconWhite } from './edit-icon-white.svg';
 import { ReactComponent as EditIcon } from './edit-icon.svg';
 import { ReactComponent as EditOutlined } from './edit-outlined.svg';
@@ -138,6 +141,7 @@ import { ReactComponent as Gamification } from './gamification.svg';
 import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GatingRuleset } from './gated-ruleset.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Globe } from './globe.svg';
 import { ReactComponent as GoldenStar } from './golden-star.svg';
 import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDollar, ReactComponent as GrayDollor } from './gray-dollar.svg';
@@ -216,6 +220,7 @@ import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as Paint } from './paint.svg';
 import { ReactComponent as Param } from './param.svg';
 import { ReactComponent as PaymentMethodSelection } from './payment-method-selection.svg';
+import { ReactComponent as Paymob } from './paymob.svg';
 import { ReactComponent as Pen } from './pen.svg';
 import { ReactComponent as Personalize } from './personalize.svg';
 import { ReactComponent as Phantom } from './phantom.svg';
@@ -236,6 +241,7 @@ import { ReactComponent as ProfileSetting } from './profile-setting.svg';
 import { ReactComponent as ProfileShop } from './profile-shop.svg';
 import { ReactComponent as ProfileSupport } from './profile-support.svg';
 import { ReactComponent as ProfileSwitch } from './profile-switch.svg';
+import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 import { ReactComponent as RedAlert } from './red-alert.svg';
 import { ReactComponent as RedCircleCross } from './red-circle-cross.svg';
 import { ReactComponent as RedTrash } from './red-trash.svg';
@@ -254,6 +260,7 @@ import { ReactComponent as SearchOutlined } from './search-redesign.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Secure } from './secure.svg';
 import { ReactComponent as SelectChevronDown } from './select-chevron-down.svg';
+import { ReactComponent as SendMoney } from './send-money.svg';
 import { ReactComponent as Services } from './services.svg';
 import { ReactComponent as SettingGear } from './setting-gear.svg';
 import { ReactComponent as SettingIcon } from './setting-icon.svg';
@@ -271,7 +278,8 @@ import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.sv
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
 import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
-import { ReactComponent as SidebarDroplinked1 } from './droplinked1.svg';
+import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
@@ -321,6 +329,7 @@ import { ReactComponent as UserInvitation } from './user-invitation.svg';
 import { ReactComponent as User } from './user.svg';
 import { ReactComponent as VerticalMove } from './vertical-move.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
+import { ReactComponent as Wallet } from './wallet.svg';
 import { ReactComponent as Watch } from './watch.svg';
 import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
@@ -338,18 +347,14 @@ import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
-import { ReactComponent as Wallet } from './wallet.svg';
-import { ReactComponent as SendMoney } from './send-money.svg';
-import { ReactComponent as RecieveMoney } from './recieve-money.svg';
-import { ReactComponent as ArrowUp } from './arrow-up.svg';
-import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 import { ReactComponent as NFTIcon } from './nft.svg';
 import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
-import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
 
 
 const AppIcons = {
+  Paymob,
   ETHOutlined,
   NFTIcon,
   SendMoney,
@@ -699,7 +704,10 @@ const AppIcons = {
   TikTokOutlined,
   SidebarDashboard,
   Transfer,
-  SideBarExpand
+  SideBarExpand,
+  SideBarCollapse,
+  Globe,
+  AffiliateAddProduct
 }
 
 export default AppIcons

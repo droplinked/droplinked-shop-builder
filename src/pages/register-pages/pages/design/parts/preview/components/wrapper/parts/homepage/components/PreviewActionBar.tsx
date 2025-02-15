@@ -1,17 +1,11 @@
-import { Box, Flex } from '@chakra-ui/layout';
+import { Box, Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';
-import { designContext } from 'pages/register-pages/pages/design/design-context';
 
 const PreviewActionBar = () => {
-  const {
-    state: {
-      shop: {
-        shopDesign: { backgroundBody , foreground}
-      }
-    }
-  } = useContext(designContext);
+  const { state: { shop: { shopDesign: { backgroundBody, foreground } } } } = useContext(designContext);
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center" gap={4}>

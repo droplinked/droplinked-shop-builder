@@ -76,9 +76,9 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         icon: AppIcons.SidebarAffiliate,
         linkTo: null,
         list: [
-          { listTitle: 'Marketplace', linkTo: '/analytics/affiliate/market' },
+          // { listTitle: 'Marketplace', linkTo: '/analytics/affiliate/market' },
           { listTitle: 'Products', linkTo: '/analytics/affiliate/products' },
-          { listTitle: 'Stores', linkTo: '/analytics/affiliate/stores' }
+          // { listTitle: 'Stores', linkTo: '/analytics/affiliate/stores' }
         ]
       },
 
@@ -103,7 +103,13 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         linkTo: '/rewards',
         list: []
       },
-      { title: 'Customer Support', icon: AppIcons.SidebarChat, linkTo: '/', list: [] }
+      {
+        title: 'Customer Support',
+        icon: AppIcons.SidebarChat,
+        linkTo: "#",
+        list: [],
+        onClick: () => window.Tawk_API?.toggle()
+      }
     ]
   }
 ];

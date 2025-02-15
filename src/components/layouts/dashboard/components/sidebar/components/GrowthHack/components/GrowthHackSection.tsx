@@ -37,7 +37,7 @@ const GrowthHackSection = ({ index, section, isCompleted, setCurrentSection, set
       </AppTypography>
 
       {/* Arrow Icon */}
-      <AppIcons.SidebarChevronright />
+      <AppIcons.SidebarChevronright color='white'/>
     </Box>
   );
 };

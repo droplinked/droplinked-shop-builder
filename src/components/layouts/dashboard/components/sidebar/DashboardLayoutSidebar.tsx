@@ -26,9 +26,19 @@ const DashboardLayoutSidebar = ({ isSidebarOpen }) => {
     >
       {!isMobile && <SidebarLogo />}
 
-      <AppAccordion multiCollapse={false} width="full" padding="36px 16px" flexDirection="column" alignItems="flex-start" gap="24px" flex="1" overflow="auto">
-        {SIDEBAR_CONSTANTS?.map((sidebarGroup) => (
-          <SidebarGroup key={sidebarGroup.group} group={sidebarGroup} />
+      <AppAccordion
+        multiCollapse={false}
+        display="flex"
+        width="full"
+        padding={"36px 16px"}
+        flexDirection="column"
+        alignItems="flex-start"
+        gap="24px"
+        flex="1"
+        overflow="auto"
+      >
+        {SIDEBAR_CONSTANTS?.map((sidebarGroup, index) => (
+          <SidebarGroup key={sidebarGroup.group} group={sidebarGroup} index={index} />
         ))}
         <DashboardLayoutSidebarGrowthHack />
       </AppAccordion>

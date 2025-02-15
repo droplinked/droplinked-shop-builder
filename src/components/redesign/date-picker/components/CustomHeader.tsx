@@ -24,10 +24,10 @@ function CustomHeader({
             </Flex>
             <Flex gap={"20px"}>
                 <Box onClick={() => !prevMonthButtonDisabled && decreaseMonth()} cursor={prevMonthButtonDisabled ? "not-allowed" : "pointer"} opacity={prevMonthButtonDisabled ? "0.5" : "1"}>
-                    <AppIcons.ChevronLeft />
+                    <AppIcons.ChevronLeft color='white' />
                 </Box>
                 <Box onClick={() => !nextMonthButtonDisabled && increaseMonth()} cursor={nextMonthButtonDisabled ? "not-allowed" : "pointer"} opacity={nextMonthButtonDisabled ? "0.5" : "1"}>
-                    <AppIcons.ChevronRight />
+                    <AppIcons.ChevronRight color='white' />
                 </Box>
             </Flex>
         </Flex>

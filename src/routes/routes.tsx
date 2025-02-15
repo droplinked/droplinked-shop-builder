@@ -13,8 +13,8 @@ const Blogs = lazy(() => import("pages/blogs/Blogs"));
 const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
-const DashboardPage = lazy(() => import("pages/dashboard/DashboardPage"));
-const NewDashboard = lazy(() => import("pages/new-dashboard/Dashboard"));
+const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
+const NewDashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
@@ -49,11 +49,11 @@ const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPa
 const Rewards = lazy(() => import("pages/public-pages/rewards/rewards"));
 const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
-const AffiliateMarket = lazy(() => import("pages/redesign-affiliate/market/AffiliateMarket"));
-const AffiliateProductsSinglePage = lazy(() => import("pages/redesign-affiliate/product-page/ProductPage"));
-const AffiliateProductsLayout = lazy(() => import("pages/redesign-affiliate/products/AffiliateProductsLayout"));
-const AffiliateStores = lazy(() => import("pages/redesign-affiliate/stores/AffiliateStores"));
-const AffiliateStoresProfile = lazy(() => import("pages/redesign-affiliate/stores/profile/AffiliateStoresProfile"));
+const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
+const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
+const AffiliateProductsLayout = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
+const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
+const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
 const Admins = lazy(() => import("pages/register-pages/pages/admins/Admins"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
@@ -129,7 +129,7 @@ const router = createBrowserRouter([
             </DashboardLayout>
         ),
         children: [
-            { index: true, element: <DashboardPage /> },
+            { index: true, element: <NewAnalytics /> },
             { path: "dashboard", element: <NewDashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {

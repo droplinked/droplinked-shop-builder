@@ -1,18 +1,17 @@
-import { Image } from '@chakra-ui/image';
-import { Box, Flex, Link, List, ListItem, VStack } from '@chakra-ui/layout';
+import { Box, Flex, Image, Link, List, ListItem, VStack } from '@chakra-ui/react';
+import AppIcons from 'assest/icon/Appicons';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import designPreviewContext from '../../context';
 import PreviewActive from '../common/active/PreviewActive';
-import PreviewTypo from '../common/typo/PreviewTypo';
 import SocialMediaLinks from '../common/social-media-links/SocialMediaLinks';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import PreviewTypo from '../common/typo/PreviewTypo';
 import PreviewFooterNavigation from './PreviewFooterNavigation';
-import AppIcons from 'assest/icon/Appicons';
 
 function PreviewFooter() {
   const { shop } = useProfile();
-  const {  state: { shop: { headerIcon,shopDesign: { foreground, textColorParagraphs },  template_options }, device, optionSelected } } = useContext(designContext);
+  const { state: { shop: { headerIcon, shopDesign: { foreground, textColorParagraphs }, template_options }, device, optionSelected } } = useContext(designContext);
   const { scrollRef } = useContext(designPreviewContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
   const licenceLinks = ['Terms & Conditions', 'Returns & FAQ'];
@@ -47,10 +46,10 @@ function PreviewFooter() {
           {/* Powered by section */}
           <Flex align="center" fontSize="xs" className={'#7b7b7b'}>
             <PreviewTypo mr={2}>Powered by</PreviewTypo>
-           <AppIcons.DroplinkedLogo width={"64px"}  color={textColorParagraphs}  > </AppIcons.DroplinkedLogo> 
+            <AppIcons.DroplinkedLogo width={"64px"} color={textColorParagraphs}  > </AppIcons.DroplinkedLogo>
           </Flex>
 
-        {/*  Licence links section */}
+          {/*  Licence links section */}
           <Box mt={{ base: 2, md: 0 }} fontSize="xs">
             <List display="flex" flexWrap="wrap" alignItems="center" spacing={1}>
               {licenceLinks.map((link, index) => (

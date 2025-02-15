@@ -7,7 +7,6 @@ interface State {
     variants: any[]
     available_variants: any[]
     print_positions: any[]
-    isProductTypePopoverOpen: boolean
     editingProductId: string
     aiGenerationData: AiGenerationData
 }
@@ -25,7 +24,6 @@ const initialState: State = {
     variants: [],
     available_variants: [],
     print_positions: [],
-    isProductTypePopoverOpen: false,
     editingProductId: null,
     aiGenerationData: {},
 }

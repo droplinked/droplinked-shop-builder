@@ -8,8 +8,9 @@
         display: none;
       }
       &__calendar {
+        height: 320px !important;
         position: unset !important;
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           width: 100% !important;
         }
       }
@@ -23,9 +24,9 @@
       background-color: #1c1c1c;
       color: #fff;
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
         width: 100% !important;
-      border-radius: 0px;
+        border-radius: 0px;
       }
       &__tile {
         padding: 10px;
