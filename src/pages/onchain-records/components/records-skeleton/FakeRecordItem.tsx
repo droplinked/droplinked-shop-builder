@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { Box, Flex, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -11,12 +11,17 @@ export default function FakeRecordItem() {
 
     return (
         <Flex flexDirection={"column"} gap={3} cursor={"pointer"}>
-            <AppImage
-                borderRadius={"8px"}
-                src='https://upload-file-droplinked.s3.amazonaws.com/e1c6a3168548e724fa69574b83807d539b262af10f86a1de35683c2d0b56f0da.png'
-                alt='productImage'
-                userSelect={"none"}
-            />
+            <Box>
+                <AppImage
+                    borderRadius={"8px"}
+                    src='https://upload-file-droplinked.s3.amazonaws.com/e1c6a3168548e724fa69574b83807d539b262af10f86a1de35683c2d0b56f0da.png'
+                    alt='productImage'
+                    width={"100%"}
+                    height={"100%"}
+                    aspectRatio={1}
+                    userSelect={"none"}
+                />
+            </Box>
             <Flex justifyContent={"space-between"} alignItems={"center"}>
                 <Flex gap={2} alignItems={"center"}>
                     <AppIcons.ETHOutlined color='#6782EB' />

@@ -1,4 +1,4 @@
-import { Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react'
+import { Box, Flex, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
@@ -16,14 +16,18 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
 
     return (
         <Flex flexDirection={"column"} gap={3} cursor={"pointer"} onClick={onOpen}>
-            <AppImage
-                borderRadius={"8px"}
-                src={imageUrl}
-                alt='productImage'
-                userSelect={"none"}
-                height={{ base: "156px", md: "288px", lg: "220px", xl: "288px" }}
-                objectFit={"cover"}
-            />
+            <Box>
+                <AppImage
+                    borderRadius={"8px"}
+                    src={imageUrl}
+                    alt='productImage'
+                    width={"100%"}
+                    height={"100%"}
+                    aspectRatio={1}
+                    userSelect={"none"}
+                    objectFit={"cover"}
+                />
+            </Box>
             <Flex justifyContent={"space-between"} alignItems={"center"}>
                 <AppTooltip label={chain}>
                     <Flex gap={2} alignItems={"center"}>
