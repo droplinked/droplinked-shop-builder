@@ -15,7 +15,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ showFilters, setShowFilters, filt
     <HStack justifyContent="start" width="full" alignItems="center" spacing={3}>
       {/* Filters Toggle Button */}
       <Button
-        px="16px"
+        px="20px"
         py="12px"
         bg="#1b1b1b"
         borderRadius="lg"
@@ -28,21 +28,25 @@ const ActionBar: React.FC<ActionBarProps> = ({ showFilters, setShowFilters, filt
         onClick={() => setShowFilters((prev) => !prev)}
       >
         <AppIcons.SideBarExpand />
-        <AppTypography color="white" fontSize="sm" fontWeight="medium" ml={2}>
+        <AppTypography color="white" fontSize="16px" fontWeight="500" ml={2}>
           Filters
         </AppTypography>
       </Button>
 
       {/* Search Input */}
-      <Flex px="8px" py="12px" alignItems="center" fontWeight="medium" justifyContent="center" gap="8px" border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
+      <Flex px="8px" py="12px" alignItems="center" fontWeight="medium" justifyContent="center" gap={2} border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
         <AppIcons.Search height="16px" />
         <Input
           fontSize="sm"
           fontWeight="400"
-          color="#7B7B7B"
+          color="#fff"
           height="100%"
           border="none"
+          padding={0}
           spellCheck={false}
+          _focusVisible={{
+            border: "none"
+          }}
           _placeholder={{ color: '#7B7B7B' }}
           value={filters.title}
           placeholder="Search"
