@@ -19,10 +19,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
             chain,
             tokenAddress,
             tokenId,
-        }),
-        onError(err: AxiosError<{ data: { message: string } }>) {
-            console.log(err)
-        },
+        })
     });
 
     if (!isFetching && isError) {
@@ -32,7 +29,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
             fontWeight={500}
             textAlign={"center"}
         >
-            {error.response.data.data.message ?? "Oops! Something went wrong."}
+            {(error as AxiosError<{ data: { message: string } }>).response?.data.data.message ?? "Oops! Something went wrong."}
         </AppTypography>
     }
 

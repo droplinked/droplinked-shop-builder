@@ -4,7 +4,7 @@ import ExternalLink from "components/redesign/external-link/ExternalLink";
 import AppModal from "components/redesign/modal/AppModal";
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
 import useAppToast from "functions/hooks/toast/useToast";
-import { createAirdropProcedure, processAirdropTransaction } from "lib/apis/onchain-inventory/services";
+import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "lib/apis/onchain-inventory/services";
 import { appDevelopment } from "lib/utils/app/variable";
 import { handleValidateManualTransfer } from "pages/onchain-records/utils/helpers";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
@@ -16,6 +16,7 @@ import ManualTransfer from "./manual-transfer/ManualTransfer";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
 import { useOnchainRefetch } from '../../../context/OnchainRefetchContext';
+import SampleFile from "./sample/Template.csv"
 
 interface Props {
     onClose: () => void;
@@ -25,6 +26,7 @@ interface Props {
 
 export default function TransferModal({ onClose, isOpen, item }: Props) {
     const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
+    const [file, setFile] = useState<File>(null)
     const [isExecuteLoading, setIsExecuteLoading] = useState(false);
     const { showToast } = useAppToast();
     const { refetch } = useOnchainRefetch();
@@ -33,7 +35,22 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     const network = appDevelopment ? "TESTNET" : "MAINNET";
     const web3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET);
 
-    const { mutateAsync, isLoading } = useMutation(() =>
+    const { mutateAsync: importCSV, isLoading: isImportLoading } = useMutation(() => {
+        const formData = new FormData();
+        formData.append("file", file);
+        return uploadWalletsCSV(formData);
+    },
+        {
+            onSuccess(data) {
+                setManualTransferData(data.data.receivers);
+            },
+            onError(err: AxiosError<{ data: { message: string } }>) {
+                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
+            },
+        }
+    );
+
+    const { mutateAsync: createAirdrop, isLoading: isCreateLoading } = useMutation(() =>
         createAirdropProcedure({ chain, network, receivers: manualTransferData, tokenAddress, tokenId }),
         {
             onSuccess: async ({ data }) => {
@@ -58,13 +75,18 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
             },
             onError: (err: AxiosError<{ data: { message: string } }>) => {
                 showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
-                console.log(err)
             },
         });
 
-    const handleSubmit = async () => {
-        if (handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })) {
-            await mutateAsync();
+    const handleSubmit = async (selectedIndex: number, setSelectedIndex: (index: number) => void) => {
+        if (selectedIndex === 0) {
+            if (handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })) {
+                await createAirdrop();
+            }
+        } else {
+            await importCSV();
+            setSelectedIndex(0);
+            setFile(null);
         }
     };
 
@@ -80,7 +102,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         },
         {
             title: "Bulk Upload",
-            content: <BulkUpload />,
+            content: <BulkUpload file={file} setFile={setFile} />,
         },
     ];
 
@@ -95,7 +117,13 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         >
             <Tabs isLazy={true}>
                 <TransferModalHeader>
-                    <ExternalLink fontSize={14} fontWeight={500} mt={2} pb={4}>
+                    <ExternalLink href={SampleFile}
+                        width={"max-content"}
+                        fontSize={14}
+                        fontWeight={500}
+                        mt={2}
+                        pb={4}
+                    >
                         Download Sample Template
                     </ExternalLink>
                     <TabsList tabs={tabs} />
@@ -108,7 +136,11 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
                     </TabPanels>
                 </ModalBody>
                 <Divider borderColor={"#292929"} />
-                <TransferModalFooter handleSubmit={handleSubmit} onClose={onClose} isLoading={isLoading || isExecuteLoading} />
+                <TransferModalFooter
+                    handleSubmit={handleSubmit}
+                    onClose={onClose}
+                    isLoading={isCreateLoading || isExecuteLoading || isImportLoading}
+                />
             </Tabs>
         </AppModal>
     );

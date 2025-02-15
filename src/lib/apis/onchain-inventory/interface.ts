@@ -44,6 +44,13 @@ export interface IProcessAirdropResponse extends ICreateAirdropResponse {
     }[]
 }
 
+export interface IUploadWalletCSVResponse {
+    receivers: {
+        receiver: string;
+        amount: number;
+    }[]
+}
+
 export interface IGetActivityResponse {
     id: string;
     chain: string;

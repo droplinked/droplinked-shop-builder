@@ -1,14 +1,16 @@
-import { Flex, ModalFooter } from '@chakra-ui/react'
+import { Flex, ModalFooter, useTabsContext } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 
 interface Props {
     onClose: () => void;
-    handleSubmit: () => void;
+    handleSubmit: (tabIndex: number, setSelectedIndex: (index: number) => void) => void;
     isLoading: boolean;
 }
 
 export default function TransferModalFooter({ onClose, handleSubmit, isLoading }: Props) {
+    const { setSelectedIndex, selectedIndex } = useTabsContext()
+
     return (
         <ModalFooter
             pt={{ base: "16px !important", md: "36px !important" }}
@@ -30,7 +32,7 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                 <Button
                     width={{ base: "70%", md: "max-content" }}
                     fontWeight={500}
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit(selectedIndex, setSelectedIndex)}
                     fontSize={14}
                     isLoading={isLoading}
                 >

@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { ICreateAirdropParams, ICreateAirdropResponse, IGetActivityParams, IGetActivityResponse, IGetOnchainInventoryParams, IGetOnchainInventoryResponse, IProcessAirdropResponse } from "./interface";
+import { ICreateAirdropParams, ICreateAirdropResponse, IGetActivityParams, IGetActivityResponse, IGetOnchainInventoryParams, IGetOnchainInventoryResponse, IProcessAirdropResponse, IUploadWalletCSVResponse } from "./interface";
 
 export const getOnchainInventory = (params: IGetOnchainInventoryParams = {}) => {
     const queryParams = new URLSearchParams(
@@ -23,4 +23,12 @@ export const createAirdropProcedure = (data: ICreateAirdropParams) => {
 
 export const processAirdropTransaction = ({ id, transactionHashes }: { id: string, transactionHashes: string[] }) => {
     return axiosInstance.post<IProcessAirdropResponse>(`nfts/airdrop/${id}`, transactionHashes)
+}
+
+export const uploadWalletsCSV = (formData: FormData) => {
+    return axiosInstance.post<IUploadWalletCSVResponse>("/nfts/import-wallets", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
 }

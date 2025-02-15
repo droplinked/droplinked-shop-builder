@@ -3,18 +3,22 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import FileUpload from 'components/redesign/file-upload/FileUpload'
-import React, { useState } from 'react'
+import React from 'react'
 import { FilePreview } from './FilePreview'
 
-export default function BulkUpload() {
-    const [file, setFile] = useState<File>(null)
+interface Props {
+    file: File;
+    setFile: (file: File) => void;
+}
+
+export default function BulkUpload({ file, setFile }: Props) {
 
     return (
         <Flex flexDirection={"column"} gap={{ base: 4, md: 6, lg: 9 }}>
             <FileUpload
                 onFileChange={(file) => setFile(file)}
-                accept={{ 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }}
-                dropDescription='CSV, XLS or XLSX (Up to 1MB)'
+                accept={{ 'text/csv': ['.csv'] }}
+                dropDescription='CSV (Up to 1MB)'
                 icon={<AppIcons.Document />}
                 boxProps={{
                     padding: 12
