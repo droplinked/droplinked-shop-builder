@@ -12,7 +12,7 @@ function DoubleColumnContainer({ children, ...rest }: Props) {
             {...rest}
         >
             {Children.map(children, (child) => (
-                <Flex flex={{ base: "1", md: "0.5" }}>
+                <Flex width={"100%"} flex={{ base: "1", md: "0.5" }}>
                     {child}
                 </Flex>
             ))}

@@ -20,6 +20,9 @@ function ProductEngagementDashboard() {
     return (
         <DoubleColumnContainer alignItems="start">
             <SectionContainer
+                boxProps={{
+                    height: "460px"
+                }}
                 title="Best Selling Products"
                 onLinkClick={() => navigate('/analytics/products')}
             >
@@ -29,7 +32,12 @@ function ProductEngagementDashboard() {
                 }
             </SectionContainer>
 
-            <SectionContainer title="Most Imported Products">
+            <SectionContainer
+                boxProps={{
+                    height: "460px"
+                }}
+                title="Most Imported Products"
+            >
                 {isFetching
                     ? <ProductsListLoading />
                     : <MostImportedProductsList />

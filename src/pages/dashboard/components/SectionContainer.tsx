@@ -1,19 +1,21 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, BoxProps, Flex, Text } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import React, { PropsWithChildren } from "react";
 
 export interface SectionContainerProps extends PropsWithChildren {
     title: string
-    onLinkClick?: () => void
+    onLinkClick?: () => void,
+    boxProps?: BoxProps,
 }
 
-function SectionContainer({ title, onLinkClick, children }: SectionContainerProps) {
+function SectionContainer({ title, onLinkClick, children, boxProps }: SectionContainerProps) {
     return (
         <Box
             flex={1}
             border="1px solid #292929"
             borderRadius={16}
             overflow="hidden"
+            {...boxProps}
         >
             {/* Header with Title and Link */}
             <Flex
