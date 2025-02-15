@@ -6,7 +6,7 @@ import SidebarItem from './SidebarItem';
 const SidebarGroup = ({ group, index }) => {
   return (
     <Box
-      width="232px"
+      width={{ base: "232px", md: "min-content", lg: "232px" }}
       display={"flex"}
       flexDirection="column"
       gap={{ base: "8px", md: "unset", lg: "8px" }}
@@ -26,7 +26,7 @@ const SidebarGroup = ({ group, index }) => {
 
       {/* Sidebar Items */}
       {group.items?.map((item) => (
-        <VStack key={item.title} gap={{ base: "8px", md: "4px", lg: "8px" }}>
+        <VStack key={item.title} gap={{ base: "8px", md: "4px", lg: "8px" }} width={{ base: "100%", md: "min-content", lg: "100%" }}>
           <SidebarItem item={item} />
         </VStack>
       ))}
