@@ -26,7 +26,7 @@ function ResourceItem({ title, description, link, isLastItem }: ResourceItemProp
             </Flex>
 
             <button onClick={() => window.open(link)}>
-                <AppIcons.ChevronRight />
+                <AppIcons.ChevronRight color="white"/>
             </button>
         </Flex>
     )

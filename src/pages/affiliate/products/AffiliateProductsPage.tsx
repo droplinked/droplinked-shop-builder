@@ -5,9 +5,8 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import ActionBar from './components/ActionBar';
 import AffiliateProductList from './components/AffiliateProductList';
-import AnimatedFiltersPanel from './components/filterPanel/AnimatedFiltersPanel';
-import { IAffiliateProductsCategory, ProductContext } from './context/context';
 import FiltersPanel from './components/filterPanel/FilterPanel';
+import { IAffiliateProductsCategory, ProductContext } from './context/context';
 
 const INITIAL_FILTERS: IGetProductsCommunityService = {
   limit: 20,

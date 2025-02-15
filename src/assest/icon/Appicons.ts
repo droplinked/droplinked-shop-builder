@@ -279,6 +279,7 @@ import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
 import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
 import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
@@ -699,6 +700,7 @@ const AppIcons = {
   SidebarDashboard,
   Transfer,
   SideBarExpand,
+  SideBarCollapse,
   Globe,
   AffiliateAddProduct
 }

@@ -1,5 +1,5 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import AffiliateProductCard from 'pages/affiliate/components/AffiliateProductCard';
+import AffiliateProductCard from 'pages/affiliate/components/AffiliateProductCard/AffiliateProductCard';
 import AffiliateProductCardPlaceholder from 'pages/affiliate/components/AffiliateProductCardPlaceholder';
 
 import React from 'react';

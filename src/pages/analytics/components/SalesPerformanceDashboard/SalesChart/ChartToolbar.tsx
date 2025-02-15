@@ -56,13 +56,13 @@ export default function ChartToolbar() {
 
             <Flex gap={4}>
                 <DateRangeNavButton onClick={handlePrevClick} isDisabled={!isValidRange}>
-                    <AppIcons.ChevronLeft />
+                    <AppIcons.ChevronLeft color='white' />
                     Prev
                 </DateRangeNavButton>
 
                 <DateRangeNavButton onClick={handleNextClick} isDisabled={!isValidRange || isNextDisabled}>
                     Next
-                    <AppIcons.ChevronRight />
+                    <AppIcons.ChevronRight color='white' />
                 </DateRangeNavButton>
             </Flex>
         </Flex>

@@ -1,5 +1,5 @@
 import { Box, SimpleGrid, Text } from '@chakra-ui/react';
-import AffiliateProductCard from './AffiliateProductCard';
+import AffiliateProductCard from './AffiliateProductCard/AffiliateProductCard';
 import AffiliateProductCardPlaceholder from './AffiliateProductCardPlaceholder';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -21,7 +21,7 @@ const ProductsGridRenderer = ({ data, fetchNextPage, hasNextPage, isLoading, isE
 
   if (isLoading) {
     return (
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, '2xl': 4 }} spacing="16px" width="full">
+      <SimpleGrid columns={{ base: 4, lg: 3, xl: 4}} spacing="16px" width="full">
         {Array(4)
           .fill(0)
           .map((_, index) => (
@@ -44,7 +44,7 @@ const ProductsGridRenderer = ({ data, fetchNextPage, hasNextPage, isLoading, isE
         next={fetchNextPage}
         hasMore={!!hasNextPage}
         loader={
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, '2xl': 4 }} spacing="16px" width="full">
+          <SimpleGrid columns={{ base: 4, lg: 3, xl: 4}} spacing="16px" width="full">
             {Array(4)
               .fill(0)
               .map((_, index) => (
@@ -53,7 +53,7 @@ const ProductsGridRenderer = ({ data, fetchNextPage, hasNextPage, isLoading, isE
           </SimpleGrid>
         }
       >
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 2, lg: 2, xl: 3, '2xl': 4 }} spacing="16px" width="full">
+        <SimpleGrid columns={{ base: 4, lg: 3, xl: 4}} spacing="16px" width="full">
           {products.map((product) => (
             <AffiliateProductCard key={product.slug} product={product} />
           ))}

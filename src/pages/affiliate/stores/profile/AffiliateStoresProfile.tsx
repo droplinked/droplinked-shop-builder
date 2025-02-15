@@ -2,8 +2,8 @@ import { Box, Flex, Link, SimpleGrid, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
-import { getNewShopsService, getShopCommunityProfile } from 'lib/apis/shop/shopServices';
-import AffiliateProductCard from 'pages/affiliate/components/AffiliateProductCard';
+import { getShopCommunityProfile } from 'lib/apis/shop/shopServices';
+import AffiliateProductCard from 'pages/affiliate/components/AffiliateProductCard/AffiliateProductCard';
 import AffiliateProductCardPlaceholder from 'pages/affiliate/components/AffiliateProductCardPlaceholder';
 
 import React from 'react';

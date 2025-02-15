@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, IconButton, useBreakpointValue } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion';
 import { IGetProductsCommunityService } from 'lib/apis/product/interfaces';
@@ -19,27 +19,76 @@ interface FiltersPanelProps {
 
 const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters, filters, handleFilterChange, categories }) => {
   const isSmallScreen = useBreakpointValue({ base: true, lg: false });
+  const isMediumScreen = useBreakpointValue({ base: false, md: true, lg: false });
+
+  const resetFilters = () => {
+    const defaultFilters = {
+      lowestPrice: '',
+      highestPrice: '',
+      lowestCommission: '',
+      highestCommission: '',
+      categoryIds: [] as string[]
+    };
+
+    // Reset each filter
+    Object.keys(defaultFilters).forEach((key) => {
+      handleFilterChange(key as keyof IGetProductsCommunityService, defaultFilters[key as keyof IGetProductsCommunityService]);
+    });
+  };
 
   return (
     <>
       {showFilters && (
         <Box
-          position={isSmallScreen ? 'absolute' : 'sticky'}
-          top={{ base: 0, md: '80px' }}
+          position={isSmallScreen ? 'fixed' : isMediumScreen ? 'absolute' : 'sticky'}
+          top={isMediumScreen ? '75px' : undefined} // Top positioning for absolute in md
           bottom={0}
-          left={0}
-          width="380px"
+          left={isMediumScreen ? '78px' : 0}
+          width={isMediumScreen ? '272px' : isSmallScreen ? '100%' : '380px'} // Adjust width for md and lg
+          maxHeight={isSmallScreen ? 'calc(100% - 50px)' : 'auto'}
           bg="#141414"
-          boxShadow="lg"
           zIndex={20}
-          border="1.5px solid #292929"
-          borderRadius={8}
+          borderLeft={'1.5px solid #292929' }
+          borderRight={'1.5px solid #292929' }
+          borderTop={isMediumScreen ? 'none' : '1.5px solid #292929'} // No top border for md
+          borderBottom={isMediumScreen ? 'none' : '1.5px solid #292929'} // No bottom border for md
+          borderRadius={isMediumScreen ? 0 : 8}
         >
           <Flex alignItems="center" justifyContent="space-between" gap={6} p={4} borderBottomWidth="1px" borderBottomColor={'#292929'}>
             <AppTypography fontSize="base" fontWeight="bold" color={'white'}>
               Filters
             </AppTypography>
-            <AppIcons.Refresh width="12px" height="12px" color={'white'}></AppIcons.Refresh>
+            <HStack spacing={2}>
+              <IconButton
+                aria-label="Refresh Fillter"
+                icon={<AppIcons.Refresh2 width="16px" height="16px" />}
+                onClick={resetFilters}
+                _hover={{ backgroundColor: '#222' }}
+                backgroundColor="#1C1C1C"
+                color="white"
+                border="1px solid #3C3C3C"
+              />
+              {isMediumScreen && (
+                <Button
+                  px="16px"
+                  py="12px"
+                  bg="#1b1b1b"
+                  borderRadius="lg"
+                  border="1px solid"
+                  borderColor="#282828"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  _hover={{ bg: '#282828' }}
+                  onClick={() => setShowFilters(false)}
+                >
+                  <AppIcons.SideBarCollapse/>
+                  <AppTypography color="white" fontSize="sm" fontWeight="medium" ml={2}>
+                    Filters
+                  </AppTypography>
+                </Button>
+              )}
+            </HStack>
           </Flex>
           <Box flexShrink={0} padding={2}>
             <AppAccordion multiCollapse display="flex" flexDir="column" gap="24px">
