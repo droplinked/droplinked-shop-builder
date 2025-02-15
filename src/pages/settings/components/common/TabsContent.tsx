@@ -33,21 +33,23 @@ function TabsContent() {
         },
     ];
 
-    return <AppTab
-        tabs={tabs}
-        isDisabled={isSubmitting}
-        tabListStyle={{
-            overflowY: "hidden",
-            sx: {
-                scrollbarWidth: 'none',
-                '::-webkit-scrollbar': {
-                    display: 'none',
-                },
-            }
-        }}
-        tabStyle={{ minWidth: { base: "13rem", lg: "unset" } }}
-        tabsStyle={{ marginBottom: dirty ? { base: "15rem", lg: "8rem" } : "unset" }}
-    />;
+    return (
+        <AppTab
+            tabs={tabs}
+            isDisabled={isSubmitting}
+            tabListStyle={{
+                overflowY: "hidden",
+                sx: {
+                    scrollbarWidth: 'none',
+                    '::-webkit-scrollbar': {
+                        display: 'none',
+                    },
+                }
+            }}
+            tabStyle={{ minWidth: { base: "13rem", lg: "unset" } }}
+            tabsStyle={{ marginBottom: dirty ? { base: "15rem", lg: "8rem" } : "unset" }}
+        />
+    );
 }
 
 export default TabsContent;
