@@ -65,6 +65,7 @@
 		"react-modal": "^3.14.4",
 		"react-qr-code": "^2.0.15",
 		"react-query": "^3.39.3",
+		"react-responsive-carousel": "^3.2.23",
 		"react-router-dom": "^6.2.2",
 		"react-scripts": "5.0.0",
 		"react-scroll-parallax": "^3.4.2",
