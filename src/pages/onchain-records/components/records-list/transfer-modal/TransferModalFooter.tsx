@@ -36,7 +36,7 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                     fontSize={14}
                     isLoading={isLoading}
                 >
-                    Validate
+                    {selectedIndex === 1 ? "Upload" : "Validate"}
                 </Button>
             </Flex>
         </ModalFooter>
