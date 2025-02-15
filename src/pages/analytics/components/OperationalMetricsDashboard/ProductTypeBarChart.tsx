@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, SimpleGrid, Text } from "@chakra-ui/react"
+import { Box, Circle, Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
@@ -12,6 +12,8 @@ const BADGE_COLORS: Record<string, string> = {
 }
 
 export default function ProductTypeBarChart({ productTypes }: { productTypes: ProductBreakdown[] }) {
+    const [isSmallerThan1440] = useMediaQuery("(max-width: 1440px)")
+
     return (
         <Flex direction="column" gap={6} padding={{ base: 4, lg: 6 }}>
             <Flex gap="6px">
@@ -32,7 +34,7 @@ export default function ProductTypeBarChart({ productTypes }: { productTypes: Pr
 
             <SimpleGrid
                 alignItems="start"
-                columns={{ base: 1, md: 2 }}
+                columns={isSmallerThan1440 ? 1 : 2}
                 columnGap={14}
                 rowGap={4}
             >
