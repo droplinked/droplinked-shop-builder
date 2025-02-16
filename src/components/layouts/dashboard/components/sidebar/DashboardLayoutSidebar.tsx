@@ -7,15 +7,15 @@ import SidebarGroup from './components/SidebarGroup';
 import SidebarLogo from './components/SidebarLogo';
 
 const DashboardLayoutSidebar = ({ isSidebarOpen }) => {
-  const sidebarWidth = useBreakpointValue({ base: '72px', lg: '288px' });
-  const sibarMobileWidth = isSidebarOpen ? '288px' : '0';
+  const sidebarWidth = useBreakpointValue({ base: '72px', lg: '270px' });
+  const sidebarMobileWidth = isSidebarOpen ? '270px' : '0';
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   if (isMobile && !isSidebarOpen) return null;
 
   return (
     <Flex
-      width={isMobile ? sibarMobileWidth : sidebarWidth}
+      width={isMobile ? sidebarMobileWidth : sidebarWidth}
       height="100vh"
       flexDirection="column"
       alignItems="flex-start"

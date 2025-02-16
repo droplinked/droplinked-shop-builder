@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const navigate = useNavigate();
 
   // Determine if padding should be applied based on the route
-  const unneededPaddingRoutes = ['account-settings', 'credits-and-activity'];
+  const unneededPaddingRoutes = ['account-settings', 'credits-and-activity', 'onchain-records'];
   const shouldApplyPadding = !unneededPaddingRoutes.some((path) => location.includes(path));
   const isMobile = useBreakpointValue({ base: true, md: false });
   // Reference for detecting clicks outside the sidebar
