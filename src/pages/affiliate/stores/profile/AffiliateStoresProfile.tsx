@@ -1,10 +1,9 @@
-import { Box, Flex, Link, SimpleGrid, VStack } from '@chakra-ui/react';
+import { Box, Flex, Link, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
 import { getShopCommunityProfile } from 'lib/apis/shop/shopServices';
-import AffiliateProductCard from 'pages/affiliate/components/AffiliateProductCard/AffiliateProductCard';
-import AffiliateProductCardPlaceholder from 'pages/affiliate/components/AffiliateProductCardPlaceholder';
+import ProductsGridRenderer from 'pages/affiliate/components/ProductsGridRenderer';
 
 import React from 'react';
 import { useQuery } from 'react-query';
@@ -67,41 +66,7 @@ const AffiliateStoresProfile = () => {
           </Flex>
         </Box>
       </Box>
-      <SimpleGrid columns={{ base: 1, sm: 1, md: 2, lg: 3, xl: 4, '2xl': 4 }} spacing={'24px'} width="full">
-        {isLoadingStore
-          ? Array(4)
-              .fill(0)
-              .map((_, index) => (
-                <Box
-                  key={`skeleton-${index}`}
-                  display={{
-                    base: index < 1 ? 'block' : 'none',
-                    sm: index < 1 ? 'block' : 'none',
-                    md: index < 2 ? 'block' : 'none',
-                    lg: index < 3 ? 'block' : 'none',
-                    xl: index < 4 ? 'block' : 'none',
-                    '2xl': index < 4 ? 'block' : 'none'
-                  }}
-                >
-                  <AffiliateProductCardPlaceholder />
-                </Box>
-              ))
-          : storeProfile?.products?.map((product, index) => (
-              <Box
-                key={product.slug}
-                display={{
-                  base: index < 1 ? 'block' : 'none',
-                  sm: index < 1 ? 'block' : 'none',
-                  md: index < 2 ? 'block' : 'none',
-                  lg: index < 3 ? 'block' : 'none',
-                  xl: index < 4 ? 'block' : 'none',
-                  '2xl': index < 4 ? 'block' : 'none'
-                }}
-              >
-                <AffiliateProductCard product={product} />
-              </Box>
-            ))}
-      </SimpleGrid>
+      <ProductsGridRenderer data={storeProfile} fetchNextPage={undefined} hasNextPage={undefined} isLoading={isLoadingStore} isError={undefined}></ProductsGridRenderer>
     </Box>
   );
 };
