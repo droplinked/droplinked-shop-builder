@@ -22,7 +22,7 @@ export default function Records() {
         return wallets.find((wallet) => wallet.address === walletFilter)
     }, [walletFilter, wallets]);
 
-    const { isFetching, data, refetch } = useQuery({
+    const { isFetching, data, refetch, isError } = useQuery({
         queryKey: ["records", debouncedSearch, recordFilter, selectedWallet],
         queryFn: () => getOnchainInventory({
             search: searchValue ?? undefined,
@@ -46,7 +46,7 @@ export default function Records() {
                     walletFilter={walletFilter}
                     setWalletFilter={setWalletFilter}
                 />
-                {(hasNFT && !isFetching) && <RecordsList droplinkedNFTs={droplinkedNFTs} walletNFTs={walletNFTs} />}
+                {(hasNFT && !isFetching && !isError) && <RecordsList droplinkedNFTs={droplinkedNFTs} walletNFTs={walletNFTs} />}
                 {(isFetching) && <FakeRecordsList />}
                 {(!hasNFT && !isFetching) && <EmptyView />}
             </Flex>

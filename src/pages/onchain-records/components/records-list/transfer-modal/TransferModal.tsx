@@ -43,6 +43,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         {
             onSuccess(data) {
                 setManualTransferData(data.data.receivers);
+                createAirdrop();
             },
             onError(err: AxiosError<{ data: { message: string } }>) {
                 showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
@@ -78,15 +79,17 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
             },
         });
 
-    const handleSubmit = async (selectedIndex: number, setSelectedIndex: (index: number) => void) => {
+    const handleSubmit = async (selectedIndex: number) => {
+        //if we selected manual transfer
         if (selectedIndex === 0) {
-            if (handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })) {
+            const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })
+            if (isValid) {
                 await createAirdrop();
             }
-        } else {
+        }
+        //if we selected bulk upload
+        else {
             await importCSV();
-            setSelectedIndex(0);
-            setFile(null);
         }
     };
 

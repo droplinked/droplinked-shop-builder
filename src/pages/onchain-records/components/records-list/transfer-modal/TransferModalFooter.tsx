@@ -4,12 +4,12 @@ import React from 'react'
 
 interface Props {
     onClose: () => void;
-    handleSubmit: (tabIndex: number, setSelectedIndex: (index: number) => void) => void;
+    handleSubmit: (selectedIndex: number) => void;
     isLoading: boolean;
 }
 
 export default function TransferModalFooter({ onClose, handleSubmit, isLoading }: Props) {
-    const { setSelectedIndex, selectedIndex } = useTabsContext()
+    const { selectedIndex } = useTabsContext()
 
     return (
         <ModalFooter
@@ -32,7 +32,7 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                 <Button
                     width={{ base: "70%", md: "max-content" }}
                     fontWeight={500}
-                    onClick={() => handleSubmit(selectedIndex, setSelectedIndex)}
+                    onClick={() => handleSubmit(selectedIndex)}
                     fontSize={14}
                     isLoading={isLoading}
                 >

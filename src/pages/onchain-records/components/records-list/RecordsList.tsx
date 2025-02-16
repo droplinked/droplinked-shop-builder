@@ -12,8 +12,8 @@ interface Props {
 
 export default function RecordsList({ droplinkedNFTs, walletNFTs }: Props) {
     const combinedNFTs: ICombinedNft[] = [
-        ...droplinkedNFTs.map((item) => mapDroplinkedData(item)),
-        ...walletNFTs.map((item) => mapWalletData(item))
+        ...droplinkedNFTs?.map((item) => mapDroplinkedData(item)),
+        ...walletNFTs?.map((item) => mapWalletData(item))
     ];
     const [isSmallerThan425px] = useMediaQuery("(max-width: 425px)");
 
