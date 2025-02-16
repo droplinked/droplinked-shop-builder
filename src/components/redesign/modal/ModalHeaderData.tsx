@@ -18,15 +18,15 @@ function ModalHeaderData({ icon, descriptionColor, title, description, backgroun
             css={{ p: { color: 'white' } }}
         >
             <Flex justifyContent="space-between">
-                {icon ? icon : <Text fontSize={24} fontWeight={700}>{title}</Text>}
+                {icon ? icon : <Text fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>}
                 <ModalCloseButton position="static" color="white" />
             </Flex>
 
             {icon && (
-                <Text mt={6} mb={description ? 0 : 2} fontSize={24} fontWeight={700}>{title}</Text>
+                <Text mt={6} mb={description ? 0 : 2} fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>
             )}
 
-            {description && <Text {...descriptionColor && { color: descriptionColor }} mt={2} fontSize={16}>{description}</Text>}
+            {description && <Text {...descriptionColor && { color: descriptionColor }} mt={2} fontSize={{ base: 14, md: 16 }}>{description}</Text>}
 
             {children}
         </ModalHeader>

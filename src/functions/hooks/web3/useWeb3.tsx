@@ -1,55 +1,54 @@
 import useAppStore, { IUserWalletsProps } from 'lib/stores/app/appStore';
 import { appDevelopment } from 'lib/utils/app/variable';
-import { getNetworkProvider } from 'lib/utils/chains/chainProvider';
 import web3Model, { IAcceptData, IrecordBatch, IRecordPrams, IRequestData } from './models';
 import { DropWeb3, Network, Chain, Web3Actions, ChainWallet } from 'droplinked-web3';
 
 // method: "record" | "request" | "accept"
 export type IWeb3 =
 	| {
-			method: 'record';
-			params: IRecordPrams | any;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'record';
+		params: IRecordPrams | any;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'request';
-			params: IRequestData;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'request';
+		params: IRequestData;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'accept';
-			params: IAcceptData;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission?: number;
-			royalty?: number;
-			product?: any;
-			shop?: any;
-	  }
+		method: 'accept';
+		params: IAcceptData;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission?: number;
+		royalty?: number;
+		product?: any;
+		shop?: any;
+	}
 	| {
-			method: 'record_batch';
-			params: IrecordBatch | any;
-			chain: string;
-			stack: any;
-			wallets: Array<IUserWalletsProps>;
-			commission: number;
-			royalty: number;
-			product: any;
-			shop: any;
-	  };
+		method: 'record_batch';
+		params: IrecordBatch | any;
+		chain: string;
+		stack: any;
+		wallets: Array<IUserWalletsProps>;
+		commission: number;
+		royalty: number;
+		product: any;
+		shop: any;
+	};
 
 interface IGetChain {
 	chain: string;
@@ -89,6 +88,7 @@ const useAppWeb3 = () => {
 					const provider = web3.web3Instance({
 						method: Web3Actions.LOGIN,
 						preferredWallet: ChainWallet.Metamask,
+						chain: chain as Chain
 					});
 
 					const accountInfo = await provider.walletLogin();
