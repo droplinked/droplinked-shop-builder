@@ -19,7 +19,8 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
             chain,
             tokenAddress,
             tokenId,
-        })
+        }),
+        retry: false,
     });
 
     if (!isFetching && isError) {

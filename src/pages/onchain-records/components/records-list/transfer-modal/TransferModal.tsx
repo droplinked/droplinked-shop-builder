@@ -42,8 +42,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     },
         {
             onSuccess(data) {
-                setManualTransferData(data.data.receivers);
-                createAirdrop();
+                createAirdrop({ receivers: data.data.receivers });
             },
             onError(err: AxiosError<{ data: { message: string } }>) {
                 showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
@@ -51,8 +50,15 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         }
     );
 
-    const { mutateAsync: createAirdrop, isLoading: isCreateLoading } = useMutation(() =>
-        createAirdropProcedure({ chain, network, receivers: manualTransferData, tokenAddress, tokenId }),
+    const { mutateAsync: createAirdrop, isLoading: isCreateLoading } = useMutation(
+        (variables: { receivers?: typeof manualTransferData }) =>
+            createAirdropProcedure({
+                chain,
+                network,
+                receivers: variables.receivers,
+                tokenAddress,
+                tokenId
+            }),
         {
             onSuccess: async ({ data }) => {
                 try {
@@ -84,7 +90,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         if (selectedIndex === 0) {
             const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })
             if (isValid) {
-                await createAirdrop();
+                await createAirdrop({ receivers: manualTransferData });
             }
         }
         //if we selected bulk upload

@@ -5,6 +5,8 @@ import { formatDate, getTime } from 'pages/onchain-records/utils/helpers'
 import React from 'react'
 
 export default function DateFormatter({ date }: { date: string }) {
+    if (!date) return null
+
     return (
         <Flex gap={2} alignItems='center' sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}>
             <AppTypography
@@ -12,7 +14,7 @@ export default function DateFormatter({ date }: { date: string }) {
                 fontSize={14}
                 fontWeight={500}
             >
-                {formatDate(new Date(date).toISOString())}
+                {formatDate(date)}
             </AppTypography>
             <AppIcons.DotSpacer />
             <AppTypography
@@ -20,7 +22,7 @@ export default function DateFormatter({ date }: { date: string }) {
                 fontSize={14}
                 fontWeight={500}
             >
-                {getTime(new Date(date).toISOString())}
+                {getTime((date))}
             </AppTypography>
         </Flex>
     )
