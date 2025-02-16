@@ -5,17 +5,26 @@ import Button from "components/redesign/button/Button";
 import React from "react";
 
 interface Props {
-    handleSelectItem?: (item: string) => void;
-    isLoading?: boolean;
+    handleSelectItem: (item: string) => void;
+    handleTryAgain: () => void;
+    handleRevert: () => void;
+    isImproveLoading?: boolean;
     isLoaded?: boolean;
     isDisabled?: boolean;
     BoxStyles?: ChakraProps;
-    handleTryAgain?: () => void;
-    handleRevert?: () => void;
 }
 
-export default function ImproveWithAi({ handleSelectItem, isLoading, isLoaded, BoxStyles, handleTryAgain, handleRevert, isDisabled }: Props) {
+export default function ImproveWithAi({
+    handleSelectItem,
+    handleTryAgain,
+    handleRevert,
+    isImproveLoading,
+    isDisabled,
+    isLoaded,
+    BoxStyles
+}: Props) {
     const { onOpen, isOpen, onClose } = useDisclosure();
+
     const items = [
         {
             icon: <AppIcons.Light />,
@@ -43,22 +52,42 @@ export default function ImproveWithAi({ handleSelectItem, isLoading, isLoaded, B
         },
     ]
 
+    const buttons = [
+        {
+            title: "Revert",
+            icon: <AppIcons.Refresh2 />,
+            color: "#fff",
+            onClick: handleRevert
+        },
+        {
+            title: "Try Again",
+            icon: <AppIcons.Refresh />,
+            color: "#2BCFA1",
+            onClick: handleTryAgain
+        }
+    ]
+
     return (
         <Flex {...BoxStyles}>
             {isLoaded ? (
                 <Flex width={"100%"} borderRadius={4} border={"1px solid #292929"} background={"#1c1c1c"}>
-                    <Flex px={3} py={2} alignItems={"center"} color={"#fff"} gap={1.5} cursor={"pointer"} onClick={handleRevert}>
-                        <AppIcons.Refresh2 />
-                        <AppTypography fontSize={12} fontWeight={500}>
-                            Revert
-                        </AppTypography>
-                    </Flex>
-                    <Flex px={3} py={2} alignItems={"center"} color={"#2BCFA1"} borderLeft={"1px solid #292929"} gap={1.5} cursor={"pointer"} onClick={handleTryAgain}>
-                        <AppIcons.Refresh />
-                        <AppTypography fontSize={12} fontWeight={500}>
-                            Try Again
-                        </AppTypography>
-                    </Flex>
+                    {buttons.map((item, index) => {
+                        return (
+                            <Flex
+                                {...index === 0 && { borderRight: "1px solid #292929" }}
+                                px={3} py={2}
+                                alignItems={"center"} gap={1.5}
+                                color={item.color}
+                                cursor={"pointer"}
+                                onClick={item.onClick}
+                            >
+                                {item.icon}
+                                <AppTypography fontSize={12} fontWeight={500} width={"max-content"}>
+                                    {item.title}
+                                </AppTypography>
+                            </Flex>
+                        )
+                    })}
                 </Flex>
             ) : (
                 <Menu isOpen={isOpen} onClose={onClose} placement="end" isLazy>
@@ -72,16 +101,27 @@ export default function ImproveWithAi({ handleSelectItem, isLoading, isLoaded, B
                             fontSize={12}
                             fontWeight={500}
                             color={"#2bcfa1"}
-                            isDisabled={isLoading || isDisabled}
+                            isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<AppIcons.MagicWind width={"16px"} height={"16px"} />}
                         >
-                            {!isLoading && "Improve With AI"}
+                            {!isImproveLoading && "Improve With AI"}
                         </Button>
                     </MenuButton>
                     <MenuList zIndex={9999} borderRadius={8} background={"#1C1C1C"} border={"none"} p={3} minWidth={"150px"}>
                         {items.map((item, index) => {
                             return (
-                                <MenuItem display={"flex"} alignItems={"center"} gap={1} background={"transparent"} color={"#fff"} px={3} py={2} fontSize={12} fontWeight={500} _hover={{ background: "#292929", borderRadius: 8 }} key={item.title} onClick={() => handleSelectItem(item.title)}>
+                                <MenuItem
+                                    key={item.title}
+                                    px={3} py={2}
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    gap={1}
+                                    background={"transparent"}
+                                    color={"#fff"}
+                                    fontSize={12} fontWeight={500}
+                                    _hover={{ background: "#292929", borderRadius: 8 }}
+                                    onClick={() => handleSelectItem(item.title)}
+                                >
                                     {item.icon}
                                     {item.title}
                                 </MenuItem>
