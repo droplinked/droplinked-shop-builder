@@ -17,47 +17,61 @@ interface AppTabProps {
     tabStyle?: TabProps;
 }
 
+const defaultStyles = {
+    border: {
+        borderColor: "#292929",
+    },
+    tab: {
+        focus: {
+            background: "transparent",
+            borderBottom: "1px solid #fff",
+        },
+        selected: {
+            borderBottom: "1px solid #fff",
+            color: "#fff",
+            fontWeight: 500
+        },
+        default: {
+            px: 6,
+            py: 4,
+            color: "#7b7b7b",
+            fontWeight: 400,
+            fontSize: 14,
+        }
+    }
+} as const;
+
 function AppTab({
     tabs,
     isDisabled = false,
-    isLazy,
+    isLazy = false,
     tabsStyle,
     tabListStyle,
     tabPanelStyle,
     tabPanelsStyle,
     tabStyle
 }: AppTabProps) {
-
-    // TODO: Set default value for isLazy directly in destructuring: e.g., isLazy = false.
-    // TODO: Extract repeated inline styles (like borderBottom) into separate constants or a styles object for consistency.
-
     return (
         <Tabs
             variant="unstyled"
             width="100%"
-            borderTop="1px solid #292929"
+            borderTop={`1px solid ${defaultStyles.border.borderColor}`}
             borderBottom="none"
-            isLazy={isLazy || false}  // TODO: Remove this fallback; default value should be set in destructuring.
-            {...tabsStyle}           // TODO: Ensure tabsStyle spreading is necessary. Make sure it doesn't override essential props unintentionally.
+            isLazy={isLazy}
+            {...tabsStyle}
         >
-            <TabList borderBottom="1px solid #292929" {...tabListStyle}>
+            <TabList
+                borderBottom={`1px solid ${defaultStyles.border.borderColor}`}
+                {...tabListStyle}
+            >
                 {tabs.map((tab, index) => (
-                    // TODO: Extract this Tab rendering logic into a new CustomTab component for cleaner code
                     <Tab
                         key={index}
                         isDisabled={isDisabled}
-                        aria-selected="false"  // TODO: Remove `aria-selected`, Chakra UI handles this internally.
-                        _focusWithin={{
-                            background: "transparent",
-                            borderBottom: "1px solid #fff",
-                        }}
-                        _selected={{
-                            borderBottom: "1px solid #fff",
-                            color: "#fff",
-                        }}
-                        px={6}
-                        py={4}
-                        {...tabStyle}  // TODO: Ensure tabStyle prop is being spread intentionally.
+                        _focusWithin={defaultStyles.tab.focus}
+                        _selected={defaultStyles.tab.selected}
+                        {...defaultStyles.tab.default}
+                        {...tabStyle}
                     >
                         {tab.title}
                     </Tab>
