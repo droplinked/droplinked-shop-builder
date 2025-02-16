@@ -3,30 +3,25 @@ import { useMutation } from 'react-query';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { improveTitle, improveDescription } from 'lib/apis/ai/services';
 import useProductPageStore from '../stores/ProductPageStore';
+import useProductForm from './useProductForm';
 
-interface UseImproveAIProps {
-    fieldValue: string;
-    title?: string;
-    onSuccess: (newValue: string) => void;
-    type: 'title' | 'description';
-}
-
-export const useImproveAI = ({ fieldValue, title, onSuccess, type }: UseImproveAIProps) => {
+export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
     const [revertData, setRevertData] = useState("");
-    const { isAiGenerateLoading } = useProductPageStore()
+    const { isAiGenerateLoading } = useProductPageStore();
+    const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
         (tone: string) => {
             if (type === 'title') {
-                return improveTitle({ title: fieldValue, tone });
+                return improveTitle({ title, tone });
             }
-            return improveDescription({ description: fieldValue, title, tone });
+            return improveDescription({ description, title, tone });
         },
         {
             onSuccess: (response) => {
-                onSuccess(response.data);
+                setFieldValue(type, response.data);
             },
             onError: () => {
                 showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" });
@@ -36,14 +31,14 @@ export const useImproveAI = ({ fieldValue, title, onSuccess, type }: UseImproveA
 
     const handleSelectItem = async (item: string) => {
         setSelectedItem(item);
-        setRevertData(fieldValue);
+        setRevertData(type === "title" ? title : description);
         await mutateAsync(item.toUpperCase());
     };
 
     const handleTryAgain = () => mutateAsync(selectedItem.toUpperCase());
 
     const handleRevert = () => {
-        onSuccess(revertData);
+        setFieldValue(type, revertData);
         setSelectedItem("");
     };
 

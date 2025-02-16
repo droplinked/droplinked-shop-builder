@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useRef, useEffect } from 'react'
@@ -14,12 +14,7 @@ function ProductDescription() {
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
     const { isAiGenerateLoading } = useProductPageStore()
     const editorRef = useRef(null);
-    const improveAI = useImproveAI({
-        fieldValue: description,
-        title,
-        onSuccess: (newValue) => setFieldValue("description", newValue),
-        type: 'description'
-    });
+    const improveAI = useImproveAI({ type: 'description' });
 
     useEffect(() => {
         if (editorRef.current) {
@@ -89,7 +84,7 @@ function ProductDescription() {
                             bottom: 2,
                             right: 2
                         }}
-                        isDisabled={!description}
+                        isDisabled={!description && !title}
                         {...improveAI}
                     />
                 </Flex>

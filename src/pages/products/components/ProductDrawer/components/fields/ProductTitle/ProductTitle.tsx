@@ -8,11 +8,7 @@ import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 function ProductTitle() {
     const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
     const { isAiGenerateLoading } = useProductPageStore()
-    const improveAI = useImproveAI({
-        fieldValue: title,
-        onSuccess: (newValue) => setFieldValue("title", newValue),
-        type: 'title'
-    });
+    const improveAI = useImproveAI({ type: 'title' });
 
     const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
 

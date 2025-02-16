@@ -9,6 +9,7 @@ interface State {
     print_positions: any[]
     editingProductId: string
     isAiGenerateLoading: boolean
+    isGenerateDisabled: boolean
 }
 
 interface Action {
@@ -24,6 +25,7 @@ const initialState: State = {
     print_positions: [],
     editingProductId: null,
     isAiGenerateLoading: false,
+    isGenerateDisabled: false,
 }
 
 const useProductPageStore = create<State & Action>((set) => ({
