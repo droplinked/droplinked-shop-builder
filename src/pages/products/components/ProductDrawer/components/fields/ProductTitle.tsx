@@ -2,7 +2,7 @@ import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
-import ImproveWithAi from '../../common/ImproveWithAi'
+import ImproveWithAi from '../common/ImproveWithAi'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 
 function ProductTitle() {
