@@ -1,7 +1,7 @@
 export interface SelectItem {
     label: string
     labelDescription?: string
-    value: string
+    value: string | boolean
 }
 
 export interface SelectMenuProps {

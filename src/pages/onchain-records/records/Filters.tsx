@@ -32,7 +32,7 @@ export default function Filters({
         },
         {
             label: "Droplinked Records",
-            value: "DROPLINKED_RECORDS"
+            value: true
         }
     ]
 
