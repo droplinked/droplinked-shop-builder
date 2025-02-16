@@ -8,7 +8,7 @@ import useProductForm from './useProductForm';
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
     const [revertData, setRevertData] = useState("");
-    const { isAiGenerateLoading } = useProductPageStore();
+    const { isAiGenerateLoading, updateProductPageState } = useProductPageStore();
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
 
@@ -20,10 +20,16 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
             return improveDescription({ description, title, tone });
         },
         {
+            onMutate() {
+                updateProductPageState("isGenerateDisabled", true);
+                setRevertData(type === "title" ? title : description);
+            },
             onSuccess: (response) => {
                 setFieldValue(type, response.data);
+                updateProductPageState("isGenerateDisabled", false);
             },
             onError: () => {
+                updateProductPageState("isGenerateDisabled", false);
                 showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" });
             }
         }
@@ -31,7 +37,6 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
 
     const handleSelectItem = async (item: string) => {
         setSelectedItem(item);
-        setRevertData(type === "title" ? title : description);
         await mutateAsync(item.toUpperCase());
     };
 
