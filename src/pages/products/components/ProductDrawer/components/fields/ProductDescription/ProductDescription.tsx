@@ -5,29 +5,28 @@ import React, { useRef, useEffect } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import classes from './ProductDescription.module.scss'
 import AnimatedBox from '../../common/AnimatedBox'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import './loading.css'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 import ImproveWithAi from '../../common/ImproveWithAi'
 
 function ProductDescription() {
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
-    const { isAiGenerateLoading } = useProductPageStore()
     const editorRef = useRef(null);
     const improveAI = useImproveAI({ type: 'description' });
+    const { isImproveLoading } = improveAI
 
     useEffect(() => {
         if (editorRef.current) {
             const body = document.querySelector('.tox-edit-area');
             if (body) {
-                if (isAiGenerateLoading || improveAI.isImproveLoading) {
+                if (isImproveLoading) {
                     body.classList.add('loading');
                 } else {
                     body.classList.remove('loading');
                 }
             }
         }
-    }, [isAiGenerateLoading, improveAI.isImproveLoading]);
+    }, [isImproveLoading]);
 
     return (
         <ProductFieldWrapper
@@ -36,7 +35,7 @@ function ProductDescription() {
             errorMessage={errors.description}
         >
             <AnimatedBox flexProps={{
-                ...isAiGenerateLoading ?
+                ...isImproveLoading ?
                     {
                         _before: {
                             width: "calc(100% + 0.5px) !important",
