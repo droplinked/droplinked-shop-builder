@@ -2,7 +2,7 @@ import AppIcons from 'assest/icon/Appicons'
 import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useCallback } from 'react'
 
-function ClipboardText({ text }: { text: string }) {
+function ClipboardText({ text, iconStyles }: { text: string, iconStyles?: React.CSSProperties }) {
     const { showToast } = useAppToast()
 
     const handleClick = useCallback(() => {
@@ -10,7 +10,7 @@ function ClipboardText({ text }: { text: string }) {
         showToast({ message: 'Copied', type: "success", options: { autoClose: 200, hideProgressBar: true } })
     }, [])
 
-    return <AppIcons.Copy style={{ cursor: "pointer" }} onClick={handleClick} />
+    return <AppIcons.Copy style={{ cursor: "pointer", ...iconStyles }} onClick={handleClick} />
 }
 
 export default ClipboardText

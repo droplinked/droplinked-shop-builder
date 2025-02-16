@@ -10,43 +10,67 @@ interface AppTabProps {
     tabs: TabItem[];
     isDisabled?: boolean;
     isLazy?: boolean;
-    tabsStyle?: Omit<TabsProps, 'children'>,
-    tabListStyle?: TabListProps,
-    tabPanelsStyle?: TabPanelsProps,
-    tabPanelStyle?: TabPanelProps,
-    tabStyle?: TabProps,
+    tabsStyle?: Omit<TabsProps, 'children'>;
+    tabListStyle?: TabListProps;
+    tabPanelsStyle?: TabPanelsProps;
+    tabPanelStyle?: TabPanelProps;
+    tabStyle?: TabProps;
 }
 
-function AppTab({ tabs, isDisabled = false, isLazy, tabsStyle, tabListStyle, tabPanelStyle, tabPanelsStyle, tabStyle }: AppTabProps) {
+const defaultStyles = {
+    border: {
+        borderColor: "#292929",
+    },
+    tab: {
+        focus: {
+            background: "transparent",
+            borderBottom: "1px solid #fff",
+        },
+        selected: {
+            borderBottom: "1px solid #fff",
+            color: "#fff",
+            fontWeight: 500
+        },
+        default: {
+            px: 6,
+            py: 4,
+            color: "#7b7b7b",
+            fontWeight: 400,
+            fontSize: 14,
+        }
+    }
+} as const;
+
+function AppTab({
+    tabs,
+    isDisabled = false,
+    isLazy = false,
+    tabsStyle,
+    tabListStyle,
+    tabPanelStyle,
+    tabPanelsStyle,
+    tabStyle
+}: AppTabProps) {
     return (
         <Tabs
-            variant={"unstyled"}
-            width={"100%"}
-            borderTop={"1px solid #292929"}
-            borderBottom={"none"}
-            isLazy={isLazy || false}
+            variant="unstyled"
+            width="100%"
+            borderTop={`1px solid ${defaultStyles.border.borderColor}`}
+            borderBottom="none"
+            isLazy={isLazy}
             {...tabsStyle}
         >
-            <TabList borderBottom={"1px solid #292929"} {...tabListStyle}>
+            <TabList
+                borderBottom={`1px solid ${defaultStyles.border.borderColor}`}
+                {...tabListStyle}
+            >
                 {tabs.map((tab, index) => (
                     <Tab
                         key={index}
                         isDisabled={isDisabled}
-                        aria-selected={"false"}
-                        _focusWithin={{
-                            background: "transparent",
-                            borderBottom: "1px solid #fff",
-                        }}
-                        _selected={{
-                            borderBottom: `1px solid #fff`,
-                            color: "#fff",
-                            fontWeight: 500
-                        }}
-                        px={6}
-                        py={4}
-                        color={"#7b7b7b"}
-                        fontWeight={400}
-                        fontSize={14}
+                        _focusWithin={defaultStyles.tab.focus}
+                        _selected={defaultStyles.tab.selected}
+                        {...defaultStyles.tab.default}
                         {...tabStyle}
                     >
                         {tab.title}

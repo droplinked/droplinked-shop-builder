@@ -1,8 +1,8 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, FlexProps } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from "react"
 
-interface Props {
+interface Props extends FlexProps {
     title: string;
     description?: string;
     badge?: React.ReactNode;
@@ -10,9 +10,15 @@ interface Props {
     children: React.ReactNode;
 }
 
-function SectionContainer({ title, badge, rightContent, description, children }: Props) {
+function SectionContainer({ title, badge, rightContent, description, children, ...props }: Props) {
     return (
-        <Flex my={{ base: "24px", md: "36px", lg: "48px" }} width={"100%"} flexDirection={"column"}>
+        <Flex
+            my={{ base: "24px", md: "36px", lg: "48px" }}
+            width={"100%"}
+            flexDirection={"column"}
+            px={{ base: 4, md: 6 }}
+            {...props}
+        >
             <Flex justifyContent={"space-between"} width={"100%"}>
                 <Flex gap={4} alignItems={"center"}>
                     <AppTypography fontSize={{ base: "18px", md: "20px" }} fontWeight={700} color={"#fff"}>{title}</AppTypography>

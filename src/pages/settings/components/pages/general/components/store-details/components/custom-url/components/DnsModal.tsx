@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
@@ -33,11 +33,6 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
     })
     const { NS_records, domain_name } = data?.dnsData ?? {}
 
-    const handleCopyLink = (dns: string, index: number) => {
-        navigator.clipboard.writeText(dns)
-        showToast({ type: "success", message: `DNS ${index} copied successfully` })
-    }
-
     return (
         <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
             <ModalHeaderData
@@ -54,7 +49,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                                     <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>DNS {index}</AppTypography>
                                     <Flex gap={4}>
                                         <AppTypography fontSize={"14px"} color={"#fff"}>{record}</AppTypography>
-                                        <AppIcons.Copy style={{ cursor: "pointer" }} onClick={() => handleCopyLink(record, index)} />
+                                        <ClipboardText text={record} />
                                     </Flex>
                                 </Flex>
                             )
