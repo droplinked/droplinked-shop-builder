@@ -52,22 +52,42 @@ export default function ImproveWithAi({
         },
     ]
 
+    const buttons = [
+        {
+            title: "Revert",
+            icon: <AppIcons.Refresh2 />,
+            color: "#fff",
+            onClick: handleRevert
+        },
+        {
+            title: "Try Again",
+            icon: <AppIcons.Refresh />,
+            color: "#2BCFA1",
+            onClick: handleTryAgain
+        }
+    ]
+
     return (
         <Flex {...BoxStyles}>
             {isLoaded ? (
                 <Flex width={"100%"} borderRadius={4} border={"1px solid #292929"} background={"#1c1c1c"}>
-                    <Flex px={3} py={2} alignItems={"center"} color={"#fff"} gap={1.5} cursor={"pointer"} onClick={handleRevert}>
-                        <AppIcons.Refresh2 />
-                        <AppTypography fontSize={12} fontWeight={500}>
-                            Revert
-                        </AppTypography>
-                    </Flex>
-                    <Flex px={3} py={2} width={"6.6rem"} alignItems={"center"} color={"#2BCFA1"} borderLeft={"1px solid #292929"} gap={1.5} cursor={"pointer"} onClick={handleTryAgain}>
-                        <AppIcons.Refresh />
-                        <AppTypography fontSize={12} fontWeight={500}>
-                            Try Again
-                        </AppTypography>
-                    </Flex>
+                    {buttons.map((item, index) => {
+                        return (
+                            <Flex
+                                {...index === 0 && { borderRight: "1px solid #292929" }}
+                                px={3} py={2}
+                                alignItems={"center"} gap={1.5}
+                                color={item.color}
+                                cursor={"pointer"}
+                                onClick={item.onClick}
+                            >
+                                {item.icon}
+                                <AppTypography fontSize={12} fontWeight={500} width={"max-content"}>
+                                    {item.title}
+                                </AppTypography>
+                            </Flex>
+                        )
+                    })}
                 </Flex>
             ) : (
                 <Menu isOpen={isOpen} onClose={onClose} placement="end" isLazy>
@@ -90,7 +110,18 @@ export default function ImproveWithAi({
                     <MenuList zIndex={9999} borderRadius={8} background={"#1C1C1C"} border={"none"} p={3} minWidth={"150px"}>
                         {items.map((item, index) => {
                             return (
-                                <MenuItem display={"flex"} alignItems={"center"} gap={1} background={"transparent"} color={"#fff"} px={3} py={2} fontSize={12} fontWeight={500} _hover={{ background: "#292929", borderRadius: 8 }} key={item.title} onClick={() => handleSelectItem(item.title)}>
+                                <MenuItem
+                                    key={item.title}
+                                    px={3} py={2}
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    gap={1}
+                                    background={"transparent"}
+                                    color={"#fff"}
+                                    fontSize={12} fontWeight={500}
+                                    _hover={{ background: "#292929", borderRadius: 8 }}
+                                    onClick={() => handleSelectItem(item.title)}
+                                >
                                     {item.icon}
                                     {item.title}
                                 </MenuItem>
