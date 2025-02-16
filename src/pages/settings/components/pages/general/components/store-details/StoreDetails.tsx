@@ -8,7 +8,7 @@ import CustomURL from './components/custom-url/CustomURL'
 
 export default function StoreDetails() {
     return (
-        <SectionContainer title="Store Details">
+        <SectionContainer title="Store Details" px={{ base: 4, md: 6 }}>
             <StoreURL />
             <StoreName />
             <EmailAddress />
