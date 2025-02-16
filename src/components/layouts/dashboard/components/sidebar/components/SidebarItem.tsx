@@ -1,4 +1,4 @@
-import { Box, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Portal, useBreakpointValue } from '@chakra-ui/react';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import { AppAccordionChevron, AppAccordionItem, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion';
@@ -47,15 +47,19 @@ const SidebarItem = ({ item }) => {
                         </AppTooltip>
                       </span>
                     </PopoverTrigger>
-                    <PopoverContent w="300px" h="168px" paddingTop="30px  " border="none" boxShadow="none" bg="transparent" zIndex={9999999}>
-                      <PopoverBody>
-                        <SidebarSubmenuTooltip title={item.title} items={item.list} />
-                      </PopoverBody>
-                    </PopoverContent>
+                    <Portal>
+                      <PopoverContent w="300px" h="168px" paddingTop="30px  " border="none" boxShadow="none" bg="transparent" zIndex={9999999}>
+                        <PopoverBody>
+                          <SidebarSubmenuTooltip title={item.title} items={item.list} />
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Portal>
                   </div>
                 </Popover>
               ) : (
-                <item.icon color="#FFF" />
+                <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="#1C1C1C" ml={4} color="white">
+                  <item.icon color="#FFF" />
+                </AppTooltip>
               )}
             </Box>
 
