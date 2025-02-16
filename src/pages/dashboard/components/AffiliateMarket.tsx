@@ -9,7 +9,7 @@ function AffiliateMarket() {
     return (
         <SectionContainer
             title='Affiliate'
-            onLinkClick={() => navigate("/analytics/affiliate/market")}
+            onLinkClick={() => navigate("/analytics/affiliate/products")}
         >
             <AffiliateEmptyState />
         </SectionContainer>

@@ -8,7 +8,7 @@ function AffiliateEmptyState() {
             title='Grow with droplinked!'
             description='Invite customers and activate partners to accelerate sales'
             linkText='Affiliate Market'
-            linkTo='/analytics/affiliate/market'
+            linkTo='/analytics/affiliate/products'
         />
     )
 }
