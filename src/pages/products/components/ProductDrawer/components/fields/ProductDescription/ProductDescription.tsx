@@ -1,31 +1,38 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Box } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useRef, useEffect } from 'react'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
-import ImproveDescription from './ImproveDescription'
 import classes from './ProductDescription.module.scss'
 import AnimatedBox from '../../common/AnimatedBox'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import './loading.css'
+import { useImproveAI } from 'pages/products/hooks/useImproveAI'
+import ImproveWithAi from '../../common/ImproveWithAi'
 
 function ProductDescription() {
-    const { values: { description }, errors, setFieldValue } = useProductForm()
-    const { aiGenerationData: { isDescriptionLoading } } = useProductPageStore()
+    const { values: { description, title }, errors, setFieldValue } = useProductForm()
+    const { isAiGenerateLoading } = useProductPageStore()
     const editorRef = useRef(null);
+    const improveAI = useImproveAI({
+        fieldValue: description,
+        title,
+        onSuccess: (newValue) => setFieldValue("description", newValue),
+        type: 'description'
+    });
 
     useEffect(() => {
         if (editorRef.current) {
             const body = document.querySelector('.tox-edit-area');
             if (body) {
-                if (isDescriptionLoading) {
+                if (isAiGenerateLoading || improveAI.isImproveLoading) {
                     body.classList.add('loading');
                 } else {
                     body.classList.remove('loading');
                 }
             }
         }
-    }, [isDescriptionLoading]);
+    }, [isAiGenerateLoading, improveAI.isImproveLoading]);
 
     return (
         <ProductFieldWrapper
@@ -34,7 +41,7 @@ function ProductDescription() {
             errorMessage={errors.description}
         >
             <AnimatedBox flexProps={{
-                ...isDescriptionLoading ?
+                ...isAiGenerateLoading ?
                     {
                         _before: {
                             width: "calc(100% + 0.5px) !important",
@@ -76,7 +83,15 @@ function ProductDescription() {
                             content_style: 'body { font-family: Helvetica,Arial,sans-serif; font-size: 14px; background: #141414; } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before { color: #777 }',
                         }}
                     />
-                    <ImproveDescription />
+                    <ImproveWithAi
+                        BoxStyles={{
+                            position: "absolute",
+                            bottom: 2,
+                            right: 2
+                        }}
+                        isDisabled={!description}
+                        {...improveAI}
+                    />
                 </Flex>
             </AnimatedBox>
         </ProductFieldWrapper>

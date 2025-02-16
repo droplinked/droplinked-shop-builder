@@ -2,11 +2,17 @@ import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
-import ImproveTitle from './ImproveTitle'
+import ImproveWithAi from '../../common/ImproveWithAi'
+import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 
 function ProductTitle() {
     const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
-    const { aiGenerationData: { isTitleLoading } } = useProductPageStore()
+    const { isAiGenerateLoading } = useProductPageStore()
+    const improveAI = useImproveAI({
+        fieldValue: title,
+        onSuccess: (newValue) => setFieldValue("title", newValue),
+        type: 'title'
+    });
 
     const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
 
@@ -25,12 +31,15 @@ function ProductTitle() {
                 padding: "8px 8px 8px 16px",
             }}
             rightElement={
-                <ImproveTitle />
+                <ImproveWithAi
+                    isDisabled={!title}
+                    {...improveAI}
+                />
             }
             message={errors.title}
             maxCharacters={100}
             {...errors.title && { state: "error" }}
-            {...isTitleLoading && { showAnimatedLoading: true }}
+            {...(isAiGenerateLoading || improveAI.isImproveLoading) && { showAnimatedLoading: true }}
         />
     )
 }

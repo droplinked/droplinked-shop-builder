@@ -11,23 +11,16 @@ import AnimatedBox from './AnimatedBox'
 
 function GenerateWithAI() {
     const { values: { media }, setFieldValue } = useProductForm()
-    const { updateAiGenerationData, aiGenerationData, setGenerateTitleDescriptionLoading } = useProductPageStore()
+    const { updateProductPageState, isAiGenerateLoading } = useProductPageStore()
     const { showToast } = useAppToast()
     const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
         {
             onMutate() {
-                setGenerateTitleDescriptionLoading(true)
-                setFieldValue("title", "")
-                setFieldValue("description", "")
+                updateProductPageState('isAiGenerateLoading', true)
             },
             onSuccess: (response) => {
                 const { description, title } = response.data;
-                updateAiGenerationData({
-                    ...aiGenerationData,
-                    description: description,
-                    title: title,
-                })
-                setGenerateTitleDescriptionLoading(false)
+                updateProductPageState('isAiGenerateLoading', false)
                 setFieldValue("title", title)
                 setFieldValue("description", description)
             },
@@ -42,7 +35,7 @@ function GenerateWithAI() {
         mutateAsync({ imageUrl: mainImage.url })
     }
 
-    const isDisabled = media.length === 0 || aiGenerationData.isDescriptionLoading || aiGenerationData.isTitleLoading;
+    const isDisabled = media.length === 0 || isAiGenerateLoading;
 
     return (
         <AnimatedBox isDisabled={isDisabled} onClick={handleMutate}>
