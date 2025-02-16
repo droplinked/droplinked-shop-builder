@@ -349,6 +349,8 @@ import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
+import { ReactComponent as SearchInput} from './square-with-slash.svg'
+import { ReactComponent as FilterAction} from './action-filter.svg'
 
 const AppIcons = {
   Paymob,
@@ -702,7 +704,9 @@ const AppIcons = {
   SideBarExpand,
   SideBarCollapse,
   Globe,
-  AffiliateAddProduct
+  AffiliateAddProduct,
+  SearchInput,
+  FilterAction
 }
 
 export default AppIcons
