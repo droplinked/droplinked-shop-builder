@@ -1,4 +1,4 @@
-import { Checkbox, Flex, MenuItem } from "@chakra-ui/react"
+import { Box, Checkbox, Flex, MenuItem } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
 import useCreditStore from "pages/credits-and-activity/stores/CreditStore"
 import React from "react"
@@ -9,7 +9,8 @@ export function DesktopMenuItem({ label, value }) {
     const isSelected = value === selectedFilter
     const updateCreditState = useCreditStore(state => state.updateCreditState)
 
-    const handleSelectItem = () => {
+    const handleSelectItem = (e: React.MouseEvent) => {
+        e.preventDefault();
         updateCreditState('selectedFilter', isSelected ? null : value)
     }
 
@@ -34,10 +35,12 @@ export function DesktopMenuItem({ label, value }) {
             {...styles.menuItem}
         >
             <Flex gap={3} alignItems="center">
-                <Checkbox
-                    isChecked={isSelected}
-                    {...getCheckboxStyles(isSelected)}
-                />
+                <Box onClick={handleSelectItem}>
+                    <Checkbox
+                        isChecked={isSelected}
+                        {...getCheckboxStyles(isSelected)}
+                    />
+                </Box>
                 <AppTypography color="#FFF" fontSize={16} fontWeight={400}>
                     {label}
                 </AppTypography>
