@@ -22,11 +22,11 @@ function AffiliateProductsSinglePage({ isPublic = false }) {
 
   return (
     <Flex  flexDirection={'column'} alignItems="center" justifyContent="center" width="full" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
-      <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: '24px', lg: '56px' }} width="full" mb={"80px"}>
-        <Box width={{ base: '100%', lg: '40%' }}>
+      <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: '24px', lg: '56px' }} width="full" mb={"80px"}>
+        <Box >
           <ProductSlider product={productData} />
         </Box>
-        <Box width={{ base: '100%', lg: '60%' }}>
+        <Box >
           <ProductDetails product={productData} />
         </Box>
       </Flex>

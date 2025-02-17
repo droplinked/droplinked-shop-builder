@@ -37,7 +37,7 @@ const ProductDescription: React.FC<any> = ({ product }) => {
     <>
       <Box
         as="nav"
-        w="103%"
+        w="100%"
         position="relative"
         borderBottom="1px solid #292929"
         borderTop="1px solid #292929"
