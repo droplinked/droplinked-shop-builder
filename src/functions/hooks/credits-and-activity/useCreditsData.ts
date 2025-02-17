@@ -3,17 +3,17 @@ import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/
 import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 
 export default function useCreditsData() {
-    const { date, selectedFilter } = useCreditStore()
+    const { date, selectedFilter, updateCreditState } = useCreditStore()
 
     const analyticsQuery = useQuery({
         queryKey: ["credit-analytics", date],
         queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
         onSuccess: (data) => {
-            useCreditStore.getState().updateCreditState('analyticsData', data?.data?.data)
-            useCreditStore.getState().updateCreditState('isFetching', false)
+            updateCreditState('analyticsData', data?.data?.data)
+            updateCreditState('isFetching', false)
         },
         onError: () => {
-            useCreditStore.getState().updateCreditState('isFetching', false)
+            updateCreditState('isFetching', false)
         }
     })
 
