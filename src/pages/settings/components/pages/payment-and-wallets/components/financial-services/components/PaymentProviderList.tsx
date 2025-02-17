@@ -8,11 +8,12 @@ import { ISettings } from "pages/settings/formConfigs";
 interface Provider {
   title: string;
   buttonText: string;
-  link: string;
+  link?: string;
   tooltip?: string;
   icon: ReactElement;
   type: "stripe" | "coinbase" | "paymob";
   isExternal: boolean;
+  isDisabled?: boolean;
 }
 
 const PaymentProviderList: React.FC = () => {
@@ -42,8 +43,8 @@ const PaymentProviderList: React.FC = () => {
       title: "Paymob",
       type: "paymob",
       buttonText: "Connect",
-      link: "#",
       isExternal: false,
+      isDisabled: true,
       tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
       icon: <AppIcons.Paymob color="#004eff" />,
     },
@@ -84,9 +85,10 @@ const PaymentProviderList: React.FC = () => {
       gap={4}
       overflow="hidden"
     >
-      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal }) => (
+      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled }) => (
         <PaymentProviderCard
           key={type}
+          isDisabled={isDisabled}
           type={type}
           title={title}
           buttonText={buttonText}
