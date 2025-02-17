@@ -1,7 +1,7 @@
 import { SimpleGrid, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
-import PreviewTypo from 'pages/register-pages/pages/design/parts/preview/parts/parts/typo/PreviewTypo'
+import PreviewTypo from 'pages/register-pages/pages/design/parts/preview/components/common/typo/PreviewTypo'
 import React, { useContext } from 'react'
 import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'

@@ -1,22 +1,22 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
 import React, { useState } from "react";
+import TabButtons from "../common/TabButtons";
 import DirectLinkContent from "./components/DirectLinkContent";
-import { transformProductData } from "./productUtils";
-import TABS from "./tabsConstants"; 
+import Header from "./components/Header";
 import PaymentLinkContent from "./components/PaymentLinkContent";
 import ProductTileContent from "./components/ProductTileContent";
 import SocialTileContent from "./components/SocialTileContent";
-import Header from "./components/Header";
-import TabButtons from "../common/TabButtons";
+import { transformProductData } from "./productUtils";
+import TABS from "./tabsConstants";
 
 interface IProps {
-  close: () => void;
-  open: boolean;
-  product: any; 
+  product: any;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-function ProductShareModal({ close, open, product }: IProps) {
+function ProductShareModal({ product, isOpen, onClose }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
   const transformedProduct = transformProductData(product);
 
@@ -44,8 +44,8 @@ function ProductShareModal({ close, open, product }: IProps) {
   return (
     <AppModal
       modalRootProps={{
-        isOpen: open,
-        onClose: close,
+        isOpen,
+        onClose,
         size: "xl",
         scrollBehavior: "outside",
         isCentered: true

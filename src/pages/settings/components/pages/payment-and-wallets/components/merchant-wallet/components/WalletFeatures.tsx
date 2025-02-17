@@ -23,7 +23,7 @@ export default function WalletFeatures() {
             </HStack>
             <HStack>
                 <Box p="2" bg="#2bcea11a" borderRadius="50px" sx={{ path: { stroke: "#2bcfa1" } }}>
-                    <AppIcons.Refresh style={{ width: "16px", height: "16px" }} />
+                    <AppIcons.Refresh color='#2BCFA1' style={{ width: "16px", height: "16px" }} />
                 </Box>
                 <Text color="white" fontSize="sm">
                     Automatic Conversion

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Codes } from '../../../interface'
-import useAppToast from 'functions/hooks/toast/useToast';
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import AppIcons from 'assest/icon/Appicons';
 import { Filters } from './CodesTab';
+import ClipboardText from 'components/common/clipboardText/ClipboardText';
 
 interface Props {
     codes: Codes[]
@@ -12,7 +11,6 @@ interface Props {
 }
 
 export default function CodesList({ codes, currentFilter }: Props) {
-    const { showToast } = useAppToast();
     const getFilteredCodes = () => {
         switch (currentFilter) {
             case Filters.Used:
@@ -22,11 +20,6 @@ export default function CodesList({ codes, currentFilter }: Props) {
             default:
                 return codes;
         }
-    }
-
-    const handleCopyCode = (code: string) => {
-        navigator.clipboard.writeText(code)
-        showToast({ message: "Code copied to clipboard", type: "success" });
     }
 
     return (
@@ -51,7 +44,7 @@ export default function CodesList({ codes, currentFilter }: Props) {
                                     {item.code}
                                 </AppTypography>
                             </Flex>
-                            <AppIcons.Copy style={{ cursor: "pointer" }} onClick={() => handleCopyCode(item.code)} />
+                            <ClipboardText text={item.code} />
                         </Flex>
                     )
                 })

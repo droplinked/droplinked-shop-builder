@@ -292,3 +292,14 @@ export const arraysAreEqual = (arr1: any[], arr2: any[]): boolean => {
 
     return sortedArr1.every((item, index) => deepEqual(item, sortedArr2[index]))
 }
+
+export const formatDateLongStyle = (date: Date): string => {
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }
+
+    // Example output: "November 1, 2022"
+    return date.toLocaleDateString('en-US', options)
+}

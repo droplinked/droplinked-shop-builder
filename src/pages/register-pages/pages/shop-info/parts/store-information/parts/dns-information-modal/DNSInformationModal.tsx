@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';

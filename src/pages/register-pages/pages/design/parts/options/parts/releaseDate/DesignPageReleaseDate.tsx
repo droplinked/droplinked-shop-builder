@@ -64,7 +64,7 @@ function DesignPageReleaseDate() {
 
                         <Flex direction="column" gap={3}>
                             <AppTypography fontSize={16} fontWeight={500}>Release Time</AppTypography>
-                            <Flex height={12} flexWrap="wrap" gap={3}>
+                            <Flex height={12} gap={2}>
                                 {["hour", "minute", "second"].map((unit, index) => (
                                     <Fragment key={unit}>
                                         {index > 0 && (

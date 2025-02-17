@@ -134,7 +134,7 @@ export interface IproductDeleteServices {
     productID: string;
 }
 
-export interface IproductUpdateServices {
+export interface IProductUpdateService {
     productID: string;
     params: any;
 }

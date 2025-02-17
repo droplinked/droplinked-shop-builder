@@ -1,9 +1,9 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import ClipboardText from 'components/common/clipboardText/ClipboardText';
 
 interface Props {
     clientId: string;
@@ -11,12 +11,6 @@ interface Props {
 
 export default function ClientIdDisplay({ clientId }: Props) {
     const [isVisible, setIsVisible] = useState(false);
-    const { showToast } = useAppToast();
-
-    const handleCopy = () => {
-        showToast({ message: "Client ID copied to clipboard", type: "success" });
-        navigator.clipboard.writeText(clientId);
-    };
 
     return (
         <Flex alignItems={"center"} gap={6}>
@@ -57,9 +51,7 @@ export default function ClientIdDisplay({ clientId }: Props) {
                 </AnimatePresence>
             </Flex>
             <Flex alignItems={"center"} gap={4}>
-                <Box onClick={handleCopy} cursor="pointer">
-                    <AppIcons.Copy />
-                </Box>
+                <ClipboardText text={clientId} />
                 <Box onClick={() => setIsVisible(!isVisible)} cursor="pointer">
                     {isVisible ? (
                         <AppIcons.Eye style={{ width: "20px", height: "20px" }} stroke='#fff' />

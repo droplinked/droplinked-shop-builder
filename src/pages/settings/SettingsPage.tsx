@@ -1,12 +1,12 @@
-import PageGrid from 'components/redesign/page-grid/PageGrid';
-import TabsContent from './components/common/TabsContent';
-import React from 'react';
 import { Box } from '@chakra-ui/react';
-import SaveChangesDrawer from './components/common/SaveChangesDrawer';
-import useAppStore from 'lib/stores/app/appStore';
+import PageGrid from 'components/redesign/page-grid/PageGrid';
 import { Form, Formik } from 'formik';
-import { getSettingsPageInitValues, settingsPageSchema } from './formConfigs';
 import useAppToast from 'functions/hooks/toast/useToast';
+import useAppStore from 'lib/stores/app/appStore';
+import React from 'react';
+import SaveChangesDrawer from './components/common/SaveChangesDrawer';
+import TabsContent from './components/common/TabsContent';
+import { getSettingsPageInitValues, settingsPageSchema } from './formConfigs';
 
 function SettingsPage() {
     const { shop, user, updateShop, fetchShop } = useAppStore()

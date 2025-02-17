@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout'
+import { Flex } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FormModel from 'components/common/form/FormModel'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'

@@ -80,6 +80,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
                     saveButtonText={isEdit ? "Update" : "Create"}
                     isLoading={isLoading}
                     onClick={handleSubmit}
+                    showSubmitButtons
                 >
                     <Flex my={9} height={"100%"} px={9} flexDir="column">
                         <CouponForm isEdit={isEdit} />

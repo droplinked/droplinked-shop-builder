@@ -13,7 +13,9 @@ interface Props extends PropsWithChildren {
     headerContent?: React.ReactNode;
     drawerContentStyle?: DrawerContentProps
     drawerHeaderStyle?: ChakraProps
-    isInformationDrawer?: boolean
+    showSubmitButtons?: boolean
+    headingStyle?: ChakraProps
+    placement?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 function Drawer({
@@ -27,21 +29,28 @@ function Drawer({
     onClick,
     headerContent,
     drawerContentStyle,
+    headingStyle,
     drawerHeaderStyle,
-    isInformationDrawer,
+    showSubmitButtons,
+    placement = "right"
 }: Props) {
+    const isCentered = placement === 'top' || placement === 'bottom'
+
     return (
         <ChakraDrawer
             isOpen={isOpen}
-            placement="right"
+            placement={placement}
             size="md"
             onClose={onClose}
         >
             <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
             <DrawerContent
-                marginBlock={{ base: 0, md: 4 }}
-                marginInline={{ base: 0, md: 10 }}
-                borderRadius={{ base: 0, md: 16 }}
+                {...!isCentered && {
+                    marginBlock: { base: 0, md: 4 },
+                    marginInline: { base: 0, md: 10 }
+                }}
+                {...!isCentered && { borderRadius: { base: 0, md: 16 } }}
+                {...isCentered && { borderTopRadius: { base: 0, md: 16 } }}
                 bgColor="#141414"
                 overflow="hidden"
                 sx={{
@@ -61,7 +70,7 @@ function Drawer({
                     {...drawerHeaderStyle}
                 >
                     <Flex justifyContent="space-between" alignItems="center" width="100%">
-                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
+                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF" {...headingStyle}>
                             {title}
                         </Heading>
                         <DrawerCloseButton position="static" color="white" />
@@ -71,7 +80,7 @@ function Drawer({
 
                 {children}
 
-                {!isInformationDrawer &&
+                {showSubmitButtons &&
                     <DrawerFooter
                         display="flex"
                         justifyContent="space-between"

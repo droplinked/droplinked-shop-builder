@@ -5,8 +5,8 @@ interface Props extends HeadingProps { }
 
 function PrimaryHeading({ children, ...props }: Props) {
     return (
-        <Heading as="h2" fontFamily={"Poppins"} fontSize={{ base: 24, md: 32 }} fontWeight={700} color="white" {...props}>{children}</Heading>
+        <Heading as="h2" fontSize={{ base: 24, md: 32 }} fontWeight={700} color="white" {...props}>{children}</Heading>
     )
 }
 
-export default  PrimaryHeading
+export default PrimaryHeading

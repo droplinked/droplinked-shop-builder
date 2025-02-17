@@ -96,7 +96,7 @@ const EventsList = () => {
             onClick={fetchEventData}
             style={{ cursor: "pointer" }}
           >
-            <AppIcons.Refresh />
+            <AppIcons.Refresh color="#2BCFA1" />
           </motion.div>
         </Flex>
         <Flex alignItems={"center"} gap={"12px"}>
