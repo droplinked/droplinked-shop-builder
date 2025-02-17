@@ -29,7 +29,7 @@ export default function Filters() {
         const walletOptions = wallets?.map(({ address, type }) => ({
             label: type,
             labelDescription: `${address.slice(0, isSmallerThan768 ? 20 : 6)}...`,
-            value: address
+            value: type
         }))
 
         return [...baseItems, ...(walletOptions ?? [])]

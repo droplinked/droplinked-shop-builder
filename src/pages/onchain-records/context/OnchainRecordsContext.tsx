@@ -27,7 +27,7 @@ export function OnchainRecordsProvider({ children }: { children: React.ReactNode
     const debouncedSearch = useDebounce(searchValue, 1000);
     const { user: { wallets } } = useAppStore();
 
-    const selectedWallet = wallets?.find((wallet) => wallet.address === walletFilter);
+    const selectedWallet = wallets?.find((wallet) => wallet.type === walletFilter);
 
     const { isFetching, data, refetch, isError } = useQuery({
         queryKey: ["records", debouncedSearch, recordFilter, selectedWallet],
