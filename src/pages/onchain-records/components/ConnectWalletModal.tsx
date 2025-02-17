@@ -5,6 +5,7 @@ import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import ConnectWallets from "pages/register-pages/pages/technical/parts/connect/ConnectWallets";
 import React from "react";
+import { useOnchainRecords } from "../context/OnchainRecordsContext";
 
 interface Props {
     isOpen: boolean;
@@ -12,11 +13,18 @@ interface Props {
 }
 
 export default function ConnectWalletModal({ isOpen, onClose }: Props) {
+    const { refetch } = useOnchainRecords();
+
+    const handleClose = () => {
+        onClose();
+        refetch();
+    }
+
     return (
         <AppModal
             modalRootProps={{
                 isOpen: isOpen,
-                onClose: onClose,
+                onClose: handleClose,
                 isCentered: false,
                 size: "3xl",
             }}
