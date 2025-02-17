@@ -21,7 +21,7 @@ const INITIAL_FILTERS: IGetProductsCommunityService = {
   sort: undefined
 };
 
-const AffiliateProductsPage = () => {
+const AffiliateProductsPage = ({ isPublic = false }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<IGetProductsCommunityService>(INITIAL_FILTERS);
 
@@ -32,11 +32,11 @@ const AffiliateProductsPage = () => {
 
   return (
     <ProductContext.Provider value={{ categories, isLoading, error: error?.message || null, filters, setFilters: handleFilterChange }}>
-      <VStack align="stretch" width="full" spacing="24px">
-        <Flex direction={{ base: 'column', lg: 'row' }} alignItems="flex-start" gap="24px" position="relative">
-          <FiltersPanel showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} categories={categories} />
+      <VStack align="stretch" width="full" spacing="24px" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
+        <Flex direction={{ base: 'column', lg: 'row' }} alignItems="flex-start" gap="24px" position="relative" >
+          <FiltersPanel isPublic={isPublic} showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} categories={categories} />
           <VStack width="full" spacing="24px">
-            <ActionBar showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} />
+            <ActionBar  setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange}  />
             <AffiliateProductList />
           </VStack>
         </Flex>

@@ -51,7 +51,7 @@ const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
 const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
 const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
-const AffiliateProductsLayout = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
+const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
@@ -118,6 +118,14 @@ const router = createBrowserRouter([
             { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            {
+                path: "affiliate/products",
+                children: [
+                    { index: true, element: <AffiliateProductsPage isPublic={true}/> },
+                    { path: ":slug", element: <AffiliateProductsSinglePage isPublic={true} /> },
+                ],
+            },
+        
         ],
     },
     {
@@ -164,7 +172,7 @@ const router = createBrowserRouter([
                     {
                         path: "products",
                         children: [
-                            { index: true, element: <AffiliateProductsLayout /> },
+                            { index: true, element: <AffiliateProductsPage /> },
                             { path: ":slug", element: <AffiliateProductsSinglePage /> },
                         ],
                     },

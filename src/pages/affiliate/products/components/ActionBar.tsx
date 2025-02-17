@@ -4,13 +4,12 @@ import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
 interface ActionBarProps {
-  showFilters: boolean;
   setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
   filters: Record<string, any>;
   handleFilterChange: (key: string, value: any) => void;
 }
 
-const ActionBar: React.FC<ActionBarProps> = ({ showFilters, setShowFilters, filters, handleFilterChange }) => {
+const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFilterChange }) => {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
   return (
     <HStack justifyContent="start" width="full" alignItems="center" spacing={3}>
