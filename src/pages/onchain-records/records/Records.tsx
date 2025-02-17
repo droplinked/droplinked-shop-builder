@@ -37,7 +37,7 @@ export default function Records() {
 
     return (
         <OnchainRefetchProvider refetch={refetch}>
-            <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }}>
+            <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }} width={"100%"}>
                 <Filters
                     searchValue={searchValue}
                     setSearchValue={setSearchValue}
@@ -51,6 +51,6 @@ export default function Records() {
                 {(!hasNFT && !isFetching) && <EmptyView />}
             </Flex>
         </OnchainRefetchProvider>
-       
+
     );
 }

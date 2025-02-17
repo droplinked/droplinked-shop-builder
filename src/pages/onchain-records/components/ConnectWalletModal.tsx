@@ -7,18 +7,16 @@ import ConnectWallets from "pages/register-pages/pages/technical/parts/connect/C
 import React from "react";
 
 interface Props {
-    connectWalletModal: {
-        isOpen: boolean;
-        onClose: () => void;
-    };
+    isOpen: boolean;
+    onClose: () => void;
 }
 
-export default function ConnectWalletModal({ connectWalletModal }: Props) {
+export default function ConnectWalletModal({ isOpen, onClose }: Props) {
     return (
         <AppModal
             modalRootProps={{
-                isOpen: connectWalletModal.isOpen,
-                onClose: connectWalletModal.onClose,
+                isOpen: isOpen,
+                onClose: onClose,
                 isCentered: false,
                 size: "3xl",
             }}
