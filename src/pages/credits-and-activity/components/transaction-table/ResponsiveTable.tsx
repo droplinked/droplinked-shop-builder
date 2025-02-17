@@ -52,7 +52,7 @@ export default function ResponsiveTable() {
                 color={"#fff"}
                 fontSize={16}
                 fontWeight={400}
-                userSelect={"all"}
+                userSelect="all"
             >
                 {info.row.original.id ?? "-"}
             </AppTypography>,
