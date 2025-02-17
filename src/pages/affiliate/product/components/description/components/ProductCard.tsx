@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
         <Divider borderColor="#292929" />
         {/* Price and Actions Section */}
         <Flex direction="column" gap={4} p={4}>
-          <ProductPrice product={product} showAbbreviation={false} fontSize="28px" />
+          <ProductPrice price={product.skuIDs?.[0]?.price} showAbbreviation={false} fontSize="28px" />
           <ImportProductButton productId={product._id}></ImportProductButton>
         </Flex>
       </Flex>

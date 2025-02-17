@@ -12,7 +12,7 @@ function ProductDetails({ product }: { product: any }) {
   return (
     <Box w={'100%'} display="flex" flexDirection="column" alignItems="flex-start" gap="36px" alignSelf="stretch">
       <ProductTitle product={product} />
-      <ProductPrice product={product} />
+      <ProductPrice price={price} />
       <ProductOptions product={product} />
       <ProducerInfoCard price={price} commission={product.commission} shopDetails={product.shopDetails} />
       <ImportProductButton productId={product._id}></ImportProductButton>

@@ -10,6 +10,7 @@ import FilterSection from './components/FilterSection';
 import AppTypography from 'components/common/typography/AppTypography';
 
 interface FiltersPanelProps {
+  isPublic: Boolean
   filters: IGetProductsCommunityService;
   handleFilterChange: (key: keyof IGetProductsCommunityService, value: any) => void;
   categories: IAffiliateProductsCategory[];
@@ -17,7 +18,7 @@ interface FiltersPanelProps {
   setShowFilters: (show: boolean) => void;
 }
 
-const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters, filters, handleFilterChange, categories }) => {
+const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic,showFilters, setShowFilters, filters, handleFilterChange, categories }) => {
   const isSmallScreen = useBreakpointValue({ base: true, lg: false });
   const isMediumScreen = useBreakpointValue({ base: false, md: true, lg: false });
 
@@ -43,7 +44,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ showFilters, setShowFilters
           position={isSmallScreen ? 'fixed' : isMediumScreen ? 'absolute' : 'sticky'}
           top={isMediumScreen ? '75px' : undefined} // Top positioning for absolute in md
           bottom={0}
-          left={isMediumScreen ? '78px' : 0}
+          left={isMediumScreen ? (isPublic ?  0 : '78px') : 0}
           width={isMediumScreen ? '272px' : isSmallScreen ? '100%' : '380px'} // Adjust width for md and lg
           maxHeight={isSmallScreen ? 'calc(100% - 50px)' : 'auto'}
           bg="#141414"

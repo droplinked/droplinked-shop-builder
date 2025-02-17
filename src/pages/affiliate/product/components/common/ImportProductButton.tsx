@@ -1,27 +1,39 @@
-import React from 'react';
-import { useMutation } from 'react-query';
+import AppIcons from 'assest/icon/Appicons';
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { importAffiliateProductService } from 'lib/apis/product/productServices';
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import AppIcons from 'assest/icon/Appicons';
+import useAppStore from 'lib/stores/app/appStore';
+import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
+import React, { useState } from 'react';
+import { useMutation } from 'react-query';
 
 function ImportProductButton({ productId }) {
+  const { isLoggedIn } = useAppStore();
+  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const { showToast } = useAppToast();
   const { mutateAsync, isLoading } = useMutation(importAffiliateProductService);
 
   const importProduct = async () => {
-    try {
-      await mutateAsync({ productId });
-      showToast({ type: 'success', message: 'Product Imported' });
-    } catch (e) {
-      showToast({ type: 'error', message: e?.response?.data?.data?.message || 'Failed to import product' });
+    if (isLoggedIn) {
+      try {
+        await mutateAsync({ productId });
+        showToast({ type: 'success', message: 'Product Imported' });
+      } catch (e) {
+        showToast({ type: 'error', message: e?.response?.data?.data?.message || 'Failed to import product' });
+      }
+    } else {
+      setAuthModalOpen(true);
     }
   };
 
   return (
-    <BasicButton iconLeft={<AppIcons.AffiliateAddProduct />} isLoading={isLoading} isDisabled={isLoading} width="full" onClick={importProduct}>
-      Import Product
-    </BasicButton>
+    <>
+      <BasicButton iconLeft={<AppIcons.AffiliateAddProduct />} isLoading={isLoading} isDisabled={isLoading} width="full" onClick={importProduct}>
+        Import Product
+      </BasicButton>
+      <AuthModal show={isAuthModalOpen} close={() => setAuthModalOpen(false)} type={MODAL_TYPE.SIGNIN} />
+    </>
   );
 }
 

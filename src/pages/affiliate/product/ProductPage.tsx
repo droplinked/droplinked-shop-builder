@@ -9,7 +9,7 @@ import { getSingleProductCommunityService } from 'lib/apis/product/productServic
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import ProductDescription from './components/description/ProductDescription';
 
-function AffiliateProductsSinglePage() {
+function AffiliateProductsSinglePage({ isPublic = false }) {
   const { profile } = useProfile();
   const params = useParams<{ slug: string }>();
 
@@ -21,7 +21,7 @@ function AffiliateProductsSinglePage() {
   if (isLoading) return <ProductPageLoading />;
 
   return (
-    <Flex  flexDirection={'column'} alignItems="center" justifyContent="center" width="full">
+    <Flex  flexDirection={'column'} alignItems="center" justifyContent="center" width="full" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
       <Flex direction={{ base: 'column', lg: 'row' }} gap={{ base: '24px', lg: '56px' }} width="full" mb={"80px"}>
         <Box width={{ base: '100%', lg: '40%' }}>
           <ProductSlider product={productData} />

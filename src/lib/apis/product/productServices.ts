@@ -87,7 +87,7 @@ export const getProductsCommunityService = (params: IGetProductsCommunityService
 };
 
 export const getSingleProductCommunityService = ({ slug, user }: IGetSingleProductCommunity) => {
-    return axiosInstance.get(`/product/community${!user ? `/public` : "/"}view/${slug}`);
+    return axiosInstance.get(`/product/community${!user ? `/public/` : "/"}view/${slug}`);
 };
 
 export const importAffiliateProductService = ({ productId }: IimportAffiliateProduct) => {

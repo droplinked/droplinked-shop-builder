@@ -28,7 +28,7 @@ export default function ProductImageSlider({ productImages }) {
         renderArrowNext={(clickHandler, hasNext) => hasNext && <CarouselArrow direction="next" onClick={clickHandler} isHovered={isHovered} />}
       >
         {productImages.map((imageSrc, index) => (
-          <Box key={index} position="relative" overflow="hidden" borderRadius="lg" aspectRatio="1">
+          <Box key={index} position="relative" overflow="hidden" borderRadius="lg" aspectRatio="1" transition="transform 0.3s ease-in-out" _hover={{ transform: 'scale(1.1)' }}>
             <Image src={imageSrc} w="full" h="full" objectFit="cover" />
           </Box>
         ))}

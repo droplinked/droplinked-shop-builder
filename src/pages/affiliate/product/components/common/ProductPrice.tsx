@@ -3,31 +3,38 @@ import useAppStore from 'lib/stores/app/appStore';
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
 
-function ProductPrice({
-  product,
-  fontSize = '36px',
-  showAbbreviation = true
-}: {
-  product: any;
+interface props {
+  price: number;
   fontSize?: string;
   showPrice?: boolean;
-  showAbbreviation?: boolean; 
-}) {
-  const {
-    shop: { currency }
-  } = useAppStore();
+  showAbbreviation?: boolean;
+}
+
+function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: props) {
+  const { isLoggedIn, shop } = useAppStore();
+  const currency = shop?.currency;
+
+  // Default values for non-logged-in users
+  let displayPrice: number = price;
+  let currencyAbbr = 'USD';
+  let currencySymbol = '$';
+
+  // Apply currency conversion if user is logged in and currency data exists
+  if (isLoggedIn && currency) {
+    displayPrice = currencyConvertion(price, currency.conversionRateToUSD, false);
+    currencyAbbr = currency.abbreviation;
+    currencySymbol = currency.symbol;
+  }
 
   return (
     <Text fontSize={fontSize}>
       <Box as="span" fontWeight="bold" color={'white'}>
-        {currency?.symbol}
-        {currencyConvertion(product?.skuIDs?.[0]?.price, currency?.conversionRateToUSD, false)}
+        {currencySymbol}
+        {displayPrice}
       </Box>
-
-      {showAbbreviation && ( 
+      {showAbbreviation && (
         <Box as="span" fontWeight="normal" color="#B1B1B1">
-          {' '}
-          {currency?.abbreviation}
+          {' '}{currencyAbbr}
         </Box>
       )}
     </Text>
