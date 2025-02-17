@@ -8,6 +8,7 @@ import React from 'react';
 import TransactionsCards from './TransactionsCards';
 import TypeColumn from './TypeColumn';
 import StatusBadge from '../StatusBadge';
+import AppTypography from 'components/common/typography/AppTypography';
 
 export default function ResponsiveTable() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
@@ -47,7 +48,14 @@ export default function ResponsiveTable() {
         {
             accessorKey: "transactionId",
             header: "Transaction ID",
-            cell: (info) => info.row.original.id ?? "-",
+            cell: (info) => <AppTypography
+                color={"#fff"}
+                fontSize={16}
+                fontWeight={400}
+                userSelect={"all"}
+            >
+                {info.row.original.id ?? "-"}
+            </AppTypography>,
         },
         // {
         //     accessorKey: "details",
