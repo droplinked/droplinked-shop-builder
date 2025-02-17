@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, useDisclosure } from '@chakra-ui/react';
 import React, { useState, useMemo } from 'react';
 import EmptyView from '../components/EmptyView';
 import RecordsList from '../components/records-list/RecordsList';
@@ -9,6 +9,9 @@ import useAppStore from 'lib/stores/app/appStore';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import FakeRecordsList from '../components/records-skeleton/RecordsSkeleton';
 import { OnchainRefetchProvider } from '../context/OnchainRefetchContext';
+import BlueButton from 'components/redesign/button/BlueButton';
+import AppIcons from 'assest/icon/Appicons';
+import ConnectWalletModal from '../components/ConnectWalletModal';
 
 export default function Records() {
     const [searchValue, setSearchValue] = useState(null)
@@ -34,8 +37,10 @@ export default function Records() {
 
     const { droplinkedNFTs, walletNFTs } = data?.data ?? {};
     const hasNFT = (droplinkedNFTs?.length !== 0 || walletNFTs?.length !== 0);
+    const connectWalletModal = useDisclosure()
 
     return (
+        <>
         <OnchainRefetchProvider refetch={refetch}>
             <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }}>
                 <Filters
@@ -49,7 +54,20 @@ export default function Records() {
                 {(hasNFT && !isFetching && !isError) && <RecordsList droplinkedNFTs={droplinkedNFTs} walletNFTs={walletNFTs} />}
                 {(isFetching) && <FakeRecordsList />}
                 {(!hasNFT && !isFetching) && <EmptyView />}
+                <BlueButton
+                    sx={{ path: { stroke: "#2BCFA1" } }}
+                    leftIcon={<AppIcons.Wallet width={"16px"} height={"16px"} />}
+                    iconSpacing={"4px"}
+                    color={"#2BCFA1"}
+                    fontSize={12}
+                    fontWeight={500}
+                    onClick={connectWalletModal.onOpen}
+                >
+                    Connect Wallet
+                </BlueButton>
             </Flex>
         </OnchainRefetchProvider>
+        <ConnectWalletModal connectWalletModal={connectWalletModal} />
+        </>
     );
 }
