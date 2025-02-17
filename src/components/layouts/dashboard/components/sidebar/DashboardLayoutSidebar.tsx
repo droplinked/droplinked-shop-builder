@@ -30,7 +30,7 @@ const DashboardLayoutSidebar = ({ isSidebarOpen }) => {
         multiCollapse={false}
         display="flex"
         width="full"
-        padding={"36px 16px"}
+        padding={"36px 12px"}
         flexDirection="column"
         alignItems="flex-start"
         gap="24px"
