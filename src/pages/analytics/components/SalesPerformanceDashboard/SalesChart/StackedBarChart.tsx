@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react"
 import { BarElement, CategoryScale, Chart as ChartJS, ChartOptions, Legend, LinearScale, Tooltip } from "chart.js"
 import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
 import { SalesData } from "lib/apis/dashboard/interfaces"
@@ -35,6 +36,7 @@ export default function StackedBarChart({ salesData }: Props) {
 
     const options: ChartOptions<"bar"> = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: { display: false },
             tooltip: {
@@ -114,7 +116,7 @@ export default function StackedBarChart({ salesData }: Props) {
                     tooltipEl.style.minWidth = '250px';
                     tooltipEl.style.position = 'absolute';
                     tooltipEl.style.top = tooltipModel.caretY + 150 + 'px';
-                    tooltipEl.style.left = tooltipModel.caretX + 220 + 'px';
+                    tooltipEl.style.left = tooltipModel.caretX + 200 + 'px';
                     tooltipEl.style.border = "1px solid #292929";
                     tooltipEl.style.borderRadius = "8px";
                     tooltipEl.style.padding = "0";
@@ -132,5 +134,9 @@ export default function StackedBarChart({ salesData }: Props) {
         }
     }
 
-    return <Bar data={chartData} options={options} />
+    return (
+        <Box sx={{ "& canvas": { maxWidth: "100% !important" } }}>
+            <Bar data={chartData} options={options} />
+        </Box>
+    )
 }
