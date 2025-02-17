@@ -1,9 +1,9 @@
-import { Flex, Icon, Link } from '@chakra-ui/react';
+import { Box, Flex, Icon } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppSocialMediaIcons from 'assest/icon/social/appSocialMediaIcons';
 import React from 'react';
 
-const SocialMediaLinks = ({ shopURLs, foreground,textColorParagraphs, isDesktop }) => {
+const SocialMediaLinks = ({ shopURLs, foreground, textColorParagraphs, isDesktop }) => {
   const socialMediaLinks = [
     { link: 'https://discord.gg/', key: 'discordURL', icon: AppSocialMediaIcons.Discord },
     { link: 'https://instagram.com/', key: 'instagramURL', icon: AppSocialMediaIcons.Instagram },
@@ -28,14 +28,9 @@ const SocialMediaLinks = ({ shopURLs, foreground,textColorParagraphs, isDesktop 
           const backgroundColor = foreground;
 
           return (
-            <Link
-              href={link}
-              style={{ borderRadius: '8px', padding: '8px', backgroundColor: backgroundColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              target="_blank"
-              key={key}
-            >
-              <Icon as={icon} w="16px" h="16px"  color={textColorParagraphs}/>
-            </Link>
+            <Box style={{ borderRadius: '8px', padding: '8px', backgroundColor: backgroundColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }} key={key}>
+              <Icon as={icon} w="16px" h="16px" color={textColorParagraphs} />
+            </Box>
           );
         })}
     </Flex>
