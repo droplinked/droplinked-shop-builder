@@ -11,6 +11,11 @@ export interface ITransactionType {
     type?: "ORDER" | "CREDIT_BALANCE" | "AFFILIATE_SHARE" | "SUBSCRIPTION_UPDATE" | "GAMIFICATION_REWARD" | "WITHDRAW" | "REFERRAL";
 }
 
+export interface IAvailableFilterTypesResponse {
+    types: string[];
+    amountTypes: string[];
+}
+
 export interface IBreakDown {
     amount: number;
     count: number;
