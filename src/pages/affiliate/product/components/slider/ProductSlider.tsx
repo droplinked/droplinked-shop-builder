@@ -35,7 +35,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ product }) => {
   const hiddenImagesCount = (product?.media?.length || 0) - thumbnailCount;
 
   return (
-    <VStack align="stretch" spacing="20px" width="full">
+    <VStack align="stretch" spacing="20px">
       {/* Main Image with Magnifier */}
       <AppMagnifier src={selectedImage} props={{ rounded: '8px' }} magnifierRadius={50} zoom={2} />
 
@@ -51,12 +51,19 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ product }) => {
               }
             }}
             cursor="pointer"
-            height="120px"
-            aspectRatio="1/1"
           >
             {/* Selected Image Border */}
-            <Box display="flex" alignItems="center" justifyContent="center" padding="8px" borderRadius="8px" border={image?.url === selectedImage ? '2px solid #2BCFA1' : 'none'}>
-              <Image src={image.url} borderRadius="4px" width="auto" height="full" objectFit="cover" />
+            <Box
+              display="flex"
+              height="120px"
+              aspectRatio="1/1"
+              alignItems="center"
+              justifyContent="center"
+              padding="8px"
+              borderRadius="8px"
+              border={image?.url === selectedImage ? '2px solid #2BCFA1' : 'none'}
+            >
+              <Image src={image.url} borderRadius="4px" w="full" h="full" objectFit="cover" />
             </Box>
 
             {/* Overlay for Remaining Images */}
