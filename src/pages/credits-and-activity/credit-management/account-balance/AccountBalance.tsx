@@ -12,10 +12,16 @@ export default function AccountBalance() {
     const { date, isFetching: isAnalyticsFetching } = useCreditStore()
     const { refetchAll } = useCreditsData()
     const updateCreditState = useCreditStore(state => state.updateCreditState)
-    const { isFetching, data } = useQuery({
+    const { isFetching, data, refetch: refetchShopCredit } = useQuery({
         queryKey: ["get-shop-credit", date],
         queryFn: () => getShopCredit(),
-    })
+    });
+
+    const handleRefetch = () => {
+        refetchAll()
+        refetchShopCredit()
+    }
+
     const credit = data?.data?.data?.credit ?? 0
     const isLoading = isAnalyticsFetching || isFetching
 
@@ -35,7 +41,7 @@ export default function AccountBalance() {
                 gap={6}
                 width="100%"
             >
-                <ActionButtons isLoading={isLoading} handleRefetchData={refetchAll} />
+                <ActionButtons isLoading={isLoading} handleRefetchData={handleRefetch} />
                 <Divider
                     display={{ base: "none", md: "block" }}
                     height={6}
