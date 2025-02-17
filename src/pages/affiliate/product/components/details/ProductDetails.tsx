@@ -8,13 +8,14 @@ import ProductTitle from './components/ProductTitle';
 
 function ProductDetails({ product }: { product: any }) {
   const price = Number(product?.skuIDs?.[0]?.price);
+  const availableItems = product.skuIDs.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <Box w={'100%'} display="flex" flexDirection="column" alignItems="flex-start" gap="36px" alignSelf="stretch">
       <ProductTitle product={product} />
       <ProductPrice price={price} />
       <ProductOptions product={product} />
-      <ProducerInfoCard price={price} commission={product.commission} shopDetails={product.shopDetails} />
+      <ProducerInfoCard price={price} commission={product.commission} shopDetails={product.shopDetails} availableItems={availableItems} shopId={product.ownerID} />
       <ImportProductButton productId={product._id}></ImportProductButton>
     </Box>
   );

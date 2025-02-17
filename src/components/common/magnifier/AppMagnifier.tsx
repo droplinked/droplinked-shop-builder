@@ -55,8 +55,8 @@ function AppMagnifier({ src, magnifierRadius, zoom = 2, props }: IProps) {
       overflow="hidden"
       justifyContent="center"
       alignItems="center"
-      width={{ base: 'auto', lg: '526px', xl: '586px' }}
-      height={{ base: '440px', lg: '526px', xl: '586px' }}
+      width={{ base: 'auto', md:'440px', lg: '526px', xl: '586px' }}
+      height={{ base: 'auto' , md:'440px',lg: '526px', xl: '586px' }}
       aspectRatio="1/1"
     >
       <>
