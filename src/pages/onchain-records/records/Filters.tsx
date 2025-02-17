@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
 import { Flex, useMediaQuery } from '@chakra-ui/react';
-import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import Input from 'components/redesign/input/Input';
 import AppIcons from 'assest/icon/Appicons';
+import Input from 'components/redesign/input/Input';
+import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'lib/stores/app/appStore';
+import React, { useMemo } from 'react';
 
 interface FiltersProps {
     searchValue: string;
@@ -26,41 +26,26 @@ export default function Filters({
     const { user: { wallets } } = useAppStore()
 
     const recordItems = [
-        {
-            label: "All Records",
-            value: null
-        },
-        {
-            label: "Droplinked Records",
-            value: true
-        }
+        { label: "All Records", value: null },
+        { label: "Droplinked Records", value: true }
     ]
 
     const walletsItems = useMemo(() => {
-        const baseItems = [{
-            label: "All Wallets",
-            value: null,
-        }]
+        const baseItems = [{ label: "All Wallets", value: null }]
 
-        const walletOptions =
-            wallets.map(({ address, type }, index) => ({
-                label: `${type}`,
-                labelDescription: `${address.slice(0, isSmallerThan768 ? 20 : 6)}...`,
-                value: address,
-            }))
+        const walletOptions = wallets?.map(({ address, type }) => ({
+            label: type,
+            labelDescription: `${address.slice(0, isSmallerThan768 ? 20 : 6)}...`,
+            value: address
+        }))
 
-        return [...baseItems, ...walletOptions]
+        return [...baseItems, ...(walletOptions ?? [])]
     }, [wallets, isSmallerThan768])
 
     return (
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
             <Input
-                leftElement={
-                    <AppIcons.Search
-                        width={"20px"}
-                        height={"20px"}
-                    />
-                }
+                leftElement={<AppIcons.Search width="20px" height="20px" />}
                 inputProps={{
                     placeholder: "Search",
                     value: searchValue,
