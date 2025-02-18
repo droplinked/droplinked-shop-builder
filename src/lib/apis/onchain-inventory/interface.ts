@@ -90,6 +90,7 @@ export interface IDroplinkedNftsSkuOptions {
     createdAt: string;
     updatedAt: string;
     _id: string;
+    isCustom: boolean;
 }
 
 export interface IDroplinkedNftsRecordData {
