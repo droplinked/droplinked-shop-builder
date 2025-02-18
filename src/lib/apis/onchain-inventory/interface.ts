@@ -61,6 +61,10 @@ export interface IGetActivityResponse {
     }[];
     status: string;
     airdropTimestamp: string;
+    transactions: {
+        deploy_hash: string;
+        validated: boolean;
+    }[]
 }
 
 export interface IDroplinkedNftsVas {
