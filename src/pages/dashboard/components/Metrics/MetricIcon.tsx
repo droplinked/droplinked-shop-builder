@@ -11,9 +11,9 @@ function MetricIcon({ icon }: MetricIconProps) {
     return (
         <Flex justifyContent="space-between">
             <IconWrapper icon={icon} />
-            <Box sx={{ "svg path": { stroke: "#7B7B7B" } }}>
+            {/* <Box sx={{ "svg path": { stroke: "#7B7B7B" } }}>
                 <AppIcons.ExternalArrow />
-            </Box>
+            </Box> */}
         </Flex>
     )
 }

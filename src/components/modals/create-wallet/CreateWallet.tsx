@@ -82,7 +82,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             fontStyle="normal"
                             fontWeight="500"
                             lineHeight={{ base: "16px", md: "24px" }}
-                            onClick={() => !isCreatingWallet && navigate("/analytics")}
+                            onClick={() => !isCreatingWallet && navigate("/analytics/dashboard")}
                             {...(isCreatingWallet && { background: "#292929", color: "#737373", cursor: "not-allowed", border: "none" })}
                         >
                             Go to Dashboard

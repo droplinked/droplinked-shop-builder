@@ -32,12 +32,12 @@ const AffiliateProductsPage = ({ isPublic = false }) => {
 
   return (
     <ProductContext.Provider value={{ categories, isLoading, error: error?.message || null, filters, setFilters: handleFilterChange }}>
-      <VStack align="stretch" width="full" spacing="24px" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
+      <VStack align="stretch" width="full" spacing="24px" py={isPublic ? '90px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
         <Flex direction={{ base: 'column', lg: 'row' }} alignItems="flex-start" gap="24px" position="relative" >
           <FiltersPanel isPublic={isPublic} showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} categories={categories} />
           <VStack width="full" spacing="24px">
             <ActionBar  setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange}  />
-            <AffiliateProductList isPublic={isPublic} />
+            <AffiliateProductList />
           </VStack>
         </Flex>
       </VStack>

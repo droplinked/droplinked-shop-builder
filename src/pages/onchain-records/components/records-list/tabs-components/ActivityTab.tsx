@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { AxiosError } from "axios";
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppTypography from "components/common/typography/AppTypography";
 import { getAirdropActivity } from "lib/apis/onchain-inventory/services";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
@@ -8,7 +9,7 @@ import { useQuery } from "react-query";
 import ContainerCard from "../../ContainerCard";
 import ContainerCardSkelton from "../../records-skeleton/ContainerCardSkelton";
 import DateFormatter from "./DateFormatter";
-import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
+import TransactionLink from './TransactionLink';
 
 export default function ActivityTab({ item }: { item: ICombinedNft }) {
     const { tokenId, tokenAddress, chain } = item ?? {};
@@ -65,7 +66,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
                             {
                                 title: "Status",
                                 content: item.status,
-                            }
+                            },
                         ]
 
                         return (
@@ -74,7 +75,9 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
                                 items={transferData}
                                 hasBorder={true}
                                 titleRightContent={<DateFormatter date={item.airdropTimestamp} />}
-                            />
+                            >
+                                {item?.transactions && <TransactionLink transactions={item.transactions} chain={chain} />}
+                            </ContainerCard>
                         )
                     })}
                 </Flex>

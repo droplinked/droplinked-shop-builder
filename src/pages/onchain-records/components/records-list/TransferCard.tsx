@@ -9,7 +9,6 @@ import TransferModal from './transfer-modal/TransferModal'
 export default function TransferCard({ item }: { item: ICombinedNft }) {
     const { onOpen, onClose, isOpen } = useDisclosure()
     const { isDroplinkedProduct, name, description, imageUrl } = item ?? {};
-    const slicedDescription = description?.slice(0, 50) + (description?.length > 50 ? "..." : "");
 
     return (
         <Flex
@@ -43,9 +42,14 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                         <AppTypography
                             color={"#7b7b7b"}
                             fontSize={{ base: 12, lg: 14 }}
-                        >
-                            {slicedDescription}
-                        </AppTypography>
+                            dangerouslySetInnerHTML={{ __html: description }}
+                            sx={{
+                                display: '-webkit-box',
+                                WebkitLineClamp: '1',
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden'
+                            }}
+                        />
                     }
                 </Flex>
             </Flex>

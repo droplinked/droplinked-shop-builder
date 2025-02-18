@@ -29,6 +29,7 @@ function NavigationMenu({ headerMenuItems }) {
         <HStack color="#FFF" spacing={{ base: '10px', sm: '20px', md: '48px' }} alignItems="center">
             <HeaderMenu headerMenuItems={headerMenuItems} />
             <NavLink to="/plans" label="Pricing" />
+            <NavLink to="affiliate/products" label="Affiliate" />
             <NavLink to="/about" label="About Us" />
         </HStack>
     )

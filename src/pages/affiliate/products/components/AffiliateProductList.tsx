@@ -4,7 +4,7 @@ import { useInfiniteQuery } from 'react-query';
 import { ProductContext } from '../context/context';
 import ProductsGridRenderer from '../../components/ProductsGridRenderer';
 
-const AffiliateProductList = ({isPublic}) => {
+const AffiliateProductList = () => {
   const { filters } = useContext(ProductContext);
 
   const fetchProducts = async ({ pageParam = 1 }) => {
@@ -20,7 +20,7 @@ const AffiliateProductList = ({isPublic}) => {
     }
   });
 
-  return <ProductsGridRenderer isPublic={isPublic} data={data} fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isLoading={isLoading} isError={isError} />;
+  return <ProductsGridRenderer data={data} fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} isLoading={isLoading} isError={isError} />;
 };
 
 export default AffiliateProductList;
