@@ -13,9 +13,9 @@ export default function AffiliateProductCard({ product, isPublic = false }) {
   const mainProductImage = product.media?.find((img) => img?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url;
 
   const handleNavigation = () => {
-    const targetUrl = `/affiliate/products/${product.slug}`;
+    const targetUrl = `affiliate/products/${product.slug}`;
     if (isPublic) {
-      window.location.href = targetUrl;
+      window.location.href = '/' + targetUrl;
     } else {
       shopNavigate(targetUrl);
     }

@@ -59,54 +59,58 @@ function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
     </>
   )
 
-  return user && shop ? <Navigate to="/analytics" /> : (
-    <>
-      <ParallaxProvider>
-        <Flex direction={"column"}>
+  return (
+    user && shop
+      ? <Navigate to="/analytics/dashboard" />
+      : (
+        <>
+          <ParallaxProvider>
+            <Flex direction={"column"}>
 
-          <HomePageSection>
-            <Effects />
-            <Banner />
-          </HomePageSection>
+              <HomePageSection>
+                <Effects />
+                <Banner />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <Partners />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <Partners />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <Community />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <Community />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <ProductsMain />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <ProductsMain />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <Networks />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <Networks />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <Embeddable />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <Embeddable />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-            <Supported />
-          </HomePageSection>
+              <HomePageSection>
+                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+                <Supported />
+              </HomePageSection>
 
-          <HomePageSection>
-            <Contact />
-          </HomePageSection>
-        </Flex>
+              <HomePageSection>
+                <Contact />
+              </HomePageSection>
+            </Flex>
 
-      </ParallaxProvider>
-      {isOpen && <AuthModal show={true} type={States.typeOfModal} close={handleCloseModal} />}
-    </>
+          </ParallaxProvider>
+          {isOpen && <AuthModal show={true} type={States.typeOfModal} close={handleCloseModal} />}
+        </>
+      )
   )
 }
 
