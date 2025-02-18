@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export function useCustomNavigate() {
   const navigate = useNavigate()
   const location = useLocation()
-  const shopRoute = "/analytics/dashboard"
+  const shopRoute = "/analytics"
 
   const shopNavigate = (path: string, checkCurrentPath = false) => {
     const route = path ? `${shopRoute}/${path}` : shopRoute
