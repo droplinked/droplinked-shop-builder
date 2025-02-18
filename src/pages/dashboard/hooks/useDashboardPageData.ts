@@ -8,15 +8,11 @@ const useDashboardPageData = () => {
     const { updateDashboardPageState } = useDashboardPageStore()
 
     return useQuery({
+        queryKey: ["dashboardData"],
         queryFn: getDashboardPageData,
-        onSuccess: (data) => {
-            updateDashboardPageState("dashboardData", data)
-            updateDashboardPageState("isLoading", false)
-        },
-        onError: () => {
-            showToast({ type: "error", message: "Error fetching data" })
-            updateDashboardPageState("isLoading", false)
-        },
+        onSuccess: (data) => updateDashboardPageState("dashboardData", data),
+        onError: () => showToast({ type: "error", message: "Error fetching data" }),
+        onSettled: () => updateDashboardPageState("isLoading", false)
     })
 }
 

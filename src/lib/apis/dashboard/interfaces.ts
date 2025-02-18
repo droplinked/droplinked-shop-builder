@@ -1,3 +1,10 @@
+export interface DashboardOrder {
+    _id: string
+    status: string
+    totalPriceCart: number
+    updatedAt: string
+}
+
 export interface DashboardPageData {
     shopStats: {
         orders: number
@@ -5,12 +12,7 @@ export interface DashboardPageData {
         profit: number
         customers: number
     },
-    recentOrders: {
-        _id: string
-        status: string
-        totalPriceCart: number
-        updatedAt: string
-    }[]
+    recentOrders: DashboardOrder[]
 }
 
 export interface AnalyticsQueryParams {

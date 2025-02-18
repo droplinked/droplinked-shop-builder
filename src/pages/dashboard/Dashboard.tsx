@@ -5,15 +5,13 @@ import DashboardLoading from './components/DashboardLoading'
 import GreetingBanner from './components/GreetingBanner'
 import NoOrdersPlaceholder from './components/NoOrdersPlaceholder'
 import useDashboardPageData from './hooks/useDashboardPageData'
-import useDashboardPageStore from './stores/useDashboardStore'
 
 function Dashboard() {
-    const { isFetching, isError } = useDashboardPageData()
-    const { dashboardData } = useDashboardPageStore()
+    const { isFetching, isError, data } = useDashboardPageData()
 
     function renderContent() {
         if (isFetching) return <DashboardLoading />
-        else if (isError || dashboardData?.shopStats?.orders === 0) return <NoOrdersPlaceholder />
+        else if (isError || data?.shopStats?.orders === 0) return <NoOrdersPlaceholder />
         else return <DashboardContent />
     }
 
