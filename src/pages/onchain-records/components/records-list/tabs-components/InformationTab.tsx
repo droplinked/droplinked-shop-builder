@@ -18,7 +18,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
     const informationData = [
         {
             title: "Name",
-            content: name,
+            content: slicedText(name),
         },
         {
             ...description && {
