@@ -11,9 +11,6 @@ import SKURow from "../../SKURow";
 export default function InformationTab({ item }: { item: ICombinedNft }) {
     const { getFormattedPrice } = useCurrencyConverter();
     const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress, sku } = item ?? {};
-    const slicedText = (text: string) => {
-        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
-    }
 
     const informationData = [
         {
@@ -23,7 +20,17 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         {
             ...description && {
                 title: "Description",
-                content: slicedText(description),
+                content: <AppTypography
+                    color={"#fff"}
+                    fontSize={14}
+                    dangerouslySetInnerHTML={{ __html: description }}
+                    sx={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: '1',
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                />,
             }
         },
         {
@@ -33,7 +40,19 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         {
             ...tokenAddress && {
                 title: "Token Address",
-                content: slicedText(tokenAddress),
+                content: <AppTypography
+                    color={"#fff"}
+                    fontSize={14}
+                    flex={1}
+                    sx={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: '1',
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
+                    {tokenAddress}
+                </AppTypography>,
             }
         },
         {
@@ -62,7 +81,19 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         {
             ...ownerAddress && {
                 title: "Owner Address",
-                content: slicedText(ownerAddress),
+                content: <AppTypography
+                    color={"#fff"}
+                    fontSize={14}
+                    flex={1}
+                    sx={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: '1',
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
+                    {ownerAddress}
+                </AppTypography>,
             }
         },
     ];
@@ -77,7 +108,17 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                     href={productAddress}
                     hasArrow={true}
                 >
-                    {slicedText(productAddress)}
+                    <AppTypography
+                        flex={1}
+                        sx={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: '1',
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden'
+                        }}
+                    >
+                        {productAddress}
+                    </AppTypography>
                 </ExternalLink>
             ),
         },

@@ -33,7 +33,7 @@ export default function ContainerCard({ items, hasBorder, title, titleRightConte
                     if (!Object.keys(item).length) return null
 
                     return (
-                        <Flex justifyContent={"space-between"} alignItems={"center"} key={index}>
+                        <Flex justifyContent={"space-between"} alignItems={"center"} gap={8} key={index}>
                             <AppTypography color={"#7B7B7B"} fontSize={14} fontWeight={400}>
                                 {item.title}
                             </AppTypography>
