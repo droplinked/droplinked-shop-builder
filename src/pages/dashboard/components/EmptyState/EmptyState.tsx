@@ -17,7 +17,7 @@ function EmptyState({ image, title, description, linkText, linkTo, isExternal = 
     const navigate = useNavigate()
 
     const handleClick = () => {
-        if (isExternal || /^https?:\/\//.test(linkTo)) window.location.href = linkTo
+        if (isExternal || /^https?:\/\//.test(linkTo)) window.open(linkTo, '_blank')
         else navigate(linkTo)
     }
 

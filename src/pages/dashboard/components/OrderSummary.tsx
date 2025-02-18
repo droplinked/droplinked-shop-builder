@@ -18,7 +18,7 @@ export default function OrderSummary() {
             title="Order Summary"
             onLinkClick={() => handleNavigation("/analytics/orders")}
         >
-            {recentOrders?.length === 0
+            {!recentOrders?.length
                 ? <OrderSummaryEmptyState />
                 : (
                     <Box
@@ -28,7 +28,7 @@ export default function OrderSummary() {
                             scrollbarWidth: 'none', // For Firefox: hides the scrollbar
                         }}
                     >
-                        {recentOrders.map((order: any) =>
+                        {recentOrders?.map((order: any) =>
                             <OrderItem key={order._id} order={order} handleNavigation={handleNavigation} />
                         )}
                     </Box>

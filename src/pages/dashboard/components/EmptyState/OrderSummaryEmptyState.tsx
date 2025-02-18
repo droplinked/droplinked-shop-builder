@@ -8,7 +8,7 @@ function OrderSummaryEmptyState() {
             title='No Orders Yet'
             description='Learn how to promote and grow across the network'
             linkText='Learn More'
-            linkTo='https://www.google.com/'
+            linkTo='https://droplinked.gitbook.io/droplinked-store-front-help-center/how-to-guides/manage-orders'
             isExternal
         />
     )
