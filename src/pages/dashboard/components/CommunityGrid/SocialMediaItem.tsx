@@ -1,4 +1,4 @@
-import { Box, Flex, GridItem, Text } from '@chakra-ui/react'
+import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { SocialMediaItemModel } from 'pages/dashboard/types/SocialMediaItem'
@@ -12,17 +12,16 @@ interface Props {
 function SocialMediaItem({ socialMediaItem, isLastRow }: Props) {
     const { icon, label, hoverColor, link } = socialMediaItem
 
-    const handleClick = () => window.open(link, "_blank")
-
     return (
-        <GridItem
+        <Link
+            href={link}
+            target='_blank'
             display="flex"
             flexDirection="column"
             gap={{ base: 4, md: 6 }}
             borderRight="1px solid #292929"
             borderBottom={isLastRow ? "none" : "1px solid #292929"}
             padding={{ base: 4, lg: 6 }}
-            cursor="pointer"
             transition="all 0.2s"
             _hover={{
                 bg: hoverColor,
@@ -32,7 +31,6 @@ function SocialMediaItem({ socialMediaItem, isLastRow }: Props) {
                     borderColor: "rgba(255, 255, 255, 0.20)"
                 }
             }}
-            onClick={handleClick}
         >
             <IconWrapper icon={icon} className="icon-container" />
 
@@ -44,7 +42,7 @@ function SocialMediaItem({ socialMediaItem, isLastRow }: Props) {
                     <AppIcons.ExternalArrow />
                 </Box>
             </Flex>
-        </GridItem>
+        </Link>
     )
 }
 
