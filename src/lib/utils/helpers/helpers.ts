@@ -22,11 +22,11 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
         case "PROFILE_COMPLETED":
             return { href: "registration", dashboard: true };
         case "SHOP_INFO_COMPLETED":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         case "IMS_TYPE_COMPLETED":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         case "ACTIVE":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         default:
             return { href: "", dashboard: false };
     }
