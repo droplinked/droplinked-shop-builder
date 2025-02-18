@@ -9,6 +9,7 @@ import TransferModal from './transfer-modal/TransferModal'
 export default function TransferCard({ item }: { item: ICombinedNft }) {
     const { onOpen, onClose, isOpen } = useDisclosure()
     const { isDroplinkedProduct, name, description, imageUrl } = item ?? {};
+    const productName = name.length > 30 ? name?.slice(0, 15) + "..." : name;
 
     return (
         <Flex
@@ -36,7 +37,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                         fontSize={{ base: 14, lg: 16 }}
                         fontWeight={700}
                     >
-                        {name}
+                        {productName}
                     </AppTypography>
                     {description &&
                         <AppTypography
