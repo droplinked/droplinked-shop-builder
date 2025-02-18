@@ -90,7 +90,13 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
         if (selectedIndex === 0) {
             const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })
             if (isValid) {
-                await createAirdrop({ receivers: manualTransferData });
+                // Filter out the last item if it's empty
+                const dataToSend = [...manualTransferData];
+                const lastItem = dataToSend[dataToSend.length - 1];
+                if (lastItem && !lastItem.receiver && (!lastItem.amount || lastItem.amount === 0)) {
+                    dataToSend.pop();
+                }
+                await createAirdrop({ receivers: dataToSend });
             }
         }
         //if we selected bulk upload
