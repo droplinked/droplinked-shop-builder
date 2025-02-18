@@ -59,8 +59,10 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
             ),
         },
         {
-            title: "Owner Address",
-            content: slicedText(ownerAddress),
+            ...ownerAddress && {
+                title: "Owner Address",
+                content: slicedText(ownerAddress),
+            }
         },
     ];
 
