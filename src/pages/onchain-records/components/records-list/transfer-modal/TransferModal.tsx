@@ -42,7 +42,11 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     },
         {
             onSuccess(data) {
-                createAirdrop({ receivers: data.data.receivers });
+                const receivers = data.data.receivers;
+                const isValid = handleValidateManualTransfer({ manualTransferData: receivers, quantity: +quantity, showToast });
+                if (isValid) {
+                    createAirdrop({ receivers });
+                }
             },
             onError(err: AxiosError<{ data: { message: string } }>) {
                 showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
