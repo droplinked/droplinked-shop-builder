@@ -1,5 +1,4 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProductBadge from './components/ProductBadge';
@@ -7,18 +6,13 @@ import ProductDetails from './components/ProductDetails';
 import ProductImageSlider from './components/productImageSlider/ProductImageSlider';
 import StoreInfo from './components/StoreInfo';
 
-export default function AffiliateProductCard({ product, isPublic = false }) {
-  const { shopNavigate } = useCustomNavigate();
+export default function AffiliateProductCard({ product  }) {
   const productImages = product.media?.slice(0, 3).map((item) => item?.thumbnail || item?.url) || [];
   const mainProductImage = product.media?.find((img) => img?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url;
 
   const handleNavigation = () => {
     const targetUrl = `affiliate/products/${product.slug}`;
-    if (isPublic) {
-      window.location.href = '/' + targetUrl;
-    } else {
-      shopNavigate(targetUrl);
-    }
+    window.location.href = '/' + targetUrl;
   };
 
   return (
