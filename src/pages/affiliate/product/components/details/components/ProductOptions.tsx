@@ -27,7 +27,7 @@ function ProductOptions({ product }: { product: any }) {
       {/* Size Options */}
       {sizes.length > 0 && (
         <OptionGroup title="Size">
-          <Flex h="7" align="center" gap="3">
+          <Flex h="7" align="center" flexWrap="wrap" mb={3}>
             {sizes.map((size, index) => (
               <Flex key={index} align="center" gap="3">
                 <AppTypography textAlign="center" color="white" fontSize="lg" fontWeight="medium">
@@ -44,7 +44,7 @@ function ProductOptions({ product }: { product: any }) {
       {variants.length > 0 &&
         variants.map((variant_group, key) => (
           <OptionGroup key={key} title={variant_group.name}>
-            <Flex gap="16px" flexWrap="wrap">
+            <Flex gap="16px" flexWrap="wrap" mb={3}>
               {variant_group.values.map((value, index) => (
                 <Flex key={index} align="center" gap="3">
                   <AppTypography textAlign="center" color="white" fontSize="lg" fontWeight="medium">
