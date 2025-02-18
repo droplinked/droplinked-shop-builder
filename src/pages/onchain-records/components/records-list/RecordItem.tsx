@@ -13,7 +13,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
     const { chain, imageUrl, name, ownerAddress } = item ?? {};
     const endCount = isSmallerThan768 ? 9 : 15;
     const walletAddress = ownerAddress && ownerAddress?.slice(0, endCount) + "...";
-    const productName = name.length > 30 ? name?.slice(0, isSmallerThan768 ? 15 : 30) + "..." : name;
+    const productName = name.length > 20 ? name?.slice(0, isSmallerThan768 ? 10 : 20) + "..." : name;
 
     return (
         <Flex flexDirection={"column"} gap={3} cursor={"pointer"} onClick={onOpen}>
