@@ -11,6 +11,9 @@ import SKURow from "../../SKURow";
 export default function InformationTab({ item }: { item: ICombinedNft }) {
     const { getFormattedPrice } = useCurrencyConverter();
     const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress, sku } = item ?? {};
+    const slicedText = (text: string) => {
+        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
+    }
 
     const informationData = [
         {
@@ -108,17 +111,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                     href={productAddress}
                     hasArrow={true}
                 >
-                    <AppTypography
-                        flex={1}
-                        sx={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: '1',
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden'
-                        }}
-                    >
-                        {productAddress}
-                    </AppTypography>
+                    {slicedText(productAddress)}
                 </ExternalLink>
             ),
         },
