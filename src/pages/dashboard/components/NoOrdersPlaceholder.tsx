@@ -17,15 +17,15 @@ export default function NoOrdersPlaceholder() {
                     label: 'First Product',
                     variant: 'primary',
                     leftIcon: <AppIcons.BlackPlus />,
-                    onClick: () => navigate("/analytics/products"),
+                    onClick: () => navigate("/analytics/products")
                 },
                 {
                     label: 'Help Center',
                     variant: 'outline',
                     rightIcon: <AppIcons.ExternalArrow />,
-                    onClick: () => console.log('Help Center clicked'),
-                },
-            ],
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                }
+            ]
         },
         {
             title: 'Selling on droplinked',
@@ -36,9 +36,9 @@ export default function NoOrdersPlaceholder() {
                     label: 'Learn More',
                     variant: 'outline',
                     rightIcon: <AppIcons.ExternalArrow />,
-                    onClick: () => console.log('Learn More clicked'),
-                },
-            ],
+                    onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
+                }
+            ]
         },
         {
             title: 'Customizable Themes',
@@ -48,10 +48,10 @@ export default function NoOrdersPlaceholder() {
                 {
                     label: 'Get Started',
                     variant: 'primary',
-                    onClick: () => navigate("/analytics/settings/design"),
-                },
-            ],
-        },
+                    onClick: () => navigate("/analytics/settings/design")
+                }
+            ]
+        }
     ]
 
     return (
@@ -62,9 +62,7 @@ export default function NoOrdersPlaceholder() {
         >
             <FeatureCard {...cardsData[0]} />
             <SimpleGrid height="full" gap="inherit">
-                {cardsData.slice(1).map((feature) => (
-                    <FeatureCard key={feature.title} {...feature} />
-                ))}
+                {cardsData.slice(1).map((feature) => <FeatureCard key={feature.title} {...feature} />)}
             </SimpleGrid>
         </Grid>
     )
