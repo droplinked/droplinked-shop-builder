@@ -34,7 +34,7 @@ function HeaderMain() {
       links: [
         { label: 'DIMST', description: 'Onchain inventory management', icon: <AppIcons.HeaderCoins />, href: '/roi' },
         { label: 'Tokenpay', description: 'All our items in one place', icon: <AppIcons.HeaderCoins />, href: '/tokenpay' },
-        { label: 'Metaverse Store', description: 'Step Into Your Metaverse Store', icon: <AppIcons.MetaverseStore />, href: '/metaverse-store' },
+        { label: 'Immersive Store', description: 'Step Into Your Immersive Store.', icon: <AppIcons.MetaverseStore />, href: '/metaverse-store' },
         { label: 'DPP', description: 'Digital product passport', icon: <AppIcons.HeaderImage />, href: '/dpp' }
       ]
     },
