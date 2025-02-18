@@ -16,7 +16,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
  *
  */
 
-const ProductsGridRenderer = ({ data, fetchNextPage, hasNextPage, isLoading, isError }) => {
+const ProductsGridRenderer = ({ isPublic ,data, fetchNextPage, hasNextPage, isLoading, isError }) => {
   if (isLoading) {
     return (
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="16px" width="full">
@@ -53,7 +53,7 @@ const ProductsGridRenderer = ({ data, fetchNextPage, hasNextPage, isLoading, isE
       >
         <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing="16px" width="full">
           {products.map((product, index) => (
-            <AffiliateProductCard key={index} product={product} />
+            <AffiliateProductCard key={index}  isPublic={isPublic} product={product} />
           ))}
         </SimpleGrid>
       </InfiniteScroll>
