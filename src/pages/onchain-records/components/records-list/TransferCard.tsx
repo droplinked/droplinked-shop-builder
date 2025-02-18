@@ -23,7 +23,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
             justifyContent={"space-between"}
             alignItems={"center"}
         >
-            <Flex alignItems={"center"} gap={4}>
+            <Flex alignItems={"center"} gap={4} width={"80%"}>
                 <AppImage
                     width={"56px"}
                     height={"56px"}
@@ -64,6 +64,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                 paddingInline={"14px"}
                 onClick={onOpen}
                 isDisabled={isDroplinkedProduct || item.quantity === "0"}
+                width={"20%"}
             >
                 Transfer
             </Button>
