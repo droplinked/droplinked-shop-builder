@@ -8,6 +8,7 @@ export default function FakeRecordsList() {
         <Grid
             templateColumns={{
                 base: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
                 lg: 'repeat(4, 1fr)',
                 xl: 'repeat(5, 1fr)',
             }}

@@ -7,7 +7,7 @@ import React from 'react'
 import ConnectWalletModal from './ConnectWalletModal'
 
 export default function EmptyView() {
-    const connectWalletModal = useDisclosure()
+    const { onClose, onOpen, isOpen } = useDisclosure();
 
     return (
         <Flex justify="center" align="center" flexDirection="column" height={"60dvh"} gap="64px">
@@ -23,12 +23,12 @@ export default function EmptyView() {
                     color={"#2BCFA1"}
                     fontSize={12}
                     fontWeight={500}
-                    onClick={connectWalletModal.onOpen}
+                    onClick={onOpen}
                 >
                     Connect Wallet
                 </BlueButton>
             </Flex>
-            <ConnectWalletModal connectWalletModal={connectWalletModal} />
+            <ConnectWalletModal isOpen={isOpen} onClose={onClose} />
         </Flex>
     )
 }

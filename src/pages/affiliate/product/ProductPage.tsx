@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import ProductDetails from './components/details/ProductDetails';
@@ -21,14 +21,10 @@ function AffiliateProductsSinglePage({ isPublic = false }) {
   if (isLoading) return <ProductPageLoading />;
 
   return (
-    <Flex  flexDirection={'column'} alignItems="center" justifyContent="center" width="full" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
-      <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: '24px', lg: '56px' }} width="full" mb={"80px"}>
-        <Box >
-          <ProductSlider product={productData} />
-        </Box>
-        <Box >
-          <ProductDetails product={productData} />
-        </Box>
+    <Flex flexDirection={'column'} alignItems="center" width="full" justifyContent="center" mt={isPublic ? '80px' : undefined} px={isPublic ? { base: '60px', lg: '72px' } : undefined}>
+      <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: '24px', lg: '56px' }} width="full" mb={'80px'}>
+        <ProductSlider product={productData} />
+        <ProductDetails product={productData} />
       </Flex>
       <ProductDescription product={productData} />
     </Flex>

@@ -1,13 +1,11 @@
-import { Button, Popover, PopoverContent, PopoverContentProps, PopoverProps, PopoverTrigger } from "@chakra-ui/react";
-import React from "react";
+import { Box, Popover, PopoverContent, PopoverContentProps, PopoverProps, PopoverTrigger } from "@chakra-ui/react";
+import React, { ReactNode } from "react";
 
 interface IProps extends PopoverProps {
     nodes: {
-        trigger: {
-            children: React.ReactNode;
-        };
+        trigger: ReactNode;
         content: {
-            children: React.ReactNode | ((props: { onClose: () => void }) => React.ReactNode);
+            children: ReactNode | ((props: { onClose: () => void }) => ReactNode);
             props?: PopoverContentProps;
         };
     };
@@ -19,11 +17,15 @@ function AppPopoverOnHover({ nodes: { trigger, content }, ...props }: IProps) {
             {({ isOpen, onClose }) => (
                 <>
                     <PopoverTrigger>
-                        <Button padding={0} backgroundColor={"transparent"} _hover={{ backgroundColor: "transparent" }} border={"none"}>
-                            {trigger.children}
-                        </Button>
+                        <Box as="button">{trigger}</Box>
                     </PopoverTrigger>
-                    <PopoverContent {...content.props}>{typeof content.children === "function" ? content.children({ onClose }) : content.children}</PopoverContent>
+                    <PopoverContent {...content.props}>
+                        {
+                            typeof content.children === "function" ?
+                                content.children({ onClose })
+                                : content.children
+                        }
+                    </PopoverContent>
                 </>
             )}
         </Popover>

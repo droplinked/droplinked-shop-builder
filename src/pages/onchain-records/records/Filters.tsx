@@ -4,26 +4,19 @@ import Input from 'components/redesign/input/Input';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useMemo } from 'react';
+import { useOnchainRecords } from '../context/OnchainRecordsContext';
 
-interface FiltersProps {
-    searchValue: string;
-    setSearchValue: (value: string) => void;
-    recordFilter: string | null;
-    setRecordFilter: (value: string | null) => void;
-    walletFilter: string | null;
-    setWalletFilter: (value: string | null) => void;
-}
-
-export default function Filters({
-    searchValue,
-    setSearchValue,
-    recordFilter,
-    setRecordFilter,
-    walletFilter,
-    setWalletFilter
-}: FiltersProps) {
+export default function Filters() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { user: { wallets } } = useAppStore()
+    const {
+        searchValue,
+        setSearchValue,
+        recordFilter,
+        setRecordFilter,
+        walletFilter,
+        setWalletFilter
+    } = useOnchainRecords();
 
     const recordItems = [
         { label: "All Records", value: null },
@@ -36,7 +29,7 @@ export default function Filters({
         const walletOptions = wallets?.map(({ address, type }) => ({
             label: type,
             labelDescription: `${address.slice(0, isSmallerThan768 ? 20 : 6)}...`,
-            value: address
+            value: type
         }))
 
         return [...baseItems, ...(walletOptions ?? [])]

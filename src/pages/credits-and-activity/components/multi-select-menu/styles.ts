@@ -26,5 +26,6 @@ export const styles = {
         borderColor: "#616161",
         size: "lg",
         borderRadius: "6px",
+        cursor: "pointer",
     }
 } as const

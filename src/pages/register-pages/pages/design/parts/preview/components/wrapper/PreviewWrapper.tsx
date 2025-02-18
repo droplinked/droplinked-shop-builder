@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 import React from 'react'
-import PreviewHiro from './parts/hiro/PreviewHiro'
-import PreviewHomepage from './parts/homepage/PreviewHomepage'
+import PreviewHiro from './components/hiro/PreviewHiro'
+import PreviewHomepage from './components/homepage/PreviewHomepage'
 
 function PreviewWrapper() {
     return (

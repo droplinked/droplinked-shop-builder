@@ -15,7 +15,7 @@ import BulkUpload from "./bulk-upload/BulkUpload";
 import ManualTransfer from "./manual-transfer/ManualTransfer";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
-import { useOnchainRefetch } from '../../../context/OnchainRefetchContext';
+import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
 import SampleFile from "./sample/Template.csv"
 
 interface Props {
@@ -29,7 +29,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     const [file, setFile] = useState<File>(null)
     const [isExecuteLoading, setIsExecuteLoading] = useState(false);
     const { showToast } = useAppToast();
-    const { refetch } = useOnchainRefetch();
+    const { refetch } = useOnchainRecords();
 
     const { quantity, chain, tokenAddress, tokenId, ownerAddress } = item ?? {};
     const network = appDevelopment ? "TESTNET" : "MAINNET";

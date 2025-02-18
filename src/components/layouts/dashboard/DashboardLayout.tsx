@@ -29,6 +29,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   // Smooth scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    setIsSidebarOpen(false);
   }, [location]);
 
   // Close sidebar when clicking outside (only in mobile view)
