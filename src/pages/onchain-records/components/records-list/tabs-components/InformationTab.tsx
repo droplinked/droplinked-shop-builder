@@ -124,7 +124,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                 <ContainerCard title="Product Details" items={productDetails}>
                     {sku.map((item, index) => {
                         return (
-                            <SKURow key={item._id} item={item} />
+                            !!item.options.length && <SKURow key={item._id} item={item} />
                         )
                     })}
                 </ContainerCard>
