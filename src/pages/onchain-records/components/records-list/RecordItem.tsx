@@ -13,6 +13,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
     const { chain, imageUrl, name, ownerAddress } = item ?? {};
     const endCount = isSmallerThan768 ? 9 : 15;
     const walletAddress = ownerAddress && ownerAddress?.slice(0, endCount) + "...";
+    const productName = name.length > 30 ? name?.slice(0, isSmallerThan768 ? 15 : 30) + "..." : name;
 
     return (
         <Flex flexDirection={"column"} gap={3} cursor={"pointer"} onClick={onOpen}>
@@ -43,8 +44,17 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
                 </AppTooltip>
                 <AppTypography color={"#7b7b7b"}>{walletAddress}</AppTypography>
             </Flex>
-            <AppTypography color={"#fff"} fontSize={{ base: 14, lg: 16 }} lineHeight={{ base: "20px", lg: "24px" }}>
-                {name}
+            <AppTypography
+                color={"#fff"}
+                fontSize={{ base: 14, lg: 16 }}
+                lineHeight={{ base: "20px", lg: "24px" }}
+                sx={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: '1',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>
+                {productName}
             </AppTypography>
             <RecordDetails item={item} isOpen={isOpen} onClose={onClose} />
         </Flex>
