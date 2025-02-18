@@ -1,6 +1,6 @@
 import AppIcons from 'assest/icon/Appicons';
-import BasicButton from 'components/common/BasicButton/BasicButton';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
+import Button from 'components/redesign/button/Button';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { importAffiliateProductService } from 'lib/apis/product/productServices';
 import useAppStore from 'lib/stores/app/appStore';
@@ -29,9 +29,9 @@ function ImportProductButton({ productId }) {
 
   return (
     <>
-      <BasicButton iconLeft={<AppIcons.AffiliateAddProduct />} isLoading={isLoading} isDisabled={isLoading} width="full" onClick={importProduct}>
+      <Button iconLeft={<AppIcons.AffiliateAddProduct />} isLoading={isLoading} isDisabled={isLoading} width="full" onClick={importProduct}>
         Import Product
-      </BasicButton>
+      </Button>
       <AuthModal show={isAuthModalOpen} close={() => setAuthModalOpen(false)} type={MODAL_TYPE.SIGNIN} />
     </>
   );
