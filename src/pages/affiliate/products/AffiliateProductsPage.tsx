@@ -37,7 +37,7 @@ const AffiliateProductsPage = ({ isPublic = false }) => {
           <FiltersPanel isPublic={isPublic} showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} categories={categories} />
           <VStack width="full" spacing="24px">
             <ActionBar  setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange}  />
-            <AffiliateProductList />
+            <AffiliateProductList isPublic={isPublic} />
           </VStack>
         </Flex>
       </VStack>
