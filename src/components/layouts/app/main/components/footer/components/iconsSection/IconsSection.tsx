@@ -14,7 +14,7 @@ function IconsSection() {
     ];
 
     return (
-        <Flex width="100%" direction="column" gap={"36px"} sx={{ p: { fontWeight: 400 } }}>
+        <Flex width="100%" direction="column" zIndex={1} gap="36px" sx={{ p: { fontWeight: 400 } }}>
             <Box display="flex" alignItems="center" gap={4} cursor="pointer" sx={{ svg: { path: { fill: "white" } } }}>
                 <AppIcons.SidebarDroplinked width="40px" height="40px" />
                 <Image src="https://upload-file-droplinked.s3.amazonaws.com/5e19eaa5a7095f55b005e12397acf5f874ec94aa3923e5e8a04f3abd8787f081.png" width="214px" height="auto" flexShrink="0" />

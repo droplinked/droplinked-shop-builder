@@ -77,7 +77,6 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
 
     const handleDirectRecord = async () => {
         await recordProduct()
-        openDropModal()
     }
 
     const checkCircleModalCondition = () => {
@@ -110,6 +109,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
             savedProduct.current = response.data.data
             await getShopSubscriptionDataService()
             showToast({ message: 'The product has been successfully recorded!', type: 'success' })
+            openDropModal()
         }
         catch (error) {
             await updateProductService({ productID: product._id, params: { digitalDetail: { chain: null } } })

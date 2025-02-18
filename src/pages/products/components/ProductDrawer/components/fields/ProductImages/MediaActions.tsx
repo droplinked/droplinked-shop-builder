@@ -19,9 +19,8 @@ function MediaActions({ image }: { image: ProductMedia }) {
     }
 
     function removeImage() {
-        if (values.media.length <= 1) return
         const updatedMedia = values.media.filter(media => media.url !== url)
-        if (isMainImage) updatedMedia[0].isMain = true
+        if (updatedMedia.length && isMainImage) updatedMedia[0].isMain = true
         setFieldValue('media', updatedMedia)
     }
 

@@ -4,6 +4,7 @@ import { ReactComponent as ColorfulInstagram } from './ColorfulInstagram.svg';
 import { ReactComponent as ColorfulLinkedin } from './ColorfulLinkedin.svg';
 import { ReactComponent as ColorfulTelegram } from './ColorfulTelegram.svg';
 import { ReactComponent as ColorfulXTwitter } from './ColorfulX-Twitter.svg';
+import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
 import { ReactComponent as Invoice } from './Invoice.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as PremiumPlanGreenStarIcon } from './PremiumPlanGreenStarIcon.svg';
@@ -18,6 +19,9 @@ import { ReactComponent as AffiliateStoreInstagram } from './affiliate-store-ins
 import { ReactComponent as AffiliateStoreTiktok } from './affiliate-store-tiktok.svg';
 import { ReactComponent as AffiliateStoreTwitter } from './affiliate-store-twitter.svg';
 import { ReactComponent as AffiliateStoreYoutube } from './affiliate-store-youtube.svg';
+import { ReactComponent as ArrowDownOutlined } from './arrow-down.svg';
+import { ReactComponent as ArrowRight } from "./arrow-right.svg";
+import { ReactComponent as ArrowUp } from './arrow-up.svg';
 import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as AscSorting } from './asc-sorting.svg';
 import { ReactComponent as Asterisk } from './asterisk.svg';
@@ -42,6 +46,7 @@ import { ReactComponent as BnbChain } from './bnb-chain.svg';
 import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CanadianDollar } from './cad.svg';
 import { ReactComponent as Calendar } from './calendar.svg';
+import { ReactComponent as Case } from './case.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CheckCircle } from './check-circle.svg';
 import { ReactComponent as ChevronLeft } from './chevron-left.svg';
@@ -60,6 +65,7 @@ import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as ChineseYuan } from './cny.svg';
 import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as CollectionIcon } from './collection-icon.svg';
+import { ReactComponent as Collection } from './collection.svg';
 import { ReactComponent as CollectionModalIcon } from './collectionModalIcon.svg';
 import { ReactComponent as ConfirmPlan } from './confirm-plan.svg';
 import { ReactComponent as Convert } from './convert.svg';
@@ -85,6 +91,7 @@ import { ReactComponent as D3Wallet } from './d3-wallet.svg';
 import { ReactComponent as D3Web3Support } from './d3-web3-support.svg';
 import { ReactComponent as Dashboard } from './dashboard.svg';
 import { ReactComponent as DatepickerDashboard } from './datepicker-dashboard.svg';
+import { ReactComponent as DayCalendar } from './day-calendar.svg';
 import { ReactComponent as DeleteIcon } from './delete-icon.svg';
 import { ReactComponent as Delete } from './delete.svg';
 import { ReactComponent as DeliveryTruck } from './delivery-truck.svg';
@@ -98,14 +105,17 @@ import { ReactComponent as DiscountIcon } from './discount-active-icon.svg';
 import { ReactComponent as DiscountCouponIcon } from './discount-coupon-icon.svg';
 import { ReactComponent as DiscountRuleset } from './discount-ruleset.svg';
 import { ReactComponent as DiscountSetting } from './discount-setting.svg';
+import { ReactComponent as Discount } from './discount.svg';
 import { ReactComponent as Document } from './document.svg';
 import { ReactComponent as DollarSign } from './dollar-sign.svg';
 import { ReactComponent as DotSpacer } from './dotSpacer.svg';
 import { ReactComponent as Dots } from './dots.svg';
 import { ReactComponent as Download } from './download.svg';
 import { ReactComponent as DropProduct } from './drop-product.svg';
+import { ReactComponent as DroplinkedLogo } from "./droplinked-front-logo.svg";
 import { ReactComponent as DROP_LINKED_LOGO } from './droplinked-logo.svg';
 import { ReactComponent as Droplinked } from './droplinked.svg';
+import { ReactComponent as SidebarDroplinked1 } from './droplinked1.svg';
 import { ReactComponent as EditIconWhite } from './edit-icon-white.svg';
 import { ReactComponent as EditIcon } from './edit-icon.svg';
 import { ReactComponent as EditOutlined } from './edit-outlined.svg';
@@ -131,6 +141,7 @@ import { ReactComponent as Gamification } from './gamification.svg';
 import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GatingRuleset } from './gated-ruleset.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Globe } from './globe.svg';
 import { ReactComponent as GoldenStar } from './golden-star.svg';
 import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDollar, ReactComponent as GrayDollor } from './gray-dollar.svg';
@@ -180,6 +191,8 @@ import { ReactComponent as LandingPageCreditCard } from './landing-page-credit-c
 import { ReactComponent as LandingPageDesignNib } from './landing-page-design-nib.svg';
 import { ReactComponent as LandingPageLink } from './landing-page-link.svg';
 import { ReactComponent as LandingPageTemplate } from './landing-page-template.svg';
+import { ReactComponent as Letter } from "./letter.svg";
+import { ReactComponent as Light } from './light.svg';
 import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as LinkedInOutlined } from './linkedin-outlined.svg';
 import { ReactComponent as LinkedIn } from './linkedin.svg';
@@ -193,6 +206,7 @@ import { ReactComponent as MedalStar } from './medalStar.svg';
 import { ReactComponent as MenClothing } from './men-clothing.svg';
 import { ReactComponent as MetaverseStore } from './metaverse-store.svg';
 import { ReactComponent as Mobile } from './mobile-icon.svg';
+import { ReactComponent as Monthcalendar } from './month-calendar.svg';
 import { ReactComponent as MoreIcon } from './more-icon.svg';
 import { ReactComponent as MultiShopManagement } from './multi-shop.svg';
 import { ReactComponent as NearWalletIcon } from './nearWallet.svg';
@@ -206,6 +220,7 @@ import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as Paint } from './paint.svg';
 import { ReactComponent as Param } from './param.svg';
 import { ReactComponent as PaymentMethodSelection } from './payment-method-selection.svg';
+import { ReactComponent as Paymob } from './paymob.svg';
 import { ReactComponent as Pen } from './pen.svg';
 import { ReactComponent as Personalize } from './personalize.svg';
 import { ReactComponent as Phantom } from './phantom.svg';
@@ -226,14 +241,18 @@ import { ReactComponent as ProfileSetting } from './profile-setting.svg';
 import { ReactComponent as ProfileShop } from './profile-shop.svg';
 import { ReactComponent as ProfileSupport } from './profile-support.svg';
 import { ReactComponent as ProfileSwitch } from './profile-switch.svg';
+import { ReactComponent as RecieveMoney } from './recieve-money.svg';
 import { ReactComponent as RedAlert } from './red-alert.svg';
 import { ReactComponent as RedCircleCross } from './red-circle-cross.svg';
 import { ReactComponent as RedTrash } from './red-trash.svg';
 import { ReactComponent as Redbelly } from './redbelly.svg';
 import { ReactComponent as Refresh } from './refresh.svg';
+import { ReactComponent as Refresh2 } from './refresh2.svg';
 import { ReactComponent as ReorderDesigned } from './reorderDesigned.svg';
 import { ReactComponent as Required } from './required.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
+import { ReactComponent as Robot } from './robot.svg';
+import { ReactComponent as Rocket } from './rocket.svg';
 import { ReactComponent as RulesetModalIcon } from './ruleSetModalIcon.svg';
 import { ReactComponent as RulesetsIcon } from './ruleset.svg';
 import { ReactComponent as RuleIcon } from './rulesets-active-icon.svg';
@@ -241,6 +260,7 @@ import { ReactComponent as SearchOutlined } from './search-redesign.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Secure } from './secure.svg';
 import { ReactComponent as SelectChevronDown } from './select-chevron-down.svg';
+import { ReactComponent as SendMoney } from './send-money.svg';
 import { ReactComponent as Services } from './services.svg';
 import { ReactComponent as SettingGear } from './setting-gear.svg';
 import { ReactComponent as SettingIcon } from './setting-icon.svg';
@@ -256,7 +276,10 @@ import { ReactComponent as SidebarChat } from './sidebar-chat.svg';
 import { ReactComponent as SidebarChevrondown } from './sidebar-chevrondown.svg';
 import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.svg';
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
+import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
+import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
+import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
@@ -269,6 +292,7 @@ import { ReactComponent as SidebarTickedCircle } from './sidebar-ticked-circle.s
 import { ReactComponent as SidebarUser } from './sidebar-user.svg';
 import { ReactComponent as Skale } from './skale.svg';
 import { ReactComponent as Slash } from './slash.svg';
+import { ReactComponent as Smile } from './smile.svg';
 import { ReactComponent as Solana } from './solana.svg';
 import { ReactComponent as Soon } from './soon.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
@@ -286,9 +310,11 @@ import { ReactComponent as TearIcon } from './tear-icon.svg';
 import { ReactComponent as TelegramOutlined } from './telegram-outlined.svg';
 import { ReactComponent as ThreeStars } from './three-stars.svg';
 import { ReactComponent as Tick } from './tick.svg';
+import { ReactComponent as TikTokOutlined } from './tikTok-outlined.svg';
 import { ReactComponent as TikTok } from './tiktok.svg';
 import { ReactComponent as Token } from './token.svg';
 import { ReactComponent as TooltipIcon } from './tooltipIcon.svg';
+import { ReactComponent as Transfer } from './transfer.svg';
 import { ReactComponent as Trust } from './trust.svg';
 import { ReactComponent as TwitterIcon } from './twitter.svg';
 import { ReactComponent as UDBorderRed } from './ud-border-red.svg';
@@ -300,10 +326,13 @@ import { ReactComponent as Upload } from './upload-icon.svg';
 import { ReactComponent as Usdc } from './usdc.svg';
 import { ReactComponent as Usdt } from './usdt.svg';
 import { ReactComponent as UserInvitation } from './user-invitation.svg';
+import { ReactComponent as User } from './user.svg';
 import { ReactComponent as VerticalMove } from './vertical-move.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
+import { ReactComponent as Wallet } from './wallet.svg';
 import { ReactComponent as Watch } from './watch.svg';
 import { ReactComponent as Web } from './web.svg';
+import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteSave } from './white-save.svg';
@@ -318,9 +347,32 @@ import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
-import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
+import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
+import { ReactComponent as NFTIcon } from './nft.svg';
+import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
+import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
+import { ReactComponent as SearchInput } from './square-with-slash.svg'
+import { ReactComponent as FilterAction } from './action-filter.svg'
+
 
 const AppIcons = {
+  Paymob,
+  ETHOutlined,
+  NFTIcon,
+  SendMoney,
+  ArrowUp,
+  ArrowDownOutlined,
+  RecieveMoney,
+  Wallet,
+  Refresh2,
+  Light,
+  Case,
+  Smile,
+  Rocket,
+  Robot,
+  DayCalendar,
+  WeekCalendar,
+  Monthcalendar,
   Euro,
   ChineseYuan,
   JapaneseYen,
@@ -499,6 +551,7 @@ const AppIcons = {
   DescSorting,
   Edit,
   SidebarDroplinked,
+  SidebarDroplinked1,
   SidebarAffiliate,
   SidebarAnalytics,
   SidebarBlog,
@@ -642,7 +695,23 @@ const AppIcons = {
   ExternalArrow,
   Soon,
   SideBarQuests,
-  HeaderPolygon
-};
+  HeaderPolygon,
+  Letter,
+  ArrowRight,
+  DroplinkedLogo,
+  Collection,
+  Discount,
+  User,
+  YouTubeOutlined,
+  TikTokOutlined,
+  SidebarDashboard,
+  Transfer,
+  SideBarExpand,
+  SideBarCollapse,
+  Globe,
+  AffiliateAddProduct,
+  SearchInput,
+  FilterAction
+}
 
-export default AppIcons;
+export default AppIcons

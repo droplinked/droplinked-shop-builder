@@ -22,11 +22,11 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
         case "PROFILE_COMPLETED":
             return { href: "registration", dashboard: true };
         case "SHOP_INFO_COMPLETED":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         case "IMS_TYPE_COMPLETED":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         case "ACTIVE":
-            return { href: "", dashboard: true };
+            return { href: "dashboard", dashboard: true };
         default:
             return { href: "", dashboard: false };
     }
@@ -291,4 +291,15 @@ export const arraysAreEqual = (arr1: any[], arr2: any[]): boolean => {
     const sortedArr2 = [...arr2].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
     return sortedArr1.every((item, index) => deepEqual(item, sortedArr2[index]))
+}
+
+export const formatDateLongStyle = (date: Date): string => {
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }
+
+    // Example output: "November 1, 2022"
+    return date.toLocaleDateString('en-US', options)
 }

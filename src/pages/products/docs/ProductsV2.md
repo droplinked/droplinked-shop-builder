@@ -19,8 +19,6 @@ A subcomponent of `PageHeader` that contains action buttons for creating new pro
 ### ProductTypesPopover
 A subcomponent of `PageHeaderRightContent` that displays a popover with different product types. It allows users to select the type of product they want to create.
 
-The `isProductTypePopoverOpen` state in `useProductPageStore` is used to manage the visibility of the product type selection popover. Since there are two places to open the product type selection modal (the button in the page header and the add new product button in the product table empty state), this variable ensures that only one instance of the popover is open at a time.
-
 ### ProductTypeCard
 A subcomponent of `ProductTypesPopover` that represents an individual product type. It includes an icon, title, and description for the product type, and allows users to select it.
 

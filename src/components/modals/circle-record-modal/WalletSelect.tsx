@@ -14,7 +14,7 @@ function WalletSelect({ onWalletChange, selectedChain }: Props) {
     const shopCircleWalletForChain = shop.circleWallets?.find((wallet) => wallet.chain === selectedChain)
 
     // Find the wallet manually connected by the user for the selected chain
-    const userWalletForChain = userWallets.find((wallet) => wallet.type === selectedChain)
+    const userWalletForChain = userWallets?.find((wallet) => wallet.type === selectedChain)
 
     // Combine the wallets found in both shop circle wallets and user wallets
     const availableWallets = [shopCircleWalletForChain, userWalletForChain]

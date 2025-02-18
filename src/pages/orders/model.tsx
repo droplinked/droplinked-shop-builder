@@ -21,9 +21,9 @@ const OrdersModel = ({
         if (minutesPassed < 1) {
             return "now";
         } else if (hoursPassed < 1) {
-            return `${minutesPassed} minutes`;
+            return `${minutesPassed} minutes ago`;
         } else if (daysPassed < 1) {
-            return `${hoursPassed} hours`;
+            return `${hoursPassed} hours ago`;
         } else {
             return yourDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
         }

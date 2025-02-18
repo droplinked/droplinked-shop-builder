@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assest/icon/Appicons";
@@ -8,10 +8,12 @@ import { ISettings } from "pages/settings/formConfigs";
 interface Provider {
   title: string;
   buttonText: string;
-  link: string;
-  tooltip: string;
+  link?: string;
+  tooltip?: string;
   icon: ReactElement;
-  type: "stripe" | "coinbase";
+  type: "stripe" | "coinbase" | "paymob";
+  isExternal: boolean;
+  isDisabled?: boolean;
 }
 
 const PaymentProviderList: React.FC = () => {
@@ -24,6 +26,7 @@ const PaymentProviderList: React.FC = () => {
       type: "stripe",
       buttonText: "View Account",
       link: "https://dashboard.stripe.com/login",
+      isExternal: true,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
     },
@@ -32,8 +35,18 @@ const PaymentProviderList: React.FC = () => {
       type: "coinbase",
       buttonText: "Learn More",
       link: "#",
+      isExternal: true,
       tooltip: "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
       icon: <AppIcons.Coinbase />,
+    },
+    {
+      title: "Paymob",
+      type: "paymob",
+      buttonText: "Connect",
+      isExternal: false,
+      isDisabled: true,
+      tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
+      icon: <AppIcons.Paymob color="#004eff" />,
     },
   ];
 
@@ -41,25 +54,41 @@ const PaymentProviderList: React.FC = () => {
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     const isActive = e.target.checked;
 
-    // Update payment methods array based on toggle state
-    const updatedMethods = values.paymentMethods.map((item) =>
-      item.type === type.toUpperCase()
-        ? { ...item, isActive }
-        : item
-    );
+    // If turning on a provider, turn off all others
+    if (isActive) {
+      const updatedMethods = values.paymentMethods.map((item) => ({
+        ...item,
+        isActive: item.type === type.toUpperCase()
+      }));
 
-    if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
-      updatedMethods.push({ type: type.toUpperCase(), isActive });
+      // Add the new provider if it doesn't exist
+      if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
+        updatedMethods.push({ type: type.toUpperCase(), isActive: true });
+      }
+
+      setFieldValue("paymentMethods", updatedMethods);
+    } else {
+      // If turning off a provider, just update that one
+      const updatedMethods = values.paymentMethods.map((item) =>
+        item.type === type.toUpperCase()
+          ? { ...item, isActive: false }
+          : item
+      );
+
+      setFieldValue("paymentMethods", updatedMethods);
     }
-
-    setFieldValue("paymentMethods", updatedMethods);
   };
 
   return (
-    <Flex flexDir={{ base: "column", xl: "row" }} gap={4} overflow="hidden">
-      {providers.map(({ title, buttonText, link, type, tooltip, icon }) => (
+    <Grid
+      templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+      gap={4}
+      overflow="hidden"
+    >
+      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled }) => (
         <PaymentProviderCard
           key={type}
+          isDisabled={isDisabled}
           type={type}
           title={title}
           buttonText={buttonText}
@@ -67,9 +96,10 @@ const PaymentProviderList: React.FC = () => {
           link={link}
           tooltip={tooltip}
           icon={icon}
+          isExternal={isExternal}
         />
       ))}
-    </Flex>
+    </Grid>
   );
 };
 

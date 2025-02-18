@@ -9,7 +9,7 @@ import WalletInputs from './components/wallets-inputs/WalletsInputs';
 
 function PaymentAndWallets() {
   return (
-    <Box px={{ base: 4, md: 6 }}>
+    <Box>
       <StoreDisplay />
       <FinancialServices />
       <MerchantWallet />

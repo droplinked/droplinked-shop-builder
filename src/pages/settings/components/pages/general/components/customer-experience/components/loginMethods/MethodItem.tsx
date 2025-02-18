@@ -34,7 +34,7 @@ export default function MethodItem({ method }: Props) {
             flexWrap={"wrap"}
             p={4}
             justifyContent={"space-between"}
-            flexDirection={{ base: "column", md: "row" }}
+            flexDirection={"row"}
             alignItems={"center"}
         >
             <Flex gap={4} flex={1} alignItems={"center"}>

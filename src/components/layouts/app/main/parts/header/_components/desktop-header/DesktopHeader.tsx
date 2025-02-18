@@ -1,7 +1,6 @@
 import { Flex, HStack, PopoverBody, SimpleGrid } from '@chakra-ui/react'
 import AppPopoverOnHover from 'components/common/PopoverMenu/PopOverOnHover'
 import AppTypography from 'components/common/typography/AppTypography'
-import HeaderDashboardLoggedin from 'components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLoggedin'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -9,6 +8,7 @@ import { MenuItems } from '../../types/types'
 import Droplinked from '../droplinked/Droplinked'
 import HeaderIconContainer from '../icon-container/HeaderIconContainer'
 import SignInButton from '../sign-in-button/SignInButton'
+import HeaderDashboardLoggedin from './parts/HeaderDashboardLoggedin'
 
 export default function DesktopHeader({ headerMenuItems }: MenuItems) {
     const { shop } = useAppStore()
@@ -29,6 +29,7 @@ function NavigationMenu({ headerMenuItems }) {
         <HStack color="#FFF" spacing={{ base: '10px', sm: '20px', md: '48px' }} alignItems="center">
             <HeaderMenu headerMenuItems={headerMenuItems} />
             <NavLink to="/plans" label="Pricing" />
+            <NavLink to="affiliate/products" label="Affiliate" />
             <NavLink to="/about" label="About Us" />
         </HStack>
     )
@@ -38,19 +39,17 @@ function HeaderMenu({ headerMenuItems }) {
     return (
         <AppPopoverOnHover
             nodes={{
-                trigger: {
-                    children: (
-                        <AppTypography
-                            color="#878787"
-                            fontSize={{ base: '12px', sm: '14px', md: '16px' }}
-                            fontWeight={600}
-                            transition="0.2s"
-                            _hover={{ color: '#fff' }}
-                        >
-                            Products
-                        </AppTypography>
-                    )
-                },
+                trigger: (
+                    <AppTypography
+                        color="#878787"
+                        fontSize={{ base: '12px', sm: '14px', md: '16px' }}
+                        fontWeight={600}
+                        transition="0.2s"
+                        _hover={{ color: '#fff' }}
+                    >
+                        Products
+                    </AppTypography>
+                ),
                 content: {
                     children: ({ onClose }) => (
                         <PopoverBody display="flex" flexDirection="column">

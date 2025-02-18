@@ -3,8 +3,9 @@
     border-radius: 8px;
     background: #141414;
     z-index: 1;
+    width: 100%;
 
-    :global {
+    :global {  
         .tox {
             border: 1px solid #292929; // Adds a border around the text editor area
             border-radius: 8px !important;

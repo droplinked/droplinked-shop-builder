@@ -1,8 +1,10 @@
-import { ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
-import React from 'react';
+import { Box, ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
+import React, { ReactNode } from 'react';
 
 export interface AppButtonProps extends ButtonProps {
   variant?: 'primary' | 'secondary' | 'outline';
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
 }
 
 const styles = {
@@ -31,10 +33,11 @@ const styles = {
 const getStyles = (variant: string, isDisabled: boolean) => {
   if (isDisabled) return styles.disabled
   return styles[variant] || styles.outline
-}
+};
 
 const Button = ({ variant = "primary", children, ...props }: AppButtonProps) => {
   const { border, background, text } = getStyles(variant, props.isDisabled)
+  const { iconLeft, iconRight } = props;
 
   return (
     <ChakraButton
@@ -59,9 +62,11 @@ const Button = ({ variant = "primary", children, ...props }: AppButtonProps) => 
       }}
       {...props}
     >
+      {iconLeft && <Box>{iconLeft}</Box>}
       {children}
+      {iconRight && <Box>{iconRight}</Box>}
     </ChakraButton>
   )
 }
 
-export default Button
+export default Button;

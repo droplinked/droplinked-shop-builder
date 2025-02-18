@@ -22,8 +22,8 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
         const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
 
         await Promise.all([
-            setFieldValue('publish_status', publishStatus),
-            setFieldValue('publish_product', !isSavingAsDraft)
+            setFieldValue('publish_product', !isSavingAsDraft),
+            setFieldValue('publish_status', publishStatus)
         ])
 
         handleSubmit()

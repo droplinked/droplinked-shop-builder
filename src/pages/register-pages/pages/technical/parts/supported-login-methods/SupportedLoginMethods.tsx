@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout'
+import { Flex } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'

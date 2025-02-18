@@ -3,9 +3,9 @@ import AppScrollBar from 'components/common/scrollbar'
 import React, { useContext, useEffect, useRef } from 'react'
 import { designContext } from '../../design-context'
 import designPreviewContext from './context';
-import PreviewFooter from './parts/footer/PreviewFooter';
-import PreviewHeader from './parts/header/PreviewHeader';
-import PreviewWrapper from './parts/wrapper/PreviewWrapper';
+import PreviewFooter from './components/footer/PreviewFooter';
+import PreviewHeader from './components/header/PreviewHeader';
+import PreviewWrapper from './components/wrapper/PreviewWrapper';
 
 function DesignPagePreview() {
     const { state: { device, shop: { shopDesign: { backgroundBody } }, optionSelected } } = useContext(designContext)

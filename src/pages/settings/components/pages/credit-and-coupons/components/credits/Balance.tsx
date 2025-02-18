@@ -1,8 +1,8 @@
 import { Flex, Image, Spinner, useDisclosure, useTabsContext } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import useAppStore from "lib/stores/app/appStore";
-import React, { useEffect, useState } from "react";
-import AddBalanceModal from "./add-balance-modal/AddBalanceModal";
+import React, { useState } from "react";
+import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
 import useAppToast from "functions/hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
@@ -58,16 +58,16 @@ export default function Balance() {
                     gap={1}
                     sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
-                    <AppIcons.Refresh />
+                    <AppIcons.Refresh color="#2BCFA1" />
                     Charge
                 </BlueButton>
             </Flex>
             {(isFetching || loading) ?
                 <Spinner color="white" />
                 :
-                <FormattedPrice price={data?.data?.data?.credit} fontSize={16} />
+                <FormattedPrice price={data?.data?.data?.credit} />
             }
-            <AddBalanceModal handleRefetchShop={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
+            <AddBalanceModal handleRefetch={handleRefetchShop} isOpen={isOpen} onClose={onClose} />
         </Flex>
     );
 }

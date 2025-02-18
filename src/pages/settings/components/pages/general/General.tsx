@@ -1,18 +1,14 @@
-import React from "react"
-import StoreDetails from "./components/store-details/StoreDetails";
+import { Divider } from "@chakra-ui/react";
+import React from "react";
 import CustomerExperience from "./components/customer-experience/CustomerExperience";
-import { Box, Divider } from "@chakra-ui/react";
+import StoreDetails from "./components/store-details/StoreDetails";
 
 function General() {
     return (
         <>
-            <Box px={{ base: 4, md: 6 }} >
-                <StoreDetails />
-            </Box>
+            <StoreDetails />
             <Divider borderColor={"#292929"} />
-            <Box px={{ base: 4, md: 6 }} >
-                <CustomerExperience />
-            </Box>
+            <CustomerExperience />
         </>
     );
 }

@@ -1,15 +1,15 @@
-import { Box, VStack } from '@chakra-ui/layout'
+import { Box, VStack } from '@chakra-ui/react'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTags from 'components/common/tags/AppTags'
-import React, { useState } from 'react'
+import React from 'react'
 import classes from './style.module.scss'
 
 interface IProps {
     updateStates: any
     value: any
 }
-function ShopTag({ updateStates, value }: IProps) {
 
+function ShopTag({ updateStates, value }: IProps) {
     return (
         <VStack align={"stretch"} className={classes.tags}>
             <Box><FieldLabel textProps={{ size: "18px", fontWeight: "bold" }} isRequired label='Store Tags' /></Box>

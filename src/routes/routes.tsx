@@ -2,6 +2,23 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
+import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
+import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
+import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
+import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page";
+import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage";
+import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
+import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage";
+import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage";
+import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage";
+import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
+import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
+import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
+import Rewards from "pages/public-pages/rewards/rewards";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -13,7 +30,8 @@ const Blogs = lazy(() => import("pages/blogs/Blogs"));
 const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
-const DashboardPage = lazy(() => import("pages/dashboard/DashboardPage"));
+const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
+const NewDashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
@@ -27,32 +45,15 @@ const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation
 const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"));
 const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"));
 const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"));
-const AffiliatePage = lazy(() => import("pages/public-pages/landings/affiliate-page/AffiliatePage"));
-const AffiliateSassPage = lazy(() => import("pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"));
-const CustomTokenPage = lazy(() => import("pages/public-pages/landings/custom-token-page/CustomTokenPage"));
-const DigitalProductPage = lazy(() => import("pages/public-pages/landings/digital-product-page/DigitalProductPage"));
-const DppPage = lazy(() => import("pages/public-pages/landings/dpp-page/DppPage"));
-const MetaverseStorePage = lazy(() => import("pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"));
-const D3Page = lazy(() => import("pages/public-pages/landings/partners-pages/pages/D3Page"));
-const UdPage = lazy(() => import("pages/public-pages/landings/partners-pages/pages/UdPage"));
-const PolygonPage = lazy(() => import("pages/public-pages/landings/partners-pages/pages/PolygonPage"));
-const PaymentLinkPage = lazy(() => import("pages/public-pages/landings/payment-link-page/PaymentLinkPage"));
-const PhysicalProductPage = lazy(() => import("pages/public-pages/landings/physical-product-page/PhysicalProductPage"));
-const PODProductPage = lazy(() => import("pages/public-pages/landings/pod-product-page/PODProductPage"));
-const ProductTilePage = lazy(() => import("pages/public-pages/landings/product-tile-page/ProductTilePage"));
-const ROIPage = lazy(() => import("pages/public-pages/landings/roi-page/ROIPage"));
-const TokenizingProductsPage = lazy(() => import("pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"));
-const TokanpayPage = lazy(() => import("pages/public-pages/landings/tokenpay-page/TokanpayPage"));
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"));
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"));
-const Rewards = lazy(() => import("pages/public-pages/rewards/rewards"));
 const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
-const AffiliateMarket = lazy(() => import("pages/redesign-affiliate/market/AffiliateMarket"));
-const AffiliateProductsSinglePage = lazy(() => import("pages/redesign-affiliate/product-page/ProductPage"));
-const AffiliateProductsLayout = lazy(() => import("pages/redesign-affiliate/products/AffiliateProductsLayout"));
-const AffiliateStores = lazy(() => import("pages/redesign-affiliate/stores/AffiliateStores"));
-const AffiliateStoresProfile = lazy(() => import("pages/redesign-affiliate/stores/profile/AffiliateStoresProfile"));
+const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
+const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
+const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
+const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
+const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
 const Admins = lazy(() => import("pages/register-pages/pages/admins/Admins"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
@@ -68,6 +69,8 @@ const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPa
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
+const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
+const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"));
 
 const router = createBrowserRouter([
     {
@@ -98,12 +101,12 @@ const router = createBrowserRouter([
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
             { path: "onchain-affiliate", element: <AffiliatePage /> },
-            { path: "/d3", element: <D3Page /> },
-            { path: "/unstoppable-domains", element: <UdPage /> },
-            { path: "/polygon", element: <PolygonPage /> },
-            { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
+            { path: "d3", element: <D3Page /> },
+            { path: "unstoppable-domains", element: <UdPage /> },
+            { path: "polygon", element: <PolygonPage /> },
             { path: "roi", element: <ROIPage /> },
             { path: "dpp", element: <DppPage /> },
+            { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
                 path: "blogs",
                 children: [
@@ -115,6 +118,14 @@ const router = createBrowserRouter([
             { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            {
+                path: "affiliate/products",
+                children: [
+                    { index: true, element: <AffiliateProductsPage isPublic={true} /> },
+                    { path: ":slug", element: <AffiliateProductsSinglePage isPublic={true} /> },
+                ],
+            },
+
         ],
     },
     {
@@ -126,7 +137,8 @@ const router = createBrowserRouter([
             </DashboardLayout>
         ),
         children: [
-            { index: true, element: <DashboardPage /> },
+            { index: true, element: <NewAnalytics /> },
+            { path: "dashboard", element: <NewDashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
                 path: "settings",
@@ -142,6 +154,8 @@ const router = createBrowserRouter([
                 ],
             },
             { path: "account-settings", element: <SettingsPage /> },
+            { path: "credits-and-activity", element: <CreditsAndActivity /> },
+            { path: "onchain-records", element: <OnchainRecords /> },
             {
                 path: "products",
                 children: [
@@ -158,7 +172,7 @@ const router = createBrowserRouter([
                     {
                         path: "products",
                         children: [
-                            { index: true, element: <AffiliateProductsLayout /> },
+                            { index: true, element: <AffiliateProductsPage /> },
                             { path: ":slug", element: <AffiliateProductsSinglePage /> },
                         ],
                     },

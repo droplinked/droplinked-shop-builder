@@ -12,12 +12,12 @@ const TABS = {
 };
 
 interface IProps {
-  close: () => void;
-  open: boolean;
   product: any;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-function DetailsModal({ close, open, product }: IProps) {
+function DetailsModal({ product, isOpen, onClose }: IProps) {
   const [activeTab, setActiveTab] = useState(TABS.PRODUCT_INFO);
 
   const handleTabChange = (tabName: string) => setActiveTab(tabName);
@@ -36,8 +36,8 @@ function DetailsModal({ close, open, product }: IProps) {
   return (
     <AppModal
       modalRootProps={{
-        isOpen: open,
-        onClose: close,
+        isOpen,
+        onClose,
         size: "xl",
         scrollBehavior: "inside",
         isCentered: true
@@ -45,13 +45,13 @@ function DetailsModal({ close, open, product }: IProps) {
       modalContentProps={{ width: "100%", padding: "0px !important", overflow: "hidden" }}
     >
       <ModalBody padding="0px !important">
-        <Box pt="48px"  pb="0px">
-        <ModalHeaderData
-          title="Product Details"
-          description={`Track product inventory, sales data, and applied discounts for seamless order management.`}
-        />
+        <Box pt="48px" pb="0px">
+          <ModalHeaderData
+            title="Product Details"
+            description={`Track product inventory, sales data, and applied discounts for seamless order management.`}
+          />
           <Box mb="24px" />
-          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} tabs={Object.keys(TABS).map(key => ({ name: TABS[key] }))}  />
+          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} tabs={Object.keys(TABS).map(key => ({ name: TABS[key] }))} />
         </Box>
         {renderTabContent()}
       </ModalBody>

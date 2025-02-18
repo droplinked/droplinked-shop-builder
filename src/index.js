@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import "assest/style/index.css";
-import React from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
@@ -18,13 +18,13 @@ const queryClient = new QueryClient({
 })
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </StrictMode>
 )
 
 serviceWorkerRegistration.unregister()

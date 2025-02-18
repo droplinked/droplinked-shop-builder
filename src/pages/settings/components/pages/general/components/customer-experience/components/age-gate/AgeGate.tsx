@@ -14,7 +14,12 @@ export default function AgeGate() {
             description="Filter visitors based on setting a minimum age criteria to grant access to a storefront or particular products."
             rightContent={
                 <Flex alignItems={"center"} gap={4}>
-                    <SwitchBox isChecked={values.isAgeRestricted} title='Restrict Users Under 18' description='' onToggle={(e) => setFieldValue("isAgeRestricted", e.target.checked)} />
+                    <SwitchBox
+                        isChecked={values.isAgeRestricted}
+                        title='Restrict Users Under 18'
+                        description=''
+                        onToggle={(e) => setFieldValue("isAgeRestricted", e.target.checked)}
+                    />
                 </Flex>
             }
         />

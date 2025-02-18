@@ -1,13 +1,13 @@
 import { Box, ModalBody } from '@chakra-ui/react';
 import AppModal from 'components/redesign/modal/AppModal';
 import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData';
+import useAppStore from 'lib/stores/app/appStore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeaturesSection from './components/FeaturesSection';
 import ModalFooter from './components/Footer';
 import { ModalHeader } from './components/Header';
 import { PlanDetails } from './components/PlanDetails';
-import useAppStore from 'lib/stores/app/appStore';
 
 export interface Props {
   isOpen: boolean;
@@ -24,7 +24,7 @@ const ProPlanModal = ({ isOpen, onClose, unlockedMonths }: Props) => {
     try {
       await refetch();
       await fetchShop({ shopName: shop.name });
-      navigate('/analytics');
+      navigate('/analytics/dashboard');
       onClose();
     } catch (error) {
       console.error('Failed to refresh subscription data:', error);

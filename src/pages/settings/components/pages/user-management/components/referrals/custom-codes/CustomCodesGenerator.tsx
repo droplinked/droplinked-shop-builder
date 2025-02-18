@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
@@ -34,11 +35,6 @@ export default function CustomCodesGenerator() {
         } catch (error) {
             showToast({ type: "error", message: "Failed to create custom code" });
         }
-    }
-    const handleCopyLink = () => {
-        const link = `${BUILDER_URL}/?modal=signup&referral=${shopInitialCustomCode.toLowerCase()}`;
-        navigator.clipboard.writeText(link)
-        showToast({ type: "success", message: "Custom code copied successfully" })
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +76,13 @@ export default function CustomCodesGenerator() {
                             {shopInitialCustomCode}
                         </AppTypography>
                     </Box>
-                    <AppIcons.Copy onClick={handleCopyLink} style={{ width: "24px", height: "24px", cursor: "pointer" }} />
+                    <ClipboardText
+                        iconStyles={{
+                            width: "24px",
+                            height: "24px"
+                        }}
+                        text={`${BUILDER_URL}/?modal=signup&referral=${shopInitialCustomCode.toLowerCase()}`}
+                    />
                     <AppIcons.RedTrash onClick={() => setShopInitialCustomCode("")} style={{ width: "24px", height: "24px", cursor: "pointer" }} />
                 </Flex>
             }

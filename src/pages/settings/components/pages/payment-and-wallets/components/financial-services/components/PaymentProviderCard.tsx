@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
-const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon }) => {
+const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon, isExternal, isDisabled }) => {
   const { values } = useFormikContext<ISettings>();
 
   // Determine if the switch is checked based on whether the token is active in paymentMethods
@@ -27,28 +27,35 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
           <Text color="white" fontSize="base" fontWeight="medium">
             {title}
           </Text>
-          <AppTooltip flexShrink={0} placement="bottom-start" label={tooltip}>
-            <AppIcons.TooltipIcon fill={'#292929'} />
-          </AppTooltip>
+          {tooltip &&
+            <AppTooltip flexShrink={0} placement="bottom-start" label={tooltip}>
+              <AppIcons.TooltipIcon fill={'#292929'} />
+            </AppTooltip>
+          }
         </Flex>
-        <SwitchBox isChecked={isChecked} onToggle={handleToggle} />
+        <SwitchBox isDisabled={isDisabled} isChecked={isChecked} onToggle={handleToggle} />
       </HStack>
-      <Divider borderColor="#282828" />
-      <Flex py={"14px"} textAlign="center" justifyContent={"center"}>
-        <ExternalLink
-          href={link}
-          textDecor={"none"}
-          display={"flex"}
-          alignItems={"center"}
-          fontSize={16}
-          fontWeight={500}
-          gap={"6px"}
-          target='_blank'
-        >
-          {buttonText}
-          <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-        </ExternalLink>
-      </Flex>
+      {
+        link && <>
+          <Divider borderColor="#282828" />
+          <Flex py={"14px"} textAlign="center" justifyContent={"center"}>
+            <ExternalLink
+              href={link}
+              textDecor={"none"}
+              display={"flex"}
+              alignItems={"center"}
+              fontSize={16}
+              fontWeight={500}
+              gap={"6px"}
+              target='_blank'
+              color={isExternal ? "#179EF8" : "#2BCFA1"}
+              hasArrow={isExternal ? true : false}
+            >
+              {buttonText}
+            </ExternalLink>
+          </Flex>
+        </>
+      }
     </Box>
   );
 };
