@@ -4,12 +4,7 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { SocialMediaItemModel } from 'pages/dashboard/types/SocialMediaItem'
 import React from 'react'
 
-interface Props {
-    socialMediaItem: SocialMediaItemModel
-    isLastRow: boolean
-}
-
-function SocialMediaItem({ socialMediaItem, isLastRow }: Props) {
+function SocialMediaItem({ socialMediaItem }: { socialMediaItem: SocialMediaItemModel }) {
     const { icon, label, hoverColor, link } = socialMediaItem
 
     return (

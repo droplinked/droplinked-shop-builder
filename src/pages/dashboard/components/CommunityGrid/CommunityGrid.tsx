@@ -19,11 +19,7 @@ export default function CommunityGrid() {
         >
             <JoinTheCommunity />
 
-            {SOCIALS.map((social, index) => {
-                // Calculate if it's the last row (when 4 columns are filled)
-                const isLastRow = index >= SOCIALS.length - columns
-                return <SocialMediaItem key={index} socialMediaItem={social} isLastRow={isLastRow} />
-            })}
+            {SOCIALS.map((social) => <SocialMediaItem key={social.label} socialMediaItem={social} />)}
         </RuledGrid>
     )
 }
