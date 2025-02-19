@@ -15,12 +15,10 @@ function SocialMediaItem({ socialMediaItem, isLastRow }: Props) {
     return (
         <Link
             href={link}
-            target='_blank'
+            target="_blank"
             display="flex"
             flexDirection="column"
             gap={{ base: 4, md: 6 }}
-            borderRight="1px solid #292929"
-            borderBottom={isLastRow ? "none" : "1px solid #292929"}
             padding={{ base: 4, lg: 6 }}
             transition="all 0.2s"
             _hover={{

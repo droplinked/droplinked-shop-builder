@@ -1,5 +1,6 @@
-import { Grid, useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery } from "@chakra-ui/react"
 import AppIcons from "assest/icon/Appicons"
+import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import { SocialMediaItemModel } from "pages/dashboard/types/SocialMediaItem"
 import React from "react"
 import JoinTheCommunity from "./JoinTheCommunity"
@@ -11,9 +12,8 @@ export default function CommunityGrid() {
     const columns = isLg ? 4 : isMd ? 2 : 1
 
     return (
-        <Grid
-            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
-            border="1px solid #292929"
+        <RuledGrid
+            columns={columns}
             borderRadius={16}
             overflow="hidden"
         >
@@ -24,7 +24,7 @@ export default function CommunityGrid() {
                 const isLastRow = index >= SOCIALS.length - columns
                 return <SocialMediaItem key={index} socialMediaItem={social} isLastRow={isLastRow} />
             })}
-        </Grid>
+        </RuledGrid>
     )
 }
 
