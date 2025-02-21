@@ -78,6 +78,7 @@
 		"stream": "npm:stream-browserify@^3.0.0",
 		"stream-browserify": "^3.0.0",
 		"swiper": "^10.2.0",
+		"ts-prune": "^0.10.3",
 		"typescript": "^5.4.2",
 		"typewriter-effect": "^2.20.1",
 		"util": "^0.12.4",
