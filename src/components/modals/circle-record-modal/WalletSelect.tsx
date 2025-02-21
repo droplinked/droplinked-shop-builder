@@ -1,5 +1,5 @@
 import useAppStore from 'lib/stores/app/appStore'
-import Select from 'pages/invoice-management/components/Select'
+import Select from 'components/redesign/select/Select'
 import React from 'react'
 
 interface Props {
