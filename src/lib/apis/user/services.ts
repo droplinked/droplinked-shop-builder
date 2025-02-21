@@ -37,18 +37,6 @@ export const getUserService = ({ access_token }: IGetUserService) => {
     return axiosInstance.get(`user`, { headers: { authorization: `Bearer ${access_token}` } });
 };
 
-export const retrieveNFTs = (props: IRetrieveNFTs) => {
-    const { myProducts, search, body } = props;
-    const params = new URLSearchParams();
-    if (myProducts) {
-        params.append("myProducts", myProducts.toString());
-    }
-    if (props.search) {
-        params.append("search", search);
-    }
-    return axiosInstance.post(`user/retrieve/nfts${params.toString() ? "?" + params.toString() : ""}`, body);
-};
-
 export const sendInvitaionEmailService = (email: string) => {
     return axiosInstance.post("rbac/invitations", { email });
 };
