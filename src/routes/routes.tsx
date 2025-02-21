@@ -38,7 +38,7 @@ const CreateInvoice = lazy(() => import("pages/invoice-management").then(module 
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
 const NFTs = lazy(() => import("pages/nfts/NFTs"));
 const Orders = lazy(() => import("pages/orders/Orders"));
-const ProductOrder = lazy(() => import("pages/product/order/ProductOrder"));
+const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"));
 const ProductsV2 = lazy(() => import("pages/products/ProductsV2"));
 const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"));
 const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"));
