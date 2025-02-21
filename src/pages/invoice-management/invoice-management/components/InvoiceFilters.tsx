@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import useDebounce from 'functions/hooks/debounce/useDebounce'
 import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
-import Input from 'pages/invoice-management/components/Input'
+import Input from 'components/redesign/input/Input'
 import Select from 'pages/invoice-management/components/Select'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
@@ -32,7 +32,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                     placeholder: "Search",
                     onChange: (e) => setSearchTerm(e.target.value)
                 }}
-                icon={<AppIcons.Search />}
+                leftElement={<AppIcons.Search />}
             />
             <Select
                 items={statusOptions}

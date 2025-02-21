@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices'
-import Input from 'pages/invoice-management/components/Input'
+import Input from 'components/redesign/input/Input'
 import Select from 'pages/invoice-management/components/Select'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
@@ -64,7 +64,9 @@ function InvoiceAddress() {
                         value: values.address.addressLine1,
                         onChange: (e) => setFieldValue("address.addressLine1", e.target.value)
                     }}
-                    error={errors.address?.addressLine1}
+                    {...errors.address?.addressLine1 && { state: "error", message: errors.address?.addressLine1 }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
                 <Input
                     label='Address Line 2'
@@ -74,7 +76,9 @@ function InvoiceAddress() {
                         value: values.address.addressLine2,
                         onChange: (e) => setFieldValue("address.addressLine2", e.target.value)
                     }}
-                    error={errors.address?.addressLine2}
+                    {...errors.address?.addressLine2 && { state: "error", message: errors.address?.addressLine2 }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
             </SimpleGrid>
 
@@ -123,7 +127,9 @@ function InvoiceAddress() {
                         value: values.address.zip,
                         onChange: (e) => setFieldValue("address.zip", e.target.value)
                     }}
-                    error={errors.address?.zip}
+                    {...errors.address?.zip && { state: "error", message: errors.address?.zip }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
             </SimpleGrid>
         </ToggleableSection>

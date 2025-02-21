@@ -16,6 +16,8 @@ interface Props {
     rightElement?: ReactNode
     actionButton?: ReactNode
     state?: 'success' | 'error'
+    stateColor?: string;
+    showErrorIcon?: boolean;
     message?: string
     maxCharacters?: number
     showAnimatedLoading?: boolean
@@ -148,18 +150,18 @@ function InputContainer(props: Props) {
     )
 }
 
-function InputFooter({ message, maxCharacters, inputProps }: Props) {
+function InputFooter({ message, maxCharacters, inputProps, stateColor = "#fff", showErrorIcon = true }: Props) {
     return (
         <>
             {(message || maxCharacters) && (
                 <Flex
                     mt={2}
                     paddingInline={4}
-                    css={{ p: { fontSize: 12, color: "#FFF" } }}
+                    css={{ p: { fontSize: 12, color: stateColor } }}
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
-                            <AppIcons.WhiteWarning />
+                            {showErrorIcon && <AppIcons.WhiteWarning />}
                             <Text>{message}</Text>
                         </Flex>
                     )}

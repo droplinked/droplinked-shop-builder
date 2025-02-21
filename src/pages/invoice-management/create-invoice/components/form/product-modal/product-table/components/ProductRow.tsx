@@ -3,7 +3,7 @@ import AppImage from 'components/common/image/AppImage'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useAppStore from 'lib/stores/app/appStore'
 import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
-import Input from 'pages/invoice-management/components/Input'
+import Input from 'components/redesign/input/Input'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
@@ -65,6 +65,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
             </Td>
             <Td>
                 <Input
+                    inputGroupProps={{ width: "68px" }}
                     inputProps={{
                         width: "68px",
                         type: "number",
