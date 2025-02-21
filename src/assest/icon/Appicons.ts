@@ -183,7 +183,6 @@ import { ReactComponent as InvisibleIcon } from './invisible-icon.svg';
 import { ReactComponent as InvoiceCreated } from './invoice-created.svg';
 import { ReactComponent as InvoiceDiscount } from './invoice-discount.svg';
 import { ReactComponent as InvoiceManagement } from './invoice-management.svg';
-import { ReactComponent as InvoiceProduct } from './invoice-product.svg';
 import { ReactComponent as JapaneseYen } from './jpy.svg';
 import { ReactComponent as KidClothing } from './kid-clothing.svg';
 import { ReactComponent as LandingPageCode } from './landing-page-code.svg';
@@ -545,7 +544,6 @@ const AppIcons = {
   InvoiceCreated,
   Copy,
   SelectChevronDown,
-  InvoiceProduct,
   NotSorted,
   AscSorting,
   DescSorting,

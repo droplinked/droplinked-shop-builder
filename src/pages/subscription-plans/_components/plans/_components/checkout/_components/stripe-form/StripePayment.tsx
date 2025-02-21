@@ -7,6 +7,7 @@ import { appDevelopment } from 'lib/utils/app/variable';
 import React from 'react';
 import { ModalStep } from '../../types/interfaces';
 import StripeForm from './StripeForm';
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
 const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`)
 
@@ -28,7 +29,11 @@ function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPl
     return (
         <>
             <ModalHeaderData
-                icon={<AppIcons.StripePayment />}
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.StripePayment />
+                    </ModalHeaderIconWrapper>
+                }
                 title='Credit card information'
                 description={"Choose a credit card on file or add a new one."}
             />

@@ -1,4 +1,5 @@
 import AppIcons from 'assest/icon/Appicons';
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import * as React from 'react';
@@ -7,7 +8,11 @@ function ModalWrapper({ collection, isOpen, onClose, children }: { collection?: 
     return (
         <AppModal modalRootProps={{ isOpen: isOpen, onClose: onClose, isCentered: false, size: "2xl" }} modalContentProps={{ background: "#141414", px: "0px", paddingInline: "0px", sx: { paddingInline: "0px", paddingBlock: "0px", paddingTop: "48px" } }}>
             <ModalHeaderData
-                icon={<AppIcons.CollectionModalIcon />}
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.CollectionModalIcon />
+                    </ModalHeaderIconWrapper>
+                }
                 backgroundColor='#141414'
                 modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
                 title={collection ? 'Edit Collection' : 'Create Collection'}

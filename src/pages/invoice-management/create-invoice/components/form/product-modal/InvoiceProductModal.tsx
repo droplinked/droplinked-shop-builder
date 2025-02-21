@@ -11,6 +11,7 @@ import Input from 'components/redesign/input/Input';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import ProductTable from './product-table/ProductTable';
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
 interface Props {
     isOpen: boolean;
@@ -61,7 +62,11 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
             modalRootProps={{ isOpen, onClose: closeModal, size: "5xl" }}
         >
             <ModalHeaderData
-                icon={<AppIcons.InvoiceProduct />}
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.HeaderProductBox />
+                    </ModalHeaderIconWrapper>
+                }
                 title="Products"
                 description="Select one of the products to add into your invoice."
             />

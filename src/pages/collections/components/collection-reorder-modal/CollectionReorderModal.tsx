@@ -15,6 +15,7 @@ import { getAllCollectionsService, reorderCollectionsService } from 'lib/apis/co
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import AppIcons from 'assest/icon/Appicons';
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
 interface Props {
     isOpen: boolean;
@@ -73,7 +74,12 @@ function CollectionReorderModal({ isOpen, close }: Props) {
 
     return (
         <AppModal modalRootProps={{ isOpen, onClose: close, isCentered: false, size: "2xl" }} modalContentProps={{ background: "#141414", px: "0px", paddingInline: "0px", sx: { paddingInline: "0px", paddingBlock: "0px", paddingTop: "48px" } }}>
-            <ModalHeaderData icon={<AppIcons.ReorderDesigned />}
+            <ModalHeaderData
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.ReorderDesigned />
+                    </ModalHeaderIconWrapper>
+                }
                 backgroundColor='#141414'
                 modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
                 title='Visibility and Reorder Collections'

@@ -1,20 +1,7 @@
-<svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="12.4238" width="48" height="48" rx="8" transform="rotate(15 12.4238 0)" fill="white"/>
-<g filter="url(#filter0_b_23497_10966)">
-<rect x="1" y="10" width="48" height="48" rx="8" fill="black" fill-opacity="0.75"/>
-<rect x="1.5" y="10.5" width="47" height="47" rx="7.5" stroke="white"/>
-<path d="M17 40.6458V30.0543C17 27.2003 17 25.7733 17.8787 24.8866C18.7574 24 20.1716 24 23 24H27C29.8284 24 31.2426 24 32.1213 24.8866C33 25.7733 33 27.2003 33 30.0543V40.6458C33 42.1575 33 42.9133 32.538 43.2108C31.7831 43.6971 30.6161 42.6774 30.0291 42.3073C29.5441 42.0014 29.3017 41.8485 29.0325 41.8397C28.7417 41.8301 28.4949 41.9768 27.9709 42.3073L26.06 43.5124C25.5445 43.8374 25.2868 44 25 44C24.7132 44 24.4555 43.8374 23.94 43.5124L22.0291 42.3073C21.5441 42.0014 21.3017 41.8485 21.0325 41.8397C20.7417 41.8301 20.4949 41.9768 19.9709 42.3073C19.3839 42.6774 18.2169 43.6971 17.4619 43.2108C17 42.9133 17 42.1575 17 40.6458Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M29 35H21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M23 32H21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M29 38H21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M26.5 30C26.5 30.5523 26.9477 31 27.5 31H28.5C29.0523 31 29.5 30.5523 29.5 30C29.5 29.4477 29.0523 29 28.5 29H27.5C26.9477 29 26.5 28.5523 26.5 28C26.5 27.4477 26.9477 27 27.5 27H28.5C29.0523 27 29.5 27.4477 29.5 28M28 26.5V31.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<filter id="filter0_b_23497_10966" x="-15" y="-6" width="80" height="80" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feGaussianBlur in="BackgroundImageFix" stdDeviation="8"/>
-<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_23497_10966"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_23497_10966" result="shape"/>
-</filter>
-</defs>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 18.6458V8.05426C4 5.20025 4 3.77325 4.87868 2.88663C5.75736 2 7.17157 2 10 2H14C16.8284 2 18.2426 2 19.1213 2.88663C20 3.77325 20 5.20025 20 8.05426V18.6458C20 20.1575 20 20.9133 19.538 21.2108C18.7831 21.6971 17.6161 20.6774 17.0291 20.3073C16.5441 20.0014 16.3017 19.8485 16.0325 19.8397C15.7417 19.8301 15.4949 19.9768 14.9709 20.3073L13.06 21.5124C12.5445 21.8374 12.2868 22 12 22C11.7132 22 11.4555 21.8374 10.94 21.5124L9.02913 20.3073C8.54415 20.0014 8.30166 19.8485 8.03253 19.8397C7.74172 19.8301 7.49493 19.9768 6.97087 20.3073C6.38395 20.6774 5.21687 21.6971 4.46195 21.2108C4 20.9133 4 20.1575 4 18.6458Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 13H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 10H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 16H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.5 8C13.5 8.55228 13.9477 9 14.5 9H15.5C16.0523 9 16.5 8.55228 16.5 8C16.5 7.44772 16.0523 7 15.5 7H14.5C13.9477 7 13.5 6.55228 13.5 6C13.5 5.44772 13.9477 5 14.5 5H15.5C16.0523 5 16.5 5.44772 16.5 6M15 4.5V9.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
