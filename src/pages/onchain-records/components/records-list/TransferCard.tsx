@@ -23,7 +23,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
             justifyContent={"space-between"}
             alignItems={"center"}
         >
-            <Flex alignItems={"center"} gap={4} width={"80%"}>
+            <Flex alignItems={"center"} gap={4} width={"80%"} overflow="hidden">
                 <AppImage
                     width={"56px"}
                     height={"56px"}
