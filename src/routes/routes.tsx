@@ -65,7 +65,6 @@ const SubscriptionPlans = lazy(() => import("pages/subscription-plans/Subscripti
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
-const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
@@ -146,7 +145,6 @@ const router = createBrowserRouter([
                     { path: "shop-info", element: <RegisterShopInfo /> },
                     { path: "design", element: <DesignPage /> },
                     { path: "tile", element: <TileDesign /> },
-                    { path: "technical", element: <TechnicalPage /> },
                     { path: "coupons", element: <CouponsSetting /> },
                     { path: "admins", element: <Admins /> },
                     { path: "payment-link-design", element: <PaymentLink /> },
