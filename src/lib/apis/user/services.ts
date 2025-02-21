@@ -4,7 +4,6 @@ import {
     IGetUserService,
     IInvitation,
     ISubscribeFeature,
-    IRetrieveNFTs,
     IchangePasswordService,
     IemailVerifyService,
     IforgetPasswordService,
