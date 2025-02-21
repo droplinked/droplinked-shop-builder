@@ -26,7 +26,7 @@ function InvoiceManagement() {
     return (
         <>
             <InvoiceManagementHeader />
-            {false ?
+            {shouldShowEmptyView ?
                 <InvoicesEmptyState /> :
                 <Flex mt={9} direction={"column"} gap={6}>
                     <InvoiceFilters updateInvoiceFilters={setInvoiceFilters} />
