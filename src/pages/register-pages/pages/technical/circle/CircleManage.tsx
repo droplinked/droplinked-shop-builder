@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
-import ConnectWallets from "../parts/connect/ConnectWallets";
+import ConnectWallets from "../../../component/connect/ConnectWallets";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });

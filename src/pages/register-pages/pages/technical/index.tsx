@@ -10,7 +10,7 @@ import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import Wallets from "./parts/wallets/Wallets";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppModal from "components/common/modal/AppModal";
-import ConnectWallets from "./parts/connect/ConnectWallets";
+import ConnectWallets from "../../component/connect/ConnectWallets";
 import Circle from "./circle/Circle";
 import DefaultCurrency from "./parts/default-currency/DefaultCurrency";
 
