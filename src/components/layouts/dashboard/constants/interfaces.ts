@@ -51,18 +51,3 @@ export type SubscriptionPlan = {
   | { type: 'text'; style: IAppTypography; value: string }
   | { type: 'button'; style: BoxProps; value: string; action: () => void };
 };
-
-/**
- * Defines the structure of a subsection within a Growth Hack section.
- */
-export interface IGrowthHackSubSection {
-  title: string;
-  description: string;
-  link?: {
-    linkTitle: string;
-    linkTo: string;
-    isExternal: boolean;
-  };
-  image: string;
-  buttons?: any;
-}

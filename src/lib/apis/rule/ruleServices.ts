@@ -5,10 +5,6 @@ import {
     IupdateRuleService,
 } from './interfaces';
 
-export const ruleService = () => {
-    return axiosInstance.get(`rule-set/v2`);
-};
-
 export const getRuleService = ({ ruleID }: IgetRuleService) => {
     return axiosInstance.get(`rule-set/v2/${ruleID}`);
 };
