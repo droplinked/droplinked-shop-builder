@@ -13,7 +13,6 @@ function PaymentLink() {
             <Flex direction={isLargerThan1200 ? "row" : "column"} gap={6}>
                 <Flex direction={"column"} flexGrow={1} gap={6}>
                     <PaymentLinkSettings />
-                    {/* <PaymentLinkCustomization /> */}
                     {isLargerThan1200 && <PaymentLinkSubmit />}
                 </Flex>
                 <PaymentLinkPreview />
