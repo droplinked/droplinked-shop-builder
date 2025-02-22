@@ -3,9 +3,8 @@ import AppIcons from "assest/icon/Appicons";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
-import useAppStore from "lib/stores/app/appStore";
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 
 //ShareIcon
 
@@ -14,7 +13,8 @@ interface DirectLinkContentProps {
 }
 
 const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
-  const { shop: { currency } } = useAppStore();
+  const { getFormattedPrice } = useCurrencyConverter()
+
   return (
     <Box width="100%">
       <Box marginX="-48px">
@@ -39,7 +39,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
       >
         {/* تصویر محصول */}
         <Image
-          src={product.image} 
+          src={product.image}
           alt="Product"
           width="56px"
           height="56px"
@@ -67,7 +67,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
           color="white"
           whiteSpace="nowrap"
         >
-          {currency?.symbol} {currencyConvertion(product.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
+          {getFormattedPrice({ amount: product.price, toFixed: true })}
         </Text>
       </Flex>
     </Box>

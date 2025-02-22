@@ -14,17 +14,16 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import { AxiosError } from 'axios'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'functions/hooks/toast/useToast'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)
+    const { convertPrice, abbreviation } = useCurrencyConverter()
     const [selectedCoupon, setSelectedCoupon] = useState(null)
     const [Code, setCode] = useState(null)
     const [isFetchingCouponsReport, setIsFetchingCouponsReport] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { showToast } = useAppToast()
-    const { shop: { currency } } = useAppStore();
     const handleExportCouponsReport = async (couponID: string) => {
         try {
             setIsFetchingCouponsReport(true)
@@ -67,7 +66,7 @@ function CouponsListContent() {
                                     </Flex>
                                     <VStack align="stretch">
                                         <AppTypography fontSize='12px'>{coupon.codes.length} {coupon.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
-                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : currencyConvertion(coupon.balance, currency?.conversionRateToUSD, false)} {coupon.type === "DISCOUNT" ? '%' : currency?.abbreviation}</AppTypography>
+                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : convertPrice({ amount: coupon.balance, toFixed: true })} {coupon.type === "DISCOUNT" ? '%' : abbreviation}</AppTypography>
                                     </VStack>
                                     <Flex alignItems={"center"} gap={9}>
                                         <AppIcons.EditIcon

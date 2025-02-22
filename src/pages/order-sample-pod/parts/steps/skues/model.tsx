@@ -1,11 +1,10 @@
 import { Box, HStack } from "@chakra-ui/react"
 import AppSelectBox from "components/common/form/select/AppSelectBox"
 import AppTypography from "components/common/typography/AppTypography"
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion"
+import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
 import { typesProperties } from "lib/utils/statics/types"
 import { IproductOrderSkues } from "pages/order-sample-pod/context"
 import React from "react"
-import { IShopCurrency } from "types/interface/shopCurrency.interface"
 
 interface Irows {
     product: any
@@ -14,10 +13,17 @@ interface Irows {
     updateState: any
     orderId: string
 }
+interface ICurrencyConverter {
+    convertPrice: (params: PriceConversionParams) => void,
+    getFormattedPrice: (params: PriceConversionParams) => void
+    abbreviation: string,
+    symbol: string
+}
 
 namespace productOrderSkuesModel {
-    export const rows = ({ product, SkuesIDs, skus, updateState, orderId }: Irows, currency: IShopCurrency) => product ? product.skuIDs.map(el => {
+    export const rows = ({ product, SkuesIDs, skus, updateState, orderId }: Irows, currencyConverter: ICurrencyConverter) => product ? product.skuIDs.map(el => {
         const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
+        const { convertPrice, abbreviation, symbol } = currencyConverter
         return {
             _data: el,
             variant: {
@@ -32,8 +38,8 @@ namespace productOrderSkuesModel {
                 caption: "Product Cost",
                 value: (
                     <AppTypography>
-                        {`${currency?.symbol}${currencyConvertion(el?.rawPrice, currency?.conversionRateToUSD, false)}`} {" "}
-                        <Box as="span" color="#808080">{currency?.abbreviation}</Box>
+                        {`${symbol}${convertPrice({ amount: el?.rawPrice, toFixed: true })}`} {" "}
+                        <Box as="span" color="#808080">{abbreviation}</Box>
                     </AppTypography>
                 )
             },

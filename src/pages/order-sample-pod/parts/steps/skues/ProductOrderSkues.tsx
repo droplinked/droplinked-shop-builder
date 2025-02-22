@@ -3,18 +3,18 @@ import AppImage from 'components/common/image/AppImage'
 import AppTable, { ITableRows } from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productService } from 'lib/apis/shop/shopServices'
-import useAppStore from 'lib/stores/app/appStore'
 import productOrderContext from 'pages/order-sample-pod/context'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 function ProductOrderSkues() {
     const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)
     const { mutate, data } = useMutation((productId: string) => productService(productId))
-    const { shop: { currency } } = useAppStore();
+    const currencyConverter = useCurrencyConverter()
     const params = useParams()
     const product = data?.data?.data
     const [SkuesIDs, setSkuesIDs] = useState([])
@@ -31,7 +31,7 @@ function ProductOrderSkues() {
     }
 
     // Handle rows appTable
-    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }, currency), [product, SkuesIDs, skus, orderId])
+    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }, currencyConverter), [product, SkuesIDs, skus, orderId])
 
     return (
         <ProductOrderCard title="Product">

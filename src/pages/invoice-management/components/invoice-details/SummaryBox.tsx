@@ -1,7 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppStore from 'lib/stores/app/appStore';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import { SummaryRow } from 'pages/invoice-management/hooks/useInvoiceInformation';
 import React from 'react';
 
@@ -11,13 +10,14 @@ interface Props {
 }
 
 function SummaryBox({ title, rows }: Props) {
-    const { shop: { currency } } = useAppStore();
+    const { convertPrice, abbreviation, symbol } = useCurrencyConverter();
+
     const renderValue = (row: SummaryRow) => {
         if (typeof row.value === "number" && row.isPrice)
             return (
                 <AppTypography as={"dd"} fontWeight={500}>
-                    {currency?.symbol}{currencyConvertion(row.value, currency?.conversionRateToUSD, false)} {" "}
-                    <Box as='span' color='#878787'>{currency?.abbreviation}</Box>
+                    {symbol}{convertPrice({ amount: row.value, toFixed: true })} {" "}
+                    <Box as='span' color='#878787'>{abbreviation}</Box>
                 </AppTypography>
             )
         return <AppTypography as={"dd"} fontWeight={500}>{row.value}</AppTypography>

@@ -4,13 +4,12 @@ import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
 import { Invoice, InvoiceStatus } from 'lib/apis/invoice/interfaces'
-import useAppStore from 'lib/stores/app/appStore'
 import { SHOP_URL } from 'lib/utils/app/variable'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
 import React, { useRef } from 'react'
 import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     invoices: Invoice[]
@@ -22,7 +21,7 @@ interface Props {
 }
 
 function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
-    const { shop: { currency } } = useAppStore();
+    const { getFormattedPrice } = useCurrencyConverter()
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
@@ -50,7 +49,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
             header: 'Amount',
             cell: (info) => {
                 const amount = info.getValue() as number
-                if (amount) return `${currency?.symbol} ${currencyConvertion(amount, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}`
+                if (amount) return `${getFormattedPrice({ amount, toFixed: true })}`
                 return "-"
             }
         },
