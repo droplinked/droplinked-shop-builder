@@ -51,7 +51,7 @@ function ProductList({ products, setProducts }: Props) {
             >
                 <Flex direction="column">
                     {products.map((product, index) =>
-                        <SortableProduct key={index} product={product} isLastOne={index === products.length - 1} />
+                        <SortableProduct key={index} product={product} isLastItem={index === products.length - 1} />
                     )}
                 </Flex>
             </SortableContext>

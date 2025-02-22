@@ -7,17 +7,18 @@ import React from "react"
 
 interface Props {
     order: DashboardOrder
-    handleNavigation: (path: string) => void
+    isLastItem: boolean
+    onNavigate: (path: string) => void
 }
 
-function OrderItem({ order, handleNavigation }: Props) {
+function OrderItem({ order, isLastItem, onNavigate }: Props) {
     return (
         <Flex
             alignItems="center"
             gap={4}
+            borderBottom={isLastItem ? "none" : "1px solid #1C1C1C"}
             padding={{ base: 4, lg: "16px 24px" }}
             sx={{ svg: { flexShrink: 0 } }}
-            borderTop={"1px solid #292929"}
         >
             <Flex flex={1} flexDirection="column" gap={1}>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
@@ -35,7 +36,11 @@ function OrderItem({ order, handleNavigation }: Props) {
                 </Flex>
             </Flex>
 
-            <AppIcons.ChevronRight color='white' cursor="pointer" onClick={() => handleNavigation("/analytics/orders")} />
+            <AppIcons.ChevronRight
+                color='white'
+                cursor="pointer"
+                onClick={() => onNavigate("/analytics/orders")}
+            />
         </Flex>
     )
 }

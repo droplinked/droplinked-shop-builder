@@ -1,15 +1,19 @@
 import { Box, Flex, Link, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
-import { SocialMediaItemModel } from 'pages/dashboard/types/SocialMediaItem'
+import { SocialMediaItem } from 'pages/dashboard/types/dashboard.types'
 import React from 'react'
 
-function SocialMediaItem({ socialMediaItem }: { socialMediaItem: SocialMediaItemModel }) {
-    const { icon, label, hoverColor, link } = socialMediaItem
+interface Props {
+    linkData: SocialMediaItem
+}
+
+function SocialMediaLink({ linkData }: Props) {
+    const { icon, label, hoverEffect, url } = linkData
 
     return (
         <Link
-            href={link}
+            href={url}
             target="_blank"
             display="flex"
             flexDirection="column"
@@ -17,7 +21,7 @@ function SocialMediaItem({ socialMediaItem }: { socialMediaItem: SocialMediaItem
             padding={{ base: 4, lg: 6 }}
             transition="all 0.2s"
             _hover={{
-                bg: hoverColor,
+                bg: hoverEffect,
                 ".link-arrow": { opacity: 1 },
                 ".icon-container": {
                     bg: "rgba(255, 255, 255, 0.20)",
@@ -39,4 +43,4 @@ function SocialMediaItem({ socialMediaItem }: { socialMediaItem: SocialMediaItem
     )
 }
 
-export default SocialMediaItem
+export default SocialMediaLink
