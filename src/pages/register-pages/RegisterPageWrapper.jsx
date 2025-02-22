@@ -9,6 +9,7 @@ const RegisterPagesWrapper = () => {
     location.pathname.search("settings/tile") > 0 ||
     location.pathname.search("settings/payment-link-design") > 0;
   const isTechnical = location.pathname.search("settings/technical") > 0;
+
   return (
     <Flex w="100%" justifyContent={"center"}>
       <Flex width={isFullpage ? "100%" : isTechnical ? "100%" : "70%"} justifyContent="center">
