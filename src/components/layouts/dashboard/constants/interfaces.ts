@@ -66,12 +66,3 @@ export interface IGrowthHackSubSection {
   image: string;
   buttons?: any;
 }
-
-/**
- * Represents a Growth Hack section that contains multiple subsections.
- */
-export interface IGrowthHackSection {
-  title: string;
-  objectField: string;
-  subSections: IGrowthHackSubSection[];
-}
