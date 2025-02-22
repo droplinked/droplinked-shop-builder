@@ -82,7 +82,6 @@ export interface Iproperties {
     title: string;
     items: Array<IpropertiesItems>;
     isCustom?: boolean;
-    // propery_type: VARIANT_OPTIONS_ENUM | null
     custom_title?: string;
 }
 
