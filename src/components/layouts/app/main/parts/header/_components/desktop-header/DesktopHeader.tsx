@@ -1,6 +1,7 @@
 import { Flex, HStack, PopoverBody, SimpleGrid } from '@chakra-ui/react'
 import AppPopoverOnHover from 'components/common/PopoverMenu/PopOverOnHover'
 import AppTypography from 'components/common/typography/AppTypography'
+import UserMenu from 'components/layouts/dashboard/components/header/components/userMenu/UserMenu'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -8,7 +9,6 @@ import { MenuItems } from '../../types/types'
 import Droplinked from '../droplinked/Droplinked'
 import HeaderIconContainer from '../icon-container/HeaderIconContainer'
 import SignInButton from '../sign-in-button/SignInButton'
-import HeaderDashboardLoggedin from './parts/HeaderDashboardLoggedin'
 
 export default function DesktopHeader({ headerMenuItems }: MenuItems) {
     const { shop } = useAppStore()
@@ -19,7 +19,7 @@ export default function DesktopHeader({ headerMenuItems }: MenuItems) {
                 <Droplinked />
                 <NavigationMenu headerMenuItems={headerMenuItems} />
             </HStack>
-            {shop ? <HeaderDashboardLoggedin /> : <SignInButton />}
+            {shop ? <UserMenu /> : <SignInButton />}
         </>
     )
 }
