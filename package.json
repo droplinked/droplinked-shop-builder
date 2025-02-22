@@ -114,7 +114,8 @@
 		"start": "react-app-rewired start",
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test",
-		"eject": "react-app-rewired eject"
+		"eject": "react-app-rewired eject",
+		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json"
 	},
 	"eslintConfig": {
 		"extends": [
