@@ -196,7 +196,6 @@ import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as LinkedInOutlined } from './linkedin-outlined.svg';
 import { ReactComponent as LinkedIn } from './linkedin.svg';
 import { ReactComponent as Location } from './location.svg';
-import { ReactComponent as Logout } from './log-out.svg';
 import { ReactComponent as MagicWind } from './magic-wind.svg';
 import { ReactComponent as ManageIcon } from './manage.svg';
 import { ReactComponent as Maximize } from './maximize.svg';
@@ -266,7 +265,6 @@ import { ReactComponent as SettingIcon } from './setting-icon.svg';
 import { ReactComponent as ShareIcon } from './share-icon.svg';
 import { ReactComponent as Share } from './share.svg';
 import { ReactComponent as Shirt } from './shirt.svg';
-import { ReactComponent as ShopIcon } from './shop-green-icon.svg';
 import { ReactComponent as SidebarAffiliate } from './sidebar-affiliate.svg';
 import { ReactComponent as SidebarAnalytics } from './sidebar-analytics.svg';
 import { ReactComponent as SidebarBlog } from './sidebar-blog.svg';
@@ -333,9 +331,7 @@ import { ReactComponent as Watch } from './watch.svg';
 import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as WeekCalendar } from './week-calendar.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
-import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteSave } from './white-save.svg';
-import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
 import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as WhiteWarning } from './white-warning.svg';
 import { ReactComponent as WomenClothing } from './women-clothing.svg';
@@ -414,7 +410,6 @@ const AppIcons = {
   RuleIcon,
   EditIcon,
   DeleteIcon,
-  ShopIcon,
   InstagramIcon,
   FacebookIcon,
   TwitterIcon,
@@ -462,11 +457,8 @@ const AppIcons = {
   Dashboard,
   DatepickerDashboard,
   Linea,
-  WhiteShopIcon,
   RedAlert,
-  WhiteOpenWallet,
   HelpCenter,
-  Logout,
   Coinbase,
   NFT,
   Unisat,

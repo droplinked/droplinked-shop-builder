@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom"
 
 interface Props {
     product: TopSeller
-    isLastOne: boolean
+    isLastItem: boolean
 }
 
-function ProductItem({ product, isLastOne }: Props) {
+function ProductItem({ product, isLastItem }: Props) {
     const { productMedia, productName, totalAmountCombined } = product
     const navigate = useNavigate()
 
@@ -21,7 +21,7 @@ function ProductItem({ product, isLastOne }: Props) {
         <Flex
             align="center"
             gap={4}
-            borderBottom={isLastOne ? "none" : "1px solid #292929"}
+            borderBottom={isLastItem ? "none" : "1px solid #292929"}
             padding={4}
         >
             <AppImage

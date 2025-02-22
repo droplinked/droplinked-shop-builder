@@ -8,10 +8,10 @@ import React from 'react';
 
 interface Props {
     product: any
-    isLastOne: boolean
+    isLastItem: boolean
 }
 
-function SortableProduct({ product, isLastOne }: Props) {
+function SortableProduct({ product, isLastItem }: Props) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
         id: product._id,
         animateLayoutChanges: () => false
@@ -28,7 +28,7 @@ function SortableProduct({ product, isLastOne }: Props) {
             transition={transition}
             {...attributes}
             {...listeners}
-            {...(!isLastOne && { borderBottom: "1px solid #3C3C3C" })}
+            {...(!isLastItem && { borderBottom: "1px solid #3C3C3C" })}
         >
             <AppImage
                 src={product.media.find(image => image.isMain === "true")?.thumbnail}

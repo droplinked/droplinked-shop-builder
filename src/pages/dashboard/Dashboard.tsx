@@ -1,18 +1,31 @@
-import { Flex } from '@chakra-ui/react'
-import React from 'react'
-import DashboardContent from './components/DashboardContent'
-import DashboardLoading from './components/DashboardLoading'
-import GreetingBanner from './components/GreetingBanner'
-import NoOrdersPlaceholder from './components/NoOrdersPlaceholder'
-import useDashboardPageData from './hooks/useDashboardPageData'
+import { Flex } from "@chakra-ui/react"
+import useAppToast from "functions/hooks/toast/useToast"
+import { getDashboardPageData } from "lib/apis/dashboard/dashboardServices"
+import React, { useEffect } from "react"
+import { useQuery } from "react-query"
+import DashboardContent from "./components/DashboardContent"
+import GreetingBanner from "./components/GreetingBanner"
+import NoOrdersPlaceholder from "./components/NoOrdersPlaceholder"
+import useDashboardPageStore from "./stores/useDashboardStore"
 
 function Dashboard() {
-    const { isFetching, isError, data } = useDashboardPageData()
+    const { showToast } = useAppToast()
+    const updateDashboardPageState = useDashboardPageStore(state => state.updateDashboardPageState)
+
+    const { isFetching, isError, data } = useQuery({
+        queryKey: ["dashboardData"],
+        queryFn: getDashboardPageData,
+        onSuccess: data => updateDashboardPageState("dashboardData", data),
+        onError: () => showToast({ type: "error", message: "Error fetching data" })
+    })
+
+    useEffect(() => {
+        updateDashboardPageState("isLoading", isFetching)
+    }, [updateDashboardPageState, isFetching])
 
     function renderContent() {
-        if (isFetching) return <DashboardLoading />
-        else if (isError || data?.shopStats?.orders === 0) return <NoOrdersPlaceholder />
-        else return <DashboardContent />
+        const noOrders = isError || data?.shopStats?.orders === 0
+        return noOrders ? <NoOrdersPlaceholder /> : <DashboardContent />
     }
 
     return (

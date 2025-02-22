@@ -1,7 +1,7 @@
 import { Flex, FlexProps } from "@chakra-ui/react"
-import React, { Children, PropsWithChildren } from "react"
+import React, { Children } from "react"
 
-interface Props extends PropsWithChildren, FlexProps { }
+interface Props extends FlexProps { }
 
 // Used to render and handle the responsiveness of a two-column layout in the Dashboard page.
 function DoubleColumnContainer({ children, ...rest }: Props) {
@@ -12,7 +12,7 @@ function DoubleColumnContainer({ children, ...rest }: Props) {
             {...rest}
         >
             {Children.map(children, (child) => (
-                <Flex width={"100%"} flex={{ base: "1", md: "0.5" }}>
+                <Flex flex={{ base: "1", md: "0.5" }}>
                     {child}
                 </Flex>
             ))}

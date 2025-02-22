@@ -61,7 +61,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         {
             ...tokenId && {
                 title: "Token ID",
-                content: tokenId,
+                content: slicedText(tokenId),
             }
         },
         {

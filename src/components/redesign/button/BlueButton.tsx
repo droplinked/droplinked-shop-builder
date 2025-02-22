@@ -14,6 +14,9 @@ function BlueButton({ children, ...rest }: ButtonProps) {
             color="#179EF8"
             _disabled={{ color: "#4F4F4F" }}
             _hover={{ bg: "none" }}
+            sx={{
+                ".chakra-button__icon": { margin: 0 }
+            }}
             {...rest}
         >
             {children}

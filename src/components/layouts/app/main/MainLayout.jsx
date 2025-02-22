@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react"
 import React, { useEffect } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import Footer from "./components/footer/Footer"
-import HeaderMain from "./parts/header/HeaderMain"
+import HeaderMain from "./components/header/HeaderMain"
 
 function MainLayout(props) {
   const { pathname } = useLocation()
