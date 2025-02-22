@@ -77,21 +77,3 @@ A component to select the ruleset type.
 
 ### Props
 - None (uses context)
-
-## SelectType
-
-A component to select a type from a list.
-
-### Props
-- `element`: string - The form element name.
-- `items`: array - The list of items to select from.
-- `props`: object - Additional props.
-
-## SelectRule
-
-A component to select a rule from a list.
-
-### Props
-- `element`: string - The form element name.
-- `items`: array - The list of items to select from.
-- `props`: object - Additional props.
