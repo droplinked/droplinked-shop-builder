@@ -1,22 +1,20 @@
-import { Divider, ModalBody, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import { Tabs } from "@chakra-ui/react";
 import { AxiosError } from "axios";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
 import AppModal from "components/redesign/modal/AppModal";
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
 import useAppToast from "functions/hooks/toast/useToast";
 import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "lib/apis/onchain-inventory/services";
 import { appDevelopment } from "lib/utils/app/variable";
+import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
 import { handleValidateManualTransfer } from "pages/onchain-records/utils/helpers";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
-import TabsList from "../tabs-components/TabsList";
 import BulkUpload from "./bulk-upload/BulkUpload";
 import ManualTransfer from "./manual-transfer/ManualTransfer";
+import TransferModalBody from "./TransferModalBody";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
-import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
-import SampleFile from "./sample/Template.csv"
 
 interface Props {
     onClose: () => void;
@@ -135,26 +133,8 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
             }}
         >
             <Tabs isLazy={true}>
-                <TransferModalHeader>
-                    <ExternalLink href={SampleFile}
-                        width={"max-content"}
-                        fontSize={14}
-                        fontWeight={500}
-                        mt={2}
-                        pb={4}
-                    >
-                        Download Sample Template
-                    </ExternalLink>
-                    <TabsList tabs={tabs} />
-                </TransferModalHeader>
-                <ModalBody py={"16px !important"}>
-                    <TabPanels>
-                        {tabs.map((tab) => (
-                            <TabPanel key={tab.title}>{tab.content}</TabPanel>
-                        ))}
-                    </TabPanels>
-                </ModalBody>
-                <Divider borderColor={"#292929"} />
+                <TransferModalHeader tabs={tabs} />
+                <TransferModalBody tabs={tabs} />
                 <TransferModalFooter
                     handleSubmit={handleSubmit}
                     onClose={onClose}

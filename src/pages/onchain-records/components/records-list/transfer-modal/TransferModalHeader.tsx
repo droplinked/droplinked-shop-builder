@@ -1,10 +1,17 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons'
+import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { ReactNode } from 'react'
+import TabsList from '../tabs-components/TabsList';
+import SampleFile from "./sample/Template.csv"
 
-export default function TransferModalHeader({ children }: { children: ReactNode }) {
+interface Props {
+    tabs: { title: string, content: ReactNode }[];
+}
+
+export default function TransferModalHeader({ tabs }: Props) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
 
     return (
@@ -27,7 +34,16 @@ export default function TransferModalHeader({ children }: { children: ReactNode 
             })}
             description="Send onchain records to one or multiple parties below."
         >
-            {children}
+            <ExternalLink href={SampleFile}
+                width={"max-content"}
+                fontSize={14}
+                fontWeight={500}
+                mt={2}
+                pb={4}
+            >
+                Download Sample Template
+            </ExternalLink>
+            <TabsList tabs={tabs} />
         </ModalHeaderData>
     )
 }
