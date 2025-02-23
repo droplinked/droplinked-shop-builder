@@ -3,6 +3,7 @@ import AppIcons from 'assest/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTypography from 'components/common/typography/AppTypography';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
 import {
@@ -18,8 +19,6 @@ import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
-import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
 interface Props {
 	setModalData: React.Dispatch<React.SetStateAction<ModalState>>;
@@ -155,11 +154,8 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 
 	return (
 		<>
-			<ModalHeaderData icon={
-				<ModalHeaderIconWrapper>
-					<AppIcons.PaymentMethodSelection />
-				</ModalHeaderIconWrapper>
-			}
+			<ModalHeaderData
+				icon={<AppIcons.PaymentMethodSelection />}
 				title="Payment methods"
 				description={'How would you like to pay for your subscription?'}
 			/>

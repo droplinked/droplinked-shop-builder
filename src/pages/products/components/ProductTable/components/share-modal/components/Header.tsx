@@ -1,10 +1,9 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 
 //ShareIcon
 
@@ -19,7 +18,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
     <Box width="100%">
       <Box marginX="-48px">
         <ModalHeaderData
-          icon={<ModalHeaderIconWrapper><AppIcons.Share /></ModalHeaderIconWrapper>}
+          icon={<AppIcons.Share />}
           title=" Share Product"
           description={`Share your product with people around the world.`}
         />

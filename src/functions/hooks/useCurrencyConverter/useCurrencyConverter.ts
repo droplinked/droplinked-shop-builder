@@ -25,12 +25,8 @@ export function useCurrencyConverter() {
 
     function getFormattedPrice({ amount, toUSD = false, toFixed = false }: PriceConversionParams): string {
         const convertedPrice = convertPrice({ amount, toUSD })
-
-        if (toFixed) {
-            return `${symbol}${convertedPrice.toFixed(2)} ${abbreviation}`
-        } else {
-            return `${symbol}${convertedPrice} ${abbreviation}`
-        }
+        const formattedPrice = toFixed ? convertedPrice.toFixed(2) : convertedPrice
+        return `${symbol}${formattedPrice} ${abbreviation}`
     }
 
     return {

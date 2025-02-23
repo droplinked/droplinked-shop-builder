@@ -1,7 +1,6 @@
 import { ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import Button from 'components/redesign/button/Button'
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
@@ -80,7 +79,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
             modalContentProps={{ width: "600px", gap: 0, paddingBlock: 0, bg: "#141414" }}
         >
             <ModalHeaderData
-                icon={<ModalHeaderIconWrapper>{icon}</ModalHeaderIconWrapper>}
+                icon={icon}
                 title={title}
                 description={description}
                 modalHeaderProps={{

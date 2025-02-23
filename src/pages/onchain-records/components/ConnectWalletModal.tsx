@@ -1,6 +1,5 @@
 import { ModalBody } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import ConnectWallets from "pages/register-pages/component/connect/ConnectWallets";
@@ -39,11 +38,7 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
                 }}
                 descriptionColor="#B1B1B1 !important"
                 title="Connect your wallets"
-                icon={
-                    <ModalHeaderIconWrapper>
-                        <AppIcons.Wallet />
-                    </ModalHeaderIconWrapper>
-                }
+                icon={<AppIcons.Wallet />}
                 description="Please select a wallet to connect."
             />
             <ModalBody paddingInline="0px !important" padding="0px" overflow="auto">

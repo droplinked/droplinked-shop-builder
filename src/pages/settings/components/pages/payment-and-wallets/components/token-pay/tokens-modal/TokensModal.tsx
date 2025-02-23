@@ -1,7 +1,6 @@
 import { Flex, ModalBody, useMediaQuery } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import Input from "components/redesign/input/Input";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import Select from "components/redesign/select/Select";
@@ -48,13 +47,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
             modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
         >
             <ModalHeaderData
-                {...!isSmallerThan768 && {
-                    icon: (
-                        <ModalHeaderIconWrapper>
-                            <AppIcons.DollarSign />
-                        </ModalHeaderIconWrapper>
-                    )
-                }}
+                {...!isSmallerThan768 && { icon: <AppIcons.DollarSign /> }}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }

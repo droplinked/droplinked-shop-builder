@@ -1,17 +1,16 @@
 import { ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
+import Input from 'components/redesign/input/Input';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
 import { arraysAreEqual } from 'lib/utils/helpers/helpers';
-import Input from 'components/redesign/input/Input';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import ProductTable from './product-table/ProductTable';
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
 interface Props {
     isOpen: boolean;
@@ -58,20 +57,14 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
     }
 
     return (
-        <AppModal
-            modalRootProps={{ isOpen, onClose: closeModal, size: "5xl" }}
-        >
+        <AppModal modalRootProps={{ isOpen, onClose: closeModal, size: "5xl" }}>
             <ModalHeaderData
-                icon={
-                    <ModalHeaderIconWrapper>
-                        <AppIcons.HeaderProductBox />
-                    </ModalHeaderIconWrapper>
-                }
+                icon={<AppIcons.HeaderProductBox />}
                 title="Products"
                 description="Select one of the products to add into your invoice."
             />
 
-            <ModalBody display={"flex"} flexDirection={"column"} gap={6}>
+            <ModalBody display="flex" flexDirection="column" gap={6}>
                 <Input
                     inputProps={{
                         width: "300px",

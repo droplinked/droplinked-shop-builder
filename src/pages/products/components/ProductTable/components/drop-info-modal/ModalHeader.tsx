@@ -1,5 +1,4 @@
 import AppIcons from 'assest/icon/Appicons'
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React from 'react'
 import ProductDetails from './ProductDetails'
@@ -7,11 +6,7 @@ import ProductDetails from './ProductDetails'
 function ModalHeader({ product }: { product: any }) {
     return (
         <ModalHeaderData
-            icon={
-                <ModalHeaderIconWrapper>
-                    <AppIcons.HeaderProductBox />
-                </ModalHeaderIconWrapper>
-            }
+            icon={<AppIcons.HeaderProductBox />}
             title='Drop Information'
             modalHeaderProps={{
                 bgColor: "#141414",
