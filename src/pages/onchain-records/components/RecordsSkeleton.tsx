@@ -16,8 +16,8 @@ export default function RecordsSkeleton() {
             gap={6}
         >
             {
-                Array.from({ length: 5 }).map((_, index) => (
-                    <AppSkeleton borderRadius={8} width={"300px"} height={"350px"} isLoaded={false} key={`skeleton${index}`} />
+                Array.from({ length: 10 }).map((_, index) => (
+                    <AppSkeleton borderRadius={8} width={"100%"} height={{ base: "248px", md: "320px" }} isLoaded={false} key={`skeleton${index}`} />
                 ))
             }
         </Grid>

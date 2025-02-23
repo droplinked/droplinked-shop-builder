@@ -56,7 +56,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
                 }}>
                 {productName}
             </AppTypography>
-            <RecordDetails item={item} isOpen={isOpen} onClose={onClose} />
+            {isOpen && <RecordDetails item={item} isOpen={isOpen} onClose={onClose} />}
         </Flex>
     )
 }
