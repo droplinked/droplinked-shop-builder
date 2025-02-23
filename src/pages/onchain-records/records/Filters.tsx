@@ -4,12 +4,19 @@ import Input from 'components/redesign/input/Input';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useMemo } from 'react';
-import useOnchainRecordsStore from '../store/useOnchainRecordsStore';
+import { useOnchainRecords } from '../context/OnchainRecordsContext';
 
 export default function Filters() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { user: { wallets } } = useAppStore()
-    const { searchValue, setSearchValue, recordFilter, setRecordFilter, walletFilter, setWalletFilter } = useOnchainRecordsStore();
+    const {
+        searchValue,
+        setSearchValue,
+        recordFilter,
+        setRecordFilter,
+        walletFilter,
+        setWalletFilter
+    } = useOnchainRecords();
 
     const recordItems = [
         { label: "All Records", value: null },
