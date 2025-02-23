@@ -30,12 +30,14 @@ const DashboardLayoutSidebar = ({ isSidebarOpen }) => {
         multiCollapse={false}
         display="flex"
         width="full"
-        padding={"36px 12px"}
+        padding="36px 12px"
         flexDirection="column"
         alignItems="flex-start"
         gap="24px"
         flex="1"
-        overflow="auto"
+        overflow="hidden"
+        _hover={{ overflow: 'auto' }}
+        _focusWithin={{ overflow: 'auto' }}
       >
         {SIDEBAR_CONSTANTS?.map((sidebarGroup, index) => (
           <SidebarGroup key={sidebarGroup.group} group={sidebarGroup} index={index} />
