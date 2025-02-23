@@ -1,7 +1,7 @@
 export interface IGetOnchainInventoryParams {
     chain?: string;
     wallet?: string;
-    myProducts?: boolean;
+    myProducts?: string;
     search?: string;
 }
 

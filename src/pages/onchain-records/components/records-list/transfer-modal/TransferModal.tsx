@@ -2,7 +2,6 @@ import { Tabs } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
 import { useState } from "react";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
-import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
 import { useTransfer } from "../../../hooks/useTransfer";
 import BulkUpload from "./bulk-upload/BulkUpload";
 import ManualTransfer from "./manual-transfer/ManualTransfer";
@@ -10,6 +9,7 @@ import TransferModalBody from "./TransferModalBody";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
 import React from "react";
+import { useOnchainRecords } from "pages/onchain-records/hooks/useOnchainRecords";
 interface Props {
     onClose: () => void;
     isOpen: boolean;

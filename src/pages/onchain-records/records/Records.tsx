@@ -3,7 +3,7 @@ import React from 'react';
 import EmptyView from '../components/EmptyView';
 import RecordsList from '../components/records-list/RecordsList';
 import Filters from './Filters';
-import { useOnchainRecords } from '../context/OnchainRecordsContext';
+import { useOnchainRecords } from '../hooks/useOnchainRecords';
 import RecordsSkeleton from '../components/RecordsSkeleton';
 
 export default function Records() {
