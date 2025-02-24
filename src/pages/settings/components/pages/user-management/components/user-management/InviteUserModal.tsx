@@ -45,7 +45,9 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                descriptionColor='#B1B1B1 !important'
+                descriptionProps={{
+                    color: "#B1B1B1 !important"
+                }}
                 title='Invite New Member'
                 icon={<AppIcons.AddUser />}
                 description='Add a new member by entering their email address below.'

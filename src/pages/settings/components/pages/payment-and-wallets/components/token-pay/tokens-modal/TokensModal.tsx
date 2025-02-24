@@ -52,7 +52,9 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                descriptionColor="#B1B1B1 !important"
+                descriptionProps={{
+                    color: "#B1B1B1 !important"
+                }}
                 title={"Tokens"}
                 description="Select token options you want to use for payments."
             />

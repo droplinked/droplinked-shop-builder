@@ -15,7 +15,9 @@ export default function TransferModalHeader({ children }: { children: ReactNode 
                 pt: { md: "48px !important", base: "16px !important" },
                 pb: "0px !important",
             }}
-            descriptionColor="#B1B1B1 !important"
+            descriptionProps={{
+                color: "#B1B1B1 !important"
+            }}
             title="Transfer Records"
             {...(!isSmallerThan768 && { icon: <AppIcons.Transfer /> })}
             description="Send onchain records to one or multiple parties below."

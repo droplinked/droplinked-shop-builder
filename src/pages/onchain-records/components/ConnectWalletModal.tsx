@@ -36,7 +36,9 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
                 modalHeaderProps={{
                     bgColor: "#141414",
                 }}
-                descriptionColor="#B1B1B1 !important"
+                descriptionProps={{
+                    color: "#B1B1B1 !important"
+                }}
                 title="Connect your wallets"
                 icon={<AppIcons.Wallet />}
                 description="Please select a wallet to connect."
