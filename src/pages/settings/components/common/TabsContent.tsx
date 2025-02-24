@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormikContext } from "formik";
-import AppTab from "components/redesign/AppTab/AppTab";
+import AppTab from "components/redesign/app-tab/AppTab";
 import General from "../pages/general/General";
 import PrivacyAndSecurity from "../pages/privacy-and-security/PrivacyAndSecurity";
 import PaymentAndWallets from "../pages/payment-and-wallets/PaymentAndWallets";
