@@ -1,17 +1,23 @@
 import AppIcons from 'assest/icon/Appicons';
+import { PriceConversionParams } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import { SHOP_URL } from 'lib/utils/app/variable';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
-import { IShopCurrency } from 'types/interface/shopCurrency.interface';
 import { ProfileItem } from './interfaces';
 
-export const PROFILE_CONSTANTS = (shop: { credit: number; name: string; shopDomain: string; currency: IShopCurrency }, logoutUser: () => void): ProfileItem[] => [
+interface ICurrencyConverter {
+  convertPrice: (params: PriceConversionParams) => void,
+  getFormattedPrice: (params: PriceConversionParams) => void
+  abbreviation: string,
+  symbol: string
+}
+
+export const PROFILE_CONSTANTS = (shop: { credit: number; name: string; shopDomain: string; }, logoutUser: () => void, convertCurrency: ICurrencyConverter): ProfileItem[] => [
   {
     title: { label: 'Credit', style: {} },
     icon: { svg: AppIcons.ProfileCredit, style: {} },
     linkTo: null,
     isExternalLink: false,
     rightSide: {
-      value: `${shop.currency?.symbol}${currencyConvertion(Number(shop?.credit), shop.currency?.conversionRateToUSD, false)} ${shop.currency?.abbreviation}`,
+      value: `${convertCurrency.getFormattedPrice({ amount: shop?.credit, toFixed: true })}`,
       style: {
         color: '#2BCFA1',
         fontFamily: 'Inter',

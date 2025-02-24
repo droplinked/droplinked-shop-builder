@@ -1,7 +1,7 @@
 import { Flex, PopoverBody, PopoverContent } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import Input from 'pages/invoice-management/components/Input'
+import Input from 'components/redesign/input/Input'
 import React, { useState } from 'react'
 import SKUOptions from './SKUOptions'
 
@@ -38,7 +38,7 @@ function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props
         >
             <PopoverBody padding={0}>
                 <Input
-                    icon={<AppIcons.Search />}
+                    leftElement={<AppIcons.Search />}
                     inputGroupProps={{ height: 12, margin: 5, sx: { "svg path": { stroke: "white" } } }}
                     inputProps={{ placeholder: "Search variants", onChange: (e) => setSearchTerm(e.target.value) }}
                 />

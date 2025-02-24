@@ -2,13 +2,12 @@ import React from 'react'
 import { Coupon } from '../../../interface'
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
 import { formatDate } from 'lib/utils/helpers/helpers'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 export default function InformationTab({ coupon }: { coupon: Coupon }) {
     const { balance, codes, expiryDate, type } = coupon
-    const { shop: { currency } } = useAppStore();
+    const { convertPrice, symbol, abbreviation } = useCurrencyConverter()
     const redeemedCounts = codes.filter((code) => code.isRedeemed).length;
 
     const data = [
@@ -18,9 +17,9 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
                 <AppTypography color={"#fff"} fontWeight={500} fontSize={14}>{balance}%</AppTypography>
             ) : (
                 <AppTypography sx={{ span: { color: "#7B7B7B", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
-                    {currency?.symbol}{" "}
-                    {currencyConvertion(balance, currency?.conversionRateToUSD, false)}{" "}
-                    <span>{currency?.abbreviation}</span>
+                    {symbol}{" "}
+                    {convertPrice({ amount: balance, toFixed: true })}{" "}
+                    <span>{abbreviation}</span>
                 </AppTypography>
             )
         },

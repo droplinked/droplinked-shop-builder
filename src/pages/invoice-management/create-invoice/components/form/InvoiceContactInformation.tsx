@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import { useFormikContext } from 'formik';
-import Input from 'pages/invoice-management/components/Input';
+import Input from 'components/redesign/input/Input';
 import React from 'react';
 import { InvoiceFormSchema } from '../../helpers/helpers';
 
@@ -34,7 +34,9 @@ function InvoiceContactInformation() {
                             value,
                             onChange: handleChange(name)
                         }}
-                        error={error}
+                        {...error && { state: "error", message: error }}
+                        showErrorIcon={false}
+                        stateColor='#E53E3E'
                     />
                 ))}
             </SimpleGrid>

@@ -22,14 +22,15 @@ const UserMenu = () => {
   });
 
   const credit = data?.data?.data?.credit ?? 0;
-  const { getFormattedPrice } = useCurrencyConverter();
+  const convertCurrency = useCurrencyConverter();
+  const { getFormattedPrice } = convertCurrency;
   const { shopNavigate } = useCustomNavigate();
   const { shop, user } = useAppStore();
   const { logoutUser } = useProfile();
 
   const subscription = SUBSCRIPTION_STATUS_CONSTANTS({ STARTER: () => shopNavigate('/dashboard/plans') }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
 
-  const profileConstants = PROFILE_CONSTANTS(shop, logoutUser);
+  const profileConstants = PROFILE_CONSTANTS(shop, logoutUser, convertCurrency);
 
   return (
     <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose} variant="unstyled">

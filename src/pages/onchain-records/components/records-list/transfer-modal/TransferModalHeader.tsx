@@ -1,11 +1,10 @@
 import { useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assest/icon/Appicons';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
-import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import React, { ReactNode } from 'react'
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import React, { ReactNode } from 'react';
 import TabsList from '../tabs-components/TabsList';
-import SampleFile from "./sample/Template.csv"
+import SampleFile from "./sample/Template.csv";
 
 interface Props {
     tabs: { title: string, content: ReactNode }[];
@@ -23,15 +22,11 @@ export default function TransferModalHeader({ tabs }: Props) {
                 pt: { md: "48px !important", base: "16px !important" },
                 pb: "0px !important",
             }}
-            descriptionColor="#B1B1B1 !important"
+            descriptionProps={{
+                color: "#B1B1B1 !important"
+            }}
             title="Transfer Records"
-            {...(!isSmallerThan768 && {
-                icon: (
-                    <ModalHeaderIconWrapper>
-                        <AppIcons.Transfer />
-                    </ModalHeaderIconWrapper>
-                ),
-            })}
+            {...(!isSmallerThan768 && { icon: <AppIcons.Transfer /> })}
             description="Send onchain records to one or multiple parties below."
         >
             <ExternalLink href={SampleFile}

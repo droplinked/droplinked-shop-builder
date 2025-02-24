@@ -8,9 +8,11 @@ import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
 import { ReactComponent as Invoice } from './Invoice.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as PremiumPlanGreenStarIcon } from './PremiumPlanGreenStarIcon.svg';
+import { ReactComponent as FilterAction } from './action-filter.svg';
 import { ReactComponent as ActiveIcon } from './active.svg';
 import { ReactComponent as AddUser } from './add-user.svg';
 import { ReactComponent as AddIcon } from './add.svg';
+import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
 import { ReactComponent as AffiliateProductsArrow } from './affiliate-products-arrow.svg';
 import { ReactComponent as AffiliateProductsDollar } from './affiliate-products-dollar.svg';
 import { ReactComponent as AffiliateProductsPercent } from './affiliate-products-percent.svg';
@@ -67,7 +69,6 @@ import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as CollectionIcon } from './collection-icon.svg';
 import { ReactComponent as Collection } from './collection.svg';
 import { ReactComponent as CollectionModalIcon } from './collectionModalIcon.svg';
-import { ReactComponent as ConfirmPlan } from './confirm-plan.svg';
 import { ReactComponent as Convert } from './convert.svg';
 import { ReactComponent as Copy } from './copy.svg';
 import { ReactComponent as Cover } from './cover.svg';
@@ -123,6 +124,7 @@ import { ReactComponent as Edit } from './edit.svg';
 import { ReactComponent as EmailSign } from './email-sign.svg';
 import { ReactComponent as Email } from './email.svg';
 import { ReactComponent as EnterprisePlan } from './enterprise-plan.svg';
+import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
 import { ReactComponent as ETH } from './eth.svg';
 import { ReactComponent as Euro } from './euro.svg';
 import { ReactComponent as EventCalendar } from './event-calendar.svg';
@@ -183,7 +185,6 @@ import { ReactComponent as InvisibleIcon } from './invisible-icon.svg';
 import { ReactComponent as InvoiceCreated } from './invoice-created.svg';
 import { ReactComponent as InvoiceDiscount } from './invoice-discount.svg';
 import { ReactComponent as InvoiceManagement } from './invoice-management.svg';
-import { ReactComponent as InvoiceProduct } from './invoice-product.svg';
 import { ReactComponent as JapaneseYen } from './jpy.svg';
 import { ReactComponent as KidClothing } from './kid-clothing.svg';
 import { ReactComponent as LandingPageCode } from './landing-page-code.svg';
@@ -193,6 +194,7 @@ import { ReactComponent as LandingPageLink } from './landing-page-link.svg';
 import { ReactComponent as LandingPageTemplate } from './landing-page-template.svg';
 import { ReactComponent as Letter } from "./letter.svg";
 import { ReactComponent as Light } from './light.svg';
+import { ReactComponent as Like } from './like.svg';
 import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as LinkedInOutlined } from './linkedin-outlined.svg';
 import { ReactComponent as LinkedIn } from './linkedin.svg';
@@ -213,6 +215,7 @@ import { ReactComponent as NewPolygon } from './new-polygon.svg';
 import { ReactComponent as NewRedbelly } from './new-redbelly.svg';
 import { ReactComponent as NewSolana } from './new-solana.svg';
 import { ReactComponent as NewStripe } from './new-stripe.svg';
+import { ReactComponent as NFTIcon } from './nft.svg';
 import { ReactComponent as NotSorted } from './not-sorted.svg';
 import { ReactComponent as OrderIcon } from './order-icon.svg';
 import { ReactComponent as Order } from './order.svg';
@@ -274,10 +277,10 @@ import { ReactComponent as SidebarChat } from './sidebar-chat.svg';
 import { ReactComponent as SidebarChevrondown } from './sidebar-chevrondown.svg';
 import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.svg';
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
+import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
 import { ReactComponent as SidebarDroplinked } from './sidebar-droplinked.svg';
 import { ReactComponent as SideBarExpand } from './sidebar-expand.svg';
-import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarGo } from './sidebar-go.svg';
 import { ReactComponent as SidebarNext } from './sidebar-next.svg';
 import { ReactComponent as SidebarNote } from './sidebar-note.svg';
@@ -293,6 +296,7 @@ import { ReactComponent as Slash } from './slash.svg';
 import { ReactComponent as Smile } from './smile.svg';
 import { ReactComponent as Solana } from './solana.svg';
 import { ReactComponent as Soon } from './soon.svg';
+import { ReactComponent as SearchInput } from './square-with-slash.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
 import { ReactComponent as StarterPlan } from './starter-plan.svg';
@@ -344,12 +348,6 @@ import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
 import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
-import { ReactComponent as NFTIcon } from './nft.svg';
-import { ReactComponent as ETHOutlined } from './eth-outlined.svg';
-import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
-import { ReactComponent as SearchInput } from './square-with-slash.svg'
-import { ReactComponent as FilterAction } from './action-filter.svg'
-
 
 const AppIcons = {
   Paymob,
@@ -518,7 +516,6 @@ const AppIcons = {
   ProPlan,
   PremiumPlan,
   EnterprisePlan,
-  ConfirmPlan,
   Token,
   NewPolygon,
   NewRedbelly,
@@ -537,7 +534,6 @@ const AppIcons = {
   InvoiceCreated,
   Copy,
   SelectChevronDown,
-  InvoiceProduct,
   NotSorted,
   AscSorting,
   DescSorting,
@@ -703,7 +699,8 @@ const AppIcons = {
   Globe,
   AffiliateAddProduct,
   SearchInput,
-  FilterAction
+  FilterAction,
+  Like
 }
 
 export default AppIcons

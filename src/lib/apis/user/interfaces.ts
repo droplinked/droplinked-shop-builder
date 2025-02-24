@@ -40,16 +40,6 @@ export interface IuserUpdateService {
     wallets?: Array<IUserWalletsProps>;
 }
 
-export interface IRetrieveNFTs {
-    myProducts: boolean;
-    search: string;
-    body: {
-        address: string;
-        chain: string;
-        network: string;
-    };
-}
-
 export interface IInvitation {
     _id: string;
     recipientEmail: string;

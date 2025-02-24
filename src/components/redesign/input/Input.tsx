@@ -1,4 +1,4 @@
-import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
@@ -12,10 +12,13 @@ interface Props {
     inputProps?: InputProps & {
         numberType?: 'int' | 'float'
     }
+    labelProps?: FormLabelProps;
     leftElement?: ReactNode
     rightElement?: ReactNode
     actionButton?: ReactNode
     state?: 'success' | 'error'
+    stateColor?: string;
+    showErrorIcon?: boolean;
     message?: string
     maxCharacters?: number
     showAnimatedLoading?: boolean
@@ -35,7 +38,7 @@ export default function Input(props: Props) {
     )
 }
 
-export function InputHeader({ label, description, inputProps }: Props) {
+export function InputHeader({ label, description, inputProps, labelProps }: Props) {
     return (
         <>
             {label && (
@@ -47,6 +50,7 @@ export function InputHeader({ label, description, inputProps }: Props) {
                     fontSize={16}
                     fontWeight={500}
                     color="#FFF"
+                    {...labelProps}
                 >
                     {label} {inputProps?.isRequired && <AppIcons.Required />}
                 </FormLabel>
@@ -148,18 +152,18 @@ function InputContainer(props: Props) {
     )
 }
 
-function InputFooter({ message, maxCharacters, inputProps }: Props) {
+function InputFooter({ message, maxCharacters, inputProps, stateColor = "#fff", showErrorIcon = true }: Props) {
     return (
         <>
             {(message || maxCharacters) && (
                 <Flex
                     mt={2}
                     paddingInline={4}
-                    css={{ p: { fontSize: 12, color: "#FFF" } }}
+                    css={{ p: { fontSize: 12, color: stateColor } }}
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
-                            <AppIcons.WhiteWarning />
+                            {showErrorIcon && <AppIcons.WhiteWarning />}
                             <Text>{message}</Text>
                         </Flex>
                     )}

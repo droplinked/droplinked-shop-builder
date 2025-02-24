@@ -7,14 +7,6 @@ export interface SearchInput {
     placeholder?: string
 }
 
-export interface IdataGrid {
-    filters?: Array<IFiltersDataGridItems>
-    loading: boolean
-    search?: SearchInput
-    description?: string
-    title?: string
-}
-
 export interface PageGridRootProps {
     children: React.ReactNode;
     loading?: boolean;

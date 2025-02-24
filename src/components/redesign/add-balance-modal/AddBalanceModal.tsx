@@ -1,11 +1,10 @@
 import AppIcons from 'assest/icon/Appicons';
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useState } from 'react';
 import BalanceModalBody from './BalanceModalBody';
 import StripeBody from './StripeBody';
-import useAppToast from 'functions/hooks/toast/useToast';
 
 interface Props {
     isOpen: boolean;
@@ -16,13 +15,14 @@ interface Props {
 export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Props) {
     const [paymentData, setPaymentData] = useState({ clientSecret: null, amount: 0 })
     const { showToast } = useAppToast()
-    const handleSetPayment = (clientSecret: string, amount: number) => {
-        setPaymentData({ clientSecret, amount })
-    }
+
+    const handleSetPayment = (clientSecret: string, amount: number) => setPaymentData({ clientSecret, amount })
+
     const handleCancelPayment = () => {
         onClose()
         setPaymentData({ clientSecret: null, amount: null })
     }
+
     const handleSuccessPayment = async () => {
         onClose()
         setPaymentData({ clientSecret: null, amount: null })
@@ -37,13 +37,11 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                descriptionColor="#B1B1B1 !important"
+                descriptionProps={{
+                    color: "#B1B1B1 !important"
+                }}
                 title='Add Credit'
-                icon={
-                    <ModalHeaderIconWrapper>
-                        <AppIcons.HeaderCreditCard />
-                    </ModalHeaderIconWrapper>
-                }
+                icon={<AppIcons.HeaderCreditCard />}
                 description='Top up the account balance to pay for digital coupons, offers and monthly plan services.'
             />
             {paymentData.clientSecret ?

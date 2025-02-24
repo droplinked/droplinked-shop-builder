@@ -3,6 +3,7 @@ import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
 import AppModal from "components/redesign/modal/AppModal";
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
@@ -12,7 +13,6 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
-import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
@@ -68,14 +68,14 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                 modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
             >
                 <ModalHeaderData
-                    icon={
-                        <AppIcons.CircleModal />
-                    }
+                    icon={<AppIcons.CircleModal />}
                     modalHeaderProps={{
                         bgColor: "#141414",
                         paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                     }}
-                    descriptionColor="#B1B1B1 !important"
+                    descriptionProps={{
+                        color: "#B1B1B1 !important"
+                    }}
                     title={"Manage Wallet"}
                     description="Manage USDC powered wallet by Circle"
                 />

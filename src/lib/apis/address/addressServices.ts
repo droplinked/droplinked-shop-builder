@@ -1,10 +1,5 @@
-import axios from "axios"
 import axiosInstance from "../axiosConfig"
 import { IaddressByIdService, IcitiesService, IcreateAddressService, IdeleteAddressService, IsatatesService, IupdateAddressService } from "./interfaces"
-
-export const addressBookService = () => {
-    return axiosInstance.get(`address-book`)
-}
 
 export const getShopAddressBookService = () => {
     return axiosInstance.get("address-book/shop")
