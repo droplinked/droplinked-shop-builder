@@ -1,7 +1,7 @@
-import { Button, Flex, HStack, Input, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, Input, useBreakpointValue } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react';
+import React, { useRef } from 'react';
 
 interface ActionBarProps {
   setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,7 +10,13 @@ interface ActionBarProps {
 }
 
 const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFilterChange }) => {
+  const inputRef = useRef(null);
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
+
+  const focusSearchInput = () => {
+    inputRef.current.focus();
+  };
+
   return (
     <HStack justifyContent="start" width="full" alignItems="center" spacing={3}>
       {/* Filters Toggle Button */}
@@ -37,6 +43,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
       <Flex p="8px" alignItems="center" fontWeight="medium" justifyContent="center" gap={2} border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
         <AppIcons.Search />
         <Input
+          ref={inputRef}
           fontSize="base"
           fontWeight="400"
           color="#fff"
@@ -52,7 +59,9 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
           placeholder="Search"
           onChange={(e) => handleFilterChange('title', e.target.value)}
         />
-        <AppIcons.SearchInput />
+        <Box as="button" cursor={'pointer'} bg={"#292929"} rounded={2} onClick={focusSearchInput}>
+          <AppIcons.SearchInput />
+        </Box>
       </Flex>
     </HStack>
   );
