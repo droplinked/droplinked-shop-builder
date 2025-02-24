@@ -1,119 +1,58 @@
-import { Divider, ModalBody, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
-import { AxiosError } from "axios";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
+import { Tabs } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
-import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
-import useAppToast from "functions/hooks/toast/useToast";
-import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "lib/apis/onchain-inventory/services";
-import { appDevelopment } from "lib/utils/app/variable";
-import { handleValidateManualTransfer } from "pages/onchain-records/utils/helpers";
+import { useState } from "react";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
-import React, { useState } from "react";
-import { useMutation } from "react-query";
-import TabsList from "../tabs-components/TabsList";
+import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
+import { useTransfer } from "../../../hooks/useTransfer";
 import BulkUpload from "./bulk-upload/BulkUpload";
 import ManualTransfer from "./manual-transfer/ManualTransfer";
+import TransferModalBody from "./TransferModalBody";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
-import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
-import SampleFile from "./sample/Template.csv"
-
+import React from "react";
 interface Props {
     onClose: () => void;
     isOpen: boolean;
     item: ICombinedNft;
 }
 
+/**
+ * Modal component for NFT transfer operations
+ * Provides UI for both manual transfer and bulk upload options
+ */
 export default function TransferModal({ onClose, isOpen, item }: Props) {
+    // State for manual transfer form data
     const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
-    const [file, setFile] = useState<File>(null)
-    const [isExecuteLoading, setIsExecuteLoading] = useState(false);
-    const { showToast } = useAppToast();
+    // State for bulk upload file
+    const [file, setFile] = useState<File>(null);
     const { refetch } = useOnchainRecords();
 
-    const { quantity, chain, tokenAddress, tokenId, ownerAddress } = item ?? {};
-    const network = appDevelopment ? "TESTNET" : "MAINNET";
-    const web3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET);
-
-    const { mutateAsync: importCSV, isLoading: isImportLoading } = useMutation(() => {
-        const formData = new FormData();
-        formData.append("file", file);
-        return uploadWalletsCSV(formData);
-    },
-        {
-            onSuccess(data) {
-                const receivers = data.data.receivers;
-                const isValid = handleValidateManualTransfer({ manualTransferData: receivers, quantity: +quantity, showToast });
-                if (isValid) {
-                    createAirdrop({ receivers });
-                }
-            },
-            onError(err: AxiosError<{ data: { message: string } }>) {
-                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
-            },
+    // Initialize transfer hook with success callback
+    const { handleTransfer, isLoading, isExecuteLoading } = useTransfer({
+        item,
+        onSuccess: () => {
+            refetch(); // Refresh NFT data after successful transfer
+            onClose(); // Close modal
         }
-    );
+    });
 
-    const { mutateAsync: createAirdrop, isLoading: isCreateLoading } = useMutation(
-        (variables: { receivers?: typeof manualTransferData }) =>
-            createAirdropProcedure({
-                chain,
-                network,
-                receivers: variables.receivers,
-                tokenAddress,
-                tokenId
-            }),
-        {
-            onSuccess: async ({ data }) => {
-                try {
-                    setIsExecuteLoading(true)
-                    const { chain, _id } = data;
-                    const provider = web3.web3Instance({
-                        method: Web3Actions.AIRDROP,
-                        chain: Chain[chain],
-                        preferredWallet: ChainWallet.Metamask,
-                        userAddress: ownerAddress,
-                    })
-                    const transfer = await provider.executeAirdrop(_id);
-                    await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes });
-                    showToast({ message: "Airdrop successfully processed", type: "success" });
-                    refetch(); // Call refetch after successful transfer
-                    onClose();
-                } catch (error) {
-                    setIsExecuteLoading(false)
-                    showToast({ message: "Oops! Something went wrong", type: "error" });
-                }
-            },
-            onError: (err: AxiosError<{ data: { message: string } }>) => {
-                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
-            },
-        });
-
-    const handleSubmit = async (selectedIndex: number) => {
-        //if we selected manual transfer
-        if (selectedIndex === 0) {
-            const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast })
-            if (isValid) {
-                // Filter out the last item if it's empty
-                const dataToSend = [...manualTransferData];
-                const lastItem = dataToSend[dataToSend.length - 1];
-                if (lastItem && !lastItem.receiver && (!lastItem.amount || lastItem.amount === 0)) {
-                    dataToSend.pop();
-                }
-                await createAirdrop({ receivers: dataToSend });
-            }
-        }
-        //if we selected bulk upload
-        else {
-            await importCSV();
-        }
+    /**
+     * Handle form submission for both manual and bulk transfer
+     * @param selectedIndex - Selected tab index (0 for manual, 1 for bulk upload)
+     */
+    const handleSubmit = (selectedIndex: number) => {
+        handleTransfer(manualTransferData, selectedIndex, file);
     };
 
+    /**
+     * Prevent modal closure during transfer execution
+     */
     const handleCloseModal = () => {
         if (isExecuteLoading) return;
         onClose();
-    }
+    };
 
+    // Define tabs configuration for the modal
     const tabs = [
         {
             title: "Manual",
@@ -135,30 +74,13 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
             }}
         >
             <Tabs isLazy={true}>
-                <TransferModalHeader>
-                    <ExternalLink href={SampleFile}
-                        width={"max-content"}
-                        fontSize={14}
-                        fontWeight={500}
-                        mt={2}
-                        pb={4}
-                    >
-                        Download Sample Template
-                    </ExternalLink>
-                    <TabsList tabs={tabs} />
-                </TransferModalHeader>
-                <ModalBody py={"16px !important"}>
-                    <TabPanels>
-                        {tabs.map((tab) => (
-                            <TabPanel key={tab.title}>{tab.content}</TabPanel>
-                        ))}
-                    </TabPanels>
-                </ModalBody>
-                <Divider borderColor={"#292929"} />
+                {/* Modal sections */}
+                <TransferModalHeader tabs={tabs} />
+                <TransferModalBody tabs={tabs} />
                 <TransferModalFooter
                     handleSubmit={handleSubmit}
                     onClose={onClose}
-                    isLoading={isCreateLoading || isExecuteLoading || isImportLoading}
+                    isLoading={isLoading}
                 />
             </Tabs>
         </AppModal>

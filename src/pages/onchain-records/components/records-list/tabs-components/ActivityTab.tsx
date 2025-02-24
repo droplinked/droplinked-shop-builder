@@ -7,9 +7,9 @@ import { ICombinedNft } from "pages/onchain-records/utils/interface";
 import React from "react";
 import { useQuery } from "react-query";
 import ContainerCard from "../../ContainerCard";
-import ContainerCardSkelton from "../../records-skeleton/ContainerCardSkelton";
 import DateFormatter from "./DateFormatter";
 import TransactionLink from './TransactionLink';
+import AppSkeleton from "components/common/skeleton/AppSkeleton";
 
 export default function ActivityTab({ item }: { item: ICombinedNft }) {
     const { tokenId, tokenAddress, chain } = item ?? {};
@@ -37,7 +37,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
 
     return (
         <Flex flexDirection={"column"} gap={4}>
-            {isFetching && <ContainerCardSkelton />}
+            {isFetching && <AppSkeleton borderRadius={16} width={"440px"} height={"255px"} isLoaded={false} />}
             {(!isFetching && !isError) &&
                 <Flex flexDirection={"column"} gap={4}>
                     {data.data.map((item) => {
