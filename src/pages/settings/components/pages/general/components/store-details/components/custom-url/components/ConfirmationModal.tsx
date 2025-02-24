@@ -39,8 +39,12 @@ export default function ConfirmationModal({ isOpen, onClose, url, refetch }: Pro
     return (
         <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "2xl" }} modalContentProps={{ background: "#141414" }}>
             <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    px: { lg: "48px !important", md: "32px !important", base: "16px !important" },
+                    padding: "0px",
+                    paddingBlock: "0px",
+                    backgroundColor: '#141414'
+                }}
                 title='Add custom URL'
                 description={`You are about to set "${url}" for your shop’s custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?`}
             >

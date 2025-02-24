@@ -23,7 +23,7 @@ function TableRoot<T extends object>({ children, columns, hasActionColumn = fals
                     {children}
                 </ChakraTable>
             </TableContainer>
-        </TableContext.Provider >
+        </TableContext.Provider>
     )
 }
 

@@ -4,24 +4,23 @@ import ModalHeaderIconWrapper from '../modal-header-icon-wrapper/ModalHeaderIcon
 
 interface Props extends PropsWithChildren {
     icon?: ReactNode;
-    backgroundColor?: string;
     title: string;
     description?: string;
     modalHeaderProps?: ModalHeaderProps
     descriptionColor?: string;
 }
 
-function ModalHeaderData({ icon, descriptionColor, title, description, backgroundColor, modalHeaderProps, children }: Props) {
+function ModalHeaderData({ icon, descriptionColor, title, description, modalHeaderProps, children }: Props) {
     return (
         <ModalHeader
             {...modalHeaderProps}
-            {...backgroundColor && { backgroundColor }}
             css={{ p: { color: 'white' } }}
         >
             <Flex justifyContent="space-between">
                 {icon
                     ? <ModalHeaderIconWrapper>{icon}</ModalHeaderIconWrapper>
-                    : <Text fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>}
+                    : <Text fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>
+                }
                 <ModalCloseButton position="static" color="white" />
             </Flex>
 

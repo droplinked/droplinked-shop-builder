@@ -69,8 +69,12 @@ function CollectionReorderModal({ isOpen, close }: Props) {
         <AppModal modalRootProps={{ isOpen, onClose: close, isCentered: false, size: "2xl" }} modalContentProps={{ background: "#141414", px: "0px", paddingInline: "0px", sx: { paddingInline: "0px", paddingBlock: "0px", paddingTop: "48px" } }}>
             <ModalHeaderData
                 icon={<AppIcons.ReorderDesigned />}
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    px: { lg: "48px !important", md: "32px !important", base: "16px !important" },
+                    padding: "0px",
+                    paddingBlock: "0px",
+                    backgroundColor: '#141414'
+                }}
                 title='Visibility and Reorder Collections'
                 description='Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.'
             />
