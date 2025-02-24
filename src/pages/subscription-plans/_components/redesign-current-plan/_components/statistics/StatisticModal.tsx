@@ -30,7 +30,9 @@ function StatisticModal({ data }: IProps) {
                     backgroundColor: "#131313"
                 }}>
                 <ModalHeaderData
-                    backgroundColor={"#131313"}
+                    modalHeaderProps={{
+                        bgColor: "#131313"
+                    }}
                     title='Statistics'
                     description={`Track your usage and insights here. Some features will reset in 257 days.`}
                 />

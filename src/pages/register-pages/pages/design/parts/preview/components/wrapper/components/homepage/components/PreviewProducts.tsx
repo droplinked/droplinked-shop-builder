@@ -1,14 +1,13 @@
 import { Image, SimpleGrid, VStack } from '@chakra-ui/react';
-import useAppStore from 'lib/stores/app/appStore';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 
 function PreviewProducts() {
   const { state: { shop: { shopDesign: { textColorParagraphs } }, device } } = useContext(designContext);
   const isDesktop = useMemo(() => device === 'desktop', [device]);
-  const { shop: { currency } } = useAppStore();
+  const { getFormattedPrice } = useCurrencyConverter()
 
   return (
     <VStack align="stretch">
@@ -20,8 +19,7 @@ function PreviewProducts() {
               Sneakers
             </PreviewTypo>
             <PreviewTypo fontSize="12px" fontWeight="bold" textAlign="left" opacity=".5" color={textColorParagraphs || '#FFF'}>
-              {currency?.symbol}
-              {currencyConvertion(30.0, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
+              {getFormattedPrice({ amount: 30.0, toFixed: true })}
             </PreviewTypo>
           </VStack>
         ))}

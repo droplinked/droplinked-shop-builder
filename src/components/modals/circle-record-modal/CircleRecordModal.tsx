@@ -28,7 +28,6 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
             setIsProcessing(true)
             if (hasSelectedCircleWallet) {
                 await deployCircleContract(selectedChain)
-                // await recordSKUWithCircleWallet({ chain: selectedChain, params: {} })
             }
             else await recordFunction?.()
         }

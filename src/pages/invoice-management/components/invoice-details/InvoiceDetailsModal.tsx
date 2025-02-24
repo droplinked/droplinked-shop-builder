@@ -8,6 +8,7 @@ import InvoiceProductTable from 'pages/invoice-management/create-invoice/compone
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation'
 import React from 'react'
 import SummaryBox from './SummaryBox'
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 
 interface Props {
     isOpen: boolean
@@ -31,7 +32,11 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
             modalContentProps={{ width: '936px' }}
         >
             <ModalHeaderData
-                icon={<AppIcons.InvoiceCreated />}
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.InvoiceCreated />
+                    </ModalHeaderIconWrapper>
+                }
                 title="Invoice Details"
                 description="A link of your invoice is sent to the customer. You can also use the following link to view the invoice."
             />

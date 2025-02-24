@@ -6,17 +6,15 @@ export const authLoginService = (params: IauthLoginService) => axiosInstance.pos
 
 export const authSupportedWalletsService = () => axiosInstance.get<{ data: IAuthSupportedWalletsService[] }>("auth/supported/wallets");
 
-export const googleService = () => axiosInstance.get(`auth/login/google`);
-
 export const completeGoogleSignupService = ({ access_token, ...props }: ICompleteGoogleSignupService) =>
     axiosInstance.post(`auth/login/google/complete`, props, { headers: { authorization: `Bearer ${access_token}` } });
 
-export const signupService = ({d3UserId,udUserId, ...props}: IsignupService) => {
-    let queryString ;
-    if( d3UserId !== undefined)
-       queryString = createQueryString({d3UserId: d3UserId})?.toString() 
-    else if( udUserId !== undefined)
-        queryString = createQueryString({udUserId: udUserId})?.toString() 
+export const signupService = ({ d3UserId, udUserId, ...props }: IsignupService) => {
+    let queryString;
+    if (d3UserId !== undefined)
+        queryString = createQueryString({ d3UserId: d3UserId })?.toString()
+    else if (udUserId !== undefined)
+        queryString = createQueryString({ udUserId: udUserId })?.toString()
 
-    return axiosInstance.post(`auth/register${queryString ? "?" + queryString?.toString()  : ""}`, props);
+    return axiosInstance.post(`auth/register${queryString ? "?" + queryString?.toString() : ""}`, props);
 };

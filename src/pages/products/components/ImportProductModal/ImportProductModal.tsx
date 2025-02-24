@@ -1,7 +1,6 @@
 import AppIcons from 'assest/icon/Appicons'
 import fileTemplate from "assest/samples/import_product_template.xlsx"
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { useState } from 'react'
@@ -22,7 +21,7 @@ function ImportProductModal({ isOpen, onClose }: Props) {
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
-                icon={<ModalHeaderIconWrapper><AppIcons.Download /></ModalHeaderIconWrapper>}
+                icon={<AppIcons.Download />}
                 title="Import Products"
                 description="Easily import products using a CSV file. Download our sample template to ensure your file is formatted correctly."
                 modalHeaderProps={{

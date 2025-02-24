@@ -1,12 +1,11 @@
 import { Box, Circle, Flex, FormLabel, useRadio } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
-import useAppStore from "lib/stores/app/appStore";
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react"
 
 export default function ShippingMethodRadio({ method, ...radioProps }) {
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
-    const { shop: { currency } } = useAppStore();
+    const { getFormattedPrice } = useCurrencyConverter()
 
     return (
         <FormLabel
@@ -29,7 +28,7 @@ export default function ShippingMethodRadio({ method, ...radioProps }) {
                 <Box flex={1}>
                     <Flex alignItems="center" sx={{ "p": { fontWeight: 500, color: "white" } }}>
                         <AppTypography flex={1}>{method.title}</AppTypography>
-                        <AppTypography>{currency?.symbol}{currencyConvertion(method?.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
+                        <AppTypography>{getFormattedPrice({ amount: method?.price, toFixed: true })}</AppTypography>
                     </Flex>
                     <Flex mt={2} direction={{ base: "column", xl: "row" }} justifyContent="space-between" alignItems={{ base: "normal", xl: "center" }}>
                         <ShippingMethodDetails title="Estimated Delivery" value={method.delivery_estimation} isChecked={isChecked} />

@@ -10,8 +10,6 @@ export const mbToBytes = (value: number) => value * 1024 * 1024;
 
 export const fileSizeInMB = (file: File) => (file.size / (1024 * 1024)).toFixed(2)
 
-export const getPercentage = (number: number, max: number) => (number * 100) / max;
-
 export const navigating_user_based_on_status = (status: string, data: any) => {
     switch (status) {
         case "NEW":
@@ -211,23 +209,6 @@ export const percent_to_hex = {
     0: "00",
 };
 
-export const UTCConverter = (utcTimeString: string): string => {
-    const date = new Date(utcTimeString);
-
-    const options: Intl.DateTimeFormatOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-    };
-
-    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
-
-    return `${formattedDate} (Local time)`;
-}
-
 export const subscriptionPlanMap: Record<
     string,
     {
@@ -260,11 +241,6 @@ export const getSubscriptionIcon = (type: string) => {
             break;
     }
 }
-
-export const formattedCurrency = (number: number) => new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-}).format(number)
 
 export function deepEqual(obj1, obj2) {
     if (obj1 === obj2) return true

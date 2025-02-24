@@ -82,7 +82,6 @@ export interface Iproperties {
     title: string;
     items: Array<IpropertiesItems>;
     isCustom?: boolean;
-    // propery_type: VARIANT_OPTIONS_ENUM | null
     custom_title?: string;
 }
 
@@ -125,11 +124,6 @@ export interface Isku {
     royalty?: number;
 }
 
-export interface IproductByIdServices {
-    productID: string;
-    shopname: string;
-}
-
 export interface IproductDeleteServices {
     productID: string;
 }
@@ -139,17 +133,9 @@ export interface IProductUpdateService {
     params: any;
 }
 
-export interface IgenerateBufferServices {
-    urls: Array<string>;
-}
-
 export interface IProductReorder {
     productId: string;
     newPosition: number;
-}
-
-export interface IProductTile {
-    skuIDs: string[];
 }
 
 export interface IGetProductsCommunityService {

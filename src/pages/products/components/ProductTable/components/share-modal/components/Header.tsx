@@ -1,11 +1,9 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
+import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
-import useAppStore from "lib/stores/app/appStore";
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
-import ModalHeaderIconWrapper from "components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper";
 
 //ShareIcon
 
@@ -14,12 +12,13 @@ interface DirectLinkContentProps {
 }
 
 const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
-  const { shop: { currency } } = useAppStore();
+  const { getFormattedPrice } = useCurrencyConverter()
+
   return (
     <Box width="100%">
       <Box marginX="-48px">
         <ModalHeaderData
-          icon={<ModalHeaderIconWrapper><AppIcons.Share /></ModalHeaderIconWrapper>}
+          icon={<AppIcons.Share />}
           title=" Share Product"
           description={`Share your product with people around the world.`}
         />
@@ -39,7 +38,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
       >
         {/* تصویر محصول */}
         <Image
-          src={product.image} 
+          src={product.image}
           alt="Product"
           width="56px"
           height="56px"
@@ -67,7 +66,7 @@ const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
           color="white"
           whiteSpace="nowrap"
         >
-          {currency?.symbol} {currencyConvertion(product.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}
+          {getFormattedPrice({ amount: product.price, toFixed: true })}
         </Text>
       </Flex>
     </Box>

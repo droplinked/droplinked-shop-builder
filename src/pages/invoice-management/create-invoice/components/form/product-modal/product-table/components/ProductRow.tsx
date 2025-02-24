@@ -1,12 +1,11 @@
 import { Button, Flex, Td, Tr } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import useAppToast from 'functions/hooks/toast/useToast'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
-import Input from 'pages/invoice-management/components/Input'
+import Input from 'components/redesign/input/Input'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     product: any
@@ -15,13 +14,13 @@ interface Props {
 }
 
 const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) {
+    const { getFormattedPrice } = useCurrencyConverter()
     const { product, cart, setCart } = props
     const [quantity, setQuantity] = useState(0)
     const [skuId, setSkuId] = useState("")
     const { showToast } = useAppToast()
     const isDigitalProduct = product.product_type === "DIGITAL"
     const firstSkuPrice = product.skuIDs?.[0]?.price
-    const { shop: { currency } } = useAppStore();
     const handleAddToCart = (skuId, quantity) => {
         if (skuId && quantity) {
             if (cart.some(item => item.skuId === skuId)) {
@@ -65,6 +64,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
             </Td>
             <Td>
                 <Input
+                    inputGroupProps={{ width: "68px" }}
                     inputProps={{
                         width: "68px",
                         type: "number",
@@ -83,7 +83,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                 />
             </Td>
             <Td color={"#fff"}>
-                {firstSkuPrice ? `${currency?.symbol}${currencyConvertion(firstSkuPrice, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}` : "-"}
+                {firstSkuPrice ? `${getFormattedPrice({ amount: firstSkuPrice, toFixed: true })}` : "-"}
             </Td>
             <Td>
                 <Button

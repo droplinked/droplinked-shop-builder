@@ -19,10 +19,6 @@ export interface IupdateRuleService {
     data: IcreateRuleService;
 }
 
-export interface IgetRuleTypeService {
-    chain: string;
-}
-
 export enum RuleTypes {
     GATED = "GATING",
     DISCOUNT = "DISCOUNT",

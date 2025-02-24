@@ -5,14 +5,14 @@ import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
 import React from 'react'
 import CouponsCreate from './parts/modal/create/CouponsCreate'
 import RechargeModel from './parts/modal/recharge/RechargeModel'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
 
 function CouponsListHead() {
     const checkPermissionAndShowToast = useCheckPermission()
+    const { getFormattedPrice } = useCurrencyConverter()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const rechargeModel = useDisclosure()
     const { shop } = useAppStore()
-    const { currency } = shop;
     const handleOpenCreateCouponModal = () => {
         if (!checkPermissionAndShowToast("coupon_creation")) return
         onOpen()
@@ -24,7 +24,7 @@ function CouponsListHead() {
                 <VStack align="stretch" spacing="12px">
                     <AppTypography color="#C2C2C2" fontSize="12px">Credits</AppTypography>
                     <HStack alignItems="center">
-                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">{currency?.symbol}{currencyConvertion(shop?.credit, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
+                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">{getFormattedPrice({ amount: shop?.credit, toFixed: true })}</AppTypography>
                     </HStack>
                     {(shop?.name === "unstoppable" || shop?.name === "nearhorizon") && (
                         <AppTypography color="#C2C2C2" fontSize="12px">$200 monthly charge for enterprise support and design services</AppTypography>

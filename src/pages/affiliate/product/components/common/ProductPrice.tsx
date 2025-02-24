@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
+import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import useAppStore from 'lib/stores/app/appStore';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
 
 interface props {
@@ -12,6 +12,7 @@ interface props {
 
 function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: props) {
   const { isLoggedIn, shop } = useAppStore();
+  const { convertPrice } = useCurrencyConverter()
   const currency = shop?.currency;
 
   // Default values for non-logged-in users
@@ -21,7 +22,7 @@ function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: pro
 
   // Apply currency conversion if user is logged in and currency data exists
   if (isLoggedIn && currency) {
-    displayPrice = currencyConvertion(price, currency.conversionRateToUSD, false);
+    displayPrice = convertPrice({ amount: price, toFixed: true });
     currencyAbbr = currency.abbreviation;
     currencySymbol = currency.symbol;
   }

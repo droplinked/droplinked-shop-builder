@@ -15,8 +15,3 @@ export interface IRecordBatchCasperService {
     chain: string
     params: ICommonRecordParams & { productId: string }
 }
-
-export interface IRecordWithCircleWallet {
-    chain: string
-    params: ICommonRecordParams & { price: number, beneficiaries: [] }
-}

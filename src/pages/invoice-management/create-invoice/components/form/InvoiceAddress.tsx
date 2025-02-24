@@ -1,8 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices'
-import Input from 'pages/invoice-management/components/Input'
-import Select from 'pages/invoice-management/components/Select'
+import Input from 'components/redesign/input/Input'
+import Select from 'components/redesign/select/Select'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { InvoiceFormSchema } from '../../helpers/helpers'
@@ -64,7 +64,9 @@ function InvoiceAddress() {
                         value: values.address.addressLine1,
                         onChange: (e) => setFieldValue("address.addressLine1", e.target.value)
                     }}
-                    error={errors.address?.addressLine1}
+                    {...errors.address?.addressLine1 && { state: "error", message: errors.address?.addressLine1 }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
                 <Input
                     label='Address Line 2'
@@ -74,7 +76,9 @@ function InvoiceAddress() {
                         value: values.address.addressLine2,
                         onChange: (e) => setFieldValue("address.addressLine2", e.target.value)
                     }}
-                    error={errors.address?.addressLine2}
+                    {...errors.address?.addressLine2 && { state: "error", message: errors.address?.addressLine2 }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
             </SimpleGrid>
 
@@ -87,32 +91,30 @@ function InvoiceAddress() {
                 <Select
                     label='Country'
                     items={countries}
-                    value={countries.find(c => c.name === values.address.country)}
                     valueAccessor='name'
                     dataAttributes={{ 'data-iso2': 'iso2' }}
                     isLoading={isFetchingCountries}
                     error={errors.address?.country}
-                    selectProps={{ placeholder: "Country", onChange: handleCountryChange }}
+                    selectProps={{ placeholder: "Country", onChange: handleCountryChange, value: countries.find(c => c.name === values.address.country) }}
                 />
                 <Select
                     label='State'
                     items={states}
-                    value={states.find(s => s.name === values.address.state)}
                     valueAccessor='name'
                     isLoading={isFetchingStates}
                     error={errors.address?.state}
-                    selectProps={{ placeholder: "State", onChange: handleStateChange }}
+                    selectProps={{ placeholder: "State", onChange: handleStateChange, value: states.find(s => s.name === values.address.state) }}
                 />
                 <Select
                     label='City'
                     items={cities}
-                    value={cities.find(c => c.name === values.address.city)}
                     valueAccessor='name'
                     isLoading={isFetchingCities}
                     error={errors.address?.city}
                     selectProps={{
                         placeholder: "City",
-                        onChange: (e) => setFieldValue("address.city", e.target.value)
+                        onChange: (e) => setFieldValue("address.city", e.target.value),
+                        value: cities.find(c => c.name === values.address.city)
                     }}
                 />
                 <Input
@@ -123,7 +125,10 @@ function InvoiceAddress() {
                         value: values.address.zip,
                         onChange: (e) => setFieldValue("address.zip", e.target.value)
                     }}
-                    error={errors.address?.zip}
+                    labelProps={{ marginBottom: "5px" }}
+                    {...errors.address?.zip && { state: "error", message: errors.address?.zip }}
+                    showErrorIcon={false}
+                    stateColor='#E53E3E'
                 />
             </SimpleGrid>
         </ToggleableSection>
