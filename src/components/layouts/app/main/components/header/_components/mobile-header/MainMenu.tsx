@@ -23,6 +23,7 @@ export default function MainMenu({ isVisible, onSubMenuClick }) {
             <Flex direction="column" gap={9}>
                 <MenuItem label="Products" onClick={onSubMenuClick} />
                 <MenuItem label="Pricing" linkTo="/plans" />
+                <MenuItem label="Affiliate" linkTo="affiliate/products" />
                 <MenuItem label="About Us" linkTo="/about" />
             </Flex>
             <SignInButton />
