@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 
 export const GROWTH_HACK_CONSTANTS = [
   {

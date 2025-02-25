@@ -1,5 +1,5 @@
 import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import AppModal from 'components/redesign/modal/AppModal';
@@ -23,7 +23,7 @@ const WalletVerificationModal = () => {
 	const {
 		planDurationMonths,
 		states: { currentStep },
-		methods: { updateStates }, 
+		methods: { updateStates },
 	} = useContext(PartnerContext);
 
 	const { connectWallet } = useWalletVerification();
@@ -121,7 +121,7 @@ const WalletVerificationModal = () => {
 					onClick: () => {
 						const d3Id = searchParams.get('d3-id');
 						const udId = searchParams.get('ud-id');
-					
+
 						if (d3Id) {
 							navigate(`/d3/?d3-id=${d3Id.toString()}`);
 							onClose();
@@ -132,7 +132,7 @@ const WalletVerificationModal = () => {
 							signupModalOnOpen();
 						}
 					},
-					
+
 				},
 			},
 		},
@@ -191,7 +191,7 @@ const WalletVerificationModal = () => {
 								: 'wallet'
 						}
 					/>
-	
+
 					<Box
 						display="flex"
 						padding={{

@@ -1,5 +1,5 @@
 import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'

@@ -1,5 +1,5 @@
 import { Box, Flex, Image, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext } from 'react'
 import { PaymentLinkContext } from '../../context/PaymentLinkContext'

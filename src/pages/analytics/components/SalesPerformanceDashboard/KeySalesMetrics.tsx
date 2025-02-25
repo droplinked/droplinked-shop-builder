@@ -1,5 +1,5 @@
 import { Flex, useMediaQuery } from "@chakra-ui/react"
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'

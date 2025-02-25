@@ -1,5 +1,5 @@
 import { Box, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';

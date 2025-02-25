@@ -1,5 +1,5 @@
 import { Flex, Grid, Image, SimpleGrid, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'

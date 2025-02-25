@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";

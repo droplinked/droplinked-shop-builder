@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { IPaymentPublicService } from 'lib/apis/shop/interfaces';

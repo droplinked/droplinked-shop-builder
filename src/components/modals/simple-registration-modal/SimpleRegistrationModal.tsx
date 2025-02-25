@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import BasicButton from "components/common/BasicButton/BasicButton"
 import AppModal from "components/common/modal/AppModal"
 import AppTypography from "components/common/typography/AppTypography"

@@ -1,5 +1,5 @@
 import { Flex, ModalBody, useMediaQuery } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import Input from "components/redesign/input/Input";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";

@@ -1,6 +1,6 @@
 import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 import useTableContext, { TableContext } from './TableContext'
 import { TableBodyProps, TableHeadProps, TableRootProps } from './interfaces'

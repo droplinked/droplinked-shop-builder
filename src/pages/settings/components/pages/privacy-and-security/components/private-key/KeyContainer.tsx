@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
 import { getShopPrivateKeyService } from "lib/apis/shop/shopServices";

@@ -1,5 +1,5 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
 import { SocialMediaItem } from "pages/dashboard/types/dashboard.types"
 import React from "react"

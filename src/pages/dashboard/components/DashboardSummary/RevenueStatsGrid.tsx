@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import useDashboardPageStore from 'pages/dashboard/stores/useDashboardStore'

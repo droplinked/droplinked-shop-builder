@@ -11,7 +11,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { appDevelopment } from 'lib/utils/app/variable'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 
 
 export default function PublicApiKey() {

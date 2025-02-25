@@ -1,5 +1,5 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import React from 'react'

@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import Button from 'components/redesign/button/Button';
 import useAppToast from 'functions/hooks/toast/useToast';

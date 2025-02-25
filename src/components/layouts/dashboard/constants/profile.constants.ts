@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { PriceConversionParams } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
 import { SHOP_URL } from 'lib/utils/app/variable';
 import { ProfileItem } from './interfaces';

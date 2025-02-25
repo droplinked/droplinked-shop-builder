@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'

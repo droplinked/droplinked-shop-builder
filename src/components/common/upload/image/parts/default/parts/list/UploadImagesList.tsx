@@ -1,5 +1,5 @@
 import { Box, Flex, Image, SimpleGrid } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import appUploadImageContext from 'components/common/upload/image/context'
 import React, { useCallback, useContext } from 'react'

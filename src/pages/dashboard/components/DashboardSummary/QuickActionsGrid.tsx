@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import { QuickAction } from 'pages/dashboard/types/dashboard.types'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'

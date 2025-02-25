@@ -1,4 +1,4 @@
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import React from "react";
 import CollaborationDetails from "../components/CollaborationDetails";
 import CollaborationFeatures from "../components/CollaborationFeatures";

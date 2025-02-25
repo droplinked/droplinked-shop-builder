@@ -1,7 +1,7 @@
 import { Grid } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
 

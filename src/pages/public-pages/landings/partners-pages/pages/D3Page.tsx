@@ -3,7 +3,7 @@
 import React from "react";
 import { PartnerProvider } from "../context/partner.context";
 import LandingHero from "../components/landing-hero/LandingHero";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import CollaborationDetails from "../components/CollaborationDetails";
 import CollaborationFeatures from "../components/CollaborationFeatures";
 import ProPlan from "../components/ProPlan";

@@ -1,4 +1,4 @@
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 
 export const capitalizeFirstLetter = (value: string = ""): string =>
     value

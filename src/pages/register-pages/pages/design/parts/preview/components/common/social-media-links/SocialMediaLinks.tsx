@@ -1,6 +1,6 @@
 import { Box, Flex, Icon } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import AppSocialMediaIcons from 'assest/icon/social/appSocialMediaIcons';
+import AppIcons from 'assets/icon/Appicons';
+import AppSocialMediaIcons from 'assets/icon/social/appSocialMediaIcons';
 import React from 'react';
 
 const SocialMediaLinks = ({ shopURLs, foreground, textColorParagraphs, isDesktop }) => {

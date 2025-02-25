@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 import ActionButton from './ActionButton'
 import ProductTypesPopover from './ProductTypesPopover/ProductTypesPopover'

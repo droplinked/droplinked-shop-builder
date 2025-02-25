@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'

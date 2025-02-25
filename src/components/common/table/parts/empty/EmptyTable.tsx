@@ -1,5 +1,5 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
-import plusIcon from "assest/icon/plus-icon.svg";
+import plusIcon from "assets/icon/plus-icon.svg";
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import classes from './style.module.scss';

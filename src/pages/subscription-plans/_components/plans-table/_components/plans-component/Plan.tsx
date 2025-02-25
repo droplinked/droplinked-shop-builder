@@ -1,5 +1,5 @@
 import { HStack, VStack, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import Button from 'components/redesign/button/Button';

@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { SidebarGroup } from './interfaces';
 
 export const SIDEBAR_CONSTANTS: SidebarGroup[] = [

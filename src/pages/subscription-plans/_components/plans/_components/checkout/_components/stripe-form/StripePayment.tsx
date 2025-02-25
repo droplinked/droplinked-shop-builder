@@ -1,6 +1,6 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { appDevelopment } from 'lib/utils/app/variable';

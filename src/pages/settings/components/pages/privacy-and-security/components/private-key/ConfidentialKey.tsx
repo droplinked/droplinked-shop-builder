@@ -3,7 +3,7 @@ import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import KeyContainer from './KeyContainer'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 
 export default function ConfidentialKey() {
     return (

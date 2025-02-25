@@ -1,5 +1,5 @@
 import { Box, Divider, HStack, Stack, VStack } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from 'components/common/modal/AppModal';
@@ -66,7 +66,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
     try {
       setLoading(true)
       const { email, password, referral } = data;
-      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined , udUserId: ud_id_from_params || undefined});
+      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined, udUserId: ud_id_from_params || undefined });
       isFromPlansPage && await handleLogin({ email, password })
       localStorage.setItem("registerEmail", JSON.stringify(email));
       showToast({ message: "Account successfully created", type: "success" });

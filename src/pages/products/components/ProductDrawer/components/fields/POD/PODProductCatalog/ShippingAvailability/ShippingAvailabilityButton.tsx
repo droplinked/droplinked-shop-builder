@@ -1,5 +1,5 @@
 import { PopoverTrigger } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
 

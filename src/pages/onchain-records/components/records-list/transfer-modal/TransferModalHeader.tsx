@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import React, { ReactNode } from 'react';

@@ -1,5 +1,5 @@
 import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
 

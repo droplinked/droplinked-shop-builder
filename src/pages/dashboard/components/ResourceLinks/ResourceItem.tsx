@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import { DashboardPageLink } from "pages/dashboard/stores/useDashboardStore"
 import React from "react"
 

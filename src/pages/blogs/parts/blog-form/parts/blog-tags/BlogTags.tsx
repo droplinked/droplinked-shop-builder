@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import FormModel from 'components/common/form/FormModel';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import React, { useState } from 'react';

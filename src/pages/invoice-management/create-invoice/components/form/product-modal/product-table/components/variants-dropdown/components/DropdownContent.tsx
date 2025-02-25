@@ -1,5 +1,5 @@
 import { Flex, PopoverBody, PopoverContent } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Input from 'components/redesign/input/Input'
 import React, { useState } from 'react'

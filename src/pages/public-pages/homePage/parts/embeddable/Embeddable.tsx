@@ -1,6 +1,6 @@
 import { Flex, Image, VStack } from '@chakra-ui/react';
-import { ReactComponent as CryptoIcon } from 'assest/image/homepage/crypto.svg';
-import { ReactComponent as PaymentIcon } from 'assest/image/homepage/payment.svg';
+import { ReactComponent as CryptoIcon } from 'assets/image/homepage/crypto.svg';
+import { ReactComponent as PaymentIcon } from 'assets/image/homepage/payment.svg';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import "swiper/css";

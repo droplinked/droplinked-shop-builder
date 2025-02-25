@@ -2,7 +2,7 @@ import React from "react";
 import AppRoutes from "routes/routes";
 
 // Styles
-import "assest/style/App.scss";
+import "assets/style/App.scss";
 
 // Components
 import AppToastify from "components/common/toastify/AppToastify";

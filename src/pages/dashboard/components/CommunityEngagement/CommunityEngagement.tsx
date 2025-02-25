@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import { SocialMediaItem } from "pages/dashboard/types/dashboard.types"
 import React from "react"

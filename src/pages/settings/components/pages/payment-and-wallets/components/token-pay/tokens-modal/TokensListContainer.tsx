@@ -3,7 +3,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { IPaymentPublicService } from 'lib/apis/shop/interfaces';
 import React from 'react'
 import TokenCard from './TokenCard';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 
 interface Props {

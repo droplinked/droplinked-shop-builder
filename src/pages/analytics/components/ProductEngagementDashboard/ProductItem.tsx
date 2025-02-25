@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import AppImage from "components/common/image/AppImage"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { TopSeller } from "lib/apis/dashboard/interfaces"

@@ -1,5 +1,5 @@
 import { Button, Flex, Popover, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import { attributeToIdMap, ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect, useRef, useState } from 'react'

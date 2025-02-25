@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import { IDroplinkedNftsSkus } from 'lib/apis/onchain-inventory/interface'

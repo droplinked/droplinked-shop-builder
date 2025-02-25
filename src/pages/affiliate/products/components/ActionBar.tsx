@@ -1,5 +1,5 @@
 import { Box, Button, Flex, HStack, Input, useBreakpointValue } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { useRef } from 'react';
 

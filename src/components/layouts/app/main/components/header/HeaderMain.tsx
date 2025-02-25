@@ -1,5 +1,5 @@
 import { Flex, Hide, Show } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React, { useState } from 'react';
 import DesktopHeader from './_components/desktop-header/DesktopHeader';
 import MobileHeader from './_components/mobile-header/MobileHeader';

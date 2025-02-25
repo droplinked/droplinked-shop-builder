@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Input from 'components/redesign/input/Input'
 import { ProductProperty, ProductPropertyItem } from 'pages/products/utils/types'
 import React, { useEffect, useState } from 'react'

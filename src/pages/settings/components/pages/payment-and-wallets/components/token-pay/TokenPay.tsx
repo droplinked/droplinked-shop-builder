@@ -1,5 +1,5 @@
 import { Grid, Image, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";

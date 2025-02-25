@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppCard from 'components/common/card/AppCard'
 import FieldLabelReuired from 'components/common/form/fieldLabel/parts/required/FieldLabelReuired'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -28,7 +28,7 @@ function DesignPageCard({ description, title, children, section, isRequired }: I
                     <VStack align="stretch" spacing="8px">
                         <HStack>
                             <AppTypography fontSize="16px" fontWeight="bold">{title}</AppTypography>
-                            {isRequired && <FieldLabelReuired/>}
+                            {isRequired && <FieldLabelReuired />}
                         </HStack>
                         {description && <AppTypography fontSize="12px" color="#C2C2C2">{description}</AppTypography>}
                     </VStack>

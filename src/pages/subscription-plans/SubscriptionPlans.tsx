@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import NewCurrentPlan from './_components/redesign-current-plan/CurrentPlan'
 import Plans from './_components/plans/Plans'
-import PricingPlanBg from "assest/image/pricingPlans/background.png"
+import PricingPlanBg from "assets/image/pricingPlans/background.png"
 import PlansTable from './_components/plans-table/PlansTable'
 function SubscriptionPlans() {
     return (

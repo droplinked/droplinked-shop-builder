@@ -1,5 +1,5 @@
 import { Box, Flex, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Drawer from 'components/common/Drawer/Drawer'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'

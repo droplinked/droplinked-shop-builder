@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React from 'react'
 import ProductDetails from './ProductDetails'

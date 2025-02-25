@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TILE_DESIGN_PAGES_ENUM, TILE_INPUT_TYPES, PRODUCT_SECTIONS_ENUM, ITileDesignState } from "./types/tile.design.types";
 import { HStack, Input, Select, Slider, SliderFilledTrack, SliderThumb, SliderTrack, VStack } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import { TileDesignContext } from "./context/tile.design.context";
 import AppInput from "components/common/form/textbox/AppInput";

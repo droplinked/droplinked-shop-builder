@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import TableMenu from 'components/redesign/table-menu/TableMenu';
 import React from 'react';
 import { useMutation } from 'react-query';

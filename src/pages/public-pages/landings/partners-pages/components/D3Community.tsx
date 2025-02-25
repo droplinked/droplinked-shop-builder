@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import D3Heading from './common/PrimaryHeading'

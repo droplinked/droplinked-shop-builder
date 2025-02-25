@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';

@@ -1,5 +1,5 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'

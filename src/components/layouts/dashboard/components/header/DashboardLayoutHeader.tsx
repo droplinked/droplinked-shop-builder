@@ -1,5 +1,5 @@
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 import MobileSidebarToggle from './components/MobileSidebarToggle';
 import UserMenu from './components/userMenu/UserMenu';

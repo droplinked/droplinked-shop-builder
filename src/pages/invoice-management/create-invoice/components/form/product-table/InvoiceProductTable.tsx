@@ -1,6 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import useInvoiceStore, { CartItem } from 'pages/invoice-management/create-invoice/store/invoiceStore'
 import React from 'react'

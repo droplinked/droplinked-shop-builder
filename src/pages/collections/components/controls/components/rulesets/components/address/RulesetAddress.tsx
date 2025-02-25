@@ -1,5 +1,5 @@
 import { HStack, VStack, Box } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import React, { useContext } from 'react';
 import ruleModelContext from '../../context';

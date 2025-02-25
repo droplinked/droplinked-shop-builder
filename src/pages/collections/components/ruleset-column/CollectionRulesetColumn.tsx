@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex } from '@chakra-ui/react';
 
 //Icons
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 
 //Components
 import AppTypography from 'components/common/typography/AppTypography';

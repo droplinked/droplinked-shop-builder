@@ -1,16 +1,16 @@
 import { Box, Flex, Link } from '@chakra-ui/react';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../common/typo/PreviewTypo';
 
 export default function PreviewFooterNavigation() {
-  const {state: { shop: { shopDesign: { footerLinks, textColorParagraphs } }, device }} = useContext(designContext);
+  const { state: { shop: { shopDesign: { footerLinks, textColorParagraphs } }, device } } = useContext(designContext);
 
   const isDesktop = useMemo(() => device === 'desktop', [device]);
 
   return (
-    <Flex direction={isDesktop ?  'row' :'column' } gap={4} w="full">
+    <Flex direction={isDesktop ? 'row' : 'column'} gap={4} w="full">
       {[
         { title: 'Site', links: [{ caption: 'Home' }, { caption: 'Blogs' }] },
         { title: 'Links', links: footerLinks }

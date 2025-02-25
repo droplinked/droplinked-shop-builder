@@ -1,5 +1,5 @@
 import { Button, Flex, FormLabel, Tooltip } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React, { ReactNode } from 'react';
 import styles from "./styles.module.scss";

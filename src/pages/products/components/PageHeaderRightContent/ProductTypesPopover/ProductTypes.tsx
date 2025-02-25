@@ -1,5 +1,5 @@
 import { Grid } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import { ProductType } from 'pages/products/utils/types'
 import React from 'react'
 import ProductTypeCard from './ProductTypeCard'

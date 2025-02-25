@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, Image, VStack } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import ErrorLabel from '../../controls/components/rulesets/components/labels/errorLabel/errorLabel';
 import AppUploadImage from 'components/redesign/image/AppUploadImage';

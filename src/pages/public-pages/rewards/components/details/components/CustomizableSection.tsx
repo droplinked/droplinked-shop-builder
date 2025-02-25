@@ -1,5 +1,5 @@
 import { Box, Button, Text, VStack, Image } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 
 const CustomizableSection = ({ openAuthModal }) => (
@@ -21,7 +21,7 @@ const CustomizableSection = ({ openAuthModal }) => (
       </VStack>
     </Box>
     <Box display="flex" justifyContent="center" alignItems="center">
-      <Image src="/assets/images/rewards/rewardsbg3.svg" w="100%" h={{base:'100%', sm:'144px'}} objectFit="cover"  />
+      <Image src="/assets/images/rewards/rewardsbg3.svg" w="100%" h={{ base: '100%', sm: '144px' }} objectFit="cover" />
     </Box>
   </Box>
 );

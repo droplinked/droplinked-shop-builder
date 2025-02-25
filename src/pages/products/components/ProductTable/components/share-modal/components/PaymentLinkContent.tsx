@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
 import { SHOP_URL } from "lib/utils/app/variable";
 import React, { useRef, useState } from "react";

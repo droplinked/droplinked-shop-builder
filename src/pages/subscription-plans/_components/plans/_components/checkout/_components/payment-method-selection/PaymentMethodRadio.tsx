@@ -1,5 +1,5 @@
 import { Box, Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
@@ -45,9 +45,8 @@ export default function PaymentMethodRadio({ ...props }) {
 			>
 				<Circle
 					size={5}
-					border={`1.5px solid ${
-						isChecked ? '#2BCFA1' : '#fff'
-					}`}
+					border={`1.5px solid ${isChecked ? '#2BCFA1' : '#fff'
+						}`}
 				>
 					<Circle
 						size={2.5}
@@ -68,10 +67,10 @@ export default function PaymentMethodRadio({ ...props }) {
 						sx={
 							isChecked
 								? {
-										'svg path': {
-											stroke: '#2BCFA1',
-										},
-								  }
+									'svg path': {
+										stroke: '#2BCFA1',
+									},
+								}
 								: {}
 						}
 					>

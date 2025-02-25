@@ -1,5 +1,5 @@
 import { Divider, ModalBody, ModalFooter } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import Button from 'components/redesign/button/Button';
 import Input from 'components/redesign/input/Input';
 import MessageBox from 'components/redesign/message-box/MessageBox';

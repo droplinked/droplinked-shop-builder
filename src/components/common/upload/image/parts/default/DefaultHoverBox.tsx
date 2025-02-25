@@ -1,5 +1,5 @@
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getFileNameFromUrl, getImageFileSize } from 'lib/utils/helpers/image'

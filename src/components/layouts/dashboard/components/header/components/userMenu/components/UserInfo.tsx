@@ -1,6 +1,6 @@
 import { Box, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';

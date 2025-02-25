@@ -1,5 +1,5 @@
 import { HStack } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppBadge from 'components/common/badge/AppBadge';
 import AppTypography from 'components/common/typography/AppTypography';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';

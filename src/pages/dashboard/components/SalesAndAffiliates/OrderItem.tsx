@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { DashboardOrder } from "lib/apis/dashboard/interfaces"
 import { formatDateLongStyle } from "lib/utils/helpers/helpers"

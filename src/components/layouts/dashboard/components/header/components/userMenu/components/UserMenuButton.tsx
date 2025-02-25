@@ -1,5 +1,5 @@
 import { MenuButton } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 
 const UserMenuButton = () => {

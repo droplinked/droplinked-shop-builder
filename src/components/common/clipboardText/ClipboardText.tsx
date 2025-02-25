@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useCallback } from 'react'
 

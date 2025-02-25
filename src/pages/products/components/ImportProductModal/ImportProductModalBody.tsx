@@ -1,5 +1,5 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import { fileSizeInMB } from 'lib/utils/helpers/helpers'
 import React from 'react'

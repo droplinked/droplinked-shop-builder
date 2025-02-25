@@ -1,5 +1,5 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore';
 import React, { useEffect, useState } from 'react';

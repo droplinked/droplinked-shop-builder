@@ -1,5 +1,5 @@
 import { Box, Flex, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { PropsWithChildren, ReactNode } from "react"
 

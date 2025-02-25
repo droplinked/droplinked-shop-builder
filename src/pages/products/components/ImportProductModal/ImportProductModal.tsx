@@ -1,5 +1,5 @@
-import AppIcons from 'assest/icon/Appicons'
-import fileTemplate from "assest/samples/import_product_template.xlsx"
+import AppIcons from 'assets/icon/Appicons'
+import fileTemplate from "assets/samples/import_product_template.xlsx"
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'

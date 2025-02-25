@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import React from 'react'

@@ -1,4 +1,4 @@
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import Input from "components/redesign/input/Input"
 import useAppToast from "functions/hooks/toast/useToast"
 import useProductForm from "pages/products/hooks/useProductForm"

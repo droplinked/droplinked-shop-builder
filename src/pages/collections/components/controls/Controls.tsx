@@ -5,7 +5,7 @@ import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './components/delete/ConfirmDeleteCollection';
 import RuleModal from './components/rulesets/RuleModal';
 import TableMenu from 'components/redesign/table-menu/TableMenu';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { Link } from 'react-router-dom';
 import { appDevelopment } from 'lib/utils/app/variable';
 import { updateCollectionVisiblityService } from 'lib/apis/collection/services';

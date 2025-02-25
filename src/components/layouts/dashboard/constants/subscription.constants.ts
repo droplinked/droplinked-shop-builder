@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { SubscriptionPlan } from './interfaces';
 
 export const SUBSCRIPTION_STATUS_CONSTANTS = (actions: { STARTER: () => void }, daysLeft?: number): Record<string, SubscriptionPlan> => ({

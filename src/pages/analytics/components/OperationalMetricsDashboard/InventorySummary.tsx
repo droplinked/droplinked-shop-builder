@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import CurrencyIcon from "components/redesign/currency-icon/CurrencyIcon"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
