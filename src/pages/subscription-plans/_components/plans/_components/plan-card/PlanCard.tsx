@@ -154,7 +154,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
                     </AppTypography>
                     {planFeature[plan.type].items.map((item: Array<string>) =>
                         <Flex gap={2} alignItems={"center"}>
-                            <AppIcons.Tick style={{ flexShrink: 0 }} />
+                            <AppIcons.Tick color="white" style={{ flexShrink: 0 }} />
                             <AppTypography fontSize={14} color="white">
                                 {item}
                             </AppTypography>
