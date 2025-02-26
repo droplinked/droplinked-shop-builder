@@ -3,7 +3,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext } from "react"
 import orderModalContext from '../context'
 import OrderDetailsModel from "./model"
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 export default function OrderDetails() {
     const { order } = useContext(orderModalContext)

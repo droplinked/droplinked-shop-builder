@@ -5,7 +5,7 @@ import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
 import React from 'react'
 import CouponsCreate from './parts/modal/create/CouponsCreate'
 import RechargeModel from './parts/modal/recharge/RechargeModel'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function CouponsListHead() {
     const checkPermissionAndShowToast = useCheckPermission()

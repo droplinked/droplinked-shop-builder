@@ -4,7 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
 import ShowPassword from "components/modals/signup-modal/ShowPassword";
 import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IchangePasswordService } from "lib/apis/user/interfaces";
 import { changePasswordService } from "lib/apis/user/services";
 import { passwordRegex } from "lib/utils/helpers/regex";

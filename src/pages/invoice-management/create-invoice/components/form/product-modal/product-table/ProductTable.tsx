@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
-import useIntersectionObserver from 'functions/hooks/intersection-observer/useIntersectionObserver'
-import useProducts from 'functions/hooks/products/useProducts'
+import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
+import useProducts from 'hooks/products/useProducts'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import React from 'react'
 import ProductRow from './components/ProductRow'

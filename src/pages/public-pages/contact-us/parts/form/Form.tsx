@@ -3,7 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { contactUsService } from 'lib/apis/constact-us/services';
 import React from 'react';
 import { useMutation } from 'react-query';

@@ -4,7 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IforgetPasswordService } from "lib/apis/user/interfaces";
 import { forgetPasswordService } from "lib/apis/user/services";
 import AppErrors from "lib/utils/statics/errors/errors";

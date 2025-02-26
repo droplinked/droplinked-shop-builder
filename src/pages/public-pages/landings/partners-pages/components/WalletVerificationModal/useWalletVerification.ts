@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { DropWeb3, Network, ChainWallet, Web3Actions, Chain } from 'droplinked-web3';
 import { useContext } from 'react';
 import PartnerContext from '../../context/partner.context';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { appDevelopment } from 'lib/utils/app/variable';
 import { IPostUserVerifyPartner } from 'lib/apis/user/interfaces';
 

@@ -2,7 +2,7 @@ import { Image, SimpleGrid, VStack } from '@chakra-ui/react';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import PreviewTypo from '../../../../common/typo/PreviewTypo';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 
 function PreviewProducts() {
   const { state: { shop: { shopDesign: { textColorParagraphs } }, device } } = useContext(designContext);

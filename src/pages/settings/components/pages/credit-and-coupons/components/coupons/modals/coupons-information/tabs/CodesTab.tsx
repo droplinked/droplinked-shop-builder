@@ -6,7 +6,7 @@ import AppIcons from 'assets/icon/Appicons'
 import { useMutation } from 'react-query'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import { AxiosError } from 'axios'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
 import Select from 'components/redesign/select/Select'
 

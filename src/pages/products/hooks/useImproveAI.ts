@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { improveTitle, improveDescription } from 'lib/apis/ai/services';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';

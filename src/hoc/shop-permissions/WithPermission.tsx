@@ -9,9 +9,8 @@ interface Props extends PropsWithChildren {
 
 function WithPermission({ children, requiredPermission, action = "default" }: Props) {
     const hasPermission = useHasPermission()
-    if (hasPermission(requiredPermission)) {
-        return children
-    }
+
+    if (hasPermission(requiredPermission)) return children
 
     return action === "default" ? <AppPermissionDenied /> : null
 }

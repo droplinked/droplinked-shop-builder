@@ -1,4 +1,4 @@
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { useProfile } from 'hooks/useProfile/useProfile'
 import { giftcardsService } from 'lib/apis/coupons/addressServices'
 import { IgiftcardsService } from 'lib/apis/coupons/interfaces'
 import React, { useCallback, useEffect } from 'react'

@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { IGenerateTitleDescription } from 'lib/apis/ai/interfaces'
 import { generateTitleDescription } from 'lib/apis/ai/services'
 import useProductForm from 'pages/products/hooks/useProductForm'

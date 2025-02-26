@@ -1,6 +1,6 @@
 import { ModalFooter } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { uploadProductCSV } from 'lib/apis/product/productServices'
 import React from 'react'
 import { useMutation } from 'react-query'

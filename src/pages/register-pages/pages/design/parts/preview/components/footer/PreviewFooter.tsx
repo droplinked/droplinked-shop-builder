@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Link, List, ListItem, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import designPreviewContext from '../../context';

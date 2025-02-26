@@ -1,4 +1,4 @@
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { citiesService } from 'lib/apis/address/addressServices';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';

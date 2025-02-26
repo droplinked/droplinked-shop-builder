@@ -1,5 +1,5 @@
 import AppModal from 'components/redesign/modal/AppModal';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import React, { PropsWithChildren } from 'react';
 import { ModalStep } from '../types/interfaces';
 

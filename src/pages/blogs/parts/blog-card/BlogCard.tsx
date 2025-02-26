@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
 

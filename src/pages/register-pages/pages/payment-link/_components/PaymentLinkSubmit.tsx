@@ -1,5 +1,5 @@
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { updateProductLinkOptionsService } from 'lib/apis/product/productServices'
 import useAppStore from 'lib/stores/app/appStore'
 import React, { useContext, useState } from 'react'

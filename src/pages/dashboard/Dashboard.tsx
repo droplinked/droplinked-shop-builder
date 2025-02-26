@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import useAppToast from "functions/hooks/toast/useToast"
+import useAppToast from "hooks/toast/useToast"
 import { getDashboardPageData } from "lib/apis/dashboard/dashboardServices"
 import React, { useEffect } from "react"
 import { useQuery } from "react-query"

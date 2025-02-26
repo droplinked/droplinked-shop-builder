@@ -4,7 +4,7 @@ import React from "react";
 import { SerializedCartItem } from "../InvoiceProductTable";
 import ProductTitleCell from "./ProductTitleCell";
 import SKURemoveButton from "./SKURemoveButton";
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
 
 function ItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem

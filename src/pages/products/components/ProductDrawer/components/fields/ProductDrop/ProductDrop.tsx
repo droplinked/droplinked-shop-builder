@@ -1,4 +1,4 @@
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductTypeLegality from 'pages/products/hooks/useProductTypeLegality'
 import React from 'react'

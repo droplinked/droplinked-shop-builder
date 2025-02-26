@@ -9,7 +9,7 @@ import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-det
 import React, { useRef } from 'react'
 import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     invoices: Invoice[]

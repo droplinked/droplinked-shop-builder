@@ -7,7 +7,7 @@ import { cart_item_options_to_array_of_variants } from 'lib/utils/helpers/helper
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)

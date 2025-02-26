@@ -1,6 +1,6 @@
 import { Flex, Link } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
+import WithPermission from 'hoc/shop-permissions/WithPermission'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { getShopAPIKeyService, updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useHasPermission } from 'lib/stores/app/appStore'

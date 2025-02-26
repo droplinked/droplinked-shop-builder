@@ -4,7 +4,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTypography from 'components/common/typography/AppTypography';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
 import {
 	getSubscriptionPaymentMethodsService,

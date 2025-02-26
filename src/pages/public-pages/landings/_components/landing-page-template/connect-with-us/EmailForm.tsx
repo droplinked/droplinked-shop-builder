@@ -1,7 +1,7 @@
 import { Box, Flex, Input, InputGroup, useMediaQuery } from "@chakra-ui/react"
 import Button from "components/redesign/button/Button"
 import { Form, Formik } from "formik"
-import useAppToast from "functions/hooks/toast/useToast"
+import useAppToast from "hooks/toast/useToast"
 import { subscribeFeature } from "lib/apis/user/services"
 import React from "react"
 import { useLocation } from "react-router-dom"

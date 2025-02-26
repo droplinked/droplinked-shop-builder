@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import AppSwitch from 'components/common/swich';
 import { updateCollectionVisiblityService } from 'lib/apis/collection/services';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { Collection } from 'lib/apis/collection/interfaces';
 
 function VisibilitySwitch({ collection }: { collection: Collection }) {

@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 import React from 'react';
 
 interface Props {

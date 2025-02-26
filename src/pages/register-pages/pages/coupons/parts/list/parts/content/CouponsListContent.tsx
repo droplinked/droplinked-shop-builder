@@ -13,8 +13,8 @@ import classes from './style.module.scss'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { AxiosError } from 'axios'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
-import useAppToast from 'functions/hooks/toast/useToast'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import useAppToast from 'hooks/toast/useToast'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)

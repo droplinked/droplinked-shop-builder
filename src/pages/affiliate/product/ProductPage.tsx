@@ -6,7 +6,7 @@ import ProductDetails from './components/details/ProductDetails';
 import ProductPageLoading from './components/loading/ProductPageLoading';
 import ProductSlider from './components/slider/ProductSlider';
 import { getSingleProductCommunityService } from 'lib/apis/product/productServices';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import ProductDescription from './components/description/ProductDescription';
 
 function AffiliateProductsSinglePage({ isPublic = false }) {

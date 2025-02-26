@@ -1,11 +1,11 @@
 import { Button, Flex, Td, Tr } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import Input from 'components/redesign/input/Input'
 import React, { forwardRef, useEffect, useState } from 'react'
 import ProductTitleCell from '../../../product-table/components/ProductTitleCell'
 import VariantsDropdown from './variants-dropdown/VariantsDropdown'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     product: any

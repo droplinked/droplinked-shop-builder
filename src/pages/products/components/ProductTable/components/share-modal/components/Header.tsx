@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
 

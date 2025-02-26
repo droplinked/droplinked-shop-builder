@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useFileUpload from 'functions/hooks/useFileUpload/useFileUpload'
+import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import { fileSizeInMB } from 'lib/utils/helpers/helpers'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'

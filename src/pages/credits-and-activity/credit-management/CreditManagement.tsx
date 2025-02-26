@@ -4,7 +4,7 @@ import TransactionsTable from 'pages/credits-and-activity/components/transaction
 import React from 'react'
 import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
 import AccountBalance from './account-balance/AccountBalance'
-import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 
 export default function CreditManagement() {
     const { transactionsQuery } = useCreditsData()

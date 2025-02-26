@@ -1,4 +1,4 @@
-import useAppToast from "functions/hooks/toast/useToast"
+import useAppToast from "hooks/toast/useToast"
 import { podProductService } from "lib/apis/pod/services"
 import useProductForm from "pages/products/hooks/useProductForm"
 import useProductPageStore from "pages/products/stores/ProductPageStore"

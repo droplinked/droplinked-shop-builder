@@ -2,7 +2,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import AppIcons from 'assets/icon/Appicons';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import { appDevelopment } from 'lib/utils/app/variable';
 import React from 'react';
 import { ModalStep } from '../../types/interfaces';

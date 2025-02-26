@@ -8,11 +8,11 @@ import { useMutation } from 'react-query'
 import { IgiftcardCreateService, IGiftCardExpiryDate } from 'lib/apis/coupons/interfaces'
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
 import moment from 'moment/moment'
 import Drawer from 'components/common/Drawer/Drawer'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     isEdit?: boolean

@@ -1,6 +1,6 @@
 import { Box, Flex, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 import { InvoiceQueryParams } from "lib/apis/invoice/interfaces";
 import { getShopsCommunityService } from "lib/apis/shop/shopServices";
 import React, { useState } from "react";

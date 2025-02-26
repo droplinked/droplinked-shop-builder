@@ -1,6 +1,6 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 import { SHOP_URL } from "lib/utils/app/variable";
 import React from "react";
 import { TransformedProduct } from "../productUtils";

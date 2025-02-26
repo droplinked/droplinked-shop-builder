@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useProductForm from 'pages/products/hooks/useProductForm'

@@ -1,7 +1,7 @@
 import AppIcons from 'assets/icon/Appicons';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
 import Button from 'components/redesign/button/Button';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { importAffiliateProductService } from 'lib/apis/product/productServices';
 import useAppStore from 'lib/stores/app/appStore';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';

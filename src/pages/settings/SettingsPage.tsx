@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import PageGrid from 'components/redesign/page-grid/PageGrid';
 import { Form, Formik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import useAppStore from 'lib/stores/app/appStore';
 import React from 'react';
 import SaveChangesDrawer from './components/common/SaveChangesDrawer';

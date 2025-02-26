@@ -3,7 +3,7 @@ import AppIcons from "assets/icon/Appicons";
 import useAppStore from "lib/stores/app/appStore";
 import React, { useState } from "react";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
 import { useQuery } from "react-query";

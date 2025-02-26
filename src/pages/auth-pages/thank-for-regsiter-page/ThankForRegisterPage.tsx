@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IresendEmailService } from "lib/apis/user/interfaces";
 import { resendEmailService } from "lib/apis/user/services";
 import React, { useState } from "react";

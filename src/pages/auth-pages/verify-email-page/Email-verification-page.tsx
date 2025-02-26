@@ -1,7 +1,7 @@
 import { Flex, VStack } from "@chakra-ui/react";
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import AppTypography from "components/common/typography/AppTypography";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IemailVerifyService } from "lib/apis/user/interfaces";
 import { emailVerifyService } from "lib/apis/user/services";
 import React, { useEffect } from "react";

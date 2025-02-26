@@ -2,11 +2,11 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import React from 'react'
 import useCreditStore from '../stores/CreditStore'
 import ProgressBar from './ProgressBar'
-import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 
 interface Props {
     type: 'inbound' | 'outbound';

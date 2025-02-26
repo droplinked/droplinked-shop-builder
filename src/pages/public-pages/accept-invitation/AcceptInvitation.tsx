@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Image, Spinner } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { getInvitationDetails } from 'lib/apis/user/services'
 import React from 'react'
 import { useQuery } from 'react-query'

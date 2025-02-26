@@ -1,5 +1,5 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
-import useDebounce from 'functions/hooks/debounce/useDebounce'
+import useDebounce from 'hooks/debounce/useDebounce'
 import useModalHandlers from 'pages/products/hooks/useModalHandlers'
 import React, { useEffect, useState } from 'react'
 import ImportProductModal from './components/ImportProductModal/ImportProductModal'

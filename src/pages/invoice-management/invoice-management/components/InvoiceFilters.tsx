@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import useDebounce from 'functions/hooks/debounce/useDebounce'
+import useDebounce from 'hooks/debounce/useDebounce'
 import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
 import Input from 'components/redesign/input/Input'
 import Select from 'components/redesign/select/Select'

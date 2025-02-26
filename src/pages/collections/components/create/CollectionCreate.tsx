@@ -1,6 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { Collection } from 'lib/apis/collection/interfaces';
 import { createCollectionService, updateCollectionService } from 'lib/apis/collection/services';
 import { useCheckPermission } from 'lib/stores/app/appStore';

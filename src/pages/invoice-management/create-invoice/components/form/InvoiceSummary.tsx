@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { addGiftCardToCartService } from 'lib/apis/invoice/invoiceServices'
 import Input from 'components/redesign/input/Input'
 import React, { useState } from 'react'

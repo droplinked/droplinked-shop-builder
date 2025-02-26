@@ -1,5 +1,5 @@
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
-import useProduct from 'functions/hooks/products/useProduct'
+import useProduct from 'hooks/products/useProduct'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import ProductDrawerLayout from './ProductDrawerLayout'

@@ -6,7 +6,7 @@ import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore'
 import { useQuery } from 'react-query'
 import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { useProfile } from 'hooks/useProfile/useProfile'
 
 export default function UpgradePlan() {
     const { profile } = useProfile()

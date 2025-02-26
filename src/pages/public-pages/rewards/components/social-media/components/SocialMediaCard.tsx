@@ -1,5 +1,5 @@
 import { Center, Circle, Flex, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { trackFollowService } from 'lib/apis/quests/services';
 import useFollowStatus, { CARD_STATUSES } from 'pages/public-pages/rewards/hook/useFollowStatus';
 import React, { useState } from 'react';

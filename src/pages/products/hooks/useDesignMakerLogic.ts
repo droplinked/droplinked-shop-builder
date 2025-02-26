@@ -1,4 +1,4 @@
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import axiosInstance from 'lib/apis/axiosConfig'
 import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services'
 import useProductForm from 'pages/products/hooks/useProductForm'

@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { generateShopCustomURLService } from 'lib/apis/shop/shopServices';
 import React from 'react';
 import { useMutation } from 'react-query';

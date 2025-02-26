@@ -4,9 +4,9 @@ import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDis
 import AppCard from 'components/common/card/AppCard';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 import AppTypography from 'components/common/typography/AppTypography';
-import useStack from 'functions/hooks/stack/useStack';
-import useAppToast from 'functions/hooks/toast/useToast';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import useStack from 'hooks/stack/useStack';
+import useAppToast from 'hooks/toast/useToast';
+import useAppWeb3 from 'hooks/web3/useWeb3';
 import { supportedChainsService } from 'lib/apis/sku/services';
 import useAppStore from 'lib/stores/app/appStore';
 import { isWalletInstalled } from 'droplinked-web3';
@@ -116,7 +116,7 @@ function ConnectWallets() {
 													isExist
 														?.address
 														.length -
-														6
+													6
 												)}`}</AppTypography>
 												<ClipboardText
 													text={

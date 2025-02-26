@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react"
 import { BarElement, CategoryScale, Chart as ChartJS, ChartOptions, Legend, LinearScale, Tooltip } from "chart.js"
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
 import { SalesData } from "lib/apis/dashboard/interfaces"
 import React from "react"
 import { Bar } from "react-chartjs-2"

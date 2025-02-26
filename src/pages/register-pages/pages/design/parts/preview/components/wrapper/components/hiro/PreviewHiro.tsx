@@ -1,6 +1,6 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import { designContext } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useMemo } from 'react';
 import designPreviewContext from '../../../../context';
@@ -123,23 +123,23 @@ function PreviewHiro() {
       }}
     >
       <VStack align="stretch" width="full">
-        {handleLayout}    
+        {handleLayout}
       </VStack>
       <Flex direction={isDesktop ? 'row' : 'column'} alignItems={isDesktop ? 'center' : 'start'} width={"85%"} margin={'auto'} py={2}>
-          {/* Shop logo */}
-          <Box width="80px" height="80px" padding="10px" backgroundColor={backgroundBody} rounded="full" marginTop="-45px" zIndex={1}>
-            <AppImage src={logo} rounded="full" />
-          </Box>
+        {/* Shop logo */}
+        <Box width="80px" height="80px" padding="10px" backgroundColor={backgroundBody} rounded="full" marginTop="-45px" zIndex={1}>
+          <AppImage src={logo} rounded="full" />
+        </Box>
 
-          {/* Shop name */}
-          <PreviewTypo fontSize="18px" textAlign="left" fontWeight="bold" color={textColorParagraphs || '#FFF'} wordBreak="break-word" marginLeft={isDesktop ? '12px' : ''}>
-            {shop?.description}
-          </PreviewTypo>
+        {/* Shop name */}
+        <PreviewTypo fontSize="18px" textAlign="left" fontWeight="bold" color={textColorParagraphs || '#FFF'} wordBreak="break-word" marginLeft={isDesktop ? '12px' : ''}>
+          {shop?.description}
+        </PreviewTypo>
 
-          {/* Social Media */}
-          <SocialMediaLinks shopURLs={shop} foreground={foreground} textColorParagraphs={textColorParagraphs} isDesktop={isDesktop} />
-        </Flex>
-        <Box borderColor={foreground} borderWidth="1px" height="1px" mb={4} mt={2} />
+        {/* Social Media */}
+        <SocialMediaLinks shopURLs={shop} foreground={foreground} textColorParagraphs={textColorParagraphs} isDesktop={isDesktop} />
+      </Flex>
+      <Box borderColor={foreground} borderWidth="1px" height="1px" mb={4} mt={2} />
     </PreviewActive>
   );
 }

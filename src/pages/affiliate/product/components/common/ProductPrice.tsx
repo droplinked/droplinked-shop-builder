@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 
 interface ProductPriceProps {
   price: number;

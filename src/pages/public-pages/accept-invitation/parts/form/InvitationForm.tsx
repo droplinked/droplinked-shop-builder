@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { Form, Formik } from 'formik'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { acceptInvitationService } from 'lib/apis/user/services'
 import useAppStore from 'lib/stores/app/appStore'
 import { passwordRegex } from 'lib/utils/helpers/regex'

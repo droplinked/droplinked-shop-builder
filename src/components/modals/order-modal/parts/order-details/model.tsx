@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppTypography from "components/common/typography/AppTypography";
-import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { PriceConversionParams } from "hooks/useCurrencyConverter/useCurrencyConverter";
 import React from "react";
 
 interface ICurrencyConverter {

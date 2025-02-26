@@ -1,6 +1,6 @@
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useHasPermission } from 'lib/stores/app/appStore'

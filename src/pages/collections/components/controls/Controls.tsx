@@ -9,7 +9,7 @@ import AppIcons from 'assets/icon/Appicons';
 import { Link } from 'react-router-dom';
 import { appDevelopment } from 'lib/utils/app/variable';
 import { updateCollectionVisiblityService } from 'lib/apis/collection/services';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { useMutation } from 'react-query';
 
 function ControlsListCollection({ collection, fetch }) {

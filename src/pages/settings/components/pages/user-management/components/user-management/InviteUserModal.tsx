@@ -5,7 +5,7 @@ import Input from 'components/redesign/input/Input';
 import MessageBox from 'components/redesign/message-box/MessageBox';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { sendInvitaionEmailService } from 'lib/apis/user/services';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';

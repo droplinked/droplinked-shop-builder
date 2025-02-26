@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppModal from 'components/common/modal/AppModal';
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IgetOrderService } from "lib/apis/order/interfaces";
 import { getOrderService } from "lib/apis/order/services";
 import React, { useEffect } from "react";

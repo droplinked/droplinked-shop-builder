@@ -1,4 +1,4 @@
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
 import { deepEqual } from 'lib/utils/helpers/helpers'
 import { phone } from "phone"

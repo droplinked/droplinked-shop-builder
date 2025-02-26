@@ -1,7 +1,7 @@
 import { Box, Flex, Radio, RadioGroup, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { IupdateSampleService } from 'lib/apis/order/interfaces'
 import { updateSampleService } from 'lib/apis/order/services'
 import productOrderContext from 'pages/order-sample-pod/context'
@@ -10,7 +10,7 @@ import { useMutation } from 'react-query'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import PaymentModal from './parts/payment-modal/PaymentModal'
 import classes from "./style.module.scss"
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function ProductOrderShipments() {
     const { getFormattedPrice } = useCurrencyConverter()

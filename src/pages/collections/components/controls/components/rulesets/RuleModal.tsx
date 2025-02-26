@@ -4,7 +4,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
 import FieldLabel from "./components/labels/fieldLabel/FieldLabel";
 import { Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { useCheckPermission } from "lib/stores/app/appStore";

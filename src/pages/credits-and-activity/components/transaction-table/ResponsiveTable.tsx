@@ -2,7 +2,7 @@ import { useMediaQuery } from '@chakra-ui/react';
 import { ColumnDef } from '@tanstack/react-table';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import Table from 'components/redesign/table/Table';
-import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData';
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
 import React from 'react';
 import TransactionsCards from './TransactionsCards';

@@ -3,7 +3,7 @@ import { Coupon } from '../../../interface'
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { formatDate } from 'lib/utils/helpers/helpers'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 export default function InformationTab({ coupon }: { coupon: Coupon }) {
     const { balance, codes, expiryDate, type } = coupon

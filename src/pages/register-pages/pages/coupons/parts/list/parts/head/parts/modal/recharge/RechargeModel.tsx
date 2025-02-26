@@ -1,6 +1,6 @@
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import AppStripe from 'components/common/stripe/AppStripe'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import useAppStore from 'lib/stores/app/appStore'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 import React, { useContext, useState } from 'react'

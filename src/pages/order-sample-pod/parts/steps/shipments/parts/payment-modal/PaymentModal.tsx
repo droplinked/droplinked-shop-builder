@@ -3,7 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppModal from 'components/common/modal/AppModal';
 import AppStripe from 'components/common/stripe/AppStripe';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { cancelSampleService } from 'lib/apis/order/services';
 import productOrderContext from 'pages/order-sample-pod/context';
 import React, { useContext, useState } from 'react';

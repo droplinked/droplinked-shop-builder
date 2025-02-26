@@ -1,7 +1,7 @@
 import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import React, { useState } from 'react';
 import BalanceModalBody from './BalanceModalBody';
 import StripeBody from './StripeBody';

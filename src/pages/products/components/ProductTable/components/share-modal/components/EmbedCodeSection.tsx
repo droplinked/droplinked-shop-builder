@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

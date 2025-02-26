@@ -9,7 +9,7 @@ import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function ProductOrderSkues() {
     const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)

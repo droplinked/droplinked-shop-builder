@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { useProfile } from 'hooks/useProfile/useProfile'
 import { InvoiceQueryParams } from 'lib/apis/invoice/interfaces'
 import { getInvoicesService } from 'lib/apis/invoice/invoiceServices'
 import React, { useState } from 'react'

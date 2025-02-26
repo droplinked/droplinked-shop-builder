@@ -1,6 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
-import { useProfile } from "functions/hooks/useProfile/useProfile"
+import { useProfile } from "hooks/useProfile/useProfile"
 import { getShopAddressBookService } from 'lib/apis/address/addressServices'
 import { getReferralReportService } from 'lib/apis/shop/shopServices'
 import { useHasPermission } from 'lib/stores/app/appStore'

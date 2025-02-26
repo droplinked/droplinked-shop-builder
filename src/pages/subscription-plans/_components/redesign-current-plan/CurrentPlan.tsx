@@ -1,7 +1,7 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import Button from 'components/redesign/button/Button';
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData';
+import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
 import { getSubscriptionIcon } from 'lib/utils/helpers/helpers';
 import * as React from 'react';
 import PlanBadge from './_components/PlanBadge';
