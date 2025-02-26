@@ -1,34 +1,30 @@
 import { LegalUsageKey } from "lib/apis/subscription/interfaces";
 
-const permissionErrors = {
-  permission_denied: "Permission Denied",
-  maxActiveLoginMethods: (maxActiveLoginMethodCount: string) => {
-    const count = Number(maxActiveLoginMethodCount);
-    return `You can only activate up to ${count} login method${
-      count !== 1 ? "s" : ""
-    }`;
+const permissionMessages = {
+  permissionDenied: "Permission Denied",
+  maxActiveLoginMethods: (count: string) => {
+    const num = Number(count);
+    return `You can only activate up to ${num} login method${num !== 1 ? "s" : ""}`; 
   },
-  maxActivePaymentMethods: (maxActivePaymentMethodCount: string) => {
-    const count = Number(maxActivePaymentMethodCount);
-    return `You can only activate up to ${count} payment method${
-      count !== 1 ? "s" : ""
-    }`;
+  maxActivePaymentMethods: (count: string) => {
+    const num = Number(count);
+    return `You can only activate up to ${num} payment method${num !== 1 ? "s" : ""}`;
   },
-  shop_subscription_data_unavailable:
-    "Oops! It looks like we can not access subscription data at the moment. Give it another try soon?",
-  product_creation_limit_reached: (legalUsageKey: LegalUsageKey) => {
-    const titles: Record<LegalUsageKey, string> = {
+  subscriptionDataUnavailable:
+    "Oops! It looks like we cannot access subscription data at the moment. Give it another try soon?",
+  productCreationLimitReached: (key: LegalUsageKey) => {
+    const titles = {
       digital_product: "Digital Product",
-      print_on_demand: "Print on Demand",
+      print_on_demand: "Print on Demand", 
       physical_product: "Physical Product",
       event: "Event",
       drop: "Drop",
     };
-    const title = titles[legalUsageKey];
+    const title = titles[key];
     return `${title} creation limit reached. Consider upgrading your plan to create more.`;
   },
-  drop_limit_reached:
-    "Drop limit reached. Consider upgrading your plan to drop more.",
+  dropLimitReached:
+    "Drop limit reached. Consider upgrading your plan to drop more.", 
 };
 
-export default permissionErrors;
+export default permissionMessages;
