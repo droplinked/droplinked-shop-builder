@@ -7,7 +7,7 @@ import { IGetUserService } from 'lib/apis/user/interfaces'
 import { getUserService, userUpdateService } from 'lib/apis/user/services'
 import AppStorage from 'lib/utils/app/sessions'
 import { appDevelopment } from 'lib/utils/app/variable'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import AppErrors from 'lib/utils/statics/errors'
 import { toast } from 'react-toastify'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
@@ -80,7 +80,7 @@ const states = (set, get): IAppStore => ({
                         // refresh_token,
                     }
                 })
-                AppStorage.set_tokens(access_token, refresh_token)
+                AppStorage.setTokens(access_token, refresh_token)
                 const fetchGrowthHackData = useGrowthHackStore.getState().fetchGrowthHackData
                 fetchGrowthHackData()
                 resolve(result)
@@ -159,7 +159,7 @@ const states = (set, get): IAppStore => ({
     checkPermissionAndShowToast: (permission, message) => {
         const { hasPermission } = get()
         if (!hasPermission(permission)) {
-            toast["error"](message || AppErrors.permission.permission_denied)
+            toast["error"](message || AppErrors.permission.permissionDenied)
             return false
         }
         return true
