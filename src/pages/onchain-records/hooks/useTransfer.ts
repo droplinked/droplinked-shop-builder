@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { AxiosError } from "axios";
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
 import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "lib/apis/onchain-inventory/services";
-import { appDevelopment } from "lib/utils/app/variable";
+import { appDevelopment } from "utils/app/variable";
 import useAppToast from "hooks/toast/useToast";
 import { handleValidateManualTransfer } from "../utils/helpers";
 import { ICombinedNft } from "../utils/interface";

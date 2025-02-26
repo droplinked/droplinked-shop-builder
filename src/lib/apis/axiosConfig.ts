@@ -1,6 +1,6 @@
 import axios from "axios";
-import AppStorage from "lib/utils/app/sessions";
-import { BASE_URL } from "lib/utils/app/variable";
+import AppStorage from "utils/app/sessions";
+import { BASE_URL } from "utils/app/variable";
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,

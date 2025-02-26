@@ -1,5 +1,5 @@
 import useAppStore from "lib/stores/app/appStore";
-import AppStorage from "lib/utils/app/sessions";
+import AppStorage from "utils/app/sessions";
 
 export function useProfile() {
   const { updateShop, user, shop, loading, fetchShop, reset } = useAppStore()

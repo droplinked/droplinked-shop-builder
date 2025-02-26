@@ -10,8 +10,8 @@ import useAppToast from 'hooks/toast/useToast'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
 import { useCheckPermission } from 'lib/stores/app/appStore'
-import { appDevelopment } from 'lib/utils/app/variable'
-import { storeCustomURLRegex } from 'lib/utils/helpers/regex'
+import { appDevelopment } from 'utils/app/variable'
+import { customStoreURLRegex } from 'utils/helpers/regex'
 import React, { useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
 import { IShopInfoChildProps } from '../../ShopInfo'
@@ -38,7 +38,7 @@ function StoreInformation({ States, updateStates }: IShopInfoChildProps) {
     const validateEnteredURL = () => {
         if (!checkPermissionAndShowToast("custom_domain_integration")) return setCustomURL("")
 
-        if (!storeCustomURLRegex.test(customURL))
+        if (!customStoreURLRegex.test(customURL))
             return showToast({ message: "Please enter a valid URL.", type: "error" })
 
         confirmationModal.onOpen()

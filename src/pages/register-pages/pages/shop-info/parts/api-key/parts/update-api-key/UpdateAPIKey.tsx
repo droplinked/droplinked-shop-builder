@@ -6,7 +6,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'hooks/toast/useToast'
 import { useCheckPermission } from 'lib/stores/app/appStore'
-import { domainRegex } from 'lib/utils/helpers/regex'
+import { domainRegex } from 'utils/helpers/regex'
 import React, { useContext, useState } from 'react'
 import APIKeyContext from '../../context'
 

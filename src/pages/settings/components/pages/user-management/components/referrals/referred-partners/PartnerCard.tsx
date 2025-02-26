@@ -3,7 +3,7 @@ import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { appDevelopment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'utils/app/variable'
 import React from 'react'
 import { Partner } from './PartnerList'
 

@@ -8,7 +8,7 @@ import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from "hooks/useProfile/useProfile";
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
 import useAppStore from 'lib/stores/app/appStore';
-import { getSubscriptionIcon, navigating_user_based_on_status } from 'lib/utils/helpers/helpers';
+import { getSubscriptionPlanIcon, navigateUserBasedOnStatus } from 'utils/helpers';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal';
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
@@ -69,7 +69,7 @@ function Plan({ plan, plans }: IProps) {
                 return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
             if (!isPlansPage) {
-                const { href, dashboard } = navigating_user_based_on_status(status, res)
+                const { href, dashboard } = navigateUserBasedOnStatus(status, res)
                 dashboard ? shopNavigate(href) : navigate(href)
             }
         } catch (err) {
@@ -100,7 +100,7 @@ function Plan({ plan, plans }: IProps) {
     return (
         <VStack gap={plan.type === "BUSINESS" ? "1rem" : "1.2rem"} alignItems={"start"} justifyContent={"start"} padding={"25px"} width={"270px"} height={"180px"}>
             <HStack width={"100%"} justifyContent={"space-between"}>
-                <AppTypography fontWeight={400} fontSize={"16px"} color={"#fff"}>{getSubscriptionIcon(plan.type).title}</AppTypography>
+                <AppTypography fontWeight={400} fontSize={"16px"} color={"#fff"}>{getSubscriptionPlanIcon(plan.type).title}</AppTypography>
                 {plan.type === "BUSINESS" && <AppIcons.MedalStar />}
             </HStack>
             <PricePlan plan={plan} />

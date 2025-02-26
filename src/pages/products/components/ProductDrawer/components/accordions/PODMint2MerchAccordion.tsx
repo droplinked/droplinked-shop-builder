@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import useAppToast from 'hooks/toast/useToast'
 import { useHasPermission } from 'lib/stores/app/appStore'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import AppErrors from 'utils/statics/errors'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import ProductFormAccordion from '../common/ProductFormAccordion'
@@ -21,7 +21,7 @@ function PODMint2MerchAccordion() {
 
     function handleMintToMerchToggle(checked: boolean) {
         if (!hasPermission("mint_to_merch") && checked) {
-            showToast({ message: AppErrors.permission.permission_denied, type: "error" })
+            showToast({ message: AppErrors.permission.permissionDenied, type: "error" })
             return
         }
 

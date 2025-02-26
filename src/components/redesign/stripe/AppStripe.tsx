@@ -1,6 +1,6 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import React from 'react';
 import CheckoutForm, { IFormStripe } from './components/CheckoutForm';
 

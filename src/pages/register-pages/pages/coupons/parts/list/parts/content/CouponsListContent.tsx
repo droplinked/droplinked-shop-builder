@@ -5,12 +5,11 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppModal from 'components/common/modal/AppModal'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import { capitalizeWords } from 'utils/helpers'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 import React, { useContext, useState } from 'react'
 import CouponForm from '../form/CouponForm'
 import classes from './style.module.scss'
-import BasicButton from 'components/common/BasicButton/BasicButton'
 import { AxiosError } from 'axios'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'hooks/toast/useToast'
@@ -57,7 +56,7 @@ function CouponsListContent() {
                                     <Flex gap="32px" width="40%" alignItems="center">
                                         <VStack width="20%" align="stretch" className={`${!coupon.isExpired ? classes.active : ''}`}>
                                             {coupon.type === "DISCOUNT" ? <AppIcons.DiscountSetting /> : <AppIcons.GiftSetting />}
-                                            <AppTypography fontSize='10px' color="#808080">{capitalizeFirstLetter(coupon.type)}</AppTypography>
+                                            <AppTypography fontSize='10px' color="#808080">{capitalizeWords(coupon.type)}</AppTypography>
                                         </VStack>
                                         <VStack width="100%" align="stretch">
                                             <AppTypography fontSize='14px' fontWeight='bold'>{coupon.name}</AppTypography>
@@ -127,7 +126,7 @@ function CouponsListContent() {
                 <Box><Pagination current={coupons.currentPage} lastPage={coupons.totalPages ? parseInt(coupons.totalPages) : 1} nextPage={coupons.hasNextPage || false} prevPage={coupons.hasPreviousPage || false} /></Box>
             </VStack>
             {
-                isOpen && <AppModal open={isOpen} close={onClose} size="xl" title={`Edit ${capitalizeFirstLetter(selectedCoupon.type)} Coupon`}>
+                isOpen && <AppModal open={isOpen} close={onClose} size="xl" title={`Edit ${capitalizeWords(selectedCoupon.type)} Coupon`}>
                     <CouponForm coupon={selectedCoupon} close={onClose} />
                 </AppModal>
             }

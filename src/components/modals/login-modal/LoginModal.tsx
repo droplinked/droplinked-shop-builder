@@ -8,15 +8,15 @@ import { Form, Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import useAppStore from "lib/stores/app/appStore";
-import { BASE_URL } from "lib/utils/app/variable";
-import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
-import AppErrors from "lib/utils/statics/errors/errors";
+import { BASE_URL } from "utils/app/variable";
+import { navigateUserBasedOnStatus } from "utils/helpers";
+import AppErrors from "utils/statics/errors";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
 const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
+    email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Required"),
     password: Yup.string().required("Required"),
 })
 
@@ -48,7 +48,7 @@ const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) 
                 return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
             if (!isFromPlansPage) {
-                const { href, dashboard } = navigating_user_based_on_status(status, data)
+                const { href, dashboard } = navigateUserBasedOnStatus(status, data)
                 dashboard ? shopNavigate(href) : navigate(href)
             }
             close()

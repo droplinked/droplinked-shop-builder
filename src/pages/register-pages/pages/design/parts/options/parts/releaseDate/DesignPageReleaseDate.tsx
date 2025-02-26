@@ -2,7 +2,7 @@ import { Flex, Grid } from '@chakra-ui/react'
 import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getTomorrowMidnightISO } from 'lib/utils/helpers/helpers'
+import { getNextDayMidnightISO } from 'utils/helpers'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import DesignPageCard from '../card/DesignPageCard'
@@ -22,7 +22,7 @@ function DesignPageReleaseDate() {
 
     const handleSwitchChange = (checked: boolean) => {
         setDetailsVisibility(checked)
-        if (checked) return dispatch({ type: 'updateShop', params: { launchDate: getTomorrowMidnightISO() } })
+        if (checked) return dispatch({ type: 'updateShop', params: { launchDate: getNextDayMidnightISO() } })
         dispatch({ type: 'updateShop', params: { launchDate: null } })
     }
 

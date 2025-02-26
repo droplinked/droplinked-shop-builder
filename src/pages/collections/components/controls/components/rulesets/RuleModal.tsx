@@ -8,7 +8,7 @@ import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { useCheckPermission } from "lib/stores/app/appStore";
-import AppErrors from "lib/utils/statics/errors/errors";
+import AppErrors from "utils/statics/errors";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import RulesetAddress from "./components/address/RulesetAddress";
@@ -59,7 +59,7 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
             }
             queryClient.invalidateQueries({ queryKey: ['collectionList'] })
             close();
-            showToast({ message: AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], type: "success" });
+            showToast({ message: AppErrors.collection[ruleId ? "rulesetUpdated" : "rulesetCreated"], type: "success" });
         } catch (error) {
             showToast({ message: "Oops! Something went wrong", type: "error" });
         }

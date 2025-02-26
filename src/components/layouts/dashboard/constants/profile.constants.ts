@@ -1,6 +1,6 @@
 import AppIcons from 'assets/icon/Appicons';
 import { PriceConversionParams } from 'hooks/useCurrencyConverter/useCurrencyConverter';
-import { SHOP_URL } from 'lib/utils/app/variable';
+import { SHOP_URL } from 'utils/app/variable';
 import { ProfileItem } from './interfaces';
 
 interface ICurrencyConverter {

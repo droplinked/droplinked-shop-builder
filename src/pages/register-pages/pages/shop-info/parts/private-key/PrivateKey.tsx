@@ -5,7 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import WithPermission from 'hoc/shop-permissions/WithPermission'
 import { getShopPrivateKeyService } from 'lib/apis/shop/shopServices'
 import { useHasPermission } from 'lib/stores/app/appStore'
-import { appDevelopment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'utils/app/variable'
 import React from 'react'
 import { useQuery } from 'react-query'
 

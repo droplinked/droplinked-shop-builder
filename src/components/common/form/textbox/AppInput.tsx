@@ -1,6 +1,6 @@
 import { Input, InputProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import { capitalizeWords } from 'utils/helpers'
 import React, { MutableRefObject } from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
@@ -23,7 +23,7 @@ function AppInput(props: Iprops) {
         <Input
           style={{ boxShadow: "unset" }}
           isInvalid={error ? true : false}
-          placeholder={capitalizeFirstLetter(name)}
+          placeholder={capitalizeWords(name)}
           {...FormModel.styleProps()}
           {...props}
           value={props?.value || ""}

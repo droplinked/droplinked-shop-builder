@@ -8,7 +8,7 @@ import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
 import { useProfile } from "hooks/useProfile/useProfile"
 import { IFeature, SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import useAppStore from "lib/stores/app/appStore"
-import { navigating_user_based_on_status, subscriptionPlanMap } from "lib/utils/helpers/helpers"
+import { navigateUserBasedOnStatus, getSubscriptionPlanIcon} from "utils/helpers"
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
 import { cardData } from "pages/subscription-plans/data/cardData"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
@@ -42,7 +42,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
-    const { title, icon: SubscriptionIcon } = subscriptionPlanMap[plan.type]
+    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon[plan.type]
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
     const navigate = useNavigate()
@@ -85,7 +85,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
                 return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
             if (!isPlansPage) {
-                const { href, dashboard } = navigating_user_based_on_status(status, res)
+                const { href, dashboard } = navigateUserBasedOnStatus(status, res)
                 dashboard ? shopNavigate(href) : navigate(href)
             }
         } catch (err) {

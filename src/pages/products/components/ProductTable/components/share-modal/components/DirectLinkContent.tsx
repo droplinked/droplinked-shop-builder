@@ -1,7 +1,7 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import AppShareableLink from "components/redesign/shareable-link/AppShareableLink";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { SHOP_URL } from "lib/utils/app/variable";
+import { SHOP_URL } from "utils/app/variable";
 import React from "react";
 import { TransformedProduct } from "../productUtils";
 
@@ -15,7 +15,6 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
 
   return (
     <Box width="100%" bg="#292929" padding="32px">
-      {/* بخش بالایی */}
       <Flex
         justifyContent="center"
         alignItems="center"
@@ -36,7 +35,7 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
         borderRadius="12px"
         border="1px solid #292929"
         background="#141414"
-        justifyContent="center" // مرکز کردن افقی
+        justifyContent="center" 
         alignItems="center"
       >
         <AppShareableLink link={productLink} buttonBgColor="#2BCFA1" />

@@ -1,5 +1,5 @@
 // Utility functions for handling subscription plan information and icons.
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 
  // Maps subscription plans to their respective icons and descriptions
 export const subscriptionPlans: Record<

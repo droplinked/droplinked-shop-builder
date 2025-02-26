@@ -1,5 +1,5 @@
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import { capitalizeWords } from 'utils/helpers'
 import React, { useState } from 'react'
 import CouponForm from '../../../../form/CouponForm'
 import CouponsCreateContext, { CouponsCreateStates } from './context'
@@ -16,7 +16,7 @@ function CouponsCreate(props: Iprops) {
             closeModal: props.close,
             updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value }))
         }}>
-            <AppModal {...props} size="xl" title={State.type ? `Create ${capitalizeFirstLetter(State.type)} Coupon` : "Create Coupon"}>
+            <AppModal {...props} size="xl" title={State.type ? `Create ${capitalizeWords(State.type)} Coupon` : "Create Coupon"}>
                 {State.type ? <CouponForm /> : <CouponsCreateHome />}
             </AppModal>
         </CouponsCreateContext.Provider>
