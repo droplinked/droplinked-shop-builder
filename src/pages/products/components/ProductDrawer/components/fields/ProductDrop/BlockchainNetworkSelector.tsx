@@ -1,7 +1,7 @@
 import { Skeleton } from "@chakra-ui/react"
 import Select from "components/redesign/select/Select"
 import { supportedChainsService } from "lib/apis/sku/services"
-import chainNameMap from "utils/statics/blockchainMap"
+import chainNameMap from "utils/constants/blockchainMap"
 import useProductForm from "pages/products/hooks/useProductForm"
 import React from "react"
 import { useQuery } from "react-query"

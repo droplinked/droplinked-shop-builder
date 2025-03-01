@@ -8,7 +8,7 @@ import useAppToast from "hooks/toast/useToast";
 import { IchangePasswordService } from "lib/apis/user/interfaces";
 import { changePasswordService } from "lib/apis/user/services";
 import { passwordRegex } from "utils/helpers/regex";
-import AppErrors from "utils/statics/errors";
+import AppErrors from "utils/constants/errors";
 import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";

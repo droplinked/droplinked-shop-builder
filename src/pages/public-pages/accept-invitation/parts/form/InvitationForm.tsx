@@ -5,7 +5,7 @@ import useAppToast from 'hooks/toast/useToast'
 import { acceptInvitationService } from 'lib/apis/user/services'
 import useAppStore from 'lib/stores/app/appStore'
 import { passwordRegex } from 'utils/helpers/regex'
-import AppErrors from 'utils/statics/errors'
+import AppErrors from 'utils/constants/errors'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from "yup"

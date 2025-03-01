@@ -2,7 +2,7 @@ import { Flex, SimpleGrid } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
-import AppErrors from "utils/statics/errors";
+import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";

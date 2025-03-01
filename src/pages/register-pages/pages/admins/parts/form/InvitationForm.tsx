@@ -4,7 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { sendInvitaionEmailService } from 'lib/apis/user/services'
-import AppErrors from 'utils/statics/errors'
+import AppErrors from 'utils/constants/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
 import * as Yup from "yup"

@@ -8,7 +8,7 @@ import useAppToast from 'hooks/toast/useToast';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { addressByIdService, allCountriesService, citiesService, createAddressService, statesService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcitiesService, IcreateAddressService, IsatatesService, IupdateAddressService } from 'lib/apis/address/interfaces';
-import AppErrors from 'utils/statics/errors';
+import AppErrors from 'utils/constants/errors';
 import React, { useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import AddressModalModel from './AddressModalModel';

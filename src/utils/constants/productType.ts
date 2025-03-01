@@ -1,6 +1,6 @@
 import { product_type } from "lib/apis/product/interfaces";
 import { LegalUsageKey } from "lib/apis/subscription/interfaces";
-import AppErrors from "../statics/errors";
+import AppErrors from "./errors";
 
 // Maps product types to their respective legal usage and error messages
 export const productTypeUsageLimits: Record<product_type | "drop", { errorMessage: string, key: LegalUsageKey }> = {

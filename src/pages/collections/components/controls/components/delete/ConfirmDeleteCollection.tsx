@@ -2,7 +2,7 @@ import AppDialog from 'components/common/dialog'
 import useAppToast from 'hooks/toast/useToast'
 import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
 import { deleteCollectionService } from 'lib/apis/collection/services'
-import AppErrors from 'utils/statics/errors'
+import AppErrors from 'utils/constants/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
 

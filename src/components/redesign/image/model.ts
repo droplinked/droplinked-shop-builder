@@ -1,5 +1,5 @@
 import { convertMBtoBytes } from "utils/helpers";
-import AppErrors from "utils/statics/errors";
+import AppErrors from "utils/constants/errors";
 
 const UploadImageModel = ({
     size: (file: any) => {

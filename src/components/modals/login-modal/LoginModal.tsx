@@ -10,7 +10,7 @@ import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import useAppStore from "lib/stores/app/appStore";
 import { BASE_URL } from "utils/app/variable";
 import { navigateUserBasedOnStatus } from "utils/helpers";
-import AppErrors from "utils/statics/errors";
+import AppErrors from "utils/constants/errors";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";

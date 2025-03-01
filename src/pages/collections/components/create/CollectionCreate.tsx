@@ -4,7 +4,7 @@ import useAppToast from "hooks/toast/useToast";
 import { Collection } from "lib/apis/collection/interfaces";
 import { createCollectionService, updateCollectionService } from "lib/apis/collection/services";
 import { useCheckPermission } from "lib/stores/app/appStore";
-import AppErrors from "utils/statics/errors";
+import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { collectionCreateInputFields } from "./formConfigs";
