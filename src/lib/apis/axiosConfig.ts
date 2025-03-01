@@ -1,5 +1,5 @@
 import axios from "axios";
-import AppStorage from "utils/app/sessions";
+import { clearStorage, getTokens, setTokens } from "utils/app/sessions";
 import { BASE_URL } from "utils/app/variable";
 
 const axiosInstance = axios.create({
@@ -20,7 +20,7 @@ const clearPromise = () => {
 
 const refresh_access_token = async () => {
     try {
-        const { refresh_token } = AppStorage.getTokens();
+        const { refresh_token } = getTokens();
         const response = await axios.post(
             `${BASE_URL}/auth/refresh-token`,
             {},
@@ -29,19 +29,19 @@ const refresh_access_token = async () => {
             }
         );
         const data = response?.data?.data;
-        AppStorage.setTokens(data?.access_token, data?.refresh_token);
+        setTokens(data?.access_token, data?.refresh_token);
         requests_queue.forEach((callback) => callback(data.access_token));
         requests_queue = [];
         return data?.access_token;
     } catch (error) {
-        AppStorage.clearStorage()
+        clearStorage()
         window.location.replace(window.location.origin);
     }
 };
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const { access_token } = AppStorage.getTokens();
+        const { access_token } = getTokens();
         if (!config.headers.authorization)
             config.headers.set('authorization', `Bearer ${access_token}`);
         return config;
