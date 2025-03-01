@@ -23,12 +23,10 @@ class AppStorage {
      * Gets both access and refresh tokens from localStorage.
      * @returns {Object} Tokens object with access_token and refresh_token.
      */
-    static getTokens = () => {
-        return {
-            access_token: localStorage.getItem("access_token") || "",
-            refresh_token: localStorage.getItem("refresh_token") || "",
-        };
-    };
+    static getTokens = () => ({
+        access_token: localStorage.getItem("access_token") || "",
+        refresh_token: localStorage.getItem("refresh_token") || "",
+    })
 
     /**
      * Stores access and refresh tokens in localStorage.
@@ -43,9 +41,7 @@ class AppStorage {
     /**
      * Clears all data from localStorage.
      */
-    static clearStorage = () => {
-        localStorage.clear();
-    };
+    static clearStorage = () => localStorage.clear();
 }
 
 export default AppStorage;
