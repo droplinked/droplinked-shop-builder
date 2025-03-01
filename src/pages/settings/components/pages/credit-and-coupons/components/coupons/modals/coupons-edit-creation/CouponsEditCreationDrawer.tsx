@@ -9,7 +9,7 @@ import { IgiftcardCreateService, IGiftCardExpiryDate } from 'lib/apis/coupons/in
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
 import useAppToast from 'hooks/toast/useToast'
-import { capitalizeWords } from 'utils/helpers'
+import { capitalizeFirst } from 'utils/helpers'
 import moment from 'moment/moment'
 import Drawer from 'components/common/Drawer/Drawer'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
@@ -52,7 +52,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             }
 
             showToast({
-                message: `${capitalizeWords(isEdit ? coupon.type : params.type)} has been ${isEdit ? "updated" : "created"}.`,
+                message: `${capitalizeFirst(isEdit ? coupon.type : params.type)} has been ${isEdit ? "updated" : "created"}.`,
                 type: 'success'
             })
             refetch()

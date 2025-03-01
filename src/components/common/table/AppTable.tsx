@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Checkbox, Table, TableHeadProps, TableRowProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import { capitalizeWords } from 'utils/helpers'
+import { capitalizeFirst } from 'utils/helpers'
 import AppTypography from '../typography/AppTypography'
 
 export interface ITableRows {
@@ -62,7 +62,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                     {Object.keys(rows[0]).filter(el => el !== "_data").map((el, key) =>
                                         <Th textTransform="uppercase" padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} {...rows[0][el].props} key={key}>
                                             <AppTypography textTransform="none" fontSize='12px' color="#FFF">
-                                                {typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : capitalizeWords(el)}
+                                                {typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : capitalizeFirst(el)}
                                             </AppTypography>
                                         </Th>
                                     )}

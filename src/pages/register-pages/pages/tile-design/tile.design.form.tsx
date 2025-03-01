@@ -6,7 +6,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import { TileDesignContext } from "./context/tile.design.context";
 import AppSwitch from "components/common/swich";
 import AppColorPicker from "components/common/colorPicker/AppColorPicker";
-import { capitalizeWords } from "utils/helpers";
+import { capitalizeFirst } from "utils/helpers";
 
 const tile_design_form_fields_object = ({ design }: Pick<ITileDesignState, "design">) => ({
     [TILE_DESIGN_PAGES_ENUM.PRODUCT]: {
@@ -229,7 +229,7 @@ const TileDesignForm = () => {
                                     return (
                                         <Select value={currentValue} onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e.target?.value })}>
                                             {input?.options?.map((option) => (
-                                                <option value={option}>{capitalizeWords(option)}</option>
+                                                <option value={option}>{capitalizeFirst(option)}</option>
                                             ))}
                                         </Select>
                                     );

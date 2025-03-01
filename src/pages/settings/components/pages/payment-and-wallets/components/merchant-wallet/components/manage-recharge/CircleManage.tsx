@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
-import { capitalizeWords } from "utils/helpers";
+import { capitalizeFirst } from "utils/helpers";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
@@ -92,7 +92,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = AppIcons?.[`Circle${capitalizeWords(chain?.chain?.toLowerCase() || "")}`];
+                                const Icon = AppIcons?.[`Circle${capitalizeFirst(chain?.chain?.toLowerCase() || "")}`];
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">

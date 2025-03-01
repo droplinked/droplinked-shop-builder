@@ -1,10 +1,7 @@
 // Utility functions for string manipulations like capitalization and array conversions.
 
-export const capitalizeWords = (value: string = ""): string =>
-    value
-        .split(" ")
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ")
+export const capitalizeFirst = (value: string = ""): string =>
+    value.charAt(0).toUpperCase() + value.slice(1);
 
 
 export const convertCartOptionsToVariantsArray = (options: any) => {

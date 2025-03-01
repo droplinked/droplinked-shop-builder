@@ -7,7 +7,7 @@ import useAppToast from 'hooks/toast/useToast'
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
 import { IGiftCardExpiryDate, IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
-import { capitalizeWords } from 'utils/helpers'
+import { capitalizeFirst } from 'utils/helpers'
 import moment from 'moment/moment'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 import React, { useCallback, useContext } from 'react'
@@ -58,7 +58,7 @@ function CouponForm({ coupon, close }: Props) {
             }
 
             showToast({
-                message: `${capitalizeWords(isEditMode ? coupon.type : type)} has been ${isEditMode ? "updated" : "created"}.`,
+                message: `${capitalizeFirst(isEditMode ? coupon.type : type)} has been ${isEditMode ? "updated" : "created"}.`,
                 type: 'success'
             })
             closeFunction()
@@ -101,7 +101,7 @@ function CouponForm({ coupon, close }: Props) {
                                 <AppInput value={values.quantity} error={errors?.quantity?.toString()} name='Available Quantity' onChange={el => setFieldValue('quantity', parseInt(el.target.value))} label='Available Quantity' placeholder='100' isDisabled={isEditMode} />
                             </Box>
                             <Box width="50%">
-                                <AppInput value={values.balance} error={errors?.balance?.toString()} name={`${capitalizeWords(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeWords(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} isDisabled={isEditMode} />
+                                <AppInput value={values.balance} error={errors?.balance?.toString()} name={`${capitalizeFirst(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirst(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} isDisabled={isEditMode} />
                             </Box>
                         </HStack>
                         <AppDatepicker
