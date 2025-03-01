@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react"
-import React, { useEffect } from "react"
+import React, { PropsWithChildren, useEffect } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import Footer from "./components/footer/Footer"
 import HeaderMain from "./components/header/HeaderMain"
 
-function MainLayout(props) {
+function MainLayout({ children }: PropsWithChildren) {
   const { pathname } = useLocation()
 
   // Scroll to top on route change
@@ -14,8 +14,8 @@ function MainLayout(props) {
 
   return (
     <Box bgColor="bG">
-      <HeaderMain />
-      {props.children || <Outlet />}
+      {pathname !== "/onboarding" && <HeaderMain />}
+      {children || <Outlet />}
       <Footer />
     </Box>
   )

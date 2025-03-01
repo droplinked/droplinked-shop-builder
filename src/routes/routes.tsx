@@ -2,6 +2,7 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
@@ -116,6 +117,7 @@ const router = createBrowserRouter([
             { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            { path: "onboarding", element: <Onboarding /> },
             {
                 path: "affiliate/products",
                 children: [
