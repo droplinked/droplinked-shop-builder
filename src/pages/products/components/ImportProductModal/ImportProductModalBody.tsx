@@ -1,7 +1,7 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import { fileSizeInMB } from 'lib/utils/helpers/helpers'
+import { getFileSizeInMB } from 'utils/helpers'
 import React from 'react'
 import FileUpload from './FileUpload'
 
@@ -46,7 +46,7 @@ function FilePreview({ file, onFileChange }: Props) {
                         {file.name}
                     </AppTypography>
                     <AppTypography mt={2} fontSize={12} color="#7B7B7B">
-                        {fileSizeInMB(file)} MB
+                        {getFileSizeInMB(file)} MB
                     </AppTypography>
                 </Box>
             </Flex>

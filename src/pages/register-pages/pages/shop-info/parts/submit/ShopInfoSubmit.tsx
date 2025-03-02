@@ -2,7 +2,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'hooks/toast/useToast'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'hooks/useProfile/useProfile'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import AppErrors from 'utils/constants/errors'
 import React, { useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import { IShopInfoChildProps } from '../../ShopInfo'
@@ -20,7 +20,7 @@ function ShopInfoSubmit({ States }: IShopInfoChildProps) {
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {
-                showToast({ message: AppErrors.store.has_been_updated("Store info"), type: "success" })
+                showToast({ message: AppErrors.store.hasBeenUpdated("Store info"), type: "success" })
             }
         } catch (error) {
             showToast({ message: error?.message, type: "error" })

@@ -12,7 +12,7 @@ import {
 	subscriptionPlanCryptoPaymentService,
 	subscriptionPlanStripePaymentService,
 } from 'lib/apis/subscription/subscriptionServices';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';

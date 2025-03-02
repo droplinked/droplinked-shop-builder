@@ -1,7 +1,6 @@
 import axios from "axios";
-import useAppStore from "lib/stores/app/appStore";
-import AppStorage from "lib/utils/app/sessions";
-import { BASE_URL } from "lib/utils/app/variable";
+import { clearStorage, getTokens, setTokens } from "utils/app/ authutils";
+import { BASE_URL } from "utils/app/variable";
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
@@ -21,7 +20,7 @@ const clearPromise = () => {
 
 const refresh_access_token = async () => {
     try {
-        const { refresh_token } = AppStorage.get_tokens();
+        const { refresh_token } = getTokens();
         const response = await axios.post(
             `${BASE_URL}/auth/refresh-token`,
             {},
@@ -30,24 +29,21 @@ const refresh_access_token = async () => {
             }
         );
         const data = response?.data?.data;
-        AppStorage.set_tokens(data?.access_token, data?.refresh_token);
+        setTokens(data?.access_token, data?.refresh_token);
         requests_queue.forEach((callback) => callback(data.access_token));
         requests_queue = [];
         return data?.access_token;
     } catch (error) {
-        AppStorage.clearStorage()
+        clearStorage()
         window.location.replace(window.location.origin);
     }
 };
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const { access_token } = AppStorage.get_tokens();
+        const { access_token } = getTokens();
         if (!config.headers.authorization)
-            config.headers = {
-                ...config.headers,
-                authorization: `Bearer ${access_token}`,
-            };
+            config.headers.set('authorization', `Bearer ${access_token}`);
         return config;
     },
     (error) => Promise.reject(error)

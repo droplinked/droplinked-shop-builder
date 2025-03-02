@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { typesProperties } from "lib/utils/statics/types";
+import { typesProperties } from "utils/constants/types";
 import React from "react";
 
 export const ProductDetails = ({ product }) => {

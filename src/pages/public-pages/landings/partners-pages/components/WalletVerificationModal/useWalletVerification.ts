@@ -5,7 +5,7 @@ import { DropWeb3, Network, ChainWallet, Web3Actions, Chain } from 'droplinked-w
 import { useContext } from 'react';
 import PartnerContext from '../../context/partner.context';
 import useAppToast from 'hooks/toast/useToast';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import { IPostUserVerifyPartner } from 'lib/apis/user/interfaces';
 
 export const useWalletVerification = () => {

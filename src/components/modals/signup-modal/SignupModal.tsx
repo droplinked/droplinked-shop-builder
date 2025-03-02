@@ -9,10 +9,10 @@ import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { signupService } from "lib/apis/auth/services";
 import useAppStore from "lib/stores/app/appStore";
-import { BASE_URL } from "lib/utils/app/variable";
-import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
-import { passwordRegex } from "lib/utils/helpers/regex";
-import AppErrors from "lib/utils/statics/errors/errors";
+import { BASE_URL } from "utils/app/variable";
+import { navigateUserBasedOnStatus } from "utils/helpers";
+import { passwordRegex } from "utils/helpers";
+import AppErrors from "utils/constants/errors";
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
@@ -53,7 +53,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
         return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
       if (!isFromPlansPage) {
-        const { href, dashboard } = navigating_user_based_on_status(status, data)
+        const { href, dashboard } = navigateUserBasedOnStatus(status, data)
         dashboard ? shopNavigate(href) : navigate(href)
       }
       close()
@@ -81,14 +81,13 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
   };
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
-    password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required("Required"),
+    email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Required"),
+    password: Yup.string().matches(passwordRegex, AppErrors.signup.passwordRequirementsNotMet).required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], AppErrors.signup.when_the_password_and_confirmed)
+      .oneOf([Yup.ref("password"), null], AppErrors.signup.passwordsDoNotMatch)
       .required("Required"),
     referral: Yup.string(),
   });
-
   return (
     <AppModal open={show} close={close} title="Sign Up">
       <Formik

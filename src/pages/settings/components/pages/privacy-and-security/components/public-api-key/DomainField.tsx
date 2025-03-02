@@ -4,7 +4,7 @@ import useAppToast from 'hooks/toast/useToast'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useHasPermission } from 'lib/stores/app/appStore'
-import { domainRegex } from 'lib/utils/helpers/regex'
+import { domainRegex } from 'utils/helpers'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 

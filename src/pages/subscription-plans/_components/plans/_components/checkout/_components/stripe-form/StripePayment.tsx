@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import AppIcons from 'assets/icon/Appicons';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { useProfile } from 'hooks/useProfile/useProfile';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import React from 'react';
 import { ModalStep } from '../../types/interfaces';
 import StripeForm from './StripeForm';

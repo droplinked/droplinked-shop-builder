@@ -2,7 +2,7 @@ import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileNameFromUrl, getImageFileSize } from 'lib/utils/helpers/image'
+import { getFileNameFromUrl, getFileSizeInKB } from 'utils/helpers'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import appUploadImageContext from '../../context'
 import UploadImagesList from './parts/list/UploadImagesList'
@@ -16,7 +16,7 @@ function DefaultHoverBox() {
     const isHorizontal = mode === "horizontal"
 
     useEffect(() => {
-        if (checkSingleImage && isHorizontal && typeof values === "string") getImageFileSize(values).then((sizeKB) => setSize(sizeKB));
+        if (checkSingleImage && isHorizontal && typeof values === "string") getFileSizeInKB(values).then((sizeKB) => setSize(sizeKB));
     }, [values, isHorizontal, checkSingleImage])
 
 

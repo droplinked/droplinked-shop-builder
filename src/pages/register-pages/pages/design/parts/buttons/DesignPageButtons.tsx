@@ -3,11 +3,11 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { isDateExpired } from "lib/utils/helpers/helpers";
 import React, { useCallback, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { designContext, initialStateDesignPage } from "../../design-context";
 import designPageButtonsModel from "./model";
+import { isDateExpired } from "utils/helpers";
 import useGrowthHackStore from "lib/stores/growth-hack/useGrowthHackStore";
 
 function DesignPageButtons() {

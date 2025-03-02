@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
 import { Box, Flex, HStack, Select, Stack, useDisclosure, VStack } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import { motion } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import BasicButton from "components/common/BasicButton/BasicButton";
-import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
-import { TileDesignContext } from "./context/tile.design.context";
-import { percent_to_hex } from "lib/utils/helpers/helpers";
 import AppModal from "components/common/modal/AppModal";
+import AppTypography from "components/common/typography/AppTypography";
+import { motion } from "framer-motion";
+import React, { useContext, useState } from "react";
+import { percentageToHex } from "utils/constants";
+import { TileDesignContext } from "./context/tile.design.context";
+import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 const imagesToShow = [
     {
@@ -91,7 +91,7 @@ const TileDesignPageProduct = () => {
                 zIndex={9}
                 border={"3px solid transparent"}
                 cursor={"pointer"}
-                backgroundColor={`${CONTAINER?.backgroundColor}${percent_to_hex?.[Number((CONTAINER?.opacity * 100).toFixed())]}`}
+                backgroundColor={`${CONTAINER?.backgroundColor}${percentageToHex?.[Number((CONTAINER?.opacity * 100).toFixed())]}`}
                 _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
                 onClick={() => {
                     updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.CONTAINER });

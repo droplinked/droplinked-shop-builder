@@ -10,7 +10,7 @@ import useDebounce from "hooks/debounce/useDebounce";
 import useAppToast from "hooks/toast/useToast";
 import { ICustomReferralCode } from "lib/apis/shop/interfaces";
 import { updateCustomReferralCodeService } from "lib/apis/shop/shopServices";
-import { BUILDER_URL } from "lib/utils/app/variable";
+import { BUILDER_URL } from "utils/app/variable";
 import React, { useRef, useState, useTransition } from "react";
 import { useMutation } from "react-query";
 import { object, string } from "yup";

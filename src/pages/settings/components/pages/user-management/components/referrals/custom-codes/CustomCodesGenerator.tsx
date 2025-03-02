@@ -8,7 +8,7 @@ import useAppToast from 'hooks/toast/useToast'
 import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
 import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
 import useAppStore from 'lib/stores/app/appStore'
-import { BUILDER_URL } from 'lib/utils/app/variable'
+import { BUILDER_URL } from 'utils/app/variable'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 
