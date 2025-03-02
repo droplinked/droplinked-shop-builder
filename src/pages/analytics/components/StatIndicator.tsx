@@ -1,4 +1,5 @@
-import { Circle, Flex, FlexProps, Text } from "@chakra-ui/react"
+import { FlexProps, Text } from "@chakra-ui/react"
+import CircleSeparatorList from "components/redesign/circleSeparatorList/CircleSeparatorList"
 import React, { PropsWithChildren } from "react"
 
 interface StatIndicatorProps extends FlexProps, PropsWithChildren {
@@ -7,11 +8,10 @@ interface StatIndicatorProps extends FlexProps, PropsWithChildren {
 
 function StatIndicator({ percentage, children, ...rest }: StatIndicatorProps) {
     return (
-        <Flex alignItems="center" gap={2} {...rest}>
+        <CircleSeparatorList>
             <Text fontSize={14} color="#FFF">{percentage.toFixed(2)}%</Text>
-            <Circle size={1} bgColor="#292929" />
             {children}
-        </Flex>
+        </CircleSeparatorList>
     )
 }
 

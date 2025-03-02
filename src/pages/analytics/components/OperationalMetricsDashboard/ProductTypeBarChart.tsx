@@ -3,6 +3,7 @@ import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
 import StylizedTitle from "../StylizedTitle"
+import CircleSeparatorList from "components/redesign/circleSeparatorList/CircleSeparatorList"
 
 const BADGE_COLORS: Record<string, string> = {
     "Normal Products": "#2BCFA1",
@@ -53,18 +54,16 @@ function BreakdownDetailsRow({ item }: { item: ProductBreakdown }) {
             justifyContent="space-between"
             alignItems="center"
             gap={2}
+            color={'white'}
+            fontSize={'14px'}
         >
             <StylizedTitle bgColor={badgeColor} title={item.productType} />
-            <Flex alignItems="center" gap={2} fontSize={14} color="#FFF">
+            <CircleSeparatorList>
                 <Text>{item.percentageOfTotal?.toFixed(2)}%</Text>
-                <Circle size={1} bg="#292929" />
                 <Text>{item.quantity}</Text>
-                <Circle size={1} bg="#292929" />
-                <FormattedPrice
-                    price={item.totalValue}
-                    abbreviationProps={{ color: "#FFF" }}
-                />
-            </Flex>
+                <FormattedPrice price={item.totalValue} abbreviationProps={{ color: "#FFF" }}/>
+            </CircleSeparatorList>
+                
         </Flex>
     )
 }

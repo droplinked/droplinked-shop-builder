@@ -5,6 +5,7 @@ import { IBreakDown } from 'lib/apis/credit/interfaces';
 import React from 'react';
 import { getColor } from '../utils/colorHelpers';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
+import CircleSeparatorList from 'components/redesign/circleSeparatorList/CircleSeparatorList';
 
 interface Props {
     items: IBreakDown[]
@@ -39,19 +40,19 @@ export default function ProgressBar({ items, type }: Props) {
                         justifyContent={{ base: "space-between", sm: "flex-start" }}
                         sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}
                     >
-                        <Flex gap={2} alignItems="center" >
-                            <Box
-                                width="4px"
-                                height="16px"
-                                backgroundColor={getColor(index, sortedItems, type)}
-                                borderRadius="4px"
-                            />
-                            <AppTypography color="#fff" fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
-                        </Flex>
-                        <Box display={{ base: "none", sm: "block" }}>
-                            <AppIcons.DotSpacer />
-                        </Box>
-                        <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
+                        <CircleSeparatorList>
+                            <Flex gap={2} alignItems="center" >
+                                <Box
+                                    width="4px"
+                                    height="16px"
+                                    backgroundColor={getColor(index, sortedItems, type)}
+                                    borderRadius="4px"
+                                />
+                                <AppTypography color="#fff" fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
+                            </Flex>
+                        
+                            <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
+                        </CircleSeparatorList>
                     </Flex>
                 ))}
             </HStack>
