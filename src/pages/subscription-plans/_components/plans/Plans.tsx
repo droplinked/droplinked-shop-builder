@@ -2,7 +2,7 @@ import { Flex, SimpleGrid } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
-import AppErrors from "lib/utils/statics/errors/errors";
+import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";
@@ -17,7 +17,7 @@ export default function Plans() {
 
     if (isFetching) return <PlansGrid><Loading /></PlansGrid >
 
-    if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
+    if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.subscriptionDataUnavailable}</AppTypography>
 
     const getFilteredFeatures = (currentPlan: SubscriptionPlan, previousPlan?: SubscriptionPlan): SubOptionId[] => {
         if (!previousPlan) return currentPlan.subOptionIds // Return all features for the starter plan

@@ -1,7 +1,7 @@
 import hashkeyModel from 'components/common/hashKey/model';
 import { Chain, ChainNotImplementedException, ChainWallet, DropWeb3, ISKUDetails, Network, ProductType, RecordResponse, Web3Actions } from 'droplinked-web3';
 import { recordBatchCasperService, recordCasperService } from 'lib/apis/sku/services';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import { IRecordParamsData, RecordProduct } from '../..';
 
 interface Irecord {

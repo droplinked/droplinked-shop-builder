@@ -1,4 +1,4 @@
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 
 interface IgetLink {
 	blockchain: string;

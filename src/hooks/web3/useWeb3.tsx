@@ -1,5 +1,5 @@
 import useAppStore, { IUserWalletsProps } from 'lib/stores/app/appStore';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import web3Model, { IAcceptData, IrecordBatch, IRecordPrams, IRequestData } from './models';
 import { DropWeb3, Network, Chain, Web3Actions, ChainWallet } from 'droplinked-web3';
 

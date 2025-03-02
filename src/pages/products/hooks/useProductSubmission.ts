@@ -7,9 +7,9 @@ import { createProductService, updateProductService } from 'lib/apis/product/pro
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
-import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
+import { productTypeUsageLimits } from 'utils/constants'
 
 interface Params {
     closeProductFormDrawer: () => void
@@ -154,7 +154,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const checkProductTypeLegalUsage = (productType: ProductType) => {
-        const { errorMessage, key } = productTypeLegalUsageMap[productType]
+        const { errorMessage, key } = productTypeUsageLimits[productType]
         const legalUsage = shopLegalUsage.find(obj => obj.key === key)
         if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0)) {
             throw new Error(errorMessage)

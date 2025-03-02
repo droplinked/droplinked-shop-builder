@@ -7,7 +7,7 @@ import RuleModal from './components/rulesets/RuleModal';
 import TableMenu from 'components/redesign/table-menu/TableMenu';
 import AppIcons from 'assets/icon/Appicons';
 import { Link } from 'react-router-dom';
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 import { updateCollectionVisiblityService } from 'lib/apis/collection/services';
 import useAppToast from 'hooks/toast/useToast';
 import { useMutation } from 'react-query';

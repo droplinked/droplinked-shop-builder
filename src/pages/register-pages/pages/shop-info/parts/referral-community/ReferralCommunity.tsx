@@ -1,7 +1,7 @@
 import { Flex, Link, VStack } from "@chakra-ui/react";
 import AppTable from "components/common/table/AppTable";
 import AppTypography from "components/common/typography/AppTypography";
-import { SHOP_URL } from "lib/utils/app/variable";
+import { SHOP_URL } from "utils/app/variable";
 import React, { useCallback } from "react";
 
 const ReferralCommunity = ({ referralReports }: { referralReports: any[] }) => {

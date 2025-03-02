@@ -1,4 +1,4 @@
-import { version } from "../../../../package.json"
+import { version } from "../../../package.json"
 
 // Get the origin, or default to an empty string (useful for SSR)
 const origin = (typeof window !== "undefined" && window.location.origin) || ""

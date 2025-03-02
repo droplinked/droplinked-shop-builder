@@ -4,7 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { sendInvitaionEmailService } from 'lib/apis/user/services'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import AppErrors from 'utils/constants/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
 import * as Yup from "yup"
@@ -30,7 +30,7 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
     }
 
     const formSchema = Yup.object().shape({
-        email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Email is required.")
+        email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Email is required.")
     })
 
     return (

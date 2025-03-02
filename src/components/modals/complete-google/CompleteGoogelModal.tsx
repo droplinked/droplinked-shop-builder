@@ -6,8 +6,8 @@ import { Form, Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import useAppStore from "lib/stores/app/appStore";
-import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
-import { usernameRegex } from "lib/utils/helpers/regex";
+import { navigateUserBasedOnStatus } from "utils/helpers";
+import { usernameRegex } from "utils/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import React, { useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -40,7 +40,7 @@ const CompleteGoogelModal = ({ show, close, switchModal, isFromPlansPage, subscr
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
                 const status = data.user.status;
-                const { href, dashboard } = navigating_user_based_on_status(status, data);
+                const { href, dashboard } = navigateUserBasedOnStatus(status, data);
                 dashboard ? shopNavigate(href) : navigate(href)
             }
         } catch (error) {

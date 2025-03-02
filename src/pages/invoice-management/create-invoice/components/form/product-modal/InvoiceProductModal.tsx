@@ -7,7 +7,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'hooks/debounce/useDebounce';
 import useAppToast from 'hooks/toast/useToast';
 import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
-import { arraysAreEqual } from 'lib/utils/helpers/helpers';
+import { areArraysEqual } from 'utils/helpers';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import ProductTable from './product-table/ProductTable';
@@ -34,7 +34,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
 
     const closeModal = async () => {
         try {
-            if (!cart.length || arraysAreEqual(cart, prevItems)) onClose()
+            if (!cart.length || areArraysEqual(cart, prevItems)) onClose()
             else {
                 setLoading(true)
                 let invoiceId = invoiceCart._id
