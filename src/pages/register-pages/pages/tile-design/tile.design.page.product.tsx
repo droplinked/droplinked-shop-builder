@@ -1,13 +1,13 @@
 import { Box, Flex, HStack, Select, Stack, useDisclosure, VStack } from "@chakra-ui/react";
 import { wrap } from "@popmotion/popcorn";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import AppModal from "components/common/modal/AppModal";
 import AppTypography from "components/common/typography/AppTypography";
 import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
+import { percentageToHex } from "utils/constants";
 import { TileDesignContext } from "./context/tile.design.context";
 import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
-import AppModal from "components/common/modal/AppModal";
-import { percentageToHex } from "utils/helpers";
 
 const imagesToShow = [
     {

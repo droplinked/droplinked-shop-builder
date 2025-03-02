@@ -7,7 +7,7 @@ import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import useAppStore from "lib/stores/app/appStore";
 import { navigateUserBasedOnStatus } from "utils/helpers";
-import { usernameRegex } from "utils/helpers/regex";
+import { usernameRegex } from "utils/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import React, { useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

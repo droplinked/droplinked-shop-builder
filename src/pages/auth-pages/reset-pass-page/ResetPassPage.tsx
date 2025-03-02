@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IchangePasswordService } from "lib/apis/user/interfaces";
 import { changePasswordService } from "lib/apis/user/services";
-import { passwordRegex } from "utils/helpers/regex";
+import { passwordRegex } from "utils/helpers";
 import AppErrors from "utils/constants/errors";
 import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";

@@ -7,9 +7,9 @@ import { createProductService, updateProductService } from 'lib/apis/product/pro
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
-import { productTypeUsageLimits }from 'utils/helpers'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
+import { productTypeUsageLimits } from 'utils/constants'
 
 interface Params {
     closeProductFormDrawer: () => void
