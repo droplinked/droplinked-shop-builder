@@ -1,17 +1,20 @@
 # 🎨 Icon System Documentation
 
 ## Overview
-Our icon system provides a flexible and consistent way to use icons throughout the application. Icons are organized by categories and sizes for better maintainability and consistency.
+Our icon system uses React components generated from SVGs, providing consistent and scalable icons throughout the application.
 
 ## 📏 Size Variations
-Each icon comes in three standard sizes:
+Icons are available in three standard sizes:
 - Small (Sm): 16x16px
 - Medium (Md): 20x20px
-- Large (Lg): 24x24px
+- Large (Lg): 24x24px - viewBox="0 0 24 24"
 
 ## 🗂️ Icon Categories
 Icons are organized in the following categories:
 - System
+  - Blog
+  - Affiliate
+  - ...
 - StyleDesigner
 - SocialMedia
  - Colorless
@@ -25,68 +28,44 @@ Icons are organized in the following categories:
 
 ## 💻 Usage
 
-### Basic Usage
+### Basic Implementation
 ```tsx
-import { AffiliateSm, AffiliateMd, AffiliateLg } from '@/assets/icons/System/Affiliate';
-
-// Small icon (16x16)
-<AffiliateSm />
-
-// Medium icon (20x20)
-<AffiliateMd />
+import { BlogLg } from '@/assets/icons/System/Blog';
 
 // Large icon (24x24)
-<AffiliateLg />
+<BlogLg />
+
+// With custom props
+<BlogLg className="custom-class" />
 ```
 
-### 🎨 Customization with Chakra UI
-Icons can be customized using Chakra UI's Box component and sx prop:
+### 🎨 SVG Structure
+Our icons follow a consistent structure:
+```tsx
+<svg 
+  width="24" 
+  height="24" 
+  viewBox="0 0 24 24" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path ... stroke="currentColor" />
+</svg>
+```
+
+### Customization with Chakra UI
+Icons can be customized using Chakra UI's Box component:
 
 ```tsx
 import { Box } from '@chakra-ui/react';
-import { AffiliateMd } from '@/assets/icons/System/Affiliate';
+import { BlogLg } from '@/assets/icons/System/Blog';
 
-// Customize the icon
-<Box
-  as={AffiliateMd}
-  sx={{
-    'svg': {
-      width: '32px',  // Custom size
-      height: '32px'
-    },
-    'path': {
-      stroke: 'blue.500',  // Custom stroke color
-      strokeWidth: '2px'   // Custom stroke width
-    }
-  }}
-/>
+<BlogLg color="white" />
 ```
 
-## 🛠️ Customization Options
+## 🛠️ Technical Details
 
-You can customize various SVG properties using the sx prop:
-- `stroke`: Change the stroke color
-- `fill`: Modify the fill color
-- `strokeWidth`: Adjust stroke thickness
-- `width/height`: Resize the icon
-- `transition`: Add animations
-- `transform`: Apply transformations
-
-### Example with Multiple Customizations
-```tsx
-<Box
-  as={AffiliateMd}
-  sx={{
-    'svg': {
-      transition: 'all 0.2s',
-      _hover: {
-        transform: 'scale(1.2)'
-      }
-    },
-    'path': {
-      stroke: 'brand.500',
-      strokeWidth: '1.5px'
-    }
-  }}
-/>
-```
+- Icons use `currentColor` for stroke color, allowing for easy theme integration
+- Default stroke widths are 1.5-2px
+- All icons support standard SVG props through React's SVGProps
+- Icons maintain consistent styling with `strokeLinecap="round"` and `strokeLinejoin="round"`
