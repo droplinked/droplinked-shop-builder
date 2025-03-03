@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Flex, Grid } from '@chakra-ui/react'
 import React from 'react'
 import OnboardingHeader from './components/OnboardingHeader'
 import OnboardingStepContent from './components/OnboardingStepContent'
@@ -22,32 +22,23 @@ function Onboarding() {
     const rightContent = renderRightContent()
 
     return (
-        <Grid
-            templateColumns={hasRightSection ? '1fr 1fr' : '1fr'}
-            minHeight="100vh"
-            bg="gray.50"
-            gap={8}
-            p={8}
-        >
-            <GridItem>
-                <Box maxW="container.sm" mx="auto">
-                    <OnboardingHeader />
-                    <OnboardingStepContent
-                        step={currentStep}
-                        data={stepData[currentStep]}
-                        onNext={nextStep}
-                        onBack={prevStep}
-                        shopData={shopData}
-                        updateShopData={updateShopData}
-                    />
-                </Box>
-            </GridItem>
+        <Grid templateColumns={hasRightSection ? '1fr 1fr' : '1fr'}>
+            <Flex direction="column" gap={12} padding={16}>
+                <OnboardingHeader />
+                <OnboardingStepContent
+                    step={currentStep}
+                    data={stepData[currentStep]}
+                    onNext={nextStep}
+                    onBack={prevStep}
+                    shopData={shopData}
+                    updateShopData={updateShopData}
+                />
+            </Flex>
+
             {hasRightSection && rightContent && (
-                <GridItem>
-                    <Box maxW="container.sm" mx="auto">
-                        {rightContent}
-                    </Box>
-                </GridItem>
+                <Box>
+                    {rightContent}
+                </Box>
             )}
         </Grid>
     )

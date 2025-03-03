@@ -1,18 +1,14 @@
-import { Image, VStack } from '@chakra-ui/react'
+import { Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import Stepper from './Stepper'
+import AppIcons from 'assets/icon/Appicons'
 
 function OnboardingHeader() {
     return (
-        <VStack spacing={6} mb={8}>
-            <Image
-                src="/logo.png"
-                alt="Website Logo"
-                maxH="60px"
-                objectFit="contain"
-            />
+        <>
+            <AppIcons.Droplinked />
             <Stepper />
-        </VStack>
+        </>
     )
 }
 
