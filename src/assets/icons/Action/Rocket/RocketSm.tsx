@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const RocketSm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M8 6.875C8.34518 6.875 8.625 6.59518 8.625 6.25C8.625 5.90482 8.34518 5.625 8 5.625C7.65482 5.625 7.375 5.90482 7.375 6.25C7.375 6.59518 7.65482 6.875 8 6.875Z" fill="currentColor" />
         <path d="M5.9258 12C2.34518 5.95751 6.49205 2.03313 7.6933 1.10501C7.78106 1.03679 7.88903 0.999756 8.00018 0.999756C8.11133 0.999756 8.21931 1.03679 8.30706 1.10501C9.50831 2.03313 13.6552 5.95751 10.0746 12H5.9258Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M11.4898 6.92993L13.3842 9.20243C13.4331 9.2612 13.4679 9.33042 13.4859 9.40475C13.5039 9.47908 13.5046 9.55654 13.488 9.63118L12.7155 13.1081C12.6971 13.191 12.6578 13.2678 12.6015 13.3314C12.5451 13.3949 12.4735 13.4431 12.3934 13.4713C12.3133 13.4995 12.2273 13.5068 12.1436 13.4926C12.0599 13.4783 11.9811 13.443 11.9148 13.3899L10.0742 11.9999" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

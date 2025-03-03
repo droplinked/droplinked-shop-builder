@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const DribbbleMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M5.54688 16.0367C6.65964 14.1936 8.22978 12.6693 10.105 11.6117C11.9803 10.554 14.097 9.99882 16.25 10C16.6711 10 17.0883 10.0211 17.5 10.0617" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M14.6873 4.14746C13.5164 5.58667 12.0392 6.7466 10.3634 7.54277C8.6875 8.33893 6.85517 8.75129 4.9998 8.7498C4.20916 8.75 3.42026 8.67571 2.64355 8.52793" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

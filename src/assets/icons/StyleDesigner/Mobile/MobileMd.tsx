@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const MobileMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M8.9585 2.5H7.396C6.53305 2.5 5.8335 3.21954 5.8335 4.10714V15.8929C5.8335 16.7804 6.53305 17.5 7.396 17.5H12.6043C13.4672 17.5 14.1668 16.7804 14.1668 15.8929V4.10714C14.1668 3.21954 13.4672 2.5 12.6043 2.5H11.0418M8.9585 2.5V3.57143H11.0418V2.5M8.9585 2.5H11.0418M8.9585 15.8929H11.0418" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 

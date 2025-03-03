@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const SunSm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_8778_4754)">
             <path d="M8 2.5V1" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M8 11.5C9.933 11.5 11.5 9.933 11.5 8C11.5 6.067 9.933 4.5 8 4.5C6.067 4.5 4.5 6.067 4.5 8C4.5 9.933 6.067 11.5 8 11.5Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

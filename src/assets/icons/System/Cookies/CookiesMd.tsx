@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const CookiesMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M18.167 11.6666C17.3948 15.4703 14.0319 18.3332 10.0003 18.3332C5.39795 18.3332 1.66699 14.6023 1.66699 9.99991C1.66699 5.67882 4.95589 2.12586 9.16699 1.70776" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M5.41667 8.33333C5.18655 8.33333 5 8.14678 5 7.91667C5 7.68655 5.18655 7.5 5.41667 7.5C5.64678 7.5 5.83333 7.68655 5.83333 7.91667C5.83333 8.14678 5.64678 8.33333 5.41667 8.33333Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M17.0837 3.33333C16.8536 3.33333 16.667 3.14678 16.667 2.91667C16.667 2.68655 16.8536 2.5 17.0837 2.5C17.3137 2.5 17.5003 2.68655 17.5003 2.91667C17.5003 3.14678 17.3137 3.33333 17.0837 3.33333Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

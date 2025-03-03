@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const SuitcaseSm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M2 7.33333L2.10192 9.4846C2.21143 11.7791 2.26618 12.9263 3.03923 13.6298C3.81229 14.3333 5.01811 14.3333 7.42973 14.3333H8.57027C10.9819 14.3333 12.1877 14.3333 12.9608 13.6298C13.7338 12.9263 13.7886 11.7791 13.8981 9.4846L14 7.33333" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M1.89845 6.96207C3.03131 9.11627 5.58646 10 8.00033 10C10.4142 10 12.9693 9.11627 14.1022 6.96207C14.643 5.93371 14.2335 4 12.9017 4H3.09899C1.76715 4 1.35768 5.93371 1.89845 6.96207Z" stroke="currentColor" />
         <path d="M8 7.33333H8.00675" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

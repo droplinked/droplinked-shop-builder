@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const AffiliateMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M4.94238 5.78L6.00488 9.32083M10.6774 13.995L14.2199 15.0575" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M9.73584 10.2642L14.535 5.465" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M3.3335 4.58333C3.3335 4.74748 3.36583 4.91003 3.42865 5.06168C3.49146 5.21334 3.58354 5.35114 3.69961 5.46721C3.81569 5.58329 3.95348 5.67536 4.10514 5.73818C4.2568 5.801 4.41934 5.83333 4.5835 5.83333C4.74765 5.83333 4.91019 5.801 5.06185 5.73818C5.21351 5.67536 5.35131 5.58329 5.46738 5.46721C5.58345 5.35114 5.67553 5.21334 5.73835 5.06168C5.80116 4.91003 5.8335 4.74748 5.8335 4.58333C5.8335 4.41918 5.80116 4.25663 5.73835 4.10497C5.67553 3.95332 5.58345 3.81552 5.46738 3.69944C5.35131 3.58337 5.21351 3.4913 5.06185 3.42848C4.91019 3.36566 4.74765 3.33333 4.5835 3.33333C4.41934 3.33333 4.2568 3.36566 4.10514 3.42848C3.95348 3.4913 3.81569 3.58337 3.69961 3.69944C3.58354 3.81552 3.49146 3.95332 3.42865 4.10497C3.36583 4.25663 3.3335 4.41918 3.3335 4.58333Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

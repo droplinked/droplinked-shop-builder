@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const TokenpaySm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M8.07504 14.6539C8.02457 14.6711 7.97517 14.6709 7.92484 14.6533C7.27824 14.4261 2.6665 12.6262 2.6665 7.5016V2.86923C2.6665 2.74667 2.74978 2.63983 2.8685 2.6101L7.93517 1.34131C7.97764 1.33067 8.02204 1.33067 8.0645 1.34131L13.1312 2.6101C13.2499 2.63983 13.3332 2.74667 13.3332 2.86923V7.5016C13.3332 12.6779 8.7225 14.433 8.07504 14.6539Z" stroke="currentColor" stroke-miterlimit="10" strokeLinejoin="round" />
         <g clip-path="url(#clip0_10660_1648)">
             <path d="M8 9.5C9.3807 9.5 10.5 8.3807 10.5 7C10.5 5.61929 9.3807 4.5 8 4.5C6.61929 4.5 5.5 5.61929 5.5 7C5.5 8.3807 6.61929 9.5 8 9.5Z" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round" />

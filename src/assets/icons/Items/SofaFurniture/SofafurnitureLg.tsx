@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const SofafurnitureLg = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M2 16V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M12 13V7C12 5.89543 12.8954 5 14 5H18C19.1046 5 20 5.89543 20 7V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M12 13V7C12 5.89543 11.1046 5 10 5H6C4.89543 5 4 5.89543 4 7V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

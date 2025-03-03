@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const RobotLg = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_11883_33)">
             <path d="M18.75 5.25H5.25C4.00736 5.25 3 6.25736 3 7.5V18C3 19.2426 4.00736 20.25 5.25 20.25H18.75C19.9926 20.25 21 19.2426 21 18V7.5C21 6.25736 19.9926 5.25 18.75 5.25Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M15.375 13.5H8.625C7.58947 13.5 6.75 14.3395 6.75 15.375C6.75 16.4105 7.58947 17.25 8.625 17.25H15.375C16.4105 17.25 17.25 16.4105 17.25 15.375C17.25 14.3395 16.4105 13.5 15.375 13.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const FontsizeMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_11142_250)">
             <path d="M11.25 15L6.25 4.375L1.25 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M15.625 15C17.0057 15 18.125 14.0206 18.125 12.8125C18.125 11.6044 17.0057 10.625 15.625 10.625C14.2443 10.625 13.125 11.6044 13.125 12.8125C13.125 14.0206 14.2443 15 15.625 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

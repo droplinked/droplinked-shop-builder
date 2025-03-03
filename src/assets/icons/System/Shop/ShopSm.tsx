@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const ShopSm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_8234_4637)">
             <path d="M2.54541 8.79022V13.4545C2.54541 13.5992 2.60288 13.7379 2.70517 13.8402C2.80746 13.9425 2.9462 14 3.09086 14H12.909C13.0537 14 13.1924 13.9425 13.2947 13.8402C13.397 13.7379 13.4545 13.5992 13.4545 13.4545V8.79022" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M2.95459 2H13.0455C13.164 2.00002 13.2792 2.03863 13.3738 2.10998C13.4684 2.18132 13.5372 2.28154 13.5698 2.39545L14.5455 5.81818H1.45459L2.43232 2.39545C2.4648 2.28187 2.53329 2.1819 2.62747 2.11059C2.72166 2.03927 2.83645 2.00047 2.95459 2Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

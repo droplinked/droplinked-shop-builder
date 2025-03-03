@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const SoonLg = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M5.8 11.3L2 22L12.7 18.21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M4 3H4.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M22 8H22.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

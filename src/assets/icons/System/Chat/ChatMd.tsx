@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const ChatMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_8838_3431)">
             <path d="M10 10.9375C10.5178 10.9375 10.9375 10.5178 10.9375 10C10.9375 9.48223 10.5178 9.0625 10 9.0625C9.48223 9.0625 9.0625 9.48223 9.0625 10C9.0625 10.5178 9.48223 10.9375 10 10.9375Z" fill="currentColor" />
             <path d="M6.5625 10.9375C7.08027 10.9375 7.5 10.5178 7.5 10C7.5 9.48223 7.08027 9.0625 6.5625 9.0625C6.04473 9.0625 5.625 9.48223 5.625 10C5.625 10.5178 6.04473 10.9375 6.5625 10.9375Z" fill="currentColor" />

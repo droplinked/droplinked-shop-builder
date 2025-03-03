@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const Calendarmonthly1Sm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M13 2.5H3C2.17157 2.5 1.5 3.17157 1.5 4V13C1.5 13.8284 2.17157 14.5 3 14.5H13C13.8284 14.5 14.5 13.8284 14.5 13V4C14.5 3.17157 13.8284 2.5 13 2.5Z" stroke="currentColor" strokeLinejoin="round" />
         <path opacity="0.25" d="M9.25 8C9.66421 8 10 7.66421 10 7.25C10 6.83579 9.66421 6.5 9.25 6.5C8.83579 6.5 8.5 6.83579 8.5 7.25C8.5 7.66421 8.83579 8 9.25 8Z" fill="currentColor" />
         <path d="M11.75 8C12.1642 8 12.5 7.66421 12.5 7.25C12.5 6.83579 12.1642 6.5 11.75 6.5C11.3358 6.5 11 6.83579 11 7.25C11 7.66421 11.3358 8 11.75 8Z" fill="currentColor" />

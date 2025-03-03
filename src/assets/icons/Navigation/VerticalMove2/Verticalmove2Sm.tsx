@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const Verticalmove2Sm = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_8237_6951)">
             <path d="M2.6665 8H13.3332" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M6 10.6666L8 12.6666L10 10.6666" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const RedditMd = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_9589_53)">
             <path d="M14.375 3.75C15.0654 3.75 15.625 3.19036 15.625 2.5C15.625 1.80964 15.0654 1.25 14.375 1.25C13.6846 1.25 13.125 1.80964 13.125 2.5C13.125 3.19036 13.6846 3.75 14.375 3.75Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M10 5.625L10.625 1.875L13.1477 2.26328" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

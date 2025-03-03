@@ -2,7 +2,7 @@
 import React, { SVGProps } from "react";
 
 export const RocketLg = (props: SVGProps<SVGSVGElement>) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M12 10.3125C12.5178 10.3125 12.9375 9.89277 12.9375 9.375C12.9375 8.85723 12.5178 8.4375 12 8.4375C11.4822 8.4375 11.0625 8.85723 11.0625 9.375C11.0625 9.89277 11.4822 10.3125 12 10.3125Z" fill="currentColor" />
         <path d="M8.88871 17.9999C3.51777 8.93614 9.73808 3.04957 11.54 1.65739C11.6716 1.55506 11.8336 1.49951 12.0003 1.49951C12.167 1.49951 12.329 1.55506 12.4606 1.65739C14.2625 3.04957 20.4828 8.93614 15.1118 17.9999H8.88871Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M17.2348 10.395L20.0763 13.8038C20.1497 13.8919 20.2019 13.9957 20.2289 14.1072C20.2559 14.2187 20.2569 14.3349 20.232 14.4469L19.0732 19.6622C19.0456 19.7866 18.9867 19.9018 18.9022 19.9972C18.8177 20.0925 18.7103 20.1647 18.5901 20.207C18.4699 20.2493 18.341 20.2603 18.2154 20.239C18.0898 20.2176 17.9717 20.1646 17.8723 20.085L15.1113 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
