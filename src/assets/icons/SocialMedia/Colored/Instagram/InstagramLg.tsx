@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const InstagramLg = (props: SVGProps<SVGSVGElement>) => (
+export const InstagramLg = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.83784 12C5.83784 8.59671 8.59671 5.83784 12 5.83784C15.4033 5.83784 18.1622 8.59671 18.1622 12C18.1622 15.4033 15.4033 18.1622 12 18.1622C8.59671 18.1622 5.83784 15.4033 5.83784 12ZM12 16C9.79085 16 8 14.2092 8 12C8 9.79085 9.79085 8 12 8C14.2091 8 16 9.79085 16 12C16 14.2092 14.2091 16 12 16Z" fill="url(#paint0_linear_10025_4333)" />
         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.83784 12C5.83784 8.59671 8.59671 5.83784 12 5.83784C15.4033 5.83784 18.1622 8.59671 18.1622 12C18.1622 15.4033 15.4033 18.1622 12 18.1622C8.59671 18.1622 5.83784 15.4033 5.83784 12ZM12 16C9.79085 16 8 14.2092 8 12C8 9.79085 9.79085 8 12 8C14.2091 8 16 9.79085 16 12C16 14.2092 14.2091 16 12 16Z" fill="url(#paint1_radial_10025_4333)" />

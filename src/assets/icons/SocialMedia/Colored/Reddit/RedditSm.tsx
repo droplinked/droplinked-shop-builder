@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const RedditSm = (props: SVGProps<SVGSVGElement>) => (
+export const RedditSm = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_10025_4346)">
             <path d="M7.99902 0C3.5809 0 -0.000976562 3.58187 -0.000976562 8C-0.000976562 10.2094 0.894649 12.2094 2.34215 13.6569L0.818398 15.1806C0.515898 15.4831 0.730273 16 1.15777 16H7.99902C12.4171 16 15.999 12.4181 15.999 8C15.999 3.58187 12.4171 0 7.99902 0Z" fill="#FF4500" />

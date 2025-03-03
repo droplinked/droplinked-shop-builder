@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const FacebookSm = (props: SVGProps<SVGSVGElement>) => (
+export const FacebookSm = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_10025_4278)">
             <path d="M16 8C16 3.58174 12.4183 1.04904e-05 7.99999 1.04904e-05C3.58173 1.04904e-05 0 3.58174 0 8C0 11.7518 2.58288 14.8999 6.06739 15.7644V10.4447H4.41772V8H6.06739V6.9466C6.06739 4.22365 7.29964 2.96158 9.97292 2.96158C10.4797 2.96158 11.3543 3.06094 11.712 3.16033V5.37645C11.5232 5.35658 11.1953 5.34663 10.7878 5.34663C9.47603 5.34663 8.96918 5.84353 8.96918 7.13543V8H11.5823L11.1334 10.4447H8.96918V15.9414C12.9303 15.463 16 12.0902 16 8Z" fill="#0866FF" />
