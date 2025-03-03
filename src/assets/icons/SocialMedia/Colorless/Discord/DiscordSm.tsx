@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const DiscordSm = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const DiscordSm = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M5.9585 9.45817C6.44175 9.45817 6.8335 9.00113 6.8335 8.43734C6.8335 7.87355 6.44175 7.4165 5.9585 7.4165C5.47525 7.4165 5.0835 7.87355 5.0835 8.43734C5.0835 9.00113 5.47525 9.45817 5.9585 9.45817Z" stroke={color} strokeLinejoin="round" />
         <path d="M10.0415 9.45817C10.5248 9.45817 10.9165 9.00113 10.9165 8.43734C10.9165 7.87355 10.5248 7.4165 10.0415 7.4165C9.55825 7.4165 9.1665 7.87355 9.1665 8.43734C9.1665 9.00113 9.55825 9.45817 10.0415 9.45817Z" stroke={color} strokeLinejoin="round" />

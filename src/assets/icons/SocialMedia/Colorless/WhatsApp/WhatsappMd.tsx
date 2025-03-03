@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const WhatsappMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const WhatsappMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M5.625 8.125C5.625 7.46196 5.88839 6.82607 6.35723 6.35723C6.82607 5.88839 7.46196 5.625 8.125 5.625L9.375 8.125L8.4125 9.56797C8.7943 10.4803 9.51973 11.2057 10.432 11.5875L11.875 10.625L14.375 11.875C14.375 12.538 14.1116 13.1739 13.6428 13.6428C13.1739 14.1116 12.538 14.375 11.875 14.375C10.2174 14.375 8.62769 13.7165 7.45558 12.5444C6.28348 11.3723 5.625 9.7826 5.625 8.125Z" stroke={color} strokeLinecap="round" strokeLinejoin="round" />
         <mask id="path-2-inside-1_9235_120" fill="white">

@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const BehanceMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const BehanceMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M2.5 9.6875H7.34375C8.04823 9.6875 8.72386 9.96735 9.222 10.4655C9.72015 10.9636 10 11.6393 10 12.3438C10 13.0482 9.72015 13.7239 9.222 14.222C8.72386 14.7201 8.04823 15 7.34375 15H2.5V5H7.03125C7.65285 5 8.24899 5.24693 8.68853 5.68647C9.12807 6.12601 9.375 6.72215 9.375 7.34375C9.375 7.96535 9.12807 8.56149 8.68853 9.00103C8.24899 9.44057 7.65285 9.6875 7.03125 9.6875" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M13.125 6.25H18.125" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

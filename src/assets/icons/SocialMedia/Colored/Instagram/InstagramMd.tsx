@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const InstagramMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const InstagramMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.86487 10C4.86487 7.16393 7.16393 4.86487 10 4.86487C12.8361 4.86487 15.1351 7.16393 15.1351 10C15.1351 12.8361 12.8361 15.1351 10 15.1351C7.16393 15.1351 4.86487 12.8361 4.86487 10ZM10 13.3333C8.15904 13.3333 6.66667 11.841 6.66667 10C6.66667 8.15904 8.15904 6.66667 10 6.66667C11.841 6.66667 13.3333 8.15904 13.3333 10C13.3333 11.841 11.841 13.3333 10 13.3333Z" fill="url(#paint0_linear_10025_4331)" />
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.86487 10C4.86487 7.16393 7.16393 4.86487 10 4.86487C12.8361 4.86487 15.1351 7.16393 15.1351 10C15.1351 12.8361 12.8361 15.1351 10 15.1351C7.16393 15.1351 4.86487 12.8361 4.86487 10ZM10 13.3333C8.15904 13.3333 6.66667 11.841 6.66667 10C6.66667 8.15904 8.15904 6.66667 10 6.66667C11.841 6.66667 13.3333 8.15904 13.3333 10C13.3333 11.841 11.841 13.3333 10 13.3333Z" fill="url(#paint1_radial_10025_4331)" />

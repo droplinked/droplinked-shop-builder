@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const Telegram2Lg = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const Telegram2Lg = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_10025_4325)">
             <path d="M11.999 24C18.6264 24 23.999 18.6274 23.999 12C23.999 5.37258 18.6264 0 11.999 0C5.37161 0 -0.000976562 5.37258 -0.000976562 12C-0.000976562 18.6274 5.37161 24 11.999 24Z" fill="url(#paint0_linear_10025_4325)" />

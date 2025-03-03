@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const DesignMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const DesignMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M14.7286 9.50623L13.1409 14.2694C13.0893 14.4241 12.9655 14.5441 12.809 14.5906L3.07786 17.4836C2.69012 17.5988 2.33311 17.23 2.46103 16.8462L5.62052 7.36774C5.66647 7.22988 5.77012 7.11884 5.90449 7.06351L10.3933 5.21516C10.58 5.13831 10.7945 5.18122 10.9373 5.32395L14.6078 8.99456C14.7417 9.12848 14.7885 9.32656 14.7286 9.50623Z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M2.74658 17.168L8.04988 11.8647" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

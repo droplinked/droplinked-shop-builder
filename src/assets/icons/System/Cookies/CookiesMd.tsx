@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const CookiesMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const CookiesMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M18.167 11.6666C17.3948 15.4703 14.0319 18.3332 10.0003 18.3332C5.39795 18.3332 1.66699 14.6023 1.66699 9.99991C1.66699 5.67882 4.95589 2.12586 9.16699 1.70776" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M5.41667 8.33333C5.18655 8.33333 5 8.14678 5 7.91667C5 7.68655 5.18655 7.5 5.41667 7.5C5.64678 7.5 5.83333 7.68655 5.83333 7.91667C5.83333 8.14678 5.64678 8.33333 5.41667 8.33333Z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

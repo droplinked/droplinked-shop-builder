@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const PriceplanMd = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const PriceplanMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <g clip-path="url(#clip0_8781_3474)">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3313 5.499C12.8315 4.9529 11.9979 4.806 11.3717 5.30606C10.7454 5.80613 10.6572 6.6422 11.1491 7.23363C11.558 7.72536 12.7955 8.76246 13.201 9.09813C13.2464 9.13568 13.2691 9.15446 13.2956 9.16184C13.3187 9.16828 13.3439 9.16828 13.367 9.16184C13.3935 9.15446 13.4162 9.13568 13.4616 9.09813C13.8671 8.76246 15.1046 7.72536 15.5135 7.23363C16.0053 6.6422 15.9279 5.80087 15.2909 5.30606C14.6539 4.81126 13.8311 4.9529 13.3313 5.499Z" stroke={color} strokeLinecap="round" strokeLinejoin="round" />

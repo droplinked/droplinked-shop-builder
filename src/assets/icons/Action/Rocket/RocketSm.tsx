@@ -1,7 +1,7 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const RocketSm = ({ color = "currentColor", ...props }: SVGProps<SVGSVGElement>) => (
+export const RocketSm = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) => (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M8 6.875C8.34518 6.875 8.625 6.59518 8.625 6.25C8.625 5.90482 8.34518 5.625 8 5.625C7.65482 5.625 7.375 5.90482 7.375 6.25C7.375 6.59518 7.65482 6.875 8 6.875Z" fill={color} />
         <path d="M5.9258 12C2.34518 5.95751 6.49205 2.03313 7.6933 1.10501C7.78106 1.03679 7.88903 0.999756 8.00018 0.999756C8.11133 0.999756 8.21931 1.03679 8.30706 1.10501C9.50831 2.03313 13.6552 5.95751 10.0746 12H5.9258Z" stroke={color} strokeLinecap="round" strokeLinejoin="round" />
