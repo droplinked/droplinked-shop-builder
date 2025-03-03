@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import CircleSeparatorList from 'components/redesign/circleSeparatorList/CircleSeparatorList';
+import DotSeparatedList from 'components/redesign/dotSeparatedList/DotSeparatedList';
 import productPageModel from 'pages/affiliate/product/model';
 
 import React from 'react';
@@ -28,13 +28,13 @@ function ProductOptions({ product }: { product: any }) {
       {/* Size Options */}
       {sizes.length > 0 && (
         <OptionGroup title="Size">
-          <CircleSeparatorList>
+          <DotSeparatedList>
             {sizes.map((size, index) => (
               <AppTypography key={index} textAlign="center" color="white" fontSize="lg" fontWeight="medium">
                 {size.caption}
               </AppTypography>
             ))}
-          </CircleSeparatorList>
+          </DotSeparatedList>
         </OptionGroup>
       )}
 
@@ -42,13 +42,13 @@ function ProductOptions({ product }: { product: any }) {
       {variants.length > 0 &&
         variants.map((variant_group, key) => (
           <OptionGroup key={key} title={variant_group.name}>
-            <CircleSeparatorList>
+            <DotSeparatedList>
               {variant_group.values.map((value, index) => (
                 <AppTypography key={index} textAlign="center" color="white" fontSize="lg" fontWeight="medium">
                   {value.caption}
                 </AppTypography>
               ))}
-            </CircleSeparatorList>
+            </DotSeparatedList>
           </OptionGroup>
         ))}
     </>

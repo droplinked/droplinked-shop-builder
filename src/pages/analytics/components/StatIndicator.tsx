@@ -1,5 +1,5 @@
 import { FlexProps, Text } from "@chakra-ui/react"
-import CircleSeparatorList from "components/redesign/circleSeparatorList/CircleSeparatorList"
+import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList"
 import React, { PropsWithChildren } from "react"
 
 interface StatIndicatorProps extends FlexProps, PropsWithChildren {
@@ -8,10 +8,10 @@ interface StatIndicatorProps extends FlexProps, PropsWithChildren {
 
 function StatIndicator({ percentage, children, ...rest }: StatIndicatorProps) {
     return (
-        <CircleSeparatorList>
+        <DotSeparatedList>
             <Text fontSize={14} color="#FFF">{percentage.toFixed(2)}%</Text>
             {children}
-        </CircleSeparatorList>
+        </DotSeparatedList>
     )
 }
 

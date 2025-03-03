@@ -1,9 +1,9 @@
-import { Box, Circle, Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
+import { Box, Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
+import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
 import StylizedTitle from "../StylizedTitle"
-import CircleSeparatorList from "components/redesign/circleSeparatorList/CircleSeparatorList"
 
 const BADGE_COLORS: Record<string, string> = {
     "Normal Products": "#2BCFA1",
@@ -58,11 +58,11 @@ function BreakdownDetailsRow({ item }: { item: ProductBreakdown }) {
             fontSize={'14px'}
         >
             <StylizedTitle bgColor={badgeColor} title={item.productType} />
-            <CircleSeparatorList>
+            <DotSeparatedList>
                 <Text>{item.percentageOfTotal?.toFixed(2)}%</Text>
                 <Text>{item.quantity}</Text>
                 <FormattedPrice price={item.totalValue} abbreviationProps={{ color: "#FFF" }}/>
-            </CircleSeparatorList>
+            </DotSeparatedList>
                 
         </Flex>
     )

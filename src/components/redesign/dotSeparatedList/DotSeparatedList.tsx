@@ -2,10 +2,10 @@ import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 /**
- * CircleSeparatorList displays a horizontal list of children separated by circles.
+ * DotSeparatedList displays a horizontal list of children separated by circles.
  * This component is ideal for creating visually distinct sections between inline items.
  */
-const CircleSeparatorList = ({ children }) => {
+const DotSeparatedList = ({ children }) => {
   return (
     <Box display="flex" alignItems="center">
       {React.Children.map(children, (child, index) => (
@@ -18,4 +18,4 @@ const CircleSeparatorList = ({ children }) => {
   );
 };
 
-export default CircleSeparatorList;
+export default DotSeparatedList;

@@ -1,11 +1,10 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import { IBreakDown } from 'lib/apis/credit/interfaces';
 import React from 'react';
 import { getColor } from '../utils/colorHelpers';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import CircleSeparatorList from 'components/redesign/circleSeparatorList/CircleSeparatorList';
+import DotSeparatedList from 'components/redesign/dotSeparatedList/DotSeparatedList';
 
 interface Props {
     items: IBreakDown[]
@@ -40,7 +39,7 @@ export default function ProgressBar({ items, type }: Props) {
                         justifyContent={{ base: "space-between", sm: "flex-start" }}
                         sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}
                     >
-                        <CircleSeparatorList>
+                        <DotSeparatedList>
                             <Flex gap={2} alignItems="center" >
                                 <Box
                                     width="4px"
@@ -52,7 +51,7 @@ export default function ProgressBar({ items, type }: Props) {
                             </Flex>
                         
                             <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
-                        </CircleSeparatorList>
+                        </DotSeparatedList>
                     </Flex>
                 ))}
             </HStack>

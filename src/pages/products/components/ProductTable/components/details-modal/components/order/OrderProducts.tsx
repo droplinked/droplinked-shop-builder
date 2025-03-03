@@ -1,5 +1,5 @@
 import { Badge, HStack, Image, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
-import CircleSeparatorList from "components/redesign/circleSeparatorList/CircleSeparatorList";
+import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList";
 import React from "react";
 
 export const OrderProducts = (({ products }: { products: any[] }) => (
@@ -16,27 +16,27 @@ export const OrderProducts = (({ products }: { products: any[] }) => (
             {Object.entries(product.options || {}).map(([key, option]: any, idx) => (
               <WrapItem key={idx}>
                 <Badge px="4" py="1" rounded="full" border="1px" borderColor="#282828" textTransform="none" background="transparent">
-                  <CircleSeparatorList>
+                  <DotSeparatedList>
                      <Text color="#7b7b7b" fontSize="sm">
                       {key}
                     </Text>
                     <Text color="white" fontSize="sm">
                       {option.caption}
                     </Text>
-                  </CircleSeparatorList>
+                  </DotSeparatedList>
                 </Badge>
               </WrapItem>
             ))}
             <WrapItem>
               <Badge px="4" py="1" rounded="full" border="1px" borderColor="#282828" textTransform="none" background="transparent">
-                <CircleSeparatorList>
+                <DotSeparatedList>
                   <Text color="#7b7b7b" fontSize="sm">
                     Quantity
                   </Text>
                   <Text color="white" fontSize="sm"> 
                     {product.quantity}
                   </Text>
-                </CircleSeparatorList>
+                </DotSeparatedList>
               </Badge>
             </WrapItem>
           </Wrap>
