@@ -1,9 +1,9 @@
 // Generated from SVG to React Component
-import React from "react";
+import React, { SVGProps } from "react";
 
-export const SlashSm = (props) => (
+export const SlashSm = (props: SVGProps<SVGSVGElement>) => (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.6665 14.6666L11.3332 1.33325" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
-</svg>
+        <path d="M4.6665 14.6666L11.3332 1.33325" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
 
 );
