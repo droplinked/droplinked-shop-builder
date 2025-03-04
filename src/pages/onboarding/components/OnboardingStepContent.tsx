@@ -23,9 +23,9 @@ function OnboardingStepContent({ step, data, onNext, onBack, shopData, updateSho
     function renderContent() {
         switch (data.type) {
             case 'sign-in':
-                return <SignInForm />
+                return <SignInForm onNext={onNext} />
             case 'sign-up':
-                return <SignUpForm />
+                return <SignUpForm onBack={onBack} onNext={onNext} />
             case 'email-confirmation':
                 return <EmailConfirmation />
             case 'feature-selection':
