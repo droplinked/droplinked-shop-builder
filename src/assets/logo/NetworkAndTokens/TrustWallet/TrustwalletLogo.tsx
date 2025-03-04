@@ -1,20 +1,19 @@
 // Generated from SVG to React Component
 import React, { SVGProps } from "react";
 
-export const TrustwalletLogo = (props:SVGProps<SVGSVGElement>) => (
-    <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 4.03686L12.4442 -0.0078125V27.9922C3.55535 24.2585 0 17.103 0 13.0592V4.03686Z" fill="#0500FF"/>
-<path d="M24.8895 4.03686L12.4453 -0.0078125V27.9922C21.3341 24.2585 24.8895 17.103 24.8895 13.0592V4.03686Z" fill="url(#paint0_linear_12095_495)"/>
-<defs>
-<linearGradient id="paint0_linear_12095_495" x1="21.584" y1="-1.96855" x2="12.1834" y2="27.6097" gradientUnits="userSpaceOnUse">
-<stop offset="0.02" stop-color="#0000FF"/>
-<stop offset="0.08" stop-color="#0094FF"/>
-<stop offset="0.16" stop-color="#48FF91"/>
-<stop offset="0.42" stop-color="#0094FF"/>
-<stop offset="0.68" stop-color="#0038FF"/>
-<stop offset="0.9" stop-color="#0500FF"/>
-</linearGradient>
-</defs>
-</svg>
-
+export const TrustwalletLogo = (props: SVGProps<SVGSVGElement>) => (
+  <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M0 4.03686L12.4442 -0.0078125V27.9922C3.55535 24.2585 0 17.103 0 13.0592V4.03686Z" fill="#0500FF" />
+    <path d="M24.8895 4.03686L12.4453 -0.0078125V27.9922C21.3341 24.2585 24.8895 17.103 24.8895 13.0592V4.03686Z" fill="url(#paint0_linear_12095_495)" />
+    <defs>
+      <linearGradient id="paint0_linear_12095_495" x1="21.584" y1="-1.96855" x2="12.1834" y2="27.6097" gradientUnits="userSpaceOnUse">
+        <stop offset="0.02" stop-color="#0000FF" />
+        <stop offset="0.08" stop-color="#0094FF" />
+        <stop offset="0.16" stop-color="#48FF91" />
+        <stop offset="0.42" stop-color="#0094FF" />
+        <stop offset="0.68" stop-color="#0038FF" />
+        <stop offset="0.9" stop-color="#0500FF" />
+      </linearGradient>
+    </defs>
+  </svg>
 );
