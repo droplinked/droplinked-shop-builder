@@ -27,7 +27,7 @@ function OnboardingStepContent({ step, data, onNext, onBack, shopData, updateSho
             case 'sign-up':
                 return <SignUpForm onBack={onBack} onNext={onNext} />
             case 'email-confirmation':
-                return <EmailConfirmation />
+                return <EmailConfirmation onBack={onBack} onNext={onNext} />
             case 'feature-selection':
                 return <FeatureSelection />
             case 'shop-setup':
