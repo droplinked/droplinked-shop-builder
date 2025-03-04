@@ -4,7 +4,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { useProfile } from 'hooks/useProfile/useProfile'
-import { subscriptionPlanMap } from 'lib/utils/helpers/helpers'
+import { subscriptionPlans } from 'utils/helpers'
 import React from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
 import PlanPrice from '../../plan-price/PlanPrice'
@@ -21,7 +21,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
     const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
     const { logoutUser } = useProfile()
-    const { title, icon: SubscriptionIcon, description } = subscriptionPlanMap[selectedPlan.type]
+    const { title, icon: SubscriptionIcon, description } = subscriptionPlans[selectedPlan.type]
 
     const handleCloseModal = () => {
         isFromPlansPage && logoutUser()

@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { DashboardOrder } from "lib/apis/dashboard/interfaces"
-import { formatDateLongStyle } from "lib/utils/helpers/helpers"
+import { formatDateToLongStyle } from "utils/helpers"
 import React from "react"
 
 interface Props {
@@ -31,7 +31,7 @@ function OrderItem({ order, isLastItem, onNavigate }: Props) {
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
                     <Text fontSize={{ base: 12, lg: 14 }} color="#2BCFA1">{order.status}</Text>
                     <Text fontSize={{ base: 12, lg: 14 }} color="#7B7B7B">
-                        {formatDateLongStyle(new Date(order.updatedAt))}
+                        {formatDateToLongStyle(new Date(order.updatedAt))}
                     </Text>
                 </Flex>
             </Flex>

@@ -6,7 +6,7 @@ import Blog from "./blogs.blog";
 import { IBlog } from "./blogs.interface";
 import { getSuperAdminBlogs } from "lib/apis/blog/services";
 import LatestBlog from "./blogs.latest";
-import { sort_by_date } from "lib/utils/helpers/helpers";
+import { sortByDate } from "utils/helpers";
 import LoadingBlogs from "./blogs.loading";
 
 const useScrollAnimation = (ref, length: number) => {
@@ -55,7 +55,7 @@ const PublicBlogs = () => {
       spacing={"32px"}
       padding={"108px 64px 64px 64px"}
     >
-      <LatestBlog blog={sort_by_date(blogs, "createdAt")?.[0] || blogs?.[0]} />
+      <LatestBlog blog={sortByDate(blogs, "createdAt")?.[0] || blogs?.[0]} />
       <HStack
         spacing={"24px"}
         paddingY={isLargerThanMd ? "200px" : "32px"}

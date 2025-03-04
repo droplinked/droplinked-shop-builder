@@ -7,7 +7,7 @@ import React from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
-import { subscriptionPlanMap } from 'lib/utils/helpers/helpers'
+import { subscriptionPlans } from 'utils/helpers'
 
 interface Props {
     paymentStatus: "success" | "error";
@@ -68,7 +68,7 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
                     color={"white"}
                 >
                     {isSuccessful ?
-                        `Your ${subscriptionPlanMap[selectedPlan.type].title} Plan subscription is now active.`
+                        `Your ${subscriptionPlans[selectedPlan.type].title} Plan subscription is now active.`
                         :
                         "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."}
                 </AppTypography>

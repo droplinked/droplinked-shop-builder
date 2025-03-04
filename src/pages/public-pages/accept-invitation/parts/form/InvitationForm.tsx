@@ -4,8 +4,8 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { acceptInvitationService } from 'lib/apis/user/services'
 import useAppStore from 'lib/stores/app/appStore'
-import { passwordRegex } from 'lib/utils/helpers/regex'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import { passwordRegex } from 'utils/helpers'
+import AppErrors from 'utils/constants/errors'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from "yup"
@@ -39,9 +39,9 @@ function InvitationForm({ invitationId, email }: Props) {
     }
 
     const formSchema = Yup.object().shape({
-        email: Yup.string().email(AppErrors.signin.invalid_email_address).required("This field is required."),
-        password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required("This field is required."),
-        confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], AppErrors.signup.when_the_password_and_confirmed).required("This field is required."),
+        email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("This field is required."),
+        password: Yup.string().matches(passwordRegex, AppErrors.signup.passwordRequirementsNotMet).required("This field is required."),
+        confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], AppErrors.signup.passwordsDoNotMatch).required("This field is required."),
     })
 
     return (

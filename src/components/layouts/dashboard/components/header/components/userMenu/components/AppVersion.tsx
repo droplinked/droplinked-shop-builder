@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { appVersion } from 'lib/utils/app/variable';
+import { appVersion } from 'utils/app/variable';
 import React from 'react';
 
 const AppVersion = () => (

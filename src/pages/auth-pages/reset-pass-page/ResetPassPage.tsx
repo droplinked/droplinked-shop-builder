@@ -7,8 +7,8 @@ import { Form, Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IchangePasswordService } from "lib/apis/user/interfaces";
 import { changePasswordService } from "lib/apis/user/services";
-import { passwordRegex } from "lib/utils/helpers/regex";
-import AppErrors from "lib/utils/statics/errors/errors";
+import { passwordRegex } from "utils/helpers";
+import AppErrors from "utils/constants/errors";
 import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -43,8 +43,8 @@ export default function ResetPassPage() {
   };
 
   const formSchema = Yup.object().shape({
-    password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required('Required'),
-    repassword: Yup.string().oneOf([Yup.ref('password'), null], AppErrors.signup.when_the_password_and_confirmed).required('Required')
+    password: Yup.string().matches(passwordRegex, AppErrors.signup.passwordRequirementsNotMet).required('Required'),
+    repassword: Yup.string().oneOf([Yup.ref('password'), null], AppErrors.signup.passwordsDoNotMatch).required('Required')
   });
 
   return (

@@ -1,12 +1,13 @@
 import { Box, VStack, Image, HStack } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
+import { getTimeAgo } from "utils/helpers";
 import React from "react";
+import { Link } from "react-router-dom";
 import { IBlog } from "./blogs.interface";
-import { time_ago } from "lib/utils/helpers/helpers";
-import { Link, useNavigate } from "react-router-dom";
+ 
 const Blog = ({ blog }: { blog: IBlog }) => {
-    const navigate = useNavigate();
+
     return (
         <VStack
             boxShadow="md"
@@ -79,7 +80,7 @@ const Blog = ({ blog }: { blog: IBlog }) => {
                     <HStack>
                         <AppIcons.Clock fill="#C2C2C2" width={"14px"} height={"14px"} />
                         <AppTypography color="white" fontWeight="500" fontSize="10px">
-                            Last Update: {time_ago(blog?.updatedAt)}
+                            Last Update: {getTimeAgo(blog?.updatedAt)}
                         </AppTypography>
                     </HStack>
                 </VStack>

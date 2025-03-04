@@ -1,4 +1,4 @@
-import { appDevelopment } from 'lib/utils/app/variable';
+import { appDevelopment } from 'utils/app/variable';
 
 namespace OrderInformationModel {
 	enum ORDER_STATUS_ENUM {

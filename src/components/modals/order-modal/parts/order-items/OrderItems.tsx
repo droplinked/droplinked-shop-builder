@@ -3,7 +3,7 @@ import AppIcons from 'assets/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
-import { cart_item_options_to_array_of_variants } from 'lib/utils/helpers/helpers'
+import { convertCartOptionsToVariantsArray } from 'utils/helpers'
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
@@ -35,7 +35,7 @@ function OrderItems() {
                                 {item?.shipping || item?.options && (
                                     <Flex alignItems={"center"} gap={"5px"}>
                                         {item?.shipping && <CartItemBadge text={item.shipping} />}
-                                        {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
+                                        {convertCartOptionsToVariantsArray(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
                                     </Flex>
                                 )}
                             </Flex>
