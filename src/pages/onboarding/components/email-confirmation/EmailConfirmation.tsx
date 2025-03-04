@@ -22,7 +22,7 @@ function EmailConfirmation({ onBack, onNext }: Props) {
     }
 
     return (
-        <Flex flexDirection={"column"} gap={{ base: "2px", md: 1 }}>
+        <Flex flexDirection="column" gap={{ base: "2px", md: 1 }}>
             <Text
                 color={"#fff"}
                 fontSize={{ base: "20px", md: "24px", lg: "28px" }}
@@ -43,7 +43,7 @@ function EmailConfirmation({ onBack, onNext }: Props) {
 
             <Button disabled={otp.length < 5} onClick={handleVerify} fontWeight={500}>Verify</Button>
 
-            <Flex flexDirection={"column"} gap={2} mt={6}>
+            <Flex flexDirection="column" gap={2} mt={6}>
                 <Text textAlign="start" fontSize={14} color="#FFF">
                     Didn’t receive the code? {" "}
                     <InteractiveText onClick={handleResend}>Resend</InteractiveText>

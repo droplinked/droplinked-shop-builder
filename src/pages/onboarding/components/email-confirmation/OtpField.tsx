@@ -44,7 +44,7 @@ export default function OtpField({ value, onChange, state = "default" }: Props) 
                         fontWeight={500}
                         width={{ base: "48px", md: "64px" }}
                         height={{ base: "48px", md: "64px" }}
-                        borderRadius={"8px"}
+                        borderRadius="8px"
                         _placeholder={{
                             color: "#7b7b7b",
                         }}
