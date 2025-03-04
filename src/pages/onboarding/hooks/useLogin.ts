@@ -1,9 +1,9 @@
 import useAppToast from "hooks/toast/useToast"
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
 import useAppStore from "lib/stores/app/appStore"
-import { navigating_user_based_on_status } from "lib/utils/helpers/helpers"
 import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
+import { navigateUserBasedOnStatus } from "utils/helpers"
 
 export function useLogin() {
     const navigate = useNavigate()
@@ -27,13 +27,13 @@ export function useLogin() {
                 })
             }
 
-            const { href, dashboard } = navigating_user_based_on_status(status, data)
+            const { href, dashboard } = navigateUserBasedOnStatus(status, data)
             dashboard ? shopNavigate(href) : navigate(href)
         }
         catch (error) {
             showToast({ message: error?.message || "An error occurred", type: "error" })
         }
-    }, [showToast, navigating_user_based_on_status, shopNavigate, navigate])
+    }, [showToast, navigateUserBasedOnStatus, shopNavigate, navigate])
 
     const onLoginSubmit = useCallback(async (data: any) => {
         try {
