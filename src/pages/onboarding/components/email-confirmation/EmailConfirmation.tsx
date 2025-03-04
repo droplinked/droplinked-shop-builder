@@ -1,8 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
-import OtpField from './OtpField'
 import InteractiveText from '../InteractiveText'
+import OtpField from './OtpField'
 
 interface Props {
     onNext: () => void
@@ -14,6 +14,11 @@ function EmailConfirmation({ onBack, onNext }: Props) {
 
     const handleResend = () => {
         alert("Resend code");
+    }
+
+    const handleVerify = () => {
+        alert("entered Code " + otp);
+        onNext()
     }
 
     return (
@@ -36,7 +41,7 @@ function EmailConfirmation({ onBack, onNext }: Props) {
             <OtpField onChange={(value) => setOtp(value)} value={otp} state='default' />
 
 
-            <Button onClick={onNext} fontWeight={500}>Verify</Button>
+            <Button disabled={otp.length < 5} onClick={handleVerify} fontWeight={500}>Verify</Button>
 
             <Flex flexDirection={"column"} gap={2} mt={6}>
                 <Text textAlign="start" fontSize={14} color="#FFF">
