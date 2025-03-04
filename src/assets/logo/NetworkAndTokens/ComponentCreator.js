@@ -29,33 +29,51 @@ export const ${componentName} = (props:SVGProps<SVGSVGElement>) => (
 `;
 }
 
-// Main function to process SVG files
-function processIcons(rootDir) {
-  const items = fs.readdirSync(rootDir);
+// New recursive function to process directories
+function processDirectory(dir) {
+  try {
+    console.log(`Scanning directory: ${dir}`);
+    const items = fs.readdirSync(dir);
+    console.log(`Found ${items.length} items in directory`);
 
-  items.forEach((item) => {
-    if (item.endsWith(".svg")) {
-      const fullPath = path.join(rootDir, item);
-      const svgContent = fs.readFileSync(fullPath, "utf8");
+    let convertedCount = 0;
+    items.forEach((item) => {
+      const fullPath = path.join(dir, item);
+      const stat = fs.statSync(fullPath);
 
-      // Get component name based on file name
-      const baseName = path.basename(item, ".svg");
-      const componentName = `${baseName}Icon`;
+      if (stat.isDirectory()) {
+        // Recursively process subdirectories
+        convertedCount += processDirectory(fullPath);
+      } else if (item.endsWith(".svg")) {
+        console.log(`Processing SVG file: ${fullPath}`);
 
-      // Create React component file
-      const componentContent = createReactComponent(svgContent, componentName);
-      const componentPath = path.join(rootDir, `${componentName}.tsx`);
+        const parentFolderName = path.basename(dir);
+        const baseName = path.basename(item, ".svg");
+        // Combine folder name with file name for the component name
+        const componentName = `${toPascalCase(parentFolderName)}${toPascalCase(baseName)}`;
 
-      fs.writeFileSync(componentPath, componentContent);
+        const svgContent = fs.readFileSync(fullPath, "utf8");
+        const componentContent = createReactComponent(svgContent, componentName);
+        const componentPath = path.join(dir, `${componentName}.tsx`);
 
-      // Delete original SVG file
-      fs.unlinkSync(fullPath);
+        fs.writeFileSync(componentPath, componentContent);
+        fs.unlinkSync(fullPath);
 
-      console.log(`Converted ${item} to ${componentName}.tsx`);
-    }
-  });
+        console.log(`Successfully converted ${item} to ${componentName}.tsx`);
+        convertedCount++;
+      }
+    });
+
+    return convertedCount;
+  } catch (error) {
+    console.error(`Error processing directory ${dir}:`, error);
+    return 0;
+  }
 }
 
-// Run the script
+// Run the script with the absolute path
 const iconsDir = path.resolve(__dirname);
-processIcons(iconsDir);
+console.log("Script starting...");
+console.log("Working directory:", iconsDir);
+const totalConverted = processDirectory(iconsDir);
+console.log(`Conversion complete. Converted ${totalConverted} files.`);
