@@ -4,11 +4,11 @@ import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
 import { Collection } from "lib/apis/collection/interfaces";
 import React from "react";
-import { FaPlus } from "react-icons/fa6";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
 import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
+import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -62,7 +62,7 @@ function CollectionGrid({
                         [
                             {
                                 caption: "New Collection",
-                                leftIcon: <FaPlus color="#000" />,
+                                leftIcon: <PlusSm color="#000" />,
                                 onClick: onCreateCollection
                             },
                             {
