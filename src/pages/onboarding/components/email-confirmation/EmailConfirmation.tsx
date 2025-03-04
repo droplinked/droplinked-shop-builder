@@ -3,6 +3,7 @@ import Button from 'components/redesign/button/Button'
 import React from 'react'
 import InteractiveText from '../InteractiveText'
 import OtpField from './OtpField'
+import StepWrapper from '../StepWrapper'
 
 interface Props {
     onNext: () => void
@@ -10,50 +11,49 @@ interface Props {
 }
 
 function EmailConfirmation({ onBack, onNext }: Props) {
-    const [otp, setOtp] = React.useState("");
+    const [otp, setOtp] = React.useState("")
 
     const handleResend = () => {
-        alert("Resend code");
+        alert("Resend code")
     }
 
     const handleVerify = () => {
-        alert("entered Code " + otp);
+        alert("entered Code " + otp)
         onNext()
     }
 
     return (
-        <Flex flexDirection="column" gap={{ base: "2px", md: 1 }}>
-            <Text
-                color={"#fff"}
-                fontSize={{ base: "20px", md: "24px", lg: "28px" }}
-                fontWeight={700}
-            >
-                Confirm Email
-            </Text>
-            <Text
-                color={"#B1B1B1"}
-                fontSize={{ base: "14px", md: "16px" }}
-                fontWeight={400}
-            >
-                Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.
-            </Text>
-
+        <StepWrapper
+            heading="Confirm Email"
+            description="Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox."
+        >
             <OtpField onChange={(value) => setOtp(value)} value={otp} state='default' />
-
 
             <Button disabled={otp.length < 5} onClick={handleVerify} fontWeight={500}>Verify</Button>
 
-            <Flex flexDirection="column" gap={2} mt={6}>
-                <Text textAlign="start" fontSize={14} color="#FFF">
+            <Flex
+                flexDirection="column"
+                gap={2}
+            >
+                <Text
+                    marginBottom={2}
+                    textAlign="start"
+                    fontSize={14}
+                    color="#FFF"
+                >
                     Didn’t receive the code? {" "}
                     <InteractiveText onClick={handleResend}>Resend</InteractiveText>
                 </Text>
-                <Text textAlign="start" fontSize={14} color="#FFF">
+                <Text
+                    textAlign="start"
+                    fontSize={14}
+                    color="#FFF"
+                >
                     Want to change your email address? {" "}
                     <InteractiveText onClick={onBack}>Go back</InteractiveText>
                 </Text>
             </Flex>
-        </Flex>
+        </StepWrapper>
     )
 }
 

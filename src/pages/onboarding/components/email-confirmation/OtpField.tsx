@@ -29,22 +29,27 @@ const stateColorMap = new Map([
 ]);
 
 export default function OtpField({ value, onChange, state = "default" }: Props) {
-    const colors = stateColorMap.get(state);
+    const colors = stateColorMap.get(state)
 
     return (
-        <Flex my={{ base: "48px", md: "80px" }} gap={{ base: 4, md: 6 }} alignItems="center" justifyContent="center">
+        <Flex
+            alignItems="center"
+            justifyContent="center"
+            marginBlock={{ base: "48px", md: "80px" }}
+            gap={{ base: 4, md: 6 }}
+        >
             <PinInput otp placeholder="*" onChange={onChange} value={value}>
                 {Array.from({ length: 5 }).map((item, index) => (
                     <PinInputField
                         key={index}
-                        color={colors?.color}
-                        backgroundColor={colors?.backgroundColor}
-                        border={`1px solid ${colors?.border}`}
-                        fontSize={20}
-                        fontWeight={500}
                         width={{ base: "48px", md: "64px" }}
                         height={{ base: "48px", md: "64px" }}
+                        backgroundColor={colors?.backgroundColor}
+                        border={`1px solid ${colors?.border}`}
                         borderRadius="8px"
+                        color={colors?.color}
+                        fontSize={20}
+                        fontWeight={500}
                         _placeholder={{
                             color: "#7b7b7b",
                         }}
