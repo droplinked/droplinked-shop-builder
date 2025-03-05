@@ -18,7 +18,8 @@ function ShippingMethodsLoading() {
                 <Flex
                     key={index}
                     gap={3}
-                    border="1.5px solid #3C3C3C"
+                    border="1.5px solid"
+                    borderColor="neutral.gray.700"
                     borderRadius={8}
                     p={4}
                     sx={{ ".chakra-skeleton": { height: 5, borderRadius: 4, startColor: "#3C3C3C00", endColor: "#3C3C3C52" } }}

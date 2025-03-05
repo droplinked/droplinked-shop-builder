@@ -76,7 +76,8 @@ export default function OverallTransactionsDisplay({ type }: Props) {
                         alignItems="center"
                         gap={6}
                         width="100%"
-                        borderTop="1px solid #292929"
+                        borderTop="1px solid"
+                        borderColor="neutral.gray.800"
                         p={{ base: 4, md: 6 }}
                     >
                         <ProgressBar items={items} type={type} />

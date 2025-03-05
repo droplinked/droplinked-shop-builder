@@ -43,7 +43,7 @@ function FileUpload({
                 <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">Click</Box> {" "}
                 or drag & drop here
             </AppTypography>
-            <AppTypography color="#7B7B7B">{text.footerText}</AppTypography>
+            <AppTypography color="text.subtextPlaceholder.dark">{text.footerText}</AppTypography>
         </>
 
     return (
@@ -52,10 +52,11 @@ function FileUpload({
             justifyContent="center"
             alignItems="center"
             gap={3}
-            border="1px dashed #292929"
+            border="1px dashed"
+             borderColor="neutral.gray.800"
             borderRadius={8}
             padding="24px 16px"
-            bgColor="#1C1C1C"
+            bgColor="neutral.gray.1000"
             cursor="pointer"
             {...flexProps}
             {...getRootProps()}
@@ -63,7 +64,7 @@ function FileUpload({
             <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
             {
                 isLoading ?
-                    <Spinner width={10} height={10} thickness='2px' color="primary" />
+                    <Spinner width={10} height={10} thickness='2px' color="neutral.primary" />
                     :
                     <>
                         {icon}

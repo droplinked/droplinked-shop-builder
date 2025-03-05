@@ -38,11 +38,11 @@ const UserMenu = () => {
       <MenuList right="16px" borderRadius="8px" background="#222" border="none" width="352px">
         <Box gap="16px" width="full" display="flex" padding="24px" flexDirection="column">
           <UserInfo shop={shop} user={user} />
-          <Divider borderColor="#292929" />
+          <Divider borderColor="neutral.gray.800" />
           <SubscriptionInfo subscription={subscription} />
-          <Divider borderColor="#292929" />
+          <Divider borderColor="neutral.gray.800" />
           <ProfileMenuItems profileConstants={profileConstants} isFetching={isFetching} credit={credit} getFormattedPrice={getFormattedPrice} />
-          <Divider borderColor="#292929" />
+          <Divider borderColor="neutral.gray.800" />
           <AppVersion />
         </Box>
       </MenuList>

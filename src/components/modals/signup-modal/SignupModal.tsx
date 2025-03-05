@@ -17,6 +17,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import ShowPassword from "./ShowPassword";
+import Button from "components/redesign/button/Button";
 
 const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPlan, openPlanPurchaseModal }) => {
   const [searchParams] = useSearchParams();
@@ -140,12 +141,11 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
                 <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>Already have an account?{" "}<Box as="span" color="#2EC99E !important">Sign in</Box>{" "}now</AppTypography>
               </VStack>
               <HStack align={"stretch"} alignItems={"center"}>
-                <Divider color={"line"} />
-                <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
-                <Divider color={"line"} />
+                <Divider color={"neutral.gray.850"} />
+                <AppTypography color={"neutral.gray.300"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
+                <Divider color={"neutral.gray.850"} />
               </HStack>
-              {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
-              <BasicButton
+              <Button
                 onClick={() => {
                   const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`);
 
@@ -166,17 +166,16 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
 
                   window.location.href = googleAuthUrl.toString();
                 }}
-                backgroundColor={"mainGray.500"}
+                backgroundColor={"neutral.gray.900"}
                 borderRadius={"8px"}
                 border={"none"}
-                _hover={{ backgroundColor: "mainGray.500" }}
-                color={"lightgray"}
+                color={"neutral.gray.300"}
                 iconSpacing={"12px"}
                 leftIcon={<AppIcons.Google />}
                 isDisabled={isLoading}
               >
                 Sign up with Google
-              </BasicButton>
+              </Button>
             </VStack>
           </Form>
         )}

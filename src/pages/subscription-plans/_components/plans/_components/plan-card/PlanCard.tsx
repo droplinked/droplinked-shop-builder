@@ -42,7 +42,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
-    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon[plan.type]
+    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon(plan.type)
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
     const navigate = useNavigate()
@@ -121,7 +121,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
                 gap={9}
                 borderRadius={8}
                 padding={{ lg: 9, base: 7 }}
-                bg="#1C1C1C"
+                bg="neutral.gray.1000"
                 {...(isPopular && {
                     border: "2px solid #2BCFA1",
                     backgroundImage: "url('/assets/images/popular-plan-bg.png')",
@@ -146,7 +146,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
 
                 <Button fontWeight={500} isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</Button>
 
-                <Divider borderColor="#3C3C3C" />
+                <Divider borderColor="neutral.gray.700" />
 
                 <Flex direction="column" gap={4}>
                     <AppTypography fontSize={14} color="#B1B1B1">

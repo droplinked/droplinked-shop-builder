@@ -17,7 +17,8 @@ function QuickActionButton({ action: { icon, label, url } }: Props) {
             as="button"
             alignItems="center"
             gap={3}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={16}
             padding={4}
             fontSize={{ base: 14, lg: 16 }}
@@ -29,7 +30,7 @@ function QuickActionButton({ action: { icon, label, url } }: Props) {
                 as="span"
                 borderRadius={8}
                 padding={2}
-                bgColor="#292929"
+                bgColor="neutral.gray.800"
                 sx={{ svg: { width: 5, height: 5 } }}
             >
                 {icon}

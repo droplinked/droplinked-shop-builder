@@ -26,9 +26,9 @@ export default function Domains({ domains, clientId, refetch }: Props) {
     return (
         <Flex gap={3} flexDirection={"column"} width={"100%"}>
             {domains?.map((domain, index) => (
-                <Flex key={index} borderRadius={"8px"} border={"1px solid #292929"} p={4} justifyContent={"space-between"} alignItems={"center"}>
+                <Flex key={index} borderRadius={"8px"} border={"1px solid"} borderColor="neutral.gray.800" p={4} justifyContent={"space-between"} alignItems={"center"}>
                     <Flex flexDirection={"column"} gap={2}>
-                        <AppTypography fontSize={"16px"} fontWeight={"500"} color={"#fff"}>
+                        <AppTypography fontSize={"16px"} fontWeight={"500"} color={"neutral.white"}>
                             {domain}
                         </AppTypography>
                         <ClientIdDisplay clientId={clientId} />

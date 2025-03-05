@@ -38,7 +38,7 @@ export const ProductGrid = ({ isLoading, products }) => (
               '2xl': index < 4 ? 'block' : 'none'
             }}
           >
-            <AffiliateProductCard product={product} />
+            <AffiliateProductCard product={product} isPublic={false}/>
           </Box>
         ))}
   </SimpleGrid>

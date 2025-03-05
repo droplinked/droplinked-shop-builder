@@ -39,7 +39,7 @@ function UserList({ users, isLoading }: { users: IInvitation[], isLoading: boole
                                                 <Td padding={0}>
                                                     {
                                                         user.status === "PENDING" ?
-                                                            <Box width={"fit-content"} borderRadius={8} backgroundColor={"#292929"} padding={"12px 14px"} fontSize={12} fontWeight={500}>Invitation sent</Box>
+                                                            <Box width={"fit-content"} borderRadius={8} backgroundColor={"neutral.gray.800"} padding={"12px 14px"} fontSize={12} fontWeight={500}>Invitation sent</Box>
                                                             :
                                                             null // for now
                                                     }

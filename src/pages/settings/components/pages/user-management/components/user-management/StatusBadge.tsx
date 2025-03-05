@@ -9,9 +9,9 @@ export default function StatusBadge({ status }: { status: string }) {
         borderColor: '#2BCFA1',
     }
     const administratorStyles = {
-        bg: '#292929',
-        color: '#fff',
-        borderColor: '#616161',
+        bg: 'neutral.gray.800',
+        color: 'neutral.white',
+        borderColor: 'neutral.gray.600',
     }
 
     return (

@@ -35,7 +35,8 @@ function AffiliateStores() {
                 alignItems="flex-start"
                 gap="10px"
                 borderRadius="8px"
-                border="1.5px solid #292929"
+                border="1.5px solid"
+                borderColor="neutral.gray.800"
                 objectFit={"cover"}
                 background="linear-gradient(93deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.00) 100%), url(https://upload-file-droplinked.s3.amazonaws.com/22b2a2e43dcf9d76c43ad427cd8f72a4a0db5dab76be1e1545140721aba0e018.jpg) lightgray 50% / cover no-repeat"
             >

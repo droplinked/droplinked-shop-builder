@@ -14,7 +14,7 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
   const productLink = `${SHOP_URL}/${shop.name}/product/${product.slug}`;
 
   return (
-    <Box width="100%" bg="#292929" padding="32px">
+    <Box width="100%" bg="neutral.gray.800" padding="32px">
       <Flex
         justifyContent="center"
         alignItems="center"
@@ -33,7 +33,8 @@ const DirectLinkContent: React.FC<DirectLinkContentProps> = ({ product }) => {
         display="flex"
         padding="32px"
         borderRadius="12px"
-        border="1px solid #292929"
+        border="1px solid"
+        borderColor="neutral.gray.800"
         background="#141414"
         justifyContent="center" 
         alignItems="center"

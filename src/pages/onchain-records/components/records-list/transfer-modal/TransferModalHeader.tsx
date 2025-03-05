@@ -4,7 +4,7 @@ import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import React, { ReactNode } from 'react';
 import TabsList from '../tabs-components/TabsList';
-import SampleFile from "./sample/Template.csv";
+import SampleFile from './sample/Template.csv'
 
 interface Props {
     tabs: { title: string, content: ReactNode }[];
@@ -18,7 +18,8 @@ export default function TransferModalHeader({ tabs }: Props) {
             modalHeaderProps={{
                 bgColor: "#141414",
                 paddingBlock: { md: "unset", base: "16px 0px !important" },
-                borderBottom: "1px solid #292929",
+                borderBottom: "1px solid",
+                borderColor:"neutral.gray.800",
                 pt: { md: "48px !important", base: "16px !important" },
                 pb: "0px !important",
             }}

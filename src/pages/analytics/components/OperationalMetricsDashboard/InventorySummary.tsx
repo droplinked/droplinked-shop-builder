@@ -38,7 +38,7 @@ function InventoryValueCard({ totalInventoryValue, isLoading }) {
                 price={totalInventoryValue}
                 fontSize={{ base: 18, lg: 20 }}
                 fontWeight={500}
-                abbreviationProps={{ color: "#7B7B7B" }}
+                abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
             />
         </DataPointCard>
     )
@@ -53,7 +53,7 @@ function ProductCountCard({ numberOfProducts, isLoading }) {
         >
             <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="#FFF">
                 {numberOfProducts}{" "}
-                <Box as="span" color="#7B7B7B">Items</Box>
+                <Box as="span" color="text.subtextPlaceholder.dark">Items</Box>
             </Text>
         </DataPointCard>
     )

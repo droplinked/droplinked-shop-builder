@@ -12,7 +12,7 @@ interface FilterSectionProps {
 
 const FilterSection: React.FC<FilterSectionProps> = ({ title, children, itemId, defaultOpen = false, isCollapsable = true }) => (
   <AppAccordionItem display="flex"  flexDirection="column" alignItems="flex-start" borderRadius="8px" itemId={itemId} defaultOpen={defaultOpen} isCollapsable={isCollapsable}>
-    <AppAccordionTrigger background="#1C1C1C" py={2} px={3} borderRadius={4}>
+    <AppAccordionTrigger background="neutral.gray.1000" py={2} px={3} borderRadius={4}>
       <AppTypography color="white" fontSize="base" >
         {title}
       </AppTypography>

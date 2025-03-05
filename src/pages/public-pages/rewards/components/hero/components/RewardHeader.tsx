@@ -15,7 +15,7 @@ const RewardHeader = () => (
     <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" color="white" fontWeight="bold">
       It’s Time to Level Up
     </Heading>
-    <Text textAlign="center" color="#b1b1b1" fontSize={{ base: 'md', md: 'lg' }}>
+    <Text textAlign="center" color="text.subtextPlaceholder.light "fontSize={{ base: 'md', md: 'lg' }}>
       Get started on droplinked quests to earn points. As you earn towards each level,
       <Box display={{ base: 'none', md: 'block' }} as="br" />
       you unlock access to credits and tools that help you to earn more $

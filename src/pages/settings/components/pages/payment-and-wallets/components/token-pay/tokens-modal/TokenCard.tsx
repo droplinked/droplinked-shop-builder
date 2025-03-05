@@ -52,14 +52,15 @@ export default function TokenCard({ token }: Props) {
     };
 
     return (
-        <Flex flexDir="column" width="100%" border="1px solid #292929" borderRadius="8px">
+        <Flex flexDir="column" width="100%" border="1px solid" borderColor="neutral.gray.800" borderRadius="8px">
             <Flex
                 width="100%"
                 justifyContent="space-between"
                 p={6}
-                borderBottom="1px solid #292929"
+                borderBottom="1px solid"
+                borderColor="neutral.gray.800"
             >
-                <AppTypography fontSize="16px" fontWeight={500} color="#fff">
+                <AppTypography fontSize="16px" fontWeight={500} color="neutral.white">
                     {token.type}
                 </AppTypography>
                 <SwitchBox
@@ -70,13 +71,13 @@ export default function TokenCard({ token }: Props) {
             </Flex>
             <Flex gap={2} px={6} py={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
-                    <AppTypography color="#7b7b7b" fontSize="12px">
+                    <AppTypography color="text.subtextPlaceholder.dark" fontSize="12px">
                         Networks
                     </AppTypography>
-                    <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"} sx={{ rect: { fill: "#292929" } }}>
+                    <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"}  sx={{ rect: { fill: "#292929" } }}>
                         {token.supportedChains.map((chain, index) => (
                             <React.Fragment key={index}>
-                                <AppTypography color="#fff" fontSize="12px">
+                                <AppTypography color="neutral.white" fontSize="12px">
                                     {chain.type}
                                 </AppTypography>
                                 {index !== token.supportedChains.length - 1 && <AppIcons.DotSpacer />}

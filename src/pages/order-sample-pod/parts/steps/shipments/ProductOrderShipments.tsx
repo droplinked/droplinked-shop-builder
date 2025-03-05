@@ -38,18 +38,18 @@ function ProductOrderShipments() {
                     <RadioGroup className={classes.fullwidth} onChange={e => updateState('rateId', e)}>
                         <Flex direction={"column"} gap={4}>
                             {shipmentRates.map((el, key) => (
-                                <Box key={key} border={`1px solid ${el.id === rateId ? "#FFF" : "#616161"}`} padding={4} borderRadius="8px">
+                                <Box key={key} border="1px solid" borderColor={`${el.id === rateId ? "#FFF" : "neutral.gray.600"}`} padding={4} borderRadius="8px">
                                     <Radio layerStyle={{}} w="100%" alignItems="start" value={el.id}>
                                         <Flex direction={"column"} gap={1}>
                                             <AppTypography fontSize="14px" fontWeight="600">{el.title}</AppTypography>
                                             <Flex justifyContent="space-between">
                                                 <Flex alignItems="center" gap="8px">
-                                                    <AppTypography color="#878787">Fulfillment Date</AppTypography>
+                                                    <AppTypography color="neutral.gray.400">Fulfillment Date</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
                                                     <AppTypography>{el.delivery_estimation}</AppTypography>
                                                 </Flex>
                                                 <Flex alignItems="center" gap="8px">
-                                                    <AppTypography color="#878787">Price</AppTypography>
+                                                    <AppTypography color="neutral.gray.400">Price</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
                                                     <AppTypography>{`${getFormattedPrice({ amount: el.price, toFixed: true })}`}</AppTypography>
                                                 </Flex>

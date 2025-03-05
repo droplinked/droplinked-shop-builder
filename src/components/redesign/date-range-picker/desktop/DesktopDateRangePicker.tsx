@@ -37,14 +37,14 @@ export default function DesktopDateRangePicker({
                 display="flex"
                 flexDirection="row"
                 width="100%"
-                background="#1c1c1c"
+                background="neutral.gray.1000"
                 border="none"
                 padding={0}
                 margin={0}
                 borderRadius="16px"
             >
                 <SideControls setTempValue={setTempValue} />
-                <Flex borderLeft="1px solid #292929" direction="column">
+                <Flex borderLeft="1px solid" borderColor="neutral.gray.800" direction="column">
                     <DatePicker
                         value={value}
                         onChange={onChange}

@@ -7,7 +7,7 @@ function PrivacyAndSecurity() {
     return (
         <>
             <PrivateKey />
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <PublicApiKey />
         </>
     );

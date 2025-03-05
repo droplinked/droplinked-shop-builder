@@ -19,16 +19,16 @@ const ProPlanSection = () => {
 
   return (
     <Box w={{ base: '100%', lg: '526px' }} flexShrink={0} position="relative">
-      <Box h="full" w="100%" borderRadius="3xl" border="1px solid #222222" display="flex" flexDirection="column" overflow="hidden" position="relative" zIndex="1">
+      <Box h="full" w="100%" borderRadius="3xl" border="1px solid" borderColor="neutral.gray.900" display="flex" flexDirection="column" overflow="hidden" position="relative" zIndex="1">
         <Box display="flex" flexDirection="column" gap={4} p={6}>
-          <Box w="56px" h="56px" bg="#141414" borderRadius="xl" border="1px solid #222222" backdropFilter="blur(10px)" display="flex" justifyContent="center" alignItems="center">
+          <Box w="56px" h="56px" bg="#141414" borderRadius="xl" border="1px solid" borderColor="neutral.gray.900" backdropFilter="blur(10px)" display="flex" justifyContent="center" alignItems="center">
             <AppIcons.ProPlan width={'24px'} height={'24px'} color="#2BCFA1" />
           </Box>
           <VStack spacing={1} align="start">
             <Text fontSize="xl" fontWeight="bold" color="white">
               Pro Plan
             </Text>
-            <Text fontSize="base" color="#7b7b7b">
+            <Text fontSize="base" color="text.subtextPlaceholder.dark">
               Enjoy premium features.
             </Text>
           </VStack>
@@ -75,18 +75,18 @@ const ProPlanSection = () => {
                 <Text fontSize="xl" fontWeight="bold" color="white">
                   Pro Plan
                 </Text>
-                <Text fontSize="base" color="#b1b1b1">
+                <Text fontSize="base" color="text.subtextPlaceholder.light">
                   For small businesses and teams ready to grow.
                 </Text>
               </VStack>
 
               <VStack spacing={4} align="start">
-                <Text fontSize="base" color="#b1b1b1">
+                <Text fontSize="base" color="text.subtextPlaceholder.light">
                   Includes everything in Starter, plus:
                 </Text>
                 {features.map((feature, index) => (
                   <HStack key={index} spacing={2}>
-                    <AppIcons.Tick style={{ flexShrink: 0 }} />
+                    <AppIcons.Tick style={{ flexShrink: 0 }} color='white' />
                     <Text fontSize="sm" color="white">
                       {feature}
                     </Text>

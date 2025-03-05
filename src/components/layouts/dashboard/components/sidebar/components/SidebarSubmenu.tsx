@@ -7,10 +7,10 @@ import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';
 const SidebarSubmenu = ({ list }) => {
   return (
     <AppAccordionPanel width="100%" padding="10px 0px 12px 20px" display={{ sm: 'block', md: 'none', lg: 'block' }}>
-      <Box display="flex" flexDirection="column" justifyContent="center" gap="12px" padding="0px 20px" borderLeft="1px solid #3C3C3C" width="full">
+      <Box display="flex" flexDirection="column" justifyContent="center" gap="12px" padding="0px 20px" borderLeft="1px solid" borderColor={"neutral.gray.700"} width="full">
         {list.map((listItem) => (
           <DashboardLinkWrapper key={listItem.listTitle} linkTo={listItem.linkTo} onClick={listItem.onClick}>
-            <AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color="#7B7B7B" _hover={{ color: 'white' }} whiteSpace={'nowrap'}>
+            <AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color="text.subtextPlaceholder.dark" _hover={{ color: 'white' }} whiteSpace={'nowrap'}>
               {listItem.listTitle}
             </AppTypography>
           </DashboardLinkWrapper>

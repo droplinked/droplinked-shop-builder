@@ -14,7 +14,7 @@ const DashboardLayoutSidebarGrowthHackModal = ({ section, isOpen, onClose, setCu
       <ModalOverlay />
       <ModalContent backgroundColor="transparent">
         <ModalBody p={0}>
-          <Box display="flex" width="625px" flexDirection="column" justifyContent="center" alignItems="center" gap="36px" borderRadius="24px" border="1px solid #292929" background="#1C1C1C">
+          <Box display="flex" width="625px" flexDirection="column" justifyContent="center" alignItems="center" gap="36px" borderRadius="24px" border="1px solid" borderColor={"neutral.gray.800"} background="neutral.gray.1000">
             <Box display="flex" flexDirection="column" alignItems="center" gap="24px" alignSelf="stretch">
               <Image roundedTop={'24px'} src={subSection?.image} />
             </Box>

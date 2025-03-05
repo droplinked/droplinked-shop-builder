@@ -14,7 +14,7 @@ export default function ProductsListLoading({ count = 4 }: Props) {
                     align="center"
                     gap={{ base: 2, md: 4 }}
                     padding={{ base: 3, md: 4 }}
-                    borderBottom={index === count - 1 ? 'none' : '1px solid #292929'}
+                    borderBottom={index === count - 1 ? 'none' : '1px solid neutral.gray.800'}
                 >
                     {/* Image placeholder */}
                     <Skeleton boxSize={{ base: '40px', md: '48px' }} borderRadius="4px" />

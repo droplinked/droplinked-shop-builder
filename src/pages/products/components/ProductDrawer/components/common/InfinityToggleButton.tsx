@@ -16,7 +16,7 @@ function InfinityToggleButton({ isActive, onToggle }: Props) {
             h={7}
             borderRadius={4}
             padding="6px"
-            bgColor="#292929"
+            bgColor="neutral.gray.800"
             onClick={onToggle}
         >
             {isActive ? <AppIcons.GreenInfinity /> : <AppIcons.GrayInfinity />}

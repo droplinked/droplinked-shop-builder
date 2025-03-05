@@ -14,6 +14,7 @@ import AppErrors from "utils/constants/errors";
 import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
+import Button from "components/redesign/button/Button";
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Required"),
@@ -98,40 +99,39 @@ const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) 
                                 </BasicButton>
                                 <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchReset}>
                                     Forgot
-                                    <Box as="span" ml={1} color="green.500">
+                                    <Box as="span" ml={1} color="button.default.primary">
                                         password?
                                     </Box>
                                 </AppTypography>
                                 <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>
                                     Don’t have an account?{" "}
-                                    <Box as="span" mx={1} color="green.500">
+                                    <Box as="span" mx={1} color="button.default.primary">
                                         Sign up
                                     </Box>
                                     now!
                                 </AppTypography>
                             </VStack>
                             <HStack align={"stretch"} alignItems={"center"}>
-                                <Divider color={"line"} />
-                                <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>
+                                <Divider color={"neutral.gray.850"} />
+                                <AppTypography color={"neutral.gray.300"} fontSize={"12px"} fontWeight={"500"}>
                                     OR
                                 </AppTypography>
-                                <Divider color={"line"} />
+                                <Divider color={"neutral.gray.850"} />
                             </HStack>
-                            <BasicButton
+                            <Button
                                 onClick={() => {
                                     window.location.href = `${BASE_URL}/auth/login/google`;
                                 }}
-                                backgroundColor={"mainGray.500"}
+                                backgroundColor={"neutral.gray.900"}
                                 borderRadius={"8px"}
                                 border={"none"}
-                                _hover={{ backgroundColor: "mainGray.500" }}
-                                color={"lightgray"}
+                                color={"text.subtextPlaceholder.light"}
                                 iconSpacing={"12px"}
                                 leftIcon={<AppIcons.Google />}
                                 isDisabled={loading}
                             >
                                 Sign in with Google
-                            </BasicButton>
+                            </Button>
                         </VStack>
                     </Form>
                 )}

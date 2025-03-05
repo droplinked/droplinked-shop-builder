@@ -25,7 +25,8 @@ export default function AddressHolder({ onOpen, addressData }: Props) {
             width={"100%"}
             px={4}
             py={3}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
         >
             <Flex gap={2} alignItems={"start"}>
                 <AppIcons.Location />

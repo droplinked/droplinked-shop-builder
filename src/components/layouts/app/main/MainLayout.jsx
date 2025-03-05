@@ -13,7 +13,7 @@ function MainLayout(props) {
   }, [pathname])
 
   return (
-    <Box bgColor="bG">
+    <Box bgColor="neutral.background">
       <HeaderMain />
       {props.children || <Outlet />}
       <Footer />

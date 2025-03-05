@@ -220,7 +220,7 @@ const TileDesignForm = () => {
                                 if (input?.type === TILE_INPUT_TYPES.COLOR_PICKER)
                                     return (
                                         <AppColorPicker
-                                            props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE", minW: "128px" } }}
+                                            props={{ containerProps: { backgroundColor: "white", border: "1px solid neutral.gray.200", borderColor:"neutral.gray.200", minW: "128px" } }}
                                             value={currentValue}
                                             onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e })}
                                         />

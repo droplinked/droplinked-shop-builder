@@ -36,7 +36,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
   };
 
   return (
-    <Box width="100%" bg="#292929" padding="32px">
+    <Box width="100%" bg="neutral.gray.800" padding="32px">
       <Flex
         justifyContent="center"
         alignItems="center"
@@ -62,12 +62,12 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
         </Flex>
       </Flex>
 
-      <Box borderRadius="12px" border="1px solid #292929" bg="#141414">
+      <Box borderRadius="12px" border="1px solid" borderColor="neutral.gray.800" bg="#141414">
         <Box padding="32px">
           <AppShareableLink link={productLink} buttonBgColor="#2BCFA1" />
         </Box>
 
-        <Divider borderColor="#292929" />
+        <Divider borderColor="neutral.gray.800" />
 
         <Flex paddingY="24px" paddingX="32px" justifyContent="space-between">
           <Button

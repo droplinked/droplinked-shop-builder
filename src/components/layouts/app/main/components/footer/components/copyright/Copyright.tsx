@@ -12,7 +12,7 @@ function Copyright() {
         <HStack
             flexDirection={{ sm: "column", md: "row" }}
             justifyContent="space-between"
-            background="#292929"
+            background="neutral.gray.800"
             py="20px"
             px={{ sm: "1rem", md: "6rem" }}
         >

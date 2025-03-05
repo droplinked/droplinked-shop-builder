@@ -65,15 +65,16 @@ function Drawer({
                     display="flex"
                     flexDirection="column"
                     gap={6}
-                    borderBottom="1px solid #292929"
+                    borderBottom="1px solid"
+                    borderColor={"neutral.gray.800"}
                     padding={9}
                     {...drawerHeaderStyle}
                 >
                     <Flex justifyContent="space-between" alignItems="center" width="100%">
-                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF" {...headingStyle}>
+                        <Heading as="h3" fontSize={24} fontWeight={700} color="neutral.white" {...headingStyle}>
                             {title}
                         </Heading>
-                        <DrawerCloseButton position="static" color="white" />
+                        <DrawerCloseButton position="static" color="neutral.white" />
                     </Flex>
                     {headerContent}
                 </DrawerHeader>
@@ -85,7 +86,8 @@ function Drawer({
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
-                        borderTop="1px solid #292929"
+                        borderTop="1px solid"
+                        borderColor={"neutral.gray.800"}
                         padding={9}
                         css={{ button: { fontSize: 14, fontWeight: 500 } }}
                     >

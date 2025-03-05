@@ -41,7 +41,8 @@ export default function Balance() {
             borderRadius={"8px"}
             bg={"rgba(28, 28, 28, 0.64)"}
             backdropFilter={"blur(16px)"}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             flexDirection={"column"}
             p={4}
         >

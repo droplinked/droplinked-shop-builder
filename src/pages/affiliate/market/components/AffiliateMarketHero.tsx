@@ -18,7 +18,8 @@ export const AffiliateMarketHero = () => {
       backgroundSize="cover"
       backgroundRepeat="no-repeat"
       borderRadius="8px"
-      border="1.5px solid #292929"
+      border="1.5px solid"
+      borderColor="neutral.gray.800"
     >
       {/* Text container */}
       <VStack display="inline-flex" flexDirection="column" alignItems="center" spacing="16px">

@@ -25,7 +25,7 @@ export default function ConnectWithUs() {
 const IntroSection = () => (
     <Flex direction="column" gap={4}>
         <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>Let's Stay Connected</SpectrumHeader>
-        <AppTypography fontSize={{ base: 16, md: 18 }} color="#C4C4C4">
+        <AppTypography fontSize={{ base: 16, md: 18 }} color="neutral.gray.400">
             We appreciate your interest and would love to stay in touch. Feel free to add your email to our mailing list to stay up to date on all the latest features and releases.
         </AppTypography>
     </Flex>

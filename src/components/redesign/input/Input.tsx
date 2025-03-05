@@ -55,7 +55,7 @@ export function InputHeader({ label, description, inputProps, labelProps }: Prop
                     {label} {inputProps?.isRequired && <AppIcons.Required />}
                 </FormLabel>
             )}
-            {description && <Text mb={4} fontSize={14} color="#7B7B7B">{description}</Text>}
+            {description && <Text mb={4} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>}
         </>
     )
 }
@@ -111,11 +111,11 @@ function InputContainer(props: Props) {
                 gap={2}
                 border="1px solid"
                 borderRadius={8}
-                borderColor={borderColorMap[state] || "#292929"}
+                borderColor={borderColorMap[state] || "neutral.gray.800"}
                 padding="12px 16px"
                 transition="border-color 0.1s ease-out"
-                _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
-                _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
+                _hover={{ borderColor: borderColorMap[state] || "neutral.gray.700" }}
+                _focus={{ borderColor: borderColorMap[state] || "text.subtextPlaceholder.dark" }}
                 {...showAnimatedLoading && { background: "#141414" }}
                 {...inputContainerProps}
             >
@@ -132,7 +132,7 @@ function InputContainer(props: Props) {
                         color="#fff"
                         maxLength={maxCharacters}
                         spellCheck={false}
-                        _placeholder={{ color: "#7B7B7B" }}
+                        _placeholder={{ color: "text.subtextPlaceholder.dark" }}
                         _focusVisible={{}}
                         onKeyDown={handleKeyDown}
                         onChange={handleChange}

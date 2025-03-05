@@ -10,10 +10,11 @@ function ShippingAvailabilityPopover() {
             <PopoverContent
                 w={{ base: "360px", md: "660px" }}
                 mt={2}
-                border="1px solid #292929"
+                border="1px solid"
+                borderColor="neutral.gray.800"
                 borderRadius={16}
                 padding={0}
-                bgColor="#1C1C1C"
+                bgColor="neutral.gray.1000"
                 sx={{
                     ".chakra-popover__arrow-positioner": {
                         width: "16px !important",
@@ -23,9 +24,10 @@ function ShippingAvailabilityPopover() {
                 }}
             >
                 <PopoverArrow
-                    borderTop="1px solid #292929"
-                    borderLeft="1px solid #292929"
-                    bgColor="#1C1C1C"
+                    borderTop="1px solid"
+                    borderLeft="1px solid"
+                    borderColor="neutral.gray.800"
+                    bgColor="neutral.gray.1000"
                     boxShadow="none"
                 />
                 <ShippingAvailabilityContent />

@@ -51,13 +51,14 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
           maxHeight={isSmallScreen ? 'calc(100% - 50px)' : 'auto'}
           bg="#141414"
           zIndex={20}
-          borderLeft={'1.5px solid #292929'}
-          borderRight={'1.5px solid #292929'}
-          borderTop={isMediumScreen ? 'none' : '1.5px solid #292929'} // No top border for md
-          borderBottom={isMediumScreen ? 'none' : '1.5px solid #292929'} // No bottom border for md
+          borderLeft={'1.5px solid'}
+          borderRight={'1.5px solid'}
+          borderTop={isMediumScreen ? 'none' : '1.5px solid'} // No top border for md
+          borderBottom={isMediumScreen ? 'none' : '1.5px solid'} // No bottom border for md
           borderRadius={isMediumScreen ? 0 : 8}
+          borderColor="neutral.gray.800"
         >
-          <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'#292929'}>
+          <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'neutral.gray.800'}>
             <AppTypography fontSize="base" fontWeight="bold" color={'white'}>
               Filters
             </AppTypography>
@@ -67,9 +68,9 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
                 icon={<AppIcons.Refresh2 width="16px" height="16px" />}
                 onClick={resetFilters}
                 _hover={{ backgroundColor: '#222' }}
-                backgroundColor="#1C1C1C"
+                backgroundColor="neutral.gray.1000"
                 color="white"
-                border="1px solid #3C3C3C"
+                border="1px solid neutral.gray.700"
               />
               {isMediumScreen && (
                 <Button

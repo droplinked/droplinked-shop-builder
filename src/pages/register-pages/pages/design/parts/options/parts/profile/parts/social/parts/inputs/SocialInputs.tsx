@@ -10,7 +10,7 @@ import classes from './style.module.scss'
 function SocialInputs({ socials, updateSocial }) {
     const { methods: { dispatch }, state: { shop } } = useContext(designContext)
     const { icons } = socialInputsModel
-    const ref = React.useRef()
+    const ref = React.useRef<HTMLDivElement>(null)
     useOutsideClick({
         ref: ref,
         handler: () => updateSocial(''),
@@ -109,7 +109,7 @@ function SocialInputs({ socials, updateSocial }) {
                     ) : (
                         <form style={{ width: "100%" }} onSubmit={(e) => submit(e)}>
                             <VStack ref={ref} align="stretch" width="100%" spacing="0">
-                                <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="13px 18px" borderRadius="6px 6px 0px 0px">
+                                <Flex alignItems="center" gap="12px" backgroundColor="neutral.gray.1000" padding="13px 18px" borderRadius="6px 6px 0px 0px">
                                     <Flex className={classes.icon}>{items[el].icon}</Flex>
                                     <AppTypography fontSize="14px" color="#C2C2C2">{items[el].url}</AppTypography>
                                 </Flex>

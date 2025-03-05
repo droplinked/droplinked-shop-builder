@@ -17,9 +17,9 @@ interface IEmptyTable {
 
 function EmptyTable({ add, list }: IEmptyTable) {
     return (
-        <VStack color="#fff" spacing={10} borderTop={"1px solid #2a2a2a"} padding={10}>
+        <VStack color="neutral.white" spacing={10} borderTop={"1px solid #2a2a2a"} padding={10}>
             <VStack
-                bg="subLayer"
+                bg="neutral.background"
                 borderRadius="8px"
                 cursor="pointer"
                 padding={"30px"}

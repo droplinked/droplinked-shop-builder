@@ -20,7 +20,8 @@ export default function MobileContainer({ items }: Props) {
 
                 return (
                     <Box
-                        border="1px solid #292929"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
                         borderRadius="8px"
                         width="100%"
                     >

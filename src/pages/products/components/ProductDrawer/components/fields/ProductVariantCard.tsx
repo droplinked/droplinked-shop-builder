@@ -27,7 +27,8 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
         <Flex
             direction="column"
             gap={4}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={4}
         >

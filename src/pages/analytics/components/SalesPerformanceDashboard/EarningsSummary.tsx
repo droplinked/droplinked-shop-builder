@@ -32,11 +32,11 @@ function EarningsSummary({ earnings, isLoading }: Props) {
                         marginTop={{ base: -1, md: 'unset' }}
                         fontSize={{ base: 20, lg: 24 }}
                         fontWeight={500}
-                        abbreviationProps={{ color: '#7B7B7B' }}
+                        abbreviationProps={{ color: 'text.subtextPlaceholder.dark' }}
                     />
                 </Skeleton>
 
-                <Text fontSize={14} color="#7B7B7B" sx={{ span: { fontWeight: 500, color: '#B1B1B1' } }}>
+                <Text fontSize={14} color="text.subtextPlaceholder.dark" sx={{ span: { fontWeight: 500, color: '#B1B1B1' } }}>
                     Income from <Box as="span">{startDate}</Box> to <Box as="span">{endDate}</Box>.
                 </Text>
             </Flex>

@@ -19,7 +19,7 @@ function SectionContent({ title, badge, rightContent, description, children }: P
                     {badge && badge}
                 </Flex>
                 <Box flex={1} marginTop={"4px"}>
-                    <AppTypography whiteSpace={"break-spaces"} color={"#7B7B7B"} fontSize={{ base: "14px", md: "16px" }}>
+                    <AppTypography whiteSpace={"break-spaces"} color={"text.subtextPlaceholder.dark"} fontSize={{ base: "14px", md: "16px" }}>
                         {description && description}
                     </AppTypography>
                 </Box>

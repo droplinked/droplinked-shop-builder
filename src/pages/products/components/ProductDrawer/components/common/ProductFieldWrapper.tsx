@@ -32,7 +32,7 @@ function ProductFieldWrapper({ label, labelProps, description, isRequired = fals
                     >
                         {label} {isRequired && <AppIcons.Required />}
                     </FormLabel>
-                    {description && <Text fontSize={14} fontWeight={400} color="#7B7B7B">{description}</Text>}
+                    {description && <Text fontSize={14} fontWeight={400} color="text.subtextPlaceholder.dark">{description}</Text>}
                 </Flex>
                 {rightContent}
             </Flex>

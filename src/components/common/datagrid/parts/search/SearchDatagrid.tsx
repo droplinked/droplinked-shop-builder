@@ -19,7 +19,7 @@ function SearchDatagrid({ onChange, value }: ISearchDatagrid) {
                 borderRadius="24px"
                 value={value}
                 border="1px solid"
-                borderColor="line"
+                borderColor="neutral.gray.850"
                 _placeholder={{ color: "#C2C2C2", opacity: "1" }}
                 _hover={{ borderColor: "none" }}
                 _focus={{ borderColor: "none" }}

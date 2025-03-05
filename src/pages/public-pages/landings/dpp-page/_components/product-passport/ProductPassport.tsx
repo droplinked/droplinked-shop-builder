@@ -185,8 +185,8 @@ const ProductPassport = () => {
                 muted
               />
               <Link to={activeProduct.view3D} target="_blank">
-                <Flex position={"absolute"} bottom={"60px"} left={"50%"} transform={"translateX(-50%)"} alignItems={"center"} justifyContent={"center"} borderRadius={"8px"} bgColor={"#1C1C1C"} padding={"12px"} width={"160px"} height={"40px"} cursor={"pointer"}>
-                  <AppTypography color={"primary"} textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>View 3D Model</AppTypography>
+                <Flex position={"absolute"} bottom={"60px"} left={"50%"} transform={"translateX(-50%)"} alignItems={"center"} justifyContent={"center"} borderRadius={"8px"} bgColor={"neutral.gray.1000"} padding={"12px"} width={"160px"} height={"40px"} cursor={"pointer"}>
+                  <AppTypography color="neutral.primary" textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>View 3D Model</AppTypography>
                 </Flex>
               </Link>
             </Flex>

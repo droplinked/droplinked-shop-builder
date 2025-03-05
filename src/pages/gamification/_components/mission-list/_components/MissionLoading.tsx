@@ -10,7 +10,7 @@ function MissionLoading() {
                 <GamificationCard
                     key={index}
                     padding="12px 40px"
-                    background={"linear-gradient(180deg, #262626 0%, #1A1A1A 100%)"}
+                    background={"linear-gradient(180deg, neutral.gray.850 0%, #1A1A1A 100%)"}
                     boxShadow="0px 4px 4px 0px #00000040"
                 >
                     <Flex flex={1} direction={"column"} gap={"10px"}>
@@ -21,7 +21,7 @@ function MissionLoading() {
                                 <AppSkeleton width={100} isLoaded={false} height={18}>{""}</AppSkeleton>
                             </Flex>
                         </Flex>
-                        <Divider height={"2px"} borderColor={"#292929"} />
+                        <Divider height={"2px"} borderColor={"neutral.gray.800"} />
                         <Flex direction={"column"} gap={1}>
                             <AppSkeleton width={"100%"} height={18} isLoaded={false}>{""}</AppSkeleton>
                             <AppSkeleton width={"100%"} height={18} isLoaded={false}>{""}</AppSkeleton>

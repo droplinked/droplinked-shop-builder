@@ -21,7 +21,7 @@ function ShopManagement() {
                     background={"rgba(20, 20, 20, 0.85)"}
                 >
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <Heading m={0} fontSize={24} color={"primary"}>Manage Your Shops</Heading>
+                        <Heading m={0} fontSize={24} color={"neutral.white"}>Manage Your Shops</Heading>
                         <AppIcons.MultiShopManagement />
                     </Flex>
 

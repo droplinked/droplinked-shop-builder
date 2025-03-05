@@ -29,7 +29,8 @@ export default function MethodItem({ method }: Props) {
     return (
         <Flex
             borderRadius={"8px"}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             width="100%"
             flexWrap={"wrap"}
             p={4}
@@ -40,8 +41,9 @@ export default function MethodItem({ method }: Props) {
             <Flex gap={4} flex={1} alignItems={"center"}>
                 <Box
                     p={3}
-                    background={"#1c1c1c"}
-                    border={"1px solid #292929"}
+                    background={"neutral.gray.1000"}
+                    border={"1px solid"}
+                    borderColor="neutral.gray.800"
                     borderRadius={"8px"}
                 >
                     <BlockchainDisplay

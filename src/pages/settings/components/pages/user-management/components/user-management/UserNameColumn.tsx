@@ -11,7 +11,7 @@ export default function UserNameColumn({ userData }: Props) {
     return (
         <Flex alignItems={"center"} gap={4}>
             <Avatar src={userData?.recipientEmail} name={userData?.recipientEmail} />
-            <AppTypography fontSize={16} fontWeight={400} color={"#fff"}>
+            <AppTypography fontSize={16} fontWeight={400} color={"neutral.white"}>
                 {userData.recipientEmail}
             </AppTypography>
         </Flex>

@@ -73,7 +73,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
                         fontSize: 14,
                         color: "#fff",
                         placeholder: "1",
-                        _focus: { borderColor: "#878787" },
+                        _focus: { borderColor: "neutral.gray.400" },
                         onChange: (e) => setQuantity(parseInt(e.target.value)),
                         onKeyDown: (e) => {
                             const invalidKeys = ['+', '-', 'e']

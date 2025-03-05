@@ -40,7 +40,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
       </Button>
 
       {/* Search Input */}
-      <Flex p="8px" alignItems="center" fontWeight="medium" justifyContent="center" gap={2} border="1px solid #292929" bg="#1C1C1C" borderRadius="8">
+      <Flex p="8px" alignItems="center" fontWeight="medium" justifyContent="center" gap={2} border="1px solid" borderColor="neutral.gray.800" bg="neutral.gray.1000" borderRadius="8">
         <AppIcons.Search />
         <Input
           ref={inputRef}
@@ -54,12 +54,12 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
           _focusVisible={{
             border: 'none'
           }}
-          _placeholder={{ color: '#7B7B7B' }}
+          _placeholder={{ color: 'text.subtextPlaceholder.dark' }}
           value={filters.title}
           placeholder="Search"
           onChange={(e) => handleFilterChange('title', e.target.value)}
         />
-        <Box as="button" cursor={'pointer'} bg={"#292929"} rounded={2} onClick={focusSearchInput}>
+        <Box as="button" cursor={'pointer'} bg={"neutral.gray.800"} rounded={2} onClick={focusSearchInput}>
           <AppIcons.SearchInput />
         </Box>
       </Flex>

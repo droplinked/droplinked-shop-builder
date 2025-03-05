@@ -11,7 +11,7 @@ function LoadingComponent({ ...flexProps }: Props) {
       h="auto"
       {...flexProps}
     >
-      <Spinner size="xl" color="primary" />
+      <Spinner size="xl" color="neutral.primary" />
     </Flex>
   )
 }

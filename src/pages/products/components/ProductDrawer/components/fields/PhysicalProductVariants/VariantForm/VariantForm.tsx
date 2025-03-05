@@ -43,7 +43,8 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
         <Flex
             direction="column"
             gap={9}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={4}
         >

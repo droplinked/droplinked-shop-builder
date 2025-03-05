@@ -9,7 +9,7 @@ interface StatIndicatorProps extends FlexProps, PropsWithChildren {
 function StatIndicator({ percentage, children, ...rest }: StatIndicatorProps) {
     return (
         <DotSeparatedList>
-            <Text fontSize={14} color="#FFF">{percentage.toFixed(2)}%</Text>
+            <Text fontSize={14} color="neutral.white">{percentage.toFixed(2)}%</Text>
             {children}
         </DotSeparatedList>
     )

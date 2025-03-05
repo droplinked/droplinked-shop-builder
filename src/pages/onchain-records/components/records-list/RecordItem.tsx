@@ -42,7 +42,7 @@ export default function RecordItem({ item }: { item: ICombinedNft }) {
                         </AppTypography>
                     </Flex>
                 </AppTooltip>
-                <AppTypography color={"#7b7b7b"}>{walletAddress}</AppTypography>
+                <AppTypography color={"text.subtextPlaceholder.dark"}>{walletAddress}</AppTypography>
             </Flex>
             <AppTypography
                 color={"#fff"}

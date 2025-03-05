@@ -25,7 +25,7 @@ function InvitationInput({ label, type, value, isRequired, error, ...props }: Pr
                         name=""
                         type={inputType}
                         value={value}
-                        color={props.isReadOnly ? "#616161" : "#C2C2C2"}
+                        color={props.isReadOnly ? "neutral.gray.600" : "#C2C2C2"}
                         fontSize={14}
                         {...props}
                     />

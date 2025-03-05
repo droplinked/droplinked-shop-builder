@@ -17,12 +17,12 @@ function DropdownTrigger({ isOpen, selectedSKU }: Props) {
                 display="flex"
                 alignItems="center"
                 gap={selectedSKU ? 4 : 0}
-                border={`1.5px solid ${isOpen ? '#878787' : '#292929'}`}
+                border={`1.5px solid ${isOpen ? 'neutral.gray.400' : '#292929'}`}
                 borderRadius={8}
                 px={4}
                 py={3}
                 background="none"
-                color="#7B7B7B"
+                color="text.subtextPlaceholder.dark"
                 _hover={{}}
                 _focusVisible={{}}
                 _active={{}}

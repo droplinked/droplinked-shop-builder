@@ -29,7 +29,7 @@ export const ExampleCustomTimeInput = forwardRef((props: any, ref) => {
             </AppTypography>
             <Flex gap={2} alignItems={"center"}>
                 <AppInput
-                    border={"1px solid #292929"}
+                    borderColor={"neutral.gray.800"}
                     borderRadius={"8px"}
                     padding={"16px 12px"}
                     width={"2.7rem !important"}
@@ -38,12 +38,12 @@ export const ExampleCustomTimeInput = forwardRef((props: any, ref) => {
                     name="hours"
                     background={"transparent !important"}
                 />
-                <AppTypography color={"#7B7B7B"} fontWeight={900} fontSize={"14px"}>
+                <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
                 <AppInput
                     background={"transparent !important"}
-                    border={"1px solid #292929"}
+                    borderColor={"neutral.gray.800"}
                     borderRadius={"8px"}
                     padding={"16px 12px"}
                     width={"2.7rem !important"}

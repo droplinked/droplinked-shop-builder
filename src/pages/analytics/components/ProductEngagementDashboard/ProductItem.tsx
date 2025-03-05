@@ -21,7 +21,7 @@ function ProductItem({ product, isLastItem }: Props) {
         <Flex
             align="center"
             gap={4}
-            borderBottom={isLastItem ? "none" : "1px solid #292929"}
+            borderBottom={isLastItem ? "none" : "1px solid neutral.gray.800"}
             padding={4}
         >
             <AppImage

@@ -27,7 +27,7 @@ function WalletSelect({ onWalletChange, selectedChain }: Props) {
             labelAccessor='walletAddress'
             selectProps={{
                 width: "100%",
-                borderColor: "#292929",
+                borderColor: "neutral.gray.800",
                 bgColor: "#1C1C1C",
                 placeholder: "Select Wallet",
                 onChange: (e) => {

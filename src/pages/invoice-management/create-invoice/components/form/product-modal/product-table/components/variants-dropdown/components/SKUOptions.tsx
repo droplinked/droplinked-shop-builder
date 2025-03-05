@@ -42,7 +42,7 @@ function SKUOptions({ options, circleProps, textProps }: Props) {
                                 fontSize={16}
                                 fontWeight={500}
                                 color="white"
-                                _after={{ content: "''", position: "absolute", top: 0, bottom: 0, right: "-16px", width: "1px", backgroundColor: "#3C3C3C" }}
+                                _after={{ content: "''", position: "absolute", top: 0, bottom: 0, right: "-16px", width: "1px", backgroundColor: "neutral.gray.700" }}
                                 _last={{ _after: { display: "none" } }}
                                 {...textProps}
                             >

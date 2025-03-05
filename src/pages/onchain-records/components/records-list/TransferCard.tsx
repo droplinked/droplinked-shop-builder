@@ -16,8 +16,9 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
             py={4}
             pr={6}
             pl={4}
-            bg={"#1c1c1c"}
-            border={"1px solid #292929"}
+            bg={"neutral.gray.1000"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             borderRadius={12}
             flexDirection={"row"}
             justifyContent={"space-between"}
@@ -41,7 +42,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                     </AppTypography>
                     {description &&
                         <AppTypography
-                            color={"#7b7b7b"}
+                            color={"text.subtextPlaceholder.dark"}
                             fontSize={{ base: 12, lg: 14 }}
                             dangerouslySetInnerHTML={{ __html: description }}
                             sx={{

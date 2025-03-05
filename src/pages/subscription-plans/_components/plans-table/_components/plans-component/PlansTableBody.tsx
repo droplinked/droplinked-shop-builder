@@ -16,15 +16,15 @@ function PlansTableBody({ data }: { data: Array<SubscriptionPlan> }) {
             {data[0].subOptionIds.map((option, index) => (
                 <React.Fragment key={index}>
                     <Tr pt={"1rem"}>
-                        <Td borderColor={"#292929"} px={0} pt={"48px"} colSpan={data.length + 1} border={"none"}>
+                        <Td borderColor={"neutral.gray.800"} px={0} pt={"48px"} colSpan={data.length + 1} border={"none"}>
                             <AppTypography marginTop={"1rem"} color={"#2BCFA1"} fontWeight={"700"} fontSize={"20px"}>{option?.title || option?.key}</AppTypography>
                         </Td>
                     </Tr>
                     {option.value.map((subOption, subIndex) => (
                         <Tr height={"64px"} key={subIndex}>
-                            <Td borderColor={"#292929"} maxWidth={"15rem"} style={{ textWrap: "wrap" }} px={0}><AppTypography color={"#fff"} fontSize={"16px"}>{subOption.title}</AppTypography></Td>
+                            <Td borderColor={"neutral.gray.800"} maxWidth={"15rem"} style={{ textWrap: "wrap" }} px={0}><AppTypography color={"#fff"} fontSize={"16px"}>{subOption.title}</AppTypography></Td>
                             {data.map((plan, planIndex) => (
-                                <Td borderColor={"#292929"} key={planIndex}>
+                                <Td borderColor={"neutral.gray.800"} key={planIndex}>
                                     <Box display={"flex"} justifyContent={"center"} alignContent={"center"}>
                                         {renderValue(plan.subOptionIds[index].value[subIndex].value)}
                                     </Box>

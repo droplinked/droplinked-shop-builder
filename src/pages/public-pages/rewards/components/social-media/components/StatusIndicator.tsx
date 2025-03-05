@@ -6,12 +6,11 @@ import { CARD_STATUSES, CardStatus } from '../../../hook/useFollowStatus';
 interface StatusIndicatorProps {
   status: CardStatus;
   loading: boolean;
-  platform: string;
 }
 
-const StatusIndicator = ({ status, loading, platform }: StatusIndicatorProps) => {
+const StatusIndicator = ({ status, loading }: StatusIndicatorProps) => {
   if (loading) {
-    return <Spinner thickness="4px" speed="0.8s" color="primary" size="lg" />;
+    return <Spinner thickness="4px" speed="0.8s" color="neutral.primary" size="lg" />;
   }
 
   switch (status) {
