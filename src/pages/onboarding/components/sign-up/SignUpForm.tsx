@@ -93,7 +93,7 @@ function SignUpForm({ onBack, onNext }: Props) {
                             <InteractiveText to='/terms'>Terms and Conditions.</InteractiveText>
                         </Checkbox>
 
-                        <Button isLoading={loading}>Sign Up</Button>
+                        <Button isLoading={loading} onClick={onNext}>Sign Up</Button>
 
                         <DividerText text="or sign up with" />
 
