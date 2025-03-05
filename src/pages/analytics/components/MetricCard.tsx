@@ -65,7 +65,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
                     </Flex>
 
                     {/* Breakdown */}
-                    <Flex direction="column" gap={4} marginTop={6}>
+                    <Flex direction="column" gap={4} marginTop={6} >
                         {activeMetrics.map(({ label, percentage, color }) => (
                             <Flex
                                 key={label}
@@ -74,7 +74,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
                                 alignItems="center"
                                 gap={2}
                             >
-                                <StylizedTitle bgColor={color} title={label} />
+                                <StylizedTitle bgColor={color} title={label}  />
                                 <StatIndicator percentage={percentage}>
                                     {secondaryValueDisplay}
                                 </StatIndicator>

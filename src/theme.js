@@ -24,46 +24,87 @@ export const theme = extendTheme({
         }
     },
     colors: {
-        bG: "#141414",
-        subLayer: "#141414",
-        mainLayer: "#1C1C1C",
-        button: "#353535",
-        line: "#262626",
-        primary: "#25BB92",
-        primaryLight: "#54DDB7",
-        primaryDark: "#084836",
-        white: "#fff",
-        dark: "#181818",
-        black: "#000",
-        lightGray: "#C2C2C2",
-        darkGray: "#666666",
-        offText: "#5D5D5D",
-        error: '#E63F43',
-        green: {
-            50: "#edfaf6",
-            100: "#b4ecdc",
-            200: "#6bd9ba",
-            300: "#2bbb93",
-            400: "#26a783",
-            500: "#2EC99E",
-            600: "#1b775d",
-            700: "#165f4b",
-            800: "#12513f",
-            900: "#0d3a2e",
+        neutral: {
+          white: '#ffffff',
+          gray: {
+            50: '#f9f9f9', 
+            100: '#f2f2f2',
+            200: '#dedede',
+            300: '#d6d6d6',
+            400: '#c4c4c4',
+            450: '#a3a3a3',
+            500: '#878787',
+            550: '#747474',
+            600: '#616161',
+            650: '#4f4f4f',
+            700: '#3c3c3c',
+            750: '#333333',
+            800: '#292929',
+            850: '#262626',
+            900: '#222222',
+            1000: '#1c1c1c'
+          },
+          background: '#141414',
+          black: '#000000',
         },
-        mainGray: {
-            50: "#f7f7f7",
-            100: "#e0e0e0",
-            200: "#c5c5c5",
-            300: "#a6a6a6",
-            400: "#949494",
-            500: "#292929",
-            600: "#696969",
-            700: "#545454",
-            800: "#474747",
-            900: "#333333",
+        primary: {
+          default: '#2bcfa1',
+        },
+        system: {
+          success: '#2bcfa1',
+          warning: '#ffd951',
+          error: '#ff2244',
+          link: '#179ef8',
+        },
+        text: {
+          white: '#ffffff',
+          black: '#000000',
+          subtextPlaceholder: {
+            light: '#b1b1b1',
+            dark: '#7b7b7b',
+          },
+          disabled: {
+            light: '#bcbcbc',
+            dark: '#4f4f4f',
+          },
+          primary: '#2bcfa1',
+          error: '#ff2244',
+          link: '#179ef8',
+        },
+        button: {
+          default: {
+            primary: '#2bcfa1',
+            secondary: '#292929',
+          },
+          hover: {
+            transparent: 'rgba(43, 206, 161, 0.1)',
+            filled: '#06c295',
+            secondary: '#333333',
+          },
+          pressed: {
+            transparent: 'rgba(43, 206, 161, 0.2)',
+            filled: '#01b48a',
+            secondary: '#3c3c3c',
+          },
+          disable: {
+            light: '#f2f2f2',
+            dark: '#262626',
+          }
+        },
+        sonner: {
+          success: '#004935',
+          warning: '#B77B00',
+          error: '#670010',
+          link: '#003E68',
+        },
+        label: {
+          normal: 'rgba(0, 0, 0, 0.05)',
+          success: 'rgba(43, 207, 161, 0.1)',
+          warning: 'rgba(255, 217, 81, 0.1)',
+          error: 'rgba(255, 34, 68, 0.05)',
+          link: 'rgba(23, 158, 248, 0.1)',
         }
-    },
+      },
     breakpoints: {
         sm: "360px", // Mobile: 360px and above
         md: "1024px", // Tablet: 1024px and above
