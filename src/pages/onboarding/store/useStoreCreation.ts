@@ -8,22 +8,24 @@ interface StoreCreationState {
         name: string
         description: string
     }
-    setStoreData: (data: StoreCreationState['storeData']) => void
+    clearStoreData: () => void
     updateStoreField: <K extends keyof StoreCreationState['storeData']>(
         field: K,
         value: StoreCreationState['storeData'][K]
     ) => void
 }
 
+const initialStoreData = {
+    logoUrl: '',
+    coverImage: '',
+    url: '',
+    name: '',
+    description: ''
+}
+
 const useStoreCreation = create<StoreCreationState>((set) => ({
-    storeData: {
-        logoUrl: '',
-        coverImage: '',
-        url: '',
-        name: '',
-        description: ''
-    },
-    setStoreData: (data) => set({ storeData: data }),
+    storeData: initialStoreData,
+    clearStoreData: () => set({ storeData: initialStoreData }),
     updateStoreField: (field, value) => set((state) => ({
         storeData: {
             ...state.storeData,

@@ -1,4 +1,3 @@
-import { FormikValues } from "formik"
 import * as Yup from "yup"
 
 export interface SetupFormValues {
@@ -18,20 +17,28 @@ export const validationSchema = Yup.object({
         .required('Store URL is required')
         .matches(/^[a-zA-Z0-9-_]+$/, 'Only letters, numbers, dash and underscore allowed'),
     logoUrl: Yup.string()
-        .required('Logo URL is required')
+        .optional()
+        .nullable()
         .url('Must be a valid URL'),
     coverImage: Yup.string()
-        .required('Cover image URL is required')
+        .optional()
+        .nullable()
         .url('Must be a valid URL'),
     description: Yup.string()
-        .required('Description is required')
-        .min(10, 'Description must be at least 10 characters')
+        .optional()
+        .nullable()
 })
 
-export const initialValues: FormikValues = {
-    logoUrl: '',
-    coverImage: '',
-    url: '',
-    name: '',
-    description: ''
+export const getInitialValues = (storeData: SetupFormValues) => {
+    const { coverImage, description, logoUrl, name, url } = storeData;
+
+    return (
+        {
+            logoUrl: logoUrl || '',
+            coverImage: coverImage || '',
+            url: url || '',
+            name: name || '',
+            description: description || ''
+        }
+    )
 }
