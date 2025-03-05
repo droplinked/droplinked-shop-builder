@@ -18,8 +18,22 @@ function Onboarding() {
         return null
     }
 
+    const onNextStep = () => {
+        nextStep()
+        if (currentStep >= 3) {
+            //next step on useStoreCreation   
+        }
+    }
+    const onPrevStep = () => {
+        prevStep()
+        if (currentStep >= 3) {
+            //prev step on useStoreCreation   
+        }
+    }
+
     const hasRightSection = currentStep !== 7
     const rightContent = renderRightContent()
+
 
     return (
         <Grid templateColumns={hasRightSection ? '1fr 1fr' : '1fr'}>
@@ -28,8 +42,8 @@ function Onboarding() {
                 <OnboardingStepContent
                     step={currentStep}
                     data={stepData[currentStep]}
-                    onNext={nextStep}
-                    onBack={prevStep}
+                    onNext={onNextStep}
+                    onBack={onPrevStep}
                     shopData={shopData}
                     updateShopData={updateShopData}
                 />
