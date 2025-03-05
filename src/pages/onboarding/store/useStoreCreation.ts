@@ -16,7 +16,7 @@ interface StoreCreationState {
 }
 
 const initialStoreData = {
-    logoUrl: '',
+    logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png',
     coverImage: '',
     url: '',
     name: '',
