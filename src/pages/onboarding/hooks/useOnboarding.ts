@@ -9,8 +9,8 @@ export function useOnboarding() {
         { type: 'sign-in' },
         { type: 'sign-up' },
         { type: 'email-confirmation' },
-        { type: 'feature-selection' },
         { type: 'shop-setup' },
+        { type: 'feature-selection' },
         { type: 'payment-setup' },
         { type: 'subscription-plan' },
         { type: 'completion' }

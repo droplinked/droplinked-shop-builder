@@ -11,8 +11,8 @@ function Onboarding() {
 
     function renderRightContent() {
         if (currentStep >= 0 && currentStep <= 2) return <ProductCards />
-        if (currentStep === 4) return <ShopPreview />
-        if (currentStep === 3 || currentStep === 5 || currentStep === 6) {
+        if (currentStep === 3) return <ShopPreview />
+        if (currentStep === 4 || currentStep === 5 || currentStep === 6) {
             return <Box>Simple Image Placeholder</Box>
         }
         return null
