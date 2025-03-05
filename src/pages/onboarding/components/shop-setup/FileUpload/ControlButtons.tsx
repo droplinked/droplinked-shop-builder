@@ -1,7 +1,7 @@
-import { Flex, IconButton } from "@chakra-ui/react";
-import { Refresh1Md } from "assets/icons/Action/Refresh1/Refresh1Md";
-import { TrashMd } from "assets/icons/Action/Trash/TrashMd";
-import React from "react";
+import { Flex, IconButton } from "@chakra-ui/react"
+import { Refresh1Md } from "assets/icons/Action/Refresh1/Refresh1Md"
+import { TrashMd } from "assets/icons/Action/Trash/TrashMd"
+import React from "react"
 
 interface ControlButtonsProps {
     onEdit: (e: React.MouseEvent) => void
@@ -32,6 +32,6 @@ const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => (
             onClick={onRemove}
         />
     </Flex>
-);
+)
 
-export default ControlButtons;
+export default ControlButtons

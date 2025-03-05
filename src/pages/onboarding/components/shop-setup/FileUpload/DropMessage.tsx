@@ -1,10 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
-import React, { ReactNode } from "react";
+import { Box, Text } from "@chakra-ui/react"
+import React, { ReactNode } from "react"
 
 interface DropMessageProps {
-    isDragActive: boolean;
-    title?: ReactNode;
-    dropDescription?: string;
+    isDragActive: boolean
+    title?: ReactNode
+    dropDescription?: string
 }
 
 const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps) => {
@@ -16,7 +16,7 @@ const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps)
             >
                 Drop the file here ...
             </Text>
-        );
+        )
     }
 
     return (
@@ -44,7 +44,7 @@ const DropMessage = ({ isDragActive, title, dropDescription }: DropMessageProps)
                 {dropDescription}
             </Text>
         </>
-    );
-};
+    )
+}
 
-export default DropMessage;
+export default DropMessage

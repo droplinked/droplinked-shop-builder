@@ -1,5 +1,5 @@
-import { Flex, Spinner, Text } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Spinner, Text } from "@chakra-ui/react"
+import React from "react"
 
 const LoadingState = () => (
     <Flex
@@ -17,6 +17,6 @@ const LoadingState = () => (
             Uploading..., Please Wait.
         </Text>
     </Flex>
-);
+)
 
-export default LoadingState;
+export default LoadingState

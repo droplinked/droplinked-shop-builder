@@ -1,11 +1,11 @@
-import { Flex } from "@chakra-ui/react";
-import { ImageMd } from "assets/icons/System/Image/ImageMd";
-import React from "react";
-import { useDropzone } from "react-dropzone";
-import { FileUploadProps } from "./types";
-import LoadingState from "./LoadingState";
-import DropMessage from "./DropMessage";
-import ControlButtons from "./ControlButtons";
+import { Flex } from "@chakra-ui/react"
+import { ImageMd } from "assets/icons/System/Image/ImageMd"
+import React from "react"
+import { useDropzone } from "react-dropzone"
+import { FileUploadProps } from "./types"
+import LoadingState from "./LoadingState"
+import DropMessage from "./DropMessage"
+import ControlButtons from "./ControlButtons"
 
 function FileUpload({
     onFileChange,
@@ -20,22 +20,22 @@ function FileUpload({
 }: FileUploadProps) {
     const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
         onDrop: (acceptedFiles: File[]) => {
-            const selectedFile = acceptedFiles[0];
-            onFileChange(selectedFile);
+            const selectedFile = acceptedFiles[0]
+            onFileChange(selectedFile)
         },
         disabled: isLoading,
         multiple: multiple,
         accept: accept,
-    });
+    })
 
     const handleEdit = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        open();
+        e.stopPropagation()
+        open()
     }
 
     const handleRemove = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        onFileChange(null);
+        e.stopPropagation()
+        onFileChange(null)
     }
 
     return (
@@ -49,8 +49,8 @@ function FileUpload({
             gap={3}
             border="1px dashed #3C3C3C"
             borderRadius={8}
-            width={"100%"}
-            height={"150px"}
+            width="100%"
+            height="150px"
             backgroundColor="#1C1C1C"
             backgroundImage={value ? `url(${value})` : 'none'}
             backgroundSize="cover"
@@ -76,7 +76,7 @@ function FileUpload({
                 )
             )}
         </Flex>
-    );
+    )
 }
 
-export default FileUpload;
+export default FileUpload
