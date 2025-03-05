@@ -10,8 +10,8 @@ const LoadingState = () => (
     >
         <Spinner color="#fff" />
         <Text
-            fontSize={14}
             fontWeight={500}
+            fontSize={14}
             color={"#fff"}
         >
             Uploading..., Please Wait.

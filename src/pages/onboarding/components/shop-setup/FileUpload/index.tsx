@@ -41,20 +41,21 @@ function FileUpload({
     return (
         <Flex
             {...boxProps}
-            width={"100%"}
-            height={"150px"}
-            backgroundColor="#1C1C1C"
+            position="relative"
+            display="flex"
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
             gap={3}
             border="1px dashed #3C3C3C"
             borderRadius={8}
-            cursor={isLoading ? "not-allowed" : "pointer"}
-            position="relative"
+            width={"100%"}
+            height={"150px"}
+            backgroundColor="#1C1C1C"
             backgroundImage={value ? `url(${value})` : 'none'}
             backgroundSize="cover"
             backgroundPosition="center"
+            cursor={isLoading ? "not-allowed" : "pointer"}
             {...getRootProps()}
         >
             {value && <ControlButtons onEdit={handleEdit} onRemove={handleRemove} />}

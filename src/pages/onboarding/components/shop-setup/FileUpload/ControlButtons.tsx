@@ -9,21 +9,26 @@ interface ControlButtonsProps {
 }
 
 const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => (
-    <Flex position="absolute" top={2} right={2} gap={2}>
+    <Flex
+        position="absolute"
+        top={2}
+        right={2}
+        gap={2}
+    >
         <IconButton
             aria-label="Edit image"
-            icon={<Refresh1Md color="#fff" />}
+            borderRadius={8}
             background={"#292929"}
             _hover={{ background: "#292929" }}
-            borderRadius={8}
+            icon={<Refresh1Md color="#fff" />}
             onClick={onEdit}
         />
         <IconButton
             aria-label="Delete image"
-            icon={<TrashMd color="#fff" />}
+            borderRadius={8}
             background={"#292929"}
             _hover={{ background: "#292929" }}
-            borderRadius={8}
+            icon={<TrashMd color="#fff" />}
             onClick={onRemove}
         />
     </Flex>
