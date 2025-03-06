@@ -26,3 +26,11 @@ export interface ShopData {
     paymentMethods?: string[]
     subscriptionPlan?: string
 }
+
+export interface ProductCardData {
+    frontTitle: string
+    frontDescription: string
+    iconType: 'physical' | 'digital' | 'print' | 'nft'
+    frontBackgroundImage: string
+    backBackgroundImage: string
+}
