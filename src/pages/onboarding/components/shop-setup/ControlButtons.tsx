@@ -2,18 +2,16 @@ import { Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import React from 'react'
-import { useFormikContext } from 'formik';
 
 interface ControlButtonsProps {
     onBack: () => void;
+    onSubmit: () => void;
 }
 
-export default function ControlButtons({ onBack }: ControlButtonsProps) {
-    const { handleSubmit } = useFormikContext()
-
+export default function ControlButtons({ onBack, onSubmit }: ControlButtonsProps) {
     const handleClick = (e) => {
         e.preventDefault()
-        handleSubmit()
+        onSubmit()
     }
 
     return (

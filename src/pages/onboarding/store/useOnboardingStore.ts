@@ -16,16 +16,15 @@ interface OnboardingData {
 interface OnboardingActions {
     nextStep: () => void
     prevStep: () => void
-    updateStoreField: <K extends keyof OnboardingData['storeData']>(
+    updateOnboardingState: <K extends keyof OnboardingData>(
         field: K,
-        value: OnboardingData['storeData'][K]
+        value: OnboardingData[K]
     ) => void
-    clearStoreData: () => void
 }
 
 type OnboardingState = OnboardingData & OnboardingActions
 
-const initialStoreData = {
+export const initialStoreData = {
     logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png',
     coverImage: '',
     url: '',
@@ -59,13 +58,10 @@ const useOnboardingStore = create<OnboardingState>((set) => ({
     prevStep: () => set((state) => ({
         currentStep: state.currentStep > 0 ? state.currentStep - 1 : state.currentStep
     })),
-    updateStoreField: (field, value) => set((state) => ({
-        storeData: {
-            ...state.storeData,
-            [field]: value
-        }
+    updateOnboardingState: (field, value) => set((state) => ({
+        ...state,
+        [field]: value
     })),
-    clearStoreData: () => set({ storeData: initialStoreData })
 }))
 
 export default useOnboardingStore
