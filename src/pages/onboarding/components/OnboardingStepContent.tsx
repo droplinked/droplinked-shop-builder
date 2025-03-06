@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import { OnboardingStepData } from '../types/onboarding'
+import useOnboardingStore from '../store/useOnboardingStore'
 import CompletionSection from './completion/CompletionSection'
 import EmailConfirmation from './email-confirmation/EmailConfirmation'
 import FeatureSelection from './feature-selection/FeatureSelection'
@@ -10,26 +10,19 @@ import SignInForm from './sign-in/SignInForm'
 import SignUpForm from './sign-up/SignUpForm'
 import SubscriptionPlan from './subscription-plan/SubscriptionPlan'
 
-interface Props {
-    step: number
-    data: OnboardingStepData
-    onNext: () => void
-    onBack: () => void
-    shopData?: any
-    updateShopData?: (data: any) => void
-}
+function OnboardingStepContent() {
+    const { stepData, currentStep, nextStep, prevStep } = useOnboardingStore()
 
-function OnboardingStepContent({ step, data, onNext, onBack, shopData, updateShopData }: Props) {
     function renderContent() {
-        switch (data.type) {
+        switch (stepData[currentStep].type) {
             case 'sign-in':
-                return <SignInForm onNext={onNext} />
+                return <SignInForm onNext={nextStep} />
             case 'sign-up':
-                return <SignUpForm onBack={onBack} onNext={onNext} />
+                return <SignUpForm onBack={prevStep} onNext={nextStep} />
             case 'email-confirmation':
-                return <EmailConfirmation onBack={onBack} onNext={onNext} />
+                return <EmailConfirmation onBack={prevStep} onNext={nextStep} />
             case 'shop-setup':
-                return <ShopSetupForm onBack={onBack} onNext={onNext} />
+                return <ShopSetupForm onBack={prevStep} onNext={nextStep} />
             case 'feature-selection':
                 return <FeatureSelection />
             case 'payment-setup':

@@ -4,10 +4,10 @@ import OnboardingHeader from './components/OnboardingHeader'
 import OnboardingStepContent from './components/OnboardingStepContent'
 import ProductCards from './components/ProductCards'
 import ShopPreview from './components/shop-preview/ShopPreview'
-import { useOnboarding } from './hooks/useOnboarding'
+import useOnboardingStore from './store/useOnboardingStore'
 
 function Onboarding() {
-    const { currentStep, stepData, shopData, updateShopData, nextStep, prevStep } = useOnboarding()
+    const { currentStep } = useOnboardingStore()
 
     function renderRightContent() {
         if (currentStep >= 0 && currentStep <= 2) return <ProductCards />
@@ -18,35 +18,14 @@ function Onboarding() {
         return null
     }
 
-    const onNextStep = () => {
-        nextStep()
-        if (currentStep >= 3) {
-            //next step on useStoreCreation   
-        }
-    }
-    const onPrevStep = () => {
-        prevStep()
-        if (currentStep >= 3) {
-            //prev step on useStoreCreation   
-        }
-    }
-
     const hasRightSection = currentStep !== 7
     const rightContent = renderRightContent()
-
 
     return (
         <Grid templateColumns={hasRightSection ? '1fr 1fr' : '1fr'}>
             <Flex direction="column" gap={12} padding={16}>
                 <OnboardingHeader />
-                <OnboardingStepContent
-                    step={currentStep}
-                    data={stepData[currentStep]}
-                    onNext={onNextStep}
-                    onBack={onPrevStep}
-                    shopData={shopData}
-                    updateShopData={updateShopData}
-                />
+                <OnboardingStepContent />
             </Flex>
 
             {hasRightSection && rightContent && (
