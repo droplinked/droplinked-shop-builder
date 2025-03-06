@@ -1,10 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
+import StylizedTitle from "components/redesign/stylizedTitle/StylizedTitle"
 import React, { ReactNode } from "react"
 import DataPointCard from "./DataPointCard"
 import StatIndicator from "./StatIndicator"
-import StylizedTitle from "./StylizedTitle"
+import HorizontalBarChart from "components/redesign/HorizontalBarChart/horizontalBarChart"
 
 interface MetricCardProps {
     icon: ReactNode
@@ -25,6 +26,9 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
         { label: "Direct", percentage: directPercentage, color: "#2BCFA1" },
         { label: "Affiliate", percentage: affiliatePercentage, color: "#C5A3FF" }
     ]
+    
+    // Create a color map for the horizontal bar chart
+    const colorMap = metricBreakdown.reduce((acc, { label, color }) => ({ ...acc, [label]: color }), {});
 
     // Helper function to render the value display based on title.
     // If title is "Net Profit", use FormattedPrice; otherwise, use Text.
@@ -57,12 +61,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
 
             {totalValue > 0 && (
                 <Box padding={{ base: 4, lg: 6 }}>
-                    {/* Progress Bar */}
-                    <Flex gap="6px">
-                        {activeMetrics.map(({ percentage, color }) => (
-                            <Box key={color} flex={percentage} h="16px" borderRadius={4} bg={color} />
-                        ))}
-                    </Flex>
+                    <HorizontalBarChart data={activeMetrics} getValue={metric => metric.percentage} getLabel={metric => metric.label} colorMap={colorMap} />
 
                     {/* Breakdown */}
                     <Flex direction="column" gap={4} marginTop={6} >

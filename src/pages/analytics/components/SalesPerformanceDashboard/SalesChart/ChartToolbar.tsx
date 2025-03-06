@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
-import StylizedTitle from '../../StylizedTitle'
 import DateRangeNavButton from './DateRangeNavButton'
+import StylizedTitle from 'components/redesign/stylizedTitle/StylizedTitle'
 
 export default function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
