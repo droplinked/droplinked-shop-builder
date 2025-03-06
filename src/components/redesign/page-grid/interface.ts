@@ -5,6 +5,7 @@ export interface SearchInput {
     onChange(e: any): void
     value?: string
     placeholder?: string
+    disabled?: boolean
 }
 
 export interface PageGridRootProps {

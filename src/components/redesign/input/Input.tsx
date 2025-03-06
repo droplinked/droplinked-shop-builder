@@ -116,7 +116,7 @@ function InputContainer(props: Props) {
                 transition="border-color 0.1s ease-out"
                 _hover={{ borderColor: borderColorMap[state] || "neutral.gray.700" }}
                 _focus={{ borderColor: borderColorMap[state] || "text.subtextPlaceholder.dark" }}
-                {...showAnimatedLoading && { background: "#141414" }}
+                {...showAnimatedLoading && { background: "neutral.background" }}
                 {...inputContainerProps}
             >
                 {leftElement}
@@ -129,7 +129,7 @@ function InputContainer(props: Props) {
                         padding={0}
                         fontSize={14}
                         fontWeight={400}
-                        color="#fff"
+                        color="neutral.white"
                         maxLength={maxCharacters}
                         spellCheck={false}
                         _placeholder={{ color: "text.subtextPlaceholder.dark" }}

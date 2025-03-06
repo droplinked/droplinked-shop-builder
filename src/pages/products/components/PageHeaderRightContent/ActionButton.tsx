@@ -6,9 +6,10 @@ interface Props {
     icon: ReactElement
     onClick?: () => void
     label: string
+    isDisabled?: boolean
 }
 
-const ActionButton = ({ icon, onClick, label, variant = 'primary' }: Props) => (
+const ActionButton = ({ icon, onClick, label, variant = 'primary', isDisabled }: Props) => (
     <Button
         variant={variant}
         paddingBlock="10px"
@@ -17,7 +18,8 @@ const ActionButton = ({ icon, onClick, label, variant = 'primary' }: Props) => (
         fontWeight={500}
         leftIcon={icon}
         onClick={onClick}
-        _hover={{ opacity: "0.8" }}
+        _hover={isDisabled ? {} : { opacity: "0.8" }}
+        disabled={isDisabled}
     >
         {label}
     </Button>

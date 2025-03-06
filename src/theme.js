@@ -6,10 +6,10 @@ export const theme = extendTheme({
         Switch: createMultiStyleConfigHelpers(switchAnatomy.keys).defineMultiStyleConfig({
             baseStyle: createMultiStyleConfigHelpers(switchAnatomy.keys).definePartsStyle({
                 container: { border: "none", outline: "none" },
-                thumb: { backgroundColor: "#000" },
+                thumb: { backgroundColor: "neutral.black" },
                 track: {
-                    backgroundColor: "#333",
-                    _checked: { bg: "#2BCFA1" }
+                    backgroundColor: "neutral.gray.750",
+                    _checked: { bg: "primary.default" }
                 }
             })
         }),
@@ -19,7 +19,7 @@ export const theme = extendTheme({
     styles: {
         global: {
             ".chakra-form__required-indicator": {
-                color: "#2EC99E !important"
+                color: "text.primary !important"
             }
         }
     },
