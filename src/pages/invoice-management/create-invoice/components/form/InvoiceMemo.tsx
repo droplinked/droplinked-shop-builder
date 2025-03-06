@@ -17,13 +17,14 @@ function InvoiceMemo() {
                 maxLength={maxCharacters}
                 rows={3}
                 mt={4}
-                border="1px solid #292929"
+                border="1px solid"
+                borderColor="neutral.gray.800"
                 paddingBlock={3}
                 paddingInline={4}
                 placeholder="What’s up?"
-                color="#7B7B7B"
+                color="text.subtextPlaceholder.dark"
                 resize="none"
-                _placeholder={{ color: "#7B7B7B" }}
+                _placeholder={{ color: "text.subtextPlaceholder.dark" }}
                 _hover={{}}
                 _focus={{}}
                 _focusVisible={{}}
@@ -32,7 +33,7 @@ function InvoiceMemo() {
                 mt={2}
                 mr={4}
                 alignSelf="flex-end"
-                color="#7B7B7B"
+                color="text.subtextPlaceholder.dark"
                 userSelect="none"
             >
                 {values.note.length}/{maxCharacters}

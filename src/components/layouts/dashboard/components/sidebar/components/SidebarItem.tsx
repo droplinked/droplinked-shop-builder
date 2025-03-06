@@ -42,7 +42,7 @@ const SidebarItem = ({ item }) => {
                   <div ref={popoverRef}>
                     <PopoverTrigger>
                       <span onClick={() => setIsOpen(!isOpen)}>
-                        <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="#1C1C1C" ml={4} color="white">
+                        <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
                           <item.icon color="#FFF" />
                         </AppTooltip>
                       </span>
@@ -57,7 +57,7 @@ const SidebarItem = ({ item }) => {
                   </div>
                 </Popover>
               ) : (
-                <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="#1C1C1C" ml={4} color="white">
+                <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
                   <item.icon color="#FFF" />
                 </AppTooltip>
               )}

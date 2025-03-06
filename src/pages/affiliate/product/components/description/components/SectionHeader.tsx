@@ -10,7 +10,7 @@ const SectionHeader = ({ children }: { children: React.ReactNode }) => {
       borderRadius="lg"
       px={6}
       py={4}
-      bg="#1C1C1C"
+      bg="neutral.gray.1000"
       color="white"
     >
       <Text fontSize="xl" fontWeight="bold">

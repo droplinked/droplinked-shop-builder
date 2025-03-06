@@ -13,7 +13,7 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
 
     return (
         <>
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter
                 pt={{ base: "16px !important", md: "36px !important" }}
                 display={"flex"}

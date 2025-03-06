@@ -41,7 +41,7 @@ function HeaderMenu({ headerMenuItems }) {
             nodes={{
                 trigger: (
                     <AppTypography
-                        color="#878787"
+                        color="neutral.gray.400"
                         fontSize={{ base: '12px', sm: '14px', md: '16px' }}
                         fontWeight={600}
                         transition="0.2s"
@@ -99,7 +99,7 @@ function NavLink({ to, label }) {
     return (
         <Link to={to}>
             <AppTypography
-                color="#878787"
+                color="neutral.gray.400"
                 fontSize={{ base: '12px', sm: '14px', md: '16px' }}
                 fontWeight={600}
                 transition="0.2s"

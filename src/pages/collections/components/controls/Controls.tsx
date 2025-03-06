@@ -55,7 +55,7 @@ function ControlsListCollection({ collection, fetch }) {
                 {renderVisibilityIcon()}
             </Box>}
             <Box height={"40px"}>
-                <Divider orientation='vertical' borderColor={"#292929"} />
+                <Divider orientation='vertical' borderColor={"neutral.gray.800"} />
             </Box>
             <Link style={{ cursor: "pointer" }} target='_blank' to={redirectUrl}>
                 <AppIcons.Share />

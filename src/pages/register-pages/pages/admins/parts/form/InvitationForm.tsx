@@ -42,7 +42,7 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
         >
             {({ errors, values, setFieldValue }) => (
                 <Form>
-                    <Flex alignItems="center" backgroundColor={"bG"} paddingRight="7.5px" rounded="8px">
+                    <Flex alignItems="center" backgroundColor="neutral-background" paddingRight="7.5px" rounded="8px">
                         <AppInput name='newUser' value={values.email} placeholder="Enter email" border="none" error={errors.email && errors.email.toString()} onChange={(e) => setFieldValue("email", e.target.value)} />
                         <BasicButton
                             type='submit'

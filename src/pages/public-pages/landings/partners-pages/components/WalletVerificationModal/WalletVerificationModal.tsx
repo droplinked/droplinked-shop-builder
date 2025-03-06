@@ -367,7 +367,7 @@ const WalletVerificationModal = () => {
 										?.left && (
 											<Button
 												backgroundColor={
-													'#292929'
+													'neutral.gray.800'
 												}
 												border={
 													'none'

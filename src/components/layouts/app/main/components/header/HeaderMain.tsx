@@ -57,7 +57,8 @@ function HeaderMain() {
       top={0}
       left={0}
       right={0}
-      borderBottom={isScrolled ? '1px solid #3C3C3C' : 'transparent'}
+      borderBottom={'1px solid'}
+      borderColor={isScrolled ? 'neutral.gray.700' : 'transparent'}
       paddingBlock={{ base: 4, md: 6 }}
       paddingInline={{ base: 4, md: 9, lg: '60px', xl: '72px' }}
       backgroundColor={isScrolled ? '#141414' : 'transparent'}

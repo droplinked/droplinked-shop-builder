@@ -28,7 +28,7 @@ function SortableProduct({ product, isLastItem }: Props) {
             transition={transition}
             {...attributes}
             {...listeners}
-            {...(!isLastItem && { borderBottom: "1px solid #3C3C3C" })}
+            {...(!isLastItem && { borderBottom: "1px solid", borderColor:"neutral.gray.700" })}
         >
             <AppImage
                 src={product.media.find(image => image.isMain === "true")?.thumbnail}

@@ -93,7 +93,7 @@ function ConnectWallets() {
 										/>
 										<AppTypography
 											fontSize="12px"
-											color="lightGray"
+											color="neutral.gray.300"
 										>
 											<BlockchainDisplay
 												show="name"

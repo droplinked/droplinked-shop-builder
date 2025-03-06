@@ -13,15 +13,16 @@ function ContactUsInput({ name, ...props }: Props) {
     return (
         <AppInput
             name={name}
-            border={"1px solid #3C3C3C"}
+            border={"1px solid"}
+            borderColor="neutral.gray.700"
             borderRadius={8}
-            backgroundColor={"#262626"}
+            backgroundColor={"neutral.gray.850"}
             padding={4}
-            color={"#7B7B7B"}
+            color={"text.subtextPlaceholder.dark"}
             fontSize={16}
             {...props}
-            _hover={{ backgroundColor: "#262626" }}
-            _focus={{ backgroundColor: "#262626" }}
+            _hover={{ backgroundColor: "neutral.gray.850" }}
+            _focus={{ backgroundColor: "neutral.gray.850" }}
         />
     )
 }

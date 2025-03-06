@@ -33,7 +33,7 @@ function AcceptInvitation() {
                             direction={"column"}
                             gap={12}
                             borderRadius={24}
-                            backgroundColor={"#1c1c1c"}
+                            backgroundColor={"neutral.gray.1000"}
                             padding={{ base: 6, md: 12 }}
                             zIndex={1}
                         >

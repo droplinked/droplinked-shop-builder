@@ -25,7 +25,8 @@ export default function SaveChangesDrawer() {
                 width="100%"
                 padding={6}
                 background="#141414"
-                borderTop="1px solid #292929"
+                borderTop="1px solid"
+                borderColor="neutral.gray.800"
                 flexDirection={{ base: "column", lg: "row" }}
                 justifyContent="space-between"
                 gap={{ base: 6, lg: 0 }}
@@ -33,8 +34,9 @@ export default function SaveChangesDrawer() {
                 <Flex flexDir={{ base: "column", lg: "row" }} gap={4} alignItems={{ base: "start", lg: "center" }}>
                     <Box
                         p="10px"
-                        bg="#1C1C1C"
-                        border="1px solid #292929"
+                        bg="neutral.gray.1000"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
                         borderRadius="8px"
                     >
                         <AppIcons.WhiteSave style={{ width: "20px", height: "20px" }} />

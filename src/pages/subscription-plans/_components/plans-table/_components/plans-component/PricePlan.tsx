@@ -12,13 +12,13 @@ export function PricePlan({ plan }: IProps) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration);
     const targetPrice = plan.price.find(priceOption => priceOption?.month === preferredPlanDuration?.month)
 
-    if (plan.type === 'STARTER') return <AppTypography color={"#fff"} fontWeight={700} fontSize={"24px"}>Free</AppTypography>
-    if (plan.type === 'ENTERPRISE') return <AppTypography color={"#fff"} fontWeight={700} fontSize={"24px"}>Let’s talk</AppTypography>
+    if (plan.type === 'STARTER') return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>Free</AppTypography>
+    if (plan.type === 'ENTERPRISE') return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>Let’s talk</AppTypography>
 
     if (preferredPlanDuration.discount) {
         return (
             <HStack>
-                <AppTypography color={"#fff"} fontWeight={700} fontSize={"24px"}>${targetPrice?.discountPrice}</AppTypography>
+                <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>${targetPrice?.discountPrice}</AppTypography>
                 <AppTypography as="span" fontSize={12} fontWeight={400} color="#FF2244" textDecoration="line-through">
                     ${targetPrice?.price}
                 </AppTypography>
@@ -26,5 +26,5 @@ export function PricePlan({ plan }: IProps) {
         )
     }
 
-    return <AppTypography color={"#fff"} fontWeight={700} fontSize={"24px"}>${targetPrice?.price}</AppTypography>
+    return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>${targetPrice?.price}</AppTypography>
 }

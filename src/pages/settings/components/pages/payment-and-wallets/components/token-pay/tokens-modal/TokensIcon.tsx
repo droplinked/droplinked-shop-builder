@@ -11,8 +11,9 @@ export default function TokensIcon({ chains }: { chains: SupportedChains[] }) {
                     sx={{ svg: { width: "16px", height: "16px" } }}
                     p={3}
                     borderRadius={"100%"}
-                    border={"1px solid #292929"}
-                    bg={"#1c1c1c"}
+                    border={"1px solid"}
+                    borderColor="neutral.gray.800"
+                    bg={"neutral.gray.1000"}
                     key={index}
                 >
                     <BlockchainDisplay blockchain={chain.type} show="icon" />

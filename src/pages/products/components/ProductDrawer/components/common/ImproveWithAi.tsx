@@ -70,11 +70,11 @@ export default function ImproveWithAi({
     return (
         <Flex {...BoxStyles}>
             {isLoaded ? (
-                <Flex width={"100%"} borderRadius={4} border={"1px solid #292929"} background={"#1c1c1c"}>
+                <Flex width={"100%"} borderRadius={4} border={"1px solid"} borderColor="neutral.gray.800" background={"neutral.gray.1000"}>
                     {buttons.map((item, index) => {
                         return (
                             <Flex
-                                {...index === 0 && { borderRight: "1px solid #292929" }}
+                                {...index === 0 && { borderRight: "1px solid", borderColor:"neutral.gray.800"}}
                                 px={3} py={2}
                                 alignItems={"center"} gap={1.5}
                                 color={item.color}
@@ -94,10 +94,11 @@ export default function ImproveWithAi({
                     <MenuButton type="button" disabled={isDisabled} cursor={isDisabled ? "not-allowed" : "pointer"} onClick={onOpen}>
                         <Button
                             variant="secondary"
-                            border={"1px solid #292929"}
+                            border={"1px solid"}
+                             borderColor="neutral.gray.800"
                             borderRadius={"4px"}
                             paddingInline={3}
-                            background={"#1c1c1c"}
+                            background={"neutral.gray.1000"}
                             fontSize={12}
                             fontWeight={500}
                             color={"#2bcfa1"}
@@ -107,7 +108,7 @@ export default function ImproveWithAi({
                             {!isImproveLoading && "Improve With AI"}
                         </Button>
                     </MenuButton>
-                    <MenuList zIndex={9999} borderRadius={8} background={"#1C1C1C"} border={"none"} p={3} minWidth={"150px"}>
+                    <MenuList zIndex={9999} borderRadius={8} background={"neutral.gray.1000"} border={"none"} p={3} minWidth={"150px"}>
                         {items.map((item, index) => {
                             return (
                                 <MenuItem
@@ -119,7 +120,7 @@ export default function ImproveWithAi({
                                     background={"transparent"}
                                     color={"#fff"}
                                     fontSize={12} fontWeight={500}
-                                    _hover={{ background: "#292929", borderRadius: 8 }}
+                                    _hover={{ background: "neutral.gray.800", borderRadius: 8 }}
                                     onClick={() => handleSelectItem(item.title)}
                                 >
                                     {item.icon}

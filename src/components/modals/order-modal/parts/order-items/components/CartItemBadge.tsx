@@ -16,7 +16,7 @@ function CartItemBadge({ text, colorScheme = "gray" }: Props) {
             borderRadius={"24px"}
             paddingY={"3px"}
             paddingX={"10px"}
-            backgroundColor={isGrayScheme ? "#3C3C3C" : "rgba(128, 237, 207, 0.10)"}
+            backgroundColor={isGrayScheme ? "neutral.gray.700" : "rgba(128, 237, 207, 0.10)"}
         >
             <AppTypography
                 fontSize={"10px"}

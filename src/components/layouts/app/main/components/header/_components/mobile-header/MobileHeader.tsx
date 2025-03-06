@@ -53,7 +53,7 @@ function SubMenu({ isVisible, headerMenuItems, onBackClick, onNavigate }) {
             gap={{ base: 8, md: 9 }}
             paddingBlock={9}
             paddingInline={{ base: 4, md: 9, lg: "60px", xl: "72px" }}
-            bgColor="#1C1C1C"
+            bgColor="neutral.gray.1000"
             transition="0.4s"
             zIndex={11}
             overflowY={"auto"}

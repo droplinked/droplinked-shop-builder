@@ -31,7 +31,7 @@ function LinkInput({ link }: Props) {
 function ShareButton({ link, buttonBgColor }: Props) {
     return (
         <Link href={link} target='_blank'>
-            <Center width={12} height={12} borderRadius={8} bgColor={buttonBgColor || "#3C3C3C"} >
+            <Center width={12} height={12} borderRadius={8} bgColor={buttonBgColor || "neutral.gray.700"} >
                 <AppIcons.Share />
             </Center>
         </Link>

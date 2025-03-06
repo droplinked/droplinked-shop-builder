@@ -76,11 +76,12 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                 <Flex
                     alignItems="center"
                     gap={2}
-                    border="1px solid #292929"
+                    border="1px solid"
+                    borderColor="neutral.gray.800"
                     borderRadius={8}
                     padding="12px 16px"
                     transition="border-color 0.1s ease-out"
-                    _hover={{ borderColor: '#3C3C3C' }}
+                    _hover={{ borderColor: 'neutral.gray.700' }}
                     sx={{
                         input: {
                             flex: 1, outline: 'none', border: 'none', bg: 'transparent', color: '#FFF',
@@ -117,14 +118,14 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                         padding: '12px 16px',
                         textAlign: 'left',
                         fontWeight: 400,
-                        _hover: { bgColor: '#292929' }
+                        _hover: { bgColor: 'neutral.gray.800' }
                     }
                 }}
             >
                 {dropdownOptions.map(variant => (
                     <Button
                         key={variant}
-                        bgColor={localProperty?.title === variant ? '#292929' : 'unset'}
+                        bgColor={localProperty?.title === variant ? 'neutral.gray.800' : 'unset'}
                         color="#FFF"
                         onClick={() => handleDropdownOptionClick({
                             selectedVariant: variant,

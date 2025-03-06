@@ -13,7 +13,7 @@ function ShopManagementLayout() {
     }, [pathname]);
 
     return (
-        <Flex minHeight={"100dvh"} direction={"column"} bgColor={"bG"}>
+        <Flex minHeight={"100dvh"} direction={"column"} bgColor="neutral.background">
             <DashboardLayoutHeader isDashboard={false} />
             <Box
                 minHeight={"80dvh"}

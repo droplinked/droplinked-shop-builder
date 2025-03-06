@@ -21,7 +21,7 @@ function CustomRadioCard(props: Props) {
             padding={4}
             borderRadius={8}
             border="1.5px solid"
-            borderColor={isChecked ? "#2BCFA1" : "#292929"}
+            borderColor={isChecked ? "#2BCFA1" : "neutral.gray.800"}
             bgColor={isChecked ? "rgba(43, 207, 161, 0.10)" : "unset"}
             cursor='pointer'
             {...containerProps}

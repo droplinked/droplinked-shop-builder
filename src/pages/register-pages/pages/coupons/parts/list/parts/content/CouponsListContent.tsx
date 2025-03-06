@@ -95,7 +95,7 @@ function CouponsListContent() {
                                                     <td width="50px"></td>
                                                     <td><AppTypography fontSize="12px">Code</AppTypography></td>
                                                     <td><AppTypography fontSize="12px">Status</AppTypography></td>
-                                                    <td width="30px"><Button bgColor={"#1C1C1C"} borderRadius={"6px"} border={"2px solid #292929"} width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{ bg: "unset" }} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
+                                                    <td width="30px"><Button bgColor={"neutral.gray.1000"} borderRadius={"6px"} border={"2px solid"} borderColor="neutral.gray.800" width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{ bg: "unset" }} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
                                                     <td width="30px"></td>
                                                 </tr>
                                             </thead>

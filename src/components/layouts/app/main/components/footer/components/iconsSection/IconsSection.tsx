@@ -27,7 +27,7 @@ function IconsSection() {
             <Flex gap={"16px"}>
                 {links.map(({ href, icon }, index) => (
                     <Link key={index} to={href} target='_blank'>
-                        <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"} p={'10px'}>
+                        <Box background={"neutral.gray.800"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"} p={'10px'}>
                             {icon}
                         </Box>
                     </Link>

@@ -85,7 +85,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             Manage Circle Wallet
                         </AppTypography>
                     </Box>
-                    <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid #292929">
+                    <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
                         {data?.data?.data === undefined ? (
                             <WalletListSkeleton />
                         ) : data?.data?.data.length === 0 ? (
@@ -108,7 +108,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                                 gap="8px"
                                                 flexShrink="0"
                                                 rounded="36px"
-                                                bgColor="#262626"
+                                                bgColor="neutral.gray.850"
                                             >
                                                 {Icon && <Icon />}
                                             </Box>
@@ -269,7 +269,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 alignItems="center"
                                 gap="6px"
                                 borderRadius="8px"
-                                background="#262626"
+                                background="neutral.gray.850"
                                 onClick={connectWalletModal.onOpen}
                             >
                                 Connect Wallet

@@ -24,7 +24,8 @@ function RevenueStatsGrid() {
                     key={index}
                     direction="column"
                     gap={{ base: 4, md: 6 }}
-                    border="1px solid #292929"
+                    border="1px solid"
+                    borderColor="neutral.gray.800"
                     borderRadius={16}
                     padding={{ base: 4, lg: 6 }}
                 >

@@ -16,7 +16,7 @@ function PlanDurationRadio({ ...props }) {
                 alignItems={"center"}
                 gap={"6px"}
                 borderRadius={6}
-                bg={isChecked ? "#292929" : "transparent"}
+                bg={isChecked ? "neutral.gray.800" : "transparent"}
                 transition={"all 0.2s"}
                 sx={{ "*": { transition: "all 0.2s" } }}
             >

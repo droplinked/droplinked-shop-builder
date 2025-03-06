@@ -7,7 +7,7 @@ function UserManagement() {
     return (
         <>
             <UserManagementSection />
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <Referrals />
         </>
     );

@@ -1,4 +1,4 @@
-import { Box, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
+import { Box, Alert, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
@@ -26,7 +26,7 @@ function UsageExceededAlert({ title }: IProps) {
                     </AppTypography>
                 </AlertTitle>
                 <AlertDescription>
-                    <AppTypography fontWeight="400" width={"320px"} fontSize={"14px"} color="#fff">
+                    <AppTypography fontWeight="400" width={"320px"} fontSize={"14px"} color="neutral.white">
                         All "{fixedTitle}" items have been used. Upgrade the plan to access more.
                     </AppTypography>
                 </AlertDescription>

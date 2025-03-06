@@ -23,7 +23,7 @@ export default function TokensListContainer({ isEvm, tokens }: Props) {
     return (
         <Flex flexDir={"column"} gap={6}>
             <Flex gap={2} alignItems={"center"}>
-                <AppTypography color={"#fff"} fontSize={"16px"}>{isEvm ? "EVM" : "Solana"}</AppTypography>
+                <AppTypography color={"neutral.white"} fontSize={"16px"}>{isEvm ? "EVM" : "Solana"}</AppTypography>
                 {!isEvm &&
                     <AppTooltip flexShrink={0} placement="bottom-start" label={tooltipText}>
                         <AppIcons.TooltipIcon fill={'#292929'} />

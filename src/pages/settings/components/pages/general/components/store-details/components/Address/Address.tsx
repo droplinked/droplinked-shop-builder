@@ -75,7 +75,8 @@ export default function Address() {
                                 width={"100%"}
                                 px={4}
                                 py={3}
-                                border={"1px solid #292929"}
+                                border={"1px solid"}
+                                borderColor="neutral.gray.800"
                                 fontSize={16}
                                 fontWeight={500}
                             >

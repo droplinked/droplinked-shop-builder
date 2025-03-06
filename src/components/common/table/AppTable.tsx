@@ -56,7 +56,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                         </Table>
                     ) : rows instanceof Array ? (
                         <Table color="#bebebe" width="100%" variant="unstyled">
-                            <Thead borderTop="2px solid #292929" borderBottom="2px solid #292929" {...props?.thead}>
+                            <Thead borderTop="2px solid" borderBottom="2px solid" borderColor={"neutral.gray.800"} {...props?.thead}>
                                 <Tr verticalAlign={"baseline"}>
                                     {checkbox && <Th textTransform="uppercase" padding="14px 15px 14px 0"><Checkbox onChange={(e) => selectAll(e.target.checked)} isDisabled={checkbox.isDisabled} colorScheme='green'></Checkbox></Th>}
                                     {Object.keys(rows[0]).filter(el => el !== "_data").map((el, key) =>
@@ -71,7 +71,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                             <Tbody>
                                 {rows.map((el: any, key) => {
                                     return (
-                                        <Tr borderBottom="2px solid #292929" key={key} {...props?.tr}>
+                                        <Tr borderBottom="2px solid" borderColor={"neutral.gray.800"} key={key} {...props?.tr}>
                                             {checkbox && (
                                                 <Td width="50" padding="14px 15px 14px 0">
                                                     <Checkbox

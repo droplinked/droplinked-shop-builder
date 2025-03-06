@@ -7,7 +7,7 @@ function CreditAndCoupons() {
     return (
         <>
             <Credits />
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <Coupons />
         </>
     );

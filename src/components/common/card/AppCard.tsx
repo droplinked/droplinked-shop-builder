@@ -13,7 +13,7 @@ function AppCard(props: IProps) {
   const styles = {
     width: "100%",
     maxWidth: boxProps?.maxWidth ? boxProps?.maxWidth : mini ? "1000px" : "100%",
-    bg: "mainLayer",
+    bg: "neutral.gray.1000",
     borderRadius: "8px",
     p: "36px 48px",
     color: "#FFF",

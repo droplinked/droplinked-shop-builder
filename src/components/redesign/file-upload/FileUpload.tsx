@@ -50,12 +50,12 @@ function FileUpload({
                     </Box>{" "}
                     to add a new file or drag and drop it here.
                 </AppTypography>}
-            <AppTypography color="#7B7B7B">{dropDescription}</AppTypography>
+            <AppTypography color="text.subtextPlaceholder.dark">{dropDescription}</AppTypography>
         </>
     );
 
     return (
-        <Flex {...boxProps} flexDirection="column" justifyContent="center" alignItems="center" gap={3} border="1px dashed #3C3C3C" borderRadius={8} cursor={isLoading ? "not-allowed" : "pointer"} {...getRootProps()}>
+        <Flex {...boxProps} flexDirection="column" justifyContent="center" alignItems="center" gap={3} border="1px dashed" borderColor="neutral.gray.700" borderRadius={8} cursor={isLoading ? "not-allowed" : "pointer"} {...getRootProps()}>
             {isLoading ? (
                 <VStack gap={"1rem"}>
                     <Spinner color="#fff" />

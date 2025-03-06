@@ -21,10 +21,11 @@ const ProductDrawerHeader = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            borderBottom="1px solid #292929"
+            borderBottom="1px solid"
+            borderColor="neutral.gray.800"
             padding={9}
         >
-            <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF">
+            <Heading as="h3" fontSize={24} fontWeight={700} color="neutral.white">
                 {actionText} {productTitle}
             </Heading>
             <DrawerCloseButton position="static" color="white" />

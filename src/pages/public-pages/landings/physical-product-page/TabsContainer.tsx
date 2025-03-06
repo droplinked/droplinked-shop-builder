@@ -15,7 +15,7 @@ function TabsContainer({ tabs, activeTab, setter }: Props) {
             gap={2}
             borderRadius={12}
             padding={2}
-            background={"#1C1C1C"}
+            background={"neutral.gray.1000"}
         >
             {tabs.map((tab, index) =>
                 <Button

@@ -6,7 +6,7 @@ interface DateRangeNavButtonProps extends FlexProps {
 }
 
 function DateRangeNavButton({ isDisabled, children, ...rest }: DateRangeNavButtonProps) {
-    const colorValue = isDisabled ? '#4F4F4F' : '#FFF'
+    const colorValue = isDisabled ? 'neutral.gray.650' : 'neutral.white'
 
     return (
         <Flex

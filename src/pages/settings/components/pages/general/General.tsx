@@ -7,7 +7,7 @@ function General() {
     return (
         <>
             <StoreDetails />
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <CustomerExperience />
         </>
     );

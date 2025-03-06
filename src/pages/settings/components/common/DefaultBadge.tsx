@@ -23,7 +23,7 @@ export default function DefaultBadge({ isDefault, onClick }: Props) {
             borderRadius={"4px"}
             alignItems={"center"}
             py={1}
-            bg={isDefault ? "#FFD9511A" : "#292929"}
+            bg={isDefault ? "#FFD9511A" : "neutral.gray.800"}
             px={2}
             gap={"6px"}
         >

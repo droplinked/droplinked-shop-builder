@@ -12,7 +12,7 @@ function Select({ items, selectedItem, onChange }: Props) {
     return (
         <ChakraSelect
             height={"50px"}
-            borderColor={"#F2F2F2"}
+            borderColor={"neutral.gray.100"}
             _hover={{}}
             icon={<AppIcons.BlackChevronDown />}
             defaultValue={selectedItem}

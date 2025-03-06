@@ -16,7 +16,8 @@ function OrderItem({ order, isLastItem, onNavigate }: Props) {
         <Flex
             alignItems="center"
             gap={4}
-            borderBottom={isLastItem ? "none" : "1px solid #1C1C1C"}
+            borderBottom={isLastItem ? "none" : "1px solid"}
+            borderColor="neutral.gray.1000"
             padding={{ base: 4, lg: "16px 24px" }}
             sx={{ svg: { flexShrink: 0 } }}
         >
@@ -25,12 +26,12 @@ function OrderItem({ order, isLastItem, onNavigate }: Props) {
                     <Text color="#fff" fontSize={{ base: 14, lg: 16 }}>order #{order._id}</Text>
                     <FormattedPrice
                         price={order.totalPriceCart}
-                        abbreviationProps={{ color: "#7B7B7B" }}
+                        abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
                     />
                 </Flex>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
                     <Text fontSize={{ base: 12, lg: 14 }} color="#2BCFA1">{order.status}</Text>
-                    <Text fontSize={{ base: 12, lg: 14 }} color="#7B7B7B">
+                    <Text fontSize={{ base: 12, lg: 14 }} color="text.subtextPlaceholder.dark">
                         {formatDateToLongStyle(new Date(order.updatedAt))}
                     </Text>
                 </Flex>

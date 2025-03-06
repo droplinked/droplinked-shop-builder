@@ -13,14 +13,14 @@ const SidebarGroup = ({ group, index }) => {
     >
       {/* Sidebar Group Title */}
       <Flex display={{ sm: 'flex', md: 'none', lg: 'flex' }} paddingLeft="12px" alignItems="center">
-        <AppTypography color="#7B7B7B" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px" whiteSpace={'nowrap'}>
+        <AppTypography color="text.subtextPlaceholder.dark" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px" whiteSpace={'nowrap'}>
           {group.group}
         </AppTypography>
       </Flex>
 
       {index !== 0 &&
         <Flex display={{ sm: 'none', md: 'flex', lg: 'none' }} mb={6} alignItems="center">
-          <Divider borderColor={"#292929"} display="block" />
+          <Divider borderColor={"neutral.gray.800"} display="block" />
         </Flex>
       }
 

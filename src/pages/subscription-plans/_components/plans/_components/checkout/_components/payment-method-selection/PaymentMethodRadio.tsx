@@ -22,7 +22,8 @@ export default function PaymentMethodRadio({ ...props }) {
 			display={'flex'}
 			justifyContent={'space-between'}
 			alignItems={'center'}
-			border={`1.5px solid ${isChecked ? '#2BCFA1' : '#3C3C3C'}`}
+			border={"1.5px solid"}
+			borderColor={`${isChecked ? '#2BCFA1' : 'neutral.gray.700'}`}
 			borderRadius={8}
 			padding={4}
 			bg={isChecked ? '#2BCFA11A' : 'transparent'}
@@ -89,7 +90,7 @@ export default function PaymentMethodRadio({ ...props }) {
 	);
 }
 
-const ChainIconMap: Record<string, JSX.Element> = {
+const ChainIconMap: Record<string, React.JSX.Element> = {
 	STRIPE: <AppIcons.NewStripe />,
 	LINEA: <AppIcons.BlueLinea />,
 	BINANCE: (

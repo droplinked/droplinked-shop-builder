@@ -122,7 +122,7 @@ function AppGDPR() {
               <Button
                 onClick={handleDecline}
                 color={"#C2C2C2"}
-                backgroundColor={"#292929"}
+                backgroundColor={"neutral.gray.800"}
                 width={{base: "100%", sm: "160px"}}
                 padding={"12px 36px"}
                 _hover={{ backgroundColor: "#3A3A3A", color: "#C2C2C2" }}

@@ -32,7 +32,7 @@ export default function UpgradePlan() {
             borderRadius={"8px"}
             justifyContent={"space-between"}
             alignItems={"start"}
-            bg={"#1C1C1C"}
+            bg={"neutral.gray.1000"}
             position="relative"
             zIndex={1}
             overflow="hidden"

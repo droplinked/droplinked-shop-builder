@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   return (
     <Box
       borderWidth="1px"
-      borderColor="#292929"
+      borderColor="neutral.gray.800"
       borderRadius="2xl"
       display={{ base: 'none', lg: 'block' }}
       position={{ lg: 'sticky', md: 'relative' }}
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
           </Flex>
         </Flex>
         {/* Divider */}
-        <Divider borderColor="#292929" />
+        <Divider borderColor="neutral.gray.800" />
         {/* Price and Actions Section */}
         <Flex direction="column" gap={4} p={4}>
           <ProductPrice price={product.skuIDs?.[0]?.price} showAbbreviation={false} fontSize="28px" />

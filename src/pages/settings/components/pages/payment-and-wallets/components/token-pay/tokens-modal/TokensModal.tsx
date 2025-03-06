@@ -70,12 +70,12 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                         inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
                     />
                     <Select
-                        itemColor="#fff"
+                        itemColor="neutral.white"
                         itemBackgroundColor="#1a202c"
                         items={[allNetworksItem, ...paymentMethodsData]}
                         labelAccessor="type"
                         valueAccessor="type"
-                        selectProps={{ width: { base: "100%", md: "200px" }, onChange: handleFilterData, color: "#fff" }}
+                        selectProps={{ width: { base: "100%", md: "200px" }, onChange: handleFilterData, color: "neutral.white" }}
                     />
                 </Flex>
                 <TokensListContainer isEvm tokens={filteredPaymentMethods} />

@@ -21,7 +21,7 @@ function RevenueStatDetails({ stat, isLoading }: Props) {
 
             <Skeleton isLoaded={!isLoading}>
                 {isPrice
-                    ? <FormattedPrice price={value} abbreviationProps={{ color: '#7B7B7B', fontWeight: 400 }} />
+                    ? <FormattedPrice price={value} abbreviationProps={{ color: 'text.subtextPlaceholder.dark', fontWeight: 400 }} />
                     : <Text>{value ?? 0}</Text>
                 }
             </Skeleton>

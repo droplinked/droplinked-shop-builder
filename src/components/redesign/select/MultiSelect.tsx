@@ -31,7 +31,8 @@ function MultiSelect({ value, options, labelAccessor = "label", placeholder = "S
         control: (base) => ({
             ...base,
             outline: 'none',
-            border: '1px solid #292929',
+            border: '1px solid',
+            borderColor:'neutral.gray.800',
             borderRadius: '8px',
             padding: '8px',
             backgroundColor: "transparent",
@@ -39,8 +40,8 @@ function MultiSelect({ value, options, labelAccessor = "label", placeholder = "S
             boxShadow: "none",
             userSelect: "none",
             transition: "border-color 0.1s ease-out",
-            "&:hover": { borderColor: "#3C3C3C" },
-            '&:focus': { boxShadow: 'none', borderColor: '#3C3C3C' },
+            "&:hover": { borderColor: "neutral.gray.700" },
+            '&:focus': { boxShadow: 'none', borderColor: 'neutral.gray.700' },
             "&:focus-within": { boxShadow: "none" },
         }),
         valueContainer: (base) => ({ ...base, gap: "8px", padding: 0 }),
@@ -50,7 +51,7 @@ function MultiSelect({ value, options, labelAccessor = "label", placeholder = "S
             gap: "6px",
             borderRadius: '4px',
             padding: '8px 12px',
-            backgroundColor: '#292929',
+            backgroundColor: 'neutral.gray.800',
             color: '#FFF'
         }),
         multiValueLabel: () => ({
@@ -65,8 +66,8 @@ function MultiSelect({ value, options, labelAccessor = "label", placeholder = "S
         }),
         dropdownIndicator: (base) => ({
             ...base,
-            color: '#292929',
-            '&:hover': { color: '#292929' },
+            color: 'neutral.gray.800',
+            '&:hover': { color: 'neutral.gray.800' },
         }),
         clearIndicator: () => ({ display: 'none' }),
         indicatorSeparator: () => ({ display: 'none' }),
@@ -88,7 +89,7 @@ function MultiSelect({ value, options, labelAccessor = "label", placeholder = "S
             backgroundColor: "transparent",
             color: "#FFF",
             cursor: "pointer",
-            "&:hover": { backgroundColor: "#292929" },
+            "&:hover": { backgroundColor: "neutral.gray.800" },
         }),
         noOptionsMessage: base => ({ ...base, padding: 0, color: '#FFF' })
     }

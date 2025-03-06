@@ -27,7 +27,8 @@ export default function AddressInputs({ onClose }: Props) {
         <Flex
             gap={4}
             borderRadius={"8px"}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             flexDirection={"column"}
             p={4}
         >

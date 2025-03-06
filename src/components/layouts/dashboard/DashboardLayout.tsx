@@ -66,7 +66,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
         {/* Main content */}
         <VStack flex="1" height="full" width="full">
           <DashboardLayoutHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-          <Box width="100%" minH="80vh" borderColor="line" padding={shouldApplyPadding ? 6 : 0}>
+          <Box width="100%" minH="80vh" borderColor="neutral.gray.850" padding={shouldApplyPadding ? 6 : 0}>
             {children || <Outlet />}
           </Box>
         </VStack>

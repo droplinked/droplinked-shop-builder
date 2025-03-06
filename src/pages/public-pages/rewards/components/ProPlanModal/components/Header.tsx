@@ -12,7 +12,7 @@ export const ModalHeader = () => (
       <Text fontSize="2xl" fontWeight="bold" color="white">
         Free Pro Plan Unlocked!
       </Text>
-      <Text fontSize="md" color="#b1b1b1" textAlign="center">
+      <Text fontSize="md" color={"text.subtextPlaceholder.light"} textAlign="center">
         You now have access to the Pro Plan for one month for free.
       </Text>
     </Flex>

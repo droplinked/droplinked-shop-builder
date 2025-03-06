@@ -14,7 +14,7 @@ export default function LinkContainer() {
     return (
         <Flex alignItems={"center"} gap={"6px"}>
             <Link to={link}>
-                <AppTypography color={"#fff"} fontSize={16}>{link}</AppTypography>
+                <AppTypography color={"neutral.white"} fontSize={16}>{link}</AppTypography>
             </Link>
             <ClipboardText text={link} />
         </Flex>

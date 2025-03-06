@@ -55,7 +55,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                     </Box>
                     <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
                         <Button
-                            backgroundColor={"#292929"}
+                            backgroundColor={"neutral.gray.800"}
                             border={"none"}
                             display="flex"
                             padding="12px 16px"
@@ -69,7 +69,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             fontWeight="500"
                             lineHeight={{ base: "16px", md: "24px" }}
                             onClick={() => !isCreatingWallet && !isError && navigate("/analytics/account-settings")}
-                            {...((isCreatingWallet || isError) && { background: "#292929", color: "#737373", cursor: "not-allowed" })}
+                            {...((isCreatingWallet || isError) && { background: "neutral.gray.800", color: "#737373", cursor: "not-allowed" })}
                         >
                             Access Wallet
                         </Button>
@@ -83,7 +83,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             fontWeight="500"
                             lineHeight={{ base: "16px", md: "24px" }}
                             onClick={() => !isCreatingWallet && navigate("/analytics/dashboard")}
-                            {...(isCreatingWallet && { background: "#292929", color: "#737373", cursor: "not-allowed", border: "none" })}
+                            {...(isCreatingWallet && { background: "neutral.gray.800", color: "#737373", cursor: "not-allowed", border: "none" })}
                         >
                             Go to Dashboard
                         </Button>

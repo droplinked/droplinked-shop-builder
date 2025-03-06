@@ -17,7 +17,7 @@ export default function ShippingAvailabilityContent() {
 
     return (
         <PopoverBody padding={6}>
-            <Box border="1px solid #292929" borderRadius={8}>
+            <Box border="1px solid" borderColor="neutral.gray.800" borderRadius={8}>
                 <AppTypography
                     fontSize={16}
                     fontWeight={700}
@@ -50,7 +50,7 @@ function Region({ region, isLastItem }) {
     return (
         <Flex alignItems="center" gap={3}>
             <AppTypography fontSize={16} color="#B1B1B1">{region}</AppTypography>
-            {!isLastItem && <Circle size={1} bgColor="#3C3C3C" />}
+            {!isLastItem && <Circle size={1} bgColor="neutral.gray.700" />}
         </Flex>
     )
 }

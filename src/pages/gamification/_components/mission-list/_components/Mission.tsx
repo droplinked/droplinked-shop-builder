@@ -16,7 +16,7 @@ function Mission({ mission }: { mission: Participation }) {
         <>
             <GamificationCard
                 padding="12px 40px"
-                background={mission.isCompleted ? "linear-gradient(180deg, rgba(0, 20, 14, 0.698039) 0%, #0B2E24 100%)" : "linear-gradient(180deg, #262626 0%, #1A1A1A 100%)"}
+                background={mission.isCompleted ? "linear-gradient(180deg, rgba(0, 20, 14, 0.698039) 0%, #0B2E24 100%)" : "linear-gradient(180deg, neutral.gray.850 0%, #1A1A1A 100%)"}
                 boxShadow="0px 4px 4px 0px #00000040"
             >
                 <Flex direction={"column"} gap={10} width={"100%"}>
@@ -28,7 +28,7 @@ function Mission({ mission }: { mission: Participation }) {
                                 <AppTypography fontSize={12} fontWeight={700} color={"#2BCFA1"}>Points: {missionCreditReward}</AppTypography>
                             </Flex>
                         </Flex>
-                        <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "#292929"} />
+                        <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "neutral.gray.800"} />
                         <AppTypography 
                             fontSize={12} 
                             fontWeight={400} 

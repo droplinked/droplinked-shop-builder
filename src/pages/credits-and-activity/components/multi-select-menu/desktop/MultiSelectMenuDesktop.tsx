@@ -19,7 +19,7 @@ export default function MultiSelectMenuDesktop({ items }: Props) {
         <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton onClick={onOpen} ml={"auto"}>
                 <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer">
-                    <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
+                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14} fontWeight={400}>
                         Type
                     </AppTypography>
                     <AppIcons.SelectChevronDown />

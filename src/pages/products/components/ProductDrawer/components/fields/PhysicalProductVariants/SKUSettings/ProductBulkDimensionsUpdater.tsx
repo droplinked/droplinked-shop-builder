@@ -63,12 +63,13 @@ const ConvertUnitButton = ({ label }: { label: string }) => (
         minW="92px"
         alignItems="center"
         gap={2}
-        border="1px solid #292929"
+        border="1px solid"
+            borderColor="neutral.gray.800"
         borderRadius={8}
         padding="12px 16px"
         color="#fff"
         transition="border-color 0.1s ease-out"
-        _hover={{ borderColor: '#3C3C3C' }}
+        _hover={{ borderColor: 'neutral.gray.700' }}
         css={{ path: { stroke: '#BCBCBC' } }}
     >
         {label}

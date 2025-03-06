@@ -21,7 +21,7 @@ function ContactUs() {
                     alignItems={"start"}
                     gap={9}
                     borderRadius={24}
-                    backgroundColor={"#1C1C1C"}
+                    backgroundColor={"neutral.gray.1000"}
                     padding={{ base: 5, md: 7, xl: 9 }}
                     zIndex={1}
                 >

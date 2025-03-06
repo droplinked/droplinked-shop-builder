@@ -52,7 +52,7 @@ export default function KeyContainer() {
                                     <Box key={index}>
                                         {isVisible ? (
                                             <AppTypography
-                                                color={"#fff"}
+                                                color="neutral.white"
                                                 fontSize={16}
                                                 fontWeight={500}
                                             >

@@ -15,7 +15,7 @@ function BlogCard({ blog }: { blog: Blog }) {
             direction="column"
             borderRadius={8}
             overflow={"hidden"}
-            backgroundColor={"#262626"}
+            backgroundColor={"neutral.gray.850"}
             cursor={"pointer"}
             onClick={() => shopNavigate(`blogs/${blog.seoData.slug}`)}
         >
