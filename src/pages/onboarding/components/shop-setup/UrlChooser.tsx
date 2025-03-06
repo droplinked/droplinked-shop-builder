@@ -19,20 +19,20 @@ export default function UrlChooser() {
     const { data: isAvailable, isFetching } = useUsernameAvailability({
         username: debouncedUrl,
         onSuccess: (isAvailable) => {
-            setFieldValue('url', isAvailable ? debouncedUrl : "");
-            updateStoreField('url', isAvailable ? debouncedUrl : "");
+            setFieldValue('url', isAvailable ? debouncedUrl : "")
+            updateStoreField('url', isAvailable ? debouncedUrl : "")
         },
         onError: () => {
-            setFieldValue('url', '');
-            updateStoreField('url', '');
+            setFieldValue('url', '')
+            updateStoreField('url', '')
         }
-    });
+    })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         if (!value) {
-            setFieldValue('url', '');
-            updateStoreField('url', '');
+            setFieldValue('url', '')
+            updateStoreField('url', '')
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())
