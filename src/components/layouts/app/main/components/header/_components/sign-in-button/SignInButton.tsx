@@ -9,13 +9,14 @@ function SignInButton() {
     return (
         <>
             <Button
-                border="1px solid white"
+                border="1px solid"
+                borderColor="neutral.white"
                 borderRadius={8}
                 padding="12px 16px"
                 bg="none"
                 fontSize={14}
                 fontWeight={500}
-                color="white"
+                color="neutral.white"
                 onClick={onOpen}
                 _hover={{}}
                 _active={{}}

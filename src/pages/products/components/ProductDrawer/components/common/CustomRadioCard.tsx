@@ -21,21 +21,21 @@ function CustomRadioCard(props: Props) {
             padding={4}
             borderRadius={8}
             border="1.5px solid"
-            borderColor={isChecked ? "#2BCFA1" : "neutral.gray.800"}
-            bgColor={isChecked ? "rgba(43, 207, 161, 0.10)" : "unset"}
+            borderColor={isChecked ? "primary.default" : "neutral.gray.800"}
+            bgColor={isChecked ? "label.success" : "unset"}
             cursor='pointer'
             {...containerProps}
             {...htmlProps}
             {...getLabelProps()}
         >
             <input {...getInputProps()} hidden />
-            <Circle size={5} border="1px solid" borderColor={isChecked ? "#2BCFA1" : "#fff"}>
-                <Circle size={2.5} bgColor="#2BCFA1" opacity={isChecked ? 1 : 0} />
+            <Circle size={5} border="1px solid" borderColor={isChecked ? "primary.default" : "neutral.white"}>
+                <Circle size={2.5} bgColor="primary.default" opacity={isChecked ? 1 : 0} />
             </Circle>
 
             <Flex flex={1} direction="column" gap={2} sx={{ p: { fontSize: 14 } }}>
-                <Text fontWeight={500} color={isChecked ? "#2BCFA1" : "#fff"}>{label}</Text>
-                {description && <Text color="#fff">{description}</Text>}
+                <Text fontWeight={500} color={isChecked ? "primary.default" : "neutral.white"}>{label}</Text>
+                {description && <Text color="neutral.white">{description}</Text>}
             </Flex>
 
             <Box flexShrink={0}>

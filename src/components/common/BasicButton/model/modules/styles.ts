@@ -4,50 +4,52 @@ export type BasicButtonStylesTypes = "solid" | "outline" | "ghost" | "link" | "u
 const BasicButtonStyles = ({
     solid: (): ButtonProps => {
         return {
-            color: "#084836",
-            bgColor: "#2EC99E",
-            border: "2px solid #2EC99E",
+            color: "neutral.gray.1000",
+            bgColor: "primary.default",
+            border: "2px solid",
+            borderColor: "primary.default",
             _hover: {
-                borderColor: "#2EC99E",
+                borderColor: "primary.default",
                 bgColor: "unset",
-                color: "primary",
+                color: "primary.default",
             }
         }
     },
 
     outline: (): ButtonProps => {
         return {
-            color: "#FFF",
-            bgColor: "1c1c1c",
-            border: "2px solid #292929 !important",
+            color: "neutral.white",
+            bgColor: "neutral.gray.1000",
+            border: "2px solid",
+            borderColor: "neutral.gray.800",
             _hover: {
-                borderColor: "#5D5D5D !important",
+                borderColor: "neutral.gray.500",
                 bgColor: "unset",
-                color: "#offText",
+                color: "text.subtextPlaceholder.dark",
             }
         }
     },
 
     link: (): ButtonProps => {
         return {
-            color: "#FFF",
+            color: "neutral.white",
             bgColor: "none",
-            border: "none !important",
+            border: "none",
             _hover: {
                 bgColor: "unset",
-                color: "#offText",
+                color: "text.subtextPlaceholder.dark",
             }
         }
     },
 
     ghost: (): ButtonProps => {
         return {
-            color: "#C2C2C2",
-            bgColor: "#292929",
-            border: "none !important",
+            color: "neutral.gray.300",
+            bgColor: "neutral.gray.800",
+            border: "none",
             _hover: {
-                bgColor: "#292929",
-                color: "#C2C2C2",
+                bgColor: "neutral.gray.800",
+                color: "neutral.gray.300",
             }
         }
     }

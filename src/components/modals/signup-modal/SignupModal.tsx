@@ -138,7 +138,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
               </Stack>
               <VStack align={"stretch"} spacing={"8px"}>
                 <BasicButton type="submit" isLoading={isLoading}>Sign up</BasicButton>
-                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>Already have an account?{" "}<Box as="span" color="#2EC99E !important">Sign in</Box>{" "}now</AppTypography>
+                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"neutral.white"} cursor={"pointer"} _hover={{ color: "neutral.gray.450" }} onClick={switchModal}>Already have an account?{" "}<Box as="span" color="text.primary">Sign in</Box>{" "}now</AppTypography>
               </VStack>
               <HStack align={"stretch"} alignItems={"center"}>
                 <Divider color={"neutral.gray.850"} />

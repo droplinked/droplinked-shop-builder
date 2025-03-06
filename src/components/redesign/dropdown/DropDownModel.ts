@@ -2,7 +2,7 @@ const DropDownModel = ({
     style: (error: any) => ({
         control: (baseStyle) => ({
             fontSize: "14px",
-            color: "#C2C2C2",
+            color: "neutral.gray.300",
             background: "transparent",
             padding: "5px 5px",
             outline: "none",
@@ -10,21 +10,22 @@ const DropDownModel = ({
             borderRadius: "8px",
             display: "flex",
             transition: "border-color 0.1s ease-out",
-            border: "1px solid #292929",
-            ...error && { border: "1px solid #F24" },
+            border: "1px solid",
+            borderColor: "neutral.gray.800",
+            ...error && { borderColor: "system.error" },
             ...!error && {
                 ":hover": {
-                    borderColor: "#3C3C3C"
+                    borderColor: "neutral.gray.700"
                 },
                 ":focus": {
-                    borderColor: "#7B7B7B"
+                    borderColor: "text.subtextPlaceholder.dark"
                 }
             }
         }),
         indicatorSeparator: (baseStyle) => ({
             ...baseStyle,
             display: "none",
-            color: "#7B7B7B"
+            color: "text.subtextPlaceholder.dark"
         }),
         indicatorsContainer: (baseStyle) => ({
             ...baseStyle,
@@ -32,35 +33,35 @@ const DropDownModel = ({
         }),
         placeholder: (baseStyles) => ({
             ...baseStyles,
-            color: "#7B7B7B"
+            color: "text.subtextPlaceholder.dark"
         }),
         menu: (baseStyles) => ({
             ...baseStyles,
-            color: "#FFF",
-            backgroundColor: "#222",
+            color: "neutral.white",
+            backgroundColor: "neutral.gray.900",
         }),
         container: (baseStyles) => ({
             ...baseStyles,
-            color: "#FFF"
+            color: "neutral.white"
         }),
         option: () => ({
             fontSize: "14px",
             padding: "10px 16px",
             ":hover": {
-                backgroundColor: "#444"
+                backgroundColor: "neutral.gray.700"
             }
         }),
         valueContainer: (baseStyles) => ({
             ...baseStyles,
-            color: "#fff"
+            color: "neutral.white"
         }),
         input: (baseStyles) => ({
             ...baseStyles,
-            color: "#fff"
+            color: "neutral.white"
         }),
         singleValue: (baseStyles) => ({
             ...baseStyles,
-            color: "#fff",
+            color: "neutral.white",
         })
     })
 })

@@ -97,15 +97,15 @@ const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) 
                                 <BasicButton type="submit" minWidth={"100%"} isDisabled={loading} isLoading={loading}>
                                     Login
                                 </BasicButton>
-                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchReset}>
+                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"neutral.white"} cursor={"pointer"} _hover={{ color: "neutral.gray.450" }} onClick={switchReset}>
                                     Forgot
-                                    <Box as="span" ml={1} color="button.default.primary">
+                                    <Box as="span" ml={1} color="text.primary">
                                         password?
                                     </Box>
                                 </AppTypography>
-                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>
-                                    Don’t have an account?{" "}
-                                    <Box as="span" mx={1} color="button.default.primary">
+                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"neutral.white"} cursor={"pointer"} _hover={{ color: "neutral.gray.450" }} onClick={switchModal}>
+                                    Don't have an account?{" "}
+                                    <Box as="span" mx={1} color="text.primary">
                                         Sign up
                                     </Box>
                                     now!

@@ -291,7 +291,8 @@ const TileDesignPageProduct = () => {
                                             alignItems="center"
                                             gap="10px"
                                             borderRadius="4px"
-                                            border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
+                                            border={key === 0 ? "1px solid" : "1px solid"}
+                                            borderColor={key === 0 ? "neutral.white" : "neutral.black"}
                                         >
                                             <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
                                         </Box>
