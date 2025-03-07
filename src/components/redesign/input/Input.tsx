@@ -106,7 +106,7 @@ function InputContainer(props: Props) {
             }}
         >
             <Flex
-                width={"100%"}
+                width="100%"
                 alignItems="center"
                 gap={2}
                 border="1px solid"
@@ -134,10 +134,18 @@ function InputContainer(props: Props) {
                         spellCheck={false}
                         _placeholder={{ color: "#7B7B7B" }}
                         _focusVisible={{}}
+                        sx={{
+                            "&:-webkit-autofill": {
+                                WebkitTextFillColor: "#fff",
+                                WebkitBoxShadow: "0 0 0px 1000px transparent inset",
+                                transition: "background-color 5000s ease-in-out 0s"
+                            }
+                        }}
                         onKeyDown={handleKeyDown}
                         onChange={handleChange}
                         {...inputProps}
-                    />}
+                    />
+                }
                 {showAnimatedLoading &&
                     <AnimatedLoadingText
                         text={inputProps.value}

@@ -1,14 +1,17 @@
 import { HStack, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
 import Button from 'components/redesign/button/Button'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
-import React from 'react'
-import * as Yup from "yup"
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import * as Yup from 'yup'
 import DividerText from '../DividerText'
+import GoogleAuthButton from '../GoogleAuthButton'
 import InteractiveText from '../InteractiveText'
+import PasswordInput from '../PasswordInput'
 import StepWrapper from '../StepWrapper'
 
 const formSchema = Yup.object().shape({
@@ -16,14 +19,10 @@ const formSchema = Yup.object().shape({
     password: Yup.string().required("Password is required.")
 })
 
-interface Props {
-    onNext: () => void
-}
-
-function SignInForm({ onNext }: Props) {
+function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
     const { authenticateUser, onLoginSubmit, finalizeLogin, loading } = useLogin()
+    const [searchParams] = useSearchParams()
 
-    // Future integration for Google login
     async function loginWithGoogle(access_token: string, refresh_token: string) {
         const result = await authenticateUser({
             type: "get",
@@ -31,12 +30,16 @@ function SignInForm({ onNext }: Props) {
             refresh_token,
             params: { access_token }
         })
-        if (result) {
-            await finalizeLogin(result)
-        }
+        if (result) await finalizeLogin(result)
     }
 
-    const initialValues = { email: "", password: "" }
+    useEffect(() => {
+        const access_token = searchParams.get("access_token")
+        const refresh_token = searchParams.get("refresh_token")
+        if (access_token && refresh_token && !loading) {
+            loginWithGoogle(access_token, refresh_token)
+        }
+    }, [searchParams, loading, loginWithGoogle])
 
     return (
         <StepWrapper
@@ -44,12 +47,12 @@ function SignInForm({ onNext }: Props) {
             description="Sign in with your credentials below."
         >
             <Formik
-                initialValues={initialValues}
+                initialValues={{ email: "", password: "" }}
                 validateOnChange={false}
                 validationSchema={formSchema}
                 onSubmit={onLoginSubmit}
             >
-                {({ values, handleChange }) => (
+                {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                         <Input
                             label="Email Address"
@@ -57,33 +60,30 @@ function SignInForm({ onNext }: Props) {
                                 name: "email",
                                 value: values.email,
                                 onChange: handleChange,
-                                placeholder: "Enter email address"
+                                placeholder: "Enter email address",
                             }}
+                            message={errors.email?.toString()}
                         />
 
-                        <Input
-                            label="Password"
-                            inputProps={{
-                                name: "password",
-                                type: "password",
-                                value: values.password,
-                                onChange: handleChange,
-                                placeholder: "Enter password"
-                            }}
+                        <PasswordInput
+                            name="password"
+                            value={values.password}
+                            onChange={handleChange}
+                            message={errors.password?.toString()}
                         />
 
                         <HStack w="full" justify="space-between" marginBlock={3}>
-                            <Checkbox>Remember my password</Checkbox>
+                            <Checkbox name="remember">Remember my password</Checkbox>
                             <InteractiveText>Reset Password</InteractiveText>
                         </HStack>
 
-                        <Button isLoading={loading}>Sign In</Button>
+                        <Button type="submit" isLoading={isSubmitting}>
+                            Sign In
+                        </Button>
 
                         <DividerText text="or continue with" />
 
-                        <Button variant="secondary" leftIcon={<AppIcons.Google />}>
-                            Google Account
-                        </Button>
+                        <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
                         <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
                             Don’t have an account?{" "}

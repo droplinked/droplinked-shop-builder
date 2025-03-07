@@ -1,15 +1,22 @@
-import { Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { Text, VStack } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
-import { useLogin } from 'pages/onboarding/hooks/useLogin'
-import React from 'react'
-import * as Yup from "yup"
+import useAppToast from 'hooks/toast/useToast'
+import { signupService } from 'lib/apis/auth/services'
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
+import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { InputChangeEvent } from 'types/eventTypes'
+import * as Yup from 'yup'
 import DividerText from '../DividerText'
+import GoogleAuthButton from '../GoogleAuthButton'
 import InteractiveText from '../InteractiveText'
+import PasswordInput from '../PasswordInput'
 import StepWrapper from '../StepWrapper'
+import PasswordValidationRules from './PasswordValidationRules'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -17,28 +24,35 @@ const formSchema = Yup.object().shape({
     referralCode: Yup.string()
 })
 
-interface Props {
-    onBack: () => void
-    onNext: () => void
-}
+function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
+    const [searchParams] = useSearchParams()
+    const [acceptTerms, setAcceptTerms] = useState(false)
+    const { showToast } = useAppToast()
 
-function SignUpForm({ onBack, onNext }: Props) {
-    const { authenticateUser, onLoginSubmit, finalizeLogin, loading } = useLogin()
+    const referralCode = searchParams.get("referral")
+    const d3Id = searchParams.get("d3-id")
+    const udId = searchParams.get("ud-id")
 
-    // Future integration for Google login
-    async function loginWithGoogle(access_token: string, refresh_token: string) {
-        const result = await authenticateUser({
-            type: "get",
-            access_token,
-            refresh_token,
-            params: { access_token }
-        })
-        if (result) {
-            await finalizeLogin(result)
+    async function handleSignUp(values: any) {
+        try {
+            const { email, password, referralCode } = values
+            await signupService({
+                email,
+                password,
+                referralCode: referralCode || undefined,
+                d3UserId: d3Id || undefined,
+                udUserId: udId || undefined,
+                hasProducerAccount: true
+            })
+            localStorage.setItem("registerEmail", JSON.stringify(email))
+            showToast({ message: "Account successfully created", type: "success" })
+            onNext()
+        }
+        catch (error: any) {
+            const errorMessage = error?.response?.data?.data?.message || "Signup failed"
+            showToast({ message: errorMessage, type: "error" })
         }
     }
-
-    const initialValues = { email: "", password: "", referralCode: "" }
 
     return (
         <StepWrapper
@@ -46,67 +60,82 @@ function SignUpForm({ onBack, onNext }: Props) {
             description="Complete the details below or use your Google account."
         >
             <Formik
-                initialValues={initialValues}
+                initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
                 validationSchema={formSchema}
-                onSubmit={onLoginSubmit}
+                onSubmit={handleSignUp}
             >
-                {({ values, handleChange }) => (
-                    <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                        <Input
-                            label="Email Address"
-                            inputProps={{
-                                name: "email",
-                                value: values.email,
-                                onChange: handleChange,
-                                placeholder: "Enter email address",
-                                isRequired: true
-                            }}
-                        />
+                {({ values, errors, handleChange, submitForm, isSubmitting }) => {
+                    const isPasswordValid = arePasswordRulesMet(values.password)
 
-                        <Input
-                            label="Password"
-                            inputProps={{
-                                name: "password",
-                                type: "password",
-                                value: values.password,
-                                onChange: handleChange,
-                                placeholder: "Enter password",
-                                isRequired: true
-                            }}
-                        />
+                    return (
+                        <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                            <Input
+                                label="Email Address"
+                                inputProps={{
+                                    name: "email",
+                                    value: values.email,
+                                    onChange: handleChange,
+                                    placeholder: "Enter email address",
+                                    isRequired: true
+                                }}
+                                message={errors.email?.toString()}
+                            />
 
-                        <Input
-                            label="Referral Code"
-                            inputProps={{
-                                name: "referral-code",
-                                value: values.referralCode,
-                                onChange: handleChange,
-                                placeholder: "Enter password",
-                            }}
-                        />
+                            <VStack align='stretch' spacing={4}>
+                                <PasswordInput
+                                    name="password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    message={errors.password?.toString()}
+                                    isRequired
+                                />
+                                <PasswordValidationRules password={values.password} />
+                            </VStack>
 
-                        <Checkbox
-                            marginBlock={3}
-                        >
-                            By signing up, I agree to your{" "}
-                            <InteractiveText to='/terms'>Terms and Conditions.</InteractiveText>
-                        </Checkbox>
+                            <Input
+                                label="Referral Code"
+                                inputProps={{
+                                    name: "referralCode",
+                                    value: values.referralCode,
+                                    onChange: handleChange,
+                                    placeholder: "Enter referral code"
+                                }}
+                            />
 
-                        <Button isLoading={loading} onClick={onNext}>Sign Up</Button>
+                            <Checkbox
+                                marginBlock={3}
+                                onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
+                            >
+                                By signing up, I agree to your{" "}
+                                <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                            </Checkbox>
 
-                        <DividerText text="or sign up with" />
+                            <Button
+                                isLoading={isSubmitting}
+                                isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
+                                onClick={submitForm}
+                            >
+                                Sign Up
+                            </Button>
 
-                        <Button variant="secondary" leftIcon={<AppIcons.Google />}>
-                            Google Account
-                        </Button>
+                            <DividerText text="or sign up with" />
 
-                        <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                            Already have an account?{" "}
-                            <InteractiveText onClick={onBack}>Sign in</InteractiveText>
-                        </Text>
-                    </Form>
-                )}
+                            <GoogleAuthButton
+                                isSignUp={true}
+                                isDisabled={!acceptTerms || isSubmitting}
+                                referralCode={values.referralCode}
+                                d3Id={d3Id}
+                                udId={udId}
+                            />
+
+                            <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
+                                Already have an account?{" "}
+                                <InteractiveText onClick={onBack}>Sign in</InteractiveText>
+                            </Text>
+                        </Form>
+                    )
+                }}
             </Formik>
         </StepWrapper>
     )

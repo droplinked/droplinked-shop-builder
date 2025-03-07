@@ -34,3 +34,8 @@ export interface ProductCardData {
     frontBackgroundImage: string
     backBackgroundImage: string
 }
+
+export interface OnboardingStepProps {
+    onBack: () => void
+    onNext: () => void
+}

@@ -9,12 +9,11 @@ import useAppToast from "hooks/toast/useToast";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { signupService } from "lib/apis/auth/services";
 import useAppStore from "lib/stores/app/appStore";
-import { BASE_URL } from "utils/app/variable";
-import { navigateUserBasedOnStatus } from "utils/helpers";
-import { passwordRegex } from "utils/helpers";
-import AppErrors from "utils/constants/errors";
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { BASE_URL } from "utils/app/variable";
+import AppErrors from "utils/constants/errors";
+import { navigateUserBasedOnStatus, passwordRegex } from "utils/helpers";
 import * as Yup from "yup";
 import ShowPassword from "./ShowPassword";
 
