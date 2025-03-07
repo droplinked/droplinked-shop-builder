@@ -2,8 +2,8 @@ import { Flex, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 import InteractiveText from '../InteractiveText'
-import OtpField from './OtpField'
 import StepWrapper from '../StepWrapper'
+import OtpField from './OtpField'
 
 interface Props {
     onNext: () => void
@@ -29,26 +29,22 @@ function EmailConfirmation({ onBack, onNext }: Props) {
         >
             <OtpField onChange={(value) => setOtp(value)} value={otp} state='default' />
 
-            <Button disabled={otp.length < 5} onClick={handleVerify} fontWeight={500}>Verify</Button>
-
-            <Flex
-                flexDirection="column"
-                gap={2}
+            <Button
+                w="full"
+                fontWeight={500}
+                isDisabled={otp.length < 5}
+                onClick={handleVerify}
             >
-                <Text
-                    marginBottom={2}
-                    textAlign="start"
-                    fontSize={14}
-                    color="#FFF"
-                >
+                Verify
+            </Button>
+
+            <Flex marginTop={6} flexDirection="column" gap={2}>
+                <Text textAlign="start" fontSize={14} color="#FFF">
                     Didn’t receive the code? {" "}
                     <InteractiveText onClick={handleResend}>Resend</InteractiveText>
                 </Text>
-                <Text
-                    textAlign="start"
-                    fontSize={14}
-                    color="#FFF"
-                >
+
+                <Text textAlign="start" fontSize={14} color="#FFF">
                     Want to change your email address? {" "}
                     <InteractiveText onClick={onBack}>Go back</InteractiveText>
                 </Text>

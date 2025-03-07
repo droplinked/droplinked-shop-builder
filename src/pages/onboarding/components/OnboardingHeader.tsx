@@ -7,7 +7,7 @@ import Stepper from './Stepper'
 function OnboardingHeader() {
     return (
         <>
-            <Flex gap={3} alignItems={"center"}>
+            <Flex alignItems="center" gap={3}>
                 <Drop3 color='#2BCFA1' width='36px' height='36px' />
                 <DroplinkedTypography color='#2BCFA1' width='143px' height='27px' />
             </Flex>

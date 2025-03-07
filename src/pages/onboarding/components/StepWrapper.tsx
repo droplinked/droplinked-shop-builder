@@ -18,7 +18,9 @@ function StepWrapper({ heading, description, children }: Props) {
                 </Text>
             </Box>
 
-            {children}
+            <Box>
+                {children}
+            </Box>
         </Flex>
     )
 }

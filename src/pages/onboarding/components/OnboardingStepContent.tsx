@@ -37,9 +37,9 @@ function OnboardingStepContent() {
     }
 
     return (
-        <Box>
+        <>
             {renderContent()}
-        </Box>
+        </>
     )
 }
 

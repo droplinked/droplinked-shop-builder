@@ -35,11 +35,12 @@ export default function OtpField({ value, onChange, state = "default" }: Props) 
         <Flex
             alignItems="center"
             justifyContent="center"
-            marginBlock={{ base: "48px", md: "80px" }}
+            marginTop={{ base: "0px", md: "38px" }}
+            marginBottom={{ base: "48px", md: "80px" }}
             gap={{ base: 4, md: 6 }}
         >
             <PinInput otp placeholder="*" onChange={onChange} value={value}>
-                {Array.from({ length: 5 }).map((item, index) => (
+                {Array.from({ length: 5 }).map((_, index) => (
                     <PinInputField
                         key={index}
                         width={{ base: "48px", md: "64px" }}
@@ -67,5 +68,5 @@ export default function OtpField({ value, onChange, state = "default" }: Props) 
                 ))}
             </PinInput>
         </Flex>
-    );
+    )
 }

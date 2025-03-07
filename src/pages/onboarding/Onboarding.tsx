@@ -29,7 +29,10 @@ function Onboarding() {
             </Flex>
 
             {hasRightSection && rightContent && (
-                <Box padding="80px" bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)">
+                <Box
+                    padding="80px"
+                    bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)"
+                >
                     {rightContent}
                 </Box>
             )}
