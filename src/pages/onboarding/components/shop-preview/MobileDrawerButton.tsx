@@ -1,8 +1,7 @@
-import { Flex, Text } from '@chakra-ui/react'
-import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg'
-import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
-import Button from 'components/redesign/button/Button'
-import React from 'react'
+import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
+import Button from 'components/redesign/button/Button';
+import React from 'react';
+import ShopPreviewHeader from './ShopPreviewHeader';
 
 export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
     return (
@@ -24,24 +23,7 @@ export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
             py={2}
             borderTopRadius={16}
         >
-            <Flex justifyContent={"space-between"} alignItems={"center"} width="100%">
-                <Flex gap={4} alignItems={"center"}>
-                    <Flex
-                        padding={3}
-                        justify={"center"}
-                        align={"center"}
-                        border={"1px solid #292929"}
-                        borderRadius={8}
-                        background={"#1c1c1c"}
-                    >
-                        <ShopLg color={"#fff"} />
-                    </Flex>
-                    <Text color={"#fff"} fontSize={16} fontWeight={500}>
-                        Store Preview
-                    </Text>
-                </Flex>
-                <ChevronupLg color='#fff' />
-            </Flex>
+            <ShopPreviewHeader rightIcon={<ChevronupLg color='#fff' />} />
         </Button>
-    )
+    );
 }

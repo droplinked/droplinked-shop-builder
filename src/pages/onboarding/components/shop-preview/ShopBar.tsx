@@ -1,17 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import useOnboardingStore from "pages/onboarding/store/useOnboardingStore";
 import React from "react";
+import HeaderIcon from "./HeaderIcon";
 import ShopLogo from "./ShopLogo";
-
-const HeaderIcon = () => (
-    <Box
-        position="relative"
-        w="36px"
-        h="36px"
-        borderRadius={8}
-        background="#1c1c1c"
-    />
-);
 
 export default function ShopBar() {
     const { storeData: { name } } = useOnboardingStore();
@@ -42,10 +33,7 @@ export default function ShopBar() {
                 <Text fontSize={{ base: 20, xl: 24 }} fontWeight={700} color="#fff" >
                     {name || "Shop Name"}
                 </Text>
-                <Flex
-                    display="flex"
-                    gap={3}
-                >
+                <Flex gap={3}>
                     <HeaderIcon />
                     <HeaderIcon />
                     <HeaderIcon />

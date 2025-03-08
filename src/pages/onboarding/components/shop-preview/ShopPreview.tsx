@@ -7,8 +7,8 @@ function ShopPreview() {
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)");
 
     return (
-        true ? <MobilePreviewDrawer /> : <DesktopPreview />
+        isSmallerThan1024 ? <MobilePreviewDrawer /> : <DesktopPreview />
     )
 }
 
-export default ShopPreview
+export default ShopPreview;

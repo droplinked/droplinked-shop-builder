@@ -11,18 +11,46 @@ import useOnboardingStore from "pages/onboarding/store/useOnboardingStore";
 import React from "react";
 import { appDevelopment } from "utils/app/variable";
 
+// Chrome-style color dots component
+const ChromeDots = () => (
+  <Flex display="flex" gap={2}>
+    <Box w="12px" h="12px" borderRadius="full" bg="#f24" />
+    <Box w="12px" h="12px" borderRadius="full" bg="#FFD951" />
+    <Box w="12px" h="12px" borderRadius="full" bg="#2BCFA1" />
+  </Flex>
+);
+
+// Navigation arrow buttons component
+const NavigationButtons = () => (
+  <Flex display={{ base: "none", xl: "flex" }} gap={2}>
+    <ChevronleftLg color="white" />
+    <ChevronrightLg color="#4f4f4f" />
+  </Flex>
+);
+
+// Right side actions component
+const ActionButtons = () => (
+  <Flex display="flex" gap={4}>
+    <DownloadcircleMd color="white" />
+    <PlusMd color="white" />
+    <CopyMd color="white" />
+  </Flex>
+);
+
 export default function TopBar() {
   const { storeData } = useOnboardingStore();
-
   const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${storeData?.url}`;
 
   return (
-    <Flex direction="column" borderBottom={"1px solid #292929"}>
+    <Flex direction="column" borderBottom="1px solid #292929">
+      {/* Header */}
       <Box position="relative" padding={{ base: 4, md: "16px 24px" }} borderTopRadius={8} bg="#141414">
         <Text fontSize={{ base: 16, lg: 18 }} color="white">
           Store Preview
         </Text>
       </Box>
+
+      {/* Browser toolbar */}
       <Flex
         position="relative"
         padding={{ base: 4, md: "12px 24px" }}
@@ -30,19 +58,14 @@ export default function TopBar() {
         align="center"
         justify="space-between"
       >
+        {/* Left controls */}
         <Flex gap={{ base: 6, lg: 8 }} align="center">
-          <Flex display="flex" gap={2}>
-            <Box position="relative" w="12px" h="12px" borderRadius="full" bg="#f24" />
-            <Box position="relative" w="12px" h="12px" borderRadius="full" bg="#FFD951" />
-            <Box position="relative" w="12px" h="12px" borderRadius="full" bg="#2BCFA1" />
-          </Flex>
+          <ChromeDots />
           <SidebarMd color="white" />
-          <Flex display={{ base: "none", xl: "flex" }} gap={2}>
-            <ChevronleftLg color="white" />
-            <ChevronrightLg color="#4f4f4f" />
-          </Flex>
+          <NavigationButtons />
         </Flex>
 
+        {/* Address bar */}
         <Box position="relative" flex={1} mx={6}>
           <Flex
             position="relative"
@@ -64,11 +87,8 @@ export default function TopBar() {
           </Flex>
         </Box>
 
-        <Flex display="flex" gap={4}>
-          <DownloadcircleMd color="white" />
-          <PlusMd color="white" />
-          <CopyMd color="white" />
-        </Flex>
+        {/* Right controls */}
+        <ActionButtons />
       </Flex>
     </Flex>
   );
