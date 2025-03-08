@@ -27,7 +27,7 @@ export default function LogoUploader() {
     }
 
     const handleRemove = () => {
-        updateOnboardingState('storeData', { ...storeData, logoUrl: '' })
+        updateOnboardingState('storeData', { ...storeData, logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
         if (fileInputRef.current) {
             fileInputRef.current.value = ''
         }
@@ -55,12 +55,13 @@ export default function LogoUploader() {
                     >
                         {storeData.logoUrl ? "Change" : "Upload"}
                     </BlueButton>
-                    {storeData.logoUrl &&
+                    {storeData.logoUrl && !isLoading &&
                         <BlueButton
                             color="#FF2244"
                             fontSize={14}
                             fontWeight={500}
                             onClick={handleRemove}
+                            isDisabled={!fileInputRef?.current?.value}
                         >
                             Remove
                         </BlueButton>
@@ -74,6 +75,6 @@ export default function LogoUploader() {
                     />
                 </Flex>
             </Flex>
-        </FieldWrapper>
+        </FieldWrapper >
     );
 }
