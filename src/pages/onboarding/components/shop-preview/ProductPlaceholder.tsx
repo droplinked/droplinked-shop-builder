@@ -14,7 +14,7 @@ export default function ProductPlaceholder() {
                 }}
                 gap={4}
             >
-                {[...Array(10)].map((_, index) => (
+                {[...Array(15)].map((_, index) => (
                     <ProductItem />
                 ))}
             </Grid>
