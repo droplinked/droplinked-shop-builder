@@ -12,7 +12,6 @@ import DividerText from '../DividerText'
 import GoogleAuthButton from '../GoogleAuthButton'
 import InteractiveText from '../InteractiveText'
 import PasswordInput from '../PasswordInput'
-import StepWrapper from '../StepWrapper'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -42,57 +41,52 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
     }, [searchParams, loading, loginWithGoogle])
 
     return (
-        <StepWrapper
-            heading="Welcome to droplinked"
-            description="Sign in with your credentials below."
+        <Formik
+            initialValues={{ email: "", password: "" }}
+            validateOnChange={false}
+            validationSchema={formSchema}
+            onSubmit={onLoginSubmit}
         >
-            <Formik
-                initialValues={{ email: "", password: "" }}
-                validateOnChange={false}
-                validationSchema={formSchema}
-                onSubmit={onLoginSubmit}
-            >
-                {({ values, errors, handleChange, isSubmitting }) => (
-                    <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                        <Input
-                            label="Email Address"
-                            inputProps={{
-                                name: "email",
-                                value: values.email,
-                                onChange: handleChange,
-                                placeholder: "Enter email address",
-                            }}
-                            message={errors.email?.toString()}
-                        />
+            {({ values, errors, handleChange, isSubmitting }) => (
+                <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                    <Input
+                        label="Email Address"
+                        inputProps={{
+                            name: "email",
+                            value: values.email,
+                            onChange: handleChange,
+                            placeholder: "Enter email address",
+                        }}
+                        message={errors.email?.toString()}
+                    />
 
-                        <PasswordInput
-                            name="password"
-                            value={values.password}
-                            onChange={handleChange}
-                            message={errors.password?.toString()}
-                        />
+                    <PasswordInput
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        message={errors.password?.toString()}
+                    />
 
-                        <HStack w="full" justify="space-between" marginBlock={3}>
-                            <Checkbox name="remember">Remember my password</Checkbox>
-                            <InteractiveText>Reset Password</InteractiveText>
-                        </HStack>
+                    <HStack w="full" justify="space-between" marginBlock={3}>
+                        <Checkbox name="remember">Remember my password</Checkbox>
+                        <InteractiveText>Reset Password</InteractiveText>
+                    </HStack>
 
-                        <Button type="submit" isLoading={isSubmitting}>
-                            Sign In
-                        </Button>
+                    <Button type="submit" isLoading={isSubmitting}>
+                        Sign In
+                    </Button>
 
-                        <DividerText text="or continue with" />
+                    <DividerText text="or continue with" />
 
-                        <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
+                    <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
-                        <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                            Don’t have an account?{" "}
-                            <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
-                        </Text>
-                    </Form>
-                )}
-            </Formik>
-        </StepWrapper>
+                    <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
+                        Don’t have an account?{" "}
+                        <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
+                    </Text>
+                </Form>
+            )}
+        </Formik>
     )
 }
 

@@ -1,18 +1,15 @@
-import { JSX } from "react"
 
 export interface OnboardingStepData {
     type:
     | 'sign-in'
     | 'sign-up'
     | 'email-confirmation'
-    | 'feature-selection'
     | 'shop-setup'
     | 'payment-setup'
     | 'subscription-plan'
     | 'completion'
-    title?: string              // Optional title for each step
-    leftContent?: JSX.Element   // Pre-rendered left content (if needed)
-    rightContent?: JSX.Element  // Pre-rendered right content (if needed)
+    heading: string
+    description: string
 }
 
 // Additional types for shop data (used in Step 5+)

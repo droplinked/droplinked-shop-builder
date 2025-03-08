@@ -2,7 +2,6 @@ import { Flex, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 import InteractiveText from '../InteractiveText'
-import StepWrapper from '../StepWrapper'
 import OtpField from './OtpField'
 
 interface Props {
@@ -23,10 +22,7 @@ function EmailConfirmation({ onBack, onNext }: Props) {
     }
 
     return (
-        <StepWrapper
-            heading="Confirm Email"
-            description="Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox."
-        >
+        <>
             <OtpField onChange={(value) => setOtp(value)} value={otp} state='default' />
 
             <Button
@@ -49,7 +45,7 @@ function EmailConfirmation({ onBack, onNext }: Props) {
                     <InteractiveText onClick={onBack}>Go back</InteractiveText>
                 </Text>
             </Flex>
-        </StepWrapper>
+        </>
     )
 }
 
