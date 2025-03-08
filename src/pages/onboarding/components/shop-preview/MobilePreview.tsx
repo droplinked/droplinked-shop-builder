@@ -9,7 +9,6 @@ export default function MobilePreview() {
             position="relative"
             flexDirection={"column"}
             border={"1px solid #292929"}
-            borderTopRadius={8}
             userSelect={"none"}
         >
             <ShopBanner />
