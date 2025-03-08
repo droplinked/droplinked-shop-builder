@@ -1,17 +1,17 @@
-import { Flex, Text } from "@chakra-ui/react";
-import useOnboardingStore from "pages/onboarding/store/useOnboardingStore";
-import React from "react";
-import HeaderIcon from "./HeaderIcon";
-import ShopLogo from "./ShopLogo";
+import { Flex, Text } from "@chakra-ui/react"
+import useOnboardingStore from "pages/onboarding/store/useOnboardingStore"
+import React from "react"
+import HeaderIcon from "./HeaderIcon"
+import ShopLogo from "./ShopLogo"
 
 export default function ShopBar() {
-    const { storeData: { name } } = useOnboardingStore();
+    const { storeData: { name } } = useOnboardingStore()
 
     return (
         <Flex
             position="relative"
             width="100%"
-            padding={"0 24px 9px 0"}
+            padding="0 24px 9px 0"
             borderBottom="1px solid #292929"
             background="#141414"
             flexDirection={{ base: "column", md: "row" }}
@@ -42,5 +42,5 @@ export default function ShopBar() {
                 </Flex>
             </Flex>
         </Flex>
-    );
+    )
 }

@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import { Box } from "@chakra-ui/react"
+import React from "react"
 
 interface HeaderIconProps {
-    size?: string;
+    size?: string
 }
 
 const HeaderIcon: React.FC<HeaderIconProps> = ({ size = "36px" }) => (
@@ -13,6 +13,6 @@ const HeaderIcon: React.FC<HeaderIconProps> = ({ size = "36px" }) => (
         borderRadius={8}
         background="#1c1c1c"
     />
-);
+)
 
-export default HeaderIcon;
+export default HeaderIcon

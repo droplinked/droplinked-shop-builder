@@ -1,10 +1,10 @@
-import { Flex, Text } from '@chakra-ui/react';
-import { ShopLg } from 'assets/icons/System/Shop/ShopLg';
-import React, { ReactNode } from 'react';
+import { Flex, Text } from '@chakra-ui/react'
+import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
+import React, { ReactNode } from 'react'
 
 interface ShopPreviewHeaderProps {
-    rightIcon: ReactNode;
-    onClick?: () => void;
+    rightIcon: ReactNode
+    onClick?: () => void
 }
 
 export default function ShopPreviewHeader({ rightIcon, onClick }: ShopPreviewHeaderProps) {
@@ -27,5 +27,5 @@ export default function ShopPreviewHeader({ rightIcon, onClick }: ShopPreviewHea
             </Flex>
             {rightIcon}
         </Flex>
-    );
+    )
 }

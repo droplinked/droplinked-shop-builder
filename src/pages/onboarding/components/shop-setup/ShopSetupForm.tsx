@@ -8,6 +8,7 @@ import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
 import { validateStoreData } from './formValidation'
+import AiAssistant from './AiAssistant/AiAssistant'
 
 
 function ShopSetupForm({ onBack, onNext }) {
@@ -34,6 +35,7 @@ function ShopSetupForm({ onBack, onNext }) {
             <NameField />
             <DescriptionField />
             <ControlButtons onBack={handleBack} onSubmit={handleSubmit} />
+            <AiAssistant />
         </Flex>
     )
 }

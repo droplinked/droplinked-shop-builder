@@ -1,7 +1,7 @@
-import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
-import Button from 'components/redesign/button/Button';
-import React from 'react';
-import ShopPreviewHeader from './ShopPreviewHeader';
+import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg'
+import Button from 'components/redesign/button/Button'
+import React from 'react'
+import ShopPreviewHeader from './ShopPreviewHeader'
 
 export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
     return (
@@ -25,5 +25,5 @@ export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
         >
             <ShopPreviewHeader rightIcon={<ChevronupLg color='#fff' />} />
         </Button>
-    );
+    )
 }

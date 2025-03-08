@@ -8,9 +8,9 @@ export default function MobilePreview() {
     return (
         <Flex
             position="relative"
-            flexDirection={"column"}
-            border={"1px solid #292929"}
-            userSelect={"none"}
+            flexDirection="column"
+            border="1px solid #292929"
+            userSelect="none"
         >
             <ShopBanner />
             <ShopBar />

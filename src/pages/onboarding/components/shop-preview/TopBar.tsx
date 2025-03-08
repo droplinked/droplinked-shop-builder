@@ -1,15 +1,15 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { CopyMd } from "assets/icons/Action/Copy/CopyMd";
-import { Refresh2Sm } from "assets/icons/Action/Refresh2/Refresh2Sm";
-import { ChevronleftLg } from "assets/icons/Navigation/ChevronLeft/ChevronleftLg";
-import { ChevronrightLg } from "assets/icons/Navigation/ChevronRight/ChevronrightLg";
-import { PlusMd } from "assets/icons/Sign/Plus/PlusMd";
-import { SidebarMd } from "assets/icons/StyleDesigner/Sidebar/SidebarMd";
-import { DownloadcircleMd } from "assets/icons/System/DownloadCircle/DownloadcircleMd";
-import { LockSm } from "assets/icons/System/Lock/LockSm";
-import useOnboardingStore from "pages/onboarding/store/useOnboardingStore";
-import React from "react";
-import { appDevelopment } from "utils/app/variable";
+import { Box, Flex, Text } from "@chakra-ui/react"
+import { CopyMd } from "assets/icons/Action/Copy/CopyMd"
+import { Refresh2Sm } from "assets/icons/Action/Refresh2/Refresh2Sm"
+import { ChevronleftLg } from "assets/icons/Navigation/ChevronLeft/ChevronleftLg"
+import { ChevronrightLg } from "assets/icons/Navigation/ChevronRight/ChevronrightLg"
+import { PlusMd } from "assets/icons/Sign/Plus/PlusMd"
+import { SidebarMd } from "assets/icons/StyleDesigner/Sidebar/SidebarMd"
+import { DownloadcircleMd } from "assets/icons/System/DownloadCircle/DownloadcircleMd"
+import { LockSm } from "assets/icons/System/Lock/LockSm"
+import useOnboardingStore from "pages/onboarding/store/useOnboardingStore"
+import React from "react"
+import { appDevelopment } from "utils/app/variable"
 
 // Chrome-style color dots component
 const ChromeDots = () => (
@@ -18,7 +18,7 @@ const ChromeDots = () => (
     <Box w="12px" h="12px" borderRadius="full" bg="#FFD951" />
     <Box w="12px" h="12px" borderRadius="full" bg="#2BCFA1" />
   </Flex>
-);
+)
 
 // Navigation arrow buttons component
 const NavigationButtons = () => (
@@ -26,7 +26,7 @@ const NavigationButtons = () => (
     <ChevronleftLg color="white" />
     <ChevronrightLg color="#4f4f4f" />
   </Flex>
-);
+)
 
 // Right side actions component
 const ActionButtons = () => (
@@ -35,11 +35,11 @@ const ActionButtons = () => (
     <PlusMd color="white" />
     <CopyMd color="white" />
   </Flex>
-);
+)
 
 export default function TopBar() {
-  const { storeData } = useOnboardingStore();
-  const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${storeData?.url}`;
+  const { storeData } = useOnboardingStore()
+  const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${storeData?.url}`
 
   return (
     <Flex direction="column" borderBottom="1px solid #292929">
@@ -91,5 +91,5 @@ export default function TopBar() {
         <ActionButtons />
       </Flex>
     </Flex>
-  );
+  )
 }

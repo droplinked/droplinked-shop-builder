@@ -15,10 +15,10 @@ export default function ProductItem() {
                     height="120px"
                     bg="#1C1C1C"
                     borderRadius="4px"
-                    alignItems={"center"}
-                    justifyContent={"center"}
+                    alignItems="center"
+                    justifyContent="center"
                 >
-                    <Drop3 color='#292929' width={"48px"} height={"48px"} />
+                    <Drop3 color='#292929' width="48px" height="48px" />
                 </Flex>
                 <Box
                     width="80%"

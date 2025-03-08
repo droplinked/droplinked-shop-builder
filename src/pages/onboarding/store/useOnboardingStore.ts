@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { OnboardingStepData } from '../types/onboarding'
+import AiAssistantButton from '../components/shop-setup/AiAssistant/AiAssistantButton'
 
 export interface OnboardingData {
     currentStep: number
@@ -41,7 +42,7 @@ const initialStepData: OnboardingStepData[] = [
     { type: 'sign-in', heading: 'Welcome to droplinked', description: 'Sign in with your credentials below.' },
     { type: 'sign-up', heading: 'Welcome to droplinked', description: 'Complete the details below or use your Google account.' },
     { type: 'email-confirmation', heading: 'Confirm Email', description: 'Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.' },
-    { type: 'shop-setup', heading: 'Store Details', description: 'Complete the information below to optimize your storefront.' },
+    { type: 'shop-setup', heading: 'Store Details', description: 'Complete the information below to optimize your storefront.', rightContent: AiAssistantButton },
     { type: 'payment-setup', heading: 'Basic Payment Details', description: 'Choose from the different package options below.' },
     { type: 'subscription-plan', heading: 'Plans', description: 'Choose a plan' },
     { type: 'subscription-plan', heading: 'Plans', description: 'Choose a plan' },

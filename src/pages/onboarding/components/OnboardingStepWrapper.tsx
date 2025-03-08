@@ -12,7 +12,7 @@ interface Props extends PropsWithChildren {
 
 function OnboardingStepWrapper({ currentStep, children }: Props) {
     const { stepData } = useOnboardingStore()
-    const { heading, description } = stepData[currentStep] || {}
+    const { heading, description, rightContent } = stepData[currentStep] || {}
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
     const renderRightSectionContent = () => {
@@ -30,7 +30,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
         <Grid templateColumns={{ base: "1fr", md: "1fr 1.5fr" }}>
             <Flex direction="column" gap={12} padding={16}>
                 <OnboardingHeader />
-                <OnboardingStepHeader heading={heading} description={description} />
+                <OnboardingStepHeader heading={heading} description={description} rightContent={rightContent} />
                 <Box>{children}</Box>
             </Flex>
             {rightSectionContent && (
