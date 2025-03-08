@@ -26,7 +26,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
     const rightSectionContent = renderRightSectionContent()
 
     return (
-        <Grid templateColumns="1fr 1.5fr">
+        <Grid templateColumns={{ base: "1fr", md: "1fr 1.5fr" }}>
             <Flex direction="column" gap={12} padding={16}>
                 <OnboardingHeader />
                 <OnboardingStepHeader heading={heading} description={description} />
@@ -36,6 +36,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
                 <Box
                     padding="80px"
                     bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)"
+                    display={{ base: "none", md: "block" }}
                 >
                     {rightSectionContent}
                 </Box>
