@@ -10,10 +10,11 @@ export default function ShopBanner() {
 
     return (
         <Flex
+            position="relative"
             height={{ base: "250px", xl: "400px" }}
+            flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"center"}
-            flexDirection={"column"}
             gap={6}
             background={coverImage ? `url(${coverImage})` : "transparent"}
             backgroundPosition={"center"}
@@ -22,11 +23,14 @@ export default function ShopBanner() {
         >
             {!coverImage &&
                 <>
-                    {logoUrl ? <AppImage borderRadius={"full"} src={logoUrl} width={"80px"} height={"80px"} /> : <Drop3 color='#2bcfa1' width={"80px"} height={"80px"} />}
+                    {logoUrl ?
+                        <AppImage src={logoUrl} width={"80px"} height={"80px"} borderRadius={"full"} /> :
+                        <Drop3 width={"80px"} height={"80px"} color='#2bcfa1' />
+                    }
                     <Text
-                        color={"#b1b1b1"}
                         fontSize={{ base: 16, xl: 24 }}
                         fontWeight={{ base: 500, xl: 700 }}
+                        color={"#b1b1b1"}
                     >
                         The Next Generation of Commerce
                     </Text>

@@ -6,7 +6,13 @@ import ShopBar from './ShopBar'
 
 export default function DesktopPreview() {
     return (
-        <Flex flexDirection={"column"} border={"1px solid #292929"} borderTopRadius={8} userSelect={"none"}>
+        <Flex
+            position="relative"
+            flexDirection={"column"}
+            border={"1px solid #292929"}
+            borderTopRadius={8}
+            userSelect={"none"}
+        >
             <TopBar />
             <ShopBanner />
             <ShopBar />

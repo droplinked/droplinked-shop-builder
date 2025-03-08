@@ -1,44 +1,55 @@
-import { Box, Flex } from "@chakra-ui/react";
-import AppImage from "components/common/image/AppImage";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import useOnboardingStore from "pages/onboarding/store/useOnboardingStore";
 import React from "react";
+import ShopLogo from "./ShopLogo";
+
+const HeaderIcon = () => (
+    <Box
+        position="relative"
+        w="36px"
+        h="36px"
+        borderRadius={8}
+        background="#1c1c1c"
+    />
+);
 
 export default function ShopBar() {
-    const { storeData: { logoUrl } } = useOnboardingStore();
-
-    const defaultUrl = "https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png";
-    const isDefaultLogo = logoUrl === defaultUrl;
+    const { storeData: { name } } = useOnboardingStore();
 
     return (
-        <Box
-            paddingBlockEnd={9}
-            background="#141414"
-            borderBottom="1px solid #292929"
+        <Flex
             position="relative"
+            width="100%"
+            padding={{ base: "0 24px 9px 0", xl: "0 24px 9px 0" }}
+            borderBottom="1px solid #292929"
+            background="#141414"
+            flexDirection={{ base: "column", xl: "row" }}
+            alignItems={{ base: "start", xl: "center" }}
+            gap={{ base: "3.5rem", xl: 0 }}
         >
-            <Box
-                border="8px solid #141414"
-                marginLeft={6}
-                borderRadius="full"
-                position="relative"
-                bottom="5rem"
-                width="fit-content"
+            <ShopLogo />
+            <Flex
+                position={"relative"}
+                width="100%"
+                flex={1}
+                bottom={{ base: "6.5rem", xl: "2rem" }}
+                paddingLeft={6}
+                alignItems="center"
+                justifyContent="space-between"
             >
+                <Text fontSize={{ base: 20, xl: 24 }} fontWeight={700} color="#fff" >
+                    {name || "Shop Name"}
+                </Text>
                 <Flex
-                    padding={isDefaultLogo ? 8 : 0}
-                    background="#1C1C1C"
-                    borderRadius="full"
+                    display="flex"
+                    gap={3}
                 >
-                    <AppImage
-                        src={logoUrl}
-                        borderRadius="full"
-                        width={isDefaultLogo ? "64px" : "128px"}
-                        height={isDefaultLogo ? "64px" : "128px"}
-                        display="inline-block"
-                        objectFit='cover'
-                    />
+                    <HeaderIcon />
+                    <HeaderIcon />
+                    <HeaderIcon />
+                    <HeaderIcon />
                 </Flex>
-            </Box>
-        </Box>
+            </Flex>
+        </Flex>
     );
 }
