@@ -6,6 +6,7 @@ import React from 'react'
 export default function AiAssistantButton() {
     return (
         <Button
+            display={{ base: "flex", md: "none" }}
             fontSize={14}
             fontWeight={500}
             iconSpacing={2}
@@ -15,6 +16,9 @@ export default function AiAssistantButton() {
             paddingInline="14px"
             border="1px solid rgba(43, 207, 161, 0.10)"
             background="url(https://upload-file-droplinked.s3.amazonaws.com/3bfc19a5cdaba194e58ebe9ed3c682cb466e32f8001d5e829ddb3fbff71172a6.png)"
+            backgroundRepeat="no-repeat"
+            backgroundPosition="center"
+            backgroundSize="cover"
         >
             <Text color="#2BCFA1">
                 Generate with AI
