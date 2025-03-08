@@ -1,24 +1,16 @@
 import { Avatar, Flex, Input } from '@chakra-ui/react'
 import { UploadMd } from 'assets/icons/Action/Upload/UploadMd'
 import BlueButton from 'components/redesign/button/BlueButton'
-import { useFormikContext } from 'formik'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 import React, { useRef } from 'react'
-import { SetupFormValues } from './formConfig'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import FieldWrapper from './FieldWrapper'
 
 export default function LogoUploader() {
-    const { values, setFieldValue } = useFormikContext<SetupFormValues>()
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const { storeData, updateOnboardingState } = useOnboardingStore()
-
-    const handleSetValue = (url?: string) => {
-        setFieldValue("logoUrl", url)
-        updateOnboardingState('storeData', { ...storeData, logoUrl: url || '' })
-    }
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
@@ -26,7 +18,7 @@ export default function LogoUploader() {
             const formData = new FormData()
             formData.append("image", file)
             const { original } = await mutateAsync(formData)
-            handleSetValue(original)
+            updateOnboardingState('storeData', { ...storeData, logoUrl: original || '' })
         }
     }
 
@@ -35,7 +27,7 @@ export default function LogoUploader() {
     }
 
     const handleRemove = () => {
-        handleSetValue('')
+        updateOnboardingState('storeData', { ...storeData, logoUrl: '' })
         if (fileInputRef.current) {
             fileInputRef.current.value = ''
         }
@@ -48,7 +40,7 @@ export default function LogoUploader() {
                     <Avatar
                         width="80px"
                         height="80px"
-                        src={values.logoUrl || undefined}
+                        src={storeData.logoUrl || undefined}
                         name="Logo"
                         userSelect="none"
                     />
@@ -61,9 +53,9 @@ export default function LogoUploader() {
                         onClick={handleLogoChange}
                         isLoading={isLoading}
                     >
-                        {values.logoUrl ? "Change" : "Upload"}
+                        {storeData.logoUrl ? "Change" : "Upload"}
                     </BlueButton>
-                    {values.logoUrl &&
+                    {storeData.logoUrl &&
                         <BlueButton
                             color="#FF2244"
                             fontSize={14}

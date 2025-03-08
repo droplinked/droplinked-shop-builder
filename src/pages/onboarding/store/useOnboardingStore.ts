@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { OnboardingStepData } from '../types/onboarding'
 
-interface OnboardingData {
+export interface OnboardingData {
     currentStep: number
     storeData: {
         logoUrl: string
@@ -52,7 +52,7 @@ const initialStepData: OnboardingStepData[] = [
 
 const useOnboardingStore = create<OnboardingState>((set) => ({
     // Data
-    currentStep: 0,
+    currentStep: 3,
     storeData: initialStoreData,
     stepData: initialStepData,
     errors: {},
