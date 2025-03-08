@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import ShopBanner from './ShopBanner'
 import ShopBar from './ShopBar'
+import ProductPlaceholder from './ProductPlaceholder'
 
 export default function MobilePreview() {
     return (
@@ -13,6 +14,7 @@ export default function MobilePreview() {
         >
             <ShopBanner />
             <ShopBar />
+            <ProductPlaceholder />
         </Flex>
     )
 }

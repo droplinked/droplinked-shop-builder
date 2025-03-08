@@ -14,7 +14,7 @@ export default function ShopLogo() {
             position="relative"
             width="fit-content"
             marginLeft={6}
-            bottom={{ base: "4rem", xl: "5rem" }}
+            bottom="3rem"
             border="8px solid #141414"
             borderRadius="full"
         >

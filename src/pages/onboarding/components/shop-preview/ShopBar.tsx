@@ -17,13 +17,14 @@ export default function ShopBar() {
             flexDirection={{ base: "column", md: "row" }}
             alignItems={{ base: "start", md: "center" }}
             gap={{ base: "3.5rem", sm: 0 }}
+            height={{ base: "10rem", sm: "8rem", md: "6rem" }}
         >
             <ShopLogo />
             <Flex
                 position={"relative"}
                 width="100%"
                 flex={1}
-                bottom={{ base: "7rem", sm: "4rem", md: "1rem", lg: "2rem" }}
+                bottom={{ base: "6rem", sm: "3rem", md: "0.5rem" }}
                 paddingLeft={6}
                 alignItems={{ base: "start", sm: "center" }}
                 justifyContent="space-between"

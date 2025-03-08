@@ -36,6 +36,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
                 <Box
                     padding="80px"
                     bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)"
+                    {...currentStep === 3 && { position: { base: "absolute", md: "unset" } }}
                 >
                     {rightSectionContent}
                 </Box>
