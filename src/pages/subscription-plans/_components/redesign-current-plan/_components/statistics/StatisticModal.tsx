@@ -16,7 +16,7 @@ function StatisticModal({ data }: IProps) {
     const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
     return (
         <>
-            <Button colorScheme={"black"} onClick={() => setIsOpen(true)} backgroundColor={"transparent"} border={"1px solid neutral.gray.100"} color={"white"}><AppIcons.Statistics style={{ margin: "0px 5px" }} /> View Statistics</Button>
+            <Button colorScheme={"black"} onClick={() => setIsOpen(true)} backgroundColor={"transparent"} border={"1px solid"} borderColor={"neutral.gray.100"} color={"white"}><AppIcons.Statistics style={{ margin: "0px 5px" }} /> View Statistics</Button>
             <AppModal
                 modalRootProps={{
                     isOpen,
@@ -38,7 +38,7 @@ function StatisticModal({ data }: IProps) {
                 />
                 <ModalBody backgroundColor={"#131313"}>
                     {UsageExceededItem &&
-                        <Box width={"100%"} pb={"2rem"} borderBottom="1px solid"  borderColor="neutral.gray.800">
+                        <Box width={"100%"} pb={"2rem"} borderBottom="1px solid" borderColor="neutral.gray.800">
                             <UsageExceededAlert title={UsageExceededItem.key} />
                         </Box>
                     }
