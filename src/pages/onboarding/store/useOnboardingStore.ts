@@ -49,7 +49,7 @@ const initialStepData: OnboardingStepData[] = [
 
 const useOnboardingStore = create<OnboardingData & OnboardingActions>((set) => ({
     // Data
-    currentStep: 0,
+    currentStep: 3,
     storeData: initialStoreData,
     stepData: initialStepData,
     errors: {},

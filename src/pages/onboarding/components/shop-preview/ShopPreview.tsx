@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
-import DesktopPreview from './desktop/DesktopPreview';
-import MobilePreview from './mobile/MobilePreview';
+import MobilePreview from './MobilePreview';
+import DesktopPreview from './DesktopPreview';
 
 function ShopPreview() {
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)");
