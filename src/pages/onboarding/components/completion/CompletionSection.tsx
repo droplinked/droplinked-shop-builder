@@ -1,8 +1,51 @@
-import React from 'react'
+import { Flex } from '@chakra-ui/react'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Slider from 'react-slick'
+import OnboardingHeader from '../OnboardingHeader'
+import OnboardingStepHeader from '../OnboardingStepHeader'
+import ActionControls from './ActionControls'
+import CompletionCarousel from './CompletionCarousel'
 
 function CompletionSection() {
+    const navigate = useNavigate()
+    const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+    const sliderReference = useRef<Slider>(null)
+    const { stepData, prevStep } = useOnboardingStore()
+
+    const lastStepIndex = stepData.length - 1
+    const { heading, description } = stepData[lastStepIndex] || {}
+
+    const handlePreviousAction = () => {
+        if (currentSlideIndex === 0) return prevStep()
+
+        setCurrentSlideIndex(0)
+        sliderReference.current?.slickGoTo(0)
+    }
+
+    const handleNextAction = () => {
+        if (currentSlideIndex === 1) return navigate('/analytics')
+
+        setCurrentSlideIndex(1)
+        sliderReference.current?.slickGoTo(1)
+    }
+
     return (
-        <div>CompletionSection</div>
+        <Flex minHeight="100vh" direction="column" alignItems="center" gap={12} padding="64px">
+            <OnboardingHeader />
+
+            <OnboardingStepHeader heading={heading} description={description} textAlign="center" />
+
+            <Flex flex={1} width="100%" maxWidth="912px" direction="column" gap={6}>
+                <CompletionCarousel ref={sliderReference} />
+                <ActionControls
+                    currentSlideIndex={currentSlideIndex}
+                    handlePreviousAction={handlePreviousAction}
+                    handleNextAction={handleNextAction}
+                />
+            </Flex>
+        </Flex>
     )
 }
 

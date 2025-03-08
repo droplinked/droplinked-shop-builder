@@ -11,9 +11,10 @@ interface Props extends PropsWithChildren {
 }
 
 function OnboardingStepWrapper({ currentStep, children }: Props) {
-    const { stepData } = useOnboardingStore()
-    const { heading, description, rightContent } = stepData[currentStep] || {}
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
+    const { stepData } = useOnboardingStore()
+
+    const { heading, description, rightContent } = stepData[currentStep] || {}
 
     const renderRightSectionContent = () => {
         if (currentStep >= 0 && currentStep <= 2) return <ProductCards />
@@ -33,6 +34,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
                 <OnboardingStepHeader heading={heading} description={description} rightContent={rightContent} />
                 <Box>{children}</Box>
             </Flex>
+
             {rightSectionContent && (
                 currentStep === 3 && isSmallerThan1024 ?
                     rightSectionContent :
