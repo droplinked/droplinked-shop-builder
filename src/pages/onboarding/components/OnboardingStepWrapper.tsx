@@ -1,4 +1,4 @@
-import { Box, Flex, Grid } from '@chakra-ui/react'
+import { Box, Flex, Grid, useMediaQuery } from '@chakra-ui/react'
 import React, { PropsWithChildren } from 'react'
 import useOnboardingStore from '../store/useOnboardingStore'
 import OnboardingHeader from './OnboardingHeader'
@@ -13,6 +13,7 @@ interface Props extends PropsWithChildren {
 function OnboardingStepWrapper({ currentStep, children }: Props) {
     const { stepData } = useOnboardingStore()
     const { heading, description } = stepData[currentStep] || {}
+    const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
     const renderRightSectionContent = () => {
         if (currentStep >= 0 && currentStep <= 2) return <ProductCards />
@@ -33,13 +34,14 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
                 <Box>{children}</Box>
             </Flex>
             {rightSectionContent && (
-                <Box
-                    padding="80px"
-                    bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)"
-                    {...currentStep === 3 && { position: { base: "absolute", md: "unset" } }}
-                >
-                    {rightSectionContent}
-                </Box>
+                currentStep === 3 && isSmallerThan1024 ?
+                    rightSectionContent :
+                    <Box
+                        padding="80px"
+                        bg="linear-gradient(180deg, #1C1C1C 0%, #141414 100%)"
+                    >
+                        {rightSectionContent}
+                    </Box>
             )}
         </Grid>
     )
