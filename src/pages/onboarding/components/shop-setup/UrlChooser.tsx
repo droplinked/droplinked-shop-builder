@@ -2,37 +2,39 @@ import { Box, Spinner, Text } from '@chakra-ui/react'
 import { AvailableoutlinedMd } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedMd'
 import { NotavailableoutlinedMd } from 'assets/icons/Sign/NotAvailableOutlined/NotavailableoutlinedMd'
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
-import useStoreCreation from 'pages/onboarding/store/useStoreCreation'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 import React, { useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
-import { SetupFormValues } from './formConfig'
 
 export default function UrlChooser() {
-    const { values, setFieldValue, errors } = useFormikContext<SetupFormValues>()
-    const { updateStoreField } = useStoreCreation()
-    const [urlTempValue, setUrlTempValue] = useState(values.url ?? '')
+    const { updateOnboardingState, storeData, errors, setError } = useOnboardingStore()
+    const [urlTempValue, setUrlTempValue] = useState(storeData.url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
 
     const { data: isAvailable, isFetching } = useUsernameAvailability({
         username: debouncedUrl,
         onSuccess: (isAvailable) => {
-            setFieldValue('url', isAvailable ? debouncedUrl : "")
-            updateStoreField('url', isAvailable ? debouncedUrl : "")
+            if (isAvailable) {
+                updateOnboardingState('storeData', { ...storeData, url: debouncedUrl })
+                setError('url', undefined)
+            } else {
+                updateOnboardingState('storeData', { ...storeData, url: '' })
+                setError('url', 'This URL is not available')
+            }
         },
         onError: () => {
-            setFieldValue('url', '')
-            updateStoreField('url', '')
+            updateOnboardingState('storeData', { ...storeData, url: '' })
+            setError('url', 'Error checking URL availability')
         }
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         if (!value) {
-            setFieldValue('url', '')
-            updateStoreField('url', '')
+            updateOnboardingState('storeData', { ...storeData, url: '' })
+            setError('url', 'URL is required')
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())

@@ -3,7 +3,7 @@ import { UploadMd } from 'assets/icons/Action/Upload/UploadMd'
 import BlueButton from 'components/redesign/button/BlueButton'
 import { useFormikContext } from 'formik'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
-import useStoreCreation from 'pages/onboarding/store/useStoreCreation'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 import React, { useRef } from 'react'
 import { SetupFormValues } from './formConfig'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
@@ -11,13 +11,13 @@ import FieldWrapper from './FieldWrapper'
 
 export default function LogoUploader() {
     const { values, setFieldValue } = useFormikContext<SetupFormValues>()
-    const { updateStoreField } = useStoreCreation()
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
+    const { storeData, updateOnboardingState } = useOnboardingStore()
 
     const handleSetValue = (url?: string) => {
         setFieldValue("logoUrl", url)
-        updateStoreField('logoUrl', url)
+        updateOnboardingState('storeData', { ...storeData, logoUrl: url || '' })
     }
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {

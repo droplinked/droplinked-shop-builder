@@ -1,18 +1,24 @@
 import Textarea from 'components/redesign/textarea/Textarea'
-import { useFormikContext } from 'formik'
-import useStoreCreation from 'pages/onboarding/store/useStoreCreation'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 import React from 'react'
-import { SetupFormValues } from './formConfig'
 
 export default function DescriptionField() {
-    const { values, setFieldValue, errors } = useFormikContext<SetupFormValues>()
-    const { updateStoreField } = useStoreCreation()
+    const { storeData, updateOnboardingState, errors, setError } = useOnboardingStore()
     const textAreaPlaceholder = "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes."
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value
-        setFieldValue('description', value)
-        updateStoreField('description', value)
+        updateOnboardingState('storeData', { ...storeData, description: value })
+
+        if (!value) {
+            setError('description', 'Description is required')
+        } else if (value.length < 150) {
+            setError('description', 'Description must be at least 150 characters')
+        } else if (value.length > 160) {
+            setError('description', 'Description must not exceed 160 characters')
+        } else {
+            setError('description', undefined)
+        }
     }
 
     return (
@@ -22,7 +28,7 @@ export default function DescriptionField() {
             placeholder={textAreaPlaceholder}
             tooltipText={textAreaPlaceholder}
             label='Description'
-            value={values.description}
+            value={storeData.description}
             onChange={handleChange}
             {...errors.description && { message: errors.description, state: "error" }}
         />

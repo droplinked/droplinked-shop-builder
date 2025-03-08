@@ -1,17 +1,21 @@
 import Input from 'components/redesign/input/Input'
-import { useFormikContext } from 'formik'
 import React from 'react'
-import { SetupFormValues } from './formConfig'
-import useStoreCreation from 'pages/onboarding/store/useStoreCreation'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 
 export default function NameField() {
-    const { values, setFieldValue, errors } = useFormikContext<SetupFormValues>()
-    const { updateStoreField } = useStoreCreation()
+    const { storeData, updateOnboardingState, errors, setError } = useOnboardingStore()
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
-        setFieldValue('name', value)
-        updateStoreField('name', value)
+        updateOnboardingState('storeData', { ...storeData, name: value })
+
+        if (!value) {
+            setError('name', 'Name is required')
+        } else if (value.length < 3) {
+            setError('name', 'Name must be at least 3 characters')
+        } else {
+            setError('name', undefined)
+        }
     }
 
     return (
@@ -20,7 +24,7 @@ export default function NameField() {
             inputProps={{
                 fontSize: { base: 14, md: 16 },
                 placeholder: "Choose your store name",
-                value: values.name,
+                value: storeData.name,
                 onChange: handleChange,
                 isRequired: true,
             }}

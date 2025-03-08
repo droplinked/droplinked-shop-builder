@@ -11,6 +11,11 @@ interface OnboardingData {
         description: string
     }
     stepData: OnboardingStepData[]
+    errors: {
+        url?: string
+        name?: string
+        description?: string
+    }
 }
 
 interface OnboardingActions {
@@ -20,6 +25,8 @@ interface OnboardingActions {
         field: K,
         value: OnboardingData[K]
     ) => void
+    setError: (field: keyof OnboardingData['errors'], message: string | undefined) => void
+    clearErrors: () => void
 }
 
 type OnboardingState = OnboardingData & OnboardingActions
@@ -48,6 +55,7 @@ const useOnboardingStore = create<OnboardingState>((set) => ({
     currentStep: 0,
     storeData: initialStoreData,
     stepData: initialStepData,
+    errors: {},
 
     // Actions
     nextStep: () => set((state) => ({
@@ -62,6 +70,13 @@ const useOnboardingStore = create<OnboardingState>((set) => ({
         ...state,
         [field]: value
     })),
+    setError: (field, message) => set((state) => ({
+        errors: {
+            ...state.errors,
+            [field]: message
+        }
+    })),
+    clearErrors: () => set({ errors: {} })
 }))
 
 export default useOnboardingStore

@@ -3,14 +3,14 @@ import React from 'react'
 import FieldWrapper from './FieldWrapper'
 import { useFormikContext } from 'formik'
 import { SetupFormValues } from './formConfig'
-import useStoreCreation from 'pages/onboarding/store/useStoreCreation'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import FileUpload from './FileUpload'
+import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 
 export default function CoverImage() {
     const { values, setFieldValue } = useFormikContext<SetupFormValues>()
-    const { updateStoreField } = useStoreCreation()
     const { mutateAsync, isLoading } = useFileUpload()
+    const { storeData, updateOnboardingState } = useOnboardingStore()
 
     const handleFileChange = async (file: File) => {
         if (file) {
@@ -18,10 +18,10 @@ export default function CoverImage() {
             formData.append('image', file)
             const { original } = await mutateAsync(formData)
             setFieldValue('coverImage', original)
-            updateStoreField('coverImage', original)
+            updateOnboardingState('storeData', { ...storeData, coverImage: original })
         } else {
             setFieldValue('coverImage', '')
-            updateStoreField('coverImage', '')
+            updateOnboardingState('storeData', { ...storeData, coverImage: '' })
         }
     }
 
