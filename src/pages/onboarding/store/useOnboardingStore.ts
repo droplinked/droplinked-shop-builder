@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { OnboardingStepData } from '../types/onboarding'
-import AiAssistantButton from '../components/shop-setup/AiAssistant/AiAssistantButton'
+import AiAssistantButton from '../components/shop-setup/AiAssistant/mobile/AiAssistantButton'
 
 export interface OnboardingData {
     currentStep: number

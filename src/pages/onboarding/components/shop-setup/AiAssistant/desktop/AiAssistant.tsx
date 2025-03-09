@@ -1,9 +1,12 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
+import BuyPlan from './BuyPlan';
 
 export default function AiAssistant() {
+    const { isOpen, onClose, onOpen } = useDisclosure();
+
     return (
         <Flex
             display={{ base: "none", lg: "flex" }}
@@ -61,9 +64,12 @@ export default function AiAssistant() {
                 fontSize={14}
                 fontWeight={500}
                 _hover={{ background: "rgba(43, 207, 161, 0.20)" }}
+                onClick={onOpen}
             >
                 Try AI Assistant
             </Button>
+
+            <BuyPlan isOpen={isOpen} onClose={onClose} />
         </Flex>
     )
 }
