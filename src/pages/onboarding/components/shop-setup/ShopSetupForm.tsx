@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import useOnboardingStore, { initialStoreData } from 'pages/onboarding/store/useOnboardingStore'
 import React from 'react'
-import ControlButtons from './ControlButtons'
+import ControlButtons from '../common/ControlButtons'
 import CoverImage from './CoverImage'
 import DescriptionField from './DescriptionField'
 import LogoUploader from './LogoUploader'
