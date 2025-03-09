@@ -33,7 +33,6 @@ function CompletionSection() {
 
     return (
         <Flex
-            minHeight="100vh"
             direction="column"
             alignItems="center"
             gap={{ base: 9, xl: 12 }}
@@ -43,7 +42,7 @@ function CompletionSection() {
 
             <OnboardingStepHeader heading={heading} description={description} textAlign="center" />
 
-            <Flex flex={1} width="100%" maxWidth="912px" direction="column" gap={6}>
+            <Flex width="100%" maxWidth="912px" direction="column" gap={6}>
                 <CompletionCarousel ref={sliderReference} />
                 <ActionControls
                     currentSlideIndex={currentSlideIndex}

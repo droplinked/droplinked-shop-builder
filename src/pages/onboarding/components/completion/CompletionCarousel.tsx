@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useBreakpointValue } from '@chakra-ui/react'
 import CommunityEngagement from 'components/redesign/community-engagement/CommunityEngagement'
 import React, { forwardRef } from 'react'
 import Slider from 'react-slick'
@@ -6,6 +6,8 @@ import NewsletterSubscription from './NewsletterSubscription'
 import VideoPlayer from './VideoPlayer'
 
 const CompletionCarousel = forwardRef<Slider>((_, ref) => {
+    const communityEngagementColumns = useBreakpointValue({ base: 1, md: 2, lg: 3 })
+
     const sliderSettings = {
         dots: false,
         infinite: false,
@@ -13,7 +15,8 @@ const CompletionCarousel = forwardRef<Slider>((_, ref) => {
         fade: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        adaptiveHeight: true
     }
 
     return (
@@ -22,7 +25,7 @@ const CompletionCarousel = forwardRef<Slider>((_, ref) => {
 
             <Box>
                 <NewsletterSubscription />
-                <CommunityEngagement columns={3} includeBlueSky borderRadius={8} />
+                <CommunityEngagement columns={communityEngagementColumns} includeBlueSky borderRadius={8} />
             </Box>
         </Slider>
     )

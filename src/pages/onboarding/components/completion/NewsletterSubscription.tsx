@@ -1,9 +1,9 @@
-import { Box, Flex, Switch, Text } from '@chakra-ui/react'
+import { Box, Flex, Hide, Show, Switch, Text } from '@chakra-ui/react'
 import { LetterLg } from 'assets/icons/System/Letter/LetterLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React, { useState } from 'react'
 
-function NewsletterSubscription() {
+export default function NewsletterSubscription() {
     const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
 
     const handleToggle = () => setIsSubscribed((prev) => !prev)
@@ -11,28 +11,43 @@ function NewsletterSubscription() {
     return (
         <Flex
             marginBottom={6}
-            alignItems="center"
-            gap={4}
+            flexDirection={{ base: 'column', md: 'row' }}
+            alignItems={{ base: 'flex-start', md: 'center' }}
+            gap={3}
             border="1px solid"
             borderColor="#292929"
             borderRadius={8}
-            p={4}
+            padding={{ base: 3, md: 4 }}
         >
-            <IconWrapper icon={<LetterLg color='#FFF' />} />
+            <Flex
+                width="100%"
+                justifyContent={{ base: 'space-between', md: 'flex-start' }}
+                alignItems="center"
+                gap={4}
+            >
+                <IconWrapper icon={<LetterLg color="#FFF" />} />
 
-            <Box flex={1}>
-                <Text color="white">Newsletter Subscription</Text>
-                <Text fontSize={14} color="#B1B1B1">
-                    Stay up to date on the latest features and offers
-                </Text>
-            </Box>
+                <Show above="md">
+                    <SubscriptionInfo />
+                </Show>
 
-            <Switch
-                isChecked={isSubscribed}
-                onChange={handleToggle}
-            />
+                <Switch isChecked={isSubscribed} onChange={handleToggle} />
+            </Flex>
+
+            <Hide above="md">
+                <SubscriptionInfo />
+            </Hide>
         </Flex>
     )
 }
 
-export default NewsletterSubscription
+function SubscriptionInfo() {
+    return (
+        <Box flex={1}>
+            <Text color="white">Newsletter Subscription</Text>
+            <Text fontSize={14} color="#B1B1B1">
+                Stay up to date on the latest features and offers
+            </Text>
+        </Box>
+    )
+}

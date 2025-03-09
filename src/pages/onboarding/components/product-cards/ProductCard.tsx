@@ -21,8 +21,8 @@ function ProductCard({ card }: { card: ProductCardData }) {
 
     return (
         <Box
-            width="342px"
-            height="342px"
+            width="100%"
+            aspectRatio={1}
             sx={{ position: 'relative', perspective: '1000px' }} // Perspective for 3D effect
             onMouseEnter={() => setIsFlipped(true)} // Flip on hover
             onMouseLeave={() => setIsFlipped(false)} // Revert on hover out
@@ -40,8 +40,8 @@ function ProductCard({ card }: { card: ProductCardData }) {
             >
                 {/* Front Side */}
                 <Flex
-                    width="342px"
-                    height="342px"
+                    width="100%"
+                    height="100%"
                     flexDirection="column"
                     justifyContent="space-between"
                     border="1px solid #292929"
@@ -65,8 +65,8 @@ function ProductCard({ card }: { card: ProductCardData }) {
 
                 {/* Back Side with Image */}
                 <AppImage
-                    width="342px"
-                    height="342px"
+                    width="100%"
+                    height="100%"
                     borderRadius={16}
                     src={backBackgroundImage}
                     objectFit="contain"

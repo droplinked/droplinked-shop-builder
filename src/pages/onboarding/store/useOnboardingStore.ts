@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { OnboardingStepData } from '../types/onboarding'
 import AiAssistantButton from '../components/shop-setup/AiAssistant/mobile/AiAssistantButton'
+import { OnboardingStepData } from '../types/onboarding'
 
 export interface OnboardingData {
     currentStep: number
@@ -49,7 +49,7 @@ const initialStepData: OnboardingStepData[] = [
 
 const useOnboardingStore = create<OnboardingData & OnboardingActions>((set) => ({
     // Data
-    currentStep: 3,
+    currentStep: 0,
     storeData: initialStoreData,
     stepData: initialStepData,
     errors: {},
