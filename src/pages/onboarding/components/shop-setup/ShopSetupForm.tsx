@@ -16,8 +16,8 @@ function ShopSetupForm({ onBack, onNext }) {
 
     const handleSubmit = () => {
         if (validateStoreData(storeData, setError)) {
-            console.log("Form submitted with values:", storeData);
-            onNext();
+            console.log("Form submitted with values:", storeData)
+            onNext()
         }
     }
 

@@ -8,7 +8,7 @@ interface Props extends FlexProps {
 }
 
 function OnboardingStepHeader({ heading, description, rightContent, ...rest }: Props) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
     return (
         <Flex

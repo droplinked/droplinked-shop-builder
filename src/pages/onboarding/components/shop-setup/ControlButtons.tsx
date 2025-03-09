@@ -4,8 +4,8 @@ import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import React from 'react'
 
 interface ControlButtonsProps {
-    onBack: () => void;
-    onSubmit: () => void;
+    onBack: () => void
+    onSubmit: () => void
 }
 
 export default function ControlButtons({ onBack, onSubmit }: ControlButtonsProps) {

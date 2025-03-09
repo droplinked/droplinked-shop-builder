@@ -1,10 +1,10 @@
-import { Flex, PinInput, PinInputField } from "@chakra-ui/react";
-import React from "react";
+import { Flex, PinInput, PinInputField } from "@chakra-ui/react"
+import React from "react"
 
 interface Props {
-    value: string;
-    onChange: (value: string) => void;
-    state?: "default" | "error" | "success";
+    value: string
+    onChange: (value: string) => void
+    state?: "default" | "error" | "success"
 }
 
 const stateColorMap = new Map([
@@ -26,7 +26,7 @@ const stateColorMap = new Map([
         color: "#2BCFA1",
         backgroundColor: "rgba(43, 207, 161, 0.10)"
     }],
-]);
+])
 
 export default function OtpField({ value, onChange, state = "default" }: Props) {
     const colors = stateColorMap.get(state)
