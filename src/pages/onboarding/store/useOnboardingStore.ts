@@ -44,8 +44,7 @@ const initialStepData: OnboardingStepData[] = [
     { type: 'email-confirmation', heading: 'Confirm Email', description: 'Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.' },
     { type: 'shop-setup', heading: 'Store Details', description: 'Complete the information below to optimize your storefront.', rightContent: AiAssistantButton },
     { type: 'payment-setup', heading: 'Basic Payment Details', description: 'Choose from the different package options below.' },
-    { type: 'subscription-plan', heading: 'Plans', description: 'Choose a plan' },
-    { type: 'subscription-plan', heading: 'Plans', description: 'Choose a plan' },
+    { type: 'subscription-plan', heading: 'Plans', description: 'For individuals or companies just getting started.' },
     { type: 'completion', heading: 'You’re All Set!', description: 'Your account is now live and ready to use.' }]
 
 const useOnboardingStore = create<OnboardingData & OnboardingActions>((set) => ({
