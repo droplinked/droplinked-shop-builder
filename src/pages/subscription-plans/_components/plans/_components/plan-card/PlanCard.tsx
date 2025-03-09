@@ -42,7 +42,7 @@ const PlanCard = ({ plan, prevPlanType, plans }: Props) => {
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
-    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon[plan.type]
+    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon(plan.type)
     const { login, loading } = useAppStore()
     const { showToast } = useAppToast()
     const navigate = useNavigate()

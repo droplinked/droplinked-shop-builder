@@ -6,8 +6,8 @@ import { useProfile } from 'hooks/useProfile/useProfile'
 import React from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
-import { subscriptionPlans } from 'utils/helpers'
 
 interface Props {
     paymentStatus: "success" | "error";

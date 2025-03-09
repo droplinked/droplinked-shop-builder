@@ -4,11 +4,12 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { useProfile } from 'hooks/useProfile/useProfile'
-import { subscriptionPlans } from 'utils/helpers'
 import React from 'react'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
-import PlanPrice from '../../plan-price/PlanPrice'
+
 import { ModalStep } from '../types/interfaces'
+import PlanPrice from '../../plan-price/PlanPrice'
 
 interface Props {
     setplanPurchaseModalStep: (step: ModalStep) => void;
