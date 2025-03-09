@@ -6,6 +6,7 @@ import HeaderMain from "./components/header/HeaderMain"
 
 function MainLayout({ children }: PropsWithChildren) {
   const { pathname } = useLocation()
+  const isOnboardingPage = pathname === "/onboarding"
 
   // Scroll to top on route change
   useEffect(() => {
@@ -14,9 +15,14 @@ function MainLayout({ children }: PropsWithChildren) {
 
   return (
     <Box bgColor="bG">
-      {pathname !== "/onboarding" && <HeaderMain />}
-      {children || <Outlet />}
-      <Footer />
+      {!isOnboardingPage && (
+        <>
+          <HeaderMain />
+          {children || <Outlet />}
+          <Footer />
+        </>
+      )}
+      {isOnboardingPage && (children || <Outlet />)}
     </Box>
   )
 }
