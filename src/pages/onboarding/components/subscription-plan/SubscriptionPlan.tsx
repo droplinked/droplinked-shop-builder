@@ -1,8 +1,9 @@
 import { Grid } from '@chakra-ui/react';
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
 import React, { useState } from 'react';
-import SubscriptionPlanCard from './SubscriptionPlanCard';
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
 import ControlButtons from '../common/ControlButtons';
+import SubscriptionPlanCard from './SubscriptionPlanCard';
 
 type PlanType = keyof typeof subscriptionPlans;
 
@@ -62,7 +63,7 @@ const planDetails = [
   }
 ];
 
-function SubscriptionPlan({onBack, onNext}) {
+function SubscriptionPlan({ onBack, onNext }: OnboardingStepProps) {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('BUSINESS');
 
   const getContinueText = () => {

@@ -36,11 +36,11 @@ function Onboarding() {
             rightContent: <ShopPreview />
         },
         5: {
-            leftContent: <PaymentSetup />,
+            leftContent: <PaymentSetup onBack={prevStep} onNext={nextStep} />,
             rightContent: <PaymentFeatures />
         },
         6: {
-            leftContent: <SubscriptionPlan />,
+            leftContent: <SubscriptionPlan onBack={prevStep} onNext={nextStep} />,
             rightContent: <SubscriptionPlansDisplay />
         },
         7: { leftContent: <CompletionSection /> }

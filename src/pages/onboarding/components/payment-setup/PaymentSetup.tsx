@@ -1,15 +1,11 @@
 import { Flex } from '@chakra-ui/react';
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
 import React from 'react';
 import ControlButtons from '../common/ControlButtons';
-import FinancialServices from './components/financial-servic/FinancialServices';
 import CurrencySection from './components/CurrencySection';
+import FinancialServices from './components/financial-servic/FinancialServices';
 
-interface props {
-  onBack: () => void;
-  onNext: () => void;
-}
-
-function PaymentSetup({ onBack, onNext }: props) {
+function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
   return (
     <Flex direction="column" minH="full" gap="36px">
       <FinancialServices />
