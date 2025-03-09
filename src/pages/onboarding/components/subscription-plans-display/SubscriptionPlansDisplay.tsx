@@ -4,7 +4,7 @@ import CenterIcon from './components/CenterIcon';
 import CircleIcons from './components/CircleIcons';
 import PlanCards from './components/PlanCards';
 
-const CircularSubscriptionPlans = () => {
+const SubscriptionPlansDisplay = () => {
   return (
       <Box position="relative" w="750px" h="750px">
         {/* Glow effects */}
@@ -72,4 +72,4 @@ const CircularSubscriptionPlans = () => {
   );
 };
 
-export default CircularSubscriptionPlans;
+export default SubscriptionPlansDisplay;
