@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
+import RightSectionWrapper from '../RightSectionWrapper'
 
-function ProductCardsContainer() {
+interface Props extends PropsWithChildren { }
+
+function ProductCardsContainer({ children }: Props) {
     return (
-        <div>ProductCardsContainer</div>
+        <RightSectionWrapper>
+            {children}
+        </RightSectionWrapper>
     )
 }
 

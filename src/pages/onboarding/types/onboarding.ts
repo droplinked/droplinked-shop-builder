@@ -9,7 +9,6 @@ export interface OnboardingStepData {
     | 'completion'
     heading: string
     description: string
-    rightContent?: () => React.JSX.Element
 }
 
 // Additional types for shop data (used in Step 5+)

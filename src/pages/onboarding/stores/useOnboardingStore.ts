@@ -1,8 +1,6 @@
 import { create } from 'zustand'
-import AiAssistantButton from '../components/shop-setup/AiAssistant/mobile/AiAssistantButton'
-import { OnboardingStepData } from '../types/onboarding'
 
-export interface OnboardingData {
+export interface OnboardingStates {
     currentStep: number
     storeData: {
         logoUrl: string
@@ -11,7 +9,6 @@ export interface OnboardingData {
         name: string
         description: string
     }
-    stepData: OnboardingStepData[]
     errors: {
         url?: string
         name?: string
@@ -22,11 +19,11 @@ export interface OnboardingData {
 interface OnboardingActions {
     nextStep: () => void
     prevStep: () => void
-    updateOnboardingState: <K extends keyof OnboardingData>(
+    updateOnboardingState: <K extends keyof OnboardingStates>(
         field: K,
-        value: OnboardingData[K]
+        value: OnboardingStates[K]
     ) => void
-    setError: (field: keyof OnboardingData['errors'], message: string | undefined) => void
+    setError: (field: keyof OnboardingStates['errors'], message: string | undefined) => void
     clearErrors: () => void
 }
 
@@ -38,40 +35,25 @@ export const initialStoreData = {
     description: ''
 }
 
-const initialStepData: OnboardingStepData[] = [
-    { type: 'sign-in', heading: 'Welcome to droplinked', description: 'Sign in with your credentials below.' },
-    { type: 'sign-up', heading: 'Welcome to droplinked', description: 'Complete the details below or use your Google account.' },
-    { type: 'email-confirmation', heading: 'Confirm Email', description: 'Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.' },
-    { type: 'shop-setup', heading: 'Store Details', description: 'Complete the information below to optimize your storefront.', rightContent: AiAssistantButton },
-    { type: 'payment-setup', heading: 'Basic Payment Details', description: 'Choose from the different package options below.' },
-    { type: 'subscription-plan', heading: 'Plans', description: 'For individuals or companies just getting started.' },
-    { type: 'completion', heading: 'You’re All Set!', description: 'Your account is now live and ready to use.' }]
-
-const useOnboardingStore = create<OnboardingData & OnboardingActions>((set) => ({
-    // Data
-    currentStep: 0,
+const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
+    // States
+    currentStep: 1,
     storeData: initialStoreData,
-    stepData: initialStepData,
     errors: {},
 
     // Actions
     nextStep: () => set((state) => ({
-        currentStep: state.currentStep < state.stepData.length - 1
-            ? state.currentStep + 1
-            : state.currentStep
+        currentStep: state.currentStep < 7 ? state.currentStep + 1 : state.currentStep
     })),
     prevStep: () => set((state) => ({
-        currentStep: state.currentStep > 0 ? state.currentStep - 1 : state.currentStep
+        currentStep: state.currentStep > 1 ? state.currentStep - 1 : state.currentStep
     })),
     updateOnboardingState: (field, value) => set((state) => ({
         ...state,
         [field]: value
     })),
     setError: (field, message) => set((state) => ({
-        errors: {
-            ...state.errors,
-            [field]: message
-        }
+        errors: { ...state.errors, [field]: message }
     })),
     clearErrors: () => set({ errors: {} })
 }))
