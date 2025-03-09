@@ -2,7 +2,7 @@ import { Box, ButtonProps, Button as ChakraButton } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
 export interface AppButtonProps extends ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' ;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
 }
@@ -21,6 +21,11 @@ const styles = {
   outline: {
     border: "#616161",
     background: "transparent",
+    text: "white"
+  },
+  ghost: {
+    border: "none",
+    background: "transparent", 
     text: "white"
   },
   disabled: {
