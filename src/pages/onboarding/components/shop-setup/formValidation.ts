@@ -1,4 +1,4 @@
-import { OnboardingData } from "pages/onboarding/store/useOnboardingStore"
+import { OnboardingData } from "pages/onboarding/stores/useOnboardingStore"
 
 interface IValidateStoreData {
     logoUrl: string

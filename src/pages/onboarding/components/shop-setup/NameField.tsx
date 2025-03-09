@@ -1,6 +1,6 @@
 import Input from 'components/redesign/input/Input'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 
 export default function NameField() {
     const { storeData, updateOnboardingState, errors, setError } = useOnboardingStore()

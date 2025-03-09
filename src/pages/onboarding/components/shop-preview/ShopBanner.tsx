@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import Drop3 from 'assets/brand-identity/Drop3'
 import AppImage from 'components/common/image/AppImage'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function ShopBanner() {

@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, useMediaQuery } from '@chakra-ui/react'
 import React, { PropsWithChildren } from 'react'
-import useOnboardingStore from '../store/useOnboardingStore'
+import useOnboardingStore from '../stores/useOnboardingStore'
 import OnboardingHeader from './OnboardingHeader'
 import OnboardingStepHeader from './OnboardingStepHeader'
 import PaymentFeatures from './payment-features/PaymentFeatures'

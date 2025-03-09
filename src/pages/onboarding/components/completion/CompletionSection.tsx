@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'

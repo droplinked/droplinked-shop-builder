@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react"
 import AppImage from "components/common/image/AppImage"
-import useOnboardingStore from "pages/onboarding/store/useOnboardingStore"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import React from "react"
 
 export default function ShopLogo() {

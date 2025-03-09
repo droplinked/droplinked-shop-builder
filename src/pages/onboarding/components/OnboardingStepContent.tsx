@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import useOnboardingStore from '../store/useOnboardingStore'
+import useOnboardingStore from '../stores/useOnboardingStore'
 import CompletionSection from './completion/CompletionSection'
 import EmailConfirmation from './email-confirmation/EmailConfirmation'
 import PaymentSetup from './payment-setup/PaymentSetup'
@@ -23,9 +23,9 @@ function OnboardingStepContent() {
             case 'shop-setup':
                 return <ShopSetupForm onBack={prevStep} onNext={nextStep} />
             case 'payment-setup':
-                return <PaymentSetup />
+                return <PaymentSetup onBack={prevStep} onNext={nextStep} />
             case 'subscription-plan':
-                return <SubscriptionPlan />
+                return <SubscriptionPlan onBack={prevStep} onNext={nextStep} />
             case 'completion':
                 return <CompletionSection />
             default:

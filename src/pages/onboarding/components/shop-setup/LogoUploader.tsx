@@ -1,10 +1,10 @@
 import { Avatar, Flex, Input } from '@chakra-ui/react'
 import { UploadMd } from 'assets/icons/Action/Upload/UploadMd'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useRef } from 'react'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import FieldWrapper from './FieldWrapper'
 
 export default function LogoUploader() {

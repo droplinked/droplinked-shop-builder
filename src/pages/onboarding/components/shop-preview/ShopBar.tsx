@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
-import useOnboardingStore from "pages/onboarding/store/useOnboardingStore"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import React from "react"
 import HeaderIcon from "./HeaderIcon"
 import ShopLogo from "./ShopLogo"

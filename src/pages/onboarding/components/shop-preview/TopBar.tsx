@@ -7,7 +7,7 @@ import { PlusMd } from "assets/icons/Sign/Plus/PlusMd"
 import { SidebarMd } from "assets/icons/StyleDesigner/Sidebar/SidebarMd"
 import { DownloadcircleMd } from "assets/icons/System/DownloadCircle/DownloadcircleMd"
 import { LockSm } from "assets/icons/System/Lock/LockSm"
-import useOnboardingStore from "pages/onboarding/store/useOnboardingStore"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import React from "react"
 import { appDevelopment } from "utils/app/variable"
 
