@@ -2,7 +2,7 @@ import React from 'react'
 import CompletionSection from './components/completion/CompletionSection'
 import OnboardingStepContent from './components/OnboardingStepContent'
 import OnboardingStepWrapper from './components/OnboardingStepWrapper'
-import useOnboardingStore from './store/useOnboardingStore'
+import useOnboardingStore from './stores/useOnboardingStore'
 
 function Onboarding() {
     const { currentStep } = useOnboardingStore()

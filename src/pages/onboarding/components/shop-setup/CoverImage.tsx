@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
+import useFileUpload from 'hooks/useFileUpload/useFileUpload'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import FieldWrapper from './FieldWrapper'
-import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import FileUpload from './FileUpload'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()

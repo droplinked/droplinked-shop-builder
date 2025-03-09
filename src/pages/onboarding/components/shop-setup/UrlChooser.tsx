@@ -4,7 +4,7 @@ import { NotavailableoutlinedMd } from 'assets/icons/Sign/NotAvailableOutlined/N
 import Input from 'components/redesign/input/Input'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 

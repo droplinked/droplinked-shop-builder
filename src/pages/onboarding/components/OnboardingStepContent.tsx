@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
-import useOnboardingStore from '../store/useOnboardingStore'
+import useOnboardingStore from '../stores/useOnboardingStore'
 import CompletionSection from './completion/CompletionSection'
 import EmailConfirmation from './email-confirmation/EmailConfirmation'
 import PaymentSetup from './payment-setup/PaymentSetup'

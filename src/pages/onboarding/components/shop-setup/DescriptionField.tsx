@@ -1,5 +1,5 @@
 import Textarea from 'components/redesign/textarea/Textarea'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function DescriptionField() {
