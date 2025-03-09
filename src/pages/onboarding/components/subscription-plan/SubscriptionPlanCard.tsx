@@ -85,7 +85,18 @@ function SubscriptionPlanCard({ planType, price, features, isPopular, isSelected
 
         <Box borderBottom="1px solid"  borderColor={isSelected ? "primary.default" : "neutral.gray.800"}  />
 
-        <Flex px={4} py={2.5} justifyContent="center" alignItems="center" gap={1.5} onClick={() => setIsExpanded(!isExpanded)} cursor="pointer">
+        <Flex 
+          px={4} 
+          py={2.5} 
+          justifyContent="center" 
+          alignItems="center" 
+          gap={1.5} 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }} 
+          cursor="pointer"
+        >
           <Text color={isSelected ? "text.primary" : "text.subtextPlaceholder.dark" } fontSize="sm">
             {isExpanded ? 'Less' : 'More'}
           </Text>

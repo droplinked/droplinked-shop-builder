@@ -23,9 +23,9 @@ function OnboardingStepContent() {
             case 'shop-setup':
                 return <ShopSetupForm onBack={prevStep} onNext={nextStep} />
             case 'payment-setup':
-                return <PaymentSetup />
+                return <PaymentSetup onBack={prevStep} onNext={nextStep} />
             case 'subscription-plan':
-                return <SubscriptionPlan />
+                return <SubscriptionPlan onBack={prevStep} onNext={nextStep} />
             case 'completion':
                 return <CompletionSection />
             default:
