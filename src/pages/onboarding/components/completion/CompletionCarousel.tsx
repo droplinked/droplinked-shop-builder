@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import CommunityEngagement from 'pages/dashboard/components/CommunityEngagement/CommunityEngagement'
+import CommunityEngagement from 'components/redesign/community-engagement/CommunityEngagement'
 import React, { forwardRef } from 'react'
 import Slider from 'react-slick'
 import NewsletterSubscription from './NewsletterSubscription'
@@ -22,7 +22,7 @@ const CompletionCarousel = forwardRef<Slider>((_, ref) => {
 
             <Box>
                 <NewsletterSubscription />
-                <CommunityEngagement />
+                <CommunityEngagement columns={3} includeBlueSky borderRadius={8} />
             </Box>
         </Slider>
     )

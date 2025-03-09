@@ -1,8 +1,8 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
-import { SocialMediaItem } from "pages/dashboard/types/dashboard.types"
 import React from "react"
+import { SocialMediaItem } from "utils/constants/socialMediaLinks"
 
 interface Props {
   linkData: SocialMediaItem
@@ -16,6 +16,7 @@ function SocialMediaLink({ linkData }: Props) {
       href={url}
       target="_blank"
       position="relative"
+      height="100%"
       display="flex"
       flexDirection="column"
       gap={{ base: 4, md: 6 }}
@@ -36,16 +37,13 @@ function SocialMediaLink({ linkData }: Props) {
       <Box
         className="bg-icon"
         position="absolute"
-        top="-24px"
-        right="-24px"
-        width="140px"
-        height="140px"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
+        top="-20px"
+        right="-20px"
         opacity={0.2}
         sx={{
           "svg": {
+            w: "140px",
+            h: "140px",
             maskImage: "radial-gradient(circle at 19px 107px, black 0%, transparent 100%)",
             WebkitMaskImage: "radial-gradient(circle at 19px 107px, black 0%, transparent 100%)",
             filter: "brightness(20%)"

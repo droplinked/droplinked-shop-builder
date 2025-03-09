@@ -32,7 +32,13 @@ function CompletionSection() {
     }
 
     return (
-        <Flex minHeight="100vh" direction="column" alignItems="center" gap={12} padding="64px">
+        <Flex
+            minHeight="100vh"
+            direction="column"
+            alignItems="center"
+            gap={{ base: 9, xl: 12 }}
+            padding={{ base: 4, md: 6, lg: 9, xl: 12, "3xl": 16 }}
+        >
             <OnboardingHeader />
 
             <OnboardingStepHeader heading={heading} description={description} textAlign="center" />

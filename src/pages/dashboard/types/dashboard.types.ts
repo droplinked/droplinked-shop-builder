@@ -12,10 +12,3 @@ export interface QuickAction {
     label: string
     url: string
 }
-
-export interface SocialMediaItem {
-    icon: ReactNode
-    label: string
-    hoverEffect: string
-    url: string
-}
