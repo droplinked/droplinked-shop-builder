@@ -7,7 +7,7 @@ import useOnboardingStore from './store/useOnboardingStore'
 function Onboarding() {
     const { currentStep } = useOnboardingStore()
 
-    if (currentStep === 0) return <CompletionSection />
+    if (currentStep === 6) return <CompletionSection />
 
     return (
         <OnboardingStepWrapper currentStep={currentStep}>
