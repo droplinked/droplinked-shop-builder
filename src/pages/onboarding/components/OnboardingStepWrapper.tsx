@@ -3,8 +3,10 @@ import React, { PropsWithChildren } from 'react'
 import useOnboardingStore from '../store/useOnboardingStore'
 import OnboardingHeader from './OnboardingHeader'
 import OnboardingStepHeader from './OnboardingStepHeader'
+import PaymentFeatures from './payment-features/PaymentFeatures'
 import ProductCards from './product-cards/ProductCards'
 import ShopPreview from './shop-preview/ShopPreview'
+import SubscriptionPlansDisplay from './subscription-plans-display/SubscriptionPlansDisplay'
 
 interface Props extends PropsWithChildren {
     currentStep: number
@@ -19,7 +21,9 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
     const renderRightSectionContent = () => {
         if (currentStep >= 0 && currentStep <= 2) return <ProductCards />
         if (currentStep === 3) return <ShopPreview />
-        if (currentStep === 4 || currentStep === 5 || currentStep === 6) {
+        if (currentStep === 4) return <PaymentFeatures />
+        if (currentStep === 5) return <SubscriptionPlansDisplay />
+        if (currentStep === 6) {
             return <Box>Simple Image Placeholder</Box>
         }
         return null
@@ -28,7 +32,7 @@ function OnboardingStepWrapper({ currentStep, children }: Props) {
     const rightSectionContent = renderRightSectionContent()
 
     return (
-        <Grid templateColumns={{ base: "1fr", lg: "1fr 1.5fr" }}>
+        <Grid templateColumns={{ base: "1fr", md: "1fr 1.5fr" }}>
             <Flex direction="column" gap={12} padding={16}>
                 <OnboardingHeader />
                 <OnboardingStepHeader heading={heading} description={description} rightContent={rightContent} />
