@@ -6,7 +6,7 @@ function VideoPlayer() {
     return (
         <video
             width="100%"
-            height="100%"
+            height="auto"
             controls
             style={{ borderRadius: '8px' }}
         >
