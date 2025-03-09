@@ -5,7 +5,7 @@ import Input from 'components/redesign/input/Input'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 
 export default function UrlChooser() {
@@ -46,6 +46,10 @@ export default function UrlChooser() {
         if (!debouncedUrl) return null
         return isAvailable ? <AvailableoutlinedMd color='#2bcfa1' /> : <NotavailableoutlinedMd color='#FF2244' />
     }
+
+    useEffect(() => {
+        setUrlTempValue(storeData.url ?? '')
+    }, [storeData.url])
 
     return (
         <Input
