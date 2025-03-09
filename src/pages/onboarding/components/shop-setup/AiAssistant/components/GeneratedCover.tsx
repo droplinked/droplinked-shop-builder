@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import { ImageSlider } from './ImageSlider'

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
-import useOnboardingStore from 'pages/onboarding/store/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { Avatar, Box, Flex } from '@chakra-ui/react'
 
 interface Props {
