@@ -57,6 +57,7 @@ export default function TopBar() {
         borderTop="1px solid #292929"
         align="center"
         justify="space-between"
+        display={{ base: "none", xl: "flex" }}
       >
         {/* Left controls */}
         <Flex gap={{ base: 6, lg: 8 }} align="center">

@@ -6,7 +6,7 @@ import React from 'react'
 export default function AiAssistant() {
     return (
         <Flex
-            display={{ base: "none", md: "flex" }}
+            display={{ base: "none", lg: "flex" }}
             userSelect="none"
             position="fixed"
             bottom={5}

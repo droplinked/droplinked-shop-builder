@@ -6,7 +6,7 @@ import React from 'react'
 export default function AiAssistantButton() {
     return (
         <Button
-            display={{ base: "flex", md: "none" }}
+            display={{ base: "flex", lg: "none" }}
             fontSize={14}
             fontWeight={500}
             iconSpacing={2}
