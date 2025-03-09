@@ -1,5 +1,6 @@
 import { Textarea as ChakraTextarea, FormLabel, InputGroup, Text, TextareaProps, Flex, Box } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import React from 'react'
@@ -39,8 +40,8 @@ export default function Textarea({ label, description, maxCharacters, state, sta
     <InputGroup display="flex" flexDirection="column">
       {label && (
         <Flex gap={2} alignItems={"center"} mb={description ? 1 : 4}>
-          <FormLabel fontSize={16} fontWeight={500} color="#FFF">
-            {label}
+          <FormLabel display="flex" gap={1} alignItems="center" fontSize={16} fontWeight={500} color="#FFF">
+            {label} {rest?.isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
           </FormLabel>
           {tooltipText && <AppTooltip label={tooltipText}>
             <Box>

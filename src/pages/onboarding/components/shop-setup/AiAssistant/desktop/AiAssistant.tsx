@@ -1,11 +1,31 @@
 import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
-import React from 'react'
-import BuyPlan from './BuyPlan';
+import React, { useState } from 'react'
+import PlansModal from './PlansModal'
+import PaymentModal from './PaymentModal'
+import BusinessModal from './BusinessModal'
+import GenerationModal from './GenerationModal'
+
+export interface GenerateWithAiData {
+    businessDescribe: string
+    businessCategory: string
+    prompt: string
+    enhancePrompt: boolean
+}
 
 export default function AiAssistant() {
-    const { isOpen, onClose, onOpen } = useDisclosure();
+    const { isOpen, onClose, onOpen } = useDisclosure()
+    const [step, setStep] = useState(0)
+    const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
+        businessDescribe: "",
+        businessCategory: "",
+        prompt: "",
+        enhancePrompt: false,
+    })
+
+    const onNextStep = () => setStep(step + 1)
+    const onPrevStep = () => setStep(step - 1)
 
     return (
         <Flex
@@ -69,7 +89,42 @@ export default function AiAssistant() {
                 Try AI Assistant
             </Button>
 
-            <BuyPlan isOpen={isOpen} onClose={onClose} />
+            {step === 0 &&
+                <PlansModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    onPrevStep={onPrevStep}
+                />
+            }
+            {step === 1 &&
+                <PaymentModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    onPrevStep={onPrevStep}
+                />
+            }
+            {step === 2 &&
+                <BusinessModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    onPrevStep={onPrevStep}
+                    generateWithAiData={generateWithAiData}
+                    setGenerateWithAiData={(data) => setGenerateWithAiData(data)}
+                />
+            }
+            {step === 3 &&
+                <GenerationModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    onPrevStep={onPrevStep}
+                    generateWithAiData={generateWithAiData}
+                    setGenerateWithAiData={(data) => setGenerateWithAiData(data)}
+                />
+            }
         </Flex>
     )
 }

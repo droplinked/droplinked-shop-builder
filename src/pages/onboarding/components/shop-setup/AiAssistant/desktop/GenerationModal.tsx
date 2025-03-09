@@ -1,0 +1,55 @@
+import { Flex, Grid } from '@chakra-ui/react'
+import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
+import AppModal from 'components/redesign/modal/AppModal'
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import React from 'react'
+import { GenerateWithAiData } from './AiAssistant'
+import GenerationModalBody from './GenerationModalBody'
+import GenerationModalRightContent from './GenerationModalRightContent'
+
+interface Props {
+    isOpen: boolean
+    onClose: () => void
+    onNextStep: () => void
+    onPrevStep: () => void
+    generateWithAiData: GenerateWithAiData
+    setGenerateWithAiData: (data: GenerateWithAiData) => void
+}
+
+export default function GenerationModal({ isOpen, onClose, onNextStep, onPrevStep, generateWithAiData, setGenerateWithAiData }: Props) {
+    const handleChange = (key: string, value: string | boolean) => {
+        setGenerateWithAiData({ ...generateWithAiData, [key]: value })
+    }
+
+    return (
+        <AppModal
+            modalRootProps={{ isOpen, onClose, size: "6xl", isCentered: true }}
+            modalContentProps={{ background: "#1C1C1C", paddingBlock: "0" }}
+        >
+            <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }}>
+                <Flex flexDirection="column">
+                    <ModalHeaderData
+                        icon={
+                            <ModalHeaderIconWrapper>
+                                <MagicwandLg color='#fff' />
+                            </ModalHeaderIconWrapper>
+                        }
+                        title="Use droplinked AI to create your shop"
+                        description="Use the AI tools to streamline the creation of store assets."
+                        descriptionProps={{ color: "#B1B1B1 !important" }}
+                        modalHeaderProps={{
+                            paddingBlock: "48px !important",
+                            borderBottom: "1px solid #292929",
+                        }}
+                    />
+                    <GenerationModalBody
+                        generateWithAiData={generateWithAiData}
+                        handleChange={handleChange}
+                    />
+                </Flex>
+                <GenerationModalRightContent />
+            </Grid>
+        </AppModal>
+    )
+}
