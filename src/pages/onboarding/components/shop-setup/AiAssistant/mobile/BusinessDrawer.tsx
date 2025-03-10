@@ -2,24 +2,27 @@ import { Box, Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Drawer from 'components/common/Drawer/Drawer'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
-import React, { useState } from 'react'
-import PlanList from '../components/PlanList'
-import ExpandableInfo from '../components/ExpandableInfo'
-import PlanFeatures from './PlanFeatures'
-import { proPlanFeatures } from 'pages/onboarding/constants/plans'
+import Textarea from 'components/redesign/textarea/Textarea'
+import React from 'react'
+import BusinessCategory from '../components/BusinessCategory'
+import { GenerateWithAiData } from './AiAssistantButton'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
     onNextStep: () => void
-    onPrevStep: () => void
+    generateWithAiData: GenerateWithAiData
+    setGenerateWithAiData: (data: GenerateWithAiData) => void
 }
 
-export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
-    const [selectedPlan, setSelectedPlan] = useState("")
+export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWithAiData, setGenerateWithAiData }: Props) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     const title = "Use droplinked AI to create your shop";
-    const description = "Feel free to use our AI tools to customize your shop. Subscribe below to get started.";
+    const description = "Use the AI tools to streamline the creation of store assets.";
+
+    const handleChange = (key: string, value: string) => {
+        setGenerateWithAiData({ ...generateWithAiData, [key]: value })
+    }
 
     return (
         <Drawer
@@ -30,8 +33,8 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
             }}
             placement='bottom'
             showSubmitButtons
-            discardButtonText='Close'
-            saveButtonText='Claim Trial Now'
+            discardButtonText='Discard'
+            saveButtonText='Generate Shop Details with AI'
             drawerFooterProps={{
                 padding: { base: 4, md: "24px 48px" },
                 background: "#1C1C1C",
@@ -41,6 +44,9 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
             }}
             saveButtonProps={{
                 width: { base: "100%", md: "auto" }
+            }}
+            drawerContentStyle={{
+                background: "#1C1C1C"
             }}
             onClick={onNextStep}
             {...isSmallerThan768 && {
@@ -67,18 +73,16 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
                 )
             }}
         >
-            <Flex direction="column" gap={4} background="#1C1C1C">
-                <PlanList
-                    selectedPlan={selectedPlan}
-                    setSelectedPlan={(selectedPlan) => setSelectedPlan(selectedPlan)}
+            <Flex p={{ base: 4, md: "48px" }} flexDirection="column" gap={9} background="#1C1C1C">
+                <Textarea
+                    label='Describe Your Business'
+                    isRequired={true}
+                    placeholder='Please describe your shop to help our AI create a more accurate and efficient representation of your business.'
                 />
-                <ExpandableInfo
-                    icon={<MagicwandLg color='#fff' />}
-                    title="Pro Plan"
-                    description="For small businesses and teams ready to grow."
-                >
-                    <PlanFeatures features={proPlanFeatures} />
-                </ExpandableInfo>
+                <BusinessCategory
+                    generateWithAiData={generateWithAiData}
+                    onChange={handleChange}
+                />
             </Flex>
         </Drawer>
     )

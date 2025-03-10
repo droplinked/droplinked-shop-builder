@@ -1,15 +1,15 @@
-import { Box, Flex, ModalBody, Text } from '@chakra-ui/react'
-import React from 'react'
-import Textarea from 'components/redesign/textarea/Textarea'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
-import { GenerateWithAiData } from './AiAssistant'
+import Textarea from 'components/redesign/textarea/Textarea'
+import React from 'react'
+import { GenerateWithAiData } from '../desktop/AiAssistant'
 
 interface Props {
     generateWithAiData: GenerateWithAiData
     handleChange: (key: string, value: string | boolean) => void
 }
 
-export default function GenerationModalBody({ generateWithAiData, handleChange }: Props) {
+export default function PromptInputs({ generateWithAiData, handleChange }: Props) {
     const getCheckboxStyles = (isSelected: boolean) => ({
         __css: {
             span: {
@@ -23,12 +23,7 @@ export default function GenerationModalBody({ generateWithAiData, handleChange }
     })
 
     return (
-        <ModalBody
-            display="flex"
-            flexDirection="column"
-            gap={6}
-            padding={"48px !important"}
-        >
+        <Flex padding={{ base: 4, md: "36px", lg: "48px" }} flexDirection="column" gap={6}>
             <Textarea
                 label='Prompt'
                 placeholder='Please describe your shop to help our AI create a more accurate and efficient representation of your business.'
@@ -53,6 +48,6 @@ export default function GenerationModalBody({ generateWithAiData, handleChange }
                     Enhance prompt with AI
                 </Text>
             </Flex>
-        </ModalBody>
+        </Flex>
     )
 }

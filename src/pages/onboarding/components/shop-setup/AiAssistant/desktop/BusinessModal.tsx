@@ -6,7 +6,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import Textarea from 'components/redesign/textarea/Textarea'
 import React from 'react'
 import { GenerateWithAiData } from './AiAssistant'
-import BusinessCategory from './BusinessCategory'
+import BusinessCategory from '../components/BusinessCategory'
 import BusinessModalFooter from './BusinessModalFooter'
 
 interface Props {

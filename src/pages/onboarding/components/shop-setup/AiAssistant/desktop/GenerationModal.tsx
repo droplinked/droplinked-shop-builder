@@ -1,12 +1,12 @@
-import { Flex, Grid } from '@chakra-ui/react'
+import { Flex, Grid, ModalBody } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React from 'react'
+import GeneratedContents from '../components/GeneratedContents'
+import PromptInputs from '../components/PromptInputs'
 import { GenerateWithAiData } from './AiAssistant'
-import GenerationModalBody from './GenerationModalBody'
-import GenerationModalRightContent from './GenerationModalRightContent'
 
 interface Props {
     isOpen: boolean
@@ -43,12 +43,14 @@ export default function GenerationModal({ isOpen, onClose, onNextStep, onPrevSte
                             borderBottom: "1px solid #292929",
                         }}
                     />
-                    <GenerationModalBody
-                        generateWithAiData={generateWithAiData}
-                        handleChange={handleChange}
-                    />
+                    <ModalBody padding="0px !important">
+                        <PromptInputs
+                            generateWithAiData={generateWithAiData}
+                            handleChange={handleChange}
+                        />
+                    </ModalBody>
                 </Flex>
-                <GenerationModalRightContent />
+                <GeneratedContents />
             </Grid>
         </AppModal>
     )

@@ -1,8 +1,10 @@
-import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
 import React, { useState } from 'react'
+import BusinessDrawer from './BusinessDrawer'
 import PlansDrawer from './PlansDrawer'
+import GenerationDrawer from './GenerationDrawer'
 
 export interface GenerateWithAiData {
     businessDescribe: string
@@ -13,7 +15,7 @@ export interface GenerateWithAiData {
 
 export default function AiAssistantButton() {
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const [step, setStep] = useState(0)
+    const [step, setStep] = useState(3)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",
@@ -47,13 +49,31 @@ export default function AiAssistantButton() {
                 </Text>
             </Button>
 
-            {
-                step === 0 &&
+            {step === 0 &&
                 <PlansDrawer
                     isOpen={isOpen}
                     onClose={onClose}
                     onNextStep={onNextStep}
                     onPrevStep={onPrevStep}
+                />
+            }
+            {step === 1 && <Box>Payment Step</Box>}
+            {step === 2 &&
+                <BusinessDrawer
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    generateWithAiData={generateWithAiData}
+                    setGenerateWithAiData={(data) => setGenerateWithAiData(data)}
+                />
+            }
+            {step === 3 &&
+                <GenerationDrawer
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    generateWithAiData={generateWithAiData}
+                    setGenerateWithAiData={(data) => setGenerateWithAiData(data)}
                 />
             }
         </>

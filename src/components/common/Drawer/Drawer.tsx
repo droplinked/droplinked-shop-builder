@@ -122,7 +122,7 @@ function Drawer({
                             {discardButtonText}
                         </Button>
 
-                        <Flex gap={4}>
+                        <Flex gap={4} {...saveButtonProps.width && { width: saveButtonProps.width }}>
                             <Button
                                 type="button"
                                 isDisabled={isLoading}
@@ -133,7 +133,8 @@ function Drawer({
                                 {saveButtonText}
                             </Button>
                         </Flex>
-                    </DrawerFooter>}
+                    </DrawerFooter>
+                }
             </DrawerContent>
         </ChakraDrawer>
     )
