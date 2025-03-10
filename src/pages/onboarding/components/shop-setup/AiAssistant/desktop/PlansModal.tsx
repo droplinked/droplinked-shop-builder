@@ -1,10 +1,10 @@
-import { Box, Flex, Grid } from '@chakra-ui/react'
+import { Box, Flex, Grid, ModalBody } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { useState } from 'react'
-import PlansModalBody from './PlansModalBody'
+import PlanList from '../components/PlanList'
 import PlansModalFooter from './PlansModalFooter'
 
 interface Props {
@@ -38,10 +38,14 @@ export default function PlansModal({ isOpen, onClose, onNextStep }: Props) {
                             borderBottom: "1px solid #292929",
                         }}
                     />
-                    <PlansModalBody
-                        selectedPlan={selectedPlan}
-                        setSelectedPlan={(plan) => setSelectedPlan(plan)}
-                    />
+                    <ModalBody
+                        padding="0px !important"
+                    >
+                        <PlanList
+                            selectedPlan={selectedPlan}
+                            setSelectedPlan={(selectedPlan) => setSelectedPlan(selectedPlan)}
+                        />
+                    </ModalBody>
                     <PlansModalFooter onNextStep={onNextStep} onClose={onClose} selectedPlan={selectedPlan} />
                 </Flex>
 

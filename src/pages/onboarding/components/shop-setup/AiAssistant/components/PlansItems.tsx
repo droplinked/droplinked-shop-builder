@@ -16,7 +16,8 @@ export default function PlansItems({ item, isSelected, onClick }: Props) {
     return (
         <Flex
             background={background}
-            padding={4}
+            paddingInline={4}
+            paddingBlock={{ base: 3, lg: 4 }}
             borderRadius={8}
             onClick={onClick}
             border={border}

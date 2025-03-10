@@ -10,6 +10,8 @@ import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
 import { validateStoreData } from '../../utils/shopSetupFormValidation'
+import OnboardingStepHeader from '../common/OnboardingStepHeader'
+import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
 
 function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
@@ -29,6 +31,10 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
 
     return (
         <Flex gap={9} direction="column">
+            <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
+                <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
+                <AiAssistantButton />
+            </Flex>
             <LogoUploader />
             <CoverImage />
             <UrlChooser />

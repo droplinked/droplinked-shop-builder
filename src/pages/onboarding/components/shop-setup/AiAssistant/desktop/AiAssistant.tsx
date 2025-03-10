@@ -16,7 +16,7 @@ export interface GenerateWithAiData {
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const [step, setStep] = useState(3)
+    const [step, setStep] = useState(0)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",

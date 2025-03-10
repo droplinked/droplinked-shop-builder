@@ -30,3 +30,17 @@ export const plans: Plan[] = [
         discountPercent: 25,
     }
 ]
+
+export const proPlanFeatures: string[] = [
+    "Token gating",
+    "Mint-to-Merch",
+    "Unlimited tokenization",
+    "Unlimited digital goods",
+    "Unlimited physical products",
+    "Customizable domains",
+    "Customizable favicon",
+    "Customizable shipping",
+    "Digital coupons and giftcards",
+    "Warehouse system integration",
+    "Premium customer support"
+]

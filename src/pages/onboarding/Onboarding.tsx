@@ -51,7 +51,7 @@ function Onboarding() {
     if (!rightContent) return leftContent
 
     return (
-        <Grid templateColumns={{ base: '1fr', md: '1fr 1.5fr' }}>
+        <Grid templateColumns={{ base: '1fr', lg: '1fr 1.5fr' }}>
             <Flex direction='column' gap={12} padding={16}>
                 <DroplinkedBrand />
                 <Stepper />

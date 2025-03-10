@@ -1,4 +1,4 @@
-import { Flex, ModalBody, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { plans } from 'pages/onboarding/constants/plans'
 import React from 'react'
 import PlansItems from './PlansItems'
@@ -8,13 +8,12 @@ interface Props {
     setSelectedPlan: (value: string) => void
 }
 
-export default function PlansModalBody({ selectedPlan, setSelectedPlan }: Props) {
+export default function PlanList({ selectedPlan, setSelectedPlan }: Props) {
     return (
-        <ModalBody
-            display="flex"
+        <Flex
             flexDirection="column"
             gap={6}
-            padding="48px !important"
+            padding={{ base: 4, md: "48px !important" }}
         >
             <Text color="#fff" fontSize={16}>Billing Cycle</Text>
             <Flex width="100%" flexDirection="column" gap={4} userSelect="none">
@@ -27,6 +26,6 @@ export default function PlansModalBody({ selectedPlan, setSelectedPlan }: Props)
                     />
                 ))}
             </Flex>
-        </ModalBody>
+        </Flex>
     )
 }

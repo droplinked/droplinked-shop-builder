@@ -1,13 +1,18 @@
-import { Drawer as ChakraDrawer, DrawerContent, DrawerOverlay, DrawerHeader, DrawerCloseButton, DrawerFooter, Flex, Heading, DrawerContentProps, ChakraProps } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
-import React, { PropsWithChildren } from 'react'
+import { Drawer as ChakraDrawer, ChakraProps, DrawerCloseButton, DrawerContent, DrawerContentProps, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
+import Button, { AppButtonProps } from 'components/redesign/button/Button'
+import React, { PropsWithChildren, ReactNode } from 'react'
 
 interface Props extends PropsWithChildren {
     isOpen: boolean
     onClose: () => void
     title: string
+    description?: string
+    icon?: ReactNode
+    drawerFooterProps?: ChakraProps
     discardButtonText?: string
     saveButtonText?: string
+    discardButtonProps?: AppButtonProps
+    saveButtonProps?: AppButtonProps
     isLoading?: boolean
     onClick?: () => void
     headerContent?: React.ReactNode;
@@ -15,6 +20,7 @@ interface Props extends PropsWithChildren {
     drawerHeaderStyle?: ChakraProps
     showSubmitButtons?: boolean
     headingStyle?: ChakraProps
+    descriptionStyle?: ChakraProps
     placement?: 'top' | 'right' | 'bottom' | 'left'
 }
 
@@ -23,6 +29,12 @@ function Drawer({
     onClose,
     children,
     title,
+    description,
+    descriptionStyle,
+    icon,
+    drawerFooterProps,
+    discardButtonProps,
+    saveButtonProps,
     discardButtonText = 'Discard',
     saveButtonText = 'Save',
     isLoading = false,
@@ -69,10 +81,20 @@ function Drawer({
                     padding={9}
                     {...drawerHeaderStyle}
                 >
-                    <Flex justifyContent="space-between" alignItems="center" width="100%">
-                        <Heading as="h3" fontSize={24} fontWeight={700} color="#FFF" {...headingStyle}>
-                            {title}
-                        </Heading>
+                    <Flex justifyContent="space-between" alignItems="start" width="100%">
+                        {icon}
+                        {title &&
+                            <Flex flexDirection="column" gap={1}>
+                                <Heading as="h3" fontSize={{ base: 20, md: 24 }} fontWeight={700} color="#FFF" {...headingStyle}>
+                                    {title}
+                                </Heading>
+                                {description &&
+                                    <Text fontSize={{ base: 14, md: 16 }} color="#B1B1B1" {...descriptionStyle}>
+                                        {description}
+                                    </Text>
+                                }
+                            </Flex>
+                        }
                         <DrawerCloseButton position="static" color="white" />
                     </Flex>
                     {headerContent}
@@ -88,12 +110,14 @@ function Drawer({
                         borderTop="1px solid #292929"
                         padding={9}
                         css={{ button: { fontSize: 14, fontWeight: 500 } }}
+                        {...drawerFooterProps}
                     >
                         <Button
                             type="button"
                             variant="secondary"
                             isDisabled={isLoading}
                             onClick={onClose}
+                            {...discardButtonProps}
                         >
                             {discardButtonText}
                         </Button>
@@ -104,6 +128,7 @@ function Drawer({
                                 isDisabled={isLoading}
                                 isLoading={isLoading}
                                 onClick={onClick}
+                                {...saveButtonProps}
                             >
                                 {saveButtonText}
                             </Button>
