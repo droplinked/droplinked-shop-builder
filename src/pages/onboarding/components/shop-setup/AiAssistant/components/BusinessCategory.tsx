@@ -2,8 +2,8 @@ import { Flex, FormLabel, Grid, Text } from '@chakra-ui/react'
 import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import React from 'react'
 import { categories } from 'pages/onboarding/constants/categories'
-import { GenerateWithAiData } from '../desktop/AiAssistant'
 import BusinessCategoryItems from './BusinessCategoryItems'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     generateWithAiData: GenerateWithAiData

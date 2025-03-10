@@ -6,13 +6,7 @@ import PlansModal from './PlansModal'
 import PaymentModal from './PaymentModal'
 import BusinessModal from './BusinessModal'
 import GenerationModal from './GenerationModal'
-
-export interface GenerateWithAiData {
-    businessDescribe: string
-    businessCategory: string
-    prompt: string
-    enhancePrompt: boolean
-}
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure()

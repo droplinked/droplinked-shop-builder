@@ -1,8 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Textarea from 'components/redesign/textarea/Textarea'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
-import { GenerateWithAiData } from '../desktop/AiAssistant'
 
 interface Props {
     generateWithAiData: GenerateWithAiData

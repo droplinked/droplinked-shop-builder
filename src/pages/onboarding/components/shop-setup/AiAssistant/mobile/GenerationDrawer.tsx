@@ -5,8 +5,8 @@ import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrappe
 import React from 'react'
 import GeneratedContents from '../components/GeneratedContents'
 import PromptInputs from '../components/PromptInputs'
-import { GenerateWithAiData } from './AiAssistantButton'
 import TabsList from './TabsList'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     isOpen: boolean

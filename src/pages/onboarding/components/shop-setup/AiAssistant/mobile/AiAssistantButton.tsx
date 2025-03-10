@@ -5,13 +5,7 @@ import React, { useState } from 'react'
 import BusinessDrawer from './BusinessDrawer'
 import PlansDrawer from './PlansDrawer'
 import GenerationDrawer from './GenerationDrawer'
-
-export interface GenerateWithAiData {
-    businessDescribe: string
-    businessCategory: string
-    prompt: string
-    enhancePrompt: boolean
-}
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 export default function AiAssistantButton() {
     const { isOpen, onClose, onOpen } = useDisclosure()

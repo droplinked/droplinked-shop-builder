@@ -6,7 +6,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React from 'react'
 import GeneratedContents from '../components/GeneratedContents'
 import PromptInputs from '../components/PromptInputs'
-import { GenerateWithAiData } from './AiAssistant'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     isOpen: boolean

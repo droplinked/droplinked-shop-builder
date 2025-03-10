@@ -5,7 +5,7 @@ import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrappe
 import Textarea from 'components/redesign/textarea/Textarea'
 import React from 'react'
 import BusinessCategory from '../components/BusinessCategory'
-import { GenerateWithAiData } from './AiAssistantButton'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     isOpen: boolean

@@ -5,9 +5,9 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import Textarea from 'components/redesign/textarea/Textarea'
 import React from 'react'
-import { GenerateWithAiData } from './AiAssistant'
 import BusinessCategory from '../components/BusinessCategory'
 import BusinessModalFooter from './BusinessModalFooter'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     isOpen: boolean
