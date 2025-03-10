@@ -9,7 +9,7 @@ import GenerationModal from './GenerationModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 export default function AiAssistant() {
-    const { isOpen, onClose, onOpen } = useDisclosure()
+    const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
     const [step, setStep] = useState(0)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",

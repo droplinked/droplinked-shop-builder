@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useMediaQuery } from '@chakra-ui/react'
 import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
@@ -15,6 +15,7 @@ import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
 
 function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
+    const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
     const handleSubmit = () => {
         if (validateStoreData(storeSetup, setError)) {
@@ -33,7 +34,7 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
         <Flex gap={9} direction="column">
             <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
                 <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
-                <AiAssistantButton />
+                {isSmallerThan1024 && <AiAssistantButton />}
             </Flex>
             <LogoUploader />
             <CoverImage />
@@ -41,7 +42,7 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
             <NameField />
             <DescriptionField />
             <ControlButtons onBack={handleBack} onSubmit={handleSubmit} />
-            <AiAssistant />
+            {!isSmallerThan1024 && <AiAssistant />}
         </Flex>
     )
 }

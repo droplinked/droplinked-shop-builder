@@ -35,7 +35,7 @@ export const initialStoreSetup = {
 
 const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
     // States
-    currentStep: 1,
+    currentStep: 4,
     storeSetup: initialStoreSetup,
     storeSetupError: {},
 

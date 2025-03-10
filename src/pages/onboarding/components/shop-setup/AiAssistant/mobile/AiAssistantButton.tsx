@@ -8,7 +8,7 @@ import GenerationDrawer from './GenerationDrawer'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 export default function AiAssistantButton() {
-    const { isOpen, onClose, onOpen } = useDisclosure()
+    const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
     const [step, setStep] = useState(3)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
