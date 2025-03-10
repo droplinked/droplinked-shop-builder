@@ -4,7 +4,7 @@ import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
 import { ShopMd } from 'assets/icons/System/Shop/ShopMd'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React, { cloneElement, Fragment } from 'react'
-import useOnboardingStore from '../stores/useOnboardingStore'
+import useOnboardingStore from '../../stores/useOnboardingStore'
 
 function Stepper() {
     const { currentStep } = useOnboardingStore()

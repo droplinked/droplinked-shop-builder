@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import RightSectionWrapper from '../RightSectionWrapper'
+import RightSectionWrapper from '../common/RightSectionWrapper'
 
 interface Props extends PropsWithChildren { }
 

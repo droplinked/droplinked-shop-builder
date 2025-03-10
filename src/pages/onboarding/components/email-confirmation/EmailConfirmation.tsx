@@ -2,8 +2,8 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
-import InteractiveText from '../InteractiveText'
-import OnboardingStepHeader from '../OnboardingStepHeader'
+import InteractiveText from '../common/InteractiveText'
+import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import OtpField from './OtpField'
 
 function EmailConfirmation({ onBack, onNext }: OnboardingStepProps) {

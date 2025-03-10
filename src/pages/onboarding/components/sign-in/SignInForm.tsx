@@ -8,11 +8,11 @@ import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import * as Yup from 'yup'
-import DividerText from '../DividerText'
-import GoogleAuthButton from '../GoogleAuthButton'
-import InteractiveText from '../InteractiveText'
-import OnboardingStepHeader from '../OnboardingStepHeader'
-import PasswordInput from '../PasswordInput'
+import DividerText from '../common/DividerText'
+import GoogleAuthButton from '../common/GoogleAuthButton'
+import InteractiveText from '../common/InteractiveText'
+import OnboardingStepHeader from '../common/OnboardingStepHeader'
+import PasswordInput from '../common/PasswordInput'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
