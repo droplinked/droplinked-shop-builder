@@ -1,8 +1,8 @@
 import { Box, Circle } from '@chakra-ui/react';
 import React from 'react';
-import CenterIcon from './components/CenterIcon';
-import CircleIcons from './components/CircleIcons';
-import PlanCards from './components/PlanCards';
+import CenterIcon from './CenterIcon';
+import CircleIcons from './CircleIcons';
+import PlanCards from './PlanCards';
 
 const SubscriptionPlansDisplay = () => {
   return (
