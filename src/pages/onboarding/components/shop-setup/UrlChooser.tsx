@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 
 export default function UrlChooser() {
-    const { updateOnboardingState, storeSetup, errors, setError } = useOnboardingStore()
+    const { updateOnboardingState, storeSetup, storeSetupError, setError } = useOnboardingStore()
     const [urlTempValue, setUrlTempValue] = useState(storeSetup.url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
 
@@ -79,7 +79,7 @@ export default function UrlChooser() {
                     {renderAvailabilityIcon()}
                 </Box>
             }
-            {...errors.url && { message: errors.url, state: "error" }}
+            {...storeSetupError.url && { message: storeSetupError.url, state: "error" }}
         />
     )
 }

@@ -7,7 +7,7 @@ interface IValidateStoreData {
     url: string
     name: string
     description: string
-    setError?: (field: keyof OnboardingStates['errors'], message: string | undefined) => void
+    setError?: (field: keyof OnboardingStates['storeSetupError'], message: string | undefined) => void
 }
 
 export const validateStoreData = (storeSetup: IValidateStoreData, setError: IValidateStoreData["setError"]) => {

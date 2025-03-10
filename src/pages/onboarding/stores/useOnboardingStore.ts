@@ -9,7 +9,7 @@ export interface OnboardingStates {
         name: string
         description: string
     }
-    errors: {
+    storeSetupError: {
         url?: string
         name?: string
         description?: string
@@ -23,7 +23,7 @@ interface OnboardingActions {
         field: K,
         value: OnboardingStates[K]
     ) => void
-    setError: (field: keyof OnboardingStates['errors'], message: string | undefined) => void
+    setError: (field: keyof OnboardingStates['storeSetupError'], message: string | undefined) => void
     clearErrors: () => void
 }
 
@@ -39,7 +39,7 @@ const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) =>
     // States
     currentStep: 1,
     storeSetup: initialStoreSetup,
-    errors: {},
+    storeSetupError: {},
 
     // Actions
     nextStep: () => set((state) => ({
@@ -53,9 +53,9 @@ const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) =>
         [field]: value
     })),
     setError: (field, message) => set((state) => ({
-        errors: { ...state.errors, [field]: message }
+        storeSetupError: { ...state.storeSetupError, [field]: message }
     })),
-    clearErrors: () => set({ errors: {} })
+    clearErrors: () => set({ storeSetupError: {} })
 }))
 
 export default useOnboardingStore
