@@ -1,19 +1,17 @@
 import { create } from 'zustand'
 
+export interface StoreSetup {
+    logoUrl: string
+    coverImage: string
+    url: string
+    name: string
+    description: string
+}
+
 export interface OnboardingStates {
     currentStep: number
-    storeSetup: {
-        logoUrl: string
-        coverImage: string
-        url: string
-        name: string
-        description: string
-    }
-    storeSetupError: {
-        url?: string
-        name?: string
-        description?: string
-    }
+    storeSetup: StoreSetup
+    storeSetupError: Partial<StoreSetup>
 }
 
 interface OnboardingActions {
