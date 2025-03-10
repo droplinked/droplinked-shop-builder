@@ -9,7 +9,7 @@ import DescriptionField from './DescriptionField'
 import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
-import { validateStoreData } from './formValidation'
+import { validateStoreData } from '../../utils/shopSetupFormValidation'
 
 function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
