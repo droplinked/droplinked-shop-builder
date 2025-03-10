@@ -8,11 +8,11 @@ interface Props {
 }
 
 export default function GeneratedLogo({ logos }: Props) {
-    const { updateOnboardingState, storeData } = useOnboardingStore();
-    const selectedLogo = storeData.logoUrl;
+    const { updateOnboardingState, storeSetup } = useOnboardingStore();
+    const selectedLogo = storeSetup.logoUrl;
 
     const handleClick = (url: string) => {
-        updateOnboardingState("storeData", { ...storeData, logoUrl: url })
+        updateOnboardingState("storeSetup", { ...storeSetup, logoUrl: url })
     }
 
     useEffect(() => {

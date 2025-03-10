@@ -9,10 +9,10 @@ interface Props {
 }
 
 export default function GeneratedCover({ covers }: Props) {
-    const { updateOnboardingState, storeData } = useOnboardingStore();
+    const { updateOnboardingState, storeSetup } = useOnboardingStore();
 
     const handleChange = (url: string) => {
-        updateOnboardingState("storeData", { ...storeData, coverImage: url })
+        updateOnboardingState("storeSetup", { ...storeSetup, coverImage: url })
     }
 
     useEffect(() => {

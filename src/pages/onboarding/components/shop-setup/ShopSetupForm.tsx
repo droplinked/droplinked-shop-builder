@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useOnboardingStore, { initialStoreData } from 'pages/onboarding/stores/useOnboardingStore'
+import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import ControlButtons from '../common/ControlButtons'
@@ -12,18 +12,18 @@ import UrlChooser from './UrlChooser'
 import { validateStoreData } from './formValidation'
 
 function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
-    const { updateOnboardingState, storeData, setError } = useOnboardingStore()
+    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
 
     const handleSubmit = () => {
-        if (validateStoreData(storeData, setError)) {
-            console.log("Form submitted with values:", storeData)
+        if (validateStoreData(storeSetup, setError)) {
+            console.log("Form submitted with values:", storeSetup)
             onNext()
         }
     }
 
     const handleBack = () => {
         alert("form resetted")
-        updateOnboardingState("storeData", initialStoreData)
+        updateOnboardingState("storeSetup", initialStoreSetup)
         onBack()
     }
 

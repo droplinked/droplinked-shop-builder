@@ -5,7 +5,7 @@ import HeaderIcon from "./HeaderIcon"
 import ShopLogo from "./ShopLogo"
 
 export default function ShopBar() {
-    const { storeData: { name } } = useOnboardingStore()
+    const { storeSetup: { name } } = useOnboardingStore()
 
     return (
         <Flex

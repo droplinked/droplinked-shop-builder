@@ -9,23 +9,23 @@ import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 
 export default function UrlChooser() {
-    const { updateOnboardingState, storeData, errors, setError } = useOnboardingStore()
-    const [urlTempValue, setUrlTempValue] = useState(storeData.url ?? '')
+    const { updateOnboardingState, storeSetup, errors, setError } = useOnboardingStore()
+    const [urlTempValue, setUrlTempValue] = useState(storeSetup.url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
 
     const { data: isAvailable, isFetching } = useUsernameAvailability({
         username: debouncedUrl,
         onSuccess: (isAvailable) => {
             if (isAvailable) {
-                updateOnboardingState('storeData', { ...storeData, url: debouncedUrl })
+                updateOnboardingState('storeSetup', { ...storeSetup, url: debouncedUrl })
                 setError('url', undefined)
             } else {
-                updateOnboardingState('storeData', { ...storeData, url: '' })
+                updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
                 setError('url', 'This URL is not available')
             }
         },
         onError: () => {
-            updateOnboardingState('storeData', { ...storeData, url: '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
             setError('url', 'Error checking URL availability')
         }
     })
@@ -33,7 +33,7 @@ export default function UrlChooser() {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         if (!value) {
-            updateOnboardingState('storeData', { ...storeData, url: '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
             setError('url', 'URL is required')
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
@@ -48,8 +48,8 @@ export default function UrlChooser() {
     }
 
     useEffect(() => {
-        setUrlTempValue(storeData.url ?? '')
-    }, [storeData.url])
+        setUrlTempValue(storeSetup.url ?? '')
+    }, [storeSetup.url])
 
     return (
         <Input

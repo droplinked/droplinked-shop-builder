@@ -7,16 +7,16 @@ import FileUpload from './FileUpload'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()
-    const { storeData, updateOnboardingState } = useOnboardingStore()
+    const { storeSetup, updateOnboardingState } = useOnboardingStore()
 
     const handleFileChange = async (file: File) => {
         if (file) {
             const formData = new FormData()
             formData.append('image', file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeData', { ...storeData, coverImage: original })
+            updateOnboardingState('storeSetup', { ...storeSetup, coverImage: original })
         } else {
-            updateOnboardingState('storeData', { ...storeData, coverImage: '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, coverImage: '' })
         }
     }
 
@@ -34,7 +34,7 @@ export default function CoverImage() {
                         paddingBlock: 6
                     }}
                     dropDescription='JPG, JPEG, and PNG'
-                    value={storeData.coverImage}
+                    value={storeSetup.coverImage}
                 />
             </FieldWrapper>
         </Box>

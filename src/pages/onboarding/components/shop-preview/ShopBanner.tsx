@@ -5,8 +5,8 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function ShopBanner() {
-    const { storeData } = useOnboardingStore()
-    const { coverImage, logoUrl } = storeData
+    const { storeSetup } = useOnboardingStore()
+    const { coverImage, logoUrl } = storeSetup
 
     return (
         <Flex

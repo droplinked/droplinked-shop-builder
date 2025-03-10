@@ -10,7 +10,7 @@ import FieldWrapper from './FieldWrapper'
 export default function LogoUploader() {
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
-    const { storeData, updateOnboardingState } = useOnboardingStore()
+    const { storeSetup, updateOnboardingState } = useOnboardingStore()
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
@@ -18,7 +18,7 @@ export default function LogoUploader() {
             const formData = new FormData()
             formData.append("image", file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeData', { ...storeData, logoUrl: original || '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, logoUrl: original || '' })
         }
     }
 
@@ -27,7 +27,7 @@ export default function LogoUploader() {
     }
 
     const handleRemove = () => {
-        updateOnboardingState('storeData', { ...storeData, logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
+        updateOnboardingState('storeSetup', { ...storeSetup, logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
         if (fileInputRef.current) {
             fileInputRef.current.value = ''
         }
@@ -40,7 +40,7 @@ export default function LogoUploader() {
                     <Avatar
                         width="80px"
                         height="80px"
-                        src={storeData.logoUrl || undefined}
+                        src={storeSetup.logoUrl || undefined}
                         name="Logo"
                         userSelect="none"
                     />
@@ -53,9 +53,9 @@ export default function LogoUploader() {
                         onClick={handleLogoChange}
                         isLoading={isLoading}
                     >
-                        {storeData.logoUrl ? "Change" : "Upload"}
+                        {storeSetup.logoUrl ? "Change" : "Upload"}
                     </BlueButton>
-                    {storeData.logoUrl && !isLoading &&
+                    {storeSetup.logoUrl && !isLoading &&
                         <BlueButton
                             color="#FF2244"
                             fontSize={14}

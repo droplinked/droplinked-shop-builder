@@ -3,11 +3,11 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function NameField() {
-    const { storeData, updateOnboardingState, errors, setError } = useOnboardingStore()
+    const { storeSetup, updateOnboardingState, errors, setError } = useOnboardingStore()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
-        updateOnboardingState('storeData', { ...storeData, name: value })
+        updateOnboardingState('storeSetup', { ...storeSetup, name: value })
 
         if (!value) {
             setError('name', 'Name is required')
@@ -24,7 +24,7 @@ export default function NameField() {
             inputProps={{
                 fontSize: { base: 14, md: 16 },
                 placeholder: "Choose your store name",
-                value: storeData.name,
+                value: storeSetup.name,
                 onChange: handleChange,
                 isRequired: true,
             }}

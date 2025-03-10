@@ -3,12 +3,12 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function DescriptionField() {
-    const { storeData, updateOnboardingState, errors, setError } = useOnboardingStore()
+    const { storeSetup, updateOnboardingState, errors, setError } = useOnboardingStore()
     const textAreaPlaceholder = "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes."
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.target.value
-        updateOnboardingState('storeData', { ...storeData, description: value })
+        updateOnboardingState('storeSetup', { ...storeSetup, description: value })
 
         if (!value) {
             setError('description', 'Description is required')
@@ -28,7 +28,7 @@ export default function DescriptionField() {
             placeholder={textAreaPlaceholder}
             tooltipText={textAreaPlaceholder}
             label='Description'
-            value={storeData.description}
+            value={storeSetup.description}
             onChange={handleChange}
             {...errors.description && { message: errors.description, state: "error" }}
         />

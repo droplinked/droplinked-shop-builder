@@ -38,8 +38,8 @@ const ActionButtons = () => (
 )
 
 export default function TopBar() {
-  const { storeData } = useOnboardingStore()
-  const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${storeData?.url}`
+  const { storeSetup } = useOnboardingStore()
+  const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io/${storeSetup?.url}`
 
   return (
     <Flex direction="column" borderBottom="1px solid #292929">

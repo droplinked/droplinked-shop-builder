@@ -1,4 +1,5 @@
-import { OnboardingData } from "pages/onboarding/stores/useOnboardingStore"
+import { OnboardingStates } from "pages/onboarding/stores/useOnboardingStore"
+
 
 interface IValidateStoreData {
     logoUrl: string
@@ -6,17 +7,17 @@ interface IValidateStoreData {
     url: string
     name: string
     description: string
-    setError?: (field: keyof OnboardingData['errors'], message: string | undefined) => void
+    setError?: (field: keyof OnboardingStates['errors'], message: string | undefined) => void
 }
 
-export const validateStoreData = (storeData: IValidateStoreData, setError: IValidateStoreData["setError"]) => {
+export const validateStoreData = (storeSetup: IValidateStoreData, setError: IValidateStoreData["setError"]) => {
     let isValid = true
 
     // URL validation
-    if (!storeData.url.trim()) {
+    if (!storeSetup.url.trim()) {
         setError('url', 'URL is required')
         isValid = false
-    } else if (!/^[a-zA-Z0-9-]+$/.test(storeData.url)) {
+    } else if (!/^[a-zA-Z0-9-]+$/.test(storeSetup.url)) {
         setError('url', 'URL can only contain letters, numbers, and hyphens')
         isValid = false
     } else {
@@ -24,10 +25,10 @@ export const validateStoreData = (storeData: IValidateStoreData, setError: IVali
     }
 
     // Name validation
-    if (!storeData.name.trim()) {
+    if (!storeSetup.name.trim()) {
         setError('name', 'Store name is required')
         isValid = false
-    } else if (storeData.name.length < 3) {
+    } else if (storeSetup.name.length < 3) {
         setError('name', 'Store name must be at least 3 characters')
         isValid = false
     } else {
@@ -35,11 +36,11 @@ export const validateStoreData = (storeData: IValidateStoreData, setError: IVali
     }
 
     // Description validation
-    if (storeData.description.trim()) {
-        if (storeData.description.length < 150) {
+    if (storeSetup.description.trim()) {
+        if (storeSetup.description.length < 150) {
             setError('description', 'Description must be at least 150 characters')
             isValid = false
-        } else if (storeData.description.length > 160) {
+        } else if (storeSetup.description.length > 160) {
             setError('description', 'Description must not exceed 160 characters')
             isValid = false
         } else {
