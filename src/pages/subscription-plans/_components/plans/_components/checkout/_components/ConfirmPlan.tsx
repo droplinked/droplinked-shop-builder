@@ -7,7 +7,6 @@ import { useProfile } from 'hooks/useProfile/useProfile'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
-
 import { ModalStep } from '../types/interfaces'
 import PlanPrice from '../../plan-price/PlanPrice'
 
@@ -48,7 +47,7 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     backgroundSize={"auto 150%"}
                 >
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        <SubscriptionIcon stroke='#fff' />
+                        <SubscriptionIcon color="#fff" />
                     </Center>
                     <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>
