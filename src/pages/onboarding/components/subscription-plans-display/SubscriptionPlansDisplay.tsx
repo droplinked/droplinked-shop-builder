@@ -8,7 +8,7 @@ import RightSectionWrapper from '../common/RightSectionWrapper';
 const SubscriptionPlansDisplay = () => {
   return (
     <RightSectionWrapper>
-       <Box position="relative" w="750px" h="750px">
+      <Box position="relative" w="750px" h="750px">
         {/* Main circle border */}
         <Circle
           size="750px"
@@ -29,14 +29,14 @@ const SubscriptionPlansDisplay = () => {
         />
 
         {/* Center circle with plans */}
-        <Circle 
-          size="540px" 
+        <Circle
+          size="540px"
           bgGradient="linear(to-b, rgba(72, 187, 120, 0.05), rgba(156, 78, 255, 0.05))"
-          position="absolute" 
-          top="50%" 
-          left="50%" 
-          transform="translate(-50%, -50%)" 
-          border="1px solid" 
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          border="1px solid"
           borderColor="whiteAlpha.50"
           _before={{
             content: '""',
@@ -49,7 +49,7 @@ const SubscriptionPlansDisplay = () => {
             zIndex: 0
           }}
           _after={{
-            content: '""', 
+            content: '""',
             position: 'absolute',
             width: '100%',
             height: '1px',
@@ -68,7 +68,7 @@ const SubscriptionPlansDisplay = () => {
         <CircleIcons />
       </Box>
     </RightSectionWrapper>
-     
+
   );
 };
 
