@@ -3,18 +3,16 @@ import React from 'react';
 import CenterIcon from './CenterIcon';
 import CircleIcons from './CircleIcons';
 import PlanCards from './PlanCards';
+import RightSectionWrapper from '../common/RightSectionWrapper';
 
 const SubscriptionPlansDisplay = () => {
   return (
-      <Box position="relative" w="750px" h="750px">
-        {/* Glow effects */}
-        <Box position="absolute" top="0" left="245px" width="150px" height="150px" borderRadius="75px" bg="primary.default" opacity="0.5" filter="blur(125px)" />
-        <Box position="absolute" bottom="0" left="245px" width="150px" height="150px" borderRadius="75px" bg="#9C4EFF" opacity="0.5" filter="blur(125px)" />
-
+    <RightSectionWrapper>
+       <Box position="relative" w="750px" h="750px">
         {/* Main circle border */}
         <Circle
           size="750px"
-          border="1px solid"
+          border="8px solid"
           borderColor="neutral.gray.800"
           position="absolute"
           bgGradient="radial(at right, rgba(20,20,20,0.5), rgba(20,20,20,0))"
@@ -32,8 +30,8 @@ const SubscriptionPlansDisplay = () => {
 
         {/* Center circle with plans */}
         <Circle 
-          size="520px" 
-          bg="neutral.gray.900" 
+          size="540px" 
+          bgGradient="linear(to-b, rgba(72, 187, 120, 0.05), rgba(156, 78, 255, 0.05))"
           position="absolute" 
           top="50%" 
           left="50%" 
@@ -69,6 +67,8 @@ const SubscriptionPlansDisplay = () => {
 
         <CircleIcons />
       </Box>
+    </RightSectionWrapper>
+     
   );
 };
 

@@ -12,11 +12,9 @@ const PlanCard: React.FC<PlanCardProps> = ({ icon, title, description }) => {
     <Box
       w="220px"
       p={4}
-      bg="whiteAlpha.50"
       borderRadius="2xl"
-      border="1px"
-      borderColor="whiteAlpha.50"
-      backdropFilter="blur(2xl)"
+      border="1px solid rgba(255, 255, 255, 0.04)"
+      bg="neutral.gray.900"
       display="inline-flex"
       flexDir="column"
       justifyContent="flex-start"
