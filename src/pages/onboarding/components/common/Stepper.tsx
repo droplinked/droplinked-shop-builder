@@ -40,15 +40,27 @@ function Stepper() {
                             icon={cloneElement(step, { color: iconColor })}
                             borderColor={borderColor}
                             bg={bg}
+                            transition="all 0.5s ease-in-out"
+                            transitionDelay={`${index * 0.5}s`}
                         />
 
                         {index < steps.length - 1 && (
-                            <Box
-                                flex="1"
-                                h="1px"
-                                borderRadius="2px"
-                                bg={currentStep > (index + 4) ? "#2BCFA1" : "#292929"}
-                            />
+                            <Box position="relative" flex="1" h="1px">
+                                <Box
+                                    position="absolute"
+                                    w="100%"
+                                    h="1px"
+                                    bg="#292929"
+                                />
+                                <Box
+                                    position="absolute"
+                                    h="1px"
+                                    bg="#2BCFA1"
+                                    w={currentStep > (index + 4) ? "100%" : "0%"}
+                                    transition="width 0.5s ease-in-out"
+                                    transitionDelay={`${index * 0.5}s`}
+                                />
+                            </Box>
                         )}
                     </Fragment>
                 )
