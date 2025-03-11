@@ -14,7 +14,8 @@ const PlanCard: React.FC<PlanCardProps> = ({ icon, title, description }) => {
       p={4}
       borderRadius="2xl"
       border="1px solid rgba(255, 255, 255, 0.04)"
-      bg="neutral.gray.900"
+      backgroundColor="rgb(34 34 34 / 4%)"
+      backdropFilter="blur(20px)"
       display="inline-flex"
       flexDir="column"
       justifyContent="flex-start"

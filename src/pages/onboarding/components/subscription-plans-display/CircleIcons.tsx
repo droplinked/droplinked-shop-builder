@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 const CircleIcons = () => {
-  const radius = 365; // Radius of the circle in pixels
+  const radius = 370; // Radius of the circle in pixels
   const totalIcons = 8;
 
   const calculatePosition = (index: number) => {

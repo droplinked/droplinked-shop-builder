@@ -4,7 +4,7 @@ import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
 import PlanCard from './PlanCard';
 
 const PlanCards = () => {
-  const radius = 190; // شعاع دایره به پیکسل
+  const radius = 193; // شعاع دایره به پیکسل
   const calculatePosition = (index: number, total: number) => {
     const angle = (index / total) * 2 * Math.PI;
     const x = radius * Math.cos(angle);
@@ -12,7 +12,7 @@ const PlanCards = () => {
 
     return {
       left: `calc(30% + ${x}px)`,
-      top: `calc(36% + ${y}px)`
+      top: `calc(35.5% + ${y}px)`
     };
   };
 
