@@ -3,10 +3,10 @@ import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
 import React, { useState } from 'react'
 import PlansModal from './PlansModal'
-import PaymentModal from './PaymentModal'
 import BusinessModal from './BusinessModal'
 import GenerationModal from './GenerationModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import PaymentModal from 'pages/onboarding/components/common/payment-modal/paymentModal'
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
@@ -95,8 +95,7 @@ export default function AiAssistant() {
                 <PaymentModal
                     isOpen={isOpen}
                     onClose={onClose}
-                    onNextStep={onNextStep}
-                    onPrevStep={onPrevStep}
+                    plan='BUSINESS'
                 />
             }
             {step === 2 &&

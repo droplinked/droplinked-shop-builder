@@ -1,15 +1,16 @@
-import { Box, Text, useDisclosure } from '@chakra-ui/react'
+import { Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
+import PaymentModal from 'pages/onboarding/components/common/payment-modal/paymentModal'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React, { useState } from 'react'
 import BusinessDrawer from './BusinessDrawer'
-import PlansDrawer from './PlansDrawer'
 import GenerationDrawer from './GenerationDrawer'
-import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import PlansDrawer from './PlansDrawer'
 
 export default function AiAssistantButton() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
-    const [step, setStep] = useState(3)
+    const [step, setStep] = useState(0)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",
@@ -51,7 +52,13 @@ export default function AiAssistantButton() {
                     onPrevStep={onPrevStep}
                 />
             }
-            {step === 1 && <Box>Payment Step</Box>}
+            {step === 1 &&
+                <PaymentModal
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    plan='BUSINESS'
+                />
+            }
             {step === 2 &&
                 <BusinessDrawer
                     isOpen={isOpen}

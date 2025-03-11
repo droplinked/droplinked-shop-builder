@@ -47,7 +47,8 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
                 }}
                 placement='bottom'
                 drawerContentStyle={{
-                    background: "#1C1C1C"
+                    background: "#1C1C1C",
+                    borderTopRadius: 16
                 }}
                 onClick={onNextStep}
                 {...isSmallerThan768 && {
