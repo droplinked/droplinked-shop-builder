@@ -12,7 +12,9 @@ function Stepper() {
     return (
         <>
             <Hide below="md">
-                <DesktopStepper />
+                <Box width={{ base: "50%", lg: "100%" }}>
+                    <DesktopStepper />
+                </Box>
             </Hide>
             <Show below="md">
                 <Box px={4} width="50%" my="auto">

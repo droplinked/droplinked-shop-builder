@@ -31,7 +31,7 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     }
 
     return (
-        <Flex gap={9} direction="column">
+        <Flex gap={9} direction="column" paddingBlockEnd={{ base: "75px", lg: 0 }}>
             <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
                 <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
                 {isSmallerThan1024 && <AiAssistantButton />}
