@@ -1,5 +1,5 @@
 import { Flex, Grid } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import DroplinkedBrand from './components/common/DroplinkedBrand'
 import Stepper from './components/common/stepper/Stepper'
 import CompletionSection from './components/completion/CompletionSection'
@@ -17,6 +17,13 @@ import useOnboardingStore from './stores/useOnboardingStore'
 
 function Onboarding() {
     const { currentStep, nextStep, prevStep } = useOnboardingStore()
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [currentStep]);
 
     const stepContent = {
         1: {
