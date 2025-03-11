@@ -1,7 +1,8 @@
 import { Flex, Grid } from '@chakra-ui/react'
 import React from 'react'
-import CompletionSection from './components/completion/CompletionSection'
 import DroplinkedBrand from './components/common/DroplinkedBrand'
+import Stepper from './components/common/Stepper'
+import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import PaymentFeatures from './components/payment-features/PaymentFeatures'
 import PaymentSetup from './components/payment-setup/PaymentSetup'
@@ -10,7 +11,6 @@ import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
 import SignUpForm from './components/sign-up/SignUpForm'
-import Stepper from './components/common/Stepper'
 import SubscriptionPlan from './components/subscription-plan/SubscriptionPlan'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import useOnboardingStore from './stores/useOnboardingStore'
@@ -51,7 +51,7 @@ function Onboarding() {
     if (!rightContent) return leftContent
 
     return (
-        <Grid templateColumns={{ base: '1fr', lg: '1fr 1.5fr' }}>
+        <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr', xl: '1fr 1.5fr', '3xl': '1fr 2fr' }}>
             <Flex direction='column' gap={12} padding={16}>
                 <DroplinkedBrand />
                 <Stepper />
