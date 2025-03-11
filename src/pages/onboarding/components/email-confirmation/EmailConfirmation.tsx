@@ -29,7 +29,12 @@ function EmailConfirmation({ onBack, onNext }: OnboardingStepProps) {
 
                 <Box
                     marginTop={6}
-                    sx={{ "p": { fontSize: 14, color: "#FFF" } }}
+                    sx={{
+                        "p": {
+                            color: "#FFF",
+                            fontSize: 14
+                        }
+                    }}
                 >
                     <Text>
                         Didn’t receive the code? {" "}

@@ -45,24 +45,24 @@ export default function OtpField({ value, onChange, state = "default" }: Props) 
                         key={index}
                         width={{ base: "48px", md: "64px" }}
                         height={{ base: "48px", md: "64px" }}
-                        backgroundColor={colors?.backgroundColor}
                         border={`1px solid ${colors?.border}`}
                         borderRadius="8px"
+                        backgroundColor={colors?.backgroundColor}
                         color={colors?.color}
                         fontSize={20}
                         fontWeight={500}
                         _placeholder={{
                             color: "#7b7b7b",
                         }}
-                        _focus={{
-                            border: `1px solid ${colors?.focusBorder}`,
-                        }}
                         _hover={{
                             border: `1px solid #616161`,
                         }}
-                        _focusVisible={{
+                        _focus={{
                             border: `1px solid ${colors?.focusBorder}`,
+                        }}
+                        _focusVisible={{
                             outline: "none",
+                            border: `1px solid ${colors?.focusBorder}`,
                         }}
                     />
                 ))}
