@@ -1,3 +1,5 @@
+import { subscriptionPlans } from "utils/constants/subscriptionPlans"
+
 export interface OnboardingStepData {
     type:
     | 'sign-in'
@@ -35,3 +37,5 @@ export interface OnboardingStepProps {
     onBack: () => void
     onNext: () => void
 }
+
+export type PlanType = keyof typeof subscriptionPlans;
