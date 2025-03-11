@@ -1,46 +1,54 @@
-import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
 import PlanCard from './PlanCard';
 
 const PlanCards = () => {
-  const planPositions = {
-    STARTER: { top: '50%', left: '10%' },
-    BUSINESS: { top: '10%', left: '50%' },
-    ENTERPRISE: { top: '50%', right: '10%' },
-    BUSINESS_PRO: { top: '90%', left: '50%' }
-  } as const;
+  const radius = 190; // شعاع دایره به پیکسل
+  const calculatePosition = (index: number, total: number) => {
+    const angle = (index / total) * 2 * Math.PI;
+    const x = radius * Math.cos(angle);
+    const y = radius * Math.sin(angle);
+
+    return {
+      left: `calc(30% + ${x}px)`,
+      top: `calc(36% + ${y}px)`
+    };
+  };
+
+  const plans = Object.entries(subscriptionPlans);
 
   return (
     <motion.div
       style={{
         position: 'absolute',
         width: '100%',
-        height: '100%'
+        height: '100%',
+        transformOrigin: 'center center'
       }}
       animate={{
         rotate: 360
       }}
       transition={{
-        duration: 20,
+        duration: 40,
         repeat: Infinity,
         ease: "linear"
       }}
     >
-      {(Object.entries(subscriptionPlans)).map(([key, plan]) => (
+      {plans.map(([key, plan], index) => (
         <motion.div
           key={key}
           style={{
             position: 'absolute',
-            ...planPositions[key as keyof typeof planPositions],
-            transform: 'translate(-50%, -50%)'
+            ...calculatePosition(index, plans.length),
+            transform: 'translate(-50%, -50%)',
+            transformOrigin: 'center center'
           }}
           animate={{
             rotate: -360
           }}
           transition={{
-            duration: 20,
+            duration: 40,
             repeat: Infinity,
             ease: "linear"
           }}
