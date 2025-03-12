@@ -11,7 +11,7 @@ import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
 import SignUpForm from './components/sign-up/SignUpForm'
-import SubscriptionPlan from './components/subscription-plan/SubscriptionPlan'
+import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import useOnboardingStore from './stores/useOnboardingStore'
 
@@ -44,7 +44,7 @@ export default function Onboarding() {
             rightContent: <PaymentFeatures />
         },
         6: {
-            leftContent: <SubscriptionPlan onBack={prevStep} onNext={nextStep} />,
+            leftContent: <SubscriptionPlans onBack={prevStep} onNext={nextStep} />,
             rightContent: <SubscriptionPlansDisplay />
         },
         7: { leftContent: <CompletionSection /> }
