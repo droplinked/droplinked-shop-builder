@@ -1,7 +1,7 @@
 import { HStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import AppBadge from 'components/common/badge/AppBadge';
 import AppTypography from 'components/common/typography/AppTypography';
+import AppLabel from 'components/redesign/label/AppLabel';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
 import * as React from 'react';
 interface props {
@@ -17,20 +17,17 @@ function PlanBadge({ currentSubData, data }: props) {
     return (
         <HStack gap={"1rem"} flexWrap={"wrap"}>
             <HStack>
-                <currentSubData.icon stroke='neutral.white' color='neutral.white' />
+                <currentSubData.icon stroke='white' color='white' />
                 <AppTypography color={"neutral.white"} fontWeight={500} fontSize={"24px"}>
                     {currentSubData.title}
                 </AppTypography>
             </HStack>
-            <AppBadge
-                backgroundColor={"#80EDCF1A"}
-                color={"#2BCFA1"}
-                padding={"8px"}
-                pr={"10px"}
-                variant={"default"}
-                status={data.data.status === "ACTIVE" ? "green" : "red"}
+            <AppLabel
+                variant="muted"
+                size={"36"}
+                status={data.data.status === "ACTIVE" ? "success" : "error"}
                 text={data.data.status}
-                icon={AppIcons.Available} />
+                leftIcon={AppIcons.Available} />
         </HStack>
     );
 }
