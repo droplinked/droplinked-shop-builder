@@ -14,18 +14,19 @@ function CompletionSection() {
     const sliderReference = useRef<Slider>(null)
     const { prevStep } = useOnboardingStore()
 
-    const handlePreviousAction = () => {
+    function handlePreviousAction() {
         if (currentSlideIndex === 0) return prevStep()
-
-        setCurrentSlideIndex(0)
-        sliderReference.current?.slickGoTo(0)
+        updateSlide(0)
     }
 
-    const handleNextAction = () => {
+    function handleNextAction() {
         if (currentSlideIndex === 1) return navigate('/analytics')
+        updateSlide(1)
+    }
 
-        setCurrentSlideIndex(1)
-        sliderReference.current?.slickGoTo(1)
+    function updateSlide(index: number) {
+        setCurrentSlideIndex(index)
+        sliderReference.current?.slickGoTo(index)
     }
 
     return (
@@ -33,7 +34,7 @@ function CompletionSection() {
             direction="column"
             alignItems="center"
             gap={{ base: 9, xl: 12 }}
-            padding={{ base: 4, md: 6, lg: 9, xl: 12, "3xl": 16 }}
+            padding={{ base: 4, md: 6, lg: 9, xl: 12, '3xl': 16 }}
         >
             <DroplinkedBrand />
 
@@ -43,12 +44,13 @@ function CompletionSection() {
                 textAlign="center"
             />
 
-            <Flex width="100%" maxWidth="912px" direction="column" gap={6}>
+            <Flex width="100%" maxWidth="912px" direction="column" gap={6} sx={{ ".slick-slide": { padding: 0 } }}>
                 <CompletionCarousel ref={sliderReference} />
                 <ActionControls
                     currentSlideIndex={currentSlideIndex}
                     handlePreviousAction={handlePreviousAction}
                     handleNextAction={handleNextAction}
+                    onDotClick={updateSlide}
                 />
             </Flex>
         </Flex>

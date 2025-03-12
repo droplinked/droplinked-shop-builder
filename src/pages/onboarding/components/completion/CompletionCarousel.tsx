@@ -13,9 +13,8 @@ const CompletionCarousel = forwardRef<Slider>((_, ref) => {
         infinite: false,
         arrows: false,
         fade: true,
-        speed: 500,
+        speed: 300,
         slidesToShow: 1,
-        slidesToScroll: 1,
         adaptiveHeight: true
     }
 
