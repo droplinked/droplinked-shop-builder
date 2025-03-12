@@ -1,4 +1,4 @@
-import { Badge, BadgeProps } from '@chakra-ui/react'
+import AppBadge from 'components/redesign/badge/AppBadge'
 import React from 'react'
 
 interface Props {
@@ -11,37 +11,25 @@ export default function ProductStatusBadge({ status, purchaseAvailable }: Props)
     const badgeProps = statusMap[badgeKey]
 
     return (
-        <Badge
-            border="1px solid"
-            borderRadius={24}
-            padding="2px 12px"
-            fontSize={14}
-            fontWeight={400}
-            textTransform="capitalize"
-            {...badgeProps}
-        >
-            {badgeProps?.label}
-        </Badge>
+        <AppBadge
+            text={badgeProps.label}
+            status={badgeProps.status}
+            size="24"
+        />
     )
 }
 
-const statusMap: Record<string, BadgeProps & { label: string }> = {
+const statusMap: Record<string, { label: string, status: "success" | "neutral" | "error" }> = {
     "PUBLISHED": {
-        bg: 'rgba(43, 207, 161, 0.10)',
-        color: '#2BCFA1',
-        borderColor: '#2BCFA1',
+        status: "success",
         label: 'Public'
     },
     "DRAFTED": {
-        bg: '#292929',
-        color: 'neutral.white',
-        borderColor: 'neutral.gray.600',
+        status: "neutral",
         label: 'Draft'
     },
     "PRIVATE": {
-        bg: 'rgba(255, 34, 68, 0.05)',
-        color: '#F24',
-        borderColor: '#F24',
+        status: "error",
         label: 'Private'
     }
 }
