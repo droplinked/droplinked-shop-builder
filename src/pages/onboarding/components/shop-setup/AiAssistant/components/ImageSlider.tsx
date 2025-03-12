@@ -71,8 +71,8 @@ export const ImageSlider = ({ images, onChange }: ImageSliderProps) => {
                     {images.map((_, index) => (
                         <Dot
                             key={index}
-                            w={index === currentIndex ? '24px' : '8px'}
-                            h="8px"
+                            w={index === currentIndex ? '16px' : '4px'}
+                            h="4px"
                             bg={index === currentIndex ? 'white' : 'whiteAlpha.600'}
                             borderRadius="full"
                             transition="all 0.3s"
