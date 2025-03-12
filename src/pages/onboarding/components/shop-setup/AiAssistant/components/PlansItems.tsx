@@ -35,7 +35,7 @@ export default function PlansItems({ item, isSelected, onClick }: Props) {
             >
                 {item.title}
             </Text>
-            <Flex alignItems="center" gap="6px">
+            <Flex alignItems="end" gap="6px">
                 <Text
                     textDecoration="line-through"
                     color={item.hasDiscount ? "#F24" : "#fff"}
