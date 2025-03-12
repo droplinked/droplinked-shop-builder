@@ -71,8 +71,8 @@ export default function CustomCodesGenerator() {
             />
             {shopInitialCustomCode &&
                 <Flex alignItems={"center"} gap={4}>
-                    <Box px={4} py={3} border={"1px solid #292929"} width={"100%"} borderRadius={"8px"}>
-                        <AppTypography fontSize={16} color={"#fff"}>
+                    <Box px={4} py={3} border={"1px solid"} borderColor="neutral.gray.800" width={"100%"} borderRadius={"8px"}>
+                        <AppTypography fontSize={16} color={"neutral.white"}>
                             {shopInitialCustomCode}
                         </AppTypography>
                     </Box>

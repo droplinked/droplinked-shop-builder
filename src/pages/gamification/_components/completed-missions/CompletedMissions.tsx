@@ -14,10 +14,22 @@ interface Props {
 
 function CompletedMissions({ isLoading, missions }: Props) {
     const { shop } = useAppStore()
-    const totalPoints = missions.reduce((acc, curr) => acc + +curr.rewards.find((reward) => reward.type === "CREDIT")?.value ?? 0, 0)
+
+    const totalPoints = missions.reduce((acc, curr) => {
+        const reward = curr.rewards.find(reward => reward.type === "CREDIT");
+        const rewardValue = Number(reward?.value ?? 0);
+        return acc + rewardValue;
+    }, 0);
+    
     const pointsEarned = missions
-        .filter(mission => mission.isCompleted)
-        .reduce((acc, curr) => acc + +curr.rewards.find((reward) => reward.type === "CREDIT")?.value ?? 0, 0)
+    .filter(mission => mission.isCompleted)
+    .reduce((acc, curr) => {
+      const reward = curr.rewards.find(reward => reward.type === "CREDIT");
+      const rewardValue = reward ? Number(reward.value) || 0 : 0;
+      return acc + rewardValue;
+    }, 0);
+  
+  
 
     return (
         <Flex wrap={"wrap"} gap={"10px"}>

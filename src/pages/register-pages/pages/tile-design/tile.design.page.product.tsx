@@ -229,7 +229,7 @@ const TileDesignPageProduct = () => {
                                 >
                                     View Description
                                 </BasicButton>
-                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{ backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white" }}>
+                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{ backgroundColor: CONTAINER.darkMode ? "neutral.gray.1000" : "white" }}>
                                     <Flex direction={"column"} justifyContent={"space-between"} gap={16}>
                                         <AppTypography color={white_if_dark_mode} fontSize="14px" fontWeight={"500"}>
                                             This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous! • Fabric
@@ -291,7 +291,8 @@ const TileDesignPageProduct = () => {
                                             alignItems="center"
                                             gap="10px"
                                             borderRadius="4px"
-                                            border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
+                                            border={key === 0 ? "1px solid" : "1px solid"}
+                                            borderColor={key === 0 ? "neutral.white" : "neutral.black"}
                                         >
                                             <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
                                         </Box>
@@ -324,7 +325,8 @@ const TileDesignPageProduct = () => {
                                             justifyContent="center"
                                             alignItems="center"
                                             gap="8px"
-                                            border={"1px solid #DEDEDE"}
+                                            border={"1px solid"}
+                                            borderColor="neutral.gray.200"
                                             rounded={"4px"}
                                             backgroundColor={key === 2 && white_if_dark_mode}
                                             color={key === 2 ? black_if_dark_mode : white_if_dark_mode}

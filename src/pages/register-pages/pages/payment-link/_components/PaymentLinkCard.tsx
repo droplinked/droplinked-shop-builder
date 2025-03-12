@@ -8,9 +8,9 @@ interface Props extends PropsWithChildren, FlexProps {
 
 function PaymentLinkCard({ title, children, ...props }: Props) {
     return (
-        <Flex direction={"column"} gap={6} paddingBlock={{ base: 3, md: 6 }} paddingInline={{ base: 6, md: 9 }} borderRadius={8} bgColor={"#222222"} {...props}>
+        <Flex direction={"column"} gap={6} paddingBlock={{ base: 3, md: 6 }} paddingInline={{ base: 6, md: 9 }} borderRadius={8} bgColor={"neutral.gray.900"} {...props}>
             <AppTypography fontSize={20} fontWeight={600} color={"#fff"}>{title}</AppTypography>
-            <Divider borderColor={"#3C3C3C"} />
+            <Divider borderColor={"neutral.gray.700"} />
             {children}
         </Flex>
     )

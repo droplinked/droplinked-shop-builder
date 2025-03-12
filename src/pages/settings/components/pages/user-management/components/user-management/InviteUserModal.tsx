@@ -72,7 +72,7 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                     description='The following user will have access to all sections of the account. Invite with caution!'
                 />
             </ModalBody>
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
                 <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Discard</Button>
                 <Button

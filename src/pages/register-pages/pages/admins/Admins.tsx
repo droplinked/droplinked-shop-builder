@@ -20,7 +20,7 @@ function Admins() {
                     </Flex>
                     <InvitationForm fetch={refetch} />
                 </Flex>
-                <Divider borderColor={"#262626"} />
+                <Divider borderColor={"neutral.gray.850"} />
                 <UserList users={data?.data || []} isLoading={isFetching} />
             </Flex>
         </AppCard>

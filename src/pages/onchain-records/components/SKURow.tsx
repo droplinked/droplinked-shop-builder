@@ -11,7 +11,7 @@ export default function SKURow({ item }: { item: IDroplinkedNftsSkus }) {
     const { price, quantity, options } = item;
 
     return (
-        <Flex flexDirection={"column"} border={"1px solid #292929"} borderRadius={8}>
+        <Flex flexDirection={"column"} border={"1px solid"} borderColor="neutral.gray.800" borderRadius={8}>
             <Flex p={4} justifyContent={"space-between"} alignItems={"center"}>
                 <SkuVariants options={options} />
                 {

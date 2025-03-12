@@ -21,7 +21,7 @@ const ProducerInfoCard = ({ price, commission, shopDetails, availableItems, shop
     <Box p="6" w="100%" bg="#1b1b1b" borderRadius="lg" display="flex" flexDirection={{ base: 'column', '2xl': 'row' }} alignItems={{ base: 'flex-start', xl: 'center' }} gap={{ base: '4', xl: '0' }}>
       <ProducerInfoSection shopDetails={shopDetails} shopId={shopId} />
       {/* Horizontal divider for mobile */}
-      <Box display={{ base: 'block', xl: 'none' }} width="100%" borderBottom="1px solid #3c3c3c" mb="4" p="0" />
+      <Box display={{ base: 'block', xl: 'none' }} width="100%" borderBottom="1px solid" borderColor="neutral.gray.700" mb="4" p="0" />
       {/* Statistics section */}
       <Flex flexDirection={{ base: 'column', md: 'row' }} flex="2" gap="6" width="100%" justify="space-between">
         <StatItem label="Available items" value={displayedAvailableItems} />
@@ -64,6 +64,6 @@ const StatItem = ({ label, value }) => (
 );
 
 // Vertical divider for desktop layout
-const DividerComponent = () => <Divider orientation="vertical" borderColor="#3c3c3c" height="40px" display={{ base: 'none', md: 'block' }} />;
+const DividerComponent = () => <Divider orientation="vertical" borderColor="neutral.gray.700" height="40px" display={{ base: 'none', md: 'block' }} />;
 
 export default ProducerInfoCard;

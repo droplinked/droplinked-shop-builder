@@ -14,7 +14,7 @@ function FiltersDataGrid({ items }: IFiltersDataGrid) {
                     valueAccessor='value'
                     selectProps={{
                         width: "200px",
-                        bgColor: "#1C1C1C",
+                        bgColor: "neutral.gray.1000",
                         placeholder: item.placeHolder,
                         onChange: (e) => item.onClick(e.target.value)
                     }}

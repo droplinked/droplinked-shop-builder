@@ -46,7 +46,7 @@ export default function AccountBalance() {
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
-                    borderColor="#292929"
+                    borderColor="neutral.gray.800"
                 />
                 <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} />
             </Flex>

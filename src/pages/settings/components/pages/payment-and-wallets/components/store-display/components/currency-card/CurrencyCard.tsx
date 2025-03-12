@@ -20,10 +20,10 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
     <Box flex={1} width={"100%"} ml={"auto"} border="1px solid #282828" borderRadius="lg" display="flex" flexDirection="column">
       <HStack p="6" justify="space-between">
         <Flex align="center" gap="4">
-          <Text color={isPrimary ? 'white' : '#4f4f4f'} fontSize="base" fontWeight="medium">
+          <Text color={isPrimary ? 'neutral.white' : 'neutral.gray.650'} fontSize="base" fontWeight="medium">
             {currencyName}
           </Text>
-          <Badge textTransform={"unset"} bg={isPrimary ? "#ffd9511a" : "grey.800"} color={isPrimary ? "#ffd850" : "#4f4f4f"} borderRadius="4px" fontWeight={400} px="2">
+          <Badge textTransform={"unset"} bg={isPrimary ? "#ffd9511a" : "grey.800"} color={isPrimary ? "#ffd850" : "neutral.gray.650"} borderRadius="4px" fontWeight={400} px="2">
             {isPrimary && "Primary"}
             {isSoon && "Soon!"}
           </Badge>

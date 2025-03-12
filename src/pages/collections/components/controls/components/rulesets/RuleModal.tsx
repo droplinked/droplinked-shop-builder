@@ -92,7 +92,7 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                     <Box>
                                         <RulesetType />
                                     </Box>
-                                    <HStack borderTop={"1px solid #292929"} py={"2rem"} justifyContent={"space-between"}>
+                                    <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent={"space-between"}>
                                         <Button fontSize={"14px"} width={"79px"} onClick={close} variant="outline">
                                             Cancel
                                         </Button>

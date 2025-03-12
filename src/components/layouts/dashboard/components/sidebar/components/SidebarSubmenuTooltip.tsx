@@ -18,7 +18,6 @@ const SidebarSubmenuTooltip = ({ title, items }) => {
           />
         </svg>
       </Box>
-
       {/* Main Content Box */}
       <Flex position="absolute" top="0" left="12px" bg="#1b1b1b" borderRadius="lg" border="1px solid #282828" flexDirection="column" justifyContent="end" alignItems="center" overflow="hidden">
         {/* Header */}
@@ -38,7 +37,7 @@ const SidebarSubmenuTooltip = ({ title, items }) => {
           {items.map((item, index) => (
             <Flex key={index} h="5" justifyContent="start" alignItems="center">
               <DashboardLinkWrapper key={item.listTitle} linkTo={item.linkTo} onClick={item.onClick}>
-                <AppTypography color="#b1b1b1" fontSize="sm" fontWeight="normal" lineHeight="tight">
+                <AppTypography color="text.subtextPlaceholder.light" fontSize="sm" fontWeight="normal" lineHeight="tight">
                   {item.listTitle}
                 </AppTypography>
               </DashboardLinkWrapper>
@@ -46,7 +45,6 @@ const SidebarSubmenuTooltip = ({ title, items }) => {
           ))}
         </Flex>
       </Flex>
-
       {/* Second SVG */}
       <Box position="absolute" top="36px" left="0">
         <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">

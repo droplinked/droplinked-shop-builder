@@ -42,7 +42,7 @@ function BlogTags({ tags, setTags }: Props) {
                         gap={3}
                         borderRadius={28}
                         padding={"12px 16px"}
-                        backgroundColor={"#1C1C1C"}
+                        backgroundColor={"neutral.gray.1000"}
                     >
                         {tag}
                         <AppIcons.Close cursor={"pointer"} onClick={() => handleRemoveTag(index)} />

@@ -29,7 +29,7 @@ export const ProductDetails = ({ product }) => {
                 <Text fontSize="sm" color="white">
                   {sku.sold_units || "0"} /
                 </Text>
-                <Text fontSize="sm" color="#7b7b7b">
+                <Text fontSize="sm" color="text.subtextPlaceholder.dark">
                   {sku.quantity || "0"}
                 </Text>
               </HStack>
@@ -39,7 +39,7 @@ export const ProductDetails = ({ product }) => {
                 <Text fontSize="sm" color="white">
                   ${sku.price || "0"}
                 </Text>
-                <Text fontSize="sm" color="#b1b1b1">
+                <Text fontSize="sm" color="text.subtextPlaceholder.light">
                   USD
                 </Text>
               </HStack>

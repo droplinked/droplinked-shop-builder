@@ -147,17 +147,17 @@ const TileDesignForm = () => {
                         ...design?.PRODUCT,
                         CONTAINER: {
                             ...CONTAINER,
-                            backgroundColor: CONTAINER.backgroundColor === "#FFFFFF" ? "#141414" : CONTAINER.backgroundColor,
+                            backgroundColor: CONTAINER.backgroundColor === "neutral.background" ? "neutral.white" : CONTAINER.backgroundColor,
                             darkMode: toDarkMode,
                         },
                         TITLE: {
-                            color: TITLE.color === "#000000" ? "#FFFFFF" : TITLE.color,
+                            color: TITLE.color === "neutral.white" ? "neutral.black" : TITLE.color,
                         },
-                        PRICE: { color: PRICE.color === "#000000" ? "#FFFFFF" : PRICE.color },
+                        PRICE: { color: PRICE.color === "neutral.white" ? "neutral.black" : PRICE.color },
                         BUTTON: {
                             ...BUTTON,
-                            backgroundColor: BUTTON.backgroundColor === "#141414" ? "#FFFFFF" : BUTTON.backgroundColor,
-                            color: BUTTON.color === "#FFFFFF" ? "#000000" : BUTTON.color,
+                            backgroundColor: BUTTON.backgroundColor === "neutral.white" ? "neutral.background" : BUTTON.backgroundColor,
+                            color: BUTTON.color === "neutral.black" ? "neutral.white" : BUTTON.color,
                         },
                     },
                 }
@@ -166,17 +166,17 @@ const TileDesignForm = () => {
                         ...design?.PRODUCT,
                         CONTAINER: {
                             ...CONTAINER,
-                            backgroundColor: CONTAINER.backgroundColor === "#141414" ? "#FFFFFF" : CONTAINER.backgroundColor,
+                            backgroundColor: CONTAINER.backgroundColor === "neutral.background" ? "neutral.white" : CONTAINER.backgroundColor,
                             darkMode: toDarkMode,
                         },
                         TITLE: {
-                            color: TITLE.color === "#FFFFFF" ? "#000000" : TITLE.color,
+                            color: TITLE.color === "neutral.white" ? "neutral.black" : TITLE.color,
                         },
-                        PRICE: { color: PRICE.color === "#FFFFFF" ? "#000000" : PRICE.color },
+                        PRICE: { color: PRICE.color === "neutral.white" ? "neutral.black" : PRICE.color },
                         BUTTON: {
                             ...BUTTON,
-                            backgroundColor: BUTTON.backgroundColor === "#FFFFFF" ? "#141414" : BUTTON.backgroundColor,
-                            color: BUTTON.color === "#000000" ? "#FFFFFF" : BUTTON.color,
+                            backgroundColor: BUTTON.backgroundColor === "neutral.white" ? "neutral.background" : BUTTON.backgroundColor,
+                            color: BUTTON.color === "neutral.black" ? "neutral.white" : BUTTON.color,
                         },
                     },
                 }
@@ -220,7 +220,7 @@ const TileDesignForm = () => {
                                 if (input?.type === TILE_INPUT_TYPES.COLOR_PICKER)
                                     return (
                                         <AppColorPicker
-                                            props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE", minW: "128px" } }}
+                                            props={{ containerProps: { backgroundColor: "white", border: "1px solid neutral.gray.200", borderColor:"neutral.gray.200", minW: "128px" } }}
                                             value={currentValue}
                                             onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e })}
                                         />

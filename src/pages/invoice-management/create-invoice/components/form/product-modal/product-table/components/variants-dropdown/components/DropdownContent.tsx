@@ -30,11 +30,12 @@ function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props
 
     return (
         <PopoverContent
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={0}
             overflow="hidden"
-            bgColor="#1C1C1C"
+            bgColor="neutral.gray.1000"
         >
             <PopoverBody padding={0}>
                 <Input
@@ -62,7 +63,7 @@ function DropdownContent({ selectedSKUId, onSelectSKU, product, onClose }: Props
                             padding={4}
                             cursor="pointer"
                             userSelect="none"
-                            _hover={{ bgColor: "#292929" }}
+                            _hover={{ bgColor: "neutral.gray.800" }}
                             onClick={() => handleVariantSelect(sku._id)}
                         >
                             <SKUOptions options={sku.options} />

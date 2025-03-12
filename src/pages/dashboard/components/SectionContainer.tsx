@@ -11,7 +11,8 @@ function SectionContainer({ title, onNavigate, children }: SectionContainerProps
     return (
         <Box
             flex={1}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={16}
             overflow="hidden"
         >
@@ -20,9 +21,10 @@ function SectionContainer({ title, onNavigate, children }: SectionContainerProps
                 justifyContent="space-between"
                 alignItems="center"
                 gap={4}
-                borderBottom="1px solid #292929"
+                borderBottom="1px solid"
+                borderColor="neutral.gray.800"
                 padding={4}
-                bgColor="#1C1C1C"
+                bgColor="neutral.gray.1000"
             >
                 <Text fontSize={{ base: 16, lg: 18 }} fontWeight={500} color="#fff">
                     {title}

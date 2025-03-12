@@ -16,8 +16,8 @@ interface Props {
 export default function ContainerCard({ items, hasBorder, title, titleRightContent, children }: Props) {
 
     return (
-        <Flex width={"100%"} flexDirection={"column"} gap={6} border={"1px solid #292929"} borderRadius={16}>
-            <Flex {...(hasBorder && { borderBottom: "1px solid #292929", pb: 6 })} px={6} pt={6} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex width={"100%"} flexDirection={"column"} gap={6} border={"1px solid neutral.gray.800"} borderRadius={16}>
+            <Flex {...(hasBorder && { borderBottom: "1px solid ",borderColor:"neutral.gray.800", pb: 6 })} px={6} pt={6} alignItems={"center"} justifyContent={"space-between"}>
                 <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>
                     {title}
                 </AppTypography>
@@ -34,7 +34,7 @@ export default function ContainerCard({ items, hasBorder, title, titleRightConte
 
                     return (
                         <Flex justifyContent={"space-between"} alignItems={"center"} gap={8} key={index}>
-                            <AppTypography color={"#7B7B7B"} fontSize={14} fontWeight={400}>
+                            <AppTypography color={"text.subtextPlaceholder.dark"} fontSize={14} fontWeight={400}>
                                 {item.title}
                             </AppTypography>
                             {isReactNode ?

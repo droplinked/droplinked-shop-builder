@@ -11,10 +11,11 @@ function ProductDetails({ product }: { product: any }) {
             mt={4}
             alignItems="center"
             gap={4}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={12}
             padding={4}
-            bgColor="#1C1C1C"
+            bgColor="neutral.gray.1000"
         >
             <AppImage
                 width={12}

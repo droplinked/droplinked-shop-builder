@@ -16,7 +16,8 @@ function ModalContent({ product }) {
     <Flex
       direction="column"
       gap={4}
-      border="1px solid #292929"
+      border="1px solid"
+      borderColor="neutral.gray.800"
       borderRadius={16}
       padding={6}
     >

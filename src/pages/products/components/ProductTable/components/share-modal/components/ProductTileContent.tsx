@@ -8,12 +8,11 @@ interface ProductTileContentProps {
 }
 
 const ProductTileContent: React.FC<ProductTileContentProps> = ({ productTile }) => {
-  // تولید کد تعبیه شده (Embed Code) با استفاده از productTile
   const embedCode = `<droplinked-product \n  tileId="${productTile}">\n  </droplinked-product>`;
 
   return (
-    <Box width="100%" bg="#292929" padding="32px">
-      {/* تصویر پس‌زمینه در بالای صفحه و وسط */}
+    <Box width="100%" bg="neutral.gray.800" padding="32px">
+
       <Flex justifyContent="center" alignItems="center" mb="0">
         <Image
           src="https://upload-file-droplinked.s3.amazonaws.com/1354f7caaf1d50251c34e1744fc072cd9196b8fc6512397704d60a66188793f3.png"

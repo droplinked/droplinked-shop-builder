@@ -26,7 +26,7 @@ function CartSummaryRow({ title, value, isValueBold = false }: Props) {
                 color={"white"}
             >
                 {formattedPrice(value)}
-                <Box as='span' fontSize={16} color={'#878787'}>{abbreviation}</Box>
+                <Box as='span' fontSize={16} color={'neutral.gray.400'}>{abbreviation}</Box>
             </AppTypography>
         </Flex>
     )

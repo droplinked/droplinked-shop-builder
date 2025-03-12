@@ -1,9 +1,11 @@
-import { Box, Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
+import { Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
 import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
-import StylizedTitle from "../StylizedTitle"
+
+import HorizontalBarChart from "components/redesign/HorizontalBarChart/horizontalBarChart"
+import StylizedTitle from "components/redesign/stylizedTitle/StylizedTitle"
 
 const BADGE_COLORS: Record<string, string> = {
     "Normal Products": "#2BCFA1",
@@ -17,21 +19,7 @@ export default function ProductTypeBarChart({ productTypes }: { productTypes: Pr
 
     return (
         <Flex direction="column" gap={6} padding={{ base: 4, lg: 6 }}>
-            <Flex gap="6px">
-                {
-                    productTypes
-                        .filter(item => item.percentageOfTotal > 0)
-                        .map((item, index) => (
-                            <Box
-                                key={index}
-                                flex={item.percentageOfTotal}
-                                h="16px"
-                                borderRadius={4}
-                                bgColor={BADGE_COLORS[item.productType]}
-                            />
-                        ))
-                }
-            </Flex>
+            <HorizontalBarChart data={productTypes} getValue={(item) => item.percentageOfTotal} getLabel={(item) => item.productType} colorMap={BADGE_COLORS} />
 
             <SimpleGrid
                 alignItems="start"

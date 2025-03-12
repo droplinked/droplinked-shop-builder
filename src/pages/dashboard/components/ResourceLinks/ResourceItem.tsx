@@ -14,7 +14,7 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
         >
             <Flex direction="column" gap={1}>
                 <Text fontSize={{ base: 16, lg: 18 }} fontWeight={700} color="#fff">{title}</Text>
-                <Text fontSize={14} color="#7B7B7B">{summary}</Text>
+                <Text fontSize={14} color="text.subtextPlaceholder.dark">{summary}</Text>
             </Flex>
 
             <button onClick={() => window.open(url)}>

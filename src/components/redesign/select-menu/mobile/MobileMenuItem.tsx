@@ -40,7 +40,7 @@ export function MobileMenuItem({
             justifyContent="start"
             alignItems="center"
             borderRadius={"8px"}
-            backgroundColor={isSelected ? "#292929" : "transparent"}
+            backgroundColor={isSelected ? "neutral.gray.800" : "transparent"}
         >
             {showCheckbox && (
                 <Checkbox
@@ -59,7 +59,7 @@ export function MobileMenuItem({
 
                 {item.labelDescription && (
                     <AppTypography
-                        color={"#7B7B7B"}
+                        color={"text.subtextPlaceholder.dark"}
                         fontSize={12}
                         fontWeight={400}
                     >

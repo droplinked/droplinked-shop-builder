@@ -36,7 +36,8 @@ export const CustomTimeInput = forwardRef((props: any, ref) => {
             <Flex gap={2} alignItems={"center"}>
                 <Input
                     inputProps={{
-                        border: "1px solid #292929",
+                        border: "1px solid",
+                        borderColor: "neutral.gray.800",
                         borderRadius: "8px",
                         padding: "12px 12px",
                         width: "2.7rem !important",
@@ -51,12 +52,13 @@ export const CustomTimeInput = forwardRef((props: any, ref) => {
                         padding: "0px"
                     }}
                 />
-                <AppTypography color={"#7B7B7B"} fontWeight={900} fontSize={"14px"}>
+                <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
                 <Input
                     inputProps={{
-                        border: "1px solid #292929",
+                        border: "1px solid",
+                        borderColor: "neutral.gray.800",
                         borderRadius: "8px",
                         padding: "12px 12px",
                         width: "2.7rem !important",

@@ -15,7 +15,7 @@ function PopularPlanBadge() {
             paddingBlock={2}
             paddingInline={4}
             borderRadius={"200px"}
-            bgColor={"#2BCFA1"}
+            bgColor={"primary.default"}
             whiteSpace={"nowrap"}
         >
             <AppIcons.PopularPlanMedal />

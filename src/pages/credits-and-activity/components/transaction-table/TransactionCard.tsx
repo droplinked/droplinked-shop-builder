@@ -22,22 +22,22 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
     }
 
     return (
-        <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid #292929">
+        <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
             <Flex justifyContent={"space-between"} alignItems={"center"}>
                 <TypeColumn type={type} amountType={amountType} />
                 <StatusBadge status={status} />
             </Flex>
-            <Flex flexDirection="column" gap={4} p={4} background="#1C1C1C" borderRadius="8px">
+            <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="#7b7b7b" fontSize={14}>Amount</AppTypography>
+                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Amount</AppTypography>
                     <FormattedPrice price={amount} />
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="#7b7b7b" fontSize={14}>Date</AppTypography>
+                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Date</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{formattedDate(createdAt)}</AppTypography>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="#7b7b7b" fontSize={14}>Transaction ID</AppTypography>
+                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Transaction ID</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{id}</AppTypography>
                 </Flex>
             </Flex>

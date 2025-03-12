@@ -45,7 +45,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
                     leftElement={<CurrencyIcon />}
                 />
             </ModalBody>
-            <Divider borderColor={"#292929"} />
+            <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter display={"flex"} justifyContent={"space-between"}>
                 <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Cancel</Button>
                 <Button

@@ -77,7 +77,8 @@ function Drawer({
                     display="flex"
                     flexDirection="column"
                     gap={6}
-                    borderBottom="1px solid #292929"
+                    borderBottom="1px solid"
+                    borderColor={"neutral.gray.800"}
                     padding={9}
                     {...drawerHeaderStyle}
                 >
@@ -107,7 +108,8 @@ function Drawer({
                         display="flex"
                         justifyContent="space-between"
                         alignItems="center"
-                        borderTop="1px solid #292929"
+                        borderTop="1px solid"
+                        borderColor={"neutral.gray.800"}
                         padding={9}
                         css={{ button: { fontSize: 14, fontWeight: 500 } }}
                         {...drawerFooterProps}

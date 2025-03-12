@@ -19,7 +19,7 @@ function BaseEmptyState({ image, title, description, actionText, onActionClick }
 
             <Flex direction="column" alignItems="center" gap={1} textAlign="center">
                 <Text fontWeight={500} color="#fff">{title}</Text>
-                <Text fontSize={14} color="#7B7B7B">{description}</Text>
+                <Text fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
                 <BlueButton
                     sx={{ svg: { boxSize: 4, path: { stroke: "#179EF8" } } }}
                     onClick={onActionClick}

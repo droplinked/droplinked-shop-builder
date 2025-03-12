@@ -22,7 +22,7 @@ const TabButtons: React.FC<TabButtonsProps> = ({ onTabChange, activeTab, tabs })
               fontStyle="normal"
               fontWeight={activeTab === tab.name ? "500" : "400"}
               lineHeight="24px"
-              color={activeTab === tab.name ? "#FFF" : "#7B7B7B"}
+              color={activeTab === tab.name ? "neutral.white" : "text.subtextPlaceholder.dark"}
             >
               {tab.name}
             </Text>

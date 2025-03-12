@@ -13,16 +13,16 @@ interface IProps {
 
 function AppColorPicker({ onChange, value, props }: IProps) {
     const [Toggle, setToggle] = useState(false);
-    const ref = useRef()
+    const ref = useRef<HTMLDivElement>(null);
     useOutsideClick({
         ref: ref,
         handler: () => setToggle(false),
     })
 
     return (
-        <Flex gap="10px" backgroundColor="#141414" position="relative" padding="10px 20px" borderRadius="8px" {...props?.containerProps}>
+        <Flex gap="10px" backgroundColor="neutral.background" position="relative" padding="10px 20px" borderRadius="8px" {...props?.containerProps}>
             <Box width="20px" cursor="pointer" height="20px" backgroundColor={value} onClick={() => setToggle(prev => !prev)}></Box>
-            <AppTypography fontSize="14px" color="#808080">{value}</AppTypography>
+            <AppTypography fontSize="14px" color="text.subtextPlaceholder.dark">{value}</AppTypography>
             {Toggle && <Box position="absolute" zIndex="1" top="30px" ref={ref}><SketchPicker color={value} onChange={(color) => onChange(color.hex)} /></Box>}
         </Flex>
     )

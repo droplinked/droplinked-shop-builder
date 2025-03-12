@@ -13,14 +13,16 @@ function RuledGrid({ columns, nested = false, children, ...rest }: RuledGridProp
     return (
         <Grid
             templateColumns={`repeat(${columns}, 1fr)`}
-            border={nested ? "unset" : "1px solid #292929"}
+            border={nested ? "unset" : "1px solid"}
+            borderColor="neutral.gray.800"
             overflow="hidden"
             {...rest}
         >
             {childrenArray.map((child, index) => (
                 <Box
-                    borderRight={index % columns !== columns - 1 ? "1px solid #292929" : "none"}
-                    borderBottom={index < childrenArray.length - columns ? "1px solid #292929" : "none"}
+                    borderRight={index % columns !== columns - 1 ? "1px solid" : "none"}
+                    borderBottom={index < childrenArray.length - columns ? "1px solid" : "none"}
+                    borderColor="neutral.gray.800"
                 >
                     {child}
                 </Box>

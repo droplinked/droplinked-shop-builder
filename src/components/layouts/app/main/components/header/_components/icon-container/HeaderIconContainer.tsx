@@ -9,7 +9,7 @@ function HeaderIconContainer({ children }: PropsWithChildren) {
             flexShrink={0}
             border="1px solid #333"
             borderRadius={8}
-            bgColor="#262626"
+            bgColor="neutral.gray.850"
             sx={{
                 "svg": { width: { base: 4, md: 6 }, height: { base: 4, md: 6 } }
             }}

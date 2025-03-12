@@ -20,7 +20,7 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
   return (
     <Flex justifyContent={'space-between'} alignItems="center">
       <Input
-        inputGroupProps={{ width: '300px', height: 12, bgColor: '#1C1C1C' }}
+        inputGroupProps={{ width: '300px', height: 12, bgColor: 'neutral.gray.1000' }}
         inputProps={{
           value: searchTerm,
           placeholder: 'Search',

@@ -69,9 +69,9 @@ export default function ResetPassPage() {
                   type={States.show.password ? "text" : "password"}
                   name="password"
                   placeholder="New password"
-                  backgroundColor="#1C1C1C"
-                  _hover={{ backgroundColor: "#1C1C1C" }}
-                  _focus={{ backgroundColor: "#1C1C1C" }}
+                  backgroundColor="neutral.gray.1000"
+                  _hover={{ backgroundColor: "neutral.gray.1000" }}
+                  _focus={{ backgroundColor: "neutral.gray.1000" }}
                   error={errors?.password ? errors.password.toString() : ""}
                   onChange={(e) => setFieldValue("password", e.target.value)}
                   value={values.password}
@@ -83,9 +83,9 @@ export default function ResetPassPage() {
                   type={States.show.repassword ? "text" : "password"}
                   name="repassword"
                   placeholder="Confirm Password"
-                  backgroundColor="#1C1C1C"
-                  _hover={{ backgroundColor: "#1C1C1C" }}
-                  _focus={{ backgroundColor: "#1C1C1C" }}
+                  backgroundColor="neutral.gray.1000"
+                  _hover={{ backgroundColor: "neutral.gray.1000" }}
+                  _focus={{ backgroundColor: "neutral.gray.1000" }}
                   error={errors?.repassword ? errors.repassword.toString() : ""}
                   onChange={(e) => setFieldValue("repassword", e.target.value)}
                   value={values.repassword}

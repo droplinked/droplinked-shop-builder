@@ -29,11 +29,11 @@ export const HotProductsSection = ({ isLoading, products, date, setDate }) => {
               key={date_constant.value}
               cursor="pointer"
               onClick={() => setDate(date_constant)}
-              backgroundColor={date_constant.value === date.value ? '#2BCFA1' : '#292929'}
+              backgroundColor={date_constant.value === date.value ? '#2BCFA1' : 'neutral.gray.800'}
               padding="6px 16px"
               borderRadius="100px"
             >
-              <AppTypography fontSize="14px" fontWeight="500" color={date_constant.value === date.value ? '#000' : '#7B7B7B'}>
+              <AppTypography fontSize="14px" fontWeight="500" color={date_constant.value === date.value ? '#000' : 'text.subtextPlaceholder.dark'}>
                 {date_constant.label}
               </AppTypography>
             </Box>

@@ -44,7 +44,7 @@ function PreviewFooter() {
 
         <Flex direction={isDesktop ? 'row' : 'column'} justify="space-between" flexGrow={{ md: 1 }} px={2} mt={isDesktop ? null : 4} bg={foreground}>
           {/* Powered by section */}
-          <Flex align="center" fontSize="xs" className={'#7b7b7b'}>
+          <Flex align="center" fontSize="xs" className={'text.subtextPlaceholder.dark'}>
             <PreviewTypo mr={2}>Powered by</PreviewTypo>
             <AppIcons.DroplinkedLogo width={"64px"} color={textColorParagraphs}  > </AppIcons.DroplinkedLogo>
           </Flex>
@@ -54,7 +54,7 @@ function PreviewFooter() {
             <List display="flex" flexWrap="wrap" alignItems="center" spacing={1}>
               {licenceLinks.map((link, index) => (
                 <ListItem key={index} mr={2} display="flex" alignItems="center">
-                  <Link className={'#7b7b7b'}>
+                  <Link className={'text.subtextPlaceholder.dark'}>
                     <PreviewTypo>
                       {link}
                       {index !== licenceLinks.length - 1 && (

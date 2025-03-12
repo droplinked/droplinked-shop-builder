@@ -11,16 +11,18 @@ function SectionedContent({ title, children, ...props }: Props) {
     const childrenArray = Children.toArray(children)
     const sectionStyles = {
         padding: 6,
-        borderBottom: "1px solid #292929",
+        borderBottom: "1px solid",
+        borderColor:"neutral.gray.800"
     }
 
     return (
         <Flex
             height={"fit-content"}
             direction={"column"}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             borderRadius={8}
-            bgColor={"#1C1C1C"}
+            bgColor={"neutral.gray.1000"}
             sx={{ "&>div:last-child": { borderBottom: "none" } }}
             {...props}
         >

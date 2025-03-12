@@ -24,7 +24,7 @@ export default function ClientIdDisplay({ clientId }: Props) {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <AppTypography minWidth={"200px"} fontSize={"13px"} fontWeight={"500"} color={"#fff"}>
+                            <AppTypography minWidth={"200px"} fontSize={"13px"} fontWeight={"500"} color={"neutral.white"}>
                                 {clientId}
                             </AppTypography>
                         </motion.div>

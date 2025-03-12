@@ -7,9 +7,11 @@ import ProductTypesPopover from './ProductTypesPopover/ProductTypesPopover'
 interface Props {
     onImportModalOpen: () => void
     onReorderModalOpen: () => void
+    productsCount: number
+    isActionEnabled: boolean
 }
 
-function RightContent({ onImportModalOpen, onReorderModalOpen }: Props) {
+function RightContent({ onImportModalOpen, onReorderModalOpen, productsCount, isActionEnabled }: Props) {
     return (
         <Flex flexDirection="row-reverse" gap={4}>
             <ProductTypesPopover>
@@ -31,6 +33,7 @@ function RightContent({ onImportModalOpen, onReorderModalOpen }: Props) {
                 icon={<AppIcons.VerticalMove />}
                 label="Reorder Products"
                 onClick={onReorderModalOpen}
+                isDisabled={!isActionEnabled}
             />
         </Flex>
     )

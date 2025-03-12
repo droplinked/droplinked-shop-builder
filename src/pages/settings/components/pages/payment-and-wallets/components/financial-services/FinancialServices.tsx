@@ -14,7 +14,7 @@ const FinancialServices: React.FC = () => {
           rightContent={<PaymentProviderList />}
         />
       </SectionContainer>
-      <Divider borderColor={'#292929'} />
+      <Divider borderColor={'neutral.gray.800'} />
     </>
   );
 };

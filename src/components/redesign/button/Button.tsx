@@ -9,19 +9,19 @@ export interface AppButtonProps extends ButtonProps {
 
 const styles = {
   primary: {
-    border: "#2BCFA1",
-    background: "#2BCFA1",
+    border: "primary.default",
+    background: "primary.default",
     text: "black"
   },
   secondary: {
-    border: "#292929",
-    background: "#292929",
-    text: "white"
+    border: "neutral.gray.800",
+    background: "neutral.gray.800",
+    text: "neutral.white"
   },
   outline: {
-    border: "#616161",
+    border: "neutral.gray.600",
     background: "transparent",
-    text: "white"
+    text: "neutral.white"
   },
   ghost: {
     border: "none",
@@ -29,8 +29,8 @@ const styles = {
     text: "white"
   },
   disabled: {
-    border: "#262626",
-    background: "#262626",
+    border: "neutral.gray.850",
+    background: "neutral.gray.850",
     text: "#737373"
   }
 }

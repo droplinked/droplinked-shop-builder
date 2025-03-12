@@ -49,7 +49,7 @@ const StoreDisplay: React.FC = () => {
           }
         />
       </SectionContainer>
-      <Divider borderColor={'#292929'} />
+      <Divider borderColor={'neutral.gray.800'} />
     </>
   );
 };

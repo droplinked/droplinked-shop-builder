@@ -11,7 +11,8 @@ export default function ShippingMethodRadio({ method, ...radioProps }) {
         <FormLabel
             margin={0}
             padding={4}
-            border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
+            border="1.5px solid"
+            borderColor={` ${isChecked ? "#2BCFA1" : "neutral.gray.700"}`}
             borderRadius={8}
             bgColor={isChecked ? "#2BCFA11A" : "transparent"}
             cursor="pointer"
@@ -43,8 +44,8 @@ function ShippingMethodDetails({ title, value, isChecked }) {
     return (
         <Flex alignItems="center" gap={2}>
             <AppTypography fontWeight={400} color={isChecked ? "white" : "#BCBCBC"}>{title}</AppTypography>
-            <Circle size={1} bgColor="#616161" />
-            <AppTypography fontWeight={500} color="white">{value}</AppTypography>
+            <Circle size={1} bgColor="neutral.gray.600" />
+            <AppTypography fontWeight={500} color="neutral.white">{value}</AppTypography>
         </Flex>
     )
 }

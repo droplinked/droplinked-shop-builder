@@ -16,7 +16,7 @@ function ProductFormAccordion({ label, accessLevel, defaultOpen = false, childre
                 display="flex"
                 justifyContent="space-between"
                 borderRadius={8}
-                bgColor="#1C1C1C"
+                bgColor="neutral.gray.1000"
                 padding="12px 16px"
                 userSelect="none"
             >

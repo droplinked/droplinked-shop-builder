@@ -31,7 +31,7 @@ export function SelectMenuItem({ item, showCheckbox, isSelected, onChange }: Sel
             onClick={onChange}
             {...styles.menuItem}
             borderRadius={"8px"}
-            backgroundColor={isSelected ? "#292929" : "transparent"}
+            backgroundColor={isSelected ? "neutral.gray.800" : "transparent"}
         >
             <Flex gap={3} alignItems="center" width={"100%"}>
                 {showCheckbox && (
@@ -51,7 +51,7 @@ export function SelectMenuItem({ item, showCheckbox, isSelected, onChange }: Sel
 
                     {item.labelDescription && (
                         <AppTypography
-                            color={"#7B7B7B"}
+                            color={"text.subtextPlaceholder.dark"}
                             fontSize={12}
                             fontWeight={400}
                         >

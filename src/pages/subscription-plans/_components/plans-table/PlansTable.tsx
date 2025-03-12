@@ -13,6 +13,7 @@ function PlansTable() {
     if (isFetching) {
         return <Skeleton />
     }
+
     return (
         <VStack overflow={"hidden"} display={{ sm: "none", md: "flex" }} >
             <TableHeading />

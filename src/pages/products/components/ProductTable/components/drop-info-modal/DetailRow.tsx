@@ -16,7 +16,7 @@ function DetailRow({ label, tooltip, children }: Props) {
             gap={2}
         >
             <HStack spacing={1} align="center">
-                <Text fontSize={14} color="#7B7B7B">{label}</Text>
+                <Text fontSize={14} color="text.subtextPlaceholder.dark">{label}</Text>
                 {tooltip && (
                     <AppTooltip label={tooltip}>
                         <AppIcons.Info />

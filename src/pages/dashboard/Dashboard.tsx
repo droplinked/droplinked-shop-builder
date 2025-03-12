@@ -6,7 +6,9 @@ import { useQuery } from "react-query"
 import DashboardContent from "./components/DashboardContent"
 import GreetingBanner from "./components/GreetingBanner"
 import NoOrdersPlaceholder from "./components/NoOrdersPlaceholder"
+import { DashboardSkeleton, NoOrdersPlaceholderSkeleton } from "./components/skeletons"
 import useDashboardPageStore from "./stores/useDashboardStore"
+
 
 function Dashboard() {
     const { showToast } = useAppToast()
@@ -25,6 +27,9 @@ function Dashboard() {
 
     function renderContent() {
         const noOrders = isError || data?.shopStats?.orders === 0
+        if (isFetching) {
+            return noOrders ? <NoOrdersPlaceholderSkeleton /> : <DashboardSkeleton />
+        }
         return noOrders ? <NoOrdersPlaceholder /> : <DashboardContent />
     }
 

@@ -40,7 +40,7 @@ function DefaultHoverBox() {
                         <>
                             {isHorizontal ?
                                 <Flex gap="18px" alignItems="center" className={classes.iconUpload}>
-                                    <Box position="relative" border="2px solid #262626" backgroundColor="#000" borderRadius="4px" overflow="hidden">
+                                    <Box position="relative" border="2px solid" borderColor="neutral.gray.850" backgroundColor="#000" borderRadius="4px" overflow="hidden">
                                         <Flex position="absolute" className={classes.icon} display="none" top="0" left="0" bottom="0" right="0" justifyContent="center" alignItems="center"><AppIcons.Upload width="18px" /></Flex>
                                         <Image src={values} width="48px" height="48px" className={classes.image} />
                                     </Box>

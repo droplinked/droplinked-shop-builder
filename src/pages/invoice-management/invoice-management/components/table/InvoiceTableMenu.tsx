@@ -19,11 +19,12 @@ export default function InvoiceTableMenu({ invoice }) {
             <Menu isLazy>
                 <MenuButton as="button"><AppIcons.Dots /></MenuButton>
                 <MenuList
-                    border="1px solid #292929"
+                    border="1px solid"
+                    borderColor="neutral.gray.800"
                     borderRadius={8}
                     padding={0}
                     overflow="hidden"
-                    bgColor="#1C1C1C"
+                    bgColor="neutral.gray.1000"
                     zIndex={10}
                     sx={{
                         "button": {
