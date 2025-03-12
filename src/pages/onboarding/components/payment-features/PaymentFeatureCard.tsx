@@ -21,6 +21,7 @@ const PaymentFeatureCard: React.FC<CardProps> = ({ headerImage, title, descripti
     alignItems="flex-start"
     bgGradient="linear(to-b, rgba(24, 24, 24, 0), #181818)"
     height="452px"
+    userSelect="none"
   >
     <Box position="absolute" top="0" left="0" width="100%" height="100%">
       <AppImage src={headerImage} alt={title} objectFit="contain" w="100%" h="100%" bg="transparent" />

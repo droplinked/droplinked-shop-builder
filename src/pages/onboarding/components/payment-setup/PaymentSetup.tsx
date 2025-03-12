@@ -4,14 +4,19 @@ import React from 'react';
 import ControlButtons from '../common/ControlButtons';
 import CurrencySection from './CurrencySection';
 import FinancialServices from './FinancialServices';
+import OnboardingStepHeader from '../common/OnboardingStepHeader';
 
 function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
   return (
-    <Flex direction="column" minH="full" gap="36px">
+    <>
+     <OnboardingStepHeader heading="Basic Payment Details" description="Choose to activate any of the options below." />
+     <Flex direction="column" minH="full" gap="36px">
       <FinancialServices />
       <CurrencySection />
       <ControlButtons onBack={onBack} onSubmit={onNext} onSkip={onNext} />
     </Flex>
+    </>
+   
   );
 }
 
