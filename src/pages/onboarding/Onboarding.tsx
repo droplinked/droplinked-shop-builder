@@ -15,15 +15,12 @@ import SubscriptionPlan from './components/subscription-plan/SubscriptionPlan'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import useOnboardingStore from './stores/useOnboardingStore'
 
-function Onboarding() {
+export default function Onboarding() {
     const { currentStep, nextStep, prevStep } = useOnboardingStore()
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, [currentStep]);
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [currentStep])
 
     const stepContent = {
         1: {
@@ -60,14 +57,7 @@ function Onboarding() {
     return (
         <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr', xl: '1fr 1.5fr', '3xl': '1fr 2fr' }}>
             <Flex direction='column' gap={12} padding={{ base: 4, md: 6, lg: 16 }}>
-                <Flex
-                    flexDirection={{ base: "row", lg: "column" }}
-                    gap={{ base: 0, lg: 12 }}
-                    justifyContent={{ base: "space-between", lg: "center" }}
-                >
-                    <DroplinkedBrand />
-                    <Stepper />
-                </Flex>
+                <OnboardingHeader />
                 {leftContent}
             </Flex>
 
@@ -76,4 +66,15 @@ function Onboarding() {
     )
 }
 
-export default Onboarding
+function OnboardingHeader() {
+    return (
+        <Flex
+            flexDirection={{ base: "row", lg: "column" }}
+            gap={{ base: 0, lg: 12 }}
+            justifyContent={{ base: "space-between", lg: "center" }}
+        >
+            <DroplinkedBrand />
+            <Stepper />
+        </Flex>
+    )
+}
