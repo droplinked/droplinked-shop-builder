@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Textarea from 'components/redesign/textarea/Textarea'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
@@ -10,18 +10,6 @@ interface Props {
 }
 
 export default function PromptInputs({ generateWithAiData, handleChange }: Props) {
-    const getCheckboxStyles = (isSelected: boolean) => ({
-        __css: {
-            span: {
-                borderRadius: "6px",
-                ...(isSelected && {
-                    background: "#2BCFA1 !important",
-                    borderColor: "#2BCFA1 !important"
-                })
-            }
-        }
-    })
-
     return (
         <Flex padding={{ base: 4, md: "36px", lg: "48px" }} flexDirection="column" gap={6}>
             <Textarea
@@ -39,14 +27,10 @@ export default function PromptInputs({ generateWithAiData, handleChange }: Props
                 cursor="pointer"
             >
                 <Box>
-                    <Checkbox
-                        isChecked={generateWithAiData.enhancePrompt}
-                        {...getCheckboxStyles(generateWithAiData.enhancePrompt)}
-                    />
+                    <Checkbox color="#FFF" fontSize={16} fontWeight={400}>
+                        Enhance prompt with AI
+                    </Checkbox>
                 </Box>
-                <Text color="#FFF" fontSize={16} fontWeight={400}>
-                    Enhance prompt with AI
-                </Text>
             </Flex>
         </Flex>
     )

@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React, { ReactNode } from 'react'
 
 interface ShopPreviewHeaderProps {
@@ -11,16 +12,7 @@ export default function ShopPreviewHeader({ rightIcon, onClick }: ShopPreviewHea
     return (
         <Flex justifyContent="space-between" alignItems="center" width="100%" onClick={onClick}>
             <Flex gap={4} alignItems="center">
-                <Flex
-                    padding={3}
-                    justify="center"
-                    align="center"
-                    border="1px solid #292929"
-                    borderRadius={8}
-                    background="#1c1c1c"
-                >
-                    <ShopLg color="#fff" />
-                </Flex>
+                <IconWrapper icon={<ShopLg color="#fff" />} />
                 <Text color="#fff" fontSize={16} fontWeight={500}>
                     Store Preview
                 </Text>

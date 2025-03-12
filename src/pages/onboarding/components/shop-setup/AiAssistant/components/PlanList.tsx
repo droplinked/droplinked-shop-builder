@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { plans } from 'pages/onboarding/constants/plans'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PlansItems from './PlansItems'
 
 interface Props {
@@ -9,6 +9,10 @@ interface Props {
 }
 
 export default function PlanList({ selectedPlan, setSelectedPlan }: Props) {
+    useEffect(() => {
+        setSelectedPlan(plans[0].title)
+    }, [])
+
     return (
         <Flex
             flexDirection="column"

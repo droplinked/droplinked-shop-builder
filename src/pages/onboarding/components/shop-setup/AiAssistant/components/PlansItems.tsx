@@ -50,7 +50,7 @@ export default function PlansItems({ item, isSelected, onClick }: Props) {
                     fontWeight={500}
                     transition="color 0.3s ease"
                 >
-                    {item.isFree ? "Free" : item.priceByDiscount}
+                    {item.isFree ? "Free" : `$${item.priceByDiscount}`}
                 </Text>
             </Flex>
         </Flex>
