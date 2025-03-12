@@ -6,7 +6,7 @@ import PlanCard from './PlanCard';
 const PlanCards = () => {
   const radius = 193; // radius of the circle
   const calculatePosition = (index: number, total: number) => {
-    const angle = (index / total) * 2 * Math.PI; 
+    const angle = (index / total) * 2 * Math.PI;
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
 
@@ -30,7 +30,7 @@ const PlanCards = () => {
         rotate: 360
       }}
       transition={{
-        duration: 40,
+        duration: 120,
         repeat: Infinity,
         ease: "linear"
       }}
@@ -48,7 +48,7 @@ const PlanCards = () => {
             rotate: -360
           }}
           transition={{
-            duration: 40,
+            duration: 120,
             repeat: Infinity,
             ease: "linear"
           }}

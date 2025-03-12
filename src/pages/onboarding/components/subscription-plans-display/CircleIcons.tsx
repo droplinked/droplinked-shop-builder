@@ -52,7 +52,7 @@ const CircleIcons = () => {
         rotate: 0
       }}
       transition={{
-        duration: 40,
+        duration: 160,
         repeat: Infinity,
         ease: "linear"
       }}
@@ -69,7 +69,7 @@ const CircleIcons = () => {
             rotate: 0
           }}
           transition={{
-            duration: 40,
+            duration: 160,
             repeat: Infinity,
             ease: "linear"
           }}
