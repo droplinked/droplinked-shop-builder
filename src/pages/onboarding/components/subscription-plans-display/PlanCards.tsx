@@ -4,9 +4,9 @@ import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
 import PlanCard from './PlanCard';
 
 const PlanCards = () => {
-  const radius = 193; // شعاع دایره به پیکسل
+  const radius = 193; // radius of the circle
   const calculatePosition = (index: number, total: number) => {
-    const angle = (index / total) * 2 * Math.PI;
+    const angle = (index / total) * 2 * Math.PI; 
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
 
