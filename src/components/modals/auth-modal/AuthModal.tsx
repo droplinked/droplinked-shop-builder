@@ -1,5 +1,5 @@
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
-import useSubscriptionPlanPurchaseStore from "pages/subscription-plans/_components/plans/store/planPurchaseStore";
+import useSubscriptionPlanPurchaseStore from "lib/stores/subscription-plan.ts/subscriptionPlanStore";
 import React, { useState } from "react";
 import CompleteGoogelModal from "../complete-google/CompleteGoogelModal";
 import LoginModal from "../login-modal/LoginModal";

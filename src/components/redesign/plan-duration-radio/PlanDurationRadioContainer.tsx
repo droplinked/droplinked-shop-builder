@@ -1,6 +1,6 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import React from 'react'
-import useSubscriptionPlanPurchaseStore, { planDurations } from '../../store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore, { planDurations } from '../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import PlanDurationRadio from './PlanDurationRadio'
 
 function PlanDurationRadioContainer() {

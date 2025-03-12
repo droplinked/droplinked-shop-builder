@@ -11,7 +11,7 @@ import useAppStore from 'lib/stores/app/appStore';
 import { getSubscriptionPlanIcon, navigateUserBasedOnStatus } from 'utils/helpers';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal';
-import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
+import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
 import * as React from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { PricePlan } from './PricePlan';

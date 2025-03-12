@@ -6,7 +6,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
-import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore from '../../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import { ModalStep } from '../types/interfaces'
 import PlanPrice from '../../plan-price/PlanPrice'
 

@@ -2,7 +2,7 @@ import { Flex, FlexProps } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useCallback, useEffect, useRef } from 'react'
-import useSubscriptionPlanPurchaseStore from '../../store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore from '../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface Props extends FlexProps {
     plan: SubscriptionPlan

@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces";
-import useSubscriptionPlanPurchaseStore from "pages/subscription-plans/_components/plans/store/planPurchaseStore";
+import useSubscriptionPlanPurchaseStore from "lib/stores/subscription-plan.ts/subscriptionPlanStore";
 import * as React from 'react';
 
 interface IProps {

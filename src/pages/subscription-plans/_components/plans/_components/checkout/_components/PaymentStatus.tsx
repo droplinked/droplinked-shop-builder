@@ -7,7 +7,7 @@ import React from 'react'
 import { useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
-import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore from '../../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface Props {
     paymentStatus: "success" | "error";
