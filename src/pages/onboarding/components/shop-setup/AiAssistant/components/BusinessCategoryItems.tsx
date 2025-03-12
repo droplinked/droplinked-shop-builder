@@ -26,7 +26,7 @@ export default function BusinessCategoryItems({ item, isSelected, onClick }: Pro
             cursor="pointer"
             transition="all 0.3s ease"
         >
-            <item.icon color={"#fff"} />
+            <item.icon color={color} />
             <Text
                 color={color}
                 fontSize={16}
