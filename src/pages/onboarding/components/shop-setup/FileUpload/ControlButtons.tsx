@@ -18,7 +18,7 @@ const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => (
         <IconButton
             aria-label="Edit image"
             borderRadius={8}
-            background={"#292929"}
+            background="#292929"
             _hover={{ background: "#292929" }}
             icon={<Refresh1Md color="#fff" />}
             onClick={onEdit}
@@ -26,7 +26,7 @@ const ControlButtons = ({ onEdit, onRemove }: ControlButtonsProps) => (
         <IconButton
             aria-label="Delete image"
             borderRadius={8}
-            background={"#292929"}
+            background="#292929"
             _hover={{ background: "#292929" }}
             icon={<TrashMd color="#fff" />}
             onClick={onRemove}

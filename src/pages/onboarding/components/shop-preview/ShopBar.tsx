@@ -21,7 +21,7 @@ export default function ShopBar() {
         >
             <ShopLogo />
             <Flex
-                position={"relative"}
+                position="relative"
                 width="100%"
                 flex={1}
                 bottom={{ base: "6rem", sm: "2.5rem", lg: "0.5rem" }}

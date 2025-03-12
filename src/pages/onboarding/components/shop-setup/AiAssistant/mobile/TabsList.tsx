@@ -11,11 +11,11 @@ interface Props {
 
 export default function TabsList({ tabs }: Props) {
     return (
-        <TabList borderBottom={"none"}>
+        <TabList borderBottom="none">
             {tabs.map((tab, index) => {
                 return (
                     <Tab
-                        aria-selected={"false"}
+                        aria-selected="false"
                         _focusWithin={{
                             background: "transparent",
                             borderBottom: "1px solid #fff",
@@ -25,11 +25,11 @@ export default function TabsList({ tabs }: Props) {
                             color: "#fff",
                             fontWeight: 500,
                         }}
-                        color={"#7B7B7B"}
+                        color="#7B7B7B"
                         fontSize={{ base: "14px", lg: "16px" }}
                         key={index}
-                        width={"100%"}
-                        pb={"14px"}
+                        width="100%"
+                        pb="14px"
                         isDisabled={tab.isDisabled}
                     >
                         {tab.title}

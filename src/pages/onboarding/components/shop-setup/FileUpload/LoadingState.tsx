@@ -12,7 +12,7 @@ const LoadingState = () => (
         <Text
             fontWeight={500}
             fontSize={14}
-            color={"#fff"}
+            color="#fff"
         >
             Uploading..., Please Wait.
         </Text>

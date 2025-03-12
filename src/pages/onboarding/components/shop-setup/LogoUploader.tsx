@@ -36,7 +36,7 @@ export default function LogoUploader() {
     return (
         <FieldWrapper title='Logo'>
             <Flex gap={6} align="center">
-                <AppSkeleton isLoaded={!isLoading} borderRadius={"100%"}>
+                <AppSkeleton isLoaded={!isLoading} borderRadius="100%">
                     <Avatar
                         width="80px"
                         height="80px"

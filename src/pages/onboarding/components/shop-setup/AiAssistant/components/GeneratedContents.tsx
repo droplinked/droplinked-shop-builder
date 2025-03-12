@@ -21,7 +21,7 @@ export default function GeneratedContents() {
             height="800px"
             borderLeft={{ base: "none", lg: "1px solid #292929" }}
             p={{ base: 4, md: 9, lg: "48px" }}
-            overflow={"auto"}
+            overflow="auto"
         >
             <Flex flexDirection="column" gap={9}>
                 <GeneratedLogo logos={fakeContent} />

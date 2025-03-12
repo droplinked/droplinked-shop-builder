@@ -30,7 +30,7 @@ export default function ShopBanner() {
                     <Text
                         fontSize={{ base: 16, xl: 24 }}
                         fontWeight={{ base: 500, xl: 700 }}
-                        color={"#b1b1b1"}
+                        color="#b1b1b1"
                     >
                         The Next Generation of Commerce
                     </Text>
