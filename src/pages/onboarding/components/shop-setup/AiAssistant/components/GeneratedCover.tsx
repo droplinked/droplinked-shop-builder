@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function GeneratedCover({ covers }: Props) {
-    const { updateOnboardingState, storeSetup } = useOnboardingStore();
+    const { updateOnboardingState, storeSetup } = useOnboardingStore()
 
     const handleChange = (url: string) => {
         updateOnboardingState("storeSetup", { ...storeSetup, coverImage: url })

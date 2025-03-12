@@ -17,9 +17,9 @@ interface Props {
 
 export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
     const [selectedPlan, setSelectedPlan] = useState("")
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
-    const title = "Use droplinked AI to create your shop";
-    const description = "Feel free to use our AI tools to customize your shop. Subscribe below to get started.";
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    const title = "Use droplinked AI to create your shop"
+    const description = "Feel free to use our AI tools to customize your shop. Subscribe below to get started."
 
     return (
         <Drawer

@@ -9,9 +9,9 @@ interface Props {
 }
 
 export default function BusinessCategoryItems({ item, isSelected, onClick }: Props) {
-    const border = isSelected ? "1.5px solid #2BCFA1" : "1.5px solid #292929";
-    const color = isSelected ? "#2BCFA1" : "#fff";
-    const background = isSelected ? "rgba(43, 207, 161, 0.10)" : "transparent";
+    const border = isSelected ? "1.5px solid #2BCFA1" : "1.5px solid #292929"
+    const color = isSelected ? "#2BCFA1" : "#fff"
+    const background = isSelected ? "rgba(43, 207, 161, 0.10)" : "transparent"
 
     return (
         <Flex

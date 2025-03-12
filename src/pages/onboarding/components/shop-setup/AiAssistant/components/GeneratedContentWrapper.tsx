@@ -1,13 +1,13 @@
 import { Flex, Text } from '@chakra-ui/react'
-import { Refresh1Md } from 'assets/icons/Action/Refresh1/Refresh1Md';
-import BlueButton from 'components/redesign/button/BlueButton';
+import { Refresh1Md } from 'assets/icons/Action/Refresh1/Refresh1Md'
+import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
 
 interface Props {
     children: React.ReactNode
     onRetry?: () => void
     isLoading?: boolean
-    title: string;
+    title: string
 }
 
 export default function GeneratedContentWrapper({ children, onRetry, title, isLoading }: Props) {

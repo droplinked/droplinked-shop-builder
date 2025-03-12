@@ -16,9 +16,9 @@ interface Props {
 }
 
 export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWithAiData, setGenerateWithAiData }: Props) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
-    const title = "Use droplinked AI to create your shop";
-    const description = "Use the AI tools to streamline the creation of store assets.";
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    const title = "Use droplinked AI to create your shop"
+    const description = "Use the AI tools to streamline the creation of store assets."
 
     const handleChange = (key: string, value: string) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })

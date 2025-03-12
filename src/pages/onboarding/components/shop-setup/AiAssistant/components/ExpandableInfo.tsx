@@ -1,17 +1,17 @@
-import { Box, Flex, Text, Collapse } from '@chakra-ui/react';
-import { ChevrondownLg } from 'assets/icons/Navigation/ChevronDown/ChevrondownLg';
-import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
-import React, { ReactNode, useState } from 'react';
+import { Box, Flex, Text, Collapse } from '@chakra-ui/react'
+import { ChevrondownLg } from 'assets/icons/Navigation/ChevronDown/ChevrondownLg'
+import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg'
+import React, { ReactNode, useState } from 'react'
 
 interface InfoAccordionProps {
-    icon: ReactNode;
-    title: string;
-    description: string;
-    children: ReactNode;
+    icon: ReactNode
+    title: string
+    description: string
+    children: ReactNode
 }
 
 export default function ExpandableInfo({ icon, title, description, children }: InfoAccordionProps) {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false)
 
     return (
         <Box
@@ -63,5 +63,5 @@ export default function ExpandableInfo({ icon, title, description, children }: I
                 </Box>
             </Collapse>
         </Box>
-    );
+    )
 }

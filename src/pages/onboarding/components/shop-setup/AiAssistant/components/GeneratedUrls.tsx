@@ -10,8 +10,8 @@ interface Props {
 }
 
 export default function GeneratedUrls({ urls }: Props) {
-    const { updateOnboardingState, storeSetup } = useOnboardingStore();
-    const selectedUrl = storeSetup.url;
+    const { updateOnboardingState, storeSetup } = useOnboardingStore()
+    const selectedUrl = storeSetup.url
 
     const handleClick = (url: string) => {
         updateOnboardingState("storeSetup", { ...storeSetup, url })

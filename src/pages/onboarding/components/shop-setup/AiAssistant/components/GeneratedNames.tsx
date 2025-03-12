@@ -8,8 +8,8 @@ interface Props {
 }
 
 export default function GeneratedNames({ names }: Props) {
-    const { updateOnboardingState, storeSetup } = useOnboardingStore();
-    const selectedName = storeSetup.name;
+    const { updateOnboardingState, storeSetup } = useOnboardingStore()
+    const selectedName = storeSetup.name
 
     const handleClick = (name: string) => {
         updateOnboardingState("storeSetup", { ...storeSetup, name })
