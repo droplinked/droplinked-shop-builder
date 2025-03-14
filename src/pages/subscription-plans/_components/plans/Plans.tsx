@@ -1,14 +1,11 @@
-import { Flex, SimpleGrid } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
+import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
 import React from "react";
 import { useQuery } from "react-query";
 import AppErrors from "utils/constants/errors";
-import { getFilteredFeatures } from "utils/helpers";
 import PlanDurationRadioContainer from "../../../../components/redesign/plan-duration-radio/PlanDurationRadioContainer";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
-
 
 export default function Plans() {
     const { isFetching, isError, data } = useQuery({
@@ -16,31 +13,17 @@ export default function Plans() {
         queryFn: () => getSubscriptionPlansService()
     })
 
-    if (isFetching) return <PlansGrid><Loading /></PlansGrid >
+    if (isFetching) return <PlansGrid><Loading /></PlansGrid>
 
-    if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.subscriptionDataUnavailable}</AppTypography>
+    if (isError) return <Text color="red.400">{AppErrors.permission.subscriptionDataUnavailable}</Text>
 
     const plans = data.data
 
     return (
-        <Flex direction={"column"} gap={9}>
+        <Flex direction="column" gap={9}>
             <PlanDurationRadioContainer />
             <PlansGrid >
-                {plans.map((plan, index) => {
-                    const prevPlan = plans[index - 1] || plans[0]
-                    return (
-                        <PlanCard
-                            key={plan._id}
-                            plan={plan}
-                            plans={plans}
-                            prevPlanType={prevPlan.type}
-                            features={index === 0 ?
-                                getFilteredFeatures(plan) :
-                                getFilteredFeatures(plan, plans[index - 1])
-                            }
-                        />
-                    )
-                })}
+                {plans.map((plan) => <PlanCard key={plan._id} plan={plan} />)}
             </PlansGrid>
         </Flex>
     )

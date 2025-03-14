@@ -1,28 +1,25 @@
 import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 
-export interface OnboardingStepData {
-    type:
-    | 'sign-in'
-    | 'sign-up'
-    | 'email-confirmation'
-    | 'shop-setup'
-    | 'payment-setup'
-    | 'subscription-plan'
-    | 'completion'
-    heading: string
-    description: string
+export interface OnboardingStates {
+    currentStep: 'SIGN_IN' | 'SIGN_UP' | 'EMAIL_CONFIRMATION' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET'
+    storeSetup: StoreSetup
+    storeSetupError: Partial<StoreSetup>
 }
 
-// Additional types for shop data (used in Step 5+)
-export interface ShopData {
-    url?: string
-    name?: string
-    description?: string
-    logo?: File | string
-    coverImage?: File | string
-    currency?: string
-    paymentMethods?: string[]
-    subscriptionPlan?: string
+export interface OnboardingActions {
+    nextStep: () => void
+    prevStep: () => void
+    updateOnboardingState: <K extends keyof OnboardingStates>(field: K, value: OnboardingStates[K]) => void
+    setError: (field: keyof OnboardingStates['storeSetupError'], message: string | undefined) => void
+    clearErrors: () => void
+}
+
+export interface StoreSetup {
+    logoUrl: string
+    coverImage: string
+    url: string
+    name: string
+    description: string
 }
 
 export interface ProductCardData {

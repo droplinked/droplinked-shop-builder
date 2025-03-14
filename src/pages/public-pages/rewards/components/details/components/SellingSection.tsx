@@ -1,8 +1,13 @@
-import { Box, Button, Text, VStack, Image } from '@chakra-ui/react';
+import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
+import Button from 'components/redesign/button/Button';
 import React from 'react';
 
-const SellingSection = ({ openAuthModal }) => (
+interface Props {
+  onCreateStoreClick: () => void
+}
+
+const SellingSection = ({ onCreateStoreClick }: Props) => (
   <Box flex="1" borderRadius="3xl" border="1px solid" borderColor="neutral.gray.900" display="flex" flexDirection="column" overflow="hidden">
     <Box p="8" display="flex" flexDirection="column" gap={6}>
       <Box w={`56px`} h={`56px`} bg="#141414" borderRadius="xl" border="1px solid" borderColor="neutral.gray.900" backdropFilter="blur(10px)" display="flex" justifyContent="center" alignItems="center">
@@ -15,7 +20,7 @@ const SellingSection = ({ openAuthModal }) => (
         <Text fontSize="base" color="text.subtextPlaceholder.dark">
           Selling on Droplinked is easy, transparent, and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly.
         </Text>
-        <Button bg="#2bcea1" color="black" size="md" borderRadius="lg" onClick={openAuthModal}>
+        <Button onClick={onCreateStoreClick}>
           Create Store
         </Button>
       </VStack>

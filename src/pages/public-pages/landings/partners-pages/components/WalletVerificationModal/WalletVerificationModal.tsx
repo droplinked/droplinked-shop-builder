@@ -1,15 +1,15 @@
 import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
+import Button from 'components/redesign/button/Button';
 import AppModal from 'components/redesign/modal/AppModal';
 import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useContext, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
 import PartnerContext, { StepsType } from '../../context/partner.context';
 import { useWalletVerification } from './useWalletVerification';
-import Button from 'components/redesign/button/Button';
 
 const WalletVerificationModal = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure();
@@ -132,12 +132,10 @@ const WalletVerificationModal = () => {
 							signupModalOnOpen();
 						}
 					},
-
 				},
 			},
 		},
 	};
-
 
 	const current_state = useMemo(
 		() => connect_wallet_steps?.[currentStep],

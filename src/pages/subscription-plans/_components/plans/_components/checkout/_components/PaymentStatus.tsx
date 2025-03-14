@@ -2,44 +2,25 @@ import { ModalBody, ModalFooter } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { useProfile } from 'hooks/useProfile/useProfile'
 import React from 'react'
 import { useQueryClient } from 'react-query'
-import { useNavigate } from 'react-router-dom'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from '../../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface Props {
     paymentStatus: "success" | "error";
     close: () => void;
-    isFromPlansPage?: boolean;
-    isLoggedInViaGoogle?: boolean;
 }
 
-function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoogle }: Props) {
+function PaymentStatus({ paymentStatus, close }: Props) {
     const queryClient = useQueryClient()
-    const navigate = useNavigate()
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
-    const { logoutUser } = useProfile()
     const isSuccessful = paymentStatus === "success"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
-        if (isFromPlansPage && isLoggedInViaGoogle) {
-            navigate("/analytics/registration")
-        } else if (isFromPlansPage && !isLoggedInViaGoogle) {
-            const registerEmail = localStorage.getItem("registerEmail")
-            logoutUser()
-            registerEmail && localStorage.setItem("registerEmail", registerEmail)
-            navigate("/email-confirmation")
-        }
         window.scrollTo({ top: 0, behavior: 'smooth' })
-        close()
-    }
-
-    const handleCloseModal = () => {
-        isFromPlansPage && logoutUser()
         close()
     }
 
@@ -85,8 +66,8 @@ function PaymentStatus({ paymentStatus, close, isFromPlansPage, isLoggedInViaGoo
                         <BasicButton variant='outline' onClick={fetchShopSubscriptionData}>Return to Dashboard</BasicButton>
                         :
                         <>
-                            <BasicButton minWidth={"unset"} width={"50%"} variant='outline' onClick={handleCloseModal}>Close</BasicButton>
-                            <BasicButton minWidth={"unset"} width={"50%"} onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>Close</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
                         </>
                 }
             </ModalFooter>

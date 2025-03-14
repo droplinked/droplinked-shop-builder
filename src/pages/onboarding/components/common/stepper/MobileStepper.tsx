@@ -2,11 +2,13 @@ import { Box } from '@chakra-ui/react'
 import React from 'react'
 import useOnboardingStore from '../../../stores/useOnboardingStore'
 
-const MobileStepper = () => {
+function MobileStepper({ visibleSteps }: { visibleSteps: string[] }) {
     const { currentStep } = useOnboardingStore()
-    const totalSteps = 3
-    const progress = ((currentStep - 4) / totalSteps) * 100
-    const isFirstStep = currentStep === 4
+
+    const totalSteps = visibleSteps.length
+    const currentIndex = visibleSteps.indexOf(currentStep)
+    const progress = currentIndex >= 0 ? (currentIndex / (totalSteps - 1)) * 100 : 0
+    const isFirstStep = currentStep === visibleSteps[0]
 
     return (
         <Box position="relative" w="100%" h="4px">
@@ -25,7 +27,7 @@ const MobileStepper = () => {
                 borderRadius="full"
                 transition="width 0.5s ease-in-out"
             />
-            {!isFirstStep &&
+            {!isFirstStep && (
                 <Box
                     position="absolute"
                     w="2px"
@@ -38,7 +40,7 @@ const MobileStepper = () => {
                     ml="-3px"
                     transition="left 0.5s ease-in-out"
                 />
-            }
+            )}
         </Box>
     )
 }

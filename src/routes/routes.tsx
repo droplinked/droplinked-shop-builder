@@ -82,7 +82,6 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <HomePage /> },
-            { path: "signup", element: <HomePage showAuthModal={true} /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },

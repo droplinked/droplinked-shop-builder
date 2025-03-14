@@ -1,40 +1,37 @@
 import { VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import AuthModal from 'components/modals/auth-modal/AuthModal';
 import useAppStore from 'lib/stores/app/appStore';
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFollowStatus from '../../hook/useFollowStatus';
 import ProPlanModal from '../ProPlanModal/ProPlanModal';
 import RewardDivider from './components/RewardDivider';
 import RewardHeader from './components/RewardHeader';
 
 const RewardHero = () => {
-  const { isLoggedIn } = useAppStore();
+  const navigate = useNavigate()
   const [isProPlanOpen, setProPlanOpen] = useState(false);
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
-  const { grantProPlan, loading } = useFollowStatus();
   const [unlockedMonths, setUnlockedMonths] = useState<number | undefined>();
+  const { isLoggedIn } = useAppStore();
+  const { grantProPlan, loading } = useFollowStatus();
 
-  const textMessage =  isLoggedIn ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to Qualify';
-  const buttonMessage =  isLoggedIn ? 'Activate Account' : 'Get Started';
+  const textMessage = isLoggedIn ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to Qualify';
+  const buttonMessage = isLoggedIn ? 'Activate Account' : 'Get Started';
 
   const onClick = async () => {
-    if ( isLoggedIn) {
-      try {
-        const result = await grantProPlan();
-        console.log(result);
-        if (result.success) {
-          setUnlockedMonths(result.unlockedMonths);
-          setProPlanOpen(true);
-        }
-      } catch (error) {
-        console.error('Error granting Pro Plan:', error);
+    if (!isLoggedIn) return navigate("/onboarding?entry=signin")
+
+    try {
+      const result = await grantProPlan();
+      if (result.success) {
+        setUnlockedMonths(result.unlockedMonths);
+        setProPlanOpen(true);
       }
-    } else {
-      setAuthModalOpen(true);
     }
-  };
+    catch (error) {
+      console.error('Error granting Pro Plan:', error);
+    }
+  }
 
   return (
     <>
@@ -47,8 +44,7 @@ const RewardHero = () => {
           </BasicButton>
         </VStack>
       </VStack>
-      { isLoggedIn && <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={() => setProPlanOpen(false)} /> }
-      <AuthModal show={isAuthModalOpen} close={() => setAuthModalOpen(false)} type={MODAL_TYPE.SIGNIN} />
+      {isLoggedIn && <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={() => setProPlanOpen(false)} />}
     </>
   );
 };

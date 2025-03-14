@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
@@ -8,14 +8,13 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import ActionControls from './ActionControls'
 import CompletionCarousel from './CompletionCarousel'
 
-function CompletionSection() {
+function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
     const navigate = useNavigate()
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
     const sliderReference = useRef<Slider>(null)
-    const { prevStep } = useOnboardingStore()
 
     function handlePreviousAction() {
-        if (currentSlideIndex === 0) return prevStep()
+        if (currentSlideIndex === 0) return onBack()
         updateSlide(0)
     }
 

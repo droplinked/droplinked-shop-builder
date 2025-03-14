@@ -1,7 +1,6 @@
-import { Image, useDisclosure } from '@chakra-ui/react'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
+import { Image } from '@chakra-ui/react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import Details from '../_components/details/Details'
 import Layout from '../_components/layout/Layout'
@@ -10,7 +9,7 @@ import PricingPlans from './_components/pricing-plans/PricingPlans'
 import TokenpayFeatures from './_components/TokenpayFeatures'
 
 function TokanpayPage() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     return (
         <Layout>
@@ -18,8 +17,6 @@ function TokanpayPage() {
                 image="https://upload-file-droplinked.s3.amazonaws.com/51c344e1159facd26589efba426ffd829074e6bfe84cea08f4042e2625dccdcb_or.png"
                 title="Token Powered Commerce Driven by Your Community"
                 description="Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities."
-                CTAButtonText="Get Started"
-                CTAButtonFunction={onOpen}
             />
 
             <Details
@@ -42,9 +39,8 @@ function TokanpayPage() {
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'
                 buttonText='Get Started'
-                buttonFunctionality={onOpen}
+                onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
-            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )
 }

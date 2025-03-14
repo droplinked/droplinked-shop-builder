@@ -1,7 +1,6 @@
 import { Flex, Grid } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import DroplinkedBrand from './components/common/DroplinkedBrand'
-import Stepper from './components/common/stepper/Stepper'
+import OnboardingPageHeader from './components/common/OnboardingPageHeader'
 import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import PaymentFeatures from './components/payment-features/PaymentFeatures'
@@ -11,43 +10,54 @@ import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
 import SignUpForm from './components/sign-up/SignUpForm'
-import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
+import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
 
 export default function Onboarding() {
-    const { currentStep, nextStep, prevStep } = useOnboardingStore()
+    const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const entry = params.get('entry')?.toLowerCase()
+
+        if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
+        else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
+    }, [updateOnboardingState])
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [currentStep])
 
     const stepContent = {
-        1: {
+        'SIGN_IN': {
             leftContent: <SignInForm onNext={nextStep} />,
             rightContent: <ProductCards />
         },
-        2: {
+        'SIGN_UP': {
             leftContent: <SignUpForm onBack={prevStep} onNext={nextStep} />,
             rightContent: <ProductCards />
         },
-        3: {
+        'EMAIL_CONFIRMATION': {
             leftContent: <EmailConfirmation onBack={prevStep} onNext={nextStep} />,
             rightContent: <ProductCards />
         },
-        4: {
+        'STORE_DETAILS': {
             leftContent: <ShopSetupForm onBack={prevStep} onNext={nextStep} />,
             rightContent: <ShopPreview />
         },
-        5: {
+        'PAYMENT_DETAILS': {
             leftContent: <PaymentSetup onBack={prevStep} onNext={nextStep} />,
             rightContent: <PaymentFeatures />
         },
-        6: {
+        'PLAN_SELECTION': {
             leftContent: <SubscriptionPlans onBack={prevStep} onNext={nextStep} />,
             rightContent: <SubscriptionPlansDisplay />
         },
-        7: { leftContent: <CompletionSection /> }
+        'YOU_ARE_ALL_SET': {
+            leftContent: <CompletionSection onBack={prevStep} />,
+            rightContent: null
+        }
     }
 
     const { leftContent, rightContent } = stepContent[currentStep]
@@ -56,25 +66,11 @@ export default function Onboarding() {
 
     return (
         <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr', xl: '1fr 1.5fr', '3xl': '1fr 2fr' }}>
-            <Flex direction='column' gap={12} padding={{ base: 4, md: 6, lg: 16 }}>
-                <OnboardingHeader />
+            <Flex direction="column" gap={12} padding={{ base: 4, md: 6, lg: 16 }}>
+                <OnboardingPageHeader />
                 {leftContent}
             </Flex>
-
             {rightContent}
         </Grid>
-    )
-}
-
-function OnboardingHeader() {
-    return (
-        <Flex
-            flexDirection={{ base: "row", lg: "column" }}
-            gap={{ base: 0, lg: 12 }}
-            justifyContent={{ base: "space-between", lg: "center" }}
-        >
-            <DroplinkedBrand />
-            <Stepper />
-        </Flex>
     )
 }
