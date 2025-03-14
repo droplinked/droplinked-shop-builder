@@ -1,5 +1,5 @@
 import { Badge, HStack, Image, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
-import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList";
+import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList";
 import React from "react";
 
 export const OrderProducts = (({ products }: { products: any[] }) => (

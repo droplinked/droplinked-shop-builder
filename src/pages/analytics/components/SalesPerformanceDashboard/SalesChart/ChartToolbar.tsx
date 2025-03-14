@@ -3,7 +3,8 @@ import AppIcons from 'assets/icon/Appicons'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
 import DateRangeNavButton from './DateRangeNavButton'
-import StylizedTitle from 'components/redesign/stylizedTitle/StylizedTitle'
+import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
+
 
 export default function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()

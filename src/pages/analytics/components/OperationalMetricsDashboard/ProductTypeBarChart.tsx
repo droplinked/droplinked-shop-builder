@@ -1,11 +1,11 @@
 import { Flex, SimpleGrid, Text, useMediaQuery } from "@chakra-ui/react"
-import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList"
+import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
+import HorizontalBarChart from "components/redesign/horizontal-bar-chart/horizontalBarChart"
+import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
 
-import HorizontalBarChart from "components/redesign/HorizontalBarChart/horizontalBarChart"
-import StylizedTitle from "components/redesign/stylizedTitle/StylizedTitle"
 
 const BADGE_COLORS: Record<string, string> = {
     "Normal Products": "#2BCFA1",

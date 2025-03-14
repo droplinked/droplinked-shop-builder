@@ -1,11 +1,12 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import StylizedTitle from "components/redesign/stylizedTitle/StylizedTitle"
+
 import React, { ReactNode } from "react"
 import DataPointCard from "./DataPointCard"
 import StatIndicator from "./StatIndicator"
-import HorizontalBarChart from "components/redesign/HorizontalBarChart/horizontalBarChart"
+import HorizontalBarChart from "components/redesign/horizontal-bar-chart/horizontalBarChart"
+import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
 
 interface MetricCardProps {
     icon: ReactNode

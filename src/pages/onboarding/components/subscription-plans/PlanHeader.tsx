@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import DotSeparatedList from 'components/redesign/dotSeparatedList/DotSeparatedList';
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
 import PlanPrice from 'pages/subscription-plans/_components/plans/_components/plan-price/PlanPrice';

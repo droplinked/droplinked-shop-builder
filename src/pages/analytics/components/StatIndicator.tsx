@@ -1,5 +1,5 @@
 import { FlexProps, Text } from "@chakra-ui/react"
-import DotSeparatedList from "components/redesign/dotSeparatedList/DotSeparatedList"
+import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
 import React, { PropsWithChildren } from "react"
 
 interface StatIndicatorProps extends FlexProps, PropsWithChildren {

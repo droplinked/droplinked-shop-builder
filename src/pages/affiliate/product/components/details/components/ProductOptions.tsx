@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import DotSeparatedList from 'components/redesign/dotSeparatedList/DotSeparatedList';
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import productPageModel from 'pages/affiliate/product/model';
 
 import React from 'react';
