@@ -5,7 +5,11 @@ import Slider from 'react-slick'
 import NewsletterSubscription from './NewsletterSubscription'
 import VideoPlayer from './VideoPlayer'
 
-const CompletionCarousel = forwardRef<Slider>((_, ref) => {
+interface CompletionCarouselProps {
+    currentSlideIndex: number;
+}
+
+const CompletionCarousel = forwardRef<Slider, CompletionCarouselProps>(({ currentSlideIndex }, ref) => {
     const communityEngagementColumns = useBreakpointValue({ base: 1, md: 2, lg: 3 })
 
     const sliderSettings = {
@@ -20,7 +24,7 @@ const CompletionCarousel = forwardRef<Slider>((_, ref) => {
 
     return (
         <Slider {...sliderSettings} ref={ref}>
-            <VideoPlayer />
+            {currentSlideIndex !== 1 && <VideoPlayer />}
 
             <Box>
                 <NewsletterSubscription />

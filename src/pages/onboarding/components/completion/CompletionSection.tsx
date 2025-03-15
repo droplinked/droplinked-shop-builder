@@ -43,8 +43,8 @@ function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
                 textAlign="center"
             />
 
-            <Flex width="100%" maxWidth="912px" direction="column" gap={6} sx={{ ".slick-slide": { padding: 0 } }}>
-                <CompletionCarousel ref={sliderReference} />
+            <Flex width="100%" maxWidth="912px" direction="column" gap={6} sx={{ ".slick-slide": { padding: 0 }, ".slick-track": { maxW: "100%" } }}>
+                <CompletionCarousel ref={sliderReference} currentSlideIndex={currentSlideIndex} />
                 <ActionControls
                     currentSlideIndex={currentSlideIndex}
                     handlePreviousAction={handlePreviousAction}
