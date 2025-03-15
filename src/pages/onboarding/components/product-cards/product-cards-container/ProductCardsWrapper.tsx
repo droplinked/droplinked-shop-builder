@@ -9,11 +9,11 @@ export default function ProductCardsWrapper({ children }: PropsWithChildren) {
                 base: "1fr auto 1fr",
                 xl: "repeat(3, auto)"
             }}
-            gap={{ base: 4, "2xl": 6 }}
             role="region"
             aria-label="Product Types"
             marginRight={{ base: 0, xl: "-25rem" }}
             marginBlock={{ base: 4, xl: 0 }}
+            gap={{ base: 4, "2xl": 0 }}
         >
             <Box
                 display={{ base: "block", xl: "none" }}
@@ -28,7 +28,7 @@ export default function ProductCardsWrapper({ children }: PropsWithChildren) {
 
             <Grid
                 templateColumns={{ xl: "repeat(3, auto)" }}
-                gap={{ base: 4, xl: 0 }}
+                gap={{ base: 4, "2xl": 6 }}
             >
                 {children}
             </Grid>
