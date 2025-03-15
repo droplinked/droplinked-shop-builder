@@ -1,4 +1,4 @@
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import useProduct from 'hooks/products/useProduct'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
@@ -28,7 +28,7 @@ function ProductDrawer({ isOpen, onClose }: Props) {
         >
             {
                 isFetching ?
-                    <LoadingComponent height="100%" />
+                    <LoadingSpinner height="100%" />
                     :
                     <ProductForm
                         selectedProductType={selectedProductType}

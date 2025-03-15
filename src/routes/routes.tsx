@@ -47,7 +47,6 @@ const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage")
 const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"));
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"));
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"));
-const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
 const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
 const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
@@ -212,7 +211,6 @@ const router = createBrowserRouter([
             { index: true, element: <ShopManagement /> },
         ],
     },
-    { path: ":shopname", element: <ShopPage /> },
     { path: "*", element: <NotFoundPage /> },
 ]);
 

@@ -1,5 +1,5 @@
 import { Box, Circle, Flex, PopoverBody } from '@chakra-ui/react'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getPODShippingAvailability } from 'lib/apis/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
@@ -35,7 +35,7 @@ export default function ShippingAvailabilityContent() {
                     padding="32px 24px"
                 >
                     {isLoading ?
-                        <LoadingComponent /> :
+                        <LoadingSpinner /> :
                         regions.map((region, index) =>
                             <Region key={index} region={region} isLastItem={index === regions.length - 1} />
                         )
