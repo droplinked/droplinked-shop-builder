@@ -23,11 +23,12 @@ export interface StoreSetup {
 }
 
 export interface ProductCardData {
-    frontTitle: string
-    frontDescription: string
-    iconType: 'physical' | 'digital' | 'print' | 'nft'
-    frontBackgroundImage: string
-    backBackgroundImage: string
+    frontTitle?: string
+    frontDescription?: string
+    iconType?: 'physical' | 'digital' | 'print' | 'nft'
+    frontBackgroundImage?: string
+    backBackgroundImage?: string
+    isMockElement?: boolean
 }
 
 export interface OnboardingStepProps {

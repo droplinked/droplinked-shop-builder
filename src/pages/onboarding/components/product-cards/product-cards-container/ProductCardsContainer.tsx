@@ -1,11 +1,16 @@
-import { useBreakpointValue } from "@chakra-ui/react"
-import React, { PropsWithChildren } from "react"
+import { ChakraProps, useBreakpointValue } from "@chakra-ui/react"
+import React, { ReactNode } from "react"
 import RightSectionWrapper from "../../common/RightSectionWrapper"
 import DesktopCardsContainer from "./DesktopCardsContainer"
 import TabletCardsContainer from "./TabletCardsContainer"
 import XLargeCardsContainer from "./XLargeCardsContainer"
 
-export default function ProductCardsContainer({ children }: PropsWithChildren) {
+interface PropsWithChildren {
+    children: ReactNode
+    wrapperProps?: ChakraProps
+}
+
+export default function ProductCardsContainer({ children, wrapperProps }: PropsWithChildren) {
     const ContainerComponent = useBreakpointValue({
         base: TabletCardsContainer,  // Up to 1279px
         xl: DesktopCardsContainer,   // 1280px to 1919px
@@ -18,6 +23,7 @@ export default function ProductCardsContainer({ children }: PropsWithChildren) {
             paddingRight={0}
             paddingBottom={0}
             paddingLeft={{ base: 0, xl: 12, "3xl": "80px" }}
+            {...wrapperProps}
         >
             <ContainerComponent>
                 {children}

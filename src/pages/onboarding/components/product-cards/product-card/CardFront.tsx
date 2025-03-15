@@ -19,9 +19,10 @@ interface Props {
     frontTitle: string
     frontDescription: string
     frontBackgroundImage: string
+    isMockElement: boolean
 }
 
-function CardFront({ iconType, frontTitle, frontDescription, frontBackgroundImage }: Props) {
+function CardFront({ iconType, frontTitle, frontDescription, frontBackgroundImage, isMockElement }: Props) {
     return (
         <Flex
             as="section"
@@ -37,15 +38,35 @@ function CardFront({ iconType, frontTitle, frontDescription, frontBackgroundImag
             backgroundPosition="top"
             sx={{ position: 'absolute', backfaceVisibility: 'hidden' }}
         >
-            <IconWrapper icon={iconMap[iconType]} flexShrink={0} />
-            <Box as="header">
-                <Heading as="h2" fontSize={{ base: 18, xl: 24 }} color="#FFF">
-                    {frontTitle}
-                </Heading>
-                <Text marginTop={1} fontSize={{ base: 14, xl: 16 }} color="#B1B1B1">
-                    {frontDescription}
-                </Text>
-            </Box>
+            {!isMockElement &&
+                <>
+                    <IconWrapper icon={iconMap[iconType]} flexShrink={0} />
+                    <Box as="header">
+                        <Heading as="h2" fontSize={{ base: 18, xl: 24 }} color="#FFF">
+                            {frontTitle}
+                        </Heading>
+                        <Text marginTop={1} fontSize={{ base: 14, xl: 16 }} color="#B1B1B1">
+                            {frontDescription}
+                        </Text>
+                    </Box>
+                </>
+            }
+            {isMockElement &&
+                <Flex flexDirection="column" gap="6px" marginTop="auto">
+                    <Box
+                        width="100%"
+                        height="20px"
+                        backgroundColor="#262626"
+                        borderRadius="4px"
+                    />
+                    <Box
+                        width="50%"
+                        height="20px"
+                        backgroundColor="#262626"
+                        borderRadius="4px"
+                    />
+                </Flex>
+            }
         </Flex>
     )
 }
