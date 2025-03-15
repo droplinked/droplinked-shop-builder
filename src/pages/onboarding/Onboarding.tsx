@@ -1,6 +1,4 @@
-import { Flex, Grid } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import OnboardingPageHeader from './components/common/OnboardingPageHeader'
 import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import PaymentFeatures from './components/payment-features/PaymentFeatures'
@@ -13,6 +11,7 @@ import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
+import OnboardingLayout from './components/layout/OnboardingLayout'
 
 export default function Onboarding() {
     const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
@@ -61,16 +60,13 @@ export default function Onboarding() {
     }
 
     const { leftContent, rightContent } = stepContent[currentStep]
-
-    if (!rightContent) return leftContent
+    const isMobileAuthStep = ['SIGN_IN', 'SIGN_UP', 'EMAIL_CONFIRMATION'].includes(currentStep)
 
     return (
-        <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr', xl: '1fr 1.5fr', '3xl': '1fr 2fr' }}>
-            <Flex direction="column" gap={12} padding={{ base: 4, md: 6, lg: 16 }}>
-                <OnboardingPageHeader />
-                {leftContent}
-            </Flex>
-            {rightContent}
-        </Grid>
+        <OnboardingLayout
+            leftContent={leftContent}
+            rightContent={rightContent}
+            isMobileAuthStep={isMobileAuthStep}
+        />
     )
 }
