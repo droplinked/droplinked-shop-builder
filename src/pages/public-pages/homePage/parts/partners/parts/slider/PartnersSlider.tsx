@@ -2,8 +2,6 @@ import { Box, Image } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 import MainCard from '../../../parts/card/MainCard';
 import './styles.css';
 
@@ -112,7 +110,7 @@ function PartnersSlider() {
 
 	return (
 		<Box width={'100%'}>
-			 <Slider ref={sliderRef} {...settings}>
+			<Slider ref={sliderRef} {...settings}>
 				{partners.map((partner, key) => {
 					const { title, icon, url } = partner;
 					return (
