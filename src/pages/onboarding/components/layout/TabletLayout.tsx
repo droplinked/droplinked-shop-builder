@@ -3,7 +3,7 @@ import React from 'react'
 import OnboardingPageHeader from '../common/OnboardingPageHeader'
 import { LayoutProps } from 'pages/onboarding/types/onboarding'
 
-function TabletLayout({ leftContent, rightContent }: LayoutProps) {
+function TabletLayout({ leftContent }: LayoutProps) {
     return (
         <Box
             height="100%"

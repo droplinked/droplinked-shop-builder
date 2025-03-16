@@ -12,6 +12,7 @@ import UrlChooser from './UrlChooser'
 import { validateStoreData } from '../../utils/shopSetupFormValidation'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
+import ShopPreview from '../shop-preview/ShopPreview'
 
 function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
@@ -31,7 +32,7 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     }
 
     return (
-        <Flex gap={9} direction="column" paddingBlockEnd={{ base: "75px", lg: 0 }}>
+        <>
             <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
                 <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
                 {isSmallerThan1024 && <AiAssistantButton />}
@@ -43,7 +44,8 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
             <DescriptionField />
             <ControlButtons onBack={handleBack} onSubmit={handleSubmit} />
             {!isSmallerThan1024 && <AiAssistant />}
-        </Flex>
+            {isSmallerThan1024 && <ShopPreview />}
+        </>
     )
 }
 

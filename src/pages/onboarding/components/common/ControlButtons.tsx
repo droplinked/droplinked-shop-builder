@@ -10,9 +10,9 @@ interface ControlButtonsProps {
     continueText?: string
 }
 
-const ControlButtons: React.FC<ControlButtonsProps> = ({ 
-    onBack, 
-    onSubmit, 
+const ControlButtons: React.FC<ControlButtonsProps> = ({
+    onBack,
+    onSubmit,
     onSkip = null,
     continueText = "Continue"
 }) => {
@@ -22,10 +22,10 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     }
 
     return (
-        <Flex width="100%" justifyContent="space-between" alignItems="center">
+        <Flex width="100%" justifyContent="space-between" alignItems="center" paddingBlockEnd={{ base: "75px", lg: 0 }}>
             {onSkip && (
-                <Button 
-                    variant='ghost' 
+                <Button
+                    variant='ghost'
                     onClick={onSkip}
                     paddingInline="0px"
                 >
