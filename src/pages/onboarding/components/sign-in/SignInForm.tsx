@@ -5,8 +5,7 @@ import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
-import React, { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import React from 'react'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
@@ -20,26 +19,7 @@ const formSchema = Yup.object().shape({
 })
 
 function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
-    const { authenticateUser, onLoginSubmit, finalizeLogin, loading } = useLogin()
-    const [searchParams] = useSearchParams()
-
-    async function loginWithGoogle(access_token: string, refresh_token: string) {
-        const result = await authenticateUser({
-            type: "get",
-            access_token,
-            refresh_token,
-            params: { access_token }
-        })
-        if (result) await finalizeLogin(result)
-    }
-
-    useEffect(() => {
-        const access_token = searchParams.get("access_token")
-        const refresh_token = searchParams.get("refresh_token")
-        if (access_token && refresh_token && !loading) {
-            loginWithGoogle(access_token, refresh_token)
-        }
-    }, [searchParams, loading, loginWithGoogle])
+    const { onLoginSubmit } = useLogin()
 
     return (
         <>
