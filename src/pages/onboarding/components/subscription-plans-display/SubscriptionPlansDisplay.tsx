@@ -7,7 +7,7 @@ import RightSectionWrapper from '../common/RightSectionWrapper';
 
 const SubscriptionPlansDisplay = () => {
   return (
-    <RightSectionWrapper sx={{ overflow: 'hidden' }}>
+    <RightSectionWrapper sx={{ overflow: 'hidden' }}  display={{ base: 'none', lg: 'block' }}>
       <Box position="relative" w="750px" h="750px" mx="auto">
         {/* Main circle border */}
         <Circle
