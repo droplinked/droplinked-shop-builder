@@ -16,7 +16,7 @@ import PasswordInput from '../common/PasswordInput'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
-    password: Yup.string().required("Password is required.")
+    password: Yup.string().min(8, "Password must be at least 8 characters.").required("Password is required.")
 })
 
 const savedEmail = Cookies.get('remembered_email')
