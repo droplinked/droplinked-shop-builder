@@ -1,7 +1,7 @@
-import { Checkbox, Flex, VStack } from '@chakra-ui/react';
-import Button from 'components/redesign/button/Button';
+import { Flex, VStack } from '@chakra-ui/react';
+import Checkbox from 'components/redesign/checkbox/Checkbox';
 import Input from 'components/redesign/input/Input';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CardData {
   number: string;
@@ -11,33 +11,25 @@ interface CardData {
   zipCode: string;
 }
 
-interface CreditCardFormProps {
-  cardData: CardData;
-  onCardDataChange: (field: keyof CardData, value: string) => void;
-  onDiscard: () => void;
-  onSubmit: () => void;
-  planTitle: string;
-}
+const CreditCardForm = () => {
+  const [cardData, setCardData] = useState<CardData>({
+    number: '',
+    expirationDate: '',
+    securityCode: '',
+    country: '',
+    zipCode: ''
+  });
 
-const CreditCardForm: React.FC<CreditCardFormProps> = ({
-  cardData,
-  onCardDataChange,
-  onDiscard,
-  onSubmit,
-  planTitle
-}) => {
+  const onCardDataChange = (field: keyof CardData, value: string) => {
+    setCardData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
   return (
     <Flex flex={1} flexDirection="column" h="100%" position="relative">
-      <VStack 
-        p={12} 
-        alignItems="stretch" 
-        spacing={6} 
-        mt={4} 
-        borderTop="1px solid" 
-        borderColor="neutral.gray.800"
-        flex={1}
-        pb={{ base: '80px', md: '80px', lg: 9 }}
-      >
+      <VStack p={12} alignItems="stretch" spacing={6} borderColor="neutral.gray.800" flex={1} pb={{ base: '80px', md: '80px', lg: 9 }}>
         <VStack alignItems="stretch" spacing={4}>
           <Input
             label="Card Number"
@@ -103,29 +95,8 @@ const CreditCardForm: React.FC<CreditCardFormProps> = ({
           Save credit card information
         </Checkbox>
       </VStack>
-
-      <Flex 
-        gap={4} 
-        px={12} 
-        py={6} 
-        borderTop="1px solid" 
-        borderColor="neutral.gray.800"
-        position={{ base: 'fixed', md: 'fixed', lg: 'relative' }}
-        bottom={0}
-        left={0}
-        right={0}
-        bg="#1C1C1C"
-        zIndex={1}
-      >
-        <Button variant="secondary" onClick={onDiscard}>
-          Discard
-        </Button>
-        <Button flexGrow={1} variant="primary" onClick={onSubmit}>
-          Get {planTitle} Plan (Free Trial)
-        </Button>
-      </Flex>
     </Flex>
   );
 };
 
-export default CreditCardForm; 
+export default CreditCardForm;

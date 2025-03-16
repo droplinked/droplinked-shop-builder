@@ -10,10 +10,9 @@ import { useQuery } from 'react-query';
 import AppErrors from 'utils/constants/errors';
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
 import ControlButtons from '../common/ControlButtons';
-import PaymentModal from '../common/payment-modal/paymentModal';
-import SubscriptionPlanCard from './SubscriptionPlanCard';
 import OnboardingStepHeader from '../common/OnboardingStepHeader';
-import BlueButton from 'components/redesign/button/BlueButton';
+import PaymentModal from '../common/payment-modal/PaymentModal';
+import SubscriptionPlanCard from './SubscriptionPlanCard';
 
 const planFeatures = {
   STARTER: ['Analytics', 'Store designer', 'Shipment tracking', 'Product collections', 'Custom referral codes', 'Affiliate network access', 'Basic customer support'],

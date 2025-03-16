@@ -1,7 +1,7 @@
 import { Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Button from 'components/redesign/button/Button'
-import PaymentModal from 'pages/onboarding/components/common/payment-modal/paymentModal'
+import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React, { useState } from 'react'
 import BusinessDrawer from './BusinessDrawer'

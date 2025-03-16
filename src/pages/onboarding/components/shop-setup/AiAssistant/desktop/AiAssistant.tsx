@@ -6,7 +6,7 @@ import PlansModal from './PlansModal'
 import BusinessModal from './BusinessModal'
 import GenerationModal from './GenerationModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
-import PaymentModal from 'pages/onboarding/components/common/payment-modal/paymentModal'
+import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
