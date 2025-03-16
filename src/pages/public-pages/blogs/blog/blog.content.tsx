@@ -7,7 +7,9 @@ import React from "react";
 import { IBlog } from "../blogs.interface";
 
 function BlogContent({ blog }: { blog: IBlog }) {
-    const editor = useCreateBlockNote({ initialContent: JSON.parse(blog.content) });
+    const editor = useCreateBlockNote({
+        initialContent: JSON.parse(blog.content)
+    });
 
     return (
         <Box
@@ -22,7 +24,18 @@ function BlogContent({ blog }: { blog: IBlog }) {
                 },
             }}
         >
-            <BlockNoteView editor={editor} editable={false} />
+            <BlockNoteView
+                editor={editor}
+                editable={false}
+                theme={{
+                    colors: {
+                        editor: {
+                            text: "#fff",
+                            background: "transparent",
+                        }
+                    }
+                }}
+            />
         </Box>
     );
 }
