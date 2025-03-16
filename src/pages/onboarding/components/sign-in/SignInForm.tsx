@@ -19,14 +19,15 @@ const formSchema = Yup.object().shape({
     password: Yup.string().required("Password is required.")
 })
 
+const savedEmail = Cookies.get('remembered_email')
+const savedPassword = Cookies.get('remembered_password')
+
 function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
-    const savedEmail = Cookies.get('remembered_email')
-    const savedPassword = Cookies.get('remembered_password')
+    const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
-    const [rememberMe, setRememberMe] = useState<boolean>(!!savedEmail && !!savedPassword)
 
     const handleSubmit = async (values: { email: string, password: string }) => {
-        if (rememberMe) {
+        if (rememberPassword) {
             Cookies.set('remembered_email', values.email, { expires: 30 })
             Cookies.set('remembered_password', values.password, { expires: 30 })
         } else {
@@ -74,8 +75,8 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
 
                         <Checkbox
                             marginBlock={3}
-                            isChecked={rememberMe}
-                            onChange={(e) => setRememberMe(e.target.checked)}
+                            isChecked={rememberPassword}
+                            onChange={(e) => setRememberPassword(e.target.checked)}
                         >
                             Remember my password
                         </Checkbox>
