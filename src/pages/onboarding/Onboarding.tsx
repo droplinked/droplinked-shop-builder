@@ -1,6 +1,10 @@
+import { useBreakpointValue } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
+import DesktopLayout from './components/layout/DesktopLayout'
+import MobileLayout from './components/layout/MobileLayout'
+import TabletLayout from './components/layout/TabletLayout'
 import PaymentFeatures from './components/payment-features/PaymentFeatures'
 import PaymentSetup from './components/payment-setup/PaymentSetup'
 import ProductCards from './components/product-cards/ProductCards'
@@ -11,9 +15,9 @@ import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
-import OnboardingLayout from './components/layout/OnboardingLayout'
 
-export default function Onboarding() {
+function Onboarding() {
+    const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
     const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
 
     useEffect(() => {
@@ -24,11 +28,11 @@ export default function Onboarding() {
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
     }, [updateOnboardingState])
 
-    useEffect(() => {
+    useEffect(function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [currentStep])
 
-    const stepContent = {
+    const stepContentMap = {
         'SIGN_IN': {
             leftContent: <SignInForm onNext={nextStep} />,
             rightContent: <ProductCards />
@@ -59,14 +63,10 @@ export default function Onboarding() {
         }
     }
 
-    const { leftContent, rightContent } = stepContent[currentStep]
-    const isMobileAuthStep = ['SIGN_IN', 'SIGN_UP', 'EMAIL_CONFIRMATION'].includes(currentStep)
+    const { leftContent, rightContent } = stepContentMap[currentStep]
+    const isAuthStep = ['SIGN_IN', 'SIGN_UP', 'EMAIL_CONFIRMATION'].includes(currentStep)
 
-    return (
-        <OnboardingLayout
-            leftContent={leftContent}
-            rightContent={rightContent}
-            isMobileAuthStep={isMobileAuthStep}
-        />
-    )
+    return <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
 }
+
+export default Onboarding

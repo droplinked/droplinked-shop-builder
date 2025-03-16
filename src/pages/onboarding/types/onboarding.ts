@@ -1,3 +1,4 @@
+import React from "react"
 import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 
 export interface OnboardingStates {
@@ -36,4 +37,10 @@ export interface OnboardingStepProps {
     onNext: () => void
 }
 
-export type PlanType = keyof typeof subscriptionPlans;
+export type PlanType = keyof typeof subscriptionPlans
+
+export interface LayoutProps {
+    leftContent: React.ReactNode
+    rightContent: React.ReactNode | null
+    isAuthStep: boolean
+}
