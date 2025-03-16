@@ -2,9 +2,9 @@ import { Flex } from '@chakra-ui/react';
 import useAppStore from 'lib/stores/app/appStore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import CustomizableSection from './components/CustomizableSection';
-import ProPlanSection from './components/ProPlanSection';
-import SellingSection from './components/SellingSection';
+import CustomizableSection from './CustomizableSection';
+import ProPlanSection from './ProPlanSection';
+import SellingSection from './SellingSection';
 
 const RewardDetails = () => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 import React from 'react';
 import RewardBackground from './components/background/RewardBackground';
-import RewardDetails from './components/details/RewardInfo';
-import RewardHero from './components/hero/reward-hero';
+import RewardDetails from './components/details/RewardDetails';
+import RewardHero from './components/hero/RewardHero';
 import SocialMediaList from './components/social-media/SocialMediaList';
 
 const Rewards: React.FC = () => {

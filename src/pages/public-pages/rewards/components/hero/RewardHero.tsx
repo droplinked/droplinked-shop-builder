@@ -4,9 +4,9 @@ import useAppStore from 'lib/stores/app/appStore';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFollowStatus from '../../hook/useFollowStatus';
-import ProPlanModal from '../ProPlanModal/ProPlanModal';
-import RewardDivider from './components/RewardDivider';
-import RewardHeader from './components/RewardHeader';
+import ProPlanModal from '../Pro-plan-modal/ProPlanModal';
+import RewardDivider from './RewardDivider';
+import RewardHeader from './RewardHeader';
 
 const RewardHero = () => {
   const navigate = useNavigate()
