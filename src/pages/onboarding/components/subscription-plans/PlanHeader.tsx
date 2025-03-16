@@ -13,31 +13,34 @@ interface PlanHeaderProps {
 }
 
 const PlanHeader: React.FC<PlanHeaderProps> = ({ plan, isPopular, isSelected }) => {
-  const Icon = subscriptionPlans[plan.type].icon;
+  const planDetail = subscriptionPlans[plan.type];
 
   return (
     <Box p={4}>
       <Flex gap={2} mb={4}>
-        <IconWrapper icon={<Icon color={isSelected ? '#2BCFA1' : 'white'} />} bg={isSelected ? 'label.success' : '#1b1b1b'} borderColor={isSelected ? '#2BCFA1' : 'neutral.gray.800'} />
-        
+        <IconWrapper
+          icon={<planDetail.icon color={isSelected ? '#2BCFA1' : 'white'} />}
+          bg={isSelected ? 'label.success' : '#1b1b1b'}
+          borderColor={isSelected ? '#2BCFA1' : 'neutral.gray.800'}
+        />
       </Flex>
       <Flex direction="column" gap={2}>
         <Flex direction="column" gap={1}>
           {isPopular ? (
             <DotSeparatedList>
               <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-                {plan.type}
+                {planDetail.title}
               </Text>
               <Text color="text.primary">Most Popular</Text>
             </DotSeparatedList>
           ) : (
             <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-              {plan.type}
+              {planDetail.title}
             </Text>
           )}
 
           <Text color="#b1b1b1" fontSize="sm">
-            {plan.description}
+            {planDetail.description}
           </Text>
         </Flex>
         <Box>

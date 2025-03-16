@@ -32,7 +32,7 @@ const PaymentContent = ({ onClose, onSubmit, planDetail, isDrawer }) => {
     return (
       <Flex direction="column" gap={4} background={commonStyles.background}>
         <CreditCardForm />
-        <ExpandableInfo icon={<CreditcardLg color="white" />} title="Pro Plan" description="For small businesses and teams ready to grow.">
+        <ExpandableInfo icon={<planDetail.icon color="white" />} title={planDetail.title} description={planDetail.description}>
           {billingContent}
         </ExpandableInfo>
       </Flex>
