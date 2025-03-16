@@ -19,7 +19,7 @@ import ProductTilePage from "pages/public-pages/landings/product-tile-page/Produ
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
-import Rewards from "pages/public-pages/rewards/rewards";
+import Rewards from "pages/public-pages/rewards/Rewards";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
