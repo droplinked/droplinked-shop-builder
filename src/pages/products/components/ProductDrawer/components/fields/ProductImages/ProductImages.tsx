@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
-import { getFileSizeInMB } from 'utils/helpers'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
+import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from '../../common/FileUpload'
 import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import SelectedFileCard from '../../common/SelectedFileCard'
@@ -54,11 +54,13 @@ export default function ProductImages() {
                     flexProps={{ minH: "140px" }}
                 />
 
-                {sortedMedia.map((mediaItem) => (
-                    <SelectedFileCard key={mediaItem.url} previewImage={mediaItem.thumbnail} {...mediaItem}>
-                        <MediaActions image={mediaItem} />
-                    </SelectedFileCard>
-                ))}
+                <Flex direction="column" gap={3}>
+                    {sortedMedia.map((mediaItem) => (
+                        <SelectedFileCard key={mediaItem.url} previewImage={mediaItem.thumbnail} {...mediaItem}>
+                            <MediaActions image={mediaItem} />
+                        </SelectedFileCard>
+                    ))}
+                </Flex>
             </Flex>
         </ProductFieldWrapper>
     )

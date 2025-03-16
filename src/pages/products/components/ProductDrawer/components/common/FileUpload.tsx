@@ -53,7 +53,7 @@ function FileUpload({
             alignItems="center"
             gap={3}
             border="1px dashed"
-             borderColor="neutral.gray.800"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding="24px 16px"
             bgColor="neutral.gray.1000"
@@ -64,7 +64,7 @@ function FileUpload({
             <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
             {
                 isLoading ?
-                    <Spinner width={10} height={10} thickness='2px' color="neutral.primary" />
+                    <Spinner width={10} height={10} thickness='2px' color="primary.default" />
                     :
                     <>
                         {icon}

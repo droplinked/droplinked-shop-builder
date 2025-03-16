@@ -186,7 +186,7 @@ const ProductPassport = () => {
               />
               <Link to={activeProduct.view3D} target="_blank">
                 <Flex position={"absolute"} bottom={"60px"} left={"50%"} transform={"translateX(-50%)"} alignItems={"center"} justifyContent={"center"} borderRadius={"8px"} bgColor={"neutral.gray.1000"} padding={"12px"} width={"160px"} height={"40px"} cursor={"pointer"}>
-                  <AppTypography color="neutral.primary" textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>View 3D Model</AppTypography>
+                  <AppTypography color="primary.default" textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>View 3D Model</AppTypography>
                 </Flex>
               </Link>
             </Flex>
@@ -219,7 +219,7 @@ const ProductPassport = () => {
                 <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>Product created</AppTypography>
               </Flex>
             </Flex>
-            <Flex width={"80%"} alignItems={"center"} justifyContent={"space-between"} flexDirection={{base: "column", md: "row"}}>
+            <Flex width={"80%"} alignItems={"center"} justifyContent={"space-between"} flexDirection={{ base: "column", md: "row" }}>
               <Image src={activeProduct.blockchainLogo} width={"260px"} height={"92px"} objectFit={"contain"} />
               <Image src={activeProduct.QR_Code} width={"92px"} height={"92px"} borderRadius={"8px"} objectFit={"cover"} />
             </Flex>
