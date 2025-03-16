@@ -1,11 +1,12 @@
-import { HStack, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
+import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
-import React from 'react'
+import React, { useState } from 'react'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
@@ -19,7 +20,21 @@ const formSchema = Yup.object().shape({
 })
 
 function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
+    const savedEmail = Cookies.get('remembered_email')
+    const savedPassword = Cookies.get('remembered_password')
     const { onLoginSubmit } = useLogin()
+    const [rememberMe, setRememberMe] = useState<boolean>(!!savedEmail && !!savedPassword)
+
+    const handleSubmit = async (values: { email: string, password: string }) => {
+        if (rememberMe) {
+            Cookies.set('remembered_email', values.email, { expires: 30 })
+            Cookies.set('remembered_password', values.password, { expires: 30 })
+        } else {
+            Cookies.remove('remembered_email')
+            Cookies.remove('remembered_password')
+        }
+        return onLoginSubmit(values)
+    }
 
     return (
         <>
@@ -29,10 +44,13 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
             />
 
             <Formik
-                initialValues={{ email: "", password: "" }}
+                initialValues={{
+                    email: savedEmail || "",
+                    password: savedPassword || ""
+                }}
                 validateOnChange={false}
                 validationSchema={formSchema}
-                onSubmit={onLoginSubmit}
+                onSubmit={handleSubmit}
             >
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -54,10 +72,13 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             message={errors.password?.toString()}
                         />
 
-                        <HStack w="full" justify="space-between" marginBlock={3}>
-                            <Checkbox name="remember">Remember my password</Checkbox>
-                            <InteractiveText>Reset Password</InteractiveText>
-                        </HStack>
+                        <Checkbox
+                            marginBlock={3}
+                            isChecked={rememberMe}
+                            onChange={(e) => setRememberMe(e.target.checked)}
+                        >
+                            Remember my password
+                        </Checkbox>
 
                         <Button type="submit" isLoading={isSubmitting}>
                             Sign In

@@ -34,7 +34,7 @@ function PasswordInput({
                 value,
                 onChange,
                 placeholder,
-                isRequired
+                isRequired,
             }}
             rightElement={
                 <button
