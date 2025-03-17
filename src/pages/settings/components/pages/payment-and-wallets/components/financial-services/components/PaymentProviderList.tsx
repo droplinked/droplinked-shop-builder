@@ -52,26 +52,33 @@ const PaymentProviderList: React.FC = () => {
   // Handle toggle for enabling/disabling payment methods
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     const isActive = e.target.checked;
+    const upperType = type.toUpperCase();
 
-    // If turning on a provider, turn off all others
     if (isActive) {
-      const updatedMethods = values.paymentMethods.map((item) => ({
-        ...item,
-        isActive: item.type === type.toUpperCase()
-      }));
+      let updatedMethods = [...values.paymentMethods];
 
-      // Add the new provider if it doesn't exist
-      if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
-        updatedMethods.push({ type: type.toUpperCase(), isActive: true });
+      // If activating Stripe or Paymob, deactivate the other one
+      if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
+        updatedMethods = updatedMethods.map(item => ({
+          ...item,
+          isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB') ?
+            item.type === upperType : item.isActive
+        }));
+      }
+
+      // Add or update the current provider
+      const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
+      if (existingIndex === -1) {
+        updatedMethods.push({ type: upperType, isActive: true });
+      } else {
+        updatedMethods[existingIndex].isActive = true;
       }
 
       setFieldValue("paymentMethods", updatedMethods);
     } else {
-      // If turning off a provider, just update that one
-      const updatedMethods = values.paymentMethods.map((item) =>
-        item.type === type.toUpperCase()
-          ? { ...item, isActive: false }
-          : item
+      // Simply deactivate the current provider
+      const updatedMethods = values.paymentMethods.map(item =>
+        item.type === upperType ? { ...item, isActive: false } : item
       );
 
       setFieldValue("paymentMethods", updatedMethods);
