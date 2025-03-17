@@ -8,7 +8,8 @@ interface ExpandButtonProps {
   onToggle: () => void
 }
 
-const ExpandButton: React.FC<ExpandButtonProps> = ({ isExpanded, isSelected, onToggle }) => {
+function ExpandButton({ isExpanded, isSelected, onToggle }: ExpandButtonProps) {
+
   return (
     <Flex
       px={4}
@@ -36,4 +37,4 @@ const ExpandButton: React.FC<ExpandButtonProps> = ({ isExpanded, isSelected, onT
   )
 }
 
-export default ExpandButton 
+export default ExpandButton

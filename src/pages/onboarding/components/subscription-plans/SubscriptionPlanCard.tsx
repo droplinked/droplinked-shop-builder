@@ -1,10 +1,9 @@
-import { Box, Flex } from '@chakra-ui/react'
-import { SubOptionId, SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import { Box, Flex, Text } from '@chakra-ui/react'
+import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm'
+import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ExpandButton from './ExpandButton'
-import PlanFeatures from './PlanFeatures'
 import PlanHeader from './PlanHeader'
-
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -16,11 +15,6 @@ interface SubscriptionPlanCardProps {
 
 function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-
-  // Convert features to string array if they are SubOptionId[]
-  const featureStrings = Array.isArray(features) && features.length > 0 && typeof features[0] === 'object'
-    ? (features as unknown as SubOptionId[]).map(feature => feature.title)
-    : features as string[];
 
   return (
     <Box
@@ -37,14 +31,25 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect 
         <PlanHeader plan={plan} isPopular={isPopular} isSelected={isSelected} />
         <Box borderBottom="1px solid" borderColor="neutral.gray.800" />
 
-        {isExpanded && <PlanFeatures features={featureStrings} />}
+        {isExpanded ? (
+          <Box p={4}>
+            {features.map((feature) => (
+              <Flex key={feature} gap={2} mb={4}>
+                <AvailableoutlinedSm color="white" />
+                <Text textColor="neutral.white" flex={1} fontSize="sm">
+                  {feature}
+                </Text>
+              </Flex>
+            ))}
+          </Box>
+        ) : null}
 
         <Box borderBottom="1px solid" borderColor={isSelected ? 'primary.default' : 'neutral.gray.800'} />
 
         <ExpandButton isExpanded={isExpanded} isSelected={isSelected} onToggle={() => setIsExpanded(!isExpanded)} />
       </Flex>
     </Box>
-  );
+  )
 }
 
 export default SubscriptionPlanCard

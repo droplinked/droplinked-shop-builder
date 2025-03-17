@@ -4,9 +4,9 @@ import AppTypography from "components/common/typography/AppTypography"
 import Button from "components/redesign/button/Button"
 import { useProfile } from "hooks/useProfile/useProfile"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
-import { cardData } from "pages/subscription-plans/data/cardData"
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 import { getSubscriptionPlanIcon } from "utils/helpers"
 import useSubscriptionPlanPurchaseStore from "../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
@@ -14,17 +14,12 @@ import PlanPrice from "../plan-price/PlanPrice"
 import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
 
-interface Props {
-    plan: SubscriptionPlan
-}
-
-const PlanCard = ({ plan }: Props) => {
+function PlanCard ({ plan }: { plan: SubscriptionPlan }) {
     const navigate = useNavigate()
     const purchaseModal = useDisclosure()
     const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
     const { profile } = useProfile()
 
-    const planFeature = cardData
     const { type } = plan
     const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon(type)
     const isStarter = type === "STARTER"
@@ -75,10 +70,10 @@ const PlanCard = ({ plan }: Props) => {
 
                 <Flex direction="column" gap={4}>
                     <AppTypography fontSize={14} color="#B1B1B1">
-                        {planFeature[plan.type].title}
+                        {subscriptionPlans[plan.type].features.title}
                     </AppTypography>
-                    {planFeature[plan.type].items.map((item: Array<string>) =>
-                        <Flex gap={2} alignItems={"center"}>
+                    {subscriptionPlans[plan.type].features.items.map((item: string) =>
+                        <Flex key={item} gap={2} alignItems={"center"}>
                             <AppIcons.Tick color="white" style={{ flexShrink: 0 }} />
                             <AppTypography fontSize={14} color="white">
                                 {item}
