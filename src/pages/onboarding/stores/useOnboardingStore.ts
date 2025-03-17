@@ -20,7 +20,7 @@ const stepOrder: OnboardingStates['currentStep'][] = [
 ]
 
 const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
-    currentStep: 'SIGN_IN',
+    currentStep: 'PLAN_SELECTION',
     storeSetup: initialStoreSetup,
     storeSetupError: {},
 

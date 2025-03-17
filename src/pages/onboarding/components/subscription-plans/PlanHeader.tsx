@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
-import PlanPrice from 'pages/subscription-plans/_components/plans/_components/plan-price/PlanPrice'
+import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 
@@ -44,7 +44,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           </Text>
         </Flex>
         <Box>
-          <PlanPrice plan={plan} />
+          <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} />
         </Box>
       </Flex>
     </Box>

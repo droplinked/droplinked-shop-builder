@@ -10,7 +10,7 @@ import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 import { getSubscriptionPlanIcon } from "utils/helpers"
 import useSubscriptionPlanPurchaseStore from "../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
-import PlanPrice from "../plan-price/PlanPrice"
+import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
 

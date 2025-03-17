@@ -26,7 +26,10 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
   const plans: SubscriptionPlan[] = data?.data || []
 
   const handleNext = (): void => {
-    if (!selectedPlan) return
+    if (selectedPlan === 'ENTERPRISE' || selectedPlan === 'STARTER') {
+      onNext()
+      return
+    }
     setIsPaymentModalOpen(true)
   }
 
