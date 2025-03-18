@@ -21,6 +21,7 @@
 		"@wojtekmaj/react-daterange-picker": "^6.0.0",
 		"axios": "^1.6.7",
 		"buffer": "^6.0.3",
+		"canvas-confetti": "^1.9.3",
 		"chart.js": "^4.4.1",
 		"chartjs-plugin-annotation": "^3.0.1",
 		"crypto-browserify": "^3.12.0",

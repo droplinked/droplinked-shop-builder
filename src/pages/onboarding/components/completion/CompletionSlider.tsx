@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import ActionControls from './ActionControls'
 import VideoPlayer from './VideoPlayer'
+import confetti from 'canvas-confetti'
 
 function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
     const navigate = useNavigate()
@@ -26,7 +27,28 @@ function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
     }
 
     const handleNextAction = () => {
-        if (currentSlideIndex === 1) return navigate('/analytics')
+        if (currentSlideIndex === 1) {
+            confetti({
+                particleCount: 320,
+                spread: 240,
+                origin: { x: 0, y: 0 },
+                angle: 45,
+                colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'],
+                gravity: 0.8,
+            })
+
+            confetti({
+                particleCount: 350,
+                spread: 240,
+                origin: { x: 1, y: 0 },
+                angle: 135,
+                colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'],
+                gravity: 0.8,
+            })
+
+            return navigate('/analytics')
+        }
+          
         handleSlideChange(1)
     }
 
