@@ -1,14 +1,15 @@
-import { Box, Text } from '@chakra-ui/react';
-import AppImage from 'components/common/image/AppImage';
-import React from 'react';
+import { Box, Text } from '@chakra-ui/react'
+import AppImage from 'components/common/image/AppImage'
+import React from 'react'
 
 interface CardProps {
-  headerImage: string;
-  title: string;
-  description: string;
+  headerImage: string
+  title: string
+  description: string
+  objectFit?: 'cover' | 'contain'
 }
 
-const PaymentFeatureCard: React.FC<CardProps> = ({ headerImage, title, description }) => (
+const PaymentFeatureCard: React.FC<CardProps> = ({ headerImage, title, description, objectFit = 'cover'  }) => (
   <Box
     position="relative"
     borderRadius="2xl"
@@ -24,7 +25,7 @@ const PaymentFeatureCard: React.FC<CardProps> = ({ headerImage, title, descripti
     userSelect="none"
   >
     <Box position="absolute" top="0" left="0" width="100%" height="100%">
-      <AppImage src={headerImage} alt={title} objectFit="contain" w="100%" h="100%" bg="transparent" />
+      <AppImage src={headerImage} alt={title} objectFit={objectFit} w="100%" h="100%" bg="transparent" />
     </Box>
     <Box p={6} display="flex" flexDirection="column" gap={1} position="relative" zIndex="1">
       <Text color="white" fontSize="md" fontWeight="bold" fontFamily="Inter" lineHeight="7">
@@ -35,6 +36,6 @@ const PaymentFeatureCard: React.FC<CardProps> = ({ headerImage, title, descripti
       </Text>
     </Box>
   </Box>
-);
+)
 
-export default PaymentFeatureCard;
+export default PaymentFeatureCard

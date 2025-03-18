@@ -34,7 +34,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect 
         {isExpanded ? (
           <Box p={4}>
             {features.map((feature) => (
-              <Flex key={feature} gap={2} mb={4}>
+              <Flex key={feature} gap={2} mb={4} alignItems="center"> 
                 <AvailableoutlinedSm color="white" />
                 <Text textColor="neutral.white" flex={1} fontSize="sm">
                   {feature}
