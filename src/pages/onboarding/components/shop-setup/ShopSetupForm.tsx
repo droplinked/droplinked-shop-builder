@@ -14,7 +14,7 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
 import ShopPreview from '../shop-preview/ShopPreview'
 
-function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
+function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
