@@ -60,7 +60,7 @@ const TokenPay: React.FC = () => {
               gap={4}
             >
               {values.paymentMethods.map(
-                (item) => (item.type !== "STRIPE" && item.type !== "COINBASE") &&
+                (item) => (!paymentProviders.includes(item.type)) &&
                   <PaymentToken
                     key={item.type}
                     title={item.type}
