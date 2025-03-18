@@ -33,7 +33,7 @@ export function useLogin() {
         catch (error) {
             showToast({ message: error?.message || "An error occurred", type: "error" })
         }
-    }, [showToast, navigateUserBasedOnStatus, shopNavigate, navigate])
+    }, [showToast, shopNavigate, navigate])
 
     const onLoginSubmit = useCallback(async (data: any) => {
         try {

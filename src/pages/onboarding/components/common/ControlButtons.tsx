@@ -8,13 +8,17 @@ interface ControlButtonsProps {
     onSubmit: () => void
     onSkip?: (() => void) | null
     continueText?: string
+    isLoading?: boolean
+    showBackButton?: boolean
 }
 
 const ControlButtons: React.FC<ControlButtonsProps> = ({
     onBack,
     onSubmit,
     onSkip = null,
-    continueText = "Continue"
+    continueText = "Continue",
+    isLoading = false,
+    showBackButton = true,
 }) => {
     const handleSubmit = (e: React.MouseEvent) => {
         e.preventDefault()
@@ -33,18 +37,22 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                 </Button>
             )}
             <Flex marginLeft="auto" gap={4}>
-                <Button
-                    fontWeight={500}
-                    variant='secondary'
-                    onClick={onBack}
-                >
-                    Back
-                </Button>
+                {showBackButton &&
+                    <Button
+                        fontWeight={500}
+                        variant='secondary'
+                        onClick={onBack}
+                        isDisabled={isLoading}
+                    >
+                        Back
+                    </Button>
+                }
                 <Button
                     fontWeight={500}
                     variant='primary'
                     onClick={handleSubmit}
                     rightIcon={<ArrowrightMd />}
+                    isLoading={isLoading}
                 >
                     {continueText}
                 </Button>

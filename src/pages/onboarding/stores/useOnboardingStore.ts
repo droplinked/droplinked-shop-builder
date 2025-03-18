@@ -24,6 +24,10 @@ const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) =>
     storeSetup: initialStoreSetup,
     storeSetupError: {},
     email: "",
+    credentials: {
+        email: '',
+        password: ''
+    },
 
     nextStep: () => set((state) => {
         const currentIndex = stepOrder.indexOf(state.currentStep)

@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   // Redirect users with specific statuses
   useEffect(() => {
     if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status)) {
-      navigate('/analytics/registration');
+      navigate('/onboarding?entry=store-details');
     }
   }, [user, navigate]);
 

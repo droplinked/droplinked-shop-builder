@@ -1,5 +1,6 @@
 import { useBreakpointValue } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import DesktopLayout from './components/layout/DesktopLayout'
@@ -15,18 +16,24 @@ import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
+import useAppStore from 'lib/stores/app/appStore'
 
 function Onboarding() {
     const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
-    const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
+    const [searchParams] = useSearchParams()
+    const { isLoggedIn } = useAppStore()
+    const { currentStep, updateOnboardingState, nextStep, prevStep, credentials } = useOnboardingStore()
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search)
-        const entry = params.get('entry')?.toLowerCase()
+        if (!isLoggedIn && !credentials.email)
+            return updateOnboardingState('currentStep', 'SIGN_IN')
 
+        const entry = searchParams.get('entry')?.toLowerCase()
         if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-    }, [updateOnboardingState])
+        else if (entry === 'email-confirmation') updateOnboardingState('currentStep', 'EMAIL_CONFIRMATION')
+        else if (entry === 'store-details') updateOnboardingState('currentStep', 'STORE_DETAILS')
+    }, [isLoggedIn, credentials, updateOnboardingState, searchParams])
 
     useEffect(function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' })

@@ -28,7 +28,7 @@ const formSchema = Yup.object().shape({
 function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
-    const { updateOnboardingState, email } = useOnboardingStore()
+    const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
 
     const referralCode = searchParams.get("referral")
@@ -46,7 +46,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 udUserId: udId || undefined,
                 hasProducerAccount: true
             })
-            updateOnboardingState("email", email)
+            updateOnboardingState("credentials", { email, password })
             showToast({ message: "Account successfully created", type: "success" })
             onNext()
         }
@@ -64,7 +64,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
             />
 
             <Formik
-                initialValues={{ email: email, password: "", referralCode: referralCode ?? "" }}
+                initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
                 validationSchema={formSchema}
                 onSubmit={handleSignUp}

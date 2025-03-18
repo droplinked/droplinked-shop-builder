@@ -1,5 +1,13 @@
 import { IAuthSupportedWalletsService } from "../auth/interfaces";
 
+export interface ShopSetupParams {
+    shop_url: string
+    name: string
+    logo: string
+    hero_section: string
+    description: string
+}
+
 export interface IshopInfoService {
     shopName: string;
 }

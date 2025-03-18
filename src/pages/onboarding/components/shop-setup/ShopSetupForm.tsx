@@ -13,21 +13,41 @@ import { validateStoreData } from '../../utils/shopSetupFormValidation'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
 import ShopPreview from '../shop-preview/ShopPreview'
+import useAppToast from 'hooks/toast/useToast'
+import { useMutation } from 'react-query'
+import { setupShop } from 'lib/apis/shop/shopServices'
 
 function ShopSetupForm({ onNext }: OnboardingStepProps) {
-    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
+    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore();
+    const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
-    const handleSubmit = () => {
-        if (validateStoreData(storeSetup, setError)) {
-            console.log("Form submitted with values:", storeSetup)
-            onNext()
+    const { coverImage, description, logoUrl, name, url } = storeSetup ?? {}
+
+    const { mutateAsync: setupShopMutation, isLoading } = useMutation({
+        mutationFn: () => setupShop({
+            description,
+            name,
+            hero_section: coverImage,
+            logo: logoUrl,
+            shop_url: url,
+        }),
+        onSuccess: onNext,
+        onError: (error: any) => {
+            showToast({
+                type: "error",
+                message: error.response.data.data.message || "Something went wrong",
+            })
         }
+    })
+
+    const handleSubmit = async () => {
+        if (validateStoreData(storeSetup, setError)) await setupShopMutation()
     }
 
     const handleBack = () => {
         updateOnboardingState("storeSetup", initialStoreSetup)
-        updateOnboardingState("currentStep", "SIGN_UP")
+        updateOnboardingState("currentStep", "SIGN_IN")
     }
 
     return (
@@ -41,7 +61,7 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
             <UrlChooser />
             <NameField />
             <DescriptionField />
-            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} />
+            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} />
             {!isSmallerThan1024 && <AiAssistant />}
             {isSmallerThan1024 && <ShopPreview />}
         </>

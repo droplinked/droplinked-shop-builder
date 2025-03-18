@@ -9,14 +9,14 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader';
 function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
   return (
     <>
-     <OnboardingStepHeader heading="Basic Payment Details" description="Choose to activate any of the options below." />
-     <Flex direction="column" minH="full" gap="36px">
-      <FinancialServices />
-      <CurrencySection />
-      <ControlButtons onBack={onBack} onSubmit={onNext} onSkip={onNext} />
-    </Flex>
+      <OnboardingStepHeader heading="Basic Payment Details" description="Choose to activate any of the options below." />
+      <Flex direction="column" minH="full" gap="36px">
+        <FinancialServices />
+        <CurrencySection />
+        <ControlButtons onBack={onBack} onSubmit={onNext} onSkip={onNext} showBackButton={false} />
+      </Flex>
     </>
-   
+
   );
 }
 

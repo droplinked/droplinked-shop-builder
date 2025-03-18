@@ -13,6 +13,7 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -25,6 +26,7 @@ const savedPassword = Cookies.get('remembered_password')
 function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
+    const { updateOnboardingState } = useOnboardingStore()
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {
@@ -34,6 +36,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
             Cookies.remove('remembered_email')
             Cookies.remove('remembered_password')
         }
+        updateOnboardingState("credentials", values)
         return onLoginSubmit(values)
     }
 
