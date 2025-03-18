@@ -5,10 +5,12 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DashboardLayoutHeader from './components/header/DashboardLayoutHeader';
 import DashboardLayoutSidebar from './components/sidebar/DashboardLayoutSidebar';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 
 const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user } = useAppStore();
+  const { resetOnboarding } = useOnboardingStore()
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
@@ -23,6 +25,8 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   useEffect(() => {
     if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status)) {
       navigate('/onboarding?entry=store-details');
+    } else {
+      resetOnboarding();
     }
   }, [user, navigate]);
 
