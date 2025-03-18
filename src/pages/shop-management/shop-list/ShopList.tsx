@@ -1,6 +1,7 @@
-import { Flex, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
 import { getUserShopsService } from 'lib/apis/shop/shopServices'
 import React from 'react'
 import { useQuery } from 'react-query'
@@ -11,6 +12,7 @@ import ShopRow from './_components/shop-row/ShopRow'
 
 function ShopList() {
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const { isFetching, error, data } = useQuery({
         queryFn: () => getUserShopsService(),
         queryKey: ["current-user-shops"]
@@ -28,7 +30,7 @@ function ShopList() {
         <>
             <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
-                    <BasicButton alignSelf={"flex-end"} onClick={() => navigate("/onboarding?entry=store-details&origin=shop-management")}>+ Create Store</BasicButton>
+                    <BasicButton alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
                 </Flex>
                 <TabPanels>
                     <TabPanel
@@ -44,6 +46,14 @@ function ShopList() {
                     </TabPanel>
                 </TabPanels>
             </Tabs>
+            {isOpen && (
+                <SimpleRegistrationModal
+                    isOpen={isOpen}
+                    mode='CREATE_EXTRA_SHOP'
+                    close={onClose}
+                    onSuccess={() => navigate("/analytics")}
+                />
+            )}
         </>
     )
 }
