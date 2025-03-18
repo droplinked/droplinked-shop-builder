@@ -1,6 +1,7 @@
 import { Box, Grid, VStack } from '@chakra-ui/react';
 import React from 'react';
 import PaymentFeatureCard from './PaymentFeatureCard';
+import RightSectionWrapper from '../common/RightSectionWrapper';
 
 const PaymentFeatures: React.FC = () => {
   const cards = [
@@ -15,26 +16,28 @@ const PaymentFeatures: React.FC = () => {
       description: 'Choose your preferred fiat or crypto currencies.'
     },
     {
-      headerImage: 'https://upload-file-droplinked.s3.amazonaws.com/d39d7d50feb7f4147ac9ee3fa26a951a3c3100e34b8588c5cd2b25c0467deee0.png',
+      headerImage: 'https://upload-file-droplinked.s3.amazonaws.com/e6b6751f0915047f0ea199e8d3b515341ee854195eac4f9aa514a0af6f4a4a92.png',
       title: 'Tokenpay',
       description: 'Enable acceptance of thousands of various digital assets.'
     }
   ];
 
   return (
-    <VStack w="100%" spacing={6}>
-      <Box w="100%">
-        <PaymentFeatureCard {...cards[0]} />
-      </Box>
-      <Grid templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }} gap={6} w="100%">
+    <RightSectionWrapper>
+      <VStack w="100%" spacing={6}>
         <Box w="100%">
-          <PaymentFeatureCard {...cards[1]} />
+          <PaymentFeatureCard {...cards[0]} objectFit="contain" />
         </Box>
-        <Box w="100%">
-          <PaymentFeatureCard {...cards[2]} />
-        </Box>
-      </Grid>
-    </VStack>
+        <Grid templateColumns={{ base: '1fr', xl: 'repeat(2, 1fr)' }} gap={6} w="100%">
+          <Box w="100%">
+            <PaymentFeatureCard {...cards[1]} />
+          </Box>
+          <Box w="100%">
+            <PaymentFeatureCard {...cards[2]} />
+          </Box>
+        </Grid>
+      </VStack>
+    </RightSectionWrapper>
   );
 };
 

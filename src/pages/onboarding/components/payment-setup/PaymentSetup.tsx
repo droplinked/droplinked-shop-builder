@@ -10,7 +10,7 @@ function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
   return (
     <>
       <OnboardingStepHeader heading="Basic Payment Details" description="Choose to activate any of the options below." />
-      <Flex direction="column" minH="full" gap="36px">
+      <Flex direction="column" minH="calc(100vh - 250px)" gap="36px">
         <FinancialServices />
         <CurrencySection />
         <ControlButtons onBack={onBack} onSubmit={onNext} onSkip={onNext} showBackButton={false} />
