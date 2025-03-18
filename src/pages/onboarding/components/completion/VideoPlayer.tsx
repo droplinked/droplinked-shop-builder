@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react'
 import React, { useEffect, useRef } from 'react'
 
-interface YouTubeVideoProps {
+interface Props {
     isPlaying: boolean
 }
 
-function YouTubeVideo({ isPlaying }: YouTubeVideoProps) {
+function VideoPlayer({ isPlaying }: Props) {
     const videoId = 'nuyuCSRx8sI'
     const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -41,4 +41,4 @@ function YouTubeVideo({ isPlaying }: YouTubeVideoProps) {
     )
 }
 
-export default YouTubeVideo
+export default VideoPlayer
