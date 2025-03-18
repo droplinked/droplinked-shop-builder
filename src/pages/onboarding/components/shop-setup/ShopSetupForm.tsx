@@ -53,7 +53,6 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
         reset()
         updateOnboardingState("storeSetup", initialStoreSetup)
         updateOnboardingState("currentStep", "SIGN_IN")
-        navigate('/onboarding')
     }
 
     return (
