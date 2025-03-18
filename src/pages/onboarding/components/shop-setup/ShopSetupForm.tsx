@@ -22,7 +22,7 @@ import useAppStore from 'lib/stores/app/appStore'
 function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
-    const { reset } = useAppStore()
+    const { reset, updateState } = useAppStore()
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
@@ -32,7 +32,7 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const { mutateAsync: setupShopMutation, isLoading } = useMutation({
         mutationFn: () => setupShop(storeSetup),
         onSuccess: (data) => {
-            console.log(data.data)
+            updateState({ key: "shop", params: data.data.data })
             onNext()
         },
         onError: (error: any) => {

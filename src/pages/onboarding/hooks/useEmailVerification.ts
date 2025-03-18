@@ -33,7 +33,6 @@ export const useEmailVerification = () => {
         onError() {
             showToast({ type: "error", message: "Failed to resend code" })
         },
-        enabled: false
     })
 
     const onOtpChange = (value: string) => {
