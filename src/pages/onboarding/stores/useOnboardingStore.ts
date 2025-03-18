@@ -20,9 +20,10 @@ const stepOrder: OnboardingStates['currentStep'][] = [
 ]
 
 const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
-    currentStep: 'PLAN_SELECTION',
+    currentStep: 'SIGN_IN',
     storeSetup: initialStoreSetup,
     storeSetupError: {},
+    email: "",
 
     nextStep: () => set((state) => {
         const currentIndex = stepOrder.indexOf(state.currentStep)

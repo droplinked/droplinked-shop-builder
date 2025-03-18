@@ -5,6 +5,7 @@ export interface OnboardingStates {
     currentStep: 'SIGN_IN' | 'SIGN_UP' | 'EMAIL_CONFIRMATION' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET'
     storeSetup: StoreSetup
     storeSetupError: Partial<StoreSetup>
+    email: string
 }
 
 export interface OnboardingActions {

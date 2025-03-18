@@ -10,6 +10,7 @@ import {
     IresendEmailService,
     IuserUpdateService,
     IPostUserVerifyPartner,
+    VerifyEmailPayload,
 } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
@@ -26,6 +27,10 @@ export const resendEmailService = (props: IresendEmailService) => {
 
 export const emailVerifyService = (props: IemailVerifyService) => {
     return axiosInstance.post(`user/email-verification`, props);
+};
+
+export const verifyEmailCode = (payload: VerifyEmailPayload) => {
+    return axiosInstance.post(`user/verify-email-code`, payload);
 };
 
 export const userUpdateService = (props: IuserUpdateService) => {

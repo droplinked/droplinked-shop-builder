@@ -17,6 +17,7 @@ import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from './PasswordValidationRules'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -27,6 +28,7 @@ const formSchema = Yup.object().shape({
 function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
+    const { updateOnboardingState, email } = useOnboardingStore()
     const { showToast } = useAppToast()
 
     const referralCode = searchParams.get("referral")
@@ -44,7 +46,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 udUserId: udId || undefined,
                 hasProducerAccount: true
             })
-            localStorage.setItem("registerEmail", JSON.stringify(email))
+            updateOnboardingState("email", email)
             showToast({ message: "Account successfully created", type: "success" })
             onNext()
         }
@@ -62,7 +64,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
             />
 
             <Formik
-                initialValues={{ email: "", password: "", referralCode: referralCode ?? "" }}
+                initialValues={{ email: email, password: "", referralCode: referralCode ?? "" }}
                 validateOnChange={false}
                 validationSchema={formSchema}
                 onSubmit={handleSignUp}
