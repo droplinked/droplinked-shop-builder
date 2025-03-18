@@ -1,4 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react'
+import useAppStore from 'lib/stores/app/appStore'
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import CompletionSection from './components/completion/CompletionSection'
@@ -16,7 +17,6 @@ import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
-import useAppStore from 'lib/stores/app/appStore'
 
 function Onboarding() {
     const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })

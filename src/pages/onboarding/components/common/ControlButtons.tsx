@@ -8,6 +8,7 @@ interface ControlButtonsProps {
     onSubmit: () => void
     onSkip?: (() => void) | null
     continueText?: string
+    backText?: string
     isLoading?: boolean
     showBackButton?: boolean
 }
@@ -17,6 +18,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     onSubmit,
     onSkip = null,
     continueText = "Continue",
+    backText = "Back",
     isLoading = false,
     showBackButton = true,
 }) => {
@@ -44,7 +46,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                         onClick={onBack}
                         isDisabled={isLoading}
                     >
-                        Back
+                        {backText}
                     </Button>
                 }
                 <Button

@@ -5,6 +5,7 @@ import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
@@ -13,7 +14,6 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),

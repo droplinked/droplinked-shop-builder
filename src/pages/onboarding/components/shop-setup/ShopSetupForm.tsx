@@ -16,15 +16,25 @@ import ShopPreview from '../shop-preview/ShopPreview'
 import useAppToast from 'hooks/toast/useToast'
 import { useMutation } from 'react-query'
 import { setupShop } from 'lib/apis/shop/shopServices'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import useAppStore from 'lib/stores/app/appStore'
 
 function ShopSetupForm({ onNext }: OnboardingStepProps) {
-    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore();
+    const navigate = useNavigate()
+    const [searchParams] = useSearchParams()
+    const { reset } = useAppStore()
+    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
+    const origin = searchParams?.get('origin')
+
     const { mutateAsync: setupShopMutation, isLoading } = useMutation({
         mutationFn: () => setupShop(storeSetup),
-        onSuccess: onNext,
+        onSuccess: (data) => {
+            console.log(data.data)
+            onNext()
+        },
         onError: (error: any) => {
             showToast({
                 type: "error",
@@ -38,8 +48,12 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
     }
 
     const handleBack = () => {
+        if (origin) return navigate(`/${origin}`)
+
+        reset()
         updateOnboardingState("storeSetup", initialStoreSetup)
         updateOnboardingState("currentStep", "SIGN_IN")
+        navigate('/onboarding')
     }
 
     return (
@@ -53,7 +67,7 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
             <UrlChooser />
             <NameField />
             <DescriptionField />
-            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} />
+            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} backText={origin ? "Back" : "Exit"} />
             {!isSmallerThan1024 && <AiAssistant />}
             {isSmallerThan1024 && <ShopPreview />}
         </>
