@@ -17,6 +17,7 @@ export interface OnboardingActions {
     updateOnboardingState: <K extends keyof OnboardingStates>(field: K, value: OnboardingStates[K]) => void
     setError: (field: keyof OnboardingStates['storeSetupErrors'], message: string | undefined) => void
     clearErrors: () => void
+    resetOnboarding: () => void
 }
 
 export interface StoreSetup {

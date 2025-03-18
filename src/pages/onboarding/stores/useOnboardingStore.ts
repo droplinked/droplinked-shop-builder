@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import { OnboardingActions, OnboardingStates } from '../types/onboarding'
 
 export const initialStoreSetup = {
@@ -7,6 +8,16 @@ export const initialStoreSetup = {
     shop_url: '',
     name: '',
     description: ''
+}
+
+const initialState: OnboardingStates = {
+    currentStep: 'SIGN_IN',
+    storeSetup: initialStoreSetup,
+    storeSetupErrors: {},
+    credentials: {
+        email: '',
+        password: ''
+    }
 }
 
 const stepOrder: OnboardingStates['currentStep'][] = [
@@ -19,43 +30,45 @@ const stepOrder: OnboardingStates['currentStep'][] = [
     'YOU_ARE_ALL_SET'
 ]
 
-const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
-    currentStep: 'SIGN_IN',
-    storeSetup: initialStoreSetup,
-    storeSetupErrors: {},
-    email: "",
-    credentials: {
-        email: '',
-        password: ''
-    },
+const useOnboardingStore = create<OnboardingStates & OnboardingActions>()(
+    persist(
+        (set) => ({
+            ...initialState,
 
-    nextStep: () => set((state) => {
-        const currentIndex = stepOrder.indexOf(state.currentStep)
-        const nextIndex = currentIndex + 1
-        if (nextIndex < stepOrder.length) {
-            window.history.replaceState({}, document.title, window.location.pathname)
-            return { currentStep: stepOrder[nextIndex] }
+            nextStep: () => set((state) => {
+                const currentIndex = stepOrder.indexOf(state.currentStep)
+                const nextIndex = currentIndex + 1
+                if (nextIndex < stepOrder.length) {
+                    window.history.replaceState({}, document.title, window.location.pathname)
+                    return { currentStep: stepOrder[nextIndex] }
+                }
+                return state
+            }),
+
+            prevStep: () => set((state) => {
+                const currentIndex = stepOrder.indexOf(state.currentStep)
+                const prevIndex = currentIndex - 1
+                if (prevIndex >= 0) {
+                    window.history.replaceState({}, document.title, window.location.pathname)
+                    return { currentStep: stepOrder[prevIndex] }
+                }
+                return state
+            }),
+
+            updateOnboardingState: (field, value) => set((state) => ({ ...state, [field]: value })),
+
+            setError: (field, message) => set((state) => ({
+                storeSetupErrors: { ...state.storeSetupErrors, [field]: message }
+            })),
+
+            clearErrors: () => set({ storeSetupErrors: {} }),
+
+            resetOnboarding: () => set(initialState)
+        }),
+        {
+            name: 'onboarding-storage'
         }
-        return state
-    }),
-
-    prevStep: () => set((state) => {
-        const currentIndex = stepOrder.indexOf(state.currentStep)
-        const prevIndex = currentIndex - 1
-        if (prevIndex >= 0) {
-            window.history.replaceState({}, document.title, window.location.pathname)
-            return { currentStep: stepOrder[prevIndex] }
-        }
-        return state
-    }),
-
-    updateOnboardingState: (field, value) => set((state) => ({ ...state, [field]: value })),
-
-    setError: (field, message) => set((state) => ({
-        storeSetupErrors: { ...state.storeSetupErrors, [field]: message }
-    })),
-
-    clearErrors: () => set({ storeSetupErrors: {} })
-}))
+    )
+)
 
 export default useOnboardingStore

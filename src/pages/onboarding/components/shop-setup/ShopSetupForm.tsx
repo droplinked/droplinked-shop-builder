@@ -2,7 +2,7 @@ import { Flex, useMediaQuery } from '@chakra-ui/react'
 import useAppToast from 'hooks/toast/useToast'
 import { setupShop } from 'lib/apis/shop/shopServices'
 import useAppStore from 'lib/stores/app/appStore'
-import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import { useMutation } from 'react-query'
@@ -20,7 +20,7 @@ import UrlChooser from './UrlChooser'
 
 function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const { reset, updateState, user, shop } = useAppStore()
-    const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
+    const { storeSetup, setError, resetOnboarding } = useOnboardingStore()
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
@@ -45,8 +45,7 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
 
     const handleBack = () => {
         reset()
-        updateOnboardingState("storeSetup", initialStoreSetup)
-        updateOnboardingState("currentStep", "SIGN_IN")
+        resetOnboarding()
     }
 
     return (
@@ -60,7 +59,7 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
             <UrlChooser />
             <NameField />
             <DescriptionField />
-            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} />
+            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} backText='Exit' />
             {!isSmallerThan1024 && <AiAssistant />}
             {isSmallerThan1024 && <ShopPreview />}
         </>
