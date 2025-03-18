@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function ShopBanner() {
     const { storeSetup } = useOnboardingStore()
-    const { coverImage, logoUrl } = storeSetup
+    const { hero_section, logo } = storeSetup
 
     return (
         <Flex
@@ -16,15 +16,15 @@ export default function ShopBanner() {
             alignItems="center"
             justifyContent="center"
             gap={6}
-            background={coverImage ? `url(${coverImage})` : "transparent"}
+            background={hero_section ? `url(${hero_section})` : "transparent"}
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
         >
-            {!coverImage &&
+            {!hero_section &&
                 <>
-                    {logoUrl ?
-                        <AppImage src={logoUrl} width="80px" height="80px" borderRadius="full" /> :
+                    {logo ?
+                        <AppImage src={logo} width="80px" height="80px" borderRadius="full" /> :
                         <Drop3 width="80px" height="80px" color='#2bcfa1' />
                     }
                     <Text

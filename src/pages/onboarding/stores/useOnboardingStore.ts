@@ -2,9 +2,9 @@ import { create } from 'zustand'
 import { OnboardingActions, OnboardingStates } from '../types/onboarding'
 
 export const initialStoreSetup = {
-    logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png',
-    coverImage: '',
-    url: '',
+    logo: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png',
+    hero_section: '',
+    shop_url: '',
     name: '',
     description: ''
 }
@@ -22,7 +22,7 @@ const stepOrder: OnboardingStates['currentStep'][] = [
 const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) => ({
     currentStep: 'SIGN_IN',
     storeSetup: initialStoreSetup,
-    storeSetupError: {},
+    storeSetupErrors: {},
     email: "",
     credentials: {
         email: '',
@@ -52,10 +52,10 @@ const useOnboardingStore = create<OnboardingStates & OnboardingActions>((set) =>
     updateOnboardingState: (field, value) => set((state) => ({ ...state, [field]: value })),
 
     setError: (field, message) => set((state) => ({
-        storeSetupError: { ...state.storeSetupError, [field]: message }
+        storeSetupErrors: { ...state.storeSetupErrors, [field]: message }
     })),
 
-    clearErrors: () => set({ storeSetupError: {} })
+    clearErrors: () => set({ storeSetupErrors: {} })
 }))
 
 export default useOnboardingStore

@@ -4,7 +4,7 @@ import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 export interface OnboardingStates {
     currentStep: 'SIGN_IN' | 'SIGN_UP' | 'EMAIL_CONFIRMATION' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET'
     storeSetup: StoreSetup
-    storeSetupError: Partial<StoreSetup>
+    storeSetupErrors: Partial<StoreSetup>
     credentials: {
         email: string
         password: string
@@ -15,14 +15,14 @@ export interface OnboardingActions {
     nextStep: () => void
     prevStep: () => void
     updateOnboardingState: <K extends keyof OnboardingStates>(field: K, value: OnboardingStates[K]) => void
-    setError: (field: keyof OnboardingStates['storeSetupError'], message: string | undefined) => void
+    setError: (field: keyof OnboardingStates['storeSetupErrors'], message: string | undefined) => void
     clearErrors: () => void
 }
 
 export interface StoreSetup {
-    logoUrl: string
-    coverImage: string
-    url: string
+    logo: string
+    hero_section: string
+    shop_url: string
     name: string
     description: string
 }

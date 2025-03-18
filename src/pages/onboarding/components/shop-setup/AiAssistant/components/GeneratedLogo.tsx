@@ -9,10 +9,10 @@ interface Props {
 
 export default function GeneratedLogo({ logos }: Props) {
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
-    const selectedLogo = storeSetup.logoUrl
+    const selectedLogo = storeSetup.logo
 
     const handleClick = (url: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, logoUrl: url })
+        updateOnboardingState("storeSetup", { ...storeSetup, logo: url })
     }
 
     useEffect(() => {

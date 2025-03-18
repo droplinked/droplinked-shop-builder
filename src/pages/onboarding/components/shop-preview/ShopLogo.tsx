@@ -4,10 +4,10 @@ import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import React from "react"
 
 export default function ShopLogo() {
-    const { storeSetup: { logoUrl } } = useOnboardingStore()
+    const { storeSetup: { logo } } = useOnboardingStore()
 
     const defaultUrl = "https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png"
-    const isDefaultLogo = logoUrl === defaultUrl
+    const isDefaultLogo = logo === defaultUrl
 
     return (
         <Box
@@ -24,7 +24,7 @@ export default function ShopLogo() {
                 background="#1C1C1C"
             >
                 <AppImage
-                    src={logoUrl}
+                    src={logo}
                     width={isDefaultLogo ? { base: "48px", xl: "64px" } : { base: "88px", xl: "128px" }}
                     height={isDefaultLogo ? { base: "48px", xl: "64px" } : { base: "88px", xl: "128px" }}
                     borderRadius="full"

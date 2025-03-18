@@ -14,9 +14,9 @@ export default function CoverImage() {
             const formData = new FormData()
             formData.append('image', file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeSetup', { ...storeSetup, coverImage: original })
+            updateOnboardingState('storeSetup', { ...storeSetup, hero_section: original })
         } else {
-            updateOnboardingState('storeSetup', { ...storeSetup, coverImage: '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, hero_section: '' })
         }
     }
 
@@ -34,7 +34,7 @@ export default function CoverImage() {
                         paddingBlock: 6
                     }}
                     dropDescription='JPG, JPEG, and PNG'
-                    value={storeSetup.coverImage}
+                    value={storeSetup.hero_section}
                 />
             </FieldWrapper>
         </Box>

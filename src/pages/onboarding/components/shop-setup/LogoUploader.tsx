@@ -18,7 +18,7 @@ export default function LogoUploader() {
             const formData = new FormData()
             formData.append("image", file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeSetup', { ...storeSetup, logoUrl: original || '' })
+            updateOnboardingState('storeSetup', { ...storeSetup, logo: original || '' })
         }
     }
 
@@ -27,7 +27,7 @@ export default function LogoUploader() {
     }
 
     const handleRemove = () => {
-        updateOnboardingState('storeSetup', { ...storeSetup, logoUrl: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
+        updateOnboardingState('storeSetup', { ...storeSetup, logo: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
         if (fileInputRef.current) {
             fileInputRef.current.value = ''
         }
@@ -40,7 +40,7 @@ export default function LogoUploader() {
                     <Avatar
                         width="80px"
                         height="80px"
-                        src={storeSetup.logoUrl || undefined}
+                        src={storeSetup.logo || undefined}
                         name="Logo"
                         userSelect="none"
                     />
@@ -53,9 +53,9 @@ export default function LogoUploader() {
                         onClick={handleLogoChange}
                         isLoading={isLoading}
                     >
-                        {storeSetup.logoUrl ? "Change" : "Upload"}
+                        {storeSetup.logo ? "Change" : "Upload"}
                     </BlueButton>
-                    {storeSetup.logoUrl && !isLoading &&
+                    {storeSetup.logo && !isLoading &&
                         <BlueButton
                             color="#FF2244"
                             fontSize={14}

@@ -12,7 +12,7 @@ export default function GeneratedCover({ covers }: Props) {
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
 
     const handleChange = (url: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, coverImage: url })
+        updateOnboardingState("storeSetup", { ...storeSetup, hero_section: url })
     }
 
     useEffect(() => {

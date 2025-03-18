@@ -3,7 +3,7 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function NameField() {
-    const { storeSetup, updateOnboardingState, storeSetupError, setError } = useOnboardingStore()
+    const { storeSetup, updateOnboardingState, storeSetupErrors, setError } = useOnboardingStore()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
@@ -28,7 +28,7 @@ export default function NameField() {
                 onChange: handleChange,
                 isRequired: true,
             }}
-            {...storeSetupError.name && { message: storeSetupError.name, state: "error" }}
+            {...storeSetupErrors.name && { message: storeSetupErrors.name, state: "error" }}
         />
     )
 }

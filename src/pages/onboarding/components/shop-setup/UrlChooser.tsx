@@ -9,32 +9,32 @@ import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
 
 export default function UrlChooser() {
-    const { updateOnboardingState, storeSetup, storeSetupError, setError } = useOnboardingStore()
-    const [urlTempValue, setUrlTempValue] = useState(storeSetup.url ?? '')
+    const { updateOnboardingState, storeSetup, storeSetupErrors, setError } = useOnboardingStore()
+    const [urlTempValue, setUrlTempValue] = useState(storeSetup.shop_url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
 
     const { data: isAvailable, isFetching } = useUsernameAvailability({
         username: debouncedUrl,
         onSuccess: (isAvailable) => {
             if (isAvailable) {
-                updateOnboardingState('storeSetup', { ...storeSetup, url: debouncedUrl })
-                setError('url', undefined)
+                updateOnboardingState('storeSetup', { ...storeSetup, shop_url: debouncedUrl })
+                setError('shop_url', undefined)
             } else {
-                updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
-                setError('url', 'This URL is not available')
+                updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
+                setError('shop_url', 'This URL is not available')
             }
         },
         onError: () => {
-            updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
-            setError('url', 'Error checking URL availability')
+            updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
+            setError('shop_url', 'Error checking URL availability')
         }
     })
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         if (!value) {
-            updateOnboardingState('storeSetup', { ...storeSetup, url: '' })
-            setError('url', 'URL is required')
+            updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
+            setError('shop_url', 'URL is required')
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())
@@ -48,12 +48,12 @@ export default function UrlChooser() {
     }
 
     useEffect(() => {
-        setUrlTempValue(storeSetup.url ?? '')
-    }, [storeSetup.url])
+        setUrlTempValue(storeSetup.shop_url ?? '')
+    }, [storeSetup.shop_url])
 
     return (
         <Input
-            label='URL'
+            label='shop_url'
             inputProps={{
                 paddingInline: 4,
                 paddingBlock: 3,
@@ -79,7 +79,7 @@ export default function UrlChooser() {
                     {renderAvailabilityIcon()}
                 </Box>
             }
-            {...storeSetupError.url && { message: storeSetupError.url, state: "error" }}
+            {...storeSetupErrors.shop_url && { message: storeSetupErrors.shop_url, state: "error" }}
         />
     )
 }

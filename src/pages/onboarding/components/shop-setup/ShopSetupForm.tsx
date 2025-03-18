@@ -22,16 +22,8 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
 
-    const { coverImage, description, logoUrl, name, url } = storeSetup ?? {}
-
     const { mutateAsync: setupShopMutation, isLoading } = useMutation({
-        mutationFn: () => setupShop({
-            description,
-            name,
-            hero_section: coverImage,
-            logo: logoUrl,
-            shop_url: url,
-        }),
+        mutationFn: () => setupShop(storeSetup),
         onSuccess: onNext,
         onError: (error: any) => {
             showToast({
