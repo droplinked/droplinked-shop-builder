@@ -19,7 +19,7 @@ import NameField from './NameField'
 import UrlChooser from './UrlChooser'
 
 function ShopSetupForm({ onNext }: OnboardingStepProps) {
-    const { reset, updateState } = useAppStore()
+    const { reset, updateState, user, shop } = useAppStore()
     const { updateOnboardingState, storeSetup, setError } = useOnboardingStore()
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
@@ -27,7 +27,8 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
     const { mutateAsync: setupShopMutation, isLoading } = useMutation({
         mutationFn: () => setupShop(storeSetup),
         onSuccess: (data) => {
-            updateState({ key: "shop", params: data.data.data })
+            updateState({ key: "shop", params: { ...shop, ...data.data.data } })
+            updateState({ key: "user", params: { ...user, status: "SHOP_INFO_COMPLETED" } })
             onNext()
         },
         onError: (error: any) => {
