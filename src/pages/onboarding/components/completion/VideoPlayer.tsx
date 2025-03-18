@@ -1,33 +1,44 @@
-import { Flex } from '@chakra-ui/react'
-import { PlayLg } from 'assets/icons/System/Play/PlayLg'
-import React from 'react'
+import { Box } from '@chakra-ui/react'
+import React, { useEffect, useRef } from 'react'
 
-function VideoPlayer() {
+interface YouTubeVideoProps {
+    isPlaying: boolean
+}
+
+function YouTubeVideo({ isPlaying }: YouTubeVideoProps) {
+    const videoId = 'nuyuCSRx8sI'
+    const iframeRef = useRef<HTMLIFrameElement>(null)
+
+    // Construct URL with proper autoplay parameter based on isPlaying
+    const videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${isPlaying ? 1 : 0}&mute=0`
+
+    useEffect(function controlVideoPlayback() {
+        if (!iframeRef.current) return
+
+        const iframe = iframeRef.current
+        const src = iframe.src
+
+        // Update iframe src to control playback
+        if (isPlaying && !src.includes('autoplay=1'))
+            iframe.src = src.replace('autoplay=0', 'autoplay=1')
+        else if (!isPlaying && src.includes('autoplay=1'))
+            iframe.src = src.replace('autoplay=1', 'autoplay=0')
+    }, [isPlaying])
+
     return (
-        <Flex
-            backgroundImage={`url(https://upload-file-droplinked.s3.amazonaws.com/57cbc63f89bfb08c0edbf34dcf3a79ffff0a2530e518972c93fc8364f4ab3c22.png)`}
-            height="500px"
-            width="100%"
-            backgroundRepeat="no-repeat"
-            backgroundSize="cover"
-            backgroundPosition="center"
-            alignItems="center"
-            justifyContent="center"
-            cursor="pointer"
-        >
-            <Flex
-                backdropFilter="blur(30px)"
-                backgroundColor="rgba(0, 0, 0, 0.50)"
-                height="60px"
-                width="60px"
-                alignItems="center"
-                justifyContent="center"
-                borderRadius="full"
-            >
-                <PlayLg width="40px" height="40px" color='#fff' />
-            </Flex>
-        </Flex>
+        <Box position="relative" width="100%" height="500px">
+            <iframe
+                ref={iframeRef}
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                title="Droplinked Website Onboarding"
+                allow="accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture"
+                allowFullScreen
+                style={{ borderRadius: '8px' }}
+            />
+        </Box>
     )
 }
 
-export default VideoPlayer
+export default YouTubeVideo

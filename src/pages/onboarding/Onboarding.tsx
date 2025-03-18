@@ -66,7 +66,9 @@ function Onboarding() {
     const { leftContent, rightContent } = stepContentMap[currentStep]
     const isAuthStep = ['SIGN_IN', 'SIGN_UP', 'EMAIL_CONFIRMATION'].includes(currentStep)
 
-    return <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
+    return (!rightContent)
+        ? leftContent
+        : <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
 }
 
 export default Onboarding
