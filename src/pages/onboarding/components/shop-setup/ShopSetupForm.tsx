@@ -26,9 +26,8 @@ function ShopSetupForm({ onBack, onNext }: OnboardingStepProps) {
     }
 
     const handleBack = () => {
-        alert("form resetted")
         updateOnboardingState("storeSetup", initialStoreSetup)
-        onBack()
+        updateOnboardingState("currentStep", "SIGN_UP")
     }
 
     return (
