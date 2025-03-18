@@ -53,7 +53,7 @@ export default function UrlChooser() {
 
     return (
         <Input
-            label='shop_url'
+            label='Shop URL'
             inputProps={{
                 paddingInline: 4,
                 paddingBlock: 3,
