@@ -5,6 +5,7 @@ import Input from 'components/redesign/input/Input'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { signupService } from 'lib/apis/auth/services'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
@@ -17,7 +18,6 @@ import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from './PasswordValidationRules'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),

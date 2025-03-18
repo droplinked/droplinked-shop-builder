@@ -1,7 +1,5 @@
 import { useBreakpointValue } from '@chakra-ui/react'
-import useAppStore from 'lib/stores/app/appStore'
 import React, { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import CompletionSection from './components/completion/CompletionSection'
 import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import DesktopLayout from './components/layout/DesktopLayout'
@@ -20,22 +18,17 @@ import useOnboardingStore from './stores/useOnboardingStore'
 
 function Onboarding() {
     const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
-    const [searchParams] = useSearchParams()
-    const { isLoggedIn } = useAppStore()
-    const { currentStep, updateOnboardingState, nextStep, prevStep, credentials } = useOnboardingStore()
+    const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
 
     useEffect(() => {
-        if (!isLoggedIn && !credentials.email)
-            return updateOnboardingState('currentStep', 'SIGN_IN')
+        const searchParams = new URLSearchParams(window.location.search)
+        const entry = searchParams.get("entry")
 
-        const entry = searchParams.get('entry')?.toLowerCase()
         if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-        else if (entry === 'email-confirmation') updateOnboardingState('currentStep', 'EMAIL_CONFIRMATION')
-        else if (entry === 'store-details') updateOnboardingState('currentStep', 'STORE_DETAILS')
-    }, [isLoggedIn, credentials, updateOnboardingState, searchParams])
+    }, [updateOnboardingState])
 
-    useEffect(function scrollToTop() {
+    useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }, [currentStep])
 
