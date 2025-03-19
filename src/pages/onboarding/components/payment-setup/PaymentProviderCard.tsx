@@ -1,13 +1,13 @@
-import { Box, Flex, HStack, Text } from '@chakra-ui/react';
-import AppTooltip from 'components/common/tooltip/AppTooltip';
-import { TooltipLg } from 'assets/icons/Sign/Tooltip/TooltipLg';
-import React from 'react';
-import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
+import { Box, Flex, HStack, Text } from '@chakra-ui/react'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
+import { TooltipLg } from 'assets/icons/Sign/Tooltip/TooltipLg'
+import React from 'react'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 
 interface props {
-  icon: React.ReactNode;
-  title: string;
-  tooltip: string;
+  icon: React.ReactNode
+  title: string
+  tooltip: string
 }
 
 function PaymentProviderCard({ icon, title, tooltip }: props) {
@@ -26,7 +26,7 @@ function PaymentProviderCard({ icon, title, tooltip }: props) {
       </Flex>
       <Text color={'text.primary'} cursor="pointer">connect</Text>
     </HStack>
-  );
+  )
 }
 
-export default PaymentProviderCard;
+export default PaymentProviderCard

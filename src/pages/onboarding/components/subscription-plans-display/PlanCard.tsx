@@ -1,10 +1,10 @@
-import { Box, Text } from '@chakra-ui/react';
-import React, { ReactNode } from 'react';
+import { Box, Text } from '@chakra-ui/react'
+import React, { ReactNode } from 'react'
 
 interface PlanCardProps {
-  icon: ReactNode;
-  title: string;
-  description: string;
+  icon: ReactNode
+  title: string
+  description: string
 }
 
 const PlanCard: React.FC<PlanCardProps> = ({ icon, title, description }) => {
@@ -34,7 +34,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ icon, title, description }) => {
         </Text>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default PlanCard; 
+export default PlanCard 

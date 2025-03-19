@@ -1,22 +1,22 @@
-import { motion } from 'framer-motion';
-import React from 'react';
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
-import PlanCard from './PlanCard';
+import { motion } from 'framer-motion'
+import React from 'react'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import PlanCard from './PlanCard'
 
 const PlanCards = () => {
-  const radius = 193; // radius of the circle
+  const radius = 193 // radius of the circle
   const calculatePosition = (index: number, total: number) => {
-    const angle = (index / total) * 2 * Math.PI;
-    const x = radius * Math.cos(angle);
-    const y = radius * Math.sin(angle);
+    const angle = (index / total) * 2 * Math.PI
+    const x = radius * Math.cos(angle)
+    const y = radius * Math.sin(angle)
 
     return {
       left: `calc(30% + ${x}px)`,
       top: `calc(35.5% + ${y}px)`
-    };
-  };
+    }
+  }
 
-  const plans = Object.entries(subscriptionPlans);
+  const plans = Object.entries(subscriptionPlans)
 
   return (
     <motion.div
@@ -61,7 +61,7 @@ const PlanCards = () => {
         </motion.div>
       ))}
     </motion.div>
-  );
-};
+  )
+}
 
-export default PlanCards;
+export default PlanCards

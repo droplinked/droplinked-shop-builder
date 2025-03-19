@@ -1,9 +1,9 @@
-import { Box, Circle } from '@chakra-ui/react';
-import React from 'react';
-import CenterIcon from './CenterIcon';
-import CircleIcons from './CircleIcons';
-import PlanCards from './PlanCards';
-import RightSectionWrapper from '../common/RightSectionWrapper';
+import { Box, Circle } from '@chakra-ui/react'
+import React from 'react'
+import CenterIcon from './CenterIcon'
+import CircleIcons from './CircleIcons'
+import PlanCards from './PlanCards'
+import RightSectionWrapper from '../common/RightSectionWrapper'
 
 const SubscriptionPlansDisplay = () => {
   return (
@@ -67,7 +67,7 @@ const SubscriptionPlansDisplay = () => {
         <CircleIcons />
       </Box>
     </RightSectionWrapper>
-  );
-};
+  )
+}
 
-export default SubscriptionPlansDisplay;
+export default SubscriptionPlansDisplay

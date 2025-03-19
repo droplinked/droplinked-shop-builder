@@ -1,7 +1,7 @@
-import { Box, Grid, VStack } from '@chakra-ui/react';
-import React from 'react';
-import PaymentFeatureCard from './PaymentFeatureCard';
-import RightSectionWrapper from '../common/RightSectionWrapper';
+import { Box, Grid, VStack } from '@chakra-ui/react'
+import React from 'react'
+import PaymentFeatureCard from './PaymentFeatureCard'
+import RightSectionWrapper from '../common/RightSectionWrapper'
 
 const PaymentFeatures: React.FC = () => {
   const cards = [
@@ -20,7 +20,7 @@ const PaymentFeatures: React.FC = () => {
       title: 'Tokenpay',
       description: 'Enable acceptance of thousands of various digital assets.'
     }
-  ];
+  ]
 
   return (
     <RightSectionWrapper>
@@ -38,7 +38,7 @@ const PaymentFeatures: React.FC = () => {
         </Grid>
       </VStack>
     </RightSectionWrapper>
-  );
-};
+  )
+}
 
-export default PaymentFeatures;
+export default PaymentFeatures

@@ -1,6 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react';
-import CurrencySelect from 'components/redesign/select/CurrencySelect';
-import React from 'react';
+import { Flex, Text } from '@chakra-ui/react'
+import CurrencySelect from 'components/redesign/select/CurrencySelect'
+import React from 'react'
 
 function CurrencySection() {
   return (
@@ -8,7 +8,7 @@ function CurrencySection() {
       <Text color={'text.white'}>Default Currency</Text>
       <CurrencySelect />
     </Flex>
-  );
+  )
 }
 
-export default CurrencySection; 
+export default CurrencySection 

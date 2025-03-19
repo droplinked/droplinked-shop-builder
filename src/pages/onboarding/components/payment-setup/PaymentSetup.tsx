@@ -1,10 +1,10 @@
-import { Flex } from '@chakra-ui/react';
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
-import React from 'react';
-import ControlButtons from '../common/ControlButtons';
-import CurrencySection from './CurrencySection';
-import FinancialServices from './FinancialServices';
-import OnboardingStepHeader from '../common/OnboardingStepHeader';
+import { Flex } from '@chakra-ui/react'
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import React from 'react'
+import ControlButtons from '../common/ControlButtons'
+import CurrencySection from './CurrencySection'
+import FinancialServices from './FinancialServices'
+import OnboardingStepHeader from '../common/OnboardingStepHeader'
 
 function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
   return (
@@ -17,7 +17,7 @@ function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
       </Flex>
     </>
 
-  );
+  )
 }
 
-export default PaymentSetup;
+export default PaymentSetup

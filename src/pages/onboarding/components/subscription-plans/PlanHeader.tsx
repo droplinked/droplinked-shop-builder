@@ -1,20 +1,20 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
-import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
-import PlanPrice from 'components/redesign/plan-price/PlanPrice';
-import React from 'react';
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans';
-import AppLabel from 'components/redesign/label/AppLabel';
+import { Box, Flex, Text } from '@chakra-ui/react'
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import PlanPrice from 'components/redesign/plan-price/PlanPrice'
+import React from 'react'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import AppLabel from 'components/redesign/label/AppLabel'
 
 interface PlanHeaderProps {
-  plan: SubscriptionPlan;
-  isPopular?: boolean;
-  isSelected?: boolean;
+  plan: SubscriptionPlan
+  isPopular?: boolean
+  isSelected?: boolean
 }
 
 function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
-  const planDetail = subscriptionPlans[plan.type];
+  const planDetail = subscriptionPlans[plan.type]
 
   return (
     <Box p={4}>
@@ -42,7 +42,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
             </Text>
           )}
 
-          <Text color="#b1b1b1" fontSize="sm">
+          <Text color="text.subtextPlaceholder.light" fontSize="sm">
             {planDetail.description}
           </Text>
         </Flex>
@@ -51,7 +51,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
         </Box>
       </Flex>
     </Box>
-  );
+  )
 }
 
-export default PlanHeader;
+export default PlanHeader

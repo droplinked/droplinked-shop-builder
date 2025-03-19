@@ -1,29 +1,29 @@
-import { Circle } from '@chakra-ui/react';
-import { LinkLg } from 'assets/icons/Action/Link/LinkLg';
-import { BoxLg } from 'assets/icons/Finance/Box/BoxLg';
-import { CoinsLg } from 'assets/icons/Finance/Coins/CoinsLg';
-import { BrushLg } from 'assets/icons/StyleDesigner/Brush/BrushLg';
-import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg';
-import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg';
-import { NftLg } from 'assets/icons/System/NFT/NftLg';
-import { ShopLg } from 'assets/icons/System/Shop/ShopLg';
-import { motion } from 'framer-motion';
-import React from 'react';
+import { Circle } from '@chakra-ui/react'
+import { LinkLg } from 'assets/icons/Action/Link/LinkLg'
+import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
+import { CoinsLg } from 'assets/icons/Finance/Coins/CoinsLg'
+import { BrushLg } from 'assets/icons/StyleDesigner/Brush/BrushLg'
+import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
+import { NftLg } from 'assets/icons/System/NFT/NftLg'
+import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
+import { motion } from 'framer-motion'
+import React from 'react'
 
 const CircleIcons = () => {
-  const radius = 370; // Radius of the circle in pixels
-  const totalIcons = 8;
+  const radius = 370 // Radius of the circle in pixels
+  const totalIcons = 8
 
   const calculatePosition = (index: number) => {
-    const angle = (index / totalIcons) * 2 * Math.PI;
-    const x = radius * Math.cos(angle);
-    const y = radius * Math.sin(angle);
+    const angle = (index / totalIcons) * 2 * Math.PI
+    const x = radius * Math.cos(angle)
+    const y = radius * Math.sin(angle)
 
     return {
       left: `calc(45.5% + ${x}px)`,
       top: `calc(45.5% + ${y}px)`,
-    };
-  };
+    }
+  }
 
   const circleIcons = [
     { icon: ShopLg },
@@ -37,7 +37,7 @@ const CircleIcons = () => {
   ].map((item, index) => ({
     ...item,
     position: calculatePosition(index)
-  }));
+  }))
 
   return (
     <motion.div
@@ -88,7 +88,7 @@ const CircleIcons = () => {
         </motion.div>
       ))}
     </motion.div>
-  );
-};
+  )
+}
 
-export default CircleIcons;
+export default CircleIcons

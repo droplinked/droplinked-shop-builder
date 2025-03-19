@@ -1,9 +1,9 @@
-import { Flex, Text } from '@chakra-ui/react';
-import { StripeLogo } from 'assets/logo/NetworkAndTokens/Stripe/StripeLogo';
-import { PaymobLogo } from 'assets/logo/NetworkAndTokens/Paymob/PaymobLogo';
-import RuledGrid from 'components/redesign/ruled-grid/RuledGrid';
-import React from 'react';
-import PaymentProviderCard from './PaymentProviderCard';
+import { Flex, Text } from '@chakra-ui/react'
+import { StripeLogo } from 'assets/logo/NetworkAndTokens/Stripe/StripeLogo'
+import { PaymobLogo } from 'assets/logo/NetworkAndTokens/Paymob/PaymobLogo'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import React from 'react'
+import PaymentProviderCard from './PaymentProviderCard'
 
 const providers = [
   {
@@ -16,7 +16,7 @@ const providers = [
     tooltip: 'Connect a Paymob account to receive deposits directly into an existing account.',
     icon: <PaymobLogo />
   }
-];
+]
 
 function FinancialServices() {
   return (
@@ -33,7 +33,7 @@ function FinancialServices() {
         ))}
       </RuledGrid>
     </Flex>
-  );
+  )
 }
 
-export default FinancialServices; 
+export default FinancialServices 

@@ -1,6 +1,6 @@
-import { Box, Circle } from '@chakra-ui/react';
-import DroplinkedLogo from 'assets/brand-identity/Drop3';
-import React from 'react';
+import { Box, Circle } from '@chakra-ui/react'
+import DroplinkedLogo from 'assets/brand-identity/Drop3'
+import React from 'react'
 
 const CenterIcon = () => {
   return (
@@ -29,7 +29,7 @@ const CenterIcon = () => {
         </Circle>
       </Circle>
     </Box>
-  );
-};
+  )
+}
 
-export default CenterIcon;
+export default CenterIcon
