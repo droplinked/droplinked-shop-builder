@@ -22,16 +22,19 @@ export default function DomainField({ refetch, domains }: Props) {
 
     const handleUpdateShopAPIKey = async () => {
         try {
-            if (!domainRegex.test(value)) throw Error("Please enter a valid domain.")
-            if (domains.includes(value)) throw Error("Domain already exists.")
-            await mutateAsync({ domains: [...domains, value] })
-            refetch()
-            showToast({ message: `${value} added successfully.`, type: "success" })
+            if (!domainRegex.test(value)) throw Error("Please enter a valid domain.");
+            if (domains?.length) {
+                if (domains?.includes(value)) throw Error("Domain already exists.");
+                await mutateAsync({ domains: [...domains, value] });
+            } else {
+                await mutateAsync({ domains: [value] });
+            }
+            refetch();
+            showToast({ message: `${value} added successfully.`, type: "success" });
+        } catch (error) {
+            showToast({ message: (error as Error).message, type: "error" });
         }
-        catch (error) {
-            showToast({ message: (error as Error).message, type: "error" })
-        }
-    }
+    };
 
     return (
         <Input
