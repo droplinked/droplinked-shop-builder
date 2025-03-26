@@ -15,9 +15,9 @@ function RevenueStatDetails({ stat, isLoading }: Props) {
         <Flex
             direction="column"
             gap={2}
-            sx={{ p: { fontSize: { base: 18, lg: 20 }, fontWeight: 500, color: "#fff" } }}
+            sx={{ p: { fontSize: { base: 18, xl: 20 }, fontWeight: 500, color: "text.white" } }}
         >
-            <Text as="span" fontSize={14} color="#fff">{label}</Text>
+            <Text as="span" fontSize={14} color="text.white">{label}</Text>
 
             <Skeleton isLoaded={!isLoading}>
                 {isPrice

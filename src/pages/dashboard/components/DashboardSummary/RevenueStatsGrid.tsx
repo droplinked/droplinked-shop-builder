@@ -1,5 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { CoinsLg } from 'assets/icons/Finance/Coins/CoinsLg'
+import { InvoiceLg } from 'assets/icons/Finance/Invoice/InvoiceLg'
+import { UserLg } from 'assets/icons/System/User/UserLg'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import useDashboardPageStore from 'pages/dashboard/stores/useDashboardStore'
@@ -11,10 +13,10 @@ function RevenueStatsGrid() {
     const { isLoading, dashboardData: { shopStats } } = useDashboardPageStore()
 
     const stats = [
-        { icon: <CurrencyIcon __css={{ path: { stroke: "#fff" } }} />, label: 'Total Revenue', value: shopStats?.totalRevenue, isPrice: true },
-        { icon: <AppIcons.HeaderCoins />, label: 'Net Profit', value: shopStats?.profit, isPrice: true },
-        { icon: <AppIcons.Invoice />, label: 'Orders', value: shopStats?.orders, isPrice: false },
-        { icon: <AppIcons.User />, label: 'Customers', value: shopStats?.customers, isPrice: false }
+        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: 'Total Revenue', value: shopStats?.totalRevenue, isPrice: true },
+        { icon: <CoinsLg color='white' />, label: 'Net Profit', value: shopStats?.profit, isPrice: true },
+        { icon: <InvoiceLg color='white' />, label: 'Orders', value: shopStats?.orders, isPrice: false },
+        { icon: <UserLg color='white' />, label: 'Customers', value: shopStats?.customers, isPrice: false }
     ]
 
     return (
@@ -27,7 +29,7 @@ function RevenueStatsGrid() {
                     border="1px solid"
                     borderColor="neutral.gray.800"
                     borderRadius={16}
-                    padding={{ base: 4, lg: 6 }}
+                    padding={{ base: 4, xl: 6 }}
                 >
                     <IconWrapper icon={stat.icon} />
                     <RevenueStatDetails stat={stat} isLoading={isLoading} />

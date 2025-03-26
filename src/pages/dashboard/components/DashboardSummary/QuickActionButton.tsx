@@ -7,9 +7,10 @@ interface Props {
     action: QuickAction
 }
 
-function QuickActionButton({ action: { icon, label, url } }: Props) {
+function QuickActionButton({ action }: Props) {
     const navigate = useNavigate()
 
+    const { icon, label, url } = action
     const handleClick = () => navigate(url)
 
     return (
@@ -21,18 +22,12 @@ function QuickActionButton({ action: { icon, label, url } }: Props) {
             borderColor="neutral.gray.800"
             borderRadius={16}
             padding={4}
-            fontSize={{ base: 14, lg: 16 }}
+            fontSize={{ base: 14, xl: 16 }}
             fontWeight={500}
-            color="#fff"
+            color="text.white"
             onClick={handleClick}
         >
-            <Center
-                as="span"
-                borderRadius={8}
-                padding={2}
-                bgColor="neutral.gray.800"
-                sx={{ svg: { width: 5, height: 5 } }}
-            >
+            <Center borderRadius={8} padding={2} bgColor="neutral.gray.800">
                 {icon}
             </Center>
 
