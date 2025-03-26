@@ -7,6 +7,7 @@ import { useQuery } from 'react-query'
 import { generateShopNames } from 'lib/apis/ai/services'
 import useAppToast from 'hooks/toast/useToast'
 import ItemsSkeleton from './ItemsSkeleton'
+import Item from './Item'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -39,34 +40,18 @@ export default function GeneratedNames({ businessCategory, businessDescribe }: P
         handleClick(names?.[0])
     }, [])
 
-
     return (
         <GeneratedContentWrapper title='Name' onRetry={refetch} isLoading={isFetching}>
-            <Grid templateColumns="1fr 1fr 1fr" gap={4}>
+            <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
                 {isFetching && <ItemsSkeleton />}
 
                 {!isFetching && names?.map((name, index) => (
-                    <Flex
+                    <Item
                         key={index}
-                        background={selectedName === name ? "rgba(43, 207, 161, 0.10)" : "transparent"}
-                        paddingInline={4}
-                        paddingBlock={3}
-                        borderRadius={8}
-                        border={selectedName === name ? "1.5px solid #2BCFA1" : "1.5px solid #292929"}
-                        alignItems="center"
-                        cursor="pointer"
-                        transition="all 0.3s ease"
+                        isSelected={selectedName === name}
+                        item={{ title: name }}
                         onClick={() => handleClick(name)}
-                    >
-                        <Text
-                            color={selectedName === name ? "#2BCFA1" : "#fff"}
-                            fontSize={16}
-                            fontWeight={400}
-                            transition="color 0.3s ease"
-                        >
-                            {name}
-                        </Text>
-                    </Flex>
+                    />
                 ))}
             </Grid>
         </GeneratedContentWrapper>

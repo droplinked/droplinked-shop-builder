@@ -8,7 +8,7 @@ interface Props {
     onClick: () => void
 }
 
-export default function BusinessCategoryItems({ item, isSelected, onClick }: Props) {
+export default function Item({ item, isSelected, onClick }: Props) {
     const border = isSelected ? "1.5px solid #2BCFA1" : "1.5px solid #292929"
     const color = isSelected ? "#2BCFA1" : "#fff"
     const background = isSelected ? "rgba(43, 207, 161, 0.10)" : "transparent"
@@ -26,14 +26,14 @@ export default function BusinessCategoryItems({ item, isSelected, onClick }: Pro
             cursor="pointer"
             transition="all 0.3s ease"
         >
-            <item.icon color={color} />
+            {item?.icon && <item.icon color={color} />}
             <Text
                 color={color}
-                fontSize={16}
+                fontSize={{ base: 14, md: 16 }}
                 fontWeight={400}
                 transition="color 0.3s ease"
             >
-                {item.title}
+                {item?.title}
             </Text>
         </Flex>
     )

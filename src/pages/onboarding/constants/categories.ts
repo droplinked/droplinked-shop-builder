@@ -16,8 +16,8 @@ import { TechnologyMd } from "assets/icons/System/Technology/TechnologyMd";
 import { SVGProps } from "react";
 
 export interface AiCategory {
-    title: string
-    icon: React.FC<SVGProps<SVGSVGElement>>
+    title?: string
+    icon?: React.FC<SVGProps<SVGSVGElement>>
 }
 
 export const categories: AiCategory[] = [

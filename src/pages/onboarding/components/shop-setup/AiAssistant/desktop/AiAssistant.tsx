@@ -10,10 +10,10 @@ import PaymentModal from 'pages/onboarding/components/common/payment-modal/Payme
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
-    const [step, setStep] = useState(3)
+    const [step, setStep] = useState(0)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
-        businessDescribe: "We sell Asus monitors",
-        businessCategory: "Technology",
+        businessDescribe: "",
+        businessCategory: "",
     })
 
     const onNextStep = () => setStep(step + 1)

@@ -15,7 +15,7 @@ export default function GeneratedContents({ generateWithAiData }: { generateWith
             height="800px"
             borderLeft={{ base: "none", lg: "1px solid #292929" }}
             p={{ base: 4, md: 9, lg: "48px" }}
-            overflow="auto"
+            overflow={{ base: "hidden", lg: "auto" }}
         >
             <Flex flexDirection="column" gap={9}>
                 <GeneratedLogo businessCategory={businessCategory} businessDescribe={businessDescribe} />
