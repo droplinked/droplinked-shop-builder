@@ -32,7 +32,7 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
         },
         {
             title: "Result",
-            content: <GeneratedContents />
+            content: <GeneratedContents generateWithAiData={generateWithAiData} />
         }
     ]
 
