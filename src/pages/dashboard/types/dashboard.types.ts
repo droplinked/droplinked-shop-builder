@@ -12,3 +12,11 @@ export interface QuickAction {
     label: string
     url: string
 }
+
+export interface CardButton {
+    label: string
+    variant: 'primary' | 'outline'
+    leftIcon?: React.ReactNode
+    rightIcon?: React.ReactNode
+    onClick: () => void
+}
