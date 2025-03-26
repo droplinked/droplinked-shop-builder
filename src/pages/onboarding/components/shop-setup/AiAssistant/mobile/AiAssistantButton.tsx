@@ -14,8 +14,6 @@ export default function AiAssistantButton() {
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",
-        prompt: "",
-        enhancePrompt: false,
     })
 
     const onNextStep = () => setStep(step + 1)

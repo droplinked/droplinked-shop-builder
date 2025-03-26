@@ -1,5 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
-import Checkbox from 'components/redesign/checkbox/Checkbox'
+import { Flex } from '@chakra-ui/react'
 import Textarea from 'components/redesign/textarea/Textarea'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
@@ -16,22 +15,9 @@ export default function PromptInputs({ generateWithAiData, handleChange }: Props
                 label='Prompt'
                 placeholder='Please describe your shop to help our AI create a more accurate and efficient representation of your business.'
                 isRequired={true}
-                value={generateWithAiData.prompt}
-                onChange={(e) => handleChange("prompt", e.target.value)}
+                value={generateWithAiData.businessDescribe}
+                onChange={(e) => handleChange("businessDescribe", e.target.value)}
             />
-
-            <Flex
-                gap={3}
-                alignItems="center"
-                onClick={() => handleChange("enhancePrompt", !generateWithAiData.enhancePrompt)}
-                cursor="pointer"
-            >
-                <Box>
-                    <Checkbox color="#FFF" fontSize={16} fontWeight={400}>
-                        Enhance prompt with AI
-                    </Checkbox>
-                </Box>
-            </Flex>
         </Flex>
     )
 }
