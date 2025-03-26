@@ -22,6 +22,26 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const [withdrawingChain, setWithdrawingChain] = useState<string | null>(null);
     const { data: withdrawData, mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
 
+    const handleWithdraw = async (chain: any) => {
+        if (chain?.tokenSymbol === "USDC") {
+            setError("USDC");
+            return;
+        }
+        if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
+            if (chain?.tokenId && chain?.amount && chain?.amount !== "0") {
+                setWithdrawingChain(chain?.chain);
+                await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
+                    .then(async (res) => {
+                        if (res?.data?.data === true) await refetch();
+                    })
+                    .catch((e) => { })
+                    .finally(() => {
+                        setWithdrawingChain(null);
+                    });
+            }
+        } else setError(chain?.chain);
+    };
+
     const WalletListSkeleton = () => (
         <>
             {[1, 2, 3].map((_, index) => (
@@ -196,21 +216,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                             whileHover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                                             whileFocus={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                                             disabled={isWithdrawing || !chain?.tokenId || !chain?.amount || chain?.amount === "0"}
-                                            onClick={async () => {
-                                                if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
-                                                    if (chain?.tokenId && chain?.amount && chain?.amount !== "0") {
-                                                        setWithdrawingChain(chain?.chain);
-                                                        await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
-                                                            .then(async (res) => {
-                                                                if (res?.data?.data === true) await refetch();
-                                                            })
-                                                            .catch((e) => { })
-                                                            .finally(() => {
-                                                                setWithdrawingChain(null);
-                                                            });
-                                                    }
-                                                } else setError(chain?.chain);
-                                            }}
+                                            onClick={() => handleWithdraw(chain)}
                                             variants={buttonVariants}
                                             animate={isWithdrawingThisChain ? "withdrawing" : "idle"}
                                         >
@@ -247,14 +253,18 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                 </svg>
                                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" flex="1 0 0">
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="700" lineHeight="20px">
-                                        Wallet not connected
+                                    {Error === "USDC"? 'For USDC withdrawals, your account needs to be verified.' : 'Wallet not connected' }
+                                        
                                     </AppTypography>
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">
-                                        Please connect a {Error} supported wallet first, then proceed with the withdrawal.
+                                        {Error === "USDC" 
+                                            ? "Please contact Droplinked support at support@droplinked.com for verification."
+                                            : `Please connect a ${Error} supported wallet first, then proceed with the withdrawal.`}
                                     </AppTypography>
                                 </Box>
                             </Box>
-                            <Button
+                            {Error === "USDC" ? null : 
+                             <Button
                                 display="flex"
                                 border="none"
                                 color="#FFF"
@@ -273,7 +283,8 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                 onClick={connectWalletModal.onOpen}
                             >
                                 Connect Wallet
-                            </Button>
+                            </Button> }
+                           
                         </Box>
                     )}
                 </ModalBody>
