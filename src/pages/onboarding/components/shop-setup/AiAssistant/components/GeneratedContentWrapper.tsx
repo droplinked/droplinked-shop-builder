@@ -17,7 +17,7 @@ export default function GeneratedContentWrapper({ children, onRetry, title, isLo
                 <Text color="#fff" fontSize="16px" fontWeight="500">{title}</Text>
                 <BlueButton
                     onClick={onRetry}
-                    isLoading={isLoading}
+                    isDisabled={isLoading}
                     leftIcon={<Refresh1Md color='#2BCFA1' />}
                     iconSpacing="6px"
                     fontSize="14"

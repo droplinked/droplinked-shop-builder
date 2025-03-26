@@ -54,6 +54,8 @@ export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep,
                         label='Describe Your Business'
                         isRequired={true}
                         placeholder='Please describe your shop to help our AI create a more accurate and efficient representation of your business.'
+                        value={generateWithAiData.businessDescribe}
+                        onChange={(e) => handleChange("businessDescribe", e.target.value)}
                     />
 
                     <BusinessCategory
@@ -62,7 +64,11 @@ export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep,
                     />
                 </ModalBody>
 
-                <BusinessModalFooter onClose={onClose} onNextStep={onNextStep} />
+                <BusinessModalFooter
+                    onClose={onClose}
+                    onNextStep={onNextStep}
+                    generateWithAiData={generateWithAiData}
+                />
             </Flex>
         </AppModal>
     )

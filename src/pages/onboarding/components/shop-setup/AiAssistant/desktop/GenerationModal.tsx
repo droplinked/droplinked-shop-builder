@@ -3,21 +3,19 @@ import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
 import GeneratedContents from '../components/GeneratedContents'
 import PromptInputs from '../components/PromptInputs'
-import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
-    onNextStep: () => void
-    onPrevStep: () => void
     generateWithAiData: GenerateWithAiData
     setGenerateWithAiData: (data: GenerateWithAiData) => void
 }
 
-export default function GenerationModal({ isOpen, onClose, onNextStep, onPrevStep, generateWithAiData, setGenerateWithAiData }: Props) {
+export default function GenerationModal({ isOpen, onClose, generateWithAiData, setGenerateWithAiData }: Props) {
     const handleChange = (key: string, value: string | boolean) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })
     }
@@ -50,7 +48,7 @@ export default function GenerationModal({ isOpen, onClose, onNextStep, onPrevSte
                         />
                     </ModalBody>
                 </Flex>
-                <GeneratedContents />
+                <GeneratedContents generateWithAiData={generateWithAiData} />
             </Grid>
         </AppModal>
     )

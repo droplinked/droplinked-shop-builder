@@ -2,13 +2,33 @@ import React, { useEffect } from 'react'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { Avatar, Box, Flex } from '@chakra-ui/react'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import { useQuery } from 'react-query'
+import { generateLogos } from 'lib/apis/ai/services'
+import useAppToast from 'hooks/toast/useToast'
+import LogosSkeleton from './LogosSkeleton'
 
-interface Props {
-    logos: string[]
+interface Props extends GenerateWithAiData {
+    businessCategory: string
+    businessDescribe: string
 }
 
-export default function GeneratedLogo({ logos }: Props) {
+export default function GeneratedLogo({ businessCategory, businessDescribe }: Props) {
+    const { showToast } = useAppToast()
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
+
+    const { isFetching, data: logos, refetch } = useQuery({
+        queryFn: () => generateLogos({ category: businessCategory, prompt: businessDescribe }),
+        queryKey: ["generateLogos"],
+        enabled: !!businessCategory && !!businessDescribe,
+        select(data) {
+            return data.data.logos || []
+        },
+        onError(err: any) {
+            showToast({ message: err.response.data.data.message, type: "error" })
+        },
+    })
+
     const selectedLogo = storeSetup.logo
 
     const handleClick = (url: string) => {
@@ -16,13 +36,14 @@ export default function GeneratedLogo({ logos }: Props) {
     }
 
     useEffect(() => {
-        handleClick(logos[0])
+        handleClick(logos?.[0])
     }, [])
 
     return (
-        <GeneratedContentWrapper title='Logo'>
+        <GeneratedContentWrapper title='Logo' onRetry={refetch} isLoading={isFetching}>
             <Flex alignItems="center" gap={4}>
-                {logos.map((logo, index) => {
+                {isFetching && <LogosSkeleton />}
+                {!isFetching && logos?.map((logo, index) => {
                     return (
                         <Box
                             {...(selectedLogo === logo) && { border: "1px solid #2BCFA1" }}

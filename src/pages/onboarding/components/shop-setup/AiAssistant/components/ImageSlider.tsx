@@ -9,13 +9,15 @@ import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import AppImage from 'components/common/image/AppImage'
 import BlueButton from 'components/redesign/button/BlueButton'
+import ImageSkeleton from './ImageSkeleton'
 
 interface ImageSliderProps {
     images: string[]
     onChange?: (currentImage: string) => void
+    isLoading: boolean
 }
 
-export const ImageSlider = ({ images, onChange }: ImageSliderProps) => {
+export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) => {
     const [currentIndex, setCurrentIndex] = useState(0)
 
     const handleNext = () => {
@@ -37,7 +39,8 @@ export const ImageSlider = ({ images, onChange }: ImageSliderProps) => {
                 transform={`translateX(-${(currentIndex * 100) / images.length}%)`}
                 transition="transform 0.5s ease-in-out"
             >
-                {images.map((image, index) => (
+                {isLoading && <ImageSkeleton />}
+                {!isLoading && images.map((image, index) => (
                     <Box key={index} width={`${100 / images.length}%`} flexShrink={0}>
                         <AppImage
                             src={image}
@@ -63,6 +66,7 @@ export const ImageSlider = ({ images, onChange }: ImageSliderProps) => {
                     fontSize={14}
                     fontWeight={400}
                     padding={0}
+                    isDisabled={isLoading}
                 >
                     Previous
                 </BlueButton>
@@ -89,6 +93,7 @@ export const ImageSlider = ({ images, onChange }: ImageSliderProps) => {
                     fontSize={14}
                     fontWeight={400}
                     padding={0}
+                    isDisabled={isLoading}
                 >
                     Next
                 </BlueButton>

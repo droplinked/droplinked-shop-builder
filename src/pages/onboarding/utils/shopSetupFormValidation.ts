@@ -13,7 +13,7 @@ export const validateStoreData = (storeSetup: IValidateStoreData, setError: IVal
     let isValid = true
 
     // URL validation
-    if (!storeSetup.shop_url.trim()) {
+    if (!storeSetup?.shop_url?.trim()) {
         setError('shop_url', 'URL is required')
         isValid = false
     } else if (!/^[a-zA-Z0-9-]+$/.test(storeSetup.shop_url)) {
@@ -24,7 +24,7 @@ export const validateStoreData = (storeSetup: IValidateStoreData, setError: IVal
     }
 
     // Name validation
-    if (!storeSetup.name.trim()) {
+    if (!storeSetup?.name?.trim()) {
         setError('name', 'Store name is required')
         isValid = false
     } else if (storeSetup.name.length < 3) {
@@ -35,7 +35,7 @@ export const validateStoreData = (storeSetup: IValidateStoreData, setError: IVal
     }
 
     // Description validation
-    if (storeSetup.description.trim()) {
+    if (storeSetup?.description?.trim()) {
         if (storeSetup.description.length < 150) {
             setError('description', 'Description must be at least 150 characters')
             isValid = false

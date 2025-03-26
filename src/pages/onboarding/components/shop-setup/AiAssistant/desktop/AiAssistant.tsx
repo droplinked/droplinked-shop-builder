@@ -10,10 +10,10 @@ import PaymentModal from 'pages/onboarding/components/common/payment-modal/Payme
 
 export default function AiAssistant() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(3)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
-        businessDescribe: "",
-        businessCategory: "",
+        businessDescribe: "We sell Asus monitors",
+        businessCategory: "Technology",
     })
 
     const onNextStep = () => setStep(step + 1)
@@ -34,7 +34,7 @@ export default function AiAssistant() {
             borderRadius={16}
             paddingInline={4}
             paddingBlock={4}
-            zIndex={9999}
+            zIndex={999}
             flexDirection="column"
             gap={3}
         >
@@ -110,8 +110,6 @@ export default function AiAssistant() {
                 <GenerationModal
                     isOpen={isOpen}
                     onClose={onClose}
-                    onNextStep={onNextStep}
-                    onPrevStep={onPrevStep}
                     generateWithAiData={generateWithAiData}
                     setGenerateWithAiData={(data) => setGenerateWithAiData(data)}
                 />
