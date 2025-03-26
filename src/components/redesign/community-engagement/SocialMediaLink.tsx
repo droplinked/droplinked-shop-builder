@@ -57,7 +57,7 @@ function SocialMediaLink({ linkData }: Props) {
       <IconWrapper icon={icon} className="icon-container" />
 
       <Flex alignItems="center" gap="6px">
-        <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="#fff">
+        <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="text.white">
           {label}
         </Text>
         <Box className="link-arrow" opacity={0}>

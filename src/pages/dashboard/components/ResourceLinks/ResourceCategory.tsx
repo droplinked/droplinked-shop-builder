@@ -13,7 +13,7 @@ interface Props {
 function ResourceCategory({ items, sectionContainerProps }: Props) {
     return (
         <SectionContainer {...sectionContainerProps}>
-            <RuledGrid columns={1} nested>
+            <RuledGrid columns={1} nested borderColor="neutral.gray.1000">
                 {items.map((item) => <ResourceItem key={item.title} {...item} />)}
             </RuledGrid>
         </SectionContainer>

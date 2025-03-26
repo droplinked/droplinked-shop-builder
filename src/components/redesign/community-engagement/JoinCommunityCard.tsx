@@ -3,8 +3,8 @@ import React from 'react'
 
 function JoinCommunityCard() {
     return (
-        <GridItem padding={{ base: 4, lg: 6 }}>
-            <Heading mb={1} fontSize={20} fontWeight={700} color="white">
+        <GridItem padding={{ base: 4, xl: 6 }}>
+            <Heading mb={1} fontSize={20} fontWeight={700} color="text.white">
                 Join the Community!
             </Heading>
             <Text color="text.subtextPlaceholder.dark">

@@ -1,25 +1,39 @@
-import { Flex, Text } from "@chakra-ui/react"
-import AppIcons from "assets/icon/Appicons"
+import { Box, Flex, Text } from "@chakra-ui/react"
+import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import { DashboardPageLink } from "pages/dashboard/stores/useDashboardStore"
 import React from "react"
 
 function ResourceItem({ title, summary, url }: DashboardPageLink) {
+    const titleStyles = {
+        fontSize: { base: 16, xl: 18 },
+        fontWeight: 700,
+        color: "text.white"
+    }
+
     return (
         <Flex
             justifyContent="space-between"
             alignItems="center"
-            gap={{ base: 4, lg: 6 }}
-            padding={{ base: 4, lg: 6 }}
-            sx={{ button: { flexShrink: 0 } }}
+            gap={{ base: 4, xl: 6 }}
+            padding={{ base: 4, xl: 6 }}
         >
-            <Flex direction="column" gap={1}>
-                <Text fontSize={{ base: 16, lg: 18 }} fontWeight={700} color="#fff">{title}</Text>
-                <Text fontSize={14} color="text.subtextPlaceholder.dark">{summary}</Text>
-            </Flex>
+            {summary ?
+                <Flex direction="column" gap={1}>
+                    <Text {...titleStyles}>{title}</Text>
+                    <Text fontSize={14} color="text.subtextPlaceholder.dark">{summary}</Text>
+                </Flex>
+                :
+                <Text {...titleStyles}>{title}</Text>
+            }
 
-            <button onClick={() => window.open(url)}>
-                <AppIcons.ChevronRight color="white" />
-            </button>
+            <Box
+                as="button"
+                flexShrink={0}
+                padding="10px"
+                onClick={() => window.open(url)}
+            >
+                <ChevronrightMd color='white' />
+            </Box>
         </Flex>
     )
 }

@@ -3,7 +3,7 @@ import { create } from 'zustand'
 
 export interface DashboardPageLink {
     title: string
-    summary: string
+    summary?: string
     url: string
 }
 
@@ -25,22 +25,18 @@ const initialState: State = {
     blogs: [
         {
             title: "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
-            summary: "By: Sahar",
             url: "https://droplinked.com/blogs/how-to-transform-and-sell-nft-artwork-and-ip-into-premium-merchandise-ac599f59"
         },
         {
             title: "How to sell your NFTs through gating your product",
-            summary: "By: Sahar",
             url: "https://droplinked.com/blogs/how-to-sell-your-nfts-through-gating-your-product-b7d6e94e"
         },
         {
             title: "How to Earn from Secondary Sales by putting your product on the chain",
-            summary: "By: Sahar",
             url: "https://droplinked.com/blogs/how-to-earn-from-secondary-sales-by-putting-your-product-on-the-chain-eea86743"
         },
         {
             title: "How to Monetize your Physical Inventory with Personalized Storefront",
-            summary: "By: Sahar",
             url: "https://droplinked.com/blogs/how-to-monetize-your-physical-inventory-with-personalized-storefront-0082dd88"
         }
     ],

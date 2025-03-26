@@ -21,6 +21,7 @@ function SectionContainer({ title, onNavigate, children }: SectionContainerProps
                 justifyContent="space-between"
                 alignItems="center"
                 gap={4}
+                borderBottom="1px solid"
                 borderColor="neutral.gray.800"
                 padding={{ base: 4, xl: "16px 24px" }}
                 bgColor="neutral.gray.1000"
