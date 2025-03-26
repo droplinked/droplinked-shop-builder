@@ -30,7 +30,7 @@ function Dashboard() {
     }
 
     return (
-        <Flex direction="column" gap={{ base: 6, md: 9, lg: 12 }}>
+        <Flex direction="column" gap={{ base: 6, lg: 9, xl: 12 }}>
             <GreetingBanner />
             {renderContent()}
         </Flex>
