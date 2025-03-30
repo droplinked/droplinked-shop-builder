@@ -53,14 +53,14 @@ export default function NoOrdersPlaceholder() {
 
     return (
         <Grid
-            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+            templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
             gap={{ base: 4, "2xl": 6 }}
         >
             {cardsData.map((feature, index) =>
                 <FeatureCard
                     key={index}
                     {...feature}
-                    gridRow={index === 0 ? { md: "1 / 3" } : "unset"}
+                    gridRow={index === 0 ? { lg: "1 / 3" } : "unset"}
                 />
             )}
         </Grid>
