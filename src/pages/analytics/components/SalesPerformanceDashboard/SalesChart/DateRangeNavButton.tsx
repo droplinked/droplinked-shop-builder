@@ -1,13 +1,11 @@
 import { Flex, FlexProps } from '@chakra-ui/react'
 import React from 'react'
 
-interface DateRangeNavButtonProps extends FlexProps {
+interface Props extends FlexProps {
     isDisabled?: boolean
 }
 
-function DateRangeNavButton({ isDisabled, children, ...rest }: DateRangeNavButtonProps) {
-    const colorValue = isDisabled ? 'neutral.gray.650' : 'neutral.white'
-
+function DateRangeNavButton({ isDisabled, children, ...rest }: Props) {
     return (
         <Flex
             as="button"
@@ -16,8 +14,7 @@ function DateRangeNavButton({ isDisabled, children, ...rest }: DateRangeNavButto
             padding="8px 12px"
             fontSize={12}
             fontWeight={500}
-            color={colorValue}
-            sx={{ svg: { boxSize: 4, path: { stroke: colorValue } } }}
+            color={isDisabled ? 'neutral.gray.650' : 'neutral.white'}
             {...rest}
         >
             {children}

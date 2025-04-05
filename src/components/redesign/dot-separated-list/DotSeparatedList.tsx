@@ -1,21 +1,32 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
+import { Circle, Flex, FlexProps } from '@chakra-ui/react'
+import React from 'react'
 
 /**
- * DotSeparatedList displays a horizontal list of children separated by circles.
- * This component is ideal for creating visually distinct sections between inline items.
+ * Displays a horizontal list of children separated by dots.
+ * Ideal for creating visually distinct sections between inline items.
+ *
+ * @example
+ * <DotSeparatedList>
+ *   <Text>Item 1</Text>
+ *   <Text>Item 2</Text>
+ *   <Text>Item 3</Text>
+ * </DotSeparatedList>
  */
-const DotSeparatedList = ({ children }) => {
-  return (
-    <Box display="flex" alignItems="center">
-      {React.Children.map(children, (child, index) => (
-        <>
-          {child}
-          {index < React.Children.count(children) - 1 && <Box width="5px" height="5px" borderRadius="50%" bgColor="#292929" mx={2} />}
-        </>
-      ))}
-    </Box>
-  );
-};
+function DotSeparatedList({ children, ...props }: FlexProps) {
+  const validChildren = React.Children.toArray(children).filter(Boolean)
 
-export default DotSeparatedList;
+  if (validChildren.length === 0) return null
+
+  return (
+    <Flex alignItems="center" gap={2} {...props}>
+      {validChildren.map((child, index) => (
+        <React.Fragment key={index}>
+          {child}
+          {index < validChildren.length - 1 && <Circle size={1} bg="neutral.gray.800" />}
+        </React.Fragment>
+      ))}
+    </Flex>
+  )
+}
+
+export default DotSeparatedList

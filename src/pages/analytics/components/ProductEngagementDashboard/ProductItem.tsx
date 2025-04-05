@@ -36,7 +36,11 @@ function ProductItem({ product }: Props) {
             >
                 <Text fontSize={14} color="text.white">{productName}</Text>
                 {totalAmountCombined &&
-                    <FormattedPrice price={totalAmountCombined} fontSize={14} abbreviationProps={{ color: "text.subtextPlaceholder.dark" }} />
+                    <FormattedPrice
+                        price={totalAmountCombined}
+                        abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                        fontSize={14}
+                    />
                 }
             </Flex>
 
