@@ -10,7 +10,7 @@ import PlansDrawer from './PlansDrawer'
 
 export default function AiAssistantButton() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
-    const [step, setStep] = useState(0)
+    const [step, setStep] = useState(2)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",
