@@ -6,7 +6,7 @@ interface Props {
 }
 
 function VideoPlayer({ isPlaying }: Props) {
-    const videoId = 'nuyuCSRx8sI'
+    const videoId = 'ULfaCYQ9rFg'
     const iframeRef = useRef<HTMLIFrameElement>(null)
 
     // Construct URL with proper autoplay parameter based on isPlaying

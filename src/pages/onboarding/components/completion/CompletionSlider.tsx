@@ -1,4 +1,5 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
+import confetti from 'canvas-confetti'
 import CommunityEngagement from 'components/redesign/community-engagement/CommunityEngagement'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useRef, useState } from 'react'
@@ -6,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import ActionControls from './ActionControls'
 import VideoPlayer from './VideoPlayer'
-import confetti from 'canvas-confetti'
 
 function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
     const navigate = useNavigate()
@@ -34,21 +34,21 @@ function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
                 origin: { x: 0, y: 0 },
                 angle: 45,
                 colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'],
-                gravity: 0.8,
+                gravity: 0.8
             })
 
             confetti({
-                particleCount: 350,
+                particleCount: 320,
                 spread: 240,
                 origin: { x: 1, y: 0 },
                 angle: 135,
                 colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'],
-                gravity: 0.8,
+                gravity: 0.8
             })
 
             return navigate('/analytics')
         }
-          
+
         handleSlideChange(1)
     }
 
