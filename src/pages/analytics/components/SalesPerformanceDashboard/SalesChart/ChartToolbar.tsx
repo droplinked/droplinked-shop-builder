@@ -5,7 +5,6 @@ import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
 import DateRangeNavButton from './DateRangeNavButton'
-import StylizedTitle from 'components/redesign/stylizedTitle/StylizedTitle'
 
 export default function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
