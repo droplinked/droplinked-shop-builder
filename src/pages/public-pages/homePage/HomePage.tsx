@@ -1,8 +1,7 @@
-import { Flex, Image, useDisclosure } from '@chakra-ui/react';
-import AuthModal from 'components/modals/auth-modal/AuthModal';
+import { Flex, Image } from '@chakra-ui/react';
 import useAppStore from 'lib/stores/app/appStore';
-import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Banner from './parts/banner/Banner';
 import Community from './parts/community/Community';
@@ -17,40 +16,8 @@ import Supported from './parts/supported/Supported';
 
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
-function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
+function HomePage() {
   const { user, shop } = useAppStore()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const navigate = useNavigate()
-  const [States, setStates] = useState({
-    pause: false,
-    loaded: [],
-    typeOfModal: MODAL_TYPE.SIGNIN
-  })
-  const [searchParams] = useSearchParams()
-
-  const modal_types_convertion = {
-    login: MODAL_TYPE.SIGNIN,
-    signup: MODAL_TYPE.SIGNUP,
-    forgot_password: MODAL_TYPE.RESET,
-    google: MODAL_TYPE.GOOGLE
-  };
-
-  useEffect(() => {
-    const param = searchParams.get("modal");
-    if (param) {
-      setStates((prev) => ({ ...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN }))
-      onOpen();
-    }
-    if (showAuthModal) {
-      setStates((prev) => ({ ...prev, typeOfModal: MODAL_TYPE.SIGNUP }))
-      onOpen();
-    }
-  }, [searchParams, showAuthModal]);
-
-  const handleCloseModal = () => {
-    onClose()
-    if (showAuthModal) navigate("/")
-  }
 
   const effects = (
     <>
@@ -63,53 +30,50 @@ function HomePage({ showAuthModal }: { showAuthModal?: boolean }) {
     user && shop
       ? <Navigate to="/analytics/dashboard" />
       : (
-        <>
-          <ParallaxProvider>
-            <Flex direction={"column"}>
+        <ParallaxProvider>
+          <Flex direction={"column"}>
 
-              <HomePageSection>
-                <Effects />
-                <Banner />
-              </HomePageSection>
+            <HomePageSection>
+              <Effects />
+              <Banner />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <Partners />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <Partners />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <Community />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <Community />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <ProductsMain />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <ProductsMain />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <Networks />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <Networks />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <Embeddable />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <Embeddable />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                <Supported />
-              </HomePageSection>
+            <HomePageSection>
+              <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
+              <Supported />
+            </HomePageSection>
 
-              <HomePageSection>
-                <Contact />
-              </HomePageSection>
-            </Flex>
+            <HomePageSection>
+              <Contact />
+            </HomePageSection>
+          </Flex>
 
-          </ParallaxProvider>
-          {isOpen && <AuthModal show={true} type={States.typeOfModal} close={handleCloseModal} />}
-        </>
+        </ParallaxProvider>
       )
   )
 }

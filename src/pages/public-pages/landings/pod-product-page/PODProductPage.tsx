@@ -1,7 +1,5 @@
-import { useDisclosure } from '@chakra-ui/react'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
 import Features from '../_components/features/Features'
@@ -11,7 +9,7 @@ import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
 
 const PODProductPage = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     const dualSideFlexData = [
         {
@@ -33,7 +31,7 @@ const PODProductPage = () => {
             image: 'assets/images/podProduct/mint-to-merch.png',
             title: 'Mint to Merch',
             description: 'Empower community members to design merchandise with exclusive designs or NFT artwork they own',
-        },
+        }
     ]
 
     return (
@@ -42,8 +40,6 @@ const PODProductPage = () => {
                 image="assets/images/podProduct/pod-lion.png"
                 title="Transform Artwork and IP into Premium Merchandise"
                 description="With droplinked you can create and sell customizable on-demand products with no inventory and shipment hassles"
-                CTAButtonText="Get Started"
-                CTAButtonFunction={onOpen}
             />
 
             <FrontModularity />
@@ -66,9 +62,8 @@ const PODProductPage = () => {
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'
                 buttonText='Get Started'
-                buttonFunctionality={onOpen}
+                onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
-            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )
 }

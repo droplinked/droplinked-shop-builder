@@ -8,6 +8,11 @@ export interface IresendEmailService {
     email: string;
 }
 
+export interface VerifyEmailPayload {
+    email: string
+    code: string
+}
+
 export interface IchangePasswordService {
     newPassword: string;
     accountRecoveryToken: string;

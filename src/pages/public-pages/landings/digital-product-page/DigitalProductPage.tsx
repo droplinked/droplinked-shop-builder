@@ -1,7 +1,5 @@
-import { useDisclosure } from '@chakra-ui/react'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
 import Features from '../_components/features/Features'
@@ -11,7 +9,7 @@ import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
 
 const DigitalProductPage = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     const dualSideFlexData = [
         {
@@ -37,8 +35,6 @@ const DigitalProductPage = () => {
                 image="assets/images/digitalProduct/nft.png"
                 title="Minting and Monetizing Assets"
                 description="Convert digital assets into exclusive collectibles that work seamlessly with a storefront to engage the community"
-                CTAButtonText="Get Started"
-                CTAButtonFunction={onOpen}
             />
 
             <FrontModularity />
@@ -61,9 +57,8 @@ const DigitalProductPage = () => {
                 title='Launch a Store Today'
                 description='Simple setup, secure transactions and endless possibilities await your community.'
                 buttonText='Get Started'
-                buttonFunctionality={onOpen}
+                onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
-            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )
 }

@@ -13,9 +13,10 @@ export interface QuickAction {
     url: string
 }
 
-export interface SocialMediaItem {
-    icon: ReactNode
+export interface CardButton {
     label: string
-    hoverEffect: string
-    url: string
+    variant: 'primary' | 'outline'
+    leftIcon?: React.ReactNode
+    rightIcon?: React.ReactNode
+    onClick: () => void
 }

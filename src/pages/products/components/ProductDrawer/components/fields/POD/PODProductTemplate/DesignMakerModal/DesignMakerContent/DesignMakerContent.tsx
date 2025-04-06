@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import useDesignMakerHooks from 'pages/products/hooks/useDesignMakerLogic'
 import React from 'react'
 import FooterControls from '../FooterControls'
@@ -16,7 +16,7 @@ function DesignMakerContent({ onClose }: Props) {
         <Flex direction="column" gap={4}>
             <div ref={iframeRef} id="printful" className={classes.model} />
 
-            {!isIframeLoaded && <LoadingComponent />}
+            {!isIframeLoaded && <LoadingSpinner />}
 
             <FooterControls
                 onClose={onClose}

@@ -39,6 +39,7 @@ import { ReactComponent as BlueBase } from './blue-base.svg';
 import { ReactComponent as BlueBrush } from './blue-brush.svg';
 import { ReactComponent as BlueLinea } from './blue-linea.svg';
 import { ReactComponent as BluePlus } from './blue-plus.svg';
+import { ReactComponent as BlueSkyLg } from './blue-sky-lg.svg';
 import { ReactComponent as BnbChain } from './bnb-chain.svg';
 import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CanadianDollar } from './cad.svg';
@@ -579,7 +580,8 @@ const AppIcons = {
   AffiliateAddProduct,
   SearchInput,
   FilterAction,
-  Like
+  Like,
+  BlueSkyLg
 }
 
 export default AppIcons

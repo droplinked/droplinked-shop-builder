@@ -9,7 +9,7 @@ export interface Promotion {
   duration: string;
   platform: string;
   link: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 const promotions: Promotion[] = [

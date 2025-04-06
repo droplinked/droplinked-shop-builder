@@ -1,11 +1,9 @@
-import { Box, Flex, Image, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react';
-import React, { useRef, useState } from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
-import { PaymentLinkPreviewImage } from '../hooks/usePreviewImages';
-import PreviewModalArrows from './PreviewModalArrows';
-import PreviewModalScreenSize from './PreviewModalScreenSize';
+import { Box, Flex, Image, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
+import React, { useRef, useState } from 'react'
+import Slider from "react-slick"
+import { PaymentLinkPreviewImage } from '../hooks/usePreviewImages'
+import PreviewModalArrows from './PreviewModalArrows'
+import PreviewModalScreenSize from './PreviewModalScreenSize'
 
 export type ScreenSize = keyof PaymentLinkPreviewImage
 
@@ -18,9 +16,9 @@ const sliderImages: Array<PaymentLinkPreviewImage> = [
 ]
 
 interface Props {
-    isOpen: boolean;
-    onClose: () => void;
-    currentPreviewImages: PaymentLinkPreviewImage;
+    isOpen: boolean
+    onClose: () => void
+    currentPreviewImages: PaymentLinkPreviewImage
 }
 
 export default function PreviewModal({ isOpen, onClose, currentPreviewImages }: Props) {
@@ -41,16 +39,16 @@ export default function PreviewModal({ isOpen, onClose, currentPreviewImages }: 
     return (
         <Modal isOpen={isOpen} isCentered onClose={onClose} size={"6xl"}>
             <ModalOverlay />
-            <ModalContent bg={"transparent"}>
-                <ModalBody display={"flex"} flexDirection={"column"} gap={8}>
-                    <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <ModalContent bg="transparent">
+                <ModalBody display="flex" flexDirection="column" gap={8}>
+                    <Flex justifyContent="space-between" alignItems="center">
                         <PreviewModalScreenSize currentScreenSize={screenSize} onScreenSizeChange={setScreenSize} />
                         <PreviewModalArrows onPrev={handlePrev} onNext={handleNext} />
                     </Flex>
                     <Box
                         flexGrow={1}
                         borderRadius={screenSize === "desktop" ? 8 : 0}
-                        overflow={"hidden"}
+                        overflow="hidden"
                         sx={{ ".slick-slide": { padding: 0 } }}
                     >
                         <Slider ref={sliderRef} {...sliderSettings}>

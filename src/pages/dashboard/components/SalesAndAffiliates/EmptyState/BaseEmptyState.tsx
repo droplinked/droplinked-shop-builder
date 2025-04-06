@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { ExternalarrowSm } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowSm'
 import AppImage from 'components/common/image/AppImage'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
@@ -18,14 +18,11 @@ function BaseEmptyState({ image, title, description, actionText, onActionClick }
             <AppImage height="161px" src={image} objectFit="contain" />
 
             <Flex direction="column" alignItems="center" gap={1} textAlign="center">
-                <Text fontWeight={500} color="#fff">{title}</Text>
+                <Text fontWeight={500} color="text.white">{title}</Text>
                 <Text fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
-                <BlueButton
-                    sx={{ svg: { boxSize: 4, path: { stroke: "#179EF8" } } }}
-                    onClick={onActionClick}
-                >
+                <BlueButton onClick={onActionClick}>
                     {actionText}
-                    <AppIcons.ExternalArrow />
+                    <ExternalarrowSm color='#179EF8' />
                 </BlueButton>
             </Flex>
         </Flex>

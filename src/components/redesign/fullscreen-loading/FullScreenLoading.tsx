@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import React from 'react'
 
 function FullScreenLoading() {
@@ -13,7 +13,7 @@ function FullScreenLoading() {
             alignItems="center"
             zIndex={9999}
         >
-            <LoadingComponent />
+            <LoadingSpinner />
         </Flex>
     )
 }

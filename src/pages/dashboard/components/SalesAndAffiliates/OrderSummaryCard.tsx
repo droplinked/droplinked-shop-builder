@@ -1,3 +1,4 @@
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import { DashboardOrder } from 'lib/apis/dashboard/interfaces'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -20,14 +21,13 @@ function OrderSummaryCard({ isLoading, recentOrders }: Props) {
         >
             {!recentOrders?.length
                 ? <OrderSummaryEmptyState />
-                : recentOrders.map((order, index) => (
-                    <OrderItem
-                        key={order._id}
-                        order={order}
-                        isLastItem={index === recentOrders.length - 1}
-                        onNavigate={navigate}
-                    />
-                ))
+                : (
+                    <RuledGrid columns={1} nested borderColor="neutral.gray.1000">
+                        {recentOrders.map((order) => (
+                            <OrderItem key={order._id} order={order} onNavigate={navigate} />
+                        ))}
+                    </RuledGrid>
+                )
             }
         </SectionContainer>
     )

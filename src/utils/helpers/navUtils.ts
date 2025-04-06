@@ -2,19 +2,18 @@
 export const navigateUserBasedOnStatus = (status: string, data: any) => {
     switch (status) {
         case "NEW":
-            localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-            return { href: "/email-confirmation", dashboard: false };
+            return { href: "/onboarding?entry=email-confirmation", dashboard: false }
         case "VERIFIED":
-            return { href: "registration", dashboard: true };
+            return { href: "/onboarding?entry=store-details", dashboard: false }
         case "PROFILE_COMPLETED":
-            return { href: "registration", dashboard: true };
+            return { href: "/onboarding?entry=store-details", dashboard: false }
         case "SHOP_INFO_COMPLETED":
-            return { href: "dashboard", dashboard: true };
+            return { href: "dashboard", dashboard: true }
         case "IMS_TYPE_COMPLETED":
-            return { href: "dashboard", dashboard: true };
+            return { href: "dashboard", dashboard: true }
         case "ACTIVE":
-            return { href: "dashboard", dashboard: true };
+            return { href: "dashboard", dashboard: true }
         default:
-            return { href: "", dashboard: false };
+            return { href: "", dashboard: false }
     }
-};
+}

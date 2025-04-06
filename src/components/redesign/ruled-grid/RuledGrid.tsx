@@ -22,7 +22,7 @@ function RuledGrid({ columns, nested = false, children, ...rest }: RuledGridProp
                 <Box
                     borderRight={index % columns !== columns - 1 ? "1px solid" : "none"}
                     borderBottom={index < childrenArray.length - columns ? "1px solid" : "none"}
-                    borderColor="neutral.gray.800"
+                    borderColor={rest.borderColor ?? "neutral.gray.800"}
                 >
                     {child}
                 </Box>

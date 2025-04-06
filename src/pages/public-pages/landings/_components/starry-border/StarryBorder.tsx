@@ -1,17 +1,16 @@
-import { Heading, Image, Show } from '@chakra-ui/react';
-import AppTypography from 'components/common/typography/AppTypography';
+import { Heading, Image, Show, Text } from '@chakra-ui/react';
 import Button from 'components/redesign/button/Button';
 import React from 'react';
 import Container from '../container/Container';
 
 interface Props {
-    title: string;
-    description: string;
-    buttonText: string;
-    buttonFunctionality: () => void
+    title: string
+    description: string
+    buttonText: string
+    onButtonClick: () => void
 }
 
-function StarryBorder({ title, description, buttonText, buttonFunctionality }: Props) {
+function StarryBorder({ title, description, buttonText, onButtonClick }: Props) {
     return (
         <Container
             alignSelf="stretch"
@@ -20,9 +19,12 @@ function StarryBorder({ title, description, buttonText, buttonFunctionality }: P
             paddingBlock={12}
             sx={{ "img": { position: "absolute" } }}
         >
-            <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color="#fff" textAlign="center" paddingInline={{ base: 3 }}>{title}</Heading>
-            <AppTypography width={{ base: "80%", lg: "60%" }} textAlign="center" fontSize={16} color="white">{description}</AppTypography>
-            <Button fontWeight={500} onClick={buttonFunctionality}>{buttonText}</Button>
+            <Heading paddingInline={{ base: 3 }} textAlign="center" fontSize={{ base: 24, lg: 32 }} color="#fff">{title}</Heading>
+
+            <Text width={{ base: "80%", lg: "60%" }} textAlign="center" color="white">{description}</Text>
+
+            <Button fontWeight={500} onClick={onButtonClick}>{buttonText}</Button>
+
             <Show above='lg'>
                 <Image width="150px" top="35px" right="-3px" src='https://upload-file-droplinked.s3.amazonaws.com/e62fec9d1e1d4d0d415aea1074967ed1d076dc5e8aef5a534cb6176dc62568e8.png' />
                 <Image width="150px" bottom={0} left="80px" src='https://upload-file-droplinked.s3.amazonaws.com/cc809f9d953509d5fc85053a09492565ec3c90535580a61840c79c4ca079c44f.png' />

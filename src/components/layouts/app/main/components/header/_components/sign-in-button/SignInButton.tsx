@@ -1,30 +1,26 @@
-import { Button, useDisclosure } from "@chakra-ui/react"
-import AuthModal from "components/modals/auth-modal/AuthModal"
-import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage"
+import { Button } from "@chakra-ui/react"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 function SignInButton() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate()
 
     return (
-        <>
-            <Button
-                border="1px solid"
-                borderColor="neutral.white"
-                borderRadius={8}
-                padding="12px 16px"
-                bg="none"
-                fontSize={14}
-                fontWeight={500}
-                color="neutral.white"
-                onClick={onOpen}
-                _hover={{}}
-                _active={{}}
-            >
-                Sign In
-            </Button>
-            <AuthModal show={isOpen} close={onClose} type={MODAL_TYPE.SIGNIN} />
-        </>
+        <Button
+            border="1px solid"
+            borderColor="neutral.white"
+            borderRadius={8}
+            padding="12px 16px"
+            bg="none"
+            fontSize={14}
+            fontWeight={500}
+            color="neutral.white"
+            _hover={{}}
+            _active={{}}
+            onClick={() => navigate('/onboarding?entry=signin')}
+        >
+            Sign In
+        </Button>
     )
 }
 

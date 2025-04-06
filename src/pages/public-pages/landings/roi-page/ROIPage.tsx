@@ -84,7 +84,7 @@ function ROIPage() {
                 title='Enquire to learn more'
                 description='Minimize fraud, adhere to compliance, increase conversions for your organization'
                 buttonText='Contact Us'
-                buttonFunctionality={() => navigate("/contact-us")}
+                onButtonClick={() => navigate("/contact-us")}
             />
         </Layout>
     )

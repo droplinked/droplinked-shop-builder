@@ -11,3 +11,16 @@ export interface IImproveDescription {
 export interface IGenerateTitleDescription {
     imageUrl: string;
 }
+
+export interface IGenerateWithAiRequest {
+    prompt: string;
+    category: string;
+}
+
+export interface IGenerateWithAiResponse {
+    heroSections?: string[];
+    logos?: string[];
+    shopNames?: string[];
+    domains?: string[];
+    fromCache: boolean;
+}

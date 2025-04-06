@@ -1,9 +1,9 @@
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileNameFromUrl, getFileSizeInKB } from 'utils/helpers'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { getFileNameFromUrl, getFileSizeInKB } from 'utils/helpers'
 import appUploadImageContext from '../../context'
 import UploadImagesList from './parts/list/UploadImagesList'
 import classes from './style.module.scss'
@@ -35,7 +35,7 @@ function DefaultHoverBox() {
                     overflow={isHorizontal ? "hidden" : "unset"}
                     height={isHorizontal ? checkSingleImage ? "80px" : "auto" : "200px"}
                 >
-                    {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingComponent /></Box>}
+                    {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingSpinner /></Box>}
                     {!isLoading && checkSingleImage && typeof values === "string" ? (
                         <>
                             {isHorizontal ?

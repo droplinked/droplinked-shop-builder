@@ -16,9 +16,13 @@ import {
 	ShopCustomURL,
 	ShopDNSInformation,
 	ShopOAuth2Client,
+	ShopSetupParams,
 	UserExtraShopResponse,
 	UserShop
 } from './interfaces';
+
+export const setupShop = (params: ShopSetupParams) =>
+	axiosInstance.post(`/shop/setup`, params)
 
 export const paymentPublicServiceV2 = async () =>
 	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);

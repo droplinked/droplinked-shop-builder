@@ -1,5 +1,6 @@
-import { Flex, Grid, Image, SimpleGrid, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
+import { Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import Button from 'components/redesign/button/Button'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -16,13 +17,13 @@ export default function NoOrdersPlaceholder() {
                 {
                     label: 'First Product',
                     variant: 'primary',
-                    leftIcon: <AppIcons.BlackPlus />,
+                    leftIcon: <PlusMd />,
                     onClick: () => navigate("/analytics/products")
                 },
                 {
                     label: 'Help Center',
                     variant: 'outline',
-                    rightIcon: <AppIcons.ExternalArrow />,
+                    rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
             ]
@@ -35,7 +36,7 @@ export default function NoOrdersPlaceholder() {
                 {
                     label: 'Learn More',
                     variant: 'outline',
-                    rightIcon: <AppIcons.ExternalArrow />,
+                    rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
             ]
@@ -45,25 +46,23 @@ export default function NoOrdersPlaceholder() {
             description: 'Customize a commerce experience based on an optimal experience and design for visitors.',
             image: 'https://upload-file-droplinked.s3.amazonaws.com/8e205b784bd27ca7be9755d9fe1ede886eb9b05d84bf16d5e6819abd9a509adf.png',
             buttons: [
-                {
-                    label: 'Get Started',
-                    variant: 'primary',
-                    onClick: () => navigate("/analytics/settings/design")
-                }
+                { label: 'Get Started', variant: 'primary', onClick: () => navigate("/analytics/settings/design") }
             ]
         }
     ]
 
     return (
         <Grid
-            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
-            alignItems="start"
-            gap={{ base: 4, xl: 6 }}
+            templateColumns={{ base: "repeat(1, 1fr)", lg: "repeat(2, 1fr)" }}
+            gap={{ base: 4, "2xl": 6 }}
         >
-            <FeatureCard {...cardsData[0]} />
-            <SimpleGrid height="full" gap="inherit">
-                {cardsData.slice(1).map((feature) => <FeatureCard key={feature.title} {...feature} />)}
-            </SimpleGrid>
+            {cardsData.map((feature, index) =>
+                <FeatureCard
+                    key={index}
+                    {...feature}
+                    gridRow={index === 0 ? { lg: "1 / 3" } : "unset"}
+                />
+            )}
         </Grid>
     )
 }
@@ -73,26 +72,26 @@ function FeatureCard({ title, description, image, buttons, ...rest }) {
         <Flex
             height="100%"
             direction="column"
-            border="1px solid #222"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={16}
             overflow="hidden"
-            gap={{ base: 4, md: 0 }}
             {...rest}
         >
-            <Flex height="100%" direction="column" gap={1} padding={{ base: 4, lg: 6 }}>
-                <Text fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
+            <Flex direction="column" gap={1} padding={{ base: 4, xl: 6 }}>
+                <Text fontSize={{ base: 18, xl: 20 }} fontWeight={700} color="white">
                     {title}
                 </Text>
-                <Text fontSize={{ base: 14, md: 16 }} color="text.subtextPlaceholder.dark">
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.dark">
                     {description}
                 </Text>
-                <Flex gap={3} mt={3}>
+                <Flex mt={3} gap={3}>
                     {buttons.map((button) => (
                         <Button
                             key={button.label}
-                            {...button}
                             fontSize={{ base: 12, md: 14 }}
-                            sx={{ svg: { boxSize: 5 } }}
+                            fontWeight={500}
+                            {...button}
                         >
                             {button.label}
                         </Button>

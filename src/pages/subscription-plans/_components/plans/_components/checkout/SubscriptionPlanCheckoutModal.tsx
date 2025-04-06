@@ -9,12 +9,9 @@ import { ModalState } from './types/interfaces'
 interface Props {
     isOpen: boolean;
     close: () => void;
-    isFromPlansPage?: boolean;
-    isLoggedInViaGoogle?: boolean;
-    hasProfile?: any;
 }
 
-function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLoggedInViaGoogle, hasProfile }: Props) {
+function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
     const [modalData, setModalData] = useState<ModalState>({
         step: "PlanConfirmation",
         stripeClientSecret: "",
@@ -28,10 +25,8 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
         const { step, stripeClientSecret } = modalData
         if (step === 'PlanConfirmation')
             return <ConfirmPlan
-                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
+                setPlanPurchaseModalStep={(step) => updateModalData("step", step)}
                 close={close}
-                hasProfile={hasProfile}
-                isFromPlansPage={isFromPlansPage}
             />
 
         else if (step === "PaymentMethodSelection")
@@ -43,16 +38,13 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
         else if (step === "StripePayment")
             return <StripePayment
                 clientSecret={stripeClientSecret}
-                setplanPurchaseModalStep={(step) => updateModalData("step", step)}
+                setPlanPurchaseModalStep={(step) => updateModalData("step", step)}
                 close={close}
-                isFromPlansPage={isFromPlansPage}
             />
 
         return <PaymentStatus
             paymentStatus={step === "SuccessfulPayment" ? "success" : "error"}
             close={close}
-            isFromPlansPage={isFromPlansPage}
-            isLoggedInViaGoogle={isLoggedInViaGoogle}
         />
     }
 
@@ -61,7 +53,6 @@ function SubscriptionPlanCheckoutModal({ isOpen, close, isFromPlansPage, isLogge
             onClose={close}
             isOpen={isOpen}
             currentStep={modalData.step}
-            isFromPlansPage={isFromPlansPage}
         >
             {renderContent()}
         </CheckoutModal>

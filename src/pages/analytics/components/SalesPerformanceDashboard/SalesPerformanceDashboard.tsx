@@ -9,7 +9,7 @@ import KeySalesMetrics from "./KeySalesMetrics"
 import SalesChart from "./SalesChart/SalesChart"
 
 function SalesPerformanceDashboard() {
-    const [isLargerThanLg] = useMediaQuery('(min-width: 1280px)')
+    const [is1024pxOrAbove] = useMediaQuery('(min-width: 1024px)')
     const { startDate, endDate } = useFormattedDateRange()
     const { isFetching, data } = useQuery({
         queryKey: ["salesReport", startDate, endDate],
@@ -32,7 +32,7 @@ function SalesPerformanceDashboard() {
             </GridItem>
 
             {/* Row 3 */}
-            {isLargerThanLg && (
+            {is1024pxOrAbove && (
                 <GridItem>
                     <KeySalesMetrics />
                 </GridItem>

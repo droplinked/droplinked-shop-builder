@@ -1,24 +1,24 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import LoadingComponent from "components/common/loading-component/LoadingComponent";
+import LoadingSpinner from "components/common/loading-spinner/LoadingSpinner";
+import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
-import FieldLabel from "./components/labels/fieldLabel/FieldLabel";
+import Select from "components/redesign/select/Select";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { useCheckPermission } from "lib/stores/app/appStore";
-import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import AppErrors from "utils/constants/errors";
 import RulesetAddress from "./components/address/RulesetAddress";
+import FieldLabel from "./components/labels/fieldLabel/FieldLabel";
 import ModalWrapper from "./components/ModalWrapper";
 import TextboxRule from "./components/textbox/TextboxRule";
 import RulesetType from "./components/type/RulesetType";
 import ruleModelContext from "./context";
 import { IFormData, makeInitialValues, ruleModalFormConfig } from "./formConfig";
-import Select from "components/redesign/select/Select";
-import AppSkeleton from "components/common/skeleton/AppSkeleton";
 
 // This modal is used to add a new rule or edit an existing rule
 const RuleModal = ({ show, collectionId, close, ruleId }) => {
@@ -72,7 +72,7 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
         <ModalWrapper isOpen={show} onClose={close} ruleId={ruleId}>
             {
                 getRule.isLoading ?
-                    <LoadingComponent />
+                    <LoadingSpinner />
                     :
                     <Formik
                         initialValues={makeInitialValues(getRule?.data?.data?.data)}

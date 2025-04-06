@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { ExternalarrowLg } from "assets/icons/Navigation/ExternalArrow/ExternalarrowLg";
 import React, { PropsWithChildren } from "react";
 
 export interface SectionContainerProps extends PropsWithChildren {
@@ -23,15 +23,15 @@ function SectionContainer({ title, onNavigate, children }: SectionContainerProps
                 gap={4}
                 borderBottom="1px solid"
                 borderColor="neutral.gray.800"
-                padding={4}
+                padding={{ base: 4, xl: "16px 24px" }}
                 bgColor="neutral.gray.1000"
             >
-                <Text fontSize={{ base: 16, lg: 18 }} fontWeight={500} color="#fff">
+                <Text fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.white">
                     {title}
                 </Text>
                 {onNavigate && (
                     <button onClick={onNavigate}>
-                        <AppIcons.ExternalArrow />
+                        <ExternalarrowLg color="white" />
                     </button>
                 )}
             </Flex>

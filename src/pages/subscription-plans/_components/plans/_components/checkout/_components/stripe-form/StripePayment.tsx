@@ -2,9 +2,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import AppIcons from 'assets/icon/Appicons';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import { useProfile } from 'hooks/useProfile/useProfile';
-import { appDevelopment } from 'utils/app/variable';
 import React from 'react';
+import { appDevelopment } from 'utils/app/variable';
 import { ModalStep } from '../../types/interfaces';
 import StripeForm from './StripeForm';
 
@@ -12,19 +11,11 @@ const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIP
 
 interface Props {
     clientSecret: string;
-    setplanPurchaseModalStep: (step: ModalStep) => void;
+    setPlanPurchaseModalStep: (step: ModalStep) => void;
     close: () => void;
-    isFromPlansPage?: boolean;
 }
 
-function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPlansPage }: Props) {
-    const { logoutUser } = useProfile()
-
-    const handleCloseModal = () => {
-        isFromPlansPage && logoutUser()
-        close()
-    }
-
+function StripePayment({ clientSecret, setPlanPurchaseModalStep, close }: Props) {
     return (
         <>
             <ModalHeaderData
@@ -34,7 +25,7 @@ function StripePayment({ clientSecret, setplanPurchaseModalStep, close, isFromPl
             />
 
             <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "night" }, paymentMethodCreation: "manual" }}>
-                <StripeForm setplanPurchaseModalStep={setplanPurchaseModalStep} closeModal={handleCloseModal} />
+                <StripeForm setplanPurchaseModalStep={setPlanPurchaseModalStep} closeModal={close} />
             </Elements>
         </>
     )

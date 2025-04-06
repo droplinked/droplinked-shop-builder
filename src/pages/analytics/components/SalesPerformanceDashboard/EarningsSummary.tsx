@@ -19,24 +19,28 @@ function EarningsSummary({ earnings, isLoading }: Props) {
             flexDirection={{ base: 'column', md: 'row' }}
             justifyContent="space-between"
             alignItems="start"
-            gap={3}
+            gap={4}
             padding={{ base: 4, lg: 6 }}
         >
             {/* Left section: Earnings and Income period */}
-            <Flex direction="column" gap={2}>
-                <Text fontSize={{ base: 14, lg: 16 }} color="#FFF">Earnings</Text>
+            <Flex direction="column" gap={{ base: 1, md: 2 }}>
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.white">Earnings</Text>
 
                 <Skeleton isLoaded={!isLoading}>
                     <FormattedPrice
                         price={earnings ?? 0}
-                        marginTop={{ base: -1, md: 'unset' }}
-                        fontSize={{ base: 20, lg: 24 }}
+                        fontSize={{ base: 20, xl: 24 }}
                         fontWeight={500}
                         abbreviationProps={{ color: 'text.subtextPlaceholder.dark' }}
                     />
                 </Skeleton>
 
-                <Text fontSize={14} color="text.subtextPlaceholder.dark" sx={{ span: { fontWeight: 500, color: '#B1B1B1' } }}>
+                <Text
+                    marginTop={{ base: 1 }}
+                    fontSize={14}
+                    color="text.subtextPlaceholder.dark"
+                    sx={{ span: { fontWeight: 500, color: 'text.subtextPlaceholder.light' } }}
+                >
                     Income from <Box as="span">{startDate}</Box> to <Box as="span">{endDate}</Box>.
                 </Text>
             </Flex>

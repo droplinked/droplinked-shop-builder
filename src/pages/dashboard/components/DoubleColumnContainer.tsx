@@ -1,22 +1,30 @@
-import { Flex, FlexProps } from "@chakra-ui/react"
-import React, { Children } from "react"
+import { Grid, GridProps } from "@chakra-ui/react"
+import React, { Children, ReactNode } from "react"
 
-interface Props extends FlexProps { }
+// Type-safe props for a two-child layout
+interface DoubleColumnContainerProps extends GridProps {
+    children: [ReactNode, ReactNode] // Enforce exactly two children
+}
 
-// Used to render and handle the responsiveness of a two-column layout in the Dashboard page.
-function DoubleColumnContainer({ children, ...rest }: Props) {
+/**
+ * A responsive container that lays out exactly two children in a single column on small screens
+ * and two equal-width columns on large screens. Children always fill available width.
+ *
+ * @param children - Exactly two components to render in the layout
+ * @param rest - Additional GridProps from Chakra UI
+ */
+function DoubleColumnContainer({ children, ...rest }: DoubleColumnContainerProps) {
     return (
-        <Flex
-            direction={{ base: "column", md: "row" }}
-            gap={{ base: 4, xl: 6 }}
+        <Grid
+            templateColumns={{ base: "1fr", lg: "1fr 1fr" }} // 1 column at base, 2 at lg
+            gap={{ base: 4, md: 6, lg: 4, "2xl": 6 }}
+            alignItems="start"
             {...rest}
         >
             {Children.map(children, (child) => (
-                <Flex flex={{ base: "1", md: "0.5" }}>
-                    {child}
-                </Flex>
+                <>{child}</> // No wrapper—Grid enforces full width
             ))}
-        </Flex>
+        </Grid>
     )
 }
 
