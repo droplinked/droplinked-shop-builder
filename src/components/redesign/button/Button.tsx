@@ -24,7 +24,7 @@ const styles = {
     text: "neutral.white"
   },
   ghost: {
-    borderColor: "none",
+    borderColor: "transparent",
     background: "transparent",
     text: "neutral.white"
   },
