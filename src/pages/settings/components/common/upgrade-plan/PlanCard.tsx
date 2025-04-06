@@ -19,7 +19,7 @@ export default function PlanCard({ icon, title, description, styles }: Props) {
                 <AppTypography color="neutral.white" fontSize="18px" fontWeight={700}>
                     {title}
                 </AppTypography>
-                <AppTypography color="neutral.text.subtextPlaceholder.light" fontSize="14px" fontWeight={400}>
+                <AppTypography color="#B1B1B1" fontSize="14px" fontWeight={400}>
                     {description}
                 </AppTypography>
             </Flex>
