@@ -12,7 +12,7 @@ export default function GeneratedContents({ generateWithAiData }: { generateWith
     return (
         <Box
             backgroundColor={{ base: "transparent", lg: "#141414" }}
-            height="800px"
+            height="100%"
             borderLeft={{ base: "none", lg: "1px solid #292929" }}
             p={{ base: 4, md: 9, lg: "48px" }}
             overflow={{ base: "hidden", lg: "auto" }}

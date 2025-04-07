@@ -19,6 +19,7 @@ export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWi
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const title = "Use droplinked AI to create your shop"
     const description = "Use the AI tools to streamline the creation of store assets."
+    const isDisabled = !generateWithAiData.businessCategory || !generateWithAiData.businessDescribe
 
     const handleChange = (key: string, value: string) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })
@@ -43,7 +44,8 @@ export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWi
                 width: "100%",
             }}
             saveButtonProps={{
-                width: { base: "100%", md: "auto" }
+                width: { base: "100%", md: "auto" },
+                isDisabled: isDisabled
             }}
             drawerContentStyle={{
                 background: "#1C1C1C",
