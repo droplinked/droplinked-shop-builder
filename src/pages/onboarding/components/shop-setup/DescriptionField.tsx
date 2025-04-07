@@ -18,6 +18,7 @@ export default function DescriptionField() {
             placeholder={textAreaPlaceholder}
             tooltipText={textAreaPlaceholder}
             label='Description'
+            spellCheck="false"
             value={storeSetup.description}
             onChange={handleChange}
             {...storeSetupErrors.description && { message: storeSetupErrors.description, state: "error" }}
