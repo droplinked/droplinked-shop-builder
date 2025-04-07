@@ -4,6 +4,7 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
+import { PlanDuration } from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -11,9 +12,10 @@ interface SubscriptionPlanCardProps {
   isPopular?: boolean
   isSelected?: boolean
   onSelect?: () => void
+  planDuration: PlanDuration
 }
 
-function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect }: SubscriptionPlanCardProps) {
+function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -28,7 +30,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect 
       transition="all 0.2s"
     >
       <Flex direction="column">
-        <PlanHeader plan={plan} isPopular={isPopular} isSelected={isSelected} />
+        <PlanHeader plan={plan} isPopular={isPopular} isSelected={isSelected} planDuration={planDuration} />
         <Box borderBottom="1px solid" borderColor="neutral.gray.800" />
 
         {isExpanded ? (

@@ -6,14 +6,16 @@ import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import AppLabel from 'components/redesign/label/AppLabel'
+import { planDurations } from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface PlanHeaderProps {
   plan: SubscriptionPlan
   isPopular?: boolean
   isSelected?: boolean
+  planDuration: typeof planDurations[0]
 }
 
-function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
+function PlanHeader({ plan, isPopular, isSelected, planDuration }: PlanHeaderProps) {
   const planDetail = subscriptionPlans[plan.type]
 
   return (
@@ -47,7 +49,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           </Text>
         </Flex>
         <Box>
-          <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} />
+          <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} planDuration={planDuration} />
         </Box>
       </Flex>
     </Box>
