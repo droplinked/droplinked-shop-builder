@@ -107,7 +107,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
 
       <ControlButtons 
         onBack={onBack} 
-        onSubmit={handleNext} 
+        onSubmit={onNext} 
         continueText={getContinueText(selectedPlan)} 
       />
       
