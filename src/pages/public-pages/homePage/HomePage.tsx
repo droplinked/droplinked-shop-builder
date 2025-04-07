@@ -1,7 +1,8 @@
 import { Flex, Image } from '@chakra-ui/react';
 import useAppStore from 'lib/stores/app/appStore';
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { useLogin } from 'pages/onboarding/hooks/useLogin';
+import React, { useEffect } from 'react';
+import { Navigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Banner from './parts/banner/Banner';
 import Community from './parts/community/Community';
@@ -17,7 +18,28 @@ import Supported from './parts/supported/Supported';
 export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
 function HomePage() {
+  const [searchParams] = useSearchParams()
+  const { authenticateUser, finalizeLogin, loading } = useLogin()
   const { user, shop } = useAppStore()
+
+  useEffect(() => {
+    async function handleGoogleLogin() {
+      const access_token = searchParams.get("access_token")
+      const refresh_token = searchParams.get("refresh_token")
+
+      if (access_token && refresh_token && !loading) {
+        const result = await authenticateUser({
+          type: "get",
+          access_token,
+          refresh_token,
+          params: { access_token }
+        })
+        if (result) await finalizeLogin(result)
+      }
+    }
+
+    handleGoogleLogin()
+  }, [searchParams, loading, authenticateUser, finalizeLogin])
 
   const effects = (
     <>
