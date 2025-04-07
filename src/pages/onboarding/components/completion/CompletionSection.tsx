@@ -8,6 +8,7 @@ import CompletionSlider from './CompletionSlider'
 function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
     return (
         <Flex
+            minHeight="100vh"
             direction="column"
             alignItems="center"
             gap={{ base: 9, xl: 12 }}

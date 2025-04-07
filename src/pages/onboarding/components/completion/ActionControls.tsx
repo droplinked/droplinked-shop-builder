@@ -27,16 +27,16 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
     })
 
     return (
-        <Flex position="relative" justifyContent="space-between" alignItems="center">
+        <Flex position="relative" justifyContent="space-between" alignItems="center" gap={{ base: 4 }}>
             <Button variant="secondary" onClick={handlePreviousAction}>
-                {currentSlideIndex === 0 ? 'Back' : 'Prev'}
+                {currentSlideIndex === 0 ? 'Back' : 'Previous'}
             </Button>
 
-            <AbsoluteCenter display="flex" gap="6px">
+            <AbsoluteCenter display={{ base: "none", md: "flex" }} gap="6px">
                 {renderDots()}
             </AbsoluteCenter>
 
-            <Button onClick={handleNextAction}>
+            <Button flex={{ base: 1, md: 'unset' }} onClick={handleNextAction}>
                 {currentSlideIndex === 0 ? 'Next' : 'Start Exploring Dashboard'}
             </Button>
         </Flex>

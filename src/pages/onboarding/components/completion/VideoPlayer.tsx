@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useRef } from 'react'
 
 interface Props {
@@ -26,18 +26,17 @@ function VideoPlayer({ isPlaying }: Props) {
     }, [isPlaying])
 
     return (
-        <Box position="relative" width="100%" height="500px">
+        <Flex flex={1} justifyContent="center" alignItems="center">
             <iframe
                 ref={iframeRef}
                 width="100%"
-                height="100%"
                 src={videoUrl}
                 title="Droplinked Website Onboarding"
                 allow="accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture"
                 allowFullScreen
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: '8px', aspectRatio: '16/9' }}
             />
-        </Box>
+        </Flex>
     )
 }
 
