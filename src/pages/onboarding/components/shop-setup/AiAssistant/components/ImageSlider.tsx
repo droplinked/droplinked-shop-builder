@@ -35,7 +35,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
     return (
         <Flex flexDirection="column" width="100%" gap={4} overflow="hidden">
             <Flex
-                width={`${images.length * 100}%`}
+                width={isLoading ? "300%" : `${images.length * 100}%`}
                 transform={`translateX(-${(currentIndex * 100) / images.length}%)`}
                 transition="transform 0.5s ease-in-out"
             >
