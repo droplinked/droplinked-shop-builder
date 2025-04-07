@@ -11,11 +11,11 @@ const providers = [
     tooltip: 'Connect a Stripe account to receive deposits directly into an existing account.',
     icon: <StripeLogo />
   },
-  {
-    title: 'Paymob',
-    tooltip: 'Connect a Paymob account to receive deposits directly into an existing account.',
-    icon: <PaymobLogo />
-  }
+  // {
+  //   title: 'Paymob',
+  //   tooltip: 'Connect a Paymob account to receive deposits directly into an existing account.',
+  //   icon: <PaymobLogo />
+  // }
 ]
 
 function FinancialServices() {
