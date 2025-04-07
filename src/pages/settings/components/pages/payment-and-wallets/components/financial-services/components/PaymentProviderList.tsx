@@ -17,6 +17,7 @@ interface Provider {
   type: "stripe" | "coinbase" | "paymob";
   isExternal: boolean;
   isDisabled?: boolean;
+  isLinkDisabled?: boolean;
   isFetching?: boolean;
 }
 
@@ -43,6 +44,7 @@ const PaymentProviderList: React.FC = () => {
       buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
+      isLinkDisabled: true,
       isFetching: isFetching,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
@@ -113,7 +115,7 @@ const PaymentProviderList: React.FC = () => {
       gap={4}
       overflow="hidden"
     >
-      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled, isFetching }) => (
+      {providers.map(({ title, buttonText, isLinkDisabled, link, type, tooltip, icon, isExternal, isDisabled, isFetching }) => (
         <PaymentProviderCard
           key={type}
           isDisabled={isDisabled}
@@ -126,6 +128,7 @@ const PaymentProviderList: React.FC = () => {
           icon={icon}
           isExternal={isExternal}
           isFetching={isFetching}
+          isLinkDisabled={isLinkDisabled}
         />
       ))}
     </Grid>
