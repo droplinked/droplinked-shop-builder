@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Divider, Flex, HStack, Spinner, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppIcons from 'assets/icon/Appicons';
@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
-const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon, isExternal, isDisabled }) => {
+const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon, isExternal, isDisabled, isFetching }) => {
   const { values } = useFormikContext<ISettings>();
 
   // Determine if the switch is checked based on whether the token is active in paymentMethods
@@ -51,7 +51,7 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
               color={isExternal ? "#179EF8" : "#2BCFA1"}
               hasArrow={isExternal ? true : false}
             >
-              {buttonText}
+              {isFetching ? <Spinner size={"sm"} /> : buttonText}
             </ExternalLink>
           </Flex>
         </>

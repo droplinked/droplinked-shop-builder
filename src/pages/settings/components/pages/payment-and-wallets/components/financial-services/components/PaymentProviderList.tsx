@@ -1,9 +1,12 @@
 import { Grid } from "@chakra-ui/react";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
+import useAppStore from "lib/stores/app/appStore";
+import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
+import { useQuery } from "react-query";
 
 interface Provider {
   title: string;
@@ -14,19 +17,33 @@ interface Provider {
   type: "stripe" | "coinbase" | "paymob";
   isExternal: boolean;
   isDisabled?: boolean;
+  isFetching?: boolean;
 }
 
 const PaymentProviderList: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
+  const { shop } = useAppStore();
+
+  const { onboardedExpressStripeAccount } = shop ?? {};
+
+  const { isFetching, data: stripeOnboardingUrl } = useQuery({
+    queryKey: ['stripeOnboardingUrl'],
+    queryFn: () => getStripeOnboardingUrl(),
+    enabled: !onboardedExpressStripeAccount,
+    select(data) {
+      return data.data.url;
+    },
+  });
 
   // Define payment providers with their details
   const providers: Provider[] = [
     {
       title: "Stripe",
       type: "stripe",
-      buttonText: "View Account",
-      link: "https://dashboard.stripe.com/login",
+      buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
+      link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
+      isFetching: isFetching,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
     },
@@ -86,13 +103,17 @@ const PaymentProviderList: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+
+  }, [])
+
   return (
     <Grid
       templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
       gap={4}
       overflow="hidden"
     >
-      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled }) => (
+      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled, isFetching }) => (
         <PaymentProviderCard
           key={type}
           isDisabled={isDisabled}
@@ -104,6 +125,7 @@ const PaymentProviderList: React.FC = () => {
           tooltip={tooltip}
           icon={icon}
           isExternal={isExternal}
+          isFetching={isFetching}
         />
       ))}
     </Grid>
