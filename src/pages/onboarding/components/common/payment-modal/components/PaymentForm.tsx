@@ -5,7 +5,7 @@ import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscripti
 import React, { useState } from 'react'
 import useOnboardingStore from '../../../../stores/useOnboardingStore'
 import useAppToast from 'hooks/toast/useToast'
-import { getShopSubscriptionDataService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices'
+import { getShopSubscriptionDataService, subscriptionPlanStripePaymentService, getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices'
 
 interface PaymentFormProps {
   onClose: () => void
@@ -23,7 +23,6 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
   const { showToast } = useAppToast()
   
   const handlePaymentSubmit = async () => {
-    console.log('handlePaymentSubmit')
     if (!isFormCompleted) return
     
     setIsProcessing(true)
@@ -36,7 +35,7 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
         return
       }
       
-      const { error, paymentIntent } = await stripe.confirmPayment({
+      const { error } = await stripe.confirmPayment({
         elements,
         redirect: 'if_required',
       })
@@ -47,24 +46,30 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
         setIsProcessing(false)
         return
       }
+
+      // Get the original plan data from the API
+      const plansResponse = await getSubscriptionPlansService()
+      const updatedPlan = plansResponse.data.find(plan => plan.type === planDetail.type)
       
-      // Update the subscription plan store with the selected plan
-      updateSelectedPlan(planDetail)
-      
-      // Confirm payment with server
-      try {
-        // This ensures the payment is recorded on the server
-        await subscriptionPlanStripePaymentService({
-          month: 1, // Default to monthly subscription
-          subId: planDetail._id,
-          recurring: true
-        })
-        
-        // Fetch updated subscription data from server
-        await getShopSubscriptionDataService()
-      } catch (fetchError) {
-        console.error('Failed to confirm payment or fetch updated subscription data:', fetchError)
+      if (!updatedPlan) {
+        console.error('Plan not found in API response:', planDetail.type)
+        showToast({ message: 'Failed to find subscription plan. Please contact support.', type: 'error' })
+        setIsProcessing(false)
+        return
       }
+
+      // Confirm payment with server
+      await subscriptionPlanStripePaymentService({
+        month: 1,
+        subId: updatedPlan._id,
+        recurring: true
+      })
+      
+      // Fetch updated subscription data
+      await getShopSubscriptionDataService()
+      
+      // Update the store with the plan from API
+      updateSelectedPlan(updatedPlan)
       
       // Show success toast
       showToast({ message: 'Payment successful! Your subscription has been activated.', type: 'success' })
@@ -79,7 +84,7 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
       const errorMessage = 'An unexpected error occurred. Please try again.'
       setErrorMessage(errorMessage)
       showToast({ message: errorMessage, type: 'error' })
-      console.log('err', err)
+      console.error('Payment error:', err)
       setIsProcessing(false)
     }
   }

@@ -19,7 +19,8 @@ export const subscriptionPlans = {
           "Affiliate network access",
           "Basic customer support"
       ]
-    }
+    },
+    type: 'STARTER'
   },
   BUSINESS: { 
     icon: SuitcaseLg, 
@@ -40,7 +41,8 @@ export const subscriptionPlans = {
           "Warehouse system integration",
           "Premium customer support"
       ]
-    }
+    },
+    type: 'BUSINESS'
   },
   BUSINESS_PRO: { 
     icon: Star2Lg, 
@@ -58,7 +60,8 @@ export const subscriptionPlans = {
             "Admin management panel",
             "VIP customer support"
         ]
-    }
+    },
+    type: 'BUSINESS_PRO'
   },
   ENTERPRISE: { 
     icon: BuildingLg, 
@@ -73,6 +76,7 @@ export const subscriptionPlans = {
           "Unlimited payment methods",
           "DPP (Digital Product Passport)"
       ]
-    }
+    },
+    type: 'ENTERPRISE'
   }
 } as const; 
