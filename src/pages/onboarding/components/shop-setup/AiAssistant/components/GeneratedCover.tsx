@@ -17,7 +17,7 @@ export default function GeneratedCover({ businessCategory, businessDescribe }: P
     const { showToast } = useAppToast()
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
 
-    const { isFetching, data: covers, refetch } = useQuery({
+    const { isFetching, isLoading, data: covers, refetch } = useQuery({
         queryFn: () => generateHeroSection({ category: businessCategory, prompt: businessDescribe }),
         queryKey: ["generateHeroSection"],
         enabled: !!businessCategory && !!businessDescribe,
@@ -40,7 +40,7 @@ export default function GeneratedCover({ businessCategory, businessDescribe }: P
     return (
         <GeneratedContentWrapper title='Cover Image' onRetry={refetch} isLoading={isFetching}>
             <Flex alignItems="center" gap={4}>
-                <ImageSlider images={covers ?? []} onChange={handleChange} isLoading={isFetching} />
+                <ImageSlider images={covers ?? []} onChange={handleChange} isLoading={isFetching || isLoading} />
             </Flex>
         </GeneratedContentWrapper>
     )
