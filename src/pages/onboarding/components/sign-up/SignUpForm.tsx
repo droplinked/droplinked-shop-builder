@@ -109,6 +109,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
 
                             <Checkbox
                                 marginBlock={3}
+                                alignItems={{ base: "start", md: "center" }}
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 By signing up, I agree to your{" "}
