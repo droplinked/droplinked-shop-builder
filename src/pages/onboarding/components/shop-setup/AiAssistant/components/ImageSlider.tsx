@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
 import {
     Box,
+    Box as Dot,
     Flex,
     HStack,
-    Box as Dot,
 } from '@chakra-ui/react'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import AppImage from 'components/common/image/AppImage'
 import BlueButton from 'components/redesign/button/BlueButton'
+import React, { useState } from 'react'
 import ImageSkeleton from './ImageSkeleton'
 
 interface ImageSliderProps {
@@ -60,7 +60,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
                 gap={4}
             >
                 <BlueButton
-                    leftIcon={<ChevronleftMd color='#fff' />}
+                    leftIcon={<ChevronleftMd color={isLoading ? "#737373" : "#fff"} />}
                     onClick={handlePrev}
                     color="white"
                     fontSize={14}
@@ -72,7 +72,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
                 </BlueButton>
 
                 <HStack spacing={2}>
-                    {images.map((_, index) => (
+                    {!isLoading && images.map((_, index) => (
                         <Dot
                             key={index}
                             w={index === currentIndex ? '16px' : '4px'}
@@ -87,7 +87,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
                 </HStack>
 
                 <BlueButton
-                    rightIcon={<ChevronrightMd color='#fff' />}
+                    rightIcon={<ChevronrightMd color={isLoading ? "#737373" : "#fff"} />}
                     onClick={handleNext}
                     color="white"
                     fontSize={14}
