@@ -22,7 +22,7 @@ export default function GenerationModal({ isOpen, onClose, generateWithAiData, s
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "6xl", isCentered: true }}
+            modalRootProps={{ isOpen, onClose, size: "6xl", isCentered: false }}
             modalContentProps={{ background: "#1C1C1C", paddingBlock: "0" }}
         >
             <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }}>

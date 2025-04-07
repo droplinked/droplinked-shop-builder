@@ -25,7 +25,7 @@ export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep,
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "2xl", isCentered: true }}
+            modalRootProps={{ isOpen, onClose, size: "2xl", isCentered: false }}
             modalContentProps={{ background: "#1C1C1C", paddingBlock: "0" }}
         >
             <Flex flexDirection="column">
