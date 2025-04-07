@@ -34,20 +34,5 @@ export const validateStoreData = (storeSetup: IValidateStoreData, setError: IVal
         setError('name', undefined)
     }
 
-    // Description validation
-    if (storeSetup?.description?.trim()) {
-        if (storeSetup.description.length < 150) {
-            setError('description', 'Description must be at least 150 characters')
-            isValid = false
-        } else if (storeSetup.description.length > 160) {
-            setError('description', 'Description must not exceed 160 characters')
-            isValid = false
-        } else {
-            setError('description', undefined)
-        }
-    } else {
-        setError('description', undefined)
-    }
-
     return isValid
 }
