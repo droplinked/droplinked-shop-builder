@@ -49,7 +49,7 @@ function PlanHeader({ plan, isPopular, isSelected, planDuration }: PlanHeaderPro
           </Text>
         </Flex>
         <Box>
-          <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} planDuration={planDuration} />
+          <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} />
         </Box>
       </Flex>
     </Box>

@@ -4,7 +4,7 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
-import { PlanDuration } from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import { planDurations } from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -12,7 +12,7 @@ interface SubscriptionPlanCardProps {
   isPopular?: boolean
   isSelected?: boolean
   onSelect?: () => void
-  planDuration: PlanDuration
+  planDuration: typeof planDurations[0]
 }
 
 function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {

@@ -52,10 +52,8 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
         return
       }
 
-      console.log('selectedPlanData', selectedPlanData)
-
       await createPaymentIntent({
-        month: preferredPlanDuration.month, // Use the selected plan duration
+        month: preferredPlanDuration.month,
         subId: selectedPlanData._id,
         recurring: true
       })
@@ -107,7 +105,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
 
       <ControlButtons 
         onBack={onBack} 
-        onSubmit={onNext} 
+        onSubmit={handleNext} 
         continueText={getContinueText(selectedPlan)} 
       />
       
