@@ -2,6 +2,7 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import Dashboard from "pages/dashboard/Dashboard";
 import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
@@ -32,7 +33,6 @@ const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
 const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
-const NewDashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
@@ -136,7 +136,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <NewAnalytics /> },
-            { path: "dashboard", element: <NewDashboard /> },
+            { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
                 path: "settings",
