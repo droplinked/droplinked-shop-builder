@@ -3,7 +3,7 @@ import { UploadMd } from 'assets/icons/Action/Upload/UploadMd'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
+import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useRef } from 'react'
 import FieldWrapper from './FieldWrapper'
 
@@ -11,6 +11,8 @@ export default function LogoUploader() {
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const { storeSetup, updateOnboardingState } = useOnboardingStore()
+
+    const isDefaultLogo = storeSetup.logo === initialStoreSetup.logo
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
@@ -61,7 +63,7 @@ export default function LogoUploader() {
                             fontSize={14}
                             fontWeight={500}
                             onClick={handleRemove}
-                            isDisabled={!fileInputRef?.current?.value}
+                            isDisabled={!fileInputRef?.current?.value && isDefaultLogo}
                         >
                             Remove
                         </BlueButton>
