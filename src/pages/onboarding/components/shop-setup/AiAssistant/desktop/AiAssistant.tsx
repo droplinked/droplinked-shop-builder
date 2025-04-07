@@ -94,6 +94,7 @@ export default function AiAssistant() {
                     isOpen={isOpen}
                     onClose={onClose}
                     plan='BUSINESS'
+                    clientSecret={''}
                 />
             }
             {step === 2 &&
