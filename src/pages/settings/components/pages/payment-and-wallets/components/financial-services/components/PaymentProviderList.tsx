@@ -115,20 +115,11 @@ const PaymentProviderList: React.FC = () => {
       gap={4}
       overflow="hidden"
     >
-      {providers.map(({ title, buttonText, isLinkDisabled, link, type, tooltip, icon, isExternal, isDisabled, isFetching }) => (
+      {providers.map((provider) => (
         <PaymentProviderCard
-          key={type}
-          isDisabled={isDisabled}
-          type={type}
-          title={title}
-          buttonText={buttonText}
-          onToggle={(e) => handleToggle(e, type)}
-          link={link}
-          tooltip={tooltip}
-          icon={icon}
-          isExternal={isExternal}
-          isFetching={isFetching}
-          isLinkDisabled={isLinkDisabled}
+          key={provider.type}
+          item={provider}
+          onToggle={(e) => handleToggle(e, provider.type)}
         />
       ))}
     </Grid>

@@ -7,8 +7,25 @@ import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
-const PaymentProviderCard = ({ title, buttonText, onToggle, isLinkDisabled, type, link, tooltip, icon, isExternal, isDisabled, isFetching }) => {
+interface PaymentProviderProps {
+  item: {
+    title: string;
+    buttonText: string;
+    type: string;
+    link?: string;
+    tooltip?: string;
+    icon: React.ReactElement;
+    isExternal: boolean;
+    isDisabled?: boolean;
+    isLinkDisabled?: boolean;
+    isFetching?: boolean;
+  };
+  onToggle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PaymentProviderCard: React.FC<PaymentProviderProps> = ({ item, onToggle }) => {
   const { values } = useFormikContext<ISettings>();
+  const { title, buttonText, type, link, tooltip, icon, isExternal, isDisabled, isLinkDisabled, isFetching } = item;
 
   // Determine if the switch is checked based on whether the token is active in paymentMethods
   const isChecked = !!values.paymentMethods.find((item) => item.type === type.toUpperCase())?.isActive;
