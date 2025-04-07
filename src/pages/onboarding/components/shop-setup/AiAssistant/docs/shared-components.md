@@ -21,7 +21,7 @@ This document provides detailed information about the AI Assistant components us
   - [ExpandableInfo](#expandableinfo-)
   - [Item](#item-)
   - [LogosSkeleton](#logosskeleton-)
-  - [ItemsSkeleton](#itemsskeleton-)
+  - [SelectableItemsSkeleton](#SelectableItemsSkeleton-)
 
 ## Components Details 🔍
 
@@ -89,7 +89,7 @@ This document provides detailed information about the AI Assistant components us
 We have several skeleton components for loading states:
 - `ImageSkeleton`
 - `LogosSkeleton`
-- `ItemsSkeleton`
+- `SelectableItemsSkeleton`
 
 **Usage**: Display during data fetching operations
 

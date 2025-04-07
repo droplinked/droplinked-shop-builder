@@ -6,8 +6,8 @@ import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
 import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
-import Item from './Item'
-import ItemsSkeleton from './ItemsSkeleton'
+import SelectableItem from './SelectableItem'
+import SelectableItemsSkeleton from './SelectableItemsSkeleton'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -44,10 +44,10 @@ export default function GeneratedNames({ businessCategory, businessDescribe }: P
     return (
         <GeneratedContentWrapper title='Name' onRetry={refetch} isLoading={isFetching}>
             <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
-                {isFetching && <ItemsSkeleton />}
+                {isFetching && <SelectableItemsSkeleton />}
 
                 {!isFetching && names?.map((name, index) => (
-                    <Item
+                    <SelectableItem
                         key={index}
                         isSelected={selectedName === name}
                         item={{ title: name }}

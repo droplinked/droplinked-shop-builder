@@ -9,8 +9,8 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { appDevelopment } from 'utils/app/variable'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
-import Item from './Item'
-import ItemsSkeleton from './ItemsSkeleton'
+import SelectableItem from './SelectableItem'
+import SelectableItemsSkeleton from './SelectableItemsSkeleton'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -70,10 +70,10 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                     />
                 </AppSkeleton>
                 <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
-                    {isFetching && <ItemsSkeleton />}
+                    {isFetching && <SelectableItemsSkeleton />}
 
                     {!isFetching && urls?.map((url, index) => (
-                        <Item
+                        <SelectableItem
                             isSelected={selectedUrl === url}
                             item={{ title: url }}
                             onClick={() => handleClick(url)}

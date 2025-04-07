@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
 
-export default function ItemsSkeleton() {
+export default function SelectableItemsSkeleton() {
     return (
         Array(3).fill(0).map((_, index) =>
             <AppSkeleton isLoaded={false} borderRadius={8} key={index}>
