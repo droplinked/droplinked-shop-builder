@@ -18,7 +18,7 @@ export default function MobilePreviewDrawer() {
                 size="full"
             >
                 <DrawerOverlay />
-                <DrawerContent background="#1C1C1C">
+                <DrawerContent background="#1C1C1C" height="100dvh">
                     <DrawerHeader borderColor="#292929" background="#141414">
                         <ShopPreviewHeader
                             rightIcon={<ChevrondownLg color='#fff' />}

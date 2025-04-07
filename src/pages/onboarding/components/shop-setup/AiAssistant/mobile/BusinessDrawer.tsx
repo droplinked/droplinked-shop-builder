@@ -47,7 +47,8 @@ export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWi
             }}
             drawerContentStyle={{
                 background: "#1C1C1C",
-                borderTopRadius: 16
+                borderTopRadius: 16,
+                height: "100dvh"
             }}
             onClick={onNextStep}
             {...isSmallerThan768 && {
