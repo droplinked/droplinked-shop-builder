@@ -4,7 +4,7 @@ import { TooltipLg } from 'assets/icons/Sign/Tooltip/TooltipLg'
 import React from 'react'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import useAppStore from 'lib/stores/app/appStore'
-import { shopUpdateService } from 'lib/apis/shop/shopServices'
+import { shopUpdateService, shopInfoService } from 'lib/apis/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
 
 interface PaymentProviderCardProps {
@@ -27,34 +27,49 @@ function PaymentProviderCard({ icon, title, tooltip }: PaymentProviderCardProps)
     try {
       setIsLoading(true)
       
-      // Create updated payment methods array
-      let updatedPaymentMethods = [...(shop?.paymentMethods || [])]
+      // First fetch the latest shop data
+      const latestShopData = await shopInfoService({ shopName: shop.shopName })
+      const latestShop = latestShopData.data.data
+      
+      // Ensure paymentMethods is an array
+      const currentPaymentMethods = Array.isArray(latestShop?.paymentMethods) 
+        ? latestShop.paymentMethods 
+        : []
+      
+      // Create updated payment methods array based on the latest shop data
+      let updatedPaymentMethods = [...currentPaymentMethods]
+      const upperType = title.toUpperCase()
       
       if (!isConnected) {
-        // Connecting: turn off all others and activate this one
-        updatedPaymentMethods = updatedPaymentMethods.map((item) => ({
-          ...item,
-          isActive: item.type === title.toUpperCase()
-        }))
+        // If activating Stripe or Paymob, deactivate the other one
+        if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
+          updatedPaymentMethods = updatedPaymentMethods.map(item => ({
+            ...item,
+            isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB') ?
+              item.type === upperType : item.isActive
+          }))
+        }
         
-        // Add the new provider if it doesn't exist
-        if (!updatedPaymentMethods.some((item) => item.type === title.toUpperCase())) {
-          updatedPaymentMethods.push({ type: title.toUpperCase(), isActive: true })
+        const existingIndex = updatedPaymentMethods.findIndex(item => item.type === upperType)
+        if (existingIndex === -1) {
+          updatedPaymentMethods.push({ type: upperType, isActive: true })
+        } else {
+          updatedPaymentMethods[existingIndex].isActive = true
         }
       } else {
-        // Disconnecting: just deactivate this one
-        updatedPaymentMethods = updatedPaymentMethods.map((item) =>
-          item.type === title.toUpperCase()
-            ? { ...item, isActive: false }
-            : item
+        updatedPaymentMethods = updatedPaymentMethods.map(item =>
+          item.type === upperType ? { ...item, isActive: false } : item
         )
       }
       
+      // Create a minimal update object with only the necessary fields
+      const updateData = {
+        paymentMethods: updatedPaymentMethods,
+        currencyAbbreviation: latestShop.currency?.abbreviation || 'USD'
+      }
+      
       // Update shop data via API
-      await shopUpdateService({
-        ...shop,
-        paymentMethods: updatedPaymentMethods
-      })
+      await shopUpdateService(updateData)
       
       // Update local state
       updateState({
@@ -64,6 +79,7 @@ function PaymentProviderCard({ icon, title, tooltip }: PaymentProviderCardProps)
           paymentMethods: updatedPaymentMethods
         }
       })
+    
     } catch (error) {
       showToast({
         message: `Failed to ${isConnected ? 'disconnect' : 'connect'} ${title}`,
