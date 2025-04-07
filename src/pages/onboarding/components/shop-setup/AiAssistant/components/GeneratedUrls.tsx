@@ -5,7 +5,7 @@ import useAppToast from 'hooks/toast/useToast'
 import { generateDomains } from 'lib/apis/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useQuery } from 'react-query'
 import { appDevelopment } from 'utils/app/variable'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
@@ -28,9 +28,13 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
         select(data) {
             return data.data.domains || []
         },
+        onSuccess(data) {
+            handleClick(data?.[0])
+        },
         onError(err: any) {
             showToast({ message: err.response.data.data.message, type: "error" })
         },
+        refetchOnMount: false,
     })
 
     const selectedUrl = storeSetup.shop_url
@@ -38,10 +42,6 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
     const handleClick = (shop_url: string) => {
         updateOnboardingState("storeSetup", { ...storeSetup, shop_url })
     }
-
-    useEffect(() => {
-        handleClick(urls?.[0])
-    }, [])
 
     return (
         <GeneratedContentWrapper title='URL' onRetry={refetch} isLoading={isFetching}>

@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/react'
+import useAppToast from 'hooks/toast/useToast'
+import { generateHeroSection } from 'lib/apis/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import React, { useEffect } from 'react'
+import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import React from 'react'
+import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import { ImageSlider } from './ImageSlider'
-import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
-import { useQuery } from 'react-query'
-import { generateHeroSection } from 'lib/apis/ai/services'
-import useAppToast from 'hooks/toast/useToast'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -24,18 +24,18 @@ export default function GeneratedCover({ businessCategory, businessDescribe }: P
         select(data) {
             return data.data.heroSections || []
         },
+        onSuccess(data) {
+            handleChange(data?.[0])
+        },
         onError(err: any) {
             showToast({ message: err.response.data.data.message, type: "error" })
         },
+        refetchOnMount: false,
     })
 
     const handleChange = (url: string) => {
         updateOnboardingState("storeSetup", { ...storeSetup, hero_section: url })
     }
-
-    useEffect(() => {
-        handleChange(covers?.[0])
-    }, [])
 
     return (
         <GeneratedContentWrapper title='Cover Image' onRetry={refetch} isLoading={isFetching}>
