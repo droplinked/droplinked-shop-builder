@@ -1,3 +1,4 @@
+import { removeFalsyValues } from '../_utils/removeFalsyValues';
 import { createQueryString } from '../_utils/with.query';
 import axiosInstance from '../axiosConfig';
 import {
@@ -22,7 +23,7 @@ import {
 } from './interfaces';
 
 export const setupShop = (params: ShopSetupParams) =>
-	axiosInstance.post(`/shop/setup`, params)
+	axiosInstance.post(`/shop/setup`, removeFalsyValues(params));
 
 export const paymentPublicServiceV2 = async () =>
 	axiosInstance.get<{ data: IPaymentPublicService[] }>(`shop/public/available-payment-methodsV2`);
