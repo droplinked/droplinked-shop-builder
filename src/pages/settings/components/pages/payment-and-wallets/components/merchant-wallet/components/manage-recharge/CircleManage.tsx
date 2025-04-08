@@ -42,26 +42,6 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
         } else setError(chain?.chain);
     };
 
-    const handleWithdraw = async (chain: any) => {
-        if (chain?.tokenSymbol === "USDC") {
-            setError("USDC");
-            return;
-        }
-        if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
-            if (chain?.tokenId && chain?.amount && chain?.amount !== "0") {
-                setWithdrawingChain(chain?.chain);
-                await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
-                    .then(async (res) => {
-                        if (res?.data?.data === true) await refetch();
-                    })
-                    .catch((e) => { })
-                    .finally(() => {
-                        setWithdrawingChain(null);
-                    });
-            }
-        } else setError(chain?.chain);
-    };
-
     const WalletListSkeleton = () => (
         <>
             {[1, 2, 3].map((_, index) => (
