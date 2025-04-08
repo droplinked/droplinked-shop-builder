@@ -77,7 +77,7 @@ export default function BusinessDrawer({ isOpen, onClose, onNextStep, generateWi
                 )
             }}
         >
-            <Flex p={{ base: 4, md: "48px" }} flexDirection="column" gap={9} background="#1C1C1C">
+            <Flex p={{ base: 4, md: "48px" }} height="100%" flexDirection="column" gap={9} background="#1C1C1C">
                 <Textarea
                     label='Describe Your Business'
                     isRequired={true}
