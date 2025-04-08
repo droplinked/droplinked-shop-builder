@@ -25,7 +25,7 @@ const MerchantWallet: React.FC = () => {
           <WalletFeatures />
         </SectionContent>
       </SectionContainer>
-      <Divider borderColor={'#292929'} />
+      <Divider borderColor={'neutral.gray.800'} />
     </>
   );
 };

@@ -22,19 +22,19 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
                     ".chakra-switch__track": {
                         width: "42px",
                         height: "20px",
-                        ...(!isChecked && { background: "#333333" })
+                        ...(!isChecked && { background: "neutral.gray.750" })
                     },
                     ".chakra-switch__thumb": {
                         width: "20px",
                         height: "100%",
-                        background: "#000000"
+                        background: "neutral.black"
                     }
                 }}
             />
             {(title || description || children) &&
                 <Flex direction="column">
-                    <Text mb={1} fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                    <Text mb={children ? 4 : 0} fontSize={14} color="#7B7B7B">{description}</Text>
+                    <Text mb={1} fontSize={16} fontWeight={500} color="neutral.white">{title}</Text>
+                    <Text mb={children ? 4 : 0} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
                     {children}
                 </Flex>
             }

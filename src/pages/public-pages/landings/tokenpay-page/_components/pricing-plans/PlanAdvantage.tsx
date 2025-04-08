@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
@@ -29,7 +29,7 @@ function PlanAdvantage({ title, description, isComingSoon }: Props) {
                         </Box>
                     }
                 </Flex>
-                {description && <AppTypography fontSize={14} color="#C4C4C4">{description}</AppTypography>}
+                {description && <AppTypography fontSize={14} color="neutral.gray.400">{description}</AppTypography>}
             </Flex>
         </Flex>
     )

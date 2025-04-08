@@ -1,30 +1,28 @@
 import { Box, Button, Flex, VStack, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppCard from 'components/common/card/AppCard'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppModal from 'components/common/modal/AppModal'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import { capitalizeFirst } from 'utils/helpers'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 import React, { useContext, useState } from 'react'
 import CouponForm from '../form/CouponForm'
 import classes from './style.module.scss'
-import BasicButton from 'components/common/BasicButton/BasicButton'
 import { AxiosError } from 'axios'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
-import useAppToast from 'functions/hooks/toast/useToast'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
+import useAppToast from 'hooks/toast/useToast'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)
+    const { convertPrice, abbreviation } = useCurrencyConverter()
     const [selectedCoupon, setSelectedCoupon] = useState(null)
     const [Code, setCode] = useState(null)
     const [isFetchingCouponsReport, setIsFetchingCouponsReport] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { showToast } = useAppToast()
-    const { shop: { currency } } = useAppStore();
     const handleExportCouponsReport = async (couponID: string) => {
         try {
             setIsFetchingCouponsReport(true)
@@ -58,7 +56,7 @@ function CouponsListContent() {
                                     <Flex gap="32px" width="40%" alignItems="center">
                                         <VStack width="20%" align="stretch" className={`${!coupon.isExpired ? classes.active : ''}`}>
                                             {coupon.type === "DISCOUNT" ? <AppIcons.DiscountSetting /> : <AppIcons.GiftSetting />}
-                                            <AppTypography fontSize='10px' color="#808080">{capitalizeFirstLetter(coupon.type)}</AppTypography>
+                                            <AppTypography fontSize='10px' color="#808080">{capitalizeFirst(coupon.type)}</AppTypography>
                                         </VStack>
                                         <VStack width="100%" align="stretch">
                                             <AppTypography fontSize='14px' fontWeight='bold'>{coupon.name}</AppTypography>
@@ -67,7 +65,7 @@ function CouponsListContent() {
                                     </Flex>
                                     <VStack align="stretch">
                                         <AppTypography fontSize='12px'>{coupon.codes.length} {coupon.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
-                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : currencyConvertion(coupon.balance, currency?.conversionRateToUSD, false)} {coupon.type === "DISCOUNT" ? '%' : currency?.abbreviation}</AppTypography>
+                                        <AppTypography fontSize='12px'>{coupon.type === "DISCOUNT" ? coupon.balance : convertPrice({ amount: coupon.balance, toFixed: true })} {coupon.type === "DISCOUNT" ? '%' : abbreviation}</AppTypography>
                                     </VStack>
                                     <Flex alignItems={"center"} gap={9}>
                                         <AppIcons.EditIcon
@@ -97,7 +95,7 @@ function CouponsListContent() {
                                                     <td width="50px"></td>
                                                     <td><AppTypography fontSize="12px">Code</AppTypography></td>
                                                     <td><AppTypography fontSize="12px">Status</AppTypography></td>
-                                                    <td width="30px"><Button bgColor={"#1C1C1C"} borderRadius={"6px"} border={"2px solid #292929"} width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{ bg: "unset" }} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
+                                                    <td width="30px"><Button bgColor={"neutral.gray.1000"} borderRadius={"6px"} border={"2px solid"} borderColor="neutral.gray.800" width={"64px"} height={"24px"} padding={"12px 24px"} fontSize={"12px"} color={"#C2C2C2"} isLoading={isFetchingCouponsReport} _hover={{ bg: "unset" }} onClick={() => handleExportCouponsReport(coupon?._id)}>Export</Button></td>
                                                     <td width="30px"></td>
                                                 </tr>
                                             </thead>
@@ -128,7 +126,7 @@ function CouponsListContent() {
                 <Box><Pagination current={coupons.currentPage} lastPage={coupons.totalPages ? parseInt(coupons.totalPages) : 1} nextPage={coupons.hasNextPage || false} prevPage={coupons.hasPreviousPage || false} /></Box>
             </VStack>
             {
-                isOpen && <AppModal open={isOpen} close={onClose} size="xl" title={`Edit ${capitalizeFirstLetter(selectedCoupon.type)} Coupon`}>
+                isOpen && <AppModal open={isOpen} close={onClose} size="xl" title={`Edit ${capitalizeFirst(selectedCoupon.type)} Coupon`}>
                     <CouponForm coupon={selectedCoupon} close={onClose} />
                 </AppModal>
             }

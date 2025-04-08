@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { typesProperties } from "lib/utils/statics/types";
+import { typesProperties } from "utils/constants/types";
 import React from "react";
 
 export const ProductDetails = ({ product }) => {
@@ -29,7 +29,7 @@ export const ProductDetails = ({ product }) => {
                 <Text fontSize="sm" color="white">
                   {sku.sold_units || "0"} /
                 </Text>
-                <Text fontSize="sm" color="#7b7b7b">
+                <Text fontSize="sm" color="text.subtextPlaceholder.dark">
                   {sku.quantity || "0"}
                 </Text>
               </HStack>
@@ -39,7 +39,7 @@ export const ProductDetails = ({ product }) => {
                 <Text fontSize="sm" color="white">
                   ${sku.price || "0"}
                 </Text>
-                <Text fontSize="sm" color="#b1b1b1">
+                <Text fontSize="sm" color="text.subtextPlaceholder.light">
                   USD
                 </Text>
               </HStack>

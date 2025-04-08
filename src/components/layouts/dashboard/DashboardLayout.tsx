@@ -1,14 +1,16 @@
 import { Box, HStack, useBreakpointValue, VStack } from '@chakra-ui/react';
-import AdminHoc from 'functions/hoc/admin/adminHoc';
+import AdminHoc from 'hoc/admin/adminHoc';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DashboardLayoutHeader from './components/header/DashboardLayoutHeader';
 import DashboardLayoutSidebar from './components/sidebar/DashboardLayoutSidebar';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 
 const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { user } = useAppStore();
+  const { resetOnboarding } = useOnboardingStore()
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
@@ -22,7 +24,9 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   // Redirect users with specific statuses
   useEffect(() => {
     if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status)) {
-      navigate('/analytics/registration');
+      navigate('/onboarding?entry=store-details');
+    } else {
+      resetOnboarding();
     }
   }, [user, navigate]);
 
@@ -66,7 +70,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
         {/* Main content */}
         <VStack flex="1" height="full" width="full">
           <DashboardLayoutHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-          <Box width="100%" minH="80vh" borderColor="line" padding={shouldApplyPadding ? 6 : 0}>
+          <Box width="100%" minH="80vh" borderColor="neutral.gray.850" padding={shouldApplyPadding ? 6 : 0}>
             {children || <Outlet />}
           </Box>
         </VStack>

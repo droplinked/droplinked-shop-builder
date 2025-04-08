@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
 import { useShippingTypes } from 'pages/products/hooks/useShippingTypes'
 import React, { useState } from 'react'

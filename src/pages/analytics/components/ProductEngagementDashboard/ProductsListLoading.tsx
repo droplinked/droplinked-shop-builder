@@ -1,4 +1,4 @@
-import { Flex, Skeleton } from '@chakra-ui/react'
+import { Flex, Skeleton, SkeletonCircle } from '@chakra-ui/react'
 import React from 'react'
 
 interface Props {
@@ -7,40 +7,45 @@ interface Props {
 
 export default function ProductsListLoading({ count = 4 }: Props) {
     return (
-        <Flex direction="column">
+        <>
             {Array.from({ length: count }).map((_, index) => (
-                <Flex
-                    key={index}
-                    align="center"
-                    gap={{ base: 2, md: 4 }}
-                    padding={{ base: 3, md: 4 }}
-                    borderBottom={index === count - 1 ? 'none' : '1px solid #292929'}
-                >
-                    {/* Image placeholder */}
-                    <Skeleton boxSize={{ base: '40px', md: '48px' }} borderRadius="4px" />
+                <Flex key={index} align="center" gap={4} padding={{ base: 4, xl: "16px 24px" }}>
+                    {/* Placeholder for the AppImage */}
+                    <Skeleton
+                        width={12}
+                        height={12}
+                        borderRadius={4}
+                    />
 
-                    {/* Text placeholders */}
+                    {/* Placeholder for the Flex with product name and price */}
                     <Flex
                         flex={1}
-                        flexDirection={{ base: 'column', md: 'row' }}
                         flexWrap="wrap"
+                        flexDirection={{ base: "column", md: "row" }}
                         justifyContent="space-between"
-                        gap={1}
+                        gap={6}
                     >
+                        {/* Placeholder for productName */}
                         <Skeleton
-                            height={{ base: '16px', md: '18px' }}
-                            width={{ base: '60%', md: '40%' }}
+                            height="14px"
+                            width={{ base: "100%", md: "60%" }} // Approximate width for text
                         />
+
+                        {/* Placeholder for FormattedPrice */}
                         <Skeleton
-                            height={{ base: '16px', md: '18px' }}
-                            width={{ base: '40%', md: '30%' }}
+                            height="14px"
+                            width={{ base: "100%", md: "30%" }} // Approximate width for price
                         />
                     </Flex>
 
-                    {/* Action button placeholder */}
-                    <Skeleton as="button" boxSize={{ base: '24px', md: '28px' }} borderRadius="full" />
+                    {/* Placeholder for the Chevron button */}
+                    <SkeletonCircle
+                        size="5"
+                        flexShrink={0}
+                        marginInline="10px" // To match the padding of 10px in the button
+                    />
                 </Flex>
             ))}
-        </Flex>
+        </>
     )
 }

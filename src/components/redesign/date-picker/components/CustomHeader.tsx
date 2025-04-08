@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
@@ -17,7 +17,7 @@ function CustomHeader({
     const month = date.toLocaleString('default', { month: 'long' });
 
     return (
-        <Flex bg={"#0d0d0d"} px={3} py={4} borderTopRadius={"16px"} borderBottom={"1px solid #292929"} justifyContent={"space-between"} alignItems={"center"}>
+        <Flex bg={"#0d0d0d"} px={3} py={4} borderTopRadius={"16px"} borderBottom={"1px solid"} borderColor={"neutral.gray.800"} justifyContent={"space-between"} alignItems={"center"}>
             <Flex gap={1}>
                 <AppTypography fontWeight={500} color={"#fff"}>{month}</AppTypography>
                 <AppTypography fontWeight={500} color={"#fff"}>{year}</AppTypography>

@@ -1,5 +1,5 @@
-import { Input as ChakraInput, Flex, FlexProps, FormLabel, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
 import AnimatedLoadingText from '../../../pages/products/components/ProductDrawer/components/common/AnimatedLoadingText/AnimatedLoadingText'
@@ -12,10 +12,13 @@ interface Props {
     inputProps?: InputProps & {
         numberType?: 'int' | 'float'
     }
+    labelProps?: FormLabelProps;
     leftElement?: ReactNode
     rightElement?: ReactNode
     actionButton?: ReactNode
     state?: 'success' | 'error'
+    stateColor?: string;
+    showErrorIcon?: boolean;
     message?: string
     maxCharacters?: number
     showAnimatedLoading?: boolean
@@ -35,7 +38,7 @@ export default function Input(props: Props) {
     )
 }
 
-export function InputHeader({ label, description, inputProps }: Props) {
+export function InputHeader({ label, description, inputProps, labelProps }: Props) {
     return (
         <>
             {label && (
@@ -47,11 +50,12 @@ export function InputHeader({ label, description, inputProps }: Props) {
                     fontSize={16}
                     fontWeight={500}
                     color="#FFF"
+                    {...labelProps}
                 >
                     {label} {inputProps?.isRequired && <AppIcons.Required />}
                 </FormLabel>
             )}
-            {description && <Text mb={4} fontSize={14} color="#7B7B7B">{description}</Text>}
+            {description && <Text mb={4} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>}
         </>
     )
 }
@@ -102,17 +106,17 @@ function InputContainer(props: Props) {
             }}
         >
             <Flex
-                width={"100%"}
+                width="100%"
                 alignItems="center"
                 gap={2}
                 border="1px solid"
                 borderRadius={8}
-                borderColor={borderColorMap[state] || "#292929"}
+                borderColor={borderColorMap[state] || "neutral.gray.800"}
                 padding="12px 16px"
                 transition="border-color 0.1s ease-out"
-                _hover={{ borderColor: borderColorMap[state] || "#3C3C3C" }}
-                _focus={{ borderColor: borderColorMap[state] || "#7B7B7B" }}
-                {...showAnimatedLoading && { background: "#141414" }}
+                _hover={{ borderColor: borderColorMap[state] || "neutral.gray.700" }}
+                _focus={{ borderColor: borderColorMap[state] || "text.subtextPlaceholder.dark" }}
+                {...showAnimatedLoading && { background: "neutral.background" }}
                 {...inputContainerProps}
             >
                 {leftElement}
@@ -125,15 +129,23 @@ function InputContainer(props: Props) {
                         padding={0}
                         fontSize={14}
                         fontWeight={400}
-                        color="#fff"
+                        color="neutral.white"
                         maxLength={maxCharacters}
                         spellCheck={false}
-                        _placeholder={{ color: "#7B7B7B" }}
+                        _placeholder={{ color: "text.subtextPlaceholder.dark" }}
                         _focusVisible={{}}
+                        sx={{
+                            "&:-webkit-autofill": {
+                                WebkitTextFillColor: "#fff",
+                                WebkitBoxShadow: "0 0 0px 1000px transparent inset",
+                                transition: "background-color 5000s ease-in-out 0s"
+                            }
+                        }}
                         onKeyDown={handleKeyDown}
                         onChange={handleChange}
                         {...inputProps}
-                    />}
+                    />
+                }
                 {showAnimatedLoading &&
                     <AnimatedLoadingText
                         text={inputProps.value}
@@ -148,18 +160,18 @@ function InputContainer(props: Props) {
     )
 }
 
-function InputFooter({ message, maxCharacters, inputProps }: Props) {
+function InputFooter({ message, maxCharacters, inputProps, stateColor = "#fff", showErrorIcon = true }: Props) {
     return (
         <>
             {(message || maxCharacters) && (
                 <Flex
                     mt={2}
                     paddingInline={4}
-                    css={{ p: { fontSize: 12, color: "#FFF" } }}
+                    css={{ p: { fontSize: 12, color: stateColor } }}
                 >
                     {message && (
                         <Flex alignItems="center" gap={2}>
-                            <AppIcons.WhiteWarning />
+                            {showErrorIcon && <AppIcons.WhiteWarning />}
                             <Text>{message}</Text>
                         </Flex>
                     )}

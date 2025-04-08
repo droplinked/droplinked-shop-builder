@@ -1,40 +1,26 @@
 import { Box, Text } from '@chakra-ui/react';
-import useAppStore from 'lib/stores/app/appStore';
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion';
 import React from 'react';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 
-interface props {
+interface ProductPriceProps {
   price: number;
   fontSize?: string;
-  showPrice?: boolean;
   showAbbreviation?: boolean;
 }
 
-function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: props) {
-  const { isLoggedIn, shop } = useAppStore();
-  const currency = shop?.currency;
-
-  // Default values for non-logged-in users
-  let displayPrice: number = price;
-  let currencyAbbr = 'USD';
-  let currencySymbol = '$';
-
-  // Apply currency conversion if user is logged in and currency data exists
-  if (isLoggedIn && currency) {
-    displayPrice = currencyConvertion(price, currency.conversionRateToUSD, false);
-    currencyAbbr = currency.abbreviation;
-    currencySymbol = currency.symbol;
-  }
+function ProductPrice({ price, fontSize = '36px', showAbbreviation = true }: ProductPriceProps) {
+  const { convertPrice, symbol, abbreviation } = useCurrencyConverter();
+  const displayPrice = convertPrice({ amount: price, toFixed: true }).toFixed(2);
 
   return (
     <Text fontSize={fontSize}>
-      <Box as="span" fontWeight="bold" color={'white'}>
-        {currencySymbol}
+      <Box as="span" fontWeight="bold" color="white">
+        {symbol}
         {displayPrice}
       </Box>
       {showAbbreviation && (
         <Box as="span" fontWeight="normal" color="#B1B1B1">
-          {' '}{currencyAbbr}
+          {' '} {abbreviation}
         </Box>
       )}
     </Text>

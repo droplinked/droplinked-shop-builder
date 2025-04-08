@@ -21,7 +21,7 @@ export default function TabsList({ tabs }: Props) {
                         color: "#fff",
                         fontWeight: 500,
                     }}
-                    color={"#7B7B7B"}
+                    color={"text.subtextPlaceholder.dark"}
                     fontSize={14}
                     width={"100%"}
                 >

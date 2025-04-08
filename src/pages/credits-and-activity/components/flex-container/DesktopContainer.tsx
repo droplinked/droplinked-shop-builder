@@ -14,7 +14,8 @@ export default function DesktopContainer({ items }: Props) {
     return (
         <Flex
             width="100%"
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius="8px"
             flexWrap="wrap"
         >
@@ -26,8 +27,8 @@ export default function DesktopContainer({ items }: Props) {
                     <Flex
                         flexDirection="column"
                         width={isFullWidth ? "100%" : { base: "100%", md: "50%" }}
-                        {...((isFullWidth || isSmallerThan768) && notLastItem) && { borderBottom: "1px solid #292929" }}
-                        {...!isFullWidth && notLastItem && !isSmallerThan768 && { borderRight: "1px solid #292929" }}
+                        {...((isFullWidth || isSmallerThan768) && notLastItem) && { borderBottom: "1px solid neutral.gray.800" }}
+                        {...!isFullWidth && notLastItem && !isSmallerThan768 && { borderRight: "1px solid neutral.gray.800" }}
                     >
                         <Box>
                             {content}

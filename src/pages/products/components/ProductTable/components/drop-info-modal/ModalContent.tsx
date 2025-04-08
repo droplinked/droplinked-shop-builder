@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import chainNameMap from 'lib/utils/statics/blockchainMap'
+import chainNameMap from 'utils/constants/blockchainMap'
 import React from 'react'
 import DetailRow from './DetailRow'
 
@@ -16,7 +16,8 @@ function ModalContent({ product }) {
     <Flex
       direction="column"
       gap={4}
-      border="1px solid #292929"
+      border="1px solid"
+      borderColor="neutral.gray.800"
       borderRadius={16}
       padding={6}
     >

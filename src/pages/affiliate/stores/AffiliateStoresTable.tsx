@@ -73,7 +73,7 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
             cell: (info) => (
                 <Flex alignItems={"flex-start"} justifyContent={"flex-start"} overflow={"hidden"}>
                     {(info?.getValue() as Array<any>)?.map((product, index) => (
-                        <AppImage key={product?._id} marginLeft={index !== 0 && "-8px"} border="2px solid #1C1C1C" backgroundColor={"#1C1C1C"} width={"40px"} height={"40px"} rounded={"25px"} src={product?.thumbnail} />
+                        <AppImage key={product?._id} marginLeft={index !== 0 && "-8px"} border="2px solid" borderColor="neutral.gray.1000" backgroundColor={"neutral.gray.1000"} width={"40px"} height={"40px"} rounded={"25px"} src={product?.thumbnail} />
                     ))}
                 </Flex>
             ),

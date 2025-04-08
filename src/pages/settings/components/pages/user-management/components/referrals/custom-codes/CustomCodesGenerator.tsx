@@ -1,14 +1,14 @@
 import { Box, Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
 import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
 import useAppStore from 'lib/stores/app/appStore'
-import { BUILDER_URL } from 'lib/utils/app/variable'
+import { BUILDER_URL } from 'utils/app/variable'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 
@@ -71,8 +71,8 @@ export default function CustomCodesGenerator() {
             />
             {shopInitialCustomCode &&
                 <Flex alignItems={"center"} gap={4}>
-                    <Box px={4} py={3} border={"1px solid #292929"} width={"100%"} borderRadius={"8px"}>
-                        <AppTypography fontSize={16} color={"#fff"}>
+                    <Box px={4} py={3} border={"1px solid"} borderColor="neutral.gray.800" width={"100%"} borderRadius={"8px"}>
+                        <AppTypography fontSize={16} color={"neutral.white"}>
                             {shopInitialCustomCode}
                         </AppTypography>
                     </Box>

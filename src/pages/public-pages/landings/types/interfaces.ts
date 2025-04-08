@@ -10,16 +10,9 @@ interface IDescriptionWithBoldWord {
     rest: string
 }
 
-interface IImageSection extends ISectionWithText {
+export interface IImageSection extends ISectionWithText {
     image: string
 }
-
-interface ICTAButton {
-    CTAButtonText: string
-    CTAButtonFunction?: () => void
-}
-
-export interface IAboveTheFoldSection extends IImageSection, ICTAButton { }
 
 export interface IDetailsItem extends ISectionWithText {
     icon: ReactNode
@@ -39,7 +32,7 @@ export interface IDualSideFlex extends IImageSection {
 }
 
 export interface ILandingPageTemplate {
-    aboveTheFoldSection: IAboveTheFoldSection
+    aboveTheFoldSection: IImageSection
     detailsSection: IDetailsSection
     dualSideFlexData: IDualSideFlex[]
     featureGroups: IFeatureGroup[]

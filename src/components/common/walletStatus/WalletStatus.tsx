@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import { IWalletStatusProps, renderIcon, renderSVGContent, renderSVGDefs, spinAnimation } from "./_components/WalletStatusComponents";
 
 const WalletStatus: React.FC<IWalletStatusProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
@@ -26,7 +26,7 @@ const WalletStatus: React.FC<IWalletStatusProps> = ({ variant = "green", isLoadi
                     height={{ base: `${180 + index * 20}px`, md: `${245 + index * 35}px` }}
                     opacity={index === 0 ? (isLoading ? 0.1 : 0.2) : isGreen ? (8 - index) * 0.01 : (18 - index) * 0.01}
                     borderWidth={{ base: index === 0 && "1px", md: index === 0 && "2px" }}
-                    {...index === 0 && icon === "tick" &&  {opacity: 1}}
+                    {...index === 0 && icon === "tick" && { opacity: 1 }}
                 />
             ))}
 

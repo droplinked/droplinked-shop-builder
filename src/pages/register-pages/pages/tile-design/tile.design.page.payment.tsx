@@ -3,7 +3,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import React, { useContext, useState } from "react";
 import { TileDesignContext } from "./context/tile.design.context";
 import "./styles/tile.radio.css";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 
 const TileDesignPagePayment = () => {
     const {

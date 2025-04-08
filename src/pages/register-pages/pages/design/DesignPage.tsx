@@ -2,7 +2,7 @@ import { Box, Flex, VStack } from "@chakra-ui/react";
 import React, { useEffect, useReducer } from "react";
 import { designContext, initialStateDesignPage } from "./design-context";
 import AppCard from "components/common/card/AppCard";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 import DesignPageOptions from "./parts/options/DesignPageOptions";
 import DesignPageDevices from "./parts/devices/DesignPageDevices";
 import DesignPagePreview from "./parts/preview/DesignPagePreview";

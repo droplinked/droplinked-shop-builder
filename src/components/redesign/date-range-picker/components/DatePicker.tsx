@@ -1,6 +1,6 @@
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import React from "react";
 import "react-calendar/dist/Calendar.css";
 import classes from "../styles.module.scss";
@@ -37,7 +37,7 @@ export default function DatePicker({
                 calendarProps={{
                     view: "month",
                     minDetail: "month",
-                    nextLabel: <AppIcons.ChevronRight color="white"/>,
+                    nextLabel: <AppIcons.ChevronRight color="white" />,
                     prevLabel: <AppIcons.ChevronLeft color="white" />,
                     formatShortWeekday: (locale, date) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()],
                     locale: "en-US",

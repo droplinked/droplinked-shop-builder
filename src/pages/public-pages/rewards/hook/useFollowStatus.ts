@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getFollowStatusService, grantProPlanService } from 'lib/apis/quests/services';
 import useAppStore from 'lib/stores/app/appStore';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 
 // Constants
 const INITIAL_PLATFORMS = {
@@ -34,7 +34,7 @@ const useFollowStatus = () => {
   // Fetch follow status when shop is available
   useEffect(() => {
     if (!shop) return;
-  
+
     const fetchFollowStatus = async () => {
       setLoading(true);
       try {
@@ -50,9 +50,9 @@ const useFollowStatus = () => {
         setLoading(false);
       }
     };
-  
+
     fetchFollowStatus();
-  }, [shop]); 
+  }, [shop]);
 
   // Grant Pro Plan
   const grantProPlan = async () => {

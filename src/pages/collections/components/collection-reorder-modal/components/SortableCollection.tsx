@@ -4,7 +4,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 // Icons
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 
 // Components
 import VisibilitySwitch from './VisibilitySwitch';

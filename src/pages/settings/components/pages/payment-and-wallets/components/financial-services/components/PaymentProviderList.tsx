@@ -1,9 +1,12 @@
 import { Grid } from "@chakra-ui/react";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
+import useAppStore from "lib/stores/app/appStore";
+import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
+import { useQuery } from "react-query";
 
 interface Provider {
   title: string;
@@ -14,19 +17,35 @@ interface Provider {
   type: "stripe" | "coinbase" | "paymob";
   isExternal: boolean;
   isDisabled?: boolean;
+  isLinkDisabled?: boolean;
+  isFetching?: boolean;
 }
 
 const PaymentProviderList: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
+  const { shop } = useAppStore();
+
+  const { onboardedExpressStripeAccount } = shop ?? {};
+
+  const { isFetching, data: stripeOnboardingUrl } = useQuery({
+    queryKey: ['stripeOnboardingUrl'],
+    queryFn: () => getStripeOnboardingUrl(),
+    enabled: !onboardedExpressStripeAccount,
+    select(data) {
+      return data.data.url;
+    },
+  });
 
   // Define payment providers with their details
   const providers: Provider[] = [
     {
       title: "Stripe",
       type: "stripe",
-      buttonText: "View Account",
-      link: "https://dashboard.stripe.com/login",
+      buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
+      link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
+      isLinkDisabled: true,
+      isFetching: isFetching,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
     },
@@ -53,31 +72,42 @@ const PaymentProviderList: React.FC = () => {
   // Handle toggle for enabling/disabling payment methods
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     const isActive = e.target.checked;
+    const upperType = type.toUpperCase();
 
-    // If turning on a provider, turn off all others
     if (isActive) {
-      const updatedMethods = values.paymentMethods.map((item) => ({
-        ...item,
-        isActive: item.type === type.toUpperCase()
-      }));
+      let updatedMethods = [...values.paymentMethods];
 
-      // Add the new provider if it doesn't exist
-      if (!values.paymentMethods.some((item) => item.type === type.toUpperCase())) {
-        updatedMethods.push({ type: type.toUpperCase(), isActive: true });
+      // If activating Stripe or Paymob, deactivate the other one
+      if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
+        updatedMethods = updatedMethods.map(item => ({
+          ...item,
+          isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB') ?
+            item.type === upperType : item.isActive
+        }));
+      }
+
+      // Add or update the current provider
+      const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
+      if (existingIndex === -1) {
+        updatedMethods.push({ type: upperType, isActive: true });
+      } else {
+        updatedMethods[existingIndex].isActive = true;
       }
 
       setFieldValue("paymentMethods", updatedMethods);
     } else {
-      // If turning off a provider, just update that one
-      const updatedMethods = values.paymentMethods.map((item) =>
-        item.type === type.toUpperCase()
-          ? { ...item, isActive: false }
-          : item
+      // Simply deactivate the current provider
+      const updatedMethods = values.paymentMethods.map(item =>
+        item.type === upperType ? { ...item, isActive: false } : item
       );
 
       setFieldValue("paymentMethods", updatedMethods);
     }
   };
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <Grid
@@ -85,18 +115,11 @@ const PaymentProviderList: React.FC = () => {
       gap={4}
       overflow="hidden"
     >
-      {providers.map(({ title, buttonText, link, type, tooltip, icon, isExternal, isDisabled }) => (
+      {providers.map((provider) => (
         <PaymentProviderCard
-          key={type}
-          isDisabled={isDisabled}
-          type={type}
-          title={title}
-          buttonText={buttonText}
-          onToggle={(e) => handleToggle(e, type)}
-          link={link}
-          tooltip={tooltip}
-          icon={icon}
-          isExternal={isExternal}
+          key={provider.type}
+          item={provider}
+          onToggle={(e) => handleToggle(e, provider.type)}
         />
       ))}
     </Grid>

@@ -1,14 +1,14 @@
 import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import BasicButton from "components/common/BasicButton/BasicButton"
 import AppModal from "components/common/modal/AppModal"
 import AppTypography from "components/common/typography/AppTypography"
-import useDebounce from "functions/hooks/debounce/useDebounce"
-import useAppToast from "functions/hooks/toast/useToast"
-import { useProfile } from "functions/hooks/useProfile/useProfile"
+import useDebounce from "hooks/debounce/useDebounce"
+import useAppToast from "hooks/toast/useToast"
+import { useProfile } from "hooks/useProfile/useProfile"
 import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from "lib/apis/shop/shopServices"
 import useAppStore from "lib/stores/app/appStore"
-import { appDevelopment } from "lib/utils/app/variable"
+import { appDevelopment } from "utils/app/variable"
 import useShopSwitcher from "pages/shop-management/hooks/useShopSwitch"
 import React, { useEffect, useState } from "react"
 import { useMutation } from "react-query"
@@ -97,7 +97,7 @@ function SimpleRegistrationModal(props: Props) {
         <AppModal open={isOpen} size="xl" close={() => isCreatingShop && props.close()}>
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
-                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#7B7B7B">
+                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="text.subtextPlaceholder.dark">
                         <Flex>
                             <Box as="span" fontWeight={500}>{`${appDevelopment ? "dev." : ""}droplinked.io/`}</Box>
                             &nbsp;

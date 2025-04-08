@@ -1,13 +1,13 @@
-import { mbToBytes } from "lib/utils/helpers/helpers";
-import AppErrors from "lib/utils/statics/errors/errors";
+import { convertMBtoBytes } from 'utils/helpers';
+import AppErrors from 'utils/constants/errors';
 
 const UploadImageModel = ({
     size: (file: any) => {
-        if (file.size > mbToBytes(5)) throw Error(AppErrors.store.size_limit({ fieldName: "Image", size: `5MB` }));
+        if (file.size > convertMBtoBytes(5)) throw Error(AppErrors.store.sizeLimit({ fieldName: "Image", size: `5MB` }));
     },
 
     type: (file: any) => {
-        if (!["image/jpeg", "image/png", "image/gif", "image/svg+xml", "image/jpg"].includes(file.type)) throw Error(AppErrors.product.product_image_type_not_supported)
+        if (!["image/jpeg", "image/png", "image/gif", "image/svg+xml", "image/jpg"].includes(file.type)) throw Error(AppErrors.product.imageTypeNotSupported)
     },
 
     validate: (file: any) => {

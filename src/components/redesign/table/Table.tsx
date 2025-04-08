@@ -1,6 +1,6 @@
 import { Table as ChakraTable, Flex, Skeleton, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react"
 import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import React, { ReactNode } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component"
 
@@ -55,8 +55,9 @@ function Table<T extends object>(props: Props<T>) {
         table.getRowModel().rows.map((row, rowIndex) => (
             <Tr
                 key={row.id}
-                borderTop="1px solid #262626"
-                borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid #262626"}
+                borderTop="1px solid"
+                borderColor="neutral.gray.850"
+                borderBottom={rowIndex === table.getRowModel().rows.length - 1 ? "none" : "1px solid neutral.gray.850"}
                 color="white"
             >
                 {row.getVisibleCells().map((cell, cellIndex) => (
@@ -108,12 +109,12 @@ function Table<T extends object>(props: Props<T>) {
         >
             <Thead>
                 {table.getHeaderGroups().map(headerGroup => (
-                    <Tr key={headerGroup.id} bgColor="#262626">
+                    <Tr key={headerGroup.id} bgColor="neutral.gray.850">
                         {headerGroup.headers.map(header => (
                             <Th
                                 key={header.id}
                                 textTransform="capitalize"
-                                color="#7B7B7B"
+                                color="text.subtextPlaceholder.dark"
                                 cursor={enableSorting ? "pointer" : "default"}
                                 sx={{ "svg": { display: "inline-block" } }}
                                 onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}
@@ -142,7 +143,7 @@ function Table<T extends object>(props: Props<T>) {
                     "tr": {
                         bgColor: "#1C1C1C",
                         transition: "background 0.2s",
-                        _hover: { bgColor: "#222222" }
+                        _hover: { bgColor: "neutral.gray.900" }
                     }
                 }}
             >
@@ -151,7 +152,7 @@ function Table<T extends object>(props: Props<T>) {
 
             {footerContent && (
                 <Tfoot>
-                    <Tr bgColor="#1C1C1C">
+                    <Tr bgColor="neutral.gray.1000">
                         <Td colSpan={columns.length + 1} sx={{ textAlign: "-webkit-center" }}>
                             {footerContent}
                         </Td>
@@ -163,7 +164,8 @@ function Table<T extends object>(props: Props<T>) {
 
     return (
         <TableContainer
-            border="1px solid #262626"
+            border="1px solid"
+            borderColor="neutral.gray.850"
             borderRadius={8}
             overflow="hidden"
             overflowX="auto"

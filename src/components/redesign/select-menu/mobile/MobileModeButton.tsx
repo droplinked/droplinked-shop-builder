@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import { styles } from '../styles'
 import AppTypography from 'components/common/typography/AppTypography'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 
 export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder }) {
     return (
@@ -18,7 +18,7 @@ export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder }
                 mobileModeIcon ?
                     mobileModeIcon
                     : <>
-                        <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
+                        <AppTypography color="text.subtextPlaceholder.dark" fontSize={14} fontWeight={400}>
                             {placeholder}
                         </AppTypography>
                         <AppIcons.SelectChevronDown />

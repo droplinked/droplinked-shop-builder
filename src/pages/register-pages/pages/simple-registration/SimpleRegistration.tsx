@@ -1,6 +1,6 @@
 import CreateWallet from "components/modals/create-wallet/CreateWallet";
 import SimpleRegistrationModal from "components/modals/simple-registration-modal/SimpleRegistrationModal";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

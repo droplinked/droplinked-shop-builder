@@ -1,5 +1,5 @@
-import { Box, Button, Flex, HStack, IconButton, useBreakpointValue } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import { Box, Button, Flex, HStack, IconButton, Slider, SliderFilledTrack, SliderThumb, SliderTrack, useBreakpointValue } from '@chakra-ui/react';
+import AppIcons from 'assets/icon/Appicons';
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion';
 import { IGetProductsCommunityService } from 'lib/apis/product/interfaces';
 import React from 'react';
@@ -8,9 +8,10 @@ import CheckboxList from './components/CheckboxList';
 import FilterInput from './components/FilterInput';
 import FilterSection from './components/FilterSection';
 import AppTypography from 'components/common/typography/AppTypography';
+import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon';
 
 interface FiltersPanelProps {
-  isPublic: Boolean
+  isPublic: Boolean;
   filters: IGetProductsCommunityService;
   handleFilterChange: (key: keyof IGetProductsCommunityService, value: any) => void;
   categories: IAffiliateProductsCategory[];
@@ -18,9 +19,10 @@ interface FiltersPanelProps {
   setShowFilters: (show: boolean) => void;
 }
 
-const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic,showFilters, setShowFilters, filters, handleFilterChange, categories }) => {
+const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setShowFilters, filters, handleFilterChange, categories }) => {
   const isSmallScreen = useBreakpointValue({ base: true, lg: false });
   const isMediumScreen = useBreakpointValue({ base: false, md: true, lg: false });
+  const priceIcon = isPublic ? <AppIcons.DollarSign /> : <CurrencyIcon />;
 
   const resetFilters = () => {
     const defaultFilters = {
@@ -44,18 +46,19 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic,showFilters, setSh
           position={isSmallScreen ? 'fixed' : isMediumScreen ? 'absolute' : 'sticky'}
           top={isMediumScreen ? '75px' : undefined} // Top positioning for absolute in md
           bottom={0}
-          left={isMediumScreen ? (isPublic ?  0 : '78px') : 0}
+          left={isMediumScreen ? (isPublic ? 0 : '78px') : 0}
           width={isMediumScreen ? '272px' : isSmallScreen ? '100%' : '380px'} // Adjust width for md and lg
           maxHeight={isSmallScreen ? 'calc(100% - 50px)' : 'auto'}
           bg="#141414"
           zIndex={20}
-          borderLeft={'1.5px solid #292929'}
-          borderRight={'1.5px solid #292929'}
-          borderTop={isMediumScreen ? 'none' : '1.5px solid #292929'} // No top border for md
-          borderBottom={isMediumScreen ? 'none' : '1.5px solid #292929'} // No bottom border for md
+          borderLeft={'1.5px solid'}
+          borderRight={'1.5px solid'}
+          borderTop={isMediumScreen ? 'none' : '1.5px solid'} // No top border for md
+          borderBottom={isMediumScreen ? 'none' : '1.5px solid'} // No bottom border for md
           borderRadius={isMediumScreen ? 0 : 8}
+          borderColor="neutral.gray.800"
         >
-          <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'#292929'}>
+          <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'neutral.gray.800'}>
             <AppTypography fontSize="base" fontWeight="bold" color={'white'}>
               Filters
             </AppTypography>
@@ -65,9 +68,9 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic,showFilters, setSh
                 icon={<AppIcons.Refresh2 width="16px" height="16px" />}
                 onClick={resetFilters}
                 _hover={{ backgroundColor: '#222' }}
-                backgroundColor="#1C1C1C"
+                backgroundColor="neutral.gray.1000"
                 color="white"
-                border="1px solid #3C3C3C"
+                border="1px solid neutral.gray.700"
               />
               {isMediumScreen && (
                 <Button
@@ -101,9 +104,9 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic,showFilters, setSh
               {/* Price Section */}
               <FilterSection title="Price" itemId="2">
                 <HStack width="full" spacing="8px">
-                  <FilterInput value={filters.lowestPrice} placeholder="0" onChange={(val) => handleFilterChange('lowestPrice', val)} icon={<AppIcons.AffiliateProductsDollar />} />
+                  <FilterInput value={filters.lowestPrice} placeholder="0" onChange={(val) => handleFilterChange('lowestPrice', val)} icon={priceIcon} />
                   <AppIcons.AffiliateProductsSeparator />
-                  <FilterInput value={filters.highestPrice} placeholder="1000" onChange={(val) => handleFilterChange('highestPrice', val)} icon={<AppIcons.AffiliateProductsDollar />} />
+                  <FilterInput value={filters.highestPrice} placeholder="1000" onChange={(val) => handleFilterChange('highestPrice', val)} icon={priceIcon} />
                 </HStack>
               </FilterSection>
 

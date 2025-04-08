@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { ShopDNSInformation } from 'lib/apis/shop/interfaces'
 import { getShopDNSStatusService } from 'lib/apis/shop/shopServices'
 import React, { useState } from 'react'
@@ -36,8 +36,12 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
     return (
         <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
             <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    px: { lg: "48px !important", md: "32px !important", base: "16px !important" },
+                    padding: "0px",
+                    paddingBlock: "0px",
+                    backgroundColor: '#141414',
+                }}
                 title='DNS Information'
                 description=''
             >

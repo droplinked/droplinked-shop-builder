@@ -37,7 +37,8 @@ function ShopList() {
                         display={"flex"}
                         flexDirection={"column"}
                         gap={3}
-                        border={"2px solid #3C3C3C"}
+                        border={"2px solid"}
+                        borderColor="neutral.gray.700"
                         borderRadius={"32px"}
                         padding={"36px 40px"}
                     >

@@ -1,5 +1,5 @@
 import { Center, Circle, Flex, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { trackFollowService } from 'lib/apis/quests/services';
 import useFollowStatus, { CARD_STATUSES } from 'pages/public-pages/rewards/hook/useFollowStatus';
 import React, { useState } from 'react';
@@ -57,7 +57,7 @@ const SocialMediaCard = ({ promotion }: { promotion: Promotion }) => {
       gap={4}
       border="1px solid"
       borderRadius="3xl"
-      borderColor={isFollowed ? '#2BCFA11A' : '#222222'}
+      borderColor={isFollowed ? '#2BCFA11A' : 'neutral.gray.900'}
       padding={4}
       bg={isFollowed ? '#2BCFA11A' : '#010101'}
       backdropFilter="blur(100px)"
@@ -66,17 +66,17 @@ const SocialMediaCard = ({ promotion }: { promotion: Promotion }) => {
     >
       {isSmallerThan1280 && (
         <Flex w="full" justifyContent="space-between" alignItems="center">
-          <Center flexShrink={0} w="56px" h="56px" border="1px solid" borderRadius="xl" borderColor={isFollowed ? '#2BCFA11A' : '#222222'}>
+          <Center flexShrink={0} w="56px" h="56px" border="1px solid" borderRadius="xl" borderColor={isFollowed ? '#2BCFA11A' : 'neutral.gray.900'}>
             {icon}
           </Center>
           <Center p={3} borderRadius="lg" display="flex">
-            <StatusIndicator status={status} loading={loading} platform={platform} />
+            <StatusIndicator status={status} loading={loading} />
           </Center>
         </Flex>
       )}
 
       {!isSmallerThan1280 && (
-        <Center flexShrink={0} w="56px" h="56px" border="1px solid" borderRadius="xl" borderColor={isFollowed ? '#2BCFA11A' : '#222222'}>
+        <Center flexShrink={0} w="56px" h="56px" border="1px solid" borderRadius="xl" borderColor={isFollowed ? '#2BCFA11A' : 'neutral.gray.900'}>
           {icon}
         </Center>
       )}
@@ -97,7 +97,7 @@ const SocialMediaCard = ({ promotion }: { promotion: Promotion }) => {
       </VStack>
 
       <Center p={3} borderRadius="lg" display={{ base: 'none', lg: 'block' }}>
-        <StatusIndicator status={status} loading={loading} platform={platform} />
+        <StatusIndicator status={status} loading={loading} />
       </Center>
     </Flex>
   );

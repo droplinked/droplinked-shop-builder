@@ -1,9 +1,9 @@
 import { useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { addressByIdService, createAddressService, updateAddressService } from "lib/apis/address/addressServices";
 import useAppStore from "lib/stores/app/appStore";
 import SectionContent from "pages/settings/components/common/SectionContent";
@@ -75,7 +75,8 @@ export default function Address() {
                                 width={"100%"}
                                 px={4}
                                 py={3}
-                                border={"1px solid #292929"}
+                                border={"1px solid"}
+                                borderColor="neutral.gray.800"
                                 fontSize={16}
                                 fontWeight={500}
                             >

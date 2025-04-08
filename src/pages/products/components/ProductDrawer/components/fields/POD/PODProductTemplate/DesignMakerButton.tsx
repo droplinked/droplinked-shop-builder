@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
@@ -14,7 +14,8 @@ function DesignMakerButton({ onClick }: Props) {
         <BlueButton
             w="full"
             gap={2}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding="12px 16px"
             fontSize={16}

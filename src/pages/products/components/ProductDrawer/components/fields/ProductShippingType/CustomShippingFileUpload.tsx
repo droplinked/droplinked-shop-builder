@@ -1,8 +1,8 @@
 import { Button, Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import MessageBox from 'components/redesign/message-box/MessageBox'
-import { fileSizeInMB } from 'lib/utils/helpers/helpers'
+import { getFileSizeInMB } from 'utils/helpers'
 import { parseShippingFileData } from 'pages/products/utils/shippingFileParser'
 import React, { useEffect, useState } from 'react'
 import FileUpload from '../../common/FileUpload'
@@ -49,7 +49,7 @@ function CustomShippingFileUpload({ onFileParsed }: Props) {
             {selectedFile && (
                 <SelectedFileCard
                     fileName={selectedFile.name}
-                    fileSize={fileSizeInMB(selectedFile)}
+                    fileSize={getFileSizeInMB(selectedFile)}
                 >
                     <Button onClick={handleFileRemove}>
                         <AppIcons.RedTrash width={20} height={20} />

@@ -10,9 +10,11 @@ function IconWrapper({ icon, ...rest }: Props) {
         <Center
             width={12}
             height={12}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
-            bg="#1C1C1C"
+            bg="neutral.gray.1000"
+            // TODO: Remove this line when all new icons are replaced and AppIcons object is complete
             sx={{ svg: { width: 6, height: 6 } }}
             {...rest}
         >

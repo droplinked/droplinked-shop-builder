@@ -7,7 +7,7 @@ import AppEmptyPage from "components/common/empty/AppEmptyPage";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { IordersServices } from "lib/apis/orders/interfaces";
 import { exportOrdersReportService } from "lib/apis/order/services";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { AxiosError } from "axios";
 import useGrowthHackStore from "lib/stores/growth-hack/useGrowthHackStore";
 
@@ -27,10 +27,10 @@ function Orders() {
     const [searchParams] = useSearchParams();
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1;
 
-    const fetch = useCallback(async() => {
+    const fetch = useCallback(async () => {
         const status = searchParams.get("status");
         mutate({ page, status });
-        if(orders?.data?.length && !growthHackData?.list?.sellFirstProduct) await fetchGrowthHackData()
+        if (orders?.data?.length && !growthHackData?.list?.sellFirstProduct) await fetchGrowthHackData()
     }, [page, searchParams]);
 
     useEffect(() => {
@@ -59,9 +59,9 @@ function Orders() {
     const rows = useMemo(() => {
         return data
             ? OrdersModel.refactorData({
-                  data: data.data.data?.data,
-                  search: States.search,
-              })
+                data: data.data.data?.data,
+                search: States.search,
+            })
             : [];
     }, [States.search, data]);
 
@@ -114,10 +114,10 @@ function Orders() {
                         title: "Status",
                         list: statues?.data?.data?.data
                             ? statues?.data?.data?.data.map((el) => ({
-                                  title: el.caption,
-                                  onClick: () => updateFilters("status", el.value),
-                                  isActive: searchParams.get("status") === el.value,
-                              }))
+                                title: el.caption,
+                                onClick: () => updateFilters("status", el.value),
+                                isActive: searchParams.get("status") === el.value,
+                            }))
                             : [],
                     },
                 ]}

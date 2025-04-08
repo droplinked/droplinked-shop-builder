@@ -2,7 +2,7 @@ import React from 'react'
 import { Wallet } from './ManualTransfer';
 import { Flex } from '@chakra-ui/react';
 import Input from 'components/redesign/input/Input';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import BlueButton from 'components/redesign/button/BlueButton';
 import AppTypography from 'components/common/typography/AppTypography';
 
@@ -37,7 +37,8 @@ export default function MobileManualTransfer({ data, setData }: Props) {
                 <Flex
                     key={index}
                     flexDirection={"column"}
-                    border={"1px solid #292929"}
+                    border={"1px solid"}
+                    borderColor="neutral.gray.800"
                     borderRadius={8}
                 >
                     <Flex gap={3} flexDirection={"column"} p={3}>
@@ -59,7 +60,8 @@ export default function MobileManualTransfer({ data, setData }: Props) {
                     </Flex>
                     <Flex
                         py={"10px"}
-                        borderTop={"1px solid #292929"}
+                        borderTop={"1px solid"}
+                        borderColor="neutral.gray.800"
                         justifyContent={"center"}
                         alignItems={"center"}
                         gap={1.5}
@@ -76,7 +78,8 @@ export default function MobileManualTransfer({ data, setData }: Props) {
             <BlueButton
                 fontSize={14}
                 iconSpacing={"6px"}
-                border={"1px solid #292929"}
+                border={"1px solid"}
+                borderColor="neutral.gray.800"
                 borderRadius={8}
                 leftIcon={<AppIcons.BluePlus />}
                 onClick={handleAddWallet}

@@ -1,5 +1,5 @@
 import { Box, BoxProps, Flex, FlexProps } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import { AnimatePresence, motion } from "framer-motion"
 import React, { createContext, useContext, useEffect, useState } from "react"
 

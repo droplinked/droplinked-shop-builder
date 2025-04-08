@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
 import { Box, Flex, HStack, Select, Stack, useDisclosure, VStack } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import { motion } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import BasicButton from "components/common/BasicButton/BasicButton";
-import { TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
-import { TileDesignContext } from "./context/tile.design.context";
-import { percent_to_hex } from "lib/utils/helpers/helpers";
 import AppModal from "components/common/modal/AppModal";
+import AppTypography from "components/common/typography/AppTypography";
+import { motion } from "framer-motion";
+import React, { useContext, useState } from "react";
+import { percentageToHex } from "utils/constants";
+import { TileDesignContext } from "./context/tile.design.context";
+import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 const imagesToShow = [
     {
@@ -91,7 +91,7 @@ const TileDesignPageProduct = () => {
                 zIndex={9}
                 border={"3px solid transparent"}
                 cursor={"pointer"}
-                backgroundColor={`${CONTAINER?.backgroundColor}${percent_to_hex?.[Number((CONTAINER?.opacity * 100).toFixed())]}`}
+                backgroundColor={`${CONTAINER?.backgroundColor}${percentageToHex?.[Number((CONTAINER?.opacity * 100).toFixed())]}`}
                 _hover={{ border: "3px solid #2BCFA1", boxShadow: "0px 0px 4px 2px rgba(255, 255, 255, 0.62), 0px 0px 0px 4px rgba(43, 207, 161, 0.30)" }}
                 onClick={() => {
                     updateState("current", { page: TILE_DESIGN_PAGES_ENUM.PRODUCT, section: PRODUCT_SECTIONS_ENUM.CONTAINER });
@@ -229,7 +229,7 @@ const TileDesignPageProduct = () => {
                                 >
                                     View Description
                                 </BasicButton>
-                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{ backgroundColor: CONTAINER.darkMode ? "#1c1c1c" : "white" }}>
+                                <AppModal open={isOpen} close={onClose} size="3xl" contentProps={{ backgroundColor: CONTAINER.darkMode ? "neutral.gray.1000" : "white" }}>
                                     <Flex direction={"column"} justifyContent={"space-between"} gap={16}>
                                         <AppTypography color={white_if_dark_mode} fontSize="14px" fontWeight={"500"}>
                                             This tank top has everything you could possibly need – vibrant colors, soft material, and a relaxed fit that will make you look fabulous! • Fabric
@@ -291,7 +291,8 @@ const TileDesignPageProduct = () => {
                                             alignItems="center"
                                             gap="10px"
                                             borderRadius="4px"
-                                            border={key === 0 ? `1px solid ${white_if_dark_mode}` : `1px solid ${black_if_dark_mode}`}
+                                            border={key === 0 ? "1px solid" : "1px solid"}
+                                            borderColor={key === 0 ? "neutral.white" : "neutral.black"}
                                         >
                                             <Box height="24px" width="24px" borderRadius="2px" backgroundColor={el.value}></Box>
                                         </Box>
@@ -324,7 +325,8 @@ const TileDesignPageProduct = () => {
                                             justifyContent="center"
                                             alignItems="center"
                                             gap="8px"
-                                            border={"1px solid #DEDEDE"}
+                                            border={"1px solid"}
+                                            borderColor="neutral.gray.200"
                                             rounded={"4px"}
                                             backgroundColor={key === 2 && white_if_dark_mode}
                                             color={key === 2 ? black_if_dark_mode : white_if_dark_mode}

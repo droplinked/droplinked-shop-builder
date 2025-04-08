@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import React from "react"
 
 interface Props {
@@ -16,7 +16,7 @@ function InfinityToggleButton({ isActive, onToggle }: Props) {
             h={7}
             borderRadius={4}
             padding="6px"
-            bgColor="#292929"
+            bgColor="neutral.gray.800"
             onClick={onToggle}
         >
             {isActive ? <AppIcons.GreenInfinity /> : <AppIcons.GrayInfinity />}

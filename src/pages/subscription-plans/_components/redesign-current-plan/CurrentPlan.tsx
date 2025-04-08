@@ -1,8 +1,8 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import Button from 'components/redesign/button/Button';
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData';
-import { getSubscriptionIcon } from 'lib/utils/helpers/helpers';
+import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
+import { getSubscriptionPlanIcon } from 'utils/helpers';
 import * as React from 'react';
 import PlanBadge from './_components/PlanBadge';
 import PlanDescription from './_components/PlanDescription';
@@ -17,9 +17,9 @@ function NewCurrentPlan() {
         return <AppSkeleton borderRadius={"8px"} isLoaded={!isFetching} width={"100%"} height={"6rem"} />
     }
     const { type } = data.data.subscriptionId;
-    const currentSubData: ICurrentSubData = getSubscriptionIcon(type);
+    const currentSubData: ICurrentSubData = getSubscriptionPlanIcon(type);
     return (
-        <VStack backgroundColor={"#1C1C1C"} borderRadius={"8px"} padding={"36px"} justifyItems={"start"} alignItems={"start"}>
+        <VStack backgroundColor={"neutral.gray.1000"} borderRadius={"8px"} padding={"36px"} justifyItems={"start"} alignItems={"start"}>
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentSubData} data={data} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>

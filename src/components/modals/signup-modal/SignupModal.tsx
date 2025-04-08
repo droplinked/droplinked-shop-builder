@@ -1,22 +1,22 @@
 import { Box, Divider, HStack, Stack, VStack } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from 'components/common/modal/AppModal';
 import AppTypography from "components/common/typography/AppTypography";
 import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import useAppToast from "hooks/toast/useToast";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { signupService } from "lib/apis/auth/services";
 import useAppStore from "lib/stores/app/appStore";
-import { BASE_URL } from "lib/utils/app/variable";
-import { navigating_user_based_on_status } from "lib/utils/helpers/helpers";
-import { passwordRegex } from "lib/utils/helpers/regex";
-import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { BASE_URL } from "utils/app/variable";
+import AppErrors from "utils/constants/errors";
+import { navigateUserBasedOnStatus, passwordRegex } from "utils/helpers";
 import * as Yup from "yup";
 import ShowPassword from "./ShowPassword";
+import Button from "components/redesign/button/Button";
 
 const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPlan, openPlanPurchaseModal }) => {
   const [searchParams] = useSearchParams();
@@ -53,7 +53,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
         return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
       if (!isFromPlansPage) {
-        const { href, dashboard } = navigating_user_based_on_status(status, data)
+        const { href, dashboard } = navigateUserBasedOnStatus(status, data)
         dashboard ? shopNavigate(href) : navigate(href)
       }
       close()
@@ -66,7 +66,7 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
     try {
       setLoading(true)
       const { email, password, referral } = data;
-      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined , udUserId: ud_id_from_params || undefined});
+      await signupService({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, d3UserId: d3_id_from_params || undefined, udUserId: ud_id_from_params || undefined });
       isFromPlansPage && await handleLogin({ email, password })
       localStorage.setItem("registerEmail", JSON.stringify(email));
       showToast({ message: "Account successfully created", type: "success" });
@@ -81,14 +81,13 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
   };
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
-    password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required("Required"),
+    email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Required"),
+    password: Yup.string().matches(passwordRegex, AppErrors.signup.passwordRequirementsNotMet).required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], AppErrors.signup.when_the_password_and_confirmed)
+      .oneOf([Yup.ref("password"), null], AppErrors.signup.passwordsDoNotMatch)
       .required("Required"),
     referral: Yup.string(),
   });
-
   return (
     <AppModal open={show} close={close} title="Sign Up">
       <Formik
@@ -138,15 +137,14 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
               </Stack>
               <VStack align={"stretch"} spacing={"8px"}>
                 <BasicButton type="submit" isLoading={isLoading}>Sign up</BasicButton>
-                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>Already have an account?{" "}<Box as="span" color="#2EC99E !important">Sign in</Box>{" "}now</AppTypography>
+                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"neutral.white"} cursor={"pointer"} _hover={{ color: "neutral.gray.450" }} onClick={switchModal}>Already have an account?{" "}<Box as="span" color="text.primary">Sign in</Box>{" "}now</AppTypography>
               </VStack>
               <HStack align={"stretch"} alignItems={"center"}>
-                <Divider color={"line"} />
-                <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
-                <Divider color={"line"} />
+                <Divider color={"neutral.gray.850"} />
+                <AppTypography color={"neutral.gray.300"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
+                <Divider color={"neutral.gray.850"} />
               </HStack>
-              {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
-              <BasicButton
+              <Button
                 onClick={() => {
                   const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`);
 
@@ -167,17 +165,16 @@ const SignupModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPl
 
                   window.location.href = googleAuthUrl.toString();
                 }}
-                backgroundColor={"mainGray.500"}
+                backgroundColor={"neutral.gray.900"}
                 borderRadius={"8px"}
                 border={"none"}
-                _hover={{ backgroundColor: "mainGray.500" }}
-                color={"lightgray"}
+                color={"neutral.gray.300"}
                 iconSpacing={"12px"}
                 leftIcon={<AppIcons.Google />}
                 isDisabled={isLoading}
               >
                 Sign up with Google
-              </BasicButton>
+              </Button>
             </VStack>
           </Form>
         )}

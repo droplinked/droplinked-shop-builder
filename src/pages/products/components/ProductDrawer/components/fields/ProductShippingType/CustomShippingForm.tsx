@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react"
 import Button from "components/redesign/button/Button"
 import Input from "components/redesign/input/Input"
-import useAppToast from "functions/hooks/toast/useToast"
+import useAppToast from "hooks/toast/useToast"
 import { useCreateCustomShipping } from "pages/products/hooks/useShippingTypes"
 import React, { useState } from "react"
 import CustomShippingFileUpload from "./CustomShippingFileUpload"
@@ -30,7 +30,8 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
             flexDirection="column"
             gap={6}
             mt={4}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={4}
         >

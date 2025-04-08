@@ -10,14 +10,14 @@ interface Props extends PropsWithChildren {
 
 function DataPointCard({ icon, title, isLoading, children }: Props) {
     return (
-        <Box padding={{ base: 4, lg: 6 }}>
+        <Box padding={{ base: 4, xl: 6 }}>
             <IconWrapper icon={icon} />
 
-            <Text marginTop={{ base: 4, md: 6 }} fontSize={14} color="#FFF">{title}</Text>
+            <Text marginTop={{ base: 4, md: 6 }} fontSize={14} color="text.white">{title}</Text>
 
             {/* Content */}
-            <Skeleton isLoaded={!isLoading}>
-                <Box marginTop={{ base: 1, md: 2 }}>{children}</Box>
+            <Skeleton marginTop={{ base: 1, md: 2 }} isLoaded={!isLoading}>
+                {children}
             </Skeleton>
         </Box>
     )

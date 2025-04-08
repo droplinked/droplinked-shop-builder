@@ -1,5 +1,5 @@
 import { Box, HStack, VStack } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
@@ -22,8 +22,8 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
     };
 
     return (
-        <VStack backgroundColor={"#1C1C1C"} gap={"4rem"} width={"196px"} justifyContent={"center"} border={"1px solid #292929"} borderRadius={"8px"} padding={"16px"} alignItems={"center"}>
-            <AppTypography color={"#fff"} fontWeight={500} fontSize={"16px"} width={"148px"}>{title}</AppTypography>
+        <VStack backgroundColor={"neutral.gray.1000"} gap={"4rem"} width={"196px"} justifyContent={"center"} border={"1px solid "}  borderColor="neutral.gray.800" borderRadius={"8px"} padding={"16px"} alignItems={"center"}>
+            <AppTypography color={"neutral.white"} fontWeight={500} fontSize={"16px"} width={"148px"}>{title}</AppTypography>
             <Box width={"148px"} borderRadius="8px" height={"70px"} overflow="hidden">
                 <svg style={{ height: 0 }}>
                     <defs>
@@ -48,12 +48,12 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
                 <VStack position={"relative"} gap={"-0.5rem"} bottom={maxValue === "Unlimited" ? "7.5rem" : "8rem"}>
                     {maxValue !== "Unlimited" &&
                         <HStack>
-                            <AppTypography color={"#fff"} fontWeight={"700"} fontSize={"20px"}>{value}</AppTypography>
-                            <AppTypography color={"#7B7B7B"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
+                            <AppTypography color={"neutral.white"} fontWeight={"700"} fontSize={"20px"}>{value}</AppTypography>
+                            <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
                         </HStack>
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
-                    <AppTypography color={"#7B7B7B"} fontWeight={"400"} fontSize={"14px"}>{maxValue === "Unlimited" ? "Unlimited" : "Used"}</AppTypography>
+                    <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}>{maxValue === "Unlimited" ? "Unlimited" : "Used"}</AppTypography>
                 </VStack>
             </Box>
         </VStack>

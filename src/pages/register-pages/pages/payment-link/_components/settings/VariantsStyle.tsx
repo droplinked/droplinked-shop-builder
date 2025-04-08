@@ -44,14 +44,15 @@ function VariantStyleRadio({ ...props }) {
             height={"100%"}
             margin={0}
             padding={4}
-            border={`1.5px solid ${isChecked ? "#2BCFA1" : "#3C3C3C"}`}
+            border="1.5px solid"
+            borderColor={`${isChecked ? "#2BCFA1" : "neutral.gray.700"}`}
             borderRadius={8}
             cursor='pointer'
             {...htmlProps}
             {...getLabelProps()}
         >
             <input {...getInputProps()} hidden />
-            <Box borderRadius={4} padding={6} bgColor={"#3C3C3C"}>
+            <Box borderRadius={4} padding={6} bgColor={"neutral.gray.700"}>
                 <AppImage height={"64px"} src={variant.image} objectFit={"contain"} />
             </Box>
             <AppTypography mt={4} fontSize={16} fontWeight={600} color={"#fff"}>{variant.title}</AppTypography>

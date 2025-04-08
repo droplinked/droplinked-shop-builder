@@ -1,6 +1,6 @@
 import React from "react";
 import ContainerCard from "../../ContainerCard";
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
 import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import ExternalLink from "components/redesign/external-link/ExternalLink";

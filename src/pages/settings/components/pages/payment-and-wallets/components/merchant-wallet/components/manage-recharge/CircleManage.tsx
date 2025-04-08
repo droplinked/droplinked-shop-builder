@@ -1,26 +1,46 @@
 import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import Button from "components/redesign/button/Button";
 import AppModal from "components/redesign/modal/AppModal";
+import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
-import { capitalizeFirstLetter } from "lib/utils/helpers/helpers";
+import { capitalizeFirst } from "utils/helpers";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
-import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 
-const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
-    const { data, isLoading, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
-    const { shop, user } = useAppStore(),
+const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
+    const { data, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
+    const { user } = useAppStore(),
         connectWalletModal = useDisclosure();
     const [Error, setError] = useState<string | null>(null);
     const [withdrawingChain, setWithdrawingChain] = useState<string | null>(null);
-    const { data: withdrawData, mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
+    const { mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
+
+    const handleWithdraw = async (chain: any) => {
+        if (chain?.tokenSymbol === "USDC") {
+            setError("USDC");
+            return;
+        }
+        if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
+            if (chain?.tokenId && chain?.amount && chain?.amount !== "0") {
+                setWithdrawingChain(chain?.chain);
+                await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
+                    .then(async (res) => {
+                        if (res?.data?.data === true) await refetch();
+                    })
+                    .catch((e) => { })
+                    .finally(() => {
+                        setWithdrawingChain(null);
+                    });
+            }
+        } else setError(chain?.chain);
+    };
 
     const WalletListSkeleton = () => (
         <>
@@ -68,14 +88,14 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                 modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}
             >
                 <ModalHeaderData
-                    icon={
-                        <AppIcons.CircleModal />
-                    }
+                    icon={<AppIcons.CircleModal />}
                     modalHeaderProps={{
                         bgColor: "#141414",
                         paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                     }}
-                    descriptionColor="#B1B1B1 !important"
+                    descriptionProps={{
+                        color: "#B1B1B1 !important"
+                    }}
                     title={"Manage Wallet"}
                     description="Manage USDC powered wallet by Circle"
                 />
@@ -85,14 +105,14 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                             Manage Circle Wallet
                         </AppTypography>
                     </Box>
-                    <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid #292929">
+                    <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
                         {data?.data?.data === undefined ? (
                             <WalletListSkeleton />
                         ) : data?.data?.data.length === 0 ? (
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = AppIcons?.[`Circle${capitalizeFirstLetter(chain?.chain?.toLowerCase() || "")}`];
+                                const Icon = AppIcons?.[`Circle${capitalizeFirst(chain?.chain?.toLowerCase() || "")}`];
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
@@ -108,7 +128,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                                 gap="8px"
                                                 flexShrink="0"
                                                 rounded="36px"
-                                                bgColor="#262626"
+                                                bgColor="neutral.gray.850"
                                             >
                                                 {Icon && <Icon />}
                                             </Box>
@@ -196,21 +216,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                             whileHover={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                                             whileFocus={{ backgroundColor: "rgba(43, 207, 161, 0.10)" }}
                                             disabled={isWithdrawing || !chain?.tokenId || !chain?.amount || chain?.amount === "0"}
-                                            onClick={async () => {
-                                                if (user?.wallets?.find((wallet) => wallet?.type === chain?.chain)?.address) {
-                                                    if (chain?.tokenId && chain?.amount && chain?.amount !== "0") {
-                                                        setWithdrawingChain(chain?.chain);
-                                                        await withdraw({ tokenId: chain?.tokenId, amount: chain?.amount })
-                                                            .then(async (res) => {
-                                                                if (res?.data?.data === true) await refetch();
-                                                            })
-                                                            .catch((e) => { })
-                                                            .finally(() => {
-                                                                setWithdrawingChain(null);
-                                                            });
-                                                    }
-                                                } else setError(chain?.chain);
-                                            }}
+                                            onClick={() => handleWithdraw(chain)}
                                             variants={buttonVariants}
                                             animate={isWithdrawingThisChain ? "withdrawing" : "idle"}
                                         >
@@ -247,14 +253,18 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                 </svg>
                                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" flex="1 0 0">
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="700" lineHeight="20px">
-                                        Wallet not connected
+                                    {Error === "USDC"? 'For USDC withdrawals, your account needs to be verified.' : 'Wallet not connected' }
+                                        
                                     </AppTypography>
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">
-                                        Please connect a {Error} supported wallet first, then proceed with the withdrawal.
+                                        {Error === "USDC" 
+                                            ? "Please contact Droplinked support at support@droplinked.com for verification."
+                                            : `Please connect a ${Error} supported wallet first, then proceed with the withdrawal.`}
                                     </AppTypography>
                                 </Box>
                             </Box>
-                            <Button
+                            {Error === "USDC" ? null : 
+                             <Button
                                 display="flex"
                                 border="none"
                                 color="#FFF"
@@ -269,11 +279,12 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                 alignItems="center"
                                 gap="6px"
                                 borderRadius="8px"
-                                background="#262626"
+                                background="neutral.gray.850"
                                 onClick={connectWalletModal.onOpen}
                             >
                                 Connect Wallet
-                            </Button>
+                            </Button> }
+                           
                         </Box>
                     )}
                 </ModalBody>

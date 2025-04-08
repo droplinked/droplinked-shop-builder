@@ -1,4 +1,4 @@
-import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { PriceConversionParams } from "hooks/useCurrencyConverter/useCurrencyConverter";
 import { Coupon } from "../../interface";
 import * as Yup from "yup";
 

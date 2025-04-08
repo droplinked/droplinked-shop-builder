@@ -1,4 +1,4 @@
-import { PriceConversionParams } from "functions/hooks/useCurrencyConverter/useCurrencyConverter";
+import { PriceConversionParams } from "hooks/useCurrencyConverter/useCurrencyConverter";
 import { nanoid } from "nanoid";
 import { initialValues } from "./formSchema";
 import { convertSKUsToProperties } from "./skuUtils";

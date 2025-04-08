@@ -1,7 +1,7 @@
 import { ModalBody, ModalFooter } from '@chakra-ui/react'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore'
+import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import React, { useState } from 'react'
 import { ModalStep } from '../../types/interfaces'
 

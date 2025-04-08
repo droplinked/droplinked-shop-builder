@@ -1,9 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react'
+import PricingPlanBg from "assets/image/pricingPlans/background.png"
 import React from 'react'
-import NewCurrentPlan from './_components/redesign-current-plan/CurrentPlan'
-import Plans from './_components/plans/Plans'
-import PricingPlanBg from "assest/image/pricingPlans/background.png"
 import PlansTable from './_components/plans-table/PlansTable'
+import Plans from './_components/plans/Plans'
+import NewCurrentPlan from './_components/redesign-current-plan/CurrentPlan'
+
 function SubscriptionPlans() {
     return (
         <Box position="relative" width="100%">

@@ -1,9 +1,10 @@
 import { ModalBody, ModalFooter, useRadioGroup } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTypography from 'components/common/typography/AppTypography';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import useAppToast from 'functions/hooks/toast/useToast';
+import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
+import useAppToast from 'hooks/toast/useToast';
 import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
 import {
 	getSubscriptionPaymentMethodsService,
@@ -11,14 +12,13 @@ import {
 	subscriptionPlanCryptoPaymentService,
 	subscriptionPlanStripePaymentService,
 } from 'lib/apis/subscription/subscriptionServices';
-import { appDevelopment } from 'lib/utils/app/variable';
-import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore';
+import { appDevelopment } from 'utils/app/variable';
+import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
-import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
 
 interface Props {
 	setModalData: React.Dispatch<React.SetStateAction<ModalState>>;
@@ -154,7 +154,11 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 
 	return (
 		<>
-			<ModalHeaderData icon={<AppIcons.PaymentMethodSelection />} title="Payment methods" description={'How would you like to pay for your subscription?'} />
+			<ModalHeaderData
+				icon={<AppIcons.PaymentMethodSelection />}
+				title="Payment methods"
+				description={'How would you like to pay for your subscription?'}
+			/>
 			<ModalBody display={'flex'} flexDirection={'column'} gap={4} {...getRootProps()}>
 				{renderContent()}
 			</ModalBody>

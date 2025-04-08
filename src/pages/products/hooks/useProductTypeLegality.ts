@@ -1,10 +1,10 @@
 import { useLegalUsage } from "lib/stores/app/appStore"
-import productTypeLegalUsageMap from "lib/utils/helpers/productTypeLegalUsageMap"
+import { productTypeUsageLimits } from "utils/constants"
 import { ProductType } from "../utils/types"
 
 const useProductTypeLegality = (productType: ProductType | "drop") => {
     const shopLegalUsage = useLegalUsage()
-    const { errorMessage, key } = productTypeLegalUsageMap[productType]
+    const { errorMessage, key } = productTypeUsageLimits[productType]
     const currentLegalUsage = shopLegalUsage.find((obj: any) => obj.key === key)
 
     if (

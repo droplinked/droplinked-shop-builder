@@ -1,5 +1,5 @@
 import { Box, Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
@@ -22,7 +22,8 @@ export default function PaymentMethodRadio({ ...props }) {
 			display={'flex'}
 			justifyContent={'space-between'}
 			alignItems={'center'}
-			border={`1.5px solid ${isChecked ? '#2BCFA1' : '#3C3C3C'}`}
+			border={"1.5px solid"}
+			borderColor={`${isChecked ? '#2BCFA1' : 'neutral.gray.700'}`}
 			borderRadius={8}
 			padding={4}
 			bg={isChecked ? '#2BCFA11A' : 'transparent'}
@@ -45,9 +46,8 @@ export default function PaymentMethodRadio({ ...props }) {
 			>
 				<Circle
 					size={5}
-					border={`1.5px solid ${
-						isChecked ? '#2BCFA1' : '#fff'
-					}`}
+					border={`1.5px solid ${isChecked ? '#2BCFA1' : '#fff'
+						}`}
 				>
 					<Circle
 						size={2.5}
@@ -68,10 +68,10 @@ export default function PaymentMethodRadio({ ...props }) {
 						sx={
 							isChecked
 								? {
-										'svg path': {
-											stroke: '#2BCFA1',
-										},
-								  }
+									'svg path': {
+										stroke: '#2BCFA1',
+									},
+								}
 								: {}
 						}
 					>
@@ -90,7 +90,7 @@ export default function PaymentMethodRadio({ ...props }) {
 	);
 }
 
-const ChainIconMap: Record<string, JSX.Element> = {
+const ChainIconMap: Record<string, React.JSX.Element> = {
 	STRIPE: <AppIcons.NewStripe />,
 	LINEA: <AppIcons.BlueLinea />,
 	BINANCE: (

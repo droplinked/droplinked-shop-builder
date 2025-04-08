@@ -1,5 +1,5 @@
 import { Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { ScreenSize } from './PreviewModal'
@@ -17,7 +17,7 @@ export default function PreviewModalScreenSize({ currentScreenSize, onScreenSize
     })
 
     return (
-        <Flex height={12} alignItems={"center"} gap={1} bg={"#F2F2F2"} p={1} borderRadius={8} {...getRootProps()}>
+        <Flex height={12} alignItems={"center"} gap={1} bg={"neutral.gray.100"} p={1} borderRadius={8} {...getRootProps()}>
             <ScreenSizeRadio icon={<AppIcons.Desktop />} text={"Desktop"} {...getRadioProps({ value: "desktop" })} />
             <ScreenSizeRadio icon={<AppIcons.Mobile />} text={"Mobile"} {...getRadioProps({ value: "mobile" })} />
         </Flex>

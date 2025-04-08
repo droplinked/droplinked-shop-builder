@@ -1,5 +1,5 @@
 import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
 
@@ -57,12 +57,13 @@ function Select(props: Props) {
         <ChakraSelect
             value={typeof value === "string" ? value : valueAccessor ? value?.[valueAccessor] : JSON.stringify(value)}
             height={12}
-            border={`1px solid ${error ? "#F24" : "#292929"}`}
+            border="1px solid "
+            borderColor={`${error ? "text.error" : "neutral.gray.800"}`}
             borderWidth="1.5px"
             borderRadius={8}
             color="#FFF"
-            icon={isLoading ? <Spinner size="sm" color='#7B7B7B' /> : <AppIcons.SelectChevronDown />}
-            _placeholder={{ color: "#7B7B7B" }}
+            icon={isLoading ? <Spinner size="sm" color='text.subtextPlaceholder.dark' /> : <AppIcons.SelectChevronDown />}
+            _placeholder={{ color: "text.subtextPlaceholder.dark" }}
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}

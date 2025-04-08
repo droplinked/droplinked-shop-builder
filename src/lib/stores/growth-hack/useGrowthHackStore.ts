@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getShopGrowthHack } from "lib/apis/shop/shopServices";
 import { devtools, persist } from "zustand/middleware";
-import { appDevelopment } from "lib/utils/app/variable";
+import { appDevelopment } from "utils/app/variable";
 
 export interface IGrowthHack {
     growthHackData: {

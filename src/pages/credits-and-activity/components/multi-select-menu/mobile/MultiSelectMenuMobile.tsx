@@ -1,5 +1,5 @@
 import { Box, Flex, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import Drawer from 'components/common/Drawer/Drawer'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
@@ -19,7 +19,7 @@ export default function MultiSelectMenuMobile({ items }: Props) {
     return (
         <Box width="100%">
             <Flex {...styles.menuButton} onClick={onOpen} justifyContent="space-between" alignItems="center" cursor="pointer">
-                <AppTypography color="#7b7b7b" fontSize={14} fontWeight={400}>
+                <AppTypography color="text.subtextPlaceholder.dark" fontSize={14} fontWeight={400}>
                     Type
                 </AppTypography>
                 <AppIcons.SelectChevronDown />

@@ -8,11 +8,11 @@ import { useMutation } from 'react-query'
 import { IgiftcardCreateService, IGiftCardExpiryDate } from 'lib/apis/coupons/interfaces'
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
 import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore'
-import useAppToast from 'functions/hooks/toast/useToast'
-import { capitalizeFirstLetter } from 'lib/utils/helpers/helpers'
+import useAppToast from 'hooks/toast/useToast'
+import { capitalizeFirst } from 'utils/helpers'
 import moment from 'moment/moment'
 import Drawer from 'components/common/Drawer/Drawer'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 interface Props {
     isEdit?: boolean
@@ -52,7 +52,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             }
 
             showToast({
-                message: `${capitalizeFirstLetter(isEdit ? coupon.type : params.type)} has been ${isEdit ? "updated" : "created"}.`,
+                message: `${capitalizeFirst(isEdit ? coupon.type : params.type)} has been ${isEdit ? "updated" : "created"}.`,
                 type: 'success'
             })
             refetch()

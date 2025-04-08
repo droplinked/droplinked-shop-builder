@@ -1,7 +1,7 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import Button from 'components/redesign/button/Button'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import React, { useState } from 'react'
 
 export interface IFormStripe {

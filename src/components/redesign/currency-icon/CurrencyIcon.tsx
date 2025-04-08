@@ -1,7 +1,7 @@
 import { Box, BoxProps } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 import React from 'react';
 
 export default function CurrencyIcon({ ...boxProps }: BoxProps) {
@@ -18,7 +18,7 @@ export default function CurrencyIcon({ ...boxProps }: BoxProps) {
             case "GBP":
                 return <AppIcons.Pound />
             case "AUD":
-                return <AppTypography userSelect={"none"} fontSize={16} color={"#7b7b7b"}>{symbol}</AppTypography>
+                return <AppTypography userSelect={"none"} fontSize={16} color={"text.subtextPlaceholder.dark"}>{symbol}</AppTypography>
             case "CAD":
                 return <AppIcons.CanadianDollar />
             case "AED":

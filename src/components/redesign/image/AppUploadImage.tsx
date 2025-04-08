@@ -1,6 +1,6 @@
 import axios from 'axios';
 import AppScrollBar from 'components/common/scrollbar';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
 import appUploadImageContext, { IUploadImageDefault, ImodeUploadImage } from './context';

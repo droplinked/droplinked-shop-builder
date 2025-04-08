@@ -1,37 +1,36 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import { ChevronleftSm } from 'assets/icons/Navigation/ChevronLeft/ChevronleftSm'
+import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
+import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
-import StylizedTitle from '../../StylizedTitle'
 import DateRangeNavButton from './DateRangeNavButton'
 
 export default function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
 
-    // Normalize the union type into a tuple.
-    // If selectedDateRange is not an array, assume it's a single date.
+    // Normalize the union type into a tuple
     const [start, end] = Array.isArray(selectedDateRange)
         ? selectedDateRange
         : [selectedDateRange, selectedDateRange]
 
-    // Verify that both dates are valid (non-null and instances of Date).
+    // Check if range is valid
     const isValidRange = start instanceof Date && end instanceof Date
 
-    // Only compute duration and nextEnd if both dates are valid.
+    // Compute navigation states
     let duration = 0
     let nextEnd: Date | null = null
-    let isNextDisabled = false
+    const isPrevDisabled = !isValidRange
+    let isNextDisabled = !isValidRange
 
     if (isValidRange) {
         duration = end.getTime() - start.getTime()
         nextEnd = new Date(end.getTime() + duration)
-
-        // Disable the Next button if the new end date is in the future.
         const today = new Date()
         isNextDisabled = nextEnd.getTime() > today.getTime()
     }
 
-    const handlePrevClick = () => {
+    function handlePrevClick() {
         if (!isValidRange) return
 
         const newStart = new Date(start.getTime() - duration)
@@ -39,7 +38,7 @@ export default function ChartToolbar() {
         updateAnalyticsPageState('selectedDateRange', [newStart, newEnd])
     }
 
-    const handleNextClick = () => {
+    function handleNextClick() {
         if (!isValidRange || isNextDisabled) return
 
         const newStart = new Date(start.getTime() + duration)
@@ -55,14 +54,14 @@ export default function ChartToolbar() {
             </Flex>
 
             <Flex gap={4}>
-                <DateRangeNavButton onClick={handlePrevClick} isDisabled={!isValidRange}>
-                    <AppIcons.ChevronLeft color='white' />
+                <DateRangeNavButton onClick={handlePrevClick} isDisabled={isPrevDisabled}>
+                    <ChevronleftSm color={isPrevDisabled ? '#4F4F4F' : 'white'} />
                     Prev
                 </DateRangeNavButton>
 
-                <DateRangeNavButton onClick={handleNextClick} isDisabled={!isValidRange || isNextDisabled}>
+                <DateRangeNavButton onClick={handleNextClick} isDisabled={isNextDisabled}>
                     Next
-                    <AppIcons.ChevronRight color='white' />
+                    <ChevronrightSm color={isNextDisabled ? '#4F4F4F' : 'white'} />
                 </DateRangeNavButton>
             </Flex>
         </Flex>

@@ -26,7 +26,7 @@ function ColorPicker({ color, onColorChange, containerProps }: ColorPickerProps)
                     cursor="pointer"
                     userSelect="none"
                     transition="border-color 0.1s ease-out"
-                    _hover={{ borderColor: "#3C3C3C" }}
+                    _hover={{ borderColor: "neutral.gray.700" }}
                     {...containerProps}
                 >
                     <Box

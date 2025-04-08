@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 
 const SidebarLogo = () => {

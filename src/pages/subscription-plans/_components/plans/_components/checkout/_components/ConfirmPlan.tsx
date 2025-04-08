@@ -1,37 +1,28 @@
-import { Center, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import { Box, Center, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { subscriptionPlanMap } from 'lib/utils/helpers/helpers'
 import React from 'react'
-import useSubscriptionPlanPurchaseStore from '../../../store/planPurchaseStore'
-import PlanPrice from '../../plan-price/PlanPrice'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import useSubscriptionPlanPurchaseStore from '../../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import { ModalStep } from '../types/interfaces'
 
 interface Props {
-    setplanPurchaseModalStep: (step: ModalStep) => void;
+    setPlanPurchaseModalStep: (step: ModalStep) => void;
     close: () => void;
-    hasProfile?: any;
-    isFromPlansPage?: boolean;
 }
 
-function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansPage }: Props) {
+function ConfirmPlan({ setPlanPurchaseModalStep, close }: Props) {
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
     const selectedPlanPrice = useSubscriptionPlanPurchaseStore((state) => state.selectedPlanPrice)
-    const { logoutUser } = useProfile()
-    const { title, icon: SubscriptionIcon, description } = subscriptionPlanMap[selectedPlan.type]
-
-    const handleCloseModal = () => {
-        isFromPlansPage && logoutUser()
-        close()
-    }
+    const { title, icon: SubscriptionIcon, description } = subscriptionPlans[selectedPlan.type]
 
     return (
         <>
             <ModalHeaderData
-                icon={<AppIcons.ConfirmPlan />}
+                icon={<Box sx={{ "path": { stroke: "#FFFFFF" } }}><AppIcons.Like /></Box>}
                 title='Confirm subscription'
                 description={`Upgrade to the ${title} Plan for $${selectedPlanPrice} per year to access advanced features.`}
             />
@@ -47,16 +38,16 @@ function ConfirmPlan({ setplanPurchaseModalStep, close, hasProfile, isFromPlansP
                     backgroundSize={"auto 150%"}
                 >
                     <Center width="52px" height="52px" p={2} borderRadius="full" bg="linear-gradient(135deg, #383838 0%, #525252 100%)">
-                        <SubscriptionIcon stroke='#fff' />
+                        <SubscriptionIcon color="#fff" />
                     </Center>
                     <AppTypography mt={4} fontSize={20} fontWeight={500} color="white">{title}</AppTypography>
                     <AppTypography fontSize={16} color="#B1B1B1">{description}</AppTypography>
                     <PlanPrice plan={selectedPlan} marginTop={9} height={"fit-content"} />
                 </Flex>
             </ModalBody>
-            <ModalFooter display={"flex"} alignItems={"center"} gap={{ xl: 6, base: 3 }}>
-                <BasicButton minWidth={"unset"} width={"50%"} variant='outline' onClick={handleCloseModal}>Discard</BasicButton>
-                <BasicButton minWidth={"unset"} width={"50%"} isDisabled={!hasProfile} onClick={() => setplanPurchaseModalStep("PaymentMethodSelection")}>Next</BasicButton>
+            <ModalFooter display="flex" alignItems="center" gap={{ xl: 6, base: 3 }}>
+                <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>Discard</BasicButton>
+                <BasicButton minWidth="unset" width="50%" onClick={() => setPlanPurchaseModalStep("PaymentMethodSelection")}>Next</BasicButton>
             </ModalFooter>
         </>
     )

@@ -1,5 +1,5 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -27,7 +27,7 @@ function IconsSection() {
             <Flex gap={"16px"}>
                 {links.map(({ href, icon }, index) => (
                     <Link key={index} to={href} target='_blank'>
-                        <Box background={"#292929"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"}>
+                        <Box background={"neutral.gray.800"} display={"flex"} alignItems={"center"} justifyContent={"center"} width={"40px"} borderRadius={"8px"} height={"40px"} p={'10px'}>
                             {icon}
                         </Box>
                     </Link>

@@ -1,13 +1,14 @@
 import { ModalBody } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import AppShareableLink from 'components/redesign/shareable-link/AppShareableLink'
-import { SHOP_URL } from 'lib/utils/app/variable'
+import { SHOP_URL } from 'utils/app/variable'
 import InvoiceProductTable from 'pages/invoice-management/create-invoice/components/form/product-table/InvoiceProductTable'
 import useInvoiceInformation from 'pages/invoice-management/hooks/useInvoiceInformation'
 import React from 'react'
 import SummaryBox from './SummaryBox'
+import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 
 interface Props {
     isOpen: boolean
@@ -31,7 +32,11 @@ function InvoiceDetailsModal({ isOpen, onClose, invoiceId }: Props) {
             modalContentProps={{ width: '936px' }}
         >
             <ModalHeaderData
-                icon={<AppIcons.InvoiceCreated />}
+                icon={
+                    <ModalHeaderIconWrapper>
+                        <AppIcons.InvoiceCreated />
+                    </ModalHeaderIconWrapper>
+                }
                 title="Invoice Details"
                 description="A link of your invoice is sent to the customer. You can also use the following link to view the invoice."
             />

@@ -1,18 +1,18 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
-import { cart_item_options_to_array_of_variants } from 'lib/utils/helpers/helpers'
+import { convertCartOptionsToVariantsArray } from 'utils/helpers'
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
-import useAppStore from 'lib/stores/app/appStore'
-import { currencyConvertion } from 'lib/utils/helpers/currencyConvertion'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-    const { shop: { currency } } = useAppStore();
+    const { getFormattedPrice } = useCurrencyConverter();
+
     return (
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
@@ -35,7 +35,7 @@ function OrderItems() {
                                 {item?.shipping || item?.options && (
                                     <Flex alignItems={"center"} gap={"5px"}>
                                         {item?.shipping && <CartItemBadge text={item.shipping} />}
-                                        {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
+                                        {convertCartOptionsToVariantsArray(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
                                     </Flex>
                                 )}
                             </Flex>
@@ -48,7 +48,7 @@ function OrderItems() {
                         <Flex direction={"column"} alignItems={"end"} gap={"5px"} width={"140px"}>
                             <Flex alignItems={"center"} gap={"8px"}>
                                 {item?.isAffiliate && <CartItemBadge text={`${item?.percent}%`} colorScheme='green' />}
-                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{currency?.symbol}{currencyConvertion(item?.price, currency?.conversionRateToUSD, false)} {currency?.abbreviation}</AppTypography>
+                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{getFormattedPrice({ amount: item?.price, toFixed: true })}</AppTypography>
                             </Flex>
                             {item?.isGated &&
                                 <Flex alignItems={"center"} gap={"4px"}>
@@ -59,7 +59,7 @@ function OrderItems() {
                             {item?.isDiscounted &&
                                 <Flex alignItems={"center"} gap={"4px"}>
                                     <AppIcons.GrayDiscountIcon />
-                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>{currency?.symbol}{currencyConvertion(item?.discountAmount, currency?.conversionRateToUSD, false)} {currency?.abbreviation} Discount</AppTypography>
+                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>{getFormattedPrice({ amount: item?.discountAmount, toFixed: true })} Discount</AppTypography>
                                 </Flex>
                             }
                         </Flex>

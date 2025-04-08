@@ -4,13 +4,13 @@ import {
     IGetUserService,
     IInvitation,
     ISubscribeFeature,
-    IRetrieveNFTs,
     IchangePasswordService,
     IemailVerifyService,
     IforgetPasswordService,
     IresendEmailService,
     IuserUpdateService,
     IPostUserVerifyPartner,
+    VerifyEmailPayload,
 } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
@@ -29,24 +29,16 @@ export const emailVerifyService = (props: IemailVerifyService) => {
     return axiosInstance.post(`user/email-verification`, props);
 };
 
+export const verifyEmailCode = (payload: VerifyEmailPayload) => {
+    return axiosInstance.post(`user/verify-email-code`, payload);
+};
+
 export const userUpdateService = (props: IuserUpdateService) => {
     return axiosInstance.put(`user`, props);
 };
 
 export const getUserService = ({ access_token }: IGetUserService) => {
     return axiosInstance.get(`user`, { headers: { authorization: `Bearer ${access_token}` } });
-};
-
-export const retrieveNFTs = (props: IRetrieveNFTs) => {
-    const { myProducts, search, body } = props;
-    const params = new URLSearchParams();
-    if (myProducts) {
-        params.append("myProducts", myProducts.toString());
-    }
-    if (props.search) {
-        params.append("search", search);
-    }
-    return axiosInstance.post(`user/retrieve/nfts${params.toString() ? "?" + params.toString() : ""}`, body);
 };
 
 export const sendInvitaionEmailService = (email: string) => {

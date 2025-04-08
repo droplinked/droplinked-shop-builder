@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -24,7 +24,7 @@ export default function ClientIdDisplay({ clientId }: Props) {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <AppTypography minWidth={"200px"} fontSize={"13px"} fontWeight={"500"} color={"#fff"}>
+                            <AppTypography minWidth={"200px"} fontSize={"13px"} fontWeight={"500"} color={"neutral.white"}>
                                 {clientId}
                             </AppTypography>
                         </motion.div>

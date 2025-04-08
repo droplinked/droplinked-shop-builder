@@ -1,10 +1,10 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import TableMenu from 'components/redesign/table-menu/TableMenu';
 import React from 'react';
 import { useMutation } from 'react-query';
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices';
 import { AxiosError } from 'axios';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { Coupon } from '../interface';
 import { useDisclosure } from '@chakra-ui/react';
 import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer';

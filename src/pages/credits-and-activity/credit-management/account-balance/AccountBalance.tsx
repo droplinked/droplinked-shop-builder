@@ -1,6 +1,6 @@
 import { Divider, Flex } from "@chakra-ui/react";
 import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker";
-import useCreditsData from "functions/hooks/credits-and-activity/useCreditsData";
+import useCreditsData from "hooks/credits-and-activity/useCreditsData";
 import { getShopCredit } from "lib/apis/shop/shopServices";
 import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay";
 import useCreditStore from "pages/credits-and-activity/stores/CreditStore";
@@ -46,9 +46,9 @@ export default function AccountBalance() {
                     display={{ base: "none", md: "block" }}
                     height={6}
                     orientation="vertical"
-                    borderColor="#292929"
+                    borderColor="neutral.gray.800"
                 />
-                <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} />
+                <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} width={{ base: "100%", md: "auto" }} />
             </Flex>
         </Flex>
     );

@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 
 interface Props {
@@ -17,7 +17,7 @@ const iconMap: Record<string, JSX.Element> = {
 
 function CategoryIcon({ category }: Props) {
     return (
-        <Center w={12} h={12} borderRadius={4} bgColor="#1C1C1C">
+        <Center w={12} h={12} borderRadius={4} bgColor="neutral.gray.1000">
             {iconMap[category] || null}
         </Center>
     )

@@ -1,5 +1,5 @@
 import { Box, Circle, Flex, PopoverBody } from '@chakra-ui/react'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getPODShippingAvailability } from 'lib/apis/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
@@ -17,7 +17,7 @@ export default function ShippingAvailabilityContent() {
 
     return (
         <PopoverBody padding={6}>
-            <Box border="1px solid #292929" borderRadius={8}>
+            <Box border="1px solid" borderColor="neutral.gray.800" borderRadius={8}>
                 <AppTypography
                     fontSize={16}
                     fontWeight={700}
@@ -35,9 +35,9 @@ export default function ShippingAvailabilityContent() {
                     padding="32px 24px"
                 >
                     {isLoading ?
-                        <LoadingComponent /> :
+                        <LoadingSpinner /> :
                         regions.map((region, index) =>
-                            <Region key={index} region={region} isLastOne={index === regions.length - 1} />
+                            <Region key={index} region={region} isLastItem={index === regions.length - 1} />
                         )
                     }
                 </Flex>
@@ -46,11 +46,11 @@ export default function ShippingAvailabilityContent() {
     )
 }
 
-function Region({ region, isLastOne }) {
+function Region({ region, isLastItem }) {
     return (
         <Flex alignItems="center" gap={3}>
             <AppTypography fontSize={16} color="#B1B1B1">{region}</AppTypography>
-            {!isLastOne && <Circle size={1} bgColor="#3C3C3C" />}
+            {!isLastItem && <Circle size={1} bgColor="neutral.gray.700" />}
         </Flex>
     )
 }

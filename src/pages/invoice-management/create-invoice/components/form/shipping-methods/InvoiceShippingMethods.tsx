@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { addAddressToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
-import { deepEqual } from 'lib/utils/helpers/helpers'
+import { areObjectsEqual } from 'utils/helpers'
 import { InvoiceFormSchema } from 'pages/invoice-management/create-invoice/helpers/helpers'
 import useCreateInvoice from 'pages/invoice-management/create-invoice/hooks/useCreateInvoice'
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
@@ -28,7 +28,7 @@ export default function InvoiceShippingMethods() {
     const updateInvoice = useCallback(async () => {
         const { _id, easyPostAddressID, ...addressDetails } = cart.address ?? {}
 
-        if ((isEditMode && !deepEqual(addressDetails, values.address)) || (isExpanded && !cart.address)) {
+        if ((isEditMode && !areObjectsEqual(addressDetails, values.address)) || (isExpanded && !cart.address)) {
             setLoading(true)
             try {
                 const { data: createdAddress } = await createAddressService(values.address)
@@ -47,7 +47,7 @@ export default function InvoiceShippingMethods() {
 
     useEffect(() => {
         const { _id, easyPostAddressID, ...addressDetails } = cart.address ?? {}
-        setExpanded(deepEqual(addressDetails, values.address))
+        setExpanded(areObjectsEqual(addressDetails, values.address))
     }, [cart.address, values.address])
 
     const renderContent = () => {

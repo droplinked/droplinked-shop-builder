@@ -1,9 +1,9 @@
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
-import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import AppIcons from 'assets/icon/Appicons'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileNameFromUrl, getImageFileSize } from 'lib/utils/helpers/image'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { getFileNameFromUrl, getFileSizeInKB } from 'utils/helpers'
 import appUploadImageContext from '../../context'
 import UploadImagesList from './parts/list/UploadImagesList'
 import classes from './style.module.scss'
@@ -16,7 +16,7 @@ function DefaultHoverBox() {
     const isHorizontal = mode === "horizontal"
 
     useEffect(() => {
-        if (checkSingleImage && isHorizontal && typeof values === "string") getImageFileSize(values).then((sizeKB) => setSize(sizeKB));
+        if (checkSingleImage && isHorizontal && typeof values === "string") getFileSizeInKB(values).then((sizeKB) => setSize(sizeKB));
     }, [values, isHorizontal, checkSingleImage])
 
 
@@ -35,12 +35,12 @@ function DefaultHoverBox() {
                     overflow={isHorizontal ? "hidden" : "unset"}
                     height={isHorizontal ? checkSingleImage ? "80px" : "auto" : "200px"}
                 >
-                    {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingComponent /></Box>}
+                    {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingSpinner /></Box>}
                     {!isLoading && checkSingleImage && typeof values === "string" ? (
                         <>
                             {isHorizontal ?
                                 <Flex gap="18px" alignItems="center" className={classes.iconUpload}>
-                                    <Box position="relative" border="2px solid #262626" backgroundColor="#000" borderRadius="4px" overflow="hidden">
+                                    <Box position="relative" border="2px solid" borderColor="neutral.gray.850" backgroundColor="#000" borderRadius="4px" overflow="hidden">
                                         <Flex position="absolute" className={classes.icon} display="none" top="0" left="0" bottom="0" right="0" justifyContent="center" alignItems="center"><AppIcons.Upload width="18px" /></Flex>
                                         <Image src={values} width="48px" height="48px" className={classes.image} />
                                     </Box>

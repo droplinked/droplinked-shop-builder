@@ -1,7 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import Input from 'components/redesign/input/Input'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
 import useAppStore from 'lib/stores/app/appStore'
 import SectionContent from 'pages/settings/components/common/SectionContent'

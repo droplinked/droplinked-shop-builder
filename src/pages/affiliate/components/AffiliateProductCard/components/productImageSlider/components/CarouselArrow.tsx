@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 
 /**
@@ -17,7 +17,8 @@ export const CarouselArrow = ({ direction, onClick, isHovered }) => {
       position="absolute"
       top="50%"
       transform="translateY(-50%)"
-      border="1px solid #DEDEDE"
+      border="1px solid"
+      borderColor="neutral.gray.200"
       zIndex={2}
       onClick={(event) => {
         event.stopPropagation();

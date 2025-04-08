@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import DefaultBadge from "pages/settings/components/common/DefaultBadge";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
@@ -8,7 +8,7 @@ import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
 import useAppStore from "lib/stores/app/appStore";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { getDescription, getWalletsData } from "./helpers";
 import { WalletData } from "./types";
 import ExternalLink from "components/redesign/external-link/ExternalLink";

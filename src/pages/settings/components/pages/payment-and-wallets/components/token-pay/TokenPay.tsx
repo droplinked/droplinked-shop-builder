@@ -1,5 +1,5 @@
 import { Grid, Image, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
@@ -60,7 +60,7 @@ const TokenPay: React.FC = () => {
               gap={4}
             >
               {values.paymentMethods.map(
-                (item) => (item.type !== "STRIPE" && item.type !== "COINBASE") &&
+                (item) => (!paymentProviders.includes(item.type)) &&
                   <PaymentToken
                     key={item.type}
                     title={item.type}

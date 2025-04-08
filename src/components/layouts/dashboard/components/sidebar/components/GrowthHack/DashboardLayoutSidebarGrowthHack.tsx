@@ -1,5 +1,5 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore';
 import React, { useEffect, useState } from 'react';
@@ -29,7 +29,8 @@ const DashboardLayoutSidebarGrowthHack = () => {
       alignItems="flex-start"
       gap="16px"
       borderRadius="12px"
-      border="1px solid #292929"
+      border="1px solid"
+      borderColor={"neutral.gray.800"}
       display={{ base: 'none', lg: 'flex' }}
       mt={8}
     >
@@ -49,7 +50,7 @@ const DashboardLayoutSidebarGrowthHack = () => {
       </Box>
 
       {/* Growth Hack Sections */}
-      <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid #3C3C3C">
+      <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid" borderColor={"neutral.gray.700"}>
         {!isLoading &&
           GROWTH_HACK_CONSTANTS.map((section, index) => (
             <GrowthHackSection

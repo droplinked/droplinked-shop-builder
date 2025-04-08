@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { contactUsService } from 'lib/apis/constact-us/services';
 
 // Components
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import AppTypography from "components/common/typography/AppTypography";
 import BasicButton from "components/common/BasicButton/BasicButton";
 

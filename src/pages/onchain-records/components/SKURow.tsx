@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import { IDroplinkedNftsSkus } from 'lib/apis/onchain-inventory/interface'
@@ -11,7 +11,7 @@ export default function SKURow({ item }: { item: IDroplinkedNftsSkus }) {
     const { price, quantity, options } = item;
 
     return (
-        <Flex flexDirection={"column"} border={"1px solid #292929"} borderRadius={8}>
+        <Flex flexDirection={"column"} border={"1px solid"} borderColor="neutral.gray.800" borderRadius={8}>
             <Flex p={4} justifyContent={"space-between"} alignItems={"center"}>
                 <SkuVariants options={options} />
                 {

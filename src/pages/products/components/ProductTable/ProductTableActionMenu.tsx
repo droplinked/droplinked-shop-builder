@@ -1,5 +1,5 @@
 import { useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'

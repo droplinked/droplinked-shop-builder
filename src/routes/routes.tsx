@@ -2,6 +2,8 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import Dashboard from "pages/dashboard/Dashboard";
+import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
@@ -18,7 +20,7 @@ import ProductTilePage from "pages/public-pages/landings/product-tile-page/Produ
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
-import Rewards from "pages/public-pages/rewards/rewards";
+import Rewards from "pages/public-pages/rewards/Rewards";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -31,14 +33,12 @@ const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
 const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
 const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
-const NewDashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
-const NFTs = lazy(() => import("pages/nfts/NFTs"));
 const Orders = lazy(() => import("pages/orders/Orders"));
-const ProductOrder = lazy(() => import("pages/product/order/ProductOrder"));
+const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"));
 const ProductsV2 = lazy(() => import("pages/products/ProductsV2"));
 const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"));
 const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"));
@@ -47,7 +47,6 @@ const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage")
 const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"));
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"));
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"));
-const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
 const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
 const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
@@ -66,7 +65,6 @@ const SubscriptionPlans = lazy(() => import("pages/subscription-plans/Subscripti
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
 const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
-const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
@@ -83,7 +81,6 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <HomePage /> },
-            { path: "signup", element: <HomePage showAuthModal={true} /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },
@@ -118,6 +115,7 @@ const router = createBrowserRouter([
             { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            { path: "onboarding", element: <Onboarding /> },
             {
                 path: "affiliate/products",
                 children: [
@@ -138,7 +136,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <NewAnalytics /> },
-            { path: "dashboard", element: <NewDashboard /> },
+            { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
                 path: "settings",
@@ -147,7 +145,6 @@ const router = createBrowserRouter([
                     { path: "shop-info", element: <RegisterShopInfo /> },
                     { path: "design", element: <DesignPage /> },
                     { path: "tile", element: <TileDesign /> },
-                    { path: "technical", element: <TechnicalPage /> },
                     { path: "coupons", element: <CouponsSetting /> },
                     { path: "admins", element: <Admins /> },
                     { path: "payment-link-design", element: <PaymentLink /> },
@@ -191,7 +188,6 @@ const router = createBrowserRouter([
                     },
                 ],
             },
-            { path: "nfts", element: <NFTs /> },
             {
                 path: "blogs",
                 children: [
@@ -215,7 +211,6 @@ const router = createBrowserRouter([
             { index: true, element: <ShopManagement /> },
         ],
     },
-    { path: ":shopname", element: <ShopPage /> },
     { path: "*", element: <NotFoundPage /> },
 ]);
 

@@ -1,5 +1,5 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import Input from 'components/redesign/input/Input';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'lib/stores/app/appStore';

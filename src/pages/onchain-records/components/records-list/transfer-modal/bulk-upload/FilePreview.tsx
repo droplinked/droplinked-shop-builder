@@ -1,7 +1,7 @@
 import { Box, Center, Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import { fileSizeInMB } from "lib/utils/helpers/helpers";
+import { getFileSizeInMB } from "utils/helpers";
 import React from 'react';
 
 interface Props {
@@ -22,21 +22,22 @@ export function FilePreview({ file, onFileChange }: Props) {
             justifyContent="space-between"
             alignItems="center"
             gap={2}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={3}
             paddingRight={5}
         >
             <Flex alignItems="center" gap={4}>
-                <Center width={14} height={14} borderRadius={4} bgColor="#292929">
+                <Center width={14} height={14} borderRadius={4} bgColor="neutral.gray.800">
                     <AppIcons.Document />
                 </Center>
                 <Box>
                     <AppTypography fontWeight={500} color="#fff">
                         {tranucatedName}
                     </AppTypography>
-                    <AppTypography mt={2} fontSize={12} color="#7B7B7B">
-                        {fileSizeInMB(file)} MB
+                    <AppTypography mt={2} fontSize={12} color="text.subtextPlaceholder.dark">
+                        {getFileSizeInMB(file)} MB
                     </AppTypography>
                 </Box>
             </Flex>

@@ -29,7 +29,7 @@ function SectionContainer({ title, badge, rightContent, description, children, .
             {description &&
                 <Flex width={"100%"} gap={4} justifyContent={"space-between"} alignItems={"center"}>
                     <Box flex={1} marginTop={"6px"}>
-                        <AppTypography color={"#7B7B7B"} fontSize={{ base: "14px", md: "16px" }}>
+                        <AppTypography color={"text.subtextPlaceholder.dark"} fontSize={{ base: "14px", md: "16px" }}>
                             {description && description}
                         </AppTypography>
                     </Box>

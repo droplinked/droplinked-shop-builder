@@ -1,6 +1,6 @@
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'lib/apis/invoice/invoiceServices'
-import { deepEqual } from 'lib/utils/helpers/helpers'
+import { areObjectsEqual } from 'utils/helpers'
 import { phone } from "phone"
 import { useState } from 'react'
 import { findSelectedShippingMethod } from '../helpers/helpers'
@@ -82,10 +82,10 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
             await addAdditionalDetailsToCart(formData)
 
             const { _id, easyPostAddressID, ...rest } = cart.address ?? {}
-            if (!deepEqual(rest, formData.address)) await createAddressAndAddToCart(formData)
+            if (!areObjectsEqual(rest, formData.address)) await createAddressAndAddToCart(formData)
 
             const prevSelectedMethod = findSelectedShippingMethod(cart.shippings)
-            if (!deepEqual(prevSelectedMethod, selectedShippingMethod)) await addShippingMethodToCart()
+            if (!areObjectsEqual(prevSelectedMethod, selectedShippingMethod)) await addShippingMethodToCart()
 
             onSuccess?.()
         }

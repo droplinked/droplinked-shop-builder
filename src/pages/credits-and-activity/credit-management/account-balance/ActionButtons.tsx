@@ -1,5 +1,5 @@
 import { Flex, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
 import Button from "components/redesign/button/Button";
 import React from "react";

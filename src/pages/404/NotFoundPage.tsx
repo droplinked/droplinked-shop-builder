@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Image, Text } from '@chakra-ui/react'
-import astronautLookingLeft from 'assest/image/astronaut-looking-left.png'
-import astronautLookingRight from 'assest/image/astronaut-looking-right.png'
+import astronautLookingLeft from 'assets/image/astronaut-looking-left.png'
+import astronautLookingRight from 'assets/image/astronaut-looking-right.png'
 import useAstronautImageSwitcher from './useAstronautImageSwitcher'
 import { Link } from 'react-router-dom'
 

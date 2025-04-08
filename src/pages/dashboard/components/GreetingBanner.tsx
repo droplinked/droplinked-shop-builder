@@ -1,5 +1,4 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 
@@ -19,19 +18,17 @@ function GreetingBanner() {
             <Heading
                 as="h3"
                 display="flex"
-                flexWrap="wrap"
                 alignItems="center"
                 gap={2}
-                fontSize={{ base: 24, lg: 28 }}
+                fontSize={{ base: 24, xl: 28 }}
                 fontWeight={400}
-                color="#fff"
-                whiteSpace="nowrap"
+                color="text.white"
             >
                 {getGreeting()},
                 <Box as="span" fontWeight={700}>{shop.name}</Box>
-                <AppIcons.Hand />
+                👋
             </Heading>
-            <Text fontSize={{ base: 14, lg: 16 }} color="#B1B1B1">
+            <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.light">
                 Whether launching a first product or creating a storefront experience for customers, we've got all the tools you need.
             </Text>
         </Flex>

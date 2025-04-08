@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 import LandingPageTemplate from '../_components/landing-page-template/LandingPageTemplate'
 import { ILandingPageTemplate } from '../types/interfaces'

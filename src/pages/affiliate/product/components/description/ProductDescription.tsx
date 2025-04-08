@@ -39,14 +39,15 @@ const ProductDescription: React.FC<any> = ({ product }) => {
         as="nav"
         w="100%"
         position="relative"
-        borderBottom="1px solid #292929"
-        borderTop="1px solid #292929"
+        borderBottom="1px solid"
+        borderTop="1px solid"
+        borderColor="neutral.gray.800"
         bg="#171923"
         display="flex"
         alignItems="center"
         justifyContent="start"
         overflow="hidden"
-        bgColor={'#1C1C1C'}
+        bgColor={'neutral.gray.1000'}
       >
         <Text
           cursor="pointer"

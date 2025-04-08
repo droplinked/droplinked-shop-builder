@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 
@@ -18,14 +18,14 @@ export default function DateRangeFooter({ value }: { value: Value }) {
   };
 
   return (
-    <Flex p={4} justify="start" align="center" gap={2} borderTop="1px solid #292929">
-      <Box width={{ base: "100%", md: "max-content" }} px={3} py={2} border="1px solid #292929" borderRadius={4}>
+    <Flex p={4} justify="start" align="center" gap={2} borderTop="1px solid" borderColor="neutral.gray.800">
+      <Box width={{ base: "100%", md: "max-content" }} px={3} py={2} border="1px solid" borderColor="neutral.gray.800" borderRadius={4}>
         <AppTypography fontSize="14px" color="#fff">
           {formatDate(value[0])}
         </AppTypography>
       </Box>
       <AppIcons.BackArrow style={{ rotate: "180deg", opacity: "0.3" }} />
-      <Box width={{ base: "100%", md: "max-content" }} px={3} py={2} border="1px solid #292929" borderRadius={4}>
+      <Box width={{ base: "100%", md: "max-content" }} px={3} py={2} border="1px solid" borderColor="neutral.gray.800" borderRadius={4}>
         <AppTypography fontSize="14px" color="#fff">
           {formatDate(value[1])}
         </AppTypography>

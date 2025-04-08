@@ -1,5 +1,5 @@
 import { Flex, useDisclosure, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTable from 'components/common/table/AppTable'

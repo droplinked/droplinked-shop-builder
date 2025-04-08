@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import AppImage from "components/common/image/AppImage"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import { TopSeller } from "lib/apis/dashboard/interfaces"
@@ -8,22 +8,16 @@ import { useNavigate } from "react-router-dom"
 
 interface Props {
     product: TopSeller
-    isLastOne: boolean
 }
 
-function ProductItem({ product, isLastOne }: Props) {
+function ProductItem({ product }: Props) {
     const { productMedia, productName, totalAmountCombined } = product
     const navigate = useNavigate()
 
     const imageURL = (productMedia.find(m => m.isMain) ?? productMedia[0])?.thumbnail
 
     return (
-        <Flex
-            align="center"
-            gap={4}
-            borderBottom={isLastOne ? "none" : "1px solid #292929"}
-            padding={4}
-        >
+        <Flex align="center" gap={4} padding={{ base: 4, xl: "16px 24px" }}>
             <AppImage
                 width={12}
                 height={12}
@@ -35,21 +29,28 @@ function ProductItem({ product, isLastOne }: Props) {
 
             <Flex
                 flex={1}
-                flexDirection={{ base: "column", md: "row" }}
                 flexWrap="wrap"
+                flexDirection={{ base: "column", md: "row" }}
                 justifyContent="space-between"
-                gap={1}
+                gap={6}
             >
-                <Text fontSize={14} color="#FFF">{productName}</Text>
-                {totalAmountCombined && <FormattedPrice price={totalAmountCombined} fontSize={14} abbreviationProps={{ color: "#7B7B7B" }} />}
+                <Text fontSize={14} color="text.white">{productName}</Text>
+                {totalAmountCombined &&
+                    <FormattedPrice
+                        price={totalAmountCombined}
+                        abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                        fontSize={14}
+                    />
+                }
             </Flex>
 
             <Box
                 as="button"
                 flexShrink={0}
+                padding="10px"
                 onClick={() => navigate("/analytics/products")}
             >
-                <AppIcons.ChevronRight color="white" />
+                <ChevronrightMd color='white' />
             </Box>
         </Flex>
     )

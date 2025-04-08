@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from "react";
 import { Box } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import { IWalletStatusProps, renderIcon, renderSVGContent, renderSVGDefs, spinAnimation } from "./_components/WalletStatusComponents";
 import PartnerContext from "pages/public-pages/landings/partners-pages/context/partner.context";
 

@@ -1,7 +1,7 @@
 import { Flex, VStack } from "@chakra-ui/react";
-import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import LoadingSpinner from "components/common/loading-spinner/LoadingSpinner";
 import AppTypography from "components/common/typography/AppTypography";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IemailVerifyService } from "lib/apis/user/interfaces";
 import { emailVerifyService } from "lib/apis/user/services";
 import React, { useEffect } from "react";
@@ -31,7 +31,7 @@ export default function VerifyEmailPage() {
   return (
     <Flex justifyContent="center" padding="150px 0">
       <VStack align="stretch" width="95%" backgroundColor="#090909" padding="100px 0" borderRadius="10px" maxWidth="400px" textAlign="center" spacing={5}>
-        <LoadingComponent />
+        <LoadingSpinner />
         <AppTypography fontSize="16px" color="#FFF">Please Wait...</AppTypography>
       </VStack>
     </Flex>

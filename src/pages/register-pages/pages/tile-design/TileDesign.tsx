@@ -14,12 +14,12 @@ import { shopUpdateService } from "lib/apis/shop/shopServices";
 import { useMutation } from "react-query";
 import { IshopUpdateService } from "lib/apis/shop/interfaces";
 import useAppStore from "lib/stores/app/appStore";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 
 const TileDesign = () => {
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
-    const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: { ...initialTileDesignState.design, ...shop?.productTileStyle,}, current: initialTileDesignState?.current } : initialTileDesignState);
+    const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: { ...initialTileDesignState.design, ...shop?.productTileStyle, }, current: initialTileDesignState?.current } : initialTileDesignState);
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params));
 
     const updateFormFields = useCallback(({ page, section, key, value }: { page: TILE_DESIGN_PAGES_ENUM; section: PRODUCT_SECTIONS_ENUM | "none"; key: string; value: any }) => {
@@ -42,7 +42,7 @@ const TileDesign = () => {
         if (isLoading) return null;
         await mutateAsync({ productTileStyle: States?.design })
             .then(async (res) => await updateShopData())
-            .catch((e) => {});
+            .catch((e) => { });
     };
 
     const component_to_show = () => {

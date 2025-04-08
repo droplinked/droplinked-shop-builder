@@ -8,6 +8,11 @@ export interface IresendEmailService {
     email: string;
 }
 
+export interface VerifyEmailPayload {
+    email: string
+    code: string
+}
+
 export interface IchangePasswordService {
     newPassword: string;
     accountRecoveryToken: string;
@@ -38,16 +43,6 @@ export interface IuserUpdateService {
     polygonAddress?: string;
     binanceAddress?: string;
     wallets?: Array<IUserWalletsProps>;
-}
-
-export interface IRetrieveNFTs {
-    myProducts: boolean;
-    search: string;
-    body: {
-        address: string;
-        chain: string;
-        network: string;
-    };
 }
 
 export interface IInvitation {

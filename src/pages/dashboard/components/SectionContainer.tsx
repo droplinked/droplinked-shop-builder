@@ -1,36 +1,37 @@
-import { Box, BoxProps, Flex, Text } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import { Box, Flex, Text } from "@chakra-ui/react";
+import { ExternalarrowLg } from "assets/icons/Navigation/ExternalArrow/ExternalarrowLg";
 import React, { PropsWithChildren } from "react";
 
 export interface SectionContainerProps extends PropsWithChildren {
     title: string
-    onLinkClick?: () => void,
-    boxProps?: BoxProps,
+    onNavigate?: () => void
 }
 
-function SectionContainer({ title, onLinkClick, children, boxProps }: SectionContainerProps) {
+function SectionContainer({ title, onNavigate, children }: SectionContainerProps) {
     return (
         <Box
             flex={1}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={16}
             overflow="hidden"
-            {...boxProps}
         >
             {/* Header with Title and Link */}
             <Flex
                 justifyContent="space-between"
                 alignItems="center"
                 gap={4}
-                padding={4}
-                bgColor="#1C1C1C"
+                borderBottom="1px solid"
+                borderColor="neutral.gray.800"
+                padding={{ base: 4, xl: "16px 24px" }}
+                bgColor="neutral.gray.1000"
             >
-                <Text fontSize={{ base: 16, lg: 18 }} fontWeight={500} color="#fff">
+                <Text fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.white">
                     {title}
                 </Text>
-                {onLinkClick && (
-                    <button onClick={onLinkClick}>
-                        <AppIcons.ExternalArrow />
+                {onNavigate && (
+                    <button onClick={onNavigate}>
+                        <ExternalarrowLg color="white" />
                     </button>
                 )}
             </Flex>

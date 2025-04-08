@@ -1,5 +1,5 @@
 import { MenuButton } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 
 const UserMenuButton = () => {
@@ -12,8 +12,9 @@ const UserMenuButton = () => {
       alignItems="center"
       gap="4px"
       borderRadius="8px"
-      border="1px solid #3C3C3C"
-      background="#1C1C1C"
+      border="1px solid"
+      borderColor={"neutral.gray.700"}
+      background="neutral.gray.1000"
       right={'16px'}
       _hover={{ backgroundColor: '#222' }}
     >

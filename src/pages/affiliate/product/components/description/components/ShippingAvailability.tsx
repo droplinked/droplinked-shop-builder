@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Text} from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import SectionHeader from './SectionHeader';
 
@@ -36,17 +36,17 @@ const ShippingAvailability = ({ productId }: { productId: string }) => {
         </Text>
 
         {/* Regions Section */}
-        <Flex direction="column" gap={4} alignSelf="stretch" borderRadius="lg" border="1px solid" borderColor="#292929" px={9} py={6}>
+        <Flex direction="column" gap={4} alignSelf="stretch" borderRadius="lg" border="1px solid" borderColor="neutral.gray.800" px={9} py={6}>
           {shippingData.data?.length ? (
             shippingData.data.map((region, index) => (
               <Box key={index} mb={1}>
-                <Text fontSize="base" fontWeight="normal" color="#7b7b7b">
+                <Text fontSize="base" fontWeight="normal" color="text.subtextPlaceholder.dark">
                   {region}
                 </Text>
               </Box>
             ))
           ) : (
-            <Text fontSize="base" fontWeight="normal" color="#7b7b7b">
+            <Text fontSize="base" fontWeight="normal" color="text.subtextPlaceholder.dark">
               No shipping data available.
             </Text>
           )}

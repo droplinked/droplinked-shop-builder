@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 
@@ -23,7 +23,7 @@ export default function DefaultBadge({ isDefault, onClick }: Props) {
             borderRadius={"4px"}
             alignItems={"center"}
             py={1}
-            bg={isDefault ? "#FFD9511A" : "#292929"}
+            bg={isDefault ? "#FFD9511A" : "neutral.gray.800"}
             px={2}
             gap={"6px"}
         >

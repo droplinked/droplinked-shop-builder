@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import useDebounce from 'functions/hooks/debounce/useDebounce';
+import AppIcons from 'assets/icon/Appicons';
+import useDebounce from 'hooks/debounce/useDebounce';
 import { InvoiceQueryParams } from 'lib/apis/invoice/interfaces';
-import Input from 'pages/invoice-management/components/Input';
+import Input from 'components/redesign/input/Input';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface Props {
@@ -20,13 +20,13 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
   return (
     <Flex justifyContent={'space-between'} alignItems="center">
       <Input
-        inputGroupProps={{ width: '300px', height: 12, bgColor: '#1C1C1C' }}
+        inputGroupProps={{ width: '300px', height: 12, bgColor: 'neutral.gray.1000' }}
         inputProps={{
           value: searchTerm,
           placeholder: 'Search',
           onChange: (e) => setSearchTerm(e.target.value)
         }}
-        icon={<AppIcons.Search />}
+        leftElement={<AppIcons.Search />}
       />
     </Flex>
   );

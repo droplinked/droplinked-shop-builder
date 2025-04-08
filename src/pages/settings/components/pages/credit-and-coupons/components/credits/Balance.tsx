@@ -1,9 +1,9 @@
 import { Flex, Image, Spinner, useDisclosure, useTabsContext } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import useAppStore from "lib/stores/app/appStore";
 import React, { useState } from "react";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
 import { useQuery } from "react-query";
@@ -41,7 +41,8 @@ export default function Balance() {
             borderRadius={"8px"}
             bg={"rgba(28, 28, 28, 0.64)"}
             backdropFilter={"blur(16px)"}
-            border={"1px solid #292929"}
+            border={"1px solid"}
+            borderColor="neutral.gray.800"
             flexDirection={"column"}
             p={4}
         >

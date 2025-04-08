@@ -14,9 +14,9 @@ function PaymentAndWallets() {
       <FinancialServices />
       <MerchantWallet />
       <WalletInputs />
-      <Divider borderColor={"#292929"} />
+      <Divider borderColor={"neutral.gray.800"} />
       <WalletInputs isSolana />
-      <Divider borderColor={"#292929"} />
+      <Divider borderColor={"neutral.gray.800"} />
       <TokenPay />
     </Box>
   );

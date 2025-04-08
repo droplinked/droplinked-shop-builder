@@ -23,7 +23,7 @@ function DesignPagePreview() {
     return (
         <designPreviewContext.Provider value={{ scrollRef }}>
             <Flex justifyContent="center">
-                <AppScrollBar transition=".3s" border="2px solid #262626" borderRadius="8px" height={{ base: "40vh", md: "53vh", 'xl': "64vh" }} overflow={shouldScroll() ? "scroll" : "hidden"} width={device === "mobile" ? "300px" : "100%"} padding="2px" scrollbarHide={true} backgroundColor={backgroundBody || "#1e1e1e"}>
+                <AppScrollBar transition=".3s" border="2px solid" borderColor="neutral.gray.850" borderRadius="8px" height={{ base: "40vh", md: "53vh", 'xl': "64vh" }} overflow={shouldScroll() ? "scroll" : "hidden"} width={device === "mobile" ? "300px" : "100%"} padding="2px" scrollbarHide={true} backgroundColor={backgroundBody || "#1e1e1e"}>
                     <VStack align="stretch" spacing="0" position="relative">
                         <PreviewHeader />
                         <PreviewWrapper />

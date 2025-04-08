@@ -1,5 +1,5 @@
 import { Flex, Spinner } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
@@ -84,7 +84,7 @@ function ROIPage() {
                 title='Enquire to learn more'
                 description='Minimize fraud, adhere to compliance, increase conversions for your organization'
                 buttonText='Contact Us'
-                buttonFunctionality={() => navigate("/contact-us")}
+                onButtonClick={() => navigate("/contact-us")}
             />
         </Layout>
     )

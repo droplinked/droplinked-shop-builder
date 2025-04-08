@@ -3,7 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { contactUsService } from 'lib/apis/constact-us/services';
 import React from 'react';
 import { useMutation } from 'react-query';
@@ -86,16 +86,17 @@ function ContactUsForm() {
                             name='message'
                             value={values.message}
                             onChange={handleChange}
-                            border={"1px solid #3C3C3C"}
+                            border={"1px solid"}
+                            borderColor="neutral.gray.700"
                             borderRadius={8}
-                            backgroundColor={"#262626"}
+                            backgroundColor={"neutral.gray.850"}
                             padding={"12px 16px"}
-                            color={"#7B7B7B"}
+                            color={"text.subtextPlaceholder.dark"}
                             fontSize={16}
                             resize={"none"}
                             rows={11}
-                            _hover={{ backgroundColor: "#262626" }}
-                            _focus={{ backgroundColor: "#262626" }}
+                            _hover={{ backgroundColor: "neutral.gray.850" }}
+                            _focus={{ backgroundColor: "neutral.gray.850" }}
                         />
 
                         <BasicButton

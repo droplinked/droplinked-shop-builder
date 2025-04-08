@@ -1,7 +1,7 @@
 import { Flex, Link, VStack } from "@chakra-ui/react";
 import AppTable from "components/common/table/AppTable";
 import AppTypography from "components/common/typography/AppTypography";
-import { SHOP_URL } from "lib/utils/app/variable";
+import { SHOP_URL } from "utils/app/variable";
 import React, { useCallback } from "react";
 
 const ReferralCommunity = ({ referralReports }: { referralReports: any[] }) => {
@@ -41,11 +41,11 @@ const ReferralCommunity = ({ referralReports }: { referralReports: any[] }) => {
                 <AppTypography fontSize="18px" fontWeight="bold">
                     Your Referral Community
                 </AppTypography>
-                <AppTypography fontSize={"16px"} color={"lightGray"}>
+                <AppTypography fontSize={"16px"} color={"neutral.gray.300"}>
                     Explore the list of users who've joined our community using to your referral code.
                 </AppTypography>
             </Flex>
-            <AppTable rows={rows()} props={{ thead: { borderTop: "none", borderBottom: "1px solid #262626" }, tr: { borderBottom: "1px solid #262626" } }} />
+            <AppTable rows={rows()} props={{ thead: { borderTop: "none", borderBottom: "1px solid", borderColor:"neutral.gray.850" }, tr: { borderBottom: "1px solid neutral.gray.850" } }} />
         </VStack>
     );
 };

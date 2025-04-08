@@ -1,9 +1,9 @@
 import { InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppInput from 'components/common/form/textbox/AppInput';
 import Button from 'components/redesign/button/Button';
 import { useFormik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { subscribeFeature } from 'lib/apis/user/services';
 import * as React from 'react';
 import { useMutation } from 'react-query';

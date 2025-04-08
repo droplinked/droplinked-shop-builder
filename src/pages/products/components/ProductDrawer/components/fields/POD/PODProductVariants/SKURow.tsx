@@ -1,7 +1,7 @@
 import { Td, Text, Tr } from '@chakra-ui/react'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import Input from 'components/redesign/input/Input'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
 import SkuVariants from '../../../common/SkuVariants'

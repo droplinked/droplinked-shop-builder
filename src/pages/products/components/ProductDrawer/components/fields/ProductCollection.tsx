@@ -1,5 +1,5 @@
 import Select from 'components/redesign/select/Select'
-import useCollections from 'functions/hooks/useCollections/useCollections'
+import useCollections from 'hooks/useCollections/useCollections'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect } from 'react'
 import ProductFieldWrapper from '../common/ProductFieldWrapper'

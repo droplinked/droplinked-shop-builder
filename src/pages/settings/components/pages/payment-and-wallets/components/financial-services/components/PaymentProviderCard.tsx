@@ -1,14 +1,31 @@
 import React from 'react';
-import { Box, Divider, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Divider, Flex, HStack, Spinner, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
-const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip, icon, isExternal, isDisabled }) => {
+interface PaymentProviderProps {
+  item: {
+    title: string;
+    buttonText: string;
+    type: string;
+    link?: string;
+    tooltip?: string;
+    icon: React.ReactElement;
+    isExternal: boolean;
+    isDisabled?: boolean;
+    isLinkDisabled?: boolean;
+    isFetching?: boolean;
+  };
+  onToggle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PaymentProviderCard: React.FC<PaymentProviderProps> = ({ item, onToggle }) => {
   const { values } = useFormikContext<ISettings>();
+  const { title, buttonText, type, link, tooltip, icon, isExternal, isDisabled, isLinkDisabled, isFetching } = item;
 
   // Determine if the switch is checked based on whether the token is active in paymentMethods
   const isChecked = !!values.paymentMethods.find((item) => item.type === type.toUpperCase())?.isActive;
@@ -40,18 +57,18 @@ const PaymentProviderCard = ({ title, buttonText, onToggle, type, link, tooltip,
           <Divider borderColor="#282828" />
           <Flex py={"14px"} textAlign="center" justifyContent={"center"}>
             <ExternalLink
-              href={link}
               textDecor={"none"}
               display={"flex"}
               alignItems={"center"}
               fontSize={16}
               fontWeight={500}
               gap={"6px"}
-              target='_blank'
               color={isExternal ? "#179EF8" : "#2BCFA1"}
               hasArrow={isExternal ? true : false}
+              cursor={isLinkDisabled ? "not-allowed" : "pointer"}
+              {...!isLinkDisabled && { href: link, target: "_blank" }}
             >
-              {buttonText}
+              {isFetching ? <Spinner size={"sm"} /> : buttonText}
             </ExternalLink>
           </Flex>
         </>

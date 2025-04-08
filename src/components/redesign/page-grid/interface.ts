@@ -5,14 +5,7 @@ export interface SearchInput {
     onChange(e: any): void
     value?: string
     placeholder?: string
-}
-
-export interface IdataGrid {
-    filters?: Array<IFiltersDataGridItems>
-    loading: boolean
-    search?: SearchInput
-    description?: string
-    title?: string
+    disabled?: boolean
 }
 
 export interface PageGridRootProps {

@@ -1,5 +1,5 @@
 import AppDialog from 'components/common/dialog';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useAppToast from 'hooks/toast/useToast';
 import { useCheckPermission } from 'lib/stores/app/appStore';
 import React, { useContext } from 'react';
 import APIKeyContext from '../../../../context';

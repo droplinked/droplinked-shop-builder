@@ -1,5 +1,5 @@
 import { Box, Button, ModalBody } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
@@ -16,7 +16,7 @@ function StatisticModal({ data }: IProps) {
     const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
     return (
         <>
-            <Button colorScheme={"black"} onClick={() => setIsOpen(true)} backgroundColor={"transparent"} border={"1px solid #F2F2F2"} color={"white"}><AppIcons.Statistics style={{ margin: "0px 5px" }} /> View Statistics</Button>
+            <Button colorScheme={"black"} onClick={() => setIsOpen(true)} backgroundColor={"transparent"} border={"1px solid"} borderColor={"neutral.gray.100"} color={"white"}><AppIcons.Statistics style={{ margin: "0px 5px" }} /> View Statistics</Button>
             <AppModal
                 modalRootProps={{
                     isOpen,
@@ -30,13 +30,15 @@ function StatisticModal({ data }: IProps) {
                     backgroundColor: "#131313"
                 }}>
                 <ModalHeaderData
-                    backgroundColor={"#131313"}
+                    modalHeaderProps={{
+                        bgColor: "#131313"
+                    }}
                     title='Statistics'
                     description={`Track your usage and insights here. Some features will reset in 257 days.`}
                 />
                 <ModalBody backgroundColor={"#131313"}>
                     {UsageExceededItem &&
-                        <Box width={"100%"} pb={"2rem"} borderBottom={"1px solid #292929"}>
+                        <Box width={"100%"} pb={"2rem"} borderBottom="1px solid" borderColor="neutral.gray.800">
                             <UsageExceededAlert title={UsageExceededItem.key} />
                         </Box>
                     }

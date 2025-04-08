@@ -1,4 +1,4 @@
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import React from "react";
 import CouponsTable from "./CouponsTable";

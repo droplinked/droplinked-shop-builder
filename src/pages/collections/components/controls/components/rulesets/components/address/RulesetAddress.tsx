@@ -1,10 +1,10 @@
-import { HStack, VStack, Box } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import { Box, HStack, VStack } from '@chakra-ui/react';
+import { TrashMd } from 'assets/icons/Action/Trash/TrashMd';
+import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import Input from 'components/redesign/input/Input';
 import React, { useContext } from 'react';
 import ruleModelContext from '../../context';
-import { FaPlus } from 'react-icons/fa6';
-import Input from 'components/redesign/input/Input';
 
 function RulesetAddress() {
     const { loading, setFieldValue, values, errors } = useContext(ruleModelContext);
@@ -42,13 +42,13 @@ function RulesetAddress() {
                                 description={index === 0 && 'Enter the contract addresses to be used for validation of possession or ownership.'}
                             />
                             {values.address.length > 1 && index < values.address.length - 1 && (
-                                <Box ml={2} mb={4} cursor={"pointer"} onClick={() => handleDelete(index)}>
-                                    <AppIcons.RedTrash />
+                                <Box ml={3} mb={4} cursor={"pointer"} onClick={() => handleDelete(index)}>
+                                    <TrashMd color='#F24' />
                                 </Box>
                             )}
                             {index === values.address.length - 1 && (
-                                <Box ml={2} mb={4} cursor={"pointer"} onClick={addInput}>
-                                    <FaPlus color='#2BCFA1' />
+                                <Box ml={3} mb={4} marginRight={1} cursor={"pointer"} onClick={addInput}>
+                                    <PlusSm color='#2BCFA1' strokeWidth="2px" />
                                 </Box>
                             )}
                         </HStack>

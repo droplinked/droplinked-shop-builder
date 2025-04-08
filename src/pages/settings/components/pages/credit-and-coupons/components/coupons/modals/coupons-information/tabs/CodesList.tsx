@@ -29,10 +29,11 @@ export default function CodesList({ codes, currentFilter }: Props) {
                     return (
                         <Flex
                             {...index === 0 && { borderTopRadius: "8px" }}
-                            {...index + 1 === codes.length && { borderBottomRadius: "8px", borderBottom: "#292929" }}
+                            {...index + 1 === codes.length && { borderBottomRadius: "8px", borderBottom: "neutral.gray.800" }}
                             py={4}
                             px={6}
-                            border={"1px solid #292929"}
+                            border={"1px solid"}
+                            borderColor="neutral.gray.800"
                             borderBottom={"none"}
                             justifyContent={"space-between"}
                             alignItems={"center"}

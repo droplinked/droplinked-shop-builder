@@ -2,7 +2,7 @@ import React from 'react'
 import { Wallet } from './ManualTransfer';
 import { Flex } from '@chakra-ui/react';
 import Input from 'components/redesign/input/Input';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 
 interface Props {
     data: Wallet[];

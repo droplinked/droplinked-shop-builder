@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
 import Input from '../input/Input'
@@ -28,7 +28,7 @@ function PageGridHeader({ title, description, rightContent }: PageGridHeaderProp
         <Flex w="full" marginBottom={"36px"} flexDirection={"row"} justifyContent={"space-between"} alignItems={"start"}>
             <Flex flexDirection="column" alignItems="start">
                 {title && (
-                    <AppTypography color="#fff" fontSize="24px" fontWeight={700}>
+                    <AppTypography color="neutral.white" fontSize="24px" fontWeight={700}>
                         {title}
                     </AppTypography>
                 )}
@@ -50,12 +50,13 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
             {search && (
                 <Input
                     inputGroupProps={{ width: "300px" }}
-                    inputContainerProps={{ bgColor: "#1C1C1C", padding: 3 }}
+                    inputContainerProps={{ bgColor: "neutral.gray.1000", padding: 3, _hover: search.disabled ? {} : { borderColor: "neutral.gray.700" } }}
                     inputProps={{
                         fontSize: 16,
                         placeholder: search.placeholder ?? "Search",
                         value: search.value,
                         onChange: search.onChange,
+                        isDisabled: search.disabled
                     }}
                     leftElement={<AppIcons.SearchOutlined />}
                 />

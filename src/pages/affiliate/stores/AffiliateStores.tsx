@@ -1,6 +1,6 @@
 import { Box, Flex, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useProfile } from "hooks/useProfile/useProfile";
 import { InvoiceQueryParams } from "lib/apis/invoice/interfaces";
 import { getShopsCommunityService } from "lib/apis/shop/shopServices";
 import React, { useState } from "react";
@@ -35,7 +35,8 @@ function AffiliateStores() {
                 alignItems="flex-start"
                 gap="10px"
                 borderRadius="8px"
-                border="1.5px solid #292929"
+                border="1.5px solid"
+                borderColor="neutral.gray.800"
                 objectFit={"cover"}
                 background="linear-gradient(93deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.00) 100%), url(https://upload-file-droplinked.s3.amazonaws.com/22b2a2e43dcf9d76c43ad427cd8f72a4a0db5dab76be1e1545140721aba0e018.jpg) lightgray 50% / cover no-repeat"
             >

@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { closestCorners, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { reorderProductsService } from 'lib/apis/product/productServices'
 import React, { Dispatch, SetStateAction } from 'react'
 import SortableProduct from './SortableProduct'
@@ -51,7 +51,7 @@ function ProductList({ products, setProducts }: Props) {
             >
                 <Flex direction="column">
                     {products.map((product, index) =>
-                        <SortableProduct key={index} product={product} isLastOne={index === products.length - 1} />
+                        <SortableProduct key={index} product={product} isLastItem={index === products.length - 1} />
                     )}
                 </Flex>
             </SortableContext>

@@ -2,9 +2,9 @@ import { Flex } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Form, Formik } from 'formik'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { sendInvitaionEmailService } from 'lib/apis/user/services'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import AppErrors from 'utils/constants/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
 import * as Yup from "yup"
@@ -30,7 +30,7 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
     }
 
     const formSchema = Yup.object().shape({
-        email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Email is required.")
+        email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required("Email is required.")
     })
 
     return (
@@ -42,7 +42,7 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
         >
             {({ errors, values, setFieldValue }) => (
                 <Form>
-                    <Flex alignItems="center" backgroundColor={"bG"} paddingRight="7.5px" rounded="8px">
+                    <Flex alignItems="center" backgroundColor="neutral-background" paddingRight="7.5px" rounded="8px">
                         <AppInput name='newUser' value={values.email} placeholder="Enter email" border="none" error={errors.email && errors.email.toString()} onChange={(e) => setFieldValue("email", e.target.value)} />
                         <BasicButton
                             type='submit'

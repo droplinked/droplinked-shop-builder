@@ -1,12 +1,12 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
-import AppIcons from 'assest/icon/Appicons'
-import TextButton from 'pages/invoice-management/components/TextButton'
+import AppIcons from 'assets/icon/Appicons'
 import Table from 'pages/invoice-management/components/table-v2/TableV2'
 import useInvoiceStore, { CartItem } from 'pages/invoice-management/create-invoice/store/invoiceStore'
 import React from 'react'
 import InvoiceProductModal from '../product-modal/InvoiceProductModal'
 import ItemRow from './components/ItemRow'
+import BlueButton from 'components/redesign/button/BlueButton'
 
 export interface SerializedCartItem {
     product: CartItem['product']
@@ -44,10 +44,19 @@ export default function InvoiceProductTable({ invoice, hasActionColumn = true, h
                 </Table.Body>
                 {hasFooter && (
                     <Table.Footer>
-                        <TextButton paddingBlock={3} paddingInline={4} onClick={onOpen}>
-                            <AppIcons.BlackPlus />
+                        <BlueButton
+                            sx={{ "svg path": { "stroke": "#2BCFA1" } }}
+                            color="#2BCFA1"
+                            paddingInline={4}
+                            paddingBlock={3}
+                            iconSpacing={1}
+                            fontSize={14}
+                            fontWeight={400}
+                            leftIcon={<AppIcons.BlackPlus />}
+                            onClick={onOpen}
+                        >
                             Add product
-                        </TextButton>
+                        </BlueButton>
                     </Table.Footer>
                 )}
             </Table.Root>

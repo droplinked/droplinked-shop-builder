@@ -1,15 +1,14 @@
 import { Flex, Td, Tr } from "@chakra-ui/react";
 import AppImage from "components/common/image/AppImage";
-import useAppStore from "lib/stores/app/appStore";
-import { currencyConvertion } from "lib/utils/helpers/currencyConvertion";
 import React from "react";
 import { SerializedCartItem } from "../InvoiceProductTable";
 import ProductTitleCell from "./ProductTitleCell";
 import SKURemoveButton from "./SKURemoveButton";
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
 
 function ItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, hasActionColumn?: boolean }) {
     const { product, skus } = cartItem
-    const { shop: { currency } } = useAppStore()
+    const { getFormattedPrice } = useCurrencyConverter()
 
     return (
         <>
@@ -24,7 +23,7 @@ function ItemRow({ cartItem, hasActionColumn }: { cartItem: SerializedCartItem, 
                     <Td>{sku.options?.color?.caption || '-'}</Td>
                     <Td>{sku.options?.size?.caption || '-'}</Td>
                     <Td>{sku.options?.quantity || '-'}</Td>
-                    <Td>{`${currency?.symbol}${currencyConvertion(sku.totals?.priceItem, currency?.conversionRateToUSD, false)} ${currency?.abbreviation}` || '-'}</Td>
+                    <Td>{`${getFormattedPrice({ amount: sku.totals?.priceItem, toFixed: true })}` || '-'}</Td>
                     {hasActionColumn && <SKURemoveButton itemId={sku._id} />}
                 </Tr>
             ))}

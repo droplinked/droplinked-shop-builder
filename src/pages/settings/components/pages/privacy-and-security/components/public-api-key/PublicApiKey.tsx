@@ -8,10 +8,10 @@ import { getShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useQuery } from 'react-query'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { appDevelopment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'utils/app/variable'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 
 
 export default function PublicApiKey() {

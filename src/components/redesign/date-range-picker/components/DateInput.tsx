@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 type ValuePiece = Date | null;
@@ -22,7 +22,7 @@ export default function DateInput({ selectedDate, onClick }: Props) {
   return (
     <Flex
       px="14px" py="10px"
-      border="1px solid #292929" borderRadius="8px"
+      border="1px solid" borderRadius="8px" borderColor="neutral.gray.800"
       gap="6px" alignItems="center"
       userSelect="none" cursor="pointer"
       width={"100%"}

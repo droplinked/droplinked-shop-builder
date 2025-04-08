@@ -1,13 +1,11 @@
-import { Flex, SimpleGrid } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
+import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
-import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { useQuery } from "react-query";
+import AppErrors from "utils/constants/errors";
+import PlanDurationRadioContainer from "../../../../components/redesign/plan-duration-radio/PlanDurationRadioContainer";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
-import PlanDurationRadioContainer from "./_components/plan-duration-radio/PlanDurationRadioContainer";
 
 export default function Plans() {
     const { isFetching, isError, data } = useQuery({
@@ -15,51 +13,17 @@ export default function Plans() {
         queryFn: () => getSubscriptionPlansService()
     })
 
-    if (isFetching) return <PlansGrid><Loading /></PlansGrid >
+    if (isFetching) return <PlansGrid><Loading /></PlansGrid>
 
-    if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
+    if (isError) return <Text color="red.400">{AppErrors.permission.subscriptionDataUnavailable}</Text>
 
-    const getFilteredFeatures = (currentPlan: SubscriptionPlan, previousPlan?: SubscriptionPlan): SubOptionId[] => {
-        if (!previousPlan) return currentPlan.subOptionIds // Return all features for the starter plan
-
-        return currentPlan.subOptionIds.map(subOption => {
-            // Find the corresponding subOption in the previous plan
-            const previousSubOption = previousPlan?.subOptionIds.find(p => p.key === subOption.key)
-
-            // Filter the features based on the condition
-            const filteredFeatures = subOption.value.filter(feature => {
-                // If the feature exists in the current plan but not in the previous plan, or its value is different, include it
-                const previousFeature = previousSubOption?.value.find(pf => pf.key === feature.key)
-                return !previousFeature || feature.value !== previousFeature.value
-            })
-
-            return {
-                ...subOption,
-                value: filteredFeatures
-            }
-        })
-    }
     const plans = data.data
 
     return (
-        <Flex direction={"column"} gap={9}>
+        <Flex direction="column" gap={9}>
             <PlanDurationRadioContainer />
-            <PlansGrid>
-                {plans.map((plan, index) => {
-                    const prevPlan = plans[index - 1] || plans[0]
-                    return (
-                        <PlanCard
-                            key={plan._id}
-                            plan={plan}
-                            plans={plans}
-                            prevPlanType={prevPlan.type}
-                            features={index === 0 ?
-                                getFilteredFeatures(plan) :
-                                getFilteredFeatures(plan, plans[index - 1])
-                            }
-                        />
-                    )
-                })}
+            <PlansGrid >
+                {plans.map((plan) => <PlanCard key={plan._id} plan={plan} />)}
             </PlansGrid>
         </Flex>
     )

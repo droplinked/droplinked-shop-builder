@@ -4,11 +4,11 @@ import AppDropDown from 'components/common/form/dropdown/AppDropDown';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import { Form, Formik } from 'formik';
-import useAppToast from 'functions/hooks/toast/useToast';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import useAppToast from 'hooks/toast/useToast';
+import { useProfile } from 'hooks/useProfile/useProfile';
 import { addressByIdService, allCountriesService, citiesService, createAddressService, statesService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcitiesService, IcreateAddressService, IsatatesService, IupdateAddressService } from 'lib/apis/address/interfaces';
-import AppErrors from 'lib/utils/statics/errors/errors';
+import AppErrors from 'utils/constants/errors';
 import React, { useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import AddressModalModel from './AddressModalModel';
@@ -39,7 +39,7 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             if (onSuccess) onSuccess()
             updateShopData()
             showToast({
-                message: addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully,
+                message: addressID ? AppErrors.store.storeAddressUpdated : AppErrors.store.storeAddressAdded,
                 type: "success"
             })
             close()

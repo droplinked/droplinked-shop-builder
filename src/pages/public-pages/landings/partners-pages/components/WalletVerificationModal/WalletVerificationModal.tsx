@@ -1,148 +1,111 @@
-import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
-import AuthModal from 'components/modals/auth-modal/AuthModal';
-import AppModal from 'components/redesign/modal/AppModal';
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage';
-import React, { useContext, useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons';
-import PartnerContext, { StepsType } from '../../context/partner.context';
-import { useWalletVerification } from './useWalletVerification';
-import Button from 'components/redesign/button/Button';
+import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons'
+import Button from 'components/redesign/button/Button'
+import AppModal from 'components/redesign/modal/AppModal'
+import React, { useContext, useMemo } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import PartnerContext, { StepsType } from '../../context/partner.context'
+import { useWalletVerification } from './useWalletVerification'
 
 const WalletVerificationModal = () => {
-	const { isOpen, onClose, onOpen } = useDisclosure();
-	const navigate = useNavigate();
-	const {
-		isOpen: signupModalIsOpen,
-		onOpen: signupModalOnOpen,
-		onClose: signupModalOnClose,
-	} = useDisclosure();
-	const [searchParams] = useSearchParams();
-	const {
-		planDurationMonths,
-		states: { currentStep },
-		methods: { updateStates }, 
-	} = useContext(PartnerContext);
-
-	const { connectWallet } = useWalletVerification();
+	const navigate = useNavigate()
+	const [searchParams] = useSearchParams()
+	const { isOpen, onClose, onOpen } = useDisclosure()
+	const { planDurationMonths, states: { currentStep }, methods: { updateStates } } = useContext(PartnerContext)
+	const { connectWallet } = useWalletVerification()
 
 	const connect_wallet_steps: {
 		[K in StepsType]: {
-			title: string;
-			description: string;
+			title: string
+			description: string
 			buttons: {
-				left: null | {
-					label: string;
-					onClick: () => void;
-					styles?: StyleProps;
-				};
+				left?: {
+					label: string
+					onClick: () => void
+					styles?: StyleProps
+				}
 				right: {
-					label: string;
-					onClick: () => void;
-					rightIcon?: any;
-					styles?: StyleProps;
-				};
-			};
-		};
+					label: string
+					onClick: () => void
+					rightIcon?: any
+					styles?: StyleProps
+				}
+			}
+		}
 	} = {
 		connect: {
 			title: 'Connect Wallet for Verification',
-			description:
-				`Connect your wallet to check if you're eligible for the  ${planDurationMonths} month Pro Plan`,
+			description: `Connect your wallet to check if you're eligible for the  ${planDurationMonths} month Pro Plan`,
 			buttons: {
-				left: {
-					label: 'Close',
-					onClick: onClose,
-					styles: {},
-				},
+				left: { label: 'Close', onClick: onClose, styles: {} },
 				right: {
 					label: 'Check Wallet Eligibility',
 					onClick: async () => await connectWallet(),
 					rightIcon: <AppIcons.SidebarNext />,
-					styles: {},
-				},
-			},
+					styles: {}
+				}
+			}
 		},
 		loading: {
 			title: 'Verifying Wallet Status',
-			description:
-				'Please wait while your wallet is verified for eligibility.',
+			description: 'Please wait while your wallet is verified for eligibility.',
 			buttons: {
 				left: {
 					label: 'Close',
 					onClick: () => { },
-					styles: {
-						background: '#292929',
-						color: '#737373',
-						cursor: 'not-allowed',
-					},
+					styles: { background: '#292929', color: '#737373', cursor: 'not-allowed' }
 				},
 				right: {
 					label: 'Check Wallet Eligibility',
 					onClick: () => { },
-					rightIcon: (
-						<AppIcons.SidebarNext stroke="#737373" />
-					),
+					rightIcon: <AppIcons.SidebarNext stroke="#737373" />,
 					styles: {
 						background: '#292929',
 						color: '#737373',
 						cursor: 'not-allowed',
-						border: 'none',
-					},
-				},
-			},
+						border: 'none'
+					}
+				}
+			}
 		},
 		error: {
 			title: 'Wallet Verification Unsuccessful',
-			description:
-				"It looks like your wallet doesn’t meet the criteria. Unfortunately, you're not eligible to claim the offer.",
+			description: "It looks like your wallet doesn’t meet the criteria. Unfortunately, you're not eligible to claim the offer.",
 			buttons: {
 				left: null,
 				right: {
 					label: 'Return',
-					onClick: () =>
-						updateStates({
-							key: 'currentStep',
-							value: 'connect',
-						}),
-				},
-			},
+					onClick: () => updateStates({ key: 'currentStep', value: 'connect' })
+				}
+			}
 		},
 		done: {
 			title: 'Congrats, Wallet Offer Verified',
-			description:
-				`You can now create an account and enjoy ${planDurationMonths}  months of a Pro Plan.`,
+			description: `You can now create an account and enjoy ${planDurationMonths}  months of a Pro Plan.`,
 			buttons: {
 				left: null,
 				right: {
 					label: 'Claim Now',
 					onClick: () => {
-						const d3Id = searchParams.get('d3-id');
-						const udId = searchParams.get('ud-id');
-					
-						if (d3Id) {
-							navigate(`/d3/?d3-id=${d3Id.toString()}`);
-							onClose();
-							signupModalOnOpen();
-						} else if (udId) {
-							navigate(`/unstoppable-domains/?ud-id=${udId.toString()}`);
-							onClose();
-							signupModalOnOpen();
-						}
-					},
-					
-				},
-			},
-		},
-	};
+						const d3Id = searchParams.get('d3-id')
+						const udId = searchParams.get('ud-id')
 
+						const newParams = new URLSearchParams()
+						newParams.set('entry', 'signup')
 
-	const current_state = useMemo(
-		() => connect_wallet_steps?.[currentStep],
-		[currentStep, updateStates]
-	);
+						if (d3Id) newParams.set('d3-id', d3Id)
+						if (udId) newParams.set('ud-id', udId)
+
+						navigate(`/onboarding/?${newParams.toString()}`)
+					}
+				}
+			}
+		}
+	}
+
+	const current_state = useMemo(() => connect_wallet_steps?.[currentStep], [currentStep])
 
 	return (
 		<>
@@ -154,17 +117,10 @@ const WalletVerificationModal = () => {
 			>
 				Claim Now
 			</Button>
+
 			<AppModal
-				modalRootProps={{
-					isOpen,
-					onClose,
-					size: '3xl',
-					isCentered: true,
-				}}
-				modalContentProps={{
-					width: 'auto !important',
-					padding: '0px !important',
-				}}
+				modalRootProps={{ isOpen, onClose, size: '3xl', isCentered: true }}
+				modalContentProps={{ width: 'auto !important', padding: '0px !important' }}
 			>
 				<ModalBody
 					display="flex"
@@ -179,87 +135,38 @@ const WalletVerificationModal = () => {
 					rounded="24px"
 				>
 					<WalletStatusSideIcons
-						variant={
-							currentStep === 'error'
-								? 'red'
-								: 'green'
-						}
+						variant={currentStep === 'error' ? 'red' : 'green'}
 						isLoading={currentStep === 'loading'}
-						icon={
-							currentStep === 'done'
-								? 'tick'
-								: 'wallet'
-						}
+						icon={currentStep === 'done' ? 'tick' : 'wallet'}
 					/>
-	
-					<Box
-						display="flex"
-						padding={{
-							base: '0px 16px 36px 16px',
-							md: '0px 48px 48px 48px',
-						}}
+
+					<Flex
+						padding={{ base: '0px 16px 36px 16px', md: '0px 48px 48px 48px', }}
 						flexDirection="column"
 						alignItems="flex-end"
 						gap="48px"
 						alignSelf="stretch"
 					>
-						<Box
-							display="flex"
+						<Flex
 							flexDirection="column"
 							alignItems="flex-start"
 							gap="24px"
 							alignSelf="stretch"
 						>
-							<AppTypography
-								color="#FFF"
-								fontFamily="Inter"
-								fontSize={{
-									base: '18px',
-									md: '24px',
-								}}
-								fontStyle="normal"
-								fontWeight="700"
-								lineHeight="36px"
-							>
+							<AppTypography color="#FFF" fontSize={{ base: '18px', md: '24px' }} fontWeight="700">
 								{current_state?.title}
 							</AppTypography>
-							<AppTypography
-								color="#B1B1B1"
-								fontFamily="Inter"
-								fontSize={{
-									base: '14px',
-									md: '16px',
-								}}
-								fontStyle="normal"
-								fontWeight="400"
-								lineHeight="24px"
-							>
-								{
-									current_state?.description
-								}
+							<AppTypography color="#B1B1B1" fontSize={{ base: '14px', md: '16px' }} fontWeight="400">
+								{current_state?.description}
 							</AppTypography>
-							<Box
-								display="flex"
+							<Flex
+								flexDir={{ base: 'column', md: 'row' }}
 								justifyContent="space-between"
 								alignItems="flex-start"
-								gap={{
-									base: '12px',
-									md: 'auto',
-								}}
+								gap={{ base: '12px', md: 'auto' }}
 								alignSelf="stretch"
-								flexDir={{
-									base: 'column',
-									md: 'row',
-								}}
 							>
-								<Box
-									display={'flex'}
-									alignItems={
-										'center'
-									}
-									gap={'12px'}
-									flex={'1 0 0'}
-								>
+								<Flex alignItems='center' gap='12px' flex='1 0 0'>
 									<Box
 										as="svg"
 										width="32px"
@@ -282,26 +189,12 @@ const WalletVerificationModal = () => {
 											stroke-linejoin="round"
 										/>
 									</Box>
-									<AppTypography
-										color="#FFF"
-										fontFamily="Inter"
-										fontSize="14px"
-										fontStyle="normal"
-										fontWeight="400"
-										lineHeight="20px"
-									>
+									<AppTypography color="#FFF" fontSize="14px" fontWeight="400">
 										{planDurationMonths} Month
 										Pro Plan
 									</AppTypography>
-								</Box>
-								<Box
-									display={'flex'}
-									alignItems={
-										'center'
-									}
-									gap={'12px'}
-									flex={'1 0 0'}
-								>
+								</Flex>
+								<Flex alignItems='center' gap='12px' flex='1 0 0'>
 									<Box
 										as="svg"
 										width="32px"
@@ -336,129 +229,57 @@ const WalletVerificationModal = () => {
 											stroke-linecap="round"
 										/>
 									</Box>
-									<AppTypography
-										color="#FFF"
-										fontFamily="Inter"
-										fontSize="14px"
-										fontStyle="normal"
-										fontWeight="400"
-										lineHeight="20px"
-									>
-										Instant
-										Verification
+									<AppTypography color="#FFF" fontSize="14px" fontWeight="400">
+										Instant Verification
 									</AppTypography>
-								</Box>
-							</Box>
-							<Box
-								display="flex"
+								</Flex>
+							</Flex>
+							<Flex
 								justifyContent="center"
 								alignItems="center"
 								gap="24px"
 								alignSelf="stretch"
 							>
-								<Flex
-									flex={'1 0 0'}
-									alignItems={
-										'flex-start'
-									}
-								>
-									{current_state
-										?.buttons
-										?.left && (
-											<Button
-												backgroundColor={
-													'#292929'
-												}
-												border={
-													'none'
-												}
-												display="flex"
-												padding="12px 16px"
-												justifyContent="center"
-												alignItems="center"
-												color="#FFF"
-												textAlign="center"
-												fontFamily="Inter"
-												fontSize={{
-													base: '14px',
-													md: '16px',
-												}}
-												fontStyle="normal"
-												fontWeight="500"
-												lineHeight={{
-													base: '16px',
-													md: '24px',
-												}}
-												onClick={
-													current_state
-														?.buttons
-														?.left
-														?.onClick
-												}
-												{...current_state
-													?.buttons
-													?.left
-													?.styles}
-											>
-												Close
-											</Button>
-										)}
+								<Flex flex='1 0 0' alignItems='flex-start'>
+									{current_state?.buttons?.left && (
+										<Button
+											backgroundColor='neutral.gray.800'
+											border='none'
+											display="flex"
+											padding="12px 16px"
+											justifyContent="center"
+											alignItems="center"
+											color="#FFF"
+											textAlign="center"
+											fontSize={{ base: '14px', md: '16px' }}
+											fontWeight="500"
+											lineHeight={{ base: '16px', md: '24px' }}
+											onClick={current_state?.buttons?.left?.onClick}
+											{...current_state?.buttons?.left?.styles}
+										>
+											Close
+										</Button>
+									)}
 								</Flex>
 								<Button
 									padding="12px 20px"
 									color="#000"
 									textAlign="center"
-									fontFamily="Inter"
-									fontSize={{
-										base: '14px',
-										md: '16px',
-									}}
-									fontStyle="normal"
+									fontSize={{ base: '14px', md: '16px' }}
 									fontWeight="500"
-									lineHeight={{
-										base: '16px',
-										md: '24px',
-									}}
-									onClick={
-										current_state
-											?.buttons
-											?.right
-											?.onClick
-									}
-									{...current_state
-										.buttons
-										?.right
-										?.styles}
+									onClick={current_state?.buttons?.right?.onClick}
+									{...current_state.buttons?.right?.styles}
 								>
-									{
-										current_state
-											?.buttons
-											?.right
-											?.label
-									}
-									{current_state
-										?.buttons
-										?.right
-										?.rightIcon &&
-										current_state
-											?.buttons
-											?.right
-											?.rightIcon}
+									{current_state?.buttons?.right?.label}
+									{current_state?.buttons?.right?.rightIcon}
 								</Button>
-							</Box>
-						</Box>
-					</Box>
+							</Flex>
+						</Flex>
+					</Flex>
 				</ModalBody>
 			</AppModal>
-			{signupModalIsOpen && (
-				<AuthModal
-					show={true}
-					type={MODAL_TYPE.SIGNUP}
-					close={signupModalOnClose}
-				/>
-			)}
 		</>
-	);
-};
+	)
+}
 
-export default WalletVerificationModal;
+export default WalletVerificationModal

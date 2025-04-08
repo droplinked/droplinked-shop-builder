@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 import AppModal from 'components/common/modal/AppModal';

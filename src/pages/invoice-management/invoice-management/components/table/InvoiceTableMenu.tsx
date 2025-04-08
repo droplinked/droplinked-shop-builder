@@ -1,9 +1,9 @@
 import { Menu, MenuButton, MenuItem, MenuList, ModalBody, ModalFooter, useDisclosure } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { deleteInvoiceService } from 'lib/apis/invoice/invoiceServices'
 import React from 'react'
 import { useMutation, useQueryClient } from 'react-query'
@@ -19,11 +19,12 @@ export default function InvoiceTableMenu({ invoice }) {
             <Menu isLazy>
                 <MenuButton as="button"><AppIcons.Dots /></MenuButton>
                 <MenuList
-                    border="1px solid #292929"
+                    border="1px solid"
+                    borderColor="neutral.gray.800"
                     borderRadius={8}
                     padding={0}
                     overflow="hidden"
-                    bgColor="#1C1C1C"
+                    bgColor="neutral.gray.1000"
                     zIndex={10}
                     sx={{
                         "button": {

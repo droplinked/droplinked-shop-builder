@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography'
-import { formatDate } from 'lib/utils/helpers/helpers';
+import { formatDateToLocaleString } from 'utils/helpers';
 import React from 'react'
 
 interface Props {
@@ -21,7 +21,7 @@ export default function DrawerHeaderContent({ createdAt, isExpired }: Props) {
                 </AppTypography>
                 <AppIcons.DotSpacer />
                 <AppTypography fontWeight={500} fontSize={"14px !important"} color={"#fff"}>
-                    {formatDate(createdAt)}
+                    {formatDateToLocaleString(createdAt)}
                 </AppTypography>
             </Flex>
             <Box px={3} border={`1px solid ${color}`} borderRadius={"24px"} bg={bg}>

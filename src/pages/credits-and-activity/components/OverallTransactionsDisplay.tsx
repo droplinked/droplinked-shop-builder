@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import React from 'react'
 import useCreditStore from '../stores/CreditStore'
 import ProgressBar from './ProgressBar'
-import useCreditsData from 'functions/hooks/credits-and-activity/useCreditsData'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 
 interface Props {
     type: 'inbound' | 'outbound';
@@ -76,7 +76,8 @@ export default function OverallTransactionsDisplay({ type }: Props) {
                         alignItems="center"
                         gap={6}
                         width="100%"
-                        borderTop="1px solid #292929"
+                        borderTop="1px solid"
+                        borderColor="neutral.gray.800"
                         p={{ base: 4, md: 6 }}
                     >
                         <ProgressBar items={items} type={type} />

@@ -1,8 +1,8 @@
-import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
-import plusIcon from "assest/icon/plus-icon.svg";
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import classes from './style.module.scss';
+import AppIcons from 'assets/icon/Appicons';
 
 interface IEmptyTable {
     add: {
@@ -17,9 +17,9 @@ interface IEmptyTable {
 
 function EmptyTable({ add, list }: IEmptyTable) {
     return (
-        <VStack color="#fff" spacing={10} borderTop={"1px solid #2a2a2a"} padding={10}>
+        <VStack color="neutral.white" spacing={10} borderTop={"1px solid #2a2a2a"} padding={10}>
             <VStack
-                bg="subLayer"
+                bg="neutral.background"
                 borderRadius="8px"
                 cursor="pointer"
                 padding={"30px"}
@@ -27,7 +27,7 @@ function EmptyTable({ add, list }: IEmptyTable) {
                 marginTop={7}
                 onClick={() => add.onClick()}
             >
-                <Box><Image src={plusIcon} h="48px" w="48px" /></Box>
+                <Box><AppIcons.PlusIcon width="48" height="48" /></Box>
                 <Box><Text fontWeight="500" fontSize="18px">{add.caption}</Text></Box>
             </VStack>
             <VStack align={"stretch"} spacing={3}>

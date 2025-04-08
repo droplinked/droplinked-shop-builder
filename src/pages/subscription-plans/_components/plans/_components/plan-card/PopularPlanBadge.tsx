@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
@@ -15,7 +15,7 @@ function PopularPlanBadge() {
             paddingBlock={2}
             paddingInline={4}
             borderRadius={"200px"}
-            bgColor={"#2BCFA1"}
+            bgColor={"primary.default"}
             whiteSpace={"nowrap"}
         >
             <AppIcons.PopularPlanMedal />

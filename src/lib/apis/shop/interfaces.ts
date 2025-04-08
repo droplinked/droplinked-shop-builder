@@ -1,20 +1,14 @@
 import { IAuthSupportedWalletsService } from "../auth/interfaces";
 
-export interface IshopService {
-    shopName: string;
+export interface ShopSetupParams {
+    shop_url: string
+    name: string
+    logo: string
+    hero_section: string
+    description: string
 }
 
 export interface IshopInfoService {
-    shopName: string;
-}
-
-export interface IpaymentCreateService {
-    type: string;
-    destinationAddress: string;
-    isActive: boolean;
-}
-
-export interface IrecordedShopService {
     shopName: string;
 }
 
@@ -64,18 +58,6 @@ export interface IshopUpdateService extends IshopSocial {
     };
     productTile?: any[];
     productTileStyle?: any;
-}
-
-export interface IShopRecordedService {
-    subCategoryIds: Array<string>;
-    categoryIds: Array<string>;
-    title: string;
-    page: string | number;
-}
-
-export interface IshopPublicRecordedService {
-    s: string;
-    page: string | number;
 }
 
 export interface IchargeCreditService {

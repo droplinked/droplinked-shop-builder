@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, Heading } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import ShopList from './shop-list/ShopList'
@@ -21,7 +21,7 @@ function ShopManagement() {
                     background={"rgba(20, 20, 20, 0.85)"}
                 >
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <Heading m={0} fontSize={24} color={"primary"}>Manage Your Shops</Heading>
+                        <Heading m={0} fontSize={24} color={"neutral.white"}>Manage Your Shops</Heading>
                         <AppIcons.MultiShopManagement />
                     </Flex>
 

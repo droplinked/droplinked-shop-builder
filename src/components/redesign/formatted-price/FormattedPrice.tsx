@@ -1,5 +1,5 @@
 import { Box, BoxProps, Text, TextProps } from "@chakra-ui/react"
-import { useCurrencyConverter } from "functions/hooks/useCurrencyConverter/useCurrencyConverter"
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
 import React from "react"
 
 interface Props extends TextProps {

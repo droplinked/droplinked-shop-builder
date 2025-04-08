@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import useAppToast from 'functions/hooks/toast/useToast'
+import useAppToast from 'hooks/toast/useToast'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
 import { useCheckPermission } from 'lib/stores/app/appStore'
@@ -40,8 +40,12 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
     return (
         <AppModal modalRootProps={{ isOpen, onClose, isCentered: true, size: "lg" }} modalContentProps={{ background: "#141414" }}>
             <ModalHeaderData
-                backgroundColor='#141414'
-                modalHeaderProps={{ px: { lg: "48px !important", md: "32px !important", base: "16px !important" }, padding: "0px", paddingBlock: "0px" }}
+                modalHeaderProps={{
+                    px: { lg: "48px !important", md: "32px !important", base: "16px !important" },
+                    padding: "0px",
+                    paddingBlock: "0px",
+                    backgroundColor: '#141414',
+                }}
                 title='Delete Domain'
                 description="Are you sure you want to delete this Domain?"
             >

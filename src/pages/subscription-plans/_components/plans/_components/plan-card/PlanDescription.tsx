@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
-import { subscriptionPlanMap } from 'lib/utils/helpers/helpers'
 import React, { useCallback, useEffect, useRef } from 'react'
-import useSubscriptionPlanPurchaseStore from '../../store/planPurchaseStore'
+import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import useSubscriptionPlanPurchaseStore from '../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 function PlanDescription({ plan }: { plan: SubscriptionPlan }) {
     const descriptionRef = useRef<HTMLDivElement>(null)
@@ -10,7 +10,7 @@ function PlanDescription({ plan }: { plan: SubscriptionPlan }) {
         descriptionHeight: state.planCardStyles.descriptionHeight,
         updatePlanCardStyles: state.updatePlanCardStyles
     }))
-    const { description } = subscriptionPlanMap[plan.type]
+    const { description } = subscriptionPlans[plan.type]
 
     const adjustDescriptionHeight = useCallback(() => {
         if (plan.type !== 'BUSINESS_PRO') return // Because the longest description belongs to the business pro plan

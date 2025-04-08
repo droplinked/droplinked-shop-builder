@@ -1,5 +1,5 @@
 import { Badge, Box, HStack, Text, VStack } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
+import AppIcons from "assets/icon/Appicons";
 import AppImage from "components/common/image/AppImage";
 import React from "react";
 
@@ -20,12 +20,12 @@ export const ProductHeader = ({ product }) => {
             </HStack>
           </Badge>
 
-          <Badge  p="1.5" bg="rgba(43, 206, 161, 0.1)" rounded="full" color="rgba(43, 206, 161)">
-            <AppIcons.SidebarAffiliate  color="#2BCFA1" />
+          <Badge p="1.5" bg="rgba(43, 206, 161, 0.1)" rounded="full" color="rgba(43, 206, 161)">
+            <AppIcons.SidebarAffiliate color="#2BCFA1" />
           </Badge>
 
-          <Badge  p="1.5" bg="rgba(43, 206, 161, 0.1)" rounded="full" color="rgba(43, 206, 161)">
-            <AppIcons.RulesetsIcon  color="#2BCFA1" />
+          <Badge p="1.5" bg="rgba(43, 206, 161, 0.1)" rounded="full" color="rgba(43, 206, 161)">
+            <AppIcons.RulesetsIcon color="#2BCFA1" />
           </Badge>
         </HStack>
       </HStack>

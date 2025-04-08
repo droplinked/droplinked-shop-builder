@@ -27,7 +27,8 @@ function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
             </PopoverTrigger>
             <PopoverContent
                 width="500px"
-                border="1px solid #292929"
+                border="1px solid"
+                 borderColor="neutral.gray.800"
                 borderRadius={16}
                 padding={0}
                 backgroundColor="#141414"

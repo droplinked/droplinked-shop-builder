@@ -1,8 +1,8 @@
 import { Flex, Image, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import AppModal from 'components/redesign/modal/AppModal'
-import useAppToast from 'functions/hooks/toast/useToast'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import useAppToast from 'hooks/toast/useToast'
+import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { deployCircleContract } from 'lib/apis/shop/shopServices'
 import React, { useState } from 'react'
 import ModalBodyHeadline from './ModalBodyHeadline'
@@ -28,7 +28,6 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
             setIsProcessing(true)
             if (hasSelectedCircleWallet) {
                 await deployCircleContract(selectedChain)
-                // await recordSKUWithCircleWallet({ chain: selectedChain, params: {} })
             }
             else await recordFunction?.()
         }

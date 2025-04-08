@@ -1,4 +1,4 @@
-import { Box, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { Box, ChakraProps, useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { DateRangePickerProps } from "@wojtekmaj/react-daterange-picker";
 import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css";
 import React, { useEffect, useState } from "react";
@@ -13,9 +13,10 @@ export type DateRangeValue = [ValuePiece, ValuePiece] | ValuePiece;
 interface Props extends DateRangePickerProps {
   value: DateRangeValue;
   onChange: (value: DateRangeValue) => void;
+  width?: ChakraProps["width"];
 }
 
-export default function AppDateRangePicker({ value, onChange, disabled }: Props) {
+export default function AppDateRangePicker({ value, onChange, disabled, width }: Props) {
   const [tempValue, setTempValue] = useState<DateRangeValue>(value);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)')
@@ -30,7 +31,7 @@ export default function AppDateRangePicker({ value, onChange, disabled }: Props)
 
   if (isSmallerThan1024) {
     return (
-      <Box width={"100%"} opacity={disabled ? "0.5" : "1"}>
+      <Box width={width} opacity={disabled ? "0.5" : "1"}>
         <DateInput onClick={() => !disabled && onOpen()} selectedDate={value} />
         <MobileDateRangePicker
           isOpen={isOpen}
@@ -45,7 +46,7 @@ export default function AppDateRangePicker({ value, onChange, disabled }: Props)
   }
 
   return (
-    <Box opacity={disabled ? "0.5" : "1"}>
+    <Box width={width} opacity={disabled ? "0.5" : "1"}>
       <DesktopDateRangePicker
         isOpen={isOpen}
         onClose={onClose}

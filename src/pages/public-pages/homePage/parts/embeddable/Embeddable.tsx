@@ -1,6 +1,6 @@
 import { Flex, Image, VStack } from '@chakra-ui/react';
-import { ReactComponent as CryptoIcon } from 'assest/image/homepage/crypto.svg';
-import { ReactComponent as PaymentIcon } from 'assest/image/homepage/payment.svg';
+import { ReactComponent as CryptoIcon } from 'assets/image/homepage/crypto.svg';
+import { ReactComponent as PaymentIcon } from 'assets/image/homepage/payment.svg';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 import "swiper/css";
@@ -41,11 +41,11 @@ function Embeddable() {
                                 <Image src={el.image} borderRadius="8px" width="100%" />
                                 <AppTypography fontSize={{ base: "14px", lg: "20px" }}>{el.title}</AppTypography>
                                 <AppTypography fontSize={{ base: "14px", lg: "20px" }} fontWeight='bold'>{el.price}</AppTypography>
-                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
+                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="neutral.gray.800">
                                     <PaymentIcon />
                                     <AppTypography fontSize='14px' fontWeight='bold'>Fiat Payment</AppTypography>
                                 </Flex>
-                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
+                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="neutral.gray.800">
                                     <CryptoIcon />
                                     <AppTypography fontSize='14px' fontWeight='bold'>Crypto Payment</AppTypography>
                                 </Flex>

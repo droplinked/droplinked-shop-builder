@@ -5,7 +5,7 @@ import React from "react";
 export const OrderTotal = ({ amount, currency }: { amount: number; currency: any }) => (
     <VStack align="start" spacing="4" p="6">
       <HStack justify="space-between" w="full">
-        <Text fontSize="sm" fontWeight="normal" color="#7b7b7b">
+        <Text fontSize="sm" fontWeight="normal" color="text.subtextPlaceholder.dark">
           Total Paid
         </Text>
         <HStack spacing="1">

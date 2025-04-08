@@ -1,5 +1,5 @@
-import AppIcons from 'assest/icon/Appicons'
-import useAppToast from 'functions/hooks/toast/useToast'
+import AppIcons from 'assets/icon/Appicons'
+import useAppToast from 'hooks/toast/useToast'
 import React, { useCallback } from 'react'
 
 function ClipboardText({ text, iconStyles }: { text: string, iconStyles?: React.CSSProperties }) {

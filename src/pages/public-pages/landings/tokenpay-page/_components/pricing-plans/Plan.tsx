@@ -20,7 +20,7 @@ function Plan({ icon, title, description, price, children }: Props) {
                     <Box
                         alignSelf="start"
                         padding="12px 16px"
-                        backgroundColor="#3C3C3C"
+                        backgroundColor="neutral.gray.700"
                         borderRadius={8}
                     >
                         <SpectrumHeader fontSize={16}>{title}</SpectrumHeader>

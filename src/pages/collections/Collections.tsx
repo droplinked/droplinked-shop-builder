@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
-import useCollections from "functions/hooks/useCollections/useCollections";
+import useCollections from "hooks/useCollections/useCollections";
 import { useCheckPermission } from "lib/stores/app/appStore";
 import React, { useMemo, useState } from "react";
 import CollectionCreate from "./components/create/CollectionCreate";

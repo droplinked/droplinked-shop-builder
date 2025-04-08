@@ -1,15 +1,15 @@
-import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts'
-import useStack from 'functions/hooks/stack/useStack'
-import useAppToast from 'functions/hooks/toast/useToast'
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter'
-import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
+import useStack from 'hooks/stack/useStack'
+import useAppToast from 'hooks/toast/useToast'
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useAppWeb3 from 'hooks/web3/useWeb3'
 import { createProductService, updateProductService } from 'lib/apis/product/productServices'
 import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
 import useAppStore, { useLegalUsage } from 'lib/stores/app/appStore'
 import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore'
-import productTypeLegalUsageMap from 'lib/utils/helpers/productTypeLegalUsageMap'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
+import { productTypeUsageLimits } from 'utils/constants'
 
 interface Params {
     closeProductFormDrawer: () => void
@@ -154,7 +154,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const checkProductTypeLegalUsage = (productType: ProductType) => {
-        const { errorMessage, key } = productTypeLegalUsageMap[productType]
+        const { errorMessage, key } = productTypeUsageLimits[productType]
         const legalUsage = shopLegalUsage.find(obj => obj.key === key)
         if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0)) {
             throw new Error(errorMessage)

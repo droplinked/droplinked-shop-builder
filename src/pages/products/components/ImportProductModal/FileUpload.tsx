@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -22,7 +22,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
                 <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">Click</Box> {" "}
                 to add a new file or drag and drop it here.
             </AppTypography>
-            <AppTypography color="#7B7B7B">Just CSV (Up to 1MB)</AppTypography>
+            <AppTypography color="text.subtextPlaceholder.dark">Just CSV (Up to 1MB)</AppTypography>
         </>
 
 
@@ -33,7 +33,8 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             justifyContent="center"
             alignItems="center"
             gap={3}
-            border="1px dashed #3C3C3C"
+            border="1px dashed"
+            borderColor="neutral.gray.700"
             borderRadius={8}
             cursor="pointer"
             {...getRootProps()}

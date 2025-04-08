@@ -1,6 +1,3 @@
-import { useDisclosure } from '@chakra-ui/react'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 import React from 'react'
 import { ILandingPageTemplate } from '../../types/interfaces'
 import AboveTheFoldSection from '../above-the-fold/AboveTheFoldSection'
@@ -13,7 +10,6 @@ import DetailsSection from './DetailsSection'
 
 function LandingPageTemplate({ data }: { data: ILandingPageTemplate }) {
     const { aboveTheFoldSection, detailsSection, dualSideFlexData, featureGroups } = data
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <Layout>
@@ -21,8 +17,6 @@ function LandingPageTemplate({ data }: { data: ILandingPageTemplate }) {
                 image={aboveTheFoldSection.image}
                 title={aboveTheFoldSection.title}
                 description={aboveTheFoldSection.description}
-                CTAButtonText={aboveTheFoldSection.CTAButtonText}
-                CTAButtonFunction={onOpen}
             />
 
             <DetailsSection data={detailsSection} />
@@ -42,8 +36,6 @@ function LandingPageTemplate({ data }: { data: ILandingPageTemplate }) {
             <Features features={featureGroups} />
 
             <ConnectWithUs />
-
-            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )
 }

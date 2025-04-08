@@ -20,7 +20,6 @@ function DesignPageOptions() {
             <DesignPageProducts />
             <DesignPagefooter />
             <DesignPageReleaseDate />
-            {/* <DesignPageBanner /> */}
         </VStack>
     )
 }

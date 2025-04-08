@@ -4,10 +4,10 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
+import useAppToast from "hooks/toast/useToast";
 import { IforgetPasswordService } from "lib/apis/user/interfaces";
 import { forgetPasswordService } from "lib/apis/user/services";
-import AppErrors from "lib/utils/statics/errors/errors";
+import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useMutation } from "react-query";
 import * as Yup from 'yup';
@@ -28,7 +28,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   }
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required')
+    email: Yup.string().email(AppErrors.signin.invalidEmailAddress).required('Required')
   })
 
   return (

@@ -1,10 +1,11 @@
-import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
+import { Flex, HStack, VStack } from '@chakra-ui/react';
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
+import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/horizontalBarChart';
+import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle';
 import { IBreakDown } from 'lib/apis/credit/interfaces';
 import React from 'react';
-import { getColor } from '../utils/colorHelpers';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
+import { createColorMap, getColor } from '../utils/colorHelpers';
 
 interface Props {
     items: IBreakDown[]
@@ -13,21 +14,11 @@ interface Props {
 
 export default function ProgressBar({ items, type }: Props) {
     const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
-    const total = sortedItems.reduce((sum, item) => sum + item.amount, 0);
+    const colorMap = createColorMap(sortedItems, type)
 
     return (
         <VStack width="full" spacing={6} align="stretch">
-            <HStack spacing={1.5}>
-                {sortedItems.map((item, index) => (
-                    <Box
-                        key={index}
-                        width={`${(item.amount / total) * 100}%`}
-                        bg={getColor(index, sortedItems, type)}
-                        height="16px"
-                        borderRadius="4px"
-                    />
-                ))}
-            </HStack>
+            <HorizontalBarChart data={sortedItems} getValue={(item) => item.amount} getLabel={(item) => item.reason} colorMap={colorMap} />
             <HStack justifyContent="space-between" flexDirection={{ base: "column", sm: "row" }} flexWrap="wrap">
                 {sortedItems.map((item, index) => (
                     <Flex
@@ -39,22 +30,14 @@ export default function ProgressBar({ items, type }: Props) {
                         justifyContent={{ base: "space-between", sm: "flex-start" }}
                         sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}
                     >
-                        <Flex gap={2} alignItems="center" >
-                            <Box
-                                width="4px"
-                                height="16px"
-                                backgroundColor={getColor(index, sortedItems, type)}
-                                borderRadius="4px"
-                            />
-                            <AppTypography color="#fff" fontSize={14} fontWeight={400}>{item.reason}</AppTypography>
-                        </Flex>
-                        <Box display={{ base: "none", sm: "block" }}>
-                            <AppIcons.DotSpacer />
-                        </Box>
-                        <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
+                        <DotSeparatedList>
+                            <StylizedTitle bgColor={getColor(index, sortedItems, type)} title={item.reason} />
+                            <FormattedPrice price={item.amount} fontSize={14} fontWeight={400} />
+                        </DotSeparatedList>
                     </Flex>
                 ))}
             </HStack>
         </VStack>
     );
 }
+

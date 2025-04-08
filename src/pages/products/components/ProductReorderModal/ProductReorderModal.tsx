@@ -1,15 +1,14 @@
 import { ModalBody } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper';
+import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import useAppToast from 'functions/hooks/toast/useToast';
+import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts';
+import useAppToast from 'hooks/toast/useToast';
 import { getAllProductsService } from 'lib/apis/product/productServices';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import ProductList from './ProductList';
 import ProductReorderLoading from './ProductReorderLoading';
-import useInvalidateProductsQuery from 'functions/hooks/products/useInvalidateProducts';
 
 interface Props {
     isOpen: boolean;
@@ -40,7 +39,7 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
             modalContentProps={{ width: "600px", gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
-                icon={<ModalHeaderIconWrapper><AppIcons.HeaderProductBox /></ModalHeaderIconWrapper>}
+                icon={<AppIcons.HeaderProductBox />}
                 title='Reorder Products'
                 description='Organize products by dragging and dropping them in the order that they should be displayed on the storefront.'
                 modalHeaderProps={{

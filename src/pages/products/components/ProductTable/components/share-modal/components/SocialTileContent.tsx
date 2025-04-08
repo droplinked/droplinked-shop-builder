@@ -6,8 +6,7 @@ const SocialTileContent = () => {
   const embedCode = `<droplinked-product \n  tileId="66cda2055200359ae43ae62b">\n  </droplinked-product>`;
 
   return (
-    <Box width="100%" bg="#292929" padding="32px">
-      {/* تصویر پس‌زمینه در بالای صفحه و وسط */}
+    <Box width="100%" bg="neutral.gray.800" padding="32px">
       <Flex justifyContent="center" alignItems="center" mb="0">
         <Image
           src="https://upload-file-droplinked.s3.amazonaws.com/9d94bccf5c42f334bfd3627739e8baeb67466adac9d763d87a322a0abf76c8b3.png"

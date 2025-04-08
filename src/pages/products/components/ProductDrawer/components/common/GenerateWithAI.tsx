@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
-import useAppToast from 'functions/hooks/toast/useToast'
+import AppIcons from 'assets/icon/Appicons'
+import useAppToast from 'hooks/toast/useToast'
 import { IGenerateTitleDescription } from 'lib/apis/ai/interfaces'
 import { generateTitleDescription } from 'lib/apis/ai/services'
 import useProductForm from 'pages/products/hooks/useProductForm'
@@ -43,7 +43,7 @@ function GenerateWithAI() {
                 width={"100%"}
                 borderRadius={8}
                 padding={"12px 16px"}
-                background={"#1c1c1c"}
+                background={"neutral.gray.1000"}
                 flexDirection={"column"}
                 justifyContent={"start"}
                 alignItems={"start"}
@@ -54,11 +54,11 @@ function GenerateWithAI() {
                     <AppIcons.MagicWind />
                     <Flex flexDirection={"column"} gap={1}>
                         <Flex alignItems="center" gap="6px">
-                            <Text background={isDisabled ? "#4F4F4F" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
+                            <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
                                 Generate with AI
                             </Text>
                         </Flex>
-                        <Text fontSize={12} fontWeight={400} color={isDisabled ? "#4F4F4F" : "#FFFFFF"}>
+                        <Text fontSize={12} fontWeight={400} color={isDisabled ? "neutral.gray.650" : "#FFFFFF"}>
                             Populate a product name and description based on the chosen default image.
                         </Text>
                     </Flex>

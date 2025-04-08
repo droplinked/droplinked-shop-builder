@@ -1,15 +1,13 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
+import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices'
+import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal'
 import React, { useEffect } from 'react'
+import { useQuery } from 'react-query'
 import PlanFeatures from './PlanFeatures'
 import PlansContainer from './PlansContainer'
-import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal'
-import useSubscriptionPlanPurchaseStore from 'pages/subscription-plans/_components/plans/store/planPurchaseStore'
-import { useQuery } from 'react-query'
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
 
 export default function UpgradePlan() {
-    const { profile } = useProfile()
     const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
     const { isOpen, onClose, onOpen } = useDisclosure()
     const { isFetching, data } = useQuery({
@@ -32,21 +30,14 @@ export default function UpgradePlan() {
             borderRadius={"8px"}
             justifyContent={"space-between"}
             alignItems={"start"}
-            bg={"#1C1C1C"}
+            bg={"neutral.gray.1000"}
             position="relative"
             zIndex={1}
             overflow="hidden"
         >
             <PlanFeatures onOpen={onOpen} isFetching={isFetching} />
             <PlansContainer onOpen={onOpen} isFetching={isFetching} />
-            <SubscriptionPlanCheckoutModal
-                close={onClose}
-                isOpen={isOpen}
-                isFromPlansPage={false}
-                isLoggedInViaGoogle={false}
-                hasProfile={profile}
-            />
+            <SubscriptionPlanCheckoutModal close={onClose} isOpen={isOpen} />
         </Flex>
-
     )
 }

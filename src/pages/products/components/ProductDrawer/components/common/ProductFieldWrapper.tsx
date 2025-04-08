@@ -1,5 +1,5 @@
 import { Box, Flex, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
-import AppIcons from "assest/icon/Appicons"
+import AppIcons from "assets/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { PropsWithChildren, ReactNode } from "react"
 
@@ -32,7 +32,7 @@ function ProductFieldWrapper({ label, labelProps, description, isRequired = fals
                     >
                         {label} {isRequired && <AppIcons.Required />}
                     </FormLabel>
-                    {description && <Text fontSize={14} fontWeight={400} color="#7B7B7B">{description}</Text>}
+                    {description && <Text fontSize={14} fontWeight={400} color="text.subtextPlaceholder.dark">{description}</Text>}
                 </Flex>
                 {rightContent}
             </Flex>

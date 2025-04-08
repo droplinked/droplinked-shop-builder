@@ -1,6 +1,6 @@
 import { Box, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
@@ -19,7 +19,7 @@ const UserInfo = ({ shop, user }) => {
         <AppTypography color="#FFF" fontSize="16px" fontWeight="600">
           {user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : 'Welcome'}
         </AppTypography>
-        <AppTypography color="#C4C4C4" fontSize="12px">
+        <AppTypography color="neutral.gray.400" fontSize="12px">
           {getShopInfo()}
         </AppTypography>
       </Box>

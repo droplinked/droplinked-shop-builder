@@ -7,12 +7,10 @@ import {
     IGetProductsCommunityService,
     IGetSingleProductCommunity,
     IimportAffiliateProduct,
-    IproductByIdServices,
     IproductDeleteServices,
     IProductFetchParams,
     IProductReorder,
     IproductState,
-    IProductTile,
     IProductUpdateService,
 } from "./interfaces";
 
@@ -29,24 +27,12 @@ export const productDeleteServices = ({ productID }: IproductDeleteServices) => 
     return axiosInstance.delete(`product/${productID}`);
 };
 
-export const productByIdServices = ({ productID, shopname }: IproductByIdServices) => {
-    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}&recorded=true`);
-};
-
 export const printServices = () => {
     return axiosInstance.get(`product/public/print-services`);
 };
 
-export const generateBufferServices = (urls: Array<string>) => {
-    return axiosInstance.post(`product/generate/image/buffer`, urls);
-};
-
 export const productCategoryervices = () => {
     return axiosInstance.get(`product/public/categories/main`);
-};
-
-export const productsShopervices = (shopname: string) => {
-    return axiosInstance.get(`product/public/shop/${shopname}?page=1&limit=5`);
 };
 
 export const reorderProductsService = (data: IProductReorder) => {
@@ -55,22 +41,6 @@ export const reorderProductsService = (data: IProductReorder) => {
 
 export const getAllProductsService = () => {
     return axiosInstance.get("/product/all").then(res => res.data)
-};
-
-export const createProductTileService = (data: IProductTile) => {
-    return axiosInstance.post("/product/make/tile", data);
-};
-
-export const editProductTileService = (productTileId: string, data: IProductTile) => {
-    return axiosInstance.patch(`/product/edit/tile/${productTileId}`, data);
-};
-
-export const deleteProductTileService = (productTileId: string) => {
-    return axiosInstance.delete(`/product/tile/${productTileId}`);
-};
-
-export const getProductTileService = (productTileId: string) => {
-    return axiosInstance.get(`/product/tile/${productTileId}`);
 };
 
 export const duplicateProductService = (productId: string) => {

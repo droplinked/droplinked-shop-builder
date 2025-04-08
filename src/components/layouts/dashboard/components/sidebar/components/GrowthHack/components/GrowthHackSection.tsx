@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
@@ -37,7 +37,7 @@ const GrowthHackSection = ({ index, section, isCompleted, setCurrentSection, set
       </AppTypography>
 
       {/* Arrow Icon */}
-      <AppIcons.SidebarChevronright color='white'/>
+      <AppIcons.SidebarChevronright color='white' />
     </Box>
   );
 };

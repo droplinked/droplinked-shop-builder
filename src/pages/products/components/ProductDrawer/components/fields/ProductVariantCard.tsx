@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import AppIcons from 'assets/icon/Appicons'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
@@ -27,7 +27,8 @@ export default function ProductVariantCard({ variant, onEdit }: Props) {
         <Flex
             direction="column"
             gap={4}
-            border="1px solid #292929"
+            border="1px solid"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={4}
         >

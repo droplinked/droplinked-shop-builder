@@ -1,4 +1,4 @@
-import AppIcons from 'assest/icon/Appicons';
+import AppIcons from 'assets/icon/Appicons';
 import React, { useMemo } from 'react';
 import classes from './style.module.scss';
 

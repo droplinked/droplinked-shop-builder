@@ -4,7 +4,7 @@ import Select from 'components/redesign/select/Select'
 import { useFormikContext } from 'formik';
 import React from 'react'
 import { CouponFormValues } from './formConfigs';
-import { useCurrencyConverter } from 'functions/hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 
 export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
     const { values, handleChange, errors } = useFormikContext<CouponFormValues>();

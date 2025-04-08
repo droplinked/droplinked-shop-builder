@@ -11,7 +11,7 @@ function PaymentLinkSettings() {
     return (
         <PaymentLinkCard title='Settings'>
             <VariantsStyle />
-            <Divider borderColor={"#3C3C3C"} />
+            <Divider borderColor={"neutral.gray.700"} />
             <PaymentLinkSwitch
                 title='Additional Note'
                 description='Enable this if you want users to be able to write an order note or give any additional information.'
