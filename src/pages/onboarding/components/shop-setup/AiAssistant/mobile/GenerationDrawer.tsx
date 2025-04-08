@@ -38,7 +38,7 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
 
 
     return (
-        <Tabs display="none">
+        <Tabs display="none" defaultIndex={1}>
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
@@ -81,7 +81,7 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
                     )
                 }}
             >
-                <Flex flexDirection="column" gap={9} background="#1C1C1C">
+                <Flex flexDirection="column" gap={9} height="100%" background="#1C1C1C">
                     <TabPanels>
                         {tabs.map((tab) => (
                             <TabPanel key={tab.title}>
