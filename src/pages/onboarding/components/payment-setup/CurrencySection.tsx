@@ -17,17 +17,19 @@ function CurrencySection() {
       const latestShopData = await shopInfoService({ shopName: shop.shopName })
       const latestShop = latestShopData.data.data
 
-      await shopUpdateService({
+      // Create a new object with all existing shop data
+      const updatedShopData = {
         ...latestShop,
         currencyAbbreviation: currency
-      })
+      }
 
+      // Update the shop with all data preserved
+      const response = await shopUpdateService(updatedShopData)
+      
+      // Update the local state with the complete shop data from the response
       updateState({
         key: 'shop',
-        params: {
-          ...latestShop,
-          currencyAbbreviation: currency
-        }
+        params: response.data.data
       })
     } catch (error) {
       showToast({
@@ -42,7 +44,7 @@ function CurrencySection() {
   return (
     <Flex direction="column" gap={4}>
       <Text color={'text.white'}>Default Currency</Text>
-      <CurrencySelect value={shop?.currencyAbbreviation || 'USD'} onChange={(e) => handleCurrencyChange(e.target.value)} isDisabled={isLoading} />
+      <CurrencySelect value={shop?.currency.abbreviation || 'USD'} onChange={(e) => handleCurrencyChange(e.target.value)} isDisabled={isLoading} />
     </Flex>
   )
 }
