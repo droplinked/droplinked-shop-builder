@@ -25,8 +25,8 @@ function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
 
     const handleNextAction = () => {
         if (currentSlideIndex === 1) {
-            confetti({ particleCount: 320, spread: 240, origin: { x: 0, y: 0 }, angle: 45, colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'], gravity: 0.8 })
-            confetti({ particleCount: 320, spread: 240, origin: { x: 1, y: 0 }, angle: 135, colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'], gravity: 0.8 })
+            confetti({ zIndex: 99999, particleCount: 320, spread: 240, origin: { x: 0, y: 0 }, angle: 45, colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'], gravity: 0.8 })
+            confetti({ zIndex: 99999, particleCount: 320, spread: 240, origin: { x: 1, y: 0 }, angle: 135, colors: ['#ff0', '#f00', '#0f0', '#00f', '#ff00ff'], gravity: 0.8 })
             return navigate('/analytics')
         }
 
