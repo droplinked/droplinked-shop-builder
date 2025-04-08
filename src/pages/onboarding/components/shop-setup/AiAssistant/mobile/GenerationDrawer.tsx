@@ -81,10 +81,14 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
                     )
                 }}
             >
-                <Flex flexDirection="column" gap={9} height="100%" background="#1C1C1C">
+                <Flex flexDirection="column" gap={9} height="100%">
                     <TabPanels>
-                        {tabs.map((tab) => (
-                            <TabPanel key={tab.title}>
+                        {tabs.map((tab, index) => (
+                            <TabPanel
+                                key={tab.title}
+                                background="#1C1C1C"
+                                {...index === 0 && { height: "100dvh" }}
+                            >
                                 {tab.content}
                             </TabPanel>
                         ))}
