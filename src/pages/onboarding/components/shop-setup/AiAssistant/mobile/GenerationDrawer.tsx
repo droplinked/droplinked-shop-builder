@@ -50,7 +50,7 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
                     background: "#1C1C1C",
                     borderTopRadius: 16,
                     overflow: "hidden",
-                    height: "auto"
+                    height: { base: "100dvh", md: "auto" }
                 }}
                 onClick={onNextStep}
                 {...isSmallerThan768 && {
