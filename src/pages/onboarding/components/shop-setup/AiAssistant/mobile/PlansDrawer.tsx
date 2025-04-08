@@ -27,7 +27,7 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
             onClose={onClose}
             drawerContentStyle={{
                 borderTopRadius: 16,
-                height: "100dvh"
+                height: { base: "100dvh", md: "auto" }
             }}
             drawerHeaderStyle={{
                 padding: { base: 4, md: "48px" }
