@@ -13,10 +13,10 @@ export interface PaymentModalProps {
 }
 
 export default function PaymentModal({ isOpen, onClose, plan, clientSecret }: PaymentModalProps) {
-  const [isSmallerThan768] = useMediaQuery('(max-width: 768px)');
+  const [isMobileOrTablet] = useMediaQuery('(max-width: 1024px)');
   const planDetail = subscriptionPlans[plan];
 
-  if (isSmallerThan768) {
+  if (isMobileOrTablet) {
     return <PaymentDrawer isOpen={isOpen} onClose={onClose} planDetail={planDetail} clientSecret={clientSecret} />;
   }
 

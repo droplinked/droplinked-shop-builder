@@ -2,7 +2,6 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
-import Dashboard from "pages/dashboard/Dashboard";
 import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
@@ -26,6 +25,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Lazy-loaded Components
 const ResetPassPage = lazy(() => import("pages/auth-pages/reset-pass-page/ResetPassPage"));
+const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const ThankForRegisterPage = lazy(() => import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"));
 const VerifyEmailPage = lazy(() => import("pages/auth-pages/verify-email-page/Email-verification-page"));
 const Blogs = lazy(() => import("pages/blogs/Blogs"));
