@@ -15,28 +15,17 @@ import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
-import useAppStore from 'lib/stores/app/appStore'
-import { useNavigate } from 'react-router-dom'
 
 function Onboarding() {
-    const navigate = useNavigate()
     const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
     const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
-    const { user } = useAppStore()
 
     useEffect(() => {
         const searchParams = new URLSearchParams(window.location.search)
         const entry = searchParams.get("entry")
 
-        if (user?.status === "SHOP_INFO_COMPLETED" || user?.status === "IMS_TYPE_COMPLETED" || user?.status === "ACTIVE") {
-            navigate("/analytics/dashboard")
-            return
-        }
-
         if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-        else if (entry === 'email_confirmation') updateOnboardingState('currentStep', 'EMAIL_CONFIRMATION')
-        else if (entry === 'store_details') updateOnboardingState('currentStep', 'STORE_DETAILS')
     }, [updateOnboardingState])
 
     useEffect(() => {

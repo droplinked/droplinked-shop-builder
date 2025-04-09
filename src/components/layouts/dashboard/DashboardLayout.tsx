@@ -23,13 +23,9 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
 
   // Redirect users with specific statuses
   useEffect(() => {
-    if (user?.status === 'NEW') {
-      navigate('/onboarding?entry=email_confirmation');
-    }
-    else if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status)) {
-      navigate('/onboarding?entry=store_details');
-    }
-    else {
+    if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status)) {
+      navigate('/onboarding?entry=store-details');
+    } else {
       resetOnboarding();
     }
   }, [user, navigate]);
