@@ -12,7 +12,7 @@ export default function OnchainRecords() {
 
     return (
         <OnchainRecordsProvider>
-            <PageGrid.Root flexProps={{ overflowX: "hidden", padding: 0, paddingInline: 6, paddingBlock: 6 }}>
+            <PageGrid.Root flexProps={{ overflowX: "hidden", padding: 0 }}>
                 <PageGrid.Header
                     title="Onchain Records"
                     description="View inventory records and onchain activity."

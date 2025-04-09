@@ -14,9 +14,6 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
-  // Determine if padding should be applied based on the route
-  const unneededPaddingRoutes = ['account-settings', 'credits-and-activity', 'onchain-records'];
-  const shouldApplyPadding = !unneededPaddingRoutes.some((path) => location.includes(path));
   const isMobile = useBreakpointValue({ base: true, md: false });
   // Reference for detecting clicks outside the sidebar
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -70,7 +67,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
         {/* Main content */}
         <VStack flex="1" height="full" width="full">
           <DashboardLayoutHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-          <Box width="100%" minH="80vh" borderColor="neutral.gray.850" padding={shouldApplyPadding ? 6 : 0}>
+          <Box width="100%" minH="80vh" borderColor="neutral.gray.850" padding={6}>
             {children || <Outlet />}
           </Box>
         </VStack>

@@ -34,9 +34,7 @@ function SettingsPage() {
 
     return (
         <PageGrid.Root flexProps={{ overflowX: "hidden" }}>
-            <Box mx={6} mt={6}>
-                <PageGrid.Header title='Settings' description='Customize the platform to your Preferences' />
-            </Box>
+            <PageGrid.Header title='Settings' description='Customize the platform to your Preferences' />
             <Formik
                 initialValues={getSettingsPageInitValues(shop, user)}
                 validateOnChange={false}
