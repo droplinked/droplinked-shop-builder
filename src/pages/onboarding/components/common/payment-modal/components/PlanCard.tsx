@@ -11,9 +11,10 @@ export default function PlanCard({ plan }) {
       borderRadius={8}
       padding={{ xl: 9, base: 6 }}
       backgroundImage={'/assets/images/popular-plan-bg.png'}
+      backgroundColor={'neutral.gray.1000'}
       backgroundPosition={'top right'}
       backgroundRepeat={'no-repeat'}
-      backgroundSize={'auto 150%'}
+      backgroundSize={'auto 180%'}
       gap={4}
       w="100%"
     >

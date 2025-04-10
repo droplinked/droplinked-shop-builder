@@ -6,25 +6,36 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import { getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices'
 import { OnboardingStepProps, PlanType } from 'pages/onboarding/types/onboarding'
 import Loading from 'pages/subscription-plans/_components/plans/_components/loading/Loading'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PaymentModal from '../common/payment-modal/PaymentModal'
 import SubscriptionPlanCard from './SubscriptionPlanCard'
 import { getContinueText, getFeaturesWithInheritance } from './utils'
-import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 
 function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('BUSINESS')
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
   const [clientSecret, setClientSecret] = useState<string>('')
-  const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
+  const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
+  const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
 
   const { isFetching, data } = useQuery({
     queryKey: ['subscription-plans'],
     queryFn: () => getSubscriptionPlansService()
   })
+
+  // Update store when plans are fetched
+  useEffect(() => {
+    if (data?.data) {
+      const selectedPlanData = data.data.find(plan => plan.type === selectedPlan)
+      if (selectedPlanData) {
+        updateSelectedPlan(selectedPlanData)
+      }
+    }
+  }, [data?.data, selectedPlan, updateSelectedPlan])
 
   const { mutateAsync: createPaymentIntent, isLoading: isCreatingPaymentIntent } = useMutation(
     subscriptionPlanStripePaymentService,
@@ -39,7 +50,6 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
   const plans: SubscriptionPlan[] = data?.data || []
 
   const handleNext = async (): Promise<void> => {
-    console.log('selectedPlan', selectedPlan)
     if (selectedPlan === 'ENTERPRISE' || selectedPlan === 'STARTER') {
       onNext()
       return
@@ -47,11 +57,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     
     try {
       const selectedPlanData = plans.find(plan => plan.type === selectedPlan)
-      if (!selectedPlanData) {
-        console.error('Selected plan not found')
-        return
-      }
-
+     
       await createPaymentIntent({
         month: preferredPlanDuration.month,
         subId: selectedPlanData._id,
@@ -106,7 +112,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
       <ControlButtons 
         onBack={onBack} 
         onSubmit={handleNext} 
-        continueText={getContinueText(selectedPlan)} 
+        continueText={getContinueText(selectedPlan)}  
       />
       
       <PaymentModal 

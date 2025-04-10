@@ -11,9 +11,8 @@ interface Props extends FlexProps {
 }
 
 function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }: Props) {
-    const { preferredPlanDuration, planCardStyles } = useSubscriptionPlanPurchaseStore(state => ({
+    const { preferredPlanDuration} = useSubscriptionPlanPurchaseStore(state => ({
         preferredPlanDuration: state.preferredPlanDuration,
-        planCardStyles: state.planCardStyles,
     }))
 
     const targetPrice = useMemo(() => 
@@ -23,13 +22,13 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }:
     )
 
     const flexProps = useMemo(() => ({
-        height: `${planCardStyles.priceHeight}px`,
         flexWrap: "wrap" as const,
         alignItems: "baseline" as const,
         rowGap: 0,
         columnGap: 3,
+
         sx: { p: { fontSize: mainFontSize, fontWeight: 700, color: 'white' } }
-    }), [planCardStyles.priceHeight, mainFontSize])
+    }), [ mainFontSize])
 
     return (
         <Flex {...flexProps} {...props}>

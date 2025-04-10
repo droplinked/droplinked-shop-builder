@@ -64,7 +64,12 @@ const PaymentContent = ({ onClose,  planDetail, isDrawer, clientSecret }: Paymen
         </ModalBody>
       </Flex>
 
-      <Flex display={{ base: 'none', lg: 'flex' }} flex="0 0 50%" bg="neutral.background" p={6} alignItems="flex-start">
+      <Flex 
+        display={{ base: 'none', lg: 'flex' }} 
+        flex="0 0 50%" 
+        bg="neutral.background"
+        p="48px"
+      >
         <BillingInfo planDetail={planDetail} />
       </Flex>
     </Grid>
