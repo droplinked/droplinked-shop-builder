@@ -20,6 +20,7 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('')
   const nextStep = useOnboardingStore(state => state.nextStep)
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
+  const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
   
   const handlePaymentSubmit = async () => {
@@ -58,9 +59,9 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
         return
       }
 
-      // Confirm payment with server
+      // Confirm payment with server using the selected duration
       await subscriptionPlanStripePaymentService({
-        month: 1,
+        month: preferredPlanDuration.month,
         subId: updatedPlan._id,
         recurring: true
       })
@@ -91,7 +92,7 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
 
   return (
     <>
-      <Box p={1}>
+      <Box p={6}>
         <PaymentElement onChange={(e) => setFormCompleted(e.complete)} />
       </Box>
       {errorMessage && (
