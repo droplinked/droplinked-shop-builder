@@ -13,6 +13,7 @@ const SidebarItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef(null);
   const isMdOrSmaller = useBreakpointValue({ base: false, md: true, lg: false });
+  const isTablet = useBreakpointValue({ base: false, md: true, lg: false });
   const { shop } = useAppStore();
   const hasChild = item.list.length !== 0;
 
@@ -42,9 +43,13 @@ const SidebarItem = ({ item }) => {
                   <div ref={popoverRef}>
                     <PopoverTrigger>
                       <span onClick={() => setIsOpen(!isOpen)}>
-                        <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
+                        {isTablet ? (
+                          <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
+                            <item.icon color="#FFF" />
+                          </AppTooltip>
+                        ) : (
                           <item.icon color="#FFF" />
-                        </AppTooltip>
+                        )}
                       </span>
                     </PopoverTrigger>
                     <Portal>
@@ -57,9 +62,13 @@ const SidebarItem = ({ item }) => {
                   </div>
                 </Popover>
               ) : (
-                <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
+                isTablet ? (
+                  <AppTooltip flexShrink={0} placement="left-start" label={item.title} border="none" backgroundColor="neutral.gray.1000" ml={4} color="neutral.white">
+                    <item.icon color="#FFF" />
+                  </AppTooltip>
+                ) : (
                   <item.icon color="#FFF" />
-                </AppTooltip>
+                )
               )}
             </Box>
 
