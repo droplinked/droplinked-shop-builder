@@ -14,7 +14,7 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 
 ### Pull Requests
 
-1. Fork the repository and create your branch from `main`.
+1. Fork the repository and create your branch from `dev`.
 2. If you've added code that should be tested, add tests.
 3. If you've changed APIs, update the documentation.
 4. Ensure the test suite passes.
@@ -23,7 +23,7 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 
 ### Coding Style
 
-- We use ESLint and Prettier to maintain code quality.
+- We DON'T use ESLint and Prettier to maintain code quality.
 - All TypeScript code must include appropriate TSDoc comments.
 - Components should include concise, descriptive comments.
 - Follow the existing patterns in the codebase for consistency.

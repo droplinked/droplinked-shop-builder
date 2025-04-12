@@ -49,6 +49,7 @@ This platform enables merchants to create their online presence with a focus on 
 ```
 src/
 ├── assets/            # 📁 Static files (fonts, images, styles)
+├── __tests__/         # 🧪 Testing Files
 ├── components/        # 🧩 Reusable components
 │   ├── common/        # ⚙️ Base components
 │   ├── layouts/       # 🖼️ App layouts
@@ -87,7 +88,6 @@ The application follows a unidirectional data flow pattern:
 - Email verification flow
 - JWT-based authentication
 - Social login integrations
-- Password recovery mechanisms
 
 ### 4.2. Dashboard (📊)
 - Sales analytics with customizable date ranges
@@ -130,7 +130,6 @@ The application follows a unidirectional data flow pattern:
 
 ### 5.1. Internal API
 - REST-based architecture
-- Endpoint documentation available in `/docs/api-reference.md`
 - JWT authentication for secure requests
 - Rate limiting for security
 
@@ -151,7 +150,6 @@ The application follows a unidirectional data flow pattern:
 
 ### 5.3. Third-party Services
 - Email delivery services
-- SMS notifications
 - Cloud storage for product images
 - CDN for optimized content delivery
 
@@ -172,11 +170,6 @@ The application follows a unidirectional data flow pattern:
 - Order processing
 - Customer management
 - Settings
-
-### 6.3. Special Routes
-- Webhook endpoints
-- API callbacks
-- OAuth redirects
 
 ---
 
@@ -209,13 +202,23 @@ npm run analyze
 
 # Find unused exports
 npm run find-deadcode
+
+# Run all tests
+npm test
+
+# Run tests in watch mode (recommended during development)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Debug tests
+npm run test:debug
 ```
 
 ### 7.4. Environment Variables
-- `REACT_APP_API_URL` - Backend API URL
-- `REACT_APP_BLOCKCHAIN_NETWORK` - Target blockchain network
-- `REACT_APP_STRIPE_KEY` - Stripe public key
-- See `.env.example` for the complete list
+- **Don't commit ENV Files!**
+- Message your team lead to receive related files.
 
 ---
 
@@ -227,7 +230,6 @@ npm run find-deadcode
 - Protection against CSRF and XSS attacks
 
 ### 8.2. Authorization
-- Role-based access control system
 - Permission checking at component level
 - API endpoint protection
 
@@ -271,9 +273,8 @@ npm run find-deadcode
 - GitHub account for contribution
 
 ### 10.2. Recommended Tools
-- VS Code with ESLint and Prettier plugins
+- VS Code with Typescript default prettier
 - React Developer Tools browser extension
-- Redux DevTools for state debugging
 - MetaMask for blockchain interaction testing
 
 ---
@@ -318,69 +319,35 @@ npm run find-deadcode
 - **Important**: All comments in the codebase should be preserved when using AI tools for code generation or refactoring
 
 ### 12.2. API Documentation
-- API reference in `/docs/api-reference.md`
-- Sample API requests in `/docs/api-examples.md`
-- Postman collection available in `/docs/postman/`
+- API reference in https://apiv3dev.droplinked.com/api-doc/#/
 
-### 12.3. User Documentation
-- Admin user guide
-- Store setup walkthrough
-- Blockchain feature explanations
-
-### 12.4. Development Guidelines
+### 12.3. Development Guidelines
 - Contribution guide in `/docs/CONTRIBUTING.md`
 - Coding standards in `/docs/CODE_STANDARDS.md`
-- Git workflow in `/docs/GIT_WORKFLOW.md`
+- Testing guide in `/docs/TESTING.md`
 
 ---
 
-### 13.1. Technical Improvements
-- Server-Side Rendering (SSR) implementation for better SEO and performance
-- GraphQL API integration for more efficient data fetching
-- WebAssembly for computation-heavy features
-- PWA capabilities for offline access
+## 13. 👨‍💻 For Developers
 
-### 13.2. Feature Expansion
-- Additional blockchain network integrations
-- Advanced analytics dashboard
-- AI-powered product recommendations
-- Enhanced customization capabilities
-
-### 13.3. Developer Experience
-- SDK development for third-party integrations
-- Webhook system for event notifications
-- Plugin architecture for extensibility
-- Improved testing coverage
-
-### 13.4. Infrastructure
-- Multi-region deployment
-- Enhanced caching strategies
-- Microservices architecture adoption
-- Automated scaling based on traffic patterns
-
----
-
-## 14. 👨‍💻 For Developers
-
-### 14.1. Contribution Guidelines
+### 13.1. Contribution Guidelines
 Before contributing to this project, please read our [contribution guidelines](/docs/CONTRIBUTING.md). All pull requests should follow the established coding standards and include appropriate tests.
 
-### 14.2. Code Documentation Standards
+### 13.2. Code Documentation Standards
 - **Components**: Use concise JSDoc/TSDoc comments that describe the component's purpose.
 - **Hooks**: Each custom hook should have dedicated documentation in the `/docs/hooks/` directory.
 - **TypeScript**: All types, interfaces, and functions should include TSDoc comments.
 
-### 14.3. Comment Preservation Policy
+### 13.3. Comment Preservation Policy
 **IMPORTANT**: Under no circumstances should comments be deleted when using AI tools like code generators or refactoring assistants. Comments contain crucial context and documentation that helps maintain the codebase's understandability.
 
-### 14.4. Available Documentation
+### 13.4. Available Documentation
 - Comprehensive documentation is available in the `/docs` folder
 - Component examples and interactive documentation will be available in Storybook (coming soon)
-- Architecture diagrams and flow charts in `/docs/architecture/`
 
 ---
 
-## 16. 📝 License
+## 14. 📝 License
 This project is licensed under the [MIT License](LICENSE.md) - see the license file for details.
 
 ---
