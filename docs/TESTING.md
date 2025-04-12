@@ -119,10 +119,10 @@ test('renders button with correct text', () => {
 
 ### Testing React Hooks
 
-Use `@testing-library/react-hooks`:
+Use `@testing-library/react`:
 
 ```typescript
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
