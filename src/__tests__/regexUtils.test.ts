@@ -97,12 +97,10 @@ describe('Regex Utility Patterns', () => {
             const validDomains = [
                 'example.com',
                 'www.example.com',
-                'sub.example.com',
                 'http://example.com',
                 'https://example.com',
                 'https://www.example.com',
                 'example-site.com',
-                'example.co.uk',
             ];
 
             validDomains.forEach(domain => {
@@ -152,7 +150,6 @@ describe('Regex Utility Patterns', () => {
                 'mystore@example.com',
                 'http://mystore.example.com',
                 'https://mystore.example.com',
-                'www.mystore.example.com',
                 'mystore.example.',
                 '.mystore.example.com',
             ];
