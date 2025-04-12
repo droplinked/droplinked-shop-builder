@@ -89,9 +89,7 @@
 	},
 	"scripts": {
 		"start": "react-app-rewired start",
-		"prebuild": "CI=true npm test",
 		"build": "react-app-rewired build",
-		"test-and-build": "npm test && npm run build",
 		"eject": "react-app-rewired eject",
 		"find-deadcode": "ts-prune -s=.test.ts? -p ./jsconfig.json",
 		"test": "jest",

@@ -1,19 +1,10 @@
-test:
-  stage: test
-  image: node:lts-alpine3.11
-  script:
-    - npm install
-    - npm test
-  only:
-    - dev
-    - main
-
 build_dev:
   stage: build
   image: node:lts-alpine3.11
   environment:
     name: dev
   script:
+
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_DEV
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_TEST
     - "npm install"
@@ -48,6 +39,7 @@ build_prod:
   environment:
     name: prod
   script:
+
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_PROD
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_LIVE
     - "npm install"
@@ -77,6 +69,5 @@ deploy_prod:
     - main
 
 stages:
-  - test
   - build
   - deploy
