@@ -1,17 +1,17 @@
-# Code Standards for Droplinked Shop Builder
+# 📏 Code Standards for Droplinked Shop Builder
 
 This document outlines the coding standards and practices to maintain consistency throughout the Droplinked Shop Builder codebase.
 
-## General Principles
+## 🎯 General Principles
 
-- **Readability**: Code should be written with clarity and readability as primary concerns.
-- **Maintainability**: Structure code to be easily maintained and extended.
-- **Performance**: Consider performance implications, especially for UI components.
-- **Documentation**: All code should be appropriately documented.
+- **📖 Readability**: Code should be written with clarity and readability as primary concerns.
+- **🔧 Maintainability**: Structure code to be easily maintained and extended.
+- **⚡ Performance**: Consider performance implications, especially for UI components.
+- **📝 Documentation**: All code should be appropriately documented.
 
-## React Component Standards
+## ⚛️ React Component Standards
 
-### Component Structure
+### 🧩 Component Structure
 
 - Use functional components with hooks
 - Organize imports logically:
@@ -22,7 +22,7 @@ This document outlines the coding standards and practices to maintain consistenc
 - Keep components focused on a single responsibility
 - Extract complex logic to custom hooks
 
-### Readability Guidelines
+### 👀 Readability Guidelines
 
 - **Avoid semicolons** when possible
 - **String props** should be written directly without curly braces: `prop="value"` instead of `prop={"value"}`
@@ -178,7 +178,7 @@ return (
 )
 ```
 
-### Component Documentation
+### 📚 Component Documentation
 
 ```tsx
 /**
@@ -193,9 +193,9 @@ function UserProfileCard({ user, isEditable, onEdit }: UserProfileCardProps) {
 }
 ```
 
-## TypeScript Standards
+## 🧰 TypeScript Standards
 
-### Type Definitions
+### 📋 Type Definitions
 
 - Use explicit types rather than `any` wherever possible
 - Define interfaces for object structures
@@ -219,14 +219,14 @@ interface User {
 }
 ```
 
-### Best Practices
+### ✅ Best Practices
 
 - Use type narrowing instead of type assertions when possible
 - Leverage TypeScript's structural typing
 - Use generics for reusable components and functions
 - Apply strict null checking
 
-## Custom Hook Standards
+## 🪝 Custom Hook Standards
 
 - Begin all custom hook names with `use`
 - Document parameters and return values thoroughly
@@ -247,20 +247,20 @@ function usePagination(initialPage = 1, itemsPerPage = 10, totalItems = 0) {
 }
 ```
 
-## CSS/SCSS Standards
+## 🎨 CSS/SCSS Standards
 
 - Use BEM naming convention for class names
 - Prefer component-scoped styles (CSS modules or styled components)
 - Maintain a consistent color palette using variables
 - Design for mobile-first, then enhance for larger screens
 
-## Testing Standards
+## 🧪 Testing Standards
 
 - Write tests for all new features
 - Aim for significant test coverage
 - Test component behavior, not implementation details
 - Use appropriate testing patterns (unit, integration, snapshot)
 
-## Comment Preservation Policy
+## 💬 Comment Preservation Policy
 
 **All comments in the codebase must be preserved** when modifying code, including when using AI-assisted tools for code generation or refactoring. Comments contain essential context and documentation.
