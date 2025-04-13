@@ -12,7 +12,7 @@ import React from "react";
 import { useMutation } from "react-query";
 import * as Yup from 'yup';
 
-const ResetPassModal = ({ show, close, switchReset }) => {
+const ResetPassModal = ({ show, close }) => {
   const { mutateAsync, isLoading } = useMutation((params: IforgetPasswordService) => forgetPasswordService(params))
   const { showToast } = useAppToast();
 
@@ -52,7 +52,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
                 onChange={(e) => setFieldValue("email", e.target.value)}
               />
               <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Send Verification</BasicButton>
-              <BasicButton width={"100%"} sizes="medium" onClick={switchReset} variant={"link"}>
+              <BasicButton width={"100%"} sizes="medium" onClick={close} variant={"link"}>
                 Back to login
               </BasicButton>
             </VStack>
