@@ -1,5 +1,6 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'hooks/debounce/useDebounce'
+import useProducts from 'hooks/products/useProducts'
 import useModalHandlers from 'pages/products/hooks/useModalHandlers'
 import React, { useEffect, useState } from 'react'
 import ImportProductModal from './components/ImportProductModal/ImportProductModal'
@@ -8,7 +9,6 @@ import ProductDrawer from './components/ProductDrawer/ProductDrawer'
 import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable/ProductTable'
 import useProductPageStore from './stores/ProductPageStore'
-import useProducts from 'hooks/products/useProducts'
 
 function ProductsV2() {
     const { selectedProductType, editingProductId } = useProductPageStore(s => ({
@@ -34,7 +34,6 @@ function ProductsV2() {
                 <PageHeader
                     onImportModalOpen={importProductModal.onOpen}
                     onReorderModalOpen={productReorderModal.onOpen}
-                    productsCount={productsCount}
                     isActionEnabled={isActionEnabled}
                 />
                 <PageGrid.Actions
@@ -50,9 +49,11 @@ function ProductsV2() {
             </PageGrid.Root>
 
             {/* Modals */}
-            <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
-            <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
+            <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
+            {productReorderModal.isOpen &&
+                <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
+            }
         </>
     )
 }

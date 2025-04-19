@@ -7,11 +7,10 @@ import ProductTypesPopover from './ProductTypesPopover/ProductTypesPopover'
 interface Props {
     onImportModalOpen: () => void
     onReorderModalOpen: () => void
-    productsCount: number
     isActionEnabled: boolean
 }
 
-function RightContent({ onImportModalOpen, onReorderModalOpen, productsCount, isActionEnabled }: Props) {
+function RightContent({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: Props) {
     return (
         <Flex flexDirection="row-reverse" gap={4}>
             <ProductTypesPopover>

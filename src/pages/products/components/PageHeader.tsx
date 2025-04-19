@@ -5,11 +5,10 @@ import RightContent from './PageHeaderRightContent/RightContent'
 interface ProductHeaderProps {
     onImportModalOpen: () => void
     onReorderModalOpen: () => void
-    productsCount: number
     isActionEnabled: boolean
 }
 
-function PageHeader({ onImportModalOpen, onReorderModalOpen, productsCount, isActionEnabled }: ProductHeaderProps) {
+function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: ProductHeaderProps) {
     return (
         <PageGrid.Header
             title="Products"
@@ -18,7 +17,6 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, productsCount, isAc
                 <RightContent
                     onImportModalOpen={onImportModalOpen}
                     onReorderModalOpen={onReorderModalOpen}
-                    productsCount={productsCount}
                     isActionEnabled={isActionEnabled}
                 />
             }
