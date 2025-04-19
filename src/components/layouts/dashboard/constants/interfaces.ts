@@ -19,6 +19,7 @@ export type SidebarItem = {
   linkTo?: string | null;
   list: Array<{ listTitle: string; linkTo: string }>;
   onClick?: () => void;
+  external?: boolean;
 };
 
 /**
