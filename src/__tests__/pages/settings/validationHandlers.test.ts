@@ -1,6 +1,4 @@
-import {
-    handleValidations,
-} from '../../../pages/settings/validationHandlers';
+import { handleValidations } from '../../../pages/settings/validationHandlers';
 import { ISettings } from '../../../pages/settings/formConfigs';
 
 describe('Validation Handlers', () => {
