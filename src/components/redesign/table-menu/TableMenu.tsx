@@ -7,7 +7,8 @@ interface Props {
         icon: ReactElement,
         title: string,
         color?: string,
-        onClick: () => void
+        onClick: () => void,
+        isDisabled?: boolean,
     }[]
 }
 
@@ -40,7 +41,7 @@ export default function TableMenu({ items }: Props) {
                     }}
                 >
                     {items.map((item, index) => (
-                        !!Object.keys(item).length && <MenuItem key={index} {...item}>{item.title}</MenuItem>
+                        !!Object.keys(item).length && <MenuItem isDisabled={item.isDisabled} key={index} {...item}>{item.title}</MenuItem>
                     ))}
                 </MenuList>
             </Menu>

@@ -6,6 +6,7 @@ import { IOrders } from '../interface';
 import DateCell from './DateCell';
 import AppBadge from 'components/redesign/badge/AppBadge';
 import { formatUnderlinedText } from '../helpers';
+import ControlsPopover from './ControlsPopover';
 
 interface Props {
     purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;
@@ -40,7 +41,12 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
                 size='24'
                 status={info.row.original.status === "PAYMENT_CONFIRMED" ? "success" : info.row.original.status === "INITIALIZED_FOR_PAYMENT" ? "pending" : "error"}
             />,
-        }
+        },
+        {
+            accessorKey: "_id",
+            header: "",
+            cell: (info) => <ControlsPopover id={info.row.original._id} isCancelled={info.row.original.status === "CANCELED"} />,
+        },
     ];
 
     return (
