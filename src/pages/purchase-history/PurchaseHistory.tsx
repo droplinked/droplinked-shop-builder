@@ -2,9 +2,10 @@ import PageGrid from 'components/redesign/page-grid/PageGrid';
 import React from 'react';
 import EmptyView from './components/EmptyView';
 import ExportButton from './components/ExportButton';
+import HistoryTable from './components/HistoryTable';
 
 export default function PurchaseHistory() {
-    const isEmpty = true;
+    const isEmpty = false;
 
     return (
         <PageGrid.Root
@@ -18,7 +19,7 @@ export default function PurchaseHistory() {
             <PageGrid.Header
                 title="Purchase History"
                 description="Easily view, manage and track all orders here."
-                {...isEmpty && {
+                {...!!isEmpty && {
                     rightContent:
                         <ExportButton />
                 }}
@@ -27,7 +28,7 @@ export default function PurchaseHistory() {
             <PageGrid.Content>
                 {isEmpty ?
                     <EmptyView /> :
-                    <div>Purchase History Table</div>
+                    <HistoryTable />
                 }
             </PageGrid.Content>
         </PageGrid.Root>
