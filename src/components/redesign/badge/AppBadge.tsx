@@ -41,7 +41,7 @@ function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props 
         '24': {
           padding: '2px 12px',
           fontSize: '12px',
-          gap: '8px'
+          gap: '8px',
         },
         '32': {
           padding: '6px 16px',
@@ -67,7 +67,7 @@ function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props 
       {...props}
     >
       {Icon && <Icon />}
-      <Text fontWeight="bold" fontSize={styles.size[size].fontSize} color={styles.status[status].color}>
+      <Text fontWeight={400} fontSize={styles.size[size].fontSize} color={styles.status[status].color}>
         {text}
       </Text>
     </Badge>

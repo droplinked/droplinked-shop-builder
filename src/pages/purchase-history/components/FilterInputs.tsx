@@ -1,4 +1,5 @@
 import { Flex } from '@chakra-ui/react';
+import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
 import { SearchMd } from 'assets/icons/System/Search/SearchMd';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import Input from 'components/redesign/input/Input';
@@ -10,10 +11,11 @@ import { useQuery } from 'react-query';
 interface Props {
     onSearchChange: (value: string) => void;
     onStatusChange: (value: string) => void;
-    selectValue?: string | null;
+    selectValue?: string;
+    searchValue?: string;
 }
 
-export default function FilterInputs({ onSearchChange, onStatusChange, selectValue }: Props) {
+export default function FilterInputs({ onSearchChange, onStatusChange, selectValue, searchValue }: Props) {
     const { isFetching, data } = useQuery({
         queryKey: ["orders-statues"],
         queryFn: () => ordersStatuesServices(),
@@ -23,15 +25,19 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
     });
 
     return (
-        <Flex alignItems="center" justifyContent="space-between" flexDirection={{ base: "column", md: "row" }} >
+        <Flex alignItems="center" justifyContent="space-between" gap={{ base: 4, md: 0 }}>
             <Input
                 leftElement={<SearchMd color='#7b7b7b' />}
                 inputGroupProps={{
                     width: { base: "100%", md: "auto" },
                 }}
+                inputContainerProps={{
+                    padding: { base: "10px 16px", md: "12px 16px" },
+                }}
                 inputProps={{
                     placeholder: "Search Products...",
                     onChange: (e) => onSearchChange(e.target.value),
+                    value: searchValue,
                 }}
             />
             <AppSkeleton borderRadius={8} isLoaded={!isFetching}>
@@ -42,6 +48,9 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                     }
                     placeholder='Status'
                     onChange={(value: string) => onStatusChange(value)}
+                    mobileModeIcon={<FilterMd color='#fff' />}
+                    value={selectValue}
+                    showCheckbox
                 />
             </AppSkeleton>
         </Flex>
