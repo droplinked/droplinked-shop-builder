@@ -20,7 +20,7 @@ export default function PurchaseHistory() {
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
     })
 
-    const isEmpty = purchaseHistoryQuery.data?.pages[0]?.data?.length === 0;
+    const isEmpty = purchaseHistoryQuery.data?.pages[0]?.data?.length === 0 && !searchValue && !statusValue;
 
     return (
         <PageGrid.Root

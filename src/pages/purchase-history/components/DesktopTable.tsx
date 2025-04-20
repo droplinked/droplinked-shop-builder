@@ -43,7 +43,6 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         }
     ];
 
-
     return (
         <Table
             infiniteScroll={{
