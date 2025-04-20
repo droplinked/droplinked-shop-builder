@@ -19,7 +19,7 @@ export default function PurchaseHistory() {
             <PageGrid.Header
                 title="Purchase History"
                 description="Easily view, manage and track all orders here."
-                {...!!isEmpty && {
+                {...!isEmpty && {
                     rightContent:
                         <ExportButton />
                 }}
