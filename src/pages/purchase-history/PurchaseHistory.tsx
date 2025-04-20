@@ -1,33 +1,34 @@
-import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
-import PageGrid from 'components/redesign/page-grid/PageGrid'
-import React from 'react'
+import PageGrid from 'components/redesign/page-grid/PageGrid';
+import React from 'react';
+import EmptyView from './components/EmptyView';
+import ExportButton from './components/ExportButton';
 
 export default function PurchaseHistory() {
+    const isEmpty = true;
+
     return (
-        <PageGrid.Root flexProps={{ overflowX: "hidden", padding: 0 }}>
+        <PageGrid.Root
+            flexProps={{
+                overflowX: "hidden",
+                overflow: isEmpty ? "hidden" : "auto",
+                padding: 0,
+                height: "100%"
+            }}
+        >
             <PageGrid.Header
                 title="Purchase History"
                 description="Easily view, manage and track all orders here."
-                rightContent={
-                    <Flex>
-                        <Button
-                            fontSize={14}
-                            fontWeight={500}
-                            iconSpacing="6px"
-                            paddingInline="14px"
-                            variant='secondary'
-                            onClick={() => alert("Export Clicked")}
-                        >
-                            Export
-                        </Button>
-                    </Flex>
-                }
+                {...isEmpty && {
+                    rightContent:
+                        <ExportButton />
+                }}
             />
 
             <PageGrid.Content>
-                {/* <Records /> */}
-                <div>Purchase History</div>
+                {isEmpty ?
+                    <EmptyView /> :
+                    <div>Purchase History Table</div>
+                }
             </PageGrid.Content>
         </PageGrid.Root>
     )
