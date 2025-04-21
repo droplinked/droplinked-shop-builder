@@ -32,7 +32,7 @@ export default function MobileCards({ item }: Props) {
                         size='24'
                         status={status === "PAYMENT_CONFIRMED" ? "success" : status === "INITIALIZED_FOR_PAYMENT" ? "pending" : "error"}
                     />
-                    <ControlsPopover id={_id} isCancelled={status === "CANCELED"} />
+                    <ControlsPopover rowData={item} isCancelled={status === "CANCELED"} />
                 </Flex>
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">

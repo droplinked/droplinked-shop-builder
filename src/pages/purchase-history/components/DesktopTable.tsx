@@ -45,7 +45,7 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         {
             accessorKey: "_id",
             header: "",
-            cell: (info) => <ControlsPopover id={info.row.original._id} isCancelled={info.row.original.status === "CANCELED"} />,
+            cell: (info) => <ControlsPopover rowData={info.row.original} isCancelled={info.row.original.status === "CANCELED"} />,
         },
     ];
 

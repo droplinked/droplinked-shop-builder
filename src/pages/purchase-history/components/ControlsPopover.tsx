@@ -4,14 +4,17 @@ import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React from 'react'
 import CancelOrderModal from './CancelOrderModal'
+import OrderDetails from './OrderDetails'
+import { IOrders } from '../interface'
 
 interface Props {
-    id: string
+    rowData: IOrders
     isCancelled: boolean,
 }
 
-export default function ControlsPopover({ id, isCancelled }: Props) {
+export default function ControlsPopover({ rowData, isCancelled }: Props) {
     const { isOpen: isCancelModalOpen, onClose: onCancelModalClose, onOpen: onCancelModalOpen } = useDisclosure()
+    const { isOpen: isDetailsDrawerOpen, onClose: onDetailsDrawerClose, onOpen: onDetailsDrawerOpen } = useDisclosure()
 
     return (
         <>
@@ -19,7 +22,7 @@ export default function ControlsPopover({ id, isCancelled }: Props) {
                 items={[
                     {
                         icon: <InvoiceMd color='#fff' />,
-                        onClick: () => console.log("hi"),
+                        onClick: onDetailsDrawerOpen,
                         title: "Order Details",
                         color: "#fff"
                     },
@@ -32,7 +35,8 @@ export default function ControlsPopover({ id, isCancelled }: Props) {
                     }
                 ]}
             />
-            <CancelOrderModal isOpen={isCancelModalOpen} onClose={onCancelModalClose} orderID={id} />
+            <CancelOrderModal isOpen={isCancelModalOpen} onClose={onCancelModalClose} orderID={rowData._id} />
+            {isDetailsDrawerOpen && <OrderDetails rowData={rowData} isOpen={isDetailsDrawerOpen} onClose={onDetailsDrawerClose} />}
         </>
     )
 }
