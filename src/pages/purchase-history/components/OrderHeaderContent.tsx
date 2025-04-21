@@ -32,9 +32,11 @@ export default function OrderHeaderContent({ isFetching, updatedAt, orderStatus,
                     />
                 </AppSkeleton>
             </Flex>
-            <Flex width="100%">
-                <TabsList tabs={tabs} />
-            </Flex>
+            {tabs && (
+                <Flex width="100%">
+                    <TabsList tabs={tabs} />
+                </Flex>
+            )}
         </Flex>
     )
 }
