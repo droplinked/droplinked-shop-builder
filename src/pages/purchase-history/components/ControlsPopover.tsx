@@ -20,7 +20,8 @@ export default function ControlsPopover({ id, isCancelled }: Props) {
                     {
                         icon: <InvoiceMd color='#fff' />,
                         onClick: () => console.log("hi"),
-                        title: "Order Details"
+                        title: "Order Details",
+                        color: "#fff"
                     },
                     {
                         icon: <CloseMd color='#FF2244' />,

@@ -25,7 +25,7 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         {
             accessorKey: "customerAddressBook",
             header: "Customer",
-            cell: (info) => info.row.original?.customerAddressBook ? (info.row.original.customerAddressBook.firstName + " " + info.row.original.customerAddressBook.lastName) : "---",
+            cell: (info) => info.row.original?.customerAddressBook ? (info.row.original.customerAddressBook.firstName + " " + info.row.original.customerAddressBook.lastName) : info.row.original.customerEmail,
         },
         {
             accessorKey: "updatedAt",

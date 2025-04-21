@@ -4,6 +4,7 @@ export interface IOrders {
         firstName: string,
         lastName: string,
     }
+    customerEmail: string,
     updatedAt: Date,
     status: "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED"
 }

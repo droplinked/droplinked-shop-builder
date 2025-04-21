@@ -15,8 +15,15 @@ export const formattedTime = (date: Date) => {
 }
 
 export const formatUnderlinedText = (status: string): string => {
+    if (!status) return '';
+
     return status
         .split('_')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(' ');
 };
+
+export const truncateText = (text: string, maxLength: number = 15) => {
+    if (text.length <= maxLength) return text;
+    return `${text.substring(0, maxLength)}...`;
+}

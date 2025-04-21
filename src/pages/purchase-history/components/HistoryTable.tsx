@@ -26,7 +26,7 @@ export default function HistoryTable({ onStatusChange, onSearchChange, searchVal
             />
 
             {isSmallerThan768 ?
-                <MobileTable /> :
+                <MobileTable purchaseHistoryQuery={purchaseHistoryQuery} /> :
                 <DesktopTable purchaseHistoryQuery={purchaseHistoryQuery} />
             }
         </Flex>
