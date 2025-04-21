@@ -6,7 +6,7 @@ import { ordersServices } from 'lib/apis/orders/orderServices';
 import React, { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import EmptyView from './components/EmptyView';
-import HistoryTable from './components/HistoryTable';
+import HistoryTable from './components/table-components/HistoryTable';
 import { AxiosError } from 'axios';
 
 export default function PurchaseHistory() {

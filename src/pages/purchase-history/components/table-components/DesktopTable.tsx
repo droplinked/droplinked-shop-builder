@@ -2,11 +2,11 @@ import { ColumnDef } from '@tanstack/react-table';
 import Table from 'components/redesign/table/Table'
 import React from 'react'
 import { UseInfiniteQueryResult } from 'react-query';
-import { IOrders } from '../interface';
+import { IOrders } from 'pages/purchase-history/interface';
 import DateCell from './DateCell';
 import AppBadge from 'components/redesign/badge/AppBadge';
-import { formatUnderlinedText } from '../helpers';
-import ControlsPopover from './ControlsPopover';
+import { formatUnderlinedText } from '../../helpers';
+import ControlsPopover from '../ControlsPopover';
 
 interface Props {
     purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;

@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import React from 'react';
-import InfoWrapper from '../InfoWrapper';
-import TitledText from '../TitledText';
+import InfoWrapper from '../drawer-components/InfoWrapper';
+import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'lib/apis/order/interfaces';
 
 interface PaymentDetailsProps {

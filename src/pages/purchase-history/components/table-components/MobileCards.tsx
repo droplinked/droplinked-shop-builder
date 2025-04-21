@@ -1,9 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import React from 'react'
-import { formatUnderlinedText, truncateText } from '../helpers'
-import { IOrders } from '../interface'
-import ControlsPopover from './ControlsPopover'
+import { formatUnderlinedText, truncateText } from '../../helpers'
+import { IOrders } from '../../interface'
+import ControlsPopover from '../ControlsPopover'
 import DateCell from './DateCell'
 
 interface Props {

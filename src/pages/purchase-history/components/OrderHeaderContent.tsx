@@ -3,7 +3,7 @@ import React from 'react'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import { formattedDate, formattedTime, formatUnderlinedText } from '../helpers'
-import { TabsList } from './TabList'
+import { TabsList } from './drawer-components/TabList'
 
 interface OrderHeaderContentProps {
     isFetching: boolean;

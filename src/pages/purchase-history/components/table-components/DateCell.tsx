@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import React from 'react'
-import { formattedDate, formattedTime } from '../helpers'
+import { formattedDate, formattedTime } from '../../helpers'
 
 export default function DateCell({ date }: { date: Date }) {
     return (

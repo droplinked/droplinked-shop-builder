@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterInputs from './FilterInputs';
+import FilterInputs from '../FilterInputs';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import MobileTable from './MobileTable';
 import DesktopTable from './DesktopTable';
