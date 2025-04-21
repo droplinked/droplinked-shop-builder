@@ -1,13 +1,15 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import { IOrders } from '../interface';
 
 interface Props {
     orderData: any;
     isFetching: boolean;
+    rowData: IOrders,
 }
 
-export default function OrderCart({ orderData, isFetching }: Props) {
+export default function OrderCart({ orderData, isFetching, rowData }: Props) {
     const { cart } = orderData ?? { cart: [] };
 
     return (

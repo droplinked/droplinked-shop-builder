@@ -33,7 +33,7 @@ export default function OrderDetails({ rowData, isOpen, onClose }: Props) {
         },
         {
             title: "Cart",
-            content: <OrderCart orderData={orderData} isFetching={isFetching} />
+            content: <OrderCart orderData={orderData} rowData={rowData} isFetching={isFetching} />
         }
     ]
 
