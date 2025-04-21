@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
@@ -6,6 +6,8 @@ import Input from '../input/Input'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
+import DesktopActionButtons from './components/DesktopActionButtons'
+import MobileFloatingMenu from './components/MobileFloatingMenu'
 
 // Context - simplified since we're not passing everything through context
 const PageGridContext = createContext<{ loading?: boolean }>({})
@@ -23,7 +25,9 @@ function PageGridRoot({ children, loading }: PageGridRootProps) {
 }
 
 // Header Component
-function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
+function PageGridHeader({ title, description, actionButtons }: PageGridHeaderProps) {
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+
     return (
         <Flex w="full" marginBottom="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
             <Flex flexDirection="column" alignItems="start">
@@ -38,7 +42,10 @@ function PageGridHeader({ title, description, rightContent }: PageGridHeaderProp
                     </AppTypography>
                 )}
             </Flex>
-            {rightContent}
+            {isSmallerThan768 ?
+                <MobileFloatingMenu actionButtons={actionButtons} /> :
+                <DesktopActionButtons actionButtons={actionButtons} />
+            }
         </Flex>
     )
 }
