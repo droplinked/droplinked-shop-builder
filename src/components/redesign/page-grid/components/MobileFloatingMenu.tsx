@@ -1,10 +1,11 @@
 import { Box, Flex, IconButton, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
-import Button, { AppButtonProps } from 'components/redesign/button/Button'
+import Button from 'components/redesign/button/Button'
 import React from 'react'
+import { ActionButtonProps } from '../interface'
 
-export default function MobileFloatingMenu({ actionButtons }: { actionButtons: AppButtonProps[] }) {
+export default function MobileFloatingMenu({ actionButtons }: { actionButtons: ActionButtonProps[] }) {
     const { isOpen, onClose, onOpen } = useDisclosure()
 
     if (!actionButtons?.length) {
@@ -12,7 +13,7 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
     }
 
     return (
-        <Box position="fixed" bottom="16px" right="16px" zIndex={99999}>
+        <Box position="fixed" bottom="16px" right="16px" zIndex={999}>
             <Popover
                 isOpen={isOpen}
                 onClose={onClose}
@@ -26,7 +27,6 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
                         onClick={onOpen}
                         borderRadius={8}
                         size="lg"
-                        boxShadow="0px 4px 12px rgba(0, 0, 0, 0.2)"
                         border="1px solid neutral.gray.700"
                         background={isOpen ? "button.default.secondary" : "button.default.primary"}
                         _active={{
@@ -46,21 +46,29 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
                     <PopoverBody p={0}>
                         <Flex
                             direction="column"
-                            gap="1rem"
+                            gap={1}
                             minWidth="150px"
                         >
-                            {actionButtons?.map((button, index) => (
-                                <Button
-                                    key={index}
-                                    {...button}
-                                    onClick={(e) => {
-                                        button.onClick?.(e);
-                                    }}
-                                    width="100%"
-                                >
-                                    {button.title}
-                                </Button>
-                            ))}
+                            {actionButtons?.map((button, index) => {
+                                const ButtonComponent = (
+                                    <Button
+                                        key={index}
+                                        {...button}
+                                        onClick={(e) => {
+                                            button.onClick?.(e);
+                                        }}
+                                        width="100%"
+                                    >
+                                        {button.title}
+                                    </Button>
+                                );
+
+                                if (button.wrapper) {
+                                    return React.cloneElement(button.wrapper, { key: index }, ButtonComponent);
+                                }
+
+                                return ButtonComponent;
+                            })}
                         </Flex>
                     </PopoverBody>
                 </PopoverContent>

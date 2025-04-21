@@ -4,6 +4,7 @@ import ProductTypes from './ProductTypes'
 
 interface Props extends PropsWithChildren {
     placement?: PlacementWithLogical
+    children?: React.ReactNode;
 }
 
 function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
@@ -28,7 +29,7 @@ function ProductTypesPopover({ placement = 'bottom-start', children }: Props) {
             <PopoverContent
                 width="500px"
                 border="1px solid"
-                 borderColor="neutral.gray.800"
+                borderColor="neutral.gray.800"
                 borderRadius={16}
                 padding={0}
                 backgroundColor="#141414"

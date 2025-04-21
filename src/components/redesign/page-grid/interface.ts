@@ -13,10 +13,14 @@ export interface PageGridRootProps {
     loading?: boolean;
 }
 
+export interface ActionButtonProps extends AppButtonProps {
+    wrapper?: React.ReactElement;
+}
+
 export interface PageGridHeaderProps {
     title?: string;
     description?: string;
-    actionButtons?: AppButtonProps[];
+    actionButtons?: ActionButtonProps[];
 }
 
 export interface PageGridActionsProps {

@@ -1,4 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
+import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 import AppTypography from "components/common/typography/AppTypography";
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
@@ -7,8 +8,6 @@ import React from "react";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
-import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
-import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -57,22 +56,18 @@ function CollectionGrid({
             <PageGrid.Header
                 title="Collections"
                 description="Create and view inventory collections here."
-                rightContent={
-                    <ButtonGrid buttons={
-                        [
-                            {
-                                caption: "New Collection",
-                                leftIcon: <PlusSm color="#000" />,
-                                onClick: onCreateCollection
-                            },
-                            {
-                                caption: "Visibility and reorder",
-                                variant: "secondary",
-                                onClick: onReorderClick
-                            },
-                        ]
-                    } />
-                }
+                actionButtons={[
+                    {
+                        title: "New Collection",
+                        onClick: onCreateCollection,
+                        leftIcon: <PlusSm color="#000" />,
+                    },
+                    {
+                        title: "Visibility and reorder",
+                        variant: "secondary",
+                        onClick: onReorderClick,
+                    }
+                ]}
             />
             <PageGrid.Actions
                 search={{
