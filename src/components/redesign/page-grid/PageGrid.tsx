@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
@@ -12,10 +12,10 @@ const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
 // Root Component - simplified
-function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
+function PageGridRoot({ children, loading }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex {...flexProps} width="100%" flexDirection="column" alignItems="start">
+            <Flex width="100%" flexDirection="column" alignItems="start">
                 {children}
             </Flex>
         </PageGridContext.Provider>

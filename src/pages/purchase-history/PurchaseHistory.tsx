@@ -20,17 +20,10 @@ export default function PurchaseHistory() {
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
     })
 
-    const isEmpty = purchaseHistoryQuery.data?.pages[0]?.data?.length === 0 && !searchValue && !statusValue;
+    const isEmpty = !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length && !searchValue && !statusValue;
 
     return (
-        <PageGrid.Root
-            flexProps={{
-                overflowX: "hidden",
-                overflow: isEmpty ? "hidden" : "auto",
-                padding: 0,
-                height: "100%"
-            }}
-        >
+        <PageGrid.Root>
             <PageGrid.Header
                 title="Purchase History"
                 description="Easily view, manage and track all orders here."

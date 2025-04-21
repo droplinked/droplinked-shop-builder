@@ -13,7 +13,7 @@ export default function CreditsAndActivity() {
     }, [])
 
     return (
-        <PageGrid.Root flexProps={{ overflowX: "hidden", padding: 0 }}>
+        <PageGrid.Root>
             <PageGrid.Header title="Credits and Account Activity" description="Manage account credits and review onchain activity." />
             <TabsContent />
         </PageGrid.Root>

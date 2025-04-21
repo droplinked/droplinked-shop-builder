@@ -1,4 +1,3 @@
-import { FlexProps } from "@chakra-ui/react"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
 export interface SearchInput {
@@ -11,7 +10,6 @@ export interface SearchInput {
 export interface PageGridRootProps {
     children: React.ReactNode;
     loading?: boolean;
-    flexProps?: FlexProps;
 }
 
 export interface PageGridHeaderProps {
