@@ -45,7 +45,7 @@ export default function PurchaseHistory() {
         }
     }
 
-    const isEmpty = !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length && !searchValue && !statusValue;
+    const isEmpty = !purchaseHistoryQuery.isFetching && !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length && !searchValue && !statusValue;
 
     return (
         <PageGrid.Root>
