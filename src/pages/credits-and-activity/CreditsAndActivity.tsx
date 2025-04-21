@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import React, { useEffect } from "react";
 import TabsContent from "./components/TabsContent";

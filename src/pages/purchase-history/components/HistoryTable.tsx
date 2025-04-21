@@ -17,7 +17,7 @@ export default function HistoryTable({ onStatusChange, onSearchChange, searchVal
     const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
 
     return (
-        <Flex flexDirection={"column"} gap={{ base: 4, md: 6 }} width={"100%"}>
+        <Flex flexDirection="column" gap={{ base: 4, md: 6 }} width="100%">
             <FilterInputs
                 onSearchChange={onSearchChange}
                 onStatusChange={onStatusChange}

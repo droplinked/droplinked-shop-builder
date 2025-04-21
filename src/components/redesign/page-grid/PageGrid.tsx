@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
@@ -25,7 +25,7 @@ function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
 // Header Component
 function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
     return (
-        <Flex w="full" marginBottom={"36px"} flexDirection={"row"} justifyContent={"space-between"} alignItems={"start"}>
+        <Flex w="full" marginBottom="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
             <Flex flexDirection="column" alignItems="start">
                 {title && (
                     <AppTypography color="neutral.white" fontSize="24px" fontWeight={700}>
@@ -68,7 +68,7 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
 
 // Content Component
 function PageGridContent({ children, loading }: PageGridContentProps) {
-    const contextLoading = usePageGridContext().loading
+    const { loading: contextLoading } = usePageGridContext()
     const isLoading = loading ?? contextLoading
 
     return (
