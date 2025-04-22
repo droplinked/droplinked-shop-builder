@@ -9,18 +9,24 @@ import OrderCart from './drawer-sections/OrderCart'
 import OrderHeaderContent from './OrderHeaderContent'
 import OrderInformation from './drawer-sections/OrderInformation'
 
-interface Props {
-    rowData: IOrders,
-    isOpen: boolean,
-    onClose: () => void
+interface OrderDetailsProps {
+    rowData: IOrders;
+    isOpen: boolean;
+    onClose: () => void;
 }
 
-export default function OrderDetails({ rowData, isOpen, onClose }: Props) {
+/**
+ * OrderDetails component displays detailed information about an order
+ * Shows information in a drawer with tabs for order information and cart
+ */
+export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+
+    // Fetch order details when the drawer is open
     const { isFetching, data } = useQuery({
         queryKey: ["order", rowData._id],
         queryFn: () => getOrderService({ orderID: rowData._id }),
-        enabled: isOpen
+        enabled: isOpen,
     })
 
     const orderData = data?.data?.data
@@ -56,12 +62,11 @@ export default function OrderDetails({ rowData, isOpen, onClose }: Props) {
                     padding: { base: "16px 16px 0px 16px", md: "36px 36px 0px 36px" },
                 }}
             >
-                <TabPanels height="100%">
+                <TabPanels height="full" background="#1c1c1c">
                     {tabs.map((tab, index) => (
                         <TabPanel
                             key={index}
-                            background="#1C1C1C"
-                            height="auto"
+                            background="#1c1c1c"
                             p={{ base: 4, md: 9 }}
                         >
                             {tab.content}

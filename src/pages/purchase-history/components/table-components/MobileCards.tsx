@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import React from 'react'
-import { formatUnderlinedText, truncateText } from '../../helpers'
+import { formatUnderlinedText, getCustomerDisplayName, getStatusColorScheme, truncateText } from '../../helpers'
 import { IOrders } from '../../interface'
 import ControlsPopover from '../ControlsPopover'
 import DateCell from './DateCell'
@@ -13,12 +13,10 @@ interface Props {
 export default function MobileCards({ item }: Props) {
     const { _id, status, updatedAt, customerAddressBook, customerEmail } = item
 
-    const isPaymentValid = status === "PAYMENT_CONFIRMED" || status === "INITIALIZED_FOR_PAYMENT";
-
     // Prepare customer display name
-    const customerDisplayName = customerAddressBook
-        ? (customerAddressBook.firstName + " " + customerAddressBook.lastName)
-        : customerEmail;
+    const customerDisplayName = getCustomerDisplayName(customerAddressBook, customerEmail);
+    const isPaymentValid = status !== "CANCELED";
+    const statusColorScheme = getStatusColorScheme(status);
 
     return (
         <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
@@ -30,7 +28,7 @@ export default function MobileCards({ item }: Props) {
                         text={formatUnderlinedText(status)}
                         textTransform="capitalize"
                         size='24'
-                        status={status === "PAYMENT_CONFIRMED" ? "success" : status === "INITIALIZED_FOR_PAYMENT" ? "pending" : "error"}
+                        status={statusColorScheme}
                     />
                     <ControlsPopover rowData={item} isCancelled={status === "CANCELED"} />
                 </Flex>

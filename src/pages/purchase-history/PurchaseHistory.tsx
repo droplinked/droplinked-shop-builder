@@ -9,12 +9,21 @@ import EmptyView from './components/EmptyView';
 import HistoryTable from './components/table-components/HistoryTable';
 import { AxiosError } from 'axios';
 
+/**
+ * Purchase History page component
+ * Displays the user's order history with filtering and export capabilities
+ */
 export default function PurchaseHistory() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [searchValue, setSearchValue] = useState("")
-    const [statusValue, setStatusValue] = useState("")
+    // State management
+    const [isExporting, setIsExporting] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const [statusValue, setStatusValue] = useState("");
     const { showToast } = useAppToast();
-    const debouncedSearchValue = useDebounce(searchValue, 1500)
+
+    // Debounce search to prevent excessive API calls
+    const debouncedSearchValue = useDebounce(searchValue, 1500);
+
+    // Query for purchase history data
     const purchaseHistoryQuery = useInfiniteQuery({
         queryKey: ["purchase-history-query", debouncedSearchValue, statusValue],
         queryFn: ({ pageParam = 1 }) => ordersServices({
@@ -22,30 +31,46 @@ export default function PurchaseHistory() {
             status: statusValue || undefined,
         }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
-    })
+    });
 
+    /**
+     * Handles exporting orders report as Excel file
+     */
     const handleExport = async () => {
         try {
-            setIsLoading(true);
+            setIsExporting(true);
             const data = await exportOrdersReportService();
+
+            // Create download link for the Excel file
             const url = window.URL.createObjectURL(data);
             const link = document.createElement("a");
             link.href = url;
-            link.download = `${Date.now()}.xlsx`;
+            link.download = `orders-report-${new Date().toISOString().split('T')[0]}.xlsx`;
+
+            // Trigger download
             document.body.appendChild(link);
             link.click();
             link.remove();
+
+            // Clean up URL object
             setTimeout(() => {
                 window.URL.revokeObjectURL(url);
             }, 100);
         } catch (error) {
-            showToast({ message: (error as AxiosError).message, type: "error" });
+            const errorMessage = error instanceof AxiosError
+                ? error.message
+                : "Failed to export orders report";
+            showToast({ message: errorMessage, type: "error" });
         } finally {
-            setIsLoading(false);
+            setIsExporting(false);
         }
-    }
+    };
 
-    const isEmpty = !purchaseHistoryQuery.isFetching && !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length && !searchValue && !statusValue;
+    // Determine if there are no orders to display
+    const isEmpty = !purchaseHistoryQuery.isFetching &&
+        !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length &&
+        !searchValue &&
+        !statusValue;
 
     return (
         <PageGrid.Root>
@@ -58,15 +83,16 @@ export default function PurchaseHistory() {
                             title: "Export",
                             variant: "secondary",
                             onClick: handleExport,
-                            isLoading: isLoading,
+                            isLoading: isExporting,
                         }
                     ]
                 }}
             />
 
             <PageGrid.Content>
-                {isEmpty ?
-                    <EmptyView /> :
+                {isEmpty ? (
+                    <EmptyView />
+                ) : (
                     <HistoryTable
                         searchValue={searchValue}
                         statusValue={statusValue}
@@ -74,8 +100,8 @@ export default function PurchaseHistory() {
                         onStatusChange={setStatusValue}
                         purchaseHistoryQuery={purchaseHistoryQuery}
                     />
-                }
+                )}
             </PageGrid.Content>
         </PageGrid.Root>
-    )
+    );
 }

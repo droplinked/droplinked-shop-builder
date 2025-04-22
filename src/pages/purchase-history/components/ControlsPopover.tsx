@@ -3,18 +3,22 @@ import { InvoiceMd } from 'assets/icons/Finance/Invoice/InvoiceMd'
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React from 'react'
+import { isOrderCancelled } from '../helpers'
 import CancelOrderModal from './CancelOrderModal'
 import OrderDetails from './OrderDetails'
 import { IOrders } from '../interface'
 
 interface Props {
-    rowData: IOrders
-    isCancelled: boolean,
+    rowData: IOrders;
+    isCancelled?: boolean;
 }
 
 export default function ControlsPopover({ rowData, isCancelled }: Props) {
     const { isOpen: isCancelModalOpen, onClose: onCancelModalClose, onOpen: onCancelModalOpen } = useDisclosure()
     const { isOpen: isDetailsDrawerOpen, onClose: onDetailsDrawerClose, onOpen: onDetailsDrawerOpen } = useDisclosure()
+
+    // Use helper function if isCancelled is not provided
+    const orderIsCancelled = isCancelled ?? isOrderCancelled(rowData.status);
 
     return (
         <>
@@ -31,7 +35,7 @@ export default function ControlsPopover({ rowData, isCancelled }: Props) {
                         onClick: onCancelModalOpen,
                         title: "Cancel",
                         color: "#FF2244",
-                        isDisabled: isCancelled,
+                        isDisabled: orderIsCancelled,
                     }
                 ]}
             />

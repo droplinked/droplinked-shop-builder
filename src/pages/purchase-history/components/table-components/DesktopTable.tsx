@@ -5,7 +5,7 @@ import { UseInfiniteQueryResult } from 'react-query';
 import { IOrders } from 'pages/purchase-history/interface';
 import DateCell from './DateCell';
 import AppBadge from 'components/redesign/badge/AppBadge';
-import { formatUnderlinedText } from '../../helpers';
+import { formatUnderlinedText, getCustomerDisplayName, getStatusColorScheme, isOrderCancelled } from '../../helpers';
 import ControlsPopover from '../ControlsPopover';
 
 interface Props {
@@ -25,7 +25,10 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         {
             accessorKey: "customerAddressBook",
             header: "Customer",
-            cell: (info) => info.row.original?.customerAddressBook ? (info.row.original.customerAddressBook.firstName + " " + info.row.original.customerAddressBook.lastName) : info.row.original.customerEmail,
+            cell: (info) => {
+                const { customerAddressBook, customerEmail } = info.row.original;
+                return getCustomerDisplayName(customerAddressBook, customerEmail);
+            },
         },
         {
             accessorKey: "updatedAt",
@@ -35,17 +38,27 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         {
             accessorKey: "status",
             header: "Status",
-            cell: (info) => <AppBadge
-                text={formatUnderlinedText(info.row.original.status)}
-                textTransform="capitalize"
-                size='24'
-                status={info.row.original.status === "PAYMENT_CONFIRMED" ? "success" : info.row.original.status === "INITIALIZED_FOR_PAYMENT" ? "pending" : "error"}
-            />,
+            cell: (info) => {
+                const status = info.row.original.status;
+                return (
+                    <AppBadge
+                        text={formatUnderlinedText(status)}
+                        textTransform="capitalize"
+                        size='24'
+                        status={getStatusColorScheme(status)}
+                    />
+                );
+            },
         },
         {
             accessorKey: "_id",
             header: "",
-            cell: (info) => <ControlsPopover rowData={info.row.original} isCancelled={info.row.original.status === "CANCELED"} />,
+            cell: (info) => (
+                <ControlsPopover
+                    rowData={info.row.original}
+                    isCancelled={isOrderCancelled(info.row.original.status)}
+                />
+            ),
         },
     ];
 

@@ -2,16 +2,16 @@ import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { formattedDate, formattedTime, formatUnderlinedText } from '../helpers'
+import { formattedDate, formattedTime, formatUnderlinedText, getStatusColorScheme, OrderStatus } from '../helpers'
 import { TabsList } from './drawer-components/TabList'
 
 interface OrderHeaderContentProps {
     isFetching: boolean;
     updatedAt: Date;
-    orderStatus?: "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED";
+    orderStatus?: OrderStatus;
     tabs?: Array<{
         title: string;
-        content: any;
+        content: React.ReactNode;
         isDisabled?: boolean;
     }>;
 }
@@ -28,7 +28,7 @@ export default function OrderHeaderContent({ isFetching, updatedAt, orderStatus,
                         text={formatUnderlinedText(orderStatus)}
                         textTransform="capitalize"
                         size='24'
-                        status={orderStatus === "PAYMENT_CONFIRMED" ? "success" : orderStatus === "INITIALIZED_FOR_PAYMENT" ? "pending" : "error"}
+                        status={getStatusColorScheme(orderStatus)}
                     />
                 </AppSkeleton>
             </Flex>

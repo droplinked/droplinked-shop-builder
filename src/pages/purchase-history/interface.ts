@@ -1,10 +1,20 @@
+import { OrderStatus } from "./helpers";
+
+/**
+ * Order interface representing the data structure for purchase orders
+ */
 export interface IOrders {
-    _id: string
+    /** Unique identifier of the order */
+    _id: string;
+    /** Customer address information */
     customerAddressBook?: {
-        firstName: string,
-        lastName: string,
-    }
-    customerEmail: string,
-    updatedAt: Date,
-    status: "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED"
+        firstName: string;
+        lastName: string;
+    };
+    /** Customer email address */
+    customerEmail: string;
+    /** Last update timestamp */
+    updatedAt: Date;
+    /** Current status of the order */
+    status: OrderStatus;
 }
