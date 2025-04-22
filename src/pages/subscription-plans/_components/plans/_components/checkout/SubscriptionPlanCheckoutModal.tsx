@@ -3,7 +3,7 @@ import CheckoutModal from './_components/CheckoutModal'
 import ConfirmPlan from './_components/ConfirmPlan'
 import PaymentStatus from './_components/PaymentStatus'
 import PaymentMethodSelection from './_components/payment-method-selection/PaymentMethodSelection'
-import StripePayment from './_components/stripe-form/StripePayment'
+import StripePayment from './_components/StripePayment'
 import { ModalState } from './types/interfaces'
 
 interface Props {

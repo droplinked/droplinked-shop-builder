@@ -1,10 +1,11 @@
+import { ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm';
 import useAppToast from 'hooks/toast/useToast';
 import React, { useState } from 'react';
 import BalanceModalBody from './BalanceModalBody';
-import StripeBody from './StripeBody';
 
 /**
  * AddBalanceModal Component - Modal for adding credit to account
@@ -40,6 +41,11 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
         showToast({ message: "Payment confirmed! Your credit has been updated successfully", type: 'success' });
         handleRefetch()
     }
+    
+    const handleError = (error: any) => {
+        console.error("Payment failed:", error);
+        showToast({ message: "Payment failed. Please try again.", type: 'error' });
+    }
 
     return (
         <AppModal modalRootProps={{ isOpen, onClose: handleCancelPayment, isCentered: true, size: "lg" }} modalContentProps={{ gap: 0, paddingBlock: 0, paddingBottom: "48px" }}>
@@ -55,11 +61,18 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
                 icon={<AppIcons.HeaderCreditCard />}
                 description='Top up the account balance to pay for digital coupons, offers and monthly plan services.'
             />
-            {paymentData.clientSecret ?
-                <StripeBody paymentData={paymentData} handleCancelPayment={handleCancelPayment} handleSuccessPayment={handleSuccessPayment} />
-                :
+            {paymentData.clientSecret ? (
+                <ModalBody px={{ base: 4, md: 8 }} py={4}> 
+                    <DroplinkedPaymentForm
+                        clientSecret={paymentData.clientSecret}
+                        onSuccess={handleSuccessPayment}
+                        onError={handleError}
+                        onCancel={handleCancelPayment}
+                    />
+                </ModalBody>
+            ) : (
                 <BalanceModalBody onClose={handleCancelPayment} handleSetPayment={handleSetPayment} />
-            }
+            )}
         </AppModal>
     )
 }
