@@ -29,8 +29,6 @@ const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const ThankForRegisterPage = lazy(() => import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"));
 const VerifyEmailPage = lazy(() => import("pages/auth-pages/verify-email-page/Email-verification-page"));
 const Blogs = lazy(() => import("pages/blogs/Blogs"));
-const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
-const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
 const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
@@ -192,8 +190,8 @@ const router = createBrowserRouter([
                 path: "blogs",
                 children: [
                     { index: true, element: <Blogs /> },
-                    { path: "create", element: <BlogForm /> },
-                    { path: ":slug", element: <Blog /> },
+                    // { path: "create", element: <BlogForm /> },
+                    // { path: ":slug", element: <Blog /> },
                 ],
             },
             { path: "plans", element: <SubscriptionPlans /> },

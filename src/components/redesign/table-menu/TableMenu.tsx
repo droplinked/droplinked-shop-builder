@@ -1,5 +1,5 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { DotsLg } from "assets/icons/Navigation/Dots/DotsLg";
 import React, { ReactElement } from 'react';
 
 interface Props {
@@ -17,7 +17,7 @@ export default function TableMenu({ items }: Props) {
         <>
             <Menu isLazy>
                 <MenuButton as="button" type="button">
-                    <AppIcons.Dots />
+                    <DotsLg color="#fff" />
                 </MenuButton>
                 <MenuList
                     borderColor="neutral.gray.800"
