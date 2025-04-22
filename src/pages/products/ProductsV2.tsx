@@ -19,7 +19,7 @@ function ProductsV2() {
     const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
-    const { data } = useProducts(debouncedSearchTerm)
+    const { data, isFetching } = useProducts(debouncedSearchTerm)
     const productsCount = data?.pages?.flatMap(page => page.data.data.data)?.length || 0
     const isActionEnabled = !(productsCount === 0 && !searchTerm)
 
@@ -36,13 +36,14 @@ function ProductsV2() {
                     onReorderModalOpen={productReorderModal.onOpen}
                     isActionEnabled={isActionEnabled}
                 />
-                <PageGrid.Actions
-                    search={{
-                        value: searchTerm,
-                        onChange: (e) => setSearchTerm(e.target.value),
-                        disabled: !isActionEnabled
-                    }}
-                />
+                {(isActionEnabled || isFetching) &&
+                    <PageGrid.Actions
+                        search={{
+                            value: searchTerm,
+                            onChange: (e) => setSearchTerm(e.target.value),
+                            disabled: !isActionEnabled
+                        }}
+                    />}
                 <PageGrid.Content>
                     <ProductTable searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
