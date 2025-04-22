@@ -8,6 +8,10 @@ interface Props {
     textProps?: TextProps
 }
 
+/**
+    * InfoWrapper component is a styled wrapper for displaying order information with a title
+ */
+
 export default function InfoWrapper({ children, title, flexProps, textProps }: Props) {
     return (
         <Flex

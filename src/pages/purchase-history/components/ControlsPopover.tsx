@@ -13,6 +13,12 @@ interface Props {
     isCancelled?: boolean;
 }
 
+/**
+ * ControlsPopover component displays a popover with controls for order actions
+ * @param rowData - The order data to display in the popover
+ * @param isCancelled - Optional boolean indicating if the order is cancelled
+ */
+
 export default function ControlsPopover({ rowData, isCancelled }: Props) {
     const { isOpen: isCancelModalOpen, onClose: onCancelModalClose, onOpen: onCancelModalOpen } = useDisclosure()
     const { isOpen: isDetailsDrawerOpen, onClose: onDetailsDrawerClose, onOpen: onDetailsDrawerOpen } = useDisclosure()

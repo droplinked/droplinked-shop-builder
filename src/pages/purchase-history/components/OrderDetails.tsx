@@ -16,7 +16,7 @@ interface OrderDetailsProps {
 }
 
 /**
- * OrderDetails component displays detailed information about an order
+ * OrderDetails component displays a detailed information drawer about an order
  * Shows information in a drawer with tabs for order information and cart
  */
 export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {

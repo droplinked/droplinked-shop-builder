@@ -9,10 +9,6 @@ import EmptyView from './components/EmptyView';
 import HistoryTable from './components/table-components/HistoryTable';
 import { AxiosError } from 'axios';
 
-/**
- * Purchase History page component
- * Displays the user's order history with filtering and export capabilities
- */
 export default function PurchaseHistory() {
     // State management
     const [isExporting, setIsExporting] = useState(false);

@@ -7,6 +7,10 @@ import React from 'react'
 import TitledText from './TitledText'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 
+/**
+    * CartItem component displays information about a single item in the cart
+ */
+
 export default function CartItem({ item }: { item: IOrderDetailsItems }) {
     const { image, isAffiliate, options, price, title, quantity } = item ?? {}
 

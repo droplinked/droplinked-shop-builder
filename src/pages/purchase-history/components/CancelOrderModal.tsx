@@ -15,6 +15,13 @@ interface Props {
     orderID: string
 }
 
+/**
+    * CancelOrderModal component displays a modal for confirming order cancellation
+    * @param isOpen - Boolean indicating if the modal is open
+    * @param onClose - Function to close the modal
+    * @param orderID - ID of the order to be cancelled
+ */
+
 export default function CancelOrderModal({ isOpen, onClose, orderID }: Props) {
     const { mutateAsync, isLoading } = useMutation(() => cancelOrderById(orderID))
     const queryClient = useQueryClient();

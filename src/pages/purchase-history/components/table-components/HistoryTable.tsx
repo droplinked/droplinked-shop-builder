@@ -13,6 +13,15 @@ interface Props {
     purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;
 }
 
+/**
+    * HistoryTable component displays a table of purchase history with filter inputs
+    * @param onSearchChange - Function to handle search input changes
+    * @param onStatusChange - Function to handle status filter changes
+    * @param searchValue - Current value of the search input
+    * @param statusValue - Current value of the status filter
+    * @param purchaseHistoryQuery - Query result for fetching purchase history
+ */
+
 export default function HistoryTable({ onStatusChange, onSearchChange, searchValue, statusValue, purchaseHistoryQuery, }: Props) {
     const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
 
