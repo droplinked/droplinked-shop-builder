@@ -8,7 +8,7 @@ import { TabsList } from './drawer-components/TabList'
 interface OrderHeaderContentProps {
     isFetching: boolean;
     updatedAt: Date;
-    orderStatus?: string;
+    orderStatus?: "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED";
     tabs?: Array<{
         title: string;
         content: any;
