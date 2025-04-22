@@ -122,6 +122,18 @@ export interface IOrderDetails {
     }[];
 }
 
+export interface IOrderDetailsItems {
+    _id: string;
+    productId: string;
+    title: string;
+    image: string;
+    skuImage: string | null;
+    options: Record<string, any>;
+    quantity: number;
+    isAffiliate: boolean;
+    price: number;
+}
+
 export interface IcreateSampleServiceSkues {
     _id: string
     quantity: number

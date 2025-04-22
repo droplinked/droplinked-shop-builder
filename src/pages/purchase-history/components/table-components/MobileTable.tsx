@@ -3,7 +3,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { UseInfiniteQueryResult } from 'react-query';
-import { IOrders } from '../interface';
+import { IOrders } from 'pages/purchase-history/interface';
 import MobileCards from './MobileCards';
 
 interface Props {

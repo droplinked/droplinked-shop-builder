@@ -36,7 +36,7 @@ export default function ControlsPopover({ rowData, isCancelled }: Props) {
                 ]}
             />
             <CancelOrderModal isOpen={isCancelModalOpen} onClose={onCancelModalClose} orderID={rowData._id} />
-            {isDetailsDrawerOpen && <OrderDetails rowData={rowData} isOpen={isDetailsDrawerOpen} onClose={onDetailsDrawerClose} />}
+            <OrderDetails rowData={rowData} isOpen={isDetailsDrawerOpen} onClose={onDetailsDrawerClose} />
         </>
     )
 }

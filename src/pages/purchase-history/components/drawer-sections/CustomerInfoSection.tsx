@@ -16,6 +16,7 @@ export default function CustomerInfoSection({ customer }: CustomerInfoProps) {
                     justifyContent="space-between"
                     alignItems={{ base: "flex-start", md: "center" }}
                     flexDirection={{ base: "column", md: "row" }}
+                    gap={{ base: 6, md: 0 }}
                 >
                     <TitledText text={customer?.name} title='Full Name' />
                     <TitledText text={customer?.email} title='Email Address' />

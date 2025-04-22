@@ -5,7 +5,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { truncateText } from '../helpers'
 import { IOrders } from '../interface'
-import OrderCart from './OrderCart'
+import OrderCart from './drawer-sections/OrderCart'
 import OrderHeaderContent from './OrderHeaderContent'
 import OrderInformation from './OrderInformation'
 
@@ -53,7 +53,7 @@ export default function OrderDetails({ rowData, isOpen, onClose }: Props) {
                     />
                 }
                 drawerHeaderStyle={{
-                    padding: { base: "16px 16px 0px 16px", md: "36px 36px 0px 36px" }
+                    padding: { base: "16px 16px 0px 16px", md: "36px 36px 0px 36px" },
                 }}
             >
                 <TabPanels height="100%">
@@ -61,7 +61,7 @@ export default function OrderDetails({ rowData, isOpen, onClose }: Props) {
                         <TabPanel
                             key={index}
                             background="#1C1C1C"
-                            height="100%"
+                            height="auto"
                             p={{ base: 4, md: 9 }}
                         >
                             {tab.content}

@@ -13,14 +13,14 @@ export default function CommissionSection({ commission }: CommissionProps) {
     return (
         <InfoWrapper title='Commision'>
             <Flex direction="column" gap={4}>
-                {commission.droplinked &&
+                {!!commission.droplinked &&
                     <TitledText
                         title='Droplinked'
                         direction='row'
                         text={<FormattedPrice price={commission.droplinked} fontSize={14} fontWeight={500} />}
                     />}
 
-                {commission.stripe &&
+                {!!commission.stripe &&
                     <TitledText
                         title='Stripe'
                         direction='row'
