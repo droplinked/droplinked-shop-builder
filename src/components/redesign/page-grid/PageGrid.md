@@ -38,7 +38,7 @@ The `PageGrid.Header` component is used to display the header section of the Pag
 
 - `title` (string, optional): The title of the header.
 - `description` (string, optional): The description of the header.
-- `buttons` (IDataGridButtons['buttons'], optional): An array of button configurations.
+- `actionButtons` (ActionButtonProps[], optional): An array of button configurations with responsive layout.
 
 #### Example
 
@@ -46,7 +46,13 @@ The `PageGrid.Header` component is used to display the header section of the Pag
 <PageGrid.Header
   title="My Page Title"
   description="This is a description of the page."
-  buttons={[{ caption: "Button 1", onClick: () => alert("Button 1 clicked!") }]}
+  actionButtons={[
+    { 
+      title: "Button 1", 
+      onClick: () => alert("Button 1 clicked!"),
+      variant: "primary" 
+    }
+  ]}
 />
 ```
 
@@ -63,8 +69,18 @@ The `PageGrid.Actions` component is used to display action elements like search 
 
 ```tsx
 <PageGrid.Actions
-  search={{ onChange: (e) => console.log(e.target.value), placeholder: "Search..." }}
-  filters={[{ placeHolder: "Filter", onClick: (value) => console.log(value), filterItems: [{ title: "Option 1", value: "1" }] }]}
+  search={{ 
+    onChange: (e) => console.log(e.target.value), 
+    placeholder: "Search...",
+    disabled: false
+  }}
+  filters={[
+    { 
+      placeHolder: "Filter", 
+      onClick: (value) => console.log(value), 
+      filterItems: [{ title: "Option 1", value: "1" }] 
+    }
+  ]}
 />
 ```
 
@@ -85,6 +101,13 @@ The `PageGrid.Content` component is used to display the main content of the Page
 </PageGrid.Content>
 ```
 
+## Responsive Behavior
+
+The PageGrid component is fully responsive:
+
+- On desktop screens, action buttons appear in the header
+- On mobile screens (width < 768px), action buttons appear in a floating menu at the bottom right of the screen
+
 ## Putting It All Together
 
 Here's an example of how to use all the components together:
@@ -94,11 +117,23 @@ Here's an example of how to use all the components together:
   <PageGrid.Header
     title="Dashboard"
     description="Overview of your activities"
-    buttons={[{ caption: "Add New", onClick: () => alert("Add New clicked!") }]}
+    actionButtons={[
+      { 
+        title: "Add New", 
+        onClick: () => alert("Add New clicked!"),
+        variant: "primary"
+      }
+    ]}
   />
   <PageGrid.Actions
     search={{ onChange: (e) => console.log(e.target.value), placeholder: "Search..." }}
-    filters={[{ placeHolder: "Filter", onClick: (value) => console.log(value), filterItems: [{ title: "Option 1", value: "1" }] }]}
+    filters={[
+      { 
+        placeHolder: "Filter", 
+        onClick: (value) => console.log(value), 
+        filterItems: [{ title: "Option 1", value: "1" }] 
+      }
+    ]}
   />
   <PageGrid.Content loading={false}>
     <div>Your main content goes here</div>
@@ -106,4 +141,4 @@ Here's an example of how to use all the components together:
 </PageGrid.Root>
 ```
 
-That's it! 🎉 You now know how to use the `PageGrid` component. If you have any questions, feel free to reach out. Happy coding! 💻
+That's it! 🎉 You now know how to use the `PageGrid` component.

@@ -1,4 +1,33 @@
-import { Flex } from '@chakra-ui/react'
+/**
+ * @fileoverview PageGrid is a compound component that provides a structured layout 
+ * for pages with standardized header, actions, and content areas.
+ * 
+ * The component follows a compound component pattern with four main parts:
+ * - Root: The container that provides context and structure
+ * - Header: Displays title, description, and action buttons with responsive behavior
+ * - Actions: Contains search and filter functionality
+ * - Content: The main content area with loading state handling
+ * 
+ * @example
+ * ```tsx
+ * <PageGrid.Root>
+ *   <PageGrid.Header 
+ *     title="Dashboard" 
+ *     description="Overview of your activities"
+ *     actionButtons={[{ title: "Add New", onClick: () => {}, variant: "primary" }]}
+ *   />
+ *   <PageGrid.Actions
+ *     search={{ onChange: (e) => {}, placeholder: "Search..." }}
+ *     filters={[{ placeHolder: "Status", onClick: () => {}, filterItems: [...] }]}
+ *   />
+ *   <PageGrid.Content>
+ *     <YourContentComponent />
+ *   </PageGrid.Content>
+ * </PageGrid.Root>
+ * ```
+ */
+
+import { Flex, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
@@ -6,26 +35,46 @@ import Input from '../input/Input'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
+import DesktopActionButtons from './components/DesktopActionButtons'
+import MobileFloatingMenu from './components/MobileFloatingMenu'
 
-// Context - simplified since we're not passing everything through context
+/**
+ * Context to share loading state across PageGrid components
+ */
 const PageGridContext = createContext<{ loading?: boolean }>({})
 const usePageGridContext = () => useContext(PageGridContext)
 
-// Root Component - simplified
-function PageGridRoot({ children, loading, flexProps }: PageGridRootProps) {
+/**
+ * Root component that provides structure and context for the PageGrid
+ * 
+ * @param props - Component props
+ * @param props.children - Child components to render inside the PageGrid
+ * @param props.loading - Optional loading state that will be passed to the Content component
+ */
+function PageGridRoot({ children, loading }: PageGridRootProps) {
     return (
         <PageGridContext.Provider value={{ loading }}>
-            <Flex {...flexProps} width="100%" flexDirection="column" alignItems="start">
+            <Flex width="100%" flexDirection="column" alignItems="start">
                 {children}
             </Flex>
         </PageGridContext.Provider>
     )
 }
 
-// Header Component
-function PageGridHeader({ title, description, rightContent }: PageGridHeaderProps) {
+/**
+ * Header component that displays title, description, and action buttons
+ * Handles responsive behavior: desktop shows buttons inline, mobile shows a floating action menu
+ * 
+ * @param props - Component props
+ * @param props.title - Optional title text
+ * @param props.description - Optional description text
+ * @param props.actionButtons - Optional array of action button configurations
+ */
+function PageGridHeader({ title, description, actionButtons }: PageGridHeaderProps) {
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+
     return (
-        <Flex w="full" marginBottom={"36px"} flexDirection={"row"} justifyContent={"space-between"} alignItems={"start"}>
+        <Flex w="full" marginBottom="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
             <Flex flexDirection="column" alignItems="start">
                 {title && (
                     <AppTypography color="neutral.white" fontSize="24px" fontWeight={700}>
@@ -38,12 +87,21 @@ function PageGridHeader({ title, description, rightContent }: PageGridHeaderProp
                     </AppTypography>
                 )}
             </Flex>
-            {rightContent}
+            {isSmallerThan768 ?
+                <MobileFloatingMenu actionButtons={actionButtons} /> :
+                <DesktopActionButtons actionButtons={actionButtons} />
+            }
         </Flex>
     )
 }
 
-// Actions Component
+/**
+ * Actions component for search and filtering functionality
+ * 
+ * @param props - Component props
+ * @param props.search - Optional configuration for search input
+ * @param props.filters - Optional array of filter configurations
+ */
 function PageGridActions({ search, filters }: PageGridActionsProps) {
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
@@ -66,9 +124,16 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
     )
 }
 
-// Content Component
+/**
+ * Content component that displays the main content with loading state handling
+ * Will show a skeleton loading state when loading is true
+ * 
+ * @param props - Component props
+ * @param props.children - Content to render
+ * @param props.loading - Optional loading state that overrides the context loading state
+ */
 function PageGridContent({ children, loading }: PageGridContentProps) {
-    const contextLoading = usePageGridContext().loading
+    const { loading: contextLoading } = usePageGridContext()
     const isLoading = loading ?? contextLoading
 
     return (
@@ -78,6 +143,10 @@ function PageGridContent({ children, loading }: PageGridContentProps) {
     )
 }
 
+/**
+ * PageGrid compound component
+ * A versatile layout component for creating structured pages with consistent styling
+ */
 const PageGrid = {
     Root: PageGridRoot,
     Header: PageGridHeader,

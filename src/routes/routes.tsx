@@ -69,6 +69,7 @@ const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"));
+const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"));
 
 const router = createBrowserRouter([
     {
@@ -162,6 +163,7 @@ const router = createBrowserRouter([
             },
             { path: "collections", element: <Collections /> },
             { path: "orders", element: <Orders /> },
+            { path: "purchase-history", element: <PurchaseHistory /> },
             {
                 path: "affiliate",
                 children: [
