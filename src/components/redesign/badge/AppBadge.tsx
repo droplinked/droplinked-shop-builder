@@ -1,5 +1,5 @@
 import { Badge, BadgeProps, Text } from '@chakra-ui/react';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 interface Iprops extends BadgeProps {
   text: string | number;
@@ -9,49 +9,46 @@ interface Iprops extends BadgeProps {
 }
 
 function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props }: Iprops) {
-  const styles = useMemo(
-    () => ({
-      status: {
-        neutral: {
-          border: '1px solid',
-          borderColor: 'neutral.gray.600',
-          bg: 'neutral.gray.800',
-          color: 'neutral.white'
-        },
-        pending: {
-          border: '1px solid',
-          borderColor: 'system.link',
-          bg: 'label.link',
-          color: 'system.link'
-        },
-        success: {
-          border: '1px solid',
-          borderColor: 'primary.default',
-          bg: 'label.success',
-          color: 'primary.default'
-        },
-        error: {
-          border: '1px solid',
-          borderColor: 'system.error',
-          bg: 'label.error',
-          color: 'system.error'
-        }
+  const styles = {
+    status: {
+      neutral: {
+        border: '1px solid',
+        borderColor: 'neutral.gray.600',
+        bg: 'neutral.gray.800',
+        color: 'neutral.white',
       },
-      size: {
-        '24': {
-          padding: '2px 12px',
-          fontSize: '12px',
-          gap: '8px'
-        },
-        '32': {
-          padding: '6px 16px',
-          fontSize: '14px',
-          gap: '8px'
-        }
-      }
-    }),
-    []
-  );
+      pending: {
+        border: '1px solid',
+        borderColor: 'system.link',
+        bg: 'label.link',
+        color: 'system.link',
+      },
+      success: {
+        border: '1px solid',
+        borderColor: 'primary.default',
+        bg: 'label.success',
+        color: 'primary.default',
+      },
+      error: {
+        border: '1px solid',
+        borderColor: 'system.error',
+        bg: 'label.error',
+        color: 'system.error',
+      },
+    },
+    size: {
+      '24': {
+        padding: '2px 12px',
+        fontSize: '12px',
+        gap: '8px',
+      },
+      '32': {
+        padding: '6px 16px',
+        fontSize: '14px',
+        gap: '8px',
+      },
+    },
+  } as const;
 
   return (
     <Badge
