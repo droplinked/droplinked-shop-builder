@@ -41,8 +41,7 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         icon: AppIcons.SidebarNote,
         linkTo: null,
         list: [
-          { listTitle: 'Purchase History - Old', linkTo: '/analytics/orders' },
-          { listTitle: 'Purchase History - New', linkTo: '/analytics/purchase-history' },
+          { listTitle: 'Purchase History', linkTo: '/analytics/purchase-history' },
           { listTitle: 'Invoices', linkTo: '/analytics/invoice-management' }
         ]
       },
