@@ -7,7 +7,7 @@ import { truncateText } from '../helpers'
 import { IOrders } from '../interface'
 import OrderCart from './drawer-sections/OrderCart'
 import OrderHeaderContent from './OrderHeaderContent'
-import OrderInformation from './OrderInformation'
+import OrderInformation from './drawer-sections/OrderInformation'
 
 interface Props {
     rowData: IOrders,

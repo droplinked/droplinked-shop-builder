@@ -1,10 +1,10 @@
 import { Flex, Spinner } from '@chakra-ui/react';
 import { IOrderDetails } from 'lib/apis/order/interfaces';
 import React from 'react';
-import CustomerInfoSection from './drawer-sections/CustomerInfoSection';
-import ShippingSection from './drawer-sections/ShippingSection';
-import CommissionSection from './drawer-sections/CommissionSection';
-import PaymentDetailsSection from './drawer-sections/PaymentDetailsSection';
+import CustomerInfoSection from './CustomerInfoSection';
+import ShippingSection from './ShippingSection';
+import CommissionSection from './CommissionSection';
+import PaymentDetailsSection from './PaymentDetailsSection';
 
 interface Props {
     orderData: IOrderDetails;
