@@ -1,35 +1,40 @@
-import { Flex } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppCard from 'components/common/card/AppCard'
-import AppTypography from 'components/common/typography/AppTypography'
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
-import { getShopBlogsService } from 'lib/apis/blog/services'
-import useAppStore from 'lib/stores/app/appStore'
-import React from 'react'
-import { useQuery } from 'react-query'
-import BlogList from './parts/blog-list/BlogList'
-import EmptyBox from './parts/empty-box/EmptyBox'
-import Loading from './parts/loading/Loading'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
+import ButtonGrid from 'components/redesign/button-grid/ButtonGrid'
+import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useDebounce from 'hooks/debounce/useDebounce'
+import React, { useState } from 'react'
+import BlogTable from './components/BlogTable'
 
 function Blogs() {
-    const { shop } = useAppStore()
-    const { shopNavigate } = useCustomNavigate()
-    const { isFetching, data } = useQuery({
-        queryKey: "shop-blogs",
-        queryFn: () => getShopBlogsService(shop._id),
-    })
-    const blogs = data?.data
+    const [searchTerm, setSearchTerm] = useState("")
+    const debouncedSearchTerm = useDebounce(searchTerm)
 
     return (
-        <AppCard>
-            <Flex direction={"column"} gap={9}>
-                <Flex justifyContent={"space-between"}>
-                    <AppTypography fontSize={28} fontWeight={700}>Blogs</AppTypography>
-                    <BasicButton sizes='medium' onClick={() => shopNavigate("blogs/create")}>Create</BasicButton>
-                </Flex>
-                {isFetching ? <Loading /> : !blogs.length ? <EmptyBox /> : <BlogList blogs={blogs} />}
-            </Flex>
-        </AppCard>
+        <PageGrid.Root>
+            <PageGrid.Header
+                title="Blog Posts"
+                description="Here you can create, edit and manage posts related to your blog."
+                rightContent={
+                    <ButtonGrid buttons={[
+                        {
+                            caption: "New Post",
+                            leftIcon: <PlusMd color="#000" />,
+                            onClick: () => console.log("New Collection"),
+                        }
+                    ]}
+                    />
+                }
+            />
+            <PageGrid.Actions
+                search={{
+                    value: searchTerm,
+                    onChange: (e) => setSearchTerm(e.target.value),
+                }}
+            />
+            <PageGrid.Content>
+                <BlogTable searchTerm={debouncedSearchTerm} />
+            </PageGrid.Content>
+        </PageGrid.Root>
     )
 }
 
