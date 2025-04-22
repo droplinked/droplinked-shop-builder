@@ -24,7 +24,7 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
 
     return (
         <Flex flexDirection="column" gap={4}>
-            < CustomerInfoSection customer={customer} />
+            <CustomerInfoSection customer={customer} />
             <ShippingSection shippings={shippings} />
             <CommissionSection commission={commision} />
             <PaymentDetailsSection details={details} trackingInfo={trackingInfo} />

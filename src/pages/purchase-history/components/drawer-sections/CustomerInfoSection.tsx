@@ -14,7 +14,7 @@ export default function CustomerInfoSection({ customer }: CustomerInfoProps) {
             <Flex direction="column" gap={6}>
                 <Flex
                     justifyContent="space-between"
-                    alignItems="center"
+                    alignItems={{ base: "flex-start", md: "center" }}
                     flexDirection={{ base: "column", md: "row" }}
                 >
                     <TitledText text={customer?.name} title='Full Name' />
