@@ -1,36 +1,32 @@
-import { Badge, BadgeProps, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Badge, BadgeProps } from '@chakra-ui/react';
+import React, { ReactNode } from 'react';
 
-interface Iprops extends BadgeProps {
+interface Props extends BadgeProps {
   text: string | number;
   status?: 'neutral' | 'pending' | 'success' | 'error';
   size?: '24' | '32';
-  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  icon?: ReactNode;
 }
 
-function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props }: Iprops) {
+function AppBadge({ text, status = 'neutral',size = '24',icon: Icon, ...props}: Props) {
   const styles = {
     status: {
       neutral: {
-        border: '1px solid',
         borderColor: 'neutral.gray.600',
         bg: 'neutral.gray.800',
         color: 'neutral.white',
       },
       pending: {
-        border: '1px solid',
         borderColor: 'system.link',
         bg: 'label.link',
         color: 'system.link',
       },
       success: {
-        border: '1px solid',
         borderColor: 'primary.default',
         bg: 'label.success',
         color: 'primary.default',
       },
       error: {
-        border: '1px solid',
         borderColor: 'system.error',
         bg: 'label.error',
         color: 'system.error',
@@ -56,17 +52,19 @@ function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props 
       justifyContent="center"
       alignItems="center"
       gap={styles.size[size].gap}
-      padding={styles.size[size].padding}
-      borderRadius="24px"
-      border={styles.status[status].border}
+      border="1px solid"
       borderColor={styles.status[status].borderColor}
+      borderRadius="24px"
+      padding={styles.size[size].padding}
       bg={styles.status[status].bg}
+      fontSize={styles.size[size].fontSize}
+      fontWeight={400}
+      textTransform="capitalize"
+      color={styles.status[status].color}
       {...props}
     >
-      {Icon && <Icon />}
-      <Text fontWeight="bold" fontSize={styles.size[size].fontSize} color={styles.status[status].color}>
-        {text}
-      </Text>
+      {Icon}
+      {text}
     </Badge>
   );
 }
