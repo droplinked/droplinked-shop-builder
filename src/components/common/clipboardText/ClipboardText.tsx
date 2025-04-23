@@ -7,7 +7,7 @@ function ClipboardText({ text, iconStyles }: { text: string, iconStyles?: React.
 
     const handleClick = useCallback(() => {
         navigator.clipboard.writeText(text)
-        showToast({ message: 'Copied', type: "success", options: { autoClose: 200, hideProgressBar: true } })
+        showToast({ message: 'Copied', type: "success", options: { duration: 1500 } })
     }, [])
 
     return <AppIcons.Copy style={{ cursor: "pointer", ...iconStyles }} onClick={handleClick} />

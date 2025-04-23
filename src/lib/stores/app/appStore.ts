@@ -5,7 +5,7 @@ import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
 import { IGetUserService } from 'lib/apis/user/interfaces'
 import { getUserService, userUpdateService } from 'lib/apis/user/services'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { setTokens } from 'utils/app/ authutils'
 import { appDevelopment } from 'utils/app/variable'
 import AppErrors from 'utils/constants/errors'
@@ -68,7 +68,7 @@ const states = (set, get): IAppStore => ({
                 const refresh_token = method.type === "default" ? result?.refresh_token : method.refresh_token;
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
                 let status = window.location.pathname === "/plans" ? "VERIFIED" : result?.user?.status
-                status === "NEW" && toast["info"]("Please verify your email to log in")
+                status === "NEW" && toast.info("Please verify your email to log in")
 
                 set({
                     loading: false,
@@ -159,7 +159,7 @@ const states = (set, get): IAppStore => ({
     checkPermissionAndShowToast: (permission, message) => {
         const { hasPermission } = get()
         if (!hasPermission(permission)) {
-            toast["error"](message || AppErrors.permission.permissionDenied)
+            toast.error(message || AppErrors.permission.permissionDenied)
             return false
         }
         return true

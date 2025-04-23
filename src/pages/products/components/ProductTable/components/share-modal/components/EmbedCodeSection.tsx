@@ -16,7 +16,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
-    showToast({ message: 'Copied', type: 'success', options: { autoClose: 200, hideProgressBar: true } });
+    showToast({ message: 'Copied', type: 'success', options: { duration: 1500 } });
   };
 
   const handleNavigate = (link: string) => navigate(link);
