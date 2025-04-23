@@ -21,11 +21,11 @@ const ReferralCode = ({ States: { referralDetails: { code, customCode, percent }
     const [enable, set_enable] = useState<boolean>(false);
     const { showToast } = useAppToast();
     const ref = useRef<HTMLFormElement>(null);
-    
+
     const update_referral = async (values, actions) => await mutateAsync({ customCode: values.customCode }).then((res) => updateStates('referralDetails', res.data.data)).catch((err) => actions.setFieldError('customCode', err.response.data.data.message))
     const { values, handleSubmit, handleChange, setFieldValue, setFieldError, errors } = useFormik({ initialValues: { customCode }, validationSchema: object().shape({ customCode: string().matches(/^[A-Za-z0-9_]+$/, 'Invalid format').required("Required") }), validateOnChange: false, onSubmit: update_referral });
     useOutsideClick({ ref, handler: () => { start_transition(() => { set_enable(false); setFieldValue('customCode', customCode); setFieldError("customCode", null) }) } });
- 
+
     return (
         <Flex direction="column" gap="36px">
             <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="neutral.gray.300">Earn more with every referral! When someone joins the community using your code, you receive 15% commission of any plan or subscription.</AppTypography></Flex>
@@ -43,7 +43,7 @@ const ReferralCode = ({ States: { referralDetails: { code, customCode, percent }
                                 <AppInput isReadOnly={!enable} value={values.customCode} placeholder="Your custom referral code" onChange={handleChange} id="customCode" name="customCode" border="none" />
                                 {!enable ?
                                     (<Flex gap="8px" alignItems="center">
-                                        <BasicButton py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => { navigator.clipboard.writeText(`${BUILDER_URL}/?modal=signup&referral=${customCode}`); showToast({ message: "Copied", type: "info", options: { autoClose: 200, hideProgressBar: true } }) }}>Copy Link</BasicButton>
+                                        <BasicButton py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => { navigator.clipboard.writeText(`${BUILDER_URL}/?modal=signup&referral=${customCode}`); showToast({ message: "Copied", type: "info", options: { duration: 1500 } }) }}>Copy Link</BasicButton>
                                         <BasicButton py="12px" px="14px" minW="auto" sizes="medium" onClick={() => set_enable(true)}>Edit</BasicButton>
                                     </Flex>) : (<BasicButton isLoading={referral_update_loading} type="submit" py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => { }}>Create</BasicButton>)}
                             </Flex>
