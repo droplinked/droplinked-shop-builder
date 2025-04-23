@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { toast } from "sonner";
 import {
     Box,
@@ -13,7 +13,7 @@ type ToastType = "success" | "error" | "info" | "warning";
 
 interface CustomToastProps {
     id: string | number;
-    title: string;
+    title: string | JSX.Element;
     description?: string;
     type: ToastType;
 }
