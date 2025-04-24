@@ -2,6 +2,8 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
+import BlogEditPage from "pages/blogs/components/BlogEditPage";
 import Changelog from "pages/changelog/Changelog";
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
 import Onboarding from "pages/onboarding/Onboarding";
@@ -192,8 +194,8 @@ const router = createBrowserRouter([
                 path: "blogs",
                 children: [
                     { index: true, element: <Blogs /> },
-                    // { path: "create", element: <BlogForm /> },
-                    // { path: ":slug", element: <Blog /> },
+                    { path: "new", element: <BlogCreatePage /> },
+                    { path: ":slug", element: <BlogEditPage /> },
                 ],
             },
             { path: "plans", element: <SubscriptionPlans /> },

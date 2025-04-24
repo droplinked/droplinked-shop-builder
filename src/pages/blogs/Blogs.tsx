@@ -2,9 +2,11 @@ import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useDebounce from 'hooks/debounce/useDebounce'
 import React, { useState } from 'react'
-import BlogTable from './components/BlogTable'
+import { useNavigate } from 'react-router-dom'
+import BlogTable from './components/BlogTable/BlogTable'
 
 function Blogs() {
+    const navigate = useNavigate()
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
 
@@ -17,14 +19,14 @@ function Blogs() {
                     {
                         title: "New Post",
                         leftIcon: <PlusMd color="#000" />,
-                        onClick: () => console.log("New Collection"),
+                        onClick: () => navigate("new")
                     }
                 ]}
             />
             <PageGrid.Actions
                 search={{
                     value: searchTerm,
-                    onChange: (e) => setSearchTerm(e.target.value),
+                    onChange: (e) => setSearchTerm(e.target.value)
                 }}
             />
             <PageGrid.Content>

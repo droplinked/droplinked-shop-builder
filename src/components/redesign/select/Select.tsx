@@ -1,10 +1,11 @@
-import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner } from '@chakra-ui/react'
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
 
 interface Props {
     label?: string
+    description?: string
     items: any[]
     labelAccessor?: string
     valueAccessor?: string
@@ -12,13 +13,13 @@ interface Props {
     isLoading?: boolean
     error?: string
     inputGroupProps?: InputGroupProps
-    selectProps?: SelectProps
     itemBackgroundColor?: string
     itemColor?: string;
+    selectProps?: SelectProps
 }
 
 function Select(props: Props) {
-    const { itemColor, itemBackgroundColor, label, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, selectProps } = props
+    const { label, description, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, itemColor, itemBackgroundColor, selectProps } = props
     const { value, onChange } = selectProps
 
     const options = useMemo(() => {
@@ -82,15 +83,11 @@ function Select(props: Props) {
     )
 
     return (
-        <InputGroup
-            display="flex"
-            flexDirection="column"
-            gap={2}
-            {...inputGroupProps}
-        >
-            <FormLabel width="fit-content" m={0} fontSize={14} fontWeight={500} color="white">{label}</FormLabel>
+        <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
+            <FormLabel mb={description ? 1 : 4} fontSize={14} fontWeight={500} color="text.white">{label}</FormLabel>
+            {description && <Text mb={4} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>}
             {selectElement}
-            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {error && <ErrorMessage mt={2}>{error}</ErrorMessage>}
         </InputGroup>
     )
 }
