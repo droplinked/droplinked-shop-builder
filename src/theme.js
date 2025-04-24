@@ -14,7 +14,7 @@ export const theme = extendTheme({
       })
     }),
     Divider: { baseStyle: { margin: "0" } },
-    FormLabel: { baseStyle: { margin: "0" } },
+    FormLabel: { baseStyle: { margin: "0", width: "fit-content" } },
   },
   colors: {
     neutral: {

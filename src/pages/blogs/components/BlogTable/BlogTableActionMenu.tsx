@@ -5,15 +5,17 @@ import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import { DoublecheckMd } from 'assets/icons/Sign/DoubleCheck/DoublecheckMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function BlogTableActionMenu({ blogPost }: { blogPost: any }) {
-    const isVisible = blogPost.isVisible
+    const navigate = useNavigate()
 
+    const { isVisible, seoData } = blogPost
     const actions = [
         {
             icon: <EditMd color='#fff' />,
             title: "Edit",
-            onClick: () => console.log("Edit")
+            onClick: () => navigate(seoData.slug)
         },
         {
             icon: isVisible ? <ArchiveMd color='#fff' /> : <DoublecheckMd color='#fff' />,
