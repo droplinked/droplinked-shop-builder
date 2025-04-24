@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import { ProductProperty } from 'pages/products/utils/types'
 import React, { useState } from 'react'
-import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import ProductVariantCard from '../ProductVariantCard'
 import AddVariantsButton from './AddVariantsButton'
 import ProductSKUSettings from './SKUSettings/ProductSKUSettings'
@@ -30,7 +30,7 @@ export default function PhysicalProductVariants() {
     const handleDiscardVariant = () => setVariantFormVisibility(false)
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Variants"
             description="Add different versions of this product (e.g., size, color)."
             isRequired
@@ -58,6 +58,6 @@ export default function PhysicalProductVariants() {
 
                 {sku.length > 0 && <ProductSKUSettings />}
             </Flex>
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }

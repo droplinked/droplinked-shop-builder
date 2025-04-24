@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import Input from 'components/redesign/input/Input'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
-import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 
 export default function ProductBulkDimensionsUpdater() {
     const { values: { sku }, setFieldValue } = useProductForm()
@@ -23,21 +23,21 @@ export default function ProductBulkDimensionsUpdater() {
 
     return (
         <Flex wrap="wrap" gap={9} css={{ input: { fontSize: 16 } }}>
-            <ProductFieldWrapper label="Packaging" isRequired>
+            <FormFieldWrapper label="Packaging" isRequired>
                 <Flex gap={4}>
                     <SkuAttributeInput field="width" placeholder="Width" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.width || ''} />
                     <SkuAttributeInput field="length" placeholder="Length" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.length || ''} />
                     <SkuAttributeInput field="height" placeholder="Height" updateSkus={updateSkus} initialValue={sku[0]?.dimensions?.height || ''} />
                     <ConvertUnitButton label="Inch" />
                 </Flex>
-            </ProductFieldWrapper>
+            </FormFieldWrapper>
 
-            <ProductFieldWrapper label="Weight" isRequired>
+            <FormFieldWrapper label="Weight" isRequired>
                 <Flex gap={4}>
                     <SkuAttributeInput field="weight" placeholder="Weight" updateSkus={updateSkus} initialValue={sku[0]?.weight || ''} />
                     <ConvertUnitButton label="kg" />
                 </Flex>
-            </ProductFieldWrapper>
+            </FormFieldWrapper>
         </Flex>
     )
 }
@@ -64,7 +64,7 @@ const ConvertUnitButton = ({ label }: { label: string }) => (
         alignItems="center"
         gap={2}
         border="1px solid"
-            borderColor="neutral.gray.800"
+        borderColor="neutral.gray.800"
         borderRadius={8}
         padding="12px 16px"
         color="#fff"

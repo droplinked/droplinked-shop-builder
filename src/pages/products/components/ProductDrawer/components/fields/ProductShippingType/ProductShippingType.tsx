@@ -1,9 +1,9 @@
 import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import { useShippingTypes } from 'pages/products/hooks/useShippingTypes'
 import React, { useState } from 'react'
 import LoadingPlaceholder from '../../common/LoadingPlaceholder'
-import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import CustomShippingForm from './CustomShippingForm'
 import ShippingTypeSelector from './ShippingTypeSelector'
 
@@ -22,7 +22,7 @@ function ProductShippingType() {
     )
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label='Shipping Method'
             description='Choose how to ship this product to customers.'
             isRequired
@@ -33,10 +33,8 @@ function ProductShippingType() {
                 : <ShippingTypeSelector shippingTypes={shippingTypes} />
             }
 
-            {isFormVisible &&
-                <CustomShippingForm onDiscard={() => setFormVisibility(false)} />
-            }
-        </ProductFieldWrapper>
+            {isFormVisible && <CustomShippingForm onDiscard={() => setFormVisibility(false)} />}
+        </FormFieldWrapper>
     )
 }
 
