@@ -31,6 +31,7 @@ const PaymentProviderList: React.FC = () => {
     queryKey: ['stripeOnboardingUrl'],
     queryFn: () => getStripeOnboardingUrl(),
     enabled: !onboardedExpressStripeAccount,
+    retry: !onboardedExpressStripeAccount,
     select(data) {
       return data.data.url;
     },
