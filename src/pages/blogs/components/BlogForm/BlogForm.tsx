@@ -5,6 +5,7 @@ import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
 import * as Yup from 'yup'
 import BlogFormActions from './FormFields/BlogFormActions'
+import BlogSlugInput from './FormFields/BlogSlugInput'
 import BlogToggles from './FormFields/BlogToggles'
 import BodyEditor from './FormFields/BodyEditor/BodyEditor'
 import CategorySelect from './FormFields/CategorySelect'
@@ -77,6 +78,7 @@ function BlogForm({ blog, onSubmit }: Props) {
                             <Flex className='blog-form-column-layout blog-form-column'>
                                 <FeaturedPictureUpload />
                                 <RuledGrid columns={1} borderRadius={16}>
+                                    <BlogSlugInput />
                                     <VisibilityStatusRadio />
                                     <BlogToggles />
                                 </RuledGrid>
