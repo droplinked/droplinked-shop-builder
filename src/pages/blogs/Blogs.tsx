@@ -16,11 +16,7 @@ function Blogs() {
                 title="Blog Posts"
                 description="Here you can create, edit and manage posts related to your blog."
                 actionButtons={[
-                    {
-                        title: "New Post",
-                        leftIcon: <PlusMd color="#000" />,
-                        onClick: () => navigate("new")
-                    }
+                    { title: "New Post", leftIcon: <PlusMd color="#000" />, onClick: () => navigate("new") }
                 ]}
             />
             <PageGrid.Actions
