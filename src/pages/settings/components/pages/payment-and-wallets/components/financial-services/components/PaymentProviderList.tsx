@@ -44,7 +44,6 @@ const PaymentProviderList: React.FC = () => {
       buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
-      isLinkDisabled: true,
       isFetching: isFetching,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
       icon: <AppIcons.StripeS />,
