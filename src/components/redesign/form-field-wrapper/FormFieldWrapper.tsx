@@ -1,9 +1,10 @@
-import { Box, Flex, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
+import { Box, BoxProps, Flex, FormLabel, FormLabelProps, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { PropsWithChildren, ReactNode } from "react"
 
 interface Props extends PropsWithChildren {
+    containerProps?: BoxProps
     label: string
     labelProps?: FormLabelProps
     description?: string
@@ -12,9 +13,9 @@ interface Props extends PropsWithChildren {
     rightContent?: ReactNode
 }
 
-function FormFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: Props) {
+function FormFieldWrapper({ containerProps, label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: Props) {
     return (
-        <Box>
+        <Box {...containerProps}>
             <Flex
                 mb={children ? 4 : 0}
                 align="flex-start"
