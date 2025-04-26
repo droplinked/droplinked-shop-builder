@@ -11,13 +11,13 @@ export default function StoreURL() {
     const { shop } = useAppStore()
 
     const { shopDomain, name } = shop
-    const link = shopDomain ? `https://${shopDomain}` : `${SHOP_URL}/${name}`
+    const link = Array.isArray(shopDomain) ? `https://${shopDomain[0]}` : shopDomain ? `https://${shopDomain}` : `${SHOP_URL}/${name}`
 
     const shopLink = () => (
         <Flex alignItems={"center"} gap={"6px"} sx={{ path: { stroke: "#179ef8" } }}>
             <Link to={link} target='_blank'>
                 <AppTypography color={"#179EF8"} fontSize={16}>
-                    {shopDomain ? `https://${shopDomain}` : `${SHOP_URL}/[${name}]`}
+                    {link}
                 </AppTypography>
             </Link>
             <ClipboardText text={link} />
