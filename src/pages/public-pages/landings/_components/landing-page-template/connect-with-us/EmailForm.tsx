@@ -1,5 +1,5 @@
 import { Box, Flex, Input, InputGroup, useMediaQuery } from "@chakra-ui/react"
-import Button from "components/redesign/button/Button"
+import AppButton from "components/redesign/button/AppButton"
 import { Form, Formik } from "formik"
 import useAppToast from "hooks/toast/useToast"
 import { subscribeFeature } from "lib/apis/user/services"
@@ -89,16 +89,16 @@ const EmailInput = ({ email, onChange }) => (
 )
 
 const SubmitButton = ({ isSubmitting }) => (
-    <Button
+    // TODO: Check with the design
+    <AppButton
         type="submit"
         borderRadius={36}
         fontSize={{ base: 14, md: 16 }}
-        fontWeight={500}
         isLoading={isSubmitting}
         isDisabled={isSubmitting}
     >
         Submit
-    </Button>
+    </AppButton>
 )
 
 const InputGroupContainer = ({ children, padding = 0 }) => (

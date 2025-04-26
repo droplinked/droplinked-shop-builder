@@ -1,5 +1,5 @@
 import { Flex, Text, VStack } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
@@ -116,13 +116,13 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
                             </Checkbox>
 
-                            <Button
+                            <AppButton
                                 isLoading={isSubmitting}
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
                                 Sign Up
-                            </Button>
+                            </AppButton>
 
                             <DividerText text="or sign up with" />
 

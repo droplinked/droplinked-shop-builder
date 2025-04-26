@@ -1,5 +1,5 @@
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
@@ -34,14 +34,13 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     isLoading={verifyLoading || resendLoading || loginLoading}
                 />
 
-                <Button
-                    fontWeight={500}
+                <AppButton
                     isDisabled={otp.length < 6 || inputState === "success" || resendLoading}
                     onClick={() => verifyEmail()}
                     isLoading={verifyLoading || loginLoading}
                 >
                     Verify
-                </Button>
+                </AppButton>
 
                 <Box
                     marginTop={6}

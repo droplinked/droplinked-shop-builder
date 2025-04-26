@@ -1,6 +1,6 @@
 import { Divider, ModalBody, ModalFooter } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import Input from 'components/redesign/input/Input';
 import MessageBox from 'components/redesign/message-box/MessageBox';
 import AppModal from 'components/redesign/modal/AppModal';
@@ -74,16 +74,10 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
-                <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Discard</Button>
-                <Button
-                    fontWeight={500}
-                    fontSize={14}
-                    onClick={handleSubmit}
-                    isLoading={isLoading}
-                    isDisabled={!email}
-                >
+                <AppButton variant='secondary' onClick={onClose}>Discard</AppButton>
+                <AppButton onClick={handleSubmit} isLoading={isLoading} isDisabled={!email} >
                     Send Invitation
-                </Button>
+                </AppButton>
             </ModalFooter>
         </AppModal>
     )

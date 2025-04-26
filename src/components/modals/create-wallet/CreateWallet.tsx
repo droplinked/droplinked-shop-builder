@@ -1,7 +1,7 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import WalletStatus from "components/common/walletStatus/WalletStatus";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
 import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
@@ -12,11 +12,7 @@ import { useNavigate } from "react-router-dom";
 function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: boolean }) {
     const navigate = useNavigate();
     const { updateState, shop } = useAppStore();
-    const {
-        isLoading: isCreatingWallet,
-        isError,
-        data: createWalletData,
-    } = useQuery({
+    const { isLoading: isCreatingWallet,isError,  data: createWalletData, } = useQuery({
         queryFn: postCreateCircleWallet,
         queryKey: ["create-wallet"],
         enabled: !hasCreatedCircleWallet,
@@ -24,6 +20,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
             if (res?.data?.data) updateState({ key: "shop", params: { ...shop, circleWallets: res?.data?.data } });
         },
     });
+
     return (
         <AppModal
             modalRootProps={{ isOpen: true, onClose: () => { }, size: "3xl", isCentered: true }}
@@ -54,7 +51,8 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                         </AppTypography>
                     </Box>
                     <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
-                        <Button
+                        {/* TODO: Check with the design */}
+                        <AppButton
                             backgroundColor={"neutral.gray.800"}
                             border={"none"}
                             display="flex"
@@ -72,8 +70,8 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             {...((isCreatingWallet || isError) && { background: "neutral.gray.800", color: "#737373", cursor: "not-allowed" })}
                         >
                             Access Wallet
-                        </Button>
-                        <Button
+                        </AppButton>
+                        <AppButton
                             padding="12px 20px"
                             color="#000"
                             textAlign="center"
@@ -86,7 +84,7 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                             {...(isCreatingWallet && { background: "neutral.gray.800", color: "#737373", cursor: "not-allowed", border: "none" })}
                         >
                             Go to Dashboard
-                        </Button>
+                        </AppButton>
                     </Box>
                 </Box>
             </ModalBody>

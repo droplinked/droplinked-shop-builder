@@ -1,4 +1,4 @@
-import { AppButtonProps } from "../button/Button"
+import { AppButtonProps } from "../button/AppButton"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
 export interface SearchInput {

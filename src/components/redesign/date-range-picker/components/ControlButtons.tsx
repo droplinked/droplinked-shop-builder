@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import React from "react";
 
 type ValuePiece = Date | null;
@@ -25,7 +25,8 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
 
   return (
     <Flex mx={4} mb={4} justifyContent={{ base: "center", md: "end" }} gap={4}>
-      <Button
+      {/* TODO: Check with the design */}
+      <AppButton
         width={{ base: "50%", md: "min-content" }}
         paddingInline={"12px"}
         fontSize={12}
@@ -34,17 +35,17 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
         onClick={handleDiscard}
       >
         Discard
-      </Button>
-      <Button
+      </AppButton>
+      <AppButton
         width={{ base: "50%", md: "min-content" }}
         paddingInline={"12px"}
         fontSize={12}
         fontWeight={500}
-        variant="primary"
+        variant="filled"
         onClick={handleConfirm}
       >
         Confirm
-      </Button>
+      </AppButton>
     </Flex>
   );
 }

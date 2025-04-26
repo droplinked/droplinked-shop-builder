@@ -1,11 +1,13 @@
 import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import ShopPreviewHeader from './ShopPreviewHeader'
 
 export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
+    
     return (
-        <Button
+        //TODO: Check with the design 
+        <AppButton
             position="fixed"
             bottom="0"
             left="0"
@@ -24,6 +26,6 @@ export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
             borderTopRadius={16}
         >
             <ShopPreviewHeader rightIcon={<ChevronupLg color='#fff' />} />
-        </Button>
+        </AppButton>
     )
 }

@@ -1,7 +1,7 @@
 import { HStack, VStack, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import { useProfile } from "hooks/useProfile/useProfile";
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
 import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
@@ -38,7 +38,8 @@ function Plan({ plan }: IProps) {
                 {plan.type === "BUSINESS" && <AppIcons.MedalStar />}
             </HStack>
             <PricePlan plan={plan} />
-            <Button width={"100%"} mt="1rem" textColor={"#000"} isDisabled={isFree} color={""} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</Button>
+            {/* TODO: Check with the design */}
+            <AppButton width={"100%"} mt="1rem" textColor={"#000"} isDisabled={isFree} color={""} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</AppButton>
             {purchaseModal.isOpen && (
                 <SubscriptionPlanCheckoutModal
                     isOpen={purchaseModal.isOpen}

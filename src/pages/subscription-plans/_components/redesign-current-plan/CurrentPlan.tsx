@@ -1,6 +1,6 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
 import { getSubscriptionPlanIcon } from 'utils/helpers';
 import * as React from 'react';
@@ -23,7 +23,17 @@ function NewCurrentPlan() {
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentSubData} data={data} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>
-                    {type !== "STARTER" && <Button backgroundColor={"transparent"} border={"none"} color={"white"} onClick={() => window.open('mailto:support@droplinked.com')}>Cancel Subscription</Button>}
+                {type !== 'STARTER' && (
+                    //TODO: Check with the design
+                    <AppButton
+                        backgroundColor={'transparent'}
+                        border={'none'}
+                        color={'white'}
+                        onClick={() => window.open('mailto:support@droplinked.com')}
+                    >
+                    Cancel Subscription
+                    </AppButton>
+                )}
                     <StatisticModal data={data} />
                 </HStack>
             </HStack>

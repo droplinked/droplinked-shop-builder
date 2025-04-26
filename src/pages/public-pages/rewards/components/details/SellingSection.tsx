@@ -1,6 +1,6 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import React from 'react';
 
 interface Props {
@@ -20,9 +20,9 @@ const SellingSection = ({ onCreateStoreClick }: Props) => (
         <Text fontSize="base" color="text.subtext.placeholder.dark">
           Selling on Droplinked is easy, transparent, and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly.
         </Text>
-        <Button onClick={onCreateStoreClick}>
+        <AppButton onClick={onCreateStoreClick}>
           Create Store
-        </Button>
+        </AppButton>
       </VStack>
     </Box>
     <Box display="flex" justifyContent="center" alignItems="center">

@@ -1,7 +1,7 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,6 +13,7 @@ export default function NoOrdersPlaceholder() {
             title: 'Importing Products',
             description: 'Create product listings within the interface or import existing inventory.',
             image: 'https://upload-file-droplinked.s3.amazonaws.com/f15e8bdf6bbeab13294155b4259324976494cfa30c40dddc7673aba705858c8a.png',
+            // TODO: Check with the design 
             buttons: [
                 {
                     label: 'First Product',
@@ -22,7 +23,9 @@ export default function NoOrdersPlaceholder() {
                 },
                 {
                     label: 'Help Center',
-                    variant: 'outline',
+                    variant: 'outlined',
+                    color:'text.white',
+                    borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
@@ -35,7 +38,9 @@ export default function NoOrdersPlaceholder() {
             buttons: [
                 {
                     label: 'Learn More',
-                    variant: 'outline',
+                    variant: 'outlined',
+                    color:'text.white',
+                    borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
@@ -87,14 +92,13 @@ function FeatureCard({ title, description, image, buttons, ...rest }) {
                 </Text>
                 <Flex mt={3} gap={3}>
                     {buttons.map((button) => (
-                        <Button
+                        <AppButton
                             key={button.label}
                             fontSize={{ base: 12, md: 14 }}
-                            fontWeight={500}
                             {...button}
                         >
                             {button.label}
-                        </Button>
+                        </AppButton>
                     ))}
                 </Flex>
             </Flex>

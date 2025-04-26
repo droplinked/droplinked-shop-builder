@@ -1,7 +1,7 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -18,10 +18,9 @@ function InvoiceManagementHeader() {
                 <Heading as="h2" fontSize={28} fontWeight={600} color="white">Invoice management</Heading>
                 <AppTypography fontSize={16} color="neutral.gray.500">Create, view, and track all invoices in one place.</AppTypography>
             </Flex>
-            <Button onClick={() => navigate("/analytics/invoice-management/create")}>
-                <AppIcons.BlackPlus />
-                <AppTypography>New Invoice</AppTypography>
-            </Button>
+            <AppButton iconLeft={<AppIcons.BlackPlus />} onClick={() => navigate("/analytics/invoice-management/create")}>
+                New Invoice
+            </AppButton>
         </Flex>
     );
 }

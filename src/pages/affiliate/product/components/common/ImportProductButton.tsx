@@ -1,5 +1,5 @@
 import AppIcons from 'assets/icon/Appicons';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
 import { importAffiliateProductService } from 'lib/apis/product/productServices';
 import useAppStore from 'lib/stores/app/appStore';
@@ -25,9 +25,15 @@ function ImportProductButton({ productId }) {
   };
 
   return (
-    <Button iconLeft={<AppIcons.AffiliateAddProduct />} isLoading={isLoading} isDisabled={isLoading} width="full" onClick={importProduct}>
-      Import Product
-    </Button>
+    <AppButton
+      iconLeft={<AppIcons.AffiliateAddProduct />}
+      isLoading={isLoading}
+      isDisabled={isLoading}
+      width="full"
+      onClick={importProduct}
+      >
+        Import Product
+    </AppButton>
   );
 }
 

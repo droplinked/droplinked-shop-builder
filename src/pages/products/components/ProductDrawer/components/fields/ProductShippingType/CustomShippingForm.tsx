@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import Button from "components/redesign/button/Button"
+import AppButton from "components/redesign/button/AppButton"
 import Input from "components/redesign/input/Input"
 import useAppToast from "hooks/toast/useToast"
 import { useCreateCustomShipping } from "pages/products/hooks/useShippingTypes"
@@ -57,22 +57,22 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                 gap={4}
                 sx={{ button: { padding: "8px 12px", fontSize: 12, fontWeight: 500 } }}
             >
-                <Button
+                <AppButton
                     type="button"
                     variant="secondary"
                     isDisabled={isLoading}
                     onClick={onDiscard}
                 >
                     Discard
-                </Button>
-                <Button
+                </AppButton>
+                <AppButton
                     type="button"
                     isDisabled={!shippingTitle || !uploadedFileData || isLoading}
                     isLoading={isLoading}
                     onClick={handleCreate}
                 >
                     Create
-                </Button>
+                </AppButton>
             </Flex>
         </Flex>
     )

@@ -1,6 +1,6 @@
 import { Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React, { useState } from 'react'
@@ -21,7 +21,8 @@ export default function AiAssistantButton() {
 
     return (
         <>
-            <Button
+         {/* TODO: Check with the design */}
+            <AppButton
                 display={{ base: "flex", lg: "none" }}
                 fontSize={14}
                 fontWeight={500}
@@ -40,7 +41,7 @@ export default function AiAssistantButton() {
                 <Text color="#2BCFA1">
                     Generate with AI
                 </Text>
-            </Button>
+            </AppButton>
 
             {step === 0 &&
                 <PlansDrawer
@@ -55,6 +56,7 @@ export default function AiAssistantButton() {
                     isOpen={isOpen}
                     onClose={onClose}
                     plan='BUSINESS'
+                    clientSecret={''}    
                 />
             }
             {step === 2 &&

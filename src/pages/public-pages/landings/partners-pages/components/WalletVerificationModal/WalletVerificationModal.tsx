@@ -2,7 +2,7 @@ import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/reac
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import React, { useContext, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
@@ -109,14 +109,14 @@ const WalletVerificationModal = () => {
 
 	return (
 		<>
-			<Button
+			{/* TODO: Check with the design */}
+			<AppButton
 				paddingInline={{ base: 4, lg: 5 }}
 				fontSize={{ base: 14, lg: 16 }}
-				fontWeight={500}
 				onClick={onOpen}
 			>
 				Claim Now
-			</Button>
+			</AppButton>
 
 			<AppModal
 				modalRootProps={{ isOpen, onClose, size: '3xl', isCentered: true }}
@@ -242,7 +242,8 @@ const WalletVerificationModal = () => {
 							>
 								<Flex flex='1 0 0' alignItems='flex-start'>
 									{current_state?.buttons?.left && (
-										<Button
+										//TODO: Check with the design
+										<AppButton
 											backgroundColor='neutral.gray.800'
 											border='none'
 											display="flex"
@@ -252,27 +253,26 @@ const WalletVerificationModal = () => {
 											color="#FFF"
 											textAlign="center"
 											fontSize={{ base: '14px', md: '16px' }}
-											fontWeight="500"
 											lineHeight={{ base: '16px', md: '24px' }}
 											onClick={current_state?.buttons?.left?.onClick}
 											{...current_state?.buttons?.left?.styles}
 										>
 											Close
-										</Button>
+										</AppButton>
 									)}
 								</Flex>
-								<Button
+								{/* TODO: Check with the design */}
+								<AppButton
 									padding="12px 20px"
 									color="#000"
 									textAlign="center"
 									fontSize={{ base: '14px', md: '16px' }}
-									fontWeight="500"
 									onClick={current_state?.buttons?.right?.onClick}
 									{...current_state.buttons?.right?.styles}
 								>
 									{current_state?.buttons?.right?.label}
 									{current_state?.buttons?.right?.rightIcon}
-								</Button>
+								</AppButton>
 							</Flex>
 						</Flex>
 					</Flex>

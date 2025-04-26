@@ -1,6 +1,6 @@
 import { ModalFooter } from '@chakra-ui/react'
 import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
@@ -54,8 +54,8 @@ export default function CancelOrderModal({ isOpen, onClose, orderID }: Props) {
 
             />
             <ModalFooter mt="38px" display="flex" gap={6}>
-                <Button flex={1} variant='secondary' onClick={onClose}>Close</Button>
-                <Button flex={1} variant='ghost' background="system.error" isLoading={isLoading} onClick={handleCancelOrder}>Yes, Cancel Order</Button>
+                <AppButton flex={1} variant='secondary' onClick={onClose}>Close</AppButton>
+                <AppButton flex={1} variant='outlined' background="system.error" isLoading={isLoading} onClick={handleCancelOrder}>Yes, Cancel Order</AppButton>
             </ModalFooter>
         </AppModal>
     )

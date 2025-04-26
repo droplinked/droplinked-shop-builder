@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { ActionButtonProps } from '../interface'
 
@@ -12,12 +12,12 @@ export default function DesktopActionButtons({ actionButtons }: { actionButtons:
         <Flex flexDirection="row" gap={4} alignItems="center">
             {actionButtons?.map((button, index) => {
                 const ButtonComponent = (
-                    <Button
+                    <AppButton
                         key={index}
                         {...button}
                     >
                         {button.title}
-                    </Button>
+                    </AppButton>
                 );
 
                 if (button.wrapper) {

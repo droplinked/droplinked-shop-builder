@@ -1,7 +1,7 @@
 import { Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import React from "react";
 
 interface Props {
@@ -31,17 +31,15 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                 >
                     Withdraw
                 </Button> */}
-                <Button
+                <AppButton
+                    width={{ base: "50%", md: "min-content" }}
                     flex={{ base: 1, md: "unset" }}
-                    fontSize={14}
-                    fontWeight={500}
                     leftIcon={<AppIcons.RecieveMoney />}
                     isLoading={isLoading}
-                    width={{ base: "50%", md: "min-content" }}
                     onClick={onOpen}
                 >
                     Add Credit
-                </Button>
+                </AppButton>
             </Flex>
             <AddBalanceModal isOpen={isOpen} onClose={onClose} handleRefetch={handleRefetchData} />
         </>

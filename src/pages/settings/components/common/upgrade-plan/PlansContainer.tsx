@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import React from 'react';
 import PlanCard from './PlanCard';
 
@@ -58,9 +58,9 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                         </AppTypography>
                     </Flex>
                 </Flex>
-                <Button onClick={onOpen} isLoading={isFetching} fontWeight={500} fontSize={14}>
+                <AppButton onClick={onOpen} isLoading={isFetching}>
                     Unlock Features
-                </Button>
+                </AppButton>
             </Flex>
             <PlanCard
                 icon={<AppIcons.StarOutline style={{ width: "27px", height: "27px" }} />}

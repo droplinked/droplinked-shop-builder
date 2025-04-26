@@ -1,5 +1,5 @@
 import { Divider, Flex, ModalFooter, useTabsContext } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 
 interface Props {
@@ -21,25 +21,21 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                 gap={4}
             >
                 <Flex width="100%" justifyContent="space-between" gap={4}>
-                    <Button
+                    <AppButton
                         width={{ base: "25%", md: "max-content" }}
-                        fontWeight={500}
                         onClick={onClose}
-                        fontSize={14}
                         variant="secondary"
                         isDisabled={isLoading}
                     >
                         Cancel
-                    </Button>
-                    <Button
+                    </AppButton>
+                    <AppButton
                         width={{ base: "70%", md: "max-content" }}
-                        fontWeight={500}
                         onClick={() => handleSubmit(selectedIndex)}
-                        fontSize={14}
                         isLoading={isLoading}
                     >
                         {selectedIndex === 1 ? "Upload" : "Validate"}
-                    </Button>
+                    </AppButton>
                 </Flex>
             </ModalFooter>
         </>

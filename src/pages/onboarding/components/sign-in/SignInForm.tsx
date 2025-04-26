@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
@@ -84,9 +84,9 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             Remember my password
                         </Checkbox>
 
-                        <Button type="submit" isLoading={isSubmitting}>
+                        <AppButton type="submit" isLoading={isSubmitting}>
                             Sign In
-                        </Button>
+                        </AppButton>
 
                         <DividerText text="or continue with" />
 

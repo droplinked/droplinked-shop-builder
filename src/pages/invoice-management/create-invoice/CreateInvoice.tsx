@@ -1,5 +1,5 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading'
 import { Form, Formik, FormikProvider } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
@@ -84,8 +84,8 @@ export default function CreateInvoice() {
                                 <Flex direction="column" gap={6}>
                                     <InvoiceSummary />
                                     <Flex direction="column" gap={4}>
-                                        <Button type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</Button>
-                                        <Button type='button' variant='outline' isDisabled={isLoading} onClick={handleDiscard}>Discard</Button>
+                                        <AppButton type='submit' isLoading={isLoading} isDisabled={isLoading}>{`${invoiceId ? "Update" : "Create"} Invoice`}</AppButton>
+                                        <AppButton type='button' variant='outlined' isDisabled={isLoading} onClick={handleDiscard}>Discard</AppButton>
                                     </Flex>
                                 </Flex>
                             </Flex>

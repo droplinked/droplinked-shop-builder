@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from 'components/redesign/input/Input';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 
 interface WalletAddressInputProps {
     value: string;
@@ -23,10 +23,10 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
             }}
             inputContainerProps={{ padding: 2, paddingLeft: 4 }}
             rightElement={
-                <Button
+                //TODO: Check with the design
+                <AppButton
                     borderRadius={4}
                     fontSize={12}
-                    fontWeight={500}
                     paddingBlock={2}
                     px={3}
                     height={"min-content"}
@@ -35,7 +35,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
                     visibility={isButtonDisabled ? "visible" : "hidden"}
                 >
                     Save
-                </Button>
+                </AppButton>
             }
         />
     )

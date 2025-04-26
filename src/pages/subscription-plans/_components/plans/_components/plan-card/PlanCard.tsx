@@ -1,7 +1,7 @@
 import { Box, Center, Divider, Flex, useDisclosure } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import AppTypography from "components/common/typography/AppTypography"
-import Button from "components/redesign/button/Button"
+import AppButton from "components/redesign/button/AppButton"
 import { useProfile } from "hooks/useProfile/useProfile"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import React from "react"
@@ -64,7 +64,7 @@ function PlanCard({ plan }: { plan: SubscriptionPlan }) {
 
                 <PlanPrice plan={plan} />
 
-                <Button fontWeight={500} isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</Button>
+                <AppButton isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</AppButton>
 
                 <Divider borderColor="neutral.gray.700" />
 
