@@ -32,11 +32,11 @@ import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
 import Input from '../input/Input'
+import DesktopActionButtons from './components/DesktopActionButtons'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
+import MobileFloatingMenu from './components/MobileFloatingMenu'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
-import DesktopActionButtons from './components/DesktopActionButtons'
-import MobileFloatingMenu from './components/MobileFloatingMenu'
 
 /**
  * Context to share loading state across PageGrid components
@@ -75,7 +75,7 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
 
     return (
         <Flex w="full" marginBottom="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
-            <Flex flexDirection="column" alignItems="start">
+            <Flex flexDirection="column" gap={1}>
                 {title && (
                     <AppTypography color="neutral.white" fontSize="24px" fontWeight={700}>
                         {title}
@@ -87,9 +87,9 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
                     </AppTypography>
                 )}
             </Flex>
-            {isSmallerThan768 ?
-                <MobileFloatingMenu actionButtons={actionButtons} /> :
-                <DesktopActionButtons actionButtons={actionButtons} />
+            {isSmallerThan768
+                ? <MobileFloatingMenu actionButtons={actionButtons} />
+                : <DesktopActionButtons actionButtons={actionButtons} />
             }
         </Flex>
     )

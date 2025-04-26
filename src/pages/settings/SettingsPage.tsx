@@ -47,9 +47,8 @@ function SettingsPage() {
                     </Form>
                 )}
             </Formik>
-
         </PageGrid.Root>
-    );
+    )
 }
 
 export default SettingsPage;

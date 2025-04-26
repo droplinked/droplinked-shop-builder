@@ -61,6 +61,7 @@ export const theme = extendTheme({
         dark: '#4f4f4f',
       },
       primary: '#2bcfa1',
+      secondary: '#c5a3ff',
       error: '#ff2244',
       link: '#179ef8',
     },
@@ -91,6 +92,8 @@ export const theme = extendTheme({
       link: '#003E68',
     },
     label: {
+      primary: '#2bcfa11a',
+      secondary: '#c5a3ff26',
       normal: 'rgba(0, 0, 0, 0.05)',
       success: 'rgba(43, 207, 161, 0.1)',
       warning: 'rgba(255, 217, 81, 0.1)',

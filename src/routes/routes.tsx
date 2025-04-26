@@ -2,6 +2,7 @@ import MainLayout from "components/layouts/app/main/MainLayout";
 import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import Changelog from "pages/changelog/Changelog";
 import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
@@ -201,6 +202,7 @@ const router = createBrowserRouter([
             { path: "invoice-management", element: <InvoiceManagement /> },
             { path: "invoice-management/create", element: <CreateInvoice /> },
             { path: "invoice-management/edit/:invoiceId", element: <CreateInvoice /> },
+            { path: "changelog", element: <Changelog /> }
         ],
     },
     {

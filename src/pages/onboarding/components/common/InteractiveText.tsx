@@ -1,28 +1,48 @@
-import { Text } from "@chakra-ui/react"
-import React, { PropsWithChildren } from "react"
-import { Link as RouterLink } from "react-router-dom"
+import { Text, TextProps } from '@chakra-ui/react'
+import React, { ReactNode } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
-const baseTextStyles = {
+const interactiveTextStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1,
     fontSize: 14,
     fontWeight: 500,
-    color: "#179EF8",
-    _hover: { textDecoration: "underline" }
+    color: 'text.link',
+    _hover: { textDecoration: 'underline' },
 }
 
-interface Props extends PropsWithChildren {
-    onClick?: () => void
-    to?: string
+interface ButtonProps extends Omit<TextProps, 'as'> {
+    onClick: () => void
+    to?: never
 }
 
-function InteractiveText({ onClick, to, children }: Props) {
-    return to ?
-        <Text as={RouterLink} to={to} {...baseTextStyles}>
+interface LinkProps extends Omit<TextProps, 'as'> {
+    to: string
+    onClick?: never
+}
+
+type Props = (ButtonProps | LinkProps) & {
+    iconLeft?: ReactNode
+    iconRight?: ReactNode
+}
+
+function InteractiveText({ to, onClick, iconLeft, iconRight, children, ...textProps }: Props) {
+    const Component: React.ElementType = to ? RouterLink : 'button'
+
+    return (
+        <Text
+            as={Component}
+            to={to}
+            onClick={onClick}
+            {...interactiveTextStyles}
+            {...textProps}
+        >
+            {iconLeft}
             {children}
+            {iconRight}
         </Text>
-        :
-        <Text as="button" {...baseTextStyles} onClick={onClick}>
-            {children}
-        </Text>
+    )
 }
 
 export default InteractiveText
