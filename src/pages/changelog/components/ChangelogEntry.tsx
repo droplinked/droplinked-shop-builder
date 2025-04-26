@@ -3,7 +3,7 @@ import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/Externala
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import ChangelogBadge from './ChangelogBadge'
+import ChangelogTags from './ChangelogTags'
 
 function ChangelogEntry() {
     const navigate = useNavigate()
@@ -28,13 +28,9 @@ function ChangelogEntry() {
                     Update 1.0.2
                 </Heading>
 
-                <Flex marginBottom={6} flexWrap="wrap" gap={2}>
-                    {["integration", "new feature", "deprecation", "improvement", "bugfix"].map((item, index) =>
-                        <ChangelogBadge key={index} label={item} />
-                    )}
-                </Flex>
+                <ChangelogTags />
 
-                <Heading as="h3" marginBottom={1} fontSize={{ base: 16, xl: 18 }} color="text.white">
+                <Heading as="h3" marginTop={6} marginBottom={1} fontSize={{ base: 16, xl: 18 }} color="text.white">
                     Post title
                 </Heading>
 
