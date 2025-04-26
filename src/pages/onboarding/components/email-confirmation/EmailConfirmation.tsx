@@ -1,9 +1,9 @@
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
-import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import OtpField from './OtpField'
 

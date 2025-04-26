@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom'
 const interactiveTextStyles = {
     display: 'flex',
     alignItems: 'center',
-    gap: 1,
+    gap: '6px',
     fontSize: 14,
     fontWeight: 500,
     color: 'text.link',

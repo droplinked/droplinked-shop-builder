@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
-import InteractiveText from 'pages/onboarding/components/common/InteractiveText'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ChangelogBadge from './ChangelogBadge'
