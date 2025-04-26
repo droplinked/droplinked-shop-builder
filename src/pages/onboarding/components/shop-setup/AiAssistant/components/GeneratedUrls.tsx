@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import Input from 'components/redesign/input/Input'
 import useAppToast from 'hooks/toast/useToast'
@@ -69,17 +69,18 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                         }
                     />
                 </AppSkeleton>
-                <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
+                <Flex flexWrap="wrap"  gap={4} overflow="auto" >
                     {isFetching && <SelectableItemsSkeleton />}
 
                     {!isFetching && urls?.map((url, index) => (
                         <SelectableItem
+                            key={index}
                             isSelected={selectedUrl === url}
                             item={{ title: url }}
                             onClick={() => handleClick(url)}
                         />
                     ))}
-                </Grid>
+                </Flex>
             </Flex>
         </GeneratedContentWrapper>
     )

@@ -101,7 +101,8 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         title: 'Quests',
         icon: AppIcons.SideBarQuests,
         linkTo: '/rewards',
-        list: []
+        list: [],
+        external: true // Adding external flag to open in new tab
       },
       {
         title: 'Customer Support',

@@ -4,10 +4,10 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { AppAccordionChevron, AppAccordionItem, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useEffect, useRef, useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
+import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';
 import SidebarSubmenu from './SidebarSubmenu';
 import SidebarSubmenuTooltip from './SidebarSubmenuTooltip';
-import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';
 
 const SidebarItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +16,17 @@ const SidebarItem = ({ item }) => {
   const isTablet = useBreakpointValue({ base: false, md: true, lg: false });
   const { shop } = useAppStore();
   const hasChild = item.list.length !== 0;
+  const location = useLocation();
+  
+  const isSelected = React.useMemo(() => {
+    if (!item.linkTo) {
+      return item.list.some(subItem => 
+        location.pathname === subItem.linkTo 
+      );
+    }
+    return location.pathname === item.linkTo
+  }, [item, location.pathname]);
+
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -29,13 +40,21 @@ const SidebarItem = ({ item }) => {
     };
   }, []);
 
-  if (item.title === 'Quests' && shop.hasCompletedQuests) return null;
+   if (item.title === 'Quests' && shop.hasCompletedQuests) return null;
 
   return (
-    <AppAccordionItem width="100%" itemId={item.title} isCollapsable={!!item.list?.length}>
+    <AppAccordionItem  width="100%" itemId={item.title} isCollapsable={!!item.list?.length}>
       <AppAccordionTrigger width="100%">
-        <DashboardLinkWrapper linkTo={item.linkTo} onClick={item.onClick}>
-          <Flex width="100%" padding={{ base: '10px', lg: '12px' }} alignItems="center" gap="8px" _hover={{ backgroundColor: '#222' }} rounded="8px">
+        <DashboardLinkWrapper linkTo={item.linkTo} onClick={item.onClick} isExternalLink={item.external}>
+          <Flex 
+            width="100%" 
+            padding={{ base: '10px', lg: '12px' }} 
+            alignItems="center" 
+            gap="8px" 
+            backgroundColor={isSelected ? 'neutral.gray.800' : 'transparent'}
+            _hover={{ backgroundColor: 'neutral.gray.800' }} 
+            rounded="8px"
+          >
             {/* Sidebar Icon with Tooltip on Tablet */}
             <Box width="20px" height="20px">
               {isMdOrSmaller && hasChild ? (
@@ -81,7 +100,7 @@ const SidebarItem = ({ item }) => {
                 fontSize="14px"
                 _groupHover={{ letterSpacing: '0.2px', fontWeight: '500' }}
                 style={{ transition: 'letter-spacing .1s linear' }}
-                fontWeight="400"
+                fontWeight={isSelected ? "500" : "400" }
                 lineHeight="20px"
                 flex="1"
                 whiteSpace={'nowrap'}
