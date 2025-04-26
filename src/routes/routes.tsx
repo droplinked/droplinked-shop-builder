@@ -37,7 +37,6 @@ const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
-const Orders = lazy(() => import("pages/orders/Orders"));
 const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"));
 const ProductsV2 = lazy(() => import("pages/products/ProductsV2"));
 const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"));
@@ -162,7 +161,6 @@ const router = createBrowserRouter([
                 ],
             },
             { path: "collections", element: <Collections /> },
-            { path: "orders", element: <Orders /> },
             { path: "purchase-history", element: <PurchaseHistory /> },
             {
                 path: "affiliate",
