@@ -77,7 +77,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
         </Button>
         <Link href={helpLink} target="_blank" rel="noopener noreferrer">
           <Button
-            leftIcon={<AppIcons.HelpCenter width={20} height={20} />}
+            leftIcon={<AppIcons.HelpCenter />}
             color="#179EF8"
             fontFamily="Inter"
             fontSize="14px"

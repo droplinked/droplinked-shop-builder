@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
 import React, { useEffect, useRef, useState } from 'react'
-import SectionHeader from './Sectionheader'
+import SectionHeader from './SectionHeader'
 
 const headings = [
     'Transforming Ideas into Digital Solutions',

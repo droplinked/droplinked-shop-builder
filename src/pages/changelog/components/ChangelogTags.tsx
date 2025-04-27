@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { TagMd } from 'assets/icons/Finance/Tag/TagMd'
 import React from 'react'
 import ChangelogBadge from './ChangelogBadge'
-import SectionHeader from './Sectionheader'
+import SectionHeader from './SectionHeader'
 
 interface Props {
     changelogItem?: any
