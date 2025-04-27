@@ -1,9 +1,76 @@
-import React from 'react'
+import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { ListMd } from 'assets/icons/Navigation/List/ListMd'
+import React, { useEffect, useRef, useState } from 'react'
+
+const headings = [
+    'Transforming Ideas into Digital Solutions',
+    'Behind the Scenes: Our Design Philosophy',
+    'Innovative Approaches to Problem Solving',
+    'Maximizing Performance and Optimization',
+    'Creating Seamless User Experiences'
+]
 
 // "Table of Contents"(TOC)
 function ArticleTOC() {
+    const [selectedHeading, setSelectedHeading] = useState<string>(headings[0])
+    const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 })
+    const headingRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+    useEffect(() => {
+        const selectedIndex = headings.indexOf(selectedHeading)
+        const selectedElement = headingRefs.current[selectedIndex]
+
+        if (selectedElement) {
+            setIndicatorStyle({
+                top: selectedElement.offsetTop,
+                height: selectedElement.offsetHeight
+            })
+        }
+    }, [selectedHeading])
+
     return (
-        <div>ArticleTOC</div>
+        <Flex direction="column" gap={4}>
+            <Flex alignItems="center" gap={2}>
+                <ListMd color='#fff' />
+                <Heading as="h3" fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.white">
+                    In this article
+                </Heading>
+            </Flex>
+
+            <Flex
+                position="relative"
+                direction="column"
+                borderLeft="2px solid"
+                borderColor="neutral.gray.800"
+            >
+                <Box
+                    position="absolute"
+                    left="-2px"
+                    width="2px"
+                    bg="neutral.white"
+                    transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                    style={{
+                        top: `${indicatorStyle.top}px`,
+                        height: `${indicatorStyle.height}px`
+                    }}
+                />
+
+                {headings.map((heading, index) => (
+                    <Text
+                        key={index}
+                        ref={el => headingRefs.current[index] = el}
+                        as="button"
+                        padding="8px 16px"
+                        textAlign="left"
+                        color={selectedHeading === heading ? "text.white" : "text.subtextPlaceholder.dark"}
+                        onClick={() => setSelectedHeading(heading)}
+                        transition="color 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+                    >
+                        {heading}
+                    </Text>
+                ))}
+            </Flex>
+        </Flex>
     )
 }
 

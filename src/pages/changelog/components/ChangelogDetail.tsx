@@ -3,6 +3,7 @@ import "@blocknote/react/style.css"
 import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import React from 'react'
+import ArticleTOC from "./ArticleTOC"
 import ChangelogTags from './ChangelogTags'
 
 function ChangelogDetail() {
@@ -42,11 +43,11 @@ function ChangelogDetail() {
             </Box>
 
             <Flex
-                display={{ base: 'none', lg: 'block' }}
+                display={{ base: 'none', lg: 'flex' }}
                 direction="column"
                 gap={12}
             >
-                {/* <ArticleTOC /> */}
+                <ArticleTOC />
                 <ChangelogTags withHeading={true} />
             </Flex>
         </Grid>
