@@ -1,6 +1,7 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
 import React, { useEffect, useRef, useState } from 'react'
+import SectionHeader from './Sectionheader'
 
 const headings = [
     'Transforming Ideas into Digital Solutions',
@@ -30,12 +31,10 @@ function ArticleTOC() {
 
     return (
         <Flex direction="column" gap={4}>
-            <Flex alignItems="center" gap={2}>
-                <ListMd color='#fff' />
-                <Heading as="h3" fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.white">
-                    In this article
-                </Heading>
-            </Flex>
+            <SectionHeader
+                icon={<ListMd color='#fff' />}
+                title="In this article"
+            />
 
             <Flex
                 position="relative"

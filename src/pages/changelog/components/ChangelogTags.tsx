@@ -1,7 +1,8 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { TagMd } from 'assets/icons/Finance/Tag/TagMd'
 import React from 'react'
 import ChangelogBadge from './ChangelogBadge'
+import SectionHeader from './Sectionheader'
 
 interface Props {
     changelogItem?: any
@@ -21,12 +22,10 @@ function ChangelogTags({ changelogItem, withHeading }: Props) {
 
     return (
         <Flex direction="column" gap={4}>
-            <Flex alignItems="center" gap={2}>
-                <TagMd color='#fff' />
-                <Heading as="h3" fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.white">
-                    Tags
-                </Heading>
-            </Flex>
+            <SectionHeader
+                icon={<TagMd color='#fff' />}
+                title="Tags"
+            />
 
             {renderTags()}
         </Flex>
