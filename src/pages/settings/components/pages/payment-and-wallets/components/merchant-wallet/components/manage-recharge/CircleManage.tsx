@@ -113,7 +113,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = ChainIcons[chain?.chain];   
+                                const Icon = ChainIcons[chain?.tokenSymbol];   
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
