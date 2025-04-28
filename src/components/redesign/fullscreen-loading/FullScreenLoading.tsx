@@ -1,4 +1,5 @@
 import { Flex } from '@chakra-ui/react'
+import LoadingSpinner from 'components/common/loading-spinner/LoadingSpinner'
 import React from 'react'
 
 function FullScreenLoading() {
@@ -12,7 +13,8 @@ function FullScreenLoading() {
             alignItems="center"
             zIndex={9999}
         >
-            <video src='/assets/video/entire.webm' autoPlay loop muted width="200px" height="200px" />
+            <LoadingSpinner />
+            {/* <video src='/assets/video/entire.webm' autoPlay loop muted width="200px" height="200px" /> */}
         </Flex>
     )
 }
