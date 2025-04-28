@@ -28,8 +28,9 @@ function FeaturedPictureUpload() {
 
     return (
         <FormFieldWrapper
-            label="Product Images"
-            description="Upload images or videos that visually showcase the product."
+            label="Featured Picture"
+            description="Upload an eye-catching image to enhance the visual appeal."
+            isRequired
             errorMessage={errors.image?.toString()}
         >
             <Flex direction="column" gap={4}>
@@ -51,9 +52,9 @@ function FeaturedPictureUpload() {
                     <SelectedFileCard
                         previewImage={image}
                         fileName={selectedFile?.name}
-                        fileSize={getFileSizeInMB(selectedFile)}
+                        fileSize={selectedFile ? getFileSizeInMB(selectedFile) : ''}
                     >
-                        <button onClick={() => setFieldValue("image", "")}>
+                        <button onClick={() => setFieldValue("image", null)}>
                             <TrashMd color='#FF2244' />
                         </button>
                     </SelectedFileCard>

@@ -4,8 +4,10 @@ import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import AppImage from 'components/common/image/AppImage'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import Table from 'components/redesign/table/Table'
+import { Blog } from 'lib/apis/blog/interfaces'
 import useBlogs from 'pages/blogs/hooks/useBlogs'
-import React from 'react'
+import React, { memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { formatDateToLongStyle } from 'utils/helpers'
 import BlogTableActionMenu from './BlogTableActionMenu'
 import BlogTableEmptyState from './BlogTableEmptyState'
@@ -15,12 +17,13 @@ interface Props {
 }
 
 function BlogTable({ searchTerm }: Props) {
+    const navigate = useNavigate()
     const { isFetching, data } = useBlogs(searchTerm)
-    const blogPosts = data?.data ?? []
 
-    const columns: ColumnDef<any>[] = [
+    const blogPosts = data?.pages?.flatMap(page => page.data.blogs) || []
+
+    const columns: ColumnDef<Blog>[] = [
         {
-            accessorKey: '_',
             header: 'Post',
             cell: info => {
                 const { image, title } = info.row.original
@@ -38,9 +41,11 @@ function BlogTable({ searchTerm }: Props) {
             accessorKey: 'category',
             header: 'Category',
             cell: (info) => {
-                const category = info.getValue() as string
+                const category = info.getValue()
 
-                return <Text fontSize={16}>{category}</Text>
+                return typeof category === "string"
+                    ? <Text fontSize={16}>{category ?? "-"}</Text>
+                    : <Text fontSize={16}>-</Text>
             }
         },
         {
@@ -65,10 +70,10 @@ function BlogTable({ searchTerm }: Props) {
         }
     ]
 
-    const renderActions = (blogPost: any) => {
+    const renderActions = (blogPost: Blog) => {
         return (
             <Flex alignItems="center" gap={1} sx={{ button: { padding: 2 } }}>
-                <button onClick={() => console.log(blogPost.title, "edit")}><EditLg color='#fff' /></button>
+                <button onClick={() => navigate(blogPost.slug)}><EditLg color='#fff' /></button>
                 <BlogTableActionMenu blogPost={blogPost} />
             </Flex>
         )
@@ -87,4 +92,4 @@ function BlogTable({ searchTerm }: Props) {
     )
 }
 
-export default BlogTable
+export default memo(BlogTable)
