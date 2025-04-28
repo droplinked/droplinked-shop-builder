@@ -14,6 +14,7 @@ import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
 import { ChainIcons } from "utils/constants/chainIcons";
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
+import { appDevelopment } from "utils/app/variable";
 
 const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const { data, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
@@ -24,7 +25,8 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const { mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
 
     const handleWithdraw = async (chain: any) => {
-        if (chain?.tokenSymbol === "USDC") {
+
+        if (chain?.tokenSymbol === "USDC" && !appDevelopment) {
             setError("USDC");
             return;
         }
