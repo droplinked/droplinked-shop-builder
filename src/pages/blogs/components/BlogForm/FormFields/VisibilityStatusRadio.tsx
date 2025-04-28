@@ -20,7 +20,6 @@ function VisibilityStatusRadio() {
 
     return (
         <FormFieldWrapper
-            containerProps={{ padding: 6 }}
             label="Visibility Status"
             description="Save as a draft or publish the post when ready."
             isRequired

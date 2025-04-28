@@ -52,7 +52,6 @@ function BlogTable({ searchTerm }: Props) {
                 return <Text fontSize={16}>{formatDateToLongStyle(date)}</Text>
             }
         },
-        { accessorKey: 'likes', header: 'View Count', cell: info => <Text fontSize={16}>{info.getValue() as String}</Text> },
         {
             accessorKey: 'isVisible',
             header: 'Status',
@@ -69,7 +68,6 @@ function BlogTable({ searchTerm }: Props) {
     const renderActions = (blogPost: any) => {
         return (
             <Flex alignItems="center" gap={1} sx={{ button: { padding: 2 } }}>
-                {/* <button onClick={() => console.log(blogPost.title, "chat")}><ChatLg color='#fff' /></button> */}
                 <button onClick={() => console.log(blogPost.title, "edit")}><EditLg color='#fff' /></button>
                 <BlogTableActionMenu blogPost={blogPost} />
             </Flex>

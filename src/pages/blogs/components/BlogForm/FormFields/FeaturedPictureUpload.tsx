@@ -41,6 +41,10 @@ function FeaturedPictureUpload() {
                         'image/png': ['.png'],
                     }}
                     flexProps={{ minH: "140px" }}
+                    text={{
+                        dragActiveText: "Drop the file here ...",
+                        footerText: "JPG, JPEG or PNG"
+                    }}
                 />
 
                 {image &&
