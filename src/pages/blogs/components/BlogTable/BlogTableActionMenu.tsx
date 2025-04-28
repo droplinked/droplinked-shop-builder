@@ -8,8 +8,8 @@ import useAppToast from 'hooks/toast/useToast'
 import useShopUrl from 'hooks/useShopUrl/useShopUrl'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
-import ChangeBlogStatusModal from '../ChangeBlogStatusModal'
-import DeleteBlogModal from '../DeleteBlogModal'
+import ChangeBlogStatusModal from './ChangeBlogStatusModal'
+import DeleteBlogModal from './DeleteBlogModal'
 
 interface Props {
     blogPost: Blog
