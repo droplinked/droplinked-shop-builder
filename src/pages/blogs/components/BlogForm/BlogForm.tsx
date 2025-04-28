@@ -1,12 +1,9 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react'
-import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
-import * as Yup from 'yup'
+import { getInitialValues, validationSchema } from '../utils/formHelpers'
 import BlogFormActions from './FormFields/BlogFormActions'
-import BlogSlugInput from './FormFields/BlogSlugInput'
-import BlogToggles from './FormFields/BlogToggles'
 import BodyEditor from './FormFields/BodyEditor/BodyEditor'
 import CategorySelect from './FormFields/CategorySelect'
 import FeaturedPictureUpload from './FormFields/FeaturedPictureUpload'
@@ -21,47 +18,33 @@ interface Props {
 }
 
 function BlogForm({ blog, onSubmit }: Props) {
-    const initialValues: Blog = {
-        _id: blog?._id || '',
-        title: blog?.title || '',
-        content: blog?.content || '',
-        category: blog?.category || [],
-        image: blog?.image || null,
-        isVisible: blog?.isVisible || false,
-        isFeatured: blog?.isFeatured || false,
-        writer: blog?.writer || '',
-        tags: blog?.tags || []
-    }
-
-    const validationSchema = Yup.object({
-        title: Yup.string().required('Title is required'),
-        body: Yup.string().required('Body is required'),
-        searchEngineSummary: Yup.string(),
-        category: Yup.string(),
-        keywords: Yup.string(),
-        featuredPicture: Yup.mixed()
-    })
-
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={getInitialValues(blog)}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
         >
             {() => (
                 <Form>
                     <Grid
-                        templateColumns={{ base: '1fr', md: '2fr 1fr', "2xl": "1.34fr 1fr", "3xl": "1.44fr 1fr" }}
-                        gap={6}
+                        templateColumns={{
+                            base: '1fr',
+                            md: '2fr 1fr',
+                            lg: '1fr 356px',
+                            xl: '1fr 400px',
+                            '2xl': '1fr 440px',
+                            '3xl': '1fr 600px'
+                        }}
+                        gap={{ base: 4, "2xl": 6 }}
                         sx={{
-                            ".blog-form-column-layout": {
-                                display: "flex",
-                                flexDirection: "column",
+                            '.blog-form-column-layout': {
+                                display: 'flex',
+                                flexDirection: 'column',
                                 gap: 9
                             },
-                            ".blog-form-column": {
-                                border: "1px solid",
-                                borderColor: "neutral.gray.800",
+                            '.blog-form-column': {
+                                border: '1px solid',
+                                borderColor: 'neutral.gray.800',
                                 borderRadius: 16,
                                 padding: 6
                             }
@@ -75,14 +58,12 @@ function BlogForm({ blog, onSubmit }: Props) {
                             <Keywords />
                         </GridItem>
                         <GridItem className='blog-form-column-layout'>
-                            <Flex className='blog-form-column-layout blog-form-column'>
+                            <Box className='blog-form-column'>
                                 <FeaturedPictureUpload />
-                                <RuledGrid columns={1} borderRadius={16}>
-                                    <BlogSlugInput />
-                                    <VisibilityStatusRadio />
-                                    <BlogToggles />
-                                </RuledGrid>
-                            </Flex>
+                            </Box>
+                            <Box className='blog-form-column'>
+                                <VisibilityStatusRadio />
+                            </Box>
                             <BlogFormActions />
                         </GridItem>
                     </Grid>
