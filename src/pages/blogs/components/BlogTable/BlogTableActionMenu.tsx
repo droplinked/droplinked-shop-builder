@@ -1,42 +1,59 @@
+import { useDisclosure } from '@chakra-ui/react'
 import { ArchiveMd } from 'assets/icons/Action/Archive/ArchiveMd'
-import { EditMd } from 'assets/icons/Action/Edit/EditMd'
 import { ShareMd } from 'assets/icons/Action/Share/ShareMd'
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import { DoublecheckMd } from 'assets/icons/Sign/DoubleCheck/DoublecheckMd'
 import TableMenu from 'components/redesign/table-menu/TableMenu'
+import useAppToast from 'hooks/toast/useToast'
+import useShopUrl from 'hooks/useShopUrl/useShopUrl'
+import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import ChangeBlogStatusModal from '../ChangeBlogStatusModal'
+import DeleteBlogModal from '../DeleteBlogModal'
 
-function BlogTableActionMenu({ blogPost }: { blogPost: any }) {
-    const navigate = useNavigate()
+interface Props {
+    blogPost: Blog
+}
 
-    const { isVisible, seoData } = blogPost
+function BlogTableActionMenu({ blogPost }: Props) {
+    const { isOpen: isChangeStatusOpen, onOpen: onChangeStatusOpen, onClose: onChangeStatusClose } = useDisclosure()
+    const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure()
+    const shopUrl = useShopUrl()
+    const { showToast } = useAppToast()
+
+    const { isVisible, slug } = blogPost
+
+    const copyBlogLink = () => {
+        const blogLink = `${shopUrl}/blogs/${slug}`
+        navigator.clipboard.writeText(blogLink)
+        showToast({ type: "success", message: "Link copied to clipboard" })
+    }
+
     const actions = [
-        {
-            icon: <EditMd color='#fff' />,
-            title: "Edit",
-            onClick: () => navigate(seoData.slug)
-        },
         {
             icon: isVisible ? <ArchiveMd color='#fff' /> : <DoublecheckMd color='#fff' />,
             title: `${isVisible ? "Draft" : "Publish"} Post`,
-            onClick: () => console.log(isVisible ? "Draft" : "Publish"),
+            onClick: onChangeStatusOpen
         },
         {
             icon: <ShareMd color='#fff' />,
             title: "Share",
-            onClick: () => console.log("Share")
+            onClick: copyBlogLink
         },
         {
             icon: <TrashMd color='#F24' />,
             title: "Remove",
             color: "#F24",
-            onClick: () => console.log("Remove")
+            onClick: onDeleteOpen
         }
     ]
 
     return (
-        <TableMenu items={actions} />
+        <>
+            <TableMenu items={actions} />
+            <ChangeBlogStatusModal blogPost={blogPost} isOpen={isChangeStatusOpen} onClose={onChangeStatusClose} />
+            <DeleteBlogModal blogPost={blogPost} isOpen={isDeleteOpen} onClose={onDeleteClose} />
+        </>
     )
 }
 

@@ -2,7 +2,7 @@ import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
-import { getInitialValues, validationSchema } from '../utils/formHelpers'
+import { getInitialValues, validationSchema } from '../../utils/formHelpers'
 import BlogFormActions from './FormFields/BlogFormActions'
 import BodyEditor from './FormFields/BodyEditor/BodyEditor'
 import CategorySelect from './FormFields/CategorySelect'
@@ -22,6 +22,7 @@ function BlogForm({ blog, onSubmit }: Props) {
         <Formik
             initialValues={getInitialValues(blog)}
             validationSchema={validationSchema}
+            validateOnChange={false}
             onSubmit={onSubmit}
         >
             {() => (

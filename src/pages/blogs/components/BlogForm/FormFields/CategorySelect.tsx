@@ -1,10 +1,9 @@
 import Select from 'components/redesign/select/Select'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
-import React, { useState } from 'react'
+import React from 'react'
 
 function CategorySelect() {
-    const { } = useBlogForm()
-    const [selectedCategory, setSelectedCategory] = useState(null)
+    const { values, setFieldValue } = useBlogForm()
 
     const categories = [
         { id: 1, name: 'Category 1' },
@@ -21,8 +20,8 @@ function CategorySelect() {
             labelAccessor="name"
             selectProps={{
                 placeholder: "Select a Category",
-                value: selectedCategory,
-                onChange: (e) => setSelectedCategory(e.target.value)
+                value: values.category,
+                onChange: (e) => setFieldValue("category", e.target.value)
             }}
         />
     )

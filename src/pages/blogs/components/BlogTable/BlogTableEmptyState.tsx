@@ -1,8 +1,11 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function BlogTableEmptyState() {
+    const navigate = useNavigate()
+
     return (
         <Flex
             width="100%"
@@ -30,6 +33,7 @@ function BlogTableEmptyState() {
                 fontSize={12}
                 fontWeight={500}
                 color="text.primary"
+                onClick={() => navigate('/analytics/blogs/new')}
             >
                 <PlusSm color='#2bcfa1' />
                 New Post

@@ -1,14 +1,24 @@
-import { getShopBlogsService } from "lib/apis/blog/services";
-import useAppStore from "lib/stores/app/appStore";
-import { useQuery } from "react-query";
+import { getShopBlogsService } from "lib/apis/blog/services"
+import { useInfiniteQuery, useQueryClient } from "react-query"
+
+export const BLOG_LIST_QUERY_KEY = "BLOG_LIST"
 
 const useBlogs = (searchTerm: string) => {
-    const { shop } = useAppStore()
-
-    return useQuery({
-        queryKey: ["collectionList", shop._id],
-        queryFn: () => getShopBlogsService(shop._id)
+    return useInfiniteQuery({
+        queryKey: [BLOG_LIST_QUERY_KEY, searchTerm],
+        queryFn: ({ pageParam = 1 }) => getShopBlogsService({
+            page: pageParam,
+            limit: 10,
+            search: searchTerm
+        }),
+        getNextPageParam: (lastPage) => lastPage?.data?.data?.nextPage ?? null
     })
+}
+
+export const useInvalidateBlogList = () => {
+    const queryClient = useQueryClient()
+
+    return () => queryClient.invalidateQueries([BLOG_LIST_QUERY_KEY])
 }
 
 export default useBlogs

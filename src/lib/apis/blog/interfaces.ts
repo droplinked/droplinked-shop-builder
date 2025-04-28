@@ -1,44 +1,25 @@
 export interface Blog {
-    _id?: string;
-    title: string;
-    content: any;
-    shopID?: string;
-    author?: string;
-    writer: string;
-    isVisible: boolean;
-    image?: string;
-    tags: string[];
-    category?: string[];
-    commentsCount?: number;
-    likes?: number;
-    readTime?: number;
-    version?: number;
-    isFeatured?: boolean;
-    seoData?: {
-        metaDescription: string;
-        keywords: string[];
-        slug: string;
-        canonicalUrl: string;
-        ogTitle: string;
-        ogDescription: string;
-        ogImage: string;
-        structuredData: string;
-        _id?: string;
-    };
-    mediaData?: {
-        url: string;
-        type: string;
-        title: string;
-        positionIndex: number;
-        _id?: string;
-    }[];
+    _id?: string
+    title: string
+    content: any
+    image: string
+    tags?: string[]
+    searchEngineSummary?: string
+    category: string
+    isFeatured: boolean
+    isVisible: boolean
+    slug?: string
+    writer?: string
+    createdAt?: string
 }
 
 export interface ICheckSlug {
-    title: string;
-    shopId: string;
+    title: string
+    shopId: string
 }
 
-export interface IGetPublicBlogService {
-    slug: string;
+export interface IBlogFetchParams {
+    page: number
+    limit: number
+    search?: string
 }

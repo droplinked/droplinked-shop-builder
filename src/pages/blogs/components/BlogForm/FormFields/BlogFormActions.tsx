@@ -6,12 +6,26 @@ import { useNavigate } from 'react-router-dom'
 
 function BlogFormActions() {
     const navigate = useNavigate()
-    const { values, setFieldValue, submitForm, isSubmitting } = useBlogForm()
+    const { values, submitForm, isSubmitting } = useBlogForm()
+
+    const mainButtonText = values.isVisible ? 'Publish' : 'Save as Draft'
 
     return (
         <Flex alignItems="center" gap={4}>
-            <Button variant='secondary' onClick={() => navigate("/analytics/blogs")}>Discard</Button>
-            <Button>Save as Draft</Button>
+            <Button
+                variant='secondary'
+                isDisabled={isSubmitting}
+                onClick={() => navigate("/analytics/blogs")}
+            >
+                Discard
+            </Button>
+            <Button
+                isLoading={isSubmitting}
+                isDisabled={isSubmitting}
+                onClick={submitForm}
+            >
+                {mainButtonText}
+            </Button>
         </Flex>
     )
 }
