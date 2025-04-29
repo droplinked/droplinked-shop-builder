@@ -18,9 +18,9 @@ interface Props {
 
 function BlogTable({ searchTerm }: Props) {
     const navigate = useNavigate()
-    const { isFetching, data } = useBlogs(searchTerm)
+    const { isFetching, data, hasNextPage, fetchNextPage, isFetchingNextPage } = useBlogs(searchTerm)
 
-    const blogPosts = data?.pages?.flatMap(page => page.data.blogs) || []
+    const blogPosts = data?.pages.flatMap(page => page.data.data) || []
 
     const columns: ColumnDef<Blog>[] = [
         {
@@ -87,7 +87,7 @@ function BlogTable({ searchTerm }: Props) {
             columns={columns}
             data={blogPosts}
             renderActions={renderActions}
-            infiniteScroll={{ dataLength: blogPosts?.length ?? 0, hasMore: false, next: () => { }, isFetchingNextPage: false }}
+            infiniteScroll={{ dataLength: blogPosts?.length ?? 0, hasMore: hasNextPage, next: fetchNextPage, isFetchingNextPage }}
         />
     )
 }
