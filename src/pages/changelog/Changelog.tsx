@@ -1,10 +1,21 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
-import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 import React from 'react'
-import ChangelogEntry from './components/ChangelogEntry'
+import ChangelogEntryCard from './components/ChangelogEntryCard'
+import { ChangelogEntryLoading } from './components/ChangelogEntryLoading'
+import { ChangelogError } from './components/ChangelogError'
+import { ChangelogGrid } from './components/ChangelogGrid'
+import useChangelogEntries from './hooks/useChangelogEntries'
 
 function Changelog() {
-    // const { } = useChangelogEntry()
+    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useChangelogEntries()
+    const entries = data?.pages?.flatMap(page => page.data.data) ?? []
+
+    const lastEntryObserver = useIntersectionObserver<HTMLDivElement>(() => {
+        if (hasNextPage && !isFetchingNextPage) fetchNextPage()
+    }, [hasNextPage, isFetchingNextPage])
+
+    if (isError) return <ChangelogError error={error} />
 
     return (
         <PageGrid.Root>
@@ -12,19 +23,20 @@ function Changelog() {
                 title='Updates and Releases'
                 description='Learn more about the latest features and improvements.'
             />
-            <RuledGrid
-                width="full"
-                columns={1}
-                nested
-                borderTop="1px solid"
-                borderColor="neutral.gray.800"
-            >
-                <ChangelogEntry />
-                <ChangelogEntry />
-                <ChangelogEntry />
-                <ChangelogEntry />
-                <ChangelogEntry />
-            </RuledGrid>
+            {entries.length === 0 && isFetching
+                ? <ChangelogEntryLoading count={3} />
+                : (
+                    <ChangelogGrid>
+                        {entries.map((entry, index) => (
+                            <ChangelogEntryCard
+                                key={entry.id}
+                                entry={entry}
+                                ref={index === entries.length - 1 ? lastEntryObserver : undefined}
+                            />
+                        ))}
+                        {isFetchingNextPage && <ChangelogEntryLoading count={3} />}
+                    </ChangelogGrid>
+                )}
         </PageGrid.Root>
     )
 }

@@ -1,52 +1,60 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
-import React from 'react'
+import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import React, { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { formatDateToLongStyle, getTimeAgo } from 'utils/helpers'
 import ChangelogTags from './ChangelogTags'
 
-function ChangelogEntry() {
+interface Props {
+    entry: ChangelogEntry
+}
+
+const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, ref) {
+    const { entry } = props
     const navigate = useNavigate()
 
     return (
         <Flex
+            ref={ref}
             direction={{ base: "column", lg: "row" }}
             padding={{ base: 4, md: 6, lg: 4, "2xl": 6 }}
             gap={{ base: 6, "2xl": 12, "3xl": 20 }}
         >
             <Flex minW="200px" direction="column" gap={1}>
                 <Text fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.subtextPlaceholder.light">
-                    August 21, 2025
+                    {formatDateToLongStyle(new Date(entry.date))}
                 </Text>
                 <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.dark">
-                    3 days ago
+                    {getTimeAgo(entry.date)}
                 </Text>
             </Flex>
 
             <Box>
                 <Heading as="h3" marginBottom={3} fontSize={{ base: 18, xl: 20 }} color="text.white">
-                    Update 1.0.2
+                    Update {entry.version}
                 </Heading>
 
-                <ChangelogTags />
+                <ChangelogTags changelogItem={entry} />
 
                 <Heading as="h3" marginTop={6} marginBottom={1} fontSize={{ base: 16, xl: 18 }} color="text.white">
-                    Post title
+                    {entry.title}
                 </Heading>
 
                 <Text marginBottom={3} noOfLines={2} fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.light">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                    {entry.summary}
                 </Text>
 
                 <InteractiveText
                     iconRight={<ExternalarrowMd color="#179ef8" />}
-                    onClick={() => console.log("read more")}
+                    onClick={() => navigate(`/analytics/changelog/${entry.id}`)}
                 >
                     Read More
                 </InteractiveText>
             </Box>
         </Flex>
     )
-}
+})
 
-export default ChangelogEntry
+export default ChangelogEntryCard

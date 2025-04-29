@@ -1,16 +1,17 @@
 import { Flex } from '@chakra-ui/react'
 import { TagMd } from 'assets/icons/Finance/Tag/TagMd'
+import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
 import React from 'react'
 import ChangelogBadge from './ChangelogBadge'
 import SectionHeader from './SectionHeader'
 
 interface Props {
-    changelogItem?: any
+    changelogItem?: ChangelogEntry
     withHeading?: boolean
 }
 
 function ChangelogTags({ changelogItem, withHeading }: Props) {
-    const tags = changelogItem?.tags || ["integration", "new feature", "deprecation", "improvement", "bugfix"]
+    const tags = changelogItem?.tags ?? []
 
     const renderTags = () => (
         <Flex flexWrap="wrap" gap={2}>

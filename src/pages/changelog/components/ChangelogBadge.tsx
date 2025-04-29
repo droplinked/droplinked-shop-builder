@@ -11,30 +11,30 @@ interface Props {
 }
 
 const badgeStyles: Record<string, { icon: ReactNode | null, badgeProps: BadgeProps }> = {
-    integration: {
+    Integration: {
         icon: <PuzzleSm color='#c5a3ff' />,
         badgeProps: { borderColor: "label.secondary", bgColor: "label.secondary", color: "text.secondary" }
     },
-    'new feature': {
+    'New Feature': {
         icon: <Star2Sm color='#2bcfa1' />,
         badgeProps: { borderColor: "label.primary", bgColor: "label.primary", color: "text.primary" }
     },
-    deprecation: {
+    Deprecation: {
         icon: <TrashSm color='#ff2244' />,
         badgeProps: { borderColor: "label.error", bgColor: "label.error", color: "text.error" }
     },
-    improvement: {
+    Improvement: {
         icon: <PlusterSm color='#179ef8' />,
         badgeProps: { borderColor: "label.link", bgColor: "label.link", color: "text.link" }
     },
-    bugfix: {
+    Bugfix: {
         icon: <BugSm color='#ffd951' />,
         badgeProps: { borderColor: "label.warning", bgColor: "label.warning", color: "system.warning" }
     }
 }
 
 function ChangelogBadge({ label }: Props) {
-    const { icon, badgeProps } = badgeStyles[label.toLowerCase()] || {
+    const { icon, badgeProps } = badgeStyles[label] || {
         icon: null,
         badgeProps: { colorScheme: 'gray' }
     }
