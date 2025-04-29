@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
+import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
 import React, { useEffect, useRef, useState } from 'react'
 import SectionHeader from './SectionHeader'
 
@@ -11,8 +12,12 @@ const headings = [
     'Creating Seamless User Experiences'
 ]
 
+interface Props {
+    changelogItem: ChangelogEntry
+}
+
 // "Table of Contents"(TOC)
-function ArticleTOC() {
+function ArticleTOC({ changelogItem }: Props) {
     const [selectedHeading, setSelectedHeading] = useState<string>(headings[0])
     const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 })
     const headingRefs = useRef<(HTMLButtonElement | null)[]>([])

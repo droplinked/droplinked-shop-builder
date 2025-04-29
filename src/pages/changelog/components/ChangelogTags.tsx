@@ -6,12 +6,14 @@ import ChangelogBadge from './ChangelogBadge'
 import SectionHeader from './SectionHeader'
 
 interface Props {
-    changelogItem?: ChangelogEntry
+    changelogItem: ChangelogEntry
     withHeading?: boolean
 }
 
 function ChangelogTags({ changelogItem, withHeading }: Props) {
-    const tags = changelogItem?.tags ?? []
+    const tags = changelogItem.tags
+
+    if (!tags.length) return null
 
     const renderTags = () => (
         <Flex flexWrap="wrap" gap={2}>
