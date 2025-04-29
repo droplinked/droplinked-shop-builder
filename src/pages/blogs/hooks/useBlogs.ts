@@ -11,7 +11,7 @@ const useBlogs = (searchTerm: string) => {
             limit: 10,
             search: searchTerm
         }),
-        getNextPageParam: (lastPage) => lastPage?.data?.data?.nextPage ?? null
+        getNextPageParam: (lastPage) => lastPage?.data?.nextPage ?? null
     })
 }
 

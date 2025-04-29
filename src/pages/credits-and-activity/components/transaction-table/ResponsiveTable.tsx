@@ -1,14 +1,14 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import { ColumnDef } from '@tanstack/react-table';
+import AppTypography from 'components/common/typography/AppTypography';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import Table from 'components/redesign/table/Table';
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
 import React from 'react';
+import StatusBadge from '../StatusBadge';
 import TransactionsCards from './TransactionsCards';
 import TypeColumn from './TypeColumn';
-import StatusBadge from '../StatusBadge';
-import AppTypography from 'components/common/typography/AppTypography';
 
 export default function ResponsiveTable() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
