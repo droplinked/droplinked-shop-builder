@@ -5,6 +5,7 @@ const DEFAULT_BLOG_VALUES: Blog = {
     image: null,
     title: '',
     content: null,
+    searchEngineSummary: '',
     category: '',
     isVisible: false,
     isFeatured: false,
