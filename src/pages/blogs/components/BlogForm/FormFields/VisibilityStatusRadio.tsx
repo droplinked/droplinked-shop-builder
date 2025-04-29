@@ -24,7 +24,11 @@ function VisibilityStatusRadio() {
             description="Save as a draft or publish the post when ready."
             isRequired
         >
-            <Flex direction="row" gap={4} {...getRootProps()}>
+            <Flex
+                direction={{ base: 'column', md: 'row', lg: 'column', xl: 'row' }}
+                gap={4}
+                {...getRootProps()}
+            >
                 {statusList.map(({ label, value }) =>
                     <CustomRadioCard key={label} label={label} {...getRadioProps({ value })} />
                 )}

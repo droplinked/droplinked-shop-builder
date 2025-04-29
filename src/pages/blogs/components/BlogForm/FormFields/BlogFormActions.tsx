@@ -11,7 +11,7 @@ function BlogFormActions() {
     const mainButtonText = values.isVisible ? 'Publish' : 'Save as Draft'
 
     return (
-        <Flex alignItems="center" gap={4}>
+        <Flex alignSelf="flex-end" alignItems="center" gap={4}>
             <Button
                 variant='secondary'
                 isDisabled={isSubmitting}

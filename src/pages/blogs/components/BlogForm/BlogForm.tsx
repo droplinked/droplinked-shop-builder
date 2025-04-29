@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, useBreakpointValue } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
@@ -17,7 +17,9 @@ interface Props {
     onSubmit: (blog: Blog) => Promise<void>
 }
 
-function BlogForm({ blog, onSubmit }: Props) {
+export default function BlogForm({ blog, onSubmit }: Props) {
+    const isLessThanLg = useBreakpointValue({ base: true, lg: false })
+
     return (
         <Formik
             initialValues={getInitialValues(blog)}
@@ -27,51 +29,79 @@ function BlogForm({ blog, onSubmit }: Props) {
         >
             {() => (
                 <Form>
-                    <Grid
-                        templateColumns={{
-                            base: '1fr',
-                            md: '2fr 1fr',
-                            lg: '1fr 356px',
-                            xl: '1fr 400px',
-                            '2xl': '1fr 440px',
-                            '3xl': '1fr 600px'
-                        }}
-                        gap={{ base: 4, "2xl": 6 }}
-                        sx={{
-                            '.blog-form-column-layout': {
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 9
-                            },
-                            '.blog-form-column': {
-                                border: '1px solid',
-                                borderColor: 'neutral.gray.800',
-                                borderRadius: 16,
-                                padding: 6
-                            }
-                        }}
-                    >
-                        <GridItem className='blog-form-column-layout blog-form-column'>
-                            <TitleInput />
-                            <BodyEditor />
-                            <SearchEngineSummary />
-                            <CategorySelect />
-                            <Keywords />
-                        </GridItem>
-                        <GridItem className='blog-form-column-layout'>
-                            <Box className='blog-form-column'>
-                                <FeaturedPictureUpload />
-                            </Box>
-                            <Box className='blog-form-column'>
-                                <VisibilityStatusRadio />
-                            </Box>
-                            <BlogFormActions />
-                        </GridItem>
-                    </Grid>
+                    {isLessThanLg ? <MobileLayout /> : <DesktopLayout />}
                 </Form>
             )}
         </Formik>
     )
 }
 
-export default BlogForm
+function MobileLayout() {
+    const isTablet = useBreakpointValue({ base: false, md: true })
+
+    const applyContainerStyles = isTablet ? containerStyles : {}
+
+    return (
+        <Flex
+            direction="column"
+            gap={4}
+        >
+            <Box {...applyContainerStyles}>
+                <FeaturedPictureUpload />
+            </Box>
+
+            <Flex direction="column" gap={9} {...applyContainerStyles} >
+                <TitleInput />
+                <BodyEditor />
+                <SearchEngineSummary />
+                <CategorySelect />
+                <Keywords />
+            </Flex>
+
+            <Box {...applyContainerStyles}>
+                <VisibilityStatusRadio />
+            </Box>
+
+            <BlogFormActions />
+        </Flex>
+    )
+}
+
+function DesktopLayout() {
+    return (
+        <Grid
+            templateColumns={{
+                base: '1fr',
+                lg: '1fr 356px',
+                xl: '1fr 400px',
+                '2xl': '1fr 440px',
+                '3xl': '1fr 600px'
+            }}
+            gap={{ base: 4, "2xl": 6 }}
+        >
+            <GridItem display="flex" flexDirection="column" gap={9} {...containerStyles}>
+                <TitleInput />
+                <BodyEditor />
+                <SearchEngineSummary />
+                <CategorySelect />
+                <Keywords />
+            </GridItem>
+            <GridItem display="flex" flexDirection="column" gap="inherit">
+                <Box {...containerStyles}>
+                    <FeaturedPictureUpload />
+                </Box>
+                <Box {...containerStyles}>
+                    <VisibilityStatusRadio />
+                </Box>
+                <BlogFormActions />
+            </GridItem>
+        </Grid>
+    )
+}
+
+const containerStyles = {
+    border: '1px solid',
+    borderColor: 'neutral.gray.800',
+    borderRadius: 16,
+    padding: { base: 4, lg: 6 }
+}
