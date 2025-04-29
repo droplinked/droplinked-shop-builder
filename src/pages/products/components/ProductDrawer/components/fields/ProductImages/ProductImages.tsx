@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from '../../common/FileUpload'
-import ProductFieldWrapper from '../../common/ProductFieldWrapper'
 import SelectedFileCard from '../../common/SelectedFileCard'
 import MediaActions from './MediaActions'
 
@@ -38,7 +38,7 @@ export default function ProductImages() {
     }
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Product Images"
             description="Upload images or videos that visually showcase the product."
             errorMessage={errors.media?.toString()}
@@ -62,6 +62,6 @@ export default function ProductImages() {
                     ))}
                 </Flex>
             </Flex>
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }

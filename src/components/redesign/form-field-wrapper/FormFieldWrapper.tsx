@@ -3,7 +3,7 @@ import AppIcons from "assets/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { PropsWithChildren, ReactNode } from "react"
 
-interface FieldWrapperProps extends PropsWithChildren {
+interface Props extends PropsWithChildren {
     label: string
     labelProps?: FormLabelProps
     description?: string
@@ -12,7 +12,7 @@ interface FieldWrapperProps extends PropsWithChildren {
     rightContent?: ReactNode
 }
 
-function ProductFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: FieldWrapperProps) {
+function FormFieldWrapper({ label, labelProps, description, isRequired = false, errorMessage, rightContent, children }: Props) {
     return (
         <Box>
             <Flex
@@ -44,4 +44,4 @@ function ProductFieldWrapper({ label, labelProps, description, isRequired = fals
     )
 }
 
-export default ProductFieldWrapper
+export default FormFieldWrapper

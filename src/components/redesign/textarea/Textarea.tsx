@@ -1,4 +1,4 @@
-import { Textarea as ChakraTextarea, FormLabel, InputGroup, Text, TextareaProps, Flex, Box } from '@chakra-ui/react'
+import { Box, Textarea as ChakraTextarea, Flex, FormLabel, InputGroup, Text, TextareaProps } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'

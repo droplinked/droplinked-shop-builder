@@ -87,14 +87,12 @@ function Table<T extends object>(props: Props<T>) {
         if (isTableEmpty && !isLoading) return tableEmptyView
 
         if (isLoading && !isFetchingNextPage) return tableLoading
-        if (infiniteScroll) {
-            return (
-                <>
-                    {tableRows}
-                    {isFetchingNextPage && tableLoading}
-                </>
-            )
-        }
+        if (infiniteScroll) return (
+            <>
+                {tableRows}
+                {isFetchingNextPage && tableLoading}
+            </>
+        )
 
         return tableRows
     }

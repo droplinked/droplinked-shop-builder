@@ -38,9 +38,7 @@ function CustomRadioCard(props: Props) {
                 {description && <Text color="neutral.white">{description}</Text>}
             </Flex>
 
-            <Box flexShrink={0}>
-                {rightContent}
-            </Box>
+            {rightContent && <Box flexShrink={0}>{rightContent}</Box>}
         </FormLabel>
     )
 }
