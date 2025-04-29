@@ -20,7 +20,6 @@ export const validationSchema = Yup.object({
     title: Yup.string().required('Title is required'),
     content: Yup.string().required('Body is required'),
     searchEngineSummary: Yup.string().default(''),
-    category: Yup.string(),
+    category: Yup.string().required('Category is required'),
     keywords: Yup.string(),
-    featuredPicture: Yup.mixed()
 }) 
