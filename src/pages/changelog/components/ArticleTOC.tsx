@@ -2,15 +2,8 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
 import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
 import React, { useEffect, useRef, useState } from 'react'
+import { extractHeadings, Heading, parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 import SectionHeader from './SectionHeader'
-
-const headings = [
-    'Transforming Ideas into Digital Solutions',
-    'Behind the Scenes: Our Design Philosophy',
-    'Innovative Approaches to Problem Solving',
-    'Maximizing Performance and Optimization',
-    'Creating Seamless User Experiences'
-]
 
 interface Props {
     changelogItem: ChangelogEntry
@@ -18,12 +11,20 @@ interface Props {
 
 // "Table of Contents"(TOC)
 function ArticleTOC({ changelogItem }: Props) {
-    const [selectedHeading, setSelectedHeading] = useState<string>(headings[0])
+    const [selectedHeading, setSelectedHeading] = useState<Heading>(null)
     const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 })
     const headingRefs = useRef<(HTMLButtonElement | null)[]>([])
 
+    const initialContent = parseBlocknoteTexteditorContent(changelogItem?.description)
+    const headings = extractHeadings(initialContent)
+    const scrollToHeading = (heading: Heading) => {
+        setSelectedHeading(heading)
+        const element = document.querySelector(`[data-id="${heading.id}"]`)
+        if (element) element.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+
     useEffect(() => {
-        const selectedIndex = headings.indexOf(selectedHeading)
+        const selectedIndex = headings.findIndex(h => h.id === selectedHeading.id)
         const selectedElement = headingRefs.current[selectedIndex]
 
         if (selectedElement) {
@@ -33,6 +34,8 @@ function ArticleTOC({ changelogItem }: Props) {
             })
         }
     }, [selectedHeading])
+
+    if (!headings.length) return null
 
     return (
         <Flex direction="column" gap={4}>
@@ -66,11 +69,11 @@ function ArticleTOC({ changelogItem }: Props) {
                         as="button"
                         padding="8px 16px"
                         textAlign="left"
-                        color={selectedHeading === heading ? "text.white" : "text.subtextPlaceholder.dark"}
-                        onClick={() => setSelectedHeading(heading)}
+                        color={selectedHeading?.id === heading.id ? "text.white" : "text.subtextPlaceholder.dark"}
+                        onClick={() => scrollToHeading(heading)}
                         transition="color 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                     >
-                        {heading}
+                        {heading.text}
                     </Text>
                 ))}
             </Flex>
