@@ -1,16 +1,24 @@
+import useAppToast from "hooks/toast/useToast";
 import { getBlogByIdService } from "lib/apis/blog/services";
-import useAppStore from "lib/stores/app/appStore";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const useBlog = () => {
-    const { slug } = useParams()
-    const { shop } = useAppStore()
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const { showToast } = useAppToast()
 
     return useQuery({
-        queryKey: ['blog', slug],
-        queryFn: async () => getBlogByIdService(shop._id, slug),
-        enabled: !!slug
+        queryKey: ['blog', id],
+        queryFn: async () => getBlogByIdService(id),
+        enabled: !!id,
+        onError: () => {
+            showToast({
+                type: 'error',
+                message: 'Failed to fetch blog'
+            })
+            navigate('/analytics/blogs')
+        }
     })
 }
 

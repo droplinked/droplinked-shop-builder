@@ -73,7 +73,7 @@ function BlogTable({ searchTerm }: Props) {
     const renderActions = (blogPost: Blog) => {
         return (
             <Flex alignItems="center" gap={1} sx={{ button: { padding: 2 } }}>
-                <button onClick={() => navigate(blogPost.slug)}><EditLg color='#fff' /></button>
+                <button onClick={() => navigate(blogPost._id)}><EditLg color='#fff' /></button>
                 <BlogTableActionMenu blogPost={blogPost} />
             </Flex>
         )

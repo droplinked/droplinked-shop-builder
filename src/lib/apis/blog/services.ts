@@ -11,7 +11,7 @@ export const getShopBlogsService = (params: IBlogFetchParams) => {
     return axiosInstance.get(`blogs?${queryParams}`).then(res => res.data)
 }
 
-export const getBlogByIdService = (shopId: string, slug: string) => axiosInstance.get<{ data: Blog }>(`blogs/shops/${shopId}/${slug}`).then(res => res?.data)
+export const getBlogByIdService = (id: string) => axiosInstance.get<{ data: Blog }>(`blogs/${id}`).then(res => res.data)
 
 export const getPublicBlogByIdService = (slug: string) => axiosInstance.get(`/blogs/admin/shop-builder/${slug}`).then(res => res?.data)
 
