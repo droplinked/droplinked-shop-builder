@@ -110,6 +110,14 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         linkTo: "#",
         list: [],
         onClick: () => window.Tawk_API?.toggle()
+      },
+      {
+        title: 'Help Center',
+        icon: AppIcons.HelpCenter,
+        linkTo: null,
+        list: [
+          { listTitle: 'Changelog', linkTo: '/analytics/changelog' }
+        ]
       }
     ]
   }

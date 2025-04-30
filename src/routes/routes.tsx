@@ -4,6 +4,8 @@ import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
 import BlogEditPage from "pages/blogs/components/BlogEditPage";
+import Changelog from "pages/changelog/Changelog";
+import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
 import Onboarding from "pages/onboarding/Onboarding";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
@@ -201,6 +203,13 @@ const router = createBrowserRouter([
             { path: "invoice-management", element: <InvoiceManagement /> },
             { path: "invoice-management/create", element: <CreateInvoice /> },
             { path: "invoice-management/edit/:invoiceId", element: <CreateInvoice /> },
+            {
+                path: "changelog",
+                children: [
+                    { index: true, element: <Changelog /> },
+                    { path: ":id", element: <ChangelogDetail /> },
+                ]
+            }
         ],
     },
     {
