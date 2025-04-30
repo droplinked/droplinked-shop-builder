@@ -7,13 +7,12 @@ import React from 'react'
 import { formatDateToLongStyle } from "utils/helpers"
 import useChangelogEntry from "../hooks/useChangelogEntry"
 import ArticleTOC from "./ArticleTOC"
+import ChangelogEditor from "./ChangelogEditor"
 import ChangelogTags from './ChangelogTags'
 
 function ChangelogDetail() {
     const { isFetching, data } = useChangelogEntry()
     const changelog = data?.data
-
-    // const editor = useCreateBlockNote({ initialContent: JSON.parse(blog.content) })
 
     if (isFetching) return <FullScreenLoading />
 
@@ -49,7 +48,7 @@ function ChangelogDetail() {
                     <ChangelogTags changelogItem={changelog} withHeading={true} />
                 </Box>
 
-                {/* <BlockNoteView editor={editor} editable={false} /> */}
+                <ChangelogEditor changelogItem={changelog} />
             </Box>
 
             <Flex
