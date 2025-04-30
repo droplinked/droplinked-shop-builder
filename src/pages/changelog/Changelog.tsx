@@ -29,7 +29,7 @@ function Changelog() {
                     <ChangelogGrid>
                         {entries.map((entry, index) => (
                             <ChangelogEntryCard
-                                key={entry.id}
+                                key={entry._id}
                                 entry={entry}
                                 ref={index === entries.length - 1 ? lastEntryObserver : undefined}
                             />

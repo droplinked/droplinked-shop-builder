@@ -1,7 +1,8 @@
 export interface ChangelogEntry {
-    id: string
+    _id: string
     title: string
     summary: string
+    description?: any
     tags: string[]
     version: string
     date: string

@@ -48,7 +48,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
 
                 <InteractiveText
                     iconRight={<ExternalarrowMd color="#179ef8" />}
-                    onClick={() => navigate(`/analytics/changelog/${entry.id}`)}
+                    onClick={() => navigate(`/analytics/changelog/${entry._id}`)}
                 >
                     Read More
                 </InteractiveText>
