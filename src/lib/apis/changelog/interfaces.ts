@@ -17,7 +17,15 @@ export interface ChangelogResponse {
     statusCode: number
     message: string | null
     data: {
+        currentPage: number
         data: ChangelogEntry[]
         total: number
+        hasNextPage: boolean
+        hasPreviousPage: boolean
+        limit: number
+        nextPage: number
+        previousPage: number | null
+        totalDocuments: number
+        totalPages: number
     }
 }

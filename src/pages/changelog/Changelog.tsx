@@ -8,12 +8,12 @@ import { ChangelogGrid } from './components/ChangelogGrid'
 import useChangelogEntries from './hooks/useChangelogEntries'
 
 function Changelog() {
-    const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage, isError, error } = useChangelogEntries()
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useChangelogEntries()
     const entries = data?.pages?.flatMap(page => page.data.data) ?? []
 
     const lastEntryObserver = useIntersectionObserver<HTMLDivElement>(() => {
-        if (hasNextPage && !isFetchingNextPage) fetchNextPage()
-    }, [hasNextPage, isFetchingNextPage])
+        if (hasNextPage) fetchNextPage()
+    }, [hasNextPage, fetchNextPage])
 
     if (isError) return <ChangelogError error={error} />
 
