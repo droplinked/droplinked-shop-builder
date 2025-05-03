@@ -63,8 +63,8 @@ function Select(props: Props) {
             borderWidth="1.5px"
             borderRadius={8}
             color="#FFF"
-            icon={isLoading ? <Spinner size="sm" color='text.subtextPlaceholder.dark' /> : <AppIcons.SelectChevronDown />}
-            _placeholder={{ color: "text.subtextPlaceholder.dark" }}
+            icon={isLoading ? <Spinner size="sm" color='text.subtext.placeholder.dark' /> : <AppIcons.SelectChevronDown />}
+            _placeholder={{ color: "text.subtext.placeholder.dark" }}
             _hover={{}}
             _focus={{}}
             _focusVisible={{}}
@@ -85,7 +85,7 @@ function Select(props: Props) {
     return (
         <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
             <FormLabel mb={description ? 1 : 4} fontSize={14} fontWeight={500} color="text.white">{label}</FormLabel>
-            {description && <Text mb={4} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>}
+            {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
             {selectElement}
             {error && <ErrorMessage mt={2}>{error}</ErrorMessage>}
         </InputGroup>

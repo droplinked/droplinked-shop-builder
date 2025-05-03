@@ -50,7 +50,7 @@ function FileUpload({
                     </Box>{" "}
                     to add a new file or drag and drop it here.
                 </AppTypography>}
-            <AppTypography color="text.subtextPlaceholder.dark">{dropDescription}</AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">{dropDescription}</AppTypography>
         </>
     );
 

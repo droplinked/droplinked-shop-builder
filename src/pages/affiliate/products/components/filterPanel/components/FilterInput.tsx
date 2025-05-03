@@ -21,7 +21,7 @@ const FilterInput: React.FC<FilterInputProps> = ({ value, placeholder, onChange,
       border="none"
       _hover={{}}
       _focusVisible={{}}
-      _placeholder={{ color: 'text.subtextPlaceholder.dark' }}
+      _placeholder={{ color: 'text.subtext.placeholder.dark' }}
       value={value ?? ''}
       placeholder={placeholder}
       onChange={(e) => {

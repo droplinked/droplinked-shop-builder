@@ -54,7 +54,7 @@ export default function CancelOrderModal({ isOpen, onClose, orderID }: Props) {
                 title="Confirm Order Cancellation"
                 description={`You are about to cancel order ${orderID}. This action cannot be undone. Are you sure you want to continue?`}
                 descriptionProps={{
-                    color: "text.subtextPlaceholder.light !important",
+                    color: "text.subtext.placeholder.light !important",
                 }}
 
             />

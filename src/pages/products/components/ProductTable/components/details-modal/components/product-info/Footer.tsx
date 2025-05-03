@@ -4,7 +4,7 @@ import React from "react";
 export const ProductFooter = ({ product }) => (
   <VStack p="6" spacing="4" align="start">
     <HStack justify="space-between" w="full">
-      <Text fontSize="sm" color={"text.subtextPlaceholder.dark"}>
+      <Text fontSize="sm" color={"text.subtext.placeholder.dark"}>
         Sold Items
       </Text>
       <Text fontSize="sm" color="white">
@@ -12,14 +12,14 @@ export const ProductFooter = ({ product }) => (
       </Text>
     </HStack>
     <HStack justify="space-between" w="full">
-      <Text fontSize="sm" color={"text.subtextPlaceholder.dark"}>
+      <Text fontSize="sm" color={"text.subtext.placeholder.dark"}>
         Total Sale
       </Text>
       <HStack spacing="1">
         <Text fontSize="sm" color="white" fontWeight="medium">
           ${product?.totalSale || "0"}
         </Text>
-        <Text fontSize="sm" color={"text.subtextPlaceholder.light"}>
+        <Text fontSize="sm" color={"text.subtext.placeholder.light"}>
           USD
         </Text>
       </HStack>

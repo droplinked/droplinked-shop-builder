@@ -97,7 +97,7 @@ function SimpleRegistrationModal(props: Props) {
         <AppModal open={isOpen} size="xl" close={() => isCreatingShop && props.close()}>
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
-                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="text.subtextPlaceholder.dark">
+                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="text.subtext.placeholder.dark">
                         <Flex>
                             <Box as="span" fontWeight={500}>{`${appDevelopment ? "dev." : ""}droplinked.io/`}</Box>
                             &nbsp;

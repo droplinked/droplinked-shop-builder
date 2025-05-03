@@ -35,11 +35,11 @@ export default function MobileCards({ item }: Props) {
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
                 <Flex justifyContent="space-between" alignItems="center">
-                    <Text color="text.subtextPlaceholder.dark" fontSize={14}>Customer</Text>
+                    <Text color="text.subtext.placeholder.dark" fontSize={14}>Customer</Text>
                     <Text color="#fff" fontSize={14} title={customerDisplayName}>{truncateText(customerDisplayName)}</Text>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <Text color="text.subtextPlaceholder.dark" fontSize={14}>Date</Text>
+                    <Text color="text.subtext.placeholder.dark" fontSize={14}>Date</Text>
                     <DateCell date={updatedAt} />
                 </Flex>
             </Flex>

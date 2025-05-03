@@ -16,7 +16,7 @@ const SidebarSubmenu = ({ list }) => {
        
           return (
             <DashboardLinkWrapper key={listItem.listTitle} linkTo={listItem.linkTo} onClick={listItem.onClick}>
-            <AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color={isSelected ? 'white': "text.subtextPlaceholder.dark"} _hover={{ color: 'white' }} whiteSpace={'nowrap'}>
+            <AppTypography fontSize="14px" fontWeight="400" fontFamily="Inter" color={isSelected ? 'white': "text.subtext.placeholder.dark"} _hover={{ color: 'white' }} whiteSpace={'nowrap'}>
               {listItem.listTitle}
             </AppTypography>
           </DashboardLinkWrapper>

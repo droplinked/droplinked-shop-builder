@@ -37,7 +37,7 @@ const SidebarSubmenuTooltip = ({ title, items }) => {
           {items.map((item, index) => (
             <Flex key={index} h="5" justifyContent="start" alignItems="center">
               <DashboardLinkWrapper key={item.listTitle} linkTo={item.linkTo} onClick={item.onClick}>
-                <AppTypography color="text.subtextPlaceholder.light" fontSize="sm" fontWeight="normal" lineHeight="tight">
+                <AppTypography color="text.subtext.placeholder.light" fontSize="sm" fontWeight="normal" lineHeight="tight">
                   {item.listTitle}
                 </AppTypography>
               </DashboardLinkWrapper>

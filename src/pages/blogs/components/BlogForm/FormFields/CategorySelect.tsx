@@ -57,7 +57,7 @@ const CategorySelect = () => {
                         <Text
                             ref={valueRef}
                             flex={1}
-                            color={values.category ? 'text.white' : 'text.subtextPlaceholder.dark'}
+                            color={values.category ? 'text.white' : 'text.subtext.placeholder.dark'}
                         >
                             {values.category || "Select a Category"}
                         </Text>

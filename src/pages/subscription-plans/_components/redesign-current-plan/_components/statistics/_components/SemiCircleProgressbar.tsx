@@ -49,11 +49,11 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
                     {maxValue !== "Unlimited" &&
                         <HStack>
                             <AppTypography color={"neutral.white"} fontWeight={"700"} fontSize={"20px"}>{value}</AppTypography>
-                            <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
+                            <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
                         </HStack>
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
-                    <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}>{maxValue === "Unlimited" ? "Unlimited" : "Used"}</AppTypography>
+                    <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>{maxValue === "Unlimited" ? "Unlimited" : "Used"}</AppTypography>
                 </VStack>
             </Box>
         </VStack>

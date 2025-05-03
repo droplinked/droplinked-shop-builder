@@ -25,7 +25,7 @@ const BasicButtonStyles = ({
             _hover: {
                 borderColor: "neutral.gray.500",
                 bgColor: "unset",
-                color: "text.subtextPlaceholder.dark",
+                color: "text.subtext.placeholder.dark",
             }
         }
     },
@@ -37,7 +37,7 @@ const BasicButtonStyles = ({
             border: "none",
             _hover: {
                 bgColor: "unset",
-                color: "text.subtextPlaceholder.dark",
+                color: "text.subtext.placeholder.dark",
             }
         }
     },

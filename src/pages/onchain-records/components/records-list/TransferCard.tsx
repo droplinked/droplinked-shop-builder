@@ -42,7 +42,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                     </AppTypography>
                     {description &&
                         <AppTypography
-                            color={"text.subtextPlaceholder.dark"}
+                            color={"text.subtext.placeholder.dark"}
                             fontSize={{ base: 12, lg: 14 }}
                             dangerouslySetInnerHTML={{ __html: description }}
                             sx={{

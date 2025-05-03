@@ -61,7 +61,7 @@ const Breadcrumb = ({ isMobile = false }) => {
             textAlign="left"
             fontSize={isMobile ? '14px' : '16px'}
             fontWeight={index === breadcrumbItems.length - 1 ? (isMobile ? '500' : '700') : '400'}
-            color={index === breadcrumbItems.length - 1 ? 'white' : 'text.subtextPlaceholder.light'}
+            color={index === breadcrumbItems.length - 1 ? 'white' : 'text.subtext.placeholder.light'}
           >
             {item.title}
           </AppTypography>

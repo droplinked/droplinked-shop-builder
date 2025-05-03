@@ -29,15 +29,15 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Amount</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Amount</AppTypography>
                     <FormattedPrice price={amount} />
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Date</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Date</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{formattedDate(createdAt)}</AppTypography>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtextPlaceholder.dark" fontSize={14}>Transaction ID</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Transaction ID</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{id}</AppTypography>
                 </Flex>
             </Flex>

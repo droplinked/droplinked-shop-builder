@@ -22,12 +22,12 @@ function OrderItem({ order, onNavigate }: Props) {
                     <Text color="text.white" fontSize={{ base: 14, xl: 16 }}>order #{order._id}</Text>
                     <FormattedPrice
                         price={order.totalPriceCart}
-                        abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                        abbreviationProps={{ color: "text.subtext.placeholder.dark" }}
                     />
                 </Flex>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
                     <Text fontSize={{ base: 12, xl: 14 }} color="system.success">{order.status}</Text>
-                    <Text fontSize={{ base: 12, xl: 14 }} color="text.subtextPlaceholder.dark">
+                    <Text fontSize={{ base: 12, xl: 14 }} color="text.subtext.placeholder.dark">
                         {formatDateToLongStyle(new Date(order.updatedAt))}
                     </Text>
                 </Flex>

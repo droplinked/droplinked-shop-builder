@@ -17,7 +17,7 @@ const CustomizableSection = ({ onCreateStoreClick }: Props) => (
         <Text fontSize="xl" fontWeight="bold" color="white">
           Customizable Storefront
         </Text>
-        <Text fontSize="base" color="text.subtextPlaceholder.dark">
+        <Text fontSize="base" color="text.subtext.placeholder.dark">
           Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity.
         </Text>
         <Button onClick={onCreateStoreClick}>

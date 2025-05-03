@@ -112,7 +112,7 @@ function Table<T extends object>(props: Props<T>) {
                             <Th
                                 key={header.id}
                                 textTransform="capitalize"
-                                color="text.subtextPlaceholder.dark"
+                                color="text.subtext.placeholder.dark"
                                 cursor={enableSorting ? "pointer" : "default"}
                                 sx={{ "svg": { display: "inline-block" } }}
                                 onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}

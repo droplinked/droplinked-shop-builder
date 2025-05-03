@@ -32,7 +32,7 @@ function FormFieldWrapper({ label, labelProps, description, isRequired = false, 
                     >
                         {label} {isRequired && <AppIcons.Required />}
                     </FormLabel>
-                    {description && <Text fontSize={14} fontWeight={400} color="text.subtextPlaceholder.dark">{description}</Text>}
+                    {description && <Text fontSize={14} fontWeight={400} color="text.subtext.placeholder.dark">{description}</Text>}
                 </Flex>
                 {rightContent}
             </Flex>

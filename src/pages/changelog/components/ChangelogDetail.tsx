@@ -38,8 +38,8 @@ function ChangelogDetail() {
                 </Heading>
 
                 <DotSeparatedList marginBottom={9}>
-                    <Text color='text.subtextPlaceholder.light'>Version {changelog?.version}</Text>
-                    <Text color='text.subtextPlaceholder.light'>
+                    <Text color='text.subtext.placeholder.light'>Version {changelog?.version}</Text>
+                    <Text color='text.subtext.placeholder.light'>
                         {formatDateToLongStyle(new Date(changelog?.date))}
                     </Text>
                 </DotSeparatedList>

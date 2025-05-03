@@ -28,7 +28,7 @@ function GreetingBanner() {
                 <Box as="span" fontWeight={700}>{shop.name}</Box>
                 👋
             </Heading>
-            <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.light">
+            <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.light">
                 Whether launching a first product or creating a storefront experience for customers, we've got all the tools you need.
             </Text>
         </Flex>

@@ -21,7 +21,7 @@ const PreviewActionBar = () => {
                   <AppIcons.Search />
                 </Box>
                 {/* Search Input Field */}
-                <PreviewTypo mr={6} flex={1} color={"text.subtextPlaceholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
+                <PreviewTypo mr={6} flex={1} color={"text.subtext.placeholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
                   Search
                 </PreviewTypo>
               </Flex>
@@ -35,11 +35,11 @@ const PreviewActionBar = () => {
           <Flex w="full" justify="start" align="start">
             <Flex grow={1} py="2" px="6px" bg={backgroundBody} borderRadius="md" border="1px solid" borderColor={foreground} align="center" gap="8px">
               {/* Sort Text */}
-              <PreviewTypo flex={1} color={"text.subtextPlaceholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
+              <PreviewTypo flex={1} color={"text.subtext.placeholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
                 Sort Products
               </PreviewTypo>
               {/* Icon Placeholder */}
-              <AppIcons.SidebarChevrondown width="12px" height="12px" color={"text.subtextPlaceholder.dark"}></AppIcons.SidebarChevrondown>
+              <AppIcons.SidebarChevrondown width="12px" height="12px" color={"text.subtext.placeholder.dark"}></AppIcons.SidebarChevrondown>
             </Flex>
           </Flex>
         </Flex>

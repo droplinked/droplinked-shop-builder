@@ -42,7 +42,7 @@ function PlanHeader({ plan, isPopular, isSelected}: PlanHeaderProps) {
             </Text>
           )}
 
-          <Text color="text.subtextPlaceholder.light" fontSize="sm">
+          <Text color="text.subtext.placeholder.light" fontSize="sm">
             {planDetail.description}
           </Text>
         </Flex>

@@ -5,7 +5,7 @@ export const CustomerInfo = ({ customer }: { customer: any }) => (
     <VStack spacing="4" w="full" align="start">
       {["name", "email"].map((field, idx) => (
         <HStack key={idx} justify="space-between" w="full">
-          <Text fontSize="sm" fontWeight="normal" color="text.subtextPlaceholder.dark">
+          <Text fontSize="sm" fontWeight="normal" color="text.subtext.placeholder.dark">
             {field === "name" ? "Full Name" : "Email Address"}
           </Text>
           <Text fontSize="sm" fontWeight="medium" color="white">

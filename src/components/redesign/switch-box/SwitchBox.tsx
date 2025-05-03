@@ -34,7 +34,7 @@ const SwitchBox = ({ isChecked, onToggle, title, description, rightContent, chil
             {(title || description || children) &&
                 <Flex direction="column">
                     <Text mb={1} fontSize={16} fontWeight={500} color="neutral.white">{title}</Text>
-                    <Text mb={children ? 4 : 0} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
+                    <Text mb={children ? 4 : 0} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                     {children}
                 </Flex>
             }

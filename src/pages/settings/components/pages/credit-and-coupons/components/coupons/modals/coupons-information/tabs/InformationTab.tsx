@@ -16,7 +16,7 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
             content: type === "DISCOUNT" ? (
                 <AppTypography color={"#fff"} fontWeight={500} fontSize={14}>{balance}%</AppTypography>
             ) : (
-                <AppTypography sx={{ span: { color: "text.subtextPlaceholder.dark", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
+                <AppTypography sx={{ span: { color: "text.subtext.placeholder.dark", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
                     {symbol}{" "}
                     {convertPrice({ amount: balance, toFixed: true })}{" "}
                     <span>{abbreviation}</span>
@@ -30,7 +30,7 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
         {
             title: "Usage Limit",
             content:
-                <AppTypography sx={{ span: { color: "text.subtextPlaceholder.dark", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
+                <AppTypography sx={{ span: { color: "text.subtext.placeholder.dark", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
                     {redeemedCounts} <span>/ {codes.length}</span>
                 </AppTypography>
         }

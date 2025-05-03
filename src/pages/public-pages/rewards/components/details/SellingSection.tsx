@@ -17,7 +17,7 @@ const SellingSection = ({ onCreateStoreClick }: Props) => (
         <Text fontSize="xl" fontWeight="bold" color="white">
           Selling on Droplinked
         </Text>
-        <Text fontSize="base" color="text.subtextPlaceholder.dark">
+        <Text fontSize="base" color="text.subtext.placeholder.dark">
           Selling on Droplinked is easy, transparent, and efficient. Follow our step-by-step guide to launch a product and start reaching customers quickly.
         </Text>
         <Button onClick={onCreateStoreClick}>

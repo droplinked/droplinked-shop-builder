@@ -51,7 +51,7 @@ export function SelectMenuItem({ item, showCheckbox, isSelected, onChange }: Sel
 
                     {item.labelDescription && (
                         <AppTypography
-                            color={"text.subtextPlaceholder.dark"}
+                            color={"text.subtext.placeholder.dark"}
                             fontSize={12}
                             fontWeight={400}
                         >

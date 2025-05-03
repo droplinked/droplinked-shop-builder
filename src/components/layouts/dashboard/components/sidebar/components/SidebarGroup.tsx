@@ -13,7 +13,7 @@ const SidebarGroup = ({ group, index }) => {
     >
       {/* Sidebar Group Title */}
       <Flex display={{ sm: 'flex', md: 'none', lg: 'flex' }} paddingLeft="12px" alignItems="center">
-        <AppTypography color="text.subtextPlaceholder.dark" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px" whiteSpace={'nowrap'}>
+        <AppTypography color="text.subtext.placeholder.dark" fontFamily="Inter" fontSize="10px" fontWeight="400" lineHeight="16px" whiteSpace={'nowrap'}>
           {group.group}
         </AppTypography>
       </Flex>

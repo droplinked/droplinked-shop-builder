@@ -23,10 +23,10 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
             gap={{ base: 6, "2xl": 12, "3xl": 20 }}
         >
             <Flex minW="200px" direction="column" gap={1}>
-                <Text fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.subtextPlaceholder.light">
+                <Text fontSize={{ base: 16, xl: 18 }} fontWeight={500} color="text.subtext.placeholder.light">
                     {formatDateToLongStyle(new Date(entry.date))}
                 </Text>
-                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.dark">
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.dark">
                     {getTimeAgo(entry.date)}
                 </Text>
             </Flex>
@@ -42,7 +42,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
                     {entry.title}
                 </Heading>
 
-                <Text marginBottom={3} noOfLines={2} fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.light">
+                <Text marginBottom={3} noOfLines={2} fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.light">
                     {entry.summary}
                 </Text>
 

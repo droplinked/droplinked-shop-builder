@@ -40,7 +40,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
             <FormattedPrice
                 price={totalValue}
                 fontSize={fontSize}
-                abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                abbreviationProps={{ color: "text.subtext.placeholder.dark" }}
             />
             :
             <Text fontSize={fontSize} color="text.white">

@@ -52,7 +52,7 @@ export const CustomTimeInput = forwardRef((props: any, ref) => {
                         padding: "0px"
                     }}
                 />
-                <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={900} fontSize={"14px"}>
+                <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
                 <Input

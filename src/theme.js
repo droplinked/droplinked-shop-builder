@@ -52,9 +52,11 @@ export const theme = extendTheme({
     text: {
       white: '#ffffff',
       black: '#000000',
-      subtextPlaceholder: {
-        light: '#b1b1b1',
-        dark: '#7b7b7b',
+      subtext:{
+        placeholder: {
+          light: '#b1b1b1',
+          dark: '#7b7b7b',
+        }
       },
       disabled: {
         light: '#bcbcbc',

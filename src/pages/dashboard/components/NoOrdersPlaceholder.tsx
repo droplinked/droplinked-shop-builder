@@ -82,7 +82,7 @@ function FeatureCard({ title, description, image, buttons, ...rest }) {
                 <Text fontSize={{ base: 18, xl: 20 }} fontWeight={700} color="white">
                     {title}
                 </Text>
-                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.dark">
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.dark">
                     {description}
                 </Text>
                 <Flex mt={3} gap={3}>

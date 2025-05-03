@@ -26,11 +26,11 @@ function LinearProgressBar({ value, maxValue, title }: IProps) {
                     {maxValue !== "Unlimited" &&
                         <HStack>
                             <AppTypography color={"neutral.white"} fontWeight={"700"} fontSize={"20px"}>{value}</AppTypography>
-                            <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
+                            <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}> / {maxValue}</AppTypography>
                         </HStack>
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
-                    {maxValue !== "Unlimited" && <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={"400"} fontSize={"14px"}>Used</AppTypography>}
+                    {maxValue !== "Unlimited" && <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>Used</AppTypography>}
                 </HStack>
             </HStack>
             <Progress

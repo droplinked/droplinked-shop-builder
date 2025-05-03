@@ -43,7 +43,7 @@ function FileUpload({
                 <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">Click</Box> {" "}
                 or drag & drop here
             </AppTypography>
-            <AppTypography color="text.subtextPlaceholder.dark">{text.footerText}</AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">{text.footerText}</AppTypography>
         </>
 
     return (

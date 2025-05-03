@@ -47,7 +47,7 @@ function FilePreview({ file, onFileChange }: Props) {
                     <AppTypography fontWeight={500} color="#fff">
                         {file.name}
                     </AppTypography>
-                    <AppTypography mt={2} fontSize={12} color="text.subtextPlaceholder.dark">
+                    <AppTypography mt={2} fontSize={12} color="text.subtext.placeholder.dark">
                         {getFileSizeInMB(file)} MB
                     </AppTypography>
                 </Box>

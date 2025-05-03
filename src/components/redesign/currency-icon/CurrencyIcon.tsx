@@ -18,7 +18,7 @@ export default function CurrencyIcon({ ...boxProps }: BoxProps) {
             case "GBP":
                 return <AppIcons.Pound />
             case "AUD":
-                return <AppTypography userSelect={"none"} fontSize={16} color={"text.subtextPlaceholder.dark"}>{symbol}</AppTypography>
+                return <AppTypography userSelect={"none"} fontSize={16} color={"text.subtext.placeholder.dark"}>{symbol}</AppTypography>
             case "CAD":
                 return <AppIcons.CanadianDollar />
             case "AED":

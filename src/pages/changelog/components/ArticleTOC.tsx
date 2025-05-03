@@ -69,7 +69,7 @@ function ArticleTOC({ changelogItem }: Props) {
                         as="button"
                         padding="8px 16px"
                         textAlign="left"
-                        color={selectedHeading?.id === heading.id ? "text.white" : "text.subtextPlaceholder.dark"}
+                        color={selectedHeading?.id === heading.id ? "text.white" : "text.subtext.placeholder.dark"}
                         onClick={() => scrollToHeading(heading)}
                         transition="color 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                     >

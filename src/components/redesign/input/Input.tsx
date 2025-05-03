@@ -55,7 +55,7 @@ export function InputHeader({ label, description, inputProps, labelProps }: Prop
                     {label} {inputProps?.isRequired && <AppIcons.Required />}
                 </FormLabel>
             )}
-            {description && <Text mb={4} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>}
+            {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
         </>
     )
 }
@@ -115,7 +115,7 @@ function InputContainer(props: Props) {
                 padding="12px 16px"
                 transition="border-color 0.1s ease-out"
                 _hover={{ borderColor: borderColorMap[state] || "neutral.gray.700" }}
-                _focus={{ borderColor: borderColorMap[state] || "text.subtextPlaceholder.dark" }}
+                _focus={{ borderColor: borderColorMap[state] || "text.subtext.placeholder.dark" }}
                 {...showAnimatedLoading && { background: "neutral.background" }}
                 {...inputContainerProps}
             >
@@ -132,7 +132,7 @@ function InputContainer(props: Props) {
                         color="neutral.white"
                         maxLength={maxCharacters}
                         spellCheck={false}
-                        _placeholder={{ color: "text.subtextPlaceholder.dark" }}
+                        _placeholder={{ color: "text.subtext.placeholder.dark" }}
                         _focusVisible={{}}
                         sx={{
                             "&:-webkit-autofill": {

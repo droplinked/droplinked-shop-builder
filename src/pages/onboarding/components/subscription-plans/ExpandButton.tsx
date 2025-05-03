@@ -23,7 +23,7 @@ function ExpandButton({ isExpanded, isSelected, onToggle }: ExpandButtonProps) {
       }}
       cursor="pointer"
     >
-      <Text color={isSelected ? 'text.primary' : 'text.subtextPlaceholder.dark'} fontSize="sm">
+      <Text color={isSelected ? 'text.primary' : 'text.subtext.placeholder.dark'} fontSize="sm">
         {isExpanded ? 'Less' : 'More'}
       </Text>
       <ChevrondownMd
