@@ -45,6 +45,9 @@ const Breadcrumb = ({ isMobile = false }) => {
     return null;
   }
 
+  // Skip the first item in breadcrumbItems
+  const displayedItems = breadcrumbItems.slice(1);
+
   return (
     <Flex
       width="100%"
@@ -54,14 +57,14 @@ const Breadcrumb = ({ isMobile = false }) => {
       flexWrap={isMobile ? 'wrap' : 'nowrap'}
       gap="12px"
     >
-      {breadcrumbItems.map((item, index) => (
+      {displayedItems.map((item, index) => (
         <React.Fragment key={index}>
           {index > 0 && (isMobile ? <ChevronrightSm color="#B1B1B1" /> : <ChevronrightMd color="#B1B1B1" />)}
           <AppTypography
             textAlign="left"
             fontSize={isMobile ? '14px' : '16px'}
-            fontWeight={index === breadcrumbItems.length - 1 ? (isMobile ? '500' : '700') : '400'}
-            color={index === breadcrumbItems.length - 1 ? 'white' : 'text.subtext.placeholder.light'}
+            fontWeight={index === displayedItems.length - 1 ? (isMobile ? '500' : '700') : '400'}
+            color={index === displayedItems.length - 1 ? 'white' : 'text.subtext.placeholder.light'}
           >
             {item.title}
           </AppTypography>
