@@ -2,8 +2,9 @@ import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { formattedDate, formattedTime, formatUnderlinedText, getStatusColorScheme, OrderStatus } from '../helpers'
+import { formatUnderlinedText, getStatusColorScheme, OrderStatus } from '../helpers'
 import { TabsList } from './drawer-components/TabList'
+import { formatDateToLongStyle, formattedTime } from 'utils/helpers'
 
 interface OrderHeaderContentProps {
     isFetching: boolean;
@@ -21,7 +22,7 @@ export default function OrderHeaderContent({ isFetching, updatedAt, orderStatus,
         <Flex flexDirection="column" gap={6}>
             <Flex justifyContent="space-between" alignItems="center">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
-                    <Text fontSize={14} color="#fff">{formattedDate(updatedAt)} - {formattedTime(updatedAt)}</Text>
+                    <Text fontSize={14} color="#fff">{formatDateToLongStyle(updatedAt)} - {formattedTime(updatedAt)}</Text>
                 </AppSkeleton>
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
                     <AppBadge

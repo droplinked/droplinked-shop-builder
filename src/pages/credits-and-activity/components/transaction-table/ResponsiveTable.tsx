@@ -9,20 +9,13 @@ import React from 'react';
 import StatusBadge from '../StatusBadge';
 import TransactionsCards from './TransactionsCards';
 import TypeColumn from './TypeColumn';
+import { formatDateToLongStyle } from 'utils/helpers';
 
 export default function ResponsiveTable() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { transactionsQuery } = useCreditsData()
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
     const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
-
-    const formattedDate = (date: Date) => {
-        return new Date(date).toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        });
-    }
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
@@ -38,7 +31,7 @@ export default function ResponsiveTable() {
         {
             accessorKey: "date",
             header: "Date",
-            cell: (info) => formattedDate(new Date(info.row.original.createdAt))
+            cell: (info) => formatDateToLongStyle(new Date(info.row.original.createdAt))
         },
         {
             accessorKey: "status",

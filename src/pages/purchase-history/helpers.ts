@@ -16,32 +16,6 @@ export const getStatusColorScheme = (status?: OrderStatus): "success" | "pending
 export const isOrderCancelled = (status?: OrderStatus): boolean => status === "CANCELED";
 
 /**
- * Formats a date to a localized string (e.g., April 22, 2023)
- */
-export const formattedDate = (date: Date | string): string => {
-    if (!date) return '---';
-
-    return new Date(date).toLocaleDateString("en-US", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    });
-}
-
-/**
- * Formats a time to a localized string (e.g., 14:30)
- */
-export const formattedTime = (date: Date | string): string => {
-    if (!date) return '---';
-
-    return new Date(date).toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-    });
-}
-
-/**
  * Converts underscored text to title case (e.g., PAYMENT_CONFIRMED → Payment Confirmed)
  */
 export const formatUnderlinedText = (status: string): string => {
