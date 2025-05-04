@@ -6,9 +6,10 @@ import { IOrderDetails } from 'lib/apis/order/interfaces';
 
 interface CustomerInfoProps {
     customer: IOrderDetails["customer"];
+    details: IOrderDetails["details"];
 }
 
-export default function CustomerInfoSection({ customer }: CustomerInfoProps) {
+export default function CustomerInfoSection({ customer, details }: CustomerInfoProps) {
     return (
         <InfoWrapper title='Customer Information'>
             <Flex direction="column" gap={6}>
@@ -22,6 +23,7 @@ export default function CustomerInfoSection({ customer }: CustomerInfoProps) {
                     <TitledText text={customer?.email} title='Email Address' />
                 </Flex>
                 <TitledText text={customer.address} title='Shipping Address' />
+                {!!details.note && <TitledText text={details.note} title='Additional Details' />}
             </Flex>
         </InfoWrapper>
     );

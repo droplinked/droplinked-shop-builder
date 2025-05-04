@@ -82,6 +82,7 @@ export interface IOrderDetails {
         profit: number;
         paidWith: string;
         type: string;
+        note?: string
     };
     trackingInfo: {
         title: string;
