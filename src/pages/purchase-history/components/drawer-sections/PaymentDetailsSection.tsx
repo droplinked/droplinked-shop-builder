@@ -9,9 +9,10 @@ import { IOrderDetails } from 'lib/apis/order/interfaces';
 interface PaymentDetailsProps {
     details: IOrderDetails["details"];
     trackingInfo: IOrderDetails["trackingInfo"];
+    giftCard?: IOrderDetails["giftCard"];
 }
 
-export default function PaymentDetailsSection({ details, trackingInfo }: PaymentDetailsProps) {
+export default function PaymentDetailsSection({ details, trackingInfo, giftCard }: PaymentDetailsProps) {
     return (
         <InfoWrapper
             title='Payment Details'
@@ -21,13 +22,14 @@ export default function PaymentDetailsSection({ details, trackingInfo }: Payment
                 px: { base: 4, md: 6 },
             }}
         >
-            <PaymentSummary details={details} />
+            <PaymentSummary details={details} giftCard={giftCard} />
             <PaymentMethodAndTracking details={details} trackingInfo={trackingInfo} />
         </InfoWrapper>
     );
 }
 
-function PaymentSummary({ details }) {
+function PaymentSummary({ details, giftCard }) {
+    const appliedGiftCard = !!giftCard && Object.keys(giftCard).length > 0 && !!giftCard.amount
     return (
         <Flex
             direction="column"
@@ -36,15 +38,24 @@ function PaymentSummary({ details }) {
             px={{ base: 4, md: 6 }}
             pb={{ base: 4, md: 6 }}
         >
-            <TitledText
-                title='Total Cart'
-                direction='row'
-                text={<FormattedPrice price={details.cart} fontSize={14} fontWeight={500} />}
-            />
+            {appliedGiftCard && (
+                <TitledText
+                    title='Discount'
+                    direction='row'
+                    text={
+                        <FormattedPrice price={giftCard.amount} fontSize={14} fontWeight={500} />
+                    }
+                />
+            )}
             <TitledText
                 title='Total Products'
                 direction='row'
                 text={<FormattedPrice price={details.products} fontSize={14} fontWeight={500} />}
+            />
+            <TitledText
+                title='Total Cart'
+                direction='row'
+                text={<FormattedPrice price={details.cart} fontSize={14} fontWeight={500} />}
             />
             <TitledText
                 title='Tax'

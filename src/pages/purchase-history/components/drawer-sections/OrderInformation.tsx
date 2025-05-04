@@ -20,14 +20,14 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
         )
     }
 
-    const { customer, shippings, commision, details, trackingInfo } = orderData;
+    const { customer, shippings, commision, details, trackingInfo, giftCard } = orderData;
 
     return (
         <Flex flexDirection="column" gap={4}>
             <CustomerInfoSection customer={customer} details={details} />
             <ShippingSection shippings={shippings} />
             <CommissionSection commission={commision} />
-            <PaymentDetailsSection details={details} trackingInfo={trackingInfo} />
+            <PaymentDetailsSection details={details} trackingInfo={trackingInfo} giftCard={giftCard} />
         </Flex >
     );
 }

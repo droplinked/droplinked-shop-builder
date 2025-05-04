@@ -100,7 +100,7 @@ export interface IOrderDetails {
         shop: number;
         total: number;
     };
-    giftCard: {
+    giftCard?: {
         credit: number;
         amount: number;
         netProfit: number;
