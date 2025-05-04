@@ -7,10 +7,9 @@ const DEFAULT_BLOG_VALUES: Blog = {
     content: null,
     searchEngineSummary: '',
     category: '',
+    tags: [],
     isVisible: false,
-    isFeatured: false,
-    writer: '',
-    tags: []
+    isFeatured: false
 }
 
 export const getInitialValues = (blog?: Blog): Blog => blog ?? DEFAULT_BLOG_VALUES
@@ -21,5 +20,7 @@ export const validationSchema = Yup.object({
     content: Yup.string().required('Body is required'),
     searchEngineSummary: Yup.string().default(''),
     category: Yup.string().required('Category is required'),
-    keywords: Yup.string(),
+    tags: Yup.array().of(Yup.string()),
+    isVisible: Yup.boolean(),
+    isFeatured: Yup.boolean()
 }) 

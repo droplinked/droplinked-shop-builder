@@ -1,9 +1,11 @@
 import { Box, Flex, Grid, GridItem, useBreakpointValue } from '@chakra-ui/react'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import { Form, Formik } from 'formik'
 import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
 import { getInitialValues, validationSchema } from '../../utils/formHelpers'
 import BlogFormActions from './FormFields/BlogFormActions'
+import BlogToggles from './FormFields/BlogToggles'
 import BodyEditor from './FormFields/BodyEditor'
 import CategorySelect from './FormFields/CategorySelect'
 import FeaturedPictureUpload from './FormFields/FeaturedPictureUpload'
@@ -58,9 +60,14 @@ function MobileLayout() {
                 <Keywords />
             </Flex>
 
-            <Box {...applyContainerStyles}>
-                <VisibilityStatusRadio />
-            </Box>
+            <RuledGrid columns={1} borderRadius={16}>
+                <Box padding={{ base: 4, xl: 6 }}>
+                    <VisibilityStatusRadio />
+                </Box>
+                <Box padding={{ base: 4, xl: 6 }}>
+                    <BlogToggles />
+                </Box>
+            </RuledGrid>
 
             <BlogFormActions />
         </Flex>
@@ -90,9 +97,14 @@ function DesktopLayout() {
                 <Box {...containerStyles}>
                     <FeaturedPictureUpload />
                 </Box>
-                <Box {...containerStyles}>
-                    <VisibilityStatusRadio />
-                </Box>
+                <RuledGrid columns={1} borderRadius={16}>
+                    <Box padding={{ base: 4, xl: 6 }}>
+                        <VisibilityStatusRadio />
+                    </Box>
+                    <Box padding={{ base: 4, xl: 6 }}>
+                        <BlogToggles />
+                    </Box>
+                </RuledGrid>
                 <BlogFormActions />
             </GridItem>
         </Grid>
