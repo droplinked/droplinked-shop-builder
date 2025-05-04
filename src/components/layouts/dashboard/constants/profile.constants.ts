@@ -10,7 +10,7 @@ interface ICurrencyConverter {
   symbol: string
 }
 
-export const PROFILE_CONSTANTS = (shop: { credit: number; name: string; shopDomain: string | string[]; }, logoutUser: () => void, convertCurrency: ICurrencyConverter): ProfileItem[] => [
+export const PROFILE_CONSTANTS = (shop: { credit: number; name: string; shopUrl: string }, logoutUser: () => void, convertCurrency: ICurrencyConverter): ProfileItem[] => [
   {
     title: { label: 'Credit', style: {} },
     icon: { svg: AppIcons.ProfileCredit, style: {} },
@@ -30,7 +30,7 @@ export const PROFILE_CONSTANTS = (shop: { credit: number; name: string; shopDoma
   {
     title: { label: 'View shop', style: {} },
     icon: { svg: AppIcons.ProfileShop, style: {} },
-    linkTo: Array.isArray(shop?.shopDomain) ? `https://${shop?.shopDomain[0]}` : shop?.shopDomain ? `https://${shop?.shopDomain}` : `${SHOP_URL}/${shop.name}`,
+    linkTo: shop.shopUrl,
     isExternalLink: true,
     rightSide: { value: null, style: {} }
   },
