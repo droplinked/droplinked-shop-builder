@@ -9,8 +9,8 @@ export interface AppButtonProps extends ButtonProps {
 
 const styles = {
   primary: {
-    border: "primary.default",
-    background: "primary.default",
+    border: "main.primary",
+    background: "main.primary",
     text: "black"
   },
   secondary: {

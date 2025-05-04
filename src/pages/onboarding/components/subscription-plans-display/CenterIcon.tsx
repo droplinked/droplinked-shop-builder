@@ -12,7 +12,7 @@ const CenterIcon = () => {
           {/* Inner teal circle with icon */}
           <Circle
             size="64px"
-            bg="primary.default"
+            bg="main.primary"
             _after={{
               content: '""',
               position: 'absolute',

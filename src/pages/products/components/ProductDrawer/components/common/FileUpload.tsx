@@ -64,7 +64,7 @@ function FileUpload({
             <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
             {
                 isLoading ?
-                    <Spinner width={10} height={10} thickness='2px' color="primary.default" />
+                    <Spinner width={10} height={10} thickness='2px' color="main.primary" />
                     :
                     <>
                         {icon}

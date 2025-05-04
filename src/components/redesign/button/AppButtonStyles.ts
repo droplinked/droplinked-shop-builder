@@ -52,8 +52,8 @@ const styles = {
     outlined: {
       default: {
         background: 'transparent',
-        borderColor: 'primary.default',
-        color: 'primary.default',
+        borderColor: 'main.primary',
+        color: 'main.primary',
       },
       hover: {
         background: 'button.hover.transparent',

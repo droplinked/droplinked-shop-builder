@@ -9,7 +9,7 @@ export const theme = extendTheme({
         thumb: { backgroundColor: "neutral.black" },
         track: {
           backgroundColor: "neutral.gray.750",
-          _checked: { bg: "primary.default" }
+          _checked: { bg: "main.primary" }
         }
       })
     }),
@@ -40,8 +40,9 @@ export const theme = extendTheme({
       background: '#141414',
       black: '#000000',
     },
-    primary: {
-      default: '#2bcfa1',
+    main: {
+      primary: '#2bcfa1',
+      secondary: '#c5a3ff',
     },
     system: {
       success: '#2bcfa1',

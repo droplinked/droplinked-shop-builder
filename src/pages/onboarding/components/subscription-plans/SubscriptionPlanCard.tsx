@@ -21,7 +21,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect,
   return (
     <Box
       borderWidth="1px"
-      borderColor={isSelected ? 'primary.default' : 'neutral.gray.800'}
+      borderColor={isSelected ? 'main.primary' : 'neutral.gray.800'}
       borderRadius="16px"
       data-state="Expanded"
       bg={isSelected ? 'rgba(43, 207, 161, 0.10)' : 'transparent'}
@@ -36,7 +36,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect,
         {isExpanded ? (
           <Box p={4}>
             {features.map((feature) => (
-              <Flex key={feature} gap={2} mb={4} alignItems="center"> 
+              <Flex key={feature} gap={2} mb={4} alignItems="center">
                 <AvailableoutlinedSm color="white" />
                 <Text textColor="neutral.white" flex={1} fontSize="sm">
                   {feature}
@@ -46,7 +46,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect,
           </Box>
         ) : null}
 
-        <Box borderBottom="1px solid" borderColor={isSelected ? 'primary.default' : 'neutral.gray.800'} />
+        <Box borderBottom="1px solid" borderColor={isSelected ? 'main.primary' : 'neutral.gray.800'} />
 
         <ExpandButton isExpanded={isExpanded} isSelected={isSelected} onToggle={() => setIsExpanded(!isExpanded)} />
       </Flex>

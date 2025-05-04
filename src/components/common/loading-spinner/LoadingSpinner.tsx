@@ -9,7 +9,7 @@ function LoadingSpinner({ ...flexProps }: FlexProps) {
             alignItems="center"
             {...flexProps}
         >
-            <Spinner size="xl" color="primary.default" />
+            <Spinner size="xl" color="main.primary" />
         </Flex>
     )
 }

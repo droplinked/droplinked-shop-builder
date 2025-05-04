@@ -22,9 +22,9 @@ function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props 
         color: 'system.link',
       },
       success: {
-        borderColor: 'primary.default',
+        borderColor: 'main.primary',
         bg: 'label.primary',
-        color: 'primary.default',
+        color: 'main.primary',
       },
       error: {
         borderColor: 'system.error',

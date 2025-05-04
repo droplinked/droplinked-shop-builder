@@ -67,7 +67,7 @@ function AppLabel({
                 },
                 success: {
                     border: "1px solid",
-                    borderColor: "primary.default",
+                    borderColor: "main.primary",
                     bg: "label.primary",
                     color: "text.primary"
                 },

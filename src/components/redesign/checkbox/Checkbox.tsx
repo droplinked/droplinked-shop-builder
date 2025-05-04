@@ -16,8 +16,8 @@ function Checkbox({ children, ...rest }: CheckboxProps) {
                     borderColor: "neutral.gray.700",
                     borderRadius: 4,
                     "&[data-checked]": {
-                        backgroundColor: "primary.default",
-                        borderColor: "primary.default"
+                        backgroundColor: "main.primary",
+                        borderColor: "main.primary"
                     }
                 }
             }}

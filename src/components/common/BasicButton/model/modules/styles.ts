@@ -5,13 +5,13 @@ const BasicButtonStyles = ({
     solid: (): ButtonProps => {
         return {
             color: "neutral.gray.1000",
-            bgColor: "primary.default",
+            bgColor: "main.primary",
             border: "2px solid",
-            borderColor: "primary.default",
+            borderColor: "main.primary",
             _hover: {
-                borderColor: "primary.default",
+                borderColor: "main.primary",
                 bgColor: "unset",
-                color: "primary.default",
+                color: "main.primary",
             }
         }
     },
