@@ -55,16 +55,13 @@ const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/Affili
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
-const Admins = lazy(() => import("pages/register-pages/pages/admins/Admins"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
-const RegisterShopInfo = lazy(() => import("pages/register-pages/pages/shop-info/ShopInfo"));
 const SimpleRegistration = lazy(() => import("pages/register-pages/pages/simple-registration/SimpleRegistration"));
 const TileDesign = lazy(() => import("pages/register-pages/pages/tile-design/TileDesign"));
 const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
-const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
@@ -144,11 +141,8 @@ const router = createBrowserRouter([
                 path: "settings",
                 element: <RegisterPagesWrapper />,
                 children: [
-                    { path: "shop-info", element: <RegisterShopInfo /> },
                     { path: "design", element: <DesignPage /> },
                     { path: "tile", element: <TileDesign /> },
-                    { path: "coupons", element: <CouponsSetting /> },
-                    { path: "admins", element: <Admins /> },
                     { path: "payment-link-design", element: <PaymentLink /> },
                 ],
             },
