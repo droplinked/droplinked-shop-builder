@@ -68,11 +68,13 @@ export interface IOrderDetails {
     orderInformation: {
         orderId: string;
         status: "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED";
+        transactionId?: string;
     };
     customer: {
         name: string | null;
         email: string;
         address: string | null;
+        phone?: string;
     };
     details: {
         products: number;
@@ -106,6 +108,12 @@ export interface IOrderDetails {
         netProfit: number;
         ruleset: number;
     };
+    affiliates?: {
+        total: number;
+        publisherProfit: number;
+        publisher: string;
+        publisherWallet?: string;
+    }[];
     commision: {
         droplinked: number;
         stripe: number;

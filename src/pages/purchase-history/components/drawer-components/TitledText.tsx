@@ -5,6 +5,7 @@ interface Props {
     title: string
     text: string | ReactNode
     direction?: "row" | "column"
+    rightContent?: ReactNode
 }
 
 /**
@@ -14,14 +15,22 @@ interface Props {
     * @param title - The title to display
     * @param text - The text to display alongside the title
     * @param direction - The layout direction, either 'row' or 'column'
+    * @param rightContent - Optional additional content to display on the right side
     * @returns A Flex component containing the title and text
  */
 
-export default function TitledText({ title, text, direction = "column" }: Props) {
+export default function TitledText({ title, text, rightContent, direction = "column" }: Props) {
     return (
         <Flex flexDirection={direction} gap={1} justifyContent="space-between">
             <Text color="text.subtext.placeholder.dark" fontSize={14}>{title}</Text>
-            <Text color="#fff" fontSize={14} fontWeight={500}>{text ?? "---"}</Text>
+            <Flex alignItems="center" gap={1.5}>
+                <Text color="#fff" fontSize={14} fontWeight={500}>{text ?? "---"}</Text>
+                {rightContent && (
+                    <Flex alignItems="center" justifyContent="flex-end" width="100%">
+                        {rightContent}
+                    </Flex>
+                )}
+            </Flex>
         </Flex>
     )
 }

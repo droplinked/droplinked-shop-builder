@@ -20,14 +20,28 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
         )
     }
 
-    const { customer, shippings, commision, details, trackingInfo, giftCard } = orderData;
+    const { customer, shippings, commision, details, trackingInfo, giftCard, orderInformation } = orderData;
+    const isPhysical = !!customer.address
 
     return (
         <Flex flexDirection="column" gap={4}>
-            <CustomerInfoSection customer={customer} details={details} />
-            <ShippingSection shippings={shippings} />
+            <CustomerInfoSection
+                customer={customer}
+                details={details}
+                isPhysical={isPhysical}
+            />
+
+            {isPhysical && <ShippingSection shippings={shippings} />}
+
             <CommissionSection commission={commision} />
-            <PaymentDetailsSection details={details} trackingInfo={trackingInfo} giftCard={giftCard} />
+
+            <PaymentDetailsSection
+                details={details}
+                trackingInfo={trackingInfo}
+                giftCard={giftCard}
+                isPhysical={isPhysical}
+                orderId={orderInformation.orderId}
+            />
         </Flex >
     );
 }

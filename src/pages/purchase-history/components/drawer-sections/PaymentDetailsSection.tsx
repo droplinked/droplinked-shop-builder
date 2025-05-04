@@ -5,14 +5,17 @@ import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'lib/apis/order/interfaces';
+import ClipboardText from 'components/common/clipboardText/ClipboardText';
 
 interface PaymentDetailsProps {
     details: IOrderDetails["details"];
     trackingInfo: IOrderDetails["trackingInfo"];
     giftCard?: IOrderDetails["giftCard"];
+    isPhysical: boolean;
+    orderId: string;
 }
 
-export default function PaymentDetailsSection({ details, trackingInfo, giftCard }: PaymentDetailsProps) {
+export default function PaymentDetailsSection({ details, trackingInfo, giftCard, isPhysical, orderId }: PaymentDetailsProps) {
     return (
         <InfoWrapper
             title='Payment Details'
@@ -22,14 +25,16 @@ export default function PaymentDetailsSection({ details, trackingInfo, giftCard 
                 px: { base: 4, md: 6 },
             }}
         >
-            <PaymentSummary details={details} giftCard={giftCard} />
-            <PaymentMethodAndTracking details={details} trackingInfo={trackingInfo} />
+            <PaymentSummary details={details} giftCard={giftCard} isPhysical={isPhysical} />
+            <PaymentMethodAndTracking details={details} trackingInfo={trackingInfo} orderId={orderId} />
         </InfoWrapper>
     );
 }
 
-function PaymentSummary({ details, giftCard }) {
-    const appliedGiftCard = !!giftCard && Object.keys(giftCard).length > 0 && !!giftCard.amount
+function PaymentSummary({ details, giftCard, isPhysical }) {
+    const appliedGiftCard = !!giftCard?.amount
+    const hasRuleset = !!giftCard?.ruleset
+
     return (
         <Flex
             direction="column"
@@ -47,6 +52,13 @@ function PaymentSummary({ details, giftCard }) {
                     }
                 />
             )}
+            {hasRuleset && (
+                <TitledText
+                    title='Discount Ruleset'
+                    direction='row'
+                    text={<FormattedPrice price={giftCard.ruleset} fontSize={14} fontWeight={500} />}
+                />
+            )}
             <TitledText
                 title='Total Products'
                 direction='row'
@@ -62,11 +74,13 @@ function PaymentSummary({ details, giftCard }) {
                 direction='row'
                 text={<FormattedPrice price={details.tax} fontSize={14} fontWeight={500} />}
             />
-            <TitledText
-                title='Shipping'
-                direction='row'
-                text={<FormattedPrice price={details.shipping} fontSize={14} fontWeight={500} />}
-            />
+            {isPhysical &&
+                <TitledText
+                    title='Shipping'
+                    direction='row'
+                    text={<FormattedPrice price={details.shipping} fontSize={14} fontWeight={500} />}
+                />
+            }
             <TitledText
                 title='Total Net Profit'
                 direction='row'
@@ -76,7 +90,7 @@ function PaymentSummary({ details, giftCard }) {
     );
 }
 
-function PaymentMethodAndTracking({ details, trackingInfo }) {
+function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
     return (
         <Flex
             direction="column"
@@ -88,6 +102,12 @@ function PaymentMethodAndTracking({ details, trackingInfo }) {
                 title='Payment Method'
                 direction='row'
                 text={details.paidWith}
+            />
+            <TitledText
+                title='Order ID'
+                direction='row'
+                text={orderId}
+                rightContent={<ClipboardText text={orderId} />}
             />
             {trackingInfo.map((item, index) => (
                 <TitledText
