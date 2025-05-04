@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import React from 'react'
-import { formattedDate, formattedTime } from '../../helpers'
+import { formatDateToLongStyle, formattedTime } from 'utils/helpers';
 
 interface DateCellProps {
     date: Date | string | null;
@@ -17,7 +17,7 @@ export default function DateCell({ date }: DateCellProps) {
 
     return (
         <DotSeparatedList gap={4}>
-            <Text fontSize={14} color="#fff">{formattedDate(date)}</Text>
+            <Text fontSize={14} color="#fff">{formatDateToLongStyle(date as Date)}</Text>
             <Text fontSize={14} color="#fff">{formattedTime(date)}</Text>
         </DotSeparatedList>
     )

@@ -5,6 +5,7 @@ import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
 import React from 'react'
 import TypeColumn from './TypeColumn'
 import StatusBadge from '../StatusBadge'
+import { formatDateToLongStyle } from 'utils/helpers'
 
 interface TransactionCardProps {
     transaction?: IDetailedTransaction;
@@ -12,14 +13,6 @@ interface TransactionCardProps {
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {};
-
-    const formattedDate = (date: Date) => {
-        return new Date(date).toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        });
-    }
 
     return (
         <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
@@ -34,7 +27,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Date</AppTypography>
-                    <AppTypography color="#fff" fontSize={14}>{formattedDate(createdAt)}</AppTypography>
+                    <AppTypography color="#fff" fontSize={14}>{formatDateToLongStyle(createdAt)}</AppTypography>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Transaction ID</AppTypography>
