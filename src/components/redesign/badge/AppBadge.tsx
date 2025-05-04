@@ -8,7 +8,7 @@ interface Props extends BadgeProps {
   icon?: ReactNode;
 }
 
-function AppBadge({ text, status = 'neutral',size = '24',icon: Icon, ...props}: Props) {
+function AppBadge({ text, status = 'neutral', size = '24', icon: Icon, ...props }: Props) {
   const styles = {
     status: {
       neutral: {
@@ -23,12 +23,12 @@ function AppBadge({ text, status = 'neutral',size = '24',icon: Icon, ...props}: 
       },
       success: {
         borderColor: 'primary.default',
-        bg: 'label.success',
+        bg: 'label.primary',
         color: 'primary.default',
       },
       error: {
         borderColor: 'system.error',
-        bg: 'label.error',
+        bg: 'label.errorBackground',
         color: 'system.error',
       },
     },

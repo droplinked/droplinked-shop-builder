@@ -22,7 +22,7 @@ function CustomRadioCard(props: Props) {
             borderRadius={8}
             border="1.5px solid"
             borderColor={isChecked ? "primary.default" : "neutral.gray.800"}
-            bgColor={isChecked ? "label.success" : "unset"}
+            bgColor={isChecked ? "label.primary" : "unset"}
             cursor='pointer'
             {...containerProps}
             {...htmlProps}

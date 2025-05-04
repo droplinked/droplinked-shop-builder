@@ -29,14 +29,14 @@ type StyleStyles = {
     [key in LabelVariant]: StatusStyles
 }
 
-function AppLabel({ 
-    text, 
-    variant = "outlined", 
-    status = "neutral", 
-    size = "28", 
-    leftIcon: LeftIcon, 
-    rightIcon: RightIcon, 
-    ...props 
+function AppLabel({
+    text,
+    variant = "outlined",
+    status = "neutral",
+    size = "28",
+    leftIcon: LeftIcon,
+    rightIcon: RightIcon,
+    ...props
 }: Iprops) {
     const styles = useMemo(() => ({
         layout: {
@@ -68,13 +68,13 @@ function AppLabel({
                 success: {
                     border: "1px solid",
                     borderColor: "primary.default",
-                    bg: "label.success",
+                    bg: "label.primary",
                     color: "text.primary"
                 },
                 error: {
                     border: "1px solid",
                     borderColor: "system.error",
-                    bg: "label.error",
+                    bg: "label.errorBackground",
                     color: "text.error"
                 }
             },
@@ -88,11 +88,11 @@ function AppLabel({
                     color: "text.link"
                 },
                 success: {
-                    bg: "label.success",
+                    bg: "label.primary",
                     color: "text.primary"
                 },
                 error: {
-                    bg: "label.error",
+                    bg: "label.errorBackground",
                     color: "text.error"
                 }
             },

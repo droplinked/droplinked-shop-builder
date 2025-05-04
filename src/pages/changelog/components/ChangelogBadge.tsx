@@ -21,7 +21,7 @@ const badgeStyles: Record<string, { icon: ReactNode | null, badgeProps: BadgePro
     },
     Deprecation: {
         icon: <TrashSm color='#ff2244' />,
-        badgeProps: { borderColor: "label.error", bgColor: "label.error", color: "text.error" }
+        badgeProps: { borderColor: "label.errorBackground", bgColor: "label.errorBackground", color: "text.error" }
     },
     Improvement: {
         icon: <PlusterSm color='#179ef8' />,

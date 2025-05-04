@@ -52,7 +52,7 @@ export const theme = extendTheme({
     text: {
       white: '#ffffff',
       black: '#000000',
-      subtext:{
+      subtext: {
         placeholder: {
           light: '#b1b1b1',
           dark: '#7b7b7b',
@@ -94,12 +94,12 @@ export const theme = extendTheme({
       link: '#003E68',
     },
     label: {
-      primary: '#2bcfa11a',
-      secondary: '#c5a3ff26',
       normal: 'rgba(0, 0, 0, 0.05)',
-      success: 'rgba(43, 207, 161, 0.1)',
+      primary: 'rgba(43, 207, 161, 0.1)',
+      secondary: 'rgba(197, 163, 255, 0.15)',
       warning: 'rgba(255, 217, 81, 0.1)',
-      error: 'rgba(255, 34, 68, 0.05)',
+      errorBackground: 'rgba(255, 34, 68, 0.05)',
+      errorStroke: 'rgba(255, 34, 68, 0.15)',
       link: 'rgba(23, 158, 248, 0.1)',
     }
   },

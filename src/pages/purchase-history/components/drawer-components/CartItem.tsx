@@ -2,10 +2,10 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { AffiliateSm } from 'assets/icons/System/Affiliate/AffiliateSm'
 import AppImage from 'components/common/image/AppImage'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { IOrderDetailsItems } from 'lib/apis/order/interfaces'
 import React from 'react'
 import TitledText from './TitledText'
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 
 /**
     * CartItem component displays information about a single item in the cart
@@ -30,7 +30,7 @@ export default function CartItem({ item }: { item: IOrderDetailsItems }) {
                 <Flex justifyContent="space-between" alignItems="start">
                     <AppImage src={image} width="48px" height="48px" borderRadius="8px" />
                     {isAffiliate &&
-                        <Box background="label.success" p={2} borderRadius="full">
+                        <Box background="label.primary" p={2} borderRadius="full">
                             <AffiliateSm color="#2BCFA1" />
                         </Box>
                     }
