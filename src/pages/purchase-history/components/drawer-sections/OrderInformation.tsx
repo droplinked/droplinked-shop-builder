@@ -5,6 +5,7 @@ import CustomerInfoSection from './CustomerInfoSection';
 import ShippingSection from './ShippingSection';
 import CommissionSection from './CommissionSection';
 import PaymentDetailsSection from './PaymentDetailsSection';
+import AffiliateSection from './AffiliateSection';
 
 interface Props {
     orderData: IOrderDetails;
@@ -20,7 +21,7 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
         )
     }
 
-    const { customer, shippings, commision, details, trackingInfo, giftCard, orderInformation } = orderData;
+    const { customer, shippings, commision, details, trackingInfo, giftCard, affiliates, orderInformation } = orderData;
     const isPhysical = !!customer.address
 
     return (
@@ -32,6 +33,8 @@ export default function OrderInformation({ orderData, isFetching }: Props) {
             />
 
             {isPhysical && <ShippingSection shippings={shippings} />}
+
+            {!!affiliates && <AffiliateSection affiliate={affiliates} />}
 
             <CommissionSection commission={commision} />
 
