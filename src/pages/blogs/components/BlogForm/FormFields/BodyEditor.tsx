@@ -5,13 +5,10 @@ import { useCreateBlockNote } from "@blocknote/react"
 import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React from 'react'
-import { parseBlocknoteTexteditorContent } from "utils/helpers/blocknoteUtils"
 
 function BodyEditor() {
     const { values, errors, setFieldValue } = useBlogForm()
-    const editor = useCreateBlockNote({
-        initialContent: parseBlocknoteTexteditorContent(values.content)
-    })
+    const editor = useCreateBlockNote({ initialContent: JSON.parse(values.content) })
 
     const formFieldWrapperStyles = {
         '& .bn-editor': {
