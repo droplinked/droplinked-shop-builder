@@ -22,7 +22,7 @@ export default function OrderHeaderContent({ isFetching, updatedAt, orderStatus,
         <Flex flexDirection="column" gap={6}>
             <Flex justifyContent="space-between" alignItems="center">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
-                    <Text fontSize={14} color="#fff">{formatDateToLongStyle(updatedAt)} - {formattedTime(updatedAt)}</Text>
+                    <Text fontSize={14} color="#fff">{formatDateToLongStyle(new Date(updatedAt))} - {formattedTime(updatedAt)}</Text>
                 </AppSkeleton>
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
                     <AppBadge
