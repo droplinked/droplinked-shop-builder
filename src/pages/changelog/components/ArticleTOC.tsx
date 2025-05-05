@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
 import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { extractHeadings, parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 import SectionHeader from './SectionHeader'
 
@@ -14,8 +14,6 @@ interface Props {
  */
 function ArticleTOC({ changelogItem }: Props) {
     const [selectedHeading, setSelectedHeading] = useState("")
-    const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 })
-    const headingRefs = useRef<(HTMLParagraphElement | null)[]>([])
 
     const initialContent = parseBlocknoteTexteditorContent(changelogItem?.description)
     const headings = extractHeadings(initialContent)
@@ -28,19 +26,6 @@ function ArticleTOC({ changelogItem }: Props) {
             setSelectedHeading(headingId)
         }
     }
-
-    // Update indicator style based on selected heading
-    useEffect(() => {
-        const selectedIndex = headings.findIndex(h => h.id === selectedHeading)
-        const selectedElement = headingRefs.current[selectedIndex]
-
-        if (selectedElement) {
-            setIndicatorStyle({
-                top: selectedElement.offsetTop,
-                height: selectedElement.offsetHeight
-            })
-        }
-    }, [selectedHeading, headings])
 
     // Update selected heading based on scroll position
     useEffect(() => {
@@ -86,29 +71,28 @@ function ArticleTOC({ changelogItem }: Props) {
                 borderLeft="2px solid"
                 borderColor="neutral.gray.800"
                 listStyleType="none"
+                sx={{
+                    '& li.active': {
+                        color: "text.white",
+                        borderLeftColor: "neutral.white"
+                    },
+                    '& li': {
+                        borderLeft: "2px solid",
+                        borderLeftColor: "transparent",
+                        marginLeft: "-2px"
+                    }
+                }}
             >
-                <Box
-                    position="absolute"
-                    top={`${indicatorStyle.top}px`}
-                    left="-2px"
-                    width="2px"
-                    height={`${indicatorStyle.height}px`}
-                    bg="neutral.white"
-                    transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                />
-
                 {headings.map((heading, index) => (
                     <Box
                         key={index}
-                        ref={el => {
-                            headingRefs.current[index] = el
-                        }}
                         as="li"
                         padding="8px 16px"
-                        color={selectedHeading === heading.id ? "text.white" : "text.subtext.placeholder.dark"}
-                        transition="color 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+                        color="text.subtext.placeholder.dark"
+                        transition="all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                         cursor="pointer"
                         onClick={() => scrollToHeading(heading.id)}
+                        className={selectedHeading === heading.id ? "active" : ""}
                     >
                         {heading.text}
                     </Box>
