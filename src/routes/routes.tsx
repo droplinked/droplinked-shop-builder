@@ -28,7 +28,6 @@ import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Lazy-loaded Components
-const ResetPassPage = lazy(() => import("pages/auth-pages/reset-pass-page/ResetPassPage"));
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Blogs = lazy(() => import("pages/blogs/Blogs"));
 const Collections = lazy(() => import("pages/collections/Collections"));
@@ -107,7 +106,6 @@ const router = createBrowserRouter([
                     { path: ":slug", element: <PublicBlog /> },
                 ],
             },
-            { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
             { path: "onboarding", element: <Onboarding /> },
