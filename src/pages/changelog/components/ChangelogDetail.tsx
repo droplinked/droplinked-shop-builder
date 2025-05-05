@@ -1,6 +1,6 @@
 import "@blocknote/core/fonts/inter.css"
 import "@blocknote/react/style.css"
-import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import React from 'react'
@@ -18,6 +18,7 @@ function ChangelogDetail() {
 
     return (
         <Grid
+            position='relative'
             templateColumns={{
                 base: '1fr',
                 lg: '1fr 356px',
@@ -27,7 +28,7 @@ function ChangelogDetail() {
             }}
             gap={6}
         >
-            <Box>
+            <GridItem>
                 <Heading
                     as='h2'
                     marginBottom='9px'
@@ -49,16 +50,19 @@ function ChangelogDetail() {
                 </Box>
 
                 <ChangelogEditor changelogItem={changelog} />
-            </Box>
+            </GridItem>
 
-            <Flex
+            <GridItem
+                position='sticky'
+                top="100px"
+                height='fit-content'
                 display={{ base: 'none', lg: 'flex' }}
-                direction="column"
+                flexDirection="column"
                 gap={12}
             >
                 <ArticleTOC changelogItem={changelog} />
                 <ChangelogTags changelogItem={changelog} withHeading={true} />
-            </Flex>
+            </GridItem>
         </Grid>
     )
 }
