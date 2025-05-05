@@ -89,23 +89,22 @@ function ArticleTOC({ changelogItem }: Props) {
             >
                 <Box
                     position="absolute"
+                    top={`${indicatorStyle.top}px`}
                     left="-2px"
                     width="2px"
+                    height={`${indicatorStyle.height}px`}
                     bg="neutral.white"
                     transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-                    style={{
-                        top: `${indicatorStyle.top}px`,
-                        height: `${indicatorStyle.height}px`
-                    }}
                 />
 
                 {headings.map((heading, index) => (
                     <Box
                         key={index}
-                        ref={el => headingRefs.current[index] = el}
+                        ref={el => {
+                            headingRefs.current[index] = el
+                        }}
                         as="li"
-                        margin="8px 16px"
-                        textAlign="left"
+                        padding="8px 16px"
                         color={selectedHeading === heading.id ? "text.white" : "text.subtext.placeholder.dark"}
                         transition="color 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
                         cursor="pointer"
