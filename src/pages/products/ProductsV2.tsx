@@ -62,7 +62,7 @@ function ProductsV2() {
                 onClose={importProductModal.onClose}
                 importWithUrl={importWithUrl}
             />
-            <IdentifiedItemsModal isOpen={true} onClose={identifiedItemsModal.onClose} importWithUrl={importWithUrl} />
+            <IdentifiedItemsModal isOpen={identifiedItemsModal.isOpen} onClose={identifiedItemsModal.onClose} importWithUrl={importWithUrl} />
             {productReorderModal.isOpen &&
                 <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             }

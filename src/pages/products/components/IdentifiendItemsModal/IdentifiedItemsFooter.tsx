@@ -9,7 +9,7 @@ interface Props {
     isLoading?: boolean
 }
 
-export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard, onImport, isLoading }: Props) {
+export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard, onImport, isLoading = false }: Props) {
     const buttonText = selectedProductsCount > 0
         ? `Import ${selectedProductsCount} Selected Items`
         : 'Select Items to Import'
@@ -21,10 +21,7 @@ export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button
-                variant="secondary"
-                onClick={onDiscard}
-            >
+            <Button variant="secondary" onClick={onDiscard}>
                 Discard
             </Button>
             <Button

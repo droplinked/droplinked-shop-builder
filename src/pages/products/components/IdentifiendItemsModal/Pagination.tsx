@@ -2,6 +2,7 @@ import { Button, Flex, HStack } from '@chakra-ui/react'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import React from 'react'
+import { generatePageNumbers } from '../../utils/paginationUtils'
 
 interface PaginationProps {
     currentPage: number
@@ -10,51 +11,13 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-    // Create page numbers array
-    const getPageNumbers = () => {
-        const pageNumbers: (number | string)[] = []
-
-        if (totalPages <= 7) {
-            // If less than 7 pages, show all
-            for (let i = 1; i <= totalPages; i++) {
-                pageNumbers.push(i)
-            }
-        } else {
-            // Always show first and last pages
-            if (currentPage <= 3) {
-                // Current page is at the beginning
-                for (let i = 1; i <= 5; i++) {
-                    pageNumbers.push(i)
-                }
-                pageNumbers.push('...')
-                pageNumbers.push(totalPages)
-            } else if (currentPage >= totalPages - 2) {
-                // Current page is at the end
-                pageNumbers.push(1)
-                pageNumbers.push('...')
-                for (let i = totalPages - 4; i <= totalPages; i++) {
-                    pageNumbers.push(i)
-                }
-            } else {
-                // Current page is in the middle
-                pageNumbers.push(1)
-                pageNumbers.push('...')
-                for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-                    pageNumbers.push(i)
-                }
-                pageNumbers.push('...')
-                pageNumbers.push(totalPages)
-            }
-        }
-
-        return pageNumbers
-    }
-
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             onPageChange(page)
         }
     }
+
+    const pageNumbers = generatePageNumbers(currentPage, totalPages)
 
     return (
         <Flex justifyContent="center" alignItems="center" width="100%" mt={4} mb={2}>
@@ -73,7 +36,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     <ChevronleftMd color={currentPage === 1 ? "#646464" : "#fff"} />
                 </Button>
 
-                {getPageNumbers().map((pageNumber, index) => (
+                {pageNumbers.map((pageNumber, index) => (
                     <Button
                         key={index}
                         onClick={() => typeof pageNumber === 'number' ? handlePageChange(pageNumber) : null}

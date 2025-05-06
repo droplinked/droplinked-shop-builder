@@ -1,57 +1,46 @@
 import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
-import React, { useState } from 'react'
-import IdentifiedItemsBody from './IdentifiedItemsBody';
-import IdentifiedItemsFooter from './IdentifiedItemsFooter';
-import useProductPageStore from 'pages/products/stores/ProductPageStore';
-import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl';
+import React from 'react'
+import IdentifiedItemsBody from './IdentifiedItemsBody'
+import IdentifiedItemsFooter from './IdentifiedItemsFooter'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import { useIdentifiedItems } from '../../hooks/useIdentifiedItems'
 
 interface Props {
-    isOpen: boolean;
-    onClose: () => void;
+    isOpen: boolean
+    onClose: () => void
     importWithUrl: UseImportWithUrl
 }
 
 export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }: Props) {
-    const { crawledProducts } = useProductPageStore();
-    const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+    const { crawledProducts } = useProductPageStore()
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
-    const crawledProductsCount = crawledProducts?.length || 0;
-    const selectedProductsCount = selectedProducts?.length || 0;
-    const maxSelectableItems = 200;
+    const crawledProductsCount = crawledProducts?.length || 0
+    const maxSelectableItems = 200
 
-    // Handle individual item selection
-    const handleClick = (url: string) => {
-        const newSelectedProducts = selectedProducts.includes(url)
-            ? selectedProducts.filter((item) => item !== url)
-            : [...selectedProducts, url]
-
-        setSelectedProducts(newSelectedProducts)
-    }
-
-    // Handle bulk selection (for "Select All" functionality)
-    const handleBulkSelection = (shouldSelectAll: boolean) => {
-        if (shouldSelectAll) {
-            // Select up to the maximum number of items
-            const allUrls = crawledProducts.map(product => product.url);
-            const urlsToSelect = allUrls.slice(0, maxSelectableItems);
-            setSelectedProducts(urlsToSelect);
-        } else {
-            // Deselect all items
-            setSelectedProducts([]);
-        }
-    }
+    const {
+        selectedProducts,
+        headerCheckState,
+        handleItemSelection,
+        isSelectionDisabled,
+        handleHeaderCheckboxChange,
+        resetSelection
+    } = useIdentifiedItems({
+        crawledProducts,
+        maxSelectableItems
+    })
 
     const handleImport = () => {
-        if (selectedProductsCount > 0) {
-            crawlSelectedProducts(selectedProducts);
+        if (selectedProducts.length > 0) {
+            crawlSelectedProducts(selectedProducts)
         }
     }
 
     const handleDiscard = () => {
-        setSelectedProducts([]);
-        onClose();
+        resetSelection()
+        onClose()
     }
 
     return (
@@ -72,14 +61,16 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
                 }}
             />
             <IdentifiedItemsBody
-                handleClick={handleClick}
-                handleBulkSelection={handleBulkSelection}
+                handleItemSelection={handleItemSelection}
+                headerCheckState={headerCheckState}
+                handleHeaderCheckboxChange={handleHeaderCheckboxChange}
                 selectedProducts={selectedProducts}
                 crawledProduct={crawledProducts}
                 maxSelectableItems={maxSelectableItems}
+                isSelectionDisabled={isSelectionDisabled}
             />
             <IdentifiedItemsFooter
-                selectedProductsCount={selectedProductsCount}
+                selectedProductsCount={selectedProducts.length}
                 onDiscard={handleDiscard}
                 onImport={handleImport}
                 isLoading={crawlingSelectedLoading}
