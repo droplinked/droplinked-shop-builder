@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import Lottie from 'lottie-react'
 import React from 'react'
 import loadingAnimation from '../../utils/ImportProductLoadingAnimation.json'
