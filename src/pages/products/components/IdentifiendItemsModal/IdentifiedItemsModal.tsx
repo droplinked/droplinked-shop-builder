@@ -19,13 +19,28 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
     const crawledProductsCount = crawledProducts?.length || 0;
     const selectedProductsCount = selectedProducts?.length || 0;
+    const maxSelectableItems = 50;
 
+    // Handle individual item selection
     const handleClick = (url: string) => {
         const newSelectedProducts = selectedProducts.includes(url)
             ? selectedProducts.filter((item) => item !== url)
             : [...selectedProducts, url]
 
         setSelectedProducts(newSelectedProducts)
+    }
+
+    // Handle bulk selection (for "Select All" functionality)
+    const handleBulkSelection = (shouldSelectAll: boolean) => {
+        if (shouldSelectAll) {
+            // Select up to the maximum number of items
+            const allUrls = crawledProducts.map(product => product.url);
+            const urlsToSelect = allUrls.slice(0, maxSelectableItems);
+            setSelectedProducts(urlsToSelect);
+        } else {
+            // Deselect all items
+            setSelectedProducts([]);
+        }
     }
 
     const handleImport = () => {
@@ -58,8 +73,10 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
             />
             <IdentifiedItemsBody
                 handleClick={handleClick}
+                handleBulkSelection={handleBulkSelection}
                 selectedProducts={selectedProducts}
                 crawledProduct={crawledProducts}
+                maxSelectableItems={maxSelectableItems}
             />
             <IdentifiedItemsFooter
                 selectedProductsCount={selectedProductsCount}

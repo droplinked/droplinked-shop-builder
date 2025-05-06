@@ -65,6 +65,9 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     variant="secondary"
                     size="sm"
                     p={2}
+                    w="40px"
+                    h="40px"
+                    border="1px solid #292929"
                     aria-label="Previous page"
                 >
                     <ChevronleftMd color={currentPage === 1 ? "#646464" : "#fff"} />
@@ -76,8 +79,22 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                         onClick={() => typeof pageNumber === 'number' ? handlePageChange(pageNumber) : null}
                         variant={currentPage === pageNumber ? "solid" : "secondary"}
                         size="sm"
-                        minW="36px"
+                        w="40px"
+                        h="40px"
+                        minW="40px"
+                        fontSize={16}
+                        fontWeight={400}
+                        border="1px solid #292929"
                         isDisabled={pageNumber === '...'}
+                        color="#fff"
+                        _hover={{
+                            border: '1px solid rgba(43, 207, 161, 0.10)',
+                        }}
+                        sx={currentPage === pageNumber ? {
+                            border: '1px solid rgba(43, 207, 161, 0.10)',
+                            background: 'rgba(43, 207, 161, 0.10) !important',
+                            color: '#2BCFA1'
+                        } : {}}
                     >
                         {pageNumber}
                     </Button>
@@ -89,6 +106,9 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     variant="secondary"
                     size="sm"
                     p={2}
+                    w="40px"
+                    h="40px"
+                    border="1px solid #292929"
                     aria-label="Next page"
                 >
                     <ChevronrightMd color={currentPage === totalPages ? "#646464" : "#fff"} />

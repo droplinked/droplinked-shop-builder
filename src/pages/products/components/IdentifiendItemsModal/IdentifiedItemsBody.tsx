@@ -1,4 +1,4 @@
-import { Box, Flex, ModalBody } from '@chakra-ui/react'
+import { Flex, ModalBody } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppImage from 'components/common/image/AppImage'
 import Table from 'components/redesign/table/Table'
@@ -6,18 +6,26 @@ import { CrawledProductsType } from 'pages/products/utils/types'
 import React, { useState, useEffect } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import Pagination from './Pagination'
+import MessageBox from 'components/redesign/message-box/MessageBox'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 
 interface Props {
     handleClick: (url: string) => void
+    handleBulkSelection: (shouldSelectAll: boolean) => void
     selectedProducts: string[]
     crawledProduct: CrawledProductsType[]
+    maxSelectableItems: number
 }
 
-export default function IdentifiedItemsBody({ handleClick, selectedProducts, crawledProduct }: Props) {
+export default function IdentifiedItemsBody({
+    handleClick,
+    handleBulkSelection,
+    selectedProducts,
+    crawledProduct,
+    maxSelectableItems
+}: Props) {
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 4
-    const maxSelectableItems = 200
     const totalPages = Math.ceil(crawledProduct.length / itemsPerPage)
 
     // Calculate current page items
@@ -32,61 +40,33 @@ export default function IdentifiedItemsBody({ handleClick, selectedProducts, cra
     const isSelectionDisabled = (url: string) =>
         selectedProducts.length >= maxSelectableItems && !selectedProducts.includes(url)
 
-    // Update header checkbox state based on selection
+    // Update header checkbox state based on selection status
     useEffect(() => {
-        if (currentItems.length === 0) {
+        if (crawledProduct.length === 0) {
             setHeaderCheckState('unchecked')
             return
         }
 
-        const currentPageItemUrls = currentItems.map(item => item.url)
-        const selectedOnCurrentPage = currentPageItemUrls.filter(url => selectedProducts.includes(url))
+        // The maximum number of items we could select is either all items or maxSelectableItems
+        const maxPossibleSelections = Math.min(crawledProduct.length, maxSelectableItems)
 
-        if (selectedOnCurrentPage.length === 0) {
+        if (selectedProducts.length === 0) {
             setHeaderCheckState('unchecked')
-        } else if (selectedOnCurrentPage.length === currentPageItemUrls.length) {
+        } else if (selectedProducts.length === maxPossibleSelections) {
             setHeaderCheckState('checked')
         } else {
             setHeaderCheckState('indeterminate')
         }
-    }, [selectedProducts, currentItems, currentPage])
+    }, [selectedProducts, crawledProduct, maxSelectableItems])
 
     // Handle header checkbox click
     const handleHeaderCheckboxChange = () => {
-        const currentPageItemUrls = currentItems.map(item => item.url)
-
+        // Toggle between select all and deselect all
         if (headerCheckState === 'checked') {
-            // Unselect all current page items
-            const newSelectedProducts = selectedProducts.filter(url => !currentPageItemUrls.includes(url))
-            handleBulkSelection(newSelectedProducts)
+            handleBulkSelection(false) // Deselect all
         } else {
-            // Select all current page items (up to max limit)
-            const remainingSelections = maxSelectableItems - selectedProducts.length
-
-            if (remainingSelections <= 0) return
-
-            // Filter out already selected items from current page
-            const unselectedCurrentItems = currentPageItemUrls.filter(url => !selectedProducts.includes(url))
-
-            // Take only as many as we can still select
-            const itemsToAdd = unselectedCurrentItems.slice(0, remainingSelections)
-
-            const newSelectedProducts = [...selectedProducts, ...itemsToAdd]
-            handleBulkSelection(newSelectedProducts)
+            handleBulkSelection(true) // Select all (up to max)
         }
-    }
-
-    // Handle bulk selection
-    const handleBulkSelection = (newSelectedProducts: string[]) => {
-        // We need to manually trigger handleClick for each item that changed state
-        const itemsToAdd: string[] = newSelectedProducts.filter(url => !selectedProducts.includes(url))
-        const itemsToRemove: string[] = selectedProducts.filter(url => !newSelectedProducts.includes(url))
-
-        // For each item that needs to change state, call handleClick
-        const changedItems: string[] = [...itemsToAdd, ...itemsToRemove]
-        changedItems.forEach((url: string) => {
-            handleClick(url)
-        })
     }
 
     const columns: ColumnDef<CrawledProductsType>[] = [
@@ -97,7 +77,6 @@ export default function IdentifiedItemsBody({ handleClick, selectedProducts, cra
                     isChecked={headerCheckState === 'checked'}
                     isIndeterminate={headerCheckState === 'indeterminate'}
                     onChange={handleHeaderCheckboxChange}
-                    isDisabled={selectedProducts.length >= maxSelectableItems && headerCheckState !== 'checked'}
                 />
             ),
             cell: info => {
@@ -160,16 +139,13 @@ export default function IdentifiedItemsBody({ handleClick, selectedProducts, cra
             borderColor="neutral.gray.800"
         >
             <Flex direction="column" gap={6}>
-                <Box>
-                    {selectedProducts.length >= maxSelectableItems && (
-                        <AppTypography fontSize={14} color="red.400" mb={2}>
-                            Maximum selection limit (200 items) reached
-                        </AppTypography>
-                    )}
-                    <AppTypography fontSize={14} color="#B1B1B1" mb={2}>
-                        {selectedProducts.length} of {maxSelectableItems} items selected
-                    </AppTypography>
-                </Box>
+                {selectedProducts.length >= maxSelectableItems && (
+                    <MessageBox
+                        title='Maximum selection limit reached'
+                        description={`Maximum selection limit (${maxSelectableItems} items) reached and you cannot select more items.`}
+                        theme='warning'
+                    />
+                )}
 
                 <Table
                     columns={columns}
