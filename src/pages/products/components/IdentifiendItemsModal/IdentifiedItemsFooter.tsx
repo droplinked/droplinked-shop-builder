@@ -9,12 +9,7 @@ interface Props {
     isLoading?: boolean
 }
 
-export default function IdentifiedItemsFooter({
-    selectedProductsCount,
-    onDiscard,
-    onImport,
-    isLoading = false
-}: Props) {
+export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard, onImport, isLoading }: Props) {
     const buttonText = selectedProductsCount > 0
         ? `Import ${selectedProductsCount} Selected Items`
         : 'Select Items to Import'
