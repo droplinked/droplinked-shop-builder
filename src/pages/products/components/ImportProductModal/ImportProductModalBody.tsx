@@ -1,16 +1,24 @@
-import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
+import { AbsoluteCenter, Box, Center, Divider, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getFileSizeInMB } from 'utils/helpers'
 import React from 'react'
 import FileUpload from './FileUpload'
+import Input from 'components/redesign/input/Input'
+import { LinkMd } from 'assets/icons/Action/Link/LinkMd'
+import UrlImport from './UrlImport'
+import UrlImportLoading from './UrlImportLoading'
 
 interface Props {
     file: File | null
     onFileChange: (file: File | null) => void
+    setUrl: () => void
+    url: string
 }
 
-export default function ImportProductModalBody({ file, onFileChange }: Props) {
+export default function ImportProductModalBody({ file, onFileChange, setUrl, url }: Props) {
+    const isloading = false // Replace with actual loading state
+
     return (
         <ModalBody
             display="flex"
@@ -21,8 +29,15 @@ export default function ImportProductModalBody({ file, onFileChange }: Props) {
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
         >
-            <FileUpload onFileChange={onFileChange} />
-            {file && <FilePreview file={file} onFileChange={onFileChange} />}
+            {isloading ?
+                <>
+                    <FileUpload onFileChange={onFileChange} />
+                    {file && <FilePreview file={file} onFileChange={onFileChange} />}
+                    <UrlImport setUrl={setUrl} url={url} />
+                </>
+                :
+                <UrlImportLoading />
+            }
         </ModalBody>
     )
 }
@@ -34,7 +49,7 @@ function FilePreview({ file, onFileChange }: Props) {
             alignItems="center"
             gap={2}
             border="1px solid"
-             borderColor="neutral.gray.800"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={3}
             paddingRight={5}

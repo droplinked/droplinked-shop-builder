@@ -14,6 +14,7 @@ interface Props {
 
 function ImportProductModal({ isOpen, onClose }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
+    const [url, setUrl] = useState("")
 
     return (
         <AppModal
@@ -23,7 +24,10 @@ function ImportProductModal({ isOpen, onClose }: Props) {
             <ModalHeaderData
                 icon={<AppIcons.Download />}
                 title="Import Products"
-                description="Easily import products using a CSV file. Download our sample template to ensure your file is formatted correctly."
+                description="Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL."
+                descriptionProps={{
+                    color: "#B1B1B1 !important",
+                }}
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
@@ -38,7 +42,7 @@ function ImportProductModal({ isOpen, onClose }: Props) {
                     Download Template
                 </ExternalLink>
             </ModalHeaderData>
-            <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} />
+            <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} setUrl={setUrl} url={url} />
             <ImportProductModalFooter file={uploadedFile} closeModal={onClose} />
         </AppModal>
     )

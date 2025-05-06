@@ -1,5 +1,7 @@
-import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text } from '@chakra-ui/react'
+import { Input as ChakraInput, Flex, FlexProps, FormLabel, FormLabelProps, InputGroup, InputGroupProps, InputProps, Text, Box } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AnimatedBox from 'pages/products/components/ProductDrawer/components/common/AnimatedBox'
 import React, { KeyboardEvent, ReactNode } from 'react'
 import AnimatedLoadingText from '../../../pages/products/components/ProductDrawer/components/common/AnimatedLoadingText/AnimatedLoadingText'
@@ -22,6 +24,7 @@ interface Props {
     message?: string
     maxCharacters?: number
     showAnimatedLoading?: boolean
+    tooltipText?: string
 }
 
 export default function Input(props: Props) {
@@ -38,22 +41,29 @@ export default function Input(props: Props) {
     )
 }
 
-export function InputHeader({ label, description, inputProps, labelProps }: Props) {
+export function InputHeader({ label, description, inputProps, labelProps, tooltipText }: Props) {
     return (
         <>
             {label && (
-                <FormLabel
-                    mb={description ? 1 : 4}
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                    fontSize={16}
-                    fontWeight={500}
-                    color="#FFF"
-                    {...labelProps}
-                >
-                    {label} {inputProps?.isRequired && <AppIcons.Required />}
-                </FormLabel>
+                <Flex gap={2} alignItems={"center"} mb={description ? 1 : 4}>
+                    <FormLabel
+                        display="flex"
+                        alignItems="center"
+                        gap={1}
+                        fontSize={16}
+                        fontWeight={500}
+                        color="#FFF"
+                        {...labelProps}
+                    >
+                        {label} {inputProps?.isRequired && <AppIcons.Required />}
+                    </FormLabel>
+                    {tooltipText && <AppTooltip label={tooltipText}>
+                        <Box>
+                            <TooltipMd color='#292929' />
+                        </Box>
+                    </AppTooltip>
+                    }
+                </Flex>
             )}
             {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
         </>
