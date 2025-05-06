@@ -9,6 +9,7 @@ import ProductDrawer from './components/ProductDrawer/ProductDrawer'
 import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable/ProductTable'
 import useProductPageStore from './stores/ProductPageStore'
+import IdentifiedItemsModal from './components/IdentifiendItemsModal/IdentifiedItemsModal'
 
 function ProductsV2() {
     const { selectedProductType, editingProductId } = useProductPageStore(s => ({
@@ -16,7 +17,7 @@ function ProductsV2() {
         editingProductId: s.editingProductId
     }))
 
-    const { productFormDrawer, importProductModal, productReorderModal } = useModalHandlers()
+    const { productFormDrawer, importProductModal, productReorderModal, identifiedItemsModal } = useModalHandlers()
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { data, isFetching } = useProducts(debouncedSearchTerm)
@@ -55,6 +56,7 @@ function ProductsV2() {
             {productReorderModal.isOpen &&
                 <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             }
+            <IdentifiedItemsModal isOpen={identifiedItemsModal.isOpen} onClose={identifiedItemsModal.onClose} />
         </>
     )
 }
