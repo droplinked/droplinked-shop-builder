@@ -1,6 +1,6 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
 import useProductPageStore from "../stores/ProductPageStore"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 import { CrawlSelectedProducts, getProductsWithUrl } from "lib/apis/crawler/services"
 import { useState } from "react"
 import useAppToast from "hooks/toast/useToast"
@@ -22,6 +22,7 @@ export const useImportWithUrl = (props: Params) => {
     const { updateProductPageState, targetShopUrl } = useProductPageStore()
     const [fakeLoading, setFakeLoading] = useState(false)
     const { showToast } = useAppToast()
+    const queryClient = useQueryClient()
 
     const { importProductModalController, identifiedItemsModalController } = props
 
@@ -51,10 +52,11 @@ export const useImportWithUrl = (props: Params) => {
             updateProductPageState("crawledProducts", [])
             updateProductPageState("targetShopUrl", "")
             showToast({ message: "Products crawled successfully", type: "success" })
+            queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
         },
         onError: (error: any) => {
             identifiedItemsModalController.onClose()
-            importProductModalController.onClose()
+            importProductModalController.onOpen()
             updateProductPageState("crawlerError", error.response.data.data.message || "An error occurred")
         }
     })
