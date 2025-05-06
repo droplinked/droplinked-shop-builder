@@ -1,5 +1,4 @@
-import { Flex, ModalBody } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
+import { Flex, ModalBody, Text } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import Table from 'components/redesign/table/Table'
 import { CrawledProductsType } from 'pages/products/utils/types'
@@ -8,6 +7,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import Pagination from './Pagination'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 
 interface Props {
     handleClick: (url: string) => void
@@ -94,26 +94,25 @@ export default function IdentifiedItemsBody({
             }
         },
         {
-            accessorKey: 'image',
-            header: 'Image',
-            cell: info => (
-                <AppImage
-                    src={info.getValue() as string}
-                    width={14}
-                    height={14}
-                    borderRadius={8}
-                    alt="Product"
-                />
-            )
-        },
-        {
             accessorKey: 'title',
-            header: 'Product',
+            header: 'Title',
             cell: info => {
-                const title = info.getValue() as string
+                const title = info.row.original.title
+                const image = info.row.original.image
                 const truncatedTitle = title.length <= 40 ? title : `${title.slice(0, 40)}...`
 
-                return <AppTypography fontSize={16} color="white">{truncatedTitle}</AppTypography>
+                return (
+                    <Flex alignItems="center" gap={4}>
+                        <AppImage
+                            src={image}
+                            width={14}
+                            height={14}
+                            borderRadius={8}
+                            alt="Product"
+                        />
+                        <Text fontSize={16} fontWeight={500} color="white">{truncatedTitle}</Text>
+                    </Flex>
+                )
             }
         },
         {
@@ -123,7 +122,17 @@ export default function IdentifiedItemsBody({
                 const url = info.getValue() as string
                 const truncatedUrl = url.length <= 30 ? url : `${url.slice(0, 30)}...`
 
-                return <AppTypography fontSize={14} color="#B1B1B1">{truncatedUrl}</AppTypography>
+                return (
+                    <InteractiveText
+                        to={url}
+                        fontSize={16}
+                        fontWeight={400}
+                        color="#fff"
+                        target="_blank"
+                    >
+                        {truncatedUrl}
+                    </InteractiveText>
+                )
             }
         }
     ]
@@ -142,7 +151,7 @@ export default function IdentifiedItemsBody({
                 {selectedProducts.length >= maxSelectableItems && (
                     <MessageBox
                         title='Maximum selection limit reached'
-                        description={`Maximum selection limit (${maxSelectableItems} items) reached and you cannot select more items.`}
+                        description={`You have selected ${maxSelectableItems} items out of ${crawledProduct.length} available items. You cannot select more items at this time.`}
                         theme='warning'
                     />
                 )}
@@ -153,9 +162,9 @@ export default function IdentifiedItemsBody({
                     isLoading={false}
                     emptyView={
                         <Flex justifyContent="center" py={8}>
-                            <AppTypography fontSize={16} fontWeight={500} color="white">
+                            <Text fontSize={16} fontWeight={500} color="white">
                                 No items available
-                            </AppTypography>
+                            </Text>
                         </Flex>
                     }
                 />

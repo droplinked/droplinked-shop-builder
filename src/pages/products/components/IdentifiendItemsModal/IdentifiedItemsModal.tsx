@@ -19,7 +19,7 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
     const crawledProductsCount = crawledProducts?.length || 0;
     const selectedProductsCount = selectedProducts?.length || 0;
-    const maxSelectableItems = 50;
+    const maxSelectableItems = 200;
 
     // Handle individual item selection
     const handleClick = (url: string) => {
