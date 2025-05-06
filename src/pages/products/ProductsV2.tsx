@@ -10,6 +10,7 @@ import ProductReorderModal from './components/ProductReorderModal/ProductReorder
 import ProductTable from './components/ProductTable/ProductTable'
 import useProductPageStore from './stores/ProductPageStore'
 import IdentifiedItemsModal from './components/IdentifiendItemsModal/IdentifiedItemsModal'
+import { useImportWithUrl } from './hooks/useImportWithUrl'
 
 function ProductsV2() {
     const { selectedProductType, editingProductId } = useProductPageStore(s => ({
@@ -18,6 +19,10 @@ function ProductsV2() {
     }))
 
     const { productFormDrawer, importProductModal, productReorderModal, identifiedItemsModal } = useModalHandlers()
+    const importWithUrl = useImportWithUrl({
+        importProductModalController: importProductModal,
+        identifiedItemsModalController: identifiedItemsModal
+    })
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const { data, isFetching } = useProducts(debouncedSearchTerm)
@@ -52,11 +57,15 @@ function ProductsV2() {
 
             {/* Modals */}
             <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
-            <ImportProductModal isOpen={importProductModal.isOpen} onClose={importProductModal.onClose} />
+            <ImportProductModal
+                isOpen={importProductModal.isOpen}
+                onClose={importProductModal.onClose}
+                importWithUrl={importWithUrl}
+            />
+            <IdentifiedItemsModal isOpen={identifiedItemsModal.isOpen} onClose={identifiedItemsModal.onClose} />
             {productReorderModal.isOpen &&
                 <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
             }
-            <IdentifiedItemsModal isOpen={identifiedItemsModal.isOpen} onClose={identifiedItemsModal.onClose} />
         </>
     )
 }

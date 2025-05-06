@@ -1,23 +1,24 @@
-import { AbsoluteCenter, Box, Center, Divider, Flex, ModalBody } from '@chakra-ui/react'
+import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileSizeInMB } from 'utils/helpers'
 import React from 'react'
+import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from './FileUpload'
-import Input from 'components/redesign/input/Input'
-import { LinkMd } from 'assets/icons/Action/Link/LinkMd'
-import UrlImport from './UrlImport'
+import UrlInput from './UrlInput'
 import UrlImportLoading from './UrlImportLoading'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import MessageBox from 'components/redesign/message-box/MessageBox'
 
 interface Props {
     file: File | null
     onFileChange: (file: File | null) => void
-    setUrl: () => void
-    url: string
+    importWithUrl?: UseImportWithUrl
 }
 
-export default function ImportProductModalBody({ file, onFileChange, setUrl, url }: Props) {
-    const isloading = false // Replace with actual loading state
+export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
+    const { crawlerError } = useProductPageStore()
+    const { fakeLoading } = importWithUrl
 
     return (
         <ModalBody
@@ -29,14 +30,20 @@ export default function ImportProductModalBody({ file, onFileChange, setUrl, url
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
         >
-            {isloading ?
+            {fakeLoading ?
+                <UrlImportLoading />
+                :
                 <>
                     <FileUpload onFileChange={onFileChange} />
                     {file && <FilePreview file={file} onFileChange={onFileChange} />}
-                    <UrlImport setUrl={setUrl} url={url} />
+                    <UrlInput isDisabled={!!file} />
+                    {crawlerError && <MessageBox
+                        title="An Error Occured"
+                        description={crawlerError}
+                        theme='error'
+                    />
+                    }
                 </>
-                :
-                <UrlImportLoading />
             }
         </ModalBody>
     )

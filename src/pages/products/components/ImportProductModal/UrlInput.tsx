@@ -1,27 +1,31 @@
 import { LinkMd } from 'assets/icons/Action/Link/LinkMd'
 import Input from 'components/redesign/input/Input'
 import DividerText from 'pages/onboarding/components/common/DividerText'
-import React, { useState } from 'react'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import React, { useEffect, useState } from 'react'
 
-interface Props {
-    url: string
-    setUrl: (url: string) => void
-}
-
-export default function UrlImport({ url, setUrl }: Props) {
+export default function UrlInput({ isDisabled }: { isDisabled: boolean }) {
     const [tempValue, setTempValue] = useState("")
+    const { updateProductPageState } = useProductPageStore()
 
     const handleChange = (value: string) => {
         setTempValue(value)
 
         // Validate URL format (basic validation)
-        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w .-]*)*\/?$/
+        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[^\s]*)*\/?$/
         if (urlPattern.test(value)) {
-            setUrl(value)
+            updateProductPageState("targetShopUrl", value)
         } else {
-            setUrl("")
+            updateProductPageState("targetShopUrl", "")
         }
     }
+
+    useEffect(() => {
+        if (isDisabled) {
+            setTempValue("")
+            updateProductPageState("targetShopUrl", "")
+        }
+    }, [isDisabled])
 
     return (
         <>
@@ -35,6 +39,7 @@ export default function UrlImport({ url, setUrl }: Props) {
                     onChange: (e) => handleChange(e.target.value),
                     value: tempValue,
                     type: 'url',
+                    isDisabled: isDisabled,
                 }}
                 leftElement={
                     <LinkMd color='#7B7B7B' />

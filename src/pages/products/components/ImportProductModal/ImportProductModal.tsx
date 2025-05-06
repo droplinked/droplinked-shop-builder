@@ -6,15 +6,16 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { useState } from 'react'
 import ImportProductModalBody from './ImportProductModalBody'
 import ImportProductModalFooter from './ImportProductModalFooter'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 
 interface Props {
     isOpen: boolean
     onClose: () => void
+    importWithUrl: UseImportWithUrl
 }
 
-function ImportProductModal({ isOpen, onClose }: Props) {
+function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
-    const [url, setUrl] = useState("")
 
     return (
         <AppModal
@@ -42,8 +43,8 @@ function ImportProductModal({ isOpen, onClose }: Props) {
                     Download Template
                 </ExternalLink>
             </ModalHeaderData>
-            <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} setUrl={setUrl} url={url} />
-            <ImportProductModalFooter file={uploadedFile} closeModal={onClose} />
+            <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} importWithUrl={importWithUrl} />
+            <ImportProductModalFooter file={uploadedFile} closeModal={onClose} importWithUrl={importWithUrl} />
         </AppModal>
     )
 }
