@@ -18,7 +18,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
     const { targetShopUrl } = useProductPageStore()
     const { showToast } = useAppToast()
     const { mutateAsync, isLoading } = useMutation(uploadProductCSV)
-    const { crawlProducts, isCrawling } = importWithUrl
+    const { crawlProducts, isCrawling, fakeLoading } = importWithUrl
 
     const handleFileUpload = async () => {
         if (!file) return
@@ -53,7 +53,7 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             <Button variant="secondary" disabled={isLoading} onClick={closeModal}>
                 Discard
             </Button>
-            <Button onClick={handleSubmit} isLoading={isCrawling || isLoading} isDisabled={!file && !targetShopUrl}>
+            <Button onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
                 {isLoading ? 'Uploading' : 'Validate'}
             </Button>
         </ModalFooter>
