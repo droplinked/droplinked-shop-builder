@@ -15,7 +15,7 @@ interface Props {
 
 export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }: Props) {
     const { crawledProducts } = useProductPageStore();
-    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
     const crawledProductsCount = crawledProducts?.length || 0;
     const selectedProductsCount = selectedProducts?.length || 0;
@@ -28,9 +28,20 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
         setSelectedProducts(newSelectedProducts)
     }
 
+    const handleImport = () => {
+        if (selectedProductsCount > 0) {
+            crawlSelectedProducts(selectedProducts);
+        }
+    }
+
+    const handleDiscard = () => {
+        setSelectedProducts([]);
+        onClose();
+    }
+
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "6xl", isCentered: true }}
+            modalRootProps={{ isOpen, onClose, size: "7xl", isCentered: true }}
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
@@ -50,7 +61,12 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
                 selectedProducts={selectedProducts}
                 crawledProduct={crawledProducts}
             />
-            <IdentifiedItemsFooter selectedProductsCount={selectedProductsCount} />
+            <IdentifiedItemsFooter
+                selectedProductsCount={selectedProductsCount}
+                onDiscard={handleDiscard}
+                onImport={handleImport}
+                isLoading={crawlingSelectedLoading}
+            />
         </AppModal>
     )
 }

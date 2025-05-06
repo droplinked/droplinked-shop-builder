@@ -4,10 +4,20 @@ import React from 'react'
 
 interface Props {
     selectedProductsCount: number
+    onDiscard: () => void
+    onImport: () => void
+    isLoading?: boolean
 }
 
-export default function IdentifiedItemsFooter({ selectedProductsCount }: Props) {
-    const buttonText = selectedProductsCount > 0 ? `Import ${selectedProductsCount} Selected Items` : 'Select Items to Import'
+export default function IdentifiedItemsFooter({
+    selectedProductsCount,
+    onDiscard,
+    onImport,
+    isLoading = false
+}: Props) {
+    const buttonText = selectedProductsCount > 0
+        ? `Import ${selectedProductsCount} Selected Items`
+        : 'Select Items to Import'
 
     return (
         <ModalFooter
@@ -16,10 +26,17 @@ export default function IdentifiedItemsFooter({ selectedProductsCount }: Props) 
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button variant="secondary">
+            <Button
+                variant="secondary"
+                onClick={onDiscard}
+            >
                 Discard
             </Button>
-            <Button isDisabled={selectedProductsCount === 0}>
+            <Button
+                isDisabled={selectedProductsCount === 0}
+                onClick={onImport}
+                isLoading={isLoading}
+            >
                 {buttonText}
             </Button>
         </ModalFooter>

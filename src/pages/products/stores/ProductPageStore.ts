@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { CrawledProductsType, ProductType } from '../utils/types'
+import { testData } from './testData'
 
 interface State {
     selectedProductType: ProductType
@@ -29,7 +30,7 @@ const initialState: State = {
     editingProductId: null,
     isAiGenerateLoading: false,
     isGenerateDisabled: false,
-    crawledProducts: [],
+    crawledProducts: testData,
     targetShopUrl: "",
     crawlerError: "",
 }
