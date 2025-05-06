@@ -1,16 +1,25 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileSizeInMB } from 'utils/helpers'
 import React from 'react'
+import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from './FileUpload'
+import UrlInput from './UrlInput'
+import UrlImportLoading from './UrlImportLoading'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
+import MessageBox from 'components/redesign/message-box/MessageBox'
 
 interface Props {
     file: File | null
     onFileChange: (file: File | null) => void
+    importWithUrl?: UseImportWithUrl
 }
 
-export default function ImportProductModalBody({ file, onFileChange }: Props) {
+export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
+    const { crawlerError } = useProductPageStore()
+    const { fakeLoading } = importWithUrl
+
     return (
         <ModalBody
             display="flex"
@@ -21,8 +30,21 @@ export default function ImportProductModalBody({ file, onFileChange }: Props) {
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
         >
-            <FileUpload onFileChange={onFileChange} />
-            {file && <FilePreview file={file} onFileChange={onFileChange} />}
+            {fakeLoading ?
+                <UrlImportLoading />
+                :
+                <>
+                    <FileUpload onFileChange={onFileChange} />
+                    {file && <FilePreview file={file} onFileChange={onFileChange} />}
+                    <UrlInput isDisabled={!!file} />
+                    {crawlerError && <MessageBox
+                        title="An Error Occured"
+                        description={crawlerError}
+                        theme='error'
+                    />
+                    }
+                </>
+            }
         </ModalBody>
     )
 }
@@ -34,7 +56,7 @@ function FilePreview({ file, onFileChange }: Props) {
             alignItems="center"
             gap={2}
             border="1px solid"
-             borderColor="neutral.gray.800"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={3}
             paddingRight={5}

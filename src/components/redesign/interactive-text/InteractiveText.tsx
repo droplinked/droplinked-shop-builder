@@ -19,6 +19,8 @@ interface ButtonProps extends Omit<TextProps, 'as'> {
 
 interface LinkProps extends Omit<TextProps, 'as'> {
     to: string
+    target: "_blank" | "_self"
+    rel?: string
     onClick?: never
 }
 

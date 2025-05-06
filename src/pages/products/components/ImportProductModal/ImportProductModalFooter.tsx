@@ -2,18 +2,23 @@ import { ModalFooter } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import useAppToast from 'hooks/toast/useToast'
 import { uploadProductCSV } from 'lib/apis/product/productServices'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
 
 interface Props {
     file: File | null
     closeModal: () => void
+    importWithUrl: UseImportWithUrl
 }
 
-function ImportProductModalFooter({ file, closeModal }: Props) {
+function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
     const formData = new FormData()
+    const { targetShopUrl } = useProductPageStore()
     const { showToast } = useAppToast()
     const { mutateAsync, isLoading } = useMutation(uploadProductCSV)
+    const { crawlProducts, isCrawling, fakeLoading } = importWithUrl
 
     const handleFileUpload = async () => {
         if (!file) return
@@ -30,6 +35,14 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
         }
     }
 
+    const handleSubmit = () => {
+        if (file) {
+            handleFileUpload()
+        } else {
+            crawlProducts()
+        }
+    }
+
     return (
         <ModalFooter
             display="flex"
@@ -40,7 +53,7 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
             <Button variant="secondary" disabled={isLoading} onClick={closeModal}>
                 Discard
             </Button>
-            <Button onClick={handleFileUpload} isDisabled={!file || isLoading}>
+            <Button onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
                 {isLoading ? 'Uploading' : 'Validate'}
             </Button>
         </ModalFooter>

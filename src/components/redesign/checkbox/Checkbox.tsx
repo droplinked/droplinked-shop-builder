@@ -18,6 +18,9 @@ function Checkbox({ children, ...rest }: CheckboxProps) {
                     "&[data-checked]": {
                         backgroundColor: "main.primary",
                         borderColor: "main.primary"
+                    },
+                    "&[data-disabled]": {
+                        backgroundColor: "transparent",
                     }
                 }
             }}
