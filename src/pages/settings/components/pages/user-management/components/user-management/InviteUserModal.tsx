@@ -1,7 +1,7 @@
 import { Divider, ModalBody, ModalFooter } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppButton from 'components/redesign/button/AppButton';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import MessageBox from 'components/redesign/message-box/MessageBox';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
@@ -53,7 +53,7 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 description='Add a new member by entering their email address below.'
             />
             <ModalBody py={"48px !important"}>
-                <Input
+                <AppInput
                     label='Email Address'
                     inputProps={{
                         isRequired: true,

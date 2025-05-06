@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ export default function WalletInput() {
 
     return (
         circleWallets?.length ?
-            <Input
+            <AppInput
                 inputProps={{ value: circleWalletAddress, isReadOnly: true }}
                 rightElement={
                     <ClipboardText text={circleWalletAddress} />

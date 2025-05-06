@@ -3,7 +3,7 @@ import LoadingSpinner from "components/common/loading-spinner/LoadingSpinner";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
-import Select from "components/redesign/select/Select";
+import AppSelect from "components/redesign/select/AppSelect";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
@@ -121,7 +121,7 @@ const BlockchainNetworkSelect = ({ chains, values, errors, setFieldValue, getRul
             </AppTypography>
         </VStack>
         <AppSkeleton isLoaded={!getRule.isLoading && !chains.isLoading}>
-            <Select
+            <AppSelect
                 selectProps={{
                     name: "chain",
                     placeholder: "Select chain",

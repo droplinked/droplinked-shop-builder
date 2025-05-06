@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import { useFormikContext } from 'formik';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import React from 'react';
 import { InvoiceFormSchema } from '../../helpers/helpers';
 
@@ -25,7 +25,7 @@ function InvoiceContactInformation() {
 
             <SimpleGrid columns={{ base: 1, md: 2 }} alignItems="flex-start" columnGap={6} rowGap={4}>
                 {contactFields.map(({ label, name, placeholder, value, error }) => (
-                    <Input
+                    <AppInput
                         key={name}
                         label={label}
                         inputProps={{

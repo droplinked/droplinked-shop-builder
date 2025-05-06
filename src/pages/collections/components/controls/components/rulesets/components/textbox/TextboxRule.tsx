@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import ruleModelContext from '../../context'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 
 function TextboxRule({ element, isRequired, ...props }) {
     const { errors, setFieldValue, values } = useContext(ruleModelContext)
+    // TODO : error handling
     return (
-        <Input
+        <AppInput
             inputProps={{
                 isRequired: isRequired,
                 name: element,
@@ -15,7 +16,6 @@ function TextboxRule({ element, isRequired, ...props }) {
             }}
             description={props.description}
             label={props.label}
-            error={errors[element]}
         />
     )
 }

@@ -1,6 +1,6 @@
 import { Flex, GridItem, SimpleGrid } from '@chakra-ui/react'
 import ErrorMessage from 'components/redesign/error-message/ErrorMessage'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import useAppStore from 'lib/stores/app/appStore'
 import useProductForm from 'pages/products/hooks/useProductForm'
@@ -30,7 +30,7 @@ function DigitalProductSKU() {
                 columnGap={4}
                 sx={{ input: { fontSize: 16 } }}
             >
-                <Input
+                <AppInput
                     label="Price"
                     inputProps={{
                         isRequired: true,
@@ -46,7 +46,7 @@ function DigitalProductSKU() {
                     <CurrencySelect h="50px" value={currency?.abbreviation} isDisabled />
                 </GridItem>
 
-                <Input
+                <AppInput
                     label="Quantity"
                     inputContainerProps={{ padding: '10px' }}
                     inputProps={{
@@ -65,7 +65,7 @@ function DigitalProductSKU() {
                     }
                 />
 
-                <Input
+                <AppInput
                     label="External ID"
                     inputProps={{
                         placeholder: '1',

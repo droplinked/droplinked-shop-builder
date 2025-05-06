@@ -1,7 +1,7 @@
 import React from 'react'
 import { Wallet } from './ManualTransfer';
 import { Flex } from '@chakra-ui/react';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import AppIcons from 'assets/icon/Appicons';
 
 interface Props {
@@ -34,14 +34,14 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
         <Flex flexDirection={"column"} gap={4} maxHeight={"40dvh"} overflow={"auto"}>
             {data.map((wallet, index) => (
                 <Flex key={index} gap={4} alignItems="center">
-                    <Input
+                    <AppInput
                         inputProps={{
                             placeholder: "Enter your wallet address",
                             value: wallet.receiver,
                             onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value)
                         }}
                     />
-                    <Input
+                    <AppInput
                         inputProps={{
                             placeholder: "0",
                             value: wallet.amount,

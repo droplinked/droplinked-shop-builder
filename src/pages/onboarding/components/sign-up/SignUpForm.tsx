@@ -1,7 +1,7 @@
 import { Flex, Text, VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
@@ -74,7 +74,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
 
                     return (
                         <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                            <Input
+                            <AppInput
                                 label="Email Address"
                                 inputProps={{
                                     name: "email",
@@ -97,7 +97,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 <PasswordValidationRules password={values.password} />
                             </VStack>
 
-                            <Input
+                            <AppInput
                                 label="Referral Code"
                                 inputProps={{
                                     name: "referralCode",

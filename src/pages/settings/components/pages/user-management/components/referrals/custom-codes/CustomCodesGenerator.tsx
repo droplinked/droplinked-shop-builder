@@ -3,7 +3,7 @@ import AppIcons from 'assets/icon/Appicons'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
 import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
@@ -44,7 +44,7 @@ export default function CustomCodesGenerator() {
 
     return (
         <Flex flexDirection={"column"} gap={6}>
-            <Input
+            <AppInput
                 inputProps={{
                     placeholder: "Type a custom code or text without any spaces (minimum 8 characters)",
                     value,

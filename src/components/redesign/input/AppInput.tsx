@@ -27,21 +27,21 @@ interface Props {
     tooltipText?: string
 }
 
-export default function Input(props: Props) {
+export default function AppInput(props: Props) {
     return (
         <InputGroup
             display="flex"
             flexDirection="column"
             {...props.inputGroupProps}
         >
-            <InputHeader {...props} />
+            <AppInputHeader {...props} />
             <InputContainer {...props} />
             <InputFooter {...props} />
         </InputGroup>
     )
 }
 
-export function InputHeader({ label, description, inputProps, labelProps, tooltipText }: Props) {
+export function AppInputHeader({ label, description, inputProps, labelProps, tooltipText }: Props) {
     return (
         <>
             {label && (

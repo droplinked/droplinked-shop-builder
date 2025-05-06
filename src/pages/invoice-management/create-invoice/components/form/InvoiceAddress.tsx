@@ -1,8 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices'
-import Input from 'components/redesign/input/Input'
-import Select from 'components/redesign/select/Select'
+import AppInput from 'components/redesign/input/AppInput'
+import AppSelect from 'components/redesign/select/AppSelect'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { InvoiceFormSchema } from '../../helpers/helpers'
@@ -56,7 +56,7 @@ function InvoiceAddress() {
             onToggle={() => updateIsAddressSwitchToggled(!isAddressSwitchToggled)}
         >
             <SimpleGrid columns={{ base: 1, md: 2 }} columnGap={6} rowGap={4}>
-                <Input
+                <AppInput
                     label='Address Line 1'
                     inputProps={{
                         name: "addressLine1",
@@ -68,7 +68,7 @@ function InvoiceAddress() {
                     showErrorIcon={false}
                     stateColor='#E53E3E'
                 />
-                <Input
+                <AppInput
                     label='Address Line 2'
                     inputProps={{
                         name: "addressLine2",
@@ -88,7 +88,7 @@ function InvoiceAddress() {
                 rowGap={4}
                 marginTop={{ base: 4, xl: 6 }}
             >
-                <Select
+                <AppSelect
                     label='Country'
                     items={countries}
                     valueAccessor='name'
@@ -97,7 +97,7 @@ function InvoiceAddress() {
                     error={errors.address?.country}
                     selectProps={{ placeholder: "Country", onChange: handleCountryChange, value: countries.find(c => c.name === values.address.country) }}
                 />
-                <Select
+                <AppSelect
                     label='State'
                     items={states}
                     valueAccessor='name'
@@ -105,7 +105,7 @@ function InvoiceAddress() {
                     error={errors.address?.state}
                     selectProps={{ placeholder: "State", onChange: handleStateChange, value: states.find(s => s.name === values.address.state) }}
                 />
-                <Select
+                <AppSelect
                     label='City'
                     items={cities}
                     valueAccessor='name'
@@ -117,7 +117,7 @@ function InvoiceAddress() {
                         value: cities.find(c => c.name === values.address.city)
                     }}
                 />
-                <Input
+                <AppInput
                     label='Zip Code'
                     inputProps={{
                         name: "zip",

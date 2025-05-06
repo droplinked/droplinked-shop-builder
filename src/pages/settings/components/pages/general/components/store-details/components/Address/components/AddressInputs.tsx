@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { useFormikContext } from "formik";
 import React, { useEffect } from "react";
 import { IAddressInputs } from "../formConfigs";
-import Input from "components/redesign/input/Input";
+import AppInput from "components/redesign/input/AppInput";
 import CountriesField from "./CountriesField";
 import StatesField from "./StatesField";
 import CitiesField from "./CitiesField";
@@ -33,7 +33,7 @@ export default function AddressInputs({ onClose }: Props) {
             p={4}
         >
             <Flex gap={4} flexDirection={{ base: "column", md: "row" }}>
-                <Input
+                <AppInput
                     message={errors.firstName}
                     {...(errors.firstName && { state: "error" })}
                     inputProps={{
@@ -43,7 +43,7 @@ export default function AddressInputs({ onClose }: Props) {
                         onChange: handleChange,
                     }}
                 />
-                <Input
+                <AppInput
                     message={errors.lastName}
                     {...(errors.lastName && { state: "error" })}
                     inputProps={{
@@ -55,7 +55,7 @@ export default function AddressInputs({ onClose }: Props) {
                 />
             </Flex>
             <Flex gap={4} flexDirection={{ base: "column", md: "row" }}>
-                <Input
+                <AppInput
                     message={errors.addressLine1}
                     {...(errors.addressLine1 && { state: "error" })}
                     inputProps={{
@@ -65,7 +65,7 @@ export default function AddressInputs({ onClose }: Props) {
                         onChange: handleChange,
                     }}
                 />
-                <Input
+                <AppInput
                     message={errors.addressLine2}
                     {...(errors.addressLine2 && { state: "error" })}
                     inputProps={{
@@ -80,7 +80,7 @@ export default function AddressInputs({ onClose }: Props) {
                 <CountriesField />
                 <StatesField />
                 <CitiesField />
-                <Input
+                <AppInput
                     message={errors.zip}
                     {...(errors.zip && { state: "error" })}
                     inputProps={{

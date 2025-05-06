@@ -1,5 +1,5 @@
 import AppIcons from "assets/icon/Appicons"
-import Input from "components/redesign/input/Input"
+import AppInput from "components/redesign/input/AppInput"
 import useAppToast from "hooks/toast/useToast"
 import useProductForm from "pages/products/hooks/useProductForm"
 import React, { ChangeEvent, useState } from "react"
@@ -47,7 +47,7 @@ function RoyaltyInput() {
     }
 
     return (
-        <Input
+        <AppInput
             inputGroupProps={{ width: "104px" }}
             inputProps={{
                 type: "number",

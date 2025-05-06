@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react"
 import AppButton from "components/redesign/button/AppButton"
-import Input from "components/redesign/input/Input"
+import AppInput from "components/redesign/input/AppInput"
 import useAppToast from "hooks/toast/useToast"
 import { useCreateCustomShipping } from "pages/products/hooks/useShippingTypes"
 import React, { useState } from "react"
@@ -40,7 +40,7 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                 description="Add an option to provide custom shipping details."
             />
 
-            <Input
+            <AppInput
                 label="Title"
                 inputProps={{
                     fontSize: 16,

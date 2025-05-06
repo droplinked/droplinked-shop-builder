@@ -1,5 +1,5 @@
 import { SelectProps } from "@chakra-ui/react"
-import Select from "./Select"
+import AppSelect from "./AppSelect"
 import { getCurrencyList } from "lib/apis/shop/shopServices"
 import React from 'react'
 import { useQuery } from "react-query"
@@ -13,7 +13,7 @@ function CurrencySelect(props: SelectProps) {
     const currencyList = data?.data || []
 
     return (
-        <Select
+        <AppSelect
             isLoading={isLoading}
             selectProps={{
                 ...props,

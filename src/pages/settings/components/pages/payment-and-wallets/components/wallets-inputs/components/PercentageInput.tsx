@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import AppIcons from 'assets/icon/Appicons';
 
 interface PercentageInputProps {
@@ -11,7 +11,7 @@ interface PercentageInputProps {
 
 export const PercentageInput = ({ value, onChange, isEditing }: PercentageInputProps) => (
     <Box width={"7rem"}>
-        <Input
+        <AppInput
             inputProps={{
                 placeholder: "100",
                 value,

@@ -1,7 +1,7 @@
 import { Divider, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import { IchargeCreditService } from 'lib/apis/shop/interfaces'
@@ -33,7 +33,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
     return (
         <Flex flexDir={"column"} gap={"36px"} pt={"48px"}>
             <ModalBody>
-                <Input
+                <AppInput
                     label='Amount'
                     inputProps={{
                         isRequired: true,

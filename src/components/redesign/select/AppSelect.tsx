@@ -18,7 +18,7 @@ interface Props {
     selectProps?: SelectProps
 }
 
-function Select(props: Props) {
+function AppSelect(props: Props) {
     const { label, description, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, itemColor, itemBackgroundColor, selectProps } = props
     const { value, onChange } = selectProps
 
@@ -92,4 +92,4 @@ function Select(props: Props) {
     )
 }
 
-export default Select
+export default AppSelect

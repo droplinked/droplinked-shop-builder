@@ -31,7 +31,7 @@ import { Flex, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
-import Input from '../input/Input'
+import AppInput from '../input/AppInput'
 import DesktopActionButtons from './components/DesktopActionButtons'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import MobileFloatingMenu from './components/MobileFloatingMenu'
@@ -106,7 +106,7 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
             {search && (
-                <Input
+                <AppInput
                     inputGroupProps={{ width: "300px" }}
                     inputContainerProps={{ bgColor: "neutral.gray.1000", padding: 3, _hover: search.disabled ? {} : { borderColor: "neutral.gray.700" } }}
                     inputProps={{

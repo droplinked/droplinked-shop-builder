@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
 import { SearchMd } from 'assets/icons/System/Search/SearchMd';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import { ordersStatuesServices } from 'lib/apis/orders/orderServices';
 import React from 'react';
@@ -26,7 +26,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
 
     return (
         <Flex alignItems="center" justifyContent="space-between" gap={{ base: 4, md: 0 }}>
-            <Input
+            <AppInput
                 leftElement={<SearchMd color='#7b7b7b' />}
                 inputGroupProps={{
                     width: { base: "100%", md: "auto" },

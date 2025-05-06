@@ -1,5 +1,5 @@
 import useAppStore from 'lib/stores/app/appStore'
-import Select from 'components/redesign/select/Select'
+import AppSelect from 'components/redesign/select/AppSelect'
 import React from 'react'
 
 interface Props {
@@ -22,7 +22,7 @@ function WalletSelect({ onWalletChange, selectedChain }: Props) {
         .map((wallet) => ({ walletAddress: wallet.address, circleChain: wallet.circleChain }))
 
     return (
-        <Select
+        <AppSelect
             items={availableWallets}
             labelAccessor='walletAddress'
             selectProps={{

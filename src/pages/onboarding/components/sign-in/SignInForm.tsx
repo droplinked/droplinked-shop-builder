@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
@@ -58,7 +58,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
             >
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                        <Input
+                        <AppInput
                             label="Email Address"
                             inputProps={{
                                 name: "email",

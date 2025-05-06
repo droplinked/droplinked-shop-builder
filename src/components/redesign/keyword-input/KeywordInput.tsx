@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 
 interface KeywordInputProps {
@@ -28,7 +28,7 @@ function KeywordInput({ keywords, onKeywordsChange, label = 'Keywords', descript
 
     return (
         <Flex direction="column" gap={4}>
-            <Input
+            <AppInput
                 label={label}
                 description={description}
                 inputProps={{

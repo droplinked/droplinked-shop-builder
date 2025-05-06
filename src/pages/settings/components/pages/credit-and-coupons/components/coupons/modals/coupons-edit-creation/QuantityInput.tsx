@@ -2,7 +2,7 @@ import { useFormikContext } from 'formik';
 import React from 'react'
 import { CouponFormValues } from './formConfigs';
 import { Box, Flex } from '@chakra-ui/react';
-import Input, { InputHeader } from 'components/redesign/input/Input';
+import AppInput, { AppInputHeader } from 'components/redesign/input/AppInput';
 
 export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
     const { values, handleChange, errors } = useFormikContext<CouponFormValues>();
@@ -10,10 +10,10 @@ export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Flex width={"100%"} flexDirection={"column"}>
-                <InputHeader label="Quantity" description="Number of times this discount can be used." inputProps={{ isRequired: true }} />
+                <AppInputHeader label="Quantity" description="Number of times this discount can be used." inputProps={{ isRequired: true }} />
             </Flex>
             <Box width={"5rem"}>
-                <Input
+                <AppInput
                     inputProps={{
                         onChange: handleChange,
                         name: "quantity",

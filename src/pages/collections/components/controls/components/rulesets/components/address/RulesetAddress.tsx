@@ -2,7 +2,7 @@ import { Box, HStack, VStack } from '@chakra-ui/react';
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import React, { useContext } from 'react';
 import ruleModelContext from '../../context';
 
@@ -30,7 +30,7 @@ function RulesetAddress() {
                 <VStack alignItems="center" justifyContent={"center"} width={"100%"} style={{ cursor: "text", ...errors?.address && { border: "1px solid #FF2244", padding: 10 } }} borderRadius="8px">
                     {values.address.map((input, index) => (
                         <HStack gap={0} width={"100%"} key={index} borderRadius="4px" justifyContent="center" alignItems="end">
-                            <Input
+                            <AppInput
                                 inputProps={{
                                     name: "text",
                                     value: input,
