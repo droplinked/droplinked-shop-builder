@@ -5,29 +5,22 @@ import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
 export default function PaymentMethodRadio({ ...props }) {
-	const {
-		paymentMethod: { type },
-		...radioProps
-	} = props;
-	const {
-		state: { isChecked },
-		getInputProps,
-		htmlProps,
-		getLabelProps,
-	} = useRadio(radioProps);
+	const { paymentMethod: { type }, ...radioProps } = props
+	const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
 	return (
 		<FormLabel
+			width='100%'
 			margin={0}
-			display={'flex'}
-			justifyContent={'space-between'}
-			alignItems={'center'}
-			border={"1.5px solid"}
+			display='flex'
+			justifyContent='space-between'
+			alignItems='center'
+			border='1.5px solid'
 			borderColor={`${isChecked ? '#2BCFA1' : 'neutral.gray.700'}`}
 			borderRadius={8}
 			padding={4}
 			bg={isChecked ? '#2BCFA11A' : 'transparent'}
-			cursor="pointer"
+			cursor='pointer'
 			{...htmlProps}
 			{...getLabelProps()}
 			sx={{ '*': { transition: 'inherit' } }}
@@ -41,53 +34,32 @@ export default function PaymentMethodRadio({ ...props }) {
 						fontSize: 14,
 						fontWeight: isChecked ? 500 : 400,
 						color: isChecked ? '#2BCFA1' : '#fff',
-					},
+					}
 				}}
 			>
 				<Circle
 					size={5}
-					border={`1.5px solid ${isChecked ? '#2BCFA1' : '#fff'
-						}`}
+					border={`1.5px solid ${isChecked ? '#2BCFA1' : '#fff'}`}
 				>
-					<Circle
-						size={2.5}
-						bg={'#2BCFA1'}
-						opacity={isChecked ? 1 : 0}
-					/>
+					<Circle size={2.5} bg={'#2BCFA1'} opacity={isChecked ? 1 : 0} />
 				</Circle>
-				{type === 'STRIPE' ? (
-					<AppTypography>
-						<BlockchainDisplay
-							blockchain={type}
-							show="name"
-						/>
-					</AppTypography>
-				) : (
-					<Flex
-						alignItems={'center'}
-						sx={
-							isChecked
-								? {
-									'svg path': {
-										stroke: '#2BCFA1',
-									},
-								}
-								: {}
-						}
-					>
-						<AppIcons.Token />
-						<AppTypography>
-							<BlockchainDisplay
-								blockchain={type}
-								show="name"
-							/>
-						</AppTypography>
-					</Flex>
-				)}
+				{type === 'STRIPE'
+					? <AppTypography>Stripe</AppTypography>
+					: (
+						<Flex
+							alignItems={'center'}
+							sx={isChecked ? { 'svg path': { stroke: '#2BCFA1' } } : {}}
+						>
+							<AppIcons.Token />
+							<AppTypography>
+								<BlockchainDisplay blockchain={type} show="name" />
+							</AppTypography>
+						</Flex>
+					)}
 			</Flex>
 			{ChainIconMap[type]}
 		</FormLabel>
-	);
+	)
 }
 
 const ChainIconMap: Record<string, React.JSX.Element> = {
@@ -111,5 +83,5 @@ const ChainIconMap: Record<string, React.JSX.Element> = {
 		</Box>
 	),
 	REDBELLY: <AppIcons.NewRedbelly />,
-	ETH: <AppIcons.ETH />,
-};
+	ETH: <AppIcons.ETH />
+}
