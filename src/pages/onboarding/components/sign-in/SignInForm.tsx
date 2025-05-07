@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
@@ -92,10 +92,18 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
-                        <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                            Don’t have an account?{" "}
+                        <Flex
+                            flexDirection={{ base: "column", md: "row" }}
+                            justifyContent="center"
+                            alignItems="center"
+                            gap={{ base: 1, md: 2 }}
+                            marginTop={3}
+                        >
+                            <Text fontSize={14} color="text.white">
+                                Don’t have an account?
+                            </Text>
                             <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
-                        </Text>
+                        </Flex>
                     </Form>
                 )}
             </Formik>

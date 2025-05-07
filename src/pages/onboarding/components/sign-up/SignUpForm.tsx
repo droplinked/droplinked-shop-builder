@@ -1,4 +1,4 @@
-import { Text, VStack } from '@chakra-ui/react'
+import { Flex, Text, VStack } from '@chakra-ui/react'
 import Button from 'components/redesign/button/Button'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import Input from 'components/redesign/input/Input'
@@ -134,10 +134,18 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 udId={udId}
                             />
 
-                            <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                                Already have an account?{" "}
+                            <Flex
+                                flexDirection={{ base: "column", md: "row" }}
+                                justifyContent="center"
+                                alignItems="center"
+                                gap={{ base: 1, md: 2 }}
+                                marginTop={3}
+                            >
+                                <Text fontSize={14} color="text.white">
+                                    Already have an account?
+                                </Text>
                                 <InteractiveText onClick={onBack}>Sign in</InteractiveText>
-                            </Text>
+                            </Flex>
                         </Form>
                     )
                 }}
