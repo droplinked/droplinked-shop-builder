@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { getPublicBlogByIdService } from "lib/apis/blog/services";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
