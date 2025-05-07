@@ -27,9 +27,11 @@ const PublicBlog = () => {
     }, [pathname]);
 
     return (
-        <Box display={"flex"} alignItems={"center"} justifyContent={"center"} width={"full"}>
-            {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
-        </Box>
+        <Flex justifyContent={"center"}>
+            <Box width={"100%"} maxWidth={"1280px"}>
+                {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
+            </Box>
+        </Flex>
     );
 };
 
