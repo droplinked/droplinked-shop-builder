@@ -14,6 +14,8 @@ interface Props<T extends object> {
     isLoading?: boolean
     emptyView?: ReactNode
     footerContent?: ReactNode
+    paddingInline?: number | string
+    paddingBlock?: number | string
     infiniteScroll?: {
         dataLength: number
         hasMore: boolean
@@ -24,7 +26,7 @@ interface Props<T extends object> {
 }
 
 function Table<T extends object>(props: Props<T>) {
-    const { tableFontSize, columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll } = props
+    const { tableFontSize, columns, data, renderActions, enableSorting = false, sorting, setSorting, isLoading, emptyView, footerContent, infiniteScroll, paddingInline, paddingBlock } = props
     const table = useReactTable({
         data,
         columns,
@@ -101,7 +103,7 @@ function Table<T extends object>(props: Props<T>) {
         <ChakraTable
             variant="unstyled"
             sx={{
-                "th, td": { paddingInline: 6, paddingBlock: 4, fontSize: tableFontSize ? tableFontSize : 14, fontWeight: 400 },
+                "th, td": { paddingInline: paddingInline || 6, paddingBlock: paddingBlock || 4, fontSize: tableFontSize ? tableFontSize : 14, fontWeight: 400 },
                 userSelect: "none"
             }}
         >

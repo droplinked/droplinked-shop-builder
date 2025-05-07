@@ -1,11 +1,11 @@
-import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
-import Table from 'components/redesign/table/Table'
-import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppImage from 'components/common/image/AppImage'
+import Checkbox from 'components/redesign/checkbox/Checkbox'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import Table from 'components/redesign/table/Table'
 import { CrawledProductsType } from 'pages/products/utils/types'
+import React from 'react'
 
 interface ItemsTableProps {
     items: CrawledProductsType[]
@@ -55,8 +55,8 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
                     <Flex alignItems="center" gap={4}>
                         <AppImage
                             src={image}
-                            width={14}
-                            height={14}
+                            width="40px"
+                            height="40px"
                             borderRadius={8}
                             alt="Product"
                         />
@@ -92,6 +92,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
             columns={columns}
             data={items}
             isLoading={isLoading}
+            paddingBlock="12px"
             emptyView={
                 <Flex justifyContent="center" py={8}>
                     <Text fontSize={16} fontWeight={500} color="white">

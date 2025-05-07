@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled }: Props) {
-    const ITEMS_PER_PAGE = 4
+    const ITEMS_PER_PAGE = 8
 
     const {
         currentPage,
@@ -38,6 +38,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
             borderTop="1px solid"
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
+            overflow="auto"
+            maxHeight="600px"
         >
             <Flex direction="column" gap={6}>
                 {selectedProducts.length >= maxSelectableItems && (

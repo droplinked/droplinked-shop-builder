@@ -48,10 +48,10 @@ export const useImportWithUrl = (props: Params) => {
     const { mutateAsync: crawlSelectedProducts, isLoading: crawlingSelectedLoading } = useMutation({
         mutationFn: (selectedProducts: string[]) => CrawlSelectedProducts({ productUrls: selectedProducts, storeUrl: targetShopUrl }),
         onSuccess: () => {
+            showToast({ message: "Products crawled successfully", type: "success" })
             identifiedItemsModalController.onClose()
             updateProductPageState("crawledProducts", [])
             updateProductPageState("targetShopUrl", "")
-            showToast({ message: "Products crawled successfully", type: "success" })
             queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
         },
         onError: (error: any) => {

@@ -45,7 +45,7 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "7xl", isCentered: true }}
+            modalRootProps={{ isOpen, onClose, size: "6xl", isCentered: true }}
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
