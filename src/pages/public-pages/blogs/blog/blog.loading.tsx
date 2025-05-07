@@ -3,7 +3,7 @@ import React from "react";
 
 const BlogLoading = () => {
     return (
-        <Flex direction={"column"} justifyContent={"center"} alignItems={"flex-start"} p={"64px"} mt={"40px"} gap={12} width={"1280px"}>
+        <Flex direction={"column"} justifyContent={"center"} alignItems={"flex-start"} p={{ base: 4, md: 8, lg: "64px" }} mt={"40px"} gap={12}>
             <Skeleton width={"100%"} height={{ md: "450px", base: "300px" }}></Skeleton>
             <Skeleton maxWidth={"100%"} width={"500px"} height={{ base: "31.91px", md: "33.59px", lg: "43.2px" }}></Skeleton>
             <Flex direction={"column"} gap={4}>
