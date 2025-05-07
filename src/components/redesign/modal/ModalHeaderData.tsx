@@ -28,7 +28,7 @@ function ModalHeaderData({ icon, descriptionProps, title, description, modalHead
                 <Text mt={6} mb={description ? 0 : 2} fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>
             )}
 
-            {description && <Text {...descriptionProps} mt={2} fontSize={{ base: 14, md: 16 }}>{description}</Text>}
+            {description && <Text mt={2} fontSize={{ base: 14, md: 16 }} {...descriptionProps}>{description}</Text>}
 
             {children}
         </ModalHeader>

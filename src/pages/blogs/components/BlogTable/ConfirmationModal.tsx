@@ -1,5 +1,5 @@
-import { ModalBody } from "@chakra-ui/react"
-import Button from "components/redesign/button/Button"
+import { ModalFooter } from "@chakra-ui/react"
+import Button, { AppButtonProps } from "components/redesign/button/Button"
 import AppModal from "components/redesign/modal/AppModal"
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData"
 import React from "react"
@@ -7,24 +7,15 @@ import React from "react"
 interface Props {
     isOpen: boolean
     onClose: () => void
-    onConfirm: () => void
-    isLoading: boolean
     icon: React.ReactNode
     title: string
     description: string
-    confirmText: string
+    confirmButtonProps?: AppButtonProps
 }
 
-function ConfirmationModal({
-    isOpen,
-    onClose,
-    onConfirm,
-    isLoading,
-    icon,
-    title,
-    description,
-    confirmText
-}: Props) {
+function ConfirmationModal({ isOpen, onClose, icon, title, description, confirmButtonProps }: Props) {
+    const isLoading = confirmButtonProps?.isLoading
+
     return (
         <AppModal
             modalRootProps={{ isOpen, onClose, size: "xl", isCentered: true }}
@@ -39,16 +30,24 @@ function ConfirmationModal({
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" },
                     paddingBottom: { lg: "36px !important", md: "32px !important", base: "16px !important" }
                 }}
+                descriptionProps={{
+                    color: "text.subtext.placeholder.light !important"
+                }}
             />
 
-            <ModalBody display="flex" justifyContent="space-between" mb="8" bg="#141414" overflow="hidden">
-                <Button variant="secondary" isDisabled={isLoading} onClick={onClose}>
+            <ModalFooter display="flex" gap={6} mb="8">
+                <Button flex={1} variant="secondary" isDisabled={isLoading} onClick={onClose}>
                     Cancel
                 </Button>
-                <Button isLoading={isLoading} isDisabled={isLoading} onClick={onConfirm}>
-                    {confirmText}
+                <Button
+                    flex={1}
+                    isLoading={isLoading}
+                    isDisabled={isLoading}
+                    {...confirmButtonProps}
+                >
+                    {confirmButtonProps?.children}
                 </Button>
-            </ModalBody>
+            </ModalFooter>
         </AppModal>
     )
 }

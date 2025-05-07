@@ -15,19 +15,11 @@ interface Props {
 }
 
 function ChangeBlogStatusModal({ blogPost, isOpen, onClose }: Props) {
+    const isDraft = blogPost.isVisible
     const { showToast } = useAppToast()
     const invalidateBlogList = useInvalidateBlogList()
-
-    const isDraft = blogPost.isVisible
-    const modalConfig = {
-        title: isDraft ? "Draft Post" : "Publish Post",
-        description: `Are you sure you want to ${isDraft ? "draft" : "publish"} this blog?`,
-        confirmText: isDraft ? "Draft" : "Publish",
-        icon: isDraft ? <ArchiveMd color="#fff" /> : <DoublecheckMd color="#fff" />
-    }
-
     const { mutate: changeBlogStatus, isLoading } = useMutation({
-        mutationFn: () => updateBlogService({ ...blogPost, isVisible: !blogPost.isVisible }),
+        mutationFn: () => updateBlogService({ ...blogPost, isVisible: !isDraft }),
         onSuccess: () => {
             showToast({ type: "success", message: "Blog status updated successfully" })
             onClose()
@@ -40,9 +32,14 @@ function ChangeBlogStatusModal({ blogPost, isOpen, onClose }: Props) {
         <ConfirmationModal
             isOpen={isOpen}
             onClose={onClose}
-            onConfirm={changeBlogStatus}
-            isLoading={isLoading}
-            {...modalConfig}
+            title={isDraft ? "Draft Post" : "Publish Post"}
+            description={`Are you sure you want to ${isDraft ? "draft" : "publish"} this blog?`}
+            icon={isDraft ? <ArchiveMd color="#fff" /> : <DoublecheckMd color="#fff" />}
+            confirmButtonProps={{
+                children: isDraft ? "Draft" : "Publish",
+                isLoading,
+                onClick: () => changeBlogStatus()
+            }}
         />
     )
 }

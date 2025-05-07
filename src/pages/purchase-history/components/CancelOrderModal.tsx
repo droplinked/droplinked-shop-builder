@@ -1,7 +1,6 @@
-import { Box, ModalFooter } from '@chakra-ui/react'
+import { ModalFooter } from '@chakra-ui/react'
 import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg'
 import Button from 'components/redesign/button/Button'
-import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
@@ -46,25 +45,17 @@ export default function CancelOrderModal({ isOpen, onClose, orderID }: Props) {
             modalContentProps={{ gap: 0, paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }, bgColor: "neutral.background", }}
         >
             <ModalHeaderData
-                icon={
-                    <ModalHeaderIconWrapper>
-                        <WarningLg color='#fff' />
-                    </ModalHeaderIconWrapper>
-                }
+                icon={<WarningLg color='#fff' />}
                 title="Confirm Order Cancellation"
                 description={`You are about to cancel order ${orderID}. This action cannot be undone. Are you sure you want to continue?`}
                 descriptionProps={{
-                    color: "text.subtext.placeholder.light !important",
+                    color: "text.subtext.placeholder.light !important"
                 }}
 
             />
             <ModalFooter mt="38px" display="flex" gap={6}>
-                <Box width="50%">
-                    <Button width="100%" variant='secondary' onClick={onClose}>Close</Button>
-                </Box>
-                <Box width="50%">
-                    <Button width="100%" variant='ghost' background="system.error" onClick={handleCancelOrder} isLoading={isLoading}>Yes, Cancel Order</Button>
-                </Box>
+                <Button flex={1} variant='secondary' onClick={onClose}>Close</Button>
+                <Button flex={1} variant='ghost' background="system.error" isLoading={isLoading} onClick={handleCancelOrder}>Yes, Cancel Order</Button>
             </ModalFooter>
         </AppModal>
     )

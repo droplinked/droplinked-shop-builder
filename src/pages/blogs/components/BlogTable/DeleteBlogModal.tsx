@@ -17,13 +17,6 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
     const { showToast } = useAppToast()
     const invalidateBlogList = useInvalidateBlogList()
 
-    const modalConfig = {
-        title: "Remove Blog",
-        description: "Are you sure you want to remove this blog? This action cannot be undone",
-        confirmText: "Remove",
-        icon: <TrashMd color="#fff" />
-    }
-
     const { mutate: deleteBlog, isLoading } = useMutation({
         mutationFn: () => deleteBlogService(blogPost._id),
         onSuccess: () => {
@@ -38,9 +31,17 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
         <ConfirmationModal
             isOpen={isOpen}
             onClose={onClose}
-            onConfirm={deleteBlog}
-            isLoading={isLoading}
-            {...modalConfig}
+            title="Remove Blog"
+            description="Are you sure you want to remove this blog? This action cannot be undone"
+            icon={<TrashMd color="#fff" />}
+            confirmButtonProps={{
+                variant: "ghost",
+                bgColor: "system.error",
+                color: "text.white",
+                children: "Remove",
+                isLoading,
+                onClick: () => deleteBlog()
+            }}
         />
     )
 }
