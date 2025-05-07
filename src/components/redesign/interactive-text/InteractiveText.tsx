@@ -2,6 +2,20 @@ import { Text, TextProps } from '@chakra-ui/react'
 import React, { ReactNode } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
+/**
+ * InteractiveText Component - Text that functions as button or link
+ * 
+ * A versatile component that renders as either a button or a router link
+ * based on props, with consistent styling and optional left/right icons.
+ * 
+ * @param {object} props - Component props
+ * @param {string} [props.to] - URL for router link mode (makes component a link)
+ * @param {function} [props.onClick] - Click handler for button mode (makes component a button)
+ * @param {ReactNode} [props.iconLeft] - Icon to display before the text
+ * @param {ReactNode} [props.iconRight] - Icon to display after the text
+ * @param {React.ReactNode} props.children - Text content to display
+ * @param {TextProps} props - Additional Chakra UI text props
+ */
 const interactiveTextStyles = {
     display: 'flex',
     alignItems: 'center',

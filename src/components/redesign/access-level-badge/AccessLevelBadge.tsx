@@ -2,6 +2,16 @@ import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
 import AppLabel from '../label/AppLabel'
 
+/**
+ * AccessLevelBadge Component - Displays subscription plan access level
+ * 
+ * Shows a badge with appropriate styling and icon based on the subscription
+ * level (Pro, Premium, or Enterprise) with optional "Feature" text.
+ * 
+ * @param {object} props - Component props
+ * @param {('Pro'|'Premium'|'Enterprise')} props.level - The subscription level to display
+ * @param {boolean} [props.justLevel] - Whether to show only the level name without "Feature" text
+ */
 export interface AccessLevelBadgeProps {
     level: 'Pro' | 'Premium' | 'Enterprise'
     justLevel?: boolean

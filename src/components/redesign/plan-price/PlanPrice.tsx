@@ -4,6 +4,18 @@ import React, { useMemo } from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import PriceContent from './PriceContent'
 
+/**
+ * PlanPrice Component - Displays subscription plan pricing
+ * 
+ * Shows plan price with appropriate formatting based on the selected duration,
+ * with support for discount visualization and customizable font sizes.
+ * 
+ * @param {object} props - Component props
+ * @param {SubscriptionPlan} props.plan - The subscription plan object with pricing information
+ * @param {number} [props.mainFontSize=32] - Font size for the main price amount
+ * @param {number} [props.discountFontSize=20] - Font size for the discounted price display
+ * @param {FlexProps} props - Additional Chakra UI flex props
+ */
 interface Props extends FlexProps {
     plan: SubscriptionPlan
     mainFontSize?: number

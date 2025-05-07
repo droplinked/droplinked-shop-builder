@@ -3,6 +3,25 @@ import AppIcons from 'assets/icon/Appicons'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
 
+/**
+ * Customizable select component with support for complex data structures
+ * 
+ * @param {object} props - Component props
+ * @param {string} [props.label] - Label text displayed above select
+ * @param {string} [props.description] - Descriptive text displayed below label
+ * @param {any[]} props.items - Array of items to display in the select
+ * @param {string} [props.labelAccessor="name"] - Object property to use as display text for items
+ * @param {string} [props.valueAccessor] - Object property to use as value for items
+ * @param {Record<string, string>} [props.dataAttributes] - Additional data attributes to add to options
+ * @param {boolean} [props.isLoading] - Whether to show loading indicator
+ * @param {string} [props.error] - Error message to display
+ * @param {InputGroupProps} [props.inputGroupProps] - Props for the input group wrapper
+ * @param {string} [props.itemBackgroundColor] - Background color for dropdown items
+ * @param {string} [props.itemColor] - Text color for dropdown items
+ * @param {SelectProps} [props.selectProps] - Props for the select element including value and onChange
+ * 
+ * @returns {JSX.Element} Customizable select component
+ */
 interface Props {
     label?: string
     description?: string

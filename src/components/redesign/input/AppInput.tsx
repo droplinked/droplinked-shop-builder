@@ -6,6 +6,28 @@ import AnimatedBox from 'pages/products/components/ProductDrawer/components/comm
 import React, { KeyboardEvent, ReactNode } from 'react'
 import AnimatedLoadingText from '../../../pages/products/components/ProductDrawer/components/common/AnimatedLoadingText/AnimatedLoadingText'
 
+/**
+ * Custom input component with support for labels, validation states, and additional elements
+ * 
+ * @param {object} props - Component props
+ * @param {InputGroupProps} [props.inputGroupProps] - Props for the input group wrapper
+ * @param {string} [props.label] - Input field label
+ * @param {string} [props.description] - Additional description below label
+ * @param {FlexProps} [props.inputContainerProps] - Props for the input container
+ * @param {InputProps & {numberType?: 'int' | 'float'}} [props.inputProps] - Props for the input element
+ * @param {FormLabelProps} [props.labelProps] - Props for the form label
+ * @param {ReactNode} [props.leftElement] - Element to display before input
+ * @param {ReactNode} [props.rightElement] - Element to display after input
+ * @param {ReactNode} [props.actionButton] - Action button to display
+ * @param {'success' | 'error'} [props.state] - Validation state 
+ * @param {string} [props.stateColor] - Color for state messages
+ * @param {boolean} [props.showErrorIcon] - Whether to show error icon
+ * @param {string} [props.message] - Validation or help message
+ * @param {number} [props.maxCharacters] - Maximum character count
+ * @param {boolean} [props.showAnimatedLoading] - Whether to show loading animation
+ * 
+ * @returns {JSX.Element} Custom input component
+ */
 interface Props {
     inputGroupProps?: InputGroupProps
     label?: string

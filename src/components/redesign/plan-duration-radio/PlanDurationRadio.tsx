@@ -2,6 +2,18 @@ import { Center, Flex, FormLabel, useRadio } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
 import React from "react"
 
+/**
+ * PlanDurationRadio Component - Stylized duration selection option
+ * 
+ * Radio button for subscription plan duration selection with visual feedback
+ * for selected state and optional discount badge when applicable.
+ * 
+ * @param {object} props - Component props
+ * @param {object} props.duration - Duration option data object
+ * @param {string} props.duration.label - Display text for the duration option
+ * @param {number} [props.duration.discount] - Optional discount percentage to display
+ * @param {object} props - Radio control props from useRadioGroup hook
+ */
 function PlanDurationRadio({ ...props }) {
     const { duration, ...radioProps } = props
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)

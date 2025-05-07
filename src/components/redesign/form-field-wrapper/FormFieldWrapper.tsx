@@ -3,6 +3,22 @@ import AppIcons from "assets/icon/Appicons"
 import ErrorMessage from "components/redesign/error-message/ErrorMessage"
 import React, { ReactNode } from "react"
 
+/**
+ * FormFieldWrapper Component - Consistent layout for form fields
+ * 
+ * Provides standardized structure for form fields with label, optional description,
+ * required indicator, error message, and customizable right content area.
+ * 
+ * @param {object} props - Component props
+ * @param {string} props.label - Label text for the form field
+ * @param {FormLabelProps} [props.labelProps] - Additional props for the form label
+ * @param {string} [props.description] - Optional description text under the label
+ * @param {boolean} [props.isRequired=false] - Whether to show the required indicator
+ * @param {string} [props.errorMessage] - Error message to display below the field
+ * @param {ReactNode} [props.rightContent] - Content to display in the top right area
+ * @param {ReactNode} props.children - Form input or control to wrap
+ * @param {BoxProps} props - Additional styling properties for the container
+ */
 interface Props extends BoxProps {
     label: string
     labelProps?: FormLabelProps
