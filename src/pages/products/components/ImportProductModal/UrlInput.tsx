@@ -1,5 +1,5 @@
 import { LinkMd } from 'assets/icons/Action/Link/LinkMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import DividerText from 'pages/onboarding/components/common/DividerText'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { useEffect, useState } from 'react'
@@ -31,7 +31,7 @@ export default function UrlInput({ isDisabled }: { isDisabled: boolean }) {
         <>
             <DividerText text='or' />
 
-            <Input
+            <AppInput
                 label='URL Import - Product Listing'
                 tooltipText='Fetch any product details to automatically import and list them into the inventory catalog.'
                 inputProps={{
