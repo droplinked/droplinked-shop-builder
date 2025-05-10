@@ -8,7 +8,7 @@ import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import { AxiosError } from 'axios'
 import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
-import Select from 'components/redesign/select/Select'
+import AppSelect from 'components/redesign/select/AppSelect'
 
 export enum Filters {
     All = 'All',
@@ -51,7 +51,7 @@ export default function CodesTab({ coupon, onClose }: Props) {
         <Flex gap={4} flexDirection={"column"}>
             <Flex alignItems={"center"} justifyContent={"space-between"}>
                 <Box width={"150px"}>
-                    <Select
+                    <AppSelect
                         items={[
                             {
                                 label: Filters.All,

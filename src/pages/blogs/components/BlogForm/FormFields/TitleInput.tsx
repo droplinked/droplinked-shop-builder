@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React from 'react'
 
@@ -6,7 +6,7 @@ function TitleInput() {
     const { values, errors, setFieldValue } = useBlogForm()
 
     return (
-        <Input
+        <AppInput
             label='Title'
             description='Choose a clear and compelling title for the post.'
             inputProps={{

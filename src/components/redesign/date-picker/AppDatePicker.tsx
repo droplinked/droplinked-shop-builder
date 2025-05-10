@@ -7,6 +7,23 @@ import CustomHeader from "./components/CustomHeader"
 import { CustomTimeInput } from "./components/CustomTimeInput"
 import classes from "./styles.module.scss"
 
+/**
+ * AppDatePicker Component - Styled date and time selection control
+ * 
+ * Wraps react-datepicker with custom styling and additional features like
+ * time selection, date ranges, and custom header components.
+ * 
+ * @param {object} props - Component props
+ * @param {Date} [props.value] - Currently selected date value
+ * @param {Date} [props.endDate] - End date for range selection
+ * @param {Function} props.onChange - Callback when date selection changes
+ * @param {Date} [props.minDate] - Minimum selectable date
+ * @param {boolean} [props.inline] - Whether to display as inline calendar
+ * @param {boolean} [props.selectsRange] - Whether to enable date range selection
+ * @param {string} [props.placeholderText] - Placeholder text when no date is selected
+ * @param {boolean} [props.showTimeInput] - Whether to show time selection input
+ * @param {string} [props.dateFormat] - Format string for date display
+ */
 interface Props {
     value?: Date
     endDate?: Date

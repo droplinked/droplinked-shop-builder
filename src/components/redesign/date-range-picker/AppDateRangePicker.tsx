@@ -10,6 +10,18 @@ import MobileDateRangePicker from "./mobile/MobileDateRangePicker";
 type ValuePiece = Date | null;
 export type DateRangeValue = [ValuePiece, ValuePiece] | ValuePiece;
 
+/**
+ * AppDateRangePicker Component - Date range selection with responsive design
+ * 
+ * Provides different interfaces for desktop and mobile, with a consistent
+ * styling and user experience. Supports date range selection and disabled state.
+ * 
+ * @param {object} props - Component props
+ * @param {DateRangeValue} props.value - Currently selected date range value
+ * @param {function} props.onChange - Callback function when date range changes
+ * @param {boolean} [props.disabled] - Whether the date picker is disabled
+ * @param {ChakraProps["width"]} [props.width] - Width of the date picker
+ */
 interface Props extends DateRangePickerProps {
   value: DateRangeValue;
   onChange: (value: DateRangeValue) => void;

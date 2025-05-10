@@ -1,6 +1,6 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'lib/stores/app/appStore';
 import React, { useMemo } from 'react';
@@ -37,7 +37,7 @@ export default function Filters() {
 
     return (
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
-            <Input
+            <AppInput
                 leftElement={<AppIcons.Search width="20px" height="20px" />}
                 inputProps={{
                     placeholder: "Search",

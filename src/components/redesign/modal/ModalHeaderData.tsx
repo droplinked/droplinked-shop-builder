@@ -2,6 +2,20 @@ import { Flex, ModalCloseButton, ModalHeader, ModalHeaderProps, Text, TextProps 
 import React, { PropsWithChildren, ReactNode } from 'react';
 import ModalHeaderIconWrapper from '../modal-header-icon-wrapper/ModalHeaderIconWrapper';
 
+/**
+ * ModalHeaderData Component - Standardized modal header with icon support
+ * 
+ * Provides a consistent layout for modal headers with optional icon,
+ * title, description text, and properly positioned close button.
+ * 
+ * @param {object} props - Component props
+ * @param {ReactNode} [props.icon] - Optional icon to display in the header
+ * @param {string} props.title - Title text for the modal
+ * @param {string} [props.description] - Optional description text below the title
+ * @param {ModalHeaderProps} [props.modalHeaderProps] - Additional props for the modal header
+ * @param {TextProps} [props.descriptionProps] - Additional props for the description text
+ * @param {React.ReactNode} [props.children] - Additional content to render in the header
+ */
 interface Props extends PropsWithChildren {
     icon?: ReactNode;
     title: string;

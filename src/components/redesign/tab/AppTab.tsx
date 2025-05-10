@@ -1,6 +1,21 @@
 import { Tab, TabList, TabListProps, TabPanel, TabPanelProps, TabPanels, TabPanelsProps, TabProps, Tabs, TabsProps } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
+/**
+ * A tabbed interface component with customizable styling
+ *  
+ * @param {object} props - Component props
+ * @param {TabItem[]} props.tabs - Array of tab items with title and content
+ * @param {boolean} [props.isDisabled=false] - Whether all tabs are disabled
+ * @param {boolean} [props.isLazy=false] - Whether to render tab panels only when they're selected
+ * @param {Omit<TabsProps, 'children'>} [props.tabsStyle] - Custom styles for the Tabs wrapper
+ * @param {TabListProps} [props.tabListStyle] - Custom styles for the TabList
+ * @param {TabPanelsProps} [props.tabPanelsStyle] - Custom styles for the TabPanels wrapper
+ * @param {TabPanelProps} [props.tabPanelStyle] - Custom styles for each TabPanel
+ * @param {TabProps} [props.tabStyle] - Custom styles for each Tab button
+ * 
+ * @returns {JSX.Element} Tabbed interface component
+ */
 interface TabItem {
     title: string;
     content: ReactNode;

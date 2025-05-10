@@ -1,5 +1,5 @@
 import AppIcons from 'assets/icon/Appicons'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { ChangeEvent } from 'react'
 import SwitchBox from '../common/SwitchBox'
@@ -30,7 +30,7 @@ function ProductAffiliate() {
             }}
             {...(values.canBeAffiliated && {
                 rightContent: (
-                    <Input
+                    <AppInput
                         inputGroupProps={{ width: '88px' }}
                         inputProps={{
                             type: 'number',

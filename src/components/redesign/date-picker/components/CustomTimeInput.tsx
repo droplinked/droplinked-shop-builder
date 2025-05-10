@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import Input from "components/redesign/input/Input";
+import AppInput from "components/redesign/input/AppInput";
 import { forwardRef, useState } from "react";
 import React from "react";
 export const CustomTimeInput = forwardRef((props: any, ref) => {
@@ -34,7 +34,7 @@ export const CustomTimeInput = forwardRef((props: any, ref) => {
                 Time
             </AppTypography>
             <Flex gap={2} alignItems={"center"}>
-                <Input
+                <AppInput
                     inputProps={{
                         border: "1px solid",
                         borderColor: "neutral.gray.800",
@@ -55,7 +55,7 @@ export const CustomTimeInput = forwardRef((props: any, ref) => {
                 <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
-                <Input
+                <AppInput  
                     inputProps={{
                         border: "1px solid",
                         borderColor: "neutral.gray.800",

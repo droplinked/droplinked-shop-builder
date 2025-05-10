@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { generateDomains } from 'lib/apis/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -47,7 +47,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
         <GeneratedContentWrapper title='URL' onRetry={refetch} isLoading={isFetching}>
             <Flex flexDirection="column" gap={4} userSelect="none">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
-                    <Input
+                    <AppInput
                         inputProps={{
                             paddingInline: 4,
                             paddingBlock: 3,

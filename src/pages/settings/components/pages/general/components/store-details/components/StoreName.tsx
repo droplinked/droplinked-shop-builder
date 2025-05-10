@@ -1,4 +1,4 @@
-import Input from "components/redesign/input/Input";
+import AppInput from "components/redesign/input/AppInput";
 import { useFormikContext } from "formik";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import { ISettings } from "pages/settings/formConfigs";
@@ -12,7 +12,7 @@ export default function StoreName() {
             title="Store Name"
             description="Enter the store’s name that will appear on the landing page."
             rightContent={
-                <Input
+                <AppInput
                     inputProps={{
                         placeholder: "Store Name",
                         value: values.name,

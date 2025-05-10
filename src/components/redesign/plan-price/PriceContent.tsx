@@ -2,6 +2,19 @@ import React from 'react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IPrice } from 'lib/apis/subscription/interfaces'
 
+/**
+ * PriceContent Component - Renders subscription price details
+ * 
+ * Displays different price formats based on plan type (Free, Enterprise, paid)
+ * with support for showing discounted prices with strike-through styling.
+ * 
+ * @param {object} props - Component props
+ * @param {string} props.planType - Type of plan (STARTER, ENTERPRISE, etc.)
+ * @param {IPrice|null} props.targetPrice - Price object with pricing information
+ * @param {number|undefined} props.hasDiscount - Discount percentage if applicable
+ * @param {number} props.mainFontSize - Font size for the main price display
+ * @param {number} props.discountFontSize - Font size for the crossed-out original price
+ */
 interface PriceContentProps {
     planType: string
     targetPrice: IPrice | null
@@ -30,4 +43,4 @@ function PriceContent({ planType, targetPrice, hasDiscount, mainFontSize, discou
     return <AppTypography fontSize={mainFontSize}>${price}</AppTypography>
 }
 
-export default PriceContent 
+export default PriceContent

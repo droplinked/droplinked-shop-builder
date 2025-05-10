@@ -6,6 +6,17 @@ import React, { useState } from 'react';
 import BalanceModalBody from './BalanceModalBody';
 import StripeBody from './StripeBody';
 
+/**
+ * AddBalanceModal Component - Modal for adding credit to account
+ * 
+ * Provides a two-step flow for adding balance: first selecting amount,
+ * then completing payment via Stripe integration.
+ * 
+ * @param {object} props - Component props
+ * @param {boolean} props.isOpen - Controls whether the modal is visible
+ * @param {function} props.onClose - Callback function to close the modal
+ * @param {function} props.handleRefetch - Callback to refresh data after successful payment
+ */
 interface Props {
     isOpen: boolean;
     onClose: () => void;

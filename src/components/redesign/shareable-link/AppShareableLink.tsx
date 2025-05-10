@@ -4,6 +4,16 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import React from 'react'
 import styles from "./styles.module.scss"
 
+/**
+ * AppShareableLink Component - Input field with sharing capabilities
+ * 
+ * Displays a URL in a styled input field with a truncated preview, copy-to-clipboard
+ * functionality, and a share button that opens the link in a new tab.
+ * 
+ * @param {object} props - Component props
+ * @param {string} props.link - The URL to display and share
+ * @param {string} [props.buttonBgColor] - Background color for the share button
+ */
 interface Props {
     link: string;
     buttonBgColor?: string;

@@ -1,8 +1,21 @@
 import { Flex } from '@chakra-ui/react'
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 
+/**
+ * KeywordInput Component - Input field for managing keyword tags
+ * 
+ * Allows adding and removing keywords in a tag-like interface, with each
+ * keyword displayed as a removable chip. Supports Enter key submission.
+ * 
+ * @param {object} props - Component props
+ * @param {string[]} props.keywords - Array of current keywords
+ * @param {function} props.onKeywordsChange - Callback when keywords are added/removed
+ * @param {string} [props.label='Keywords'] - Label for the input field
+ * @param {string} [props.description] - Description text below the label
+ * @param {string} [props.placeholder] - Placeholder text for the input field
+ */
 interface KeywordInputProps {
     keywords: string[]
     onKeywordsChange: (keywords: string[]) => void
@@ -28,7 +41,7 @@ function KeywordInput({ keywords, onKeywordsChange, label = 'Keywords', descript
 
     return (
         <Flex direction="column" gap={4}>
-            <Input
+            <AppInput
                 label={label}
                 description={description}
                 inputProps={{

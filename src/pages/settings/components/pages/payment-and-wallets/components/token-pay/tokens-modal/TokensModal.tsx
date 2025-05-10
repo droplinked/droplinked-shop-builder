@@ -1,9 +1,9 @@
 import { Flex, ModalBody, useMediaQuery } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
-import Input from "components/redesign/input/Input";
+import AppInput from "components/redesign/input/AppInput";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
-import Select from "components/redesign/select/Select";
+import AppSelect from "components/redesign/select/AppSelect";
 import { IPaymentPublicService } from "lib/apis/shop/interfaces";
 import React, { ChangeEvent, useEffect } from "react";
 import TokensListContainer from "./TokensListContainer";
@@ -64,12 +64,12 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                     alignItems={"center"}
                     justifyContent={"space-between"}
                 >
-                    <Input
+                    <AppInput
                         leftElement={<AppIcons.Search />}
                         inputGroupProps={{ width: { base: "100%", md: "300px" } }}
                         inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
                     />
-                    <Select
+                    <AppSelect
                         itemColor="neutral.white"
                         itemBackgroundColor="#1a202c"
                         items={[allNetworksItem, ...paymentMethodsData]}

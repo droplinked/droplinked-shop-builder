@@ -4,6 +4,15 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 import React from 'react';
 
+/**
+ * CurrencyIcon Component - Displays currency symbol icon
+ * 
+ * Automatically displays the appropriate currency icon based on the user's
+ * selected currency settings. Supports major currencies like USD, EUR, GBP, JPY.
+ * 
+ * @param {object} props - Component props extending Chakra UI's BoxProps
+ * @param {BoxProps} props - Additional styling properties for the container
+ */
 export default function CurrencyIcon({ ...boxProps }: BoxProps) {
     const { symbol, abbreviation } = useCurrencyConverter()
 

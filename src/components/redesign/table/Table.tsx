@@ -4,6 +4,29 @@ import AppIcons from "assets/icon/Appicons"
 import React, { ReactNode } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component"
 
+/**
+ * Advanced table component with sorting and infinite scroll capabilities
+ * 
+ * @template T - The type of data in the table rows
+ * @param {object} props - Component props
+ * @param {ColumnDef<T>[]} props.columns - Column definitions (from TanStack Table)
+ * @param {T[]} props.data - Array of data items to display in the table
+ * @param {(row: T) => ReactNode} [props.renderActions] - Function to render action buttons for each row
+ * @param {boolean} [props.enableSorting=false] - Whether to enable column sorting
+ * @param {SortingState} [props.sorting] - Current sorting state (required if enableSorting=true)
+ * @param {(state: SortingState) => void} [props.setSorting] - Function to update sorting state
+ * @param {boolean} [props.isLoading] - Whether to show loading state
+ * @param {ReactNode} [props.emptyView] - Content to show when there's no data
+ * @param {ReactNode} [props.footerContent] - Content to display in the table footer
+ * @param {object} [props.infiniteScroll] - Configuration for infinite scrolling
+ * @param {number} props.infiniteScroll.dataLength - Current number of items in data array
+ * @param {boolean} props.infiniteScroll.hasMore - Whether there's more data to load
+ * @param {() => void} props.infiniteScroll.next - Function to fetch next page of data
+ * @param {boolean} props.infiniteScroll.isFetchingNextPage - Whether next page is currently loading
+ * @param {number|string} [props.tableFontSize] - Font size for table cells
+ * 
+ * @returns {JSX.Element} Advanced table component
+ */
 interface Props<T extends object> {
     columns: ColumnDef<T>[]
     data: T[]

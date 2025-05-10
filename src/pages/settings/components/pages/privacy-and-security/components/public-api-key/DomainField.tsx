@@ -1,5 +1,5 @@
 import AppButton from 'components/redesign/button/AppButton'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
@@ -37,7 +37,7 @@ export default function DomainField({ refetch, domains }: Props) {
     };
 
     return (
-        <Input
+        <AppInput
             inputProps={{ isDisabled: !hasShopApiPermission, placeholder: "Domain.com", value, onChange: (e) => setValue(e.target.value) }}
             inputContainerProps={{ padding: 2, paddingLeft: 4 }}
             rightElement={

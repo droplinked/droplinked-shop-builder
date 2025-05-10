@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 
@@ -43,7 +43,7 @@ export default function ProductBulkDimensionsUpdater() {
 }
 
 const SkuAttributeInput = ({ field, placeholder, updateSkus, initialValue }) => (
-    <Input
+    <AppInput
         inputContainerProps={{ width: '92px' }}
         inputProps={{
             type: 'number',

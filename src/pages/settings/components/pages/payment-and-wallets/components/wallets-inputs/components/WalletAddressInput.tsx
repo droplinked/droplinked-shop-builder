@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import AppButton from 'components/redesign/button/AppButton';
 
 interface WalletAddressInputProps {
@@ -13,7 +13,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
     const isButtonDisabled = isEditing && value.trim().length > 0
 
     return (
-        <Input
+        <AppInput
             inputProps={{
                 placeholder: "Enter your wallet address",
                 value,

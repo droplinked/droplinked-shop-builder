@@ -15,6 +15,14 @@ export interface AppButtonProps extends ButtonProps {
  *
  * Features multiple variants (normal, filled, outlined, secondary) and sizes (sm, md, lg)
  * Supports left and right icons, and all ChakraUI button props
+ * 
+ * @param {object} props - Component props
+ * @param {('normal'|'filled'|'outlined'|'secondary')} [props.variant='filled'] - Button style variant
+ * @param {('sm'|'md'|'lg')} [props.size='md'] - Button size
+ * @param {ReactElement|null} [props.iconLeft] - Icon to display on the left side
+ * @param {ReactElement|null} [props.iconRight] - Icon to display on the right side
+ * @param {React.ReactNode} props.children - Button content
+ * @param {boolean} [props.isDisabled] - Whether the button is disabled
  */
 const AppButton = ({
     variant = 'filled',

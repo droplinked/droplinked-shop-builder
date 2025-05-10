@@ -1,7 +1,7 @@
 import React from 'react'
 import { Wallet } from './ManualTransfer';
 import { Flex } from '@chakra-ui/react';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import AppIcons from 'assets/icon/Appicons';
 import BlueButton from 'components/redesign/button/BlueButton';
 import AppTypography from 'components/common/typography/AppTypography';
@@ -42,14 +42,14 @@ export default function MobileManualTransfer({ data, setData }: Props) {
                     borderRadius={8}
                 >
                     <Flex gap={3} flexDirection={"column"} p={3}>
-                        <Input
+                        <AppInput
                             inputProps={{
                                 placeholder: "Enter your wallet address",
                                 onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value),
                                 value: wallet.receiver
                             }}
                         />
-                        <Input
+                        <AppInput
                             inputProps={{
                                 placeholder: "0",
                                 type: "number",

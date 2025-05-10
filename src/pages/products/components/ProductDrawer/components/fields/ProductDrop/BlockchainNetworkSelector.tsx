@@ -1,6 +1,6 @@
 import { Skeleton } from "@chakra-ui/react"
 import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
-import Select from "components/redesign/select/Select"
+import AppSelect from "components/redesign/select/AppSelect"
 import { supportedChainsService } from "lib/apis/sku/services"
 import useProductForm from "pages/products/hooks/useProductForm"
 import React from "react"
@@ -29,7 +29,7 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
             description="Choose the blockchain network where product details will be recorded as an NFT."
             rightContent={
                 <Skeleton isLoaded={!isFetching}>
-                    <Select
+                    <AppSelect
                         items={blockchainNetworks}
                         labelAccessor="label"
                         valueAccessor="value"

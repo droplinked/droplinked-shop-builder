@@ -1,7 +1,7 @@
 import { Box, Spinner, Text } from '@chakra-ui/react'
 import { AvailableoutlinedMd } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedMd'
 import { NotavailableoutlinedMd } from 'assets/icons/Sign/NotAvailableOutlined/NotavailableoutlinedMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -53,7 +53,7 @@ function BlogSlugInput() {
 
     return (
         <Box padding={6}>
-            <Input
+            <AppInput
                 label='URL'
                 description='Customize the post URL for better readability, search rankings and shareability.'
                 inputProps={{

@@ -1,6 +1,17 @@
 import { Badge, BadgeProps } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
+/**
+ * Badge component with different status styles and size variants
+ * 
+ * @param {object} props - Component props extending Chakra UI's BadgeProps
+ * @param {string|number} props.text - Text content to display in the badge
+ * @param {'neutral'|'pending'|'success'|'error'} [props.status='neutral'] - Visual status style of the badge
+ * @param {'24'|'32'} [props.size='24'] - Size variant of the badge (height in pixels)
+ * @param {ReactNode} [props.icon] - Optional icon to display before the text
+ * 
+ * @returns {JSX.Element} Styled badge component
+ */
 interface Props extends BadgeProps {
   text: string | number;
   status?: 'neutral' | 'pending' | 'success' | 'error';

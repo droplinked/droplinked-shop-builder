@@ -2,7 +2,7 @@ import { Button, Divider, Flex, Popover, PopoverContent, PopoverTrigger, Text, u
 import AppIcons from 'assets/icon/Appicons'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React, { useRef, useState } from 'react'
 
@@ -89,7 +89,7 @@ const CategorySelect = () => {
 
                     <Divider borderColor="neutral.gray.700" />
 
-                    <Input
+                    <AppInput
                         inputContainerProps={{ border: 'none', padding: '8px 12px' }}
                         inputProps={{
                             placeholder: 'New Category',

@@ -1,6 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
 import useAppStore from 'lib/stores/app/appStore'
@@ -31,7 +31,7 @@ export default function CustomURL() {
             title="Custom URL"
             description='Enter domain without “www.” and then add the provided DNS details in domain settings.'
             rightContent={
-                <Input
+                <AppInput
                     inputProps={{ isDisabled: isFetching, placeholder: "Domain.com", value: Array.isArray(shopDomain) ? shopDomain[0] : shopDomain, onChange: (e) => setUrl(e.target.value) }}
                     inputContainerProps={{ padding: 2, paddingLeft: 4 }}
                     rightElement={

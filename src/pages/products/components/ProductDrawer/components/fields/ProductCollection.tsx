@@ -1,5 +1,5 @@
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
-import Select from 'components/redesign/select/Select'
+import AppSelect from 'components/redesign/select/AppSelect'
 import useCollections from 'hooks/useCollections/useCollections'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect } from 'react'
@@ -21,7 +21,7 @@ function ProductCollection() {
             description="Select the collection that will feature this product."
             errorMessage={errors.productCollectionID}
         >
-            <Select
+            <AppSelect
                 items={collections?.data ?? []}
                 valueAccessor="_id"
                 labelAccessor="title"
