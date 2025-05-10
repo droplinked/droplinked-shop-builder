@@ -1,15 +1,13 @@
 import { Flex } from '@chakra-ui/react';
 import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
-import { SearchMd } from 'assets/icons/System/Search/SearchMd';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import AppInput from 'components/redesign/input/AppInput';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import { ordersStatuesServices } from 'lib/apis/orders/orderServices';
 import React from 'react';
 import { useQuery } from 'react-query';
 
 interface Props {
-    onSearchChange: (value: string) => void;
+    onSearchChange?: (value: string) => void;
     onStatusChange: (value: string) => void;
     selectValue?: string;
     searchValue?: string;
@@ -26,6 +24,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
 
     return (
         <Flex alignItems="center" justifyContent="space-between" gap={{ base: 4, md: 0 }}>
+            {/* Search functionality commented out
             <AppInput
                 leftElement={<SearchMd color='#7b7b7b' />}
                 inputGroupProps={{
@@ -40,7 +39,8 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                     value: searchValue,
                 }}
             />
-            <AppSkeleton borderRadius={8} isLoaded={!isFetching}>
+            */}
+            <AppSkeleton borderRadius={8} ml="auto" isLoaded={!isFetching}>
                 <SelectMenu
                     items={isFetching ?
                         [] :

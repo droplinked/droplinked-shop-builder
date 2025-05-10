@@ -12,16 +12,17 @@ import { AxiosError } from 'axios';
 export default function PurchaseHistory() {
     // State management
     const [isExporting, setIsExporting] = useState(false);
+    // Search functionality commented out but state kept for future use
     const [searchValue, setSearchValue] = useState("");
     const [statusValue, setStatusValue] = useState("");
     const { showToast } = useAppToast();
 
-    // Debounce search to prevent excessive API calls
+    // Debounce search to prevent excessive API calls (kept but not currently used)
     const debouncedSearchValue = useDebounce(searchValue, 1500);
 
-    // Query for purchase history data
+    // Query for purchase history data - search param removed
     const purchaseHistoryQuery = useInfiniteQuery({
-        queryKey: ["purchase-history-query", debouncedSearchValue, statusValue],
+        queryKey: ["purchase-history-query", statusValue], // Search removed from dependencies
         queryFn: ({ pageParam = 1 }) => ordersServices({
             page: pageParam,
             status: statusValue || undefined,
@@ -62,10 +63,9 @@ export default function PurchaseHistory() {
         }
     };
 
-    // Determine if there are no orders to display
+    // Determine if there are no orders to display (removed searchValue check)
     const isEmpty = !purchaseHistoryQuery.isFetching &&
         !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length &&
-        !searchValue &&
         !statusValue;
 
     return (
@@ -90,9 +90,10 @@ export default function PurchaseHistory() {
                     <EmptyView />
                 ) : (
                     <HistoryTable
+                        // Search functionality commented out but props kept for future use
                         searchValue={searchValue}
-                        statusValue={statusValue}
                         onSearchChange={setSearchValue}
+                        statusValue={statusValue}
                         onStatusChange={setStatusValue}
                         purchaseHistoryQuery={purchaseHistoryQuery}
                     />

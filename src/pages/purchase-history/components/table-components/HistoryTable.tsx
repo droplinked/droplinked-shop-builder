@@ -6,7 +6,7 @@ import DesktopTable from './DesktopTable';
 import { UseInfiniteQueryResult } from 'react-query';
 
 interface Props {
-    onSearchChange: (value: string) => void;
+    onSearchChange?: (value: string) => void; // Made optional
     onStatusChange: (value: string) => void;
     searchValue?: string;
     statusValue?: string;
@@ -15,9 +15,9 @@ interface Props {
 
 /**
     * HistoryTable component displays a table of purchase history with filter inputs
-    * @param onSearchChange - Function to handle search input changes
+    * @param onSearchChange - Function to handle search input changes (currently commented out)
     * @param onStatusChange - Function to handle status filter changes
-    * @param searchValue - Current value of the search input
+    * @param searchValue - Current value of the search input (currently not used)
     * @param statusValue - Current value of the status filter
     * @param purchaseHistoryQuery - Query result for fetching purchase history
  */
@@ -28,10 +28,11 @@ export default function HistoryTable({ onStatusChange, onSearchChange, searchVal
     return (
         <Flex flexDirection="column" gap={{ base: 4, md: 6 }} width="100%">
             <FilterInputs
-                onSearchChange={onSearchChange}
                 onStatusChange={onStatusChange}
-                searchValue={searchValue}
                 selectValue={statusValue}
+                // Search functionality commented out but props kept for future use
+                onSearchChange={onSearchChange}
+                searchValue={searchValue}
             />
 
             {isSmallerThan768 ?
