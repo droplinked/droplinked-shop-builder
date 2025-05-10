@@ -1,6 +1,6 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import React from 'react';
 
 interface Props {
@@ -20,9 +20,7 @@ const CustomizableSection = ({ onCreateStoreClick }: Props) => (
         <Text fontSize="base" color="text.subtext.placeholder.dark">
           Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity.
         </Text>
-        <Button onClick={onCreateStoreClick}>
-          Create Store
-        </Button>
+        <AppButton onClick={onCreateStoreClick}>Create Store</AppButton>
       </VStack>
     </Box>
     <Box display="flex" justifyContent="center" alignItems="center">

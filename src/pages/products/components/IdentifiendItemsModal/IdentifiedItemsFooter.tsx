@@ -1,5 +1,5 @@
 import { ModalFooter } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 
 interface Props {
@@ -21,16 +21,16 @@ export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button variant="secondary" onClick={onDiscard}>
+            <AppButton variant="secondary" onClick={onDiscard}>
                 Discard
-            </Button>
-            <Button
+            </AppButton>
+            <AppButton
                 isDisabled={selectedProductsCount === 0}
                 onClick={onImport}
                 isLoading={isLoading}
             >
                 {buttonText}
-            </Button>
+            </AppButton>
         </ModalFooter>
     )
 }

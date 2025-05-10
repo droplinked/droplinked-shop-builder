@@ -1,7 +1,7 @@
 import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
@@ -253,7 +253,8 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 </Box>
                             </Box>
                             {Error === "USDC" ? null : 
-                             <Button
+
+                             <AppButton
                                 display="flex"
                                 border="none"
                                 color="#FFF"
@@ -272,7 +273,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 onClick={connectWalletModal.onOpen}
                             >
                                 Connect Wallet
-                            </Button> }
+                            </AppButton> }
                            
                         </Box>
                     )}

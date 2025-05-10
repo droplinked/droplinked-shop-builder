@@ -1,5 +1,5 @@
 import { useDisclosure } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import Input from 'components/redesign/input/Input'
 import useAppToast from 'hooks/toast/useToast'
 import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
@@ -35,9 +35,9 @@ export default function CustomURL() {
                     inputProps={{ isDisabled: isFetching, placeholder: "Domain.com", value: Array.isArray(shopDomain) ? shopDomain[0] : shopDomain, onChange: (e) => setUrl(e.target.value) }}
                     inputContainerProps={{ padding: 2, paddingLeft: 4 }}
                     rightElement={
-                        <Button borderRadius={4} isDisabled={shopDomain ? false : !url} isLoading={isFetching} onClick={shopDomain ? onDnsModalOpen : onOpen} fontSize={"12px"} height={"32px"} paddingInline={{ base: 3, lg: 3 }} padding={1}>
+                        <AppButton isDisabled={shopDomain ? false : !url} isLoading={isFetching} onClick={shopDomain ? onDnsModalOpen : onOpen} fontSize={"12px"} height={"32px"} paddingInline={{ base: 3, lg: 3 }} padding={1}>
                             {shopDomain ? "DNS Info" : "Add"}
-                        </Button>
+                        </AppButton>
                     }
                 />
             }

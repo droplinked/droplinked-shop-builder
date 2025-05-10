@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
@@ -50,8 +50,8 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
                 description="Are you sure you want to delete this Domain?"
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
-                    <Button width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>Cancel</Button>
-                    <Button width={"45%"} onClick={handleDeleteDomain} disabled={isLoading} isLoading={isLoading}>Delete</Button>
+                    <AppButton width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>Cancel</AppButton>
+                    <AppButton width={"45%"} onClick={handleDeleteDomain} disabled={isLoading} isLoading={isLoading}>Delete</AppButton>
                 </Flex>
             </ModalHeaderData>
         </AppModal>

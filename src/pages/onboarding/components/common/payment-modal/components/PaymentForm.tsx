@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import React, { useState } from 'react'
 import useOnboardingStore from '../../../../stores/useOnboardingStore'
@@ -101,18 +101,15 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
         </Text>
       )}
       <Flex gap={4} px={12} py={6} borderTop="1px solid" borderColor="neutral.gray.800" bg="#1C1C1C">
-        <Button variant="secondary" onClick={onClose}>
-          Discard
-        </Button>
-        <Button 
+        <AppButton variant="secondary" onClick={onClose}>  Discard  </AppButton>
+        <AppButton 
           flexGrow={1} 
-          variant="primary" 
           onClick={handlePaymentSubmit}
           isLoading={isProcessing}
           isDisabled={!isFormCompleted || isProcessing}
         >
           Get {planDetail.title}
-        </Button>
+        </AppButton>
       </Flex>
     </>
   )

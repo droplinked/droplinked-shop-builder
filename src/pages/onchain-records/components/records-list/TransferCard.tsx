@@ -1,7 +1,7 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { ICombinedNft } from 'pages/onchain-records/utils/interface'
 import React from 'react'
 import TransferModal from './transfer-modal/TransferModal'
@@ -55,20 +55,18 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                     }
                 </Flex>
             </Flex>
-            <Button
+            <AppButton
                 variant='secondary'
                 color={"#2BCFA1"}
                 bg={"none"}
                 border={"none"}
                 fontSize={{ base: 14, lg: 16 }}
-                fontWeight={500}
-                paddingInline={"14px"}
                 onClick={onOpen}
                 isDisabled={isDroplinkedProduct || item.quantity === "0"}
                 width={"20%"}
             >
                 Transfer
-            </Button>
+            </AppButton>
             <TransferModal item={item} isOpen={isOpen} onClose={onClose} />
         </Flex>
     )

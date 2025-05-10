@@ -18,7 +18,7 @@ This component is part of the internal component library and doesn't require sep
 ## Usage
 
 ```tsx
-import AppButton from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import { Icon } from '@chakra-ui/icons';
 
 // Basic usage

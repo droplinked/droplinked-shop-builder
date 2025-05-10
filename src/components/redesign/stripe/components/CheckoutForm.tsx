@@ -1,6 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
 import React, { useState } from 'react'
 
@@ -42,8 +42,8 @@ function CheckoutForm({ onSuccess, cancel, amount, onError }: IFormStripe) {
             <VStack align="stretch" spacing="30px">
                 <PaymentElement onChange={(e) => setStates((prev) => ({ ...prev, complete: e.complete }))} />
                 <Flex justifyContent="space-between">
-                    <Button variant='secondary' onClick={() => cancel()}>Cancel</Button>
-                    <Button type='button' onClick={(e) => handleSubmit(e)} isDisabled={!States.complete} isLoading={States.loading}>Pay {amount ? `$${amount.toFixed(2)}` : ""}</Button>
+                    <AppButton variant='secondary' onClick={() => cancel()}>Cancel</AppButton>
+                    <AppButton type='button' onClick={(e) => handleSubmit(e)} isDisabled={!States.complete} isLoading={States.loading}>Pay {amount ? `$${amount.toFixed(2)}` : ""}</AppButton>
                 </Flex>
             </VStack>
         </form>

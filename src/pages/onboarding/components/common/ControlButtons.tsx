@@ -1,7 +1,8 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import React, { useState } from 'react'
+import AppTypography from 'components/common/typography/AppTypography'
 
 interface ControlButtonsProps {
     onBack: () => void
@@ -39,35 +40,34 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     return (
         <Flex width="100%" justifyContent="space-between" alignItems="center" paddingBlockEnd={{ base: "75px", lg: 0 }}>
             {onSkip && (
-                <Button
-                    variant='ghost'
+                <AppTypography
+                    as={"button"}
                     onClick={onSkip}
                     paddingInline="0px"
-                    isDisabled={isButtonLoading}
+                    color='white'
+                    fontWeight='400'
+                    fontSize='14px'
                 >
                     Skip for Now
-                </Button>
+                </AppTypography>
             )}
             <Flex marginLeft="auto" gap={4}>
                 {showBackButton &&
-                    <Button
-                        fontWeight={500}
+                    <AppButton
                         variant='secondary'
                         onClick={onBack}
                         isDisabled={isButtonLoading}
                     >
                         {backText}
-                    </Button>
+                    </AppButton>
                 }
-                <Button
-                    fontWeight={500}
-                    variant='primary'
+                <AppButton
                     onClick={handleSubmit}
                     rightIcon={<ArrowrightMd />}
                     isLoading={isButtonLoading}
                 >
                     {continueText}
-                </Button>
+                </AppButton>
             </Flex>
         </Flex>
     )

@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -44,8 +44,8 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
                 ))}
             </Flex>
             <Flex gap={4}>
-                <Button onClick={() => navigate("/analytics/plans")} fontWeight={500} fontSize={14} variant='secondary'>Visit Pricing Plans</Button>
-                <Button isLoading={isFetching} fontWeight={500} fontSize={14} onClick={onOpen}>Upgrade</Button>
+                <AppButton variant='secondary' onClick={() => navigate("/analytics/plans")}>Visit Pricing Plans</AppButton>
+                <AppButton isLoading={isFetching} onClick={onOpen}>Upgrade</AppButton>
             </Flex>
         </Flex>
     )

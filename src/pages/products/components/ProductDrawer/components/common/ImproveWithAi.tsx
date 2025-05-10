@@ -1,7 +1,7 @@
 import { Box, ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import React from "react";
 
 interface Props {
@@ -92,21 +92,18 @@ export default function ImproveWithAi({
             ) : (
                 <Menu isOpen={isOpen} onClose={onClose} placement="end" isLazy>
                     <MenuButton type="button" disabled={isDisabled} cursor={isDisabled ? "not-allowed" : "pointer"} onClick={onOpen}>
-                        <Button
+                    {/* TODO: check with the design */}
+                        <AppButton
                             variant="secondary"
-                            border={"1px solid"}
-                             borderColor="neutral.gray.800"
-                            borderRadius={"4px"}
-                            paddingInline={3}
-                            background={"neutral.gray.1000"}
-                            fontSize={12}
-                            fontWeight={500}
-                            color={"#2bcfa1"}
+                            size="sm"
+                            color={'main.primary'}
+                            bg={"neutral.gray.1000"}
+                            borderColor={"neutral.gray.800"}
                             isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<AppIcons.MagicWind width={"16px"} height={"16px"} />}
                         >
                             {!isImproveLoading && "Improve With AI"}
-                        </Button>
+                        </AppButton>
                     </MenuButton>
                     <MenuList zIndex={9999} borderRadius={8} background={"neutral.gray.1000"} border={"none"} p={3} minWidth={"150px"}>
                         {items.map((item, index) => {

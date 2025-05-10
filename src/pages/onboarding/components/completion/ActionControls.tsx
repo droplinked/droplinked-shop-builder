@@ -1,5 +1,5 @@
 import { AbsoluteCenter, Box, Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 
 interface Props {
@@ -28,17 +28,17 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
 
     return (
         <Flex position="relative" justifyContent="space-between" alignItems="center" gap={{ base: 4 }}>
-            <Button variant="secondary" onClick={handlePreviousAction}>
+            <AppButton variant="secondary" onClick={handlePreviousAction}>
                 {currentSlideIndex === 0 ? 'Back' : 'Previous'}
-            </Button>
+            </AppButton>
 
             <AbsoluteCenter display={{ base: "none", md: "flex" }} gap="6px">
                 {renderDots()}
             </AbsoluteCenter>
 
-            <Button flex={{ base: 1, md: 'unset' }} onClick={handleNextAction}>
+            <AppButton flex={{ base: 1, md: 'unset' }} onClick={handleNextAction}>
                 {currentSlideIndex === 0 ? 'Next' : 'Start Exploring Dashboard'}
-            </Button>
+            </AppButton>
         </Flex>
     )
 }

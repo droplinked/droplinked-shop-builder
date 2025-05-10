@@ -1,5 +1,6 @@
-import { Box, Button, ModalBody } from '@chakra-ui/react';
+import { Box, ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
+import AppButton from 'components/redesign/button/AppButton';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
@@ -16,7 +17,15 @@ function StatisticModal({ data }: IProps) {
     const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
     return (
         <>
-            <Button colorScheme={"black"} onClick={() => setIsOpen(true)} backgroundColor={"transparent"} border={"1px solid"} borderColor={"neutral.gray.100"} color={"white"}><AppIcons.Statistics style={{ margin: "0px 5px" }} /> View Statistics</Button>
+            <AppButton
+              variant="outlined"
+              color="neutral.white"
+              borderColor="neutral.white"
+              onClick={() => setIsOpen(true)}
+              leftIcon={<AppIcons.Statistics />}
+            >
+              View Statistics
+            </AppButton>
             <AppModal
                 modalRootProps={{
                     isOpen,

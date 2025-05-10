@@ -1,5 +1,5 @@
 import { ModalFooter } from "@chakra-ui/react"
-import Button, { AppButtonProps } from "components/redesign/button/Button"
+import AppButton, { AppButtonProps } from "components/redesign/button/AppButton"
 import AppModal from "components/redesign/modal/AppModal"
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData"
 import React from "react"
@@ -36,17 +36,17 @@ function ConfirmationModal({ isOpen, onClose, icon, title, description, confirmB
             />
 
             <ModalFooter display="flex" gap={6} mb="8">
-                <Button flex={1} variant="secondary" isDisabled={isLoading} onClick={onClose}>
+                <AppButton flex={1} variant="secondary" isDisabled={isLoading} onClick={onClose}>
                     Cancel
-                </Button>
-                <Button
+                </AppButton>
+                <AppButton
                     flex={1}
                     isLoading={isLoading}
                     isDisabled={isLoading}
                     {...confirmButtonProps}
                 >
                     {confirmButtonProps?.children}
-                </Button>
+                </AppButton>
             </ModalFooter>
         </AppModal>
     )

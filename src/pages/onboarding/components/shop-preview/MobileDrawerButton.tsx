@@ -1,9 +1,10 @@
 import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg'
-import Button from 'components/redesign/button/Button'
 import React from 'react'
 import ShopPreviewHeader from './ShopPreviewHeader'
+import { Button } from '@chakra-ui/react'
 
 export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
+    
     return (
         <Button
             position="fixed"
@@ -23,7 +24,7 @@ export default function MobileDrawerButton({ onOpen }: { onOpen: () => void }) {
             py={2}
             borderTopRadius={16}
         >
-            <ShopPreviewHeader rightIcon={<ChevronupLg color='#fff' />} />
+            <ShopPreviewHeader rightIcon={<ChevronupLg color='#fff'  />} />
         </Button>
     )
 }

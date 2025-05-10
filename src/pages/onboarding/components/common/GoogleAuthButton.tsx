@@ -1,5 +1,5 @@
 import AppIcons from 'assets/icon/Appicons'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -49,14 +49,17 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId }: Go
     }, [searchParams, loading, authenticateUser, finalizeLogin])
 
     return (
-        <Button
+        <AppButton
             variant="secondary"
             leftIcon={<AppIcons.Google />}
+            useOriginalIconColor={true}
+            isLoading={loading}
             isDisabled={isDisabled}
             onClick={handleClick}
+
         >
             Google Account
-        </Button>
+        </AppButton>
     )
 }
 

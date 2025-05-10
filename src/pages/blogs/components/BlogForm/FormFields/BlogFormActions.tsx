@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -12,20 +12,20 @@ function BlogFormActions() {
 
     return (
         <Flex alignSelf="flex-end" alignItems="center" gap={4}>
-            <Button
+            <AppButton
                 variant='secondary'
                 isDisabled={isSubmitting}
                 onClick={() => navigate("/analytics/blogs")}
             >
                 Discard
-            </Button>
-            <Button
+            </AppButton>
+            <AppButton
                 isLoading={isSubmitting}
                 isDisabled={isSubmitting}
                 onClick={submitForm}
             >
                 {mainButtonText}
-            </Button>
+            </AppButton>
         </Flex>
     )
 }

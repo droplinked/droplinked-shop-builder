@@ -1,7 +1,7 @@
 import { Box, Flex, IconButton, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
 import { CloseMd } from 'assets/icons/Sign/Close/CloseMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { ActionButtonProps } from '../interface'
 
@@ -51,7 +51,7 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
                         >
                             {actionButtons?.map((button, index) => {
                                 const ButtonComponent = (
-                                    <Button
+                                    <AppButton
                                         key={index}
                                         {...button}
                                         onClick={(e) => {
@@ -60,7 +60,7 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
                                         width="100%"
                                     >
                                         {button.title}
-                                    </Button>
+                                    </AppButton>
                                 );
 
                                 if (button.wrapper) {

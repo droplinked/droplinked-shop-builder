@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
@@ -49,8 +49,8 @@ export default function ConfirmationModal({ isOpen, onClose, url, refetch }: Pro
                 description={`You are about to set "${url}" for your shop’s custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?`}
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
-                    <Button width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>No</Button>
-                    <Button width={"45%"} onClick={generateShopCustomURL} disabled={isLoading} isLoading={isLoading}>Yes, The entered URL is correct</Button>
+                    <AppButton variant='secondary' width={"45%"} disabled={isLoading} onClick={onClose}>No</AppButton>
+                    <AppButton width={"45%"} onClick={generateShopCustomURL} disabled={isLoading} isLoading={isLoading}>Yes, The entered URL is correct</AppButton>
                 </Flex>
             </ModalHeaderData>
         </AppModal>

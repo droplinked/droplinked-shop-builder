@@ -1,5 +1,5 @@
 import { ModalFooter } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
 import { uploadProductCSV } from 'lib/apis/product/productServices'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
@@ -50,12 +50,12 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button variant="secondary" disabled={isLoading} onClick={closeModal}>
+            <AppButton variant="secondary" disabled={isLoading} onClick={closeModal}>
                 Discard
-            </Button>
-            <Button onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
+            </AppButton>
+            <AppButton onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
                 {isLoading ? 'Uploading' : 'Validate'}
-            </Button>
+            </AppButton>
         </ModalFooter>
     )
 }

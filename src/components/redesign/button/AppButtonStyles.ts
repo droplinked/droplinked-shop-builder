@@ -13,17 +13,12 @@ const styles = {
       },
       hover: {
         background: 'button.hover.transparent',
-        borderColor: 'transparent',
-        color: 'text.primary',
       },
       pressed: {
         background: 'button.pressed.transparent',
-        borderColor: 'transparent',
-        color: 'text.primary',
       },
       disabled: {
         background: 'transparent',
-        borderColor: 'transparent',
         color: 'text.disabled.dark',
       },
     },
@@ -35,13 +30,9 @@ const styles = {
       },
       hover: {
         background: 'button.hover.filled',
-        borderColor: 'transparent',
-        color: 'black',
       },
       pressed: {
         background: 'button.pressed.filled',
-        borderColor: 'transparent',
-        color: 'black',
       },
       disabled: {
         background: 'button.disable.dark',
@@ -57,13 +48,9 @@ const styles = {
       },
       hover: {
         background: 'button.hover.transparent',
-        borderColor: 'button.default.primary',
-        color: 'text.primary',
       },
       pressed: {
         background: 'button.pressed.transparent',
-        borderColor: 'button.default.primary',
-        color: 'primary.700',
       },
       disabled: {
         background: 'transparent',
@@ -79,18 +66,14 @@ const styles = {
       },
       hover: {
         background: 'button.hover.secondary',
-        borderColor: 'transparent',
-        color: 'neutral.white',
       },
       pressed: {
         background: 'button.pressed.secondary',
-        borderColor: 'transparent',
-        color: 'neutral.white',
       },
       disabled: {
-        background: 'transparent',
-        borderColor: 'transparent',
-        color: 'transparent',
+        background: 'button.disable.dark',
+        borderColor: 'button.disable.dark',
+        color: 'text.disabled.dark',
       },
     },
   },
@@ -98,7 +81,7 @@ const styles = {
     sm: {
       height: '32px',
       borderRadius: '4px',
-      fontSize: '14px',
+      fontSize: '12px',
       lineHeight: '16px',
       gap: '4px',
     },
@@ -119,4 +102,56 @@ const styles = {
   },
 } as const;
 
-export default styles;
+/**
+ * Helper functions
+ */
+const helpers = {
+  /**
+   * Gets variant and size styles with fallback to defaults
+   */
+  getStyles(variant: string, size: string) {
+    // Validate variant and size
+    const validVariant = variant in styles.variant ? variant : 'filled';
+    const validSize = size in styles.size ? size : 'md';
+    
+    // Get style objects
+    const variantStyle = styles.variant[validVariant as keyof typeof styles.variant];
+    const sizeStyle = styles.size[validSize as keyof typeof styles.size];
+    
+    return { variantStyle, sizeStyle };
+  },
+  
+  /**
+   * Gets state-specific style properties with safe fallbacks
+   */
+  getStateStyles(variantStyle: any, isDisabled: boolean) {
+    const stateObj = isDisabled ? variantStyle.disabled : variantStyle.default;
+    
+    return {
+      borderColor: 'borderColor' in stateObj ? stateObj.borderColor : 'transparent',
+      background: 'background' in stateObj ? stateObj.background : 'transparent',
+      color: 'color' in stateObj ? stateObj.color : 'text.primary',
+      hover: !isDisabled && variantStyle.hover ? variantStyle.hover : {},
+      active: !isDisabled && variantStyle.pressed ? variantStyle.pressed : {},
+    };
+  },
+  
+  /**
+   * Gets icon styling for consistency
+   */
+  getIconStyling() {
+    return {
+      'svg': {
+        stroke: 'currentColor',
+        fill: 'none',
+        path: {
+          stroke: 'currentColor',
+        }
+      }
+    };
+  }
+};
+
+// Create a const object before exporting to fix the linting error
+const buttonStyleUtils = { styles, helpers };
+export default buttonStyleUtils;
