@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clearStorage, getTokens, setTokens } from "utils/app/ authutils";
+import { clearStorage, getTokens, setTokens } from "utils/app/authutils";
 import { BASE_URL } from "utils/app/variable";
 
 const axiosInstance = axios.create({
