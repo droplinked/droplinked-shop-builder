@@ -84,7 +84,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             Remember my password
                         </Checkbox>
 
-                        <AppButton type="submit" isLoading={isSubmitting}>
+                        <AppButton size='lg' type="submit" isLoading={isSubmitting}>
                             Sign In
                         </AppButton>
 

@@ -5,7 +5,6 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
 import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
 import BillingSummary from './BillingSummary';
 import PlanCard from './PlanCard';
-import PlanPrice from 'components/redesign/plan-price/PlanPrice';
 
 interface BillingInfoProps {
   planDetail: SubscriptionPlan;

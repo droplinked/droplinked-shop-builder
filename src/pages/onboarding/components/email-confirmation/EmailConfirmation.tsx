@@ -46,14 +46,14 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     marginTop={6}
                     sx={{ "p": { color: "#FFF", fontSize: 14 } }}
                 >
-                    <Text display="flex" alignItems="end" gap={1}>
+                    <Text display="flex" gap={1}>
                         Didn’t receive the code? {" "}
                         <InteractiveText onClick={resendCode}>
                             {resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
                         </InteractiveText>
                     </Text>
 
-                    <Text marginTop={2}>
+                    <Text display={'flex'} gap={1} marginTop={2}>
                         Want to change your email address? {" "}
                         <InteractiveText onClick={onBack}>Go back</InteractiveText>
                     </Text>

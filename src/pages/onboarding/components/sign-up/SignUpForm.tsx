@@ -108,12 +108,15 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                             />
 
                             <Checkbox
+                                display='flex'
                                 marginBlock={3}
                                 alignItems={{ base: "start", md: "center" }}
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
-                                By signing up, I agree to your{" "}
-                                <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                <Text display='flex' gap='1' fontSize={14} color="text.white">
+                                     By signing up, I agree to your
+                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText> 
+                                </Text>                                                 
                             </Checkbox>
 
                             <AppButton

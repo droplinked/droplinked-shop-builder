@@ -39,7 +39,7 @@ function Plan({ plan }: IProps) {
             </HStack>
             <PricePlan plan={plan} />
             {/* TODO: Check with the design */}
-            <AppButton width={"100%"} mt="1rem" textColor={"#000"} isDisabled={isFree} color={""} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</AppButton>
+            <AppButton size='lg' width={"100%"} mt="1rem" isDisabled={isFree} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</AppButton>
             {purchaseModal.isOpen && (
                 <SubscriptionPlanCheckoutModal
                     isOpen={purchaseModal.isOpen}

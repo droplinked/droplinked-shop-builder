@@ -24,11 +24,9 @@ function NewCurrentPlan() {
                 <PlanBadge currentSubData={currentSubData} data={data} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>
                 {type !== 'STARTER' && (
-                    //TODO: Check with the design
                     <AppButton
-                        backgroundColor={'transparent'}
-                        border={'none'}
-                        color={'white'}
+                        variant='normal'
+                        color="neutral.white"
                         onClick={() => window.open('mailto:support@droplinked.com')}
                     >
                     Cancel Subscription

@@ -23,13 +23,8 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
             }}
             inputContainerProps={{ padding: 2, paddingLeft: 4 }}
             rightElement={
-                //TODO: Check with the design
                 <AppButton
-                    borderRadius={4}
-                    fontSize={12}
-                    paddingBlock={2}
-                    px={3}
-                    height={"min-content"}
+                    size='sm'
                     isDisabled={!isButtonDisabled}
                     onClick={onSave}
                     visibility={isButtonDisabled ? "visible" : "hidden"}

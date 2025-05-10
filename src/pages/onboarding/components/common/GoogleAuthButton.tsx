@@ -52,8 +52,11 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId }: Go
         <AppButton
             variant="secondary"
             leftIcon={<AppIcons.Google />}
+            useOriginalIconColor={true}
+            isLoading={loading}
             isDisabled={isDisabled}
             onClick={handleClick}
+
         >
             Google Account
         </AppButton>

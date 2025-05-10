@@ -253,7 +253,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 </Box>
                             </Box>
                             {Error === "USDC" ? null : 
-                            //TODO: check with design
+
                              <AppButton
                                 display="flex"
                                 border="none"

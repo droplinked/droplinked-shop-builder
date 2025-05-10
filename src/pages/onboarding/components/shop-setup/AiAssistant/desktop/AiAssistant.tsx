@@ -67,14 +67,10 @@ export default function AiAssistant() {
                     Customize your shop with droplinked AI
                 </Text>
             </Box>
-            {/* TODO: Check with the design */}
             <AppButton
                 marginTop="auto"
-                background="rgba(43, 207, 161, 0.10)"
+                bg="rgba(43, 207, 161, 0.10)"
                 color="#fff"
-                border="none"
-                fontSize={14}
-                fontWeight={500}
                 _hover={{ background: "rgba(43, 207, 161, 0.20)" }}
                 onClick={onOpen}
             >

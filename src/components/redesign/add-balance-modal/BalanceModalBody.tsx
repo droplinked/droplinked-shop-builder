@@ -47,7 +47,6 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter display={"flex"} justifyContent={"space-between"}>
-                {/* TODO: Check with the design */}
                 <AppButton onClick={onClose} variant='secondary'>Cancel</AppButton>
                 <AppButton onClick={onSubmit} isLoading={isLoading} isDisabled={!value}> Pay </AppButton>
             </ModalFooter>

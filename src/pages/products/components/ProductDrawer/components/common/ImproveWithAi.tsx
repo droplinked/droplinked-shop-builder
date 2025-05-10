@@ -95,6 +95,10 @@ export default function ImproveWithAi({
                     {/* TODO: check with the design */}
                         <AppButton
                             variant="secondary"
+                            size="sm"
+                            color={'main.primary'}
+                            bg={"neutral.gray.1000"}
+                            borderColor={"neutral.gray.800"}
                             isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<AppIcons.MagicWind width={"16px"} height={"16px"} />}
                         >

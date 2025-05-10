@@ -52,8 +52,8 @@ function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
         >
             <AppButton variant="secondary" disabled={isLoading} onClick={closeModal}>
                 Discard
-            </Button>
-            <Button onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
+            </AppButton>
+            <AppButton onClick={handleSubmit} isLoading={isCrawling || isLoading || fakeLoading} isDisabled={!file && !targetShopUrl}>
                 {isLoading ? 'Uploading' : 'Validate'}
             </AppButton>
         </ModalFooter>

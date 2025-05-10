@@ -44,7 +44,6 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             </AppButton>
 
             <Flex gap={4}>
-                {/* TODO: Check with the design */}
                 <AppButton
                     type="button"
                     variant="outlined"

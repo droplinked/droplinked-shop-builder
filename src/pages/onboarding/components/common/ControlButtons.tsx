@@ -44,6 +44,9 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                     as={"button"}
                     onClick={onSkip}
                     paddingInline="0px"
+                    color='white'
+                    fontWeight='400'
+                    fontSize='14px'
                 >
                     Skip for Now
                 </AppTypography>
@@ -51,7 +54,6 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
             <Flex marginLeft="auto" gap={4}>
                 {showBackButton &&
                     <AppButton
-                        fontWeight={500}
                         variant='secondary'
                         onClick={onBack}
                         isDisabled={isButtonLoading}

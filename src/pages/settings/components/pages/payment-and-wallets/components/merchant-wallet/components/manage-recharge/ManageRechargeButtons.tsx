@@ -6,6 +6,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CircleManage from './CircleManage'
 import BlueButton from 'components/redesign/button/BlueButton'
+import {ConfigureSm} from 'assets/icons/System/Configure/ConfigureSm'
 
 export default function ManageRechargeButtons() {
     const { shop } = useAppStore()
@@ -15,8 +16,8 @@ export default function ManageRechargeButtons() {
         circleWallets.length && (
             <Flex gap="2" alignItems={"center"}>
                 {/* TODO: Check with design */}
-                <AppButton paddingInline={0} px={3} py={2} fontSize={12} onClick={onOpen} variant="outlined" border={"none"} color="white" size="sm">
-                    <AppIcons.SidebarSetting style={{ width: "16px", height: "16px" }} />
+                <AppButton variant="outlined" size="sm" onClick={onOpen}  border={"none"} color="white" leftIcon={<ConfigureSm/>} >
+                    
                     Manage
                 </AppButton>
                 <Link to={"https://www.binance.com/en/crypto/buy"} target='_blank'>

@@ -51,7 +51,6 @@ function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: bool
                         </AppTypography>
                     </Box>
                     <Box display="flex" justifyContent="space-between" alignItems="center" alignSelf="stretch">
-                        {/* TODO: Check with the design */}
                         <AppButton
                             backgroundColor={"neutral.gray.800"}
                             border={"none"}

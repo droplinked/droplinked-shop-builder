@@ -13,7 +13,6 @@ export default function NoOrdersPlaceholder() {
             title: 'Importing Products',
             description: 'Create product listings within the interface or import existing inventory.',
             image: 'https://upload-file-droplinked.s3.amazonaws.com/f15e8bdf6bbeab13294155b4259324976494cfa30c40dddc7673aba705858c8a.png',
-            // TODO: Check with the design 
             buttons: [
                 {
                     label: 'First Product',

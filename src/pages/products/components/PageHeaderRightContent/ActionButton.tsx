@@ -10,7 +10,6 @@ interface Props {
 }
 
 const ActionButton = ({ icon, onClick, label, variant = 'normal', isDisabled }: Props) => (
-     //* TODO: Check with the design *
     <AppButton
         variant={variant}
         paddingBlock="10px"

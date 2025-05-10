@@ -2,12 +2,12 @@ import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/reac
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons'
-import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import React, { useContext, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import PartnerContext, { StepsType } from '../../context/partner.context'
 import { useWalletVerification } from './useWalletVerification'
+import AppButton from 'components/redesign/button/AppButton'
 
 const WalletVerificationModal = () => {
 	const navigate = useNavigate()
@@ -109,7 +109,6 @@ const WalletVerificationModal = () => {
 
 	return (
 		<>
-			{/* TODO: Check with the design */}
 			<AppButton
 				paddingInline={{ base: 4, lg: 5 }}
 				fontSize={{ base: 14, lg: 16 }}
@@ -242,16 +241,8 @@ const WalletVerificationModal = () => {
 							>
 								<Flex flex='1 0 0' alignItems='flex-start'>
 									{current_state?.buttons?.left && (
-										//TODO: Check with the design
 										<AppButton
-											backgroundColor='neutral.gray.800'
-											border='none'
-											display="flex"
-											padding="12px 16px"
-											justifyContent="center"
-											alignItems="center"
-											color="#FFF"
-											textAlign="center"
+											variant='secondary'
 											fontSize={{ base: '14px', md: '16px' }}
 											lineHeight={{ base: '16px', md: '24px' }}
 											onClick={current_state?.buttons?.left?.onClick}
@@ -261,14 +252,11 @@ const WalletVerificationModal = () => {
 										</AppButton>
 									)}
 								</Flex>
-								{/* TODO: Check with the design */}
 								<AppButton
-									padding="12px 20px"
-									color="#000"
-									textAlign="center"
 									fontSize={{ base: '14px', md: '16px' }}
 									onClick={current_state?.buttons?.right?.onClick}
 									{...current_state.buttons?.right?.styles}
+									disabled={true}
 								>
 									{current_state?.buttons?.right?.label}
 									{current_state?.buttons?.right?.rightIcon}
