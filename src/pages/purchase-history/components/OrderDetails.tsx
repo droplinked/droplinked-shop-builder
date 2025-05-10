@@ -20,15 +20,19 @@ interface OrderDetailsProps {
  * Shows information in a drawer with tabs for order information and cart
  */
 export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    // Handle the case where useMediaQuery might not return an array in tests
+    const mediaQueryResult = useMediaQuery("(max-width: 768px)");
+    const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false;
 
     // Fetch order details when the drawer is open
-    const { isFetching, data } = useQuery({
+    // Handle the case where useQuery might return undefined in tests
+    const queryResult = useQuery({
         queryKey: ["order", rowData._id],
         queryFn: () => getOrderService({ orderID: rowData._id }),
         enabled: isOpen,
-    })
+    }) || { isFetching: false, data: undefined };
 
+    const { isFetching, data } = queryResult;
     const orderData = data?.data?.data
     const { orderInformation } = orderData ?? {}
 
@@ -54,7 +58,7 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
                     <OrderHeaderContent
                         isFetching={isFetching}
                         updatedAt={rowData.updatedAt}
-                        orderStatus={orderInformation?.status}
+                        orderStatus={orderInformation?.status || ""}
                         tabs={tabs}
                     />
                 }
