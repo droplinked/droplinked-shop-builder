@@ -7,7 +7,7 @@ export default function EmptyView() {
 
     return (
         <Flex alignItems="center" justifyContent="center" flexDirection="column" gap="64px" mt="15vh">
-            <AppImage src={image} alt="Empty Form" />
+            <AppImage src={image} alt="Empty Form" width="320px" height="268px" />
             <Text color="text.disabled.dark">You don't have any order yet</Text>
         </Flex>
     )
