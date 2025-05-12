@@ -35,7 +35,7 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
             description="Are you sure you want to remove this blog? This action cannot be undone"
             icon={<TrashMd color="#fff" />}
             confirmButtonProps={{
-                variant: "ghost",
+                variant: "normal",
                 bgColor: "system.error",
                 color: "text.white",
                 children: "Remove",
