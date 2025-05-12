@@ -39,7 +39,7 @@ export const useImportWithUrl = (props: Params) => {
             getRecentTasks()
             showToast({
                 message: "Crawl Task Started",
-                description: "We are crawling products from the provided URL. Once the task status set to Previews_ready, you can select the products you want to import.",
+                description: "We are crawling products from the provided URL. Once the task status is set to Previews_ready, you can select the products you want to import.",
                 type: "success",
                 options: {
                     duration: 5000,
