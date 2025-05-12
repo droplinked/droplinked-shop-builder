@@ -1,14 +1,13 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from './FileUpload'
 import UrlInput from './UrlInput'
-import UrlImportLoading from './UrlImportLoading'
-import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import MessageBox from 'components/redesign/message-box/MessageBox'
+import RecentTasks from './RecentTasks'
 
 interface Props {
     file: File | null
@@ -18,7 +17,7 @@ interface Props {
 
 export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
     const { crawlerError } = useProductPageStore()
-    const { fakeLoading } = importWithUrl
+    const { recentTasks, recentTasksLoading, getProducts, getProductsLoading } = importWithUrl
 
     return (
         <ModalBody
@@ -30,21 +29,15 @@ export default function ImportProductModalBody({ file, onFileChange, importWithU
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
         >
-            {fakeLoading ?
-                <UrlImportLoading />
-                :
-                <>
-                    <FileUpload onFileChange={onFileChange} />
-                    {file && <FilePreview file={file} onFileChange={onFileChange} />}
-                    <UrlInput isDisabled={!!file} />
-                    {crawlerError && <MessageBox
-                        title="An Error Occured"
-                        description={crawlerError}
-                        theme='error'
-                    />
-                    }
-                </>
-            }
+            <FileUpload onFileChange={onFileChange} />
+            {file && <FilePreview file={file} onFileChange={onFileChange} />}
+            <UrlInput isDisabled={!!file} crawlerError={crawlerError} />
+            <RecentTasks
+                isLoading={recentTasksLoading}
+                recentTasks={recentTasks}
+                getProducts={getProducts}
+                getProductsLoading={getProductsLoading}
+            />
         </ModalBody>
     )
 }

@@ -4,7 +4,12 @@ import DividerText from 'pages/onboarding/components/common/DividerText'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { useEffect, useState } from 'react'
 
-export default function UrlInput({ isDisabled }: { isDisabled: boolean }) {
+interface Props {
+    isDisabled: boolean
+    crawlerError?: string
+}
+
+export default function UrlInput({ isDisabled, crawlerError }: Props) {
     const [tempValue, setTempValue] = useState("")
     const { updateProductPageState } = useProductPageStore()
 
@@ -44,6 +49,11 @@ export default function UrlInput({ isDisabled }: { isDisabled: boolean }) {
                 leftElement={
                     <LinkMd color='#7B7B7B' />
                 }
+                {...crawlerError && {
+                    state: "error",
+                    message: crawlerError,
+                    stateColor: "#F24",
+                }}
             />
         </>
     )

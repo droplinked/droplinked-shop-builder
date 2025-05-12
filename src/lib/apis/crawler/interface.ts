@@ -1,5 +1,29 @@
 export interface SelectedProductsForCrawl {
-    storeUrl: string
-    productUrls: string[]
-    platform?: string
+    poolId: string
+    selectedUrls: string[]
+}
+
+export interface StartWebsiteCrawlingResponse {
+    success: boolean
+    poolId: string
+    message: string
+}
+
+export interface RecentCrawlerTasksResponse {
+    _id: string
+    status: "previews_ready" | "pending" | "processing_preview" | "products_selected" | "crawling" | "completed" | "error"
+    websiteUrl: string
+    previewUrls: string[]
+    selectedUrls: string[],
+    error: string | null,
+    crawlStats: {
+        platform: string,
+        totalProducts: number,
+        newProducts: number,
+        updatedProducts: number,
+        failedProducts: number,
+        timeTaken: number,
+    }
+    createdAt: string
+    updatedAt: string
 }

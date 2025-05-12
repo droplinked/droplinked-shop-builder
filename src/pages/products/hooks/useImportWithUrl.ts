@@ -1,9 +1,9 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
-import useProductPageStore from "../stores/ProductPageStore"
-import { useMutation, useQueryClient } from "react-query"
-import { CrawlSelectedProducts, getProductsWithUrl } from "lib/apis/crawler/services"
-import { useState } from "react"
 import useAppToast from "hooks/toast/useToast"
+import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface"
+import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "lib/apis/crawler/services"
+import { useMutation, useQuery, useQueryClient } from "react-query"
+import useProductPageStore from "../stores/ProductPageStore"
 
 interface Params {
     importProductModalController: UseDisclosureProps
@@ -11,60 +11,108 @@ interface Params {
 }
 
 export interface UseImportWithUrl {
-    crawlProducts: () => void
-    isCrawling: boolean
-    fakeLoading: boolean
+    startCrawling: () => void
+    crawlingLoading: boolean
+    getProducts: () => void
+    getProductsLoading: boolean
+    getRecentTasks: () => void
+    recentTasksLoading: boolean
+    recentTasks: RecentCrawlerTasksResponse[]
     crawlSelectedProducts: (selectedProducts: string[]) => void
     crawlingSelectedLoading: boolean
 }
 
 export const useImportWithUrl = (props: Params) => {
-    const { updateProductPageState, targetShopUrl } = useProductPageStore()
-    const [fakeLoading, setFakeLoading] = useState(false)
+    const { updateProductPageState, targetShopUrl, selectedPoolId } = useProductPageStore()
     const { showToast } = useAppToast()
     const queryClient = useQueryClient()
 
     const { importProductModalController, identifiedItemsModalController } = props
 
-    const { mutateAsync: crawlProducts, isLoading: isCrawling } = useMutation({
-        mutationFn: () => getProductsWithUrl(targetShopUrl),
+    const { mutateAsync: startCrawling, isLoading: crawlingLoading } = useMutation({
+        mutationFn: () => startWebsiteCrawling(targetShopUrl),
         onMutate() {
             updateProductPageState("crawlerError", "")
+            updateProductPageState("crawledProducts", [])
+            updateProductPageState("selectedPoolId", "")
         },
-        onSuccess: (data) => {
-            updateProductPageState("crawledProducts", data.data)
-            setFakeLoading(true)
-            setTimeout(() => {
-                setFakeLoading(false)
-                importProductModalController.onClose()
-                identifiedItemsModalController.onOpen()
-            }, 3000);
+        onSuccess: () => {
+            updateProductPageState("targetShopUrl", "")
+            getRecentTasks()
+            showToast({
+                message: "Crawl Task Started",
+                description: "We are crawling products from the provided URL. Once the task status set to Previews_ready, you can select the products you want to import.",
+                type: "success",
+                options: {
+                    duration: 5000,
+                }
+            })
         },
         onError: (error: any) => {
             updateProductPageState("crawlerError", error.response.data.data.message || "An error occurred")
         }
     })
 
+    const { data: recentTasks, isLoading: recentTasksLoading, refetch: getRecentTasks } = useQuery({
+        queryKey: ['recentCrawlerTasks'],
+        queryFn: () => getRecentCrawlerTasks(),
+        enabled: importProductModalController.isOpen,
+        refetchInterval: 10000,
+        select(data) {
+            return data.data
+        },
+        onError: (error: any) => {
+            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
+        }
+    })
+
+    const { mutateAsync: getProducts, isLoading: getProductsLoading } = useMutation({
+        mutationFn: (poolId: string) => getProductsWithPoolId(poolId),
+        onMutate() {
+            updateProductPageState("crawlerError", "")
+        },
+        onSuccess: (data, poolId) => {
+            updateProductPageState("crawledProducts", data.data)
+            updateProductPageState("selectedPoolId", poolId)
+            importProductModalController.onClose()
+            identifiedItemsModalController.onOpen()
+        },
+        onError: (error: any) => {
+            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
+        }
+    })
+
     const { mutateAsync: crawlSelectedProducts, isLoading: crawlingSelectedLoading } = useMutation({
-        mutationFn: (selectedProducts: string[]) => CrawlSelectedProducts({ productUrls: selectedProducts, storeUrl: targetShopUrl }),
+        mutationFn: (selectedProducts: string[]) =>
+            CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId }),
         onSuccess: () => {
-            showToast({ message: "Products crawled successfully", type: "success" })
-            identifiedItemsModalController.onClose()
+            showToast({
+                message: "Crawl Task Started",
+                description: "We are crawling selected products and adding them to your inventory. You can view ongoing tasks in the Import Products modal.",
+                type: "success",
+                options: {
+                    duration: 5000,
+                }
+            })
             updateProductPageState("crawledProducts", [])
-            updateProductPageState("targetShopUrl", "")
+            identifiedItemsModalController.onClose()
             queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
         },
         onError: (error: any) => {
             identifiedItemsModalController.onClose()
             importProductModalController.onOpen()
-            updateProductPageState("crawlerError", error.response.data.data.message || "An error occurred")
+            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
         }
     })
 
     return {
-        crawlProducts,
-        isCrawling,
-        fakeLoading,
+        startCrawling,
+        crawlingLoading,
+        getProducts,
+        getProductsLoading,
+        getRecentTasks,
+        recentTasksLoading,
+        recentTasks,
         crawlSelectedProducts,
         crawlingSelectedLoading
     }
