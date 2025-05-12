@@ -22,7 +22,7 @@ export default function RecentTasks({ recentTasks, isLoading, getProducts, getPr
         getProducts(url);
     };
 
-    if (isLoading) return <Spinner />;
+    if (isLoading) return <Spinner color="#fff" mx="auto" mt={2} />;
     if (!recentTasks || recentTasks.length === 0) return null;
 
     return (
