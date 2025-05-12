@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import ImportProductModalBody from './ImportProductModalBody'
 import ImportProductModalFooter from './ImportProductModalFooter'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import { useQueryClient } from 'react-query'
 
 interface Props {
     isOpen: boolean
@@ -16,10 +17,16 @@ interface Props {
 
 function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
+    const queryClient = useQueryClient()
+
+    const handleClose = () => {
+        queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
+        onClose()
+    }
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "2xl", isCentered: false }}
+            modalRootProps={{ isOpen, onClose: handleClose, size: "2xl", isCentered: false }}
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData

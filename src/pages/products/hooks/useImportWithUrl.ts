@@ -37,10 +37,11 @@ export const useImportWithUrl = (props: Params) => {
             updateProductPageState("selectedPoolId", "")
         },
         onSuccess: () => {
+            updateProductPageState("targetShopUrl", "")
             getRecentTasks()
             showToast({
                 message: "Crawl Task Started",
-                description: "We are crawling products from the provided URL. Once the task status set to previews_ready, you can select the products you want to import.",
+                description: "We are crawling products from the provided URL. Once the task status set to Previews_ready, you can select the products you want to import.",
                 type: "success",
                 options: {
                     duration: 5000,
@@ -61,7 +62,7 @@ export const useImportWithUrl = (props: Params) => {
             return data.data
         },
         onError: (error: any) => {
-            updateProductPageState("crawlerError", error.response.data.data.message || "An error occurred")
+            showToast({ message: error.response.data.data.message || "An error occurred", type: "error" })
         }
     })
 
