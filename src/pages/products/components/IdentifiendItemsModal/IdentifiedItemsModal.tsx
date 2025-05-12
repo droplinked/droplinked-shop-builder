@@ -32,9 +32,10 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
         maxSelectableItems
     })
 
-    const handleImport = () => {
+    const handleImport = async () => {
         if (selectedProducts.length > 0) {
-            crawlSelectedProducts(selectedProducts)
+            await crawlSelectedProducts(selectedProducts)
+            resetSelection()
         }
     }
 

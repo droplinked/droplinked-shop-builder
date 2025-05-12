@@ -11,7 +11,8 @@ interface State {
     isAiGenerateLoading: boolean
     isGenerateDisabled: boolean
     crawledProducts: CrawledProductsType[]
-    targetShopUrl: string
+    targetShopUrl: string,
+    selectedPoolId: string,
     crawlerError: string,
 }
 
@@ -31,6 +32,7 @@ const initialState: State = {
     isGenerateDisabled: false,
     crawledProducts: [],
     targetShopUrl: "",
+    selectedPoolId: "",
     crawlerError: "",
 }
 

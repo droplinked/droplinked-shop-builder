@@ -6,10 +6,10 @@ export const startWebsiteCrawling = (websiteUrl: string) => {
 }
 
 export const getRecentCrawlerTasks = () => {
-    return axiosInstance.get<RecentCrawlerTasksResponse>(`/crawler/tasks/recent?limit=10`)
+    return axiosInstance.get<RecentCrawlerTasksResponse[]>(`/crawler/tasks/recent?limit=10`)
 }
 
-export const getProductsWithUrl = (poolId: string) => {
+export const getProductsWithPoolId = (poolId: string) => {
     return axiosInstance.get(`/crawler/preview-urls/${poolId}`)
 }
 

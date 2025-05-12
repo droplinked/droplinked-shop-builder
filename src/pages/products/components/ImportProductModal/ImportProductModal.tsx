@@ -19,7 +19,7 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
 
     return (
         <AppModal
-            modalRootProps={{ isOpen, onClose, size: "2xl", isCentered: true }}
+            modalRootProps={{ isOpen, onClose, size: "2xl", isCentered: false }}
             modalContentProps={{ gap: 0, paddingBlock: 0 }}
         >
             <ModalHeaderData
