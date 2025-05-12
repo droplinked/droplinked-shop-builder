@@ -82,8 +82,8 @@ export const useImportWithUrl = (props: Params) => {
             CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId }),
         onSuccess: () => {
             showToast({
-                message: "Crawl Task Started",
-                description: "We are crawling selected products and adding them to your inventory. You can view ongoing tasks in the Import Products modal.",
+                message: "Import task started",
+                description: "We are importing selected products to your inventory. You can view ongoing tasks in the Import Products modal.",
                 type: "success",
                 options: {
                     duration: 5000,
