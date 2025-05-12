@@ -46,7 +46,7 @@ export const useImportWithUrl = (props: Params) => {
     })
 
     const { mutateAsync: crawlSelectedProducts, isLoading: crawlingSelectedLoading } = useMutation({
-        mutationFn: (selectedProducts: string[]) => CrawlSelectedProducts({ productUrls: selectedProducts, storeUrl: targetShopUrl }),
+        mutationFn: (selectedProducts: string[]) => CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: targetShopUrl }),
         onSuccess: () => {
             showToast({ message: "Products crawled successfully", type: "success" })
             identifiedItemsModalController.onClose()
