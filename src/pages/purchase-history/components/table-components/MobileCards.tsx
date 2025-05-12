@@ -30,7 +30,7 @@ export default function MobileCards({ item }: Props) {
                         size='24'
                         status={statusColorScheme}
                     />
-                    <ControlsPopover rowData={item} isCancelled={status === "CANCELED"} />
+                    <ControlsPopover rowData={item} />
                 </Flex>
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">

@@ -56,7 +56,6 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
             cell: (info) => (
                 <ControlsPopover
                     rowData={info.row.original}
-                    isCancelled={isOrderCancelled(info.row.original.status)}
                 />
             ),
         },
