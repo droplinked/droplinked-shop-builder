@@ -64,6 +64,12 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
                 direction='row'
                 text={<FormattedPrice price={details.products} fontSize={14} fontWeight={500} />}
             />
+            {details.cost && <TitledText
+                title='Total Cost'
+                direction='row'
+                text={<FormattedPrice price={details.cost} fontSize={14} fontWeight={500} />}
+            />
+            }
             <TitledText
                 title='Total Cart'
                 direction='row'
