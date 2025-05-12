@@ -47,8 +47,8 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
             accessorKey: 'title',
             header: 'Title',
             cell: info => {
-                const title = info.row.original.title
-                const image = info.row.original.image
+                const title = info.row.original.title ?? "No Title"
+                const image = info.row.original.image ?? "#"
                 const truncatedTitle = title.length <= 40 ? title : `${title.slice(0, 40)}...`
 
                 return (
