@@ -33,8 +33,6 @@ export const useImportWithUrl = (props: Params) => {
         mutationFn: () => startWebsiteCrawling(targetShopUrl),
         onMutate() {
             updateProductPageState("crawlerError", "")
-            updateProductPageState("crawledProducts", [])
-            updateProductPageState("selectedPoolId", "")
         },
         onSuccess: () => {
             updateProductPageState("targetShopUrl", "")
@@ -68,9 +66,6 @@ export const useImportWithUrl = (props: Params) => {
 
     const { mutateAsync: getProducts, isLoading: getProductsLoading } = useMutation({
         mutationFn: (poolId: string) => getProductsWithPoolId(poolId),
-        onMutate() {
-            updateProductPageState("crawlerError", "")
-        },
         onSuccess: (data, poolId) => {
             updateProductPageState("crawledProducts", data.data)
             updateProductPageState("selectedPoolId", poolId)
@@ -95,6 +90,7 @@ export const useImportWithUrl = (props: Params) => {
                 }
             })
             updateProductPageState("crawledProducts", [])
+            updateProductPageState("selectedPoolId", "")
             identifiedItemsModalController.onClose()
             queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
         },
