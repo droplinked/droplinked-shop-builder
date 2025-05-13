@@ -54,7 +54,10 @@ function FeaturedPictureUpload() {
                         fileName={selectedFile?.name}
                         fileSize={selectedFile ? getFileSizeInMB(selectedFile) : ''}
                     >
-                        <button onClick={() => setFieldValue("image", null)}>
+                        <button
+                            type='button'
+                            onClick={() => setFieldValue("image", null)}
+                        >
                             <TrashMd color='#FF2244' />
                         </button>
                     </SelectedFileCard>
