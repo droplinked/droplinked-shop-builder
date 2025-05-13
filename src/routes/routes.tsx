@@ -1,5 +1,5 @@
 import MainLayout from "components/layouts/app/main/MainLayout";
-import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
+import StandaloneLayout from "components/layouts/standalone/StandaloneLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
@@ -7,6 +7,7 @@ import BlogEditPage from "pages/blogs/components/BlogEditPage";
 import Changelog from "pages/changelog/Changelog";
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
 import Onboarding from "pages/onboarding/Onboarding";
+import Blog from "pages/public-pages/blogs/blogs.blog";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
@@ -24,6 +25,8 @@ import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
 import Rewards from "pages/public-pages/rewards/Rewards";
+import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner";
+
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -31,7 +34,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
 const Blogs = lazy(() => import("pages/blogs/Blogs"));
 const Collections = lazy(() => import("pages/collections/Collections"));
-const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
+const Analytics = lazy(() => import("pages/analytics/Analytics"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
@@ -128,7 +131,7 @@ const router = createBrowserRouter([
             </DashboardLayout>
         ),
         children: [
-            { index: true, element: <NewAnalytics /> },
+            { index: true, element: <Analytics /> },
             { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
@@ -202,11 +205,20 @@ const router = createBrowserRouter([
     },
     {
         path: "shop-management",
-        element: <ShopManagementLayout />,
+        element: <StandaloneLayout />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
         ],
+    },
+    {
+        path: 'style-center/storefront-designer',
+        element: (
+            <StandaloneLayout showBackground={false} padding="0">
+                <StorefrontDesigner />
+            </StandaloneLayout>
+        ),
+        errorElement: <MaintenancePage />,
     },
     { path: "*", element: <NotFoundPage /> },
 ]);
