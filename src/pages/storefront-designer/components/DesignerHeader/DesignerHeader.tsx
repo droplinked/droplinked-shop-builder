@@ -21,7 +21,7 @@ function DesignerHeader(): React.ReactElement {
       alignItems="center"
       justifyContent="space-between"
       top="75px"
-      zIndex={1000}
+      zIndex={1}
       paddingX={8}
       paddingY={4}
       bg="neutral.background"
