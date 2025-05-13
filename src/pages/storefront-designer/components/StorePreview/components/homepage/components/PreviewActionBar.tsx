@@ -1,28 +1,26 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import { ChevrondownSm } from 'assets/icons/Navigation/ChevronDown/ChevrondownSm';
+import { SearchSm } from 'assets/icons/System/Search/SearchSm';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useContext } from 'react';
 import PreviewTypo from '../../common/typo/PreviewTypo';
 
-
 const PreviewActionBar = () => {
-  const { state: { shop: { shopDesign: { backgroundBody, foreground } } } } = useContext(designerContext);
+  const { state: { shop: { shopDesign: { backgroundBody, foreground, textColorParagraphs } } }} = useContext(designerContext);
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center" gap={4}>
       {/* Left Side: Filters and Search */}
-      <Flex justifyContent="start" alignItems="center" >
+      <Flex justifyContent="start" alignItems="center">
         {/* Search Input */}
         <Box bg={backgroundBody}>
           <Flex direction="column" justify="start" align="start" gap={2} w="full">
             <Flex w="full" justify="start" align="start">
-              <Flex grow={1} py="2" borderRadius="lg" border="1px solid" borderColor={foreground} align="center" gap={2}>
+              <Flex grow={1} p="2" borderRadius="lg" border="1px solid" borderColor={foreground} align="center" gap={2}>
                 {/* Icon Placeholder */}
-                <Box w="16px" h="16px" ml={2} display="flex" justifyContent="center" alignItems="center">
-                  <AppIcons.Search />
-                </Box>
+                <SearchSm color={textColorParagraphs} />
                 {/* Search Input Field */}
-                <PreviewTypo mr={6} flex={1} color={"text.subtext.placeholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
+                <PreviewTypo mr={6} flex={1} color={'text.subtext.placeholder.dark'} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
                   Search
                 </PreviewTypo>
               </Flex>
@@ -36,11 +34,10 @@ const PreviewActionBar = () => {
           <Flex w="full" justify="start" align="start">
             <Flex grow={1} py="2" px="6px" bg={backgroundBody} borderRadius="md" border="1px solid" borderColor={foreground} align="center" gap="8px">
               {/* Sort Text */}
-              <PreviewTypo flex={1} color={"text.subtext.placeholder.dark"} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
+              <PreviewTypo flex={1} color={'text.subtext.placeholder.dark'} fontSize="xs" fontWeight="normal" fontFamily="Inter" lineHeight="normal">
                 Sort Products
               </PreviewTypo>
-              {/* Icon Placeholder */}
-              <AppIcons.SidebarChevrondown width="12px" height="12px" color={"text.subtext.placeholder.dark"}></AppIcons.SidebarChevrondown>
+              <ChevrondownSm color="#B1B1B1" />
             </Flex>
           </Flex>
         </Flex>

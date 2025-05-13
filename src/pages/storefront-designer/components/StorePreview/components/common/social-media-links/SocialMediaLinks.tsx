@@ -81,7 +81,7 @@ const SocialMediaLinks = ({ shopURLs, foreground, textColorParagraphs, isDesktop
   }
 
   return (
-    <Flex gap={2} alignItems="center" ml={isDesktop ? 'auto' : ''} mr={isDesktop ? '' : 'auto'} mt={isDesktop ? '0px' : '4px'}>
+    <Flex gap={2} flexWrap="wrap" alignItems="center" ml={isDesktop ? 'auto' : ''} mr={isDesktop ? '' : 'auto'} mt={isDesktop ? '0px' : '4px'}>
       {displayItems.map(({ key, icon }) => {
         const backgroundColor = foreground;
         // Add a subtle visual indication for items that are in preview state
