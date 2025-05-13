@@ -1,19 +1,20 @@
 .input {
     width: 100%;
-    background-color: #141414;
-    color: #FFF;
-    padding: 12px 17px;
-    font-size: 14px;
-    color: #808080;
+    background-color: transparent;
     border-radius: 8px;
     border: none !important;
     outline: none !important;
     margin: 0 !important;
+    padding: 0 !important;
 
     &::placeholder {
         color: #808080;
         opacity: .9;
     }
+}
+
+.customInput {
+    width: 100%;
 }
 
 .datepicker {

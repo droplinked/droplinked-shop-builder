@@ -30,7 +30,7 @@ const SwitchBox = ({ title, description, switchProps, containerProps, rightConte
                 <Flex flex={1} gap={4}>
                     <Flex flex={1} direction="column" gap={1}>
                         <Text fontSize={16} fontWeight={500} color="#FFF">{title}</Text>
-                        <Text fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
+                        <Text fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                     </Flex>
                     {rightContent}
                 </Flex>

@@ -1,8 +1,8 @@
-import Select from 'components/redesign/select/Select'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
+import AppSelect from 'components/redesign/select/AppSelect'
 import useCollections from 'hooks/useCollections/useCollections'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect } from 'react'
-import ProductFieldWrapper from '../common/ProductFieldWrapper'
 
 function ProductCollection() {
     const { data: collections } = useCollections()
@@ -16,12 +16,12 @@ function ProductCollection() {
     }, [productCollectionID, collections, setFieldValue])
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Collections"
             description="Select the collection that will feature this product."
             errorMessage={errors.productCollectionID}
         >
-            <Select
+            <AppSelect
                 items={collections?.data ?? []}
                 valueAccessor="_id"
                 labelAccessor="title"
@@ -31,7 +31,7 @@ function ProductCollection() {
                     onChange: (e) => setFieldValue('productCollectionID', e.target.value),
                 }}
             />
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }
 

@@ -1,4 +1,4 @@
-import { FlexProps } from "@chakra-ui/react"
+import { AppButtonProps } from "../button/AppButton"
 import { IFiltersDataGridItems } from "./components/filters/interface"
 
 export interface SearchInput {
@@ -11,13 +11,16 @@ export interface SearchInput {
 export interface PageGridRootProps {
     children: React.ReactNode;
     loading?: boolean;
-    flexProps?: FlexProps;
+}
+
+export interface ActionButtonProps extends AppButtonProps {
+    wrapper?: React.ReactElement;
 }
 
 export interface PageGridHeaderProps {
     title?: string;
     description?: string;
-    rightContent?: React.ReactNode;
+    actionButtons?: ActionButtonProps[];
 }
 
 export interface PageGridActionsProps {

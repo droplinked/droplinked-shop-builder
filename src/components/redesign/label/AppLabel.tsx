@@ -1,6 +1,21 @@
 import { Box, BoxProps, Text } from '@chakra-ui/react'
 import React, { useMemo } from 'react'
 
+/**
+ * AppLabel Component - Versatile label with different styles and states
+ * 
+ * Provides labels with various styling options including outline, filled, and muted variants,
+ * multiple status colors, two size options, and support for left/right icons.
+ * 
+ * @param {object} props - Component props
+ * @param {string|number} props.text - Text content to display in the label
+ * @param {LabelVariant} [props.variant='outlined'] - Visual style variant
+ * @param {LabelStatus} [props.status='neutral'] - Status color scheme
+ * @param {LabelSize} [props.size='28'] - Label size (height in pixels)
+ * @param {React.FunctionComponent<React.SVGProps<SVGSVGElement>>} [props.leftIcon] - Icon to display before text
+ * @param {React.FunctionComponent<React.SVGProps<SVGSVGElement>>} [props.rightIcon] - Icon to display after text
+ * @param {BoxProps} props - Additional Chakra UI box props
+ */
 type LabelVariant = "outlined" | "muted" | "filled"
 type LabelStatus = "neutral" | "pending" | "success" | "error"
 type LabelSize = "28" | "36"
@@ -29,14 +44,14 @@ type StyleStyles = {
     [key in LabelVariant]: StatusStyles
 }
 
-function AppLabel({ 
-    text, 
-    variant = "outlined", 
-    status = "neutral", 
-    size = "28", 
-    leftIcon: LeftIcon, 
-    rightIcon: RightIcon, 
-    ...props 
+function AppLabel({
+    text,
+    variant = "outlined",
+    status = "neutral",
+    size = "28",
+    leftIcon: LeftIcon,
+    rightIcon: RightIcon,
+    ...props
 }: Iprops) {
     const styles = useMemo(() => ({
         layout: {
@@ -67,14 +82,14 @@ function AppLabel({
                 },
                 success: {
                     border: "1px solid",
-                    borderColor: "primary.default",
-                    bg: "label.success",
+                    borderColor: "main.primary",
+                    bg: "label.primary",
                     color: "text.primary"
                 },
                 error: {
                     border: "1px solid",
                     borderColor: "system.error",
-                    bg: "label.error",
+                    bg: "label.errorBackground",
                     color: "text.error"
                 }
             },
@@ -88,11 +103,11 @@ function AppLabel({
                     color: "text.link"
                 },
                 success: {
-                    bg: "label.success",
+                    bg: "label.primary",
                     color: "text.primary"
                 },
                 error: {
-                    bg: "label.error",
+                    bg: "label.errorBackground",
                     color: "text.error"
                 }
             },
@@ -148,4 +163,4 @@ function AppLabel({
     )
 }
 
-export default AppLabel 
+export default AppLabel

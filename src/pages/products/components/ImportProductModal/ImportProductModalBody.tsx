@@ -1,16 +1,24 @@
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import { getFileSizeInMB } from 'utils/helpers'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
+import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from './FileUpload'
+import UrlInput from './UrlInput'
+import RecentTasks from './RecentTasks'
 
 interface Props {
     file: File | null
     onFileChange: (file: File | null) => void
+    importWithUrl?: UseImportWithUrl
 }
 
-export default function ImportProductModalBody({ file, onFileChange }: Props) {
+export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
+    const { crawlerError } = useProductPageStore()
+    const { recentTasks, recentTasksLoading, getProducts, getProductsLoading } = importWithUrl
+
     return (
         <ModalBody
             display="flex"
@@ -23,6 +31,13 @@ export default function ImportProductModalBody({ file, onFileChange }: Props) {
         >
             <FileUpload onFileChange={onFileChange} />
             {file && <FilePreview file={file} onFileChange={onFileChange} />}
+            <UrlInput isDisabled={!!file} crawlerError={crawlerError} />
+            <RecentTasks
+                isLoading={recentTasksLoading}
+                recentTasks={recentTasks}
+                getProducts={getProducts}
+                getProductsLoading={getProductsLoading}
+            />
         </ModalBody>
     )
 }
@@ -34,7 +49,7 @@ function FilePreview({ file, onFileChange }: Props) {
             alignItems="center"
             gap={2}
             border="1px solid"
-             borderColor="neutral.gray.800"
+            borderColor="neutral.gray.800"
             borderRadius={8}
             padding={3}
             paddingRight={5}
@@ -47,7 +62,7 @@ function FilePreview({ file, onFileChange }: Props) {
                     <AppTypography fontWeight={500} color="#fff">
                         {file.name}
                     </AppTypography>
-                    <AppTypography mt={2} fontSize={12} color="text.subtextPlaceholder.dark">
+                    <AppTypography mt={2} fontSize={12} color="text.subtext.placeholder.dark">
                         {getFileSizeInMB(file)} MB
                     </AppTypography>
                 </Box>

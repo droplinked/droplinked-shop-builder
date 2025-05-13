@@ -1,9 +1,12 @@
 import { ISettings } from "pages/settings/formConfigs";
-import { ToastOptions, TypeOptions } from "react-toastify";
+import { JSX } from "react";
+import { ToasterProps } from "sonner";
+
+type TypeOptions = 'success' | 'error' | 'info' | 'warning';
 
 interface IValidateHandlers {
     values: ISettings,
-    showToast: (params: { type: TypeOptions, message: string | JSX.Element, options?: ToastOptions }) => void;
+    showToast: (params: { type: TypeOptions, message: string | JSX.Element, options?: ToasterProps }) => void;
 }
 
 export const handleValidations = ({ values, showToast }: IValidateHandlers): boolean => {
@@ -32,7 +35,7 @@ const handleValidatePercentage = ({ values, showToast }: IValidateHandlers): boo
         showToast({
             type: "error",
             message: `Please double-check your ${walletType} wallets section, the total percentage must not exceed 100.`,
-            options: { autoClose: 5000 }
+            options: { duration: 5000 }
         });
         return false;
     }
@@ -50,7 +53,7 @@ const handleValidateZeroPercentage = ({ values, showToast }: IValidateHandlers):
         showToast({
             type: "error",
             message: `Please ensure all ${walletType} wallet percentages are greater than 0.`,
-            options: { autoClose: 5000 }
+            options: { duration: 5000 }
         });
         return false;
     }
@@ -63,7 +66,7 @@ const handleValidatePaymentMethods = ({ values, showToast }: IValidateHandlers):
         showToast({
             type: "error",
             message: `Please select at least one payment method.`,
-            options: { autoClose: 5000 }
+            options: { duration: 5000 }
         });
         return false;
     }
@@ -76,7 +79,7 @@ const handleValidateLoginMethods = ({ values, showToast }: IValidateHandlers): b
         showToast({
             type: "error",
             message: `Please select at least one login method.`,
-            options: { autoClose: 5000 }
+            options: { duration: 5000 }
         });
         return false;
     }

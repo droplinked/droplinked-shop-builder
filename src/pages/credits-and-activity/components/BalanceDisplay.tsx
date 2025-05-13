@@ -28,7 +28,7 @@ export const BalanceDisplay = ({ title, amount, isLoaded }: Props) => {
                         <AppTypography color="neutral.white" fontSize={{ base: 20, md: 24 }} fontWeight={500}>
                             {symbol}{convertPrice({ amount: amount, toUSD: false }).toFixed(2)}
                         </AppTypography>
-                        <AppTypography color="text.subtextPlaceholder.dark" fontSize={{ base: 20, md: 24 }} fontWeight={400}>
+                        <AppTypography color="text.subtext.placeholder.dark" fontSize={{ base: 20, md: 24 }} fontWeight={400}>
                             {abbreviation}/USDC
                         </AppTypography>
                     </Flex>

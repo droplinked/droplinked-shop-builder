@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useState } from 'react'
 import InfinityToggleButton from '../../../common/InfinityToggleButton'
@@ -49,7 +49,7 @@ function ProductBulkQuantityUpdater() {
                 onChange: () => setFixedQuantity(prev => !prev)
             }}
             rightContent={fixedQuantity && (
-                <Input
+                <AppInput
                     inputGroupProps={{ width: "104px" }}
                     inputContainerProps={{ padding: '8px', pl: 4 }}
                     inputProps={{

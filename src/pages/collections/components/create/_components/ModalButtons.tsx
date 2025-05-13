@@ -1,5 +1,5 @@
 import { HStack } from '@chakra-ui/react';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import { Collection } from 'lib/apis/collection/interfaces';
 import * as React from 'react';
 import { UseMutationResult } from 'react-query';
@@ -14,10 +14,10 @@ interface ModalButtonsProps {
 function ModalButtons({ collection, createService, updateService, close }: ModalButtonsProps) {
     return (
         <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent="space-between">
-            <Button fontSize={"14px"} background={"neutral.gray.800"} variant='secondary' width={"79px"} onClick={close}>{collection ? 'Cancel' : 'Discard'}</Button>
-            <Button fontSize={"14px"} type="submit" width={"79px"} isLoading={createService.isLoading || updateService.isLoading}>
+            <AppButton background={"neutral.gray.800"} variant='secondary' width={"79px"} onClick={close}>{collection ? 'Cancel' : 'Discard'}</AppButton>
+            <AppButton type="submit" width={"79px"} isLoading={createService.isLoading || updateService.isLoading}>
                 {collection ? 'Edit' : 'Create'}
-            </Button>
+            </AppButton>
         </HStack>
     );
 }

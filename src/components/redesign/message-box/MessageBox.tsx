@@ -1,9 +1,23 @@
 import { Box, Flex, FlexProps, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import { WarningMd } from 'assets/icons/Sign/Warning/WarningMd'
 import React from 'react'
 
-type Theme = "info" | "warning" | "systemWarning"
+type Theme = "info" | "warning" | "systemWarning" | "error"
 
+/**
+ * MessageBox Component - Displays alert messages with different themes
+ * 
+ * Features multiple themes (info, warning, systemWarning) each with appropriate
+ * styling and icons. Supports title, optional description and additional content.
+ * 
+ * @param {object} props - Component props
+ * @param {string} props.title - Primary message text to display
+ * @param {string} [props.description] - Optional additional details
+ * @param {('info'|'warning'|'systemWarning')} [props.theme='info'] - Visual theme for the message box
+ * @param {React.ReactNode} [props.children] - Additional content to render below description
+ * @param {FlexProps} props - Additional Chakra UI flex props for styling
+ */
 interface Props extends FlexProps {
     title: string
     description?: string
@@ -22,6 +36,10 @@ const themeMap: Record<Theme, { icon: React.ReactNode, styles: FlexProps }> = {
     "systemWarning": {
         icon: <AppIcons.SystemWarning />,
         styles: { bg: 'rgba(255, 217, 81, 0.10)', borderColor: '#FFD951' }
+    },
+    "error": {
+        icon: <WarningMd color='#F24' />,
+        styles: { bg: 'rgba(255, 34, 68, 0.05)', borderColor: '#F24' }
     }
 }
 

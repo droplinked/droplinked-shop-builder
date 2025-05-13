@@ -1,11 +1,12 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
-import React from 'react'
+import React, { useState } from 'react'
+import AppTypography from 'components/common/typography/AppTypography'
 
 interface ControlButtonsProps {
     onBack: () => void
-    onSubmit: () => void
+    onSubmit: () => void | Promise<void>
     onSkip?: (() => void) | null
     continueText?: string
     backText?: string
@@ -19,45 +20,54 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     onSkip = null,
     continueText = "Continue",
     backText = "Back",
-    isLoading = false,
+    isLoading: externalLoading = false,
     showBackButton = true,
 }) => {
-    const handleSubmit = (e: React.MouseEvent) => {
+    const [internalLoading, setInternalLoading] = useState(false)
+
+    const handleSubmit = async (e: React.MouseEvent) => {
         e.preventDefault()
-        onSubmit()
+        setInternalLoading(true)
+        try {
+            await onSubmit()
+        } finally {
+            setInternalLoading(false)
+        }
     }
+
+    const isButtonLoading = externalLoading || internalLoading
 
     return (
         <Flex width="100%" justifyContent="space-between" alignItems="center" paddingBlockEnd={{ base: "75px", lg: 0 }}>
             {onSkip && (
-                <Button
-                    variant='ghost'
+                <AppTypography
+                    as={"button"}
                     onClick={onSkip}
                     paddingInline="0px"
+                    color='white'
+                    fontWeight='400'
+                    fontSize='14px'
                 >
                     Skip for Now
-                </Button>
+                </AppTypography>
             )}
             <Flex marginLeft="auto" gap={4}>
                 {showBackButton &&
-                    <Button
-                        fontWeight={500}
+                    <AppButton
                         variant='secondary'
                         onClick={onBack}
-                        isDisabled={isLoading}
+                        isDisabled={isButtonLoading}
                     >
                         {backText}
-                    </Button>
+                    </AppButton>
                 }
-                <Button
-                    fontWeight={500}
-                    variant='primary'
+                <AppButton
                     onClick={handleSubmit}
                     rightIcon={<ArrowrightMd />}
-                    isLoading={isLoading}
+                    isLoading={isButtonLoading}
                 >
                     {continueText}
-                </Button>
+                </AppButton>
             </Flex>
         </Flex>
     )

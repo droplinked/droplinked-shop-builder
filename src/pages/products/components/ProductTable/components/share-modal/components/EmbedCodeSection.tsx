@@ -16,7 +16,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
-    showToast({ message: 'Copied', type: 'success', options: { autoClose: 200, hideProgressBar: true } });
+    showToast({ message: 'Copied', type: 'success', options: { duration: 1500 } });
   };
 
   const handleNavigate = (link: string) => navigate(link);
@@ -77,7 +77,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
         </Button>
         <Link href={helpLink} target="_blank" rel="noopener noreferrer">
           <Button
-            leftIcon={<AppIcons.HelpCenter width={20} height={20} />}
+            leftIcon={<AppIcons.HelpCenter />}
             color="#179EF8"
             fontFamily="Inter"
             fontSize="14px"

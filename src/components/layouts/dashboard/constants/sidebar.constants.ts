@@ -41,7 +41,7 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         icon: AppIcons.SidebarNote,
         linkTo: null,
         list: [
-          { listTitle: 'Purchase History', linkTo: '/analytics/orders' },
+          { listTitle: 'Purchase History', linkTo: '/analytics/purchase-history' },
           { listTitle: 'Invoices', linkTo: '/analytics/invoice-management' }
         ]
       },
@@ -53,7 +53,7 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         list: [
           {
             listTitle: 'Storefront Designer',
-            linkTo: '/analytics/settings/design'
+            linkTo: '/style-center/storefront-designer'
           },
           { listTitle: 'Product Tiles', linkTo: '/analytics/settings/tile' },
           {
@@ -101,7 +101,8 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         title: 'Quests',
         icon: AppIcons.SideBarQuests,
         linkTo: '/rewards',
-        list: []
+        list: [],
+        external: true // Adding external flag to open in new tab
       },
       {
         title: 'Customer Support',
@@ -109,6 +110,14 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
         linkTo: "#",
         list: [],
         onClick: () => window.Tawk_API?.toggle()
+      },
+      {
+        title: 'Help Center',
+        icon: AppIcons.HelpCenter,
+        linkTo: null,
+        list: [
+          { listTitle: 'Changelog', linkTo: '/analytics/changelog' }
+        ]
       }
     ]
   }

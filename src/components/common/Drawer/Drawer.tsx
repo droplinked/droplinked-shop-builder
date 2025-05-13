@@ -1,5 +1,5 @@
 import { Drawer as ChakraDrawer, ChakraProps, DrawerCloseButton, DrawerContent, DrawerContentProps, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
-import Button, { AppButtonProps } from 'components/redesign/button/Button'
+import AppButton, { AppButtonProps } from 'components/redesign/button/AppButton'
 import React, { PropsWithChildren, ReactNode } from 'react'
 
 interface Props extends PropsWithChildren {
@@ -82,7 +82,7 @@ function Drawer({
                     padding={9}
                     {...drawerHeaderStyle}
                 >
-                    <Flex justifyContent="space-between" alignItems="start" width="100%">
+                    <Flex justifyContent="space-between" alignItems="center" width="100%">
                         {icon}
                         {title &&
                             <Flex flexDirection="column" gap={1}>
@@ -114,7 +114,7 @@ function Drawer({
                         css={{ button: { fontSize: 14, fontWeight: 500 } }}
                         {...drawerFooterProps}
                     >
-                        <Button
+                        <AppButton
                             type="button"
                             variant="secondary"
                             isDisabled={isLoading}
@@ -122,10 +122,10 @@ function Drawer({
                             {...discardButtonProps}
                         >
                             {discardButtonText}
-                        </Button>
+                        </AppButton>
 
                         <Flex gap={4} {...saveButtonProps?.width && { width: saveButtonProps?.width }}>
-                            <Button
+                            <AppButton
                                 type="button"
                                 isDisabled={isLoading}
                                 isLoading={isLoading}
@@ -133,7 +133,7 @@ function Drawer({
                                 {...saveButtonProps}
                             >
                                 {saveButtonText}
-                            </Button>
+                            </AppButton>
                         </Flex>
                     </DrawerFooter>
                 }

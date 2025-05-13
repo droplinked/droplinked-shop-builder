@@ -1,6 +1,6 @@
 import { Flex, Image } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
-import Button from "components/redesign/button/Button"
+import AppButton from "components/redesign/button/AppButton"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { IImageSection } from "../../types/interfaces"
@@ -43,9 +43,9 @@ function ContentSection({ title, description }: IImageSection) {
       <AppTypography fontSize={{ base: 16, xl: 18 }} color="#fff">
         {description}
       </AppTypography>
-      <Button fontWeight={500} onClick={handleGetStartedClick}>
+      <AppButton onClick={handleGetStartedClick}>
         Get Started
-      </Button>
+      </AppButton>
     </Flex>
   )
 }

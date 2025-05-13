@@ -38,7 +38,7 @@ export const ExampleCustomTimeInput = forwardRef((props: any, ref) => {
                     name="hours"
                     background={"transparent !important"}
                 />
-                <AppTypography color={"text.subtextPlaceholder.dark"} fontWeight={900} fontSize={"14px"}>
+                <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={900} fontSize={"14px"}>
                     :
                 </AppTypography>
                 <AppInput

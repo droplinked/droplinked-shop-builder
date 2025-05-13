@@ -1,6 +1,15 @@
 import { Box, Center } from '@chakra-ui/react'
 import React, { PropsWithChildren } from 'react'
 
+/**
+ * ModalHeaderIconWrapper Component - Stylized container for modal icons
+ * 
+ * Creates a visually distinctive icon container with a rotated white accent
+ * element and a semi-transparent backdrop for use in modal headers.
+ * 
+ * @param {object} props - Component props
+ * @param {React.ReactNode} props.children - Icon element to display within the wrapper
+ */
 function ModalHeaderIconWrapper({ children }: PropsWithChildren) {
     return (
         <Box position="relative" borderRadius="8px">

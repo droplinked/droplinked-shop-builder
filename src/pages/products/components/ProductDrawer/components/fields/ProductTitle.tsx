@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import ImproveWithAi from '../common/ImproveWithAi'
@@ -12,7 +12,7 @@ function ProductTitle() {
     const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
 
     return (
-        <Input
+        <AppInput
             label={label}
             description='Enter a unique product name. This will be visible to customers.'
             inputProps={{

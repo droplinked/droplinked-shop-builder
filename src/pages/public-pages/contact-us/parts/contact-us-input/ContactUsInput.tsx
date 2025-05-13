@@ -18,7 +18,7 @@ function ContactUsInput({ name, ...props }: Props) {
             borderRadius={8}
             backgroundColor={"neutral.gray.850"}
             padding={4}
-            color={"text.subtextPlaceholder.dark"}
+            color={"text.subtext.placeholder.dark"}
             fontSize={16}
             {...props}
             _hover={{ backgroundColor: "neutral.gray.850" }}

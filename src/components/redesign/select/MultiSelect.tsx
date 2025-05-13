@@ -3,6 +3,18 @@ import AppIcons from "assets/icon/Appicons"
 import React from "react"
 import Select from "react-select"
 
+/**
+ * Multi-select dropdown component with custom styling
+ *  
+ * @param {object} props - Component props
+ * @param {Array<any>} props.options - Array of options to select from (strings or objects)
+ * @param {Array<any>} props.value - Array of currently selected values
+ * @param {function} props.onChange - Function called with the updated array when selection changes
+ * @param {string} [props.labelAccessor="label"] - Object property to use as display text for options
+ * @param {string} [props.placeholder="Select..."] - Placeholder text when no options are selected
+ * 
+ * @returns {JSX.Element} Multi-select dropdown component
+ */
 function MultiSelect({ value, options, labelAccessor = "label", placeholder = "Select...", onChange }) {
     function getFormattedOptions(options = []) {
         return options.map(option => ({

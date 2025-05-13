@@ -51,7 +51,9 @@ export const getTimeAgo = (date_string: string): string => {
     return new Intl.DateTimeFormat("en-US", { month: "numeric", day: "numeric", year: "numeric" }).format(given_date);
 };
 
-// Formats a date in a long style format (e.g., "November 1, 2022")
+/**
+ * Formats a date in a long style format (e.g., "November 1, 2022")
+ */
 export const formatDateToLongStyle = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
@@ -59,6 +61,19 @@ export const formatDateToLongStyle = (date: Date): string => {
         day: 'numeric',
     }
     return date.toLocaleDateString('en-US', options)
+}
+
+/**
+ * Formats a time to a localized string (e.g., 14:30)
+ */
+export const formattedTime = (date: Date | string): string => {
+    if (!date) return '---';
+
+    return new Date(date).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+    });
 }
 
 // Returns the ISO string for midnight of the next day

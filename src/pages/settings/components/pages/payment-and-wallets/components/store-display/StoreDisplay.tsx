@@ -15,14 +15,14 @@ const StoreDisplay: React.FC = () => {
   const currencyList = data?.data || []
   const [switchState, setSwitchState] = useState({
     fiat: true,
-    // crypto: false
+    crypto: false
   });
 
   // Handle the toggle such that only one currency can be primary at a time
   const handleToggle = (key: 'fiat' | 'crypto') => {
     setSwitchState({
       fiat: key === 'fiat',
-      // crypto: key === 'crypto'
+      crypto: key === 'crypto'
     });
   };
 
@@ -43,7 +43,10 @@ const StoreDisplay: React.FC = () => {
               />
               <CurrencyCard
                 currencyName="Crypto"
-                isSoon={true}
+                isPrimary={switchState.crypto}
+                currencyList={["USD Coin"]}
+                isSoon={false}
+                onToggle={() => handleToggle('crypto')}
               />
             </Flex>
           }

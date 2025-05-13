@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
-import Input from 'components/redesign/input/Input'
-import Select from 'components/redesign/select/Select'
+import AppInput from 'components/redesign/input/AppInput'
+import AppSelect from 'components/redesign/select/AppSelect'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface Props {
@@ -25,7 +25,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
 
     return (
         <Flex justifyContent={"space-between"} alignItems="center">
-            <Input
+            <AppInput
                 inputGroupProps={{ width: "300px", height: 12, bgColor: "neutral.gray.1000" }}
                 inputProps={{
                     value: searchTerm,
@@ -34,7 +34,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 }}
                 leftElement={<AppIcons.Search />}
             />
-            <Select
+            <AppSelect
                 items={statusOptions}
                 labelAccessor='title'
                 valueAccessor='value'

@@ -19,7 +19,7 @@ function EmptyState({ image, title, description }: Props) {
         >
             <AppImage height="200px" src={image} objectFit="cover" />
             <Text marginTop={9} fontWeight={500} color="#FFF">{title}</Text>
-            <Text marginTop={1} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
+            <Text marginTop={1} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
         </Flex>
     )
 }

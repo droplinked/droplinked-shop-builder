@@ -1,20 +1,18 @@
 import React from 'react'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'sonner'
 
 function AppToastify() {
     return (
-        <ToastContainer
+        <Toaster
             position="bottom-right"
-            autoClose={2500}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
+            richColors
+            closeButton
             theme="dark"
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
+            expand={false}
+            duration={2500}
+            style={{
+                zIndex: 9000000000
+            }}
         />
     )
 }

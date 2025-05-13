@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { useFormikContext } from 'formik'
 import React, { MouseEvent } from 'react'
 
@@ -18,8 +18,8 @@ export default function FormActions({ onClose }: { onClose: () => void }) {
 
     return (
         <Flex width={"100%"} gap={4} justifyContent={"end"}>
-            <Button variant='secondary' isDisabled={isSubmitting} onClick={handleCloseForm}>Discard</Button>
-            <Button onClick={handleFormSubmit} isLoading={isSubmitting}>Save</Button>
+            <AppButton variant='secondary' isDisabled={isSubmitting} onClick={handleCloseForm}>Discard</AppButton>
+            <AppButton onClick={handleFormSubmit} isLoading={isSubmitting}>Save</AppButton>
         </Flex>
     )
 }

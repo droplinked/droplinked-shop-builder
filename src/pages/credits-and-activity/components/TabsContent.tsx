@@ -1,4 +1,4 @@
-import AppTab from 'components/redesign/app-tab/AppTab'
+import AppTab from 'components/redesign/tab/AppTab'
 import React from 'react'
 import CreditManagement from '../credit-management/CreditManagement'
 
@@ -11,6 +11,6 @@ export default function TabsContent() {
     ]
 
     return (
-        <AppTab tabs={tabs} tabPanelStyle={{ p: { base: 4, md: 6 } }} />
+        <AppTab tabs={tabs} tabPanelStyle={{ paddingBlock: { base: 4, md: 6 } }} />
     )
 }

@@ -61,7 +61,6 @@ function useDesignMakerHooks(onClose: () => void) {
             showToast({
                 message: error || 'Something went wrong. Please try again.',
                 type: 'error',
-                options: { toastId: 'DesignMaker' }
             })
             setIsLoading(false)
         }

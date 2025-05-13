@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
@@ -19,7 +19,7 @@ export default function NameField() {
     }
 
     return (
-        <Input
+        <AppInput
             label='Name'
             inputProps={{
                 fontSize: { base: 14, md: 16 },

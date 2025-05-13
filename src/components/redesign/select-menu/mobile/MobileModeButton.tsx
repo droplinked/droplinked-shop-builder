@@ -18,7 +18,7 @@ export default function MobileModeButton({ mobileModeIcon, onOpen, placeholder }
                 mobileModeIcon ?
                     mobileModeIcon
                     : <>
-                        <AppTypography color="text.subtextPlaceholder.dark" fontSize={14} fontWeight={400}>
+                        <AppTypography color="text.subtext.placeholder.dark" fontSize={14} fontWeight={400}>
                             {placeholder}
                         </AppTypography>
                         <AppIcons.SelectChevronDown />

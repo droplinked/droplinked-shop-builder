@@ -5,13 +5,13 @@ const BasicButtonStyles = ({
     solid: (): ButtonProps => {
         return {
             color: "neutral.gray.1000",
-            bgColor: "primary.default",
+            bgColor: "main.primary",
             border: "2px solid",
-            borderColor: "primary.default",
+            borderColor: "main.primary",
             _hover: {
-                borderColor: "primary.default",
+                borderColor: "main.primary",
                 bgColor: "unset",
-                color: "primary.default",
+                color: "main.primary",
             }
         }
     },
@@ -25,7 +25,7 @@ const BasicButtonStyles = ({
             _hover: {
                 borderColor: "neutral.gray.500",
                 bgColor: "unset",
-                color: "text.subtextPlaceholder.dark",
+                color: "text.subtext.placeholder.dark",
             }
         }
     },
@@ -37,7 +37,7 @@ const BasicButtonStyles = ({
             border: "none",
             _hover: {
                 bgColor: "unset",
-                color: "text.subtextPlaceholder.dark",
+                color: "text.subtext.placeholder.dark",
             }
         }
     },

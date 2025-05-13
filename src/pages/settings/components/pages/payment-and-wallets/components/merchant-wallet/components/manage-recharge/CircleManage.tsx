@@ -1,7 +1,7 @@
 import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
@@ -14,8 +14,9 @@ import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
 import { ChainIcons } from "utils/constants/chainIcons";
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
+import { appDevelopment } from "utils/app/variable";
 
-const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
+const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { data, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
     const { user } = useAppStore(),
         connectWalletModal = useDisclosure();
@@ -24,7 +25,8 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const { mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
 
     const handleWithdraw = async (chain: any) => {
-        if (chain?.tokenSymbol === "USDC") {
+
+        if (chain?.tokenSymbol === "USDC" && !appDevelopment) {
             setError("USDC");
             return;
         }
@@ -113,12 +115,12 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = ChainIcons[chain?.tokenSymbol];   
+                                const Icon = ChainIcons[chain?.tokenSymbol];
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
                                         <Box display="flex" alignItems="center" gap="16px" flex="1">
-                                            {Icon &&<IconWrapper icon={<Icon />}></IconWrapper>}
+                                            {Icon && <IconWrapper icon={<Icon />}></IconWrapper>}
                                             <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
                                                 {chain?.tokenName}
                                             </AppTypography>
@@ -240,38 +242,39 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 </svg>
                                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" flex="1 0 0">
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="700" lineHeight="20px">
-                                    {Error === "USDC"? 'For USDC withdrawals, your account needs to be verified.' : 'Wallet not connected' }
-                                        
+                                        {Error === "USDC" ? 'For USDC withdrawals, your account needs to be verified.' : 'Wallet not connected'}
+
                                     </AppTypography>
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">
-                                        {Error === "USDC" 
+                                        {Error === "USDC"
                                             ? "Please contact Droplinked support at support@droplinked.com for verification."
                                             : `Please connect a ${Error} supported wallet first, then proceed with the withdrawal.`}
                                     </AppTypography>
                                 </Box>
                             </Box>
-                            {Error === "USDC" ? null : 
-                             <Button
-                                display="flex"
-                                border="none"
-                                color="#FFF"
-                                textAlign="center"
-                                fontFamily="Inter"
-                                fontSize="14px"
-                                fontStyle="normal"
-                                fontWeight="500"
-                                lineHeight="16px"
-                                padding="12px 16px"
-                                justifyContent="center"
-                                alignItems="center"
-                                gap="6px"
-                                borderRadius="8px"
-                                background="neutral.gray.850"
-                                onClick={connectWalletModal.onOpen}
-                            >
-                                Connect Wallet
-                            </Button> }
-                           
+                            {Error === "USDC" ? null :
+
+                                <AppButton
+                                    display="flex"
+                                    border="none"
+                                    color="#FFF"
+                                    textAlign="center"
+                                    fontFamily="Inter"
+                                    fontSize="14px"
+                                    fontStyle="normal"
+                                    fontWeight="500"
+                                    lineHeight="16px"
+                                    padding="12px 16px"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    gap="6px"
+                                    borderRadius="8px"
+                                    background="neutral.gray.850"
+                                    onClick={connectWalletModal.onOpen}
+                                >
+                                    Connect Wallet
+                                </AppButton>}
+
                         </Box>
                     )}
                 </ModalBody>

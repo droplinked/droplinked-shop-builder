@@ -1,7 +1,8 @@
-import { Text, VStack } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import { Flex, Text, VStack } from '@chakra-ui/react'
+import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { signupService } from 'lib/apis/auth/services'
@@ -14,7 +15,6 @@ import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
-import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from './PasswordValidationRules'
@@ -74,7 +74,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
 
                     return (
                         <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                            <Input
+                            <AppInput
                                 label="Email Address"
                                 inputProps={{
                                     name: "email",
@@ -97,7 +97,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 <PasswordValidationRules password={values.password} />
                             </VStack>
 
-                            <Input
+                            <AppInput
                                 label="Referral Code"
                                 inputProps={{
                                     name: "referralCode",
@@ -108,21 +108,24 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                             />
 
                             <Checkbox
+                                display='flex'
                                 marginBlock={3}
                                 alignItems={{ base: "start", md: "center" }}
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
-                                By signing up, I agree to your{" "}
-                                <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                <Text display='flex' gap='1' fontSize={14} color="text.white">
+                                     By signing up, I agree to your
+                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText> 
+                                </Text>                                                 
                             </Checkbox>
 
-                            <Button
+                            <AppButton
                                 isLoading={isSubmitting}
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
                                 Sign Up
-                            </Button>
+                            </AppButton>
 
                             <DividerText text="or sign up with" />
 
@@ -134,10 +137,18 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 udId={udId}
                             />
 
-                            <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                                Already have an account?{" "}
+                            <Flex
+                                flexDirection={{ base: "column", md: "row" }}
+                                justifyContent="center"
+                                alignItems="center"
+                                gap={{ base: 1, md: 2 }}
+                                marginTop={3}
+                            >
+                                <Text fontSize={14} color="text.white">
+                                    Already have an account?
+                                </Text>
                                 <InteractiveText onClick={onBack}>Sign in</InteractiveText>
-                            </Text>
+                            </Flex>
                         </Form>
                     )
                 }}

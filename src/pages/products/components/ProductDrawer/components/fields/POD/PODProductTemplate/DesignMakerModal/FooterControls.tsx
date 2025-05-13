@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 
 function FooterControls({ onClose, isLoading, isIframeLoaded, handleSave }) {
@@ -9,17 +9,17 @@ function FooterControls({ onClose, isLoading, isIframeLoaded, handleSave }) {
             alignItems="center"
             gap={4}
         >
-            <Button variant="secondary" isDisabled={isLoading} onClick={onClose}>
+            <AppButton variant="secondary" isDisabled={isLoading} onClick={onClose}>
                 Discard
-            </Button>
+            </AppButton>
 
-            <Button
+            <AppButton
                 isDisabled={isLoading || !isIframeLoaded}
                 isLoading={isLoading}
                 onClick={handleSave}
             >
                 Save
-            </Button>
+            </AppButton>
         </Flex>
     )
 }

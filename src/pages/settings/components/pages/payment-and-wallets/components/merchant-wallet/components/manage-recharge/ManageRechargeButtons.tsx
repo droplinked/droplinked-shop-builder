@@ -1,11 +1,12 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useAppStore from 'lib/stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CircleManage from './CircleManage'
 import BlueButton from 'components/redesign/button/BlueButton'
+import {ConfigureSm} from 'assets/icons/System/Configure/ConfigureSm'
 
 export default function ManageRechargeButtons() {
     const { shop } = useAppStore()
@@ -14,10 +15,11 @@ export default function ManageRechargeButtons() {
     return (
         circleWallets.length && (
             <Flex gap="2" alignItems={"center"}>
-                <Button paddingInline={0} px={3} py={2} fontSize={12} onClick={onOpen} variant="outline" border={"none"} color="white" size="sm">
-                    <AppIcons.SidebarSetting style={{ width: "16px", height: "16px" }} />
+                {/* TODO: Check with design */}
+                <AppButton variant="outlined" size="sm" onClick={onOpen}  border={"none"} color="white" leftIcon={<ConfigureSm/>} >
+                    
                     Manage
-                </Button>
+                </AppButton>
                 <Link to={"https://www.binance.com/en/crypto/buy"} target='_blank'>
                     <BlueButton
                         fontSize={12}

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Coupon } from '../../../interface'
 import { Box, Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppIcons from 'assets/icon/Appicons'
 import { useMutation } from 'react-query'
 import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import { AxiosError } from 'axios'
 import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
-import Select from 'components/redesign/select/Select'
+import AppSelect from 'components/redesign/select/AppSelect'
 
 export enum Filters {
     All = 'All',
@@ -51,7 +51,7 @@ export default function CodesTab({ coupon, onClose }: Props) {
         <Flex gap={4} flexDirection={"column"}>
             <Flex alignItems={"center"} justifyContent={"space-between"}>
                 <Box width={"150px"}>
-                    <Select
+                    <AppSelect
                         items={[
                             {
                                 label: Filters.All,
@@ -71,9 +71,15 @@ export default function CodesTab({ coupon, onClose }: Props) {
                         selectProps={{ value: currentFilter, onChange: (e) => setCurrentFilter(e.target.value as Filters) }}
                     />
                 </Box>
-                <Button onClick={() => mutate()} isLoading={isLoading} color={"#fff"} fontWeight={500} leftIcon={<AppIcons.Download />} variant='secondary'>
+                {/* TODO: Check with the design */}
+                <AppButton 
+                    variant='secondary' 
+                    onClick={() => mutate()} 
+                    isLoading={isLoading} 
+                    leftIcon={<AppIcons.Download />}
+                >
                     Download
-                </Button>
+                </AppButton>
             </Flex>
             <CodesList codes={coupon.codes} currentFilter={currentFilter} />
         </Flex>

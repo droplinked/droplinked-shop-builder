@@ -45,7 +45,7 @@ export default function BasicButton(props: IBasicButton) {
       {...props}
       boxShadow="none !important"
     >
-      {props.isLoading !== undefined && props.isLoading === true ? <Spinner thickness="4px" position={'absolute'} speed="0.65s" emptyColor="white" color="primary.default" size="xs" /> : null}
+      {props.isLoading !== undefined && props.isLoading === true ? <Spinner thickness="4px" position={'absolute'} speed="0.65s" emptyColor="white" color="main.primary" size="xs" /> : null}
       <Box {...(props.isLoading && { color: 'transparent' })} display="flex" alignItems="center" gap="8px">
         {iconLeft && <Box>{iconLeft}</Box>}
 

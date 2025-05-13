@@ -14,6 +14,25 @@ interface IFileData {
     size: string;
 }
 
+/**
+ * AppUploadImage Component - Handles image uploads with size variations
+ * 
+ * Supports single or multiple file uploads, with automatic processing of images
+ * into different sizes. Shows toast notifications and handles file validation.
+ * 
+ * @param {object} props - Component props
+ * @param {Array<any>|string} props.values - Current image values, array for multiple, string for single
+ * @param {Function} props.onChange - Callback when images are added
+ * @param {Function} [props.onSuccess] - Callback after successful upload
+ * @param {Function} [props.onDelete] - Callback when images are deleted
+ * @param {string} [props.toast] - Custom success message to display
+ * @param {sizes} [props.size] - Image size variant to use from API response
+ * @param {boolean} [props.product] - Whether this is for a product image upload
+ * @param {ImodeUploadImage} [props.mode='multi'] - Upload mode (single/multiple)
+ * @param {IUploadImageDefault} [props.defaults] - Default values for the uploader
+ * @param {object} props.accept - File types to accept in format {type: [extension]}
+ * @param {function} props.setFileData - Callback to set file metadata
+ */
 interface IProps {
     values: Array<any> | string
     onChange: Function

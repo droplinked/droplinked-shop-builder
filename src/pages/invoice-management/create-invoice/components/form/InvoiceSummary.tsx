@@ -2,13 +2,13 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import useAppToast from 'hooks/toast/useToast'
 import { addGiftCardToCartService } from 'lib/apis/invoice/invoiceServices'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 import useInvoiceStore from '../../store/invoiceStore'
 import SectionedContent from '../SectionedContent'
 import CartSummaryRow from './CartSummaryRow'
 import InvoiceMemo from './InvoiceMemo'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 
 function InvoiceSummary() {
     const [giftCardCode, setGiftCardCode] = useState("")
@@ -34,7 +34,7 @@ function InvoiceSummary() {
 
     return (
         <SectionedContent as={"aside"} width={{ base: "100%", lg: "380px" }} title="Summary">
-            <Input
+            <AppInput 
                 leftElement={<AppIcons.InvoiceDiscount color='white' />}
                 inputGroupProps={{ height: 12 }}
                 inputProps={{
@@ -46,17 +46,16 @@ function InvoiceSummary() {
                     padding: "8px 10px 8px 16px"
                 }}
                 rightElement={
-                    <Button
+                    <AppButton
                         onClick={handleAddGiftCard}
                         isDisabled={!giftCardCode || isLoading}
                         isLoading={isLoading}
                         paddingBlock={2}
                         paddingInline={2}
-                        fontSize={14}
                         height={"min-content"}
                     >
                         Apply
-                    </Button>
+                    </AppButton>
                 }
             />
 

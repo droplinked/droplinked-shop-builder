@@ -1,5 +1,5 @@
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
@@ -39,7 +39,7 @@ function ProductBulkPriceUpdater() {
                 onChange: (e) => setFixedPrice(e.target.checked)
             }}
             rightContent={fixedPrice && (
-                <Input
+                <AppInput
                     inputGroupProps={{ width: "104px" }}
                     inputProps={{
                         type: "number",

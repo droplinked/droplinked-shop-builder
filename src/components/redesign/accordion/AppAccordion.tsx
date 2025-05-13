@@ -3,11 +3,30 @@ import AppIcons from "assets/icon/Appicons"
 import { AnimatePresence, motion } from "framer-motion"
 import React, { createContext, useContext, useEffect, useState } from "react"
 
+/**
+ * AppAccordion Component - Collapsible content sections with animation
+ * 
+ * A compound component for creating accordion UI with animated transitions.
+ * Supports multiple open panels, default open state, and customizable styling.
+ * 
+ * @param {object} props - Component props
+ * @param {boolean} [props.multiCollapse=false] - Whether multiple panels can be open simultaneously
+ * @param {boolean} [props.alwaysOpen=false] - Whether at least one panel must remain open
+ * @param {React.ReactNode} props.children - Accordion items to render
+ */
 interface IAppAccordionProps extends BoxProps {
     multiCollapse?: boolean
     alwaysOpen?: boolean
 }
 
+/**
+ * AppAccordionItem props
+ * 
+ * @param {string} props.itemId - Unique identifier for the accordion item
+ * @param {boolean} [props.defaultOpen=false] - Whether the item is open by default
+ * @param {boolean} [props.isCollapsable=true] - Whether the item can be collapsed
+ * @param {React.ReactNode} props.children - Content to render within the accordion item
+ */
 interface IAppAccordionItemProps extends BoxProps {
     itemId: string
     defaultOpen?: boolean
@@ -135,9 +154,9 @@ export const AppAccordionPanel = ({ children, ...props }: BoxProps) => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "linear" }}
-                    style={{ overflow: "hidden" }}
+                    style={{ overflow: "hidden", width: "100%" }}
                 >
-                    <Box {...props}>{children}</Box>
+                    <Box width="100%" {...props}>{children}</Box>
                 </motion.div>
             )}
         </AnimatePresence>

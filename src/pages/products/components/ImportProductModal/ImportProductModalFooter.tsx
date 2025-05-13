@@ -1,19 +1,24 @@
 import { ModalFooter } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
 import { uploadProductCSV } from 'lib/apis/product/productServices'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { useMutation } from 'react-query'
 
 interface Props {
     file: File | null
     closeModal: () => void
+    importWithUrl: UseImportWithUrl
 }
 
-function ImportProductModalFooter({ file, closeModal }: Props) {
+function ImportProductModalFooter({ file, closeModal, importWithUrl }: Props) {
     const formData = new FormData()
+    const { targetShopUrl } = useProductPageStore()
     const { showToast } = useAppToast()
     const { mutateAsync, isLoading } = useMutation(uploadProductCSV)
+    const { startCrawling, crawlingLoading } = importWithUrl
 
     const handleFileUpload = async () => {
         if (!file) return
@@ -30,6 +35,14 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
         }
     }
 
+    const handleSubmit = () => {
+        if (file) {
+            handleFileUpload()
+        } else {
+            startCrawling()
+        }
+    }
+
     return (
         <ModalFooter
             display="flex"
@@ -37,12 +50,12 @@ function ImportProductModalFooter({ file, closeModal }: Props) {
             gap={{ xl: 6, base: 3 }}
             paddingBlock="36px !important"
         >
-            <Button variant="secondary" disabled={isLoading} onClick={closeModal}>
+            <AppButton variant="secondary" disabled={isLoading} onClick={closeModal}>
                 Discard
-            </Button>
-            <Button onClick={handleFileUpload} isDisabled={!file || isLoading}>
+            </AppButton>
+            <AppButton onClick={handleSubmit} isLoading={crawlingLoading || isLoading} isDisabled={!file && !targetShopUrl}>
                 {isLoading ? 'Uploading' : 'Validate'}
-            </Button>
+            </AppButton>
         </ModalFooter>
     )
 }

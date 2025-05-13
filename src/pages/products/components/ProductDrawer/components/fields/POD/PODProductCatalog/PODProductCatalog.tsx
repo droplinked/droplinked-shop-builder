@@ -1,6 +1,6 @@
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
-import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 import CategoryTree from './CategoryTree/CategoryTree'
 import ProductList from './ProductList/ProductList'
 import SelectedProductDetails from './SelectedProductDetails'
@@ -46,13 +46,13 @@ function PODProductCatalog() {
     }
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Product Catalog"
             description="Select a category, product, or view product details."
             isRequired
         >
             {renderContent()}
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }
 

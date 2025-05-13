@@ -1,11 +1,11 @@
 import { Skeleton } from "@chakra-ui/react"
-import Select from "components/redesign/select/Select"
+import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
+import AppSelect from "components/redesign/select/AppSelect"
 import { supportedChainsService } from "lib/apis/sku/services"
-import chainNameMap from "utils/constants/blockchainMap"
 import useProductForm from "pages/products/hooks/useProductForm"
 import React from "react"
 import { useQuery } from "react-query"
-import ProductFieldWrapper from "../../common/ProductFieldWrapper"
+import chainNameMap from "utils/constants/blockchainMap"
 
 interface Props {
     isDropEnabled: boolean
@@ -24,12 +24,12 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
         setFieldValue('digitalDetail', { ...digitalDetail, chain: value })
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Blockchain Network"
             description="Choose the blockchain network where product details will be recorded as an NFT."
             rightContent={
                 <Skeleton isLoaded={!isFetching}>
-                    <Select
+                    <AppSelect
                         items={blockchainNetworks}
                         labelAccessor="label"
                         valueAccessor="value"
@@ -49,6 +49,6 @@ export default function BlockchainNetworkSelector({ isDropEnabled }: Props) {
 const formatBlockchainNetworks = (data: any) => {
     return (data?.data?.data || []).map((chain: string) => ({
         label: chainNameMap[chain],
-        value: chain,
+        value: chain
     }))
 }

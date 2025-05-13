@@ -71,7 +71,7 @@ export default function TokenCard({ token }: Props) {
             </Flex>
             <Flex gap={2} px={6} py={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
-                    <AppTypography color="text.subtextPlaceholder.dark" fontSize="12px">
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize="12px">
                         Networks
                     </AppTypography>
                     <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"}  sx={{ rect: { fill: "#292929" } }}>

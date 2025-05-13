@@ -19,7 +19,7 @@ function BaseEmptyState({ image, title, description, actionText, onActionClick }
 
             <Flex direction="column" alignItems="center" gap={1} textAlign="center">
                 <Text fontWeight={500} color="text.white">{title}</Text>
-                <Text fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
+                <Text fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                 <BlueButton onClick={onActionClick}>
                     {actionText}
                     <ExternalarrowSm color='#179EF8' />

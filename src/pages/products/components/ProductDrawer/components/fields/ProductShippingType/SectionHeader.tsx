@@ -16,7 +16,7 @@ function SectionHeader({ title, description }: Props) {
             <Text fontWeight={500} color="#FFF">
                 {title}
             </Text>
-            <Text color="text.subtextPlaceholder.dark">
+            <Text color="text.subtext.placeholder.dark">
                 {description}
             </Text>
         </Flex>

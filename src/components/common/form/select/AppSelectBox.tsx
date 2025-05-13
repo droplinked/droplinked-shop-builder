@@ -1,6 +1,6 @@
 import { SelectProps, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import Select from 'components/redesign/select/Select'
+import AppSelect from 'components/redesign/select/AppSelect'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import { IAppForm } from '../FormModel'
@@ -20,7 +20,7 @@ function AppSelectBox(props: Iprops) {
     return (
         <VStack align="stretch" width="100%" spacing={1}>
             <AppSkeleton isLoaded={loading}>
-                <Select
+                <AppSelect
                     items={items}
                     labelAccessor='caption'
                     valueAccessor='value'

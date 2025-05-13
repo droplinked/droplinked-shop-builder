@@ -1,11 +1,11 @@
 import { Box, HStack, useBreakpointValue, VStack } from '@chakra-ui/react';
 import AdminHoc from 'hoc/admin/adminHoc';
 import useAppStore from 'lib/stores/app/appStore';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DashboardLayoutHeader from './components/header/DashboardLayoutHeader';
 import DashboardLayoutSidebar from './components/sidebar/DashboardLayoutSidebar';
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 
 const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,9 +14,6 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
-  // Determine if padding should be applied based on the route
-  const unneededPaddingRoutes = ['account-settings', 'credits-and-activity', 'onchain-records'];
-  const shouldApplyPadding = !unneededPaddingRoutes.some((path) => location.includes(path));
   const isMobile = useBreakpointValue({ base: true, md: false });
   // Reference for detecting clicks outside the sidebar
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +49,7 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
 
   return (
     <VStack width="full" height="full" {...(location.endsWith('/plans') && { overflow: 'auto' })}>
-      <HStack width="full" height="full" alignItems="flex-start" justifyContent="flex-start">
+      <HStack width="full" height="full" alignItems="flex-start" justifyContent="flex-start" gap={0}>
         {/* Sidebar: Absolute in mobile, static in desktop */}
         {isMobile ? (
           isSidebarOpen && (
@@ -68,9 +65,9 @@ const DashboardLayout = ({ children }: { children?: ReactNode }) => {
         )}
 
         {/* Main content */}
-        <VStack flex="1" height="full" width="full">
+        <VStack width="full" height="full" flex="1" spacing={0}>
           <DashboardLayoutHeader isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-          <Box width="100%" minH="80vh" borderColor="neutral.gray.850" padding={shouldApplyPadding ? 6 : 0}>
+          <Box width="100%" minH="80vh" padding={6}>
             {children || <Outlet />}
           </Box>
         </VStack>

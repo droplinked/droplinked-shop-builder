@@ -3,6 +3,14 @@ import React from 'react'
 import useSubscriptionPlanPurchaseStore, { planDurations } from '../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import PlanDurationRadio from './PlanDurationRadio'
 
+/**
+ * PlanDurationRadioContainer Component - Plan duration selection group
+ * 
+ * Horizontal scrollable container of radio options for selecting subscription
+ * plan durations, with global state integration and custom scrollbar styling.
+ * 
+ * @returns {JSX.Element} A scrollable radio group for selecting plan durations
+ */
 function PlanDurationRadioContainer() {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const updatePlanDuration = useSubscriptionPlanPurchaseStore((state) => state.updatePlanDuration)

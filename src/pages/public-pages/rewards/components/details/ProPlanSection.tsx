@@ -28,7 +28,7 @@ const ProPlanSection = () => {
             <Text fontSize="xl" fontWeight="bold" color="white">
               Pro Plan
             </Text>
-            <Text fontSize="base" color="text.subtextPlaceholder.dark">
+            <Text fontSize="base" color="text.subtext.placeholder.dark">
               Enjoy premium features.
             </Text>
           </VStack>
@@ -75,13 +75,13 @@ const ProPlanSection = () => {
                 <Text fontSize="xl" fontWeight="bold" color="white">
                   Pro Plan
                 </Text>
-                <Text fontSize="base" color="text.subtextPlaceholder.light">
+                <Text fontSize="base" color="text.subtext.placeholder.light">
                   For small businesses and teams ready to grow.
                 </Text>
               </VStack>
 
               <VStack spacing={4} align="start">
-                <Text fontSize="base" color="text.subtextPlaceholder.light">
+                <Text fontSize="base" color="text.subtext.placeholder.light">
                   Includes everything in Starter, plus:
                 </Text>
                 {features.map((feature, index) => (

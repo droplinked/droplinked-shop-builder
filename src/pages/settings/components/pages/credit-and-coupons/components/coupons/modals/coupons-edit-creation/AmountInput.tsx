@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import Input, { InputHeader } from 'components/redesign/input/Input'
-import Select from 'components/redesign/select/Select'
+import AppInput, { AppInputHeader } from 'components/redesign/input/AppInput'
+import AppSelect from 'components/redesign/select/AppSelect'
 import { useFormikContext } from 'formik';
 import React from 'react'
 import { CouponFormValues } from './formConfigs';
@@ -12,9 +12,9 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
 
     return (
         <Flex flexDirection={"column"}>
-            <InputHeader label="Amount" description="Select the discount type between shop’s currency or percentage." inputProps={{ isRequired: true }} />
+            <AppInputHeader label="Amount" description="Select the discount type between shop’s currency or percentage." inputProps={{ isRequired: true }} />
             <Flex gap={4} width={"100%"}>
-                <Input
+                <AppInput
                     inputProps={{
                         onChange: handleChange,
                         name: "balance",
@@ -25,7 +25,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                     }}
                     {...errors.balance && { error: errors.balance, state: "error" }}
                 />
-                <Select
+                <AppSelect
                     items={[
                         { label: "Percentage", value: "DISCOUNT" },
                         { label: abbreviation, value: "CREDIT" }

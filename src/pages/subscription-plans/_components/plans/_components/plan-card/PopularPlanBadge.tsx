@@ -6,20 +6,20 @@ import React from 'react'
 function PopularPlanBadge() {
     return (
         <Flex
-            position={"absolute"}
+            position="absolute"
             top={0}
             left="50%"
             transform="translate(-50%, -50%)"
-            alignItems={"center"}
+            alignItems="center"
             gap={2}
             paddingBlock={2}
             paddingInline={4}
-            borderRadius={"200px"}
-            bgColor={"primary.default"}
-            whiteSpace={"nowrap"}
+            borderRadius="200px"
+            bgColor="main.primary"
+            whiteSpace="nowrap"
         >
             <AppIcons.PopularPlanMedal />
-            <AppTypography textTransform={"uppercase"} fontSize={14} fontWeight={600} color={"#000"}>most popular</AppTypography>
+            <AppTypography textTransform="uppercase" fontSize={14} fontWeight={600} color="#000">most popular</AppTypography>
         </Flex>
     )
 }

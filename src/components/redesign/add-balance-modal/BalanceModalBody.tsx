@@ -1,7 +1,7 @@
 import { Divider, Flex, ModalBody, ModalFooter } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import { IchargeCreditService } from 'lib/apis/shop/interfaces'
@@ -33,7 +33,7 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
     return (
         <Flex flexDir={"column"} gap={"36px"} pt={"48px"}>
             <ModalBody>
-                <Input
+                <AppInput
                     label='Amount'
                     inputProps={{
                         isRequired: true,
@@ -47,16 +47,8 @@ export default function BalanceModalBody({ handleSetPayment, onClose }: Props) {
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter display={"flex"} justifyContent={"space-between"}>
-                <Button fontWeight={500} onClick={onClose} fontSize={14} variant='secondary'>Cancel</Button>
-                <Button
-                    fontWeight={500}
-                    fontSize={14}
-                    onClick={onSubmit}
-                    isLoading={isLoading}
-                    isDisabled={!value}
-                >
-                    Pay
-                </Button>
+                <AppButton onClick={onClose} variant='secondary'>Cancel</AppButton>
+                <AppButton onClick={onSubmit} isLoading={isLoading} isDisabled={!value}> Pay </AppButton>
             </ModalFooter>
         </Flex>
     )

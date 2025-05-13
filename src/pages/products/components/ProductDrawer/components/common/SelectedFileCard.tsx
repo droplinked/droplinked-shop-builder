@@ -44,7 +44,7 @@ export function FileDetails({ fileName, fileSize }) {
                 </Text>
             )}
             {fileSize && (
-                <Text fontSize={12} fontWeight={400} color="text.subtextPlaceholder.dark">
+                <Text fontSize={12} fontWeight={400} color="text.subtext.placeholder.dark">
                     {fileSize} MB
                 </Text>
             )}

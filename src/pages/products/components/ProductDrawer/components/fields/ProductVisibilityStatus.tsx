@@ -1,10 +1,10 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import CustomRadioCard from '../common/CustomRadioCard'
-import ProductFieldWrapper from '../common/ProductFieldWrapper'
 
 function ProductVisibilityStatus() {
     const { values, setFieldValue } = useProductForm()
@@ -27,7 +27,7 @@ function ProductVisibilityStatus() {
     )
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Visibility Status"
             description="Set the visibility of this product. If deactivated, customers won’t be able to add it to their cart."
             isRequired
@@ -45,7 +45,7 @@ function ProductVisibilityStatus() {
                     )
                 })}
             </Flex>
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }
 

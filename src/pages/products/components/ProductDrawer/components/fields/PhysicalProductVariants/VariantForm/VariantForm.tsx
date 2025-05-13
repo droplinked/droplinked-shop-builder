@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { updateSKUsOnVariantChange } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
@@ -66,10 +66,8 @@ function VariantForm({ handleDiscard, editingVariant }: Props) {
                 gap={4}
                 sx={{ button: { padding: '8px 12px', fontSize: 12, fontWeight: 500 } }}
             >
-                <Button variant="secondary" onClick={handleDiscard}>Discard</Button>
-                <Button onClick={saveToContext}>
-                    {editingVariant ? 'Edit' : 'Save'}
-                </Button>
+                <AppButton variant="secondary" onClick={handleDiscard}>Discard</AppButton>
+                <AppButton onClick={saveToContext}> {editingVariant ? 'Edit' : 'Save'}  </AppButton>
             </Flex>
         </Flex>
     )

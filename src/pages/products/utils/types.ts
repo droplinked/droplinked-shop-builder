@@ -130,3 +130,9 @@ export interface Product {
     digitalDetail?: DigitalDetails
     nftData?: NFTData
 }
+
+export interface CrawledProductsType {
+    url: string
+    image: string
+    title: string
+}

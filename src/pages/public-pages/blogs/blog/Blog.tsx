@@ -11,7 +11,7 @@ const PublicBlog = () => {
     const { pathname } = useLocation();
     const { slug } = useParams();
     const { isFetching, data } = useQuery({
-        queryFn: () => getPublicBlogByIdService({ slug: slug! }),
+        queryFn: () => getPublicBlogByIdService(slug),
         onError: (error: any) => {
             const errorData = error?.response?.data;
             if (errorData?.statusCode === 404) navigate("/blogs");

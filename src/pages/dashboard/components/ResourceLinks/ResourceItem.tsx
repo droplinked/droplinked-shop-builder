@@ -20,7 +20,7 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
             {summary ?
                 <Flex direction="column" gap={1}>
                     <Text {...titleStyles}>{title}</Text>
-                    <Text fontSize={14} color="text.subtextPlaceholder.dark">{summary}</Text>
+                    <Text fontSize={14} color="text.subtext.placeholder.dark">{summary}</Text>
                 </Flex>
                 :
                 <Text {...titleStyles}>{title}</Text>

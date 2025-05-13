@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
@@ -60,13 +60,13 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                         })
                     }
                     {visibleButton &&
-                        <Button
+                        <AppButton
                             isLoading={isLoading}
                             marginTop={"1rem"}
                             onClick={() => mutate({ domain_name: domain_name })}
                         >
                             Check DNS Status
-                        </Button>}
+                        </AppButton>}
                 </Flex>
             </ModalHeaderData>
         </AppModal>

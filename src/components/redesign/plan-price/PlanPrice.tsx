@@ -4,6 +4,18 @@ import React, { useMemo } from 'react'
 import useSubscriptionPlanPurchaseStore from '../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
 import PriceContent from './PriceContent'
 
+/**
+ * PlanPrice Component - Displays subscription plan pricing
+ * 
+ * Shows plan price with appropriate formatting based on the selected duration,
+ * with support for discount visualization and customizable font sizes.
+ * 
+ * @param {object} props - Component props
+ * @param {SubscriptionPlan} props.plan - The subscription plan object with pricing information
+ * @param {number} [props.mainFontSize=32] - Font size for the main price amount
+ * @param {number} [props.discountFontSize=20] - Font size for the discounted price display
+ * @param {FlexProps} props - Additional Chakra UI flex props
+ */
 interface Props extends FlexProps {
     plan: SubscriptionPlan
     mainFontSize?: number
@@ -11,9 +23,8 @@ interface Props extends FlexProps {
 }
 
 function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }: Props) {
-    const { preferredPlanDuration, planCardStyles } = useSubscriptionPlanPurchaseStore(state => ({
+    const { preferredPlanDuration} = useSubscriptionPlanPurchaseStore(state => ({
         preferredPlanDuration: state.preferredPlanDuration,
-        planCardStyles: state.planCardStyles,
     }))
 
     const targetPrice = useMemo(() => 
@@ -23,13 +34,13 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }:
     )
 
     const flexProps = useMemo(() => ({
-        height: `${planCardStyles.priceHeight}px`,
         flexWrap: "wrap" as const,
         alignItems: "baseline" as const,
         rowGap: 0,
         columnGap: 3,
+
         sx: { p: { fontSize: mainFontSize, fontWeight: 700, color: 'white' } }
-    }), [planCardStyles.priceHeight, mainFontSize])
+    }), [ mainFontSize])
 
     return (
         <Flex {...flexProps} {...props}>

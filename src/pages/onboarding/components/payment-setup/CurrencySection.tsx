@@ -5,7 +5,11 @@ import useAppStore from 'lib/stores/app/appStore'
 import { shopUpdateService, shopInfoService } from 'lib/apis/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
 
-function CurrencySection() {
+interface CurrencySectionProps {
+  onLoadingChange?: (loading: boolean) => void
+}
+
+function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
   const { shop, updateState } = useAppStore()
   const { showToast } = useAppToast()
   const [isLoading, setIsLoading] = React.useState(false)
@@ -13,6 +17,7 @@ function CurrencySection() {
   const handleCurrencyChange = async (currency: string) => {
     try {
       setIsLoading(true)
+      onLoadingChange?.(true)
 
       const latestShopData = await shopInfoService({ shopName: shop.shopName })
       const latestShop = latestShopData.data.data
@@ -38,6 +43,7 @@ function CurrencySection() {
       })
     } finally {
       setIsLoading(false)
+      onLoadingChange?.(false)
     }
   }
 

@@ -1,73 +1,77 @@
-import { Box, Flex, FlexProps, Spinner, VStack } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { ReactNode } from "react";
-import { useDropzone } from "react-dropzone";
+import { Box, Flex, FlexProps, Spinner } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import React from 'react'
+import { Accept, useDropzone } from 'react-dropzone'
 
-interface IProps {
-    onFileChange: (file: File) => void;
-    dropDescription?: string;
-    multiple?: boolean;
-    accept?: {
-        [key: string]: string[];
-    };
-    isLoading?: boolean;
-    boxProps?: FlexProps;
-    icon?: ReactNode;
-    title?: ReactNode
+interface Props {
+    onFileChange: (file: File) => Promise<void> | void
+    multiple?: boolean,
+    isLoading?: boolean
+    flexProps?: FlexProps
+    icon?: React.ReactNode
+    text?: { dragActiveText?: string, footerText?: string }
+    accept?: Accept
 }
 
 function FileUpload({
     onFileChange,
-    dropDescription,
     multiple = false,
-    accept,
     isLoading = false,
-    boxProps = {},
-    icon,
-    title
-}: IProps) {
+    flexProps = {},
+    icon = <AppIcons.HeaderImage />,
+    text = {
+        dragActiveText: "Drop the file here ...",
+        footerText: "JPG, JPEG, PNG, MP4 and MOV (up to 10MB each)"
+    },
+    accept = {}
+}: Props) {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        multiple,
+        accept,
         onDrop: (acceptedFiles: File[]) => {
-            const selectedFile = acceptedFiles[0];
-            onFileChange(selectedFile);
-        },
-        disabled: isLoading,
-        multiple: multiple,
-        accept: accept,
-    });
+            const selectedFile = acceptedFiles[0]
+            onFileChange(selectedFile)
+        }
+    })
 
-    const dropMessage = isDragActive ? (
-        <AppTypography fontSize={14} color="#fff">
-            Drop the file here ...
-        </AppTypography>
-    ) : (
+    const dropMessage = isDragActive ?
+        <AppTypography fontSize={14} color="#fff">{text.dragActiveText}</AppTypography>
+        :
         <>
-            {title ? title :
-                <AppTypography fontSize={14} color="#fff">
-                    <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">
-                        Click
-                    </Box>{" "}
-                    to add a new file or drag and drop it here.
-                </AppTypography>}
-            <AppTypography color="text.subtextPlaceholder.dark">{dropDescription}</AppTypography>
+            <AppTypography fontSize={14} color="#fff">
+                <Box as="span" fontWeight={500} color="#179EF8" textDecoration="underline">Click</Box> {" "}
+                or drag & drop here
+            </AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">{text.footerText}</AppTypography>
         </>
-    );
 
     return (
-        <Flex {...boxProps} flexDirection="column" justifyContent="center" alignItems="center" gap={3} border="1px dashed" borderColor="neutral.gray.700" borderRadius={8} cursor={isLoading ? "not-allowed" : "pointer"} {...getRootProps()}>
-            {isLoading ? (
-                <VStack gap={"1rem"}>
-                    <Spinner color="#fff" />
-                    <AppTypography fontSize={14} fontWeight={500} color={"#fff"}>Uploading..., Please Wait.</AppTypography>
-                </VStack>
-            ) : (
-                <>
-                    <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
-                    {icon ? icon : <AppIcons.HeaderImage />}
-                    {dropMessage}
-                </>
-            )}
+        <Flex
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap={3}
+            border="1px dashed"
+            borderColor="neutral.gray.800"
+            borderRadius={8}
+            padding="24px 16px"
+            bgColor="neutral.gray.1000"
+            cursor="pointer"
+            {...flexProps}
+            {...getRootProps()}
+        >
+            <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
+            {
+                isLoading ?
+                    <Spinner width={10} height={10} thickness='2px' color="main.primary" />
+                    :
+                    <>
+                        {icon}
+                        {dropMessage}
+                    </>
+            }
+
         </Flex>
     );
 }

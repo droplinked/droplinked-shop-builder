@@ -9,7 +9,7 @@ import { IcitiesService, IcreateAddressService, IsatatesService } from 'lib/apis
 import { IcrateSampleService } from 'lib/apis/order/interfaces';
 import { createSampleService } from 'lib/apis/order/services';
 import productOrderContext from 'pages/order-sample-pod/context';
-import AddressModalModel from 'pages/register-pages/pages/shop-info/parts/address/modal/AddressModalModel';
+import AddressModalModel from './AddressModalModel';
 import React, { useContext } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import ProductOrderCard from '../../card/ProductOrderCard';

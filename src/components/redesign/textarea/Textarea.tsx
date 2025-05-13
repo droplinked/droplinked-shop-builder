@@ -1,10 +1,29 @@
-import { Textarea as ChakraTextarea, FormLabel, InputGroup, Text, TextareaProps, Flex, Box } from '@chakra-ui/react'
+import { Box, Textarea as ChakraTextarea, Flex, FormLabel, InputGroup, Text, TextareaProps } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import { TooltipMd } from 'assets/icons/Sign/Tooltip/TooltipMd'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import React from 'react'
 
+/**
+ * Enhanced textarea component with support for labels, validation states, and character count
+ * 
+ * @param {object} props - Component props extending Chakra UI's TextareaProps
+ * @param {string} [props.label] - Label text displayed above textarea
+ * @param {string} [props.description] - Descriptive text displayed below label
+ * @param {number} [props.maxCharacters] - Maximum number of characters allowed with counter
+ * @param {'success'|'error'} [props.state] - Validation state of the textarea
+ * @param {string} [props.stateColor="#fff"] - Color for state messages
+ * @param {string} [props.message] - Validation or help message to display
+ * @param {boolean} [props.showErrorIcon=true] - Whether to show error icon with message
+ * @param {string} [props.tooltipText] - Text to show in tooltip next to label
+ * @param {boolean} [props.isRequired] - Whether the field is required (displays asterisk)
+ * @param {string} [props.placeholder] - Placeholder text when textarea is empty
+ * @param {string} [props.value] - Current value of the textarea
+ * @param {function} [props.onChange] - Function called when textarea value changes
+ * 
+ * @returns {JSX.Element} Enhanced textarea component
+ */
 interface Props extends TextareaProps {
   label?: string
   description?: string

@@ -50,7 +50,7 @@ function TableHead<T extends object>(props: TableHeadProps<T>) {
                             textTransform="capitalize"
                             fontSize={16}
                             fontWeight={400}
-                            color="text.subtextPlaceholder.dark"
+                            color="text.subtext.placeholder.dark"
                             cursor={enableSorting ? "pointer" : "default"}
                             sx={{ "svg": { display: "inline-block" } }}
                             onClick={enableSorting ? header.column.getToggleSortingHandler() : undefined}

@@ -38,7 +38,7 @@ function ProductItem({ product }: Props) {
                 {totalAmountCombined &&
                     <FormattedPrice
                         price={totalAmountCombined}
-                        abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                        abbreviationProps={{ color: "text.subtext.placeholder.dark" }}
                         fontSize={14}
                     />
                 }

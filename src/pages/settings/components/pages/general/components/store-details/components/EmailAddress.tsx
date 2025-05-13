@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import { useFormikContext } from 'formik';
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import { ISettings } from 'pages/settings/formConfigs';
@@ -12,7 +12,7 @@ export default function EmailAddress() {
             title="Email Address"
             description='Provide an email address to manage the account and receive updates.'
             rightContent={
-                <Input
+                <AppInput
                     inputProps={{
                         placeholder: "Email Address",
                         value: values.email,

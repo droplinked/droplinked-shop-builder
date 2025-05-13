@@ -34,7 +34,7 @@ export default function ContainerCard({ items, hasBorder, title, titleRightConte
 
                     return (
                         <Flex justifyContent={"space-between"} alignItems={"center"} gap={8} key={index}>
-                            <AppTypography color={"text.subtextPlaceholder.dark"} fontSize={14} fontWeight={400}>
+                            <AppTypography color={"text.subtext.placeholder.dark"} fontSize={14} fontWeight={400}>
                                 {item.title}
                             </AppTypography>
                             {isReactNode ?

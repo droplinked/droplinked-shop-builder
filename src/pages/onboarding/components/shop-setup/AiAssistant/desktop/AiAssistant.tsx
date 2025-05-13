@@ -1,6 +1,6 @@
 import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React, { useState } from 'react'
 import PlansModal from './PlansModal'
 import BusinessModal from './BusinessModal'
@@ -67,19 +67,15 @@ export default function AiAssistant() {
                     Customize your shop with droplinked AI
                 </Text>
             </Box>
-
-            <Button
+            <AppButton
                 marginTop="auto"
-                background="rgba(43, 207, 161, 0.10)"
+                bg="rgba(43, 207, 161, 0.10)"
                 color="#fff"
-                border="none"
-                fontSize={14}
-                fontWeight={500}
                 _hover={{ background: "rgba(43, 207, 161, 0.20)" }}
                 onClick={onOpen}
             >
                 Try AI Assistant
-            </Button>
+            </AppButton>
 
             {step === 0 &&
                 <PlansModal

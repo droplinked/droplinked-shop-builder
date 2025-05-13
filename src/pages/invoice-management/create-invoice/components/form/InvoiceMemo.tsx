@@ -22,9 +22,9 @@ function InvoiceMemo() {
                 paddingBlock={3}
                 paddingInline={4}
                 placeholder="What’s up?"
-                color="text.subtextPlaceholder.dark"
+                color="text.subtext.placeholder.dark"
                 resize="none"
-                _placeholder={{ color: "text.subtextPlaceholder.dark" }}
+                _placeholder={{ color: "text.subtext.placeholder.dark" }}
                 _hover={{}}
                 _focus={{}}
                 _focusVisible={{}}
@@ -33,7 +33,7 @@ function InvoiceMemo() {
                 mt={2}
                 mr={4}
                 alignSelf="flex-end"
-                color="text.subtextPlaceholder.dark"
+                color="text.subtext.placeholder.dark"
                 userSelect="none"
             >
                 {values.note.length}/{maxCharacters}
