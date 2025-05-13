@@ -45,6 +45,17 @@ const AppButton = ({
     // Only apply icon styling if preserveIconColor is false
     const iconStyling = useOriginalIconColor ? {} : buttonStylesModule.helpers.getIconStyling()
 
+    // Override any custom props when disabled to ensure consistent styling
+    const finalProps = { ...props }
+    if (isDisabled) {
+        // Remove any custom color/style props that would override disabled styles
+        delete finalProps.color;
+        delete finalProps.borderColor;
+        delete finalProps.bg;
+        delete finalProps.bgColor;
+        delete finalProps.backgroundColor;
+    }
+
     return (
         <ChakraButton
             display="flex"
@@ -64,9 +75,12 @@ const AppButton = ({
             rightIcon={iconRight}
             _hover={hover}
             _active={active}
-            _disabled={{ cursor: 'not-allowed' }}
+            _disabled={{ 
+                cursor: 'not-allowed', 
+                opacity: 0.6
+            }}
             sx={iconStyling}
-            {...props}
+            {...finalProps}
         >
             {children}
         </ChakraButton>
