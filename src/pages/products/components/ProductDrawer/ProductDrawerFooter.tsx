@@ -1,5 +1,5 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React from 'react'
@@ -39,31 +39,29 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
             css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
-            <Button type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
+            <AppButton type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
                 Discard
-            </Button>
+            </AppButton>
 
             <Flex gap={4}>
-                <Button
+                <AppButton
                     type="button"
-                    variant="outline"
-                    borderColor="#2BCFA1"
-                    color="#2BCFA1"
+                    variant="outlined"
                     isDisabled={isButtonDisabled}
                     isLoading={isSubmitting && !publish_product}
                     onClick={() => handleAction('save-as-draft')}
                 >
                     Save as draft
-                </Button>
+                </AppButton>
 
-                <Button
+                <AppButton
                     type="button"
                     isDisabled={isButtonDisabled}
                     isLoading={isSubmitting && publish_product}
                     onClick={() => handleAction('publish-product')}
                 >
                     {editingProductId ? 'Update Product' : 'Add Product'}
-                </Button>
+                </AppButton>
             </Flex>
         </ChakraDrawerFooter>
     )

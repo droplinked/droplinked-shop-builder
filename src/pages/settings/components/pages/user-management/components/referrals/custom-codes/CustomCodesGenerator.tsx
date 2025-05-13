@@ -2,8 +2,8 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
-import Input from 'components/redesign/input/Input'
+import AppButton from 'components/redesign/button/AppButton'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
 import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
@@ -44,7 +44,7 @@ export default function CustomCodesGenerator() {
 
     return (
         <Flex flexDirection={"column"} gap={6}>
-            <Input
+            <AppInput
                 inputProps={{
                     placeholder: "Type a custom code or text without any spaces (minimum 8 characters)",
                     value,
@@ -54,7 +54,8 @@ export default function CustomCodesGenerator() {
                 inputContainerProps={{ padding: 2, paddingLeft: 4 }}
                 rightElement={
                     <>
-                        <Button
+                        {/* TODO: Check with the design */}
+                        <AppButton
                             borderRadius={4}
                             isLoading={isLoading}
                             fontSize={"12px"}
@@ -65,7 +66,7 @@ export default function CustomCodesGenerator() {
                             isDisabled={!isValidLength || shopInitialCustomCode}
                         >
                             Create
-                        </Button>
+                        </AppButton>
                     </>
                 }
             />

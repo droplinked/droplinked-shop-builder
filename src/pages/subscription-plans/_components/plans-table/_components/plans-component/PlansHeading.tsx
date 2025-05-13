@@ -14,8 +14,8 @@ function PlansHeading({ data }: { data: Array<SubscriptionPlan> }) {
         {
           data.map((item, index) => {
             return (
-              <Th px={0} textTransform={"none"} border={"none"}>
-                <Plan plan={item} plans={data} />
+              <Th key={index} px={0} textTransform={"none"} border={"none"}>
+                <Plan plan={item} />
               </Th>
             )
           })

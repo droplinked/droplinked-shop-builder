@@ -1,13 +1,28 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { DotsLg } from "assets/icons/Navigation/Dots/DotsLg";
 import React, { ReactElement } from 'react';
 
+/**
+ * TableMenu Component - Dropdown menu for table row actions
+ * 
+ * Displays a three-dot menu button that reveals a list of action items
+ * when clicked. Each item can have an icon, title, and action handler.
+ * 
+ * @param {object} props - Component props
+ * @param {Array<object>} props.items - Array of menu items
+ * @param {ReactElement} props.items[].icon - Icon element for the menu item
+ * @param {string} props.items[].title - Text label for the menu item
+ * @param {string} [props.items[].color] - Optional custom text color for the item
+ * @param {function} props.items[].onClick - Click handler for the menu item
+ * @param {boolean} [props.items[].isDisabled] - Whether the item is disabled
+ */
 interface Props {
     items: {
         icon: ReactElement,
         title: string,
         color?: string,
-        onClick: () => void
+        onClick: () => void,
+        isDisabled?: boolean,
     }[]
 }
 
@@ -16,7 +31,7 @@ export default function TableMenu({ items }: Props) {
         <>
             <Menu isLazy>
                 <MenuButton as="button" type="button">
-                    <AppIcons.Dots />
+                    <DotsLg color="#fff" />
                 </MenuButton>
                 <MenuList
                     borderColor="neutral.gray.800"
@@ -40,7 +55,7 @@ export default function TableMenu({ items }: Props) {
                     }}
                 >
                     {items.map((item, index) => (
-                        !!Object.keys(item).length && <MenuItem key={index} {...item}>{item.title}</MenuItem>
+                        !!Object.keys(item).length && <MenuItem isDisabled={item.isDisabled} key={index} {...item}>{item.title}</MenuItem>
                     ))}
                 </MenuList>
             </Menu>

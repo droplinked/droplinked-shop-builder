@@ -1,6 +1,16 @@
 import { Modal, ModalContent, ModalContentProps, ModalOverlay, ModalProps } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 
+/**
+ * A styled modal component with customizable content and overlay
+ * 
+ * @param {object} props - Component props
+ * @param {Omit<ModalProps, "children">} props.modalRootProps - Props for the modal root component
+ * @param {ModalContentProps} [props.modalContentProps] - Props for the modal content wrapper
+ * @param {ReactNode} props.children - Modal content (typically ModalHeader, ModalBody, ModalFooter)
+ * 
+ * @returns {JSX.Element} Styled modal component
+ */
 interface Props extends PropsWithChildren {
     modalRootProps: Omit<ModalProps, "children">;
     modalContentProps?: ModalContentProps;

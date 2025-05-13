@@ -1,7 +1,7 @@
 import { Box, Spinner, Text } from '@chakra-ui/react'
 import { AvailableoutlinedMd } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedMd'
 import { NotavailableoutlinedMd } from 'assets/icons/Sign/NotAvailableOutlined/NotavailableoutlinedMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useDebounce from 'hooks/debounce/useDebounce'
 import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvailability'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -52,7 +52,7 @@ export default function UrlChooser() {
     }, [storeSetup.shop_url])
 
     return (
-        <Input
+        <AppInput
             label='Shop URL'
             inputProps={{
                 paddingInline: 4,

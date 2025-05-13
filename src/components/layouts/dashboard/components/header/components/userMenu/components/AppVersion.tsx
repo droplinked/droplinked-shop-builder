@@ -5,8 +5,8 @@ import React from 'react';
 
 const AppVersion = () => (
   <Box display="flex" padding="0 16px" justifyContent="space-between">
-    <AppTypography color="text.subtextPlaceholder.dark" fontSize="14px">Version</AppTypography>
-    <AppTypography color="text.subtextPlaceholder.dark" fontSize="14px">{appVersion}</AppTypography>
+    <AppTypography color="text.subtext.placeholder.dark" fontSize="14px">Version</AppTypography>
+    <AppTypography color="text.subtext.placeholder.dark" fontSize="14px">{appVersion}</AppTypography>
   </Box>
 );
 

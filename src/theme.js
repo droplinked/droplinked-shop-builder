@@ -9,12 +9,12 @@ export const theme = extendTheme({
         thumb: { backgroundColor: "neutral.black" },
         track: {
           backgroundColor: "neutral.gray.750",
-          _checked: { bg: "primary.default" }
+          _checked: { bg: "main.primary" }
         }
       })
     }),
     Divider: { baseStyle: { margin: "0" } },
-    FormLabel: { baseStyle: { margin: "0" } },
+    FormLabel: { baseStyle: { margin: "0", width: "fit-content" } },
   },
   colors: {
     neutral: {
@@ -40,8 +40,9 @@ export const theme = extendTheme({
       background: '#141414',
       black: '#000000',
     },
-    primary: {
-      default: '#2bcfa1',
+    main: {
+      primary: '#2bcfa1',
+      secondary: '#c5a3ff',
     },
     system: {
       success: '#2bcfa1',
@@ -52,15 +53,18 @@ export const theme = extendTheme({
     text: {
       white: '#ffffff',
       black: '#000000',
-      subtextPlaceholder: {
-        light: '#b1b1b1',
-        dark: '#7b7b7b',
+      subtext: {
+        placeholder: {
+          light: '#b1b1b1',
+          dark: '#7b7b7b',
+        }
       },
       disabled: {
         light: '#bcbcbc',
         dark: '#4f4f4f',
       },
       primary: '#2bcfa1',
+      secondary: '#c5a3ff',
       error: '#ff2244',
       link: '#179ef8',
     },
@@ -92,9 +96,11 @@ export const theme = extendTheme({
     },
     label: {
       normal: 'rgba(0, 0, 0, 0.05)',
-      success: 'rgba(43, 207, 161, 0.1)',
+      primary: 'rgba(43, 207, 161, 0.1)',
+      secondary: 'rgba(197, 163, 255, 0.15)',
       warning: 'rgba(255, 217, 81, 0.1)',
-      error: 'rgba(255, 34, 68, 0.05)',
+      errorBackground: 'rgba(255, 34, 68, 0.05)',
+      errorStroke: 'rgba(255, 34, 68, 0.15)',
       link: 'rgba(23, 158, 248, 0.1)',
     }
   },

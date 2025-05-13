@@ -23,7 +23,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
 
     // Create breakdown details for Direct and Affiliate metrics
     const metricBreakdown = [
-        { label: "Direct", percentage: directPercentage, color: "primary.default" },
+        { label: "Direct", percentage: directPercentage, color: "main.primary" },
         { label: "Affiliate", percentage: affiliatePercentage, color: "#C5A3FF" }
     ]
 
@@ -40,7 +40,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
             <FormattedPrice
                 price={totalValue}
                 fontSize={fontSize}
-                abbreviationProps={{ color: "text.subtextPlaceholder.dark" }}
+                abbreviationProps={{ color: "text.subtext.placeholder.dark" }}
             />
             :
             <Text fontSize={fontSize} color="text.white">

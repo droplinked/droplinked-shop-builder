@@ -4,6 +4,7 @@ import { useProfile } from "hooks/useProfile/useProfile";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// TODO: Verify with team if this file is outdated and can be deleted.
 function SimpleRegistration() {
     const { shop } = useProfile();
     const navigate = useNavigate();

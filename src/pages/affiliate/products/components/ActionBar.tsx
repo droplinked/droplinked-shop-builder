@@ -54,7 +54,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
           _focusVisible={{
             border: 'none'
           }}
-          _placeholder={{ color: 'text.subtextPlaceholder.dark' }}
+          _placeholder={{ color: 'text.subtext.placeholder.dark' }}
           value={filters.title}
           placeholder="Search"
           onChange={(e) => handleFilterChange('title', e.target.value)}

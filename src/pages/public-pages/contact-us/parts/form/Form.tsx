@@ -91,7 +91,7 @@ function ContactUsForm() {
                             borderRadius={8}
                             backgroundColor={"neutral.gray.850"}
                             padding={"12px 16px"}
-                            color={"text.subtextPlaceholder.dark"}
+                            color={"text.subtext.placeholder.dark"}
                             fontSize={16}
                             resize={"none"}
                             rows={11}

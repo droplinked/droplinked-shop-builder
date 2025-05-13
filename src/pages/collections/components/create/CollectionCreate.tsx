@@ -14,7 +14,7 @@ import { ICollectionForm } from "./interface/interfaces";
 import ImageUploader from "./_components/ImageUploader";
 import ModalButtons from "./_components/ModalButtons";
 import Textarea from "components/redesign/textarea/Textarea";
-import Input from "components/redesign/input/Input";
+import AppInput from "components/redesign/input/AppInput";
 
 interface IProps {
   close: () => void;
@@ -66,7 +66,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
               <Flex gap={8} flexDirection="column" width="100%">
                 {collectionCreateInputFields.map((field) =>
                   !field?.rows ? (
-                    <Input
+                    <AppInput
                       inputProps={{
                         name: field.name,
                         value: values[field.name],

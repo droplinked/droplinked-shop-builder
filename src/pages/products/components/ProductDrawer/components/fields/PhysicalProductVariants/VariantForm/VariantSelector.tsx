@@ -1,6 +1,6 @@
 import { Button, Flex, Popover, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import { attributeToIdMap, ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -53,7 +53,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
 
     if (localProperty?.isCustom) {
         return (
-            <Input
+            <AppInput
                 inputProps={{
                     fontSize: 16,
                     placeholder: 'e.g., Storage, Material',

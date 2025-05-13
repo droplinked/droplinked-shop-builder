@@ -1,5 +1,5 @@
 import { Flex, Image, ModalBody, ModalFooter, ModalHeader } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import useAppToast from 'hooks/toast/useToast'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
@@ -71,14 +71,14 @@ export default function CircleRecordModal({ isOpen, onClose, selectedChain, reco
                 gap={{ xl: 6, base: 3 }}
                 sx={{ button: { fontWeight: 500 } }}
             >
-                <Button variant="secondary" onClick={onClose}>Cancel</Button>
-                <Button
+                <AppButton variant="secondary" onClick={onClose}>Cancel</AppButton>
+                <AppButton
                     isDisabled={!selectedWallet || hasSelectedCircleWallet || isProcessing}
                     isLoading={isProcessing}
                     onClick={handleRecordSubmission}
                 >
                     Record
-                </Button>
+                </AppButton>
             </ModalFooter>
         </AppModal>
     )

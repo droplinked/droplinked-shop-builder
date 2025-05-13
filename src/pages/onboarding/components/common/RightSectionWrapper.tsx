@@ -4,9 +4,12 @@ import React from 'react'
 function RightSectionWrapper({ children, ...props }: BoxProps) {
     return (
         <Box
-            minHeight="100dvh"
+            height="100dvh"
             padding='80px'
             bg='linear-gradient(180deg, #1C1C1C 0%, #141414 100%)'
+            position="sticky"
+            top={0}
+            overflow="hidden"
             {...props}
         >
             {children}

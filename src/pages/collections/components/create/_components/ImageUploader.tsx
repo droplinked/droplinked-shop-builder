@@ -29,7 +29,7 @@ function ImageUploader({ errors, values, setFieldValue }: ImageUploaderProps) {
                         <Image height="56px" width="56px" src={values.image} objectFit="cover" borderRadius="4px" bgColor="black" />
                         <VStack alignItems={"start"}>
                             <AppTypography>{fileData?.title?.substring(0, 30) ?? "Collection_Image"}...</AppTypography>
-                            {fileData?.size && <AppTypography color={"text.subtextPlaceholder.dark"} fontSize={"12px"}>{fileData?.size}</AppTypography>}
+                            {fileData?.size && <AppTypography color={"text.subtext.placeholder.dark"} fontSize={"12px"}>{fileData?.size}</AppTypography>}
                         </VStack>
                     </Flex>
                     <Box onClick={() => setFieldValue('image', '')} cursor={"pointer"}>

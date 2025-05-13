@@ -1,18 +1,20 @@
 import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import Button from "components/redesign/button/Button";
+import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
 import useAppStore from "lib/stores/app/appStore";
-import { capitalizeFirst } from "utils/helpers";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
 import ConnectWallets from "./connect/ConnectWallets";
+import { ChainIcons } from "utils/constants/chainIcons";
+import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
+import { appDevelopment } from "utils/app/variable";
 
 const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const { data, refetch } = useQuery({ queryFn: getCircleWallet, queryKey: ["circle_wallet"], refetchOnWindowFocus: true });
@@ -23,7 +25,8 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
     const { mutateAsync: withdraw, isLoading: isWithdrawing } = useMutation((props: IPostWithdrawCircleWallet) => postWithdrawCircle(props));
 
     const handleWithdraw = async (chain: any) => {
-        if (chain?.tokenSymbol === "USDC") {
+
+        if (chain?.tokenSymbol === "USDC" && !appDevelopment) {
             setError("USDC");
             return;
         }
@@ -112,26 +115,12 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                             <EmptyWalletList />
                         ) : (
                             data?.data?.data?.map((chain) => {
-                                const Icon = AppIcons?.[`Circle${capitalizeFirst(chain?.chain?.toLowerCase() || "")}`];
+                                const Icon = ChainIcons[chain?.tokenSymbol];   
                                 const isWithdrawingThisChain = withdrawingChain === chain?.chain;
                                 return (
                                     <Box key={chain?.chain} display="flex" padding="16px 24px" alignItems="center" gap="24px" alignSelf="stretch" flex="3">
                                         <Box display="flex" alignItems="center" gap="16px" flex="1">
-                                            <Box
-                                                display="flex"
-                                                width="40px"
-                                                height="40px"
-                                                padding="8px"
-                                                flexDirection="column"
-                                                justifyContent="center"
-                                                alignItems="center"
-                                                gap="8px"
-                                                flexShrink="0"
-                                                rounded="36px"
-                                                bgColor="neutral.gray.850"
-                                            >
-                                                {Icon && <Icon />}
-                                            </Box>
+                                            {Icon &&<IconWrapper icon={<Icon />}></IconWrapper>}
                                             <AppTypography color="#FFF" flex="1 0 0" fontFamily="Inter" fontSize="16px" fontStyle="normal" fontWeight="400" lineHeight="24px">
                                                 {chain?.tokenName}
                                             </AppTypography>
@@ -264,7 +253,8 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 </Box>
                             </Box>
                             {Error === "USDC" ? null : 
-                             <Button
+
+                             <AppButton
                                 display="flex"
                                 border="none"
                                 color="#FFF"
@@ -283,7 +273,7 @@ const CircleManage = ({ isOpen, onClose, onOpen}: IModalProps) => {
                                 onClick={connectWalletModal.onOpen}
                             >
                                 Connect Wallet
-                            </Button> }
+                            </AppButton> }
                            
                         </Box>
                     )}

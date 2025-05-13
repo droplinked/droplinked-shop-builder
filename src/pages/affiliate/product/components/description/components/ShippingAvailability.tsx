@@ -40,13 +40,13 @@ const ShippingAvailability = ({ productId }: { productId: string }) => {
           {shippingData.data?.length ? (
             shippingData.data.map((region, index) => (
               <Box key={index} mb={1}>
-                <Text fontSize="base" fontWeight="normal" color="text.subtextPlaceholder.dark">
+                <Text fontSize="base" fontWeight="normal" color="text.subtext.placeholder.dark">
                   {region}
                 </Text>
               </Box>
             ))
           ) : (
-            <Text fontSize="base" fontWeight="normal" color="text.subtextPlaceholder.dark">
+            <Text fontSize="base" fontWeight="normal" color="text.subtext.placeholder.dark">
               No shipping data available.
             </Text>
           )}

@@ -1,7 +1,7 @@
 import { ModalBody } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useDebounce from 'hooks/debounce/useDebounce';
@@ -65,7 +65,7 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
             />
 
             <ModalBody display="flex" flexDirection="column" gap={6}>
-                <Input
+                <AppInput
                     inputProps={{
                         width: "300px",
                         placeholder: "Product name",

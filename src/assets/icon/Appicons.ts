@@ -140,7 +140,7 @@ import { ReactComponent as HeaderShirt } from './header-shirt.svg';
 import { ReactComponent as HeaderTokenCoin } from './header-token-coin.svg';
 import { ReactComponent as HeaderUd } from './header-ud.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
-import { ReactComponent as HelpCenter } from './help-circle 1.svg';
+import { ReactComponent as HelpCenter } from './help-center.svg';
 import { ReactComponent as HidedIcon } from './hidedIcon.svg';
 import { ReactComponent as Infinity } from './infinity.svg';
 import { ReactComponent as InfoIcon } from './info-icon.svg';

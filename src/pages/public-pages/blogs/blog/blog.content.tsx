@@ -4,11 +4,12 @@ import { useCreateBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import { parseBlocknoteTexteditorContent } from "utils/helpers/blocknoteUtils";
 import { IBlog } from "../blogs.interface";
 
 function BlogContent({ blog }: { blog: IBlog }) {
     const editor = useCreateBlockNote({
-        initialContent: JSON.parse(blog.content)
+        initialContent: parseBlocknoteTexteditorContent(blog.content)
     });
 
     return (

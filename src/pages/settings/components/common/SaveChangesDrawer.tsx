@@ -1,7 +1,7 @@
 import { Box, Flex, Slide } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import { useFormikContext } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { ISettings } from 'pages/settings/formConfigs'
@@ -51,24 +51,20 @@ export default function SaveChangesDrawer() {
                     </Flex>
                 </Flex>
                 <Flex gap={4}>
-                    <Button
-                        isDisabled={isSubmitting}
-                        fontSize={14}
-                        fontWeight={500}
+                    <AppButton
                         variant="secondary"
+                        isDisabled={isSubmitting}
                         onClick={() => resetForm()}
                     >
                         Discard
-                    </Button>
-                    <Button
+                    </AppButton>
+                    <AppButton
                         isLoading={isSubmitting}
                         width={{ base: "80%", lg: "max-content" }}
-                        fontSize={14}
-                        fontWeight={500}
                         onClick={handleSaveClick}
                     >
                         Save Changes
-                    </Button>
+                    </AppButton>
                 </Flex>
             </Flex>
         </Slide>

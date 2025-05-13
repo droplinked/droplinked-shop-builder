@@ -2,6 +2,17 @@ import { Box, BoxProps, Text, TextProps } from "@chakra-ui/react"
 import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
 import React from "react"
 
+/**
+ * FormattedPrice Component - Displays price with currency formatting
+ * 
+ * Automatically formats and displays prices with the appropriate currency symbol
+ * and abbreviation based on the user's selected currency settings.
+ * 
+ * @param {object} props - Component props
+ * @param {number} props.price - The price value to format and display
+ * @param {BoxProps} [props.abbreviationProps] - Additional props for the currency abbreviation text
+ * @param {TextProps} props - Additional Chakra UI text props for the price display
+ */
 interface Props extends TextProps {
     price: number
     abbreviationProps?: BoxProps

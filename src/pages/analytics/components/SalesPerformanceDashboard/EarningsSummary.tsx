@@ -31,15 +31,15 @@ function EarningsSummary({ earnings, isLoading }: Props) {
                         price={earnings ?? 0}
                         fontSize={{ base: 20, xl: 24 }}
                         fontWeight={500}
-                        abbreviationProps={{ color: 'text.subtextPlaceholder.dark' }}
+                        abbreviationProps={{ color: 'text.subtext.placeholder.dark' }}
                     />
                 </Skeleton>
 
                 <Text
                     marginTop={{ base: 1 }}
                     fontSize={14}
-                    color="text.subtextPlaceholder.dark"
-                    sx={{ span: { fontWeight: 500, color: 'text.subtextPlaceholder.light' } }}
+                    color="text.subtext.placeholder.dark"
+                    sx={{ span: { fontWeight: 500, color: 'text.subtext.placeholder.light' } }}
                 >
                     Income from <Box as="span">{startDate}</Box> to <Box as="span">{endDate}</Box>.
                 </Text>

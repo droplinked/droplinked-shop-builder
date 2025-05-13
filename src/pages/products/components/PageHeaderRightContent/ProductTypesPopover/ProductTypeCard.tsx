@@ -35,7 +35,7 @@ function ProductTypeCard({ icon, title, description, productType }: ProductTypeO
             <Flex mt={4} alignItems="center" gap={2}>
                 <Heading as="h3" fontSize={18} fontWeight={700} color="white">{title}</Heading>
             </Flex>
-            <Text mt={1} fontSize={14} color="text.subtextPlaceholder.dark">{description}</Text>
+            <Text mt={1} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
         </Flex>
     )
 }

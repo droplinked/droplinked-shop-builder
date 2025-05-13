@@ -1,6 +1,5 @@
 import { Box, HStack, Switch, Text, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useEffect } from 'react'
 import ruleModelContext from '../../context'
 import { RuleTypes } from '../../RuleModel'
@@ -18,8 +17,8 @@ function RulesetType() {
             <HStack align="stretch" spacing={2}>
                 <Switch onChange={e => setFieldValue("type", e.target.checked ? "DISCOUNT" : "GATING")} size='md' colorScheme='green' isChecked={values.type === "DISCOUNT"} />
                 <VStack align='stretch' paddingLeft={2} spacing={2}>
-                    <TextLabelBold>Discount</TextLabelBold>
-                    <Text fontSize="14px" color="text.subtextPlaceholder.dark">Enable this function to offer an exclusive discount to holders that meet the requirements.</Text>
+                    <Text fontWeight="bold" fontSize="14px" color="#FFFFFF">Discount</Text>
+                    <Text fontSize="14px" color="text.subtext.placeholder.dark">Enable this function to offer an exclusive discount to holders that meet the requirements.</Text>
                 </VStack>
                 {values.type === RuleTypes.DISCOUNT && (
                     <Box width={"20%"}>

@@ -1,5 +1,5 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import CustomRadioCard from '../../../../common/CustomRadioCard'
@@ -31,13 +31,13 @@ function TechniqueSelection({ selectedPODProduct }: Props) {
                 />
             ))}
 
-            <Button
+            <AppButton
                 type='button'
                 isDisabled={!selectedTechnique}
                 onClick={() => setFieldValue("technique", selectedTechnique)}
             >
                 Next
-            </Button>
+            </AppButton>
         </Flex>
     )
 }

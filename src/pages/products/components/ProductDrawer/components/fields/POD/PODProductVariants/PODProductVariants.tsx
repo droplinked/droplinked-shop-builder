@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import { convertPropertiesToPODSKUs } from 'pages/products/utils/skuUtils'
 import { ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect } from 'react'
-import ProductFieldWrapper from '../../../common/ProductFieldWrapper'
 import ProductBulkPriceUpdater from '../../ProductBulkPriceUpdater'
 import ProductVariantCard from '../../ProductVariantCard'
 import PODSKUTable from './PODSKUTable'
@@ -21,7 +21,7 @@ export default function PODProductVariants() {
     }, [_id, sku, convertPropertiesToPODSKUs, setFieldValue])
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label="Variants"
             description="Product variants, like colors and sizes, are automatically added by the POD provider."
             isRequired
@@ -32,7 +32,7 @@ export default function PODProductVariants() {
                 <PODSKUTable />
                 <ProductBulkPriceUpdater />
             </Flex>
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }
 

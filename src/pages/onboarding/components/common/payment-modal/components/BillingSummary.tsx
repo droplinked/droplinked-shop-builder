@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
+import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
 
 interface BillingSummaryProps {
   subscriptionCost: number;
@@ -8,6 +9,15 @@ interface BillingSummaryProps {
 }
 
 const BillingSummary: React.FC<BillingSummaryProps> = ({ subscriptionCost, tax, total }) => {
+  const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration);
+  
+  const getBillingCycleText = () => {
+    if (preferredPlanDuration.month === 1) return 'Monthly';
+    if (preferredPlanDuration.month === 12) return 'Annual';
+    if (preferredPlanDuration.month === 60) return '5-Year';
+    return `${preferredPlanDuration.month} Months`;
+  };
+
   return (
     <Box borderRadius="lg" border="1px solid" borderColor="#282828" display="flex" flexDirection="column" alignItems="flex-start" overflow="hidden" width="100%">
       <Box p={6} display="flex" flexDirection="column" gap={4} width="100%">
@@ -16,7 +26,7 @@ const BillingSummary: React.FC<BillingSummaryProps> = ({ subscriptionCost, tax, 
             Billing Cycle
           </Text>
           <Text color="white" fontSize="base" fontWeight="medium">
-            Monthly
+            {getBillingCycleText()}
           </Text>
         </Flex>
 

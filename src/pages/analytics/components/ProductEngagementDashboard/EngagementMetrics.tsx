@@ -34,7 +34,7 @@ function EngagementMetrics() {
                         >
                             {item.amount}{" "}
                             {item.title === "Active Time / Session" && (
-                                <Text as="span" color="text.subtextPlaceholder.dark">
+                                <Text as="span" color="text.subtext.placeholder.dark">
                                     {item.amount === 1 ? "second" : "seconds"}
                                 </Text>
                             )}

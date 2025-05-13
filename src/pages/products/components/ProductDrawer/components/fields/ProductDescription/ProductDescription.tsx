@@ -1,13 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
-import useProductForm from 'pages/products/hooks/useProductForm'
-import React, { useRef, useEffect } from 'react'
-import ProductFieldWrapper from '../../common/ProductFieldWrapper'
-import classes from './ProductDescription.module.scss'
-import AnimatedBox from '../../common/AnimatedBox'
-import './loading.css'
+import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
+import useProductForm from 'pages/products/hooks/useProductForm'
+import React, { useEffect, useRef } from 'react'
+import AnimatedBox from '../../common/AnimatedBox'
 import ImproveWithAi from '../../common/ImproveWithAi'
+import './loading.css'
+import classes from './ProductDescription.module.scss'
 
 function ProductDescription() {
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
@@ -29,7 +29,7 @@ function ProductDescription() {
     }, [isImproveLoading]);
 
     return (
-        <ProductFieldWrapper
+        <FormFieldWrapper
             label='Description'
             description="Describe product features and details to help customers understand what they're buying."
             errorMessage={errors.description}
@@ -88,7 +88,7 @@ function ProductDescription() {
                     />
                 </Flex>
             </AnimatedBox>
-        </ProductFieldWrapper>
+        </FormFieldWrapper>
     )
 }
 

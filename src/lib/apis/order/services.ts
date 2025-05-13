@@ -1,9 +1,8 @@
-import { Retryer } from "react-query/types/core/retryer";
 import axiosInstance from "../axiosConfig";
-import { IcrateSampleService, IgetOrderService, IGetProductOrdersService, IupdateSampleService } from "./interfaces";
+import { IcrateSampleService, IgetOrderResponse, IgetOrderService, IGetProductOrdersService, IupdateSampleService } from "./interfaces";
 
 export const getOrderService = ({ orderID }: IgetOrderService) => {
-    return axiosInstance.get(`order/single/${orderID}`)
+    return axiosInstance.get<IgetOrderResponse>(`order/single/${orderID}`)
 }
 
 export const createSampleService = (data: IcrateSampleService) => {
@@ -22,7 +21,7 @@ export const exportOrdersReportService = () => {
     return axiosInstance.get("order/report/export/excel", { responseType: "blob" }).then(res => res.data)
 }
 
-export const getProductOrdersService = ({productId}: IGetProductOrdersService) => {
+export const getProductOrdersService = ({ productId }: IGetProductOrdersService) => {
     return axiosInstance.get(`order/product/${productId}`)
 }
 

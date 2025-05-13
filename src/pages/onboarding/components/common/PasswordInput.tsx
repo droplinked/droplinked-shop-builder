@@ -1,6 +1,6 @@
 import { HideMd } from 'assets/icons/Action/Hide/HideMd'
 import { ShowMd } from 'assets/icons/Action/Show/ShowMd'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 import { InputChangeEvent } from 'types/eventTypes'
 
@@ -26,7 +26,7 @@ function PasswordInput({
     const [inputType, setInputType] = useState<"text" | "password">("password")
 
     return (
-        <Input
+        <AppInput
             label={label}
             inputProps={{
                 name,

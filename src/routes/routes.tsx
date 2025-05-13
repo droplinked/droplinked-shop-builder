@@ -1,8 +1,13 @@
 import MainLayout from "components/layouts/app/main/MainLayout";
-import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout";
+import StandaloneLayout from "components/layouts/standalone/StandaloneLayout";
 import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
+import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
+import BlogEditPage from "pages/blogs/components/BlogEditPage";
+import Changelog from "pages/changelog/Changelog";
+import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
 import Onboarding from "pages/onboarding/Onboarding";
+import Blog from "pages/public-pages/blogs/blogs.blog";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
@@ -20,24 +25,20 @@ import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
 import Rewards from "pages/public-pages/rewards/Rewards";
+import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner";
+
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Lazy-loaded Components
-const ResetPassPage = lazy(() => import("pages/auth-pages/reset-pass-page/ResetPassPage"));
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
-const ThankForRegisterPage = lazy(() => import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"));
-const VerifyEmailPage = lazy(() => import("pages/auth-pages/verify-email-page/Email-verification-page"));
 const Blogs = lazy(() => import("pages/blogs/Blogs"));
-const BlogForm = lazy(() => import("pages/blogs/parts/blog-form/BlogForm"));
-const Blog = lazy(() => import("pages/blogs/parts/blog/Blog"));
 const Collections = lazy(() => import("pages/collections/Collections"));
-const NewAnalytics = lazy(() => import("pages/analytics/Analytics"));
+const Analytics = lazy(() => import("pages/analytics/Analytics"));
 const Gamification = lazy(() => import("pages/gamification/Gamification"));
 const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
-const Orders = lazy(() => import("pages/orders/Orders"));
 const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"));
 const ProductsV2 = lazy(() => import("pages/products/ProductsV2"));
 const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"));
@@ -54,21 +55,19 @@ const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/Affili
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
 const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
-const Admins = lazy(() => import("pages/register-pages/pages/admins/Admins"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
-const RegisterShopInfo = lazy(() => import("pages/register-pages/pages/shop-info/ShopInfo"));
 const SimpleRegistration = lazy(() => import("pages/register-pages/pages/simple-registration/SimpleRegistration"));
 const TileDesign = lazy(() => import("pages/register-pages/pages/tile-design/TileDesign"));
 const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
-const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"));
 const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"));
+const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"));
 
 const router = createBrowserRouter([
     {
@@ -86,7 +85,6 @@ const router = createBrowserRouter([
             { path: "about", element: <AboutUs /> },
             { path: "contact-us", element: <ContactUs /> },
             { path: "privacy", element: <PrivacyPage /> },
-            { path: "email-confirmation", element: <ThankForRegisterPage /> },
             { path: "physical-product", element: <PhysicalProductPage /> },
             { path: "digital-product", element: <DigitalProductPage /> },
             { path: "pod-product", element: <PODProductPage /> },
@@ -111,8 +109,6 @@ const router = createBrowserRouter([
                     { path: ":slug", element: <PublicBlog /> },
                 ],
             },
-            { path: "email-verification/:token", element: <VerifyEmailPage /> },
-            { path: "producer/account-recovery/:token", element: <ResetPassPage /> },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
             { path: "onboarding", element: <Onboarding /> },
@@ -135,18 +131,15 @@ const router = createBrowserRouter([
             </DashboardLayout>
         ),
         children: [
-            { index: true, element: <NewAnalytics /> },
+            { index: true, element: <Analytics /> },
             { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
                 path: "settings",
                 element: <RegisterPagesWrapper />,
                 children: [
-                    { path: "shop-info", element: <RegisterShopInfo /> },
                     { path: "design", element: <DesignPage /> },
                     { path: "tile", element: <TileDesign /> },
-                    { path: "coupons", element: <CouponsSetting /> },
-                    { path: "admins", element: <Admins /> },
                     { path: "payment-link-design", element: <PaymentLink /> },
                 ],
             },
@@ -161,7 +154,7 @@ const router = createBrowserRouter([
                 ],
             },
             { path: "collections", element: <Collections /> },
-            { path: "orders", element: <Orders /> },
+            { path: "purchase-history", element: <PurchaseHistory /> },
             {
                 path: "affiliate",
                 children: [
@@ -192,8 +185,8 @@ const router = createBrowserRouter([
                 path: "blogs",
                 children: [
                     { index: true, element: <Blogs /> },
-                    { path: "create", element: <BlogForm /> },
-                    { path: ":slug", element: <Blog /> },
+                    { path: "new", element: <BlogCreatePage /> },
+                    { path: ":id", element: <BlogEditPage /> },
                 ],
             },
             { path: "plans", element: <SubscriptionPlans /> },
@@ -201,15 +194,31 @@ const router = createBrowserRouter([
             { path: "invoice-management", element: <InvoiceManagement /> },
             { path: "invoice-management/create", element: <CreateInvoice /> },
             { path: "invoice-management/edit/:invoiceId", element: <CreateInvoice /> },
+            {
+                path: "changelog",
+                children: [
+                    { index: true, element: <Changelog /> },
+                    { path: ":id", element: <ChangelogDetail /> },
+                ]
+            }
         ],
     },
     {
         path: "shop-management",
-        element: <ShopManagementLayout />,
+        element: <StandaloneLayout />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
         ],
+    },
+    {
+        path: 'style-center/storefront-designer',
+        element: (
+            <StandaloneLayout showBackground={false} padding="0">
+                <StorefrontDesigner />
+            </StandaloneLayout>
+        ),
+        errorElement: <MaintenancePage />,
     },
     { path: "*", element: <NotFoundPage /> },
 ]);

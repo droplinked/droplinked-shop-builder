@@ -1,5 +1,5 @@
 import { Heading, Image, Show, Text } from '@chakra-ui/react';
-import Button from 'components/redesign/button/Button';
+import AppButton from 'components/redesign/button/AppButton';
 import React from 'react';
 import Container from '../container/Container';
 
@@ -23,7 +23,7 @@ function StarryBorder({ title, description, buttonText, onButtonClick }: Props) 
 
             <Text width={{ base: "80%", lg: "60%" }} textAlign="center" color="white">{description}</Text>
 
-            <Button fontWeight={500} onClick={onButtonClick}>{buttonText}</Button>
+            <AppButton onClick={onButtonClick}>{buttonText}</AppButton>
 
             <Show above='lg'>
                 <Image width="150px" top="35px" right="-3px" src='https://upload-file-droplinked.s3.amazonaws.com/e62fec9d1e1d4d0d415aea1074967ed1d076dc5e8aef5a534cb6176dc62568e8.png' />

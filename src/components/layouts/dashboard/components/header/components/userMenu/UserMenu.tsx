@@ -12,6 +12,7 @@ import UserInfo from './components/UserInfo';
 import SubscriptionInfo from './components/SubscriptionInfo';
 import ProfileMenuItems from './components/ProfileMenuItems';
 import AppVersion from './components/AppVersion';
+import useShopUrl from 'hooks/useShopUrl/useShopUrl';
 
 const UserMenu = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -27,10 +28,11 @@ const UserMenu = () => {
   const { shopNavigate } = useCustomNavigate();
   const { shop, user } = useAppStore();
   const { logoutUser } = useProfile();
+  const shopUrl = useShopUrl()
 
   const subscription = SUBSCRIPTION_STATUS_CONSTANTS({ STARTER: () => shopNavigate('/dashboard/plans') }, shop?.subscription?.daysUntilExpiration)[shop?.subscription?.subscriptionId?.type];
 
-  const profileConstants = PROFILE_CONSTANTS(shop, logoutUser, convertCurrency);
+  const profileConstants = PROFILE_CONSTANTS({ ...shop, shopUrl }, logoutUser, convertCurrency);
 
   return (
     <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose} variant="unstyled">

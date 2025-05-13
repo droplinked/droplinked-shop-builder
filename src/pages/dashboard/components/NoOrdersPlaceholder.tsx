@@ -1,7 +1,7 @@
 import { Flex, Grid, Image, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -22,7 +22,9 @@ export default function NoOrdersPlaceholder() {
                 },
                 {
                     label: 'Help Center',
-                    variant: 'outline',
+                    variant: 'outlined',
+                    color:'text.white',
+                    borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
@@ -35,7 +37,9 @@ export default function NoOrdersPlaceholder() {
             buttons: [
                 {
                     label: 'Learn More',
-                    variant: 'outline',
+                    variant: 'outlined',
+                    color:'text.white',
+                    borderColor: 'neutral.gray.800',
                     rightIcon: <ExternalarrowMd color='white' />,
                     onClick: () => window.open('https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/add-product-to-storefronts', '_blank')
                 }
@@ -82,19 +86,18 @@ function FeatureCard({ title, description, image, buttons, ...rest }) {
                 <Text fontSize={{ base: 18, xl: 20 }} fontWeight={700} color="white">
                     {title}
                 </Text>
-                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtextPlaceholder.dark">
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.dark">
                     {description}
                 </Text>
                 <Flex mt={3} gap={3}>
                     {buttons.map((button) => (
-                        <Button
+                        <AppButton
                             key={button.label}
                             fontSize={{ base: 12, md: 14 }}
-                            fontWeight={500}
                             {...button}
                         >
                             {button.label}
-                        </Button>
+                        </AppButton>
                     ))}
                 </Flex>
             </Flex>

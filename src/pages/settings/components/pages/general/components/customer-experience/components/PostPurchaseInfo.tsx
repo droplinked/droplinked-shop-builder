@@ -1,6 +1,6 @@
 import SectionContent from 'pages/settings/components/common/SectionContent';
 import React from 'react';
-import Input from 'components/redesign/input/Input';
+import AppInput from 'components/redesign/input/AppInput';
 import { useHasPermission } from 'lib/stores/app/appStore';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/formConfigs';
@@ -16,7 +16,7 @@ export default function PostPurchaseInfo() {
             description="Create custom fields for collecting additional information after a customer makes a purchase."
             badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
-                <Input
+                <AppInput
                     inputProps={{
                         value: values.pre_purchase_data_fetch,
                         onChange: handleChange,

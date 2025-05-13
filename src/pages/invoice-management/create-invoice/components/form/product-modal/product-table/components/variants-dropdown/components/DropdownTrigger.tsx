@@ -22,7 +22,7 @@ function DropdownTrigger({ isOpen, selectedSKU }: Props) {
                 px={4}
                 py={3}
                 background="none"
-                color="text.subtextPlaceholder.dark"
+                color="text.subtext.placeholder.dark"
                 _hover={{}}
                 _focusVisible={{}}
                 _active={{}}

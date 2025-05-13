@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ProductType } from '../utils/types'
+import { CrawledProductsType, ProductType } from '../utils/types'
 
 interface State {
     selectedProductType: ProductType
@@ -10,6 +10,10 @@ interface State {
     editingProductId: string
     isAiGenerateLoading: boolean
     isGenerateDisabled: boolean
+    crawledProducts: CrawledProductsType[]
+    targetShopUrl: string,
+    selectedPoolId: string,
+    crawlerError: string,
 }
 
 interface Action {
@@ -26,6 +30,10 @@ const initialState: State = {
     editingProductId: null,
     isAiGenerateLoading: false,
     isGenerateDisabled: false,
+    crawledProducts: [],
+    targetShopUrl: "",
+    selectedPoolId: "",
+    crawlerError: "",
 }
 
 const useProductPageStore = create<State & Action>((set) => ({

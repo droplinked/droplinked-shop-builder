@@ -2,8 +2,8 @@ import { Box, HStack, VStack } from "@chakra-ui/react";
 import LoadingSpinner from "components/common/loading-spinner/LoadingSpinner";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
-import Button from "components/redesign/button/Button";
-import Select from "components/redesign/select/Select";
+import AppButton from "components/redesign/button/AppButton";
+import AppSelect from "components/redesign/select/AppSelect";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
@@ -93,12 +93,12 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                         <RulesetType />
                                     </Box>
                                     <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent={"space-between"}>
-                                        <Button fontSize={"14px"} width={"79px"} onClick={close} variant="outline">
+                                        <AppButton  width={"79px"} onClick={close} variant="outlined">
                                             Cancel
-                                        </Button>
-                                        <Button fontSize={"14px"} width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
+                                        </AppButton>
+                                        <AppButton  width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
                                             Save
-                                        </Button>
+                                        </AppButton>
                                     </HStack>
                                 </VStack>
                             </ruleModelContext.Provider>
@@ -121,7 +121,7 @@ const BlockchainNetworkSelect = ({ chains, values, errors, setFieldValue, getRul
             </AppTypography>
         </VStack>
         <AppSkeleton isLoaded={!getRule.isLoading && !chains.isLoading}>
-            <Select
+            <AppSelect
                 selectProps={{
                     name: "chain",
                     placeholder: "Select chain",

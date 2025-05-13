@@ -1,7 +1,6 @@
 import { Td, Tr } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import { SKU } from 'pages/products/utils/types'
 import React from 'react'
 import InfinityToggleButton from '../../../common/InfinityToggleButton'
@@ -22,7 +21,7 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                 <SkuVariants options={currentSKU.options} />
             </Td>
             <Td>
-                <Input
+                <AppInput
                     inputProps={{
                         type: 'number',
                         step: '0.01',
@@ -34,7 +33,7 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                 />
             </Td>
             <Td>
-                <Input
+                <AppInput
                     inputContainerProps={{ padding: '8px', pl: 4 }}
                     inputProps={{
                         type: 'number',
@@ -52,7 +51,7 @@ export default function SKURow({ currentSKU, index, onInputChange, onToggleQuant
                 />
             </Td>
             <Td>
-                <Input
+                <AppInput
                     inputProps={{
                         value: currentSKU.externalID || '',
                         onChange: (e) => onInputChange(index, 'externalID', e.target.value),

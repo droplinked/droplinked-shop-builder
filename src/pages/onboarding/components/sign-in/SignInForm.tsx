@@ -1,7 +1,8 @@
-import { Text } from '@chakra-ui/react'
-import Button from 'components/redesign/button/Button'
+import { Flex, Text } from '@chakra-ui/react'
+import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
@@ -11,7 +12,6 @@ import React, { useState } from 'react'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
-import InteractiveText from '../common/InteractiveText'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 
@@ -58,7 +58,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
             >
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                        <Input
+                        <AppInput
                             label="Email Address"
                             inputProps={{
                                 name: "email",
@@ -84,18 +84,26 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             Remember my password
                         </Checkbox>
 
-                        <Button type="submit" isLoading={isSubmitting}>
+                        <AppButton size='lg' type="submit" isLoading={isSubmitting}>
                             Sign In
-                        </Button>
+                        </AppButton>
 
                         <DividerText text="or continue with" />
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
-                        <Text marginTop={3} textAlign="center" fontSize={14} color="#FFF">
-                            Don’t have an account?{" "}
+                        <Flex
+                            flexDirection={{ base: "column", md: "row" }}
+                            justifyContent="center"
+                            alignItems="center"
+                            gap={{ base: 1, md: 2 }}
+                            marginTop={3}
+                        >
+                            <Text fontSize={14} color="text.white">
+                                Don’t have an account?
+                            </Text>
                             <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
-                        </Text>
+                        </Flex>
                     </Form>
                 )}
             </Formik>

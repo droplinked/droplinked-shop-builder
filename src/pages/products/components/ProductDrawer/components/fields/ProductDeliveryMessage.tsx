@@ -1,4 +1,4 @@
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import Textarea from 'components/redesign/textarea/Textarea'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
@@ -42,7 +42,7 @@ function ProductDeliveryMessage() {
                         placeholder="e.g., Expected delivery within 5–7 business days, or include specific delivery instructions."
                         rows={8}
                     />
-                    <Input
+                    <AppInput
                         inputGroupProps={{ mt: 4 }}
                         inputProps={{
                             value: file_url || "",

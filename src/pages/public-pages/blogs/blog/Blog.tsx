@@ -3,15 +3,15 @@ import { getPublicBlogByIdService } from "lib/apis/blog/services";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import BlogLoading from "./blog.loading";
 import BlogDetails from "./blog.details";
+import BlogLoading from "./blog.loading";
 
 const PublicBlog = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { slug } = useParams();
     const { isFetching, data } = useQuery({
-        queryFn: () => getPublicBlogByIdService({ slug: slug! }),
+        queryFn: () => getPublicBlogByIdService(slug),
         onError: (error: any) => {
             const errorData = error?.response?.data;
             if (errorData?.statusCode === 404) navigate("/blogs");
@@ -27,9 +27,11 @@ const PublicBlog = () => {
     }, [pathname]);
 
     return (
-        <Box display={"flex"} alignItems={"center"} justifyContent={"center"} width={"full"}>
-            {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
-        </Box>
+        <Flex justifyContent={"center"}>
+            <Box width={"100%"} maxWidth={"1280px"}>
+                {isFetching ? <BlogLoading /> : <BlogDetails blog={blog!} />}
+            </Box>
+        </Flex>
     );
 };
 

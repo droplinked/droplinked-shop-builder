@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import PageGrid from 'components/redesign/page-grid/PageGrid';
 import { Form, Formik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
@@ -33,10 +32,8 @@ function SettingsPage() {
     }, [])
 
     return (
-        <PageGrid.Root flexProps={{ overflowX: "hidden" }}>
-            <Box mx={6} mt={6}>
-                <PageGrid.Header title='Settings' description='Customize the platform to your Preferences' />
-            </Box>
+        <PageGrid.Root>
+            <PageGrid.Header title='Settings' description='Customize the platform to your Preferences' />
             <Formik
                 initialValues={getSettingsPageInitValues(shop, user)}
                 validateOnChange={false}
@@ -50,9 +47,8 @@ function SettingsPage() {
                     </Form>
                 )}
             </Formik>
-
         </PageGrid.Root>
-    );
+    )
 }
 
 export default SettingsPage;

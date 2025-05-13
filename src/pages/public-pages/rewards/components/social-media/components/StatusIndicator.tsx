@@ -10,7 +10,7 @@ interface StatusIndicatorProps {
 
 const StatusIndicator = ({ status, loading }: StatusIndicatorProps) => {
   if (loading) {
-    return <Spinner thickness="4px" speed="0.8s" color="primary.default" size="lg" />;
+    return <Spinner thickness="4px" speed="0.8s" color="main.primary" size="lg" />;
   }
 
   switch (status) {

@@ -1,6 +1,6 @@
 import { ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import Button from 'components/redesign/button/Button'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
@@ -90,12 +90,12 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
             />
 
             <ModalBody display="flex" justifyContent="space-between" mb="8" bg="#141414" overflow="hidden">
-                <Button variant="secondary" isDisabled={isLoading} onClick={onClose}>
+                <AppButton variant="secondary" isDisabled={isLoading} onClick={onClose}>
                     Cancel
-                </Button>
-                <Button isLoading={isLoading} onClick={handleAction}>
+                </AppButton>
+                <AppButton isLoading={isLoading} onClick={handleAction}>
                     {title}
-                </Button>
+                </AppButton>
             </ModalBody>
         </AppModal>
     )

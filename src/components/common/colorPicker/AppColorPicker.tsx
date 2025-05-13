@@ -22,7 +22,7 @@ function AppColorPicker({ onChange, value, props }: IProps) {
     return (
         <Flex gap="10px" backgroundColor="neutral.background" position="relative" padding="10px 20px" borderRadius="8px" {...props?.containerProps}>
             <Box width="20px" cursor="pointer" height="20px" backgroundColor={value} onClick={() => setToggle(prev => !prev)}></Box>
-            <AppTypography fontSize="14px" color="text.subtextPlaceholder.dark">{value}</AppTypography>
+            <AppTypography fontSize="14px" color="text.subtext.placeholder.dark">{value}</AppTypography>
             {Toggle && <Box position="absolute" zIndex="1" top="30px" ref={ref}><SketchPicker color={value} onChange={(color) => onChange(color.hex)} /></Box>}
         </Flex>
     )

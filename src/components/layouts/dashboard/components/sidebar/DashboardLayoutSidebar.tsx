@@ -23,6 +23,8 @@ const DashboardLayoutSidebar = ({ isSidebarOpen }) => {
       top={isMobile ? '56px' : 0}
       transition="width 0.3s ease-in-out"
       bg="#141414"
+      borderRight={isMobile ? 'none' : '1px solid '}
+      borderColor={'neutral.gray.800'}
     >
       {!isMobile && <SidebarLogo />}
 

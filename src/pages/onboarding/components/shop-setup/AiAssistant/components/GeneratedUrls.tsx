@@ -1,6 +1,6 @@
-import { Box, Flex, Grid, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { generateDomains } from 'lib/apis/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -47,7 +47,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
         <GeneratedContentWrapper title='URL' onRetry={refetch} isLoading={isFetching}>
             <Flex flexDirection="column" gap={4} userSelect="none">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
-                    <Input
+                    <AppInput
                         inputProps={{
                             paddingInline: 4,
                             paddingBlock: 3,
@@ -69,17 +69,18 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                         }
                     />
                 </AppSkeleton>
-                <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
+                <Flex flexWrap="wrap"  gap={4} overflow="auto" >
                     {isFetching && <SelectableItemsSkeleton />}
 
                     {!isFetching && urls?.map((url, index) => (
                         <SelectableItem
+                            key={index}
                             isSelected={selectedUrl === url}
                             item={{ title: url }}
                             onClick={() => handleClick(url)}
                         />
                     ))}
-                </Grid>
+                </Flex>
             </Flex>
         </GeneratedContentWrapper>
     )

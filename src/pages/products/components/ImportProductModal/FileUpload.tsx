@@ -22,7 +22,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
                 <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">Click</Box> {" "}
                 to add a new file or drag and drop it here.
             </AppTypography>
-            <AppTypography color="text.subtextPlaceholder.dark">Just CSV (Up to 1MB)</AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">Just CSV (Up to 1MB)</AppTypography>
         </>
 
 

@@ -1,9 +1,8 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import AppIcons from 'assets/icon/Appicons';
+import { Verticalmove2Lg } from 'assets/icons/Navigation/VerticalMove2/Verticalmove2Lg';
 import AppImage from 'components/common/image/AppImage';
-import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
 interface Props {
@@ -22,13 +21,12 @@ function SortableProduct({ product, isLastItem }: Props) {
             ref={setNodeRef}
             alignItems="center"
             gap={6}
-            paddingBlock={5}
-            paddingInline={12}
+            padding="20px 48px"
             transform={CSS.Transform.toString(transform)}
             transition={transition}
             {...attributes}
             {...listeners}
-            {...(!isLastItem && { borderBottom: "1px solid", borderColor:"neutral.gray.700" })}
+            {...(!isLastItem && { borderBottom: "1px solid", borderColor: "neutral.gray.700" })}
         >
             <AppImage
                 src={product.media.find(image => image.isMain === "true")?.thumbnail}
@@ -36,8 +34,8 @@ function SortableProduct({ product, isLastItem }: Props) {
                 height={12}
                 borderRadius={8}
             />
-            <AppTypography flex={1} fontSize={16} color="#FFF">{product.title}</AppTypography>
-            <AppIcons.VerticalMove />
+            <Text flex={1} color="text.white">{product.title}</Text>
+            <Verticalmove2Lg color='white' />
         </Flex>
     )
 }

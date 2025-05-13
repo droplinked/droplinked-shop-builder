@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import Input from 'components/redesign/input/Input'
+import AppInput from 'components/redesign/input/AppInput'
 import { ProductProperty, ProductPropertyItem } from 'pages/products/utils/types'
 import React, { useEffect, useState } from 'react'
 import FormControl from '../../../common/FormControl'
@@ -65,7 +65,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
                     onColorChange={color => handleItemChange('value', color, itemIndex)}
                     containerProps={{ height: '50px' }}
                 />
-                <Input
+                <AppInput
                     inputProps={{
                         placeholder: 'Color Name',
                         value: item.caption,
@@ -74,7 +74,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
                 />
             </>
             :
-            <Input
+            <AppInput
                 inputProps={{
                     placeholder: 'Enter Value',
                     value: item.value,
