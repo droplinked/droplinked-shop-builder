@@ -3,7 +3,8 @@ import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
 import MobileSidebarToggle from './components/MobileSidebarToggle';
 import UserMenu from './components/userMenu/UserMenu';
-import Breadcrumb from './components/Breadcrumb';
+import Breadcrumb from './components/breadcrumb/Breadcrumb';
+
 
 interface DashboardLayoutHeaderProps {
   isSidebarOpen?: boolean;
@@ -18,9 +19,9 @@ const DashboardLayoutHeader: React.FC<DashboardLayoutHeaderProps> = ({ isSidebar
     <>
       <Flex position="sticky" top={0} width="full" justifyContent="space-between" alignItems="center" padding="16px 36px 16px 24px" borderBottom="1px solid" borderColor={"neutral.gray.800"} backgroundColor="#141414" zIndex={999}>
         <Flex alignItems="center" flex="1">
-          {isMobile && isDashboard ? (
+          {isMobile ? (
             <>
-              <MobileSidebarToggle isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+              <MobileSidebarToggle isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} isDashboard={isDashboard}/>
               <Box position="absolute" left="50%" transform="translateX(-50%)">
                 <AppIcons.SidebarDroplinked1 color="white" />
               </Box>
@@ -28,7 +29,7 @@ const DashboardLayoutHeader: React.FC<DashboardLayoutHeaderProps> = ({ isSidebar
           ) : null}
           
           {/* Desktop Breadcrumb - left aligned */}
-          {!isMobile && <Breadcrumb />}
+          {!isMobile && <Breadcrumb isDashboard={isDashboard} />}
         </Flex>
         
         <UserMenu />
@@ -43,7 +44,7 @@ const DashboardLayoutHeader: React.FC<DashboardLayoutHeaderProps> = ({ isSidebar
           borderColor="neutral.gray.800" 
           backgroundColor="#141414"
         >
-          <Breadcrumb isMobile={true} />
+          <Breadcrumb isMobile={true} isDashboard={isDashboard} />
         </Flex>
       )}
     </>
