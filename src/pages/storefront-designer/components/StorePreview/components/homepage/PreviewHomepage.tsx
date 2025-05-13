@@ -27,8 +27,8 @@ function PreviewHomepage(): React.ReactElement {
           {/* Products main content */}
           <Box width={isDesktop ? '85%' : '100%'} height="auto">
             <Flex width="auto" height="auto" display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" gap="16px">
-              {/* Action bar with sorting - desktop only */}
-              {isDesktop && <PreviewActionBar />}
+              {/* Action bar with sorting - show on all devices */}
+              <PreviewActionBar />
 
               {/* Product grid */}
               <PreviewProducts />
