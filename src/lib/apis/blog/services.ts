@@ -13,10 +13,10 @@ export const getShopBlogsService = (params: IBlogFetchParams) => {
 
 export const getBlogByIdService = (id: string) => axiosInstance.get<{ data: Blog }>(`blogs/${id}`).then(res => res.data)
 
-export const getPublicBlogByIdService = (slug: string) => axiosInstance.get(`/blogs/admin/shop-builder/${slug}`).then(res => res?.data)
+export const getPublicBlogByIdService = (slug: string) => axiosInstance.get(`/blogs/public/admin/${slug}`).then(res => res?.data)
 
 export const updateBlogService = (blog: Blog) => axiosInstance.put(`blogs/${blog._id}`, blog)
 
 export const deleteBlogService = (blogId: string) => axiosInstance.delete(`blogs/${blogId}`)
 
-export const getSuperAdminBlogs = () => axiosInstance.get(`/blogs/admin/shop-builder`)
+export const getSuperAdminBlogs = () => axiosInstance.get(`/blogs/public/admin`)
