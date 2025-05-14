@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { HStack, VStack, useMediaQuery } from "@chakra-ui/react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Blog from "./blogs.blog";
-import { IBlog } from "./blogs.interface";
+import { IBlogListItem } from "./blogs.interface";
 import { getSuperAdminBlogs } from "lib/apis/blog/services";
 import LatestBlog from "./blogs.latest";
 import { sortByDate } from "utils/helpers";
@@ -26,7 +26,7 @@ const PublicBlogs = () => {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
   const [isLargerThanMd] = useMediaQuery("(min-width: 768px)");
   const ref = useRef(null);
-  const blogs: IBlog[] = data?.data?.data || [];
+  const blogs: IBlogListItem[] = data?.data?.data?.data || [];
   const { y } = useScrollAnimation(ref, blogs?.length);
 
   let columns;

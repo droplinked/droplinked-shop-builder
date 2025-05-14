@@ -41,3 +41,16 @@ export interface IMediaData {
     positionIndex: number;
 }
 
+export interface IBlogListItem {
+    _id: string;
+    title: string;
+    writer: string;
+    isVisible: boolean;
+    image: string;
+    tags: string[];
+    category: string;
+    isFeatured: boolean;
+    slug: string;
+    createdAt: string;
+}
+
