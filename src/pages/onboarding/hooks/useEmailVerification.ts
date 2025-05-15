@@ -23,12 +23,15 @@ export const useEmailVerification = () => {
         }
     })
 
-    const { refetch: resendCode, isLoading: resendLoading } = useQuery({
+    const { refetch: resendCode, isFetching: resendLoading } = useQuery({
         queryKey: ["resend-email-code"],
         queryFn: () => resendEmailService({ email: credentials.email }),
         onSettled() {
             setInputState("default")
             setOtp("")
+        },
+        onSuccess() {
+            showToast({ type: "success", message: "Code sent successfully" })
         },
         onError() {
             showToast({ type: "error", message: "Failed to resend code" })
