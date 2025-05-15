@@ -1,5 +1,5 @@
 import { Flex, PinInput, PinInputField } from "@chakra-ui/react"
-import React from "react"
+import React, { useEffect, useRef } from "react"
 
 interface Props {
     value: string
@@ -32,9 +32,41 @@ const stateColorMap = new Map([
 
 export default function OtpField({ value, onChange, isLoading, state = "default" }: Props) {
     const colors = stateColorMap.get(state)
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    // Handle paste event
+    useEffect(() => {
+        const handlePaste = (e: ClipboardEvent) => {
+            e.preventDefault()
+
+            if (e.clipboardData) {
+                // Get pasted content and remove any non-digit characters (like dashes)
+                const pastedText = e.clipboardData.getData('text')
+                const cleanedText = pastedText.replace(/[^0-9]/g, '')
+
+                // Only use the first 6 digits
+                const otpValue = cleanedText.slice(0, 6)
+
+                // Update the OTP value
+                onChange(otpValue)
+            }
+        }
+
+        const container = containerRef.current
+        if (container) {
+            container.addEventListener('paste', handlePaste)
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('paste', handlePaste)
+            }
+        }
+    }, [onChange])
 
     return (
         <Flex
+            ref={containerRef}
             alignItems="center"
             justifyContent="center"
             marginTop={{ base: "0px", md: "38px" }}
