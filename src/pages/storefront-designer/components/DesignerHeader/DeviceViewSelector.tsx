@@ -50,7 +50,7 @@ function DeviceViewSelector(): React.ReactElement {
     } else if (!isSmallerThanLg && device === 'tablet' && window.innerWidth >= 992) {
       handleDeviceChange('desktop');
     }
-  }, [isSmallerThanLg, device]);
+  }, [isSmallerThanLg]);
 
   // Filter available options based on screen size
   const visibleOptions = isSmallerThanLg ? deviceOptions.filter((option) => option.id !== 'desktop') : deviceOptions;
