@@ -9,7 +9,7 @@ function ProductAffiliate() {
 
     function handleToggle(checked: boolean) {
         setFieldValue('canBeAffiliated', checked)
-        if (!checked) setFieldValue('commission', null)
+        if (!checked) setFieldValue('commission', 0)
     }
 
     function handleCommissionChange(event: ChangeEvent<HTMLInputElement>) {
@@ -17,7 +17,7 @@ function ProductAffiliate() {
         if (!validity.valid) return
 
         const parsedValue = parseFloat(value)
-        setFieldValue('commission', isNaN(parsedValue) ? null : parsedValue)
+        setFieldValue('commission', isNaN(parsedValue) ? 0 : parsedValue)
     }
 
     return (

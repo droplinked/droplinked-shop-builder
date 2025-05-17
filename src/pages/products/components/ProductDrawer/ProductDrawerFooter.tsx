@@ -37,7 +37,6 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             borderTop="1px solid"
              borderColor="neutral.gray.800"
             padding={9}
-            css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
             <AppButton type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
                 Discard
