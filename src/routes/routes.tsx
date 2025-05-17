@@ -54,7 +54,6 @@ const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/P
 const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
-const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
 const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
 const SimpleRegistration = lazy(() => import("pages/register-pages/pages/simple-registration/SimpleRegistration"));
 const TileDesign = lazy(() => import("pages/register-pages/pages/tile-design/TileDesign"));
@@ -62,7 +61,6 @@ const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
-const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
@@ -135,12 +133,10 @@ const router = createBrowserRouter([
             { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
-                path: "settings",
-                element: <RegisterPagesWrapper />,
+                path: "style-center",
                 children: [
-                    { path: "design", element: <DesignPage /> },
-                    { path: "tile", element: <TileDesign /> },
-                    { path: "payment-link-design", element: <PaymentLink /> },
+                    { path: "product-tiles", element: <TileDesign /> },
+                    { path: "product-links", element: <PaymentLink /> },
                 ],
             },
             { path: "account-settings", element: <SettingsPage /> },

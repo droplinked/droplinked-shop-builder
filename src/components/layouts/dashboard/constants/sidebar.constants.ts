@@ -55,10 +55,10 @@ export const SIDEBAR_CONSTANTS: SidebarGroup[] = [
             listTitle: 'Storefront Designer',
             linkTo: '/style-center/storefront-designer'
           },
-          { listTitle: 'Product Tiles', linkTo: '/analytics/settings/tile' },
+          { listTitle: 'Product Tiles', linkTo: '/analytics/style-center/product-tiles' },
           {
             listTitle: 'Product Links',
-            linkTo: '/analytics/settings/payment-link-design'
+            linkTo: '/analytics/style-center/product-links'
           },
           {
             listTitle: 'Blog Editor',
