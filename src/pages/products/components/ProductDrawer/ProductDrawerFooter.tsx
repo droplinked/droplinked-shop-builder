@@ -35,7 +35,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             justifyContent="space-between"
             alignItems="center"
             borderTop="1px solid"
-             borderColor="neutral.gray.800"
+            borderColor="neutral.gray.800"
             padding={9}
             css={{ button: { fontSize: 14, fontWeight: 500 } }}
         >
