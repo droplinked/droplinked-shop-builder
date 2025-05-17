@@ -13,6 +13,8 @@ function ProductDrawerLayout({ isOpen, onDrawerClose, children }: Props) {
             placement="right"
             size="lg"
             onClose={onDrawerClose}
+            trapFocus={false}
+            autoFocus={false}
         >
             <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
             <DrawerContent
