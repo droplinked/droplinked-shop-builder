@@ -79,7 +79,7 @@ export const GROWTH_HACK_CONSTANTS = [
             styles: {},
             onClick: (setCurrentSubSection, onClose, navigate) => {
               onClose();
-              navigate('/analytics/settings/design');
+              navigate('/style-center/storefront-designer');
             }
           }
         }

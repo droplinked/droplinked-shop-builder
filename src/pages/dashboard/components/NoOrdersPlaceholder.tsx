@@ -50,7 +50,7 @@ export default function NoOrdersPlaceholder() {
             description: 'Customize a commerce experience based on an optimal experience and design for visitors.',
             image: 'https://upload-file-droplinked.s3.amazonaws.com/8e205b784bd27ca7be9755d9fe1ede886eb9b05d84bf16d5e6819abd9a509adf.png',
             buttons: [
-                { label: 'Get Started', variant: 'primary', onClick: () => navigate("/analytics/settings/design") }
+                { label: 'Get Started', variant: 'primary', onClick: () => navigate("/style-center/storefront-designer") }
             ]
         }
     ]
