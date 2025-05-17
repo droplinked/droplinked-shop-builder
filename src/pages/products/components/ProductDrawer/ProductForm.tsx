@@ -55,7 +55,8 @@ function ProductForm({ selectedProductType, onDrawerClose, product }: Props) {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                validateOnChange={false}
+                validateOnChange={true}
+                validateOnMount={true}
                 context={{ ...initialValues }}
                 onSubmit={handleSubmit}
             >

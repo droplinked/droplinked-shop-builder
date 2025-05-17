@@ -1,6 +1,8 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useAppToast from 'hooks/toast/useToast'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
 import React from 'react'
 
@@ -9,7 +11,8 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
-    const { values, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
+    const { showToast } = useAppToast()
+    const { values, errors, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
     const { _id: editingProductId, sku, publish_product } = values
 
     const isProductRecorded = checkIfProductIsRecorded(sku)
@@ -17,6 +20,12 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
 
     const handleAction = async (action: string) => {
         if (isProductRecorded) return
+
+        const errorMessage = getFieldErrorMessage(errors)
+        if (errorMessage) {
+            showToast({ type: 'error', message: errorMessage })
+            return
+        }
 
         const isSavingAsDraft = action === 'save-as-draft'
         const publishStatus = isSavingAsDraft ? 'DRAFTED' : 'PUBLISHED'
