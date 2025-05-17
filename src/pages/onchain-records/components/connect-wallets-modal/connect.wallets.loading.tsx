@@ -2,6 +2,7 @@ import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
 import AppCard from "components/common/card/AppCard";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import React from "react";
+
 export const ConnectWalletsLoading = () => {
     return (
         <AppCard>

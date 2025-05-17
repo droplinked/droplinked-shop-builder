@@ -2,9 +2,9 @@ import { ModalBody } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
-import ConnectWallets from "pages/register-pages/component/connect/ConnectWallets";
+import ConnectWallets from "pages/onchain-records/components/connect-wallets-modal/ConnectWallets";
 import React from "react";
-import { useOnchainRecords } from "../context/OnchainRecordsContext";
+import { useOnchainRecords } from "../../context/OnchainRecordsContext";
 
 interface Props {
     isOpen: boolean;
