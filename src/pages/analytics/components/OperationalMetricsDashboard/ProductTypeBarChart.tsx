@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Text } from "@chakra-ui/react"
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import HorizontalBarChart from "components/redesign/horizontal-bar-chart/horizontalBarChart"
+import HorizontalBarChart from "components/redesign/horizontal-bar-chart/HorizontalBarChart"
 import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
 import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
 import React from "react"
