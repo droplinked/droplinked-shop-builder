@@ -1,18 +1,18 @@
 import { Box, Divider, Menu, MenuList, useDisclosure } from '@chakra-ui/react';
-import React from 'react';
-import { useQuery } from 'react-query';
+import { PROFILE_CONSTANTS, SUBSCRIPTION_STATUS_CONSTANTS } from 'components/layouts/dashboard/constants';
+import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
+import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
+import { useProfile } from 'hooks/useProfile/useProfile';
+import useShopUrl from 'hooks/useShopUrl/useShopUrl';
 import { getShopCredit } from 'lib/apis/shop/shopServices';
 import useAppStore from 'stores/app/appStore';
-import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
-import { useProfile } from 'hooks/useProfile/useProfile';
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
-import { PROFILE_CONSTANTS, SUBSCRIPTION_STATUS_CONSTANTS } from 'components/layouts/dashboard/constants';
-import UserMenuButton from './components/UserMenuButton';
-import UserInfo from './components/UserInfo';
-import SubscriptionInfo from './components/SubscriptionInfo';
-import ProfileMenuItems from './components/ProfileMenuItems';
+import React from 'react';
+import { useQuery } from 'react-query';
 import AppVersion from './components/AppVersion';
-import useShopUrl from 'hooks/useShopUrl/useShopUrl';
+import ProfileMenuItems from './components/ProfileMenuItems';
+import SubscriptionInfo from './components/SubscriptionInfo';
+import UserInfo from './components/UserInfo';
+import UserMenuButton from './components/UserMenuButton';
 
 const UserMenu = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();

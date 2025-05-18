@@ -2,7 +2,7 @@ import { Box, Button } from '@chakra-ui/react'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
 import { Breadcrumbs } from './Breadcrumbs'
-import { Dropdown } from './Dropdown'
+import { UserMenu } from './UserMenu/UserMenu'
 
 export const MobileHeader = () => {
     const { toggleSidebar } = useProducerLayout()
@@ -11,7 +11,7 @@ export const MobileHeader = () => {
         <Box>
             <Button onClick={toggleSidebar}>Menu</Button>
             <img src="/logo.png" alt="Brand Logo" />
-            <Dropdown />
+            <UserMenu />
             <Breadcrumbs />
         </Box>
     )

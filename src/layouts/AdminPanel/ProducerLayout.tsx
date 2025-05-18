@@ -1,6 +1,7 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
 import React, { ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Header } from './Header/Header'
 import { Sidebar } from './Sidebar/Sidebar'
 
@@ -18,8 +19,8 @@ export const ProducerLayout = ({ children }: ProducerLayoutProps) => {
             >
                 <Sidebar />
                 <Header />
-                <GridItem>
-                    <Box as="main">{children}</Box>
+                <GridItem padding={4}>
+                    <Box as="main">{children ?? <Outlet />}</Box>
                 </GridItem>
             </Grid>
         </ProducerLayoutProvider>
