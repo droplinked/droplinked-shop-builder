@@ -1,15 +1,15 @@
-import { UseDisclosureReturn } from '@chakra-ui/react'
+import { GridItem } from '@chakra-ui/react'
+import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
 import { DesktopHeader } from './DesktopHeader'
 import { MobileHeader } from './MobileHeader'
 
-interface HeaderProps {
-    breakpoint: 'mobile' | 'tablet' | 'desktop'
-    disclosure: Pick<UseDisclosureReturn, 'onOpen'>
-}
+export const Header = () => {
+    const { breakpoint } = useProducerLayout()
 
-export const Header = ({ breakpoint, disclosure }: HeaderProps) => {
-    return breakpoint === 'mobile'
-        ? <MobileHeader disclosure={disclosure} />
-        : <DesktopHeader />
+    return (
+        <GridItem>
+            {breakpoint === 'mobile' ? <MobileHeader /> : <DesktopHeader />}
+        </GridItem>
+    )
 }

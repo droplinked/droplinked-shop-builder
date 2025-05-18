@@ -1,13 +1,11 @@
 import MainLayout from "components/layouts/app/main/MainLayout";
 import StandaloneLayout from "components/layouts/standalone/StandaloneLayout";
-import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
 import BlogEditPage from "pages/blogs/components/BlogEditPage";
 import Changelog from "pages/changelog/Changelog";
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
 import Onboarding from "pages/onboarding/Onboarding";
-import Blog from "pages/public-pages/blogs/blogs.blog";
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
@@ -27,6 +25,7 @@ import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage
 import Rewards from "pages/public-pages/rewards/Rewards";
 import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner";
 
+import { ProducerLayout } from "layouts/AdminPanel/ProducerLayout";
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -122,11 +121,11 @@ const router = createBrowserRouter([
     },
     {
         path: "analytics",
-        element: <DashboardLayout />,
+        element: <ProducerLayout />,
         errorElement: (
-            <DashboardLayout>
+            <ProducerLayout>
                 <MaintenancePage />
-            </DashboardLayout>
+            </ProducerLayout>
         ),
         children: [
             { index: true, element: <Analytics /> },

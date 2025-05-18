@@ -1,14 +1,13 @@
-import { Drawer, DrawerContent, DrawerOverlay, UseDisclosureReturn } from '@chakra-ui/react'
+import { Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
+import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from "react"
 import { NavLinks } from './NavLinks'
 
-interface MobileSidebarProps {
-    disclosure: Pick<UseDisclosureReturn, 'isOpen' | 'onClose'>
-}
+export const MobileSidebar = () => {
+    const { isSidebarOpen, toggleSidebar } = useProducerLayout()
 
-export const MobileSidebar = ({ disclosure }: MobileSidebarProps) => {
     return (
-        <Drawer isOpen={disclosure.isOpen} onClose={disclosure.onClose} placement="left">
+        <Drawer isOpen={isSidebarOpen} onClose={toggleSidebar} placement="left">
             <DrawerOverlay />
             <DrawerContent>
                 <NavLinks />
