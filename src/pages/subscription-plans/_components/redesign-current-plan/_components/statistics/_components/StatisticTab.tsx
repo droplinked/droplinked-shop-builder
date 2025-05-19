@@ -5,11 +5,13 @@ import Charts from '../_components/Charts';
 import UsageExceededAlert from '../_components/UsageExceededAlert';
 
 interface StatisticTabProps {
-    data: ShopSubscriptionData
+    data: {
+        data: ShopSubscriptionData
+    };
 }
 
 export default function StatisticTab({ data }: StatisticTabProps) {
-    const UsageExceededItem = data.legalUsage.find((item) => item.remaining === 0)
+    const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
 
     if (!data) return null
 

@@ -6,7 +6,10 @@ import { getSubscriptionPlanIcon } from 'utils/helpers';
 import PlanBadge from './_components/PlanBadge';
 import PlanDescription from './_components/PlanDescription';
 import StatisticModal from './_components/statistics/StatisticModal';
-
+export interface ICurrentSubData {
+    icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
+    title: string
+}
 function NewCurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
@@ -26,8 +29,19 @@ function NewCurrentPlan() {
             alignItems={"start"}
         >
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
-                <PlanBadge currentSubData={currentPlanInformation} data={subscriptionData} />
-                <StatisticModal data={subscriptionData} />
+                <PlanBadge currentSubData={currentSubData} data={data} />
+                <HStack gap={"1rem"} flexWrap={"wrap"}>
+                    {/* {type !== 'STARTER' && (
+                    <AppButton
+                        variant='normal'
+                        color="neutral.white"
+                        onClick={() => window.open('mailto:support@droplinked.com')}
+                    >
+                    Cancel Subscription
+                    </AppButton>
+                )} */}
+                    <StatisticModal data={data} />
+                </HStack>
             </HStack>
             <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
         </VStack>
