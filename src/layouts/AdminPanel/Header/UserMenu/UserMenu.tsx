@@ -6,6 +6,7 @@ import React from 'react'
 import MenuItemActions from './MenuItemActions'
 import MenuItemAppVersion from './MenuItemAppVersion'
 import MenuItemShopInfo from './MenuItemShopInfo'
+import MenuItemShopSubscription from './MenuItemShopSubscription'
 
 export const UserMenu = () => {
     const disclosure = useDisclosure()
@@ -27,6 +28,7 @@ export const UserMenu = () => {
             >
                 <RuledGrid columns={1} borderColor="neutral.gray.750" nested>
                     <MenuItemShopInfo />
+                    <MenuItemShopSubscription />
                     <MenuItemActions isMenuOpen={disclosure.isOpen} />
                     <MenuItemAppVersion />
                 </RuledGrid>
