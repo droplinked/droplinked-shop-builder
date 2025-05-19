@@ -4,14 +4,14 @@ import React, { createContext, ReactNode, useContext, useState } from 'react'
 interface ProducerLayoutContextType {
     isSidebarOpen: boolean
     toggleSidebar: () => void
-    breakpoint: string
+    breakpoint: 'mobile' | 'tablet' | 'desktop'
 }
 
 const ProducerLayoutContext = createContext<ProducerLayoutContextType | undefined>(undefined)
 
 export const ProducerLayoutProvider = ({ children }: { children: ReactNode }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-    const breakpoint = useBreakpointValue({ base: 'mobile', md: 'tablet', xl: 'desktop' })
+    const breakpoint = useBreakpointValue<ProducerLayoutContextType['breakpoint']>({ base: 'mobile', md: 'tablet', xl: 'desktop' })
 
     const toggleSidebar = () => setIsSidebarOpen((prev) => !prev)
 
