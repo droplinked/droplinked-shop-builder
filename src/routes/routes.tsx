@@ -54,9 +54,9 @@ const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/P
 const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
 const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
-const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
-const SimpleRegistration = lazy(() => import("pages/register-pages/pages/simple-registration/SimpleRegistration"));
-const TileDesign = lazy(() => import("pages/register-pages/pages/tile-design/TileDesign"));
+const PaymentLink = lazy(() => import("pages/payment-link/PaymentLink"));
+const SimpleRegistration = lazy(() => import("pages/simple-registration/SimpleRegistration"));
+const TileDesign = lazy(() => import("pages/tile-design/TileDesign"));
 const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
