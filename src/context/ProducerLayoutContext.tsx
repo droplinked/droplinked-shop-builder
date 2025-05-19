@@ -11,7 +11,7 @@ const ProducerLayoutContext = createContext<ProducerLayoutContextType | undefine
 
 export const ProducerLayoutProvider = ({ children }: { children: ReactNode }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-    const breakpoint = useBreakpointValue({ base: 'mobile', md: 'tablet', lg: 'desktop' }) || 'mobile'
+    const breakpoint = useBreakpointValue({ base: 'mobile', md: 'tablet', xl: 'desktop' })
 
     const toggleSidebar = () => setIsSidebarOpen((prev) => !prev)
 

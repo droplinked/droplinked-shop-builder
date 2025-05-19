@@ -1,21 +1,74 @@
-import { Box } from '@chakra-ui/react'
-import { navLinks } from 'data/navLinks'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
+import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
+import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
+import { SIDEBAR_CONSTANTS } from 'components/layouts/dashboard/constants'
+import { SidebarGroup } from 'components/layouts/dashboard/constants/interfaces'
+import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+
+interface BreadcrumbItem {
+    title: string
+    linkTo?: string
+}
 
 export const Breadcrumbs = () => {
+    const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
 
-    // Calculate breadcrumbs based on pathname and navLinks
-    const breadcrumbs = navLinks.filter((link) =>
-        pathname.startsWith(link.path) || pathname === link.path
-    )
+    const separator = breakpoint === 'desktop'
+        ? <ChevronrightMd color='#b1b1b1' />
+        : <ChevronrightSm color='#b1b1b1' />
+
+    // Function to generate breadcrumbs based on the current path
+    const getBreadcrumbs = (path: string): BreadcrumbItem[] => {
+        const breadcrumbs: BreadcrumbItem[] = [{ title: 'Home', linkTo: '/analytics' }]
+
+        SIDEBAR_CONSTANTS.forEach((group: SidebarGroup) => {
+            group.items.forEach((item) => {
+                // Check top-level item
+                if (item.linkTo === path) {
+                    breadcrumbs.push({ title: item.title, linkTo: item.linkTo })
+                }
+
+                // Check sub-items
+                item.list.forEach((subItem) => {
+                    if (subItem.linkTo === path) {
+                        breadcrumbs.push(
+                            { title: item.title }, // Parent item without link
+                            { title: subItem.listTitle, linkTo: subItem.linkTo }
+                        )
+                    }
+                })
+            })
+        })
+
+        return breadcrumbs
+    }
+
+    const breadcrumbs = getBreadcrumbs(pathname)
 
     return (
-        <Box as="nav">
-            {breadcrumbs.map((item) => (
-                <a key={item.path} href={item.path}>{item.label}</a>
-            ))}
-        </Box>
+        <Breadcrumb separator={separator}>
+            {breadcrumbs
+                .filter(crumb => crumb.linkTo)
+                .map((crumb, index) => {
+                    const isCurrentPage = pathname === crumb.linkTo
+
+                    return (
+                        <BreadcrumbItem key={index} isCurrentPage={isCurrentPage}>
+                            <BreadcrumbLink
+                                as={NavLink}
+                                to={crumb.linkTo}
+                                fontSize={{ base: 14, md: 16, xl: 20 }}
+                                fontWeight={isCurrentPage ? { base: 500, md: 700 } : 400}
+                                color={isCurrentPage ? "text.white" : 'text.subtext.placeholder.light'}
+                            >
+                                {crumb.title}
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                    )
+                })}
+        </Breadcrumb>
     )
 }
