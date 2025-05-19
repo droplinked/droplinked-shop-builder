@@ -1,4 +1,4 @@
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import React, { createContext, useState } from "react";
 
 export type PaymentLinkVariantsStyle = "DROPDOWN" | "SELECTOR"

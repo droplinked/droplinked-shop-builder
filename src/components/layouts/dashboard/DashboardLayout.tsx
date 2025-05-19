@@ -1,6 +1,6 @@
 import { Box, HStack, useBreakpointValue, VStack } from '@chakra-ui/react';
 import AdminHoc from 'hoc/admin/adminHoc';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';

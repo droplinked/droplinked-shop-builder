@@ -1,4 +1,4 @@
-import { IUserWalletsProps } from "lib/stores/app/appStore";
+import { IUserWalletsProps } from "stores/app/appStore";
 
 export interface IforgetPasswordService {
     email: string;

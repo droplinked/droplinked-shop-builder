@@ -1,5 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import { useLogin } from 'pages/onboarding/hooks/useLogin';
 import React, { useEffect } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';

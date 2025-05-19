@@ -3,7 +3,7 @@ import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { Participation } from 'lib/apis/gamification/interfaces'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
 

@@ -1,5 +1,5 @@
 import { createCustomShippingService, getCustomShippingsService } from "lib/apis/custom-shipping/CustomShippingServices"
-import { useHasPermission } from "lib/stores/app/appStore"
+import { useHasPermission } from "stores/app/appStore"
 import { useState } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from "react-query"
 

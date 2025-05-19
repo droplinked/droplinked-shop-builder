@@ -1,5 +1,5 @@
 import { collectionService } from "lib/apis/collection/services";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import { useQuery } from "react-query";
 
 const useCollections = () => {

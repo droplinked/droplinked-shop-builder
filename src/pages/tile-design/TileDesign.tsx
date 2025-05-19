@@ -13,7 +13,7 @@ import TileDesignPagePayment from "./tile.design.page.payment";
 import { shopUpdateService } from "lib/apis/shop/shopServices";
 import { useMutation } from "react-query";
 import { IshopUpdateService } from "lib/apis/shop/interfaces";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import { useProfile } from "hooks/useProfile/useProfile";
 
 const TileDesign = () => {

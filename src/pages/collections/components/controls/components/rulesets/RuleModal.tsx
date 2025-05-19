@@ -8,7 +8,7 @@ import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
-import { useCheckPermission } from "lib/stores/app/appStore";
+import { useCheckPermission } from "stores/app/appStore";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import AppErrors from "utils/constants/errors";

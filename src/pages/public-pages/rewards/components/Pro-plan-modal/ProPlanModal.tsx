@@ -1,7 +1,7 @@
 import { Box, ModalBody } from '@chakra-ui/react';
 import AppModal from 'components/redesign/modal/AppModal';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeaturesSection from './components/FeaturesSection';

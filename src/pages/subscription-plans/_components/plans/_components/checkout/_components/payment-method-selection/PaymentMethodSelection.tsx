@@ -13,7 +13,7 @@ import {
 	subscriptionPlanStripePaymentService,
 } from 'lib/apis/subscription/subscriptionServices';
 import { appDevelopment } from 'utils/app/variable';
-import useSubscriptionPlanPurchaseStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { ModalState } from '../../types/interfaces';

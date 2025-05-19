@@ -1,7 +1,7 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid';
 import { Form, Formik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React, { useEffect } from 'react';
 import SaveChangesDrawer from './components/common/SaveChangesDrawer';
 import TabsContent from './components/common/TabsContent';

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getOnchainInventory } from 'lib/apis/onchain-inventory/services';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import useDebounce from 'hooks/debounce/useDebounce';
 
 interface OnchainRecordsContextType {

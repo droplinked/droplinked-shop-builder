@@ -5,7 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
-import useSubscriptionPlanPurchaseStore from '../../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import useSubscriptionPlanPurchaseStore from '../../../../../../../stores/subscription-plan.ts/subscriptionPlanStore'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import { ModalStep } from '../types/interfaces'
 

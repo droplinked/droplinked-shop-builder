@@ -1,6 +1,6 @@
 import useAppToast from "hooks/toast/useToast"
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
-import useAppStore from "lib/stores/app/appStore"
+import useAppStore from "stores/app/appStore"
 import { useCallback } from "react"
 import useOnboardingStore from "../stores/useOnboardingStore"
 

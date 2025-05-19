@@ -1,7 +1,7 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import useGrowthHackStore from 'lib/stores/growth-hack/useGrowthHackStore';
+import useGrowthHackStore from 'stores/growth-hack/useGrowthHackStore';
 import React, { useEffect, useState } from 'react';
 import { GROWTH_HACK_CONSTANTS } from '../../../../constants';
 import DashboardLayoutSidebarGrowthHackModal from './components/DashboardLayoutSidebarGrowthHackModal';
