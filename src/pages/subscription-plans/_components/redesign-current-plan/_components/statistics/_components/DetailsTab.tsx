@@ -9,6 +9,7 @@ import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import SwitchBox from 'components/redesign/switch-box/SwitchBox'
+import AppButton from 'components/redesign/button/AppButton'
 
 interface Props {
     data: ShopSubscriptionData
@@ -72,15 +73,15 @@ export default function DetailsTab({ data }: Props) {
                 </Box>
 
                 {/* TODO: Implement Cancel sub feature */}
-                <InteractiveText
-                    to='#'
-                    justifyContent="center"
-                    px={6}
-                    py="14px"
-                    color="#F24"
-                >
-                    Cancel Subscription
-                </InteractiveText>
+                <Box px={6} py="10px">
+                    <AppButton
+                        mx="auto"
+                        color="#F24"
+                        variant='normal'
+                    >
+                        Cancel Subscription
+                    </AppButton>
+                </Box>
             </RuledGrid>
         </>
     )
