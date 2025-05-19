@@ -34,7 +34,7 @@ export default function DetailsTab({ data }: Props) {
                             text={
                                 <Flex gap={1} alignItems="center">
                                     <IconComponent color="#fff" stroke="#fff" width="16px" height="16px" />
-                                    <Text color="#fff" fontSize={16} fontWeight={500}>{currentSubData.title} Plan</Text>
+                                    <Text color="#fff" fontSize={14} fontWeight={500}>{currentSubData.title} Plan</Text>
                                 </Flex>
                             }
                         />
