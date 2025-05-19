@@ -1,18 +1,45 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography'
+import { SidebarcollapseMd } from 'assets/icons/Action/SidebarCollapse/SidebarcollapseMd'
+import { SidebarexpandMd } from 'assets/icons/Action/SidebarExpand/SidebarexpandMd'
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
 import { Breadcrumbs } from './Breadcrumbs'
 import { UserMenu } from './UserMenu/UserMenu'
 
-export const MobileHeader = () => {
-    const { toggleSidebar } = useProducerLayout()
+const MobileHeader = () => {
+    const { isSidebarOpen, toggleSidebar } = useProducerLayout()
+
+    const sidebarIcon = isSidebarOpen
+        ? <SidebarcollapseMd color="white" />
+        : <SidebarexpandMd color="white" />
 
     return (
-        <Box>
-            <Button onClick={toggleSidebar}>Menu</Button>
-            <img src="/logo.png" alt="Brand Logo" />
-            <UserMenu />
-            <Breadcrumbs />
+        <Box as="header">
+            <Flex
+                justify="space-between"
+                align="center"
+                borderBottom="1px solid"
+                borderColor="neutral.gray.800"
+                padding={4}
+            >
+                <IconWrapper
+                    width={10}
+                    height={10}
+                    bg="transparent"
+                    icon={sidebarIcon}
+                    onClick={toggleSidebar}
+                    aria-label={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+                />
+                <DroplinkedTypography color="white" width="127px" />
+                <UserMenu />
+            </Flex>
+            <Box padding="12px 16px">
+                <Breadcrumbs />
+            </Box>
         </Box>
     )
 }
+
+export default MobileHeader
