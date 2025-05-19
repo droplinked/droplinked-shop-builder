@@ -1,13 +1,12 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import AppButton from 'components/redesign/button/AppButton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
-import { getSubscriptionPlanIcon } from 'utils/helpers';
 import * as React from 'react';
+import { getSubscriptionPlanIcon } from 'utils/helpers';
 import PlanBadge from './_components/PlanBadge';
 import PlanDescription from './_components/PlanDescription';
 import StatisticModal from './_components/statistics/StatisticModal';
-interface ICurrentSubData {
+export interface ICurrentSubData {
     icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
     title: string
 }
@@ -23,7 +22,7 @@ function NewCurrentPlan() {
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentSubData} data={data} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>
-                {type !== 'STARTER' && (
+                    {/* {type !== 'STARTER' && (
                     <AppButton
                         variant='normal'
                         color="neutral.white"
@@ -31,7 +30,7 @@ function NewCurrentPlan() {
                     >
                     Cancel Subscription
                     </AppButton>
-                )}
+                )} */}
                     <StatisticModal data={data} />
                 </HStack>
             </HStack>

@@ -1,8 +1,8 @@
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
 import * as React from 'react';
-import SemiCircleProgressbar from './SemiCircleProgressbar';
-import { Box } from '@chakra-ui/react';
 import LinearProgressBar from './LinearProgressbar';
+import SemiCircleProgressbar from './SemiCircleProgressbar';
 interface IProps {
     data: {
         data: ShopSubscriptionData
@@ -17,31 +17,35 @@ function Charts({ data }: IProps) {
         .filter(usage => !usageKeys.includes(usage.key));
 
     return (
-        <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"} gap={"2rem"} alignItems={"start"}>
-            {usageData.map((usage, index) => {
-                const title = usage.key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-                return (
-                    <SemiCircleProgressbar
-                        key={index}
-                        value={usage.used}
-                        maxValue={usage.value}
-                        title={title}
-                    />
-                );
-            })}
-            {otherUsageData.map((usage, index) => {
-                const title = usage.key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-                return (
-                    <LinearProgressBar
-                        key={index}
-                        value={usage.used}
-                        maxValue={usage.value}
-                        title={title}
-                    />
-                );
-            })}
-            <LinearProgressBar maxValue={20} title='Crypto Payment' value={10} />
-        </Box>
+        <>
+            <RuledGrid columns={2} borderRadius={16} mb={4}>
+                {usageData.map((usage, index) => {
+                    const title = usage.key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+                    return (
+                        <SemiCircleProgressbar
+                            key={index}
+                            value={usage.used}
+                            maxValue={usage.value}
+                            title={title}
+                        />
+                    );
+                })}
+            </RuledGrid>
+            <RuledGrid columns={1} borderRadius={16}>
+                {otherUsageData.map((usage, index) => {
+                    const title = usage.key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+                    return (
+                        <LinearProgressBar
+                            key={index}
+                            value={usage.used}
+                            maxValue={usage.value}
+                            title={title}
+                        />
+                    );
+                })}
+                <LinearProgressBar maxValue={20} title='Crypto Payment' value={10} />
+            </RuledGrid>
+        </>
     );
 }
 
