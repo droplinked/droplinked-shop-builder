@@ -22,15 +22,6 @@ function NewCurrentPlan() {
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentSubData} data={data} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>
-                    {/* {type !== 'STARTER' && (
-                    <AppButton
-                        variant='normal'
-                        color="neutral.white"
-                        onClick={() => window.open('mailto:support@droplinked.com')}
-                    >
-                    Cancel Subscription
-                    </AppButton>
-                )} */}
                     <StatisticModal data={data} />
                 </HStack>
             </HStack>

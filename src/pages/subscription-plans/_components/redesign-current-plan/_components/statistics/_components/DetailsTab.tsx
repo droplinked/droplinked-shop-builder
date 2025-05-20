@@ -73,15 +73,17 @@ export default function DetailsTab({ data }: Props) {
                 </Box>
 
                 {/* TODO: Implement Cancel sub feature */}
-                <Box px={6} py="10px">
-                    <AppButton
-                        mx="auto"
-                        color="#F24"
-                        variant='normal'
-                    >
-                        Cancel Subscription
-                    </AppButton>
-                </Box>
+                {currentSubData.title !== "Starter" &&
+                    <Box px={6} py="10px">
+                        <AppButton
+                            mx="auto"
+                            color="#F24"
+                            variant='normal'
+                        >
+                            Cancel Subscription
+                        </AppButton>
+                    </Box>
+                }
             </RuledGrid>
         </>
     )
