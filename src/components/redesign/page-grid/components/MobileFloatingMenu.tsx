@@ -13,7 +13,7 @@ export default function MobileFloatingMenu({ actionButtons }: { actionButtons: A
     }
 
     return (
-        <Box position="fixed" bottom="16px" right="16px" zIndex={999}>
+        <Box position="fixed" bottom="6rem" right="16px" zIndex={999}>
             <Popover
                 isOpen={isOpen}
                 onClose={onClose}
