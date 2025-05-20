@@ -41,19 +41,31 @@ function TabletSidebarItem({ item }: { item: SidebarItemType }) {
     return (
         <Popover placement="right-start" {...disclosure}>
             <PopoverTrigger>
-                <Box
-                    as="button"
-                    {...baseButtonStyles}
-                    {...(isActive ? activeStyles : {})}
-                >
+                <Box as="button" {...baseButtonStyles}  {...(isActive ? activeStyles : {})}>
                     {item.icon}
                 </Box>
             </PopoverTrigger>
-            <PopoverContent left={6} width="288px" border="none" borderRadius={8} bgColor="neutral.gray.1000">
-                <PopoverHeader borderBottomColor="neutral.gray.800" padding={4} fontSize={14} color="text.white">
+            <PopoverContent
+                left={6}
+                width="288px"
+                border="none"
+                borderRadius={8}
+                bgColor="neutral.gray.1000"
+            >
+                <PopoverHeader
+                    borderBottomColor="neutral.gray.800"
+                    padding={4}
+                    fontSize={14}
+                    color="text.white"
+                >
                     {item.title}
                 </PopoverHeader>
-                <PopoverBody display="flex" flexDirection="column" gap={3} padding="16px 20px">
+                <PopoverBody
+                    display="flex"
+                    flexDirection="column"
+                    gap={3}
+                    padding="16px 20px"
+                >
                     {item.list?.map((listItem, index) => (
                         <ChakraLink
                             key={index}
