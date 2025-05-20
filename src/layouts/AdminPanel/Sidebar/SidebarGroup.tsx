@@ -30,7 +30,7 @@ function SidebarLinkItem({ item }: { item: SidebarItemType }) {
     return (
         <ChakraLink
             as={RouterLink}
-            href={item.linkTo ?? undefined}
+            to={item.linkTo ?? undefined}
             display="flex"
             alignItems="center"
             gap={2}
@@ -83,7 +83,7 @@ function SidebarAccordionItem({ item }: { item: SidebarItemType }) {
                         <ChakraLink
                             key={listItem.listTitle}
                             as={RouterLink}
-                            href={listItem.linkTo}
+                            to={listItem.linkTo}
                             fontSize={14}
                             color="text.subtext.placeholder.light"
                             textDecoration="none"

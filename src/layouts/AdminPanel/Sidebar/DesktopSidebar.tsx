@@ -3,7 +3,7 @@ import DroplinkedBrand from 'pages/onboarding/components/common/DroplinkedBrand'
 import React from 'react'
 import NavLinks from './NavLinks'
 
-export const DesktopSidebar = () => {
+function DesktopSidebar() {
     return (
         <Flex
             position="sticky"
@@ -21,3 +21,5 @@ export const DesktopSidebar = () => {
         </Flex>
     )
 }
+
+export default DesktopSidebar

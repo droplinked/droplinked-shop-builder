@@ -17,11 +17,11 @@ const SidebarItem = ({ item }) => {
   const { shop } = useAppStore();
   const hasChild = item.list.length !== 0;
   const location = useLocation();
-  
+
   const isSelected = React.useMemo(() => {
     if (!item.linkTo) {
-      return item.list.some(subItem => 
-        location.pathname === subItem.linkTo 
+      return item.list.some(subItem =>
+        location.pathname === subItem.linkTo
       );
     }
     return location.pathname === item.linkTo
@@ -40,19 +40,19 @@ const SidebarItem = ({ item }) => {
     };
   }, []);
 
-   if (item.title === 'Quests' && shop.hasCompletedQuests) return null;
+  if (item.title === 'Quests' && shop.hasCompletedQuests) return null;
 
   return (
-    <AppAccordionItem  width="100%" itemId={item.title} isCollapsable={!!item.list?.length}>
+    <AppAccordionItem width="100%" itemId={item.title} isCollapsable={!!item.list?.length}>
       <AppAccordionTrigger width="100%">
         <DashboardLinkWrapper linkTo={item.linkTo} onClick={item.onClick} isExternalLink={item.external}>
-          <Flex 
-            width="100%" 
-            padding={{ base: '10px', lg: '12px' }} 
-            alignItems="center" 
-            gap="8px" 
+          <Flex
+            width="100%"
+            padding={{ base: '10px', lg: '12px' }}
+            alignItems="center"
+            gap="8px"
             backgroundColor={isSelected ? 'neutral.gray.800' : 'transparent'}
-            _hover={{ backgroundColor: 'neutral.gray.800' }} 
+            _hover={{ backgroundColor: 'neutral.gray.800' }}
             rounded="8px"
           >
             {/* Sidebar Icon with Tooltip on Tablet */}
@@ -100,7 +100,7 @@ const SidebarItem = ({ item }) => {
                 fontSize="14px"
                 _groupHover={{ letterSpacing: '0.2px', fontWeight: '500' }}
                 style={{ transition: 'letter-spacing .1s linear' }}
-                fontWeight={isSelected ? "500" : "400" }
+                fontWeight={isSelected ? "500" : "400"}
                 lineHeight="20px"
                 flex="1"
                 whiteSpace={'nowrap'}

@@ -3,7 +3,7 @@ import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from "react"
 import NavLinks from './NavLinks'
 
-export const MobileSidebar = () => {
+function MobileSidebar() {
     const { isSidebarOpen, toggleSidebar } = useProducerLayout()
 
     return (
@@ -20,3 +20,5 @@ export const MobileSidebar = () => {
         </Drawer>
     )
 }
+
+export default MobileSidebar
