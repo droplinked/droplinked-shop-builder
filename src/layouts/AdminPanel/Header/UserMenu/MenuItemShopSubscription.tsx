@@ -58,7 +58,7 @@ function MenuItemShopSubscription() {
                 variant={isExpired ? 'normal' : 'secondary'}
                 size='sm'
                 padding='8px 12px'
-                onClick={() => navigate('/dashboard/plans')}
+                onClick={() => navigate('/analytics/plans')}
             >
                 {buttonText}
             </AppButton>
