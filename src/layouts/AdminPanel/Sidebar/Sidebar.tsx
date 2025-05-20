@@ -3,7 +3,7 @@ import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
 import DesktopSidebar from './DesktopSidebar'
 import MobileSidebar from './MobileSidebar'
-import TabletSidebar from './TabletSidebar'
+import TabletSidebar from './TabletSidebar/TabletSidebar'
 
 export const Sidebar = () => {
     const { breakpoint } = useProducerLayout()
