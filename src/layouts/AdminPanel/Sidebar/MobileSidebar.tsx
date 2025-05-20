@@ -1,7 +1,7 @@
 import { Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from "react"
-import { NavLinks } from './NavLinks'
+import NavLinks from './NavLinks'
 
 export const MobileSidebar = () => {
     const { isSidebarOpen, toggleSidebar } = useProducerLayout()
@@ -9,7 +9,12 @@ export const MobileSidebar = () => {
     return (
         <Drawer isOpen={isSidebarOpen} onClose={toggleSidebar} placement="left">
             <DrawerOverlay />
-            <DrawerContent>
+            <DrawerContent
+                paddingBlock={8}
+                paddingInline={4}
+                backgroundColor="neutral.background"
+                overflow="auto"
+            >
                 <NavLinks />
             </DrawerContent>
         </Drawer>

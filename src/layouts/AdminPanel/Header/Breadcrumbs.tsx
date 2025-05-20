@@ -1,9 +1,9 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
-import { SIDEBAR_CONSTANTS } from 'components/layouts/dashboard/constants'
 import { SidebarGroup } from 'components/layouts/dashboard/constants/interfaces'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
+import { producerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
@@ -24,7 +24,7 @@ export const Breadcrumbs = () => {
     const getBreadcrumbs = (path: string): BreadcrumbItem[] => {
         const breadcrumbs: BreadcrumbItem[] = [{ title: 'Home', linkTo: '/analytics' }]
 
-        SIDEBAR_CONSTANTS.forEach((group: SidebarGroup) => {
+        producerSidebarLinks.forEach((group: SidebarGroup) => {
             group.items.forEach((item) => {
                 // Check top-level item
                 if (item.linkTo === path) {

@@ -11,7 +11,12 @@ export const Sidebar = () => {
     if (breakpoint === 'mobile') return <MobileSidebar />
 
     return (
-        <GridItem rowSpan={3} >
+        <GridItem
+            position="relative"
+            rowSpan={3}
+            borderRight="1px solid"
+            borderColor="neutral.gray.800"
+        >
             {breakpoint === 'tablet' ? <TabletSidebar /> : <DesktopSidebar />}
         </GridItem>
     )
