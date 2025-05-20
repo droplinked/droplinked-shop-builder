@@ -8,7 +8,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 import { getSubscriptionPlanIcon } from "utils/helpers"
-import useSubscriptionPlanPurchaseStore from "../../../../../../lib/stores/subscription-plan.ts/subscriptionPlanStore"
+import useSubscriptionPlanPurchaseStore from "../../../../../../stores/subscription-plan.ts/subscriptionPlanStore"
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import PlanDescription from "./PlanDescription"

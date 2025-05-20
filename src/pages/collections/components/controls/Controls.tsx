@@ -1,5 +1,5 @@
 import { Box, Divider, HStack, Spinner, useDisclosure } from '@chakra-ui/react';
-import useAppStore, { useCheckPermission } from 'lib/stores/app/appStore';
+import useAppStore, { useCheckPermission } from 'stores/app/appStore';
 import React, { useState } from 'react';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './components/delete/ConfirmDeleteCollection';

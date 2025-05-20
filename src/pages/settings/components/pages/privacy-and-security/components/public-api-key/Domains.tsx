@@ -1,7 +1,7 @@
 import { Box, Flex, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useCheckPermission } from 'lib/stores/app/appStore';
+import { useCheckPermission } from 'stores/app/appStore';
 import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 import ClientIdDisplay from './ClientIdDisplay';

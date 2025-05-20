@@ -6,7 +6,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { motion } from 'framer-motion';
 import { checkMissionCompletionService } from 'lib/apis/gamification/gamificationServices';
 import { Participation } from 'lib/apis/gamification/interfaces';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import GamificationSpinner from './gamificationSpinner/GamificationSpinner';

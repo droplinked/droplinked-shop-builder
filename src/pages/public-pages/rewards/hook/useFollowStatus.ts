@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getFollowStatusService, grantProPlanService } from 'lib/apis/quests/services';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import useAppToast from 'hooks/toast/useToast';
 
 // Constants

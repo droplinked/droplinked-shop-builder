@@ -2,7 +2,7 @@ import { Flex, useMediaQuery } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppInput from 'components/redesign/input/AppInput';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React, { useMemo } from 'react';
 import { useOnchainRecords } from '../context/OnchainRecordsContext';
 

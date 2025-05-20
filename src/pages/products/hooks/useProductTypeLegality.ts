@@ -1,4 +1,4 @@
-import { useLegalUsage } from "lib/stores/app/appStore"
+import { useLegalUsage } from "stores/app/appStore"
 import { productTypeUsageLimits } from "utils/constants"
 import { ProductType } from "../utils/types"
 

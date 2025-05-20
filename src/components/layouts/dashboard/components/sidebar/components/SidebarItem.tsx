@@ -2,7 +2,7 @@ import { Box, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Portal
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import { AppAccordionChevron, AppAccordionItem, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DashboardLinkWrapper from '../../common/DashboardLinkWrapper';

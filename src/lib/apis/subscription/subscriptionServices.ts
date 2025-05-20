@@ -1,4 +1,4 @@
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import axiosInstance from "../axiosConfig";
 import { ShopSubscriptionData, SubscriptionCheckout, SubscriptionCryptoCheckout, SubscriptionPlan, SubscriptionPlanPaymentMethod, SubscriptionStripePaymentResult, We3TransactionData } from "./interfaces";
 

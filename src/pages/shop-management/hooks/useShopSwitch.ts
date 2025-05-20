@@ -1,5 +1,5 @@
 import { switchShopService } from "lib/apis/shop/shopServices"
-import useAppStore from "lib/stores/app/appStore"
+import useAppStore from "stores/app/appStore"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"
 import { setTokens } from "utils/app/authutils"

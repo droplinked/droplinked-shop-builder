@@ -19,7 +19,7 @@ const SocialTileContent = () => {
 
       <EmbedCodeSection
         embedCode={embedCode}
-        configLink="/analytics/settings/tile"
+        configLink="/analytics/style-center/product-tiles"
         helpLink="https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/product-tiles"
       />
     </Box>

@@ -1,4 +1,4 @@
-import { appStorePersistName } from "lib/stores/app/appStore";
+import { appStorePersistName } from "stores/app/appStore";
 
 /**
  * Gets the access token from localStorage.

@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import { BUILDER_URL } from 'utils/app/variable'
 import React from 'react'
 import { Link } from 'react-router-dom'

@@ -2,7 +2,7 @@ import { Box, Divider, Menu, MenuList, useDisclosure } from '@chakra-ui/react';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { getShopCredit } from 'lib/apis/shop/shopServices';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';

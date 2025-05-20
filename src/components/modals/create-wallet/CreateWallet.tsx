@@ -4,7 +4,7 @@ import WalletStatus from "components/common/walletStatus/WalletStatus";
 import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
 import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import React from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";

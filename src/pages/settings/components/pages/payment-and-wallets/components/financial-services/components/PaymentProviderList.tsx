@@ -4,7 +4,7 @@ import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
 import { useQuery } from "react-query";
 

@@ -1,5 +1,5 @@
 import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
-import { useUpdateShopPermissions } from "lib/stores/app/appStore"
+import { useUpdateShopPermissions } from "stores/app/appStore"
 import { useQuery } from "react-query"
 
 const useShopSubscriptionData = () => {

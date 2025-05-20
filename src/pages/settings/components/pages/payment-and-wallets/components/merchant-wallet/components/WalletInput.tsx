@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppInput from 'components/redesign/input/AppInput'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 

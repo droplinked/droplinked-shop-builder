@@ -4,7 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
 import { generateShopCustomURLService } from 'lib/apis/shop/shopServices'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 
