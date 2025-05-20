@@ -1,12 +1,11 @@
-import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Breadcrumbs } from './Breadcrumbs'
+import { HeaderContainer } from './HeaderContainer'
 import { UserMenu } from './UserMenu/UserMenu'
 
 export const DesktopHeader = () => {
     return (
-        <Flex
-            as="header"
+        <HeaderContainer
             justifyContent="space-between"
             alignItems="center"
             paddingBlock={4}
@@ -14,6 +13,6 @@ export const DesktopHeader = () => {
         >
             <Breadcrumbs />
             <UserMenu />
-        </Flex>
+        </HeaderContainer>
     )
 }

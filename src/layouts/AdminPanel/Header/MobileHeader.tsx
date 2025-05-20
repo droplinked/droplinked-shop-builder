@@ -6,6 +6,7 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
 import { Breadcrumbs } from './Breadcrumbs'
+import { HeaderContainer } from './HeaderContainer'
 import { UserMenu } from './UserMenu/UserMenu'
 
 const MobileHeader = () => {
@@ -16,7 +17,7 @@ const MobileHeader = () => {
         : <SidebarexpandMd color="white" />
 
     return (
-        <Box as="header">
+        <HeaderContainer flexDirection="column">
             <Flex
                 justify="space-between"
                 align="center"
@@ -38,7 +39,7 @@ const MobileHeader = () => {
             <Box padding="12px 16px">
                 <Breadcrumbs />
             </Box>
-        </Box>
+        </HeaderContainer>
     )
 }
 

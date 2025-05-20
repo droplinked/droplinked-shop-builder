@@ -1,15 +1,24 @@
-import { Box, Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
-import React, { ReactNode } from 'react'
-import { Outlet } from 'react-router-dom'
+import useAppStore from 'lib/stores/app/appStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
+import React, { PropsWithChildren, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Header } from './Header/Header'
 import { Sidebar } from './Sidebar/Sidebar'
 
-interface ProducerLayoutProps {
-    children?: ReactNode
-}
+export const ProducerLayout = ({ children }: PropsWithChildren) => {
+    const navigate = useNavigate()
+    const { user } = useAppStore()
+    const { resetOnboarding } = useOnboardingStore()
 
-export const ProducerLayout = ({ children }: ProducerLayoutProps) => {
+    // Redirect users with specific statuses
+    useEffect(() => {
+        if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status))
+            navigate('/onboarding?entry=store-details')
+        else resetOnboarding()
+    }, [user, navigate, resetOnboarding])
+
     return (
         <ProducerLayoutProvider>
             <Grid
@@ -20,8 +29,8 @@ export const ProducerLayout = ({ children }: ProducerLayoutProps) => {
             >
                 <Sidebar />
                 <Header />
-                <GridItem padding={4}>
-                    <Box as="main">{children ?? <Outlet />}</Box>
+                <GridItem as="main" padding={4}>
+                    {children ?? <Outlet />}
                 </GridItem>
             </Grid>
         </ProducerLayoutProvider>
