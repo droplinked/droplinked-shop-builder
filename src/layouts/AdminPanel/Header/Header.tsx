@@ -8,10 +8,13 @@ export const Header = () => {
     const { breakpoint } = useProducerLayout()
 
     return (
-
         <GridItem
+            position="sticky"
+            top={0}
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
+            backgroundColor="neutral.background"
+            zIndex={999}
         >
             {breakpoint === 'mobile' ? <MobileHeader /> : <DesktopHeader />}
         </GridItem>

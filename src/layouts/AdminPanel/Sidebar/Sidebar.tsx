@@ -12,7 +12,6 @@ export const Sidebar = () => {
 
     return (
         <GridItem
-            position="relative"
             rowSpan={3}
             borderRight="1px solid"
             borderColor="neutral.gray.800"
