@@ -13,7 +13,7 @@ export const ProducerLayout = ({ children }: ProducerLayoutProps) => {
     return (
         <ProducerLayoutProvider>
             <Grid
-                templateColumns={{ base: '1fr', md: '288px 1fr' }}
+                templateColumns={{ base: '1fr', md: '72px 1fr', xl: '288px 1fr' }}
                 templateRows="auto 1fr auto"
                 minH="100vh"
             >
