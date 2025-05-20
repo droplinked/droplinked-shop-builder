@@ -6,10 +6,23 @@ import TabletSidebarGroup from './TabletSidebarGroup'
 
 function TabletSidebar() {
     return (
-        <Flex direction="column" alignItems="center" gap={6} paddingTop={7} paddingBottom={6} paddingInline={4}>
+        <Flex
+            as="aside"
+            direction="column"
+            alignItems="center"
+            gap={6}
+            paddingTop={7}
+            paddingBottom={6}
+            paddingInline={4}
+        >
             <Drop3 color='#2BCFA1' width='40px' height='40px' />
 
-            <Flex width="100%" direction="column" gap={6} paddingBlock={9}>
+            <Flex
+                width="100%"
+                direction="column"
+                gap={6}
+                paddingBlock={9}
+            >
                 {producerSidebarLinks.map((sidebarGroup) => (
                     <TabletSidebarGroup key={sidebarGroup.group} sidebarGroup={sidebarGroup} />
                 ))}

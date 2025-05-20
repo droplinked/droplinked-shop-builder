@@ -6,8 +6,6 @@ import NavLinks from './NavLinks'
 function DesktopSidebar() {
     return (
         <Flex
-            position="sticky"
-            top={0}
             as="aside"
             direction="column"
             padding="28px 16px"
