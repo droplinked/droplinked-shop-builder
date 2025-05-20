@@ -4,8 +4,8 @@ import useAppStore from 'lib/stores/app/appStore'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { Header } from './Header/Header'
-import { Sidebar } from './Sidebar/Sidebar'
+import { Header } from './Header'
+import { Sidebar } from './Sidebar'
 
 export const ProducerLayout = ({ children }: PropsWithChildren) => {
     const navigate = useNavigate()
@@ -29,7 +29,7 @@ export const ProducerLayout = ({ children }: PropsWithChildren) => {
             >
                 <Sidebar />
                 <Header />
-                <GridItem as="main" padding={4}>
+                <GridItem as="main" padding={4} overflow="auto">
                     {children ?? <Outlet />}
                 </GridItem>
             </Grid>
