@@ -1,4 +1,14 @@
-import AppIcons from "assets/icon/Appicons";
+import { BasketMd } from "assets/icons/Finance/Basket/BasketMd";
+import { BoxMd } from "assets/icons/Finance/Box/BoxMd";
+import { ChartMd } from "assets/icons/Finance/Chart/ChartMd";
+import { HelpMd } from "assets/icons/Sign/Help/HelpMd";
+import { TargetMd } from "assets/icons/Sign/Target/TargetMd";
+import { BrushMd } from "assets/icons/StyleDesigner/Brush/BrushMd";
+import { AffiliateMd } from "assets/icons/System/Affiliate/AffiliateMd";
+import { ChatMd } from "assets/icons/System/Chat/ChatMd";
+import { DashboardMd } from "assets/icons/System/Dashboard/DashboardMd";
+import { GiftMd } from "assets/icons/System/Gift/GiftMd";
+import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
 import React from "react";
 
 export const producerSidebarLinks = [
@@ -7,13 +17,13 @@ export const producerSidebarLinks = [
         items: [
             {
                 title: 'Dashboard',
-                icon: React.createElement(AppIcons.SidebarDashboard),
+                icon: React.createElement(DashboardMd, { color: "#FFF" }),
                 linkTo: '/analytics/dashboard',
                 list: []
             },
             {
                 title: 'Analytics',
-                icon: React.createElement(AppIcons.SidebarAnalytics),
+                icon: React.createElement(ChartMd, { color: "#FFF" }),
                 linkTo: '/analytics',
                 list: []
             }
@@ -24,7 +34,7 @@ export const producerSidebarLinks = [
         items: [
             {
                 title: 'Products',
-                icon: React.createElement(AppIcons.SidebarProducts),
+                icon: React.createElement(BoxMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Inventory Management', linkTo: '/analytics/products' },
@@ -34,7 +44,7 @@ export const producerSidebarLinks = [
             },
             {
                 title: 'Order Management',
-                icon: React.createElement(AppIcons.SidebarNote),
+                icon: React.createElement(BasketMd, { color: "#fff" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Purchase History', linkTo: '/analytics/purchase-history' },
@@ -43,7 +53,7 @@ export const producerSidebarLinks = [
             },
             {
                 title: 'Style Center',
-                icon: React.createElement(AppIcons.SidebarBrush),
+                icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Storefront Designer', linkTo: '/style-center/storefront-designer' },
@@ -59,7 +69,7 @@ export const producerSidebarLinks = [
         items: [
             {
                 title: 'Affiliate Network',
-                icon: React.createElement(AppIcons.SidebarAffiliate),
+                icon: React.createElement(AffiliateMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Products', linkTo: '/analytics/affiliate/products' },
@@ -67,7 +77,7 @@ export const producerSidebarLinks = [
             },
             {
                 title: 'Account Settings',
-                icon: React.createElement(AppIcons.SettingGear),
+                icon: React.createElement(SettinggearMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Settings', linkTo: '/analytics/account-settings' },
@@ -76,27 +86,27 @@ export const producerSidebarLinks = [
             },
             {
                 title: 'Rewards Center',
-                icon: React.createElement(AppIcons.SidebarRewards),
+                icon: React.createElement(GiftMd, { color: "#FFF" }),
                 linkTo: '/analytics/gamification',
                 list: []
             },
             {
                 title: 'Quests',
-                icon: React.createElement(AppIcons.SideBarQuests),
+                icon: React.createElement(TargetMd, { color: "#FFF" }),
                 linkTo: '/rewards',
                 list: [],
                 external: true
             },
             {
                 title: 'Customer Support',
-                icon: React.createElement(AppIcons.SidebarChat),
+                icon: React.createElement(ChatMd, { color: "#FFF" }),
                 linkTo: "#",
                 list: [],
                 onClick: () => window.Tawk_API?.toggle()
             },
             {
                 title: 'Help Center',
-                icon: React.createElement(AppIcons.HelpCenter),
+                icon: React.createElement(HelpMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
                     { listTitle: 'Changelog', linkTo: '/analytics/changelog' }
