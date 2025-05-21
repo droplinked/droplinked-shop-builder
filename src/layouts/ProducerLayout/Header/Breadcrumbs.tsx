@@ -59,10 +59,11 @@ export const Breadcrumbs = () => {
                         <BreadcrumbItem key={index} isCurrentPage={isCurrentPage}>
                             <BreadcrumbLink
                                 as={NavLink}
-                                to={crumb.linkTo}
+                                {...(!isCurrentPage && { to: crumb.linkTo })}
                                 fontSize={{ base: 14, md: 16, xl: 20 }}
                                 fontWeight={isCurrentPage ? { base: 500, md: 700 } : 400}
                                 color={isCurrentPage ? "text.white" : 'text.subtext.placeholder.light'}
+                                cursor={isCurrentPage ? 'default' : 'pointer'}
                             >
                                 {crumb.title}
                             </BreadcrumbLink>
