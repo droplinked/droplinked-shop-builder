@@ -1,5 +1,4 @@
 import MainLayout from "components/layouts/app/main/MainLayout"
-import StandaloneLayout from "components/layouts/standalone/StandaloneLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import { ProducerLayout } from "layouts/ProducerLayout/ProducerLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
