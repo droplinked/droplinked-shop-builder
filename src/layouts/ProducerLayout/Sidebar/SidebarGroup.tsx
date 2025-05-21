@@ -1,5 +1,6 @@
 import { Link as ChakraLink, Flex, Text } from '@chakra-ui/react'
 import { AppAccordionChevron, AppAccordionItem, AppAccordionPanel, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion'
+import { useProducerLayout } from 'context/ProducerLayoutContext'
 import type { producerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink as RouterLink, useLocation } from 'react-router-dom'
@@ -41,13 +42,19 @@ export default function SidebarGroup({ sidebarGroup }: { sidebarGroup: SidebarGr
 
 function SidebarLinkItem({ item }: { item: SidebarItemType }) {
     const location = useLocation()
+    const { toggleSidebar } = useProducerLayout()
     const isActive = location.pathname === item.linkTo
+
+    const handleClick = () => {
+        item.onClick?.()
+        toggleSidebar()
+    }
 
     return (
         <ChakraLink
             as={RouterLink}
             to={item.linkTo ?? undefined}
-            onClick={item.onClick}
+            onClick={handleClick}
             isExternal={item.external}
             {...linkBaseStyles}
             {...(isActive ? activeStyles : {})}
@@ -61,6 +68,7 @@ function SidebarLinkItem({ item }: { item: SidebarItemType }) {
 function SidebarAccordionItem({ item }: { item: SidebarItemType }) {
     const location = useLocation()
     const isGroupActive = item.list?.some((li) => location.pathname.startsWith(li.linkTo))
+    const { isSidebarOpen, toggleSidebar } = useProducerLayout()
 
     return (
         <AppAccordionItem
@@ -97,6 +105,7 @@ function SidebarAccordionItem({ item }: { item: SidebarItemType }) {
                                 key={listItem.listTitle}
                                 as={RouterLink}
                                 to={listItem.linkTo}
+                                onClick={toggleSidebar}
                                 fontSize={14}
                                 color="text.subtext.placeholder.light"
                                 {...(isActive ? { color: 'text.white', fontWeight: 500 } : {})}
