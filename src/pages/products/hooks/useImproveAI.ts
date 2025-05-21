@@ -1,7 +1,7 @@
+import useAppToast from 'hooks/toast/useToast';
+import { improveDescription, improveTitle } from 'lib/apis/ai/services';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-import useAppToast from 'hooks/toast/useToast';
-import { improveTitle, improveDescription } from 'lib/apis/ai/services';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
 
@@ -25,7 +25,10 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
                 setRevertData(type === "title" ? title : description);
             },
             onSuccess: (response) => {
-                setFieldValue(type, response.data);
+                // For title we expect the API to return the improved string directly in `data`,
+                // whereas for description we expect an object with a `description` field.
+                const newValue = type === "title" ? response.data : response.data.description;
+                setFieldValue(type, newValue);
                 updateProductPageState("isGenerateDisabled", false);
             },
             onError: () => {
