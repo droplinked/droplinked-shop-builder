@@ -1,5 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
+import AdminHoc from 'hoc/admin/adminHoc'
 import useAppStore from 'lib/stores/app/appStore'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { PropsWithChildren, useEffect } from 'react'
@@ -8,10 +9,10 @@ import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 
 interface ProducerLayoutProps extends PropsWithChildren {
-    hideSidebar?: boolean;
+    hideSidebar?: boolean
 }
 
-export const ProducerLayout = ({ children, hideSidebar = false }: ProducerLayoutProps) => {
+function ProducerLayout({ children, hideSidebar = false }: ProducerLayoutProps) {
     const navigate = useNavigate()
     const { user } = useAppStore()
     const { resetOnboarding } = useOnboardingStore()
@@ -40,3 +41,5 @@ export const ProducerLayout = ({ children, hideSidebar = false }: ProducerLayout
         </ProducerLayoutProvider>
     )
 }
+
+export default AdminHoc(ProducerLayout)
