@@ -5,12 +5,21 @@ import { SidebarexpandMd } from 'assets/icons/Action/SidebarExpand/Sidebarexpand
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Breadcrumbs } from './Breadcrumbs'
 import { HeaderContainer } from './HeaderContainer'
 import { UserMenu } from './UserMenu/UserMenu'
 
 const MobileHeader = () => {
     const { isSidebarOpen, toggleSidebar } = useProducerLayout()
+    const navigate = useNavigate()
+
+    const handleSidebarToggle = () => {
+        toggleSidebar()
+        if (!isSidebarOpen) {
+            navigate('/analytics/dashboard')
+        }
+    }
 
     const sidebarIcon = isSidebarOpen
         ? <SidebarcollapseMd color="white" />
@@ -30,7 +39,7 @@ const MobileHeader = () => {
                     height={10}
                     bg="transparent"
                     icon={sidebarIcon}
-                    onClick={toggleSidebar}
+                    onClick={handleSidebarToggle}
                     aria-label={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
                 />
                 <DroplinkedTypography color="white" width="127px" />

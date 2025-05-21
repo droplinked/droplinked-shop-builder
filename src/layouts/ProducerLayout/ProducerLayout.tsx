@@ -7,7 +7,11 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 
-export const ProducerLayout = ({ children }: PropsWithChildren) => {
+interface ProducerLayoutProps extends PropsWithChildren {
+    hideSidebar?: boolean;
+}
+
+export const ProducerLayout = ({ children, hideSidebar = false }: ProducerLayoutProps) => {
     const navigate = useNavigate()
     const { user } = useAppStore()
     const { resetOnboarding } = useOnboardingStore()
@@ -23,11 +27,11 @@ export const ProducerLayout = ({ children }: PropsWithChildren) => {
         <ProducerLayoutProvider>
             <Grid
                 position="relative"
-                templateColumns={{ base: '1fr', md: '72px 1fr', xl: '288px 1fr' }}
+                templateColumns={{ base: '1fr', md: hideSidebar ? '1fr' : '72px 1fr', xl: hideSidebar ? '1fr' : '288px 1fr' }}
                 templateRows="auto 1fr auto"
                 minH="100vh"
             >
-                <Sidebar />
+                {!hideSidebar && <Sidebar />}
                 <Header />
                 <GridItem as="main" padding={4} overflow="auto">
                     {children ?? <Outlet />}

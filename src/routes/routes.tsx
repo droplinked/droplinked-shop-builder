@@ -199,7 +199,7 @@ const router = createBrowserRouter([
     },
     {
         path: "shop-management",
-        element: <StandaloneLayout />,
+        element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
@@ -208,9 +208,9 @@ const router = createBrowserRouter([
     {
         path: 'style-center/storefront-designer',
         element: (
-            <StandaloneLayout showBackground={false} padding="0">
+            <ProducerLayout hideSidebar={true}>
                 <StorefrontDesigner />
-            </StandaloneLayout>
+            </ProducerLayout>
         ),
         errorElement: <MaintenancePage />,
     },
