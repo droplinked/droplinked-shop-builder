@@ -1,18 +1,11 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import DroplinkedBrand from 'pages/onboarding/components/common/DroplinkedBrand'
 import React from 'react'
 import NavLinks from './NavLinks'
 
 function DesktopSidebar() {
     return (
-        <Flex
-            as="aside"
-            position="sticky"
-            top={0}
-            height="100vh"
-            direction="column"
-            gap={6}
-        >
+        <>
             <Box paddingTop={7} paddingInline={4}>
                 <DroplinkedBrand
                     dropProps={{ width: "32px", height: "32px" }}
@@ -28,7 +21,7 @@ function DesktopSidebar() {
             >
                 <NavLinks paddingBlock={9} />
             </Box>
-        </Flex>
+        </>
     )
 }
 

@@ -12,6 +12,13 @@ export const Sidebar = () => {
 
     return (
         <GridItem
+            as="aside"
+            position="sticky"
+            top={0}
+            height="100vh"
+            display="flex"
+            flexDirection="column"
+            gap={6}
             rowSpan={3}
             borderRight="1px solid"
             borderColor="neutral.gray.800"
