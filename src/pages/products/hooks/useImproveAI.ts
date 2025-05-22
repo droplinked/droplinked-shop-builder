@@ -25,10 +25,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
                 setRevertData(type === "title" ? title : description);
             },
             onSuccess: (response) => {
-                // For title we expect the API to return the improved string directly in `data`,
-                // whereas for description we expect an object with a `description` field.
-                const newValue = type === "title" ? response.data : response.data.description;
-                setFieldValue(type, newValue);
+                setFieldValue(type, response.data.data);
                 updateProductPageState("isGenerateDisabled", false);
             },
             onError: () => {
