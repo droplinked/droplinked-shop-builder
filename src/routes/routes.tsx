@@ -1,6 +1,6 @@
 import MainLayout from "components/layouts/app/main/MainLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
-import { ProducerLayout } from "layouts/ProducerLayout/ProducerLayout"
+import  ProducerLayout  from "layouts/ProducerLayout/ProducerLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
