@@ -11,7 +11,7 @@ import { appDevelopment } from 'utils/app/variable'
 import AppErrors from 'utils/constants/errors'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
-import useGrowthHackStore from '../growth-hack/useGrowthHackStore'
+import useGrowthHackStore from '../level-up/levelUpStore'
 
 export interface IUserWalletsProps {
     type: string
