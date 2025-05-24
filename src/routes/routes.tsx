@@ -1,4 +1,4 @@
-import MainLayout from "components/layouts/app/main/MainLayout"
+import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import  ProducerLayout  from "layouts/ProducerLayout/ProducerLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
@@ -66,11 +66,11 @@ const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistor
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout />,
+        element: <LandingPageLayout />,
         errorElement: (
-            <MainLayout>
+            <LandingPageLayout>
                 <MaintenancePage />
-            </MainLayout>
+            </LandingPageLayout>
         ),
         children: [
             { index: true, element: <HomePage /> },
