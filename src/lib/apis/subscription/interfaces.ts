@@ -57,6 +57,7 @@ export interface ShopSubscriptionData {
     startsAt: string;
     expiresAt: string;
     legalUsage: LegalUsage[]
+    autoRenew: boolean;
 }
 
 export interface SubscriptionCheckout {

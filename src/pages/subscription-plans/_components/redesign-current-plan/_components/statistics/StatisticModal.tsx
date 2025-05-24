@@ -27,7 +27,7 @@ function StatisticModal({ data }: IProps) {
         },
         {
             title: "Details",
-            content: <DetailsTab data={data.data} />
+            content: <DetailsTab handleCloseModal={() => setIsOpen(true)} data={data.data} />
         }
     ]
 
