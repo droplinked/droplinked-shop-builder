@@ -4,7 +4,7 @@ import { LeafMd } from 'assets/icons/System/Leaf/LeafMd'
 import { Star2Md } from 'assets/icons/System/Star2/Star2Md'
 import { SuitcaseMd } from 'assets/icons/System/SuitCase/SuitcaseMd'
 import AppButton from 'components/redesign/button/AppButton'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 

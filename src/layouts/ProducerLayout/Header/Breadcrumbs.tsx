@@ -1,11 +1,24 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
-import { SidebarGroup } from 'components/layouts/dashboard/constants/interfaces'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { producerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+
+interface SidebarItem  {
+    title: string;
+    icon: any;
+    linkTo?: string | null;
+    list: Array<{ listTitle: string; linkTo: string }>;
+    onClick?: () => void;
+    external?: boolean;
+  };
+
+interface SidebarGroup {
+    group: string;
+    items: SidebarItem[];
+}
 
 interface BreadcrumbItem {
     title: string

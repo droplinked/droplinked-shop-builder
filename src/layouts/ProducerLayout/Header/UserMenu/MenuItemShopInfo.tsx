@@ -1,10 +1,10 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 
 function MenuItemShopInfo() {
-    const { shop, user } = useAppStore()
+    const { shop } = useAppStore()
 
     return (
         <Flex className='menuItem' alignItems="center" gap={4}>

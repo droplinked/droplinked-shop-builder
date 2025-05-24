@@ -1,9 +1,9 @@
 import { FlexProps } from '@chakra-ui/react'
-import DashboardLayoutSidebarGrowthHack from 'components/layouts/dashboard/components/sidebar/components/GrowthHack/DashboardLayoutSidebarGrowthHack'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import { producerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import SidebarGroup from './SidebarGroup'
+import DashboardLayoutSidebarGrowthHack from '../LevelUpWidget/LevelUpWidget'
 
 export default function NavLinks({ ...props }: FlexProps) {
     return (
