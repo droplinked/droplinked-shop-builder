@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick.css'
 import App from "./App"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { theme } from "./theme"
+import 'lib/i18n'
 
 const queryClient = new QueryClient({
   defaultOptions: {

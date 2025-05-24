@@ -1,7 +1,6 @@
-import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
-import  ProducerLayout  from "layouts/ProducerLayout/ProducerLayout"
-import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
+import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
+import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
 import Changelog from "pages/changelog/Changelog"
@@ -204,12 +203,12 @@ const router = createBrowserRouter([
     },
     {
         path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true}/>,
+        element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <StorefrontDesigner /> },
         ],
-        
+
     },
     { path: "*", element: <NotFoundPage /> }
 ])
@@ -222,4 +221,4 @@ function AppRoutes() {
     )
 }
 
-export default AppRoutes;
+export default AppRoutes
