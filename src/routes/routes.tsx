@@ -47,7 +47,6 @@ const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"))
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"))
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"))
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"))
-const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"))
 const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"))
 const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"))
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
@@ -151,7 +150,6 @@ const router = createBrowserRouter([
             {
                 path: "affiliate",
                 children: [
-                    { path: "market", element: <AffiliateMarket /> },
                     {
                         path: "products",
                         children: [
@@ -198,7 +196,7 @@ const router = createBrowserRouter([
     },
     {
         path: "shop-management",
-        element: <ProducerLayout hideSidebar={true} />,
+        element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
@@ -206,12 +204,12 @@ const router = createBrowserRouter([
     },
     {
         path: 'style-center/storefront-designer',
-        element: (
-            <ProducerLayout hideSidebar={true}>
-                <StorefrontDesigner />
-            </ProducerLayout>
-        ),
+        element: <ProducerLayout hideSidebar={true}/>,
         errorElement: <MaintenancePage />,
+        children: [
+            { index: true, element: <StorefrontDesigner /> },
+        ],
+        
     },
     { path: "*", element: <NotFoundPage /> }
 ])
