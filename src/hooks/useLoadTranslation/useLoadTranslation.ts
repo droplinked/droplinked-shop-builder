@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import commonAr from 'data/translations/ar/common.json'
 import commonEn from 'data/translations/en/common.json'
 
+type Namespace = '404Page' | 'homePage'
+
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function
  * @param namespace - The namespace for the translations
@@ -24,7 +26,7 @@ import commonEn from 'data/translations/en/common.json'
  * ```
  */
 export default function useLoadTranslation(
-    namespace: string,
+    namespace: Namespace,
     localResources: Record<string, Record<string, any>> = {}
 ) {
     // Get the translation function from react-i18next
