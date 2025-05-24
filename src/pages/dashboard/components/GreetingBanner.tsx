@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 
 function GreetingBanner() {

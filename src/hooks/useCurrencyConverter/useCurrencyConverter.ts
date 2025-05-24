@@ -5,7 +5,7 @@
  * Defaults to USD values when no shop data is available.
  */
 
-import useAppStore from "lib/stores/app/appStore"
+import useAppStore from "stores/app/appStore"
 
 export type PriceConversionParams = {
     amount: number | string

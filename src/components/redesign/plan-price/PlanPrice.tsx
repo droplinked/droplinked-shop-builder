@@ -1,7 +1,7 @@
 import { Flex, FlexProps } from '@chakra-ui/react'
 import { SubscriptionPlan, IPrice } from 'lib/apis/subscription/interfaces'
 import React, { useMemo } from 'react'
-import useSubscriptionPlanPurchaseStore from '../../../lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import useSubscriptionPlanPurchaseStore from '../../../stores/subscription-plan.ts/subscriptionPlanStore'
 import PriceContent from './PriceContent'
 
 /**

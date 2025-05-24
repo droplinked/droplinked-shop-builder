@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFollowStatus from '../../hook/useFollowStatus';

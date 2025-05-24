@@ -2,7 +2,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import React from 'react'
-import ConnectWalletModal from './components/ConnectWalletModal'
+import ConnectWalletModal from './components/connect-wallets-modal/ConnectWalletModal'
 import { OnchainRecordsProvider } from './context/OnchainRecordsContext'
 import Records from './records/Records'
 

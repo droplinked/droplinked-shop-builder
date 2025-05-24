@@ -1,5 +1,5 @@
 import { Product } from "pages/products/utils/types";
-import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
+import { PaymentLinkData } from "pages/payment-link/context/PaymentLinkContext";
 import { createQueryString } from "../_utils/with.query";
 import axiosInstance from "../axiosConfig";
 import {

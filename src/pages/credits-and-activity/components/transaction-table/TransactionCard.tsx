@@ -27,7 +27,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Date</AppTypography>
-                    <AppTypography color="#fff" fontSize={14}>{formatDateToLongStyle(createdAt)}</AppTypography>
+                    <AppTypography color="#fff" fontSize={14}>{formatDateToLongStyle(new Date(createdAt))}</AppTypography>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Transaction ID</AppTypography>

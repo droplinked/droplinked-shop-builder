@@ -84,10 +84,3 @@ export const getNextDayMidnightISO = () => {
     tomorrowDate.setHours(0, 0, 0, 0);
     return tomorrowDate.toISOString();
 };
-
-export const isDateExpired = (isoDate: string | null) => {
-    if (!isoDate) return true;
-
-    const date = new Date(isoDate);
-    return date < new Date();
-};

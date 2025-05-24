@@ -1,5 +1,5 @@
 
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import { SHOP_URL } from "utils/app/variable";
 
 const useShopUrl = () => {

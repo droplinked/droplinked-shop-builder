@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { SubscriptionPlan } from "lib/apis/subscription/interfaces";
-import useSubscriptionPlanPurchaseStore from "lib/stores/subscription-plan.ts/subscriptionPlanStore";
+import { SubscriptionPlan, IPrice } from "lib/apis/subscription/interfaces";
+import useSubscriptionPlanPurchaseStore from "stores/subscription-plan.ts/subscriptionPlanStore";
 import * as React from 'react';
 
 interface IProps {
@@ -10,21 +10,20 @@ interface IProps {
 
 export function PricePlan({ plan }: IProps) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration);
-    const targetPrice = plan.price.find(priceOption => priceOption?.month === preferredPlanDuration?.month)
 
-    if (plan.type === 'STARTER') return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>Free</AppTypography>
-    if (plan.type === 'ENTERPRISE') return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>Let’s talk</AppTypography>
+    if (plan.type === 'STARTER' || plan.type === 'ENTERPRISE') 
+        return <AppTypography color="neutral.white" fontWeight={700} fontSize="24px">{plan.price}</AppTypography>
 
-    if (preferredPlanDuration.discount) {
-        return (
-            <HStack>
-                <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>${targetPrice?.discountPrice}</AppTypography>
-                <AppTypography as="span" fontSize={12} fontWeight={400} color="#FF2244" textDecoration="line-through">
-                    ${targetPrice?.price}
-                </AppTypography>
-            </HStack>
-        )
-    }
 
-    return <AppTypography color={"neutral.white"} fontWeight={700} fontSize={"24px"}>${targetPrice?.price}</AppTypography>
+    const targetPrice = (plan.price as IPrice[]).find(price => price.month === preferredPlanDuration?.month);
+    if (!targetPrice) return null;
+
+    return preferredPlanDuration.discount ? (
+        <HStack>
+            <AppTypography color="neutral.white" fontWeight={700} fontSize="24px">${targetPrice.discountPrice}</AppTypography>
+            <AppTypography as="span" fontSize={12} fontWeight={400} color="#FF2244" textDecoration="line-through">${targetPrice.price}</AppTypography>
+        </HStack>
+    ) : (
+        <AppTypography color="neutral.white" fontWeight={700} fontSize="24px">${targetPrice.price}</AppTypography>
+    );
 }

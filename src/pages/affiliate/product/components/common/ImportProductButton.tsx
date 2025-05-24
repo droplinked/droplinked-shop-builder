@@ -2,7 +2,7 @@ import AppIcons from 'assets/icon/Appicons';
 import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
 import { importAffiliateProductService } from 'lib/apis/product/productServices';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';

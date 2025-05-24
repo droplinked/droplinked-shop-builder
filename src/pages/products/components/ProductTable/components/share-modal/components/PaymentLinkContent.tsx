@@ -24,7 +24,7 @@ const PaymentLinkContent: React.FC<PaymentLinkContentProps> = ({ id }) => {
   const productLink = `${SHOP_URL}/paylink/product/${id}`;
 
   const handleNavigateSettings = () => {
-    navigate('/analytics/settings/payment-link-design'); 
+    navigate('/analytics/style-center/product-links'); 
   };
 
   const handleDownloadClick = () => downloadQRCode(qrCodeContainerRef, 'qrcode.png'); 

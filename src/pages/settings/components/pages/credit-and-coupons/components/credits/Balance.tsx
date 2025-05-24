@@ -1,6 +1,6 @@
 import { Flex, Image, Spinner, useDisclosure, useTabsContext } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import React, { useState } from "react";
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
 import useAppToast from "hooks/toast/useToast";

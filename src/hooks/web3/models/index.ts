@@ -1,7 +1,7 @@
 import { Chain, ChainWallet, DeployShopResponse, DropWeb3, Network, ProductType, Web3Actions, toEthAddress } from 'droplinked-web3';
 import { Isku } from 'lib/apis/product/interfaces';
 import { deployShopContractService, getDeployPermission } from 'lib/apis/shop/shopServices';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import { SHOP_URL, appDevelopment } from 'utils/app/variable';
 import acceptModel from './module/accept/acceptModel';
 import recordModel, { IStacks, Ideploy, IdeployBatch } from './module/record/recordModel';
