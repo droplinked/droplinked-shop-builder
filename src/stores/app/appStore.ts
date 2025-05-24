@@ -77,12 +77,12 @@ const states = (set, get): IAppStore => ({
                         user: result?.user,
                         shop: result?.shop,
                         // access_token,
-                        // refresh_token,
+                        // refresh_token, 
                     }
                 })
                 setTokens(access_token, refresh_token)
-                const fetchGrowthHackData = useGrowthHackStore.getState().fetchGrowthHackData
-                fetchGrowthHackData()
+                const fetchLevelUpData = useGrowthHackStore.getState().fetchLevelUpData
+                fetchLevelUpData()
                 resolve(result)
             } catch (error) {
                 reject(error?.response?.data || error);

@@ -19,7 +19,7 @@ interface Params {
 }
 
 const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircleModal, closeCircleModal }: Params) => {
-    const { growthHackData, fetchGrowthHackData } = useGrowthHackStore()
+    const { levelUpData, fetchLevelUpData } = useGrowthHackStore()
     const { showToast } = useAppToast()
     const { web3 } = useAppWeb3()
     const stack = useStack()
@@ -122,10 +122,10 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
 
     const handlePostSubmission = async (values: Product) => {
         if (
-            !growthHackData?.list?.createFirstProduct ||
-            (!growthHackData?.list?.joinAffiliateMarket && values.commission)
+            !levelUpData?.list?.createFirstProduct ||
+            (!levelUpData?.list?.joinAffiliateMarket && values.commission)
         ) {
-            await fetchGrowthHackData()
+            await fetchLevelUpData()
         }
         showToast({ message: "The product has been saved successfully!", type: "success" })
         closeProductFormDrawer()
