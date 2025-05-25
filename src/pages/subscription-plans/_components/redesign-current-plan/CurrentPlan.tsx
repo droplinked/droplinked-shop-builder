@@ -9,8 +9,9 @@ import StatisticModal from './_components/statistics/StatisticModal';
 
 function NewCurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
-    const { type } = data.data.subscriptionId;
-    const currentSubData = getSubscriptionPlanIcon(type);
+    const subscriptionData = data?.data;
+    const planType = subscriptionData?.subscriptionId?.type;
+    const currentPlanInformation = getSubscriptionPlanIcon(planType);
 
     if (isFetching) {
         return <AppSkeleton borderRadius={"8px"} isLoaded={!isFetching} width={"100%"} height={"6rem"} />
@@ -25,10 +26,10 @@ function NewCurrentPlan() {
             alignItems={"start"}
         >
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
-                <PlanBadge currentSubData={currentSubData} data={data} />
+                <PlanBadge currentSubData={currentPlanInformation} data={subscriptionData} />
                 <StatisticModal data={data} />
             </HStack>
-            <PlanDescription data={data} currentSubData={currentSubData} />
+            <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
         </VStack>
     );
 }
