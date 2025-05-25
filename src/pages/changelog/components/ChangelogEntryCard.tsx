@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
 import React, { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,9 +12,9 @@ interface Props {
     entry: ChangelogEntry
 }
 
-const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, ref) {
-    const { entry } = props
+const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function ({ entry }, ref) {
     const navigate = useNavigate()
+    const { t } = useLocaleResources('changelogPage')
 
     return (
         <Flex
@@ -33,7 +34,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
 
             <Box>
                 <Heading as="h3" marginBottom={3} fontSize={{ base: 18, xl: 20 }} color="text.white">
-                    Update {entry.version}
+                    {t('entry.update', { version: entry.version })}
                 </Heading>
 
                 <ChangelogTags changelogItem={entry} />
@@ -50,7 +51,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
                     iconRight={<ExternalarrowMd color="#179ef8" />}
                     onClick={() => navigate(`/analytics/changelog/${entry._id}`)}
                 >
-                    Read More
+                    {t('entry.read_more')}
                 </InteractiveText>
             </Box>
         </Flex>
