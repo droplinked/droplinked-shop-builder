@@ -2,14 +2,13 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
-import React from 'react'
-import { formatDateToLongStyle, getSubscriptionPlanIcon } from 'utils/helpers'
-import { ICurrentSubData } from '../../../CurrentPlan'
-import TitledText from './TitledText'
-import { useMutation, useQueryClient } from 'react-query'
-import { cancelSubscription } from 'lib/apis/subscription/subscriptionServices'
 import useAppToast from 'hooks/toast/useToast'
+import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
+import { cancelSubscription } from 'lib/apis/subscription/subscriptionServices'
+import React from 'react'
+import { useMutation, useQueryClient } from 'react-query'
+import { formatDateToLongStyle, getSubscriptionPlanIcon } from 'utils/helpers'
+import TitledText from './TitledText'
 
 interface Props {
     data: ShopSubscriptionData
@@ -30,14 +29,13 @@ export default function DetailsTab({ data, handleCloseModal }: Props) {
             showToast({ message: error?.response?.data?.message || "Failed to cancel subscription", type: "error" });
         }
     })
-    const currentSubData: ICurrentSubData = getSubscriptionPlanIcon(data.subscriptionId.type);
+    const currentSubData = getSubscriptionPlanIcon(data.subscriptionId.type);
     const IconComponent = currentSubData.icon;
     const billingCycle = data.monthLength === 1 ? "Monthly" : data.monthLength === 12 ? "Annual" : "5-Year";
     const period = `${formatDateToLongStyle(new Date(data.startsAt))} - ${formatDateToLongStyle(new Date(data.expiresAt))}`
     const nextBillingDate = `${formatDateToLongStyle(new Date(data.expiresAt))}`;
     const autoRenew = data.autoRenew ? "Enabled" : "Disabled";
     const autoRenewTooltip = data.autoRenew ? `Your Subscription will renew on ${nextBillingDate}` : `Subscription will remain active until ${nextBillingDate}. It won’t renew after this date.`;
-
 
     return (
         <>

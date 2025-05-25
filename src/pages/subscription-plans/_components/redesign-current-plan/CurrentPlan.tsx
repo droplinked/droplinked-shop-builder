@@ -27,7 +27,7 @@ function NewCurrentPlan() {
         >
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
                 <PlanBadge currentSubData={currentPlanInformation} data={subscriptionData} />
-                <StatisticModal data={data} />
+                <StatisticModal data={subscriptionData} />
             </HStack>
             <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
         </VStack>

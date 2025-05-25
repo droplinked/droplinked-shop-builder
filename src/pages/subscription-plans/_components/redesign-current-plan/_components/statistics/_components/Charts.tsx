@@ -4,16 +4,14 @@ import * as React from 'react';
 import LinearProgressBar from './LinearProgressbar';
 import SemiCircleProgressbar from './SemiCircleProgressbar';
 interface IProps {
-    data: {
-        data: ShopSubscriptionData
-    };
+    data: ShopSubscriptionData
 }
 function Charts({ data }: IProps) {
     const usageKeys = ["physical_product", "digital_product", "print_on_demand", "event"];
-    const usageData = data.data.legalUsage
+    const usageData = data.legalUsage
         .filter(usage => usageKeys.includes(usage.key))
         .sort((a, b) => usageKeys.indexOf(a.key) - usageKeys.indexOf(b.key));
-    const otherUsageData = data.data.legalUsage
+    const otherUsageData = data.legalUsage
         .filter(usage => !usageKeys.includes(usage.key));
 
     return (

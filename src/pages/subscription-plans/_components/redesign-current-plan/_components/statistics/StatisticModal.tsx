@@ -8,16 +8,15 @@ import React from 'react';
 import CurrentPlanBanner from './_components/CurrentPlanBanner';
 import DetailsTab from './_components/DetailsTab';
 import StatisticTab from './_components/StatisticTab';
+
 interface IProps {
-    data: {
-        data: ShopSubscriptionData
-    };
+    data: ShopSubscriptionData
 }
 
 function StatisticModal({ data }: IProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const currentPlan = data.data.subscriptionId.type
-    const status = data.data.status
+    const currentPlan = data.subscriptionId.type
+    const status = data.status
     const drawerPlacement = useBreakpointValue({ base: "bottom", md: "right" }) as "bottom" | "right"
 
     const tabs = [
@@ -27,7 +26,7 @@ function StatisticModal({ data }: IProps) {
         },
         {
             title: "Details",
-            content: <DetailsTab handleCloseModal={onClose} data={data.data} />
+            content: <DetailsTab handleCloseModal={onClose} data={data} />
         }
     ]
 
