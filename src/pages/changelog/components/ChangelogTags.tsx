@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { TagMd } from 'assets/icons/Finance/Tag/TagMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
 import React from 'react'
 import ChangelogBadge from './ChangelogBadge'
@@ -11,6 +12,8 @@ interface Props {
 }
 
 function ChangelogTags({ changelogItem, withHeading }: Props) {
+    const { t } = useLocaleResources('changelogPage')
+
     const tags = changelogItem.tags
 
     if (!tags.length) return null
@@ -27,7 +30,7 @@ function ChangelogTags({ changelogItem, withHeading }: Props) {
         <Flex direction="column" gap={4}>
             <SectionHeader
                 icon={<TagMd color='#fff' />}
-                title="Tags"
+                title={t('tags')}
             />
 
             {renderTags()}
