@@ -1,13 +1,13 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import astronautLookingLeft from 'assets/image/astronaut-looking-left.png'
 import astronautLookingRight from 'assets/image/astronaut-looking-right.png'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import useAstronautImageSwitcher from './hooks/useAstronautImageSwitcher'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import enLocal from './translations/en.json'
-import arLocal from './translations/ar.json'
-import { Trans } from 'react-i18next'
+import arLocale from './translations/ar.json'
+import enLocale from './translations/en.json'
 
 export default function NotFoundPage() {
   return (
@@ -41,8 +41,8 @@ function AstronautImage() {
 
 function NotFoundText() {
   const { t } = useLocaleResources('404Page', {
-    en: enLocal,
-    ar: arLocal
+    en: enLocale,
+    ar: arLocale
   })
 
   return (
