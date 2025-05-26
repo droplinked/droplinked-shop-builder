@@ -1,12 +1,12 @@
-import { Flex, useDisclosure } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
-import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal";
-import AppButton from "components/redesign/button/AppButton";
-import React from "react";
+import { Flex, useDisclosure } from "@chakra-ui/react"
+import AppIcons from "assets/icon/Appicons"
+import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal"
+import AppButton from "components/redesign/button/AppButton"
+import React from "react"
 
 interface Props {
-    isLoading: boolean;
-    handleRefetchData: () => void;
+    isLoading: boolean
+    handleRefetchData: () => void
 }
 
 export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
@@ -20,17 +20,6 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                 alignItems="center"
                 width={{ base: "100%", md: "auto" }}
             >
-                {/* <Button
-                    flex={{ base: 1, md: "unset" }}
-                    fontSize={14}
-                    fontWeight={500}
-                    variant="secondary"
-                    leftIcon={<AppIcons.SendMoney />}
-                    isLoading={isLoading}
-                    width={{ base: "50%", md: "min-content" }}
-                >
-                    Withdraw
-                </Button> */}
                 <AppButton
                     width={{ base: "50%", md: "min-content" }}
                     flex={{ base: 1, md: "unset" }}
@@ -43,5 +32,5 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
             </Flex>
             <AddBalanceModal isOpen={isOpen} onClose={onClose} handleRefetch={handleRefetchData} />
         </>
-    );
-};
+    )
+}

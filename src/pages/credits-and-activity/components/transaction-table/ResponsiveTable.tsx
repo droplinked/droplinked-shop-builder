@@ -1,21 +1,21 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import { ColumnDef } from '@tanstack/react-table';
-import AppTypography from 'components/common/typography/AppTypography';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import Table from 'components/redesign/table/Table';
-import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
-import { IDetailedTransaction } from 'services/credit/interfaces';
-import React from 'react';
-import StatusBadge from '../StatusBadge';
-import TransactionsCards from './TransactionsCards';
-import TypeColumn from './TypeColumn';
-import { formatDateToLongStyle } from 'utils/helpers';
+import { useMediaQuery } from '@chakra-ui/react'
+import { ColumnDef } from '@tanstack/react-table'
+import AppTypography from 'components/common/typography/AppTypography'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import Table from 'components/redesign/table/Table'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
+import { IDetailedTransaction } from 'services/credit/interfaces'
+import React from 'react'
+import StatusBadge from '../StatusBadge'
+import TransactionsCards from './TransactionsCards'
+import TypeColumn from './TypeColumn'
+import { formatDateToLongStyle } from 'utils/helpers'
 
 export default function ResponsiveTable() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { transactionsQuery } = useCreditsData()
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
-    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
+    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || []
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
@@ -55,7 +55,7 @@ export default function ResponsiveTable() {
         //     header: "Details",
         //     cell: (info) => <AppTooltip label={info.row.original.details} placement='bottom-start'>{info.row.original.details}</AppTooltip>,
         // },
-    ];
+    ]
 
     return (
         isSmallerThan768 ?

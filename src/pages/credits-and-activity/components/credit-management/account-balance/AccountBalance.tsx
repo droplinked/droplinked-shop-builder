@@ -1,12 +1,12 @@
-import { Divider, Flex } from "@chakra-ui/react";
-import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker";
-import useCreditsData from "hooks/credits-and-activity/useCreditsData";
-import { getShopCredit } from "services/shop/shopServices";
-import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay";
-import useCreditStore from "pages/credits-and-activity/stores/CreditStore";
-import React from "react";
-import { useQuery } from "react-query";
-import { ActionButtons } from "./ActionButtons";
+import { Divider, Flex } from "@chakra-ui/react"
+import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker"
+import useCreditsData from "hooks/credits-and-activity/useCreditsData"
+import { getShopCredit } from "services/shop/shopServices"
+import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay"
+import useCreditStore from "pages/credits-and-activity/stores/CreditStore"
+import React from "react"
+import { useQuery } from "react-query"
+import { ActionButtons } from "./ActionButtons"
 
 export default function AccountBalance() {
     const { date, isFetching: isAnalyticsFetching } = useCreditStore()
@@ -15,7 +15,7 @@ export default function AccountBalance() {
     const { isFetching, data, refetch: refetchShopCredit } = useQuery({
         queryKey: ["get-shop-credit", date],
         queryFn: () => getShopCredit(),
-    });
+    })
 
     const handleRefetch = () => {
         refetchAll()
@@ -51,5 +51,5 @@ export default function AccountBalance() {
                 <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} width={{ base: "100%", md: "auto" }} />
             </Flex>
         </Flex>
-    );
+    )
 }

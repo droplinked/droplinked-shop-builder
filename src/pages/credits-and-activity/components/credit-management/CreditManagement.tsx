@@ -3,8 +3,8 @@ import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 import TransactionsTable from 'pages/credits-and-activity/components/transaction-table/TransactionsTable'
 import React from 'react'
-import OverallTransactionsDisplay from '../components/OverallTransactionsDisplay'
 import AccountBalance from './account-balance/AccountBalance'
+import OverallTransactionsDisplay from '../OverallTransactionsDisplay'
 
 export default function CreditManagement() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")

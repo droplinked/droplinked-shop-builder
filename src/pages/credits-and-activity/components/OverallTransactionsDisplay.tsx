@@ -9,7 +9,7 @@ import ProgressBar from './ProgressBar'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 
 interface Props {
-    type: 'inbound' | 'outbound';
+    type: 'inbound' | 'outbound'
 }
 
 export default function OverallTransactionsDisplay({ type }: Props) {

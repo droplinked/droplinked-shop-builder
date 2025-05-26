@@ -1,19 +1,19 @@
-import { Flex, HStack, VStack } from '@chakra-ui/react';
-import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/HorizontalBarChart';
-import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle';
-import { IBreakDown } from 'services/credit/interfaces';
-import React from 'react';
-import { createColorMap, getColor } from '../utils/colorHelpers';
+import { Flex, HStack, VStack } from '@chakra-ui/react'
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/HorizontalBarChart'
+import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
+import { IBreakDown } from 'services/credit/interfaces'
+import React from 'react'
+import { createColorMap, getColor } from '../utils/colorHelpers'
 
 interface Props {
     items: IBreakDown[]
-    type: "inbound" | "outbound";
+    type: "inbound" | "outbound"
 }
 
 export default function ProgressBar({ items, type }: Props) {
-    const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
+    const sortedItems = [...items].sort((a, b) => b.amount - a.amount)
     const colorMap = createColorMap(sortedItems, type)
 
     return (
@@ -38,6 +38,6 @@ export default function ProgressBar({ items, type }: Props) {
                 ))}
             </HStack>
         </VStack>
-    );
+    )
 }
 

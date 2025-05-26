@@ -1,11 +1,11 @@
-import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react';
+import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import React from 'react'
 
 interface Props {
-    amountType: string;
-    type: string;
+    amountType: string
+    type: string
 }
 
 export default function TypeColumn({ amountType, type }: Props) {

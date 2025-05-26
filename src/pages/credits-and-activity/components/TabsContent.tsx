@@ -1,6 +1,6 @@
 import AppTab from 'components/redesign/tab/AppTab'
 import React from 'react'
-import CreditManagement from '../credit-management/CreditManagement'
+import CreditManagement from './credit-management/CreditManagement'
 
 export default function TabsContent() {
     const tabs = [

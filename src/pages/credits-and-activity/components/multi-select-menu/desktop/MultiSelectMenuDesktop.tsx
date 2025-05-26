@@ -33,7 +33,7 @@ export default function MultiSelectMenuDesktop({ items }: Props) {
                             label={label}
                             value={value}
                         />
-                    );
+                    )
                 })}
             </MenuList>
         </Menu>

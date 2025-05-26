@@ -8,11 +8,11 @@ import StatusBadge from '../StatusBadge'
 import { formatDateToLongStyle } from 'utils/helpers'
 
 interface TransactionCardProps {
-    transaction?: IDetailedTransaction;
+    transaction?: IDetailedTransaction
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
-    const { amount, createdAt, id, type, amountType, status } = transaction ?? {};
+    const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
 
     return (
         <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
