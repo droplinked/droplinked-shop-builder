@@ -1,6 +1,8 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/changelog/ar.json'
+import enLocale from 'locales/changelog/en.json'
 import React from 'react'
 import ChangelogEntryCard from './components/ChangelogEntryCard'
 import { ChangelogEntryLoading } from './components/ChangelogEntryLoading'

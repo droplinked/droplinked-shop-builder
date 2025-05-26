@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import CustomerInfoSection from './CustomerInfoSection';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 
 // Mock Chakra UI components
 jest.mock('@chakra-ui/react', () => ({
@@ -109,12 +109,12 @@ describe('CustomerInfoSection', () => {
     test('renders only email for non-physical products', () => {
         // Create a version of details without a note for this test
         const detailsWithoutNote = { ...mockDetails, note: undefined };
-        
+
         render(
-            <CustomerInfoSection 
-                customer={mockCustomer} 
-                details={detailsWithoutNote} 
-                isPhysical={false} 
+            <CustomerInfoSection
+                customer={mockCustomer}
+                details={detailsWithoutNote}
+                isPhysical={false}
             />
         );
 
@@ -124,7 +124,7 @@ describe('CustomerInfoSection', () => {
 
         // Check for customer information fields
         const titledTexts = screen.getAllByTestId('titled-text');
-        
+
         // Only Email Address should be present
         expect(titledTexts).toHaveLength(1);
         expect(titledTexts[0]).toHaveAttribute('data-title', 'Email Address');

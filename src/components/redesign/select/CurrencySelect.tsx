@@ -1,6 +1,6 @@
 import { SelectProps } from "@chakra-ui/react"
 import AppSelect from "./AppSelect"
-import { getCurrencyList } from "lib/apis/shop/shopServices"
+import { getCurrencyList } from "services/shop/shopServices"
 import React from 'react'
 import { useQuery } from "react-query"
 

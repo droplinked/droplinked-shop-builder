@@ -10,9 +10,9 @@ import TileDesignPagePostPurchase from "./tile.design.page.post.purchase";
 import TileDesignPageInformation from "./tile.design.page.information";
 import TileDesignPageShipping from "./tile.design.page.shipping";
 import TileDesignPagePayment from "./tile.design.page.payment";
-import { shopUpdateService } from "lib/apis/shop/shopServices";
+import { shopUpdateService } from "services/shop/shopServices";
 import { useMutation } from "react-query";
-import { IshopUpdateService } from "lib/apis/shop/interfaces";
+import { IshopUpdateService } from "services/shop/interfaces";
 import useAppStore from "stores/app/appStore";
 import { useProfile } from "hooks/useProfile/useProfile";
 

@@ -4,7 +4,7 @@ import SectionContent from 'pages/settings/components/common/SectionContent';
 import React, { useState } from 'react';
 import CurrencyCard from './components/currency-card/CurrencyCard';
 import { useQuery } from 'react-query';
-import { getCurrencyList } from 'lib/apis/shop/shopServices';
+import { getCurrencyList } from 'services/shop/shopServices';
 
 const StoreDisplay: React.FC = () => {
   const { isLoading, data } = useQuery({

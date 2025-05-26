@@ -1,0 +1,31 @@
+{
+  "createShop": {
+    "title": "Create Shop",
+    "description": "Create your own shop to start selling products",
+    "form": {
+      "nameLabel": "Shop Name",
+      "namePlaceholder": "Enter shop name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Enter shop description",
+      "submit": "Create Shop",
+      "cancel": "Cancel"
+    },
+    "success": "Shop created successfully!",
+    "error": "Failed to create shop. Please try again."
+  },
+  "shopList": {
+    "title": "Your Shops",
+    "empty": "You don't have any shops yet",
+    "createNew": "Create New Shop",
+    "loading": "Loading shops...",
+    "error": "Failed to load shops"
+  },
+  "shopCard": {
+    "products": "Products",
+    "sales": "Sales",
+    "revenue": "Revenue",
+    "viewDetails": "View Details",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+} 

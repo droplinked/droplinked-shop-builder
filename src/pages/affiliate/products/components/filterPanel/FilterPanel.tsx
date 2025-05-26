@@ -1,7 +1,7 @@
 import { Box, Button, Flex, HStack, IconButton, Slider, SliderFilledTrack, SliderThumb, SliderTrack, useBreakpointValue } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion';
-import { IGetProductsCommunityService } from 'lib/apis/product/interfaces';
+import { IGetProductsCommunityService } from 'services/product/interfaces';
 import React from 'react';
 import { IAffiliateProductsCategory } from '../../context/context';
 import CheckboxList from './components/CheckboxList';

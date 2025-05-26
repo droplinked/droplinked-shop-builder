@@ -1,5 +1,5 @@
 // Utility functions for handling subscription plan information and icons.
-import { SubOptionId, SubscriptionPlan } from 'lib/apis/subscription/interfaces';
+import { SubOptionId, SubscriptionPlan } from 'services/subscription/interfaces';
 import { subscriptionPlans } from '../constants/subscriptionPlans';
 
 // Retrieves the icon and title for a specific subscription plan

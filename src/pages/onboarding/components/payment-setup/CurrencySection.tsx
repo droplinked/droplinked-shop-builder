@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import React from 'react'
 import useAppStore from 'stores/app/appStore'
-import { shopUpdateService, shopInfoService } from 'lib/apis/shop/shopServices'
+import { shopUpdateService, shopInfoService } from 'services/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
 
 interface CurrencySectionProps {
@@ -30,7 +30,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
       // Update the shop with all data preserved
       const response = await shopUpdateService(updatedShopData)
-      
+
       // Update the local state with the complete shop data from the response
       updateState({
         key: 'shop',

@@ -1,6 +1,6 @@
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'hooks/toast/useToast'
-import { updateProductLinkOptionsService } from 'lib/apis/product/productServices'
+import { updateProductLinkOptionsService } from 'services/product/productServices'
 import useAppStore from 'stores/app/appStore'
 import React, { useContext, useState } from 'react'
 import { PaymentLinkContext } from '../context/PaymentLinkContext'

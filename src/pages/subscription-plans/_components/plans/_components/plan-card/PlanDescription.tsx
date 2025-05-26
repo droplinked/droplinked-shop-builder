@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from '../../../../../../stores/subscription-plan.ts/subscriptionPlanStore'

@@ -2,7 +2,7 @@ import { Box, Skeleton, VStack } from '@chakra-ui/react';
 import * as React from 'react';
 import TableHeading from './_components/TableHeading';
 import { useQuery } from 'react-query';
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
+import { getSubscriptionPlansService } from 'services/subscription/subscriptionServices';
 import PlansTableContainer from './_components/plans-component/PlansTableContainer';
 
 function PlansTable() {

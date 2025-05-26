@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import Table from 'components/redesign/table/Table';
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import { IDetailedTransaction } from 'services/credit/interfaces';
 import React from 'react';
 import StatusBadge from '../StatusBadge';
 import TransactionsCards from './TransactionsCards';

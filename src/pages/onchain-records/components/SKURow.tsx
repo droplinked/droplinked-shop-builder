@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import { IDroplinkedNftsSkus } from 'lib/apis/onchain-inventory/interface'
+import { IDroplinkedNftsSkus } from 'services/onchain-inventory/interface'
 import SkuVariants from 'pages/products/components/ProductDrawer/components/common/SkuVariants';
 import React from 'react'
 

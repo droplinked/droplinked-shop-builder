@@ -1,8 +1,7 @@
 import i18next from 'i18next'
+import commonAr from 'locales/common/ar.json'
+import commonEn from 'locales/common/en.json'
 import { useTranslation } from 'react-i18next'
-// Import common translation files directly in the hook
-import commonAr from '../../locale/ar/common.json'
-import commonEn from '../../locale/en/common.json'
 
 type Namespace = '404Page' | 'homePage' | 'shop' | 'common' | 'shopManagement' | 'onchainRecords' | 'changelogPage'
 

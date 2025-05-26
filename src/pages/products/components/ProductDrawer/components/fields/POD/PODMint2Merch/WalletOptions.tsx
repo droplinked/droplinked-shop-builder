@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, Switch, Text } from '@chakra-ui/react'
-import { printServices } from 'lib/apis/product/productServices'
+import { printServices } from 'services/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import React from 'react'

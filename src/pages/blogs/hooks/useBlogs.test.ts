@@ -8,7 +8,7 @@ jest.mock('lib/apis/blog/services', () => ({
     getShopBlogsService: jest.fn()
 }))
 
-import { getShopBlogsService } from 'lib/apis/blog/services'
+import { getShopBlogsService } from 'services/blog/services'
 import { useInfiniteQuery, useQueryClient } from 'react-query'
 import useBlogs, { BLOG_LIST_QUERY_KEY, useInvalidateBlogList } from './useBlogs'
 

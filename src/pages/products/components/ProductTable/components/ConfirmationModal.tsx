@@ -5,7 +5,7 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
 import useAppToast from 'hooks/toast/useToast'
-import { duplicateProductService, productDeleteServices, updateProductService } from 'lib/apis/product/productServices'
+import { duplicateProductService, productDeleteServices, updateProductService } from 'services/product/productServices'
 import React, { useState } from 'react'
 import { action } from '../ProductTableActionMenu'
 

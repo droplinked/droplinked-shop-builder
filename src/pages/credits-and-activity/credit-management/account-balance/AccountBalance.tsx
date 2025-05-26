@@ -1,7 +1,7 @@
 import { Divider, Flex } from "@chakra-ui/react";
 import AppDateRangePicker from "components/redesign/date-range-picker/AppDateRangePicker";
 import useCreditsData from "hooks/credits-and-activity/useCreditsData";
-import { getShopCredit } from "lib/apis/shop/shopServices";
+import { getShopCredit } from "services/shop/shopServices";
 import { BalanceDisplay } from "pages/credits-and-activity/components/BalanceDisplay";
 import useCreditStore from "pages/credits-and-activity/stores/CreditStore";
 import React from "react";

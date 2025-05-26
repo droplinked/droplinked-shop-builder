@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import React from 'react'
 import { useMutation } from 'react-query'
 import DeleteBlogModal from './DeleteBlogModal'

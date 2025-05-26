@@ -1,4 +1,4 @@
-import { IcreateAddressService } from 'lib/apis/address/interfaces';
+import { IcreateAddressService } from 'services/address/interfaces';
 import * as Yup from 'yup';
 
 interface IinitialValues {

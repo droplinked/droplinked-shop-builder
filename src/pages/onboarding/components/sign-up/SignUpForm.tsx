@@ -5,7 +5,7 @@ import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { signupService } from 'lib/apis/auth/services'
+import { signupService } from 'services/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
@@ -114,9 +114,9 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                     By signing up, I agree to your
-                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText> 
-                                </Text>                                                 
+                                    By signing up, I agree to your
+                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                </Text>
                             </Checkbox>
 
                             <AppButton

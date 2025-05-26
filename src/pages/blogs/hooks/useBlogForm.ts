@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 
 const useBlogForm = () => {
     const formik = useFormikContext<Blog>()

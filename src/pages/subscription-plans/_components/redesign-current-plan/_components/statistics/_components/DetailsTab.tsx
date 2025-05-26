@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
+import { ShopSubscriptionData } from 'services/subscription/interfaces'
 import React, { useState } from 'react'
 import TitledText from './TitledText'
 import { formatDateToLongStyle, getSubscriptionPlanIcon } from 'utils/helpers'

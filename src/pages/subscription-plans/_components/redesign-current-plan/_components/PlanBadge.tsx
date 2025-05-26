@@ -2,7 +2,7 @@ import { HStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppLabel from 'components/redesign/label/AppLabel';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import * as React from 'react';
 
 interface props {

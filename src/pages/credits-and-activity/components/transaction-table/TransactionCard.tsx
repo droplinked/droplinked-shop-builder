@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
+import { IDetailedTransaction } from 'services/credit/interfaces'
 import React from 'react'
 import TypeColumn from './TypeColumn'
 import StatusBadge from '../StatusBadge'

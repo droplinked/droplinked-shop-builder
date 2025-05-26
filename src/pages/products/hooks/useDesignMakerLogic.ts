@@ -1,10 +1,10 @@
 import useAppToast from 'hooks/toast/useToast'
-import axiosInstance from 'lib/apis/axiosConfig'
-import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services'
+import axiosInstance from 'lib/axiosConfig'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { getUniqueItems, printfulStyles } from 'pages/products/utils/printfulHelpers'
 import { useEffect, useRef, useState } from 'react'
+import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'services/pod/services'
 
 function useDesignMakerHooks(onClose: () => void) {
     const { values, setFieldValue } = useProductForm()
@@ -21,7 +21,7 @@ function useDesignMakerHooks(onClose: () => void) {
     const [isLoading, setIsLoading] = useState(false)
     const [isIframeLoaded, setIsIframeLoaded] = useState(false)
 
-    const iframeRef = useRef<any>()
+    const iframeRef = useRef<any>(null)
     const { showToast } = useAppToast()
 
     const initializeDesignMaker = async () => {

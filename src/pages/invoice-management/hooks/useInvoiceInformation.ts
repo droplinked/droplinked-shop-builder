@@ -1,4 +1,4 @@
-import { retrieveInvoiceByIdService } from "lib/apis/invoice/invoiceServices";
+import { retrieveInvoiceByIdService } from "services/invoice/invoiceServices";
 import { useQuery } from "react-query";
 import useInvoiceStore from "../create-invoice/store/invoiceStore";
 

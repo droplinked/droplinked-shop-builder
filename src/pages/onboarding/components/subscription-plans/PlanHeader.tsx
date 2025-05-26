@@ -3,7 +3,7 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import AppLabel from 'components/redesign/label/AppLabel'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 

@@ -3,7 +3,7 @@ import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppButton from 'components/redesign/button/AppButton';
 import { useProfile } from "hooks/useProfile/useProfile";
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
+import { SubscriptionPlan } from 'services/subscription/interfaces';
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal';
 import React from 'react';

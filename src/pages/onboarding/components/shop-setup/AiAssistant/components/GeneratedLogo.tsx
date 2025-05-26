@@ -1,6 +1,6 @@
 import { Avatar, Box, Flex } from '@chakra-ui/react'
 import useAppToast from 'hooks/toast/useToast'
-import { generateLogos } from 'lib/apis/ai/services'
+import { generateLogos } from 'services/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'

@@ -6,8 +6,8 @@ import AppButton from "components/redesign/button/AppButton";
 import AppSelect from "components/redesign/select/AppSelect";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
-import { IcreateRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
-import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
+import { IcreateRuleService, IupdateRuleService } from "services/rule/interfaces";
+import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "services/rule/ruleServices";
 import { useCheckPermission } from "stores/app/appStore";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -93,10 +93,10 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                         <RulesetType />
                                     </Box>
                                     <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent={"space-between"}>
-                                        <AppButton  width={"79px"} onClick={close} variant="outlined">
+                                        <AppButton width={"79px"} onClick={close} variant="outlined">
                                             Cancel
                                         </AppButton>
-                                        <AppButton  width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
+                                        <AppButton width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
                                             Save
                                         </AppButton>
                                     </HStack>

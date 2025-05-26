@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import { DashboardOrder } from "lib/apis/dashboard/interfaces"
+import { DashboardOrder } from "services/dashboard/interfaces"
 import React from "react"
 import { formatDateToLongStyle } from "utils/helpers"
 

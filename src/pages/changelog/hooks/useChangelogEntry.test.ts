@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { getChangelogEntry } from 'lib/apis/changelog/services'
+import { getChangelogEntry } from 'services/changelog/services'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import useChangelogEntry from './useChangelogEntry'

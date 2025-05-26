@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import { PODCategory } from 'lib/apis/pod/interfaces'
-import { podCategoryService } from 'lib/apis/pod/services'
+import { PODCategory } from 'services/pod/interfaces'
+import { podCategoryService } from 'services/pod/services'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'

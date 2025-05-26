@@ -1,13 +1,13 @@
+import { AxiosError } from 'axios';
 import PageGrid from 'components/redesign/page-grid/PageGrid';
-import useDebounce from 'hooks/debounce/useDebounce';
 import useAppToast from 'hooks/toast/useToast';
-import { exportOrdersReportService } from 'lib/apis/order/services';
-import { ordersServices } from 'lib/apis/orders/orderServices';
+import useDebounce from 'hooks/useDebounce/useDebounce';
+import { exportOrdersReportService } from 'services/order/services';
+import { ordersServices } from 'services/orders/orderServices';
 import React, { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import EmptyView from './components/EmptyView';
 import HistoryTable from './components/table-components/HistoryTable';
-import { AxiosError } from 'axios';
 
 export default function PurchaseHistory() {
     // State management

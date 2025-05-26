@@ -1,6 +1,6 @@
 import { Flex, Grid } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { IPaymentPublicService } from 'lib/apis/shop/interfaces';
+import { IPaymentPublicService } from 'services/shop/interfaces';
 import React from 'react'
 import TokenCard from './TokenCard';
 import AppIcons from 'assets/icon/Appicons';

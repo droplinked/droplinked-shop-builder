@@ -4,7 +4,7 @@ import { HStack, VStack, useMediaQuery } from "@chakra-ui/react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Blog from "./blogs.blog";
 import { IBlog } from "./blogs.interface";
-import { getSuperAdminBlogs } from "lib/apis/blog/services";
+import { getSuperAdminBlogs } from "services/blog/services";
 import LatestBlog from "./blogs.latest";
 import { sortByDate } from "utils/helpers";
 import LoadingBlogs from "./blogs.loading";

@@ -1,4 +1,4 @@
-import { getShopBlogsService } from "lib/apis/blog/services"
+import { getShopBlogsService } from "services/blog/services"
 import { useInfiniteQuery, useQueryClient } from "react-query"
 
 export const BLOG_LIST_QUERY_KEY = "BLOG_LIST"

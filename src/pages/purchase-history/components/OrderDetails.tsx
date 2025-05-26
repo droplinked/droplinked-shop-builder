@@ -1,6 +1,6 @@
 import { TabPanel, TabPanels, Tabs, useMediaQuery } from '@chakra-ui/react'
 import Drawer from 'components/common/Drawer/Drawer'
-import { getOrderService } from 'lib/apis/order/services'
+import { getOrderService } from 'services/order/services'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { truncateText } from '../helpers'

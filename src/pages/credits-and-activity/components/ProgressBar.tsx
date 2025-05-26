@@ -3,7 +3,7 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/HorizontalBarChart';
 import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle';
-import { IBreakDown } from 'lib/apis/credit/interfaces';
+import { IBreakDown } from 'services/credit/interfaces';
 import React from 'react';
 import { createColorMap, getColor } from '../utils/colorHelpers';
 

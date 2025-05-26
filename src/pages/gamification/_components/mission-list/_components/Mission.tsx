@@ -2,7 +2,7 @@ import { Divider, Flex, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { Participation } from 'lib/apis/gamification/interfaces'
+import { Participation } from 'services/gamification/interfaces'
 import React, { useState } from 'react'
 import GamificationCard from '../../GamificationCard'
 import MissionReviewModal from './MissionReviewModal'
@@ -29,12 +29,12 @@ function Mission({ mission }: { mission: Participation }) {
                             </Flex>
                         </Flex>
                         <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "neutral.gray.800"} />
-                        <AppTypography 
-                            fontSize={12} 
-                            fontWeight={400} 
-                            color={mission.isCompleted ? "#2BCFA1" : "#fff"} 
-                            whiteSpace={"pre-line"} 
-                            style={{display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden", textOverflow: "ellipsis"}}
+                        <AppTypography
+                            fontSize={12}
+                            fontWeight={400}
+                            color={mission.isCompleted ? "#2BCFA1" : "#fff"}
+                            whiteSpace={"pre-line"}
+                            style={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2, overflow: "hidden", textOverflow: "ellipsis" }}
                         >
                             {mission.description}
                         </AppTypography>

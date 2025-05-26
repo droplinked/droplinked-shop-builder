@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react'
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm'
 import useAppToast from 'hooks/toast/useToast'
-import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices'
+import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'services/subscription/subscriptionServices'
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import React, { useState } from 'react'
 import useOnboardingStore from '../../../../stores/useOnboardingStore'
@@ -18,13 +18,13 @@ const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) =>
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
-  
+
   const handleSuccess = async () => {
     try {
       // Get the original plan data from the API
       const plansResponse = await getSubscriptionPlansService()
       const updatedPlan = plansResponse.data.find(plan => plan.type === planDetail.type)
-      
+
       if (!updatedPlan) {
         console.error('Plan not found in API response:', planDetail.type)
         showToast({ message: 'Failed to find subscription plan. Please contact support.', type: 'error' })
@@ -37,17 +37,17 @@ const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) =>
         subId: updatedPlan._id,
         recurring: true
       })
-      
+
       // Fetch updated subscription data
       await getShopSubscriptionDataService()
-      
+
       // Update the store with the plan from API
       updateSelectedPlan(updatedPlan)
-      
+
       // Show success toast
       showToast({ message: 'Payment successful! Your subscription has been activated.', type: 'success' })
 
-      
+
       // Close the modal and proceed to next step
       onClose()
       nextStep()

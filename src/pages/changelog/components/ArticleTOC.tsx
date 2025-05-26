@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { ListMd } from 'assets/icons/Navigation/List/ListMd'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import { ChangelogEntry } from 'services/changelog/interfaces'
 import React, { useEffect, useState } from 'react'
 import { extractHeadings, parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 import SectionHeader from './SectionHeader'

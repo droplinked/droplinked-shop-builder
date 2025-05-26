@@ -1,5 +1,5 @@
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import { DashboardOrder } from 'lib/apis/dashboard/interfaces'
+import { DashboardOrder } from 'services/dashboard/interfaces'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionContainer from '../SectionContainer'

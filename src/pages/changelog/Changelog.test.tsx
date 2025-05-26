@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen, within } from '@testing-library/react'
 import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
-import type { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import type { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import Changelog from './Changelog'
 import useChangelogEntries from './hooks/useChangelogEntries'

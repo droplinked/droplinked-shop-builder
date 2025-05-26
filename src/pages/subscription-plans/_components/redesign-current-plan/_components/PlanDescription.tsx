@@ -1,5 +1,5 @@
 import AppTypography from 'components/common/typography/AppTypography';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import * as React from 'react';
 
 interface props {

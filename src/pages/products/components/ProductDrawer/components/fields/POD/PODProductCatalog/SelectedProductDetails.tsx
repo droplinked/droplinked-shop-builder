@@ -1,5 +1,5 @@
 import useAppToast from "hooks/toast/useToast"
-import { podProductService } from "lib/apis/pod/services"
+import { podProductService } from "services/pod/services"
 import useProductForm from "pages/products/hooks/useProductForm"
 import useProductPageStore from "pages/products/stores/ProductPageStore"
 import React from "react"

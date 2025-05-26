@@ -1,4 +1,4 @@
-import { DashboardPageData } from 'lib/apis/dashboard/interfaces'
+import { DashboardPageData } from 'services/dashboard/interfaces'
 import { create } from 'zustand'
 
 export interface DashboardPageLink {

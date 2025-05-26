@@ -1,5 +1,5 @@
 import { Flex, Spinner } from '@chakra-ui/react';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 import React from 'react';
 import CustomerInfoSection from './CustomerInfoSection';
 import ShippingSection from './ShippingSection';

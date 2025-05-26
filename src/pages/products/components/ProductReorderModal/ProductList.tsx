@@ -3,7 +3,7 @@ import { closestCorners, DndContext, KeyboardSensor, PointerSensor, TouchSensor,
 import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import useAppToast from 'hooks/toast/useToast'
-import { reorderProductsService } from 'lib/apis/product/productServices'
+import { reorderProductsService } from 'services/product/productServices'
 import React, { Dispatch, SetStateAction } from 'react'
 import SortableProduct from './SortableProduct'
 

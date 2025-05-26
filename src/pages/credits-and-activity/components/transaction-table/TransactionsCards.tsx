@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import { IDetailedTransaction } from 'services/credit/interfaces';
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import TransactionCard from './TransactionCard';

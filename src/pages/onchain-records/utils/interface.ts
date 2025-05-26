@@ -1,4 +1,4 @@
-import { IDroplinkedNftsSkus } from "lib/apis/onchain-inventory/interface";
+import { IDroplinkedNftsSkus } from "services/onchain-inventory/interface";
 
 export interface ICombinedNft {
     chain: string;

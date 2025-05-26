@@ -5,7 +5,7 @@ import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
 import useAppStore from "stores/app/appStore";
-import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
+import { getStripeOnboardingUrl } from "services/stripe/services";
 import { useQuery } from "react-query";
 
 interface Provider {

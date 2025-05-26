@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { AxiosError } from "axios";
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
-import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "lib/apis/onchain-inventory/services";
+import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "services/onchain-inventory/services";
 import { appDevelopment } from "utils/app/variable";
 import useAppToast from "hooks/toast/useToast";
 import { handleValidateManualTransfer } from "../utils/helpers";

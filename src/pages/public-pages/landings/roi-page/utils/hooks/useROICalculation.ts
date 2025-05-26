@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
-import { getChainsFee } from "lib/apis/roi/services"
+import { getChainsFee } from "services/roi/services"
 
 const plans: Plan[] = [
     { title: 'Capsule', duration: 30, skus: 5, productRecords: 10000, baseCommitment: 10000 },

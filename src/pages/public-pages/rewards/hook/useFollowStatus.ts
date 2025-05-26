@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getFollowStatusService, grantProPlanService } from 'lib/apis/quests/services';
+import { getFollowStatusService, grantProPlanService } from 'services/quests/services';
 import useAppStore from 'stores/app/appStore';
 import useAppToast from 'hooks/toast/useToast';
 

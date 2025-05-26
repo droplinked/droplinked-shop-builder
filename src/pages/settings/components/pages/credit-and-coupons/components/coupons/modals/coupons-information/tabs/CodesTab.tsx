@@ -4,7 +4,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import AppIcons from 'assets/icon/Appicons'
 import { useMutation } from 'react-query'
-import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
+import { exportCouponsReport } from 'services/coupons/addressServices'
 import { AxiosError } from 'axios'
 import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
@@ -72,10 +72,10 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     />
                 </Box>
                 {/* TODO: Check with the design */}
-                <AppButton 
-                    variant='secondary' 
-                    onClick={() => mutate()} 
-                    isLoading={isLoading} 
+                <AppButton
+                    variant='secondary'
+                    onClick={() => mutate()}
+                    isLoading={isLoading}
                     leftIcon={<AppIcons.Download />}
                 >
                     Download

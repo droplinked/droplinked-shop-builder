@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, GridItem, useBreakpointValue } from '@chakra-ui/react'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import { Form, Formik } from 'formik'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import React from 'react'
 import { getInitialValues, validationSchema } from '../../utils/formHelpers'
 import BlogFormActions from './FormFields/BlogFormActions'

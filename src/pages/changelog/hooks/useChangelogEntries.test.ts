@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { getChangelogEntries } from 'lib/apis/changelog/services'
+import { getChangelogEntries } from 'services/changelog/services'
 import { useInfiniteQuery } from 'react-query'
 import useChangelogEntries from './useChangelogEntries'
 

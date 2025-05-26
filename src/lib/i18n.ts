@@ -1,7 +1,7 @@
 import i18n from 'i18next'
+import arCommon from 'locales/common/ar.json'
+import enCommon from 'locales/common/en.json'
 import { initReactI18next } from 'react-i18next'
-import arCommon from '../locale/ar/common.json'
-import enCommon from '../locale/en/common.json'
 
 // Read the saved language from localStorage (if executed in a browser environment)
 const LOCAL_STORAGE_LANG_KEY = 'language'

@@ -3,7 +3,7 @@ import { AffiliateSm } from 'assets/icons/System/Affiliate/AffiliateSm'
 import AppImage from 'components/common/image/AppImage'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { IOrderDetailsItems } from 'lib/apis/order/interfaces'
+import { IOrderDetailsItems } from 'services/order/interfaces'
 import React from 'react'
 import TitledText from './TitledText'
 

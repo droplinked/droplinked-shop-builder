@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { verifyEmailCode, resendEmailService } from 'lib/apis/user/services'
+import { verifyEmailCode, resendEmailService } from 'services/user/services'
 import useAppToast from 'hooks/toast/useToast'
 import { useLogin } from './useLogin'
 import useOnboardingStore from '../stores/useOnboardingStore'

@@ -7,7 +7,7 @@ import useAppToast from "hooks/toast/useToast";
 import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
 import { useQuery } from "react-query";
-import { getShopCredit } from "lib/apis/shop/shopServices";
+import { getShopCredit } from "services/shop/shopServices";
 
 export default function Balance() {
     const { shop: { name }, fetchShop } = useAppStore();

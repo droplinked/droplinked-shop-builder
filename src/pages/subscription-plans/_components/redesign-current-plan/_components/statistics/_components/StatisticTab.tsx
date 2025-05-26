@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import React from 'react';
 import Charts from '../_components/Charts';
 import UsageExceededAlert from '../_components/UsageExceededAlert';

@@ -6,7 +6,7 @@ import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'hooks/toast/useToast';
-import { getAllCollectionsService, reorderCollectionsService } from 'lib/apis/collection/services';
+import { getAllCollectionsService, reorderCollectionsService } from 'services/collection/services';
 import React, { useEffect, useState } from 'react';
 import SortableCollection from './components/SortableCollection';
 

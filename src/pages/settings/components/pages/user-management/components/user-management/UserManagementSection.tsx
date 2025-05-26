@@ -7,7 +7,7 @@ import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
 import useAppStore from 'stores/app/appStore'
 import InviteUserModal from './InviteUserModal'
 import { useQuery } from 'react-query'
-import { getInvitationsService } from 'lib/apis/user/services'
+import { getInvitationsService } from 'services/user/services'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import BlueButton from 'components/redesign/button/BlueButton'
 

@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
 import Table from 'components/redesign/table/Table'
-import { IInvitation } from 'lib/apis/user/interfaces'
+import { IInvitation } from 'services/user/interfaces'
 import React from 'react'
 import UserNameColumn from './UserNameColumn'
 import StatusBadge from './StatusBadge'

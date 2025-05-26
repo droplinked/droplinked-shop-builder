@@ -1,6 +1,6 @@
 import { GridItem, useMediaQuery } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import { getAnalyticsSalesReport } from "lib/apis/dashboard/dashboardServices"
+import { getAnalyticsSalesReport } from "services/dashboard/dashboardServices"
 import useFormattedDateRange from "pages/analytics/hooks/useFormattedDateRange"
 import React from "react"
 import { useQuery } from "react-query"

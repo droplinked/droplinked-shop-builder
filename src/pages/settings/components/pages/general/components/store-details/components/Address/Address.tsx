@@ -4,7 +4,7 @@ import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
-import { addressByIdService, createAddressService, updateAddressService } from "lib/apis/address/addressServices";
+import { addressByIdService, createAddressService, updateAddressService } from "services/address/addressServices";
 import useAppStore from "stores/app/appStore";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
@@ -12,7 +12,7 @@ import { useMutation, useQuery } from "react-query";
 import { formValidation, IAddressInputs, initialValues } from "./formConfigs";
 import AddressInputs from "./components/AddressInputs";
 import AddressHolder from "./components/AddressHolder";
-import { IcreateAddressService, IupdateAddressService } from "lib/apis/address/interfaces";
+import { IcreateAddressService, IupdateAddressService } from "services/address/interfaces";
 
 export default function Address() {
     const { shop, updateShop, loading } = useAppStore();
