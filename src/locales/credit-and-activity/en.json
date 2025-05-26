@@ -2,5 +2,39 @@
     "header": {
         "title": "Credits and Account Activity",
         "subtitle": "Manage account credits and review onchain activity."
+    },
+    "creditManagement": {
+        "accountBalance": {
+            "title": "Account Balance",
+            "addCredit": "Add Credit"
+        },
+        "transactions": {
+            "inbound": "Inbound",
+            "outbound": "Outbound"
+        }
+    },
+    "multiSelectMenu": {
+        "type": "Type"
+    },
+    "transactionTable": {
+        "columns": {
+            "type": "Type",
+            "amount": "Amount",
+            "date": "Date",
+            "status": "Status",
+            "transactionId": "Transaction ID"
+        },
+        "card": {
+            "amount": "Amount",
+            "date": "Date",
+            "transactionId": "Transaction ID"
+        },
+        "status": {
+            "success": "Success",
+            "pending": "Pending",
+            "failed": "Failed",
+            "cancelled": "Cancelled",
+            "completed": "Completed"
+        }
     }
 }

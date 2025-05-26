@@ -18,8 +18,8 @@ export default function CreditManagement() {
                 <AccountBalance />
 
                 <RuledGrid columns={isSmallerThan768 ? 1 : 2} nested overflow="hidden">
-                    <OverallTransactionsDisplay type="inbound" />
-                    <OverallTransactionsDisplay type="outbound" />
+                    <OverallTransactionsDisplay isInbound={true} />
+                    <OverallTransactionsDisplay isInbound={false} />
                 </RuledGrid>
 
             </RuledGrid>

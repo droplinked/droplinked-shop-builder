@@ -1,8 +1,11 @@
 import { Badge } from '@chakra-ui/react'
 import React from 'react'
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function StatusBadge({ status }: { status: "SUCCESS" | "FAILED" }) {
-    const statusText = status === "SUCCESS" ? "Completed" : "Failed"
+    const { t } = useLocaleResources("creditsAndActivity")
+    const statusKey = status === "SUCCESS" ? "completed" : "failed"
+    const statusText = t(`transactionTable.status.${statusKey}`)
 
     const completedStyle = {
         bg: '#092C22',

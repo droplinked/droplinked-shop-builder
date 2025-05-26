@@ -7,11 +7,13 @@ import useCreditStore from "pages/credits-and-activity/stores/CreditStore"
 import React from "react"
 import { useQuery } from "react-query"
 import { ActionButtons } from "./ActionButtons"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function AccountBalance() {
+    const { t } = useLocaleResources("creditsAndActivity")
     const { date, isFetching: isAnalyticsFetching } = useCreditStore()
     const { refetchAll } = useCreditsData()
-    const updateCreditState = useCreditStore(state => state.updateCreditState)
+    const updateCreditState = useCreditStore((state) => state.updateCreditState)
     const { isFetching, data, refetch: refetchShopCredit } = useQuery({
         queryKey: ["get-shop-credit", date],
         queryFn: () => getShopCredit(),
@@ -33,7 +35,11 @@ export default function AccountBalance() {
             justifyContent="space-between"
             alignItems="start"
         >
-            <BalanceDisplay amount={credit} title="Account Balance" isLoaded={!isLoading} />
+            <BalanceDisplay
+                amount={credit}
+                title={t("creditManagement.accountBalance.title")}
+                isLoaded={!isLoading}
+            />
             <Flex
                 flexDirection={{ base: "column-reverse", md: "row" }}
                 justify={{ base: "center", md: "end" }}
@@ -48,7 +54,12 @@ export default function AccountBalance() {
                     orientation="vertical"
                     borderColor="neutral.gray.800"
                 />
-                <AppDateRangePicker value={date} onChange={(date) => updateCreditState("date", date)} disabled={isLoading} width={{ base: "100%", md: "auto" }} />
+                <AppDateRangePicker
+                    value={date}
+                    onChange={(date) => updateCreditState("date", date)}
+                    disabled={isLoading}
+                    width={{ base: "100%", md: "auto" }}
+                />
             </Flex>
         </Flex>
     )

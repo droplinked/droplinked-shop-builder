@@ -21,7 +21,7 @@ export default function CreditsAndActivity() {
 
     return (
         <PageGrid.Root>
-            <PageGrid.Header title="Credits and Account Activity" description="Manage account credits and review onchain activity." />
+            <PageGrid.Header title={t("header.title")} description={t("header.subtitle")} />
             <TabsContent />
         </PageGrid.Root>
     )

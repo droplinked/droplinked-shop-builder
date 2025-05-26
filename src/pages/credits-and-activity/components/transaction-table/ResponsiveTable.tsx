@@ -10,8 +10,10 @@ import StatusBadge from '../StatusBadge'
 import TransactionsCards from './TransactionsCards'
 import TypeColumn from './TypeColumn'
 import { formatDateToLongStyle } from 'utils/helpers'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function ResponsiveTable() {
+    const { t } = useLocaleResources("creditsAndActivity")
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
     const { transactionsQuery } = useCreditsData()
     const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
@@ -20,27 +22,27 @@ export default function ResponsiveTable() {
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
             accessorKey: "type",
-            header: "Type",
+            header: t("transactionTable.columns.type"),
             cell: (info) => <TypeColumn type={info.row.original.type} amountType={info.row.original.amountType} />,
         },
         {
             accessorKey: "amount",
-            header: "Amount",
+            header: t("transactionTable.columns.amount"),
             cell: (info) => <FormattedPrice price={info.row.original.amount} fontSize={16} />,
         },
         {
             accessorKey: "date",
-            header: "Date",
+            header: t("transactionTable.columns.date"),
             cell: (info) => formatDateToLongStyle(new Date(info.row.original.createdAt))
         },
         {
             accessorKey: "status",
-            header: "Status",
+            header: t("transactionTable.columns.status"),
             cell: (info) => <StatusBadge status={info.row.original.status} />,
         },
         {
             accessorKey: "transactionId",
-            header: "Transaction ID",
+            header: t("transactionTable.columns.transactionId"),
             cell: (info) => <AppTypography
                 color={"#fff"}
                 fontSize={16}

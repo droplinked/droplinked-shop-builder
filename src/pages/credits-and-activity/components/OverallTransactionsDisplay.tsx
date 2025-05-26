@@ -7,32 +7,34 @@ import React from 'react'
 import useCreditStore from '../stores/CreditStore'
 import ProgressBar from './ProgressBar'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    type: 'inbound' | 'outbound'
+    isInbound: boolean
 }
 
-export default function OverallTransactionsDisplay({ type }: Props) {
+export default function OverallTransactionsDisplay({ isInbound }: Props) {
+    const { t } = useLocaleResources("creditsAndActivity")
     const { analyticsData } = useCreditStore()
     const { isLoading } = useCreditsData()
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
     const { additions, removals } = analyticsData ?? {}
 
-    const data = type === 'inbound' ? additions : removals
+    const data = isInbound ? additions : removals
     const items = data?.breakdown || []
     const total = data?.total || 0
     const hasData = items && items.length > 0
 
     const config = {
         inbound: {
-            title: 'Inbound',
+            title: t('creditManagement.transactions.inbound'),
             iconColor: '#2BCFA1',
             bgColor: '#2bcfa11a',
             borderColor: '#2bcfa11a',
             icon: <AppIcons.ArrowDownOutlined color='#2BCFA1' />
         },
         outbound: {
-            title: 'Outbound',
+            title: t('creditManagement.transactions.outbound'),
             iconColor: '#FF2244',
             bgColor: '#ff22440d',
             borderColor: '#ff224426',
@@ -40,7 +42,7 @@ export default function OverallTransactionsDisplay({ type }: Props) {
         }
     }
 
-    const { title, bgColor, borderColor, icon } = config[type]
+    const { title, bgColor, borderColor, icon } = config[isInbound ? 'inbound' : 'outbound']
 
     return (
         <Flex
@@ -80,7 +82,7 @@ export default function OverallTransactionsDisplay({ type }: Props) {
                         borderColor="neutral.gray.800"
                         p={{ base: 4, md: 6 }}
                     >
-                        <ProgressBar items={items} type={type} />
+                        <ProgressBar items={items} isInbound={isInbound} />
                     </Flex>
                 </AppSkeleton>
             )}

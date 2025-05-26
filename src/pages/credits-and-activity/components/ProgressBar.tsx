@@ -9,11 +9,12 @@ import { createColorMap, getColor } from '../utils/colorHelpers'
 
 interface Props {
     items: IBreakDown[]
-    type: "inbound" | "outbound"
+    isInbound: boolean
 }
 
-export default function ProgressBar({ items, type }: Props) {
+export default function ProgressBar({ items, isInbound }: Props) {
     const sortedItems = [...items].sort((a, b) => b.amount - a.amount)
+    const type = isInbound ? "inbound" : "outbound"
     const colorMap = createColorMap(sortedItems, type)
 
     return (

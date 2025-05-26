@@ -3,6 +3,7 @@ import AppIcons from "assets/icon/Appicons"
 import AddBalanceModal from "components/redesign/add-balance-modal/AddBalanceModal"
 import AppButton from "components/redesign/button/AppButton"
 import React from "react"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 interface Props {
     isLoading: boolean
@@ -11,6 +12,7 @@ interface Props {
 
 export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { t } = useLocaleResources("creditsAndActivity")
 
     return (
         <>
@@ -27,7 +29,7 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                     isLoading={isLoading}
                     onClick={onOpen}
                 >
-                    Add Credit
+                    {t("creditManagement.accountBalance.addCredit")}
                 </AppButton>
             </Flex>
             <AddBalanceModal isOpen={isOpen} onClose={onClose} handleRefetch={handleRefetchData} />

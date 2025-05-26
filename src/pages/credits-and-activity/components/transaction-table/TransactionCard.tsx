@@ -6,12 +6,14 @@ import React from 'react'
 import TypeColumn from './TypeColumn'
 import StatusBadge from '../StatusBadge'
 import { formatDateToLongStyle } from 'utils/helpers'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface TransactionCardProps {
     transaction?: IDetailedTransaction
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
+    const { t } = useLocaleResources("creditsAndActivity")
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
 
     return (
@@ -22,15 +24,15 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Amount</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>{t("transactionTable.card.amount")}</AppTypography>
                     <FormattedPrice price={amount} />
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Date</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>{t("transactionTable.card.date")}</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{formatDateToLongStyle(new Date(createdAt))}</AppTypography>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Transaction ID</AppTypography>
+                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>{t("transactionTable.card.transactionId")}</AppTypography>
                     <AppTypography color="#fff" fontSize={14}>{id}</AppTypography>
                 </Flex>
             </Flex>
