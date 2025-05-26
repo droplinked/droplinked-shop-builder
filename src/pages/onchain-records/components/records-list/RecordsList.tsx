@@ -1,5 +1,5 @@
 import { Grid, useMediaQuery } from '@chakra-ui/react';
-import { IDroplinkedNFTs, IWalletNFTs } from 'lib/apis/onchain-inventory/interface';
+import { IDroplinkedNFTs, IWalletNFTs } from 'services/onchain-inventory/interface';
 import { ICombinedNft } from 'pages/onchain-records/utils/interface';
 import { mapDroplinkedData, mapWalletData } from 'pages/onchain-records/utils/mapper';
 import React from 'react';

@@ -1,4 +1,4 @@
-import { switchShopService } from "lib/apis/shop/shopServices"
+import { switchShopService } from "services/shop/shopServices"
 import useAppStore from "stores/app/appStore"
 import { useMutation } from "react-query"
 import { useNavigate } from "react-router-dom"

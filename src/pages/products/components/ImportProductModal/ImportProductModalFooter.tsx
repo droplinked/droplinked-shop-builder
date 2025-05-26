@@ -1,7 +1,7 @@
 import { ModalFooter } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
-import { uploadProductCSV } from 'lib/apis/product/productServices'
+import { uploadProductCSV } from 'services/product/productServices'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'

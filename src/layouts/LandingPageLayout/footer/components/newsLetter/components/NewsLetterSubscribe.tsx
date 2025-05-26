@@ -4,7 +4,7 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppButton from 'components/redesign/button/AppButton';
 import { useFormik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
-import { subscribeFeature } from 'lib/apis/user/services';
+import { subscribeFeature } from 'services/user/services';
 import * as React from 'react';
 import { useMutation } from 'react-query';
 import { useLocation } from 'react-router-dom';

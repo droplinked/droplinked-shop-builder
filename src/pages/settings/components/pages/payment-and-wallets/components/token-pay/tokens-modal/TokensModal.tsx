@@ -4,7 +4,7 @@ import AppInput from "components/redesign/input/AppInput";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import AppSelect from "components/redesign/select/AppSelect";
-import { IPaymentPublicService } from "lib/apis/shop/interfaces";
+import { IPaymentPublicService } from "services/shop/interfaces";
 import React, { ChangeEvent, useEffect } from "react";
 import TokensListContainer from "./TokensListContainer";
 

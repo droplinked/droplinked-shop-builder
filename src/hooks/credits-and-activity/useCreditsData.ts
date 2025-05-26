@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useQuery } from 'react-query'
-import { getCreditAnalytics, getCreditDetailedAnalytics } from 'lib/apis/credit/services'
+import { getCreditAnalytics, getCreditDetailedAnalytics } from 'services/credit/services'
 import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 
 export default function useCreditsData() {

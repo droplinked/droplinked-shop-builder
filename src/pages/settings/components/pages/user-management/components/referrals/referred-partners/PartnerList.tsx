@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import { getReferralReportService } from 'lib/apis/shop/shopServices';
+import { getReferralReportService } from 'services/shop/shopServices';
 import { useHasPermission } from 'stores/app/appStore';
 import React from 'react'
 import { useQuery } from 'react-query';

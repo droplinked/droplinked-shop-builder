@@ -3,7 +3,7 @@ import AppIcons from 'assets/icon/Appicons'
 import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import useDebounce from 'hooks/useDebounce/useDebounce'
-import { InvoiceQueryParams, InvoiceStatus } from 'lib/apis/invoice/interfaces'
+import { InvoiceQueryParams, InvoiceStatus } from 'lib/services/invoice/interfaces'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface Props {

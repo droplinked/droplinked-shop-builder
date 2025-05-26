@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { SubscriptionPlan, IPrice } from "lib/apis/subscription/interfaces";
+import { SubscriptionPlan, IPrice } from "services/subscription/interfaces";
 import useSubscriptionPlanPurchaseStore from "stores/subscription-plan.ts/subscriptionPlanStore";
 import * as React from 'react';
 
@@ -11,7 +11,7 @@ interface IProps {
 export function PricePlan({ plan }: IProps) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration);
 
-    if (plan.type === 'STARTER' || plan.type === 'ENTERPRISE') 
+    if (plan.type === 'STARTER' || plan.type === 'ENTERPRISE')
         return <AppTypography color="neutral.white" fontWeight={700} fontSize="24px">{plan.price}</AppTypography>
 
 

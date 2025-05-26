@@ -1,5 +1,5 @@
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import * as React from 'react';
 import LinearProgressBar from './LinearProgressbar';
 import SemiCircleProgressbar from './SemiCircleProgressbar';

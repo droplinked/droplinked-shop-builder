@@ -1,4 +1,4 @@
-import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface";
+import { RecentCrawlerTasksResponse } from "services/crawler/interface";
 
 /**
  * Returns the appropriate text color class based on the status of a crawler task.

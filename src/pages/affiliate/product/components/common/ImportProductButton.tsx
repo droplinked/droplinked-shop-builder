@@ -1,7 +1,7 @@
 import AppIcons from 'assets/icon/Appicons';
 import AppButton from 'components/redesign/button/AppButton';
 import useAppToast from 'hooks/toast/useToast';
-import { importAffiliateProductService } from 'lib/apis/product/productServices';
+import { importAffiliateProductService } from 'services/product/productServices';
 import useAppStore from 'stores/app/appStore';
 import React from 'react';
 import { useMutation } from 'react-query';
@@ -31,8 +31,8 @@ function ImportProductButton({ productId }) {
       isDisabled={isLoading}
       width="full"
       onClick={importProduct}
-      >
-        Import Product
+    >
+      Import Product
     </AppButton>
   );
 }

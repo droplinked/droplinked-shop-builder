@@ -1,5 +1,5 @@
 import useDebounce from 'hooks/useDebounce/useDebounce';
-import { getOnchainInventory } from 'lib/apis/onchain-inventory/services';
+import { getOnchainInventory } from 'services/onchain-inventory/services';
 import React, { createContext, useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import useAppStore from 'stores/app/appStore';

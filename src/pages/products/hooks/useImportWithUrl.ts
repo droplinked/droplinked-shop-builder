@@ -1,7 +1,7 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
 import useAppToast from "hooks/toast/useToast"
-import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface"
-import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "lib/apis/crawler/services"
+import { RecentCrawlerTasksResponse } from "services/crawler/interface"
+import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "services/crawler/services"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import useProductPageStore from "../stores/ProductPageStore"
 

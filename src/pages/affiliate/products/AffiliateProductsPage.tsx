@@ -1,6 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react';
-import { IGetProductsCommunityService } from 'lib/apis/product/interfaces';
-import { productCategoryervices } from 'lib/apis/product/productServices';
+import { IGetProductsCommunityService } from 'services/product/interfaces';
+import { productCategoryervices } from 'services/product/productServices';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import ActionBar from './components/ActionBar';
@@ -36,7 +36,7 @@ const AffiliateProductsPage = ({ isPublic = false }) => {
         <Flex direction={{ base: 'column', lg: 'row' }} alignItems="flex-start" gap="24px" position="relative" >
           <FiltersPanel isPublic={isPublic} showFilters={showFilters} setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} categories={categories} />
           <VStack width="full" spacing="24px">
-            <ActionBar  setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange}  />
+            <ActionBar setShowFilters={setShowFilters} filters={filters} handleFilterChange={handleFilterChange} />
             <AffiliateProductList isPublic={isPublic} />
           </VStack>
         </Flex>

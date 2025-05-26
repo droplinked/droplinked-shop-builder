@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppInput from 'components/redesign/input/AppInput';
 import useDebounce from 'hooks/useDebounce/useDebounce';
-import { InvoiceQueryParams } from 'lib/apis/invoice/interfaces';
+import { InvoiceQueryParams } from 'lib/services/invoice/interfaces';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface Props {

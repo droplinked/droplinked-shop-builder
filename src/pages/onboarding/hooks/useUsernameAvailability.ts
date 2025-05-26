@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { checkUsernameAvailabilityService } from 'lib/apis/shop/shopServices'
+import { checkUsernameAvailabilityService } from 'services/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
 
 interface UseUsernameAvailabilityProps {

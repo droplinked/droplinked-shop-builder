@@ -1,4 +1,4 @@
-import { getShopProductsService } from 'lib/apis/product/productServices'
+import { getShopProductsService } from 'services/product/productServices'
 import { ProductType } from 'pages/products/utils/types'
 import { useInfiniteQuery } from 'react-query'
 

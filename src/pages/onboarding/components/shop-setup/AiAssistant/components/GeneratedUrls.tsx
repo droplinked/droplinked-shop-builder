@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
-import { generateDomains } from 'lib/apis/ai/services'
+import { generateDomains } from 'services/ai/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
@@ -69,7 +69,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                         }
                     />
                 </AppSkeleton>
-                <Flex flexWrap="wrap"  gap={4} overflow="auto" >
+                <Flex flexWrap="wrap" gap={4} overflow="auto" >
                     {isFetching && <SelectableItemsSkeleton />}
 
                     {!isFetching && urls?.map((url, index) => (

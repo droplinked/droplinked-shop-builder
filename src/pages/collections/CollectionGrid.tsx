@@ -4,7 +4,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
-import { Collection } from "lib/apis/collection/interfaces";
+import { Collection } from "services/collection/interfaces";
 import React from "react";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';

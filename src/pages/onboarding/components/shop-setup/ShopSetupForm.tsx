@@ -1,6 +1,6 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react'
 import useAppToast from 'hooks/toast/useToast'
-import { setupShop } from 'lib/apis/shop/shopServices'
+import { setupShop } from 'services/shop/shopServices'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'

@@ -2,7 +2,7 @@ import { Box, Flex, Link, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
 import AppTypography from 'components/common/typography/AppTypography';
-import { getShopCommunityProfile } from 'lib/apis/shop/shopServices';
+import { getShopCommunityProfile } from 'services/shop/shopServices';
 import ProductsGridRenderer from 'pages/affiliate/components/ProductsGridRenderer';
 
 import React from 'react';

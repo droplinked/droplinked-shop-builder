@@ -1,4 +1,4 @@
-import { getAnalyticsTopSellers } from 'lib/apis/dashboard/dashboardServices'
+import { getAnalyticsTopSellers } from 'services/dashboard/dashboardServices'
 import useFormattedDateRange from 'pages/analytics/hooks/useFormattedDateRange'
 import DoubleColumnContainer from 'pages/dashboard/components/DoubleColumnContainer'
 import SectionContainer from 'pages/dashboard/components/SectionContainer'

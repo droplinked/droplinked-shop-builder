@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { AxiosError } from "axios";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppTypography from "components/common/typography/AppTypography";
-import { getAirdropActivity } from "lib/apis/onchain-inventory/services";
+import { getAirdropActivity } from "services/onchain-inventory/services";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
 import React from "react";
 import { useQuery } from "react-query";

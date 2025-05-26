@@ -3,7 +3,7 @@ import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
 import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 
 interface AffiliateProps {
     affiliate: IOrderDetails["affiliates"];

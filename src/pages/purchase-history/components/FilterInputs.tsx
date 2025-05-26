@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import { ordersStatuesServices } from 'lib/apis/orders/orderServices';
+import { ordersStatuesServices } from 'services/orders/orderServices';
 import React from 'react';
 import { useQuery } from 'react-query';
 

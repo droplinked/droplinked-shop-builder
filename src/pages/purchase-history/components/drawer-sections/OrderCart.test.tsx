@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import OrderCart from './OrderCart';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 import { IOrders } from '../../interface';
 
 // Mock Chakra UI components

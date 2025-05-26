@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
 import ResponsiveTable from './ResponsiveTable'
 import { useQuery } from 'react-query';
-import { getAvailableFilterTypes } from 'lib/apis/credit/services';
+import { getAvailableFilterTypes } from 'services/credit/services';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 
 export default function TransactionsTable() {

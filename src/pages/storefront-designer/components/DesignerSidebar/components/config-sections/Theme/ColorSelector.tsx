@@ -2,7 +2,7 @@ import { Box, Circle, Flex, Text, VStack } from '@chakra-ui/react';
 import React, { useContext, useMemo } from 'react';
 import SectionItem from '../../common/SectionItem';
 import { useQuery } from 'react-query';
-import { availableTemplateService } from 'lib/apis/shop/shopServices';
+import { availableTemplateService } from 'services/shop/shopServices';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 

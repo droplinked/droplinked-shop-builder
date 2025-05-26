@@ -7,7 +7,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useStack from 'hooks/stack/useStack';
 import useAppToast from 'hooks/toast/useToast';
 import useAppWeb3 from 'hooks/web3/useWeb3';
-import { supportedChainsService } from 'lib/apis/sku/services';
+import { supportedChainsService } from 'services/sku/services';
 import useAppStore from 'stores/app/appStore';
 import { isWalletInstalled } from 'droplinked-web3';
 import React, { useCallback } from 'react';

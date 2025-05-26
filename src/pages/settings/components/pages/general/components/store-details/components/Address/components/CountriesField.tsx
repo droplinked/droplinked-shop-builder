@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast';
-import { allCountriesService } from 'lib/apis/address/addressServices';
+import { allCountriesService } from 'services/address/addressServices';
 import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import DropDown from './DropDown';

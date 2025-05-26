@@ -2,7 +2,7 @@ import { Flex, Progress } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { Participation } from 'lib/apis/gamification/interfaces'
+import { Participation } from 'services/gamification/interfaces'
 import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
@@ -20,16 +20,16 @@ function CompletedMissions({ isLoading, missions }: Props) {
         const rewardValue = Number(reward?.value ?? 0);
         return acc + rewardValue;
     }, 0);
-    
+
     const pointsEarned = missions
-    .filter(mission => mission.isCompleted)
-    .reduce((acc, curr) => {
-      const reward = curr.rewards.find(reward => reward.type === "CREDIT");
-      const rewardValue = reward ? Number(reward.value) || 0 : 0;
-      return acc + rewardValue;
-    }, 0);
-  
-  
+        .filter(mission => mission.isCompleted)
+        .reduce((acc, curr) => {
+            const reward = curr.rewards.find(reward => reward.type === "CREDIT");
+            const rewardValue = reward ? Number(reward.value) || 0 : 0;
+            return acc + rewardValue;
+        }, 0);
+
+
 
     return (
         <Flex wrap={"wrap"} gap={"10px"}>

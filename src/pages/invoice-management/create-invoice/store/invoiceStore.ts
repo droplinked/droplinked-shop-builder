@@ -1,4 +1,4 @@
-import { CartShippingMethod } from 'lib/apis/invoice/interfaces';
+import { CartShippingMethod } from 'lib/services/invoice/interfaces';
 import { create } from 'zustand';
 import { Address } from '../helpers/helpers';
 

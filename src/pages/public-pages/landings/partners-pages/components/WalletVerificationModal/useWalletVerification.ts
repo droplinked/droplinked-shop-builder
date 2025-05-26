@@ -1,12 +1,12 @@
 import { useMutation } from 'react-query';
-import { postUserVerifyD3, postUserVerifyUD } from 'lib/apis/user/services';
+import { postUserVerifyD3, postUserVerifyUD } from 'services/user/services';
 import { useSearchParams } from 'react-router-dom';
 import { DropWeb3, Network, ChainWallet, Web3Actions, Chain } from 'droplinked-web3';
 import { useContext } from 'react';
 import PartnerContext from '../../context/partner.context';
 import useAppToast from 'hooks/toast/useToast';
 import { appDevelopment } from 'utils/app/variable';
-import { IPostUserVerifyPartner } from 'lib/apis/user/interfaces';
+import { IPostUserVerifyPartner } from 'services/user/interfaces';
 
 export const useWalletVerification = () => {
 	const { showToast } = useAppToast();

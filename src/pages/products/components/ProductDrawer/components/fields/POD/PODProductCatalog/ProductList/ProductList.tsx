@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { podCategoryProductService } from 'lib/apis/pod/services'
+import { podCategoryProductService } from 'services/pod/services'
 import React from 'react'
 import { useQuery } from 'react-query'
 import LoadingPlaceholder from '../../../../common/LoadingPlaceholder'

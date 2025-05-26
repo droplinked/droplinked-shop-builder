@@ -1,6 +1,6 @@
 import { Th, Thead, Tr } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
+import { SubscriptionPlan } from 'services/subscription/interfaces';
 import * as React from 'react';
 import Plan from './Plan';
 

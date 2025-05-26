@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box, Divider, Flex, VStack } from "@chakra-ui/react";
 import AppEmptyPage from "components/common/empty/AppEmptyPage";
-import { getOrderService, getProductOrdersService } from "lib/apis/order/services";
+import { getOrderService, getProductOrdersService } from "services/order/services";
 import useAppStore from "stores/app/appStore";
 import { useQuery } from "react-query";
 import OrderSkeleton from "./OrderSkeleton";

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Coupon } from './interface';
 import { useInfiniteQuery } from 'react-query';
-import { giftcardsService } from 'lib/apis/coupons/addressServices';
+import { giftcardsService } from 'services/coupons/addressServices';
 import { ColumnDef } from '@tanstack/react-table';
 import AmountColumn from './columns/AmountColumn';
 import TypeColumn from './columns/TypeColumn';

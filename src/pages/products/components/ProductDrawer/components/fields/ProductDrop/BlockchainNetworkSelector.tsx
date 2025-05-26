@@ -1,7 +1,7 @@
 import { Skeleton } from "@chakra-ui/react"
 import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
 import AppSelect from "components/redesign/select/AppSelect"
-import { supportedChainsService } from "lib/apis/sku/services"
+import { supportedChainsService } from "services/sku/services"
 import useProductForm from "pages/products/hooks/useProductForm"
 import React from "react"
 import { useQuery } from "react-query"

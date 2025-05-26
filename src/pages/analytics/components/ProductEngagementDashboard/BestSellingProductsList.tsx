@@ -1,5 +1,5 @@
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import { TopSeller } from 'lib/apis/dashboard/interfaces'
+import { TopSeller } from 'services/dashboard/interfaces'
 import React from 'react'
 import EmptyState from './EmptyState'
 import ProductItem from './ProductItem'

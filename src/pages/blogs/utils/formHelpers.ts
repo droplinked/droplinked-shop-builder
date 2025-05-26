@@ -1,4 +1,4 @@
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import * as Yup from 'yup'
 
 const DEFAULT_BLOG_VALUES: Blog = {

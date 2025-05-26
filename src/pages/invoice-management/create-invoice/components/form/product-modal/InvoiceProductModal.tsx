@@ -6,7 +6,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'hooks/toast/useToast';
 import useDebounce from 'hooks/useDebounce/useDebounce';
-import { addProductToInvoiceService, createInvoiceService } from 'lib/apis/invoice/invoiceServices';
+import { addProductToInvoiceService, createInvoiceService } from 'services/invoice/invoiceServices';
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import { areArraysEqual } from 'utils/helpers';

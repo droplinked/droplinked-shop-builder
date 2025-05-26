@@ -1,7 +1,7 @@
 // __tests__/ChangelogTags.test.tsx
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import type { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import type { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import ChangelogTags from './ChangelogTags'
 

@@ -2,7 +2,7 @@ import { Flex, TabPanel, TabPanels, Tabs, useMediaQuery } from '@chakra-ui/react
 import AppIcons from 'assets/icon/Appicons';
 import Drawer from 'components/common/Drawer/Drawer';
 import AppButton from 'components/redesign/button/AppButton';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import { TabsList } from 'pages/purchase-history/components/drawer-components/TabList';
 import React, { useState } from 'react';
 import CurrentPlanBanner from './_components/CurrentPlanBanner';

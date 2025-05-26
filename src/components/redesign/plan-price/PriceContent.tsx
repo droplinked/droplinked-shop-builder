@@ -1,6 +1,6 @@
 import React from 'react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { IPrice } from 'lib/apis/subscription/interfaces'
+import { IPrice } from 'services/subscription/interfaces'
 
 /**
  * PriceContent Component - Renders subscription price details

@@ -1,8 +1,8 @@
 import { Box, Flex, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { InvoiceQueryParams } from "lib/apis/invoice/interfaces";
-import { getShopsCommunityService } from "lib/apis/shop/shopServices";
+import { InvoiceQueryParams } from "lib/services/invoice/interfaces";
+import { getShopsCommunityService } from "services/shop/shopServices";
 import React, { useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import AffiliateStoreFilters from "./AffiliateStoreFilters";

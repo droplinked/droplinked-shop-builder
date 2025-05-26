@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
-import { IPaymentPublicService } from 'lib/apis/shop/interfaces';
+import { IPaymentPublicService } from 'services/shop/interfaces';
 import React, { useState } from 'react';
 import TokensIcon from './TokensIcon';
 import { useFormikContext } from 'formik';
@@ -74,7 +74,7 @@ export default function TokenCard({ token }: Props) {
                     <AppTypography color="text.subtext.placeholder.dark" fontSize="12px">
                         Networks
                     </AppTypography>
-                    <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"}  sx={{ rect: { fill: "#292929" } }}>
+                    <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"} sx={{ rect: { fill: "#292929" } }}>
                         {token.supportedChains.map((chain, index) => (
                             <React.Fragment key={index}>
                                 <AppTypography color="neutral.white" fontSize="12px">

@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { TagMd } from 'assets/icons/Finance/Tag/TagMd'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import ChangelogBadge from './ChangelogBadge'
 import SectionHeader from './SectionHeader'

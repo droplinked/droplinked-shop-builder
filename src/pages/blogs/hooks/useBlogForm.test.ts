@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react'
 import { useFormikContext } from 'formik'
-import type { Blog } from 'lib/apis/blog/interfaces'
+import type { Blog } from 'services/blog/interfaces'
 import useBlogForm from './useBlogForm'
 
 jest.mock('formik', () => ({

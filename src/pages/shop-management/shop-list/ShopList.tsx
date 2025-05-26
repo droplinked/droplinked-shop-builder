@@ -2,7 +2,7 @@ import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
-import { getUserShopsService } from 'lib/apis/shop/shopServices'
+import { getUserShopsService } from 'services/shop/shopServices'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'

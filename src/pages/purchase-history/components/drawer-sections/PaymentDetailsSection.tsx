@@ -4,7 +4,7 @@ import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 
 interface PaymentDetailsProps {

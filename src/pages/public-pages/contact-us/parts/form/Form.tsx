@@ -4,7 +4,7 @@ import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
-import { contactUsService } from 'lib/apis/constact-us/services';
+import { contactUsService } from 'services/constact-us/services';
 import React from 'react';
 import { useMutation } from 'react-query';
 import * as Yup from "yup";

@@ -1,5 +1,5 @@
 import { Grid } from "@chakra-ui/react";
-import { authSupportedWalletsService } from "lib/apis/auth/services";
+import { authSupportedWalletsService } from "services/auth/services";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
 import { useQuery } from "react-query";

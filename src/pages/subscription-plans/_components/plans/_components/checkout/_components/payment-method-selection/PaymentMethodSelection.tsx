@@ -5,13 +5,13 @@ import AppTypography from 'components/common/typography/AppTypography';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
 import useAppToast from 'hooks/toast/useToast';
-import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
+import { SubscriptionPlanPaymentMethod } from 'services/subscription/interfaces';
 import {
 	getSubscriptionPaymentMethodsService,
 	sendPlanPurchaseTransactionToWeb3Service,
 	subscriptionPlanCryptoPaymentService,
 	subscriptionPlanStripePaymentService,
-} from 'lib/apis/subscription/subscriptionServices';
+} from 'services/subscription/subscriptionServices';
 import { appDevelopment } from 'utils/app/variable';
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import React, { useEffect, useState } from 'react';

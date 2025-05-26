@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
+import { getSubscriptionPlansService } from "services/subscription/subscriptionServices";
 import React from "react";
 import { useQuery } from "react-query";
 import AppErrors from "utils/constants/errors";

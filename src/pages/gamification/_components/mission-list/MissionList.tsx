@@ -1,6 +1,6 @@
 import { Divider, Flex, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { Participation } from 'lib/apis/gamification/interfaces'
+import { Participation } from 'services/gamification/interfaces'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
 import HowGamificationWorksModal from './_components/HowGamificationWorksModal'

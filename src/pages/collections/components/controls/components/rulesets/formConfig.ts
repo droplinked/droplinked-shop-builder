@@ -1,4 +1,4 @@
-import { IcreateRuleService, RuleTypes } from "lib/apis/rule/interfaces";
+import { IcreateRuleService, RuleTypes } from "services/rule/interfaces";
 import * as Yup from "yup";
 
 export interface IFormData {

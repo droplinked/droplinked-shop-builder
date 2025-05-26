@@ -1,4 +1,4 @@
-import { SubscriptionPlan, IPrice } from 'lib/apis/subscription/interfaces'
+import { SubscriptionPlan, IPrice } from 'services/subscription/interfaces'
 import { create } from 'zustand'
 
 type PlanDuration = { month: number, label: string, discount?: number }
@@ -53,13 +53,13 @@ export default useSubscriptionPlanStore
 function calculatePlanPrice(plan: SubscriptionPlan | null, preferredPlanDuration: PlanDuration): number {
     if (!plan) return 0
     const { price } = plan
-    
+
     if (typeof price[0] === 'string') {
         return 0
     }
     const targetPriceObj = (price as IPrice[]).find((priceOption) => priceOption.month === preferredPlanDuration.month)
     if (!targetPriceObj) return 0
-    
+
     if (preferredPlanDuration.discount && targetPriceObj.discountPrice) {
         return +targetPriceObj.discountPrice
     }

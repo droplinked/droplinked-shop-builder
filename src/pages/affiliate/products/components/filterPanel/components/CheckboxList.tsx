@@ -1,6 +1,6 @@
 import { Checkbox, Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { IGetProductsCommunityService } from 'lib/apis/product/interfaces';
+import { IGetProductsCommunityService } from 'services/product/interfaces';
 import { IAffiliateProductsCategory } from 'pages/affiliate/products/context/context';
 import React from 'react';
 

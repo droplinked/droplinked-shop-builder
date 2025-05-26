@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { getParticipatesService } from 'lib/apis/gamification/gamificationServices'
+import { getParticipatesService } from 'services/gamification/gamificationServices'
 import React from 'react'
 import { useQuery } from 'react-query'
 import CompletedMissions from './_components/completed-missions/CompletedMissions'

@@ -1,5 +1,5 @@
 import { Badge, BadgeProps } from '@chakra-ui/react'
-import { InvoiceStatus } from 'lib/apis/invoice/interfaces'
+import { InvoiceStatus } from 'lib/services/invoice/interfaces'
 import React from 'react'
 
 const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = {

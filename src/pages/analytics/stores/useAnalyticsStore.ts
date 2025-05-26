@@ -1,5 +1,5 @@
 import { DateRangeValue } from "components/redesign/date-range-picker/AppDateRangePicker"
-import { PerformanceReportResponse } from "lib/apis/dashboard/interfaces"
+import { PerformanceReportResponse } from "services/dashboard/interfaces"
 import { create } from "zustand"
 import { DEFAULT_PERFORMANCE_DATA } from "../constants/defaultPerformanceData"
 import { getDefaultDateRange } from "../utils/utils"

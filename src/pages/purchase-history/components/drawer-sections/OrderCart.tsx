@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import React from 'react';
 import { IOrders } from '../../interface';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 import CartItem from '../drawer-components/CartItem';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 

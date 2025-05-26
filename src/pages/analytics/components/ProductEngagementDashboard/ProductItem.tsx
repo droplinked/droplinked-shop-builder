@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/react"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import AppImage from "components/common/image/AppImage"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import { TopSeller } from "lib/apis/dashboard/interfaces"
+import { TopSeller } from "services/dashboard/interfaces"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 

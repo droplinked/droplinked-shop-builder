@@ -3,7 +3,7 @@ import { ChevronrightLg } from "assets/icons/Navigation/ChevronRight/Chevronrigh
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList";
 import InteractiveText from "components/redesign/interactive-text/InteractiveText";
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid";
-import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface";
+import { RecentCrawlerTasksResponse } from "services/crawler/interface";
 import { getStatusColor } from "pages/products/utils/statusColorHelper";
 import React from "react";
 

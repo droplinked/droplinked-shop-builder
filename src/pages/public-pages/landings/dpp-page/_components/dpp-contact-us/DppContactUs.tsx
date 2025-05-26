@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 // API
-import { contactUsService } from 'lib/apis/constact-us/services';
+import { contactUsService } from 'services/constact-us/services';
 
 // Components
 import useAppToast from 'hooks/toast/useToast';

@@ -1,6 +1,6 @@
 import { HStack } from '@chakra-ui/react';
 import AppButton from 'components/redesign/button/AppButton';
-import { Collection } from 'lib/apis/collection/interfaces';
+import { Collection } from 'services/collection/interfaces';
 import * as React from 'react';
 import { UseMutationResult } from 'react-query';
 

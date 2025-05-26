@@ -1,4 +1,4 @@
-import { IDroplinkedNFTs, IWalletNFTs } from "lib/apis/onchain-inventory/interface";
+import { IDroplinkedNFTs, IWalletNFTs } from "services/onchain-inventory/interface";
 import { ICombinedNft } from "./interface";
 
 export const mapWalletData = (walletNfts: IWalletNFTs): ICombinedNft => {

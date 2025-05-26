@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import CartItem from './CartItem';
-import { IOrderDetailsItems } from 'lib/apis/order/interfaces';
+import { IOrderDetailsItems } from 'services/order/interfaces';
 
 // Mock Chakra UI components
 jest.mock('@chakra-ui/react', () => ({

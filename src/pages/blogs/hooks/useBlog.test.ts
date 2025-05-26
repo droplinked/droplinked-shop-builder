@@ -17,7 +17,7 @@ jest.mock('hooks/toast/useToast', () => ({
 }))
 
 import useAppToast from 'hooks/toast/useToast'
-import { getBlogByIdService } from 'lib/apis/blog/services'
+import { getBlogByIdService } from 'services/blog/services'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import useBlog from './useBlog'
