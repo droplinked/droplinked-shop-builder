@@ -1,0 +1,57 @@
+{
+  "designer": {
+    "header": {
+      "title": "Store Designer",
+      "save": "Save Changes",
+      "preview": "Preview Store",
+      "publish": "Publish Store",
+      "settings": "Store Settings",
+      "back": "Back to Dashboard",
+      "discard": "Discard",
+      "reset": "Reset",
+      "resetTitle": "Reset Design",
+      "resetDescription": "This will reset all customizations and restore the default settings. Are you sure you want to continue?"
+    },
+    "sidebar": {
+      "title": "Design Elements",
+      "sections": {
+        "layout": "Layout",
+        "theme": "Theme",
+        "colors": "Colors",
+        "typography": "Typography",
+        "components": "Components"
+      },
+      "components": {
+        "header": "Header",
+        "hero": "Hero Section",
+        "products": "Products Grid",
+        "footer": "Footer"
+      }
+    }
+  },
+  "preview": {
+    "title": "Store Preview",
+    "deviceView": {
+      "desktop": "Desktop View",
+      "mobile": "Mobile View",
+      "tablet": "Tablet View"
+    },
+    "actions": {
+      "back": "Back to Editor",
+      "publish": "Publish Store"
+    }
+  },
+  "mobileMessage": {
+    "title": "Mobile Access Limited",
+    "message": "Store designer is optimized for desktop. Please use a desktop device for the best experience.",
+    "continue": "Continue Anyway"
+  },
+  "messages": {
+    "saveSuccess": "Store design has been updated",
+    "saveError": "Failed to save changes",
+    "publishSuccess": "Store published successfully",
+    "publishError": "Failed to publish store",
+    "unsavedChanges": "You have unsaved changes. Are you sure you want to leave?",
+    "discardSuccess": "Changes discarded successfully"
+  }
+} 

@@ -1,0 +1,31 @@
+{
+  "createShop": {
+    "title": "إنشاء متجر",
+    "description": "أنشئ متجرك الخاص لبدء بيع المنتجات",
+    "form": {
+      "nameLabel": "اسم المتجر",
+      "namePlaceholder": "أدخل اسم المتجر",
+      "descriptionLabel": "الوصف",
+      "descriptionPlaceholder": "أدخل وصف المتجر",
+      "submit": "إنشاء المتجر",
+      "cancel": "إلغاء"
+    },
+    "success": "تم إنشاء المتجر بنجاح!",
+    "error": "فشل في إنشاء المتجر. يرجى المحاولة مرة أخرى."
+  },
+  "shopList": {
+    "title": "متاجرك",
+    "empty": "ليس لديك أي متاجر حتى الآن",
+    "createNew": "إنشاء متجر جديد",
+    "loading": "جاري تحميل المتاجر...",
+    "error": "فشل في تحميل المتاجر"
+  },
+  "shopCard": {
+    "products": "المنتجات",
+    "sales": "المبيعات",
+    "revenue": "الإيرادات",
+    "viewDetails": "عرض التفاصيل",
+    "edit": "تعديل",
+    "delete": "حذف"
+  }
+} 
