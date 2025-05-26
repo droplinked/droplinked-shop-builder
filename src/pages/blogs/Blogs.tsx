@@ -1,6 +1,6 @@
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
-import useDebounce from 'hooks/debounce/useDebounce'
+import useDebounce from 'hooks/useDebounce/useDebounce'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BlogTable from './components/BlogTable/BlogTable'
