@@ -1,14 +1,14 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/changelog/ar.json'
+import enLocale from 'locales/changelog/en.json'
 import React from 'react'
 import ChangelogEntryCard from './components/ChangelogEntryCard'
 import { ChangelogEntryLoading } from './components/ChangelogEntryLoading'
 import { ChangelogError } from './components/ChangelogError'
 import { ChangelogGrid } from './components/ChangelogGrid'
 import useChangelogEntries from './hooks/useChangelogEntries'
-import arLocale from './translations/ar.json'
-import enLocale from './translations/en.json'
 
 function Changelog() {
     const { t } = useLocaleResources('changelogPage', {
