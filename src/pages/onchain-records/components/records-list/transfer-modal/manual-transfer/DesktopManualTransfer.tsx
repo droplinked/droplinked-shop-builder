@@ -1,37 +1,37 @@
 import React from 'react'
-import { Wallet } from './ManualTransfer';
-import { Flex } from '@chakra-ui/react';
-import AppInput from 'components/redesign/input/AppInput';
-import AppIcons from 'assets/icon/Appicons';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Wallet } from './ManualTransfer'
+import { Flex } from '@chakra-ui/react'
+import AppInput from 'components/redesign/input/AppInput'
+import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    data: Wallet[];
-    setData: (values: Wallet[]) => void;
+    data: Wallet[]
+    setData: (values: Wallet[]) => void
 }
 
 export default function DesktopManualTransfer({ data, setData }: Props) {
     const { t } = useLocaleResources("onchainRecords")
 
     const handleAddWallet = () => {
-        setData([...data, { receiver: '', amount: 0 }]);
-    };
+        setData([...data, { receiver: '', amount: 0 }])
+    }
 
     const handleRemoveWallet = (index: number) => {
-        if (data.length <= 1) return; // Prevent removing last wallet
-        const newData = data.filter((_, i) => i !== index);
-        setData(newData);
-    };
+        if (data.length <= 1) return // Prevent removing last wallet
+        const newData = data.filter((_, i) => i !== index)
+        setData(newData)
+    }
 
     const handleUpdateWallet = (index: number, field: keyof Wallet, value: string) => {
-        const newData = [...data];
+        const newData = [...data]
         if (field === 'amount') {
-            newData[index][field] = Number(value);
+            newData[index][field] = Number(value)
         } else {
-            newData[index][field] = value;
+            newData[index][field] = value
         }
-        setData(newData);
-    };
+        setData(newData)
+    }
 
     return (
         <Flex flexDirection="column" gap={4} maxHeight="40dvh" overflow="auto">

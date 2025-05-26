@@ -1,20 +1,20 @@
-import { Tabs } from "@chakra-ui/react";
-import AppModal from "components/redesign/modal/AppModal";
-import { useState } from "react";
-import { ICombinedNft } from "pages/onchain-records/utils/interface";
-import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext";
-import { useTransfer } from "../../../hooks/useTransfer";
-import BulkUpload from "./bulk-upload/BulkUpload";
-import ManualTransfer from "./manual-transfer/ManualTransfer";
-import TransferModalBody from "./TransferModalBody";
-import TransferModalFooter from "./TransferModalFooter";
-import TransferModalHeader from "./TransferModalHeader";
-import React from "react";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { Tabs } from "@chakra-ui/react"
+import AppModal from "components/redesign/modal/AppModal"
+import { useState } from "react"
+import { ICombinedNft } from "pages/onchain-records/utils/interface"
+import { useOnchainRecords } from "pages/onchain-records/context/OnchainRecordsContext"
+import { useTransfer } from "../../../hooks/useTransfer"
+import BulkUpload from "./bulk-upload/BulkUpload"
+import ManualTransfer from "./manual-transfer/ManualTransfer"
+import TransferModalBody from "./TransferModalBody"
+import TransferModalFooter from "./TransferModalFooter"
+import TransferModalHeader from "./TransferModalHeader"
+import React from "react"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 interface Props {
-    onClose: () => void;
-    isOpen: boolean;
-    item: ICombinedNft;
+    onClose: () => void
+    isOpen: boolean
+    item: ICombinedNft
 }
 
 /**
@@ -25,35 +25,35 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     const { t } = useLocaleResources("onchainRecords")
 
     // State for manual transfer form data
-    const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
+    const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }])
     // State for bulk upload file
-    const [file, setFile] = useState<File>(null);
-    const { refetch } = useOnchainRecords();
+    const [file, setFile] = useState<File>(null)
+    const { refetch } = useOnchainRecords()
 
     // Initialize transfer hook with success callback
     const { handleTransfer, isLoading, isExecuteLoading } = useTransfer({
         item,
         onSuccess: () => {
-            refetch(); // Refresh NFT data after successful transfer
-            onClose(); // Close modal
+            refetch() // Refresh NFT data after successful transfer
+            onClose() // Close modal
         }
-    });
+    })
 
     /**
      * Handle form submission for both manual and bulk transfer
      * @param selectedIndex - Selected tab index (0 for manual, 1 for bulk upload)
      */
     const handleSubmit = (selectedIndex: number) => {
-        handleTransfer(manualTransferData, selectedIndex, file);
-    };
+        handleTransfer(manualTransferData, selectedIndex, file)
+    }
 
     /**
      * Prevent modal closure during transfer execution
      */
     const handleCloseModal = () => {
-        if (isExecuteLoading) return;
-        onClose();
-    };
+        if (isExecuteLoading) return
+        onClose()
+    }
 
     // Define tabs configuration for the modal
     const tabs = [
@@ -65,7 +65,7 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
             title: t("bulk_upload"),
             content: <BulkUpload file={file} setFile={setFile} />,
         },
-    ];
+    ]
 
     return (
         <AppModal
@@ -87,5 +87,5 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
                 />
             </Tabs>
         </AppModal>
-    );
+    )
 }

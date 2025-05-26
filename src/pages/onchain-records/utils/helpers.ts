@@ -1,4 +1,4 @@
-import { IManualTransferValidation } from "./interface";
+import { IManualTransferValidation } from "./interface"
 
 export const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString(undefined, {

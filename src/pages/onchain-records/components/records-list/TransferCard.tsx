@@ -10,8 +10,8 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 export default function TransferCard({ item }: { item: ICombinedNft }) {
     const { t } = useLocaleResources("onchainRecords")
     const { onOpen, onClose, isOpen } = useDisclosure()
-    const { isDroplinkedProduct, name, description, imageUrl } = item ?? {};
-    const productName = name.length > 30 ? name?.slice(0, 15) + "..." : name;
+    const { isDroplinkedProduct, name, description, imageUrl } = item ?? {}
+    const productName = name.length > 30 ? name?.slice(0, 15) + "..." : name
 
     return (
         <Flex

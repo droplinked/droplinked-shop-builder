@@ -3,7 +3,7 @@ import { Grid, useMediaQuery } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 export default function RecordsSkeleton() {
-    const [isSmallerThan425px] = useMediaQuery('(max-width: 425px)');
+    const [isSmallerThan425px] = useMediaQuery('(max-width: 425px)')
 
     return (
         <Grid

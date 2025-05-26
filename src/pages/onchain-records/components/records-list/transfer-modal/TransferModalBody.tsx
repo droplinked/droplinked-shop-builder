@@ -2,7 +2,7 @@ import { ModalBody, TabPanel, TabPanels } from '@chakra-ui/react'
 import React, { JSX } from 'react'
 
 interface Props {
-    tabs: { title: string, content: JSX.Element }[];
+    tabs: { title: string, content: JSX.Element }[]
 }
 
 export default function TransferModalBody({ tabs }: Props) {

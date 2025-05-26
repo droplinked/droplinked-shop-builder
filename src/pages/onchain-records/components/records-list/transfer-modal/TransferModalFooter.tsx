@@ -1,12 +1,12 @@
 import { Divider, Flex, ModalFooter, useTabsContext } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props {
-    onClose: () => void;
-    handleSubmit: (selectedIndex: number) => void;
-    isLoading: boolean;
+    onClose: () => void
+    handleSubmit: (selectedIndex: number) => void
+    isLoading: boolean
 }
 
 export default function TransferModalFooter({ onClose, handleSubmit, isLoading }: Props) {

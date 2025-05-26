@@ -1,9 +1,9 @@
-import { Flex } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import AppTypography from 'components/common/typography/AppTypography';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
+import { Flex } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppTypography from 'components/common/typography/AppTypography'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { IDroplinkedNftsSkus } from 'services/onchain-inventory/interface'
-import SkuVariants from 'pages/products/components/ProductDrawer/components/common/SkuVariants';
+import SkuVariants from 'pages/products/components/ProductDrawer/components/common/SkuVariants'
 import React from 'react'
 
 export default function SKURow({ item }: { item: IDroplinkedNftsSkus }) {

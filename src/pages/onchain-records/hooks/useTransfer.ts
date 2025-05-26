@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useMutation } from "react-query";
-import { AxiosError } from "axios";
-import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3";
-import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "services/onchain-inventory/services";
-import { appDevelopment } from "utils/app/variable";
-import useAppToast from "hooks/toast/useToast";
-import { handleValidateManualTransfer } from "../utils/helpers";
-import { ICombinedNft } from "../utils/interface";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { useState } from "react"
+import { useMutation } from "react-query"
+import { AxiosError } from "axios"
+import { Chain, ChainWallet, DropWeb3, Network, Web3Actions } from "droplinked-web3"
+import { createAirdropProcedure, processAirdropTransaction, uploadWalletsCSV } from "services/onchain-inventory/services"
+import { appDevelopment } from "utils/app/variable"
+import useAppToast from "hooks/toast/useToast"
+import { handleValidateManualTransfer } from "../utils/helpers"
+import { ICombinedNft } from "../utils/interface"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 /**
  * Props interface for useTransfer hook
@@ -15,8 +15,8 @@ import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
  * @param onSuccess - Callback function to be called after successful transfer
  */
 interface UseTransferProps {
-    item: ICombinedNft;
-    onSuccess: () => void;
+    item: ICombinedNft
+    onSuccess: () => void
 }
 
 /**

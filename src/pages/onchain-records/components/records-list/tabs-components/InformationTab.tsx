@@ -1,22 +1,22 @@
-import React from "react";
-import ContainerCard from "../../ContainerCard";
-import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
-import { Flex } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
-import { ICombinedNft } from "pages/onchain-records/utils/interface";
-import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
-import SKURow from "../../SKURow";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import React from "react"
+import ContainerCard from "../../ContainerCard"
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
+import { Flex } from "@chakra-ui/react"
+import AppTypography from "components/common/typography/AppTypography"
+import ExternalLink from "components/redesign/external-link/ExternalLink"
+import { ICombinedNft } from "pages/onchain-records/utils/interface"
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
+import SKURow from "../../SKURow"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function InformationTab({ item }: { item: ICombinedNft }) {
-    const { t } = useLocaleResources("onchainRecords");
-    const { getFormattedPrice } = useCurrencyConverter();
+    const { t } = useLocaleResources("onchainRecords")
+    const { getFormattedPrice } = useCurrencyConverter()
 
-    const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress, sku } = item ?? {};
+    const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress, sku } = item ?? {}
 
     const slicedText = (text: string) => {
-        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
+        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "")
     }
 
     const informationData = [
@@ -103,7 +103,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                 </AppTypography>,
             }
         },
-    ];
+    ]
 
     const productDetails = [
         {
@@ -119,7 +119,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                 </ExternalLink>
             ),
         },
-    ];
+    ]
 
     return (
         <Flex flexDirection="column" gap={4}>
@@ -134,5 +134,5 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
                 </ContainerCard>
             }
         </Flex>
-    );
+    )
 }

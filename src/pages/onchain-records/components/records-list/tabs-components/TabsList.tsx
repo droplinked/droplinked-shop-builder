@@ -1,11 +1,11 @@
-import { Tab, TabList } from '@chakra-ui/react';
+import { Tab, TabList } from '@chakra-ui/react'
 import React from 'react'
 
 interface Props {
     tabs: Array<{
-        title: string;
-        content: any;
-        isDisabled?: boolean;
+        title: string
+        content: any
+        isDisabled?: boolean
     }>
 }
 
@@ -34,7 +34,7 @@ export default function TabsList({ tabs }: Props) {
                     >
                         {tab.title}
                     </Tab>
-                );
+                )
             })}
         </TabList>
     )

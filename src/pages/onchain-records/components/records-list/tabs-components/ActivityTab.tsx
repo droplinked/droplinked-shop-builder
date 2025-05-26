@@ -1,21 +1,21 @@
-import { Flex } from "@chakra-ui/react";
-import { AxiosError } from "axios";
-import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
-import AppTypography from "components/common/typography/AppTypography";
-import { getAirdropActivity } from "services/onchain-inventory/services";
-import { ICombinedNft } from "pages/onchain-records/utils/interface";
-import React from "react";
-import { useQuery } from "react-query";
-import ContainerCard from "../../ContainerCard";
-import DateFormatter from "./DateFormatter";
-import TransactionLink from './TransactionLink';
-import AppSkeleton from "components/common/skeleton/AppSkeleton";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { Flex } from "@chakra-ui/react"
+import { AxiosError } from "axios"
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
+import AppTypography from "components/common/typography/AppTypography"
+import { getAirdropActivity } from "services/onchain-inventory/services"
+import { ICombinedNft } from "pages/onchain-records/utils/interface"
+import React from "react"
+import { useQuery } from "react-query"
+import ContainerCard from "../../ContainerCard"
+import DateFormatter from "./DateFormatter"
+import TransactionLink from './TransactionLink'
+import AppSkeleton from "components/common/skeleton/AppSkeleton"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function ActivityTab({ item }: { item: ICombinedNft }) {
-    const { t } = useLocaleResources("onchainRecords");
+    const { t } = useLocaleResources("onchainRecords")
 
-    const { tokenId, tokenAddress, chain } = item ?? {};
+    const { tokenId, tokenAddress, chain } = item ?? {}
     const { isFetching, data, error, isError } = useQuery({
         queryKey: ["records-activity", tokenId],
         enabled: !!tokenId,
@@ -25,7 +25,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
             tokenId,
         }),
         retry: false,
-    });
+    })
 
     if (!isFetching && isError) {
         return <AppTypography
@@ -86,5 +86,5 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
                 </Flex>
             }
         </Flex>
-    );
+    )
 }

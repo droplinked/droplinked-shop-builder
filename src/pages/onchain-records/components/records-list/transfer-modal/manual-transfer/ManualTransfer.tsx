@@ -1,20 +1,20 @@
-import { useMediaQuery } from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
-import MobileManualTransfer from './MobileManualTransfer';
-import DesktopManualTransfer from './DesktopManualTransfer';
+import MobileManualTransfer from './MobileManualTransfer'
+import DesktopManualTransfer from './DesktopManualTransfer'
 
 export interface Wallet {
-    receiver: string;
-    amount: number;
+    receiver: string
+    amount: number
 }
 
 interface Props {
-    data: Wallet[];
+    data: Wallet[]
     setData: (values: Wallet[]) => void
 }
 
 export default function ManualTransfer({ data, setData }: Props) {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
     return (
         isSmallerThan768 ? (
@@ -22,5 +22,5 @@ export default function ManualTransfer({ data, setData }: Props) {
         ) : (
             <DesktopManualTransfer data={data} setData={setData} />
         )
-    );
+    )
 }

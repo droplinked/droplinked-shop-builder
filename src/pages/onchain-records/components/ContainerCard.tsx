@@ -1,15 +1,15 @@
-import { Flex } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import React, { ReactNode } from "react";
+import { Flex } from "@chakra-ui/react"
+import AppTypography from "components/common/typography/AppTypography"
+import React, { ReactNode } from "react"
 
 interface Props {
     items?: {
-        title: string;
-        content: string | number | ReactNode;
-    }[];
-    hasBorder?: boolean;
-    title: string;
-    titleRightContent?: string | ReactNode;
+        title: string
+        content: string | number | ReactNode
+    }[]
+    hasBorder?: boolean
+    title: string
+    titleRightContent?: string | ReactNode
     children?: ReactNode
 }
 

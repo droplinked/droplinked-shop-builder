@@ -1,11 +1,11 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import AppInput from 'components/redesign/input/AppInput';
-import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import useAppStore from 'stores/app/appStore';
-import React, { useMemo } from 'react';
-import { useOnchainRecords } from '../context/OnchainRecordsContext';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex, useMediaQuery } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppInput from 'components/redesign/input/AppInput'
+import SelectMenu from 'components/redesign/select-menu/SelectMenu'
+import useAppStore from 'stores/app/appStore'
+import React, { useMemo } from 'react'
+import { useOnchainRecords } from '../context/OnchainRecordsContext'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function Filters() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")

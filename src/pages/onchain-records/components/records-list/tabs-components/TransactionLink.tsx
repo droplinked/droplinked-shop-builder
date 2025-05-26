@@ -1,20 +1,20 @@
 import React from 'react'
-import { Flex } from "@chakra-ui/react";
-import AppTypography from "components/common/typography/AppTypography";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
-import hashkeyModel from "components/common/hashKey/model";
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex } from "@chakra-ui/react"
+import AppTypography from "components/common/typography/AppTypography"
+import ExternalLink from "components/redesign/external-link/ExternalLink"
+import hashkeyModel from "components/common/hashKey/model"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface TransactionLinkProps {
-    transactions: Array<{ deploy_hash: string }>;
-    chain: string;
+    transactions: Array<{ deploy_hash: string }>
+    chain: string
 }
 
 export default function TransactionLink({ transactions, chain }: TransactionLinkProps) {
-    const { t } = useLocaleResources("onchainRecords");
+    const { t } = useLocaleResources("onchainRecords")
 
     const slicedText = (text: string) => {
-        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
+        return text?.slice(0, 25) + (text?.length > 25 ? "..." : "")
     }
 
     return (

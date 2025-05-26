@@ -1,19 +1,19 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
-import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import React, { ReactNode } from 'react';
-import TabsList from '../tabs-components/TabsList';
+import { useMediaQuery } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import React, { ReactNode } from 'react'
+import TabsList from '../tabs-components/TabsList'
 import SampleFile from './sample/Template.csv'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    tabs: { title: string, content: ReactNode }[];
+    tabs: { title: string, content: ReactNode }[]
 }
 
 export default function TransferModalHeader({ tabs }: Props) {
     const { t } = useLocaleResources("onchainRecords")
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
     return (
         <ModalHeaderData
