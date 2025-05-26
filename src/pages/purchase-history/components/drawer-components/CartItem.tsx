@@ -6,12 +6,15 @@ import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { IOrderDetailsItems } from 'services/order/interfaces'
 import React from 'react'
 import TitledText from './TitledText'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 /**
     * CartItem component displays information about a single item in the cart
  */
 
 export default function CartItem({ item }: { item: IOrderDetailsItems }) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     const { image, isAffiliate, options, price, title, quantity } = item ?? {}
 
     return (
@@ -46,14 +49,22 @@ export default function CartItem({ item }: { item: IOrderDetailsItems }) {
                         ))
                         : null}
                     <DotSeparatedList border="1px solid #292929" px={4} py={1} borderRadius="full">
-                        <Text color="#7b7b7b" fontSize={14} fontWeight={400}>Quantity</Text>
+                        <Text color="#7b7b7b" fontSize={14} fontWeight={400}>{t("quantity")}</Text>
                         <Text color="#fff" fontSize={14} fontWeight={400}>{quantity}</Text>
                     </DotSeparatedList>
                 </Flex>
             </Flex>
             <Flex flexDirection="column" p={{ base: 4, md: 6 }} gap={1}>
-                <TitledText title='Unit Price' direction='row' text={<FormattedPrice price={price / quantity} />} />
-                <TitledText title='Total' direction='row' text={<FormattedPrice price={price} fontSize={16} fontWeight={700} />} />
+                <TitledText
+                    title={t("unit_price")}
+                    direction='row'
+                    text={<FormattedPrice price={price / quantity} />}
+                />
+                <TitledText
+                    title={t("total")}
+                    direction='row'
+                    text={<FormattedPrice price={price} fontSize={16} fontWeight={700} />}
+                />
             </Flex>
         </Flex>
     )

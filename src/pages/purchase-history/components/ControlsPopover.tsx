@@ -4,6 +4,7 @@ import TableMenu from 'components/redesign/table-menu/TableMenu'
 import React from 'react'
 import { IOrders } from '../interface'
 import OrderDetails from './OrderDetails'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     rowData: IOrders;
@@ -15,6 +16,7 @@ interface Props {
  */
 
 export default function ControlsPopover({ rowData }: Props) {
+    const { t } = useLocaleResources("purchaseHistory")
     const { isOpen: isDetailsDrawerOpen, onClose: onDetailsDrawerClose, onOpen: onDetailsDrawerOpen } = useDisclosure()
 
     return (
@@ -24,7 +26,7 @@ export default function ControlsPopover({ rowData }: Props) {
                     {
                         icon: <InvoiceMd color='#fff' />,
                         onClick: onDetailsDrawerOpen,
-                        title: "Order Details",
+                        title: t("order_details"),
                         color: "#fff"
                     }
                 ]}

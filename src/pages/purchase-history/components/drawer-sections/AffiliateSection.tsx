@@ -4,28 +4,31 @@ import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'services/order/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface AffiliateProps {
     affiliate: IOrderDetails["affiliates"];
 }
 
 export default function AffiliateSection({ affiliate }: AffiliateProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
         affiliate.map((item, index) => (
-            <InfoWrapper title={`Affiliate ${index + 1}`} key={index}>
+            <InfoWrapper title={`${t("affiliate")} ${index + 1}`} key={index}>
                 <Flex direction="column" gap={4}>
                     <TitledText
-                        title='Publisher'
+                        title={t("publisher")}
                         direction='row'
                         text={item.publisher}
                     />
                     <TitledText
-                        title='Publisher Profit'
+                        title={t("publisher_profit")}
                         direction='row'
                         text={<FormattedPrice price={item.publisherProfit} fontSize={14} fontWeight={500} />}
                     />
                     <TitledText
-                        title='Total'
+                        title={t("total")}
                         direction='row'
                         text={<FormattedPrice price={item.total} fontSize={14} fontWeight={500} />}
                     />

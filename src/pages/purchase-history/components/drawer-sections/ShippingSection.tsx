@@ -4,14 +4,17 @@ import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'services/order/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ShippingProps {
     shippings: IOrderDetails["shippings"];
 }
 
 export default function ShippingSection({ shippings }: ShippingProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
-        <InfoWrapper title='Shipping'>
+        <InfoWrapper title={t("shipping")}>
             <Flex direction="column" gap={4}>
                 {shippings.map((item, index) => (
                     <TitledText

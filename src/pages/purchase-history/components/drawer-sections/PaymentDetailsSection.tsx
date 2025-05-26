@@ -6,6 +6,7 @@ import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'services/order/interfaces';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface PaymentDetailsProps {
     details: IOrderDetails["details"];
@@ -16,9 +17,11 @@ interface PaymentDetailsProps {
 }
 
 export default function PaymentDetailsSection({ details, trackingInfo, giftCard, isPhysical, orderId }: PaymentDetailsProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
         <InfoWrapper
-            title='Payment Details'
+            title={t("payment_details")}
             flexProps={{ p: 0 }}
             textProps={{
                 pt: { base: 4, md: 6 },
@@ -32,6 +35,8 @@ export default function PaymentDetailsSection({ details, trackingInfo, giftCard,
 }
 
 function PaymentSummary({ details, giftCard, isPhysical }) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     const appliedGiftCard = !!giftCard?.amount
     const hasRuleset = !!giftCard?.ruleset
 
@@ -45,7 +50,7 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
         >
             {appliedGiftCard && (
                 <TitledText
-                    title='Discount'
+                    title={t("discount")}
                     direction='row'
                     text={
                         <FormattedPrice price={giftCard.amount} fontSize={14} fontWeight={500} />
@@ -54,41 +59,41 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
             )}
             {hasRuleset && (
                 <TitledText
-                    title='Discount Ruleset'
+                    title={t("discount_ruleset")}
                     direction='row'
                     text={<FormattedPrice price={giftCard.ruleset} fontSize={14} fontWeight={500} />}
                 />
             )}
             <TitledText
-                title='Total Products'
+                title={t("total_products")}
                 direction='row'
                 text={<FormattedPrice price={details.products} fontSize={14} fontWeight={500} />}
             />
             {details.cost && <TitledText
-                title='Total Cost'
+                title={t("total_cost")}
                 direction='row'
                 text={<FormattedPrice price={details.cost} fontSize={14} fontWeight={500} />}
             />
             }
             <TitledText
-                title='Total Cart'
+                title={t("total_cart")}
                 direction='row'
                 text={<FormattedPrice price={details.cart} fontSize={14} fontWeight={500} />}
             />
             <TitledText
-                title='Tax'
+                title={t("tax")}
                 direction='row'
                 text={<FormattedPrice price={details.tax} fontSize={14} fontWeight={500} />}
             />
             {isPhysical &&
                 <TitledText
-                    title='Shipping'
+                    title={t("shipping")}
                     direction='row'
                     text={<FormattedPrice price={details.shipping} fontSize={14} fontWeight={500} />}
                 />
             }
             <TitledText
-                title='Total Net Profit'
+                title={t("total_net_profit")}
                 direction='row'
                 text={<FormattedPrice price={details.profit} fontSize={14} fontWeight={700} />}
             />
@@ -97,6 +102,8 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
 }
 
 function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
         <Flex
             direction="column"
@@ -105,12 +112,12 @@ function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
             pb={{ base: 4, md: 6 }}
         >
             <TitledText
-                title='Payment Method'
+                title={t("payment_method")}
                 direction='row'
                 text={details.paidWith}
             />
             <TitledText
-                title='Order ID'
+                title={t("order_id")}
                 direction='row'
                 text={orderId}
                 rightContent={<ClipboardText text={orderId} />}

@@ -4,14 +4,17 @@ import React from 'react';
 import InfoWrapper from '../drawer-components/InfoWrapper';
 import TitledText from '../drawer-components/TitledText';
 import { IOrderDetails } from 'services/order/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface CommissionProps {
     commission: IOrderDetails["commision"];
 }
 
 export default function CommissionSection({ commission }: CommissionProps) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     return (
-        <InfoWrapper title='Commision'>
+        <InfoWrapper title={t("commission")}>
             <Flex direction="column" gap={4}>
                 {!!commission.droplinked &&
                     <TitledText
@@ -30,3 +33,4 @@ export default function CommissionSection({ commission }: CommissionProps) {
         </InfoWrapper>
     );
 }
+

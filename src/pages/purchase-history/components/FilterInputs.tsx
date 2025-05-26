@@ -5,6 +5,7 @@ import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import { ordersStatuesServices } from 'services/orders/orderServices';
 import React from 'react';
 import { useQuery } from 'react-query';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     onSearchChange?: (value: string) => void;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function FilterInputs({ onSearchChange, onStatusChange, selectValue, searchValue }: Props) {
+    const { t } = useLocaleResources("purchaseHistory");
     const { isFetching, data } = useQuery({
         queryKey: ["orders-statues"],
         queryFn: () => ordersStatuesServices(),
@@ -34,7 +36,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                     padding: { base: "10px 16px", md: "12px 16px" },
                 }}
                 inputProps={{
-                    placeholder: "Search Products...",
+                    placeholder: t("search_products"),
                     onChange: (e) => onSearchChange(e.target.value),
                     value: searchValue,
                 }}
@@ -46,7 +48,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                         [] :
                         data?.map((item) => ({ label: item.caption, value: item.value }))
                     }
-                    placeholder='Status'
+                    placeholder={t("status")}
                     onChange={(value: string) => onStatusChange(value)}
                     mobileModeIcon={<FilterMd color='#fff' />}
                     value={selectValue}
