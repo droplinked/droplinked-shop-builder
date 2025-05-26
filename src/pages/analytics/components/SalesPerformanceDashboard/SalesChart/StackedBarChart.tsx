@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react"
 import { BarElement, CategoryScale, Chart as ChartJS, ChartOptions, Legend, LinearScale, Tooltip } from "chart.js"
 import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
-import { SalesData } from "services/dashboard/interfaces"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 import { Bar } from "react-chartjs-2"
+import { SalesData } from "services/dashboard/interfaces"
 
-// Register Chart.js components
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
 interface Props {
@@ -14,19 +14,19 @@ interface Props {
 
 export default function StackedBarChart({ salesData }: Props) {
     const { symbol, convertPrice, abbreviation } = useCurrencyConverter()
+    const { t } = useLocaleResources("analyticsPage")
 
-    // Prepare chart data from backend response
     const chartData = {
         labels: salesData?.map(item => item.date),
         datasets: [
             {
-                label: "Direct",
+                label: t('direct'),
                 data: salesData?.map(item => item.directSales),
                 backgroundColor: "#2BCFA1",
                 borderRadius: 8
             },
             {
-                label: "Affiliate",
+                label: t('affiliate'),
                 data: salesData?.map(item => item.affiliateSales),
                 backgroundColor: "#C5A3FF",
                 borderRadius: 8
@@ -43,7 +43,6 @@ export default function StackedBarChart({ salesData }: Props) {
                 enabled: false,
                 external: context => {
                     const tooltipModel = context.tooltip
-
                     if (!tooltipModel || tooltipModel.opacity === 0) {
                         const tooltipEl = document.getElementById("custom-tooltip")
                         if (tooltipEl) tooltipEl.style.opacity = "0"
@@ -59,28 +58,22 @@ export default function StackedBarChart({ salesData }: Props) {
                         document.body.appendChild(tooltipEl)
                     }
 
-                    // Get tooltip position
-                    const position = context.chart.canvas.getBoundingClientRect()
-
-                    // Get dataset and index
                     const dataIndex = tooltipModel.dataPoints?.[0]?.dataIndex
                     if (dataIndex === undefined) return
 
                     const salesInfo = salesData?.[dataIndex]
                     if (!salesInfo) return
 
-                    // Calculate percentages
                     const totalSales = salesInfo.directSales + salesInfo.affiliateSales
                     const directPercentage = totalSales ? (salesInfo.directSales / totalSales) * 100 : 0
                     const affiliatePercentage = totalSales ? (salesInfo.affiliateSales / totalSales) * 100 : 0
 
-                    // Create tooltip HTML content
                     tooltipEl.innerHTML = `
                         <p style="border-bottom: 1px solid #292929; padding: 12px; font-size: 14px; font-weight: 500">${salesInfo.date}</p>
 
                         <div style="display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid #292929; padding: 12px">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-                                <p>Total earning</p>
+                                <p>${t('totalEarning')}</p>
                                 <p style="font-weight: 500">${symbol}${convertPrice({ amount: salesInfo.totalSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                             </div>
                         </div>
@@ -89,10 +82,10 @@ export default function StackedBarChart({ salesData }: Props) {
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
                                 <div style="display: flex; align-items: center; gap: 8px">
                                     <div style="width: 4px; height: 16px; border-radius: 4px; background-color: #2BCFA1"></div>
-                                    <span>Direct</span>
+                                    <span>${t('direct')}</span>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 8px">
-                                    <span>${directPercentage}%</span>
+                                    <span>${directPercentage.toFixed(2)}%</span>
                                     <div style="width: 4px; height: 4px; border-radius: 50%; background-color: #292929"></div>
                                     <p>${symbol}${convertPrice({ amount: salesInfo.directSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                                 </div>
@@ -100,10 +93,10 @@ export default function StackedBarChart({ salesData }: Props) {
                             <div style="display: flex; justify-content: space-between; align-items: center">
                                  <div style="display: flex; align-items: center; gap: 8px">
                                     <div style="width: 4px; height: 16px; border-radius: 4px; background-color: #C5A3FF"></div>
-                                    <span>Affiliate</span>
+                                    <span>${t('affiliate')}</span>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 8px">
-                                    <span>${affiliatePercentage}%</span>
+                                    <span>${affiliatePercentage.toFixed(2)}%</span>
                                     <div style="width: 4px; height: 4px; border-radius: 50%; background-color: #292929"></div>
                                     <p>${symbol}${convertPrice({ amount: salesInfo.affiliateSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                                 </div>
@@ -111,7 +104,6 @@ export default function StackedBarChart({ salesData }: Props) {
                         </div>
                     `
 
-                    // Position the tooltip
                     tooltipEl.style.opacity = "1"
                     tooltipEl.style.minWidth = '250px';
                     tooltipEl.style.position = 'absolute';
@@ -123,7 +115,6 @@ export default function StackedBarChart({ salesData }: Props) {
                     tooltipEl.style.backgroundColor = '#1C1C1C';
                     tooltipEl.style.color = '#FFF';
                     tooltipEl.style.fontSize = "12px";
-                    tooltipEl.style.opacity = "1";
                     tooltipEl.style.transition = "opacity 0.2s";
                 }
             }
