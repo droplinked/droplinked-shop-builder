@@ -163,7 +163,7 @@ const router = createBrowserRouter([
                             {
                                 path: ":shopId",
                                 children: [
-                                    { index: true, element: <AffiliateStoresProfile /> },
+                                    // { index: true, element: <AffiliateStoresProfile /> },
                                     { path: ":slug", element: <AffiliateProductsSinglePage /> },
                                 ],
                             },
