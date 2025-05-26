@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect } from "react";
 import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import useAppStore from "stores/app/appStore";
 import { getStripeOnboardingUrl } from "services/stripe/services";
 import { useQuery } from "react-query";

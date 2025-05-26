@@ -4,9 +4,9 @@ import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import { useFormikContext } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { ISettings } from 'pages/settings/formConfigs'
+import { ISettings } from 'pages/settings/utils/formConfigs'
 import React from 'react'
-import { handleValidations } from '../../validationHandlers'
+import { handleValidations } from '../../utils/validationHandlers'
 
 export default function SaveChangesDrawer() {
     const { dirty, handleSubmit, resetForm, isSubmitting, values } = useFormikContext<ISettings>()

@@ -3,7 +3,7 @@ import React from 'react';
 import AppInput from 'components/redesign/input/AppInput';
 import { useHasPermission } from 'stores/app/appStore';
 import { useFormikContext } from 'formik';
-import { ISettings } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/utils/formConfigs';
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge';
 
 export default function PostPurchaseInfo() {

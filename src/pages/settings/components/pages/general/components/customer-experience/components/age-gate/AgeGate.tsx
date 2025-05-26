@@ -3,7 +3,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { useFormikContext } from 'formik';
-import { ISettings } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/utils/formConfigs';
 
 export default function AgeGate() {
     const { values, setFieldValue } = useFormikContext<ISettings>();

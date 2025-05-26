@@ -1,4 +1,4 @@
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import { JSX } from "react";
 import { ToasterProps } from "sonner";
 

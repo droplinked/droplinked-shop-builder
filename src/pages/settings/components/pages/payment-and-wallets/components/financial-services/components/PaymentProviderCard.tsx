@@ -4,7 +4,7 @@ import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppIcons from 'assets/icon/Appicons';
 import { useFormikContext } from 'formik';
-import { ISettings } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/utils/formConfigs';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 
 interface PaymentProviderProps {

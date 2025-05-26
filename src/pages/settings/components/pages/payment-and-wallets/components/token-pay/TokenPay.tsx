@@ -5,7 +5,7 @@ import { useFormikContext } from "formik";
 import { paymentPublicServiceV2 } from "services/shop/shopServices";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React from "react";
 import { useQuery } from "react-query";
 import PaymentToken from "./PaymentToken";

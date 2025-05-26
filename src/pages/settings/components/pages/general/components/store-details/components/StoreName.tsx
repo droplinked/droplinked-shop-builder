@@ -1,7 +1,7 @@
 import AppInput from "components/redesign/input/AppInput";
 import { useFormikContext } from "formik";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React from "react";
 
 export default function StoreName() {

@@ -1,7 +1,7 @@
 import { Badge, Box, Divider, Flex, HStack, Select, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { useFormikContext } from 'formik';
-import { ISettings } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/utils/formConfigs';
 import React from 'react';
 
 interface CurrencyCardProps {

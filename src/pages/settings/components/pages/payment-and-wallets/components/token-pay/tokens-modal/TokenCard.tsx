@@ -6,7 +6,7 @@ import { IPaymentPublicService } from 'services/shop/interfaces';
 import React, { useState } from 'react';
 import TokensIcon from './TokensIcon';
 import { useFormikContext } from 'formik';
-import { ISettings } from 'pages/settings/formConfigs';
+import { ISettings } from 'pages/settings/utils/formConfigs';
 
 interface Props {
     token: IPaymentPublicService;

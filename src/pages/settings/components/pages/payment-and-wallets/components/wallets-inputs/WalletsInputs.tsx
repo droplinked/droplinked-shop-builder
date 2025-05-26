@@ -6,7 +6,7 @@ import SectionContent from "pages/settings/components/common/SectionContent";
 import React, { useEffect, useState } from "react";
 import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import useAppStore from "stores/app/appStore";
 import useAppToast from "hooks/toast/useToast";
 import { getDescription, getWalletsData } from "./helpers";

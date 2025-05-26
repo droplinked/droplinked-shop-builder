@@ -5,7 +5,7 @@ import useAppStore from 'stores/app/appStore';
 import React, { useEffect } from 'react';
 import SaveChangesDrawer from './components/common/SaveChangesDrawer';
 import TabsContent from './components/common/TabsContent';
-import { getSettingsPageInitValues, settingsPageSchema } from './formConfigs';
+import { getSettingsPageInitValues, settingsPageSchema } from './utils/formConfigs';
 
 function SettingsPage() {
     const { shop, user, updateShop, fetchShop } = useAppStore()
