@@ -5,9 +5,11 @@ import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import useAppStore from 'stores/app/appStore';
 import React, { useMemo } from 'react';
 import { useOnchainRecords } from '../context/OnchainRecordsContext';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export default function Filters() {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    const { t } = useLocaleResources("onchainRecords")
     const { user: { wallets } } = useAppStore()
     const {
         searchValue,
@@ -16,15 +18,15 @@ export default function Filters() {
         setRecordFilter,
         walletFilter,
         setWalletFilter
-    } = useOnchainRecords();
+    } = useOnchainRecords()
 
     const recordItems = [
-        { label: "All Records", value: null },
-        { label: "Droplinked Records", value: true }
+        { label: t("all_records"), value: null },
+        { label: t("droplinked_records"), value: true }
     ]
 
     const walletsItems = useMemo(() => {
-        const baseItems = [{ label: "All Wallets", value: null }]
+        const baseItems = [{ label: t("all_wallets"), value: null }]
 
         const walletOptions = wallets?.map(({ address, type }) => ({
             label: type,
@@ -40,7 +42,7 @@ export default function Filters() {
             <AppInput
                 leftElement={<AppIcons.Search width="20px" height="20px" />}
                 inputProps={{
-                    placeholder: "Search",
+                    placeholder: t("search"),
                     value: searchValue,
                     onChange: (e) => setSearchValue(e.target.value),
                 }}
@@ -52,14 +54,14 @@ export default function Filters() {
                 <SelectMenu
                     items={walletsItems}
                     onChange={setWalletFilter}
-                    placeholder='Wallets'
+                    placeholder={t("wallets")}
                     value={walletFilter}
-                    mobileModeIcon={<AppIcons.Wallet width={"20px"} height={"20px"} />}
+                    mobileModeIcon={<AppIcons.Wallet width="20px" height="20px" />}
                 />
                 <SelectMenu
                     items={recordItems}
                     onChange={setRecordFilter}
-                    placeholder='Records'
+                    placeholder={t("records")}
                     value={recordFilter}
                     mobileModeIcon={<AppIcons.NFTIcon />}
                 />

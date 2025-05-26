@@ -18,7 +18,8 @@ export interface ICombinedNft {
 export interface IManualTransferValidation {
     manualTransferData: ITransferData[];
     quantity: number;
-    showToast: (data: { message: string, type: "error" }) => void;
+    showToast: (data: { message: string, description?: string, type: "error" }) => void;
+    t: (key: string) => string;
 }
 
 export interface ITransferData {

@@ -7,24 +7,28 @@ import ExternalLink from "components/redesign/external-link/ExternalLink";
 import { ICombinedNft } from "pages/onchain-records/utils/interface";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import SKURow from "../../SKURow";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function InformationTab({ item }: { item: ICombinedNft }) {
+    const { t } = useLocaleResources("onchainRecords");
     const { getFormattedPrice } = useCurrencyConverter();
+
     const { name, description, quantity, ownerAddress, tokenAddress, tokenId, price, chain, productAddress, sku } = item ?? {};
+
     const slicedText = (text: string) => {
         return text?.slice(0, 25) + (text?.length > 25 ? "..." : "");
     }
 
     const informationData = [
         {
-            title: "Name",
+            title: t("name"),
             content: slicedText(name),
         },
         {
             ...description && {
-                title: "Description",
+                title: t("description"),
                 content: <AppTypography
-                    color={"#fff"}
+                    color="#fff"
                     fontSize={14}
                     dangerouslySetInnerHTML={{ __html: description }}
                     sx={{
@@ -37,14 +41,14 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
             }
         },
         {
-            title: "Quantity",
+            title: t("quantity"),
             content: quantity,
         },
         {
             ...tokenAddress && {
-                title: "Token Address",
+                title: t("token_address"),
                 content: <AppTypography
-                    color={"#fff"}
+                    color="#fff"
                     fontSize={14}
                     flex={1}
                     sx={{
@@ -60,22 +64,22 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         },
         {
             ...tokenId && {
-                title: "Token ID",
+                title: t("token_id"),
                 content: slicedText(tokenId),
             }
         },
         {
             ...price && {
-                title: "Price",
+                title: t("price"),
                 content: getFormattedPrice({ amount: price, toFixed: true }),
             }
         },
         {
-            title: "Network",
+            title: t("network"),
             content: (
                 <Flex gap={2} alignItems="center">
                     <BlockchainDisplay blockchain={chain} show="icon" props={{ style: { width: "20px", height: "20px" } }} />
-                    <AppTypography color={"#fff"} fontSize={14}>
+                    <AppTypography color="#fff" fontSize={14}>
                         <BlockchainDisplay blockchain={chain} show="name" />
                     </AppTypography>
                 </Flex>
@@ -83,9 +87,9 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         },
         {
             ...ownerAddress && {
-                title: "Owner Address",
+                title: t("owner_address"),
                 content: <AppTypography
-                    color={"#fff"}
+                    color="#fff"
                     fontSize={14}
                     flex={1}
                     sx={{
@@ -103,7 +107,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
 
     const productDetails = [
         {
-            title: "Address",
+            title: t("address"),
             content: (
                 <ExternalLink
                     fontSize={14}
@@ -118,10 +122,10 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
     ];
 
     return (
-        <Flex flexDirection={"column"} gap={4}>
-            <ContainerCard title="Information" items={informationData} />
+        <Flex flexDirection="column" gap={4}>
+            <ContainerCard title={t("information")} items={informationData} />
             {productAddress && sku &&
-                <ContainerCard title="Product Details" items={productDetails}>
+                <ContainerCard title={t("product_details")} items={productDetails}>
                     {sku.map((item, index) => {
                         return (
                             !!item.options.length && <SKURow key={item._id} item={item} />

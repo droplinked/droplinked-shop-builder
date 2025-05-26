@@ -7,6 +7,7 @@ import { appDevelopment } from "utils/app/variable";
 import useAppToast from "hooks/toast/useToast";
 import { handleValidateManualTransfer } from "../utils/helpers";
 import { ICombinedNft } from "../utils/interface";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 /**
  * Props interface for useTransfer hook
@@ -24,13 +25,14 @@ interface UseTransferProps {
  */
 export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
     // Loading state for transfer execution
-    const [isExecuteLoading, setIsExecuteLoading] = useState(false);
-    const { showToast } = useAppToast();
+    const [isExecuteLoading, setIsExecuteLoading] = useState(false)
+    const { showToast } = useAppToast()
+    const { t } = useLocaleResources("onchainRecords")
 
     // Extract required properties from the NFT item
-    const { quantity, chain, tokenAddress, tokenId, ownerAddress } = item ?? {};
-    const network = appDevelopment ? "TESTNET" : "MAINNET";
-    const web3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET);
+    const { quantity, chain, tokenAddress, tokenId, ownerAddress } = item ?? {}
+    const network = appDevelopment ? "TESTNET" : "MAINNET"
+    const web3 = new DropWeb3(appDevelopment ? Network.TESTNET : Network.MAINNET)
 
     /**
      * Mutation for handling CSV file upload
@@ -38,23 +40,23 @@ export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
      */
     const { mutateAsync: importCSV, isLoading: isImportLoading } = useMutation(
         (file: File) => {
-            const formData = new FormData();
-            formData.append("file", file);
-            return uploadWalletsCSV(formData);
+            const formData = new FormData()
+            formData.append("file", file)
+            return uploadWalletsCSV(formData)
         },
         {
             onSuccess(data) {
-                const receivers = data.data.receivers;
-                const isValid = handleValidateManualTransfer({ manualTransferData: receivers, quantity: +quantity, showToast });
+                const receivers = data.data.receivers
+                const isValid = handleValidateManualTransfer({ manualTransferData: receivers, quantity: +quantity, showToast, t })
                 if (isValid) {
-                    createAirdrop({ receivers });
+                    createAirdrop({ receivers })
                 }
             },
             onError(err: AxiosError<{ data: { message: string } }>) {
-                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
+                showToast({ message: err.response.data.data.message ?? t("default_api_error"), type: "error" })
             },
         }
-    );
+    )
 
     /**
      * Mutation for creating and executing airdrop
@@ -72,28 +74,28 @@ export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
         {
             onSuccess: async ({ data }) => {
                 try {
-                    setIsExecuteLoading(true);
-                    const { chain, _id } = data;
+                    setIsExecuteLoading(true)
+                    const { chain, _id } = data
                     const provider = web3.web3Instance({
                         method: Web3Actions.AIRDROP,
                         chain: Chain[chain],
                         preferredWallet: ChainWallet.Metamask,
                         userAddress: ownerAddress,
-                    });
-                    const transfer = await provider.executeAirdrop(_id);
-                    await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes });
-                    showToast({ message: "Airdrop successfully processed", type: "success" });
-                    onSuccess();
+                    })
+                    const transfer = await provider.executeAirdrop(_id)
+                    await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes })
+                    showToast({ message: t("airdrop_success"), type: "success" })
+                    onSuccess()
                 } catch (error) {
-                    setIsExecuteLoading(false);
-                    showToast({ message: "Oops! Something went wrong", type: "error" });
+                    setIsExecuteLoading(false)
+                    showToast({ message: t("default_api_error"), type: "error" })
                 }
             },
             onError: (err: AxiosError<{ data: { message: string } }>) => {
-                showToast({ message: err.response.data.data.message ?? "Oops! Something went wrong.", type: "error" });
+                showToast({ message: err.response.data.data.message ?? t("default_api_error"), type: "error" })
             },
         }
-    );
+    )
 
     /**
      * Handles both manual transfer and bulk upload scenarios
@@ -103,23 +105,23 @@ export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
      */
     const handleTransfer = async (manualTransferData: Array<{ receiver: string; amount: number }>, selectedIndex: number, file: File) => {
         if (selectedIndex === 0) {
-            const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast });
+            const isValid = handleValidateManualTransfer({ manualTransferData, quantity: +quantity, showToast, t })
             if (isValid) {
-                const dataToSend = [...manualTransferData];
-                const lastItem = dataToSend[dataToSend.length - 1];
+                const dataToSend = [...manualTransferData]
+                const lastItem = dataToSend[dataToSend.length - 1]
                 if (lastItem && !lastItem.receiver && (!lastItem.amount || lastItem.amount === 0)) {
-                    dataToSend.pop();
+                    dataToSend.pop()
                 }
-                await createAirdrop({ receivers: dataToSend });
+                await createAirdrop({ receivers: dataToSend })
             }
         } else {
-            await importCSV(file);
+            await importCSV(file)
         }
-    };
+    }
 
     return {
         handleTransfer,
         isLoading: isCreateLoading || isExecuteLoading || isImportLoading,
         isExecuteLoading
-    };
-};
+    }
+}

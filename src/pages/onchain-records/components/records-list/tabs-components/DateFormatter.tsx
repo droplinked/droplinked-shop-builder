@@ -10,7 +10,7 @@ export default function DateFormatter({ date }: { date: string }) {
     return (
         <Flex gap={2} alignItems='center' sx={{ rect: { fill: "#292929", fillOpacity: 1 } }}>
             <AppTypography
-                color={"#b1b1b1"}
+                color="#b1b1b1"
                 fontSize={14}
                 fontWeight={500}
             >
@@ -18,7 +18,7 @@ export default function DateFormatter({ date }: { date: string }) {
             </AppTypography>
             <AppIcons.DotSpacer />
             <AppTypography
-                color={"#b1b1b1"}
+                color="#b1b1b1"
                 fontSize={14}
                 fontWeight={500}
             >

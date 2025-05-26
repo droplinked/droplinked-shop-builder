@@ -10,6 +10,7 @@ import TransferModalBody from "./TransferModalBody";
 import TransferModalFooter from "./TransferModalFooter";
 import TransferModalHeader from "./TransferModalHeader";
 import React from "react";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 interface Props {
     onClose: () => void;
     isOpen: boolean;
@@ -21,6 +22,8 @@ interface Props {
  * Provides UI for both manual transfer and bulk upload options
  */
 export default function TransferModal({ onClose, isOpen, item }: Props) {
+    const { t } = useLocaleResources("onchainRecords")
+
     // State for manual transfer form data
     const [manualTransferData, setManualTransferData] = useState([{ receiver: "", amount: 0 }]);
     // State for bulk upload file
@@ -55,11 +58,11 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     // Define tabs configuration for the modal
     const tabs = [
         {
-            title: "Manual",
+            title: t("manual"),
             content: <ManualTransfer data={manualTransferData} setData={(values) => setManualTransferData(values)} />,
         },
         {
-            title: "Bulk Upload",
+            title: t("bulk_upload"),
             content: <BulkUpload file={file} setFile={setFile} />,
         },
     ];

@@ -5,6 +5,7 @@ import AppInput from 'components/redesign/input/AppInput';
 import AppIcons from 'assets/icon/Appicons';
 import BlueButton from 'components/redesign/button/BlueButton';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     data: Wallet[];
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export default function MobileManualTransfer({ data, setData }: Props) {
+    const { t } = useLocaleResources("onchainRecords")
+
     const handleAddWallet = () => {
         setData([...data, { receiver: '', amount: 0 }]);
     };
@@ -32,19 +35,19 @@ export default function MobileManualTransfer({ data, setData }: Props) {
     };
 
     return (
-        <Flex flexDirection={"column"} gap={6} maxHeight={"40dvh"} overflow={"auto"}>
+        <Flex flexDirection="column" gap={6} maxHeight="40dvh" overflow="auto">
             {data.map((wallet, index) => (
                 <Flex
                     key={index}
-                    flexDirection={"column"}
-                    border={"1px solid"}
+                    flexDirection="column"
+                    border="1px solid"
                     borderColor="neutral.gray.800"
                     borderRadius={8}
                 >
-                    <Flex gap={3} flexDirection={"column"} p={3}>
+                    <Flex gap={3} flexDirection="column" p={3}>
                         <AppInput
                             inputProps={{
-                                placeholder: "Enter your wallet address",
+                                placeholder: t("enter_wallet_address"),
                                 onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value),
                                 value: wallet.receiver
                             }}
@@ -59,17 +62,17 @@ export default function MobileManualTransfer({ data, setData }: Props) {
                         />
                     </Flex>
                     <Flex
-                        py={"10px"}
-                        borderTop={"1px solid"}
+                        py="10px"
+                        borderTop="1px solid"
                         borderColor="neutral.gray.800"
-                        justifyContent={"center"}
-                        alignItems={"center"}
+                        justifyContent="center"
+                        alignItems="center"
                         gap={1.5}
                         cursor="pointer"
                         onClick={() => handleRemoveWallet(index)}
                     >
                         <AppIcons.RedTrash />
-                        <AppTypography color={"#f24"} fontSize={14} fontWeight={500}>
+                        <AppTypography color="#f24" fontSize={14} fontWeight={500}>
                             Remove
                         </AppTypography>
                     </Flex>
@@ -77,8 +80,8 @@ export default function MobileManualTransfer({ data, setData }: Props) {
             ))}
             <BlueButton
                 fontSize={14}
-                iconSpacing={"6px"}
-                border={"1px solid"}
+                iconSpacing="6px"
+                border="1px solid"
                 borderColor="neutral.gray.800"
                 borderRadius={8}
                 leftIcon={<AppIcons.BluePlus />}

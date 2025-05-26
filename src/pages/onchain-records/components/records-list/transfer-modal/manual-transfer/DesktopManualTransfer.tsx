@@ -3,6 +3,7 @@ import { Wallet } from './ManualTransfer';
 import { Flex } from '@chakra-ui/react';
 import AppInput from 'components/redesign/input/AppInput';
 import AppIcons from 'assets/icon/Appicons';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     data: Wallet[];
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function DesktopManualTransfer({ data, setData }: Props) {
+    const { t } = useLocaleResources("onchainRecords")
+
     const handleAddWallet = () => {
         setData([...data, { receiver: '', amount: 0 }]);
     };
@@ -31,12 +34,12 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
     };
 
     return (
-        <Flex flexDirection={"column"} gap={4} maxHeight={"40dvh"} overflow={"auto"}>
+        <Flex flexDirection="column" gap={4} maxHeight="40dvh" overflow="auto">
             {data.map((wallet, index) => (
                 <Flex key={index} gap={4} alignItems="center">
                     <AppInput
                         inputProps={{
-                            placeholder: "Enter your wallet address",
+                            placeholder: t("enter_wallet_address"),
                             value: wallet.receiver,
                             onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value)
                         }}
@@ -54,15 +57,15 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
                     />
                     {index === data.length - 1 ? (
                         <AppIcons.GreenPlus
-                            width={"36px"}
-                            height={"36px"}
+                            width="36px"
+                            height="36px"
                             cursor="pointer"
                             onClick={handleAddWallet}
                         />
                     ) : (
                         <AppIcons.RedTrash
-                            width={"36px"}
-                            height={"36px"}
+                            width="36px"
+                            height="36px"
                             cursor="pointer"
                             onClick={() => handleRemoveWallet(index)}
                         />
@@ -72,3 +75,4 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
         </Flex>
     )
 }
+
