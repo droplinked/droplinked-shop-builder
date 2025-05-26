@@ -1,3 +1,6 @@
+/**
+ * Types and interfaces for URL parameter handling
+ */
 type QueryParams = Record<string, any>;
 
 interface QueryOptions {
@@ -6,6 +9,12 @@ interface QueryOptions {
     emptyValues?: boolean;
 }
 
+/**
+ * Creates a URLSearchParams object from the given parameters with configurable formatting options
+ * @param params - The parameters to convert to query string
+ * @param options - Configuration options for formatting
+ * @returns URLSearchParams object
+ */
 export function createQueryString(params: QueryParams, options: QueryOptions = {}): URLSearchParams {
     const { arrayFormat = "json", numberFormat = "number", emptyValues = false } = options;
 
@@ -37,4 +46,4 @@ export function createQueryString(params: QueryParams, options: QueryOptions = {
     });
 
     return queryParams;
-}
+} 

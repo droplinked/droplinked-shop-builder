@@ -1,6 +1,6 @@
 import { Product } from "pages/products/utils/types";
 import { PaymentLinkData } from "pages/payment-link/context/PaymentLinkContext";
-import { createQueryString } from "../_utils/with.query";
+import { createQueryString } from "utils/helpers/urlUtils";
 import axiosInstance from "../axiosConfig";
 import {
     IGetHotProductsParams,
