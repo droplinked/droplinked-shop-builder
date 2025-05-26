@@ -1,13 +1,13 @@
-import { Flex } from '@chakra-ui/react';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import React from 'react';
-import InfoWrapper from '../drawer-components/InfoWrapper';
-import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'services/order/interfaces';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex } from '@chakra-ui/react'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import React from 'react'
+import InfoWrapper from '../drawer-components/InfoWrapper'
+import TitledText from '../drawer-components/TitledText'
+import { IOrderDetails } from 'services/order/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface AffiliateProps {
-    affiliate: IOrderDetails["affiliates"];
+    affiliate: IOrderDetails["affiliates"]
 }
 
 export default function AffiliateSection({ affiliate }: AffiliateProps) {
@@ -35,5 +35,5 @@ export default function AffiliateSection({ affiliate }: AffiliateProps) {
                 </Flex>
             </InfoWrapper>
         ))
-    );
+    )
 }

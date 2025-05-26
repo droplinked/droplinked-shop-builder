@@ -1,18 +1,18 @@
-import { Flex } from '@chakra-ui/react';
-import React from 'react';
-import InfoWrapper from '../drawer-components/InfoWrapper';
-import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'services/order/interfaces';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex } from '@chakra-ui/react'
+import React from 'react'
+import InfoWrapper from '../drawer-components/InfoWrapper'
+import TitledText from '../drawer-components/TitledText'
+import { IOrderDetails } from 'services/order/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface CustomerInfoProps {
-    customer: IOrderDetails["customer"];
-    details: IOrderDetails["details"];
-    isPhysical: boolean;
+    customer: IOrderDetails["customer"]
+    details: IOrderDetails["details"]
+    isPhysical: boolean
 }
 
 export default function CustomerInfoSection({ customer, details, isPhysical }: CustomerInfoProps) {
-    const { t } = useLocaleResources("purchaseHistory");
+    const { t } = useLocaleResources("purchaseHistory")
 
     return (
         <InfoWrapper title={t("customer_information")}>
@@ -31,5 +31,5 @@ export default function CustomerInfoSection({ customer, details, isPhysical }: C
                 {!!details.note && <TitledText text={details.note} title={t("additional_details")} />}
             </Flex>
         </InfoWrapper>
-    );
+    )
 }

@@ -1,19 +1,19 @@
-import { Flex } from '@chakra-ui/react';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
-import React from 'react';
-import InfoWrapper from '../drawer-components/InfoWrapper';
-import TitledText from '../drawer-components/TitledText';
-import { IOrderDetails } from 'services/order/interfaces';
-import ClipboardText from 'components/common/clipboardText/ClipboardText';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex } from '@chakra-ui/react'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import React from 'react'
+import InfoWrapper from '../drawer-components/InfoWrapper'
+import TitledText from '../drawer-components/TitledText'
+import { IOrderDetails } from 'services/order/interfaces'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface PaymentDetailsProps {
-    details: IOrderDetails["details"];
-    trackingInfo: IOrderDetails["trackingInfo"];
-    giftCard?: IOrderDetails["giftCard"];
-    isPhysical: boolean;
-    orderId: string;
+    details: IOrderDetails["details"]
+    trackingInfo: IOrderDetails["trackingInfo"]
+    giftCard?: IOrderDetails["giftCard"]
+    isPhysical: boolean
+    orderId: string
 }
 
 export default function PaymentDetailsSection({ details, trackingInfo, giftCard, isPhysical, orderId }: PaymentDetailsProps) {
@@ -31,7 +31,7 @@ export default function PaymentDetailsSection({ details, trackingInfo, giftCard,
             <PaymentSummary details={details} giftCard={giftCard} isPhysical={isPhysical} />
             <PaymentMethodAndTracking details={details} trackingInfo={trackingInfo} orderId={orderId} />
         </InfoWrapper>
-    );
+    )
 }
 
 function PaymentSummary({ details, giftCard, isPhysical }) {
@@ -98,7 +98,7 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
                 text={<FormattedPrice price={details.profit} fontSize={14} fontWeight={700} />}
             />
         </Flex>
-    );
+    )
 }
 
 function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
@@ -141,5 +141,5 @@ function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
                 />
             ))}
         </Flex>
-    );
+    )
 }

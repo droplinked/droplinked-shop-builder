@@ -1,23 +1,23 @@
-import { ColumnDef } from '@tanstack/react-table';
-import AppBadge from 'components/redesign/badge/AppBadge';
-import Table from 'components/redesign/table/Table';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import { IOrders } from 'pages/purchase-history/interface';
-import React from 'react';
-import { UseInfiniteQueryResult } from 'react-query';
-import { formatUnderlinedText, getCustomerDisplayName, getStatusColorScheme } from '../../helpers';
-import ControlsPopover from '../ControlsPopover';
-import DateCell from './DateCell';
+import { ColumnDef } from '@tanstack/react-table'
+import AppBadge from 'components/redesign/badge/AppBadge'
+import Table from 'components/redesign/table/Table'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { IOrders } from 'pages/purchase-history/interface'
+import React from 'react'
+import { UseInfiniteQueryResult } from 'react-query'
+import { formatUnderlinedText, getCustomerDisplayName, getStatusColorScheme } from '../../helpers'
+import ControlsPopover from '../ControlsPopover'
+import DateCell from './DateCell'
 
 interface Props {
-    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;
+    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>
 }
 
 export default function DesktopTable({ purchaseHistoryQuery }: Props) {
     const { t } = useLocaleResources("purchaseHistory")
 
-    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = purchaseHistoryQuery;
-    const orders = data?.pages.flatMap(page => page.data.data.data) || [];
+    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = purchaseHistoryQuery
+    const orders = data?.pages.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<IOrders>[] = [
         {
@@ -29,8 +29,8 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
             accessorKey: "customerAddressBook",
             header: t("customer"),
             cell: (info) => {
-                const { customerAddressBook, customerEmail } = info.row.original;
-                return getCustomerDisplayName(customerAddressBook, customerEmail);
+                const { customerAddressBook, customerEmail } = info.row.original
+                return getCustomerDisplayName(customerAddressBook, customerEmail)
             },
         },
         {
@@ -42,7 +42,7 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
             accessorKey: "status",
             header: t("status"),
             cell: (info) => {
-                const status = info.row.original.status;
+                const status = info.row.original.status
                 return (
                     <AppBadge
                         text={formatUnderlinedText(status)}
@@ -50,7 +50,7 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
                         size='24'
                         status={getStatusColorScheme(status)}
                     />
-                );
+                )
             },
         },
         {
@@ -62,7 +62,7 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
                 />
             ),
         },
-    ];
+    ]
 
     return (
         <Table

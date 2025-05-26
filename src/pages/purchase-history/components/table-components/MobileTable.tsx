@@ -1,18 +1,18 @@
-import { Flex } from '@chakra-ui/react';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import { Flex } from '@chakra-ui/react'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { UseInfiniteQueryResult } from 'react-query';
-import { IOrders } from 'pages/purchase-history/interface';
-import MobileCards from './MobileCards';
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { UseInfiniteQueryResult } from 'react-query'
+import { IOrders } from 'pages/purchase-history/interface'
+import MobileCards from './MobileCards'
 
 interface Props {
-    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;
+    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>
 }
 
 export default function MobileTable({ purchaseHistoryQuery }: Props) {
-    const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = purchaseHistoryQuery;
-    const orders = data?.pages.flatMap(page => page.data.data.data) || [];
+    const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = purchaseHistoryQuery
+    const orders = data?.pages.flatMap(page => page.data.data.data) || []
 
     if (isLoading) {
         return Array.from({ length: 5 }, (_, index) => (

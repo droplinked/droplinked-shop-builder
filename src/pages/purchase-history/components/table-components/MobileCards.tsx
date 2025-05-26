@@ -17,9 +17,9 @@ export default function MobileCards({ item }: Props) {
     const { _id, status, updatedAt, customerAddressBook, customerEmail } = item
 
     // Prepare customer display name
-    const customerDisplayName = getCustomerDisplayName(customerAddressBook, customerEmail);
-    const isPaymentValid = status !== "CANCELED";
-    const statusColorScheme = getStatusColorScheme(status);
+    const customerDisplayName = getCustomerDisplayName(customerAddressBook, customerEmail)
+    const isPaymentValid = status !== "CANCELED"
+    const statusColorScheme = getStatusColorScheme(status)
 
     return (
         <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">

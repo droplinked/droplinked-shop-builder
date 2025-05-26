@@ -1,16 +1,16 @@
-import React from 'react';
-import FilterInputs from '../FilterInputs';
-import { Flex, useMediaQuery } from '@chakra-ui/react';
-import MobileTable from './MobileTable';
-import DesktopTable from './DesktopTable';
-import { UseInfiniteQueryResult } from 'react-query';
+import React from 'react'
+import FilterInputs from '../FilterInputs'
+import { Flex, useMediaQuery } from '@chakra-ui/react'
+import MobileTable from './MobileTable'
+import DesktopTable from './DesktopTable'
+import { UseInfiniteQueryResult } from 'react-query'
 
 interface Props {
-    onSearchChange?: (value: string) => void; // Made optional
-    onStatusChange: (value: string) => void;
-    searchValue?: string;
-    statusValue?: string;
-    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>;
+    onSearchChange?: (value: string) => void // Made optional
+    onStatusChange: (value: string) => void
+    searchValue?: string
+    statusValue?: string
+    purchaseHistoryQuery: UseInfiniteQueryResult<any, unknown>
 }
 
 /**

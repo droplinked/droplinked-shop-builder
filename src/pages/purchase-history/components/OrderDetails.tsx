@@ -11,9 +11,9 @@ import OrderInformation from './drawer-sections/OrderInformation'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface OrderDetailsProps {
-    rowData: IOrders;
-    isOpen: boolean;
-    onClose: () => void;
+    rowData: IOrders
+    isOpen: boolean
+    onClose: () => void
 }
 
 /**
@@ -23,8 +23,8 @@ interface OrderDetailsProps {
 export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {
     const { t } = useLocaleResources("purchaseHistory")
     // Handle the case where useMediaQuery might not return an array in tests
-    const mediaQueryResult = useMediaQuery("(max-width: 768px)");
-    const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false;
+    const mediaQueryResult = useMediaQuery("(max-width: 768px)")
+    const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false
 
     // Fetch order details when the drawer is open
     // Handle the case where useQuery might return undefined in tests
@@ -32,9 +32,9 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
         queryKey: ["order", rowData._id],
         queryFn: () => getOrderService({ orderID: rowData._id }),
         enabled: isOpen,
-    }) || { isFetching: false, data: undefined };
+    }) || { isFetching: false, data: undefined }
 
-    const { isFetching, data } = queryResult;
+    const { isFetching, data } = queryResult
     const orderData = data?.data?.data
     const { orderInformation } = orderData ?? {}
 

@@ -7,7 +7,7 @@ import OrderDetails from './OrderDetails'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    rowData: IOrders;
+    rowData: IOrders
 }
 
 /**

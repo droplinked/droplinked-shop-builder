@@ -1,28 +1,28 @@
-import { Flex } from '@chakra-ui/react';
-import { FilterMd } from 'assets/icons/Action/Filter/FilterMd';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import SelectMenu from 'components/redesign/select-menu/SelectMenu';
-import { ordersStatuesServices } from 'services/orders/orderServices';
-import React from 'react';
-import { useQuery } from 'react-query';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { Flex } from '@chakra-ui/react'
+import { FilterMd } from 'assets/icons/Action/Filter/FilterMd'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import SelectMenu from 'components/redesign/select-menu/SelectMenu'
+import { ordersStatuesServices } from 'services/orders/orderServices'
+import React from 'react'
+import { useQuery } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
-    onSearchChange?: (value: string) => void;
-    onStatusChange: (value: string) => void;
-    selectValue?: string;
-    searchValue?: string;
+    onSearchChange?: (value: string) => void
+    onStatusChange: (value: string) => void
+    selectValue?: string
+    searchValue?: string
 }
 
 export default function FilterInputs({ onSearchChange, onStatusChange, selectValue, searchValue }: Props) {
-    const { t } = useLocaleResources("purchaseHistory");
+    const { t } = useLocaleResources("purchaseHistory")
     const { isFetching, data } = useQuery({
         queryKey: ["orders-statues"],
         queryFn: () => ordersStatuesServices(),
         select(data) {
             return data.data.data
         },
-    });
+    })
 
     return (
         <Flex alignItems="center" justifyContent="space-between" gap={{ base: 4, md: 0 }}>

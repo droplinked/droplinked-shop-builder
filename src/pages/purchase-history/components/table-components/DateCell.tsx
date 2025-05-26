@@ -1,11 +1,11 @@
 import { Text } from '@chakra-ui/react'
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import { formatDateToLongStyle, formattedTime } from 'utils/helpers';
+import { formatDateToLongStyle, formattedTime } from 'utils/helpers'
 
 interface DateCellProps {
-    date: Date | string | null;
+    date: Date | string | null
 }
 
 /**
@@ -15,7 +15,7 @@ export default function DateCell({ date }: DateCellProps) {
     const { t } = useLocaleResources("purchaseHistory")
 
     if (!date) {
-        return <Text fontSize={14} color="#7B7B7B">{t("not_available")}</Text>;
+        return <Text fontSize={14} color="#7B7B7B">{t("not_available")}</Text>
     }
 
     return (
