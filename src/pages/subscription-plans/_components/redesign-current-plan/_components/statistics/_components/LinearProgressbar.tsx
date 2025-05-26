@@ -19,7 +19,7 @@ function LinearProgressBar({ value, maxValue, title }: IProps) {
         return value > 50 ? "#FE8540" : "#2BCFA1";
     };
     return (
-        <VStack sx={{ '& div[role="progressbar"]': { bgGradient: getPathColor(), backgroundColor: getPathColor } }} backgroundColor={"neutral.gray.1000"} width={"100%"} justifyContent={"center"} border={"1px solid"} borderColor="neutral.gray.800" borderRadius={"8px"} padding={"16px"} alignItems={"center"}>
+        <VStack sx={{ '& div[role="progressbar"]': { bgGradient: getPathColor(), backgroundColor: getPathColor } }} backgroundColor={"neutral.gray.1000"} width={"100%"} justifyContent={"center"} padding={"16px"} alignItems={"center"}>
             <HStack width={"100%"} justifyContent={"space-between"} alignItems={"center"}>
                 <AppTypography color={"neutral.white"} fontWeight={500} fontSize={"16px"}>{title}</AppTypography>
                 <HStack>

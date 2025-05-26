@@ -1,61 +1,78 @@
-import { Box, ModalBody } from '@chakra-ui/react';
+import { Flex, TabPanel, TabPanels, Tabs, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
+import Drawer from 'components/common/Drawer/Drawer';
 import AppButton from 'components/redesign/button/AppButton';
-import AppModal from 'components/redesign/modal/AppModal';
-import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
-import React, { useState } from 'react';
-import Charts from './_components/Charts';
-import UsageExceededAlert from './_components/UsageExceededAlert';
+import { TabsList } from 'pages/purchase-history/components/drawer-components/TabList';
+import React from 'react';
+import CurrentPlanBanner from './_components/CurrentPlanBanner';
+import DetailsTab from './_components/DetailsTab';
+import StatisticTab from './_components/StatisticTab';
+
 interface IProps {
-    data: {
-        data: ShopSubscriptionData
-    };
+    data: ShopSubscriptionData
 }
+
 function StatisticModal({ data }: IProps) {
-    const [isOpen, setIsOpen] = useState<boolean>(false)
-    const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const currentPlan = data.subscriptionId.type
+    const status = data.status
+    const drawerPlacement = useBreakpointValue({ base: "bottom", md: "right" }) as "bottom" | "right"
+
+    const tabs = [
+        {
+            title: "Statistics",
+            content: <StatisticTab data={data} />
+        },
+        {
+            title: "Details",
+            content: <DetailsTab handleCloseModal={onClose} data={data} />
+        }
+    ]
+
     return (
         <>
             <AppButton
-              variant="outlined"
-              color="neutral.white"
-              borderColor="neutral.white"
-              onClick={() => setIsOpen(true)}
-              leftIcon={<AppIcons.Statistics />}
+                variant="outlined"
+                color="neutral.white"
+                borderColor="gray.800"
+                onClick={onOpen}
+                leftIcon={<AppIcons.Statistics />}
             >
-              View Statistics
+                Manage Subscription
             </AppButton>
-            <AppModal
-                modalRootProps={{
-                    isOpen,
-                    onClose: () => setIsOpen(false),
-                    size: "2xl",
-                    isCentered: true,
-                }}
-                modalContentProps={{
-                    width: { base: "90%", md: "600px" },
-                    height: { base: "85vh", md: "95vh" },
-                    backgroundColor: "#131313"
-                }}>
-                <ModalHeaderData
-                    modalHeaderProps={{
-                        bgColor: "#131313"
-                    }}
-                    title='Statistics'
-                    description={`Track your usage and insights here. Some features will reset in 257 days.`}
-                />
-                <ModalBody backgroundColor={"#131313"}>
-                    {UsageExceededItem &&
-                        <Box width={"100%"} pb={"2rem"} borderBottom="1px solid" borderColor="neutral.gray.800">
-                            <UsageExceededAlert title={UsageExceededItem.key} />
-                        </Box>
+
+            <Tabs variant="unstyled" width="100%">
+                <Drawer
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    title="Subscription Management"
+                    placement={drawerPlacement}
+                    description='Track your usage, view plan details, and update your subscription preferences.'
+                    headerContent={
+                        <Flex width="100%" flexDirection="column" gap={6}>
+                            <CurrentPlanBanner currentPlan={currentPlan} status={status} />
+                            <TabsList tabs={tabs} />
+                        </Flex>
                     }
-                    <Box width={"100%"} pt={"2rem"}>
-                        <Charts data={data} />
-                    </Box>
-                </ModalBody>
-            </AppModal>
+                    drawerHeaderStyle={{
+                        padding: { base: "16px 16px 0px 16px", md: "36px 36px 0px 36px" },
+                        background: "#141414"
+                    }}
+                >
+                    <TabPanels height="full" background="#1c1c1c">
+                        {tabs.map((tab, index) => (
+                            <TabPanel
+                                key={index}
+                                background="#1c1c1c"
+                                p={{ base: 4, md: 9 }}
+                            >
+                                {tab.content}
+                            </TabPanel>
+                        ))}
+                    </TabPanels>
+                </Drawer>
+            </Tabs>
         </>
     );
 }

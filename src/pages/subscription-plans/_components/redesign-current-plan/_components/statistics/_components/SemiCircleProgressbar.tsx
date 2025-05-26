@@ -22,7 +22,7 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
     };
 
     return (
-        <VStack backgroundColor={"neutral.gray.1000"} gap={"4rem"} width={"196px"} justifyContent={"center"} border={"1px solid "}  borderColor="neutral.gray.800" borderRadius={"8px"} padding={"16px"} alignItems={"center"}>
+        <VStack backgroundColor={"neutral.gray.1000"} gap={6} justifyContent={"center"} padding={"16px"} alignItems={"center"}>
             <AppTypography color={"neutral.white"} fontWeight={500} fontSize={"16px"} width={"148px"}>{title}</AppTypography>
             <Box width={"148px"} borderRadius="8px" height={"70px"} overflow="hidden">
                 <svg style={{ height: 0 }}>

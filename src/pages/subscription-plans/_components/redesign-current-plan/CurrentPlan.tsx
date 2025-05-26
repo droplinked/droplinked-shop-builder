@@ -1,41 +1,35 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import AppButton from 'components/redesign/button/AppButton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
-import { getSubscriptionPlanIcon } from 'utils/helpers';
 import * as React from 'react';
+import { getSubscriptionPlanIcon } from 'utils/helpers';
 import PlanBadge from './_components/PlanBadge';
 import PlanDescription from './_components/PlanDescription';
 import StatisticModal from './_components/statistics/StatisticModal';
-interface ICurrentSubData {
-    icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-    title: string
-}
+
 function NewCurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
+    const subscriptionData = data?.data;
+    const planType = subscriptionData?.subscriptionId?.type;
+    const currentPlanInformation = getSubscriptionPlanIcon(planType);
+
     if (isFetching) {
         return <AppSkeleton borderRadius={"8px"} isLoaded={!isFetching} width={"100%"} height={"6rem"} />
     }
-    const { type } = data.data.subscriptionId;
-    const currentSubData: ICurrentSubData = getSubscriptionPlanIcon(type);
+
     return (
-        <VStack backgroundColor={"neutral.gray.1000"} borderRadius={"8px"} padding={"36px"} justifyItems={"start"} alignItems={"start"}>
+        <VStack
+            backgroundColor={"neutral.gray.1000"}
+            borderRadius={"8px"}
+            padding={"36px"}
+            justifyItems={"start"}
+            alignItems={"start"}
+        >
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
-                <PlanBadge currentSubData={currentSubData} data={data} />
-                <HStack gap={"1rem"} flexWrap={"wrap"}>
-                {type !== 'STARTER' && (
-                    <AppButton
-                        variant='normal'
-                        color="neutral.white"
-                        onClick={() => window.open('mailto:support@droplinked.com')}
-                    >
-                    Cancel Subscription
-                    </AppButton>
-                )}
-                    <StatisticModal data={data} />
-                </HStack>
+                <PlanBadge currentSubData={currentPlanInformation} data={subscriptionData} />
+                <StatisticModal data={subscriptionData} />
             </HStack>
-            <PlanDescription data={data} currentSubData={currentSubData} />
+            <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
         </VStack>
     );
 }
