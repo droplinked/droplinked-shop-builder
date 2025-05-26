@@ -9,8 +9,6 @@ import { ChangelogEntryLoading } from './components/ChangelogEntryLoading'
 import { ChangelogError } from './components/ChangelogError'
 import { ChangelogGrid } from './components/ChangelogGrid'
 import useChangelogEntries from './hooks/useChangelogEntries'
-import arLocale from './translations/ar.json'
-import enLocale from './translations/en.json'
 
 function Changelog() {
     const { t } = useLocaleResources('changelogPage', {
