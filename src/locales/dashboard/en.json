@@ -1,0 +1,102 @@
+{
+  "toast": {
+    "errorFetchingData": "Error fetching data"
+  },
+  "greeting": {
+    "goodMorning": "Good Morning",
+    "goodAfternoon": "Good Afternoon",
+    "goodNight": "Good Night",
+    "welcomeMessage": "Whether launching a first product or creating a storefront experience for customers, we've got all the tools you need."
+  },
+  "noOrdersPlaceholder": {
+    "cards": {
+      "importingProducts": {
+        "title": "Importing Products",
+        "description": "Create product listings within the interface or import existing inventory.",
+        "buttons": {
+          "firstProduct": "First Product",
+          "helpCenter": "Help Center"
+        }
+      },
+      "sellingOnDroplinked": {
+        "title": "Selling on droplinked",
+        "description": "Follow the step-by-step guide to launch products and reach leads and customers quickly.",
+        "buttons": {
+          "learnMore": "Learn More"
+        }
+      },
+      "customizableThemes": {
+        "title": "Customizable Themes",
+        "description": "Customize a commerce experience based on an optimal experience and design for visitors.",
+        "buttons": {
+          "getStarted": "Get Started"
+        }
+      }
+    }
+  },
+  "revenueStats": {
+    "totalRevenue": "Total Revenue",
+    "netProfit": "Net Profit",
+    "orders": "Orders",
+    "customers": "Customers"
+  },
+  "quickActions": {
+    "createProduct": "Create Product",
+    "createCollection": "Create Collection",
+    "createInvoice": "Create Invoice",
+    "createDiscount": "Create Discount"
+  },
+  "orderSummaryCard": {
+    "title": "Order Summary"
+  },
+  "affiliateProgramCard": {
+    "title": "Affiliate"
+  },
+  "affiliateProgramEmptyState": {
+    "title": "Grow with droplinked!",
+    "description": "Invite customers and activate partners to accelerate sales",
+    "actionText": "Affiliate Market"
+  },
+  "orderSummaryEmptyState": {
+    "title": "No Orders Yet",
+    "description": "Learn how to promote and grow across the network",
+    "actionText": "Learn More"
+  },
+  "resourceLinks": {
+    "blog": "Blog",
+    "helpCenter": "Help Center"
+  },
+  "dashboardPageLinks": {
+    "blogs": [
+      "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
+      "How to sell your NFTs through gating your product",
+      "How to Earn from Secondary Sales by putting your product on the chain",
+      "How to Monetize your Physical Inventory with Personalized Storefront"
+    ],
+    "helpCenterLinks": [
+      {
+        "title": "Getting Set up to Start Selling",
+        "summary": "Set up a storefront"
+      },
+      {
+        "title": "Managing products",
+        "summary": "How to customize product pages"
+      },
+      {
+        "title": "Managing collections",
+        "summary": "How to work with Collections associated with storefronts"
+      },
+      {
+        "title": "Decentralized affiliate network",
+        "summary": "How to use the decentralized affiliate system to co-sell with communities"
+      }
+    ]
+  },
+  "orderItem": {
+    "orderLabel": "order #"
+  },
+  "joinCommunityCard": {
+    "title": "Join the Community!",
+    "description": "Follow us across our channels to get the latest news and exclusive offers."
+  }
+}

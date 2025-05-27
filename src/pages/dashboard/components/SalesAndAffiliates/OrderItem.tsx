@@ -1,8 +1,9 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import { DashboardOrder } from "services/dashboard/interfaces"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
+import { DashboardOrder } from "services/dashboard/interfaces"
 import { formatDateToLongStyle } from "utils/helpers"
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 function OrderItem({ order, onNavigate }: Props) {
+    const { t } = useLocaleResources("dashboardPage")
+
     return (
         <Flex
             alignItems="center"
@@ -19,7 +22,9 @@ function OrderItem({ order, onNavigate }: Props) {
         >
             <Flex flex={1} flexDirection="column" gap={1}>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
-                    <Text color="text.white" fontSize={{ base: 14, xl: 16 }}>order #{order._id}</Text>
+                    <Text color="text.white" fontSize={{ base: 14, xl: 16 }}>
+                        {t('orderItem.orderLabel')}{order._id}
+                    </Text>
                     <FormattedPrice
                         price={order.totalPriceCart}
                         abbreviationProps={{ color: "text.subtext.placeholder.dark" }}

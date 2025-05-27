@@ -1,15 +1,21 @@
 import { Flex } from "@chakra-ui/react"
 import useAppToast from "hooks/toast/useToast"
-import { getDashboardPageData } from "services/dashboard/dashboardServices"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import arLocale from "locales/dashboard/ar.json"
+import enLocale from "locales/dashboard/en.json"
 import React, { useEffect } from "react"
 import { useQuery } from "react-query"
+import { getDashboardPageData } from "services/dashboard/dashboardServices"
 import DashboardContent from "./components/DashboardContent"
 import GreetingBanner from "./components/GreetingBanner"
 import NoOrdersPlaceholder from "./components/NoOrdersPlaceholder"
 import useDashboardPageStore from "./stores/useDashboardStore"
 
-
 function Dashboard() {
+    const { t } = useLocaleResources("dashboardPage", {
+        en: enLocale,
+        ar: arLocale
+    })
     const updateDashboardPageState = useDashboardPageStore(state => state.updateDashboardPageState)
     const { showToast } = useAppToast()
 

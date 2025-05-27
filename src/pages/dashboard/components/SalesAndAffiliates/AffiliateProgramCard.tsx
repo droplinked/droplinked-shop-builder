@@ -1,3 +1,4 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionContainer from '../SectionContainer'
@@ -9,10 +10,11 @@ interface Props {
 
 function AffiliateProgramCard({ isLoading }: Props) {
     const navigate = useNavigate()
+    const { t } = useLocaleResources("dashboardPage")
 
     return (
         <SectionContainer
-            title='Affiliate'
+            title={t('affiliateProgramCard.title')}
             onNavigate={() => navigate("/analytics/affiliate/products")}
         >
             <AffiliateProgramEmptyState />

@@ -1,22 +1,23 @@
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import { DashboardOrder } from 'services/dashboard/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DashboardOrder } from 'services/dashboard/interfaces'
 import SectionContainer from '../SectionContainer'
 import OrderSummaryEmptyState from './EmptyState/OrderSummaryEmptyState'
 import OrderItem from './OrderItem'
 
 interface Props {
-    isLoading: boolean,
     recentOrders: DashboardOrder[]
 }
 
-function OrderSummaryCard({ isLoading, recentOrders }: Props) {
+function OrderSummaryCard({ recentOrders }: Props) {
     const navigate = useNavigate()
+    const { t } = useLocaleResources("dashboardPage")
 
     return (
         <SectionContainer
-            title="Order Summary"
+            title={t('orderSummaryCard.title')}
             onNavigate={() => navigate("/analytics/purchase-history")}
         >
             {!recentOrders?.length

@@ -1,6 +1,7 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 import { SocialMediaItem } from "utils/constants/socialMediaLinks"
 
@@ -9,6 +10,7 @@ interface Props {
 }
 
 function SocialMediaLink({ linkData }: Props) {
+  const { isRTL } = useLocaleResources("dashboardPage")
   const { icon, label, hoverEffect, url } = linkData
 
   return (
@@ -38,7 +40,8 @@ function SocialMediaLink({ linkData }: Props) {
         className="bg-icon"
         position="absolute"
         top="-20px"
-        right="-20px"
+        left={isRTL ? "-20px" : "unset"}
+        right={isRTL ? "unset" : "-20px"}
         opacity={0.2}
         sx={{
           "svg": {

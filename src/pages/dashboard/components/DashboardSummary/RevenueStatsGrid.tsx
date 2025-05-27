@@ -4,6 +4,7 @@ import { InvoiceLg } from 'assets/icons/Finance/Invoice/InvoiceLg'
 import { UserLg } from 'assets/icons/System/User/UserLg'
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useDashboardPageStore from 'pages/dashboard/stores/useDashboardStore'
 import React from 'react'
 import DashboardSummaryGrid from './DashboardSummaryGrid'
@@ -11,12 +12,13 @@ import RevenueStatDetails from './RevenueStatDetails'
 
 function RevenueStatsGrid() {
     const { isLoading, dashboardData: { shopStats } } = useDashboardPageStore()
+    const { t } = useLocaleResources("dashboardPage")
 
     const stats = [
-        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: 'Total Revenue', value: shopStats?.totalRevenue, isPrice: true },
-        { icon: <CoinsLg color='white' />, label: 'Net Profit', value: shopStats?.profit, isPrice: true },
-        { icon: <InvoiceLg color='white' />, label: 'Orders', value: shopStats?.orders, isPrice: false },
-        { icon: <UserLg color='white' />, label: 'Customers', value: shopStats?.customers, isPrice: false }
+        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: t('revenueStats.totalRevenue'), value: shopStats?.totalRevenue, isPrice: true },
+        { icon: <CoinsLg color='white' />, label: t('revenueStats.netProfit'), value: shopStats?.profit, isPrice: true },
+        { icon: <InvoiceLg color='white' />, label: t('revenueStats.orders'), value: shopStats?.orders, isPrice: false },
+        { icon: <UserLg color='white' />, label: t('revenueStats.customers'), value: shopStats?.customers, isPrice: false }
     ]
 
     return (

@@ -4,7 +4,7 @@ import commonEn from 'locales/common/en.json'
 import { useTranslation } from 'react-i18next'
 
 type Namespace = '404Page' | 'homePage' | 'shop' | 'common' | 'shopManagement' |
-    'onchainRecords' | 'changelogPage' | 'purchaseHistory' | 'creditsAndActivity' | 'analyticsPage'
+    'onchainRecords' | 'changelogPage' | 'purchaseHistory' | 'creditsAndActivity' | 'analyticsPage' | 'dashboardPage'
 
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function
