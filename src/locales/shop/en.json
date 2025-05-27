@@ -13,6 +13,86 @@
     "success": "Shop created successfully!",
     "error": "Failed to create shop. Please try again."
   },
+  "shopManagement": {
+    "header": {
+      "title": "Manage Your Shops",
+      "description": "Here you can manage all your shops in one place. Easily create, edit, and switch between shops",
+      "createButton": "+ Create Store"
+    },
+    "shopList": {
+      "empty": {
+        "title": "No Shops Yet",
+        "description": "You haven't created any shops yet. Start by creating your first shop!",
+        "createCTA": "Create Your First Shop"
+      },
+      "loading": {
+        "text": "Loading your shops...",
+        "description": "Please wait while we fetch your shop information"
+      },
+      "error": {
+        "text": "Oops! It looks like we can not access shops at the moment. Give it another try soon?",
+        "retryButton": "Try Again"
+      }
+    },
+    "shopCard": {
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "pending": "Pending Review"
+      },
+      "metrics": {
+        "products": "Products",
+        "sales": "Sales",
+        "revenue": "Revenue",
+        "visitors": "Visitors",
+        "orders": "Orders"
+      },
+      "actions": {
+        "view": "View Shop",
+        "edit": "Edit Shop",
+        "delete": "Delete Shop",
+        "settings": "Settings",
+        "analytics": "Analytics"
+      }
+    },
+    "filters": {
+      "all": "All Shops",
+      "active": "Active",
+      "inactive": "Inactive",
+      "pending": "Pending",
+      "search": "Search shops..."
+    },
+    "sort": {
+      "newest": "Newest First",
+      "oldest": "Oldest First",
+      "nameAZ": "Name A-Z",
+      "nameZA": "Name Z-A",
+      "mostRevenue": "Most Revenue",
+      "mostSales": "Most Sales"
+    },
+    "confirmations": {
+      "delete": {
+        "title": "Delete Shop",
+        "message": "Are you sure you want to delete this shop? This action cannot be undone.",
+        "confirm": "Yes, Delete",
+        "cancel": "Cancel"
+      },
+      "deactivate": {
+        "title": "Deactivate Shop",
+        "message": "Are you sure you want to deactivate this shop? It will no longer be visible to customers.",
+        "confirm": "Yes, Deactivate",
+        "cancel": "Cancel"
+      }
+    },
+    "notifications": {
+      "deleteSuccess": "Shop successfully deleted",
+      "deleteError": "Failed to delete shop",
+      "updateSuccess": "Shop successfully updated",
+      "updateError": "Failed to update shop",
+      "statusChangeSuccess": "Shop status successfully changed",
+      "statusChangeError": "Failed to change shop status"
+    }
+  },
   "shopList": {
     "title": "Your Shops",
     "empty": "You don't have any shops yet",
@@ -27,5 +107,31 @@
     "viewDetails": "View Details",
     "edit": "Edit",
     "delete": "Delete"
+  },
+  "shopManagmentPage": {
+    "title": "Manage Your Shops",
+    "description": "Here you can manage all your shops in one place. Easily create, edit, and switch between shops"
+  },
+  "actions": {
+    "createShop": "Create Shop",
+    "editShop": "Edit Shop",
+    "deleteShop": "Delete Shop",
+    "switchShop": "Switch Shop"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending"
+  },
+  "metrics": {
+    "totalShops": "Total Shops",
+    "activeShops": "Active Shops",
+    "totalRevenue": "Total Revenue"
+  },
+  "messages": {
+    "deleteConfirm": "Are you sure you want to delete this shop?",
+    "switchConfirm": "Are you sure you want to switch to this shop?",
+    "success": "Operation completed successfully",
+    "error": "An error occurred. Please try again"
   }
 } 

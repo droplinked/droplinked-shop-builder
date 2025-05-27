@@ -1,0 +1,44 @@
+{
+  "currentPlan": {
+    "title": "الخطة الحالية",
+    "status": "نشط",
+    "nextBilling": "الفاتورة القادمة",
+    "upgrade": "ترقية الخطة",
+    "cancel": "إلغاء الخطة"
+  },
+  "plans": {
+    "title": "الخطط المتاحة",
+    "monthly": "شهري",
+    "yearly": "سنوي",
+    "savePercent": "وفر {{percent}}%",
+    "features": {
+      "products": "المنتجات",
+      "storage": "التخزين",
+      "bandwidth": "النطاق الترددي",
+      "support": "الدعم",
+      "customDomain": "نطاق مخصص",
+      "analytics": "التحليلات"
+    },
+    "cta": {
+      "select": "اختر الخطة",
+      "current": "الخطة الحالية",
+      "upgrade": "ترقية",
+      "contact": "اتصل بالمبيعات"
+    }
+  },
+  "plansTable": {
+    "title": "مقارنة الخطط",
+    "features": "الميزات",
+    "basic": "أساسي",
+    "pro": "احترافي",
+    "enterprise": "مؤسسات",
+    "included": "مشمول",
+    "notIncluded": "غير مشمول"
+  },
+  "messages": {
+    "upgradeSuccess": "تمت ترقية الخطة بنجاح",
+    "upgradeError": "فشل في ترقية الخطة",
+    "cancelSuccess": "تم إلغاء الخطة بنجاح",
+    "cancelError": "فشل في إلغاء الخطة"
+  }
+} 

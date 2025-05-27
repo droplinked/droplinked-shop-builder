@@ -1,0 +1,44 @@
+{
+  "currentPlan": {
+    "title": "Current Plan",
+    "status": "Active",
+    "nextBilling": "Next Billing",
+    "upgrade": "Upgrade Plan",
+    "cancel": "Cancel Plan"
+  },
+  "plans": {
+    "title": "Available Plans",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "savePercent": "Save {{percent}}%",
+    "features": {
+      "products": "Products",
+      "storage": "Storage",
+      "bandwidth": "Bandwidth",
+      "support": "Support",
+      "customDomain": "Custom Domain",
+      "analytics": "Analytics"
+    },
+    "cta": {
+      "select": "Select Plan",
+      "current": "Current Plan",
+      "upgrade": "Upgrade",
+      "contact": "Contact Sales"
+    }
+  },
+  "plansTable": {
+    "title": "Compare Plans",
+    "features": "Features",
+    "basic": "Basic",
+    "pro": "Pro",
+    "enterprise": "Enterprise",
+    "included": "Included",
+    "notIncluded": "Not Included"
+  },
+  "messages": {
+    "upgradeSuccess": "Plan upgraded successfully",
+    "upgradeError": "Failed to upgrade plan",
+    "cancelSuccess": "Plan cancelled successfully",
+    "cancelError": "Failed to cancel plan"
+  }
+} 
