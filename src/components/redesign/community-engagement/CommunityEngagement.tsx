@@ -43,7 +43,7 @@ export default function CommunityEngagement({ columns, includeBlueSky, ...props 
                 <JoinCommunityCard />
                 <RuledGrid columns={columns} nested {...commonGridProps}>
                     {socialMediaLinks.map((socialMediaLink) => (
-                        <SocialMediaLink key={socialMediaLink.label} linkData={socialMediaLink} />
+                        <SocialMediaLink key={socialMediaLink.labelKey} linkData={socialMediaLink} />
                     ))}
                 </RuledGrid>
             </RuledGrid>
@@ -54,7 +54,7 @@ export default function CommunityEngagement({ columns, includeBlueSky, ...props 
         <RuledGrid columns={columns} {...commonGridProps}>
             <JoinCommunityCard />
             {socialMediaLinks.map((socialMediaLink) => (
-                <SocialMediaLink key={socialMediaLink.label} linkData={socialMediaLink} />
+                <SocialMediaLink key={socialMediaLink.labelKey} linkData={socialMediaLink} />
             ))}
         </RuledGrid>
     )

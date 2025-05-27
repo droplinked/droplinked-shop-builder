@@ -10,8 +10,8 @@ interface Props {
 }
 
 function SocialMediaLink({ linkData }: Props) {
-  const { isRTL } = useLocaleResources("dashboardPage")
-  const { icon, label, hoverEffect, url } = linkData
+  const { t, isRTL } = useLocaleResources("dashboardPage")
+  const { icon, labelKey, hoverEffect, url } = linkData
 
   return (
     <Link
@@ -61,7 +61,7 @@ function SocialMediaLink({ linkData }: Props) {
 
       <Flex alignItems="center" gap="6px">
         <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="text.white">
-          {label}
+          {t(labelKey)}
         </Text>
         <Box className="link-arrow" opacity={0}>
           <AppIcons.ExternalArrow />

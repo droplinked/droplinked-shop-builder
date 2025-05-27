@@ -1,5 +1,15 @@
 {
   "submit": "إرسال",
   "cancel": "إلغاء",
-  "error": "حدث خطأ"
+  "error": "حدث خطأ",
+  "socialMedia": {
+    "telegram": "تلغرام",
+    "discord": "ديسكورد",
+    "x": "إكس (تويتر)",
+    "instagram": "إنستقرام",
+    "linkedin": "لينكدإن",
+    "youtube": "يوتيوب",
+    "tiktok": "تيك توك",
+    "bluesky": "بلو سكاي"
+  }
 }
