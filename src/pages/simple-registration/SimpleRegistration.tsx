@@ -1,5 +1,5 @@
 import CreateWallet from "components/modals/create-wallet/CreateWallet";
-import SimpleRegistrationModal from "components/modals/simple-registration-modal/SimpleRegistrationModal";
+import CreateShopModal from "components/modals/create-shop-modal/CreateShopModal";
 import { useProfile } from "hooks/useProfile/useProfile";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ function SimpleRegistration() {
     }, [hasCreatedCircleWallet, hasShopName]);
 
     if (hasShopName && hasCreatedCircleWallet) return <></>
-    if (modal === "URL") return <SimpleRegistrationModal isOpen={true} mode="REGISTER_SHOP_NAME" onSuccess={toggleModal} />;
+    if (modal === "URL") return <CreateShopModal isOpen={true} mode="REGISTER_SHOP_NAME" onSuccess={toggleModal} />;
     if (modal === "WALLET") return <CreateWallet hasCreatedCircleWallet={hasCreatedCircleWallet} />;
     else return <></>;
 }

@@ -3,13 +3,13 @@ import AppIcons from "assets/icon/Appicons"
 import BasicButton from "components/common/BasicButton/BasicButton"
 import AppModal from "components/common/modal/AppModal"
 import AppTypography from "components/common/typography/AppTypography"
+import useShopSwitcher from "hooks/shop/useShopSwitch"
 import useAppToast from "hooks/toast/useToast"
 import useDebounce from "hooks/useDebounce/useDebounce"
 import { useProfile } from "hooks/useProfile/useProfile"
-import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from "services/shop/shopServices"
-import useShopSwitcher from "pages/shop-management/hooks/useShopSwitch"
 import React, { useEffect, useState } from "react"
 import { useMutation } from "react-query"
+import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from "services/shop/shopServices"
 import useAppStore from "stores/app/appStore"
 import { appDevelopment } from "utils/app/variable"
 import styles from "./styles.module.scss"
@@ -30,7 +30,7 @@ type CreateExtraShopProps = CommonProps & {
 
 type Props = RegisterShopNameProps | CreateExtraShopProps
 
-function SimpleRegistrationModal(props: Props) {
+function CreateShopModal(props: Props) {
     const { isOpen, onSuccess, mode } = props
     const { shop } = useProfile()
     const { updateState } = useAppStore()
@@ -128,4 +128,4 @@ function SimpleRegistrationModal(props: Props) {
     )
 }
 
-export default SimpleRegistrationModal
+export default CreateShopModal

@@ -5,7 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'hooks/toast/useToast'
 import { UserShop } from 'services/shop/interfaces'
 import { appDevelopment } from 'utils/app/variable'
-import useShopSwitcher from 'pages/shop-management/hooks/useShopSwitch'
+import useShopSwitcher from 'hooks/shop/useShopSwitch'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 

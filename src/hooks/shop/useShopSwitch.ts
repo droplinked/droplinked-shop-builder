@@ -15,7 +15,7 @@ const useShopSwitcher = (shouldCreateWallet?: boolean) => {
             setTokens(access_token, refresh_token)
             updateState({ key: "shop", params: shop })
             updateState({ key: "user", params: user })
-            !shouldCreateWallet && navigate("/analytics")
+            !shouldCreateWallet && navigate("/analytics/dashboard")
         }
     })
 }

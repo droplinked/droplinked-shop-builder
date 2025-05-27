@@ -1,14 +1,14 @@
 import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
-import { getUserShopsService } from 'services/shop/shopServices'
+import CreateShopModal from 'components/modals/create-shop-modal/CreateShopModal'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import EmptyBox from './_components/empty-box/EmptyBox'
-import Loading from './_components/loading/Loading'
-import ShopRow from './_components/shop-row/ShopRow'
+import { getUserShopsService } from 'services/shop/shopServices'
+import EmptyBox from './components/EmptyBox'
+import Loading from './components/Loading'
+import ShopRow from './components/ShopRow'
 
 function ShopList() {
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ function ShopList() {
                 </TabPanels>
             </Tabs>
             {isOpen && (
-                <SimpleRegistrationModal
+                <CreateShopModal
                     isOpen={isOpen}
                     mode='CREATE_EXTRA_SHOP'
                     close={onClose}
