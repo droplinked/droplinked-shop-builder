@@ -1,14 +1,14 @@
 import { Grid } from "@chakra-ui/react";
-import React, { ReactElement, useEffect } from "react";
-import PaymentProviderCard from "./PaymentProviderCard";
 import AppIcons from "assets/icon/Appicons";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
-import useAppStore from "stores/app/appStore";
 import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
+import { ISettings } from "pages/settings/formConfigs";
+import React, { ReactElement } from "react";
 import { useQuery } from "react-query";
+import useAppStore from "stores/app/appStore";
+import PaymentProviderCard from "./PaymentProviderCard";
 
-interface Provider {
+export interface Provider {
   title: string;
   buttonText: string;
   link?: string;
@@ -70,44 +70,40 @@ const PaymentProviderList: React.FC = () => {
   ];
 
   // Handle toggle for enabling/disabling payment methods
-  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
-    const isActive = e.target.checked;
+  const handleToggle = (isActive: boolean, type: string) => {
     const upperType = type.toUpperCase();
 
-    if (isActive) {
-      let updatedMethods = [...values.paymentMethods];
-
-      // If activating Stripe or Paymob, deactivate the other one
-      if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
-        updatedMethods = updatedMethods.map(item => ({
-          ...item,
-          isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB') ?
-            item.type === upperType : item.isActive
-        }));
-      }
-
-      // Add or update the current provider
-      const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
-      if (existingIndex === -1) {
-        updatedMethods.push({ type: upperType, isActive: true });
-      } else {
-        updatedMethods[existingIndex].isActive = true;
-      }
-
-      setFieldValue("paymentMethods", updatedMethods);
-    } else {
+    if (!isActive) {
       // Simply deactivate the current provider
       const updatedMethods = values.paymentMethods.map(item =>
-        item.type === upperType ? { ...item, isActive: false } : item
+        item.type === upperType
+          ? { ...item, isActive: false }
+          : item
       );
 
       setFieldValue("paymentMethods", updatedMethods);
+      return;
     }
+
+    let updatedMethods = [...values.paymentMethods];
+
+    // If activating Stripe or Paymob, deactivate the other one
+    if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
+      updatedMethods = updatedMethods.map(item => ({
+        ...item,
+        isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB')
+          ? item.type === upperType
+          : item.isActive
+      }));
+    }
+
+    // Add or update the current provider
+    const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
+    if (existingIndex === -1) updatedMethods.push({ type: upperType, isActive: true });
+    else updatedMethods[existingIndex].isActive = true;
+
+    setFieldValue("paymentMethods", updatedMethods);
   };
-
-  useEffect(() => {
-
-  }, [])
 
   return (
     <Grid
@@ -119,7 +115,7 @@ const PaymentProviderList: React.FC = () => {
         <PaymentProviderCard
           key={provider.type}
           item={provider}
-          onToggle={(e) => handleToggle(e, provider.type)}
+          onToggle={(e) => handleToggle(e.target.checked, provider.type)}
         />
       ))}
     </Grid>
