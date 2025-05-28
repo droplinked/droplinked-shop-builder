@@ -14,6 +14,9 @@ import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
@@ -21,6 +24,10 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const [clientSecret, setClientSecret] = useState<string>("")
     const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
@@ -61,7 +68,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 recurring: true,
             })
         } catch (error) {
-            console.error("Failed to create payment intent:", error)
+            console.error(t('subscriptionPlans.paymentError'), error)
         }
     }
 
@@ -73,7 +80,10 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
 
     return (
         <>
-            <OnboardingStepHeader heading="Plans" description="Choose from the different package options below." />
+            <OnboardingStepHeader 
+                heading={t('subscriptionPlans.title')} 
+                description={t('subscriptionPlans.subtitle')} 
+            />
             <BlueButton
                 fontSize="16px"
                 mt="-46px"
@@ -81,7 +91,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 padding={0}
                 onClick={() => window.open("/plans", "_blank")}
             >
-                View all plans and compare <ExternalarrowMd color="#179EF8" />
+                {t('subscriptionPlans.viewAllPlans')} <ExternalarrowMd color="#179EF8" />
             </BlueButton>
 
             <PlanDurationRadioContainer />
@@ -94,7 +104,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                         <SubscriptionPlanCard
                             key={plan._id}
                             plan={plan}
-                            features={getFeaturesWithInheritance(planType)}
+                            features={getFeaturesWithInheritance(planType, t)}
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
@@ -104,7 +114,11 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 })}
             </Grid>
 
-            <ControlButtons onBack={onBack} onSubmit={handleNext} continueText={getContinueText(selectedPlan)} />
+            <ControlButtons 
+                onBack={onBack} 
+                onSubmit={handleNext} 
+                continueText={getContinueText(selectedPlan, t)} 
+            />
 
             <PaymentModal
                 plan={selectedPlan}

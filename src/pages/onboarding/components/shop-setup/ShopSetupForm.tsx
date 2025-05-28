@@ -17,12 +17,19 @@ import DescriptionField from './DescriptionField'
 import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
-function ShopSetupForm({ onNext }: OnboardingStepProps) {
+export const ShopSetupForm = ({ onNext }: OnboardingStepProps) => {
     const { reset, updateState, user, shop } = useAppStore()
     const { storeSetup, setError, resetOnboarding } = useOnboardingStore()
     const { showToast } = useAppToast()
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const { mutateAsync: setupShopMutation, isLoading } = useMutation({
         mutationFn: () => setupShop(storeSetup),
@@ -34,13 +41,13 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
         onError: (error: any) => {
             showToast({
                 type: "error",
-                message: error.response.data.data.message || "Something went wrong",
+                message: error.response.data.data.message || t('common.errors.generic'),
             })
         }
     })
 
     const handleSubmit = async () => {
-        if (validateStoreData(storeSetup, setError)) await setupShopMutation()
+        if (validateStoreData(storeSetup, setError, t)) await setupShopMutation()
     }
 
     const handleBack = () => {
@@ -51,7 +58,10 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
     return (
         <>
             <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
-                <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
+                <OnboardingStepHeader 
+                    heading={t('common.shop.details')} 
+                    description={t('shopSetup.subtitle')} 
+                />
                 {isSmallerThan1024 && <AiAssistantButton />}
             </Flex>
             <LogoUploader />
@@ -59,7 +69,12 @@ function ShopSetupForm({ onNext }: OnboardingStepProps) {
             <UrlChooser />
             <NameField />
             <DescriptionField />
-            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} backText='Exit' />
+            <ControlButtons 
+                onBack={handleBack} 
+                onSubmit={handleSubmit} 
+                isLoading={isLoading} 
+                backText={t('common.buttons.exit')} 
+            />
             {!isSmallerThan1024 && <AiAssistant />}
             {isSmallerThan1024 && <ShopPreview />}
         </>

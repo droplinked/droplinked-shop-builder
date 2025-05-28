@@ -7,6 +7,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import LogosSkeleton from './LogosSkeleton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -16,6 +17,7 @@ interface Props extends GenerateWithAiData {
 export default function GeneratedLogo({ businessCategory, businessDescribe }: Props) {
     const { showToast } = useAppToast()
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const { isFetching, data: logos, refetch } = useQuery({
         queryFn: () => generateLogos({ category: businessCategory, prompt: businessDescribe }),
@@ -40,12 +42,13 @@ export default function GeneratedLogo({ businessCategory, businessDescribe }: Pr
     }
 
     return (
-        <GeneratedContentWrapper title='Logo' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper title={t('aiAssistant.generationModal.logos.title')} onRetry={refetch} isLoading={isFetching}>
             <Flex alignItems="center" gap={4}>
                 {isFetching && <LogosSkeleton />}
                 {!isFetching && logos?.map((logo, index) => {
                     return (
                         <Box
+                            key={index}
                             {...(selectedLogo === logo) && { border: "1px solid #2BCFA1" }}
                             borderRadius="full"
                             p={1}
@@ -53,7 +56,6 @@ export default function GeneratedLogo({ businessCategory, businessDescribe }: Pr
                         >
                             <Avatar
                                 src={logo}
-                                key={index}
                                 onClick={() => handleClick(logo)}
                                 width={{ base: "56px", md: "76px" }}
                                 height={{ base: "56px", md: "76px" }}

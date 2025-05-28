@@ -14,71 +14,88 @@ import { AudioMd } from "assets/icons/System/Audio/AudioMd";
 import { RobotMd } from "assets/icons/System/Robot/RobotMd";
 import { TechnologyMd } from "assets/icons/System/Technology/TechnologyMd";
 import { SVGProps } from "react";
+import { TFunction } from "i18next";
 
 export interface AiCategory {
-    title?: string
+    key: string
     icon?: React.FC<SVGProps<SVGSVGElement>>
+    title?: string
 }
 
-export const categories: AiCategory[] = [
+export const getCategories = (t: TFunction): AiCategory[] => [
     {
-        title: "Fashion",
+        key: "fashion",
         icon: DresswomanclothMd,
+        title: t('categories.fashion')
     },
     {
-        title: "Technology",
+        key: "technology",
         icon: TechnologyMd,
+        title: t('categories.technology')
     },
     {
-        title: "Beauty",
+        key: "beauty",
         icon: SoapMd,
+        title: t('categories.beauty')
     },
     {
-        title: "Home",
+        key: "home",
         icon: SofafurnitureMd,
+        title: t('categories.home')
     },
     {
-        title: "Health",
+        key: "health",
         icon: HealthMd,
+        title: t('categories.health')
     },
     {
-        title: "Food",
+        key: "food",
         icon: FoodMd,
+        title: t('categories.food')
     },
     {
-        title: "Art",
+        key: "art",
         icon: BrushMd,
+        title: t('categories.art')
     },
     {
-        title: "Automotive",
+        key: "automotive",
         icon: CarMd,
+        title: t('categories.automotive')
     },
     {
-        title: "Toys",
+        key: "toys",
         icon: RobotMd,
+        title: t('categories.toys')
     },
     {
-        title: "Books",
+        key: "books",
         icon: BookMd,
+        title: t('categories.books')
     },
     {
-        title: "Enterntainment",
+        key: "entertainment",
         icon: AudioMd,
+        title: t('categories.entertainment')
     },
     {
-        title: "Pet Supplies",
+        key: "petSupplies",
         icon: PetsuppliesMd,
+        title: t('categories.petSupplies')
     },
     {
-        title: "Sports",
+        key: "sports",
         icon: SportMd,
+        title: t('categories.sports')
     },
     {
-        title: "Kids",
+        key: "kids",
         icon: KidclothMd,
+        title: t('categories.kids')
     },
     {
-        title: "Luxury",
+        key: "luxury",
         icon: WatchMd,
+        title: t('categories.luxury')
     },
 ]

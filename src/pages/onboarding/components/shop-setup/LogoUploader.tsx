@@ -6,11 +6,13 @@ import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useRef } from 'react'
 import FieldWrapper from './FieldWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function LogoUploader() {
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
     const { storeSetup, updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const isDefaultLogo = storeSetup.logo === initialStoreSetup.logo
 
@@ -36,7 +38,7 @@ export default function LogoUploader() {
     }
 
     return (
-        <FieldWrapper title='Logo'>
+        <FieldWrapper title={t('common.shop.logo')}>
             <Flex gap={6} align="center">
                 <AppSkeleton isLoaded={!isLoading} borderRadius="100%">
                     <Avatar
@@ -55,7 +57,7 @@ export default function LogoUploader() {
                         onClick={handleLogoChange}
                         isLoading={isLoading}
                     >
-                        {storeSetup.logo ? "Change" : "Upload"}
+                        {storeSetup.logo ? t('shopSetup.logoUploader.change') : t('shopSetup.logoUploader.upload')}
                     </BlueButton>
                     {storeSetup.logo && !isLoading &&
                         <BlueButton
@@ -65,7 +67,7 @@ export default function LogoUploader() {
                             onClick={handleRemove}
                             isDisabled={!fileInputRef?.current?.value && isDefaultLogo}
                         >
-                            Remove
+                            {t('shopSetup.logoUploader.remove')}
                         </BlueButton>
                     }
                     <Input

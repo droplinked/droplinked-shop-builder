@@ -6,6 +6,7 @@ import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
 import { planDurations } from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import { PlanType } from 'pages/onboarding/types/onboarding'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -18,6 +19,7 @@ interface SubscriptionPlanCardProps {
 
 function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const { t } = useLocaleResources('onboarding')
 
   const handleSelect = () => {
     if (onSelect) {
@@ -52,7 +54,7 @@ function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect,
               <Flex key={feature} gap={2} mb={4} alignItems="center">
                 <AvailableoutlinedSm color="white" />
                 <Text textColor="neutral.white" flex={1} fontSize="sm">
-                  {feature}
+                  {t(feature)}
                 </Text>
               </Flex>
             ))}

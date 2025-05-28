@@ -6,6 +6,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { useState } from 'react'
 import PlanList from '../components/PlanList'
 import PlansModalFooter from './PlansModalFooter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -16,6 +17,7 @@ interface Props {
 
 export default function PlansModal({ isOpen, onClose, onNextStep }: Props) {
     const [selectedPlan, setSelectedPlan] = useState("")
+    const { t } = useLocaleResources('onboarding')
 
     return (
         <AppModal
@@ -30,8 +32,8 @@ export default function PlansModal({ isOpen, onClose, onNextStep }: Props) {
                                 <MagicwandLg color='#fff' />
                             </ModalHeaderIconWrapper>
                         }
-                        title="Use droplinked AI to create your shop"
-                        description="Feel free to use our AI tools to customize your shop. Subscribe below to get started."
+                        title={t('common.ai.title')}
+                        description={t('aiAssistant.plansModal.description')}
                         descriptionProps={{ color: "#B1B1B1 !important" }}
                         modalHeaderProps={{
                             paddingBlock: "48px !important",

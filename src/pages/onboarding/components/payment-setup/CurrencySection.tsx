@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import useAppStore from 'stores/app/appStore'
 import { shopUpdateService, shopInfoService } from 'services/shop/shopServices'
@@ -12,6 +13,7 @@ interface CurrencySectionProps {
 function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
   const { shop, updateState } = useAppStore()
   const { showToast } = useAppToast()
+  const { t } = useLocaleResources('onboarding')
   const [isLoading, setIsLoading] = React.useState(false)
 
   const handleCurrencyChange = async (currency: string) => {
@@ -38,7 +40,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
       })
     } catch (error) {
       showToast({
-        message: 'Failed to update currency',
+        message: t('paymentSetup.currency.updateError'),
         type: 'error'
       })
     } finally {
@@ -49,7 +51,7 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
   return (
     <Flex direction="column" gap={4}>
-      <Text color={'text.white'}>Default Currency</Text>
+      <Text color={'text.white'}>{t('paymentSetup.currency.title')}</Text>
       <CurrencySelect value={shop?.currency.abbreviation || 'USD'} onChange={(e) => handleCurrencyChange(e.target.value)} isDisabled={isLoading} />
     </Flex>
   )

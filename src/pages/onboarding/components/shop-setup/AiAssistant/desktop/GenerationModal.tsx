@@ -3,6 +3,7 @@ import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
 import GeneratedContents from '../components/GeneratedContents'
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function GenerationModal({ isOpen, onClose, generateWithAiData, setGenerateWithAiData }: Props) {
+    const { t } = useLocaleResources('onboarding')
+
     const handleChange = (key: string, value: string | boolean) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })
     }
@@ -33,8 +36,8 @@ export default function GenerationModal({ isOpen, onClose, generateWithAiData, s
                                 <MagicwandLg color='#fff' />
                             </ModalHeaderIconWrapper>
                         }
-                        title="Use droplinked AI to create your shop"
-                        description="Use the AI tools to streamline the creation of store assets."
+                        title={t('common.ai.title')}
+                        description={t('common.ai.description')}
                         descriptionProps={{ color: "#B1B1B1 !important" }}
                         modalHeaderProps={{
                             paddingBlock: "48px !important",

@@ -18,6 +18,9 @@ import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from './PasswordValidationRules'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -25,11 +28,15 @@ const formSchema = Yup.object().shape({
     referralCode: Yup.string()
 })
 
-function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
+function SignUpForm({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "onNext">) {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
@@ -47,11 +54,11 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
-            showToast({ message: "Account successfully created", type: "success" })
+            showToast({ message: t('signUp.successMessage'), type: "success" })
             onNext()
         }
         catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || "Signup failed"
+            const errorMessage = error?.response?.data?.data?.message || t('signUp.errorMessage')
             showToast({ message: errorMessage, type: "error" })
         }
     }
@@ -59,8 +66,8 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Complete the details below or use your Google account.'
+                heading={t('common.welcomeTitle')}
+                description={t('signUp.subtitle')}
             />
 
             <Formik
@@ -75,12 +82,12 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                     return (
                         <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                             <AppInput
-                                label="Email Address"
+                                label={t('common.emailLabel')}
                                 inputProps={{
                                     name: "email",
                                     value: values.email,
                                     onChange: handleChange,
-                                    placeholder: "Enter email address",
+                                    placeholder: t('common.emailPlaceholder'),
                                     isRequired: true
                                 }}
                                 message={errors.email?.toString()}
@@ -98,12 +105,12 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                             </VStack>
 
                             <AppInput
-                                label="Referral Code"
+                                label={t('signUp.referralLabel')}
                                 inputProps={{
                                     name: "referralCode",
                                     value: values.referralCode,
                                     onChange: handleChange,
-                                    placeholder: "Enter referral code"
+                                    placeholder: t('signUp.referralPlaceholder')
                                 }}
                             />
 
@@ -114,8 +121,8 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    By signing up, I agree to your
-                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                    {t('signUp.termsPrefix')}
+                                    <InteractiveText to="/terms">{t('signUp.termsLink')}</InteractiveText>
                                 </Text>
                             </Checkbox>
 
@@ -124,10 +131,10 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
-                                Sign Up
+                                {t('signUp.submitButton')}
                             </AppButton>
 
-                            <DividerText text="or sign up with" />
+                            <DividerText text={t('common.orContinueWith')} />
 
                             <GoogleAuthButton
                                 isSignUp={true}
@@ -145,9 +152,9 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 marginTop={3}
                             >
                                 <Text fontSize={14} color="text.white">
-                                    Already have an account?
+                                    {t('signUp.haveAccountText')}
                                 </Text>
-                                <InteractiveText onClick={onBack}>Sign in</InteractiveText>
+                                <InteractiveText onClick={onBack}>{t('signUp.signInLink')}</InteractiveText>
                             </Flex>
                         </Form>
                     )

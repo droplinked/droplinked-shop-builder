@@ -11,6 +11,7 @@ import { appDevelopment } from 'utils/app/variable'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import SelectableItem from './SelectableItem'
 import SelectableItemsSkeleton from './SelectableItemsSkeleton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -20,6 +21,7 @@ interface Props extends GenerateWithAiData {
 export default function GeneratedUrls({ businessCategory, businessDescribe }: Props) {
     const { showToast } = useAppToast()
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const { isFetching, data: urls, refetch } = useQuery({
         queryFn: () => generateDomains({ category: businessCategory, prompt: businessDescribe }),
@@ -44,7 +46,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
     }
 
     return (
-        <GeneratedContentWrapper title='URL' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper title={t('aiAssistant.generationModal.urls.title')} onRetry={refetch} isLoading={isFetching}>
             <Flex flexDirection="column" gap={4} userSelect="none">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
                     <AppInput
@@ -53,7 +55,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                             paddingBlock: 3,
                             fontSize: { base: 14, md: 16 },
                             value: selectedUrl,
-                            placeholder: "Select your URL",
+                            placeholder: t('shopSetup.urlPlaceholder'),
                             isReadOnly: true,
                         }}
                         inputContainerProps={{
@@ -76,7 +78,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                         <SelectableItem
                             key={index}
                             isSelected={selectedUrl === url}
-                            item={{ title: url }}
+                            item={{ title: url, key: url }}
                             onClick={() => handleClick(url)}
                         />
                     ))}

@@ -7,8 +7,10 @@ import BusinessModal from './BusinessModal'
 import GenerationModal from './GenerationModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function AiAssistant() {
+    const { t } = useLocaleResources('onboarding')
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
     const [step, setStep] = useState(2)
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
@@ -57,14 +59,14 @@ export default function AiAssistant() {
                     fontWeight={700}
                     marginBottom="2px"
                 >
-                    Generate with AI
+                    {t('aiAssistant.mainButton.title')}
                 </Text>
                 <Text
                     color="#fff"
                     fontSize={14}
                     fontWeight={400}
                 >
-                    Customize your shop with droplinked AI
+                    {t('aiAssistant.mainButton.subtitle')}
                 </Text>
             </Box>
             <AppButton
@@ -74,7 +76,7 @@ export default function AiAssistant() {
                 _hover={{ background: "rgba(43, 207, 161, 0.20)" }}
                 onClick={onOpen}
             >
-                Try AI Assistant
+                {t('aiAssistant.mainButton.tryButton')}
             </AppButton>
 
             {step === 0 &&

@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React, { useState } from 'react'
@@ -11,6 +12,7 @@ import PlansDrawer from './PlansDrawer'
 export default function AiAssistantButton() {
     const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
     const [step, setStep] = useState(2)
+    const { t } = useLocaleResources('onboarding')
     const [generateWithAiData, setGenerateWithAiData] = useState<GenerateWithAiData>({
         businessDescribe: "",
         businessCategory: "",
@@ -34,7 +36,7 @@ export default function AiAssistantButton() {
                 leftIcon={<MagicwandLg />}
                 onClick={onOpen}
             >
-                Generate with AI
+                {t('aiAssistant.mainButton.title')}
             </AppButton>
 
             {step === 0 &&

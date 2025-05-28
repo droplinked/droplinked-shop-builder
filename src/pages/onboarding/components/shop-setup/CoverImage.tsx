@@ -4,10 +4,12 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import FieldWrapper from './FieldWrapper'
 import FileUpload from './FileUpload'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()
     const { storeSetup, updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const handleFileChange = async (file: File) => {
         if (file) {
@@ -22,7 +24,7 @@ export default function CoverImage() {
 
     return (
         <Box>
-            <FieldWrapper title='Cover Image'>
+            <FieldWrapper title={t('common.shop.coverImage')}>
                 <FileUpload
                     onFileChange={handleFileChange}
                     isLoading={isLoading}

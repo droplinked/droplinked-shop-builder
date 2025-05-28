@@ -6,6 +6,9 @@ import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import { SubscriptionPlan } from 'services/subscription/interfaces'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 interface PlanHeaderProps {
   plan: SubscriptionPlan
@@ -15,6 +18,10 @@ interface PlanHeaderProps {
 
 function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
   const planDetail = subscriptionPlans[plan.type]
+  const { t } = useLocaleResources('onboarding', {
+    en: enLocale,
+    ar: arLocale
+})
 
   return (
     <Box p={4}>
@@ -24,7 +31,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           bg={isSelected ? 'label.primary' : '#1b1b1b'}
           borderColor={isSelected ? '#2BCFA1' : 'neutral.gray.800'}
         />
-        {isSelected ? <AppLabel variant="muted" size={'36'} status={'success'} text="Selected" /> : null}
+        {isSelected ? <AppLabel variant="muted" size={'36'} status={'success'} text={t('subscriptionPlans.selected')} /> : null}
       </Flex>
       <Flex direction="column" gap={2}>
         <Flex direction="column" gap={1}>
@@ -32,18 +39,18 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           {isPopular ? (
             <DotSeparatedList>
               <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-                {planDetail.title}
+                {t(planDetail.title)}
               </Text>
-              <Text color="text.primary">Most Popular</Text>
+              <Text color="text.primary">{t('subscriptionPlans.mostPopular')}</Text>
             </DotSeparatedList>
           ) : (
             <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-              {planDetail.title}
+              {t(planDetail.title)}
             </Text>
           )}
 
           <Text color="text.subtext.placeholder.light" fontSize="sm">
-            {planDetail.description}
+            {t(planDetail.description)}
           </Text>
         </Flex>
         <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} />

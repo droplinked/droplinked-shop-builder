@@ -2,6 +2,7 @@ import { Box, Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
 import Drawer from 'components/common/Drawer/Drawer'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import PlanList from '../components/PlanList'
 import ExpandableInfo from '../components/ExpandableInfo'
@@ -18,8 +19,10 @@ interface Props {
 export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
     const [selectedPlan, setSelectedPlan] = useState("")
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const title = "Use droplinked AI to create your shop"
-    const description = "Feel free to use our AI tools to customize your shop. Subscribe below to get started."
+    const { t } = useLocaleResources('onboarding')
+    
+    const title = t('common.ai.title')
+    const description = t('aiAssistant.plansModal.description')
 
     return (
         <Drawer
@@ -34,8 +37,8 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
             }}
             placement='bottom'
             showSubmitButtons
-            discardButtonText='Close'
-            saveButtonText='Claim Trial Now'
+            discardButtonText={t('common.buttons.close')}
+            saveButtonText={t('aiAssistant.plansModal.buttons.claimTrial')}
             drawerFooterProps={{
                 padding: { base: 4, md: "24px 48px" },
                 background: "#1C1C1C",
@@ -78,8 +81,8 @@ export default function PlansDrawer({ isOpen, onClose, onNextStep }: Props) {
                 />
                 <ExpandableInfo
                     icon={<MagicwandLg color='#fff' />}
-                    title="Pro Plan"
-                    description="For small businesses and teams ready to grow."
+                    title={t('subscriptionPlans.proPlan.title')}
+                    description={t('subscriptionPlans.proPlan.description')}
                 >
                     <PlanFeatures features={proPlanFeatures} />
                 </ExpandableInfo>

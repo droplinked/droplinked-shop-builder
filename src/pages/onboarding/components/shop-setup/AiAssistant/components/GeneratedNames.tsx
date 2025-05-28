@@ -8,6 +8,7 @@ import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import SelectableItem from './SelectableItem'
 import SelectableItemsSkeleton from './SelectableItemsSkeleton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props extends GenerateWithAiData {
     businessCategory: string
@@ -17,6 +18,7 @@ interface Props extends GenerateWithAiData {
 export default function GeneratedNames({ businessCategory, businessDescribe }: Props) {
     const { updateOnboardingState, storeSetup } = useOnboardingStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('onboarding')
 
     const { isFetching, data: names, refetch } = useQuery({
         queryFn: () => generateShopNames({ category: businessCategory, prompt: businessDescribe }),
@@ -42,7 +44,7 @@ export default function GeneratedNames({ businessCategory, businessDescribe }: P
     }
 
     return (
-        <GeneratedContentWrapper title='Name' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper title={t('aiAssistant.generationModal.names.title')} onRetry={refetch} isLoading={isFetching}>
             <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
                 {isFetching && <SelectableItemsSkeleton />}
 
@@ -50,7 +52,7 @@ export default function GeneratedNames({ businessCategory, businessDescribe }: P
                     <SelectableItem
                         key={index}
                         isSelected={selectedName === name}
-                        item={{ title: name }}
+                        item={{ title: name, key: name }}
                         onClick={() => handleClick(name)}
                     />
                 ))}

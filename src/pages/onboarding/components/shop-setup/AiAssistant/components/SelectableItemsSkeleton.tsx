@@ -1,8 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 export default function SelectableItemsSkeleton() {
+    const { t } = useLocaleResources('onboarding')
+    
     return (
         Array(3).fill(0).map((_, index) =>
             <AppSkeleton isLoaded={false} borderRadius={8} key={index}>
@@ -19,7 +22,7 @@ export default function SelectableItemsSkeleton() {
                         fontWeight={400}
                         transition="color 0.3s ease"
                     >
-                        Loading
+                        {t('common.loading')}
                     </Text>
                 </Flex>
             </AppSkeleton>

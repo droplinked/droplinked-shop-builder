@@ -6,6 +6,9 @@ import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import OtpField from './OtpField'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 function EmailConfirmation({ onBack }: OnboardingStepProps) {
     const {
@@ -19,11 +22,16 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
         loginLoading
     } = useEmailVerification()
 
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
+
     return (
         <>
             <OnboardingStepHeader
-                heading='Confirm Email'
-                description='Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.'
+                heading={t('emailConfirmation.title')}
+                description={t('emailConfirmation.subtitle')}
             />
 
             <Flex direction="column">
@@ -39,7 +47,7 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     onClick={() => verifyEmail()}
                     isLoading={verifyLoading || loginLoading}
                 >
-                    Verify
+                    {t('emailConfirmation.verifyButton')}
                 </AppButton>
 
                 <Box
@@ -47,15 +55,15 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     sx={{ "p": { color: "#FFF", fontSize: 14 } }}
                 >
                     <Text display="flex" gap={1}>
-                        Didn’t receive the code? {" "}
+                        {t('emailConfirmation.noCodeText')}{" "}
                         <InteractiveText onClick={resendCode}>
-                            {resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
+                            {resendLoading ? <Spinner color='#fff' size="xs" /> : t('emailConfirmation.resendButton')}
                         </InteractiveText>
                     </Text>
 
                     <Text display={'flex'} gap={1} marginTop={2}>
-                        Want to change your email address? {" "}
-                        <InteractiveText onClick={onBack}>Go back</InteractiveText>
+                        {t('emailConfirmation.changeEmailText')}{" "}
+                        <InteractiveText onClick={onBack}>{t('emailConfirmation.goBackButton')}</InteractiveText>
                     </Text>
                 </Box>
             </Flex>

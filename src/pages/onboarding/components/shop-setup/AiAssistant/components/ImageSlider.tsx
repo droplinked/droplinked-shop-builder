@@ -8,6 +8,7 @@ import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import AppImage from 'components/common/image/AppImage'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import ImageSkeleton from './ImageSkeleton'
 
@@ -19,6 +20,7 @@ interface ImageSliderProps {
 
 export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) => {
     const [currentIndex, setCurrentIndex] = useState(0)
+    const { t } = useLocaleResources('onboarding')
 
     const handleNext = () => {
         const nextIndex = (currentIndex + 1) % images.length
@@ -68,7 +70,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
                     padding={0}
                     isDisabled={isLoading}
                 >
-                    Previous
+                    {t('common.buttons.previous')}
                 </BlueButton>
 
                 <HStack spacing={2}>
@@ -95,7 +97,7 @@ export const ImageSlider = ({ images, onChange, isLoading }: ImageSliderProps) =
                     padding={0}
                     isDisabled={isLoading}
                 >
-                    Next
+                    {t('common.buttons.next')}
                 </BlueButton>
             </Flex>
         </Flex>

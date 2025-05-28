@@ -14,6 +14,9 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -27,6 +30,10 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {
@@ -43,8 +50,8 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Sign in with your credentials below.'
+                heading={t('common.welcomeTitle')}
+                description={t('signIn.subtitle')}
             />
 
             <Formik
@@ -59,21 +66,23 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                         <AppInput
-                            label="Email Address"
+                            label={t('common.emailLabel')}
                             inputProps={{
                                 name: "email",
                                 value: values.email,
                                 onChange: handleChange,
-                                placeholder: "Enter email address",
+                                placeholder: t('common.emailPlaceholder'),
                             }}
-                            message={errors.email?.toString()}
+                            message={errors.email ? t('common.emailError') : undefined}
                         />
 
                         <PasswordInput
                             name="password"
                             value={values.password}
                             onChange={handleChange}
-                            message={errors.password?.toString()}
+                            label={t('common.passwordLabe')}
+                            placeholder={t('common.passwordPlaceholder')}
+                            message={errors.password ? t('common.passwordError') : undefined}
                         />
 
                         <Checkbox
@@ -81,14 +90,14 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             isChecked={rememberPassword}
                             onChange={(e) => setRememberPassword(e.target.checked)}
                         >
-                            Remember my password
+                            {t('signIn.rememberPassword')}
                         </Checkbox>
 
                         <AppButton size='lg' type="submit" isLoading={isSubmitting}>
-                            Sign In
+                            {t('signIn.signInButton')}
                         </AppButton>
 
-                        <DividerText text="or continue with" />
+                        <DividerText text={t('common.orContinueWith')} />
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
@@ -100,9 +109,9 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             marginTop={3}
                         >
                             <Text fontSize={14} color="text.white">
-                                Don’t have an account?
+                                {t('signIn.noAccountText')}
                             </Text>
-                            <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
+                            <InteractiveText onClick={onNext}>{t('signIn.createAccountText')}</InteractiveText>
                         </Flex>
                     </Form>
                 )}

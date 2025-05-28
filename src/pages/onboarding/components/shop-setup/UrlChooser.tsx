@@ -7,11 +7,18 @@ import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvail
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 export default function UrlChooser() {
     const { updateOnboardingState, storeSetup, storeSetupErrors, setError } = useOnboardingStore()
     const [urlTempValue, setUrlTempValue] = useState(storeSetup.shop_url ?? '')
     const debouncedUrl = useDebounce(urlTempValue, 1500)
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const { data: isAvailable, isFetching } = useUsernameAvailability({
         username: debouncedUrl,
@@ -21,12 +28,12 @@ export default function UrlChooser() {
                 setError('shop_url', undefined)
             } else {
                 updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
-                setError('shop_url', 'This URL is not available')
+                setError('shop_url', t('common.errors.urlNotAvailable'))
             }
         },
         onError: () => {
             updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
-            setError('shop_url', 'Error checking URL availability')
+            setError('shop_url', t('common.errors.urlCheckError'))
         }
     })
 
@@ -34,7 +41,7 @@ export default function UrlChooser() {
         const value = e.target.value
         if (!value) {
             updateOnboardingState('storeSetup', { ...storeSetup, shop_url: '' })
-            setError('shop_url', 'URL is required')
+            setError('shop_url', t('common.validation.urlRequired'))
         }
         if (/^[a-zA-Z0-9-]*$/.test(value)) {
             setUrlTempValue(value.toLowerCase())
@@ -53,13 +60,13 @@ export default function UrlChooser() {
 
     return (
         <AppInput
-            label='Shop URL'
+            label={t('common.shop.url')}
             inputProps={{
                 paddingInline: 4,
                 paddingBlock: 3,
                 fontSize: { base: 14, md: 16 },
                 value: urlTempValue,
-                placeholder: "Type your URL",
+                placeholder: t('shopSetup.urlPlaceholder'),
                 onChange: handleInputChange,
                 isRequired: true
             }}

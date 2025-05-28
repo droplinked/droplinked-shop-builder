@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import PlanCard from './PlanCard'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 const PlanCards = () => {
+  const { t } = useLocaleResources('onboarding')
   const radius = 193 // radius of the circle
   const calculatePosition = (index: number, total: number) => {
     const angle = (index / total) * 2 * Math.PI
@@ -55,8 +57,8 @@ const PlanCards = () => {
         >
           <PlanCard
             icon={<plan.icon color="white" />}
-            title={plan.title}
-            description={plan.description}
+            title={t(plan.title)}
+            description={t(plan.description)}
           />
         </motion.div>
       ))}

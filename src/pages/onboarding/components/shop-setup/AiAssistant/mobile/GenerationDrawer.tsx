@@ -7,6 +7,7 @@ import GeneratedContents from '../components/GeneratedContents'
 import PromptInputs from '../components/PromptInputs'
 import TabsList from './TabsList'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -18,8 +19,10 @@ interface Props {
 
 export default function GenerationDrawer({ isOpen, onClose, onNextStep, generateWithAiData, setGenerateWithAiData }: Props) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const title = "Use droplinked AI to create your shop"
-    const description = "Use the AI tools to streamline the creation of store assets."
+    const { t } = useLocaleResources('onboarding')
+
+    const title = t('common.ai.title')
+    const description = t('common.ai.description')
 
     const handleChange = (key: string, value: string) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })
@@ -35,7 +38,6 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
             content: <GeneratedContents generateWithAiData={generateWithAiData} />
         }
     ]
-
 
     return (
         <Tabs display="none" defaultIndex={1}>

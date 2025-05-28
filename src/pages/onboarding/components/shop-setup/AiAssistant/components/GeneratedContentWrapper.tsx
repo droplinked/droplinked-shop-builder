@@ -2,6 +2,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import { Refresh1Md } from 'assets/icons/Action/Refresh1/Refresh1Md'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     children: React.ReactNode
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export default function GeneratedContentWrapper({ children, onRetry, title, isLoading }: Props) {
+    const { t } = useLocaleResources('onboarding')
+
     return (
         <Flex flexDirection="column" gap={4}>
             <Flex justifyContent="space-between" alignItems="center">
@@ -25,7 +28,7 @@ export default function GeneratedContentWrapper({ children, onRetry, title, isLo
                     cursor={isLoading ? 'not-allowed' : 'pointer'}
                     isDisabled={isLoading}
                 >
-                    Generate Again
+                    {t('common.buttons.regenerate')}
                 </BlueButton>
             </Flex>
             {children}

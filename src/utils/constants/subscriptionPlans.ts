@@ -6,75 +6,75 @@ import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
 export const subscriptionPlans = {
   STARTER: { 
     icon: LeafLg, 
-    title: 'Starter', 
-    description: 'For individuals or companies just getting started.' ,
+    title: 'plans.starter.title', 
+    description: 'plans.starter.description',
     features: {
-      title: "Starter plan includes:",
+      title: "plans.starter.featuresTitle",
       items: [
-          "Analytics",
-          "Store designer",
-          "Shipment tracking",
-          "Product collections",
-          "Custom referral codes",
-          "Affiliate network access",
-          "Basic customer support"
+        "plans.starter.features.analytics",
+        "plans.starter.features.storeDesigner",
+        "plans.starter.features.shipmentTracking",
+        "plans.starter.features.productCollections",
+        "plans.starter.features.referralCodes",
+        "plans.starter.features.affiliateNetwork",
+        "plans.starter.features.basicSupport"
       ]
     },
     type: 'STARTER'
   },
   BUSINESS: { 
     icon: SuitcaseLg, 
-    title: 'Pro', 
-    description: 'For small businesses and teams ready to grow.' ,
+    title: 'plans.pro.title', 
+    description: 'plans.pro.description',
     features: {
-      title: "Includes everything in Starter, plus:",
+      title: "plans.pro.featuresTitle",
       items: [
-          "Token gating",
-          "Mint-to-Merch",
-          "Unlimited tokenization",
-          "Unlimited digital goods",
-          "Unlimited physical products",
-          "Customizable domains",
-          "Customizable favicon",
-          "Customizable shipping",
-          "Digital coupons and giftcards",
-          "Warehouse system integration",
-          "Premium customer support"
+        "plans.pro.features.tokenGating",
+        "plans.pro.features.mintToMerch",
+        "plans.pro.features.unlimitedTokenization",
+        "plans.pro.features.unlimitedDigitalGoods",
+        "plans.pro.features.unlimitedPhysicalProducts",
+        "plans.pro.features.customDomains",
+        "plans.pro.features.customFavicon",
+        "plans.pro.features.customShipping",
+        "plans.pro.features.digitalCoupons",
+        "plans.pro.features.warehouseIntegration",
+        "plans.pro.features.premiumSupport"
       ]
     },
     type: 'BUSINESS'
   },
   BUSINESS_PRO: { 
     icon: Star2Lg, 
-    title: 'Premium', 
-    description: 'For large businesses needing comprehensive solutions at scale.', 
+    title: 'plans.premium.title', 
+    description: 'plans.premium.description',
     features: {
-      title: "Includes everything in Pro, plus:",
-        items: [
-            "API integration",
-            "Royalty tracking",
-            "Advanced analytics",
-            "Embeddable product tiles",
-            "Unlimited Production-on-Demand",
-            "Marketing tools",
-            "Admin management panel",
-            "VIP customer support"
-        ]
+      title: "plans.premium.featuresTitle",
+      items: [
+        "plans.premium.features.apiIntegration",
+        "plans.premium.features.royaltyTracking",
+        "plans.premium.features.advancedAnalytics",
+        "plans.premium.features.embeddableProducts",
+        "plans.premium.features.unlimitedProduction",
+        "plans.premium.features.marketingTools",
+        "plans.premium.features.adminPanel",
+        "plans.premium.features.vipSupport"
+      ]
     },
     type: 'BUSINESS_PRO'
   },
   ENTERPRISE: { 
     icon: BuildingLg, 
-    title: 'Enterprise', 
-    description: 'Contact us to explore integration.' ,
+    title: 'plans.enterprise.title', 
+    description: 'plans.enterprise.description',
     features: {
-      title: "Includes everything in Premium, plus",
+      title: "plans.enterprise.featuresTitle",
       items: [
-          "Tokenpay",
-          "Customizable templates",
-          "Unlimited login methods",
-          "Unlimited payment methods",
-          "DPP (Digital Product Passport)"
+        "plans.enterprise.features.tokenPay",
+        "plans.enterprise.features.customTemplates",
+        "plans.enterprise.features.unlimitedLogin",
+        "plans.enterprise.features.unlimitedPayment",
+        "plans.enterprise.features.digitalPassport"
       ]
     },
     type: 'ENTERPRISE'

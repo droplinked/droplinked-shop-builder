@@ -8,6 +8,7 @@ import React from 'react'
 import BusinessCategory from '../components/BusinessCategory'
 import BusinessModalFooter from './BusinessModalFooter'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -19,6 +20,8 @@ interface Props {
 }
 
 export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep, generateWithAiData, setGenerateWithAiData }: Props) {
+    const { t } = useLocaleResources('onboarding')
+    
     const handleChange = (key: string, value: string) => {
         setGenerateWithAiData({ ...generateWithAiData, [key]: value })
     }
@@ -35,8 +38,8 @@ export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep,
                             <MagicwandLg color='#fff' />
                         </ModalHeaderIconWrapper>
                     }
-                    title="Use droplinked AI to create your shop"
-                    description="Use the AI tools to streamline the creation of store assets."
+                    title={t('common.ai.title')}
+                    description={t('common.ai.description')}
                     descriptionProps={{ color: "#B1B1B1 !important" }}
                     modalHeaderProps={{
                         paddingBlock: "48px !important",
@@ -51,9 +54,9 @@ export default function BusinessModal({ isOpen, onClose, onNextStep, onPrevStep,
                     padding="48px !important"
                 >
                     <Textarea
-                        label='Describe Your Business'
+                        label={t('aiAssistant.businessModal.businessDescribe.label')}
                         isRequired={true}
-                        placeholder='Please describe your shop to help our AI create a more accurate and efficient representation of your business.'
+                        placeholder={t('aiAssistant.businessModal.businessDescribe.placeholder')}
                         value={generateWithAiData.businessDescribe}
                         onChange={(e) => handleChange("businessDescribe", e.target.value)}
                     />

@@ -5,9 +5,16 @@ import ControlButtons from '../common/ControlButtons'
 import CurrencySection from './CurrencySection'
 import FinancialServices from './FinancialServices'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
-function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
+function PaymentSetup({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "onNext">) {
   const [isLoading, setIsLoading] = useState(false)
+  const { t } = useLocaleResources('onboarding', {
+    en: enLocale,
+    ar: arLocale
+  })
 
   const handleCurrencyLoading = (loading: boolean) => {
     setIsLoading(loading)
@@ -15,7 +22,10 @@ function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
 
   return (
     <>
-      <OnboardingStepHeader heading="Basic Payment Details" description="Choose to activate any of the options below." />
+      <OnboardingStepHeader 
+        heading={t('paymentSetup.title')} 
+        description={t('paymentSetup.subtitle')} 
+      />
       <Flex direction="column" minH="calc(100vh - 250px)" gap="36px">
         <FinancialServices />
         <CurrencySection onLoadingChange={handleCurrencyLoading} />

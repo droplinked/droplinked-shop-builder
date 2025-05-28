@@ -4,8 +4,16 @@ import React from 'react'
 import DroplinkedBrand from '../common/DroplinkedBrand'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CompletionSlider from './CompletionSlider'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
+
     return (
         <Flex
             minHeight="100vh"
@@ -17,8 +25,8 @@ function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
             <DroplinkedBrand />
 
             <OnboardingStepHeader
-                heading="You’re All Set!"
-                description="Your account is now live and ready to use."
+                heading={t('completion.title')}
+                description={t('completion.subtitle')}
                 textAlign="center"
             />
 
