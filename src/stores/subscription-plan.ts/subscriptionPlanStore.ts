@@ -6,12 +6,12 @@ type PlanDuration = { month: number, label: string, discount?: number }
 export const planDurations: PlanDuration[] = [
     { month: 1, label: "Monthly" },
     { month: 12, label: "Annually", discount: 10 },
-    { month: 60, label: "5-Year", discount: 25 },
+    { month: 36, label: "3-Year", discount: 25 },
 ]
 
 type State = {
     selectedPlan: SubscriptionPlan | null,
-    selectedPlanPrice: number
+    selectedPlanPrice: number | string
     preferredPlanDuration: PlanDuration
     planCardStyles: {
         descriptionHeight: number,
@@ -27,7 +27,7 @@ type Action = {
 
 const useSubscriptionPlanStore = create<State & Action>((set, get) => ({
     selectedPlan: null,
-    selectedPlanPrice: calculatePlanPrice(null, planDurations[1]),
+    selectedPlanPrice: 0,
     preferredPlanDuration: planDurations[1],
     planCardStyles: {
         descriptionHeight: 48,
@@ -50,13 +50,14 @@ const useSubscriptionPlanStore = create<State & Action>((set, get) => ({
 
 export default useSubscriptionPlanStore
 
-function calculatePlanPrice(plan: SubscriptionPlan | null, preferredPlanDuration: PlanDuration): number {
+function calculatePlanPrice(plan: SubscriptionPlan | null, preferredPlanDuration: PlanDuration): number | string {
     if (!plan) return 0
     const { price } = plan
     
-    if (typeof price[0] === 'string') {
-        return 0
+    if (typeof price === 'string') {
+        return price === 'FREE' ? 0 : price
     }
+
     const targetPriceObj = (price as IPrice[]).find((priceOption) => priceOption.month === preferredPlanDuration.month)
     if (!targetPriceObj) return 0
     
