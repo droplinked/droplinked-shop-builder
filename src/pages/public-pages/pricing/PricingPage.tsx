@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
-import PlansTable from 'pages/subscription-plans/_components/plans-table/PlansTable'
-import Plans from 'pages/subscription-plans/_components/plans/Plans'
+import PlansTable from 'pages/subscription-plans/components/comparison-table'
+import Plans from 'pages/subscription-plans/components/plan-cards/Plans'
 import React from 'react'
 
 function PricingPage() {
