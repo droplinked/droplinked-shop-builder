@@ -5,20 +5,9 @@ import AppTypography from 'components/common/typography/AppTypography'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import React from 'react'
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import { ModalStep } from '../types/interfaces'
-import { create } from 'zustand'
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
-
-interface SubscriptionPlanPurchaseState {
-    selectedPlan: SubscriptionPlan | null
-    selectedPlanPrice: number | string
-}
-
-const useSubscriptionPlanPurchaseStore = create<SubscriptionPlanPurchaseState>((set) => ({
-    selectedPlan: null,
-    selectedPlanPrice: 0
-}))
 
 interface Props {
     setPlanPurchaseModalStep: (step: ModalStep) => void;
