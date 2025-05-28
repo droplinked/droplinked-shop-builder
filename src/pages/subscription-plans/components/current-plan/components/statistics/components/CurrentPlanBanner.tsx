@@ -4,7 +4,6 @@ import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import React from "react";
 import { subscriptionPlans } from "utils/constants/subscriptionPlans";
 import { getSubscriptionPlanIcon } from "utils/helpers";
-import { ICurrentSubData } from "../../../CurrentPlan";
 
 interface Props {
     currentPlan: string;
@@ -12,7 +11,7 @@ interface Props {
 }
 
 export default function CurrentPlanBanner({ currentPlan, status }: Props) {
-    const currentSubData: ICurrentSubData = getSubscriptionPlanIcon(currentPlan);
+    const currentSubData = getSubscriptionPlanIcon(currentPlan);
     const isActive = status === "ACTIVE";
     const IconComponent = currentSubData.icon;
 

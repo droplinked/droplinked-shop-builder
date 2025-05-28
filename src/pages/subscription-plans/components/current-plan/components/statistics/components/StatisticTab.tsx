@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
 import React from 'react';
-import Charts from '../_components/Charts';
-import UsageExceededAlert from '../_components/UsageExceededAlert';
+import Charts from './Charts';
+import UsageExceededAlert from './UsageExceededAlert';
 
 interface StatisticTabProps {
     data: ShopSubscriptionData
