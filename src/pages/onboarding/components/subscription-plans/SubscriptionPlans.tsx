@@ -15,8 +15,10 @@ import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
+import onboardingEnLocale from 'locales/onboarding/en.json'
+import onboardingArLocale from 'locales/onboarding/ar.json'
+import subscriptionEnLocale from 'locales/subscription/en.json'
+import subscriptionArLocale from 'locales/subscription/ar.json'
 
 function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
@@ -24,9 +26,13 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const [clientSecret, setClientSecret] = useState<string>("")
     const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
+    const { t: tOnboarding } = useLocaleResources('onboarding', {
+        en: onboardingEnLocale,
+        ar: onboardingArLocale
+    })
+    const { t: tSubscription } = useLocaleResources('subscription', {
+        en: subscriptionEnLocale,
+        ar: subscriptionArLocale
     })
 
     const { isFetching, data } = useQuery({
@@ -68,7 +74,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 recurring: true,
             })
         } catch (error) {
-            console.error(t('subscriptionPlans.paymentError'), error)
+            console.error(tOnboarding('subscriptionPlans.paymentError'), error)
         }
     }
 
@@ -81,8 +87,8 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     return (
         <>
             <OnboardingStepHeader 
-                heading={t('subscriptionPlans.title')} 
-                description={t('subscriptionPlans.subtitle')} 
+                heading={tOnboarding('subscriptionPlans.title')} 
+                description={tOnboarding('subscriptionPlans.subtitle')} 
             />
             <BlueButton
                 fontSize="16px"
@@ -91,7 +97,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 padding={0}
                 onClick={() => window.open("/plans", "_blank")}
             >
-                {t('subscriptionPlans.viewAllPlans')} <ExternalarrowMd color="#179EF8" />
+                {tOnboarding('subscriptionPlans.viewAllPlans')} <ExternalarrowMd color="#179EF8" />
             </BlueButton>
 
             <PlanDurationRadioContainer />
@@ -104,7 +110,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                         <SubscriptionPlanCard
                             key={plan._id}
                             plan={plan}
-                            features={getFeaturesWithInheritance(planType, t)}
+                            features={getFeaturesWithInheritance(planType, tSubscription)}
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
@@ -117,7 +123,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
             <ControlButtons 
                 onBack={onBack} 
                 onSubmit={handleNext} 
-                continueText={getContinueText(selectedPlan, t)} 
+                continueText={getContinueText(selectedPlan, tSubscription)} 
             />
 
             <PaymentModal

@@ -121,20 +121,6 @@
       }
     }
   },
-  "subscriptionPlans": {
-    "title": "الخطط",
-    "subtitle": "اختر من بين خيارات الباقات المختلفة أدناه.",
-    "viewAllPlans": "عرض جميع الخطط والمقارنة بينها",
-    "paymentError": "فشل إنشاء طلب الدفع",
-    "proPlan": {
-      "title": "خطة المحترفين",
-      "description": "للشركات الصغيرة والفرق المستعدة للنمو."
-    },
-    "inheritance": "كل ما في خطة {{plan}}",
-    "continueWithPlan": "المتابعة مع خطة {{plan}}",
-    "selected": "مختارة",
-    "mostPopular": "الأكثر شعبية"
-  },
   "completion": {
     "title": "تم كل شيء!",
     "subtitle": "حسابك الآن فعال وجاهز للاستخدام.",
@@ -219,66 +205,5 @@
     "sports": "الرياضة واللياقة البدنية",
     "kids": "الأطفال والرضع",
     "luxury": "الفخامة والإكسسوارات"
-  },
-  "plans": {
-    "starter": {
-      "title": "الأساسي",
-      "description": "للأفراد أو الشركات التي تبدأ للتو",
-      "featuresTitle": "تشمل خطة الأساس:",
-      "features": {
-        "analytics": "التحليلات",
-        "storeDesigner": "مصمم المتجر",
-        "shipmentTracking": "تتبع الشحنات",
-        "productCollections": "مجموعات المنتجات",
-        "referralCodes": "رموز إحالة مخصصة",
-        "affiliateNetwork": "الوصول إلى شبكة التسويق بالعمولة",
-        "basicSupport": "دعم العملاء الأساسي"
-      }
-    },
-    "pro": {
-      "title": "المحترفين",
-      "description": "للشركات الصغيرة والفرق المستعدة للنمو",
-      "featuresTitle": "تشمل كل ما في الأساس، بالإضافة إلى:",
-      "features": {
-        "tokenGating": "تقييد باستخدام الرموز",
-        "mintToMerch": "إنشاء منتجات من الرموز",
-        "unlimitedTokenization": "تشكيل رموز غير محدود",
-        "unlimitedDigitalGoods": "منتجات رقمية غير محدودة",
-        "unlimitedPhysicalProducts": "منتجات مادية غير محدودة",
-        "customDomains": "نطاقات مخصصة",
-        "customFavicon": "أيقونة مخصصة",
-        "customShipping": "شحن مخصص",
-        "digitalCoupons": "كوبونات وبطاقات هدايا رقمية",
-        "warehouseIntegration": "تكامل نظام المستودعات",
-        "premiumSupport": "دعم العملاء المميز"
-      }
-    },
-    "premium": {
-      "title": "المتميز",
-      "description": "للشركات الكبيرة التي تحتاج حلولًا شاملة على نطاق واسع",
-      "featuresTitle": "تشمل كل ما في المحترفين، بالإضافة إلى:",
-      "features": {
-        "apiIntegration": "تكامل API",
-        "royaltyTracking": "تتبع العائدات",
-        "advancedAnalytics": "تحليلات متقدمة",
-        "embeddableProducts": "وحدات منتجات مدمجة",
-        "unlimitedProduction": "إنتاج حسب الطلب غير محدود",
-        "marketingTools": "أدوات التسويق",
-        "adminPanel": "لوحة إدارة",
-        "vipSupport": "دعم العملاء VIP"
-      }
-    },
-    "enterprise": {
-      "title": "الشركات",
-      "description": "تواصل معنا لاستكشاف التكامل",
-      "featuresTitle": "تشمل كل ما في المتميز، بالإضافة إلى:",
-      "features": {
-        "tokenPay": "Tokenpay",
-        "customTemplates": "قوالب مخصصة",
-        "unlimitedLogin": "طرق تسجيل دخول غير محدودة",
-        "unlimitedPayment": "طرق دفع غير محدودة",
-        "digitalPassport": "جواز المنتج الرقمي (DPP)"
-      }
-    }
   }
 }

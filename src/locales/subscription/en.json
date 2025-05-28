@@ -1,16 +1,33 @@
 {
   "currentPlan": {
-    "title": "Current Plan",
+    "title": "Plan",
     "status": "Active",
+    "inactive": "Inactive",
     "nextBilling": "Next Billing",
     "upgrade": "Upgrade Plan",
-    "cancel": "Cancel Plan"
+    "cancel": "Cancel Plan",
+    "activeMessage": "{{plan}} Plan is active! Enjoy exclusive features."
+  },
+  "statistics": {
+    "title": "Subscription Management",
+    "description": "Track your usage, view plan details, and update your subscription preferences.",
+    "manageSubscription": "Manage Subscription",
+    "tabs": {
+      "statistics": "Statistics",
+      "details": "Details"
+    }
   },
   "plans": {
     "title": "Available Plans",
+    "subtitle": "Choose from the different package options below.",
+    "viewAllPlans": "View all plans and compare",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "savePercent": "Save {{percent}}%",
+    "inheritance": "Everything in {{plan}} plan",
+    "continueWithPlan": "Continue with {{plan}} Plan",
+    "selected": "Selected",
+    "mostPopular": "Most Popular",
     "features": {
       "products": "Products",
       "storage": "Storage",
@@ -24,6 +41,65 @@
       "current": "Current Plan",
       "upgrade": "Upgrade",
       "contact": "Contact Sales"
+    },
+    "starter": {
+      "title": "Starter",
+      "description": "Start your journey with essential features",
+      "featuresTitle": "Starter Features",
+      "features": {
+        "analytics": "Basic Analytics",
+        "storeDesigner": "Store Designer",
+        "shipmentTracking": "Shipment Tracking",
+        "productCollections": "Product Collections",
+        "referralCodes": "Referral Codes",
+        "affiliateNetwork": "Affiliate Network",
+        "basicSupport": "Basic Support"
+      }
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "Advanced features for growing businesses",
+      "featuresTitle": "Pro Features",
+      "features": {
+        "tokenGating": "Token Gating",
+        "mintToMerch": "Mint to Merch",
+        "unlimitedTokenization": "Unlimited Tokenization",
+        "unlimitedDigitalGoods": "Unlimited Digital Goods",
+        "unlimitedPhysicalProducts": "Unlimited Physical Products",
+        "customDomains": "Custom Domains",
+        "customFavicon": "Custom Favicon",
+        "customShipping": "Custom Shipping",
+        "digitalCoupons": "Digital Coupons",
+        "warehouseIntegration": "Warehouse Integration",
+        "premiumSupport": "Premium Support"
+      }
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "Premium features for established businesses",
+      "featuresTitle": "Premium Features",
+      "features": {
+        "apiIntegration": "API Integration",
+        "royaltyTracking": "Royalty Tracking",
+        "advancedAnalytics": "Advanced Analytics",
+        "embeddableProducts": "Embeddable Products",
+        "unlimitedProduction": "Unlimited Production",
+        "marketingTools": "Marketing Tools",
+        "adminPanel": "Admin Panel",
+        "vipSupport": "VIP Support"
+      }
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "description": "Custom solutions for large organizations",
+      "featuresTitle": "Enterprise Features",
+      "features": {
+        "tokenPay": "Token Pay",
+        "customTemplates": "Custom Templates",
+        "unlimitedLogin": "Unlimited Login",
+        "unlimitedPayment": "Unlimited Payment",
+        "digitalPassport": "Digital Passport"
+      }
     }
   },
   "plansTable": {
@@ -39,6 +115,25 @@
     "upgradeSuccess": "Plan upgraded successfully",
     "upgradeError": "Failed to upgrade plan",
     "cancelSuccess": "Plan cancelled successfully",
-    "cancelError": "Failed to cancel plan"
+    "cancelError": "Failed to cancel plan",
+    "paymentSuccess": "You're all set!",
+    "paymentFailed": "Payment failed",
+    "subscriptionActive": "Your {{plan}} Plan subscription is now active.",
+    "paymentError": "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."
+  },
+  "errors": {
+    "subscriptionDataUnavailable": "Subscription data is unavailable",
+    "paymentError": "Failed to create payment intent"
+  },
+  "actions": {
+    "returnToDashboard": "Return to Dashboard",
+    "close": "Close",
+    "contactUs": "Contact Us",
+    "discard": "Discard",
+    "next": "Next"
+  },
+  "confirmPlan": {
+    "title": "Confirm subscription",
+    "description": "Upgrade to the {{plan}} Plan for ${{price}} per year to access advanced features."
   }
 } 

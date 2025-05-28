@@ -27,7 +27,7 @@ export const getFeaturesWithInheritance = (planType: PlanType, t: TFunction): st
   }
 
   try {
-    const translatedText = t('subscriptionPlans.inheritance', { plan: inheritedPlan })
+    const translatedText = t('plans.inheritance', { plan: inheritedPlan })
     return [translatedText, ...baseFeatures]
   } catch (error) {
     console.error('Error in getFeaturesWithInheritance:', error)

@@ -1,23 +1,91 @@
 {
   "currentPlan": {
-    "title": "الخطة الحالية",
+    "title": "خطة",
     "status": "نشط",
+    "inactive": "غير نشط",
     "nextBilling": "الفاتورة القادمة",
     "upgrade": "ترقية الخطة",
-    "cancel": "إلغاء الخطة"
+    "cancel": "إلغاء الخطة",
+    "activeMessage": "خطة {{plan}} نشطة! استمتع بالميزات الحصرية."
+  },
+  "statistics": {
+    "title": "إدارة الاشتراك",
+    "description": "تتبع استخدامك، عرض تفاصيل الخطة، وتحديث تفضيلات اشتراكك.",
+    "manageSubscription": "إدارة الاشتراك",
+    "tabs": {
+      "statistics": "الإحصائيات",
+      "details": "التفاصيل"
+    }
   },
   "plans": {
     "title": "الخطط المتاحة",
+    "subtitle": "اختر من بين خيارات الباقات المختلفة أدناه.",
+    "viewAllPlans": "عرض جميع الخطط والمقارنة بينها",
     "monthly": "شهري",
     "yearly": "سنوي",
     "savePercent": "وفر {{percent}}%",
-    "features": {
-      "products": "المنتجات",
-      "storage": "التخزين",
-      "bandwidth": "النطاق الترددي",
-      "support": "الدعم",
-      "customDomain": "نطاق مخصص",
-      "analytics": "التحليلات"
+    "inheritance": "كل ما في خطة {{plan}}",
+    "continueWithPlan": "المتابعة مع خطة {{plan}}",
+    "selected": "مختارة",
+    "mostPopular": "الأكثر شعبية",
+    "starter": {
+      "title": "المبتدئ",
+      "description": "ابدأ رحلتك مع الميزات الأساسية",
+      "featuresTitle": "ميزات الباقة المبتدئة",
+      "features": {
+        "analytics": "تحليلات أساسية",
+        "storeDesigner": "مصمم المتجر",
+        "shipmentTracking": "تتبع الشحنات",
+        "productCollections": "مجموعات المنتجات",
+        "referralCodes": "رموز الإحالة",
+        "affiliateNetwork": "شبكة التسويق بالعمولة",
+        "basicSupport": "دعم أساسي"
+      }
+    },
+    "pro": {
+      "title": "المحترف",
+      "description": "ميزات متقدمة للأعمال النامية",
+      "featuresTitle": "ميزات الباقة المحترفة",
+      "features": {
+        "tokenGating": "بوابة الرموز",
+        "mintToMerch": "تحويل الرموز إلى منتجات",
+        "unlimitedTokenization": "ترميز غير محدود",
+        "unlimitedDigitalGoods": "سلع رقمية غير محدودة",
+        "unlimitedPhysicalProducts": "منتجات مادية غير محدودة",
+        "customDomains": "نطاقات مخصصة",
+        "customFavicon": "أيقونة مخصصة",
+        "customShipping": "شحن مخصص",
+        "digitalCoupons": "كوبونات رقمية",
+        "warehouseIntegration": "تكامل المستودعات",
+        "premiumSupport": "دعم متميز"
+      }
+    },
+    "premium": {
+      "title": "المتميز",
+      "description": "ميزات متميزة للأعمال المتطورة",
+      "featuresTitle": "ميزات الباقة المتميزة",
+      "features": {
+        "apiIntegration": "تكامل API",
+        "royaltyTracking": "تتبع العائدات",
+        "advancedAnalytics": "تحليلات متقدمة",
+        "embeddableProducts": "منتجات قابلة للتضمين",
+        "unlimitedProduction": "إنتاج غير محدود",
+        "marketingTools": "أدوات تسويقية",
+        "adminPanel": "لوحة الإدارة",
+        "vipSupport": "دعم VIP"
+      }
+    },
+    "enterprise": {
+      "title": "المؤسسات",
+      "description": "حلول مخصصة للمؤسسات الكبيرة",
+      "featuresTitle": "ميزات باقة المؤسسات",
+      "features": {
+        "tokenPay": "الدفع بالرموز",
+        "customTemplates": "قوالب مخصصة",
+        "unlimitedLogin": "تسجيل دخول غير محدود",
+        "unlimitedPayment": "دفع غير محدود",
+        "digitalPassport": "جواز سفر رقمي"
+      }
     },
     "cta": {
       "select": "اختر الخطة",
@@ -39,6 +107,25 @@
     "upgradeSuccess": "تمت ترقية الخطة بنجاح",
     "upgradeError": "فشل في ترقية الخطة",
     "cancelSuccess": "تم إلغاء الخطة بنجاح",
-    "cancelError": "فشل في إلغاء الخطة"
+    "cancelError": "فشل في إلغاء الخطة",
+    "paymentSuccess": "كل شيء جاهز!",
+    "paymentFailed": "فشل الدفع",
+    "subscriptionActive": "اشتراكك في خطة {{plan}} نشط الآن.",
+    "paymentError": "حدثت مشكلة في عملية الدفع. يرجى التحقق من التفاصيل والمحاولة مرة أخرى. إذا استمرت المشكلة، يرجى الاتصال بنا."
+  },
+  "errors": {
+    "subscriptionDataUnavailable": "بيانات الاشتراك غير متوفرة",
+    "paymentError": "فشل إنشاء طلب الدفع"
+  },
+  "actions": {
+    "returnToDashboard": "العودة إلى لوحة التحكم",
+    "close": "إغلاق",
+    "contactUs": "اتصل بنا",
+    "discard": "تجاهل",
+    "next": "التالي"
+  },
+  "confirmPlan": {
+    "title": "تأكيد الاشتراك",
+    "description": "قم بالترقية إلى خطة {{plan}} مقابل {{price}}$ سنويًا للوصول إلى الميزات المتقدمة."
   }
 } 

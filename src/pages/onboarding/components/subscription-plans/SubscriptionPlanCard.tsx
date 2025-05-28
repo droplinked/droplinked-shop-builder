@@ -19,7 +19,7 @@ interface SubscriptionPlanCardProps {
 
 function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-  const { t } = useLocaleResources('onboarding')
+  const { t } = useLocaleResources('subscription')
 
   const handleSelect = () => {
     if (onSelect) {

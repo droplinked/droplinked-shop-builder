@@ -3,9 +3,14 @@ import React from 'react'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import PlanCard from './PlanCard'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import subscriptionEnLocale from 'locales/subscription/en.json'
+import subscriptionArLocale from 'locales/subscription/ar.json'
 
 const PlanCards = () => {
-  const { t } = useLocaleResources('onboarding')
+  const { t } = useLocaleResources('subscription', {
+    en: subscriptionEnLocale,
+    ar: subscriptionArLocale
+  })
   const radius = 193 // radius of the circle
   const calculatePosition = (index: number, total: number) => {
     const angle = (index / total) * 2 * Math.PI
