@@ -1,10 +1,19 @@
 import { Box, Flex } from '@chakra-ui/react'
 import Drop3 from 'assets/brand-identity/Drop3'
-import { producerSidebarLinks } from 'data/producerSidebarLinks'
+import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import TabletSidebarGroup from './TabletSidebarGroup'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import enLocale from 'locales/layout/sidebar/en.json'
+import arLocale from 'locales/layout/sidebar/ar.json'
 
-function TabletSidebar() {
+export const TabletSidebar = () => {
+    const { t } = useLocaleResources('layout/sidebar', {
+        en: enLocale,
+        ar: arLocale
+    })
+    const sidebarLinks = getProducerSidebarLinks(t)
+
     return (
         <>
             <Box paddingTop={7} paddingInline={4}>
@@ -19,7 +28,7 @@ function TabletSidebar() {
                 paddingInline={4}
                 overflowY="auto"
             >
-                {producerSidebarLinks.map((sidebarGroup) => (
+                {sidebarLinks.map((sidebarGroup) => (
                     <TabletSidebarGroup key={sidebarGroup.group} sidebarGroup={sidebarGroup} />
                 ))}
             </Flex>

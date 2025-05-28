@@ -2,9 +2,14 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
-import { producerSidebarLinks } from 'data/producerSidebarLinks'
+import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import levelUpEnLocale from 'locales/layout/levelUp/en.json'
+import levelUpArLocale from 'locales/layout/levelUp/ar.json'
+import sidebarEnLocale from 'locales/layout/sidebar/en.json'
+import sidebarArLocale from 'locales/layout/sidebar/ar.json'
 
 interface SidebarItem  {
     title: string;
@@ -13,7 +18,7 @@ interface SidebarItem  {
     list: Array<{ listTitle: string; linkTo: string }>;
     onClick?: () => void;
     external?: boolean;
-  };
+}
 
 interface SidebarGroup {
     group: string;
@@ -28,6 +33,15 @@ interface BreadcrumbItem {
 export const Breadcrumbs = () => {
     const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
+    const { t: tLevelUp } = useLocaleResources('layout/levelUp', {
+        en: levelUpEnLocale,
+        ar: levelUpArLocale
+    })
+    const { t: tSidebar } = useLocaleResources('layout/sidebar', {
+        en: sidebarEnLocale,
+        ar: sidebarArLocale
+    })
+    const sidebarLinks = getProducerSidebarLinks(tSidebar)
 
     const separator = breakpoint === 'desktop'
         ? <ChevronrightMd color='#b1b1b1' />
@@ -35,9 +49,9 @@ export const Breadcrumbs = () => {
 
     // Function to generate breadcrumbs based on the current path
     const getBreadcrumbs = (path: string): BreadcrumbItem[] => {
-        const breadcrumbs: BreadcrumbItem[] = [{ title: 'Home', linkTo: '/analytics' }]
+        const breadcrumbs: BreadcrumbItem[] = [{ title: tLevelUp('common.home'), linkTo: '/analytics' }]
 
-        producerSidebarLinks.forEach((group: SidebarGroup) => {
+        sidebarLinks.forEach((group: SidebarGroup) => {
             group.items.forEach((item) => {
                 // Check top-level item
                 if (item.linkTo === path) {

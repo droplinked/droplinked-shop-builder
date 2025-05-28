@@ -3,12 +3,20 @@ import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 
 import React, { useEffect, useState } from 'react';
-import { levelUpSections } from 'data/levelUpSections';
+import { getLevelUpSections } from 'data/levelUpSections';
 import LevelUpWidgetModal from './LevelUpWidgetModal';
 import LevelUpWidgetSection from './LevelUpWidgetSection';
 import useLevelUpStore from 'stores/level-up/levelUpStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import enLocale from 'locales/layout/levelUp/en.json';
+import arLocale from 'locales/layout/levelUp/ar.json';
 
 const LevelUpWidget = () => {
+  const { t } = useLocaleResources('layout/levelUp', {
+    en: enLocale,
+    ar: arLocale
+  });
+  const levelUpSections = getLevelUpSections(t);
   const [currentSection, setCurrentSection] = useState(0);
   const [currentSubSection, setCurrentSubSection] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,10 +51,10 @@ const LevelUpWidget = () => {
       {/* Title & Description */}
       <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
         <AppTypography color="#FFF" fontSize="14px" fontWeight="500">
-          Level Up
+          {t('widget.title')}
         </AppTypography>
         <AppTypography color="#FFF" fontSize="12px" fontWeight="400">
-          Take meaningful actions to drive your business forward and unlock new opportunities.
+          {t('widget.description')}
         </AppTypography>
       </Box>
 

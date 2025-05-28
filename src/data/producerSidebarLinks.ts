@@ -10,19 +10,20 @@ import { DashboardMd } from "assets/icons/System/Dashboard/DashboardMd";
 import { GiftMd } from "assets/icons/System/Gift/GiftMd";
 import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
 import React from "react";
+import { TFunction } from "i18next";
 
-export const producerSidebarLinks = [
+export const getProducerSidebarLinks = (t: TFunction) => [
     {
-        group: 'Performance',
+        group: t('groups.performance'),
         items: [
             {
-                title: 'Dashboard',
+                title: t('items.dashboard'),
                 icon: React.createElement(DashboardMd, { color: "#FFF" }),
                 linkTo: '/analytics/dashboard',
                 list: []
             },
             {
-                title: 'Analytics',
+                title: t('items.analytics'),
                 icon: React.createElement(ChartMd, { color: "#FFF" }),
                 linkTo: '/analytics',
                 list: []
@@ -30,86 +31,86 @@ export const producerSidebarLinks = [
         ]
     },
     {
-        group: 'Storefront',
+        group: t('groups.storefront'),
         items: [
             {
-                title: 'Products',
+                title: t('items.products'),
                 icon: React.createElement(BoxMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Inventory Management', linkTo: '/analytics/products' },
-                    { listTitle: 'Product Collections', linkTo: '/analytics/collections' },
-                    { listTitle: 'Onchain Inventory', linkTo: '/analytics/onchain-records' }
+                    { listTitle: t('lists.inventoryManagement'), linkTo: '/analytics/products' },
+                    { listTitle: t('lists.productCollections'), linkTo: '/analytics/collections' },
+                    { listTitle: t('lists.onchainInventory'), linkTo: '/analytics/onchain-records' }
                 ]
             },
             {
-                title: 'Order Management',
+                title: t('items.orderManagement'),
                 icon: React.createElement(BasketMd, { color: "#fff" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Purchase History', linkTo: '/analytics/purchase-history' },
-                    { listTitle: 'Invoices', linkTo: '/analytics/invoice-management' }
+                    { listTitle: t('lists.purchaseHistory'), linkTo: '/analytics/purchase-history' },
+                    { listTitle: t('lists.invoices'), linkTo: '/analytics/invoice-management' }
                 ]
             },
             {
-                title: 'Style Center',
+                title: t('items.styleCenter'),
                 icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Storefront Designer', linkTo: '/style-center/storefront-designer' },
-                    { listTitle: 'Product Tiles', linkTo: '/analytics/settings/tile' },
-                    { listTitle: 'Product Links', linkTo: '/analytics/settings/payment-link-design' },
-                    { listTitle: 'Blog Editor', linkTo: '/analytics/blogs' }
+                    { listTitle: t('lists.storefrontDesigner'), linkTo: '/style-center/storefront-designer' },
+                    { listTitle: t('lists.productTiles'), linkTo: '/analytics/settings/tile' },
+                    { listTitle: t('lists.productLinks'), linkTo: '/analytics/settings/payment-link-design' },
+                    { listTitle: t('lists.blogEditor'), linkTo: '/analytics/blogs' }
                 ]
             }
         ]
     },
     {
-        group: 'More',
+        group: t('groups.more'),
         items: [
             {
-                title: 'Affiliate Network',
+                title: t('items.affiliateNetwork'),
                 icon: React.createElement(AffiliateMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Products', linkTo: '/analytics/affiliate/products' },
+                    { listTitle: t('lists.products'), linkTo: '/analytics/affiliate/products' },
                 ]
             },
             {
-                title: 'Account Settings',
+                title: t('items.accountSettings'),
                 icon: React.createElement(SettinggearMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Settings', linkTo: '/analytics/account-settings' },
-                    { listTitle: 'Credits and Account Activity', linkTo: '/analytics/credits-and-activity' }
+                    { listTitle: t('lists.settings'), linkTo: '/analytics/account-settings' },
+                    { listTitle: t('lists.creditsAndActivity'), linkTo: '/analytics/credits-and-activity' }
                 ]
             },
             {
-                title: 'Rewards Center',
+                title: t('items.rewardsCenter'),
                 icon: React.createElement(GiftMd, { color: "#FFF" }),
                 linkTo: '/analytics/gamification',
                 list: []
             },
             {
-                title: 'Quests',
+                title: t('items.quests'),
                 icon: React.createElement(TargetMd, { color: "#FFF" }),
                 linkTo: '/rewards',
                 list: [],
                 external: true
             },
             {
-                title: 'Customer Support',
+                title: t('items.customerSupport'),
                 icon: React.createElement(ChatMd, { color: "#FFF" }),
                 linkTo: "#",
                 list: [],
                 onClick: () => window.Tawk_API?.toggle()
             },
             {
-                title: 'Help Center',
+                title: t('items.helpCenter'),
                 icon: React.createElement(HelpMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: 'Changelog', linkTo: '/analytics/changelog' }
+                    { listTitle: t('lists.changelog'), linkTo: '/analytics/changelog' }
                 ]
             }
         ]

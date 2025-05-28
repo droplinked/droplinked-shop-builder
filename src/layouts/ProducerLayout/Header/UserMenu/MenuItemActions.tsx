@@ -7,6 +7,9 @@ import { ShopMd } from 'assets/icons/System/Shop/ShopMd'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import useShopUrl from 'hooks/useShopUrl/useShopUrl'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import EnLocale from 'locales/layout/userMenu/en.json'
+import ArLocale from 'locales/layout/userMenu/ar.json'
 import { getShopCredit } from 'services/shop/shopServices'
 import React from 'react'
 import { useQuery } from 'react-query'
@@ -17,6 +20,10 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const { logoutUser } = useProfile()
     const shopUrl = useShopUrl()
     const { getFormattedPrice } = useCurrencyConverter()
+    const { t } = useLocaleResources('layout/userMenu', {
+        en: EnLocale,
+        ar: ArLocale
+    })
 
     const { isFetching, data } = useQuery({
         queryKey: ['shop-credit'],
@@ -29,7 +36,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const actions = [
         {
             icon: <WalletMd color='#FFF' />,
-            label: 'Credit',
+            label: t('labels.credit'),
             color: '#FFF',
             rightContent: isFetching
                 ? <Spinner size='sm' color='text.primary' />
@@ -41,20 +48,20 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
         },
         {
             icon: <GlobeMd color='#FFF' />,
-            label: 'View Store',
+            label: t('actions.viewStore'),
             color: '#FFF',
             onClick: () => window.open(shopUrl, '_blank')
         },
         {
             icon: <ShopMd color='#FFF' />,
-            label: 'Switch',
+            label: t('actions.switch'),
             color: '#FFF',
             rightContent: <ChevronrightMd color='#878787' />,
             onClick: () => navigate('/shop-management')
         },
         {
             icon: <LogoutMd color='#FF2244' />,
-            label: 'Logout',
+            label: t('actions.logout'),
             color: '#FF2244',
             onClick: logoutUser
         }
