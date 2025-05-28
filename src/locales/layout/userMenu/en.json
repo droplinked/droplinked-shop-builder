@@ -1,0 +1,23 @@
+{
+    "actions": {
+      "upgrade": "ترقية",
+      "logout": "تسجيل خروج",
+      "switch": "تبديل",
+      "viewStore": "عرض المتجر"
+    },
+    "labels": {
+      "credit": "رصيد",
+      "version": "الإصدار",
+      "daysLeft": {
+        "one": "بقي يوم واحد",
+        "other": "بقي {{count}} أيام"
+      }
+    },
+    "subscriptionPlans": {
+      "starter": "الأساسي",
+      "pro": "المحترفين",
+      "premium": "المتميز",
+      "enterprise": "الشركات"
+    }
+  }
+  

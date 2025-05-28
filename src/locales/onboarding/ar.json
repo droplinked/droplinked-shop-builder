@@ -1,0 +1,284 @@
+{
+  "common": {
+    "back": "عودة",
+    "continue": "متابعة",
+    "skipForNow": "تخطي الآن",
+    "googleAccount": "حساب جوجل",
+    "welcomeTitle": "مرحبًا بك في دروبلينكد",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل البريد الإلكتروني",
+    "emailError": "يرجى إدخال بريد إلكتروني صالح.",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "passwordError": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+    "passwordRules": {
+      "lowercase": "حرف صغير واحد",
+      "uppercase": "حرف كبير واحد",
+      "length": "8 أحرف أو أكثر",
+      "special": "رمز خاص واحد",
+      "digit": "رقم واحد"
+    },
+    "loading": "جارٍ التحميل",
+    "orContinueWith": "أو المتابعة باستخدام",
+    "buttons": {
+      "back": "عودة",
+      "next": "التالي",
+      "previous": "السابق",
+      "skip": "تخطي",
+      "apply": "تطبيق",
+      "cancel": "إلغاء",
+      "close": "إغلاق",
+      "generate": "إنشاء",
+      "regenerate": "إنشاء مرة أخرى",
+      "discard": "تجاهل",
+      "exit": "خروج",
+      "verify": "تحقق",
+      "resend": "إعادة الإرسال"
+    },
+    "validation": {
+      "required": "حقل {field} مطلوب",
+      "minLength": "يجب أن يكون حقل {field} على الأقل {length} أحرف",
+      "urlRequired": "الرابط مطلوب",
+      "urlFormat": "يمكن للرابط أن يحتوي فقط على حروف وأرقام وواصلات",
+      "nameRequired": "اسم المتجر مطلوب",
+      "nameLength": "يجب أن يكون اسم المتجر 3 أحرف على الأقل"
+    },
+    "errors": {
+      "generic": "حدث خطأ ما",
+      "urlCheckError": "حدث خطأ أثناء التحقق من توفر الرابط",
+      "urlNotAvailable": "هذا الرابط غير متوفر",
+      "paymentError": "فشل إنشاء طلب الدفع"
+    },
+    "shop": {
+      "preview": "معاينة المتجر",
+      "details": "تفاصيل المتجر",
+      "name": "الاسم",
+      "description": "الوصف",
+      "url": "رابط المتجر",
+      "logo": "الشعار",
+      "coverImage": "صورة الغلاف"
+    },
+    "ai": {
+      "title": "استخدم الذكاء الاصطناعي من دروبلينكد لإنشاء متجرك",
+      "description": "استخدم أدوات الذكاء الاصطناعي لتسهيل إنشاء محتوى المتجر"
+    }
+  },
+  "signIn": {
+    "subtitle": "سجّل الدخول باستخدام بيانات الاعتماد أدناه.",
+    "rememberPassword": "تذكر كلمة المرور الخاصة بي",
+    "signInButton": "تسجيل الدخول",
+    "noAccountText": "ليس لديك حساب؟",
+    "createAccountText": "انضم إلينا وأنشئ حسابًا!"
+  },
+  "signUp": {
+    "subtitle": "أكمل التفاصيل أدناه أو استخدم حساب جوجل الخاص بك.",
+    "referralLabel": "رمز الإحالة",
+    "referralPlaceholder": "أدخل رمز الإحالة",
+    "termsPrefix": "بالتسجيل، أوافق على",
+    "termsLink": "الشروط والأحكام.",
+    "submitButton": "إنشاء حساب",
+    "haveAccountText": "هل لديك حساب بالفعل؟",
+    "signInLink": "سجّل الدخول",
+    "successMessage": "تم إنشاء الحساب بنجاح",
+    "errorMessage": "فشل في إنشاء الحساب"
+  },
+  "emailConfirmation": {
+    "title": "تأكيد البريد الإلكتروني",
+    "subtitle": "تحقق من الرمز الذي استلمته في بريدك الإلكتروني أدناه، وتأكد من فحص مجلد الرسائل غير المرغوب فيها إذا لم يظهر في البريد الوارد الرئيسي.",
+    "verifyButton": "تحقق",
+    "noCodeText": "لم تستلم الرمز؟",
+    "resendButton": "إعادة الإرسال",
+    "changeEmailText": "هل ترغب في تغيير بريدك الإلكتروني؟",
+    "goBackButton": "عودة"
+  },
+  "shopSetup": {
+    "subtitle": "أكمل المعلومات أدناه لتحسين واجهة متجرك.",
+    "namePlaceholder": "اختر اسم متجرك",
+    "descriptionPlaceholder": "اكتب وصفًا يتكون من 150 إلى 160 حرفًا لمتجرك",
+    "descriptionTooltip": "اكتب وصفًا يتكون من 150 إلى 160 حرفًا لمتجرك. سيكون مرئيًا في التذييل وسيُستخدم لأغراض تحسين محركات البحث.",
+    "urlPlaceholder": "اكتب الرابط الخاص بك",
+    "logoUploader": {
+      "change": "تغيير",
+      "upload": "رفع",
+      "remove": "إزالة"
+    }
+  },
+  "paymentSetup": {
+    "title": "تفاصيل الدفع الأساسية",
+    "subtitle": "اختر تفعيل أي من الخيارات أدناه.",
+    "currency": {
+      "title": "العملة الافتراضية",
+      "updateError": "فشل في تحديث العملة"
+    },
+    "financialServices": {
+      "title": "الخدمات المالية",
+      "connect": "اتصال",
+      "stripe": {
+        "tooltip": "ربط حساب Stripe لاستقبال الإيداعات مباشرةً في حساب موجود."
+      },
+      "paymob": {
+        "tooltip": "ربط حساب Paymob لاستقبال الإيداعات مباشرةً في حساب موجود."
+      }
+    }
+  },
+  "subscriptionPlans": {
+    "title": "الخطط",
+    "subtitle": "اختر من بين خيارات الباقات المختلفة أدناه.",
+    "viewAllPlans": "عرض جميع الخطط والمقارنة بينها",
+    "paymentError": "فشل إنشاء طلب الدفع",
+    "proPlan": {
+      "title": "خطة المحترفين",
+      "description": "للشركات الصغيرة والفرق المستعدة للنمو."
+    },
+    "inheritance": "كل ما في خطة {{plan}}",
+    "continueWithPlan": "المتابعة مع خطة {{plan}}",
+    "selected": "مختارة",
+    "mostPopular": "الأكثر شعبية"
+  },
+  "completion": {
+    "title": "تم كل شيء!",
+    "subtitle": "حسابك الآن فعال وجاهز للاستخدام.",
+    "message": "تهانينا! لقد أعددت متجرك في دروبلينكد بنجاح.",
+    "controls": {
+      "previous": "السابق",
+      "next": "التالي",
+      "startExploring": "ابدأ استكشاف لوحة التحكم"
+    },
+    "newsletter": {
+      "title": "الاشتراك في النشرة الإخبارية",
+      "description": "ابقَ على اطلاع بأحدث الميزات والعروض"
+    }
+  },
+  "aiAssistant": {
+    "mainButton": {
+      "title": "إنشاء بالذكاء الاصطناعي",
+      "subtitle": "خصص متجرك باستخدام الذكاء الاصطناعي من دروبلينكد",
+      "tryButton": "جرّب مساعد الذكاء الاصطناعي"
+    },
+    "imageSlider": {},
+    "businessModal": {
+      "businessDescribe": {
+        "label": "وصف عملك",
+        "placeholder": "يرجى وصف متجرك لمساعدة الذكاء الاصطناعي في إنشاء تمثيل أدق وأكثر كفاءة لعملك."
+      },
+      "businessCategory": {
+        "label": "فئة العمل",
+        "placeholder": "اختر فئة عملك"
+      },
+      "generateButton": "إنشاء تفاصيل المتجر بالذكاء الاصطناعي"
+    },
+    "generationModal": {
+      "generatedContent": {
+        "title": "المحتوى المُنشأ",
+        "description": "هذا ما أنشأه الذكاء الاصطناعي لمتجرك"
+      },
+      "names": {
+        "title": "أسماء المتاجر",
+        "description": "اختر من أسماء المتاجر التي أنشأها الذكاء الاصطناعي"
+      },
+      "urls": {
+        "title": "روابط المتاجر",
+        "description": "اختر رابطًا لمتجرك"
+      },
+      "logos": {
+        "title": "شعارات المتاجر",
+        "description": "اختر تصميم شعار لمتجرك"
+      },
+      "covers": {
+        "title": "أغلفة المتاجر",
+        "description": "اختر صورة غلاف لمتجرك"
+      }
+    },
+    "plansModal": {
+      "description": "لا تتردد في استخدام أدوات الذكاء الاصطناعي لتخصيص متجرك. اشترك أدناه للبدء.",
+      "buttons": {
+        "claimTrial": "اطلب النسخة التجريبية الآن",
+        "subscribe": "اشترك"
+      }
+    }
+  },
+  "shopPreview": {
+    "title": "معاينة المتجر",
+    "banner": {
+      "tagline": "الجيل القادم من التجارة"
+    }
+  },
+  "categories": {
+    "fashion": "الأزياء",
+    "technology": "التكنولوجيا",
+    "beauty": "الجمال",
+    "home": "المنزل والمعيشة",
+    "health": "الصحة والعافية",
+    "food": "الطعام والمشروبات",
+    "art": "الفن والتصميم",
+    "automotive": "السيارات",
+    "toys": "الألعاب والتسلية",
+    "books": "الكتب والوسائط",
+    "entertainment": "الترفيه",
+    "petSupplies": "مستلزمات الحيوانات الأليفة",
+    "sports": "الرياضة واللياقة البدنية",
+    "kids": "الأطفال والرضع",
+    "luxury": "الفخامة والإكسسوارات"
+  },
+  "plans": {
+    "starter": {
+      "title": "الأساسي",
+      "description": "للأفراد أو الشركات التي تبدأ للتو",
+      "featuresTitle": "تشمل خطة الأساس:",
+      "features": {
+        "analytics": "التحليلات",
+        "storeDesigner": "مصمم المتجر",
+        "shipmentTracking": "تتبع الشحنات",
+        "productCollections": "مجموعات المنتجات",
+        "referralCodes": "رموز إحالة مخصصة",
+        "affiliateNetwork": "الوصول إلى شبكة التسويق بالعمولة",
+        "basicSupport": "دعم العملاء الأساسي"
+      }
+    },
+    "pro": {
+      "title": "المحترفين",
+      "description": "للشركات الصغيرة والفرق المستعدة للنمو",
+      "featuresTitle": "تشمل كل ما في الأساس، بالإضافة إلى:",
+      "features": {
+        "tokenGating": "تقييد باستخدام الرموز",
+        "mintToMerch": "إنشاء منتجات من الرموز",
+        "unlimitedTokenization": "تشكيل رموز غير محدود",
+        "unlimitedDigitalGoods": "منتجات رقمية غير محدودة",
+        "unlimitedPhysicalProducts": "منتجات مادية غير محدودة",
+        "customDomains": "نطاقات مخصصة",
+        "customFavicon": "أيقونة مخصصة",
+        "customShipping": "شحن مخصص",
+        "digitalCoupons": "كوبونات وبطاقات هدايا رقمية",
+        "warehouseIntegration": "تكامل نظام المستودعات",
+        "premiumSupport": "دعم العملاء المميز"
+      }
+    },
+    "premium": {
+      "title": "المتميز",
+      "description": "للشركات الكبيرة التي تحتاج حلولًا شاملة على نطاق واسع",
+      "featuresTitle": "تشمل كل ما في المحترفين، بالإضافة إلى:",
+      "features": {
+        "apiIntegration": "تكامل API",
+        "royaltyTracking": "تتبع العائدات",
+        "advancedAnalytics": "تحليلات متقدمة",
+        "embeddableProducts": "وحدات منتجات مدمجة",
+        "unlimitedProduction": "إنتاج حسب الطلب غير محدود",
+        "marketingTools": "أدوات التسويق",
+        "adminPanel": "لوحة إدارة",
+        "vipSupport": "دعم العملاء VIP"
+      }
+    },
+    "enterprise": {
+      "title": "الشركات",
+      "description": "تواصل معنا لاستكشاف التكامل",
+      "featuresTitle": "تشمل كل ما في المتميز، بالإضافة إلى:",
+      "features": {
+        "tokenPay": "Tokenpay",
+        "customTemplates": "قوالب مخصصة",
+        "unlimitedLogin": "طرق تسجيل دخول غير محدودة",
+        "unlimitedPayment": "طرق دفع غير محدودة",
+        "digitalPassport": "جواز المنتج الرقمي (DPP)"
+      }
+    }
+  }
+}

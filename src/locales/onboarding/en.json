@@ -1,0 +1,337 @@
+{
+  "common": {
+    "back": "Back",
+    "continue": "Continue",
+    "skipForNow": "Skip for Now",
+    "googleAccount": "Google Account",
+    "welcomeTitle": "Welcome to droplinked",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter email address",
+    "emailError": "Please enter a valid email address.",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "passwordError": "Password must be at least 8 characters.",
+    "passwordRules": {
+      "lowercase": "One lowercase letter",
+      "uppercase": "One uppercase letter",
+      "length": "8 characters or more",
+      "special": "One special character",
+      "digit": "One digit"
+    },
+    "loading": "Loading",
+    "orContinueWith": "or continue with",
+    "buttons": {
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "skip": "Skip",
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "close": "Close",
+      "generate": "Generate",
+      "regenerate": "Generate Again",
+      "discard": "Discard",
+      "exit": "Exit",
+      "verify": "Verify",
+      "resend": "Resend"
+    },
+    "validation": {
+      "required": "{field} is required",
+      "minLength": "{field} must be at least {length} characters",
+      "urlRequired": "URL is required",
+      "urlFormat": "URL can only contain letters, numbers, and hyphens",
+      "nameRequired": "Store name is required",
+      "nameLength": "Store name must be at least 3 characters"
+    },
+    "errors": {
+      "generic": "Something went wrong",
+      "urlCheckError": "Error checking URL availability",
+      "urlNotAvailable": "This URL is not available",
+      "paymentError": "Failed to create payment intent"
+    },
+    "shop": {
+      "preview": "Store Preview",
+      "details": "Store Details",
+      "name": "Name",
+      "description": "Description",
+      "url": "Shop URL",
+      "logo": "Logo",
+      "coverImage": "Cover Image"
+    },
+    "ai": {
+      "title": "Use droplinked AI to create your shop",
+      "description": "Use the AI tools to streamline the creation of store assets"
+    }
+  },
+  "signIn": {
+    "subtitle": "Sign in with your credentials below.",
+    "rememberPassword": "Remember my password",
+    "signInButton": "Sign In",
+    "noAccountText": "Don't have an account?",
+    "createAccountText": "Join us and create one!"
+  },
+  "signUp": {
+    "subtitle": "Complete the details below or use your Google account.",
+    "referralLabel": "Referral Code",
+    "referralPlaceholder": "Enter referral code",
+    "termsPrefix": "By signing up, I agree to your",
+    "termsLink": "Terms and Conditions.",
+    "submitButton": "Sign Up",
+    "haveAccountText": "Already have an account?",
+    "signInLink": "Sign in",
+    "successMessage": "Account successfully created",
+    "errorMessage": "Signup failed"
+  },
+  "emailConfirmation": {
+    "title": "Confirm Email",
+    "subtitle": "Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.",
+    "verifyButton": "Verify",
+    "noCodeText": "Didn't receive the code?",
+    "resendButton": "Resend",
+    "changeEmailText": "Want to change your email address?",
+    "goBackButton": "Go back"
+  },
+  "shopSetup": {
+    "subtitle": "Complete the information below to optimize your storefront.",
+    "namePlaceholder": "Choose your store name",
+    "descriptionPlaceholder": "Write a 150 to 160 characters description for your shop",
+    "descriptionTooltip": "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes.",
+    "urlPlaceholder": "Type your URL",
+    "logoUploader": {
+      "change": "Change",
+      "upload": "Upload",
+      "remove": "Remove"
+    }
+  },
+  "paymentSetup": {
+    "title": "Basic Payment Details",
+    "subtitle": "Choose to activate any of the options below.",
+    "currency": {
+      "title": "Default Currency",
+      "updateError": "Failed to update currency"
+    },
+    "financialServices": {
+      "title": "Financial Services",
+      "connect": "Connect",
+      "stripe": {
+        "tooltip": "Connect a Stripe account to receive deposits directly into an existing account."
+      },
+      "paymob": {
+        "tooltip": "Connect a Paymob account to receive deposits directly into an existing account."
+      }
+    }
+  },
+  "subscriptionPlans": {
+    "title": "Plans",
+    "subtitle": "Choose from the different package options below.",
+    "viewAllPlans": "View all plans and compare",
+    "paymentError": "Failed to create payment intent",
+    "proPlan": {
+      "title": "Pro Plan",
+      "description": "For small businesses and teams ready to grow."
+    },
+    "inheritance": "Everything in {{plan}} plan",
+    "continueWithPlan": "Continue with {{plan}} Plan",
+    "selected": "Selected",
+    "mostPopular": "Most Popular"
+  },
+  "completion": {
+    "title": "You're All Set!",
+    "subtitle": "Your account is now live and ready to use.",
+    "message": "Congratulations! You've successfully set up your Droplinked store.",
+    "controls": {
+      "previous": "Previous",
+      "next": "Next",
+      "startExploring": "Start Exploring Dashboard"
+    },
+    "newsletter": {
+      "title": "Newsletter Subscription",
+      "description": "Stay up to date on the latest features and offers"
+    }
+  },
+  "aiAssistant": {
+    "mainButton": {
+      "title": "Generate with AI",
+      "subtitle": "Customize your shop with droplinked AI",
+      "tryButton": "Try AI Assistant"
+    },
+    "imageSlider": {
+    },
+    "businessModal": {
+      "businessDescribe": {
+        "label": "Describe Your Business",
+        "placeholder": "Please describe your shop to help our AI create a more accurate and efficient representation of your business."
+      },
+      "businessCategory": {
+        "label": "Business Category",
+        "placeholder": "Select your business category"
+      },
+      "generateButton": "Generate Shop Details with AI"
+    },
+    "generationModal": {
+      "generatedContent": {
+        "title": "Generated Content",
+        "description": "Here's what our AI has generated for your shop"
+      },
+      "names": {
+        "title": "Shop Names",
+        "description": "Choose from AI-generated shop names"
+      },
+      "urls": {
+        "title": "Shop URLs",
+        "description": "Select a URL for your shop"
+      },
+      "logos": {
+        "title": "Shop Logos",
+        "description": "Pick a logo design for your shop"
+      },
+      "covers": {
+        "title": "Shop Covers",
+        "description": "Select a cover image for your shop"
+      }
+    },
+    "plansModal": {
+      "description": "Feel free to use our AI tools to customize your shop. Subscribe below to get started.",
+      "buttons": {
+        "claimTrial": "Claim Trial Now",
+        "subscribe": "Subscribe"
+      }
+    }
+  },
+  "shopPreview": {
+      "title": "Store Preview",
+    "banner": {
+      "tagline": "The Next Generation of Commerce"
+    }
+  },
+  "categories": {
+    "fashion": "Fashion",
+    "technology": "Technology",
+    "beauty": "Beauty",
+    "home": "Home & Living",
+    "health": "Health & Wellness",
+    "food": "Food & Beverage",
+    "art": "Art & Design",
+    "automotive": "Automotive",
+    "toys": "Toys & Games",
+    "books": "Books & Media",
+    "entertainment": "Entertainment",
+    "petSupplies": "Pet Supplies",
+    "sports": "Sports & Fitness",
+    "kids": "Kids & Baby",
+    "luxury": "Luxury & Accessories"
+  },
+  "plans": {
+    "starter": {
+      "title": "Starter",
+      "description": "For individuals or companies just getting started",
+      "featuresTitle": "Starter plan includes:",
+      "features": {
+        "analytics": "Analytics",
+        "storeDesigner": "Store designer",
+        "shipmentTracking": "Shipment tracking",
+        "productCollections": "Product collections",
+        "referralCodes": "Custom referral codes",
+        "affiliateNetwork": "Affiliate network access",
+        "basicSupport": "Basic customer support"
+      }
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "For small businesses and teams ready to grow",
+      "featuresTitle": "Includes everything in Starter, plus:",
+      "features": {
+        "tokenGating": "Token gating",
+        "mintToMerch": "Mint-to-Merch",
+        "unlimitedTokenization": "Unlimited tokenization",
+        "unlimitedDigitalGoods": "Unlimited digital goods",
+        "unlimitedPhysicalProducts": "Unlimited physical products",
+        "customDomains": "Customizable domains",
+        "customFavicon": "Customizable favicon",
+        "customShipping": "Customizable shipping",
+        "digitalCoupons": "Digital coupons and giftcards",
+        "warehouseIntegration": "Warehouse system integration",
+        "premiumSupport": "Premium customer support"
+      }
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "For large businesses needing comprehensive solutions at scale",
+      "featuresTitle": "Includes everything in Pro, plus:",
+      "features": {
+        "apiIntegration": "API integration",
+        "royaltyTracking": "Royalty tracking",
+        "advancedAnalytics": "Advanced analytics",
+        "embeddableProducts": "Embeddable product tiles",
+        "unlimitedProduction": "Unlimited Production-on-Demand",
+        "marketingTools": "Marketing tools",
+        "adminPanel": "Admin management panel",
+        "vipSupport": "VIP customer support"
+      }
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "description": "Contact us to explore integration",
+      "featuresTitle": "Includes everything in Premium, plus:",
+      "features": {
+        "tokenPay": "Tokenpay",
+        "customTemplates": "Customizable templates",
+        "unlimitedLogin": "Unlimited login methods",
+        "unlimitedPayment": "Unlimited payment methods",
+        "digitalPassport": "DPP (Digital Product Passport)"
+      }
+    }
+  },
+  "levelUp": {
+    "sections": {
+      "createFirstProduct": {
+        "title": "Create first product",
+        "physical": {
+          "title": "Physical Products",
+          "description": "Add physical products by entering details like name, description, and price. Customers can browse and buy directly from your store."
+        },
+        "digital": {
+          "title": "Digital Goods",
+          "description": "Sell digital products like eBooks, software, or music. Upload files, set prices, and allow instant downloads after purchase."
+        },
+        "onDemand": {
+          "title": "Production-on-Demand Items",
+          "description": "Offer customizable products like t-shirts or mugs that are produced only when ordered, handled by your print-on-demand partner."
+        }
+      },
+      "customizeShop": {
+        "title": "Customize shopfront",
+        "storefront": {
+          "title": "Customize Your Storefront Template",
+          "description": "Stand out by customizing your store's design. Select a template, adjust colors, fonts, and layout to match your brand."
+        }
+      },
+      "joinAffiliateMarket": {
+        "title": "Join affiliate market",
+        "main": {
+          "title": "Join the Affiliate Market",
+          "description": "Expand your reach by joining the affiliate market. Promote other stores' products for a commission or list your own for affiliates to sell."
+        }
+      },
+      "sellFirstProduct": {
+        "title": "Sell first product",
+        "firstOrder": {
+          "title": "Receive Your First Order",
+          "description": "Manage your store's activity and orders. From payment to delivery, we guide you through every step to help grow your business."
+        },
+        "productLink": {
+          "title": "Product Link",
+          "description": "Generate a payment link for any product, simplifying the checkout process and bypassing the storefront."
+        },
+        "productTile": {
+          "title": "Product Tile",
+          "description": "Create a customizable product tile for your website. Configure details and upload images to match your brand."
+        },
+        "socialTile": {
+          "title": "Social Tile",
+          "description": "Share products on Twitter with an embeddable tile that allows customers to view details and purchase directly."
+        }
+      }
+    }
+  }
+} 
