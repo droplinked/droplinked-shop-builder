@@ -33,15 +33,11 @@ interface BreadcrumbItem {
 export const Breadcrumbs = () => {
     const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
-    const { t: tLevelUp } = useLocaleResources('layout/levelUp', {
-        en: levelUpEnLocale,
-        ar: levelUpArLocale
-    })
-    const { t: tSidebar } = useLocaleResources('layout/sidebar', {
+    const { t } = useLocaleResources('layout/sidebar', {
         en: sidebarEnLocale,
         ar: sidebarArLocale
     })
-    const sidebarLinks = getProducerSidebarLinks(tSidebar)
+    const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'
         ? <ChevronrightMd color='#b1b1b1' />
@@ -49,7 +45,7 @@ export const Breadcrumbs = () => {
 
     // Function to generate breadcrumbs based on the current path
     const getBreadcrumbs = (path: string): BreadcrumbItem[] => {
-        const breadcrumbs: BreadcrumbItem[] = [{ title: tLevelUp('common.home'), linkTo: '/analytics' }]
+        const breadcrumbs: BreadcrumbItem[] = [{ title: t('home'), linkTo: '/analytics' }]
 
         sidebarLinks.forEach((group: SidebarGroup) => {
             group.items.forEach((item) => {
