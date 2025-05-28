@@ -1,9 +1,14 @@
 import { GridItem, Heading, Text } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import enLocale from 'locales/dashboard/en.json'
+import arLocale from 'locales/dashboard/ar.json'
 
 function JoinCommunityCard() {
-    const { t } = useLocaleResources("dashboardPage")
+    const { t } = useLocaleResources("dashboardPage",{
+        en: enLocale,
+        ar: arLocale
+      })
 
     return (
         <GridItem padding={{ base: 4, xl: 6 }}>
