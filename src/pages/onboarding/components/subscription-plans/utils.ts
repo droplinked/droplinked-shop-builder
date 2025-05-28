@@ -45,7 +45,7 @@ export const getContinueText = (selectedPlan: PlanType, t: TFunction): string =>
   try {
     const planKey = subscriptionPlans[selectedPlan].title
     const translatedPlanTitle = t(planKey)
-    return t('subscriptionPlans.continueWithPlan', { plan: translatedPlanTitle })
+    return t('plans.continueWithPlan', { plan: translatedPlanTitle })
   } catch (error) {
     console.error('Error in getContinueText:', error)
     const planTitle = subscriptionPlans[selectedPlan].title ?? selectedPlan
