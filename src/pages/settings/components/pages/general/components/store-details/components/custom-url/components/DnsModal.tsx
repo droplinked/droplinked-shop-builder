@@ -54,7 +54,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                         NS_records?.map((record, index) => {
                             return (
                                 <Flex key={record} justifyContent={"space-between"} alignItems={"center"}>
-                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>{t("settings.storeDetails.customURL.dnsModal.dnsLabel", { index })}</AppTypography>
+                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>{t("settings.storeDetails.customURL.dnsModal.dnsLabel", { index: index + 1 })}</AppTypography>
                                     <Flex gap={4}>
                                         <AppTypography fontSize={"14px"} color={"#fff"}>{record}</AppTypography>
                                         <ClipboardText text={record} />

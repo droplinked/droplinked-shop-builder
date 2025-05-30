@@ -44,13 +44,13 @@
                 },
                 "confirmModal": {
                     "title": "Add custom URL",
-                    "description": "You are about to set \"{url}\" for your shop's custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?",
+                    "description": "You are about to set \"{{url}}\" for your shop's custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?",
                     "no": "No",
                     "yes": "Yes, The entered URL is correct"
                 },
                 "dnsModal": {
                     "title": "DNS Information",
-                    "dnsLabel": "DNS {index}",
+                    "dnsLabel": "DNS {{index}}",
                     "checkStatus": "Check DNS Status"
                 }
             }
@@ -175,8 +175,8 @@
                 }
             },
             "success": {
-                "created": "{type} has been created.",
-                "updated": "{type} has been updated."
+                "created": "{{type}} has been created.",
+                "updated": "{{type}} has been updated."
             },
             "error": "Oops! Something went wrong.",
             "information": {
