@@ -4,8 +4,10 @@ import AppInput from 'components/redesign/input/AppInput'
 import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function WalletInput() {
+    const { t } = useLocaleResources('settings');
     const { shop } = useAppStore()
     const { circleWallets } = shop;
     const circleWalletAddress = circleWallets?.find(cw => cw?.chain === "ETH")?.address || ""
@@ -20,6 +22,8 @@ export default function WalletInput() {
                 }
             />
             :
-            <Button width={"100%"} onClick={() => navigate("/analytics/registration")}>Activate Merchant Wallet</Button>
+            <Button width={"100%"} onClick={() => navigate("/analytics/registration")}>
+                {t("settings.merchantWallet.activateButton")}
+            </Button>
     )
 }

@@ -17,6 +17,46 @@
             "creditsCoupons": "Credits and Coupons",
             "userManagement": "User Management"
         },
+        "merchantWallet": {
+            "title": "Merchant Wallet",
+            "address": {
+                "title": "Address",
+                "description": "The merchant wallet enables USDC acceptance for all businesses. It offers a secure and seamless way to manage revenue while minimizing merchant processing fees."
+            },
+            "activateButton": "Activate Merchant Wallet",
+            "features": {
+                "secure": "Secure",
+                "instant": "Instant",
+                "automaticConversion": "Automatic Conversion"
+            },
+            "buttons": {
+                "manage": "Manage",
+                "recharge": "Recharge"
+            },
+            "manage": {
+                "title": "Manage Wallet",
+                "description": "Manage USDC powered wallet by Circle",
+                "circleWallet": "Manage Circle Wallet",
+                "noWallets": "No wallets available",
+                "withdrawing": "Withdrawing",
+                "withdraw": "Withdraw",
+                "errors": {
+                    "usdcVerification": "For USDC withdrawals, your account needs to be verified.",
+                    "walletNotConnected": "Wallet not connected",
+                    "contactSupport": "Please contact Droplinked support at support@droplinked.com for verification.",
+                    "connectWalletFirst": "Please connect a supported wallet first, then proceed with the withdrawal."
+                },
+                "connectWallet": "Connect Wallet",
+                "connectYourWallets": "Connect your wallets"
+            },
+            "connect": {
+                "connectButton": "Connect",
+                "errors": {
+                    "walletNotFound": "{{walletName}} extension not found. Please ensure the extension is installed and try again",
+                    "failedLogin": "Failed login"
+                }
+            }
+        },
         "storeDetails": {
             "title": "Store Details",
             "storeURL": "Store URL",
@@ -230,6 +270,31 @@
                 "title": "Post-Purchase Information",
                 "description": "Create custom fields for collecting additional information after a customer makes a purchase.",
                 "placeholder": "Add a note for your purchase"
+            }
+        },
+        "financialServices": {
+            "title": "Financial Services",
+            "paymentProviders": {
+                "title": "Payment Providers",
+                "description": "Manage payment gateways and partnered services."
+            },
+            "providers": {
+                "stripe": {
+                    "title": "Stripe",
+                    "buttonTextConnected": "View Account",
+                    "buttonTextNotConnected": "Connect",
+                    "tooltip": "Connect a Stripe account to receive deposits directly into an existing account."
+                },
+                "coinbase": {
+                    "title": "Coinbase Commerce",
+                    "buttonText": "Learn More",
+                    "tooltip": "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets."
+                },
+                "paymob": {
+                    "title": "Paymob",
+                    "buttonText": "Connect",
+                    "tooltip": "Connect a Paymob account to receive deposits directly into an existing account."
+                }
             }
         }
     }

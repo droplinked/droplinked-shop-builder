@@ -7,6 +7,7 @@ import { ISettings } from "pages/settings/utils/formConfigs";
 import useAppStore from "stores/app/appStore";
 import { getStripeOnboardingUrl } from "services/stripe/services";
 import { useQuery } from "react-query";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Provider {
   title: string;
@@ -24,6 +25,7 @@ interface Provider {
 const PaymentProviderList: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
   const { shop } = useAppStore();
+  const { t } = useLocaleResources('settings');
 
   const { onboardedExpressStripeAccount } = shop ?? {};
 
@@ -40,31 +42,33 @@ const PaymentProviderList: React.FC = () => {
   // Define payment providers with their details
   const providers: Provider[] = [
     {
-      title: "Stripe",
+      title: t('settings.financialServices.providers.stripe.title'),
       type: "stripe",
-      buttonText: onboardedExpressStripeAccount ? "View Account" : "Connect",
+      buttonText: onboardedExpressStripeAccount
+        ? t('settings.financialServices.providers.stripe.buttonTextConnected')
+        : t('settings.financialServices.providers.stripe.buttonTextNotConnected'),
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
       isFetching: isFetching,
-      tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
+      tooltip: t('settings.financialServices.providers.stripe.tooltip'),
       icon: <AppIcons.StripeS />,
     },
     {
-      title: "Coinbase Commerce",
+      title: t('settings.financialServices.providers.coinbase.title'),
       type: "coinbase",
-      buttonText: "Learn More",
+      buttonText: t('settings.financialServices.providers.coinbase.buttonText'),
       link: "#",
       isExternal: true,
-      tooltip: "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
+      tooltip: t('settings.financialServices.providers.coinbase.tooltip'),
       icon: <AppIcons.Coinbase />,
     },
     {
-      title: "Paymob",
+      title: t('settings.financialServices.providers.paymob.title'),
       type: "paymob",
-      buttonText: "Connect",
+      buttonText: t('settings.financialServices.providers.paymob.buttonText'),
       isExternal: false,
       isDisabled: true,
-      tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
+      tooltip: t('settings.financialServices.providers.paymob.tooltip'),
       icon: <AppIcons.Paymob color="#004eff" />,
     },
   ];

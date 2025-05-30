@@ -1,8 +1,11 @@
 import { Box, Flex, HStack, Text } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function WalletFeatures() {
+    const { t } = useLocaleResources('settings');
+
     return (
         <Flex gap="9">
             <HStack>
@@ -10,7 +13,7 @@ export default function WalletFeatures() {
                     <AppIcons.Secure />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    Secure
+                    {t("settings.merchantWallet.features.secure")}
                 </Text>
             </HStack>
             <HStack>
@@ -18,7 +21,7 @@ export default function WalletFeatures() {
                     <AppIcons.GreenSpeedometer />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    Instant
+                    {t("settings.merchantWallet.features.instant")}
                 </Text>
             </HStack>
             <HStack>
@@ -26,7 +29,7 @@ export default function WalletFeatures() {
                     <AppIcons.Refresh color='#2BCFA1' style={{ width: "16px", height: "16px" }} />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    Automatic Conversion
+                    {t("settings.merchantWallet.features.automaticConversion")}
                 </Text>
             </HStack>
         </Flex>

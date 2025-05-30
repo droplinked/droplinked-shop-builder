@@ -13,8 +13,10 @@ import { isWalletInstalled } from 'droplinked-web3';
 import React, { useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { ConnectWalletsLoading } from './connect.wallets.loading';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 function ConnectWallets() {
+	const { t } = useLocaleResources('settings');
 	const { data, isLoading } = useQuery({
 		queryFn: supportedChainsService,
 		queryKey: 'supported_chains',
@@ -35,7 +37,7 @@ function ConnectWallets() {
 				if (!installed) {
 					showToast({
 						type: 'error',
-						message: `${walletName} extension not found. Please ensure the extension is installed and try again`,
+						message: t("settings.merchantWallet.connect.errors.walletNotFound", { walletName: walletName }),
 					});
 					if (chain === 'STACKS')
 						window.open(
@@ -48,7 +50,7 @@ function ConnectWallets() {
 				await login({ chain, wallets, stack });
 			} catch (error) {
 				showToast({
-					message: error || 'Failed login',
+					message: error || t("settings.merchantWallet.connect.errors.failedLogin"),
 					type: 'warning',
 				});
 			}
@@ -61,7 +63,6 @@ function ConnectWallets() {
 	return (
 		<AppCard>
 			<VStack spacing={3} align="stretch">
-				{/* <FieldLabel label='Connected Wallets' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired /> */}
 				<VStack align="stretch" spacing="8px">
 					{data?.data?.data &&
 						data?.data?.data.map((el, key) => {
@@ -133,7 +134,7 @@ function ConnectWallets() {
 													)
 												}
 											>
-												Connect
+												{t("settings.merchantWallet.connect.connectButton")}
 											</BasicButton>
 										)}
 									</Box>
