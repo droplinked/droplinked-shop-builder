@@ -11,6 +11,7 @@ import useAppStore from 'stores/app/appStore'
 import { BUILDER_URL } from 'utils/app/variable'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function CustomCodesGenerator() {
     const { mutateAsync, isLoading } = useMutation((params: ICustomReferralCode) => updateCustomReferralCodeService(params))
@@ -19,6 +20,7 @@ export default function CustomCodesGenerator() {
     const [shopInitialCustomCode, setShopInitialCustomCode] = useState(customCode)
     const [value, setValue] = useState("")
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('settings');
 
     const isValidLength = value?.length >= 8
 
@@ -31,7 +33,7 @@ export default function CustomCodesGenerator() {
             });
             setShopInitialCustomCode(customCode)
             setValue("")
-            showToast({ type: "success", message: "Custom code updated successfully" });
+            showToast({ type: "success", message: t('settings.referrals.customCodes.success') });
         } catch (error) {
             showToast({ type: "error", message: "Failed to create custom code" });
         }
@@ -46,7 +48,7 @@ export default function CustomCodesGenerator() {
         <Flex flexDirection={"column"} gap={6}>
             <AppInput
                 inputProps={{
-                    placeholder: "Type a custom code or text without any spaces (minimum 8 characters)",
+                    placeholder: t('settings.referrals.customCodes.placeholder'),
                     value,
                     onChange: handleInputChange,
                     isDisabled: shopInitialCustomCode
@@ -65,7 +67,7 @@ export default function CustomCodesGenerator() {
                             onClick={handleCreateCustomCode}
                             isDisabled={!isValidLength || shopInitialCustomCode}
                         >
-                            Create
+                            {t('settings.referrals.customCodes.createButton')}
                         </AppButton>
                     </>
                 }

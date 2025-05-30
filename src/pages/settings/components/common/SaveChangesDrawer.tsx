@@ -15,7 +15,7 @@ export default function SaveChangesDrawer() {
     const { t } = useLocaleResources('settings')
 
     const handleSaveClick = () => {
-        const isValid = handleValidations({ values, showToast })
+        const isValid = handleValidations({ values, showToast, t })
         if (isValid) {
             handleSubmit();
         }

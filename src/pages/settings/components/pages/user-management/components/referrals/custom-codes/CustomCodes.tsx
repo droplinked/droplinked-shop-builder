@@ -1,12 +1,15 @@
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import CustomCodesGenerator from './CustomCodesGenerator'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function CustomCodes() {
+    const { t } = useLocaleResources('settings');
+
     return (
         <SectionContent
-            title='Custom Codes'
-            description={"Create a custom referral code to share with others."}
+            title={t('settings.referrals.customCodes.title')}
+            description={t('settings.referrals.customCodes.description')}
             rightContent={<CustomCodesGenerator />}
         />
     )

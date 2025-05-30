@@ -6,9 +6,11 @@ import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { appDevelopment } from 'utils/app/variable'
 import React from 'react'
 import { Partner } from './PartnerList'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function PartnerCard({ partner }: { partner: Partner }) {
     const { amount, shopName } = partner
+    const { t } = useLocaleResources('settings');
 
     return (
         <Flex width={"100%"} borderRadius={"8px"} border={"1px solid"} borderColor="neutral.gray.800" p={4} alignItems={"center"} justifyContent={"space-between"}>
@@ -17,7 +19,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                 <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>{shopName}</AppTypography>
             </Flex>
             <Flex gap={3} alignItems={"center"} flex={1}>
-                <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>Your Earning</AppTypography>
+                <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>{t('settings.referrals.referredPartners.yourEarning')}</AppTypography>
                 <AppIcons.DotSpacer />
                 <FormattedPrice price={amount} fontWeight={500} />
             </Flex>
@@ -31,7 +33,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                 gap={"6px"}
                 target='_blank'
             >
-                Visit
+                {t('settings.referrals.referredPartners.visit')}
                 <AppIcons.ExternalLink style={{ display: "inline-block" }} />
             </ExternalLink>
         </Flex>

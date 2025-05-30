@@ -7,25 +7,26 @@ type TypeOptions = 'success' | 'error' | 'info' | 'warning';
 interface IValidateHandlers {
     values: ISettings,
     showToast: (params: { type: TypeOptions, message: string | JSX.Element, options?: ToasterProps }) => void;
+    t: (key: string, params?: Record<string, any>) => string;
 }
 
-export const handleValidations = ({ values, showToast }: IValidateHandlers): boolean => {
+export const handleValidations = ({ values, showToast, t }: IValidateHandlers): boolean => {
     //we ensure that the total percentage of the wallets does not exceed 100
-    if (!handleValidatePercentage({ values, showToast })) return false;
+    if (!handleValidatePercentage({ values, showToast, t })) return false;
 
     //we ensure there are no wallets with 0 percentage
-    if (!handleValidateZeroPercentage({ values, showToast })) return false;
+    if (!handleValidateZeroPercentage({ values, showToast, t })) return false;
 
     //we ensure that user has selected at least one payment method
-    if (!handleValidatePaymentMethods({ values, showToast })) return false;
+    if (!handleValidatePaymentMethods({ values, showToast, t })) return false;
 
     //we ensure that user has selected at least one login method
-    if (!handleValidateLoginMethods({ values, showToast })) return false;
+    if (!handleValidateLoginMethods({ values, showToast, t })) return false;
 
     return true;
 }
 
-const handleValidatePercentage = ({ values, showToast }: IValidateHandlers): boolean => {
+const handleValidatePercentage = ({ values, showToast, t }: IValidateHandlers): boolean => {
     const walletOverLimit = values.paymentWallets.find((wallet) => {
         const sumPercent = wallet.destinationAddress.reduce((sum, d) => sum + (d.percent || 0), 0);
         return sumPercent > 100;
@@ -34,7 +35,7 @@ const handleValidatePercentage = ({ values, showToast }: IValidateHandlers): boo
     if (walletOverLimit) {
         showToast({
             type: "error",
-            message: `Please double-check your ${walletType} wallets section, the total percentage must not exceed 100.`,
+            message: t("settings.validation.walletPercentageExceeds", { walletType }),
             options: { duration: 5000 }
         });
         return false;
@@ -42,8 +43,7 @@ const handleValidatePercentage = ({ values, showToast }: IValidateHandlers): boo
     return true;
 }
 
-// Add this new validation function
-const handleValidateZeroPercentage = ({ values, showToast }: IValidateHandlers): boolean => {
+const handleValidateZeroPercentage = ({ values, showToast, t }: IValidateHandlers): boolean => {
     const walletWithZeroPercent = values.paymentWallets.find((wallet) => {
         return wallet.destinationAddress.some(d => d.percent === 0);
     });
@@ -52,7 +52,7 @@ const handleValidateZeroPercentage = ({ values, showToast }: IValidateHandlers):
     if (walletWithZeroPercent) {
         showToast({
             type: "error",
-            message: `Please ensure all ${walletType} wallet percentages are greater than 0.`,
+            message: t("settings.validation.walletPercentageZero", { walletType }),
             options: { duration: 5000 }
         });
         return false;
@@ -60,12 +60,12 @@ const handleValidateZeroPercentage = ({ values, showToast }: IValidateHandlers):
     return true;
 }
 
-const handleValidatePaymentMethods = ({ values, showToast }: IValidateHandlers): boolean => {
+const handleValidatePaymentMethods = ({ values, showToast, t }: IValidateHandlers): boolean => {
     const walletLength = values.paymentMethods.filter((method) => method.isActive).length;
     if (walletLength < 1) {
         showToast({
             type: "error",
-            message: `Please select at least one payment method.`,
+            message: t("settings.validation.paymentMethodRequired"),
             options: { duration: 5000 }
         });
         return false;
@@ -73,12 +73,12 @@ const handleValidatePaymentMethods = ({ values, showToast }: IValidateHandlers):
     return true;
 }
 
-const handleValidateLoginMethods = ({ values, showToast }: IValidateHandlers): boolean => {
+const handleValidateLoginMethods = ({ values, showToast, t }: IValidateHandlers): boolean => {
     const walletLength = values.loginMethods.filter((method) => method.isActivated).length;
     if (walletLength < 1) {
         showToast({
             type: "error",
-            message: `Please select at least one login method.`,
+            message: t("settings.validation.loginMethodRequired"),
             options: { duration: 5000 }
         });
         return false;

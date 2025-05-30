@@ -8,7 +8,11 @@
             "nameRequired": "Please provide a name for shop",
             "emailRequired": "Please provide a valid email.",
             "emailValid": "Please provide a valid email.",
-            "currencyRequired": "Please select a currency"
+            "currencyRequired": "Please select a currency",
+            "walletPercentageExceeds": "Please double-check your {{walletType}} wallets section, the total percentage must not exceed 100.",
+            "walletPercentageZero": "Please ensure all {{walletType}} wallet percentages are greater than 0.",
+            "paymentMethodRequired": "Please select at least one payment method.",
+            "loginMethodRequired": "Please select at least one login method."
         },
         "tabs": {
             "general": "General",
@@ -381,6 +385,53 @@
                     "success": "Domain deleted successfully"
                 },
                 "apiDocumentation": "API Documentation"
+            }
+        },
+        "userManagement": {
+            "title": "User Management",
+            "description": "Add or remove team members by entering their email addresses. An invite with the required instructions to join the account will be sent.",
+            "newUser": "New User",
+            "emptyView": "No users found",
+            "table": {
+                "name": "Name",
+                "dateAdded": "Date Added",
+                "status": "Status"
+            },
+            "status": {
+                "pending": "Invitation Sent",
+                "administrator": "Administrator"
+            },
+            "inviteModal": {
+                "title": "Invite New Member",
+                "description": "Add a new member by entering their email address below.",
+                "emailLabel": "Email Address",
+                "emailPlaceholder": "Enter email address",
+                "accessWarning": "Access Warning",
+                "accessWarningDesc": "The following user will have access to all sections of the account. Invite with caution!",
+                "discard": "Discard",
+                "sendInvitation": "Send Invitation",
+                "invalidEmail": "Please enter a valid email address",
+                "invitationSent": "An invitation has been sent to this email."
+            }
+        },
+        "referrals": {
+            "title": "Referrals",
+            "link": {
+                "title": "Link",
+                "description": "Share this referral link to earn rewards when others sign up. Invited users get 1 month of our Pro plan. \nAlternatively, users can enter the code {{code}} or any of the below custom codes during registration."
+            },
+            "customCodes": {
+                "title": "Custom Codes",
+                "description": "Create a custom referral code to share with others.",
+                "placeholder": "Type a custom code or text without any spaces (minimum 8 characters)",
+                "createButton": "Create",
+                "success": "Custom code updated successfully"
+            },
+            "referredPartners": {
+                "title": "Referred Partners",
+                "description": "Explore the list of stores who've joined our community using your referral code.",
+                "yourEarning": "Your Earning",
+                "visit": "Visit"
             }
         }
     }
