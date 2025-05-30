@@ -17,6 +17,83 @@
             "creditsCoupons": "Credits and Coupons",
             "userManagement": "User Management"
         },
+        "storeDetails": {
+            "title": "Store Details",
+            "storeURL": "Store URL",
+            "storeName": {
+                "title": "Store Name",
+                "description": "Enter the store's name that will appear on the landing page.",
+                "placeholder": "Store Name"
+            },
+            "emailAddress": {
+                "title": "Email Address",
+                "description": "Provide an email address to manage the account and receive updates.",
+                "placeholder": "Email Address"
+            },
+            "customURL": {
+                "title": "Custom URL",
+                "description": "Enter domain without \"www.\" and then add the provided DNS details in domain settings.",
+                "placeholder": "Domain.com",
+                "add": "Add",
+                "dnsInfo": "DNS Info",
+                "errors": {
+                    "fetchDNS": "Unable to fetch DNS Information"
+                },
+                "success": {
+                    "urlSet": "The entered URL has been set as your shop's custom URL"
+                },
+                "confirmModal": {
+                    "title": "Add custom URL",
+                    "description": "You are about to set \"{url}\" for your shop's custom URL. \n Be aware that you will have to contact support to make changes. \n Do you want to proceed?",
+                    "no": "No",
+                    "yes": "Yes, The entered URL is correct"
+                },
+                "dnsModal": {
+                    "title": "DNS Information",
+                    "dnsLabel": "DNS {index}",
+                    "checkStatus": "Check DNS Status"
+                }
+            }
+        },
+        "address": {
+            "title": "Address",
+            "description": "Provide the store or warehouse address for delivery and tax calculations.",
+            "addButton": "Address",
+            "success": {
+                "created": "Store address has been added successfully!",
+                "updated": "Store address has been updated!"
+            },
+            "errors": {
+                "fetchFailed": "Unable to get address Information",
+                "saveFailed": "Unable to save address Information",
+                "statesError": "Unable to get states Information",
+                "countriesError": "Unable to get countries Information",
+                "citiesError": "Unable to get cities Information"
+            },
+            "fields": {
+                "firstName": "First Name",
+                "lastName": "Last Name",
+                "addressLine1": "Address Line 1",
+                "addressLine2": "Address Line 2",
+                "country": "Country",
+                "state": "State",
+                "city": "City",
+                "zip": "Zip Code"
+            },
+            "validation": {
+                "firstNameRequired": "First name is required",
+                "lastNameRequired": "Last name is required",
+                "stateRequired": "State is required",
+                "countryRequired": "Country is required",
+                "cityRequired": "City is required",
+                "zipRequired": "Zip is required",
+                "addressLine1Required": "Address line 1 is required"
+            },
+            "buttons": {
+                "discard": "Discard",
+                "save": "Save"
+            }
+        },
         "saveChanges": {
             "title": "Settings have changed!",
             "description": "There are unsaved changes in the settings. Would you like to apply the new changes?",
@@ -130,6 +207,30 @@
             "description": "Use credits to create discounts and coupons.",
             "charge": "Charge",
             "error": "Oops! Something went wrong"
+        },
+        "preferences": {
+            "title": "Preferences",
+            "defaultLanguage": {
+                "title": "Default Store Language",
+                "description": "Choose a preferred language across the platform. Users can change the language upon entering the store."
+            }
+        },
+        "customerExperience": {
+            "title": "Customer Experience",
+            "loginMethods": {
+                "title": "Login Methods",
+                "description": "Allow customers to log in and connect from the following options to interact with the storefront."
+            },
+            "ageGate": {
+                "title": "Age Gate",
+                "description": "Filter visitors based on setting a minimum age criteria to grant access to a storefront or particular products.",
+                "restrictUsersUnder18": "Restrict Users Under 18"
+            },
+            "postPurchaseInfo": {
+                "title": "Post-Purchase Information",
+                "description": "Create custom fields for collecting additional information after a customer makes a purchase.",
+                "placeholder": "Add a note for your purchase"
+            }
         }
     }
 }

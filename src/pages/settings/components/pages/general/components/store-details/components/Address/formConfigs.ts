@@ -23,15 +23,15 @@ export interface IAddressInputs {
     addressLine2: string | null;
 }
 
-export const formValidation = () => {
+export const formValidation = (t: (key: string) => string) => {
     return Yup.object().shape({
-        firstName: Yup.string().required("First name is required"),
-        lastName: Yup.string().required("Last name is required"),
-        state: Yup.string().required("State is required"),
-        country: Yup.string().required("Country is required"),
-        city: Yup.string().required("City is required"),
-        zip: Yup.string().required("Zip is required"),
-        addressLine1: Yup.string().required("Address line 1 is required"),
+        firstName: Yup.string().required(t("settings.address.validation.firstNameRequired")),
+        lastName: Yup.string().required(t("settings.address.validation.lastNameRequired")),
+        state: Yup.string().required(t("settings.address.validation.stateRequired")),
+        country: Yup.string().required(t("settings.address.validation.countryRequired")),
+        city: Yup.string().required(t("settings.address.validation.cityRequired")),
+        zip: Yup.string().required(t("settings.address.validation.zipRequired")),
+        addressLine1: Yup.string().required(t("settings.address.validation.addressLine1Required")),
         addressLine2: Yup.string().nullable().optional(),
     });
 }

@@ -2,9 +2,11 @@ import AppSelect from 'components/redesign/select/AppSelect'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function DefaultStoreLanguage() {
     const { i18n } = useTranslation()
+    const { t } = useLocaleResources('settings')
 
     const languageOptions = [
         { label: 'English', value: 'en' },
@@ -18,8 +20,8 @@ function DefaultStoreLanguage() {
 
     return (
         <SectionContent
-            title="Default Store Language"
-            description="Choose a preferred language across the platform. Users can change the language upon entering the store."
+            title={t("settings.preferences.defaultLanguage.title")}
+            description={t("settings.preferences.defaultLanguage.description")}
             rightContent={
                 <AppSelect
                     items={languageOptions}

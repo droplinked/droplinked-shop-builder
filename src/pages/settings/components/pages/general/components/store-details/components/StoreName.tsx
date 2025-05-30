@@ -3,18 +3,20 @@ import { useFormikContext } from "formik";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import { ISettings } from "pages/settings/utils/formConfigs";
 import React from "react";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function StoreName() {
     const { errors, values, handleChange } = useFormikContext<ISettings>();
+    const { t } = useLocaleResources('settings');
 
     return (
         <SectionContent
-            title="Store Name"
-            description="Enter the store’s name that will appear on the landing page."
+            title={t("settings.storeDetails.storeName.title")}
+            description={t("settings.storeDetails.storeName.description")}
             rightContent={
                 <AppInput
                     inputProps={{
-                        placeholder: "Store Name",
+                        placeholder: t("settings.storeDetails.storeName.placeholder"),
                         value: values.name,
                         onChange: handleChange,
                         name: "name",
