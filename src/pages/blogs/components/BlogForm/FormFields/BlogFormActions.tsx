@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,8 +8,9 @@ import { useNavigate } from 'react-router-dom'
 function BlogFormActions() {
     const navigate = useNavigate()
     const { values, submitForm, isSubmitting } = useBlogForm()
+    const { t } = useLocaleResources("blogs")
 
-    const mainButtonText = values.isVisible ? 'Publish' : 'Save as Draft'
+    const mainButtonText = values.isVisible ? t("form.actions.publish") : t("form.actions.saveDraft")
 
     return (
         <Flex alignSelf="flex-end" alignItems="center" gap={4}>
@@ -17,7 +19,7 @@ function BlogFormActions() {
                 isDisabled={isSubmitting}
                 onClick={() => navigate("/analytics/blogs")}
             >
-                Discard
+                {t("form.actions.discard")}
             </AppButton>
             <AppButton
                 isLoading={isSubmitting}

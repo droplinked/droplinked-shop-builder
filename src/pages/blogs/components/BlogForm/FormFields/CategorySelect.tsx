@@ -3,6 +3,7 @@ import AppIcons from 'assets/icon/Appicons'
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React, { useRef, useState } from 'react'
 
@@ -10,6 +11,7 @@ const CategorySelect = () => {
     const valueRef = useRef<HTMLInputElement>(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { values, errors, setFieldValue } = useBlogForm()
+    const { t } = useLocaleResources("blogs")
 
     const [categories, setCategories] = useState<string[]>([
         'E-Commerce Trends', 'Blockchain & NFTs',
@@ -32,8 +34,8 @@ const CategorySelect = () => {
 
     return (
         <FormFieldWrapper
-            label='Category'
-            description='Select a relevant category for organization and improve discoverability.'
+            label={t("form.category.label")}
+            description={t("form.category.description")}
             errorMessage={errors?.category?.toString()}
         >
             <Popover
@@ -59,7 +61,7 @@ const CategorySelect = () => {
                             flex={1}
                             color={values.category ? 'text.white' : 'text.subtext.placeholder.dark'}
                         >
-                            {values.category || "Select a Category"}
+                            {values.category || t("form.category.placeholder")}
                         </Text>
                         <AppIcons.SelectChevronDown />
                     </Flex>
@@ -92,7 +94,7 @@ const CategorySelect = () => {
                     <AppInput
                         inputContainerProps={{ border: 'none', padding: '8px 12px' }}
                         inputProps={{
-                            placeholder: 'New Category',
+                            placeholder: t("form.category.newCategory"),
                             padding: '12px 16px',
                             fontSize: 16,
                             value: newCategory,

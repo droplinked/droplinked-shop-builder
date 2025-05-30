@@ -3,7 +3,7 @@ import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import { Form, Formik } from 'formik'
 import { Blog } from 'services/blog/interfaces'
 import React from 'react'
-import { getInitialValues, validationSchema } from '../../utils/formHelpers'
+import { getInitialValues, createValidationSchema } from '../../utils/formHelpers'
 import BlogFormActions from './FormFields/BlogFormActions'
 import BlogToggles from './FormFields/BlogToggles'
 import BodyEditor from './FormFields/BodyEditor'
@@ -13,6 +13,7 @@ import Keywords from './FormFields/Keywords'
 import SearchEngineSummary from './FormFields/SearchEngineSummary'
 import TitleInput from './FormFields/TitleInput'
 import VisibilityStatusRadio from './FormFields/VisibilityStatusRadio'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     blog?: Blog
@@ -21,6 +22,8 @@ interface Props {
 
 export default function BlogForm({ blog, onSubmit }: Props) {
     const isLessThanLg = useBreakpointValue({ base: true, lg: false })
+    const { t } = useLocaleResources("blogs")
+    const validationSchema = createValidationSchema(t)
 
     return (
         <Formik

@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { TrashMd } from 'assets/icons/Action/Trash/TrashMd'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import FileUpload from 'pages/products/components/ProductDrawer/components/common/FileUpload'
 import SelectedFileCard from 'pages/products/components/ProductDrawer/components/common/SelectedFileCard'
@@ -12,6 +13,7 @@ function FeaturedPictureUpload() {
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const { values: { image }, errors, setFieldValue } = useBlogForm()
     const { mutateAsync, isLoading } = useFileUpload()
+    const { t } = useLocaleResources("blogs")
 
     const handleFileChange = async (file: File) => {
         try {
@@ -28,8 +30,8 @@ function FeaturedPictureUpload() {
 
     return (
         <FormFieldWrapper
-            label="Featured Picture"
-            description="Upload an eye-catching image to enhance the visual appeal."
+            label={t("form.featuredPicture.label")}
+            description={t("form.featuredPicture.description")}
             isRequired
             errorMessage={errors.image?.toString()}
         >
@@ -43,8 +45,8 @@ function FeaturedPictureUpload() {
                     }}
                     flexProps={{ minH: "140px" }}
                     text={{
-                        dragActiveText: "Drop the file here ...",
-                        footerText: "JPG, JPEG or PNG"
+                        dragActiveText: t("form.featuredPicture.dragActiveText"),
+                        footerText: t("form.featuredPicture.footerText")
                     }}
                 />
 

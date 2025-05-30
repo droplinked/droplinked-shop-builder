@@ -10,6 +10,7 @@ import { Blog } from 'services/blog/interfaces'
 import React from 'react'
 import ChangeBlogStatusModal from './ChangeBlogStatusModal'
 import DeleteBlogModal from './DeleteBlogModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     blogPost: Blog
@@ -20,29 +21,30 @@ function BlogTableActionMenu({ blogPost }: Props) {
     const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose } = useDisclosure()
     const shopUrl = useShopUrl()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("blogs")
 
     const { isVisible, slug } = blogPost
 
     const copyBlogLink = () => {
         const blogLink = `${shopUrl}/blogs/${slug}`
         navigator.clipboard.writeText(blogLink)
-        showToast({ type: "success", message: "Link copied to clipboard" })
+        showToast({ type: "success", message: t("notifications.linkCopied") })
     }
 
     const actions = [
         {
             icon: isVisible ? <ArchiveMd color='#fff' /> : <DoublecheckMd color='#fff' />,
-            title: `${isVisible ? "Draft" : "Publish"} Post`,
+            title: isVisible ? t("actions.draft") : t("actions.publish"),
             onClick: onChangeStatusOpen
         },
         {
             icon: <ShareMd color='#fff' />,
-            title: "Share",
+            title: t("actions.share"),
             onClick: copyBlogLink
         },
         {
             icon: <TrashMd color='#F24' />,
-            title: "Remove",
+            title: t("actions.remove"),
             color: "#F24",
             onClick: onDeleteOpen
         }

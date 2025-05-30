@@ -2,11 +2,13 @@ import useAppToast from "hooks/toast/useToast";
 import { getBlogByIdService } from "services/blog/services";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 const useBlog = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("blogs")
 
     return useQuery({
         queryKey: ['blog', id],
@@ -15,7 +17,7 @@ const useBlog = () => {
         onError: () => {
             showToast({
                 type: 'error',
-                message: 'Failed to fetch blog'
+                message: t("notifications.errors.fetchBlog")
             })
             navigate('/analytics/blogs')
         }

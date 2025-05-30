@@ -6,6 +6,7 @@ import { useInvalidateBlogList } from "pages/blogs/hooks/useBlogs"
 import React from "react"
 import { useMutation } from "react-query"
 import ConfirmationModal from "./ConfirmationModal"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 interface Props {
     blogPost: Blog
@@ -16,29 +17,30 @@ interface Props {
 function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
     const { showToast } = useAppToast()
     const invalidateBlogList = useInvalidateBlogList()
+    const { t } = useLocaleResources("blogs")
 
     const { mutate: deleteBlog, isLoading } = useMutation({
         mutationFn: () => deleteBlogService(blogPost._id),
         onSuccess: () => {
-            showToast({ type: "success", message: "Blog removed successfully" })
+            showToast({ type: "success", message: t("notifications.deleted") })
             onClose()
             invalidateBlogList()
         },
-        onError: () => showToast({ type: "error", message: "Failed to remove blog" })
+        onError: () => showToast({ type: "error", message: t("notifications.error.delete") })
     })
 
     return (
         <ConfirmationModal
             isOpen={isOpen}
             onClose={onClose}
-            title="Remove Blog"
-            description="Are you sure you want to remove this blog? This action cannot be undone"
+            title={t("modals.delete.title")}
+            description={t("modals.delete.description")}
             icon={<TrashMd color="#fff" />}
             confirmButtonProps={{
                 variant: "normal",
                 bgColor: "system.error",
                 color: "text.white",
-                children: "Remove",
+                children: t("modals.delete.confirm"),
                 isLoading,
                 onClick: () => deleteBlog()
             }}

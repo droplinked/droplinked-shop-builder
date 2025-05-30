@@ -2,9 +2,11 @@ import { Flex, Image, Text } from '@chakra-ui/react'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function BlogTableEmptyState() {
     const navigate = useNavigate()
+    const { t } = useLocaleResources("blogs")
 
     return (
         <Flex
@@ -22,7 +24,7 @@ function BlogTableEmptyState() {
             />
 
             <Text mt="36px" mb="16px" fontSize={14} color="text.white">
-                Publish a new blog post to boost SEO and engage audiences.
+                {t("table.emptyState.message")}
             </Text>
 
             <Flex
@@ -36,7 +38,7 @@ function BlogTableEmptyState() {
                 onClick={() => navigate('/analytics/blogs/new')}
             >
                 <PlusSm color='#2bcfa1' />
-                New Post
+                {t("table.emptyState.action")}
             </Flex>
         </Flex>
     )
