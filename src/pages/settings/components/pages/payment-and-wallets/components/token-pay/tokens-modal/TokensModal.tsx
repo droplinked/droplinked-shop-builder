@@ -4,6 +4,7 @@ import AppInput from "components/redesign/input/AppInput";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import AppSelect from "components/redesign/select/AppSelect";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import { IPaymentPublicService } from "services/shop/interfaces";
 import React, { ChangeEvent, useEffect } from "react";
 import TokensListContainer from "./TokensListContainer";
@@ -15,7 +16,8 @@ interface Props {
 }
 
 export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Props) {
-    const allNetworksItem = { type: "All Networks" };
+    const { t } = useLocaleResources('settings');
+    const allNetworksItem = { type: t('settings.paymentsWallets.tokens.allNetworks') };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
@@ -29,7 +31,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
 
     const handleFilterData = (e: ChangeEvent<HTMLSelectElement>) => {
         const type = e.target.value;
-        if (type === "All Networks") {
+        if (type === t('settings.paymentsWallets.tokens.allNetworks')) {
             setFilteredPaymentMethods(paymentMethodsData);
         } else {
             const filteredData = paymentMethodsData.filter((item) => item.type?.toLowerCase().includes(type.toLowerCase()));
@@ -55,8 +57,8 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                 descriptionProps={{
                     color: "#B1B1B1 !important"
                 }}
-                title={"Tokens"}
-                description="Select token options you want to use for payments."
+                title={t('settings.paymentsWallets.tokens.title')}
+                description={t('settings.paymentsWallets.tokens.description')}
             />
             <ModalBody maxHeight={"60dvh"} display={"flex"} gap={9} flexDir={"column"}>
                 <Flex py={{ base: "24px", md: "48px" }} flexDirection={{ base: "column", md: "row" }}
@@ -67,7 +69,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                     <AppInput
                         leftElement={<AppIcons.Search />}
                         inputGroupProps={{ width: { base: "100%", md: "300px" } }}
-                        inputProps={{ placeholder: "Search", onChange: handleSearchChange }}
+                        inputProps={{ placeholder: t('settings.paymentsWallets.tokens.search'), onChange: handleSearchChange }}
                     />
                     <AppSelect
                         itemColor="neutral.white"

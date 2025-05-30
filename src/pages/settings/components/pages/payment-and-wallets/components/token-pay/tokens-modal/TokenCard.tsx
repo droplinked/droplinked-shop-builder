@@ -7,12 +7,14 @@ import React, { useState } from 'react';
 import TokensIcon from './TokensIcon';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/utils/formConfigs';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     token: IPaymentPublicService;
 }
 
 export default function TokenCard({ token }: Props) {
+    const { t } = useLocaleResources('settings');
     const { values, setFieldValue } = useFormikContext<ISettings>();
 
     // Initialize checked state based on whether the token is active in paymentMethods
@@ -72,7 +74,7 @@ export default function TokenCard({ token }: Props) {
             <Flex gap={2} px={6} py={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize="12px">
-                        Networks
+                        {t('settings.paymentsWallets.tokens.networks')}
                     </AppTypography>
                     <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"} sx={{ rect: { fill: "#292929" } }}>
                         {token.supportedChains.map((chain, index) => (

@@ -296,6 +296,62 @@
                     "tooltip": "Connect a Paymob account to receive deposits directly into an existing account."
                 }
             }
+        },
+        "paymentsWallets": {
+            "tokenPay": {
+                "title": "Tokenpay",
+                "paymentTokens": {
+                    "title": "Payment Tokens",
+                    "description": "Enable checkout payments for any native ERC20, BRC20 and SPL (Solana) based tokens.",
+                    "addButton": "Payment Token",
+                    "learnMore": "Learn More"
+                },
+                "walletRequirement": {
+                    "title": "Wallet Requirement",
+                    "description": "In order to receive native token payments with Tokenpay, you must connect an EVM or Solana based wallet. Otherwise, all received money will be converted to USD/USDC and applied to credits."
+                }
+            },
+            "storeDisplay": {
+                "title": "Store Display",
+                "defaultCurrency": {
+                    "title": "Default Currency",
+                    "description": "Choose a default currency to display to customers for products. During the checkout process, visitors will be able to see the total price in their local currency."
+                },
+                "fiat": "Fiat",
+                "crypto": "Crypto",
+                "primary": "Primary",
+                "soon": "Soon!"
+            },
+            "tokens": {
+                "title": "Tokens",
+                "description": "Select token options you want to use for payments.",
+                "search": "Search",
+                "allNetworks": "All Networks",
+                "evm": "EVM",
+                "solana": "Solana",
+                "networks": "Networks",
+                "solanaTooltip": "In order to receive direct token payments, you must connect a Solana wallet. If not, all received money will be converted to USD/USDC and applied to credits."
+            },
+            "wallets": {
+                "evmWallet": {
+                    "title": "EVM Wallet",
+                    "description": "Connect one or multiple EVM-based wallets to accept Ethereum based digital assets. You can define percentage payouts across multiple wallet addresses.",
+                    "learnMore": "Learn More"
+                },
+                "solanaWallet": {
+                    "title": "Solana Wallet",
+                    "description": "Connect a Solana-based wallet in order to accept Solana based digital assets. You can define percentage payouts across multiple wallet addresses.",
+                    "learnMore": "Learn More"
+                },
+                "addTargetWallet": "Target Wallet",
+                "walletAddress": {
+                    "placeholder": "Enter your wallet address",
+                    "saveButton": "Save"
+                },
+                "actions": {
+                    "setAsDefault": "Set As Default"
+                }
+            }
         }
     }
 }

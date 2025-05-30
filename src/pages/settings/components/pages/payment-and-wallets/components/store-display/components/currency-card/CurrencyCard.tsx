@@ -1,6 +1,7 @@
 import { Badge, Box, Divider, Flex, HStack, Select, Text } from '@chakra-ui/react';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { useFormikContext } from 'formik';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { ISettings } from 'pages/settings/utils/formConfigs';
 import React from 'react';
 
@@ -14,6 +15,7 @@ interface CurrencyCardProps {
 }
 
 const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, currencyList, onToggle, isLoading, isSoon }) => {
+  const { t } = useLocaleResources('settings');
   const { values, setFieldValue } = useFormikContext<ISettings>()
 
   return (
@@ -24,8 +26,8 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
             {currencyName}
           </Text>
           <Badge textTransform={"unset"} bg={isPrimary ? "#ffd9511a" : "grey.800"} color={isPrimary ? "#ffd850" : "neutral.gray.650"} borderRadius="4px" fontWeight={400} px="2">
-            {isPrimary && "Primary"}
-            {isSoon && "Soon!"}
+            {isPrimary && t('settings.paymentsWallets.storeDisplay.primary')}
+            {isSoon && t('settings.paymentsWallets.storeDisplay.soon')}
           </Badge>
         </Flex>
         <SwitchBox isDisabled={isSoon} isChecked={isPrimary} onToggle={onToggle} />
