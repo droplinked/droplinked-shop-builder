@@ -7,10 +7,12 @@ import useAppToast from 'hooks/toast/useToast'
 import { ISettings } from 'pages/settings/utils/formConfigs'
 import React from 'react'
 import { handleValidations } from '../../utils/validationHandlers'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function SaveChangesDrawer() {
     const { dirty, handleSubmit, resetForm, isSubmitting, values } = useFormikContext<ISettings>()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('settings')
 
     const handleSaveClick = () => {
         const isValid = handleValidations({ values, showToast })
@@ -43,10 +45,10 @@ export default function SaveChangesDrawer() {
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize={14} fontWeight={700}>
-                            Settings have changed!
+                            {t("settings.saveChanges.title")}
                         </AppTypography>
                         <AppTypography color="#B1B1B1" fontSize={12}>
-                            There are unsaved changes in the settings. Would you like to apply the new changes?
+                            {t("settings.saveChanges.description")}
                         </AppTypography>
                     </Flex>
                 </Flex>
@@ -56,14 +58,14 @@ export default function SaveChangesDrawer() {
                         isDisabled={isSubmitting}
                         onClick={() => resetForm()}
                     >
-                        Discard
+                        {t("settings.saveChanges.discard")}
                     </AppButton>
                     <AppButton
                         isLoading={isSubmitting}
                         width={{ base: "80%", lg: "max-content" }}
                         onClick={handleSaveClick}
                     >
-                        Save Changes
+                        {t("settings.saveChanges.save")}
                     </AppButton>
                 </Flex>
             </Flex>

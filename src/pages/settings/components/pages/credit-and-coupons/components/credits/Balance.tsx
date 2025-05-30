@@ -8,8 +8,10 @@ import BlueButton from "components/redesign/button/BlueButton";
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice";
 import { useQuery } from "react-query";
 import { getShopCredit } from "services/shop/shopServices";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function Balance() {
+    const { t } = useLocaleResources('settings');
     const { shop: { name }, fetchShop } = useAppStore();
     const { selectedIndex } = useTabsContext()
     const { isOpen, onClose, onOpen } = useDisclosure()
@@ -28,7 +30,7 @@ export default function Balance() {
             await refetch()
         }
         catch {
-            showToast({ message: "Oops! Something went wrong", type: "error" })
+            showToast({ message: t('settings.credits.error'), type: "error" })
         }
         finally {
             setLoading(false);
@@ -60,7 +62,7 @@ export default function Balance() {
                     sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
                     <AppIcons.Refresh color="#2BCFA1" />
-                    Charge
+                    {t('settings.credits.charge')}
                 </BlueButton>
             </Flex>
             {(isFetching || loading) ?

@@ -9,6 +9,7 @@ import { AxiosError } from 'axios'
 import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
 import AppSelect from 'components/redesign/select/AppSelect'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export enum Filters {
     All = 'All',
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default function CodesTab({ coupon, onClose }: Props) {
+    const { t } = useLocaleResources('settings');
     const [currentFilter, setCurrentFilter] = useState(Filters.All)
     const { showToast } = useAppToast();
     const { mutate, isLoading } = useMutation(
@@ -54,15 +56,15 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     <AppSelect
                         items={[
                             {
-                                label: Filters.All,
+                                label: t("settings.coupons.information.filters.all"),
                                 value: Filters.All
                             },
                             {
-                                label: Filters.Used,
+                                label: t("settings.coupons.information.filters.used"),
                                 value: Filters.Used
                             },
                             {
-                                label: Filters.Available,
+                                label: t("settings.coupons.information.filters.available"),
                                 value: Filters.Available
                             }
                         ]}
@@ -78,7 +80,7 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     isLoading={isLoading}
                     leftIcon={<AppIcons.Download />}
                 >
-                    Download
+                    {t("settings.coupons.information.download")}
                 </AppButton>
             </Flex>
             <CodesList codes={coupon.codes} currentFilter={currentFilter} />

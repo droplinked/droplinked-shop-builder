@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import i18next from 'i18next';
 
 export interface ISettings {
     name: string;
@@ -24,12 +25,12 @@ export interface ISettings {
     }[]
 }
 
-export const settingsPageSchema = Yup.object().shape({
-    name: Yup.string().required('Please provide a name for shop'),
-    email: Yup.string().email().typeError("Please provide a valid email.").required('Please provide a valid email.'),
+export const createSettingsPageSchema = (t) => Yup.object().shape({
+    name: Yup.string().required(t('settings.validation.nameRequired')),
+    email: Yup.string().email().typeError(t('settings.validation.emailValid')).required(t('settings.validation.emailRequired')),
     pre_purchase_data_fetch: Yup.string().nullable().optional(),
     isAgeRestricted: Yup.boolean().nullable().optional(),
-    currencyAbbreviation: Yup.string().nullable().required('Please select a currency'),
+    currencyAbbreviation: Yup.string().nullable().required(t('settings.validation.currencyRequired')),
     paymentMethods: Yup.array().of(
         Yup.object().shape({
             type: Yup.string().required(),

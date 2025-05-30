@@ -9,6 +9,7 @@ import { Coupon } from '../interface';
 import { useDisclosure } from '@chakra-ui/react';
 import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer';
 import CouponsEditCreationDrawer from '../modals/coupons-edit-creation/CouponsEditCreationDrawer';
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Props {
     couponId: string;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
+    const { t } = useLocaleResources('settings');
     const { showToast } = useAppToast();
     const { isOpen: isEditModalOpen, onClose: onEditModalClose, onOpen: onEditModalOpen } = useDisclosure()
     const { isOpen: isInformationModalOpen, onClose: onInformationModalClose, onOpen: onInformationModalOpen } = useDisclosure()
@@ -49,17 +51,17 @@ export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
                     {
                         icon: <AppIcons.Eye stroke='#fff' style={{ width: "20px", height: "20px" }} />,
                         onClick: onInformationModalOpen,
-                        title: "Details"
+                        title: t("settings.coupons.tableMenu.details")
                     },
                     {
                         icon: <AppIcons.Edit />,
                         onClick: onEditModalOpen,
-                        title: "Edit"
+                        title: t("settings.coupons.tableMenu.edit")
                     },
                     {
                         icon: <AppIcons.Export />,
                         onClick: () => exportMutation.mutate(),
-                        title: "Export Codes",
+                        title: t("settings.coupons.tableMenu.exportCodes"),
                     }
                 ]}
             />

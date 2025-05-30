@@ -1,0 +1,135 @@
+{
+    "settings": {
+        "title": "Settings",
+        "description": "Customize the platform to your Preferences",
+        "updateSuccess": "Settings updated successfully",
+        "updateError": "Oops! Something went wrong.",
+        "validation": {
+            "nameRequired": "Please provide a name for shop",
+            "emailRequired": "Please provide a valid email.",
+            "emailValid": "Please provide a valid email.",
+            "currencyRequired": "Please select a currency"
+        },
+        "tabs": {
+            "general": "General",
+            "privacySecurity": "Privacy and Security",
+            "paymentsWallets": "Payments and Wallets",
+            "creditsCoupons": "Credits and Coupons",
+            "userManagement": "User Management"
+        },
+        "saveChanges": {
+            "title": "Settings have changed!",
+            "description": "There are unsaved changes in the settings. Would you like to apply the new changes?",
+            "discard": "Discard",
+            "save": "Save Changes"
+        },
+        "defaultBadge": {
+            "default": "Default",
+            "setAsDefault": "Set As Default"
+        },
+        "upgradePlan": {
+            "premium": "Premium",
+            "premiumDescription": "Designed for large businesses needing comprehensive solutions.",
+            "enterprise": "Enterprise",
+            "enterpriseDescription": "Contact us to explore integration.",
+            "proPlan": "Pro Plan",
+            "proDescription": "For small businesses and teams ready to grow.",
+            "unlockFeatures": "Unlock Features",
+            "upgradeTitle": "Upgrade to Unlock Premium Features!",
+            "upgradeDescription": "You're almost there! This feature is available to premium account users.\nExperience all the following features by upgrading today.",
+            "unlimitedAccess": "Unlimited Access",
+            "advancedTools": "Advanced tools",
+            "prioritySupport": "Priority Support",
+            "visitPricingPlans": "Visit Pricing Plans",
+            "upgrade": "Upgrade"
+        },
+        "coupons": {
+            "title": "Coupons",
+            "description": "Manage your discounts and coupons you want to give to users.",
+            "create": "Create",
+            "tableHeaders": {
+                "title": "Title",
+                "quantity": "Quantity",
+                "amount": "Amount",
+                "expirationDate": "Expiration Date",
+                "type": "Type"
+            },
+            "types": {
+                "discount": "Discount",
+                "coupon": "Coupon"
+            },
+            "tableMenu": {
+                "details": "Details",
+                "edit": "Edit",
+                "exportCodes": "Export Codes"
+            },
+            "drawer": {
+                "editTitle": "Edit Discount",
+                "createTitle": "Create Discount",
+                "cancel": "Cancel",
+                "discard": "Discard",
+                "create": "Create",
+                "update": "Update"
+            },
+            "form": {
+                "titleLabel": "Title",
+                "titleDescription": "Enter a unique name for the discount.",
+                "titlePlaceholder": "e.g., Summer Sale",
+                "amountLabel": "Amount",
+                "amountDescription": "Select the discount type between shop's currency or percentage.",
+                "amountPlaceholder": "0.00",
+                "percentage": "Percentage",
+                "quantityLabel": "Quantity",
+                "quantityDescription": "Number of times this discount can be used.",
+                "quantityPlaceholder": "9999",
+                "expirationDateLabel": "Expiration Date",
+                "expirationDateDescription": "Select a specific expiration date for discount.",
+                "validation": {
+                    "titleRequired": "Title is Required",
+                    "quantityRequired": "Quantity is Required",
+                    "amountRequired": "Amount is Required",
+                    "typeRequired": "Type is Required",
+                    "expiryDateRequired": "Expiry Date is Required",
+                    "mustBeNumber": "Must be Number",
+                    "validNumber": "Must be a valid number",
+                    "minDiscount": "Min is 1",
+                    "maxDiscount": "Max 100",
+                    "futureDateRequired": "Expiry date must be in the future"
+                }
+            },
+            "success": {
+                "created": "{type} has been created.",
+                "updated": "{type} has been updated."
+            },
+            "error": "Oops! Something went wrong.",
+            "information": {
+                "creationDate": "Creation Date",
+                "expired": "Expired",
+                "active": "Active",
+                "tabs": {
+                    "information": "Information",
+                    "codes": "Codes"
+                },
+                "close": "Close",
+                "saveChanges": "Save Changes",
+                "details": "Details",
+                "amount": "Amount",
+                "expirationDate": "Expiration Date",
+                "usageLimit": "Usage Limit",
+                "filters": {
+                    "all": "All",
+                    "used": "Used",
+                    "available": "Available"
+                },
+                "download": "Download"
+            }
+        },
+        "credits": {
+            "title": "Credits",
+            "remainingBalance": "Remaining Balance",
+            "description": "Use credits to create discounts and coupons.",
+            "charge": "Charge",
+            "error": "Oops! Something went wrong"
+        }
+    }
+}

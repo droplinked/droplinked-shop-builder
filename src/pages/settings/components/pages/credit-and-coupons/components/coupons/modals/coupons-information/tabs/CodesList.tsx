@@ -38,6 +38,7 @@ export default function CodesList({ codes, currentFilter }: Props) {
                             justifyContent={"space-between"}
                             alignItems={"center"}
                             mr={2}
+                            key={index}
                         >
                             <Flex gap={4} alignItems={"center"}>
                                 <Box borderRadius={"8px"} background={item.isRedeemed ? "#FF2244" : "#2BCFA1"} width={"8px"} height={"8px"} />

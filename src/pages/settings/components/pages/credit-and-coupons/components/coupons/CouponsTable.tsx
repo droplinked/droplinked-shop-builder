@@ -9,6 +9,7 @@ import Table from 'components/redesign/table/Table';
 import EmptyView from 'pages/settings/components/common/EmptyView';
 import DropDownColumn from './columns/DropDownColumn';
 import CouponsEditCreationDrawer from './modals/coupons-edit-creation/CouponsEditCreationDrawer';
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Props {
     isOpen: boolean
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function CouponsTable({ isOpen, onClose }: Props) {
+    const { t } = useLocaleResources('settings');
+
     const { data, isFetching, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
         queryKey: ["giftCard"],
         queryFn: ({ pageParam = 1 }) => giftcardsService({
@@ -32,16 +35,16 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
     const columns: ColumnDef<Coupon>[] = [
         {
             accessorKey: "name",
-            header: "Title",
+            header: t("settings.coupons.tableHeaders.title"),
         },
         {
             accessorKey: "codes",
-            header: "Quantity",
+            header: t("settings.coupons.tableHeaders.quantity"),
             cell: (info) => info.row.original.codes.length,
         },
         {
             accessorKey: "balance",
-            header: "Amount",
+            header: t("settings.coupons.tableHeaders.amount"),
             cell: (info) => (
                 <AmountColumn
                     type={info.row.original.type}
@@ -51,7 +54,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "expiryDate",
-            header: "Expiration Date",
+            header: t("settings.coupons.tableHeaders.expirationDate"),
             cell: (info) => {
                 const expiryDate = info.row.original.expiryDate;
                 const date = new Date(expiryDate);
@@ -65,7 +68,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "type",
-            header: "Type",
+            header: t("settings.coupons.tableHeaders.type"),
             cell: (info) => (
                 <TypeColumn
                     type={info.row.original.type}
