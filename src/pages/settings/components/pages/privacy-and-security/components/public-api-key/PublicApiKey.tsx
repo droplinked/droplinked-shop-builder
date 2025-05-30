@@ -12,9 +12,11 @@ import { appDevelopment } from 'utils/app/variable'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 
 export default function PublicApiKey() {
+    const { t } = useLocaleResources('settings');
     const hasPermission = useHasPermission()
     const hasShopApiPermission = hasPermission("shopfront_apis")
     const { isFetching, data, refetch } = useQuery("shopAPIKey", getShopAPIKeyService, { enabled: hasShopApiPermission })
@@ -22,7 +24,7 @@ export default function PublicApiKey() {
 
     return (
         <SectionContainer
-            title="Public API Key"
+            title={t("settings.privacySecurity.publicApiKey.title")}
             badge={
                 <AccessLevelBadge justLevel level="Premium" />
             }
@@ -37,14 +39,14 @@ export default function PublicApiKey() {
                     gap={"6px"}
                     target='_blank'
                 >
-                    API Documentation
+                    {t("settings.privacySecurity.publicApiKey.apiDocumentation")}
                     <AppIcons.ExternalLink style={{ display: "inline-block" }} />
                 </ExternalLink>
             }
         >
             <SectionContent
-                title="Domain"
-                description="Add a domain to generate a unique API key for secure store access."
+                title={t("settings.privacySecurity.publicApiKey.domain.title")}
+                description={t("settings.privacySecurity.publicApiKey.domain.description")}
                 rightContent={
                     <Flex flexDirection={"column"} gap={4}>
                         <Box mb={{ base: 4, md: 6 }}>

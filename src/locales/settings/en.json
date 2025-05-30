@@ -352,6 +352,36 @@
                     "setAsDefault": "Set As Default"
                 }
             }
+        },
+        "privacySecurity": {
+            "privateKey": {
+                "title": "Private Key",
+                "confidentialKey": {
+                    "title": "Confidential Key",
+                    "description": "Save the Private Key for secure access to store settings. Keep it safe, as it's crucial for the account's security.",
+                    "learnMore": "Learn More"
+                }
+            },
+            "publicApiKey": {
+                "title": "Public API Key",
+                "domain": {
+                    "title": "Domain",
+                    "description": "Add a domain to generate a unique API key for secure store access.",
+                    "placeholder": "Domain.com",
+                    "buttonText": "Generate API Key",
+                    "addSuccess": "{{value}} added successfully.",
+                    "errorValidDomain": "Please enter a valid domain.",
+                    "errorDomainExists": "Domain already exists."
+                },
+                "deleteConfirmation": {
+                    "title": "Delete Domain",
+                    "description": "Are you sure you want to delete this Domain?",
+                    "cancel": "Cancel",
+                    "delete": "Delete",
+                    "success": "Domain deleted successfully"
+                },
+                "apiDocumentation": "API Documentation"
+            }
         }
     }
 }

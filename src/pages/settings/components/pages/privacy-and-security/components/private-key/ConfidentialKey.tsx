@@ -4,12 +4,15 @@ import React from 'react'
 import KeyContainer from './KeyContainer'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import AppIcons from 'assets/icon/Appicons'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function ConfidentialKey() {
+    const { t } = useLocaleResources('settings');
+
     return (
         <SectionContent
-            title="Confidential Key"
-            description="Save the Private Key for secure access to store settings. Keep it safe, as it’s crucial for the account’s security."
+            title={t("settings.privacySecurity.privateKey.confidentialKey.title")}
+            description={t("settings.privacySecurity.privateKey.confidentialKey.description")}
             rightContent={
                 <KeyContainer />
             }
@@ -24,7 +27,7 @@ export default function ConfidentialKey() {
                 gap={"6px"}
                 target='_blank'
             >
-                Learn More
+                {t("settings.privacySecurity.privateKey.confidentialKey.learnMore")}
                 <AppIcons.ExternalLink style={{ display: "inline-block" }} />
             </ExternalLink>
         </SectionContent>
