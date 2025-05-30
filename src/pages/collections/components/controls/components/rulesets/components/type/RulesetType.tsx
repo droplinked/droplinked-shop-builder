@@ -4,8 +4,10 @@ import React, { useContext, useEffect } from 'react'
 import ruleModelContext from '../../context'
 import { RuleTypes } from '../../RuleModel'
 import TextboxRule from '../textbox/TextboxRule'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function RulesetType() {
+    const { t } = useLocaleResources("collections");
     const { values, setFieldValue, loading } = useContext(ruleModelContext)
     useEffect(() => {
         if (values.type !== RuleTypes.DISCOUNT) {
@@ -17,12 +19,12 @@ function RulesetType() {
             <HStack align="stretch" spacing={2}>
                 <Switch onChange={e => setFieldValue("type", e.target.checked ? "DISCOUNT" : "GATING")} size='md' colorScheme='green' isChecked={values.type === "DISCOUNT"} />
                 <VStack align='stretch' paddingLeft={2} spacing={2}>
-                    <Text fontWeight="bold" fontSize="14px" color="#FFFFFF">Discount</Text>
-                    <Text fontSize="14px" color="text.subtext.placeholder.dark">Enable this function to offer an exclusive discount to holders that meet the requirements.</Text>
+                    <Text fontWeight="bold" fontSize="14px" color="#FFFFFF">{t("ruleset.discount")}</Text>
+                    <Text fontSize="14px" color="text.subtext.placeholder.dark">{t("ruleset.discountDescription")}</Text>
                 </VStack>
                 {values.type === RuleTypes.DISCOUNT && (
                     <Box width={"20%"}>
-                        <TextboxRule isRequired={false} element={"discountPercentage"} onChange={e => setFieldValue('discountPercentage', parseInt(e.target.value))} placeholder="20%" />
+                        <TextboxRule isRequired={false} element={"discountPercentage"} onChange={e => setFieldValue('discountPercentage', parseInt(e.target.value))} placeholder={t("ruleset.discountPlaceholder")} />
                     </Box>
                 )}
             </HStack>

@@ -1,9 +1,12 @@
 import AppIcons from 'assets/icon/Appicons';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 
 function ModalWrapper({ collection, isOpen, onClose, children }: { collection?: any, isOpen: boolean, onClose: () => void, children: React.ReactNode }) {
+    const { t } = useLocaleResources("collections");
+
     return (
         <AppModal modalRootProps={{ isOpen: isOpen, onClose: onClose, isCentered: false, size: "2xl" }} modalContentProps={{ background: "#141414", px: "0px", paddingInline: "0px", sx: { paddingInline: "0px", paddingBlock: "0px", paddingTop: "48px" } }}>
             <ModalHeaderData
@@ -14,8 +17,8 @@ function ModalWrapper({ collection, isOpen, onClose, children }: { collection?: 
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title={collection ? 'Edit Collection' : 'Create Collection'}
-                description={collection ? 'Edit the details of your collection.' : 'Create a new collection by providing the necessary details.'}
+                title={collection ? t("create.editTitle") : t("create.title")}
+                description={collection ? t("create.editDescription") : t("create.description")}
             />
             {children}
         </AppModal >

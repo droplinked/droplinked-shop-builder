@@ -1,7 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 import AppTypography from "components/common/typography/AppTypography";
-import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
 import { Collection } from "services/collection/interfaces";
@@ -9,6 +8,9 @@ import React from "react";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/collections/ar.json'
+import enLocale from 'locales/collections/en.json'
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -29,20 +31,24 @@ function CollectionGrid({
     onReorderClick,
     refetch,
 }: CollectionGridProps) {
+    const { t } = useLocaleResources("collections", {
+        en: enLocale,
+        ar: arLocale
+    })
     const columns: ColumnDef<Collection>[] = [
         {
             accessorKey: 'title',
-            header: 'Collection',
+            header: t('columnHeaders.collection'),
             cell: info => <CollectionTitleColumn collection={info.row.original} />
         },
         {
             accessorKey: 'ruleSetID',
-            header: 'Rulesets',
+            header: t('columnHeaders.rulesets'),
             cell: info => info.getValue() ? <CollectionRulesetColumn ruleset={info.getValue()} /> : "-"
         },
         {
             accessorKey: 'productsCount',
-            header: 'Products',
+            header: t('columnHeaders.products'),
             cell: info => info.getValue() || "-"
         },
         {
@@ -55,16 +61,16 @@ function CollectionGrid({
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title="Collections"
-                description="Create and view inventory collections here."
+                title={t('title')}
+                description={t('description')}
                 actionButtons={[
                     {
-                        title: "New Collection",
+                        title: t('newCollection'),
                         onClick: onCreateCollection,
                         leftIcon: <PlusSm color="#000" />,
                     },
                     {
-                        title: "Visibility and reorder",
+                        title: t('visibilityAndReorder'),
                         variant: "secondary",
                         onClick: onReorderClick,
                     }
@@ -83,7 +89,7 @@ function CollectionGrid({
                     isLoading={isFetching}
                     emptyView={
                         <AppTypography fontSize={16} fontWeight={500} color={"white"}>
-                            No collections available. Create a new collection to get started.
+                            {t('emptyState')}
                         </AppTypography>
                     }
                 />

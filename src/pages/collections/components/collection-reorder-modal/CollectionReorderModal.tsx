@@ -9,6 +9,7 @@ import useAppToast from 'hooks/toast/useToast';
 import { getAllCollectionsService, reorderCollectionsService } from 'services/collection/services';
 import React, { useEffect, useState } from 'react';
 import SortableCollection from './components/SortableCollection';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     isOpen: boolean;
@@ -19,6 +20,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
     const [collections, setCollections] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { showToast } = useAppToast();
+    const { t } = useLocaleResources("collections")
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
@@ -37,7 +39,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
             setCollections(collections => arrayMove(collections, originalPosition, newPosition));
             await reorderCollectionsService({ collectionId: active.id, newPosition: newPosition + 1 });
         } catch (error) {
-            showToast({ type: "error", message: "Something went wrong!" });
+            showToast({ type: "error", message: t("genericErrorMessage") });
             setCollections(originalCollections);
         }
     };
@@ -52,7 +54,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                 setCollections(collectionsData?.data);
             } catch (error) {
                 if (!signal.aborted) {
-                    showToast({ type: "error", message: "Something went wrong!" });
+                    showToast({ type: "error", message: t("genericErrorMessage") });
                 }
             }
         };
@@ -75,8 +77,8 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title='Visibility and Reorder Collections'
-                description='Rearrange collections by dragging and dropping them to set their display order in your store. Top three collections are visible on your PLP page.'
+                title={t("reorderModal.title")}
+                description={t("reorderModal.description")}
             />
             <Flex direction={"column"} gap={9}>
                 {isLoading ? (

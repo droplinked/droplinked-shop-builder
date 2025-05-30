@@ -4,17 +4,16 @@ import useAppToast from "hooks/toast/useToast";
 import { Collection } from "services/collection/interfaces";
 import { createCollectionService, updateCollectionService } from "services/collection/services";
 import { useCheckPermission } from "stores/app/appStore";
-import AppErrors from "utils/constants/errors";
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { collectionCreateInputFields } from "./formConfigs";
-import { collectionCreateSchema } from "./formConfigs";
+import { getCollectionCreateInputFields, getCollectionCreateSchema } from "./formConfigs";
 import ModalWrapper from "./_components/ModalWrapper";
 import { ICollectionForm } from "./interface/interfaces";
 import ImageUploader from "./_components/ImageUploader";
 import ModalButtons from "./_components/ModalButtons";
 import Textarea from "components/redesign/textarea/Textarea";
 import AppInput from "components/redesign/input/AppInput";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface IProps {
   close: () => void;
@@ -28,22 +27,26 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
   const { showToast } = useAppToast();
   const createService = useMutation(createCollectionService);
   const updateService = useMutation(updateCollectionService);
+  const { t } = useLocaleResources("collections");
+
+  const collectionCreateInputFields = getCollectionCreateInputFields(t);
+  const collectionCreateSchema = getCollectionCreateSchema(t);
 
   const onSubmit = async (data: ICollectionForm) => {
     try {
       const { title, description, image } = data;
       if (collection) {
         await updateService.mutateAsync({ title, collectionID: collection._id, description, image });
-        showToast({ message: AppErrors.collection.collectionUpdated, type: 'success' });
+        showToast({ message: t("create.success.updated"), type: 'success' });
       } else {
         if (!checkPermissionAndShowToast("collection_management")) return;
         await createService.mutateAsync({ title, description, image });
-        showToast({ message: AppErrors.collection.collectionCreated, type: 'success' });
+        showToast({ message: t("create.success.created"), type: 'success' });
       }
       close()
       queryClient.invalidateQueries({ queryKey: ['collectionList'] });
     } catch (error) {
-      showToast({ message: 'Oops! Something went wrong', type: 'error' });
+      showToast({ message: t("genericErrorMessage"), type: 'error' });
     }
   };
 

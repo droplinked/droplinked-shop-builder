@@ -3,6 +3,8 @@
   "submit": "Submit",
   "cancel": "Cancel",
   "error": "An error occurred",
+  "save": "Save",
+  "delete": "Delete",
   "socialMedia": {
     "telegram": "Telegram",
     "discord": "Discord",

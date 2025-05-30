@@ -11,9 +11,11 @@ import { appDevelopment } from 'utils/app/variable';
 import { updateCollectionVisiblityService } from 'services/collection/services';
 import useAppToast from 'hooks/toast/useToast';
 import { useMutation } from 'react-query';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 function ControlsListCollection({ collection, fetch }) {
     const { showToast } = useAppToast();
+    const { t } = useLocaleResources("collections");
     const checkPermissionAndShowToast = useCheckPermission();
     const deleteModal = useDisclosure();
     const ruleModal = useDisclosure();
@@ -27,7 +29,7 @@ function ControlsListCollection({ collection, fetch }) {
         {
             onSuccess: () => setIsPublished(!isPublished),
             onError: () => showToast({
-                message: "You cannot change your collection status at this time. Please try again later",
+                message: t("visibility.error"),
                 type: "error"
             })
         }
@@ -46,7 +48,7 @@ function ControlsListCollection({ collection, fetch }) {
     );
     const handleCopy = () => {
         navigator.clipboard.writeText(collection._id)
-        showToast({ message: "Collection ID copied successfully", type: "success" })
+        showToast({ message: t("controls.collectionIdCopied"), type: "success" })
     }
 
     return (
@@ -62,22 +64,22 @@ function ControlsListCollection({ collection, fetch }) {
             </Link>
             <TableMenu key={collection._id} items={[
                 {
-                    title: "Edit",
+                    title: t("controls.menu.edit"),
                     onClick: editModal.onOpen,
                     icon: <AppIcons.EditOutlined />
                 },
                 {
-                    title: "Ruleset",
+                    title: t("controls.menu.ruleset"),
                     onClick: handleOpenRulesetModal,
                     icon: <AppIcons.RulesetsIcon />
                 },
                 {
-                    title: "Copy Collection ID",
+                    title: t("controls.menu.copyId"),
                     onClick: handleCopy,
                     icon: <AppIcons.Copy />
                 },
                 {
-                    title: "Delete",
+                    title: t("controls.menu.delete"),
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
                     icon: <AppIcons.RedTrash />

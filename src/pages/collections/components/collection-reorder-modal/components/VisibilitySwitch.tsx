@@ -1,20 +1,21 @@
-
 import React, { useState } from 'react';
 import AppSwitch from 'components/common/swich';
 import { updateCollectionVisiblityService } from 'services/collection/services';
 import useAppToast from 'hooks/toast/useToast';
 import { Collection } from 'services/collection/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 function VisibilitySwitch({ collection }: { collection: Collection }) {
     const { showToast } = useAppToast();
     const [isVisible, setIsVisible] = useState(collection?.published);
+    const { t } = useLocaleResources("collections");
 
     const handleVisibleSwitch = async () => {
         setIsVisible((prev) => !prev);
         try {
             await updateCollectionVisiblityService({ collectionID: collection?._id, published: !isVisible });
         } catch (error) {
-            showToast({ message: "You cannot change your collection status at this time. Please try again later", type: "error" });
+            showToast({ message: t("visibility.error"), type: "error" });
         }
     };
 

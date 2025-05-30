@@ -2,7 +2,9 @@
   "home": "الرئيسية",
   "submit": "إرسال",
   "cancel": "إلغاء",
+  "save": "حفظ",
   "error": "حدث خطأ",
+  "delete": "حذف",
   "socialMedia": {
     "telegram": "تلغرام",
     "discord": "ديسكورد",
