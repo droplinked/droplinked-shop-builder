@@ -1,70 +1,62 @@
-import AppIcons from 'assets/icon/Appicons';
-import TableMenu from 'components/redesign/table-menu/TableMenu';
-import React from 'react';
-import { useMutation } from 'react-query';
-import { exportCouponsReport } from 'lib/apis/coupons/addressServices';
-import { AxiosError } from 'axios';
-import useAppToast from 'hooks/toast/useToast';
-import { Coupon } from '../interface';
-import { useDisclosure } from '@chakra-ui/react';
-import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer';
-import CouponsEditCreationDrawer from '../modals/coupons-edit-creation/CouponsEditCreationDrawer';
+import { useDisclosure } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import TableMenu from 'components/redesign/table-menu/TableMenu'
+import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
+import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
+import React from 'react'
+import { Coupon } from '../interface'
+import CouponsEditCreationDrawer from '../modals/coupons-edit-creation/CouponsEditCreationDrawer'
+import CouponsInformationDrawer from '../modals/coupons-information/CouponsInformationDrawer'
 
 interface Props {
-    couponId: string;
+    couponId: string
     rowData: Coupon
     refetch: () => void
 }
 
 export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
-    const { showToast } = useAppToast();
-    const { isOpen: isEditModalOpen, onClose: onEditModalClose, onOpen: onEditModalOpen } = useDisclosure()
-    const { isOpen: isInformationModalOpen, onClose: onInformationModalClose, onOpen: onInformationModalOpen } = useDisclosure()
+    const { isOpen: isInfoOpen, onOpen: openInfo, onClose: closeInfo } = useDisclosure()
+    const { isOpen: isEditOpen, onOpen: openEdit, onClose: closeEdit } = useDisclosure()
 
-    const exportMutation = useMutation(
-        () => exportCouponsReport({ giftCardId: couponId }),
-        {
-            onSuccess: (data) => {
-                const url = window.URL.createObjectURL(data);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `${Date.now()}.xlsx`;
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
-                setTimeout(() => {
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-            },
-            onError: (error: AxiosError) => {
-                showToast({ message: error.message, type: "error" });
-            }
-        }
-    );
+    const { download: exportCodes } = useDownloadFile({
+        fetcher: exportCouponsReport,
+        fileNameResolver: () => `${Date.now()}.xlsx`
+    })
 
     return (
         <>
             <TableMenu
                 items={[
                     {
-                        icon: <AppIcons.Eye stroke='#fff' style={{ width: "20px", height: "20px" }} />,
-                        onClick: onInformationModalOpen,
-                        title: "Details"
+                        icon: <AppIcons.Eye stroke='#fff' style={{ width: '20px', height: '20px' }} />,
+                        onClick: openInfo,
+                        title: 'Details'
                     },
                     {
                         icon: <AppIcons.Edit />,
-                        onClick: onEditModalOpen,
-                        title: "Edit"
+                        onClick: openEdit,
+                        title: 'Edit'
                     },
                     {
                         icon: <AppIcons.Export />,
-                        onClick: () => exportMutation.mutate(),
-                        title: "Export Codes",
+                        onClick: () => exportCodes({ giftCardId: couponId }),
+                        title: 'Export Codes'
                     }
                 ]}
             />
-            <CouponsInformationDrawer coupon={rowData} key={rowData._id} isOpen={isInformationModalOpen} onClose={onInformationModalClose} />
-            <CouponsEditCreationDrawer refetch={refetch} isEdit={true} coupon={rowData} isOpen={isEditModalOpen} onClose={onEditModalClose} />
+            <CouponsInformationDrawer
+                coupon={rowData}
+                key={rowData._id}
+                isOpen={isInfoOpen}
+                onClose={closeInfo}
+            />
+            <CouponsEditCreationDrawer
+                refetch={refetch}
+                isEdit
+                coupon={rowData}
+                isOpen={isEditOpen}
+                onClose={closeEdit}
+            />
         </>
     )
 }
