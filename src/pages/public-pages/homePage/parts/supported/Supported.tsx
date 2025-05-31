@@ -1,9 +1,12 @@
-import { Flex, Image } from '@chakra-ui/react'
-import React from 'react'
-import LandingDescription from '../parts/description/LandingDescription'
-import LandingTitle from '../parts/title/LandingTitle'
+import { Flex, Image } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
+import LandingDescription from '../parts/description/LandingDescription';
+import LandingTitle from '../parts/title/LandingTitle';
 
 function Supported() {
+    const { t } = useLocaleResources("homePage");
+
     const data = [
         'assets/images/homepage/stacks.png',
         'assets/images/homepage/polygon.png',
@@ -22,23 +25,26 @@ function Supported() {
 
     return (
         <Flex justifyContent="center" height="100%" alignItems="center">
-            <Flex width="90%" direction={"column"} justifyContent="center" gap={14} color="#FFF">
-                <Flex direction={"column"} gap={6}>
-                    <LandingTitle title='Trusted by the Best' />
-                    <LandingDescription text='Multi-chain support to provide the flexibility you need' />
+            <Flex width="90%" direction="column" justifyContent="center" gap={14} color="#FFF">
+                <Flex direction="column" gap={6}>
+                    <LandingTitle title={t('supported.title')} />
+                    <LandingDescription text={t('supported.description')} />
                 </Flex>
+
                 <Flex
                     width="100%"
                     justifyContent="center"
                     flexWrap="wrap"
-                    columnGap={{ base: "20px", sm: "80px" }}
+                    columnGap={{ base: '20px', sm: '80px' }}
                     rowGap="48px"
                 >
-                    {data.map((el, key) => <Image key={key} height={{ base: "14px", sm: "24px", lg: "34px" }} src={el} />)}
+                    {data.map((src, i) => (
+                        <Image key={i} height={{ base: '14px', sm: '24px', lg: '34px' }} src={src} />
+                    ))}
                 </Flex>
             </Flex>
         </Flex>
-    )
+    );
 }
 
-export default Supported
+export default Supported;

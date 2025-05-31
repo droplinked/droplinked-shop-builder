@@ -9,10 +9,27 @@
     "telegram": "Telegram",
     "discord": "Discord",
     "x": "X (Twitter)",
+    "twitter": "Twitter",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
     "youtube": "YouTube",
     "tiktok": "TikTok",
-    "bluesky": "Blue Sky"
+    "bluesky": "Blue Sky",
+    "facebook": "Facebook",
+    "messenger": "Messenger",
+    "web": "Website"
+  },
+  "fileUpload": {
+    "click": "Click",
+    "dragAndDrop": "or drag & drop here",
+    "dragActive": "Drop the file here ...",
+    "defaultFooter": "JPG, JPEG, PNG, MP4 and MOV (up to 10MB each)",
+    "ariaLabel": "Upload file"
+  },
+  "imageUpload": {
+    "dragActive": "Drop the image here...",
+    "footer": "JPG, JPEG, PNG (up to 5MB)",
+    "remove": "Remove {{name}}",
+    "uploadError": "Failed to upload image"
   }
 }

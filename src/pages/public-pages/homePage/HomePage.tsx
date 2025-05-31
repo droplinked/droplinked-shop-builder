@@ -1,9 +1,12 @@
 import { Flex, Image } from '@chakra-ui/react';
-import useAppStore from 'stores/app/appStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/home-page/ar.json';
+import enLocale from 'locales/home-page/en.json';
 import { useLogin } from 'pages/onboarding/hooks/useLogin';
 import React, { useEffect } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import useAppStore from 'stores/app/appStore';
 import Banner from './parts/banner/Banner';
 import Community from './parts/community/Community';
 import Contact from './parts/contact/Contact';
@@ -15,12 +18,11 @@ import Partners from './parts/partners/Partners';
 import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
 
-export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
-
 function HomePage() {
   const [searchParams] = useSearchParams()
   const { authenticateUser, finalizeLogin, loading } = useLogin()
   const { user, shop } = useAppStore()
+  useLocaleResources("homePage", { en: enLocale, ar: arLocale })
 
   useEffect(() => {
     async function handleGoogleLogin() {
@@ -54,7 +56,6 @@ function HomePage() {
       : (
         <ParallaxProvider>
           <Flex direction={"column"}>
-
             <HomePageSection>
               <Effects />
               <Banner />
@@ -94,7 +95,6 @@ function HomePage() {
               <Contact />
             </HomePageSection>
           </Flex>
-
         </ParallaxProvider>
       )
   )
