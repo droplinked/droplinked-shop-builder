@@ -58,8 +58,8 @@ export const getProducerSidebarLinks = (t: TFunction) => [
                 linkTo: null,
                 list: [
                     { listTitle: t('lists.storefrontDesigner'), linkTo: '/style-center/storefront-designer' },
-                    { listTitle: t('lists.productTiles'), linkTo: '/analytics/settings/tile' },
-                    { listTitle: t('lists.productLinks'), linkTo: '/analytics/settings/payment-link-design' },
+                    { listTitle: t('lists.productTiles'), linkTo: '/analytics/style-center/product-tiles' },
+                    { listTitle: t('lists.productLinks'), linkTo: '/analytics/style-center/product-links' },
                     { listTitle: t('lists.blogEditor'), linkTo: '/analytics/blogs' }
                 ]
             }
