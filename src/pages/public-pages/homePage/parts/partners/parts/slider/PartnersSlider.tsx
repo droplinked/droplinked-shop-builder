@@ -1,5 +1,6 @@
 import { Box, Image } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import MainCard from '../../../parts/card/MainCard';
@@ -7,6 +8,8 @@ import './styles.css';
 
 function PartnersSlider() {
 	const sliderRef = useRef(null);
+	const { t } = useLocaleResources("homePage");
+
 	const partners = [
 		{
 			title: 'Unstoppable',
@@ -110,7 +113,7 @@ function PartnersSlider() {
 
 	return (
 		<Box width={'100%'}>
-			 <Slider ref={sliderRef} {...settings}>
+			<Slider ref={sliderRef} {...settings}>
 				{partners.map((partner, key) => {
 					const { title, icon, url } = partner;
 					return (
@@ -118,17 +121,10 @@ function PartnersSlider() {
 							key={key}
 							display={'flex'}
 							transition="1s"
-							padding={{
-								base: 4,
-								md: 6,
-								lg: 8,
-							}}
+							padding={{ base: 4, md: 6, lg: 8 }}
 						>
 							<Image
-								width={{
-									base: '36px',
-									md: '64px',
-								}}
+								width={{ base: '36px', md: '64px' }}
 								aspectRatio={1}
 								objectFit={'contain'}
 								src={icon}
@@ -136,10 +132,7 @@ function PartnersSlider() {
 							/>
 							<AppTypography
 								marginBlock={2}
-								fontSize={{
-									sm: '16px',
-									lg: '24px',
-								}}
+								fontSize={{ sm: '16px', lg: '24px' }}
 								fontWeight="bold"
 								color="#f5f5f5"
 								whiteSpace={'nowrap'}
@@ -154,13 +147,10 @@ function PartnersSlider() {
 									borderRadius="8px"
 									lineHeight="40px"
 									height="40px"
-									fontSize={{
-										base: '14px',
-										md: '16px',
-									}}
+									fontSize={{ base: '14px', md: '16px' }}
 									fontWeight="normal"
 								>
-									View Store
+									{t('partners.viewStore')}
 								</AppTypography>
 							</a>
 						</MainCard>

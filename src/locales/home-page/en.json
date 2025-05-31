@@ -1,0 +1,72 @@
+{
+  "banner": {
+    "heading": "The Next Generation of Commerce",
+    "typewriter": {
+      "buildStore": "Build a Customizable Store",
+      "sellProducts": "Sell Diverse Products",
+      "tokenGating": "Token Gating Collections",
+      "mintToMerch": "Mint to Merch",
+      "decentralizeInventory": "Decentralize Inventory",
+      "salesTracking": "Sales Tracking",
+      "transparentCoSelling": "Transparent Co-selling",
+      "increaseEarnings": "Increase Earnings",
+      "onchain": "Onchain"
+    },
+    "startSelling": "Start Selling"
+  },
+
+  "partners": {
+    "title": "Partners",
+    "description": "Explore the network of collaborators taking commerce to the next level!",
+    "viewStore": "View Store"
+  },
+
+  "community": {
+    "title": "Community Driven Commerce",
+    "description": "Launch your drop on blockchain to gain proof of ownership and seamless transfer capabilities as a member of our decentralized community"
+  },
+
+  "productsMain": {
+    "title": "Decentralized Registration of Products",
+    "description": "Start selling today with a customizable storefront paired with web3 tools for onchain transparency",
+    "cards": {
+      "physical": "Physical Items",
+      "pod": "Production on Demand",
+      "digital": "Digital Goods",
+      "events": "Events"
+    }
+  },
+
+  "networks": {
+    "title": "Decentralized Affiliate Network",
+    "description": "Transparent publisher partnerships and smart contracts to evolve affiliate marketing with efficiency and autonomy"
+  },
+
+  "embeddable": {
+    "title": "Embeddable Product Cards",
+    "description": "Semi and fully decentralized product cards to sell anywhere on the web with stand-alone checkout to reach customers wherever they are",
+    "products": {
+      "caramel": {
+        "title": "Caramel Imagination",
+        "price": "{{price}} USD"
+      },
+      "colorwave": {
+        "title": "ColorWave Handbag",
+        "price": "{{price}} USD"
+      }
+    },
+    "fiatPayment": "Fiat Payment",
+    "cryptoPayment": "Crypto Payment"
+  },
+
+  "supported": {
+    "title": "Trusted by the Best",
+    "description": "Multi-chain support to provide the flexibility you need"
+  },
+
+  "contact": {
+    "question": "Are you a large retailer, brand or enterprise organization?",
+    "description": "Droplinked provides interoperable infrastructure that scales based on your needs. Enquire to learn more:",
+    "contactUs": "Contact Us"
+  }
+}
