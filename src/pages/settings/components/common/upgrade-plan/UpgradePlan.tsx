@@ -1,9 +1,9 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices'
-import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
-import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/_components/plans/_components/checkout/SubscriptionPlanCheckoutModal'
+import SubscriptionPlanCheckoutModal from 'pages/subscription-plans/components/checkout/SubscriptionPlanCheckoutModal'
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import PlanFeatures from './PlanFeatures'
 import PlansContainer from './PlansContainer'
 

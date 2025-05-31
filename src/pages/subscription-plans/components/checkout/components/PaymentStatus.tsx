@@ -5,7 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { useQueryClient } from 'react-query'
 import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
-import useSubscriptionPlanPurchaseStore from '../../../../../../../stores/subscription-plan.ts/subscriptionPlanStore'
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface Props {
     paymentStatus: "success" | "error";

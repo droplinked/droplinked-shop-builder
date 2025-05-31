@@ -4,7 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
 import * as React from 'react';
 
-function PlansTableBody({ data }: { data: Array<SubscriptionPlan> }) {
+function PlansTableBody({ data }) {
     const renderValue = (value: boolean | string) => {
         if (typeof value === 'boolean') {
             return value ? <AppIcons.AvailableFilled /> : <AppIcons.NotAvailableFilled />;

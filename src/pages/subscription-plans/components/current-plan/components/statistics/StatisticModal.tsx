@@ -5,9 +5,9 @@ import AppButton from 'components/redesign/button/AppButton';
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
 import { TabsList } from 'pages/purchase-history/components/drawer-components/TabList';
 import React from 'react';
-import CurrentPlanBanner from './_components/CurrentPlanBanner';
-import DetailsTab from './_components/DetailsTab';
-import StatisticTab from './_components/StatisticTab';
+import CurrentPlanBanner from './components/CurrentPlanBanner';
+import DetailsTab from './components/DetailsTab';
+import StatisticTab from './components/StatisticTab';
 
 interface IProps {
     data: ShopSubscriptionData

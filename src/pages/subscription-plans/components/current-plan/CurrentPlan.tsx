@@ -3,11 +3,11 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
 import * as React from 'react';
 import { getSubscriptionPlanIcon } from 'utils/helpers';
-import PlanBadge from './_components/PlanBadge';
-import PlanDescription from './_components/PlanDescription';
-import StatisticModal from './_components/statistics/StatisticModal';
+import PlanBadge from './components/PlanBadge';
+import PlanDescription from './components/PlanDescription';
+import StatisticModal from './components/statistics/StatisticModal';
 
-function NewCurrentPlan() {
+function CurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
     const planType = subscriptionData?.subscriptionId?.type;
@@ -34,4 +34,4 @@ function NewCurrentPlan() {
     );
 }
 
-export default NewCurrentPlan;
+export default CurrentPlan;
