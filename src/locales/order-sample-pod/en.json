@@ -1,0 +1,36 @@
+{
+  "main": {
+    "title": "Order Sample Product",
+    "desc": "Select your products to receive a sample."
+  },
+  "skues": {
+    "title": "Product",
+    "productCost": "Product Cost"
+  },
+  "address": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "addressLine1": "Address Line 1",
+    "addressLine2": "Address Line 2",
+    "country": "Country",
+    "state": "State",
+    "city": "City",
+    "zip": "Zip Code",
+    "next": "Next",
+    "required": "Required"
+  },
+  "shipments": {
+    "title": "Shipping Methods",
+    "fulfillmentDate": "Fulfillment Date",
+    "price": "Price",
+    "tax": "Tax",
+    "payWithStripe": "Pay with Stripe",
+    "back": "Back"
+  },
+  "payment": {
+    "title": "Payment",
+    "successTitle": "Order Submitted!",
+    "successDesc": "Sample order confirmed! Your selection is on its way.",
+    "ok": "Ok"
+  }
+}

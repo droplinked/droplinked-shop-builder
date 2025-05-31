@@ -20,15 +20,15 @@ const AddressModalModel = ({
         }
     },
 
-    formSchema: () => {
+    formSchema: (t: (key: string) => string) => {
         return Yup.object().shape({
-            firstName: Yup.string().required('Required'),
-            lastName: Yup.string().required('Required'),
-            addressLine1: Yup.string().required('Required'),
-            state: Yup.string().required('Required'),
-            country: Yup.string().required('Required'),
-            city: Yup.string().required('Required'),
-            zip: Yup.string().required('Required'),
+            firstName: Yup.string().required(t('address.required')),
+            lastName: Yup.string().required(t('address.required')),
+            addressLine1: Yup.string().required(t('address.required')),
+            state: Yup.string().required(t('address.required')),
+            country: Yup.string().required(t('address.required')),
+            city: Yup.string().required(t('address.required')),
+            zip: Yup.string().required(t('address.required')),
         });
     }
 })

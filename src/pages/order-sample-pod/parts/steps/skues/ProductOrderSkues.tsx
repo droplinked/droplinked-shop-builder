@@ -10,14 +10,17 @@ import { useParams } from 'react-router-dom'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function ProductOrderSkues() {
     const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)
     const { mutate, data } = useMutation((productId: string) => productService(productId))
     const currencyConverter = useCurrencyConverter()
     const params = useParams()
-    const product = data?.data?.data
     const [SkuesIDs, setSkuesIDs] = useState([])
+    const { t } = useLocaleResources("orderSamplePOD")
+
+    const product = data?.data?.data
 
     // Get product service
     useEffect(() => { if (params?.productID) mutate(params?.productID) }, [params])
@@ -31,10 +34,17 @@ function ProductOrderSkues() {
     }
 
     // Handle rows appTable
-    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }, currencyConverter), [product, SkuesIDs, skus, orderId])
+    const rows = useMemo(
+        (): ITableRows =>
+            productOrderSkuesModel.rows(
+                { product, SkuesIDs, updateState, skus, orderId, t },
+                currencyConverter
+            ),
+        [product, SkuesIDs, skus, orderId, t]
+    )
 
     return (
-        <ProductOrderCard title="Product">
+        <ProductOrderCard title={t("skues.title")}>
             {product ?
                 <Flex direction={"column"} gap={8}>
                     <Flex alignItems="center" gap={4}>

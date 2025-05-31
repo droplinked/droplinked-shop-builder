@@ -4,6 +4,7 @@ import AppDropDown from 'components/common/form/dropdown/AppDropDown';
 import AppInput from 'components/common/form/textbox/AppInput';
 import { Form, Formik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { allCountriesService, citiesService, statesService } from 'services/address/addressServices';
 import { IcitiesService, IcreateAddressService, IsatatesService } from 'services/address/interfaces';
 import { IcrateSampleService } from 'services/order/interfaces';
@@ -25,6 +26,7 @@ function ProductOrderAddress() {
     const cities = useMutation((params: IcitiesService) => citiesService(params))
     const createSample = useMutation((params: IcrateSampleService) => createSampleService(params))
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("orderSamplePOD")
 
     const getStates = ({ country_name }: IsatatesService) => states.mutate({ country_name })
     const getCities = ({ country_name, state_name }: IcitiesService) => cities.mutate({ state_name, country_name })
@@ -50,7 +52,7 @@ function ProductOrderAddress() {
                 }}
                 enableReinitialize
                 validateOnChange={false}
-                validationSchema={AddressModalModel.formSchema()}
+                validationSchema={AddressModalModel.formSchema(t)}
                 onSubmit={onSubmit}
             >
                 {({ errors, values, setFieldValue }) => (
@@ -58,22 +60,22 @@ function ProductOrderAddress() {
                         <Flex direction={"column"} gap={6}>
                             <Flex gap={6}>
                                 <Box width={"50%"}>
-                                    <AppInput name='First name' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label='First Name' isRequired />
+                                    <AppInput name='First name' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label={t("address.firstName")} isRequired />
                                 </Box>
                                 <Box width={"50%"}>
-                                    <AppInput name='Last name' value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label='Last Name' isRequired />
+                                    <AppInput name='Last name' value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label={t("address.lastName")} isRequired />
                                 </Box>
                             </Flex>
                             <Box>
-                                <AppInput name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label='Address Line 1' isRequired />
+                                <AppInput name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label={t("address.addressLine1")} isRequired />
                             </Box>
                             <Box>
-                                <AppInput name='address' value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label='Address Line 2' />
+                                <AppInput name='address' value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label={t("address.addressLine2")} />
                             </Box>
                             <Flex gap={6}>
                                 <Box width={"50%"}>
                                     <AppDropDown
-                                        label={"Country"}
+                                        label={t("address.country")}
                                         name="Country"
                                         {...values.country && { value: { label: values.country, value: values.country } }}
                                         isRequired
@@ -89,7 +91,7 @@ function ProductOrderAddress() {
                                 </Box>
                                 <Box width={"50%"}>
                                     <AppDropDown
-                                        label={"State"}
+                                        label={t("address.state")}
                                         name="State"
                                         {...values.state && { value: { label: values.state, value: values.state } }}
                                         isRequired
@@ -107,7 +109,7 @@ function ProductOrderAddress() {
                             <Flex gap={6}>
                                 <Box width={"50%"}>
                                     <AppDropDown
-                                        label={"City"}
+                                        label={t("address.city")}
                                         name="city"
                                         {...values.city && { value: { label: values.city, value: values.city } }}
                                         isRequired
@@ -118,12 +120,12 @@ function ProductOrderAddress() {
                                     />
                                 </Box>
                                 <Box width={"50%"}>
-                                    <AppInput name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label='Zip Code' isRequired />
+                                    <AppInput name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label={t("address.zip")} isRequired />
                                 </Box>
                             </Flex>
                             {!Object.keys(shipmentRates).length ? (
                                 <Flex flexDirection="row-reverse">
-                                    <BasicButton type='submit' isLoading={createSample.isLoading}>Next</BasicButton>
+                                    <BasicButton type='submit' isLoading={createSample.isLoading}>{t("address.next")}</BasicButton>
                                 </Flex>
                             ) : null}
                         </Flex>

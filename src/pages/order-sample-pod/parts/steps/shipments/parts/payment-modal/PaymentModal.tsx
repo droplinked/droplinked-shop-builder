@@ -4,6 +4,7 @@ import AppModal from 'components/common/modal/AppModal';
 import AppStripe from 'components/common/stripe/AppStripe';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { cancelSampleService } from 'services/order/services';
 import productOrderContext from 'pages/order-sample-pod/context';
 import React, { useContext, useState } from 'react';
@@ -23,6 +24,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
     const { mutate } = useMutation(cancelSampleService)
     const { showToast } = useAppToast()
     const navigate = useNavigate()
+    const { t } = useLocaleResources("orderSamplePOD")
 
     const cancel = async () => {
         try {
@@ -47,7 +49,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
                 {
                     !successfulPayment ?
                         <>
-                            <AppTypography fontSize={18} fontWeight={'bold'} color={"#C2C2C2"}>Payment</AppTypography>
+                            <AppTypography fontSize={18} fontWeight={'bold'} color={"#C2C2C2"}>{t("payment.title")}</AppTypography>
                             <AppStripe
                                 clientSecret={clientSecret}
                                 onSuccess={() => setSuccessfulPayment(true)}
@@ -57,13 +59,13 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
                         </>
                         :
                         <>
-                            <AppTypography fontSize={24} fontWeight={'bold'} color={"#2BCFA1"}>Order Submitted!</AppTypography>
-                            <AppTypography fontSize={16} color={"#fff"}>Sample order confirmed! Your selection is on its way.</AppTypography>
+                            <AppTypography fontSize={24} fontWeight={'bold'} color={"#2BCFA1"}>{t("payment.successTitle")}</AppTypography>
+                            <AppTypography fontSize={16} color={"#fff"}>{t("payment.successDesc")}</AppTypography>
                             <Flex justifyContent={"center"}>
                                 <BasicButton onClick={() => {
                                     close()
                                     navigate("/analytics/products")
-                                }}>Ok</BasicButton>
+                                }}>{t("payment.ok")}</BasicButton>
                             </Flex>
                         </>
                 }

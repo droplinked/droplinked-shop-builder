@@ -1,0 +1,36 @@
+{
+  "main": {
+    "title": "طلب عينة منتج",
+    "desc": "اختر منتجاتك لاستلام عينة."
+  },
+  "skues": {
+    "title": "المنتج",
+    "productCost": "تكلفة المنتج"
+  },
+  "address": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "addressLine1": "العنوان 1",
+    "addressLine2": "العنوان 2",
+    "country": "الدولة",
+    "state": "الولاية",
+    "city": "المدينة",
+    "zip": "الرمز البريدي",
+    "next": "التالي",
+    "required": "مطلوب"
+  },
+  "shipments": {
+    "title": "طرق الشحن",
+    "fulfillmentDate": "تاريخ التنفيذ",
+    "price": "السعر",
+    "tax": "الضريبة",
+    "payWithStripe": "الدفع عبر Stripe",
+    "back": "رجوع"
+  },
+  "payment": {
+    "title": "الدفع",
+    "successTitle": "تم إرسال الطلب!",
+    "successDesc": "تم تأكيد طلب العينة! اختيارك في الطريق.",
+    "ok": "حسناً"
+  }
+}
