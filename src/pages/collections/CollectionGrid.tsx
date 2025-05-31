@@ -1,7 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 import AppTypography from "components/common/typography/AppTypography";
-import ButtonGrid from 'components/redesign/button-grid/ButtonGrid';
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
 import { Collection } from "lib/apis/collection/interfaces";

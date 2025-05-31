@@ -1,39 +1,86 @@
-import { Flex } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
+import { Center, Flex, Spinner, Text } from '@chakra-ui/react'
+import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
+import { downloadCreditChangeInvoice } from 'lib/apis/credit/services'
 import React from 'react'
-import TypeColumn from './TypeColumn'
-import StatusBadge from '../StatusBadge'
 import { formatDateToLongStyle } from 'utils/helpers'
+import StatusBadge from '../StatusBadge'
+import TypeColumn from './TypeColumn'
 
 interface TransactionCardProps {
-    transaction?: IDetailedTransaction;
+    transaction?: IDetailedTransaction
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
-    const { amount, createdAt, id, type, amountType, status } = transaction ?? {};
+    const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
+
+    const { download, isLoading } = useDownloadFile({
+        fetcher: downloadCreditChangeInvoice,
+        fileNameResolver: () => `${Date.now()}.xlsx`
+    })
 
     return (
-        <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
+        <Flex
+            direction="column"
+            gap={4}
+            border="1px solid"
+            borderColor="neutral.gray.800"
+            borderRadius={8}
+            p={4}
+            bg="#141414"
+        >
+            <Flex justify="space-between" align="start">
                 <TypeColumn type={type} amountType={amountType} />
-                <StatusBadge status={status} />
+                <Flex align="center" gap={4}>
+                    <StatusBadge status={status} />
+                    {id && (
+                        <Center
+                            as="button"
+                            w={10}
+                            h={10}
+                            onClick={() => id && download(id)}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? <Spinner /> : <DocumentdownloadMd color="#FFF" />}
+                        </Center>
+                    )}
+                </Flex>
             </Flex>
-            <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
-                <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Amount</AppTypography>
+
+            <Flex
+                direction="column"
+                gap={4}
+                borderRadius={8}
+                p={4}
+                bg="neutral.gray.1000"
+            >
+                <InfoRow label="Amount">
                     <FormattedPrice price={amount} />
-                </Flex>
-                <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Date</AppTypography>
-                    <AppTypography color="#fff" fontSize={14}>{formatDateToLongStyle(new Date(createdAt))}</AppTypography>
-                </Flex>
-                <Flex justifyContent="space-between" alignItems="center">
-                    <AppTypography color="text.subtext.placeholder.dark" fontSize={14}>Transaction ID</AppTypography>
-                    <AppTypography color="#fff" fontSize={14}>{id}</AppTypography>
-                </Flex>
+                </InfoRow>
+
+                <InfoRow label="Date">
+                    <Text color="text.white" fontSize={14}>
+                        {createdAt ? formatDateToLongStyle(new Date(createdAt)) : '—'}
+                    </Text>
+                </InfoRow>
+
+                <InfoRow label="Transaction ID">
+                    <Text color="text.white" fontSize={14}>
+                        {id || '—'}
+                    </Text>
+                </InfoRow>
             </Flex>
         </Flex>
     )
 }
+
+const InfoRow = ({ label, children }) => (
+    <Flex justify="space-between" align="center" gap={4}>
+        <Text color="text.subtext.placeholder.dark" fontSize={14}>
+            {label}
+        </Text>
+        {children}
+    </Flex>
+)
