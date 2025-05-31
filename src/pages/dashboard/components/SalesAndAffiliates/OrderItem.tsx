@@ -1,4 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
+import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
@@ -12,7 +13,7 @@ interface Props {
 }
 
 function OrderItem({ order, onNavigate }: Props) {
-    const { t } = useLocaleResources("dashboardPage")
+    const { t, isRTL } = useLocaleResources("dashboardPage")
 
     return (
         <Flex
@@ -44,7 +45,7 @@ function OrderItem({ order, onNavigate }: Props) {
                 padding="10px"
                 onClick={() => onNavigate("/analytics/purchase-history")}
             >
-                <ChevronrightMd color='white' />
+                {isRTL ? <ChevronleftMd color='white' /> : <ChevronrightMd color='white' />}
             </Box>
         </Flex>
     )
