@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 type Namespace = '404Page' | 'homePage' | 'shop' | 'common' | 'shopManagement' |
     'onchainRecords' | 'changelogPage' | 'purchaseHistory' | 'creditsAndActivity' | 'analyticsPage' | 'onboarding' | 'dashboardPage' |
     'layout/sidebar' | 'layout/levelUp' | 'layout/userMenu' | 'subscription' | 'settings' |
-    'collections' | 'blogs' | 'gamification' | 'orderSamplePOD'
+    'collections' | 'blogs' | 'gamification' | 'orderSamplePOD' | 'maintenancePage'
 
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function
