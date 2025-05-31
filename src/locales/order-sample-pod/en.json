@@ -35,5 +35,10 @@
     "successTitle": "Order Submitted!",
     "successDesc": "Sample order confirmed! Your selection is on its way.",
     "ok": "Ok"
+  },
+  "errors": {
+    "selectSku": "Please select a sku",
+    "selectRate": "Please select a rate method",
+    "general": "An error occurred"
   }
 }

@@ -33,7 +33,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
             close()
         }
         catch (e) {
-            showToast({ type: 'error', message: (e as Error).message })
+            showToast({ type: 'error', message: (e as Error).message || t("errors.general") })
         }
     }
 

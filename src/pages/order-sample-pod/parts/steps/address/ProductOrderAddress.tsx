@@ -33,13 +33,13 @@ function ProductOrderAddress() {
 
     const onSubmit = async (params: IcreateAddressService) => {
         try {
-            if (!Object.keys(skus).length) throw Error('Please select a sku')
+            if (!Object.keys(skus).length) throw Error(t("errors.selectSku"))
             const { data } = await createSample.mutateAsync({ address: params, skus: Object.values(skus) })
             updateState('orderId', data.data._id);
             updateState('taxAmount', data.data.taxAmount);
             updateState('shipmentRates', data.data.shipmentRates);
         } catch (error) {
-            showToast({ type: 'error', message: error?.response?.data?.data?.message || error?.message || 'An error occurred' })
+            showToast({ type: 'error', message: error?.response?.data?.data?.message || error?.message || t("errors.general") })
         }
     }
 

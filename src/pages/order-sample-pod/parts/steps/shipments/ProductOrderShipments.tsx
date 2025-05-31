@@ -26,7 +26,7 @@ function ProductOrderShipments() {
 
     const submit = async () => {
         try {
-            if (!rateId) throw Error('Please select a rate method')
+            if (!rateId) throw Error(t("errors.selectRate"))
             await mutateAsync({ rateId })
             onOpen()
         } catch (error) {
