@@ -2,28 +2,35 @@ import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { SimpleGrid } from '@chakra-ui/react'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/about/ar.json'
+import enLocale from 'locales/public-pages/about/en.json'
 
 function AboutUs() {
+    const { t } = useLocaleResources("about", {
+        ar: arLocale,
+        en: enLocale
+    })
 
     const data = [
         {
-            title: "Onchain Registration",
-            description: "Streamlining cross-chain goods registration with customizable parameters and rules on your chosen blockchain.",
+            title: t("features.onchainRegistration.title"),
+            description: t("features.onchainRegistration.description"),
             borderColor: "#944BFB"
         },
         {
-            title: "Trustless Settlement",
-            description: "Establishing Immutable asset splits for stakeholders, ensuring transparent, secure transactions.",
+            title: t("features.trustlessSettlement.title"),
+            description: t("features.trustlessSettlement.description"),
             borderColor: "#7A66E2"
         },
         {
-            title: "Authenticated Distribution",
-            description: "Authorizing affiliates, partners, and properties for transparent cross-chain activity with versatile headless infrastructure.",
+            title: t("features.authenticatedDistribution.title"),
+            description: t("features.authenticatedDistribution.description"),
             borderColor: "#6080CA"
         },
         {
-            title: "Collaboration Rewards",
-            description: "Enhancing transparency, rewards, profitability, and intermediaries, ensuring fair revenues and efficiency.",
+            title: t("features.collaborationRewards.title"),
+            description: t("features.collaborationRewards.description"),
             borderColor: "#469AB1"
         }
     ]
@@ -34,12 +41,12 @@ function AboutUs() {
             <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex justifyContent="center" position="relative" padding={{ base: "110px 0", lg: "180px 0" }}>
                 <VStack width="90%" maxWidth="1400px" align="stretch" spacing={{ base: "15px", lg: "45px" }}>
-                    <Box><AppTypography color="#FFF" fontSize={{ base: "24px", sm: "32px" }} fontWeight='bold'>Why droplinked?</AppTypography></Box>
+                    <Box><AppTypography color="#FFF" fontSize={{ base: "24px", sm: "32px" }} fontWeight='bold'>{t("title")}</AppTypography></Box>
                     <VStack color="#C3C3C3" align="stretch">
-                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>droplinked is a cutting-edge decentralized commerce platform that allows individuals to create their own store and trade various products and services using non-fungible tokens (NFTs).</AppTypography></Box>
-                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>The platform offers users the convenience of selling different types of products, including print-on-demand, digital, and physical goods and event tickets seamlessly. It provides a versatile experience for creators and entrepreneurs to showcase their offerings to a global audience.</AppTypography></Box>
-                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>One standout feature of droplinked is its blockchain-based partnership terms. This innovative system allows trusted third parties to access the decentralized product listings and co-sell them. The partnership model prioritizes security, transparency, and operational efficiency.</AppTypography></Box>
-                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>Droplinked represents a significant shift in decentralized commerce, enabling individuals to explore new opportunities, overcome geographical limitations, and engage in secure and efficient transactions. Its forward-thinking approach and advanced features position droplinked at the forefront of digital entrepreneurship and global trade.</AppTypography></Box>
+                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description1")}</AppTypography></Box>
+                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description2")}</AppTypography></Box>
+                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description3")}</AppTypography></Box>
+                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description4")}</AppTypography></Box>
                     </VStack>
                     <Flex flexWrap="wrap" justifyContent="space-between" color="#FFF">
                         {data.map((el, key) => (

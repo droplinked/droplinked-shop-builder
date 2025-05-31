@@ -1,0 +1,25 @@
+{
+  "title": "Why droplinked?",
+  "description1": "droplinked is a cutting-edge decentralized commerce platform that allows individuals to create their own store and trade various products and services using non-fungible tokens (NFTs).",
+  "description2": "The platform offers users the convenience of selling different types of products, including print-on-demand, digital, and physical goods and event tickets seamlessly. It provides a versatile experience for creators and entrepreneurs to showcase their offerings to a global audience.",
+  "description3": "One standout feature of droplinked is its blockchain-based partnership terms. This innovative system allows trusted third parties to access the decentralized product listings and co-sell them. The partnership model prioritizes security, transparency, and operational efficiency.",
+  "description4": "Droplinked represents a significant shift in decentralized commerce, enabling individuals to explore new opportunities, overcome geographical limitations, and engage in secure and efficient transactions. Its forward-thinking approach and advanced features position droplinked at the forefront of digital entrepreneurship and global trade.",
+  "features": {
+    "onchainRegistration": {
+      "title": "Onchain Registration",
+      "description": "Streamlining cross-chain goods registration with customizable parameters and rules on your chosen blockchain."
+    },
+    "trustlessSettlement": {
+      "title": "Trustless Settlement",
+      "description": "Establishing Immutable asset splits for stakeholders, ensuring transparent, secure transactions."
+    },
+    "authenticatedDistribution": {
+      "title": "Authenticated Distribution",
+      "description": "Authorizing affiliates, partners, and properties for transparent cross-chain activity with versatile headless infrastructure."
+    },
+    "collaborationRewards": {
+      "title": "Collaboration Rewards",
+      "description": "Enhancing transparency, rewards, profitability, and intermediaries, ensuring fair revenues and efficiency."
+    }
+  }
+}
