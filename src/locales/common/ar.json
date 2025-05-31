@@ -9,10 +9,27 @@
     "telegram": "تلغرام",
     "discord": "ديسكورد",
     "x": "إكس (تويتر)",
+    "twitter": "تويتر",
     "instagram": "إنستقرام",
     "linkedin": "لينكدإن",
     "youtube": "يوتيوب",
     "tiktok": "تيك توك",
-    "bluesky": "بلو سكاي"
+    "bluesky": "بلو سكاي",
+    "facebook": "فيسبوك",
+    "messenger": "ماسنجر",
+    "web": "الموقع الإلكتروني"
+  },
+  "fileUpload": {
+    "click": "انقر",
+    "dragAndDrop": "أو اسحب وأفلت هنا",
+    "dragActive": "أفلت الملف هنا ...",
+    "defaultFooter": "JPG، JPEG، PNG، MP4 و MOV (حتى 10 ميجابايت لكل منها)",
+    "ariaLabel": "تحميل ملف"
+  },
+  "imageUpload": {
+    "dragActive": "أفلت الصورة هنا...",
+    "footer": "JPG، JPEG، PNG (حتى 5 ميجابايت)",
+    "remove": "إزالة {{name}}",
+    "uploadError": "فشل في تحميل الصورة"
   }
 }
