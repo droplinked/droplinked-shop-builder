@@ -5,9 +5,12 @@
   },
   "skues": {
     "title": "المنتج",
-    "productCost": "تكلفة المنتج"
+    "productCost": "تكلفة المنتج",
+    "variant": "المتغير",
+    "quantity": "الكمية"
   },
   "address": {
+    "title": "عنوان الشحن",
     "firstName": "الاسم الأول",
     "lastName": "اسم العائلة",
     "addressLine1": "العنوان 1",

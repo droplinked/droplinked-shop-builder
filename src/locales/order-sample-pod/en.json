@@ -5,9 +5,12 @@
   },
   "skues": {
     "title": "Product",
-    "productCost": "Product Cost"
+    "productCost": "Product Cost",
+    "variant": "Variant",
+    "quantity": "Quantity"
   },
   "address": {
+    "title": "Shipping Address",
     "firstName": "First Name",
     "lastName": "Last Name",
     "addressLine1": "Address Line 1",

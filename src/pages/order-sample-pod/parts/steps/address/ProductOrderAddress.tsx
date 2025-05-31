@@ -44,7 +44,7 @@ function ProductOrderAddress() {
     }
 
     return (
-        <ProductOrderCard title="Shipping Address">
+        <ProductOrderCard title={t("address.title")}>
             <Formik
                 initialValues={{
                     ...{} as IcreateAddressService,
@@ -60,17 +60,17 @@ function ProductOrderAddress() {
                         <Flex direction={"column"} gap={6}>
                             <Flex gap={6}>
                                 <Box width={"50%"}>
-                                    <AppInput name='First name' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label={t("address.firstName")} isRequired />
+                                    <AppInput name='First name' placeholder={t("address.firstName")} value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label={t("address.firstName")} isRequired />
                                 </Box>
                                 <Box width={"50%"}>
-                                    <AppInput name='Last name' value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label={t("address.lastName")} isRequired />
+                                    <AppInput name='Last name' placeholder={t("address.lastName")} value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label={t("address.lastName")} isRequired />
                                 </Box>
                             </Flex>
                             <Box>
-                                <AppInput name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label={t("address.addressLine1")} isRequired />
+                                <AppInput name='address' placeholder={t("address.addressLine1")} value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label={t("address.addressLine1")} isRequired />
                             </Box>
                             <Box>
-                                <AppInput name='address' value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label={t("address.addressLine2")} />
+                                <AppInput name='address' placeholder={t("address.addressLine2")} value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label={t("address.addressLine2")} />
                             </Box>
                             <Flex gap={6}>
                                 <Box width={"50%"}>
@@ -120,7 +120,7 @@ function ProductOrderAddress() {
                                     />
                                 </Box>
                                 <Box width={"50%"}>
-                                    <AppInput name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label={t("address.zip")} isRequired />
+                                    <AppInput name='zipcode' placeholder={t("address.zip")} value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label={t("address.zip")} isRequired />
                                 </Box>
                             </Flex>
                             {!Object.keys(shipmentRates).length ? (

@@ -38,6 +38,7 @@ namespace productOrderSkuesModel {
                 return {
                     _data: el,
                     variant: {
+                        caption: t("skues.variant"),
                         value: (
                             <HStack alignItems="center">
                                 {option("color") && (
@@ -69,6 +70,7 @@ namespace productOrderSkuesModel {
                         ),
                     },
                     quantity: {
+                        caption: t("skues.quantity"),
                         value: (
                             <AppSelectBox
                                 isDisabled={!SkuesIDs.includes(el._id) || !!orderId}
