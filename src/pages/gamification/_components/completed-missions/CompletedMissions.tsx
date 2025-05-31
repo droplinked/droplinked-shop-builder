@@ -6,14 +6,17 @@ import { Participation } from 'services/gamification/interfaces'
 import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import GamificationCard from '../GamificationCard'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isLoading: boolean,
-    missions: Participation[]
+    missions: Participation[],
+    t: (key: string) => string
 }
 
 function CompletedMissions({ isLoading, missions }: Props) {
     const { shop } = useAppStore()
+    const { t } = useLocaleResources("gamification")
 
     const totalPoints = missions.reduce((acc, curr) => {
         const reward = curr.rewards.find(reward => reward.type === "CREDIT");
@@ -36,15 +39,15 @@ function CompletedMissions({ isLoading, missions }: Props) {
             <GamificationCard flexGrow={1} alignItems={"center"} gap={5}>
                 <AppImage objectFit={"contain"} width={"95px"} height={"95px"} borderRadius={"50%"} src={shop.logo} />
                 <Flex direction={"column"} gap={3} color={"#fff"}>
-                    <AppTypography fontSize={24} fontWeight={700}>Hey {shop.name}!👋</AppTypography>
-                    <AppTypography fontSize={14} fontWeight={500}>Master Every Mission, Earn Your Victory!</AppTypography>
+                    <AppTypography fontSize={24} fontWeight={700}>{t("completedMissions.greeting", { name: shop.name })}</AppTypography>
+                    <AppTypography fontSize={14} fontWeight={500}>{t("completedMissions.subtitle")}</AppTypography>
                 </Flex>
             </GamificationCard>
 
             <GamificationCard flexGrow={1} alignItems={"center"} gap={5}>
                 <AppImage width={"95px"} height={"95px"} borderRadius={"50%"} src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/1bac072951d09ae1d3fa4f8f072d69acfcecab3e3743b008153c9ae1bbb344d2.png_or.png" />
                 <Flex direction={"column"}>
-                    <AppTypography fontSize={14} fontWeight={500} color={"#C2C2C2"}>Points</AppTypography>
+                    <AppTypography fontSize={14} fontWeight={500} color={"#C2C2C2"}>{t("completedMissions.points")}</AppTypography>
                     <AppSkeleton isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700} bgGradient="linear(to-b, #C0FFEE, #17FFBF , #00FFB8)" bgClip="text">{pointsEarned.toFixed(2)}</AppTypography></AppSkeleton>
                 </Flex>
             </GamificationCard>
@@ -61,7 +64,7 @@ function CompletedMissions({ isLoading, missions }: Props) {
                         '& div[role="progressbar"]': { borderRadius: "inherit", bgGradient: 'linear(to-b, #C0FFEE, #17FFBF, #00FFB8)' }
                     }}
                 >
-                    <AppTypography fontSize={20} fontWeight={700}>Missions Completed</AppTypography>
+                    <AppTypography fontSize={20} fontWeight={700}>{t("completedMissions.missionsCompleted")}</AppTypography>
                     <Progress
                         width="320px"
                         isIndeterminate={isLoading}

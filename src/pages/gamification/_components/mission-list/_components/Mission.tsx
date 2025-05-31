@@ -6,10 +6,13 @@ import { Participation } from 'services/gamification/interfaces'
 import React, { useState } from 'react'
 import GamificationCard from '../../GamificationCard'
 import MissionReviewModal from './MissionReviewModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function Mission({ mission }: { mission: Participation }) {
     const [selectedMission, setSelectedMission] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { t } = useLocaleResources("gamification")
+
     const missionCreditReward = mission.rewards.find(reward => reward.type === "CREDIT").value
 
     return (
@@ -25,7 +28,7 @@ function Mission({ mission }: { mission: Participation }) {
                             <AppImage width={"61px"} height={"61px"} borderRadius={"50%"} src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/0b8e0a77d93d97d0f33c543dce8e35aeac0a11ffa70d6e09baadc023143c92b6.png_or.png" />
                             <Flex direction={"column"} gap={"10px"} fontSize={12} fontWeight={700}>
                                 <AppTypography fontSize={12} fontWeight={700} color={mission.isCompleted ? "#2BCFA1" : "#fff"}>{mission.name}</AppTypography>
-                                <AppTypography fontSize={12} fontWeight={700} color={"#2BCFA1"}>Points: {missionCreditReward}</AppTypography>
+                                <AppTypography fontSize={12} fontWeight={700} color={"#2BCFA1"}>{t("mission.points", { points: missionCreditReward })}</AppTypography>
                             </Flex>
                         </Flex>
                         <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "neutral.gray.800"} />
@@ -42,14 +45,14 @@ function Mission({ mission }: { mission: Participation }) {
                     <Flex flexGrow={1} direction="column" justifyContent="flex-end">
                         {
                             mission.isCompleted ?
-                                <AppTypography textAlign={"center"} fontSize={20} fontWeight={900} color={"#2BCFA1"}>Mission completed!</AppTypography> :
+                                <AppTypography textAlign={"center"} fontSize={20} fontWeight={900} color={"#2BCFA1"}>{t("mission.completed")}</AppTypography> :
                                 <BasicButton
                                     onClick={() => {
                                         setSelectedMission(mission)
                                         onOpen()
                                     }}
                                 >
-                                    Details
+                                    {t("mission.details")}
                                 </BasicButton>
                         }
                     </Flex>

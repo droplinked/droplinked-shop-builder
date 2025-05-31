@@ -10,6 +10,7 @@ import useAppStore from 'stores/app/appStore';
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import GamificationSpinner from './gamificationSpinner/GamificationSpinner';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean;
@@ -28,6 +29,8 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
     const { isLoading, mutateAsync } = useMutation(checkMissionCompletionService)
     const [isCompleted, setCompleted] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const { t } = useLocaleResources("gamification")
+
     const missionCreditReward = mission.rewards.find(reward => reward.type === 'CREDIT')?.value ?? 0
 
     const closeModal = () => {
@@ -60,10 +63,10 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                     />
                     <Flex direction="column" gap="10px" fontSize={12} fontWeight={700}>
                         <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                            Mission: <Box as="span" color="#fff">{mission.name}</Box>
+                            {t("missionReviewModal.mission")} <Box as="span" color="#fff">{mission.name}</Box>
                         </AppTypography>
                         <AppTypography fontSize={12} fontWeight={700} color="#2BCFA1">
-                            Category: <Box as="span" color="#fff">{mission.categoryId.name}</Box>
+                            {t("missionReviewModal.category")} <Box as="span" color="#fff">{mission.categoryId.name}</Box>
                         </AppTypography>
                     </Flex>
                 </Flex>
@@ -74,17 +77,17 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                             <Box position="relative">
                                 {isLoading && <GamificationSpinner />}
                                 <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" whiteSpace={"pre-line"} filter={isLoading ? 'blur(4px)' : 'none'}>
-                                    <Box as="span" color="#2BCFA1" fontWeight={700}>Description:</Box> {mission.description}
+                                    <Box as="span" color="#2BCFA1" fontWeight={700}>{t("missionReviewModal.description")}</Box> {mission.description}
                                 </AppTypography>
                             </Box>
                             <Divider height="2px" borderColor="neutral.gray.800" />
                             {!error && (
                                 <Flex direction="column" gap={4}>
                                     <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                        Points Awarded: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
+                                        {t("missionReviewModal.pointsAwarded")} <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
                                     </AppTypography>
                                     <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
-                                        Review Status
+                                        {t("missionReviewModal.reviewStatus")}
                                     </BasicButton>
                                 </Flex>
                             )}
@@ -95,16 +98,16 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                                 <AppTypography fontSize={72} fontWeight={700} whiteSpace="nowrap" bgGradient="linear(to-b, #2EC99E1A, #2EC99EA6)" bgClip="text">
                                     {`“${missionCreditReward} Points“`}
                                 </AppTypography>
-                                <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">Congratulations!</AppTypography>
+                                <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">{t("missionReviewModal.congratulations")}</AppTypography>
                                 <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                    Task completed! You've earned {missionCreditReward} points!
+                                    {t("missionReviewModal.taskCompleted", { points: missionCreditReward })}
                                 </AppTypography>
                             </Flex>
                         </motion.div>
                 }
                 {error && (
                     <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2">
-                        <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Progress:</Box> {error}
+                        <Box as="span" color="#2BCFA1" fontWeight={700}>{t("missionReviewModal.missionProgress")}</Box> {error}
                     </AppTypography>
                 )}
             </Flex>
