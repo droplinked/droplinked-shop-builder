@@ -1,25 +1,15 @@
-import React from 'react';
 import { Box, Divider, Flex, HStack, Spinner, Text } from '@chakra-ui/react';
-import SwitchBox from 'components/redesign/switch-box/SwitchBox';
-import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppIcons from 'assets/icon/Appicons';
+import AppTooltip from 'components/common/tooltip/AppTooltip';
+import ExternalLink from 'components/redesign/external-link/ExternalLink';
+import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/utils/formConfigs';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
+import React from 'react';
+import { Provider } from './PaymentProviderList';
 
 interface PaymentProviderProps {
-  item: {
-    title: string;
-    buttonText: string;
-    type: string;
-    link?: string;
-    tooltip?: string;
-    icon: React.ReactElement;
-    isExternal: boolean;
-    isDisabled?: boolean;
-    isLinkDisabled?: boolean;
-    isFetching?: boolean;
-  };
+  item: Provider;
   onToggle: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

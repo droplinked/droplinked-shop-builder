@@ -2,20 +2,21 @@ import { Flex, TabPanel, TabPanels, Tabs, useMediaQuery } from '@chakra-ui/react
 import AppIcons from 'assets/icon/Appicons';
 import Drawer from 'components/common/Drawer/Drawer';
 import AppButton from 'components/redesign/button/AppButton';
-import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import { TabsList } from 'pages/purchase-history/components/drawer-components/TabList';
 import React, { useState } from 'react';
-import CurrentPlanBanner from './_components/CurrentPlanBanner';
-import DetailsTab from './_components/DetailsTab';
-import StatisticTab from './_components/StatisticTab';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
+import CurrentPlanBanner from './components/CurrentPlanBanner';
+import DetailsTab from './components/DetailsTab';
+import StatisticTab from './components/StatisticTab';
+
 interface IProps {
     data: ShopSubscriptionData
 }
 
 function StatisticModal({ data }: IProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const currentPlan = data.data.subscriptionId.type
-    const status = data.data.status
+    const currentPlan = data.subscriptionId.type
+    const status = data.status
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
 
     const tabs = [
@@ -25,7 +26,7 @@ function StatisticModal({ data }: IProps) {
         },
         {
             title: "Details",
-            content: <DetailsTab data={data.data} />
+            content: <DetailsTab data={data} />
         }
     ]
 

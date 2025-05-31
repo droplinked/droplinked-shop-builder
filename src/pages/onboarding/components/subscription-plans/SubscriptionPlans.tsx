@@ -2,23 +2,23 @@ import { Grid } from "@chakra-ui/react"
 import { ExternalarrowMd } from "assets/icons/Navigation/ExternalArrow/ExternalarrowMd"
 import BlueButton from "components/redesign/button/BlueButton"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
-import { SubscriptionPlan } from "services/subscription/interfaces"
-import { getSubscriptionPlansService, subscriptionPlanStripePaymentService, } from "services/subscription/subscriptionServices"
-import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import onboardingArLocale from 'locales/onboarding/ar.json'
+import onboardingEnLocale from 'locales/onboarding/en.json'
+import subscriptionArLocale from 'locales/subscription/ar.json'
+import subscriptionEnLocale from 'locales/subscription/en.json'
 import { OnboardingStepProps, PlanType } from "pages/onboarding/types/onboarding"
-import Loading from "pages/subscription-plans/_components/plans/_components/loading/Loading"
+import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useEffect, useState } from "react"
 import { useMutation, useQuery } from "react-query"
+import { SubscriptionPlan } from "services/subscription/interfaces"
+import { getSubscriptionPlansService, subscriptionPlanStripePaymentService } from "services/subscription/subscriptionServices"
+import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import onboardingEnLocale from 'locales/onboarding/en.json'
-import onboardingArLocale from 'locales/onboarding/ar.json'
-import subscriptionEnLocale from 'locales/subscription/en.json'
-import subscriptionArLocale from 'locales/subscription/ar.json'
 
 function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
@@ -86,9 +86,9 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
 
     return (
         <>
-            <OnboardingStepHeader 
-                heading={tOnboarding('subscriptionPlans.title')} 
-                description={tOnboarding('subscriptionPlans.subtitle')} 
+            <OnboardingStepHeader
+                heading={tOnboarding('subscriptionPlans.title')}
+                description={tOnboarding('subscriptionPlans.subtitle')}
             />
             <BlueButton
                 fontSize="16px"
@@ -120,10 +120,10 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 })}
             </Grid>
 
-            <ControlButtons 
-                onBack={onBack} 
-                onSubmit={handleNext} 
-                continueText={getContinueText(selectedPlan, tSubscription)} 
+            <ControlButtons
+                onBack={onBack}
+                onSubmit={handleNext}
+                continueText={getContinueText(selectedPlan, tSubscription)}
             />
 
             <PaymentModal

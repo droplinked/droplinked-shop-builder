@@ -1,15 +1,17 @@
 import { Grid } from "@chakra-ui/react";
-import React, { ReactElement, useEffect } from "react";
-import PaymentProviderCard from "./PaymentProviderCard";
-import AppIcons from "assets/icon/Appicons";
+import { CoinbaseLogo } from "assets/logo/NetworkAndTokens/Coinbase/Coinbase/CoinbaseLogo";
+import { PaymobLogo } from "assets/logo/NetworkAndTokens/Paymob/PaymobLogo";
+import { StripeLogo } from "assets/logo/NetworkAndTokens/Stripe/StripeLogo";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/utils/formConfigs";
-import useAppStore from "stores/app/appStore";
-import { getStripeOnboardingUrl } from "services/stripe/services";
-import { useQuery } from "react-query";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { ISettings } from "pages/settings/utils/formConfigs";
+import React, { ReactElement } from "react";
+import { useQuery } from "react-query";
+import { getStripeOnboardingUrl } from "services/stripe/services";
+import useAppStore from "stores/app/appStore";
+import PaymentProviderCard from "./PaymentProviderCard";
 
-interface Provider {
+export interface Provider {
   title: string;
   buttonText: string;
   link?: string;
@@ -24,10 +26,8 @@ interface Provider {
 
 const PaymentProviderList: React.FC = () => {
   const { values, setFieldValue } = useFormikContext<ISettings>();
-  const { shop } = useAppStore();
+  const { shop: { onboardedExpressStripeAccount } } = useAppStore();
   const { t } = useLocaleResources('settings');
-
-  const { onboardedExpressStripeAccount } = shop ?? {};
 
   const { isFetching, data: stripeOnboardingUrl } = useQuery({
     queryKey: ['stripeOnboardingUrl'],
@@ -51,7 +51,7 @@ const PaymentProviderList: React.FC = () => {
       isExternal: true,
       isFetching: isFetching,
       tooltip: t('settings.financialServices.providers.stripe.tooltip'),
-      icon: <AppIcons.StripeS />,
+      icon: <StripeLogo />,
     },
     {
       title: t('settings.financialServices.providers.coinbase.title'),
@@ -60,7 +60,7 @@ const PaymentProviderList: React.FC = () => {
       link: "#",
       isExternal: true,
       tooltip: t('settings.financialServices.providers.coinbase.tooltip'),
-      icon: <AppIcons.Coinbase />,
+      icon: <CoinbaseLogo />,
     },
     {
       title: t('settings.financialServices.providers.paymob.title'),
@@ -69,49 +69,45 @@ const PaymentProviderList: React.FC = () => {
       isExternal: false,
       isDisabled: true,
       tooltip: t('settings.financialServices.providers.paymob.tooltip'),
-      icon: <AppIcons.Paymob color="#004eff" />,
+      icon: <PaymobLogo />,
     },
   ];
 
   // Handle toggle for enabling/disabling payment methods
-  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
-    const isActive = e.target.checked;
+  const handleToggle = (isActive: boolean, type: string) => {
     const upperType = type.toUpperCase();
 
-    if (isActive) {
-      let updatedMethods = [...values.paymentMethods];
-
-      // If activating Stripe or Paymob, deactivate the other one
-      if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
-        updatedMethods = updatedMethods.map(item => ({
-          ...item,
-          isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB') ?
-            item.type === upperType : item.isActive
-        }));
-      }
-
-      // Add or update the current provider
-      const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
-      if (existingIndex === -1) {
-        updatedMethods.push({ type: upperType, isActive: true });
-      } else {
-        updatedMethods[existingIndex].isActive = true;
-      }
-
-      setFieldValue("paymentMethods", updatedMethods);
-    } else {
+    if (!isActive) {
       // Simply deactivate the current provider
       const updatedMethods = values.paymentMethods.map(item =>
-        item.type === upperType ? { ...item, isActive: false } : item
+        item.type === upperType
+          ? { ...item, isActive: false }
+          : item
       );
 
       setFieldValue("paymentMethods", updatedMethods);
+      return;
     }
+
+    let updatedMethods = [...values.paymentMethods];
+
+    // If activating Stripe or Paymob, deactivate the other one
+    if (upperType === 'STRIPE' || upperType === 'PAYMOB') {
+      updatedMethods = updatedMethods.map(item => ({
+        ...item,
+        isActive: (item.type === 'STRIPE' || item.type === 'PAYMOB')
+          ? item.type === upperType
+          : item.isActive
+      }));
+    }
+
+    // Add or update the current provider
+    const existingIndex = updatedMethods.findIndex(item => item.type === upperType);
+    if (existingIndex === -1) updatedMethods.push({ type: upperType, isActive: true });
+    else updatedMethods[existingIndex].isActive = true;
+
+    setFieldValue("paymentMethods", updatedMethods);
   };
-
-  useEffect(() => {
-
-  }, [])
 
   return (
     <Grid
@@ -123,7 +119,7 @@ const PaymentProviderList: React.FC = () => {
         <PaymentProviderCard
           key={provider.type}
           item={provider}
-          onToggle={(e) => handleToggle(e, provider.type)}
+          onToggle={(e) => handleToggle(e.target.checked, provider.type)}
         />
       ))}
     </Grid>

@@ -1,23 +1,41 @@
-import { useMediaQuery } from '@chakra-ui/react'
+import { Spinner, Text, useBreakpointValue, useMediaQuery } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
-import AppTypography from 'components/common/typography/AppTypography'
+import { DocumentdownloadLg } from 'assets/icons/Action/DocumentDownload/DocumentdownloadLg'
+import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import Table from 'components/redesign/table/Table'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
+import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React, { useState } from 'react'
 import { IDetailedTransaction } from 'services/credit/interfaces'
-import React from 'react'
+import { downloadCreditChangeInvoice } from 'services/credit/services'
+import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TransactionsCards from './TransactionsCards'
 import TypeColumn from './TypeColumn'
-import { formatDateToLongStyle } from 'utils/helpers'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
-export default function ResponsiveTable() {
+export default function TransactionsTable() {
+    const [isMobile] = useMediaQuery('(max-width: 768px)')
+    const downloadIcon = useBreakpointValue({
+        base: <DocumentdownloadMd color='#FFF' />,
+        xl: <DocumentdownloadLg color='#FFF' />
+    })
+
     const { t } = useLocaleResources("creditsAndActivity")
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const { transactionsQuery } = useCreditsData()
-    const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
-    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || []
+
+    const { transactionsQuery: { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
+
+    // track each row’s download status
+    const [downloadingTransactionIds, setDownloadingTransactionIds] = useState<string[]>([])
+
+    const { download, isLoading } = useDownloadFile({
+        fetcher: (transactionId: string) => downloadCreditChangeInvoice(transactionId),
+        fileNameResolver: () => `${Date.now()}.xlsx`,
+        onSettled: (_, __, transactionId) => setDownloadingTransactionIds(prev => prev.filter(id => id !== transactionId))
+    })
+
+    const allTransactions = data?.pages.flatMap(data => data.data.data.data) || []
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
@@ -41,38 +59,45 @@ export default function ResponsiveTable() {
             cell: (info) => <StatusBadge status={info.row.original.status} />,
         },
         {
-            accessorKey: "transactionId",
+            accessorKey: "id",
             header: t("transactionTable.columns.transactionId"),
-            cell: (info) => <AppTypography
-                color={"#fff"}
-                fontSize={16}
-                fontWeight={400}
-                userSelect="all"
-            >
-                {info.row.original.id ?? "-"}
-            </AppTypography>,
-        },
-        // {
-        //     accessorKey: "details",
-        //     header: "Details",
-        //     cell: (info) => <AppTooltip label={info.row.original.details} placement='bottom-start'>{info.row.original.details}</AppTooltip>,
-        // },
+            cell: (info) => <Text color="text.white" userSelect="all">{info.getValue() as string ?? "-"}</Text>
+        }
     ]
 
+    const handleDownload = async (transactionId: string) => {
+        setDownloadingTransactionIds(prev => [...prev, transactionId])
+        download(transactionId)
+    }
+
+    const renderActions = (tx: IDetailedTransaction) => {
+        if (!tx.id) return null
+        const isThisDownloading = downloadingTransactionIds.includes(tx.id)
+        return (
+            <button
+                onClick={() => handleDownload(tx.id)}
+                disabled={isThisDownloading || isLoading}
+            >
+                {isThisDownloading ? <Spinner size={{ base: 'sm', xl: 'md' }} /> : downloadIcon}
+            </button>
+        )
+    }
+
+    if (isMobile) return <TransactionsCards />
+
     return (
-        isSmallerThan768 ?
-            <TransactionsCards />
-            : <Table
-                infiniteScroll={{
-                    hasMore: hasNextPage,
-                    next: fetchNextPage,
-                    isFetchingNextPage: isFetchingNextPage,
-                    dataLength: 20,
-                }}
-                isLoading={isFetching}
-                data={transactions}
-                columns={columns}
-                tableFontSize={16}
-            />
+        <Table
+            isLoading={isFetching}
+            data={allTransactions}
+            columns={columns}
+            renderActions={renderActions}
+            tableFontSize={16}
+            infiniteScroll={{
+                hasMore: hasNextPage,
+                next: fetchNextPage,
+                isFetchingNextPage,
+                dataLength: allTransactions.length
+            }}
+        />
     )
 }

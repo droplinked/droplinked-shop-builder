@@ -1,7 +1,9 @@
-import { Flex } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
-import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import { Flex, useMediaQuery } from '@chakra-ui/react';
+import { ArrowdownLg } from 'assets/icons/Navigation/ArrowDown/ArrowdownLg';
+import { ArrowupLg } from 'assets/icons/Navigation/ArrowUp/ArrowupLg';
+import AppTypography from 'components/common/typography/AppTypography';
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
+import React from 'react';
 
 interface Props {
     amountType: string
@@ -10,13 +12,23 @@ interface Props {
 
 export default function TypeColumn({ amountType, type }: Props) {
     const isInbound = amountType === "INCREASE"
+    const [isMobile] = useMediaQuery('(max-width: 768px)')
 
     return (
-        <Flex gap={4} alignItems="center">
-            <Flex p="6px" borderRadius="8px" bg={isInbound ? "#2bcfa11a" : "#ff22440d"} border={`1px solid ${isInbound ? "#2bcfa11a" : "#ff224426"}`}>
-                {isInbound && <AppIcons.ArrowDownOutlined color='#2BCFA1' width="20px" height="20px" />}
-                {!isInbound && <AppIcons.ArrowUp color='#FF2244' width="20px" height="20px" />}
-            </Flex>
+        <Flex
+            direction={isMobile ? 'column' : 'row'}
+            alignItems={isMobile ? 'flex-start' : 'center'}
+            gap={4}
+        >
+            <IconWrapper
+                bg={isInbound ? "#2bcfa11a" : "#ff22440d"}
+                border={`1px solid ${isInbound ? "#2bcfa11a" : "#ff224426"}`}
+                icon={
+                    isInbound
+                        ? <ArrowdownLg color='#2bcfa1' />
+                        : <ArrowupLg color='#ff2244' />
+                }
+            />
             <AppTypography color="#fff" fontSize={16}>{type}</AppTypography>
         </Flex>
     )

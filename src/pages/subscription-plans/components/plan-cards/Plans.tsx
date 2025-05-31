@@ -4,8 +4,8 @@ import React from "react";
 import { useQuery } from "react-query";
 import AppErrors from "utils/constants/errors";
 import PlanDurationRadioContainer from "../../../../components/redesign/plan-duration-radio/PlanDurationRadioContainer";
-import Loading from "./_components/loading/Loading";
-import PlanCard from "./_components/plan-card/PlanCard";
+import Loading from "./loading/Loading";
+import PlanCard from "./plan-card/PlanCard";
 
 export default function Plans() {
     const { isFetching, isError, data } = useQuery({

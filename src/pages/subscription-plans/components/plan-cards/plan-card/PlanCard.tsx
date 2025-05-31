@@ -8,11 +8,11 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 import { getSubscriptionPlanIcon } from "utils/helpers"
-import useSubscriptionPlanPurchaseStore from "../../../../../../stores/subscription-plan.ts/subscriptionPlanStore"
-import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal"
+import useSubscriptionPlanPurchaseStore from "../../../../../stores/subscription-plan.ts/subscriptionPlanStore"
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
 import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
+import SubscriptionPlanCheckoutModal from "../../checkout/SubscriptionPlanCheckoutModal"
 
 function PlanCard({ plan }: { plan: SubscriptionPlan }) {
     const navigate = useNavigate()

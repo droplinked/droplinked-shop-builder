@@ -3,14 +3,11 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
 import * as React from 'react';
 import { getSubscriptionPlanIcon } from 'utils/helpers';
-import PlanBadge from './_components/PlanBadge';
-import PlanDescription from './_components/PlanDescription';
-import StatisticModal from './_components/statistics/StatisticModal';
-export interface ICurrentSubData {
-    icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-    title: string
-}
-function NewCurrentPlan() {
+import PlanBadge from './components/PlanBadge';
+import PlanDescription from './components/PlanDescription';
+import StatisticModal from './components/statistics/StatisticModal';
+
+function CurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
     const planType = subscriptionData?.subscriptionId?.type;
@@ -29,7 +26,7 @@ function NewCurrentPlan() {
             alignItems={"start"}
         >
             <HStack flexWrap={"wrap"} justifyContent={"space-between"} width={"100%"}>
-                <PlanBadge currentSubData={currentSubData} data={data} />
+                <PlanBadge currentSubData={currentPlanInformation} data={subscriptionData} />
                 <HStack gap={"1rem"} flexWrap={"wrap"}>
                     {/* {type !== 'STARTER' && (
                     <AppButton
@@ -40,7 +37,7 @@ function NewCurrentPlan() {
                     Cancel Subscription
                     </AppButton>
                 )} */}
-                    <StatisticModal data={data} />
+                    <StatisticModal data={subscriptionData} />
                 </HStack>
             </HStack>
             <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
@@ -48,4 +45,4 @@ function NewCurrentPlan() {
     );
 }
 
-export default NewCurrentPlan;
+export default CurrentPlan;

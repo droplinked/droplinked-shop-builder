@@ -1,6 +1,6 @@
+import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 import { useInfiniteQuery, useQuery } from 'react-query'
 import { getCreditAnalytics, getCreditDetailedAnalytics } from 'services/credit/services'
-import useCreditStore from 'pages/credits-and-activity/stores/CreditStore'
 
 export default function useCreditsData() {
     const { date, selectedFilter, updateCreditState } = useCreditStore()
@@ -8,13 +8,8 @@ export default function useCreditsData() {
     const analyticsQuery = useQuery({
         queryKey: ["credit-analytics", date],
         queryFn: () => getCreditAnalytics({ endDate: date[1], startDate: date[0] }),
-        onSuccess: (data) => {
-            updateCreditState('analyticsData', data?.data?.data)
-            updateCreditState('isFetching', false)
-        },
-        onError: () => {
-            updateCreditState('isFetching', false)
-        }
+        onSuccess: (data) => updateCreditState('analyticsData', data?.data?.data),
+        onSettled: () => updateCreditState('isFetching', false)
     })
 
     const transactionsQuery = useInfiniteQuery({

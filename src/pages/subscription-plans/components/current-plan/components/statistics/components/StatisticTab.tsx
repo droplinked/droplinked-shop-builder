@@ -1,17 +1,15 @@
 import { Box } from '@chakra-ui/react';
-import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import React from 'react';
-import Charts from '../_components/Charts';
-import UsageExceededAlert from '../_components/UsageExceededAlert';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
+import Charts from './Charts';
+import UsageExceededAlert from './UsageExceededAlert';
 
 interface StatisticTabProps {
-    data: {
-        data: ShopSubscriptionData
-    };
+    data: ShopSubscriptionData
 }
 
 export default function StatisticTab({ data }: StatisticTabProps) {
-    const UsageExceededItem = data.data.legalUsage.find((item) => item.remaining === 0)
+    const UsageExceededItem = data.legalUsage.find((item) => item.remaining === 0)
 
     if (!data) return null
 
