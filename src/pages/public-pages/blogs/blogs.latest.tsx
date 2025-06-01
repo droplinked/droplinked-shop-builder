@@ -5,7 +5,12 @@ import React from "react";
 import { IBlog } from "./blogs.interface";
 import { getTimeAgo } from "utils/helpers";
 
-const LatestBlog = ({ blog }: { blog: IBlog }) => {
+interface Props {
+    blog: IBlog;
+    t: (key: string, params?: Record<string, any>) => string;
+}
+
+const LatestBlog = ({ blog, t }: Props) => {
     return (
         <Box width={"full"} pos={"relative"} height={"512px"}>
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
@@ -29,13 +34,13 @@ const LatestBlog = ({ blog }: { blog: IBlog }) => {
                 <HStack>
                     <AppIcons.Clock fill="#C2C2C2" width={"16px"} height={"16px"} />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
-                        Last Update: {getTimeAgo(blog?.updatedAt)}
+                        {t("latestBlog.lastUpdate", { time: getTimeAgo(blog?.updatedAt) })}
                     </AppTypography>
                 </HStack>
                 <HStack>
                     <AppIcons.Pen width={"16px"} height={"16px"} color="#C2C2C2" />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
-                        By {blog?.writer}
+                        {t("latestBlog.by", { writer: blog?.writer })}
                     </AppTypography>
                 </HStack>
                 <HStack spacing={"12px"} align={"stretch"}>

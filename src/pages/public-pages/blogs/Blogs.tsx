@@ -8,6 +8,9 @@ import { getSuperAdminBlogs } from "services/blog/services";
 import LatestBlog from "./blogs.latest";
 import { sortByDate } from "utils/helpers";
 import LoadingBlogs from "./blogs.loading";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import arLocale from "locales/public-pages/blogs/ar.json";
+import enLocale from "locales/public-pages/blogs/en.json";
 
 const useScrollAnimation = (ref, length: number) => {
   const end = length % 2 !== 0 ? 150 : 150;
@@ -18,6 +21,10 @@ const useScrollAnimation = (ref, length: number) => {
 };
 
 const PublicBlogs = () => {
+  const { t } = useLocaleResources("blogs", {
+    ar: arLocale,
+    en: enLocale,
+  });
   const { data, isLoading } = useQuery({
     queryFn: getSuperAdminBlogs,
     queryKey: "super_admin_blogs_post",
@@ -55,7 +62,7 @@ const PublicBlogs = () => {
       spacing={"32px"}
       padding={"108px 64px 64px 64px"}
     >
-      <LatestBlog blog={sortByDate(blogs, "createdAt")?.[0] || blogs?.[0]} />
+      <LatestBlog blog={sortByDate(blogs, "createdAt")?.[0] || blogs?.[0]} t={t} />
       <HStack
         spacing={"24px"}
         paddingY={isLargerThanMd ? "200px" : "32px"}

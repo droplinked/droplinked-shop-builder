@@ -5,8 +5,10 @@ import { getTimeAgo } from "utils/helpers";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IBlog } from "./blogs.interface";
- 
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+
 const Blog = ({ blog }: { blog: IBlog }) => {
+    const { t } = useLocaleResources("blogs");
 
     return (
         <VStack
@@ -70,7 +72,7 @@ const Blog = ({ blog }: { blog: IBlog }) => {
                 >
                     <HStack align="stretch" maxW={"full"} flexWrap={"wrap"}>
                         {blog?.tags?.map((tag) => (
-                            <Box paddingX="16px" paddingY="6px" bg="#2EC99E" rounded="24px">
+                            <Box key={tag} paddingX="16px" paddingY="6px" bg="#2EC99E" rounded="24px">
                                 <AppTypography color="#084836" fontSize="10px" fontWeight="500">
                                     {tag}
                                 </AppTypography>
@@ -80,7 +82,7 @@ const Blog = ({ blog }: { blog: IBlog }) => {
                     <HStack>
                         <AppIcons.Clock fill="#C2C2C2" width={"14px"} height={"14px"} />
                         <AppTypography color="white" fontWeight="500" fontSize="10px">
-                            Last Update: {getTimeAgo(blog?.updatedAt)}
+                            {t("blog.lastUpdate", { time: getTimeAgo(blog?.updatedAt) })}
                         </AppTypography>
                     </HStack>
                 </VStack>
@@ -94,7 +96,7 @@ const Blog = ({ blog }: { blog: IBlog }) => {
                 <HStack>
                     <AppIcons.Pen width={"16px"} height={"16px"} color="#C2C2C2" />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"16px"}>
-                        By {blog?.writer}
+                        {t("blog.by", { writer: blog?.writer })}
                     </AppTypography>
                 </HStack>
             </VStack>

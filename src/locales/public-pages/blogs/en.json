@@ -1,0 +1,13 @@
+{
+    "latestBlog": {
+        "lastUpdate": "Last Update: {{time}}",
+        "by": "By {{writer}}"
+    },
+    "blog": {
+        "lastUpdate": "Last Update: {{time}}",
+        "by": "By {{writer}}"
+    },
+    "blogDetails": {
+        "author": "Author: {{name}}"
+    }
+}
