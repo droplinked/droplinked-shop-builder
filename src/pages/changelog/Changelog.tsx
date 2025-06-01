@@ -11,10 +11,7 @@ import { ChangelogGrid } from './components/ChangelogGrid'
 import useChangelogEntries from './hooks/useChangelogEntries'
 
 function Changelog() {
-    const { t } = useLocaleResources('changelogPage', {
-        en: enLocale,
-        ar: arLocale
-    })
+    const { t } = useLocaleResources('changelogPage', { en: enLocale, ar: arLocale })
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useChangelogEntries()
     const entries = data?.pages?.flatMap(page => page.data.data) ?? []
 
