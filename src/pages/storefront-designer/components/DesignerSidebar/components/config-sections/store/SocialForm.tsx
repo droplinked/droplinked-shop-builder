@@ -4,6 +4,9 @@ import AppInput from 'components/redesign/input/AppInput';
 import React, { useRef, useState, useContext, useEffect } from 'react';
 import { SocialItemsState } from './socialItems.model';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from '../../../../../../../locales/common/en.json';
+import localCommonAr from '../../../../../../../locales/common/ar.json';
 
 type SocialFormProps = {
     socialId: string;
@@ -23,6 +26,7 @@ export const SocialForm: React.FC<SocialFormProps> = ({ socialId, socialItem, on
   
   // Get context for dispatching preview updates
   const { methods: { dispatch } } = useContext(designerContext);
+  const { t } = useLocaleResources('common', { en: localCommonEn, ar: localCommonAr });
 
   // Update preview whenever input value changes
   useEffect(() => {
@@ -123,9 +127,9 @@ export const SocialForm: React.FC<SocialFormProps> = ({ socialId, socialItem, on
         <Box width="20px" height="20px" position="relative">
           {socialItem.icon}
         </Box>
-        <Flex flex="1" alignItems="center">
-          <Text color="neutral.gray.800" fontSize="16px" fontWeight="normal" lineHeight="normal">
-            {socialItem.url}
+        <Flex flex="1" alignItems="center" gap={2}>
+          <Text color="white" fontSize="16px" fontWeight="medium" lineHeight="normal">
+            {socialItem.label}:
           </Text>
           <Box flex="1">
             <AppInput
@@ -163,7 +167,7 @@ export const SocialForm: React.FC<SocialFormProps> = ({ socialId, socialItem, on
           display="flex"
           alignItems="center"
           justifyContent="center"
-          aria-label="Delete social link"
+          aria-label={t('delete')}
         >
           <TrashMd color='#FF2244' />
         </Box>

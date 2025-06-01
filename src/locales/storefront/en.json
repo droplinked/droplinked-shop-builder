@@ -1,57 +1,127 @@
 {
-  "designer": {
-    "header": {
-      "title": "Store Designer",
-      "save": "Save Changes",
-      "preview": "Preview Store",
-      "publish": "Publish Store",
-      "settings": "Store Settings",
-      "back": "Back to Dashboard",
-      "discard": "Discard",
-      "reset": "Reset",
-      "resetTitle": "Reset Design",
-      "resetDescription": "This will reset all customizations and restore the default settings. Are you sure you want to continue?"
+  "mobileMessage": {
+    "title": "Best Viewed on Desktop",
+    "description": "This page isn't fully optimized for mobile, please switch to a larger screen to continue.",
+    "dashboardButton": "Go to Dashboard"
+  },
+  "designerHeader": {
+    "backToDashboard": "back to dashboard",
+    "deviceSelector": {
+      "desktop": "Desktop",
+      "tablet": "Tablet",
+      "mobile": "Mobile"
     },
-    "sidebar": {
-      "title": "Design Elements",
-      "sections": {
-        "layout": "Layout",
-        "theme": "Theme",
-        "colors": "Colors",
-        "typography": "Typography",
-        "components": "Components"
+    "actions": {
+      "discard": "Discard",
+      "saveChanges": "Save Changes",
+      "resetDesign": {
+        "title": "Reset Design",
+        "description": "This will reset all customizations and restore the default settings. Are you sure you want to continue?",
+        "cancel": "Cancel",
+        "reset": "Reset"
       },
-      "components": {
-        "header": "Header",
-        "hero": "Hero Section",
-        "products": "Products Grid",
-        "footer": "Footer"
+      "toasts": {
+        "updateSuccess": "Store design has been updated",
+        "discardSuccess": "Changes discarded successfully"
       }
     }
   },
-  "preview": {
-    "title": "Store Preview",
-    "deviceView": {
-      "desktop": "Desktop View",
-      "mobile": "Mobile View",
-      "tablet": "Tablet View"
+  "designerSidebar": {
+    "sections": {
+      "theme": "Theme",
+      "header": "Header",
+      "heroSection": "Hero Section",
+      "storeDetails": "Store Details",
+      "footer": "Footer",
+      "additionalSettings": "Additional Settings"
     },
-    "actions": {
-      "back": "Back to Editor",
-      "publish": "Publish Store"
+    "common": {
+      "pageSelector": "Product Listing Page",
+      "buttons": {
+        "refreshCustomizations": "Refresh Customizations",
+        "toggleSidebar": "Toggle Sidebar"
+      },
+      "droplinked": {
+        "logo": "Droplinked Logo",
+        "text": "Droplinked Text"
+      }
+    },
+    "themeConfig": {
+      "template": {
+        "title": "Storefront Template",
+        "description": "Choose from one of the designs below or order a custom one.",
+        "defaultTemplate": "Default template",
+        "customTemplate": "Order a customized template"
+      },
+      "colorPalette": {
+        "title": "Color Palette",
+        "description": "Choose a preferred color scheme.",
+        "light": "Light",
+        "dark": "Dark",
+        "lightOptimized": "Frost Gray (optimized)",
+        "noThemes": "No themes available"
+      },
+      "fontStyle": {
+        "title": "Font Style",
+        "description": "Choose a preferred font typography.",
+        "fonts": {
+          "inter": "Inter (Optimized)",
+          "nunitosans": "Nunito Sans",
+          "montserrat": "Montserrat",
+          "manrope": "Manrope",
+          "sourceserifpro": "Source Serif Pro",
+          "fredokaone": "Fredoka One",
+          "allerta": "Allerta"
+        },
+        "sampleText": "The Next Generation of Commerce"
+      }
+    },
+    "footerConfig": {
+      "linkManagement": {
+        "title": "Link Management",
+        "column": "Column {{number}}",
+        "link": "Link {{number}}",
+        "newLink": "New Link",
+        "inputs": {
+          "label": "Label",
+          "url": "URL"
+        }
+      }
+    },
+    "headerConfig": {
+      "logo": {
+        "title": "Logo",
+        "useFavicon": "Use as favicon on browser"
+      },
+      "favicon": {
+        "title": "Favicon"
+      },
+      "iconColor": {
+        "title": "Icon Color on Navigation Bar"
+      }
+    },
+    "heroConfig": {
+      "coverImage": {
+        "title": "Cover Image"
+      },
+      "customImage": {
+        "title": "Custom Image"
+      }
+    },
+    "settingsConfig": {
+      "releaseDate": {
+        "title": "Release Date",
+        "description": "Choose a date for the storefront to go live.",
+        "placeholder": "{{date}} - {{time}}"
+      }
+    },
+    "storeConfig": {
+      "profileImage": {
+        "title": "Profile Image"
+      },
+      "socialChannels": {
+        "title": "Social Channels"
+      }
     }
-  },
-  "mobileMessage": {
-    "title": "Mobile Access Limited",
-    "message": "Store designer is optimized for desktop. Please use a desktop device for the best experience.",
-    "continue": "Continue Anyway"
-  },
-  "messages": {
-    "saveSuccess": "Store design has been updated",
-    "saveError": "Failed to save changes",
-    "publishSuccess": "Store published successfully",
-    "publishError": "Failed to publish store",
-    "unsavedChanges": "You have unsaved changes. Are you sure you want to leave?",
-    "discardSuccess": "Changes discarded successfully"
   }
-} 
+}

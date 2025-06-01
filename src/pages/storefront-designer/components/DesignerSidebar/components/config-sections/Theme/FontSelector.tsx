@@ -2,6 +2,9 @@ import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../../../../locales/storefront/en.json';
+import localAr from '../../../../../../../locales/storefront/ar.json';
 
 /**
  * Typography and font selection component
@@ -16,11 +19,16 @@ const FontSelector: React.FC = () => {
     },
   } = useContext(designerContext);
 
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+
   const fonts = ['Inter', 'Nunito Sans', 'Montserrat', 'Manrope', 'Source Serif Pro', 'Fredoka One', 'Allerta'];
   const selectedFont = fontfamily;
 
   return (
-    <SectionItem title="Font Style" description="Choose a preferred font typography.">
+    <SectionItem 
+      title={t('designerSidebar.themeConfig.fontStyle.title')} 
+      description={t('designerSidebar.themeConfig.fontStyle.description')}
+    >
       <VStack spacing={3} align="stretch" w="100%" mt={2}>
         {fonts.map((font, i) => {
           const isSelected = selectedFont === font;
@@ -46,10 +54,10 @@ const FontSelector: React.FC = () => {
             >
               <Box flex="1" minW="0">
                 <Text color={isSelected ? 'main.primary' : 'white'} fontSize="sm" fontWeight="medium">
-                  {font === 'Inter' ? 'Inter (optimized)' : font}
+                  {t(`designerSidebar.themeConfig.fontStyle.fonts.${font.toLowerCase().replace(/\s+/g, '')}`)}
                 </Text>
                 <Text color="text.subtext.placeholder.dark" fontSize="12px" fontFamily={font}>
-                  The Next Generation of Commerce
+                   The Next Generation of Commerce
                 </Text>
               </Box>
               <Text
@@ -59,7 +67,7 @@ const FontSelector: React.FC = () => {
                 fontFamily={font}
                 flexShrink={0}
               >
-                Aa
+            Aa
               </Text>
             </Flex>
           );

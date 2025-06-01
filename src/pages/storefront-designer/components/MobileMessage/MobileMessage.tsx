@@ -1,10 +1,13 @@
 import { Box, Text, VStack } from '@chakra-ui/react';
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
 import Lottie from 'lottie-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimationData } from './mobileDeviceAnimation';
+import localEn from '../../../../locales/storefront/en.json';
+import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Mobile message that informs users the storefront designer
@@ -12,6 +15,7 @@ import { AnimationData } from './mobileDeviceAnimation';
  */
 function MobileMessage(): React.ReactElement {
   const navigate = useNavigate();
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   return (
     <Box
@@ -36,7 +40,7 @@ function MobileMessage(): React.ReactElement {
             color="text.white"
             textAlign="center"
           >
-            Best Viewed on Desktop
+            {t('mobileMessage.title')}
           </Text>
 
           <Text
@@ -47,8 +51,7 @@ function MobileMessage(): React.ReactElement {
             color="text.subtext.placeholder.light"
             textAlign="center"
           >
-            This page isn't fully optimized for mobile, please switch to a
-            larger screen to continue.
+            {t('mobileMessage.description')}
           </Text>
         </VStack>
 
@@ -58,7 +61,7 @@ function MobileMessage(): React.ReactElement {
           rightIcon={<ArrowrightMd />}
           onClick={() => navigate('/analytics/dashboard')}
         >
-          Go to Dashboard
+          {t('mobileMessage.dashboardButton')}
         </AppButton>
       </VStack>
     </Box>

@@ -1,16 +1,20 @@
 import { Flex } from '@chakra-ui/react';
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeviceViewSelector from './DeviceViewSelector';
 import StoreDesignActions from './StoreDesignActions';
+import localEn from '../../../../locales/storefront/en.json';
+import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Header component for the storefront designer
  */
 function DesignerHeader(): React.ReactElement {
   const navigate = useNavigate();
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   return (
     <Flex
@@ -29,7 +33,7 @@ function DesignerHeader(): React.ReactElement {
       borderColor="neutral.gray.800"
     >
       <AppButton variant="normal" color="neutral.white" leftIcon={<ChevronleftMd />} _hover="none" _pressed="none" onClick={() => navigate('/analytics/dashboard')}>
-        back to dashboard
+        {t('designerHeader.backToDashboard')}
       </AppButton>
       <DeviceViewSelector />
       <StoreDesignActions />

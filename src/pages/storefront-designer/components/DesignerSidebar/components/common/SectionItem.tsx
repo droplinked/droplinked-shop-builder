@@ -22,7 +22,7 @@ function SectionItem({
   children 
 }: SectionItemProps): React.ReactElement {
   return (
-    <Box width="100%" height="auto">
+    <Box width="100%" height="auto" role="region" aria-label={title}>
       {title && (
         <Box 
           width="100%" 

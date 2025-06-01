@@ -5,6 +5,9 @@ import SectionItem from '../../common/SectionItem';
 import { getNextDayMidnightISO } from 'utils/helpers/dateUtils';
 import AppDatepicker from 'components/common/datepicker/AppDatepicker';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../../../../locales/storefront/en.json';
+import localAr from '../../../../../../../locales/storefront/ar.json';
 
 /**
  * Settings configuration for release date and other settings
@@ -12,6 +15,7 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 function SettingsConfig(): React.ReactElement {
   const { state, methods } = useContext(designerContext);
   const launchDate = state?.shop?.launchDate;
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   const [isEnabled, setIsEnabled] = useState(() => Boolean(launchDate));
   const [formattedDate, setFormattedDate] = useState('5 Aug, 2024 - 22:13');
@@ -66,10 +70,10 @@ function SettingsConfig(): React.ReactElement {
           <VStack width="auto" height="auto" display="flex" flex="1" alignItems="flex-start" spacing={4} overflow="hidden">
             <Box width="100%" height="auto">
               <Text fontSize="base" fontWeight="medium" color="white">
-                Release Date
+                {t('designerSidebar.settingsConfig.releaseDate.title')}
               </Text>
               <Text fontSize="sm" color="neutral.gray.500">
-                Choose a date for the storefront to go live.
+                {t('designerSidebar.settingsConfig.releaseDate.description')}
               </Text>
             </Box>
 

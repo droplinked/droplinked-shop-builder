@@ -1,57 +1,128 @@
 {
-  "designer": {
-    "header": {
-      "title": "مصمم المتجر",
-      "save": "حفظ التغييرات",
-      "preview": "معاينة المتجر",
-      "publish": "نشر المتجر",
-      "settings": "إعدادات المتجر",
-      "back": "العودة إلى لوحة التحكم",
-      "discard": "تجاهل",
-      "reset": "إعادة تعيين",
-      "resetTitle": "إعادة تعيين التصميم",
-      "resetDescription": "سيؤدي هذا إلى إعادة تعيين جميع التخصيصات واستعادة الإعدادات الافتراضية. هل أنت متأكد أنك تريد المتابعة؟"
+    "mobileMessage": {
+      "title": "أفضل عرض على سطح المكتب",
+      "description": "هذه الصفحة غير محسّنة بالكامل للهواتف، يرجى التبديل إلى شاشة أكبر للمتابعة.",
+      "dashboardButton": "الذهاب إلى لوحة التحكم"
     },
-    "sidebar": {
-      "title": "عناصر التصميم",
-      "sections": {
-        "layout": "التخطيط",
-        "theme": "المظهر",
-        "colors": "الألوان",
-        "typography": "الخطوط",
-        "components": "المكونات"
+    "designerHeader": {
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "deviceSelector": {
+        "desktop": "سطح المكتب",
+        "tablet": "جهاز لوحي",
+        "mobile": "جوال"
       },
-      "components": {
-        "header": "الرأس",
-        "hero": "القسم الرئيسي",
-        "products": "شبكة المنتجات",
-        "footer": "التذييل"
+      "actions": {
+        "discard": "تجاهل",
+        "saveChanges": "حفظ التغييرات",
+        "resetDesign": {
+          "title": "إعادة ضبط التصميم",
+          "description": "سيؤدي هذا إلى إعادة جميع التخصيصات إلى الإعدادات الافتراضية. هل أنت متأكد أنك تريد المتابعة؟",
+          "cancel": "إلغاء",
+          "reset": "إعادة ضبط"
+        },
+        "toasts": {
+          "updateSuccess": "تم تحديث تصميم المتجر",
+          "discardSuccess": "تم تجاهل التغييرات بنجاح"
+        }
+      }
+    },
+    "designerSidebar": {
+      "sections": {
+        "theme": "السمة",
+        "header": "رأس الصفحة",
+        "heroSection": "قسم البطل",
+        "storeDetails": "تفاصيل المتجر",
+        "footer": "تذييل الصفحة",
+        "additionalSettings": "إعدادات إضافية"
+      },
+      "common": {
+        "pageSelector": "صفحة عرض المنتجات",
+        "buttons": {
+          "refreshCustomizations": "تحديث التخصيصات",
+          "toggleSidebar": "تبديل الشريط الجانبي"
+        },
+        "droplinked": {
+          "logo": "شعار دروبلينكد",
+          "text": "نص دروبلينكد"
+        }
+      },
+      "themeConfig": {
+        "template": {
+          "title": "قالب واجهة المتجر",
+          "description": "اختر من بين التصاميم أدناه أو اطلب تصميمًا مخصصًا.",
+          "defaultTemplate": "القالب الافتراضي",
+          "customTemplate": "طلب قالب مخصص"
+        },
+        "colorPalette": {
+          "title": "لوحة الألوان",
+          "description": "اختر نظام الألوان المفضل.",
+          "light": "فاتح",
+          "dark": "داكن",
+          "lightOptimized": "رمادي فاتح (محسّن)",
+          "noThemes": "لا توجد سمات متاحة"
+        },
+        "fontStyle": {
+          "title": "نمط الخط",
+          "description": "اختر نوع الخط المفضل.",
+          "fonts": {
+            "inter": "إنتر (محسّن)",
+            "nunitosans": "نونيتو سانس",
+            "montserrat": "مونتسيرات",
+            "manrope": "مانروب",
+            "sourceserifpro": "سورس سيريف برو",
+            "fredokaone": "فريدوكا ون",
+            "allerta": "أليرتا"
+          },
+          "sampleText": "الجيل القادم من التجارة"
+        }
+      },
+      "footerConfig": {
+        "linkManagement": {
+          "title": "إدارة الروابط",
+          "column": "عمود {{number}}",
+          "link": "رابط {{number}}",
+          "newLink": "رابط جديد",
+          "inputs": {
+            "label": "التسمية",
+            "url": "الرابط"
+          }
+        }
+      },
+      "headerConfig": {
+        "logo": {
+          "title": "الشعار",
+          "useFavicon": "استخدام كرمز مفضل في المتصفح"
+        },
+        "favicon": {
+          "title": "الرمز المفضل"
+        },
+        "iconColor": {
+          "title": "لون الأيقونة في شريط التنقل"
+        }
+      },
+      "heroConfig": {
+        "coverImage": {
+          "title": "صورة الغلاف"
+        },
+        "customImage": {
+          "title": "صورة مخصصة"
+        }
+      },
+      "settingsConfig": {
+        "releaseDate": {
+          "title": "تاريخ الإطلاق",
+          "description": "اختر تاريخًا ليتم نشر واجهة المتجر.",
+          "placeholder": "{{date}} - {{time}}"
+        }
+      },
+      "storeConfig": {
+        "profileImage": {
+          "title": "صورة الملف الشخصي"
+        },
+        "socialChannels": {
+          "title": "قنوات التواصل الاجتماعي"
+        }
       }
     }
-  },
-  "preview": {
-    "title": "معاينة المتجر",
-    "deviceView": {
-      "desktop": "عرض سطح المكتب",
-      "mobile": "عرض الجوال",
-      "tablet": "عرض الجهاز اللوحي"
-    },
-    "actions": {
-      "back": "العودة إلى المحرر",
-      "publish": "نشر المتجر"
-    }
-  },
-  "mobileMessage": {
-    "title": "الوصول محدود على الجوال",
-    "message": "مصمم المتجر مُحسن لسطح المكتب. يرجى استخدام جهاز سطح المكتب للحصول على أفضل تجربة.",
-    "continue": "المتابعة على أي حال"
-  },
-  "messages": {
-    "saveSuccess": "تم تحديث تصميم المتجر",
-    "saveError": "فشل في حفظ التغييرات",
-    "publishSuccess": "تم نشر المتجر بنجاح",
-    "publishError": "فشل في نشر المتجر",
-    "unsavedChanges": "لديك تغييرات غير محفوظة. هل أنت متأكد أنك تريد المغادرة؟",
-    "discardSuccess": "تم تجاهل التغييرات بنجاح"
   }
-} 
+  

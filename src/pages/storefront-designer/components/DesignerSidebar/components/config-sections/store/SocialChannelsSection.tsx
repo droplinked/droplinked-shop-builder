@@ -4,26 +4,14 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox';
 import { SocialInputs } from './SocialInputs';
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from '../../../../../../../locales/common/en.json';
+import localCommonAr from '../../../../../../../locales/common/ar.json';
 
 export type SocialOption = {
   caption: string;
   value: string;
 };
-
-// Create the standard social options
-const SOCIAL_OPTIONS: SocialOption[] = [
-  { caption: '', value: '' },
-  { caption: 'LinkedIn', value: 'linkedinURL' },
-  { caption: 'Instagram', value: 'instagramURL' },
-  { caption: 'Twitter', value: 'twitterURL' },
-  { caption: 'Facebook', value: 'facebookURL' },
-  { caption: 'Tiktok', value: 'tiktokURL' },
-  { caption: 'Web', value: 'webURL' },
-  { caption: 'Discord', value: 'discordURL' },
-  { caption: 'Telegram', value: 'telegramURL' },
-  { caption: 'Youtube', value: 'youtubeURL' },
-  { caption: 'Messenger', value: 'messengerURL' }
-];
 
 /**
  * Component for managing social media channels
@@ -31,6 +19,22 @@ const SOCIAL_OPTIONS: SocialOption[] = [
 const SocialChannelsSection: React.FC = () => {
   const [activeSocial, setActiveSocial] = useState<string>('');
   const { methods: { dispatch } } = useContext(designerContext);
+  const { t } = useLocaleResources('common', { en: localCommonEn, ar: localCommonAr });
+
+  // Create the standard social options with translations
+  const SOCIAL_OPTIONS: SocialOption[] = [
+    { caption: '', value: '' },
+    { caption: t('socialMedia.linkedin'), value: 'linkedinURL' },
+    { caption: t('socialMedia.instagram'), value: 'instagramURL' },
+    { caption: t('socialMedia.twitter'), value: 'twitterURL' },
+    { caption: t('socialMedia.facebook'), value: 'facebookURL' },
+    { caption: t('socialMedia.tiktok'), value: 'tiktokURL' },
+    { caption: t('socialMedia.web'), value: 'webURL' },
+    { caption: t('socialMedia.discord'), value: 'discordURL' },
+    { caption: t('socialMedia.telegram'), value: 'telegramURL' },
+    { caption: t('socialMedia.youtube'), value: 'youtubeURL' },
+    { caption: t('socialMedia.messenger'), value: 'messengerURL' }
+  ];
 
   const handleSocialChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
