@@ -1,0 +1,16 @@
+{
+    "welcomeToDroplinked": "مرحبًا بك في دروبلينكد!",
+    "signUpCredentials": "سجّل باستخدام بياناتك لبدء إدارة متجرك",
+    "emailLabel": "البريد الإلكتروني",
+    "passwordLabel": "كلمة المرور",
+    "repeatPasswordLabel": "تأكيد كلمة المرور",
+    "required": "مطلوب",
+    "signUpButton": "سجّل",
+    "loadingText": "جارٍ التحميل...",
+    "validations": {
+        "fieldRequired": "البريد الإلكتروني غير صحيح. يرجى التحقق والمحاولة مرة أخرى.",
+        "invalidEmail": "يرجى إدخال بريد إلكتروني صالح.",
+        "passwordRequirements": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، بما في ذلك حرف كبير واحد على الأقل، وحرف صغير واحد، ورقم واحد",
+        "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين!"
+    }
+}
