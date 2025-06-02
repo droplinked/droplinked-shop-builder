@@ -68,35 +68,6 @@ export const InvoiceTemplate: React.FC = () => {
         return null
     }
 
-    // Prepare the invoice data for the context
-    const invoiceData = data ? {
-        // Client information
-        clientName: data.clientName,
-        clientEmail: data.clientEmail,
-        clientAddress: data.clientAddress,
-        clientPhone: data.clientPhone,
-
-        // Company information
-        companyWebsite: "droplinked.com",
-        companyAddress: "Shopsadiq Ltd. Al Khatem Tower Floor 16, Abu Dhabi UAE",
-        companyEmail: "support@droplinked.com",
-
-        // Invoice details
-        invoiceId: data.invoiceId,
-        invoiceDate: data.invoiceDate,
-        transactionId: data.transactionId,
-        paymentMethod: data.paymentMethod,
-
-        // Financial information
-        itemName: data.itemName,
-        itemDescription: data.itemDescription,
-        subtotal: data.subtotal,
-        tax: data.tax,
-        total: data.total,
-        currency: data.currency,
-        type: data.transactionType
-    } : {};
-
     return (
         <Box>
             <PageHeader onDownload={handleDownload} isLoading={isDownloading} />
@@ -113,7 +84,7 @@ export const InvoiceTemplate: React.FC = () => {
                 px={{ base: "10px", md: "0px" }}
                 overflow={isDownloading ? "hidden" : "auto"}
             >
-                <InvoiceProvider invoiceData={invoiceData}>
+                <InvoiceProvider invoiceData={data}>
                     <div
                         className="invoice-container"
                         ref={targetRef}
