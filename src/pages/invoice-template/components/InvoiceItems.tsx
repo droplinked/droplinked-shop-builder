@@ -10,7 +10,7 @@ const InvoiceItems: React.FC = () => {
         tax,
         total,
         currency,
-        type
+        transactionType
     } = invoiceData;
 
     return (
@@ -29,7 +29,7 @@ const InvoiceItems: React.FC = () => {
                             <p className="item-name">{itemName}</p>
                             <p className="item-description">{itemDescription}</p>
                         </td>
-                        <td className="item-cycle">{type}</td>
+                        <td className="item-cycle">{transactionType}</td>
                         <td className="item-amount">{total}</td>
                     </tr>
                 </tbody>
