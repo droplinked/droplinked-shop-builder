@@ -1,8 +1,9 @@
 import { HStack, VStack } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import useShopSubscriptionData from 'hooks/shop-subscription-data/useShopSubscriptionData';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
-import { getSubscriptionPlanIcon } from 'utils/helpers';
+import { getPlanDetails } from 'utils/helpers';
 import PlanBadge from './components/PlanBadge';
 import PlanDescription from './components/PlanDescription';
 import StatisticModal from './components/statistics/StatisticModal';
@@ -11,7 +12,8 @@ function CurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
     const planType = subscriptionData?.subscriptionId?.type;
-    const currentPlanInformation = getSubscriptionPlanIcon(planType);
+    const { t } = useLocaleResources('subscription');
+    const currentPlanInformation = getPlanDetails(planType, t);
 
     if (isFetching) {
         return <AppSkeleton borderRadius={"8px"} isLoaded={!isFetching} width={"100%"} height={"6rem"} />

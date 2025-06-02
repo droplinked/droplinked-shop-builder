@@ -2,11 +2,13 @@ import { Box, Circle, Flex, FormLabel, useRadio } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 
 export default function PaymentMethodRadio({ ...props }) {
-	const { paymentMethod: { type }, ...radioProps } = props
-	const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
+	const { paymentMethod: { type }, ...radioProps } = props;
+	const { t } = useLocaleResources('subscription');
+	const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps);
 
 	return (
 		<FormLabel
@@ -44,7 +46,7 @@ export default function PaymentMethodRadio({ ...props }) {
 					<Circle size={2.5} bg={'#2BCFA1'} opacity={isChecked ? 1 : 0} />
 				</Circle>
 				{type === 'STRIPE'
-					? <AppTypography>Stripe</AppTypography>
+					? <AppTypography>{t('payment.methods.stripe')}</AppTypography>
 					: (
 						<Flex
 							alignItems={'center'}

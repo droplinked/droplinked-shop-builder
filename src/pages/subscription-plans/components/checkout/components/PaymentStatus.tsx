@@ -4,8 +4,11 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import { useQueryClient } from 'react-query'
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/subscription/en.json'
+import localAr from 'locales/subscription/ar.json'
 
 interface Props {
     paymentStatus: "success" | "error";
@@ -15,6 +18,7 @@ interface Props {
 function PaymentStatus({ paymentStatus, close }: Props) {
     const queryClient = useQueryClient()
     const selectedPlan = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan)
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr })
     const isSuccessful = paymentStatus === "success"
     const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
@@ -41,7 +45,7 @@ function PaymentStatus({ paymentStatus, close }: Props) {
                     fontWeight={700}
                     color={"white"}
                 >
-                    {isSuccessful ? "You're all set!" : "Payment failed"}
+                    {t(isSuccessful ? 'messages.paymentSuccess' : 'messages.paymentFailed')}
                 </AppTypography>
                 <AppTypography
                     fontSize={16}
@@ -49,9 +53,9 @@ function PaymentStatus({ paymentStatus, close }: Props) {
                     color={"white"}
                 >
                     {isSuccessful ?
-                        `Your ${subscriptionPlans[selectedPlan.type].title} Plan subscription is now active.`
+                        t('messages.subscriptionActive', { plan: getSubscriptionPlans(t)[selectedPlan.type].title })
                         :
-                        "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."}
+                        t('messages.paymentError')}
                 </AppTypography>
             </ModalBody>
 
@@ -63,11 +67,11 @@ function PaymentStatus({ paymentStatus, close }: Props) {
             >
                 {
                     isSuccessful ?
-                        <BasicButton variant='outline' onClick={fetchShopSubscriptionData}>Return to Dashboard</BasicButton>
+                        <BasicButton variant='outline' onClick={fetchShopSubscriptionData}>{t('actions.returnToDashboard')}</BasicButton>
                         :
                         <>
-                            <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>Close</BasicButton>
-                            <BasicButton minWidth="unset" width="50%" onClick={() => window.location.href = "mailto:Support@droplinked.com"}>Contact Us</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('actions.close')}</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" onClick={() => window.location.href = "mailto:Support@droplinked.com"}>{t('actions.contactUs')}</BasicButton>
                         </>
                 }
             </ModalFooter>

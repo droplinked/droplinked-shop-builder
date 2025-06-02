@@ -4,6 +4,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import React from 'react';
 import { ModalStep } from '../types/interfaces';
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     clientSecret: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 function StripePayment({ clientSecret, setPlanPurchaseModalStep, close }: Props) {
+    const { t } = useLocaleResources('subscription');
     
     const onSuccess = () => {
         setPlanPurchaseModalStep("SuccessfulPayment");
@@ -29,8 +31,8 @@ function StripePayment({ clientSecret, setPlanPurchaseModalStep, close }: Props)
       <>
         <ModalHeaderData
           icon={<AppIcons.StripePayment />}
-          title="Credit card information"
-          description={'Choose a credit card on file or add a new one.'}
+          title={t('payment.stripe.title')}
+          description={t('payment.stripe.description')}
         />
 
         <ModalBody>

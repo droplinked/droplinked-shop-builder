@@ -1,36 +1,58 @@
-// Utility functions for handling subscription plan information and icons.
+// Subscription plan utility functions
 import { SubOptionId, SubscriptionPlan } from 'services/subscription/interfaces';
-import { subscriptionPlans } from '../constants/subscriptionPlans';
+import { getSubscriptionPlans } from '../constants/subscriptionPlans';
+import { TFunction } from 'i18next';
 
-// Retrieves the icon and title for a specific subscription plan
-export const getSubscriptionPlanIcon = (type: string) => {
-  const plan = subscriptionPlans[type as keyof typeof subscriptionPlans];
-  return plan ? { icon: plan.icon, title: plan.title } : undefined;
+/**
+ * Gets plan details by type
+ * @param planType - Plan identifier
+ * @param t - Translation function
+ * @throws {Error} For invalid plan type
+ */
+export const getPlanDetails = (planType: string, t: TFunction) => {
+  const availablePlans = getSubscriptionPlans(t);
+  const plan = availablePlans[planType as keyof typeof availablePlans];
+  
+  if (!plan) {
+    throw new Error(`Invalid subscription plan type: ${planType}`);
+  }
+  
+  return plan;
 };
 
 /**
- * Gets unique features for a subscription plan by comparing with the previous tier plan
- * @param currentPlan Current subscription plan
- * @param previousPlan Previous tier subscription plan (optional)
- * @returns Features that are unique/different compared to the previous tier plan
+ * Extracts unique features between current and previous plan tiers
+ * @param currentPlan - Current plan to analyze
+ * @param previousPlan - Previous tier plan for comparison
  */
-export const getFilteredFeatures = (currentPlan: SubscriptionPlan, previousPlan?: SubscriptionPlan): SubOptionId[] => {
-  if (!previousPlan) return currentPlan.subOptionIds; // Return all features for the starter plan
+export const getFilteredFeatures = (
+  currentPlan: SubscriptionPlan,
+  previousPlan?: SubscriptionPlan
+): SubOptionId[] => {
+  if (!previousPlan) {
+    return currentPlan.subOptionIds.map(subOption => ({
+      title: subOption.title || subOption.key,
+      key: subOption.key,
+      value: subOption.value
+    }));
+  }
 
-  return currentPlan.subOptionIds.map((subOption) => {
-    // Find the corresponding subOption in the previous plan
-    const previousSubOption = previousPlan?.subOptionIds.find((p) => p.key === subOption.key);
+  return currentPlan.subOptionIds.map(currentSubOption => {
+    const previousSubOption = previousPlan.subOptionIds.find(
+      prevOption => prevOption.key === currentSubOption.key
+    );
 
-    // Filter the features based on the condition
-    const filteredFeatures = subOption.value.filter((feature) => {
-      // If the feature exists in the current plan but not in the previous plan, or its value is different, include it
-      const previousFeature = previousSubOption?.value.find((pf) => pf.key === feature.key);
+    const uniqueFeatures = currentSubOption.value.filter(feature => {
+      const previousFeature = previousSubOption?.value.find(
+        prevFeature => prevFeature.key === feature.key
+      );
       return !previousFeature || feature.value !== previousFeature.value;
     });
 
     return {
-      ...subOption,
-      value: filteredFeatures
+      title: currentSubOption.title || currentSubOption.key,
+      key: currentSubOption.key,
+      value: uniqueFeatures
     };
   });
 };

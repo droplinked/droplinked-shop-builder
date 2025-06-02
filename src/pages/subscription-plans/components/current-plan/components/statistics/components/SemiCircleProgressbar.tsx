@@ -1,14 +1,18 @@
 import { Box, HStack, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+
 interface IProps {
     value: number;
     maxValue: number | string;
     title: string;
 }
+
 function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
+    const { t } = useLocaleResources('subscription');
     const scaledValue = typeof maxValue === "string" ? null : ((value / maxValue) * 50);
 
     const getPathColor = () => {
@@ -53,7 +57,9 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
                         </HStack>
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
-                    <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>{maxValue === "Unlimited" ? "Unlimited" : "Used"}</AppTypography>
+                    <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>
+                        {maxValue === "Unlimited" ? t('statistics.usage.unlimited') : t('statistics.usage.used')}
+                    </AppTypography>
                 </VStack>
             </Box>
         </VStack>

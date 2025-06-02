@@ -1,7 +1,6 @@
 import { Box, Tbody, Td, Tr } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import { SubscriptionPlan } from 'services/subscription/interfaces';
 import * as React from 'react';
 
 function PlansTableBody({ data }) {

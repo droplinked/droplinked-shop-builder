@@ -3,14 +3,15 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import AppLabel from 'components/redesign/label/AppLabel'
 import PlanPrice from 'components/redesign/plan-price/PlanPrice'
-import { SubscriptionPlan } from 'services/subscription/interfaces'
-import React, { useRef } from 'react'
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import onboardingEnLocale from 'locales/onboarding/en.json'
+import { t } from 'i18next'
 import onboardingArLocale from 'locales/onboarding/ar.json'
-import subscriptionEnLocale from 'locales/subscription/en.json'
+import onboardingEnLocale from 'locales/onboarding/en.json'
 import subscriptionArLocale from 'locales/subscription/ar.json'
+import subscriptionEnLocale from 'locales/subscription/en.json'
+import React from 'react'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
+import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
 
 interface PlanHeaderProps {
   plan: SubscriptionPlan
@@ -19,7 +20,6 @@ interface PlanHeaderProps {
 }
 
 function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
-  const descriptionRef = useRef<HTMLDivElement>(null)
   const { t: tOnboarding } = useLocaleResources('onboarding', {
     en: onboardingEnLocale,
     ar: onboardingArLocale
@@ -29,7 +29,7 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
     ar: subscriptionArLocale
   })
 
-  const { description, icon: PlanIcon } = subscriptionPlans[plan.type]
+  const { title, description, icon: PlanIcon } = getSubscriptionPlans(tSubscription)[plan.type]
 
   return (
     <Box p={4}>
@@ -46,18 +46,18 @@ function PlanHeader({ plan, isPopular, isSelected }: PlanHeaderProps) {
           {isPopular ? (
             <DotSeparatedList>
               <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-                {tSubscription(subscriptionPlans[plan.type].title)}
+                {title}
               </Text>
               <Text color="text.primary">{tOnboarding('subscriptionPlans.mostPopular')}</Text>
             </DotSeparatedList>
           ) : (
             <Text textColor="neutral.white" fontWeight="bold" fontSize="16px">
-              {tSubscription(subscriptionPlans[plan.type].title)}
+              {title}
             </Text>
           )}
 
           <Text color="text.subtext.placeholder.light" fontSize="sm">
-            {tSubscription(description)}
+            {description}
           </Text>
         </Flex>
         <PlanPrice plan={plan} mainFontSize={24} discountFontSize={18} />

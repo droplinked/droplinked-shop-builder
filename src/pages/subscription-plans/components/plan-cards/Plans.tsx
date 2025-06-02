@@ -1,13 +1,16 @@
 import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import { getSubscriptionPlansService } from "services/subscription/subscriptionServices";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import localAr from "locales/subscription/ar.json";
+import localEn from "locales/subscription/en.json";
 import React from "react";
 import { useQuery } from "react-query";
-import AppErrors from "utils/constants/errors";
+import { getSubscriptionPlansService } from "services/subscription/subscriptionServices";
 import PlanDurationRadioContainer from "../../../../components/redesign/plan-duration-radio/PlanDurationRadioContainer";
 import Loading from "./loading/Loading";
 import PlanCard from "./plan-card/PlanCard";
 
 export default function Plans() {
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService()
@@ -15,7 +18,7 @@ export default function Plans() {
 
     if (isFetching) return <PlansGrid><Loading /></PlansGrid>
 
-    if (isError) return <Text color="red.400">{AppErrors.permission.subscriptionDataUnavailable}</Text>
+    if (isError) return <Text color="red.400">{t('errors.subscriptionDataUnavailable')}</Text>
 
     const plans = data.data
 
