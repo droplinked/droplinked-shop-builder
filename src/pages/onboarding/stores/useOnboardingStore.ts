@@ -12,7 +12,7 @@ export const initialStoreSetup = {
 }
 
 const initialState: OnboardingStates = {
-    currentStep: 'STORE_DETAILS',
+    currentStep: 'SIGN_IN',
     storeSetup: initialStoreSetup,
     storeSetupErrors: {},
     credentials: {
