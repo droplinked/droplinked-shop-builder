@@ -26,6 +26,7 @@ export interface StoreSetup {
     shop_url: string
     name: string
     description: string
+    autoAddSampleProductsEnabled: boolean
 }
 
 export interface ProductCardData {

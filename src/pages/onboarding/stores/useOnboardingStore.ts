@@ -7,11 +7,12 @@ export const initialStoreSetup = {
     hero_section: '',
     shop_url: '',
     name: '',
-    description: ''
+    description: '',
+    autoAddSampleProductsEnabled: false
 }
 
 const initialState: OnboardingStates = {
-    currentStep: 'SIGN_IN',
+    currentStep: 'STORE_DETAILS',
     storeSetup: initialStoreSetup,
     storeSetupErrors: {},
     credentials: {
