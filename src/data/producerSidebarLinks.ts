@@ -57,8 +57,8 @@ export const producerSidebarLinks = [
                 linkTo: null,
                 list: [
                     { listTitle: 'Storefront Designer', linkTo: '/style-center/storefront-designer' },
-                    { listTitle: 'Product Tiles', linkTo: '/analytics/settings/tile' },
-                    { listTitle: 'Product Links', linkTo: '/analytics/settings/payment-link-design' },
+                    { listTitle: 'Product Tiles', linkTo: '/analytics/style-center/product-links' },
+                    { listTitle: 'Product Links', linkTo: '/analytics/style-center/product-tiles' },
                     { listTitle: 'Blog Editor', linkTo: '/analytics/blogs' }
                 ]
             }
