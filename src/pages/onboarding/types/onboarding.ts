@@ -2,7 +2,18 @@ import React from "react"
 import { subscriptionPlans } from "utils/constants/subscriptionPlans"
 
 export interface OnboardingStates {
-    currentStep: 'SIGN_IN' | 'SIGN_UP' | 'EMAIL_CONFIRMATION' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET'
+    currentStep: 'SIGN_IN' | 
+                'SIGN_UP' | 
+                'SIGNUP_EMAIL_VERIFICATION' |
+                'RESET_PASSWORD' | 
+                'RESET_PASSWORD_VERIFICATION' |
+                'SET_NEW_PASSWORD' | 
+                'PASSWORD_UPDATED' | 
+                'STORE_DETAILS' | 
+                'PAYMENT_DETAILS' | 
+                'PLAN_SELECTION' | 
+                'YOU_ARE_ALL_SET'
+    previousStep?: 'SIGN_UP' | 'RESET_PASSWORD'
     storeSetup: StoreSetup
     storeSetupErrors: Partial<StoreSetup>
     credentials: {

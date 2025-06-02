@@ -1,24 +1,38 @@
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
-import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
-import OnboardingStepHeader from '../common/OnboardingStepHeader'
+import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
 
-function EmailConfirmation({ onBack }: OnboardingStepProps) {
-    const {
-        otp,
-        inputState,
-        onOtpChange,
-        verifyEmail,
-        resendCode,
-        verifyLoading,
-        resendLoading,
-        loginLoading
-    } = useEmailVerification()
+interface EmailConfirmationProps {
+    // OTP related
+    otp: string
+    inputState: 'default' | 'error' | 'success'
+    onOtpChange: (value: string) => void
+    // Email verification
+    verifyEmail: () => void
+    resendCode: () => void
+    // Loading states
+    verifyLoading: boolean
+    resendLoading: boolean
+    loginLoading: boolean
+    // Navigation
+    onBack: () => void
+}
 
+function EmailConfirmation({
+    otp,
+    inputState,
+    onOtpChange,
+    verifyEmail,
+    resendCode,
+    verifyLoading,
+    resendLoading,
+    loginLoading,
+    onBack
+}: EmailConfirmationProps) {
+  
     return (
         <>
             <OnboardingStepHeader
@@ -47,7 +61,7 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     sx={{ "p": { color: "#FFF", fontSize: 14 } }}
                 >
                     <Text display="flex" gap={1}>
-                        Didn’t receive the code? {" "}
+                        Didn't receive the code? {" "}
                         <InteractiveText onClick={resendCode}>
                             {resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
                         </InteractiveText>

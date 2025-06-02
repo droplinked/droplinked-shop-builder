@@ -76,13 +76,21 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             message={errors.password?.toString()}
                         />
 
-                        <Checkbox
-                            marginBlock={3}
-                            isChecked={rememberPassword}
-                            onChange={(e) => setRememberPassword(e.target.checked)}
-                        >
-                            Remember my password
-                        </Checkbox>
+                        <Flex alignItems="center" justifyContent="space-between" marginBlock={3}>
+                            <Checkbox
+                                isChecked={rememberPassword}
+                                onChange={(e) => setRememberPassword(e.target.checked)}
+                            >
+                                Remember my password
+                            </Checkbox>
+                            <InteractiveText 
+                                onClick={() => {
+                                    updateOnboardingState("currentStep", "RESET_PASSWORD")
+                                }}
+                            >
+                                Reset Password
+                            </InteractiveText>
+                        </Flex>
 
                         <AppButton size='lg' type="submit" isLoading={isSubmitting}>
                             Sign In
@@ -100,7 +108,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             marginTop={3}
                         >
                             <Text fontSize={14} color="text.white">
-                                Don’t have an account?
+                                Don't have an account?
                             </Text>
                             <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
                         </Flex>
