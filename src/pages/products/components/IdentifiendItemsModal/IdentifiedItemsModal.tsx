@@ -1,12 +1,12 @@
 import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
+import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
+import { useIdentifiedItems } from '../../hooks/useIdentifiedItems'
 import IdentifiedItemsBody from './IdentifiedItemsBody'
 import IdentifiedItemsFooter from './IdentifiedItemsFooter'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
-import { useIdentifiedItems } from '../../hooks/useIdentifiedItems'
 
 interface Props {
     isOpen: boolean

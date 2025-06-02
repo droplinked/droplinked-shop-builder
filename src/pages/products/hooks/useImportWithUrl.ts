@@ -1,8 +1,9 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
+import { AxiosResponse } from "axios"
 import useAppToast from "hooks/toast/useToast"
 import { RecentCrawlerTasksResponse } from "lib/apis/crawler/interface"
 import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "lib/apis/crawler/services"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+import { UseMutateAsyncFunction, useMutation, useQuery, useQueryClient } from "react-query"
 import useProductPageStore from "../stores/ProductPageStore"
 
 interface Params {
@@ -13,12 +14,12 @@ interface Params {
 export interface UseImportWithUrl {
     startCrawling: () => void
     crawlingLoading: boolean
-    getProducts: () => void
+    getProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, string, unknown>
     getProductsLoading: boolean
     getRecentTasks: () => void
     recentTasksLoading: boolean
     recentTasks: RecentCrawlerTasksResponse[]
-    crawlSelectedProducts: (selectedProducts: string[]) => void
+    crawlSelectedProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, string[], unknown>
     crawlingSelectedLoading: boolean
 }
 
