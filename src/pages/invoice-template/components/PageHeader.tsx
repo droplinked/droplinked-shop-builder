@@ -8,10 +8,11 @@ import { useNavigate } from 'react-router-dom';
 
 interface PageHeaderProps {
     onDownload: () => void;
-    isLoading?: boolean;
+    isDownloading?: boolean;
+    isFetching?: boolean;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ onDownload, isLoading = false }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ onDownload, isDownloading, isFetching }) => {
     const navigate = useNavigate();
 
     return (
@@ -28,7 +29,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onDownload, isLoading = false }
                 <AppButton
                     rightIcon={<DownloadMd />}
                     onClick={onDownload}
-                    isLoading={isLoading}
+                    isLoading={isDownloading}
+                    isDisabled={isFetching}
                     loadingText="Downloading..."
                 >
                     Download
