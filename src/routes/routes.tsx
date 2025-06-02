@@ -1,6 +1,6 @@
 import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
-import  ProducerLayout  from "layouts/ProducerLayout/ProducerLayout"
+import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
@@ -60,6 +60,7 @@ const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"))
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
+const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplate"))
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 
@@ -204,13 +205,14 @@ const router = createBrowserRouter([
     },
     {
         path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true}/>,
+        element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <StorefrontDesigner /> },
         ],
-        
+
     },
+    { path: "invoice/:txId", element: <InvoiceTemplate /> },
     { path: "*", element: <NotFoundPage /> }
 ])
 

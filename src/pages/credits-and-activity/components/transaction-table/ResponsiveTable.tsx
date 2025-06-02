@@ -71,12 +71,15 @@ export default function TransactionsTable() {
         if (!tx.id) return null
         const isThisDownloading = downloadingTransactionIds.includes(tx.id)
         return (
-            <button
-                onClick={() => handleDownload(tx.id)}
-                disabled={isThisDownloading || isLoading}
+            <a
+                // onClick={() => handleDownload(tx.id)}
+                // disabled={isThisDownloading || isLoading}
+                href={`/invoice/${tx.id}`}
+                target='_blank'
+                rel="noreferrer"
             >
                 {isThisDownloading ? <Spinner size={{ base: 'sm', xl: 'md' }} /> : downloadIcon}
-            </button>
+            </a>
         )
     }
 
