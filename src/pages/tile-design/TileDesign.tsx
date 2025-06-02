@@ -40,7 +40,7 @@ const TileDesign = () => {
     const updateState = (key: "current" | "design", value: Pick<ITileDesignState, "current"> | Pick<ITileDesignState, "design">) => setState((prev) => ({ ...prev, [key]: value }));
     const submit = async () => {
         if (isLoading) return null;
-        await mutateAsync({ productTileStyle: States?.design })
+        await mutateAsync({ productTileStyle: States?.design, currencyAbbreviation: shop?.currencyAbbreviation })
             .then(async (res) => await updateShopData())
             .catch((e) => { });
     };
