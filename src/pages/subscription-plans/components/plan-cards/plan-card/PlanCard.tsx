@@ -1,27 +1,34 @@
-import { Box, Center, Divider, Flex, useDisclosure } from "@chakra-ui/react"
+import { Box, Center, Divider, Flex, IconProps, useDisclosure } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import AppTypography from "components/common/typography/AppTypography"
 import AppButton from "components/redesign/button/AppButton"
+import PlanPrice from 'components/redesign/plan-price/PlanPrice'
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useProfile } from "hooks/useProfile/useProfile"
-import { SubscriptionPlan } from "services/subscription/interfaces"
+import localAr from "locales/subscription/ar.json"
+import localEn from "locales/subscription/en.json"
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import { subscriptionPlans } from "utils/constants/subscriptionPlans"
-import { getSubscriptionPlanIcon } from "utils/helpers"
+import { SubscriptionPlan } from "services/subscription/interfaces"
+import { getPlanDetails } from "utils/helpers"
 import useSubscriptionPlanPurchaseStore from "../../../../../stores/subscription-plan.ts/subscriptionPlanStore"
-import PlanPrice from 'components/redesign/plan-price/PlanPrice'
+import SubscriptionPlanCheckoutModal from "../../checkout/SubscriptionPlanCheckoutModal"
 import PlanDescription from "./PlanDescription"
 import PopularPlanBadge from "./PopularPlanBadge"
-import SubscriptionPlanCheckoutModal from "../../checkout/SubscriptionPlanCheckoutModal"
 
-function PlanCard({ plan }: { plan: SubscriptionPlan }) {
+type PlanDetails = { title: string; icon: React.ComponentType<IconProps>; features: { title: string; items: string[] } }
+
+const PlanCard = ({ plan }: { plan: SubscriptionPlan }) => {
     const navigate = useNavigate()
     const purchaseModal = useDisclosure()
     const updateSelectedPlan = useSubscriptionPlanPurchaseStore((state) => state.updateSelectedPlan)
     const { profile } = useProfile()
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr })
 
     const { type } = plan
-    const { title, icon: SubscriptionIcon } = getSubscriptionPlanIcon(type)
+    const planDetails = getPlanDetails(type, t) as PlanDetails
+    const { title, icon: SubscriptionIcon, features } = planDetails
+    
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const isPopular = type === "BUSINESS"
@@ -57,29 +64,31 @@ function PlanCard({ plan }: { plan: SubscriptionPlan }) {
                         <SubscriptionIcon color="white" />
                     </Center>
                     <Box>
-                        <AppTypography fontSize={20} fontWeight={700} color="white">{title}</AppTypography>
+                        <AppTypography fontSize={20} fontWeight={700} color="white">{t(title)}</AppTypography>
                         <PlanDescription plan={plan} />
                     </Box>
                 </Flex>
 
                 <PlanPrice plan={plan} />
 
-                <AppButton isDisabled={isStarter} onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Select"}</AppButton>
+                <AppButton isDisabled={isStarter} onClick={handlePlanPurchase}>
+                    {isEnterprise ? t('plans.cta.contact') : t('plans.cta.select')}
+                </AppButton>
 
                 <Divider borderColor="neutral.gray.700" />
 
                 <Flex direction="column" gap={4}>
                     <AppTypography fontSize={14} color="#B1B1B1">
-                        {subscriptionPlans[plan.type].features.title}
+                        {features.title}
                     </AppTypography>
-                    {subscriptionPlans[plan.type].features.items.map((item: string) =>
+                    {features.items.map((item: string) => (
                         <Flex key={item} gap={2} alignItems={"center"}>
                             <AppIcons.Tick color="white" style={{ flexShrink: 0 }} />
                             <AppTypography fontSize={14} color="white">
-                                {item}
+                                {t(item)}
                             </AppTypography>
                         </Flex>
-                    )}
+                    ))}
                 </Flex>
             </Flex>
 

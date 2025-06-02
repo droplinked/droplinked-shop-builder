@@ -1,82 +1,102 @@
-import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
+import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
 import { LeafLg } from 'assets/icons/System/Leaf/LeafLg';
 import { Star2Lg } from 'assets/icons/System/Star2/Star2Lg';
-import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
+import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
+import { TFunction } from 'i18next';
+import { FC } from 'react';
 
-export const subscriptionPlans = {
+export type SubscriptionPlan = {
+  icon: FC;
+  title: string;
+  description: string;
+  features: {
+    title: string;
+    items: string[];
+  };
+  type: 'STARTER' | 'BUSINESS' | 'BUSINESS_PRO' | 'ENTERPRISE';
+};
+
+export type SubscriptionPlans = {
+  STARTER: SubscriptionPlan;
+  BUSINESS: SubscriptionPlan;
+  BUSINESS_PRO: SubscriptionPlan;
+  ENTERPRISE: SubscriptionPlan;
+};
+
+export const getSubscriptionPlans = (t: TFunction): SubscriptionPlans => ({
   STARTER: { 
     icon: LeafLg, 
-    title: 'plans.starter.title', 
-    description: 'plans.starter.description',
+    title: t('plans.starter.title'), 
+    description: t('plans.starter.description'),
     features: {
-      title: "plans.starter.featuresTitle",
+      title: t('plans.starter.featuresTitle'),
       items: [
-        "plans.starter.features.analytics",
-        "plans.starter.features.storeDesigner",
-        "plans.starter.features.shipmentTracking",
-        "plans.starter.features.productCollections",
-        "plans.starter.features.referralCodes",
-        "plans.starter.features.affiliateNetwork",
-        "plans.starter.features.basicSupport"
+        t('plans.starter.features.analytics'),
+        t('plans.starter.features.storeDesigner'),
+        t('plans.starter.features.shipmentTracking'),
+        t('plans.starter.features.productCollections'),
+        t('plans.starter.features.referralCodes'),
+        t('plans.starter.features.affiliateNetwork'),
+        t('plans.starter.features.basicSupport')
       ]
     },
     type: 'STARTER'
   },
   BUSINESS: { 
     icon: SuitcaseLg, 
-    title: 'plans.pro.title', 
-    description: 'plans.pro.description',
+    title: t('plans.pro.title'), 
+    description: t('plans.pro.description'),
     features: {
-      title: "plans.pro.featuresTitle",
+      title: t('plans.pro.featuresTitle'),
       items: [
-        "plans.pro.features.tokenGating",
-        "plans.pro.features.mintToMerch",
-        "plans.pro.features.unlimitedTokenization",
-        "plans.pro.features.unlimitedDigitalGoods",
-        "plans.pro.features.unlimitedPhysicalProducts",
-        "plans.pro.features.customDomains",
-        "plans.pro.features.customFavicon",
-        "plans.pro.features.customShipping",
-        "plans.pro.features.digitalCoupons",
-        "plans.pro.features.warehouseIntegration",
-        "plans.pro.features.premiumSupport"
+        t('plans.pro.features.tokenGating'),
+        t('plans.pro.features.mintToMerch'),
+        t('plans.pro.features.unlimitedTokenization'),
+        t('plans.pro.features.unlimitedDigitalGoods'),
+        t('plans.pro.features.unlimitedPhysicalProducts'),
+        t('plans.pro.features.customDomains'),
+        t('plans.pro.features.customFavicon'),
+        t('plans.pro.features.customShipping'),
+        t('plans.pro.features.digitalCoupons'),
+        t('plans.pro.features.warehouseIntegration'),
+        t('plans.pro.features.premiumSupport')
       ]
     },
     type: 'BUSINESS'
   },
   BUSINESS_PRO: { 
     icon: Star2Lg, 
-    title: 'plans.premium.title', 
-    description: 'plans.premium.description',
+    title: t('plans.premium.title'), 
+    description: t('plans.premium.description'),
     features: {
-      title: "plans.premium.featuresTitle",
+      title: t('plans.premium.featuresTitle'),
       items: [
-        "plans.premium.features.apiIntegration",
-        "plans.premium.features.royaltyTracking",
-        "plans.premium.features.advancedAnalytics",
-        "plans.premium.features.embeddableProducts",
-        "plans.premium.features.unlimitedProduction",
-        "plans.premium.features.marketingTools",
-        "plans.premium.features.adminPanel",
-        "plans.premium.features.vipSupport"
+        t('plans.premium.features.apiIntegration'),
+        t('plans.premium.features.royaltyTracking'),
+        t('plans.premium.features.advancedAnalytics'),
+        t('plans.premium.features.embeddableProducts'),
+        t('plans.premium.features.unlimitedProduction'),
+        t('plans.premium.features.marketingTools'),
+        t('plans.premium.features.adminPanel'),
+        t('plans.premium.features.vipSupport')
       ]
     },
     type: 'BUSINESS_PRO'
   },
   ENTERPRISE: { 
     icon: BuildingLg, 
-    title: 'plans.enterprise.title', 
-    description: 'plans.enterprise.description',
+    title: t('plans.enterprise.title'), 
+    description: t('plans.enterprise.description'),
     features: {
-      title: "plans.enterprise.featuresTitle",
+      title: t('plans.enterprise.featuresTitle'),
       items: [
-        "plans.enterprise.features.tokenPay",
-        "plans.enterprise.features.customTemplates",
-        "plans.enterprise.features.unlimitedLogin",
-        "plans.enterprise.features.unlimitedPayment",
-        "plans.enterprise.features.digitalPassport"
+        t('plans.enterprise.features.tokenPay'),
+        t('plans.enterprise.features.customTemplates'),
+        t('plans.enterprise.features.unlimitedLogin'),
+        t('plans.enterprise.features.unlimitedPayment'),
+        t('plans.enterprise.features.digitalPassport')
       ]
     },
     type: 'ENTERPRISE'
   }
-} as const; 
+}); 

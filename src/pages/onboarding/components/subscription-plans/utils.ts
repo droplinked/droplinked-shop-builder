@@ -1,6 +1,6 @@
-import { PlanType } from 'pages/onboarding/types/onboarding'
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
 import { TFunction } from 'i18next'
+import { PlanType } from 'pages/onboarding/types/onboarding'
+import { getSubscriptionPlans, SubscriptionPlans } from 'utils/constants/subscriptionPlans'
 
 /**
  * Maps each plan type to its parent plan that it inherits features from
@@ -19,7 +19,7 @@ const PLAN_INHERITANCE: Record<PlanType, string> = {
  * @returns Array of feature descriptions
  */
 export const getFeaturesWithInheritance = (planType: PlanType, t: TFunction): string[] => {
-  const baseFeatures = [...subscriptionPlans[planType].features.items]
+  const baseFeatures = [...getSubscriptionPlans(t)[planType].features.items]
   const inheritedPlan = PLAN_INHERITANCE[planType]
   
   if (!inheritedPlan) {
@@ -43,12 +43,12 @@ export const getFeaturesWithInheritance = (planType: PlanType, t: TFunction): st
  */
 export const getContinueText = (selectedPlan: PlanType, t: TFunction): string => {
   try {
-    const planKey = subscriptionPlans[selectedPlan].title
+    const planKey = getSubscriptionPlans(t)[selectedPlan].title
     const translatedPlanTitle = t(planKey)
     return t('plans.continueWithPlan', { plan: translatedPlanTitle })
   } catch (error) {
     console.error('Error in getContinueText:', error)
-    const planTitle = subscriptionPlans[selectedPlan].title ?? selectedPlan
+    const planTitle = getSubscriptionPlans(t)[selectedPlan].title ?? selectedPlan
     return `Continue with ${planTitle} Plan`
   }
 }

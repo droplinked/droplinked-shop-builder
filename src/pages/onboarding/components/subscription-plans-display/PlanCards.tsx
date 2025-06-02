@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion'
 import React from 'react'
-import { subscriptionPlans } from 'utils/constants/subscriptionPlans'
+import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
 import PlanCard from './PlanCard'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import subscriptionEnLocale from 'locales/subscription/en.json'
-import subscriptionArLocale from 'locales/subscription/ar.json'
+import EnLocale from 'locales/subscription/en.json'
+import ArLocale from 'locales/subscription/ar.json'
 
 const PlanCards = () => {
   const { t } = useLocaleResources('subscription', {
-    en: subscriptionEnLocale,
-    ar: subscriptionArLocale
+    en: EnLocale,
+    ar: ArLocale
   })
   const radius = 193 // radius of the circle
   const calculatePosition = (index: number, total: number) => {
@@ -23,7 +23,7 @@ const PlanCards = () => {
     }
   }
 
-  const plans = Object.entries(subscriptionPlans)
+  const plans = Object.entries(getSubscriptionPlans(t))
 
   return (
     <motion.div

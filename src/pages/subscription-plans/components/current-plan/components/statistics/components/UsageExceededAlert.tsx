@@ -1,13 +1,18 @@
 import { Box, Alert, AlertTitle, AlertDescription } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+
 interface IProps {
     title: string;
 }
+
 function UsageExceededAlert({ title }: IProps) {
-    const fixedTitle = title.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase())
+    const { t } = useLocaleResources('subscription');
+    const fixedTitle = t(`statistics.usage.${title.replace(/_/g, '').toLowerCase()}`);
+
     return (
         <Alert
             status="error"
@@ -22,24 +27,23 @@ function UsageExceededAlert({ title }: IProps) {
             <Box flex="1">
                 <AlertTitle color="white" fontSize="14px" fontWeight="700">
                     <AppTypography fontWeight={700} fontSize={"14px"}>
-                        Usage Exceeded
+                        {t('statistics.alert.title')}
                     </AppTypography>
                 </AlertTitle>
                 <AlertDescription>
                     <AppTypography fontWeight="400" width={"320px"} fontSize={"14px"} color="neutral.white">
-                        All "{fixedTitle}" items have been used. Upgrade the plan to access more.
+                        {t('statistics.alert.description', { feature: fixedTitle })}
                     </AppTypography>
                 </AlertDescription>
-                <Link
-                    to="/"
-                >
+                <Link to="/">
                     <AppTypography
                         color="#FF2244"
                         fontWeight="400"
                         marginTop="5px"
                         textDecoration={"underline"}
-                        display="block">
-                        Upgrade
+                        display="block"
+                    >
+                        {t('statistics.alert.upgrade')}
                     </AppTypography>
                 </Link>
             </Box>

@@ -4,9 +4,9 @@ import { create } from 'zustand'
 type PlanDuration = { month: number, label: string, discount?: number }
 
 export const planDurations: PlanDuration[] = [
-    { month: 1, label: "Monthly" },
-    { month: 12, label: "Annually", discount: 10 },
-    { month: 36, label: "3-Year", discount: 25 },
+    { month: 1, label: "plans.monthly" },
+    { month: 12, label: "plans.yearly", discount: 10 },
+    { month: 36, label: "plans.threeYear", discount: 25 },
 ]
 
 type State = {

@@ -1,5 +1,5 @@
 import React from "react"
-import { subscriptionPlans } from "utils/constants/subscriptionPlans"
+import { SubscriptionPlans } from 'utils/constants/subscriptionPlans'
 
 export interface OnboardingStates {
     currentStep: 'SIGN_IN' | 'SIGN_UP' | 'EMAIL_CONFIRMATION' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET'
@@ -42,7 +42,7 @@ export interface OnboardingStepProps {
     onNext: () => void
 }
 
-export type PlanType = keyof typeof subscriptionPlans
+export type PlanType = keyof SubscriptionPlans
 
 export interface LayoutProps {
     leftContent: React.ReactNode

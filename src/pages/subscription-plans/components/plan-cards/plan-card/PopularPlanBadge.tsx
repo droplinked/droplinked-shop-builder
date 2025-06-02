@@ -2,8 +2,13 @@ import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/subscription/en.json'
+import localAr from 'locales/subscription/ar.json'
 
 function PopularPlanBadge() {
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr })
+
     return (
         <Flex
             position="absolute"
@@ -19,7 +24,9 @@ function PopularPlanBadge() {
             whiteSpace="nowrap"
         >
             <AppIcons.PopularPlanMedal />
-            <AppTypography textTransform="uppercase" fontSize={14} fontWeight={600} color="#000">most popular</AppTypography>
+            <AppTypography textTransform="uppercase" fontSize={14} fontWeight={600} color="#000">
+                {t('plans.mostPopular')}
+            </AppTypography>
         </Flex>
     )
 }

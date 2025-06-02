@@ -1,11 +1,15 @@
 import { Table, TableContainer } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { getTableData } from 'pages/subscription-plans/data/tableData';
 import * as React from 'react';
-import PlansHeading from './PlansHeading';
 import { SubscriptionPlan } from 'services/subscription/interfaces';
+import PlansHeading from './PlansHeading';
 import PlansTableBody from './PlansTableBody';
-import { tableData } from 'pages/subscription-plans/data/tableData';
 
 function PlansTableContainer({ data }: { data: Array<SubscriptionPlan> }) {
+    const { t } = useLocaleResources('subscription');
+    const tableData = getTableData(t);
+    
     return (
         <>
             <TableContainer>
