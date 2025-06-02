@@ -11,12 +11,14 @@ const InvoiceContent: React.FC<InvoiceContentProps> = ({
     cardLastDigits,
     subscriptionPeriod,
     nextBillingDate,
-    items,
+    itemName,
+    itemDescription,
     subtotal,
     tax,
     taxRate,
     total,
     currency,
+    type
 }) => {
     return (
         <main className="invoice-content">
@@ -31,12 +33,14 @@ const InvoiceContent: React.FC<InvoiceContentProps> = ({
             />
 
             <InvoiceItems
-                items={items}
+                itemName={itemName}
+                itemDescription={itemDescription}
                 subtotal={subtotal}
                 tax={tax}
                 taxRate={taxRate}
                 total={total}
                 currency={currency}
+                type={type}
             />
         </main>
     );

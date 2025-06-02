@@ -1,10 +1,3 @@
-export interface InvoiceItem {
-    name: string;
-    description: string;
-    cycle: string;
-    amount: string;
-}
-
 // Base interfaces for common properties
 export interface ClientInformation {
     clientName?: string;
@@ -32,12 +25,14 @@ export interface InvoiceDetails {
 }
 
 export interface FinancialInformation {
-    items?: InvoiceItem[];
+    itemName?: string;
+    itemDescription?: string;
     subtotal?: string;
     tax?: string;
     taxRate?: string;
     total?: string;
     currency?: string;
+    type?: string;
 }
 
 // Main interfaces using composition

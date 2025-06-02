@@ -10,7 +10,6 @@ const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
     clientPhone,
     companyWebsite,
     companyAddress,
-    companyTaxId,
 }) => {
     return (
         <header className="invoice-header">
@@ -35,7 +34,6 @@ const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
                     <div className="company-contact">
                         <p>{companyWebsite}</p>
                         <p>{companyAddress}</p>
-                        <p>{companyTaxId}</p>
                     </div>
                 </div>
             </div>
