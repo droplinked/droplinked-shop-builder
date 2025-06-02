@@ -1,16 +1,19 @@
 import React from 'react';
-import { InvoiceHeaderProps } from '../utils/interface';
 import DroplinkedLogo from 'assets/brand-identity/DroplinkedLogo';
 import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography';
+import { useInvoiceContext } from '../context/InvoiceContext';
 
-const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
-    clientName,
-    clientEmail,
-    clientAddress,
-    clientPhone,
-    companyWebsite,
-    companyAddress,
-}) => {
+const InvoiceHeader: React.FC = () => {
+    const { invoiceData } = useInvoiceContext();
+    const {
+        clientName,
+        clientEmail,
+        clientAddress,
+        clientPhone,
+        companyWebsite,
+        companyAddress
+    } = invoiceData;
+
     return (
         <header className="invoice-header">
             <div className="company-info">

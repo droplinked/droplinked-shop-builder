@@ -1,15 +1,10 @@
 import React from 'react';
-import { InvoiceDetailsProps } from '../utils/interface';
+import { useInvoiceContext } from '../context/InvoiceContext';
 
-const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
-    invoiceId,
-    invoiceDate,
-    transactionId,
-    paymentMethod,
-    cardLastDigits,
-    subscriptionPeriod,
-    nextBillingDate,
-}) => {
+const InvoiceDetails: React.FC = () => {
+    const { invoiceData } = useInvoiceContext();
+    const { invoiceId, invoiceDate, transactionId, paymentMethod } = invoiceData;
+
     return (
         <div className="invoice-details">
             <div className="details-row">
@@ -29,15 +24,7 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({
             <div className="details-row">
                 <div className="detail-item">
                     <span className="label">Payment Method</span>
-                    <span className="value">{paymentMethod} <span>•</span> Ending with {cardLastDigits}</span>
-                </div>
-                <div className="detail-item">
-                    <span className="label">Subscription Period</span>
-                    <span className="value">{subscriptionPeriod}</span>
-                </div>
-                <div className="detail-item">
-                    <span className="label">Next Billing Date</span>
-                    <span className="value">{nextBillingDate}</span>
+                    <span className="value">{paymentMethod}</span>
                 </div>
             </div>
         </div>

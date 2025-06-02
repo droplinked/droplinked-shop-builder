@@ -9,8 +9,6 @@ export interface ClientInformation {
 export interface CompanyInformation {
     companyWebsite?: string;
     companyAddress?: string;
-    companyTaxId?: string;
-    companyPhone?: string;
     companyEmail?: string;
 }
 
@@ -19,9 +17,6 @@ export interface InvoiceDetails {
     invoiceDate?: string;
     transactionId?: string;
     paymentMethod?: string;
-    cardLastDigits?: string;
-    subscriptionPeriod?: string;
-    nextBillingDate?: string;
 }
 
 export interface FinancialInformation {
@@ -29,37 +24,12 @@ export interface FinancialInformation {
     itemDescription?: string;
     subtotal?: string;
     tax?: string;
-    taxRate?: string;
     total?: string;
     currency?: string;
     type?: string;
 }
 
-// Main interfaces using composition
-export interface InvoiceTemplateProps extends
-    ClientInformation,
-    CompanyInformation,
-    InvoiceDetails,
-    FinancialInformation {
-    // ref
-    ref?: React.Ref<HTMLDivElement>;
+// Context interface
+export interface InvoiceContextType {
+    invoiceData: FinancialInformation & InvoiceDetails & ClientInformation & CompanyInformation;
 }
-
-// Component specific interfaces
-export interface InvoiceHeaderProps extends ClientInformation {
-    companyWebsite?: string;
-    companyAddress?: string;
-    companyTaxId?: string;
-}
-
-export interface InvoiceDetailsProps extends InvoiceDetails { }
-
-export interface InvoiceItemsProps extends FinancialInformation { }
-
-export interface InvoiceFooterProps {
-    companyWebsite?: string;
-    companyPhone?: string;
-    companyEmail?: string;
-}
-
-export interface InvoiceContentProps extends InvoiceDetails, FinancialInformation { }

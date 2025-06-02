@@ -1,4 +1,4 @@
-import { Box, Spinner, useMediaQuery } from '@chakra-ui/react';
+import { Box, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { Margin, usePDF } from 'react-to-pdf';
 import InvoiceContent from './components/InvoiceContent';
@@ -6,20 +6,13 @@ import InvoiceFooter from './components/InvoiceFooter';
 import InvoiceHeader from './components/InvoiceHeader';
 import PageHeader from './components/PageHeader';
 import './styles/styles.css';
-import { InvoiceTemplateProps } from './utils/interface';
 import useAppToast from 'hooks/toast/useToast';
 import { useQuery } from 'react-query';
 import { downloadCreditChangeInvoice } from 'lib/apis/credit/services';
 import { useNavigate, useParams } from 'react-router-dom';
+import { InvoiceProvider } from './context/InvoiceContext';
 
-export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
-    // Company information
-    companyTaxId = "TAX ID 00XXXXX1234X0XX",
-    companyPhone = "+91 00000 00000",
-    cardLastDigits = "1234",
-    subscriptionPeriod = "5 August, 2024 – 5 August, 2025",
-    nextBillingDate = "5 August, 2025",
-}) => {
+export const InvoiceTemplate: React.FC = () => {
     const navigate = useNavigate();
     const [isDownloading, setIsDownloading] = useState(false);
     const [isSmallerThan768] = useMediaQuery('(max-width: 768px)');
@@ -75,6 +68,35 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
         return null
     }
 
+    // Prepare the invoice data for the context
+    const invoiceData = data ? {
+        // Client information
+        clientName: data.clientName,
+        clientEmail: data.clientEmail,
+        clientAddress: data.clientAddress,
+        clientPhone: data.clientPhone,
+
+        // Company information
+        companyWebsite: "droplinked.com",
+        companyAddress: "Shopsadiq Ltd. Al Khatem Tower Floor 16, Abu Dhabi UAE",
+        companyEmail: "support@droplinked.com",
+
+        // Invoice details
+        invoiceId: data.invoiceId,
+        invoiceDate: data.invoiceDate,
+        transactionId: data.transactionId,
+        paymentMethod: data.paymentMethod,
+
+        // Financial information
+        itemName: data.itemName,
+        itemDescription: data.itemDescription,
+        subtotal: data.subtotal,
+        tax: data.tax,
+        total: data.total,
+        currency: data.currency,
+        type: data.transactionType
+    } : {};
+
     return (
         <Box>
             <PageHeader onDownload={handleDownload} isLoading={isDownloading} />
@@ -91,42 +113,16 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
                 px={{ base: "10px", md: "0px" }}
                 overflow={isDownloading ? "hidden" : "auto"}
             >
-                <div
-                    className="invoice-container"
-                    ref={targetRef}
-                >
-                    <InvoiceHeader
-                        clientName={data?.clientName}
-                        clientEmail={data?.clientEmail}
-                        clientAddress={data?.clientAddress}
-                        clientPhone={data?.clientPhone}
-                        companyWebsite="droplinked.com"
-                        companyAddress="Shopsadiq Ltd. Al Khatem Tower Floor 16, Abu Dhabi UAE"
-                    />
-
-                    <InvoiceContent
-                        invoiceId={data?.invoiceId}
-                        invoiceDate={data?.invoiceDate}
-                        transactionId={data?.transactionId}
-                        paymentMethod={data?.paymentMethod}
-                        cardLastDigits={cardLastDigits}
-                        subscriptionPeriod={subscriptionPeriod}
-                        nextBillingDate={nextBillingDate}
-                        itemName={data.itemName}
-                        itemDescription={data.itemDescription}
-                        subtotal={data.subtotal}
-                        tax={data.tax}
-                        total={data.total}
-                        currency={data.currency}
-                        type={data.transactionType}
-                    />
-
-                    <InvoiceFooter
-                        companyWebsite="droplinked.com"
-                        companyPhone={companyPhone}
-                        companyEmail="support@droplinked.com"
-                    />
-                </div>
+                <InvoiceProvider invoiceData={invoiceData}>
+                    <div
+                        className="invoice-container"
+                        ref={targetRef}
+                    >
+                        <InvoiceHeader />
+                        <InvoiceContent />
+                        <InvoiceFooter />
+                    </div>
+                </InvoiceProvider>
             </Box>
         </Box >
     );

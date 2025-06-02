@@ -1,15 +1,18 @@
 import React from 'react';
-import { InvoiceItemsProps } from '../utils/interface';
+import { useInvoiceContext } from '../context/InvoiceContext';
 
-const InvoiceItems: React.FC<InvoiceItemsProps> = ({
-    itemDescription,
-    itemName,
-    subtotal,
-    tax,
-    total,
-    currency,
-    type
-}) => {
+const InvoiceItems: React.FC = () => {
+    const { invoiceData } = useInvoiceContext();
+    const {
+        itemDescription,
+        itemName,
+        subtotal,
+        tax,
+        total,
+        currency,
+        type
+    } = invoiceData;
+
     return (
         <div className="invoice-items">
             <table className="items-table">
