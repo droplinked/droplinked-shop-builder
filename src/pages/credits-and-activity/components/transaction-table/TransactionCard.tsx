@@ -1,9 +1,7 @@
-import { Center, Flex, Spinner, Text } from '@chakra-ui/react'
+import { Center, Flex, Text } from '@chakra-ui/react'
 import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
-import { downloadCreditChangeInvoice } from 'lib/apis/credit/services'
 import React from 'react'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
@@ -15,11 +13,6 @@ interface TransactionCardProps {
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
-
-    const { download, isLoading } = useDownloadFile({
-        fetcher: downloadCreditChangeInvoice,
-        fileNameResolver: () => `${Date.now()}.xlsx`
-    })
 
     return (
         <Flex
@@ -37,13 +30,14 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                     <StatusBadge status={status} />
                     {id && (
                         <Center
-                            as="button"
+                            as="a"
+                            href={`/invoice/${id}`}
+                            target="_blank"
+                            rel="noreferrer"
                             w={10}
                             h={10}
-                            onClick={() => id && download(id)}
-                            disabled={isLoading}
                         >
-                            {isLoading ? <Spinner /> : <DocumentdownloadMd color="#FFF" />}
+                            <DocumentdownloadMd color="#FFF" />
                         </Center>
                     )}
                 </Flex>

@@ -39,117 +39,6 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
             cycle: "Annual",
             amount: "$20.00"
         },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        }, {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        }, {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        }, {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
-        {
-            name: "Pro Plan",
-            description: "Pro Plan Renewal",
-            cycle: "Annual",
-            amount: "$20.00"
-        },
     ],
     subtotal = "$20.00",
     tax = "$1.00",
@@ -184,39 +73,56 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
         <Box>
             <PageHeader onDownload={handleDownload} isLoading={isDownloading} />
 
-            <div className="invoice-container" ref={targetRef}>
-                <InvoiceHeader
-                    clientName={clientName}
-                    clientEmail={clientEmail}
-                    clientAddress={clientAddress}
-                    clientPhone={clientPhone}
-                    companyWebsite={companyWebsite}
-                    companyAddress={companyAddress}
-                    companyTaxId={companyTaxId}
-                />
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="flex-start"
+                width="100%"
+                overflow="hidden"
+                paddingTop="20px"
+                px={{ base: "10px", md: "0px" }}
+            >
+                <div
+                    className="invoice-container"
+                    ref={targetRef}
+                    style={{
+                        transformOrigin: "top center",
+                        margin: "0 auto",
+                    }}
+                >
+                    <InvoiceHeader
+                        clientName={clientName}
+                        clientEmail={clientEmail}
+                        clientAddress={clientAddress}
+                        clientPhone={clientPhone}
+                        companyWebsite={companyWebsite}
+                        companyAddress={companyAddress}
+                        companyTaxId={companyTaxId}
+                    />
 
-                <InvoiceContent
-                    invoiceId={invoiceId}
-                    invoiceDate={invoiceDate}
-                    transactionId={transactionId}
-                    paymentMethod={paymentMethod}
-                    cardLastDigits={cardLastDigits}
-                    subscriptionPeriod={subscriptionPeriod}
-                    nextBillingDate={nextBillingDate}
-                    items={items}
-                    subtotal={subtotal}
-                    tax={tax}
-                    taxRate={taxRate}
-                    total={total}
-                    currency={currency}
-                />
+                    <InvoiceContent
+                        invoiceId={invoiceId}
+                        invoiceDate={invoiceDate}
+                        transactionId={transactionId}
+                        paymentMethod={paymentMethod}
+                        cardLastDigits={cardLastDigits}
+                        subscriptionPeriod={subscriptionPeriod}
+                        nextBillingDate={nextBillingDate}
+                        items={items}
+                        subtotal={subtotal}
+                        tax={tax}
+                        taxRate={taxRate}
+                        total={total}
+                        currency={currency}
+                    />
 
-                <InvoiceFooter
-                    companyWebsite={companyWebsite}
-                    companyPhone={companyPhone}
-                    companyEmail={companyEmail}
-                />
-            </div>
+                    <InvoiceFooter
+                        companyWebsite={companyWebsite}
+                        companyPhone={companyPhone}
+                        companyEmail={companyEmail}
+                    />
+                </div>
+            </Box>
         </Box>
     );
 };
