@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useMediaQuery } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Margin, usePDF } from 'react-to-pdf';
 import InvoiceContent from './components/InvoiceContent';
@@ -7,6 +7,7 @@ import InvoiceHeader from './components/InvoiceHeader';
 import PageHeader from './components/PageHeader';
 import './styles/styles.css';
 import { InvoiceTemplateProps } from './utils/interface';
+import useAppToast from 'hooks/toast/useToast';
 
 export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
     // Client information
@@ -39,6 +40,97 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
             cycle: "Annual",
             amount: "$20.00"
         },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+        {
+            name: "Pro Plan",
+            description: "Pro Plan Renewal",
+            cycle: "Annual",
+            amount: "$20.00"
+        },
+
     ],
     subtotal = "$20.00",
     tax = "$1.00",
@@ -47,6 +139,8 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
     currency = "USD",
 }) => {
     const [isDownloading, setIsDownloading] = useState(false);
+    const [isSmallerThan768] = useMediaQuery('(max-width: 768px)');
+    const { showToast } = useAppToast()
     const { targetRef, toPDF } = usePDF({
         filename: 'invoice.pdf',
         page: {
@@ -61,9 +155,16 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
     });
 
     const handleDownload = async () => {
-        setIsDownloading(true);
         try {
+            setIsDownloading(true);
+
+            // Use Promise to ensure state update completes
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Generate PDF
             await toPDF();
+        } catch (error) {
+            showToast({ message: "Failed to generate PDF. Please try again.", type: "error" });
         } finally {
             setIsDownloading(false);
         }
@@ -74,21 +175,20 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
             <PageHeader onDownload={handleDownload} isLoading={isDownloading} />
 
             <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="flex-start"
+                {...(!isDownloading && isSmallerThan768 && {
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    overflow: "hidden"
+                })}
                 width="100%"
-                overflow="hidden"
                 paddingTop="20px"
                 px={{ base: "10px", md: "0px" }}
+                overflow={isDownloading ? "hidden" : "auto"}
             >
                 <div
                     className="invoice-container"
                     ref={targetRef}
-                    style={{
-                        transformOrigin: "top center",
-                        margin: "0 auto",
-                    }}
                 >
                     <InvoiceHeader
                         clientName={clientName}
@@ -123,7 +223,7 @@ export const InvoiceTemplate: React.FC<InvoiceTemplateProps> = ({
                     />
                 </div>
             </Box>
-        </Box>
+        </Box >
     );
 };
 
