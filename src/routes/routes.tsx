@@ -1,6 +1,6 @@
-import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
-import  ProducerLayout  from "layouts/ProducerLayout/ProducerLayout"
+import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
+import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
@@ -62,6 +62,7 @@ const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
+const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
 
 const router = createBrowserRouter([
     {
@@ -191,7 +192,8 @@ const router = createBrowserRouter([
                     { index: true, element: <Changelog /> },
                     { path: ":id", element: <ChangelogDetail /> },
                 ]
-            }
+            },
+            { path: "crossmint", element: <Crossmint /> },
         ],
     },
     {
@@ -204,12 +206,12 @@ const router = createBrowserRouter([
     },
     {
         path: 'style-center/storefront-designer',
-        element: <ProducerLayout hideSidebar={true}/>,
+        element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <StorefrontDesigner /> },
         ],
-        
+
     },
     { path: "*", element: <NotFoundPage /> }
 ])
