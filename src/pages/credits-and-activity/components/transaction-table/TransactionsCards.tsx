@@ -1,14 +1,13 @@
-import { Flex } from '@chakra-ui/react';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
-import React from 'react';
-import InfiniteScroll from "react-infinite-scroll-component";
-import TransactionCard from './TransactionCard';
+import { Flex } from '@chakra-ui/react'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
+import React from 'react'
+import InfiniteScroll from "react-infinite-scroll-component"
+import TransactionCard from './TransactionCard'
 
 export default function TransactionsCards() {
     const { transactionsQuery: { data, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
-    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
+    const transactions = data?.pages.flatMap((data) => data.data.data.data) || []
 
     return (
         <InfiniteScroll

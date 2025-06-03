@@ -7,11 +7,11 @@ import Table from 'components/redesign/table/Table'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
 import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TransactionsCards from './TransactionsCards'
 import TypeColumn from './TypeColumn'
-import { Link } from 'react-router-dom'
 
 export default function TransactionsTable() {
     const [isMobile] = useMediaQuery('(max-width: 768px)')
