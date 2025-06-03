@@ -7,14 +7,23 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
 import React from 'react';
 import OnboardingStepHeader from '../common/OnboardingStepHeader';
+import { forgetPasswordService } from 'lib/apis/user/services';
+import useAppToast from 'hooks/toast/useToast';
 
 function ResetPasswordForm({onNext }: OnboardingStepProps) {
   const { updateOnboardingState } = useOnboardingStore();
+  const { showToast } = useAppToast();
 
   const handleSubmit = async ({ email }) => {
-    updateOnboardingState('credentials', { email, password: '' });
-    updateOnboardingState('previousStep', 'RESET_PASSWORD');
-    onNext();
+    try {
+      await forgetPasswordService({ email });
+      updateOnboardingState('credentials', { email, password: '' });
+      updateOnboardingState('previousStep', 'RESET_PASSWORD');
+      showToast({ type: "success", message: "Reset password email sent successfully" });
+      onNext();
+    } catch (error) {
+      showToast({ type: "error", message: error?.response?.data?.message || "Failed to send reset password email" });
+    }
   };
 
   return (

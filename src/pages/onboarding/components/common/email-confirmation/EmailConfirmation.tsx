@@ -4,34 +4,25 @@ import InteractiveText from 'components/redesign/interactive-text/InteractiveTex
 import React from 'react'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
+import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 
 interface EmailConfirmationProps {
-    // OTP related
-    otp: string
-    inputState: 'default' | 'error' | 'success'
-    onOtpChange: (value: string) => void
-    // Email verification
-    verifyEmail: () => void
-    resendCode: () => void
-    // Loading states
-    verifyLoading: boolean
-    resendLoading: boolean
-    loginLoading: boolean
-    // Navigation
-    onBack: () => void
+    mode: 'signup' | 'reset';
+    onBack: () => void;
+    onSuccess?: () => void;
 }
 
-function EmailConfirmation({
-    otp,
-    inputState,
-    onOtpChange,
-    verifyEmail,
-    resendCode,
-    verifyLoading,
-    resendLoading,
-    loginLoading,
-    onBack
-}: EmailConfirmationProps) {
+function EmailConfirmation({mode, onBack,onSuccess}: EmailConfirmationProps) {
+    const {
+        otp,
+        inputState,
+        onOtpChange,
+        verifyEmail,
+        resendCode,
+        verifyLoading,
+        resendLoading,
+        loginLoading
+    } = useEmailVerification({ mode,onSuccess })
   
     return (
         <>
@@ -62,7 +53,7 @@ function EmailConfirmation({
                 >
                     <Text display="flex" gap={1}>
                         Didn't receive the code? {" "}
-                        <InteractiveText onClick={resendCode}>
+                        <InteractiveText onClick={() => resendCode()}>
                             {resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
                         </InteractiveText>
                     </Text>

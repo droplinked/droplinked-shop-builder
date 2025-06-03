@@ -19,6 +19,7 @@ const initialState: OnboardingStates = {
         email: '',
         password: ''
     },
+    resetToken: null
 }
 
 // Define flows

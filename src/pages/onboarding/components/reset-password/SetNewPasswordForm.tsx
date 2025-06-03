@@ -7,19 +7,36 @@ import React from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
-
+import { resetPassword } from 'lib/apis/user/services'
+import useAppToast from 'hooks/toast/useToast'
 
 function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
-    const { updateOnboardingState, credentials } = useOnboardingStore()
+    const { updateOnboardingState, credentials, resetToken } = useOnboardingStore()
+    const { showToast } = useAppToast()
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
-        // TODO: Implement set new password logic
-        console.log("Setting new password:", values.password)
-        updateOnboardingState("credentials", { 
-            email: credentials.email, 
-            password: values.password 
-        })
-        onNext()
+         if (resetToken === null) {
+            showToast({ type: "error", message: "Reset token not found. Please try again." });
+           return;
+        }
+
+        try {
+            await resetPassword({
+                token: resetToken || '',
+                newPassword: values.password
+            });
+            
+            updateOnboardingState("credentials", { 
+                email: credentials.email, 
+                password: values.password 
+            });
+            // Clear the reset token after successful password reset
+            updateOnboardingState("resetToken", null);
+            showToast({ type: "success", message: "Password reset successfully" });
+            onNext();
+        } catch (error) {
+            showToast({ type: "error", message: error?.response?.data?.message || "Failed to reset password" });
+        }
     }
 
     return (

@@ -20,6 +20,7 @@ export interface OnboardingStates {
         email: string
         password: string
     }
+    resetToken: string | null
 }
 
 export interface OnboardingActions {
