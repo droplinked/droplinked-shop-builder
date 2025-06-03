@@ -1,23 +1,34 @@
 import { VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { Form, Formik } from 'formik'
+import useAppToast from 'hooks/toast/useToast'
+import { resetPassword } from 'lib/apis/user/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React from 'react'
+import * as Yup from 'yup'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
 import PasswordValidationRules from '../common/PasswordValidationRules'
-import { resetPassword } from 'lib/apis/user/services'
-import useAppToast from 'hooks/toast/useToast'
+
+const formSchema = Yup.object().shape({
+    password: Yup.string()
+        .required("Password is required.")
+        .min(8, "Password must be at least 8 characters long."),
+    confirmPassword: Yup.string()
+        .required("Confirm password is required.")
+        .oneOf([Yup.ref("password"), null], "Passwords must match.")
+})
 
 function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
     const { updateOnboardingState, credentials, resetToken } = useOnboardingStore()
     const { showToast } = useAppToast()
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
-         if (resetToken === null) {
+        if (resetToken === null) {
             showToast({ type: "error", message: "Reset token not found. Please try again." });
-           return;
+            return;
         }
 
         try {
@@ -25,10 +36,10 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
                 token: resetToken || '',
                 newPassword: values.password
             });
-            
-            updateOnboardingState("credentials", { 
-                email: credentials.email, 
-                password: values.password 
+
+            updateOnboardingState("credentials", {
+                email: credentials.email,
+                password: values.password
             });
             // Clear the reset token after successful password reset
             updateOnboardingState("resetToken", null);
@@ -47,42 +58,42 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
             />
 
             <Formik
-                initialValues={{
-                    password: "",
-                    confirmPassword: ""
-                }}
+                initialValues={{ password: "", confirmPassword: "" }}
                 validateOnChange={false}
+                validationSchema={formSchema}
                 onSubmit={handleSubmit}
             >
-                {({ values, errors, handleChange, isSubmitting }) => (
-                    <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                        <VStack align='stretch' spacing={4}>
-                            <PasswordInput
-                                name="password"
-                                label="New Password"
-                                value={values.password}
-                                onChange={handleChange}
-                                message={errors.password?.toString()}
-                                isRequired
-                            />
-                            <PasswordValidationRules password={values.password} />
-                            
-                            <PasswordInput
-                                name="confirmPassword"
-                                label="Confirm New Password"
-                                value={values.confirmPassword}
-                                onChange={handleChange}
-                                message={errors.confirmPassword?.toString()}
-                                isRequired
-                                placeholder="Confirm New Password"
-                            />
-                        </VStack>
+                {({ values, errors, handleChange, isSubmitting }) => {
+                    const isPasswordValid = arePasswordRulesMet(values.password)
 
-                        <AppButton size='lg' type="submit" isLoading={isSubmitting}>
-                             Reset password
-                        </AppButton>
-                    </Form>
-                )}
+                    return (
+                        <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+                            <VStack align='stretch' spacing={4}>
+                                <PasswordInput
+                                    name="password"
+                                    label="New Password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    message={errors.password?.toString()}
+                                />
+                                <PasswordValidationRules password={values.password} />
+
+                                <PasswordInput
+                                    name="confirmPassword"
+                                    label="Confirm New Password"
+                                    value={values.confirmPassword}
+                                    onChange={handleChange}
+                                    message={errors.confirmPassword?.toString()}
+                                    placeholder="Confirm New Password"
+                                />
+                            </VStack>
+
+                            <AppButton size='lg' type="submit" isLoading={isSubmitting} isDisabled={isSubmitting || !isPasswordValid}>
+                                Reset password
+                            </AppButton>
+                        </Form>
+                    )
+                }}
             </Formik>
         </>
     )
