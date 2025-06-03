@@ -1,7 +1,7 @@
 import useAppToast from 'hooks/toast/useToast'
 import { forgetPasswordService, resendEmailService, verifyEmailCode, verifyResetPasswordCode } from 'lib/apis/user/services'
 import { useState } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import { useLogin } from './useLogin'
 
@@ -22,17 +22,13 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
     const { email } = credentials
 
     // Service selection based on mode
-    const getVerificationService = () => {
-        return mode === 'signup'
-            ? () => verifyEmailCode({ code: otp, email })
-            : () => verifyResetPasswordCode({ code: otp, email })
-    }
+    const verifyConfirmationCodeService = mode === 'signup'
+        ? () => verifyEmailCode({ code: otp, email })
+        : () => verifyResetPasswordCode({ code: otp, email })
 
-    const getResendService = () => {
-        return mode === 'signup'
-            ? () => resendEmailService({ email })
-            : () => forgetPasswordService({ email })
-    }
+    const resendConfirmationCodeService = mode === 'signup'
+        ? () => resendEmailService({ email })
+        : () => forgetPasswordService({ email })
 
     // Success handlers
     const handleVerifySuccess = async (response: any) => {
@@ -50,7 +46,7 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
 
     // Verification mutation
     const { mutateAsync: verifyEmail, isLoading: verifyLoading } = useMutation({
-        mutationFn: getVerificationService(),
+        mutationFn: verifyConfirmationCodeService,
         onSuccess: handleVerifySuccess,
         onError: (error: any) => {
             setInputState("error")
@@ -62,10 +58,8 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
     })
 
     // Resend code query
-    const { refetch: resendCode, isFetching: resendLoading } = useQuery({
-        queryKey: ["resend-email-code", mode],
-        queryFn: getResendService(),
-        enabled: false,
+    const { mutateAsync: resendCode, isLoading: resendLoading } = useMutation({
+        mutationFn: resendConfirmationCodeService,
         onSuccess: () => {
             showToast({ type: "success", message: "Verification code sent to your email" })
         },
@@ -78,7 +72,7 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
         onSettled: () => {
             setInputState("default")
             setOtp("")
-        },
+        }
     })
 
     // Input handlers

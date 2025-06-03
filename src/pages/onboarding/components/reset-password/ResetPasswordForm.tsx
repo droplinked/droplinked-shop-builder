@@ -3,41 +3,40 @@ import AppButton from 'components/redesign/button/AppButton';
 import AppInput from 'components/redesign/input/AppInput';
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText';
 import { Form, Formik } from 'formik';
+import useAppToast from 'hooks/toast/useToast';
+import { forgetPasswordService } from 'lib/apis/user/services';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
 import React from 'react';
-import OnboardingStepHeader from '../common/OnboardingStepHeader';
-import { forgetPasswordService } from 'lib/apis/user/services';
-import useAppToast from 'hooks/toast/useToast';
 import * as Yup from 'yup';
+import OnboardingStepHeader from '../common/OnboardingStepHeader';
 
 const formSchema = Yup.object().shape({
   email: Yup.string()
     .email("Please enter a valid email address.")
     .required("Email address is required.")
-});
+})
 
-function ResetPasswordForm({onNext }: OnboardingStepProps) {
-  const { updateOnboardingState } = useOnboardingStore();
-  const { showToast } = useAppToast();
+function ResetPasswordForm({ onNext }: OnboardingStepProps) {
+  const { updateOnboardingState } = useOnboardingStore()
+  const { showToast } = useAppToast()
 
   const handleSubmit = async ({ email }) => {
     try {
-      await forgetPasswordService({ email });
-      updateOnboardingState('credentials', { email, password: '' });
-      updateOnboardingState('previousStep', 'RESET_PASSWORD');
-      showToast({ type: "success", message: "Reset password email sent successfully" });
-      onNext();
+      await forgetPasswordService({ email })
+      updateOnboardingState('credentials', { email, password: '' })
+      showToast({ type: "success", message: "Reset password email sent successfully" })
+      onNext()
     } catch (error) {
-      showToast({ type: "error", message: error?.response?.data?.message || "Failed to send reset password email" });
+      showToast({ type: "error", message: error?.response?.data?.message || "Failed to send reset password email" })
     }
-  };
+  }
 
   return (
     <>
-      <OnboardingStepHeader 
-        heading="Reset Password" 
-        description="Enter the email linked to your account. We'll send you a verification code to reset your password." 
+      <OnboardingStepHeader
+        heading="Reset Password"
+        description="Enter the email linked to your account. We'll send you a verification code to reset your password."
       />
 
       <Formik
@@ -83,7 +82,7 @@ function ResetPasswordForm({onNext }: OnboardingStepProps) {
         )}
       </Formik>
     </>
-  );
+  )
 }
 
-export default ResetPasswordForm;
+export default ResetPasswordForm
