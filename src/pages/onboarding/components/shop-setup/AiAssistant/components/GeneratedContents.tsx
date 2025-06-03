@@ -15,8 +15,13 @@ interface Props {
 
 export default function GeneratedContents({ generateWithAiData, onClose }: Props) {
     const { businessCategory, businessDescribe } = generateWithAiData
-    const { logos, covers, urls, names } = useAiGeneratedContent(businessCategory, businessDescribe)
+    const { logos, covers, urls, names, commitChanges } = useAiGeneratedContent(businessCategory, businessDescribe)
     const isLoading = logos.isLoading || covers.isLoading || urls.isLoading || names.isLoading
+
+    const handleDone = () => {
+        commitChanges();
+        onClose();
+    }
 
     return (
         <Box
@@ -54,7 +59,7 @@ export default function GeneratedContents({ generateWithAiData, onClose }: Props
                     selectedName={names.selectedName}
                     onNameChange={names.handleChange}
                 />
-                <GenerationFooterButtons onClose={onClose} isLoading={isLoading} />
+                <GenerationFooterButtons onClose={onClose} onDone={handleDone} isLoading={isLoading} />
             </Flex>
         </Box>
     )

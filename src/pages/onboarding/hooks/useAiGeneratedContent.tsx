@@ -2,10 +2,28 @@ import useAppToast from 'hooks/toast/useToast';
 import { generateDomains, generateHeroSection, generateLogos, generateShopNames } from 'lib/apis/ai/services';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import { useQuery } from 'react-query';
+import { useState, useEffect } from 'react';
 
 export const useAiGeneratedContent = (businessCategory: string, businessDescribe: string) => {
     const { showToast } = useAppToast();
     const { updateOnboardingState, storeSetup } = useOnboardingStore();
+
+    // Create a staged state that will only be committed when user clicks "Done"
+    const [stagedState, setStagedState] = useState({
+        logo: storeSetup.logo || '',
+        hero_section: storeSetup.hero_section || '',
+        shop_url: storeSetup.shop_url || '',
+        name: storeSetup.name || '',
+    });
+
+    useEffect(() => {
+        setStagedState({
+            logo: logos?.[0] || '',
+            hero_section: covers?.[0] || '',
+            shop_url: urls?.[0] || '',
+            name: names?.[0] || '',
+        });
+    }, []);
 
     const { isFetching: isLogosLoading, data: logos, refetch: refetchLogos } = useQuery({
         queryFn: () => generateLogos({ category: businessCategory, prompt: businessDescribe }),
@@ -72,19 +90,29 @@ export const useAiGeneratedContent = (businessCategory: string, businessDescribe
     });
 
     const handleLogoChange = (logo: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, logo });
+        setStagedState(prev => ({ ...prev, logo }));
     };
 
     const handleCoverChange = (hero_section: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, hero_section });
+        setStagedState(prev => ({ ...prev, hero_section }));
     };
 
     const handleUrlChange = (shop_url: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, shop_url });
+        setStagedState(prev => ({ ...prev, shop_url }));
     };
 
     const handleNameChange = (name: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, name });
+        setStagedState(prev => ({ ...prev, name }));
+    };
+
+    const commitChanges = () => {
+        updateOnboardingState("storeSetup", {
+            ...storeSetup,
+            logo: stagedState.logo,
+            hero_section: stagedState.hero_section,
+            shop_url: stagedState.shop_url,
+            name: stagedState.name
+        });
     };
 
     return {
@@ -92,29 +120,30 @@ export const useAiGeneratedContent = (businessCategory: string, businessDescribe
             data: logos || [],
             isLoading: isLogosLoading,
             refetch: refetchLogos,
-            selectedLogo: storeSetup.logo,
+            selectedLogo: stagedState.logo,
             handleChange: handleLogoChange
         },
         covers: {
             data: covers || [],
             isLoading: isCoversLoading,
             refetch: refetchCovers,
-            selectedCover: storeSetup.hero_section,
+            selectedCover: stagedState.hero_section,
             handleChange: handleCoverChange
         },
         urls: {
             data: urls || [],
             isLoading: isUrlsLoading,
             refetch: refetchUrls,
-            selectedUrl: storeSetup.shop_url,
+            selectedUrl: stagedState.shop_url,
             handleChange: handleUrlChange
         },
         names: {
             data: names || [],
             isLoading: isNamesLoading,
             refetch: refetchNames,
-            selectedName: storeSetup.name,
+            selectedName: stagedState.name,
             handleChange: handleNameChange
-        }
+        },
+        commitChanges
     };
 };
