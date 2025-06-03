@@ -2,7 +2,8 @@ import React, { createContext, useContext, ReactNode } from 'react'
 import { PdfExportDataResponse } from '../../../lib/apis/credit/interfaces'
 
 // Context interface
-export interface InvoiceContextType {
+interface InvoiceContextType {
+    children?: ReactNode
     invoiceData: PdfExportDataResponse & {
         companyWebsite?: string
         companyAddress?: string
@@ -20,12 +21,7 @@ export const useInvoiceContext = () => {
     return context
 }
 
-interface InvoiceProviderProps {
-    children: ReactNode
-    invoiceData: PdfExportDataResponse
-}
-
-export const InvoiceProvider: React.FC<InvoiceProviderProps> = ({ children, invoiceData }) => {
+export const InvoiceProvider: React.FC<InvoiceContextType> = ({ children, invoiceData }) => {
     const enhancedInvoiceData = {
         ...invoiceData,
         // Add company info fields
