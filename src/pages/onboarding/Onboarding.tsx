@@ -1,13 +1,16 @@
 import { useBreakpointValue } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import EmailConfirmation from './components/common/email-confirmation/EmailConfirmation'
 import CompletionSection from './components/completion/CompletionSection'
-import EmailConfirmation from './components/email-confirmation/EmailConfirmation'
 import DesktopLayout from './components/layout/DesktopLayout'
 import MobileLayout from './components/layout/MobileLayout'
 import TabletLayout from './components/layout/TabletLayout'
 import PaymentFeatures from './components/payment-features/PaymentFeatures'
 import PaymentSetup from './components/payment-setup/PaymentSetup'
 import ProductCards from './components/product-cards/ProductCards'
+import PasswordUpdatedForm from './components/reset-password/PasswordUpdatedForm'
+import ResetPasswordForm from './components/reset-password/ResetPasswordForm'
+import SetNewPasswordForm from './components/reset-password/SetNewPasswordForm'
 import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
@@ -42,8 +45,24 @@ function Onboarding() {
             leftContent: <SignUpForm onBack={prevStep} onNext={nextStep} />,
             rightContent: <ProductCards />
         },
-        'EMAIL_CONFIRMATION': {
-            leftContent: <EmailConfirmation onBack={prevStep} onNext={nextStep} />,
+        'RESET_PASSWORD': {
+            leftContent: <ResetPasswordForm onBack={prevStep} onNext={nextStep} />,
+            rightContent: <ProductCards />
+        },
+        'SIGNUP_EMAIL_VERIFICATION': {
+            leftContent: <EmailConfirmation mode='signup' onBack={prevStep} onNext={nextStep} />,
+            rightContent: <ProductCards />
+        },
+        'RESET_PASSWORD_VERIFICATION': {
+            leftContent: <EmailConfirmation mode='reset' onBack={prevStep} onNext={nextStep} />,
+            rightContent: <ProductCards />
+        },
+        'SET_NEW_PASSWORD': {
+            leftContent: <SetNewPasswordForm onBack={prevStep} onNext={nextStep} />,
+            rightContent: <ProductCards />
+        },
+        'PASSWORD_UPDATED': {
+            leftContent: <PasswordUpdatedForm />,
             rightContent: <ProductCards />
         },
         'STORE_DETAILS': {
@@ -65,7 +84,15 @@ function Onboarding() {
     }
 
     const { leftContent, rightContent } = stepContentMap[currentStep]
-    const isAuthStep = ['SIGN_IN', 'SIGN_UP', 'EMAIL_CONFIRMATION'].includes(currentStep)
+    const isAuthStep = [
+        'SIGN_IN',
+        'SIGN_UP',
+        'RESET_PASSWORD',
+        'SIGNUP_EMAIL_VERIFICATION',
+        'RESET_PASSWORD_VERIFICATION',
+        'SET_NEW_PASSWORD',
+        'PASSWORD_UPDATED'
+    ].includes(currentStep)
 
     return (!rightContent)
         ? leftContent

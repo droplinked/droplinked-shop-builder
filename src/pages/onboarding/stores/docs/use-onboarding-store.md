@@ -32,7 +32,7 @@ This store manages the onboarding flow state for new users setting up their shop
 The onboarding process follows this sequence:
 1. 🔑 SIGN_IN
 2. ✍️ SIGN_UP
-3. ✉️ EMAIL_CONFIRMATION
+3. ✉️ SIGNUP_EMAIL_VERIFICATION
 4. 🏪 STORE_DETAILS
 5. 💳 PAYMENT_DETAILS
 6. 📋 PLAN_SELECTION

@@ -17,7 +17,7 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
-import PasswordValidationRules from './PasswordValidationRules'
+import PasswordValidationRules from '../common/PasswordValidationRules'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -114,9 +114,9 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                     By signing up, I agree to your
-                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText> 
-                                </Text>                                                 
+                                    By signing up, I agree to your
+                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                </Text>
                             </Checkbox>
 
                             <AppButton
