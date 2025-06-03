@@ -11,10 +11,20 @@ import {
     IuserUpdateService,
     IPostUserVerifyPartner,
     VerifyEmailPayload,
+    IResetPasswordCodeVerify,
+    IResetPassword,
 } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
     return axiosInstance.post(`user/forgot-password`, props);
+};
+
+export const verifyResetPasswordCode = (props: IResetPasswordCodeVerify) => {
+    return axiosInstance.post(`user/reset-password-code`, props);
+};
+
+export const resetPassword = (props: IResetPassword) => {
+    return axiosInstance.post(`user/reset-password`, props);
 };
 
 export const changePasswordService = (props: IchangePasswordService) => {
