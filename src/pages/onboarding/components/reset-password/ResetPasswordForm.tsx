@@ -9,6 +9,13 @@ import React from 'react';
 import OnboardingStepHeader from '../common/OnboardingStepHeader';
 import { forgetPasswordService } from 'lib/apis/user/services';
 import useAppToast from 'hooks/toast/useToast';
+import * as Yup from 'yup';
+
+const formSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Please enter a valid email address.")
+    .required("Email address is required.")
+});
 
 function ResetPasswordForm({onNext }: OnboardingStepProps) {
   const { updateOnboardingState } = useOnboardingStore();
@@ -38,6 +45,7 @@ function ResetPasswordForm({onNext }: OnboardingStepProps) {
           email: ''
         }}
         validateOnChange={false}
+        validationSchema={formSchema}
         onSubmit={handleSubmit}
       >
         {({ values, errors, handleChange, isSubmitting }) => (
