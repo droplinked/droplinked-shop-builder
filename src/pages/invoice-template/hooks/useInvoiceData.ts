@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Margin, usePDF } from 'react-to-pdf';
-import { downloadCreditChangeInvoice } from 'lib/apis/credit/services';
-import useAppToast from 'hooks/toast/useToast';
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Margin, usePDF } from 'react-to-pdf'
+import { downloadCreditChangeInvoice } from 'lib/apis/credit/services'
+import useAppToast from 'hooks/toast/useToast'
 
 export const useInvoiceData = () => {
-    const navigate = useNavigate();
-    const [isDownloading, setIsDownloading] = useState(false);
-    const params = useParams();
-    const { showToast } = useAppToast();
+    const navigate = useNavigate()
+    const [isDownloading, setIsDownloading] = useState(false)
+    const params = useParams()
+    const { showToast } = useAppToast()
 
     const { data, isFetching } = useQuery({
         queryFn: () => downloadCreditChangeInvoice(params.txId),
@@ -17,16 +17,16 @@ export const useInvoiceData = () => {
         enabled: !!params.txId,
         retry: false,
         select(data) {
-            return data.data;
+            return data.data
         },
         onError() {
             showToast({
                 message: "Invoice not found with this ID",
                 type: "error"
-            });
-            navigate("/");
+            })
+            navigate("/")
         },
-    });
+    })
 
     const { targetRef, toPDF } = usePDF({
         filename: 'invoice.pdf',
@@ -39,23 +39,23 @@ export const useInvoiceData = () => {
                 compress: true,
             },
         }
-    });
+    })
 
     const handleDownload = async () => {
         try {
-            setIsDownloading(true);
+            setIsDownloading(true)
 
             // Use Promise to ensure state update completes
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 100))
 
             // Generate PDF
-            await toPDF();
+            await toPDF()
         } catch (error) {
-            showToast({ message: "Failed to generate PDF. Please try again.", type: "error" });
+            showToast({ message: "Failed to generate PDF. Please try again.", type: "error" })
         } finally {
-            setIsDownloading(false);
+            setIsDownloading(false)
         }
-    };
+    }
 
     return {
         data,
@@ -63,7 +63,7 @@ export const useInvoiceData = () => {
         isDownloading,
         targetRef,
         handleDownload
-    };
-};
+    }
+}
 
-export default useInvoiceData;
+export default useInvoiceData

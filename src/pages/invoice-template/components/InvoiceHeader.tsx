@@ -1,10 +1,10 @@
-import React from 'react';
-import DroplinkedLogo from 'assets/brand-identity/DroplinkedLogo';
-import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography';
-import { useInvoiceContext } from '../context/InvoiceContext';
+import React from 'react'
+import DroplinkedLogo from 'assets/brand-identity/DroplinkedLogo'
+import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography'
+import { useInvoiceContext } from '../context/InvoiceContext'
 
 const InvoiceHeader: React.FC = () => {
-    const { invoiceData } = useInvoiceContext();
+    const { invoiceData } = useInvoiceContext()
     const {
         clientName,
         clientEmail,
@@ -12,7 +12,7 @@ const InvoiceHeader: React.FC = () => {
         clientPhone,
         companyWebsite,
         companyAddress
-    } = invoiceData;
+    } = invoiceData
 
     return (
         <header className="invoice-header">
@@ -41,7 +41,7 @@ const InvoiceHeader: React.FC = () => {
                 </div>
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default InvoiceHeader;
+export default InvoiceHeader

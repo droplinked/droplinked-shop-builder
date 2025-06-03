@@ -1,6 +1,6 @@
-import React from 'react';
-import InvoiceDetails from './InvoiceDetails';
-import InvoiceItems from './InvoiceItems';
+import React from 'react'
+import InvoiceDetails from './InvoiceDetails'
+import InvoiceItems from './InvoiceItems'
 
 const InvoiceContent: React.FC = () => {
     return (
@@ -8,7 +8,7 @@ const InvoiceContent: React.FC = () => {
             <InvoiceDetails />
             <InvoiceItems />
         </main>
-    );
-};
+    )
+}
 
-export default InvoiceContent;
+export default InvoiceContent

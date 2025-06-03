@@ -1,9 +1,9 @@
-import React from 'react';
-import { useInvoiceContext } from '../context/InvoiceContext';
+import React from 'react'
+import { useInvoiceContext } from '../context/InvoiceContext'
 
 const InvoiceDetails: React.FC = () => {
-    const { invoiceData } = useInvoiceContext();
-    const { invoiceId, invoiceDate, transactionId, paymentMethod } = invoiceData;
+    const { invoiceData } = useInvoiceContext()
+    const { invoiceId, invoiceDate, transactionId, paymentMethod } = invoiceData
 
     return (
         <div className="invoice-details">
@@ -28,7 +28,7 @@ const InvoiceDetails: React.FC = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default InvoiceDetails;
+export default InvoiceDetails

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useInvoiceContext } from '../context/InvoiceContext';
+import React from 'react'
+import { useInvoiceContext } from '../context/InvoiceContext'
 
 const InvoiceFooter: React.FC = () => {
-    const { invoiceData } = useInvoiceContext();
-    const { companyWebsite, companyEmail } = invoiceData;
+    const { invoiceData } = useInvoiceContext()
+    const { companyWebsite, companyEmail } = invoiceData
 
     return (
         <footer className="invoice-footer">
@@ -13,7 +13,7 @@ const InvoiceFooter: React.FC = () => {
                 <span>{companyEmail}</span>
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default InvoiceFooter;
+export default InvoiceFooter

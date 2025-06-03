@@ -1,17 +1,17 @@
-import { Box, useMediaQuery } from '@chakra-ui/react';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import React from 'react';
-import InvoiceContent from './components/InvoiceContent';
-import InvoiceFooter from './components/InvoiceFooter';
-import InvoiceHeader from './components/InvoiceHeader';
-import PageHeader from './components/PageHeader';
-import { InvoiceProvider } from './context/InvoiceContext';
-import './styles/styles.css';
-import useInvoiceData from './hooks/useInvoiceData';
+import { Box, useMediaQuery } from '@chakra-ui/react'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import React from 'react'
+import InvoiceContent from './components/InvoiceContent'
+import InvoiceFooter from './components/InvoiceFooter'
+import InvoiceHeader from './components/InvoiceHeader'
+import PageHeader from './components/PageHeader'
+import { InvoiceProvider } from './context/InvoiceContext'
+import './styles/styles.css'
+import useInvoiceData from './hooks/useInvoiceData'
 
 export const InvoiceTemplate: React.FC = () => {
-    const [isSmallerThan768] = useMediaQuery('(max-width: 768px)');
-    const { data, isFetching, isDownloading, targetRef, handleDownload } = useInvoiceData();
+    const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
+    const { data, isFetching, isDownloading, targetRef, handleDownload } = useInvoiceData()
 
     return (
         <Box>
@@ -49,7 +49,7 @@ export const InvoiceTemplate: React.FC = () => {
                 }
             </Box >
         </Box >
-    );
-};
+    )
+}
 
-export default InvoiceTemplate;
+export default InvoiceTemplate
