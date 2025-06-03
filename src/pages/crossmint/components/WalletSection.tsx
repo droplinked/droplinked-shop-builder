@@ -5,13 +5,11 @@ import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 
-const WALLET_ADDRESS = "0xe29E7479c23Db494aAa0D36C93844B2d79f50c2245"
-
-function WalletSection() {
+function WalletSection({ wallet }: { wallet?: string }) {
     const { showToast } = useAppToast()
 
     const handleCopyAddress = () => {
-        navigator.clipboard.writeText(WALLET_ADDRESS)
+        navigator.clipboard.writeText(wallet)
         showToast({
             type: "success",
             message: "The wallet address has been copied to your clipboard."
@@ -34,7 +32,7 @@ function WalletSection() {
                         rightElement={<CopyButton />}
                         inputProps={{
                             placeholder: "Wallet Address",
-                            value: WALLET_ADDRESS,
+                            value: wallet,
                             name: "walletAddress",
                             isDisabled: true
                         }}

@@ -28,3 +28,10 @@ export interface RecentCrawlerTasksResponse {
     createdAt: string
     updatedAt: string
 }
+
+export interface RecordedProduct {
+    id: string,
+    title: string,
+    image: string,
+    status: string
+}

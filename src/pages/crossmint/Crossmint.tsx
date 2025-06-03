@@ -3,8 +3,11 @@ import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import React from 'react'
 import InventorySection from './components/InventorySection'
 import WalletSection from './components/WalletSection'
+import useAppStore from 'stores/app/appStore'
 
 function Crossmint() {
+    const { shop: { crossmintWallet } } = useAppStore()
+
     return (
         <PageGrid.Root>
             <PageGrid.Header
@@ -13,8 +16,8 @@ function Crossmint() {
             />
             <PageGrid.Content>
                 <RuledGrid columns={1} nested>
-                    <WalletSection />
-                    <InventorySection />
+                    <WalletSection wallet={crossmintWallet} />
+                    <InventorySection wallet={crossmintWallet} />
                 </RuledGrid>
             </PageGrid.Content>
         </PageGrid.Root>

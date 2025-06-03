@@ -22,6 +22,7 @@ interface Props extends FlexProps {
     title: string
     description?: string
     theme?: Theme
+    rightContent?: React.ReactNode
 }
 
 const themeMap: Record<Theme, { icon: React.ReactNode, styles: FlexProps }> = {
@@ -43,7 +44,7 @@ const themeMap: Record<Theme, { icon: React.ReactNode, styles: FlexProps }> = {
     }
 }
 
-function MessageBox({ title, description, theme = "info", children }: Props) {
+function MessageBox({ title, description, theme = "info", rightContent, children }: Props) {
     const { icon, styles } = themeMap[theme]
 
     return (
@@ -60,6 +61,7 @@ function MessageBox({ title, description, theme = "info", children }: Props) {
                 {description && <Text>{description}</Text>}
                 {children}
             </Flex>
+            {rightContent}
         </Flex>
     )
 }
