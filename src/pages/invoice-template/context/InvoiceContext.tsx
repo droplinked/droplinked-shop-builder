@@ -1,5 +1,14 @@
 import React, { createContext, useContext, ReactNode } from 'react';
-import { InvoiceContextType, PdfExportDataResponse } from '../utils/interface';
+import { PdfExportDataResponse } from '../../../lib/apis/credit/interfaces';
+
+// Context interface
+export interface InvoiceContextType {
+    invoiceData: PdfExportDataResponse & {
+        companyWebsite?: string;
+        companyAddress?: string;
+        companyEmail?: string;
+    };
+}
 
 const InvoiceContext = createContext<InvoiceContextType | undefined>(undefined);
 
