@@ -1,59 +1,34 @@
 import { Avatar, Box, Flex } from '@chakra-ui/react'
-import useAppToast from 'hooks/toast/useToast'
-import { generateLogos } from 'lib/apis/ai/services'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
-import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import LogosSkeleton from './LogosSkeleton'
 
 interface Props extends GenerateWithAiData {
-    businessCategory: string
-    businessDescribe: string
+    logos: string[]
+    isLoading: boolean
+    refetch: () => void
+    selectedLogo: string
+    onLogoChange: (logo: string) => void
 }
 
-export default function GeneratedLogo({ businessCategory, businessDescribe }: Props) {
-    const { showToast } = useAppToast()
-    const { updateOnboardingState, storeSetup } = useOnboardingStore()
-
-    const { isFetching, data: logos, refetch } = useQuery({
-        queryFn: () => generateLogos({ category: businessCategory, prompt: businessDescribe }),
-        queryKey: ["generateLogos"],
-        enabled: !!businessCategory && !!businessDescribe,
-        select(data) {
-            return data.data.logos || []
-        },
-        onError(err: any) {
-            showToast({ message: err.response.data.data.message, type: "error" })
-        },
-        onSuccess(data) {
-            handleClick(data?.[0])
-        },
-        refetchOnMount: false,
-    })
-
-    const selectedLogo = storeSetup.logo
-
-    const handleClick = (url: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, logo: url })
-    }
-
+export default function GeneratedLogo({ logos, isLoading, refetch, selectedLogo, onLogoChange }: Props) {
     return (
         <GeneratedContentWrapper
             title='Logo'
             onRetry={refetch}
-            isLoading={isFetching}
+            isLoading={isLoading}
             flexProps={{
                 px: { base: 4, md: 9, lg: "48px" },
                 pt: { base: 4, md: 9, lg: "48px" }
             }}
         >
             <Flex alignItems="center" gap={4}>
-                {isFetching && <LogosSkeleton />}
-                {!isFetching && logos?.map((logo, index) => {
+                {isLoading && <LogosSkeleton />}
+                {!isLoading && logos?.map((logo, index) => {
                     return (
                         <Box
+                            key={index}
                             {...(selectedLogo === logo) && { border: "1px solid #2BCFA1" }}
                             borderRadius="full"
                             p={1}
@@ -61,8 +36,7 @@ export default function GeneratedLogo({ businessCategory, businessDescribe }: Pr
                         >
                             <Avatar
                                 src={logo}
-                                key={index}
-                                onClick={() => handleClick(logo)}
+                                onClick={() => onLogoChange(logo)}
                                 width={{ base: "56px", md: "76px" }}
                                 height={{ base: "56px", md: "76px" }}
                             />
