@@ -16,11 +16,11 @@ interface Props {
     isSelectionDisabled: (url: string) => boolean
     crawledProduct: CrawledProductsType[]
     maxSelectableItems: number
-    shouldDrop: boolean
-    setShouldDrop: (value: boolean) => void
+    shouldRecord: boolean
+    setshouldRecord: (value: boolean) => void
 }
 
-export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled, setShouldDrop, shouldDrop }: Props) {
+export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled, setshouldRecord, shouldRecord }: Props) {
     const ITEMS_PER_PAGE = 8
 
     const {
@@ -58,8 +58,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
                     <SwitchBox
                         title="Drop (Digital Product Passport Records)"
                         description="Create onchain digital records for the inventory selected below."
-                        isChecked={shouldDrop}
-                        onToggle={() => setShouldDrop(!shouldDrop)}
+                        isChecked={shouldRecord}
+                        onToggle={() => setshouldRecord(!shouldRecord)}
                         showBetaBadge
                     />
                 </RuledGrid>

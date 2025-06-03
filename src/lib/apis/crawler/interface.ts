@@ -1,7 +1,7 @@
 export interface SelectedProductsForCrawl {
     poolId: string
     selectedUrls: string[]
-    shouldDrop: boolean
+    shouldRecord: boolean
 }
 
 export interface StartWebsiteCrawlingResponse {

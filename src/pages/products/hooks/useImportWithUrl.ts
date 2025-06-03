@@ -19,7 +19,7 @@ export interface UseImportWithUrl {
     getRecentTasks: () => void
     recentTasksLoading: boolean
     recentTasks: RecentCrawlerTasksResponse[]
-    crawlSelectedProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, { selectedProducts: string[], shouldDrop: boolean }, unknown>
+    crawlSelectedProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, { selectedProducts: string[], shouldRecord: boolean }, unknown>
     crawlingSelectedLoading: boolean
 }
 
@@ -79,8 +79,8 @@ export const useImportWithUrl = (props: Params) => {
     })
 
     const { mutateAsync: crawlSelectedProducts, isLoading: crawlingSelectedLoading } = useMutation({
-        mutationFn: ({ selectedProducts, shouldDrop }: { selectedProducts: string[], shouldDrop: boolean }) =>
-            CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId, shouldDrop }),
+        mutationFn: ({ selectedProducts, shouldRecord }: { selectedProducts: string[], shouldRecord: boolean }) =>
+            CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId, shouldRecord }),
         onSuccess: () => {
             showToast({
                 message: "Import task started",

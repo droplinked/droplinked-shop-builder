@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }: Props) {
-    const [shouldDrop, setShouldDrop] = useState(false)
+    const [shouldRecord, setshouldRecord] = useState(false)
     const { crawledProducts } = useProductPageStore()
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
     const crawledProductsCount = crawledProducts?.length || 0
@@ -35,15 +35,15 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
 
     const handleImport = async () => {
         if (selectedProducts.length > 0) {
-            await crawlSelectedProducts({ selectedProducts, shouldDrop })
-            setShouldDrop(false)
+            await crawlSelectedProducts({ selectedProducts, shouldRecord })
+            setshouldRecord(false)
             resetSelection()
         }
     }
 
     const handleDiscard = () => {
         resetSelection()
-        setShouldDrop(false)
+        setshouldRecord(false)
         onClose()
     }
 
@@ -72,8 +72,8 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
                 crawledProduct={crawledProducts}
                 maxSelectableItems={maxSelectableItems}
                 isSelectionDisabled={isSelectionDisabled}
-                shouldDrop={shouldDrop}
-                setShouldDrop={setShouldDrop}
+                shouldRecord={shouldRecord}
+                setshouldRecord={setshouldRecord}
             />
             <IdentifiedItemsFooter
                 selectedProductsCount={selectedProducts.length}
