@@ -38,7 +38,14 @@ export default function GeneratedCover({ businessCategory, businessDescribe }: P
     }
 
     return (
-        <GeneratedContentWrapper title='Cover Image' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper
+            title='Cover Image'
+            onRetry={refetch}
+            isLoading={isFetching}
+            flexProps={{
+                px: { base: 4, md: 9, lg: "48px" }
+            }}
+        >
             <Flex alignItems="center" gap={4}>
                 <ImageSlider images={covers ?? []} onChange={handleChange} isLoading={isFetching || isLoading} />
             </Flex>
