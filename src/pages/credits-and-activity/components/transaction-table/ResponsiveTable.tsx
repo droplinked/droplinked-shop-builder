@@ -28,22 +28,22 @@ export default function TransactionsTable() {
         {
             accessorKey: "type",
             header: "Type",
-            cell: (info) => <TypeColumn type={info.row.original.type} amountType={info.row.original.amountType} />,
+            cell: (info) => <TypeColumn type={info.getValue() as string} amountType={info.row.original.amountType} />,
         },
         {
             accessorKey: "amount",
             header: "Amount",
-            cell: (info) => <FormattedPrice price={info.row.original.amount} fontSize={16} />,
+            cell: (info) => <FormattedPrice price={info.getValue() as number} fontSize={16} />,
         },
         {
-            accessorKey: "date",
+            accessorKey: "createdAt",
             header: "Date",
-            cell: (info) => formatDateToLongStyle(new Date(info.row.original.createdAt))
+            cell: (info) => formatDateToLongStyle(new Date(info.getValue() as string))
         },
         {
             accessorKey: "status",
             header: "Status",
-            cell: (info) => <StatusBadge status={info.row.original.status} />,
+            cell: (info) => <StatusBadge status={info.getValue() as "SUCCESS" | "FAILED"} />,
         },
         {
             accessorKey: "id",

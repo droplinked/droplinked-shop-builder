@@ -2,7 +2,7 @@ import { Box, useMediaQuery } from '@chakra-ui/react';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import useAppToast from 'hooks/toast/useToast';
 import { downloadCreditChangeInvoice } from 'lib/apis/credit/services';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Margin, usePDF } from 'react-to-pdf';
@@ -23,11 +23,16 @@ export const InvoiceTemplate: React.FC = () => {
         queryFn: () => downloadCreditChangeInvoice(params.txId),
         queryKey: ['invoice', params.txId],
         enabled: !!params.txId,
+        retry: false,
         select(data) {
             return data.data
         },
         onError() {
-            showToast({ message: "Failed to fetch invoice data. Please try again.", type: "error" });
+            showToast({
+                message: "Invoice not found with this ID",
+                type: "error"
+            });
+            navigate("/")
         },
     })
     const { targetRef, toPDF } = usePDF({
@@ -58,12 +63,6 @@ export const InvoiceTemplate: React.FC = () => {
             setIsDownloading(false);
         }
     };
-
-    useEffect(() => {
-        if (!params.txId) {
-            navigate('/');
-        }
-    }, [params.txId])
 
     return (
         <Box>
