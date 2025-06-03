@@ -76,17 +76,18 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
                                     onChange={handleChange}
                                     message={errors.password?.toString()}
                                 />
-                                <PasswordValidationRules password={values.password} />
 
-                                <PasswordInput
-                                    name="confirmPassword"
-                                    label="Confirm New Password"
-                                    value={values.confirmPassword}
-                                    onChange={handleChange}
-                                    message={errors.confirmPassword?.toString()}
-                                    placeholder="Confirm New Password"
-                                />
+                                <PasswordValidationRules password={values.password} />
                             </VStack>
+
+                            <PasswordInput
+                                name="confirmPassword"
+                                label="Confirm New Password"
+                                value={values.confirmPassword}
+                                onChange={handleChange}
+                                message={errors.confirmPassword?.toString()}
+                                placeholder="Confirm New Password"
+                            />
 
                             <AppButton size='lg' type="submit" isLoading={isSubmitting} isDisabled={isSubmitting || !isPasswordValid}>
                                 Reset password
