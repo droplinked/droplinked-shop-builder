@@ -14,7 +14,7 @@ function PasswordUpdatedForm() {
     <>
       <OnboardingStepHeader heading="Password Updated!" description="Your password has been reset successfully. You can now log in." />
 
-      <AppButton size="lg" onClick={handleSignIn}>
+      <AppButton onClick={handleSignIn}>
         Sign In
       </AppButton>
     </>

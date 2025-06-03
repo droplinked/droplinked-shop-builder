@@ -92,7 +92,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             </InteractiveText>
                         </Flex>
 
-                        <AppButton size='lg' type="submit" isLoading={isSubmitting}>
+                        <AppButton type="submit" isLoading={isSubmitting}>
                             Sign In
                         </AppButton>
 
