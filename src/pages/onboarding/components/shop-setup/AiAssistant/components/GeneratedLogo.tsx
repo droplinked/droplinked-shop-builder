@@ -40,7 +40,15 @@ export default function GeneratedLogo({ businessCategory, businessDescribe }: Pr
     }
 
     return (
-        <GeneratedContentWrapper title='Logo' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper
+            title='Logo'
+            onRetry={refetch}
+            isLoading={isFetching}
+            flexProps={{
+                px: { base: 4, md: 9, lg: "48px" },
+                pt: { base: 4, md: 9, lg: "48px" }
+            }}
+        >
             <Flex alignItems="center" gap={4}>
                 {isFetching && <LogosSkeleton />}
                 {!isFetching && logos?.map((logo, index) => {

@@ -42,7 +42,14 @@ export default function GeneratedNames({ businessCategory, businessDescribe }: P
     }
 
     return (
-        <GeneratedContentWrapper title='Name' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper
+            title='Name'
+            onRetry={refetch}
+            isLoading={isFetching}
+            flexProps={{
+                px: { base: 4, md: 9, lg: "48px" }
+            }}
+        >
             <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
                 {isFetching && <SelectableItemsSkeleton />}
 

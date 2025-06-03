@@ -5,8 +5,14 @@ import GeneratedCover from '../components/GeneratedCover'
 import GeneratedUrls from '../components/GeneratedUrls'
 import GeneratedNames from '../components/GeneratedNames'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
+import GenerationFooterButtons from './GenerationFooterButtons'
 
-export default function GeneratedContents({ generateWithAiData }: { generateWithAiData: GenerateWithAiData }) {
+interface Props {
+    generateWithAiData: GenerateWithAiData
+    onClose: () => void
+}
+
+export default function GeneratedContents({ generateWithAiData, onClose }: Props) {
     const { businessCategory, businessDescribe } = generateWithAiData
 
     return (
@@ -14,7 +20,6 @@ export default function GeneratedContents({ generateWithAiData }: { generateWith
             backgroundColor={{ base: "transparent", lg: "#141414" }}
             height="100%"
             borderLeft={{ base: "none", lg: "1px solid #292929" }}
-            p={{ base: 4, md: 9, lg: "48px" }}
             overflow={{ base: "hidden", lg: "auto" }}
         >
             <Flex flexDirection="column" gap={9}>
@@ -22,6 +27,7 @@ export default function GeneratedContents({ generateWithAiData }: { generateWith
                 <GeneratedCover businessCategory={businessCategory} businessDescribe={businessDescribe} />
                 <GeneratedUrls businessCategory={businessCategory} businessDescribe={businessDescribe} />
                 <GeneratedNames businessCategory={businessCategory} businessDescribe={businessDescribe} />
+                <GenerationFooterButtons onClose={onClose} />
             </Flex>
         </Box>
     )

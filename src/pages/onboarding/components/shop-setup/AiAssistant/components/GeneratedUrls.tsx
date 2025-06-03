@@ -44,7 +44,14 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
     }
 
     return (
-        <GeneratedContentWrapper title='URL' onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper
+            title='URL'
+            onRetry={refetch}
+            isLoading={isFetching}
+            flexProps={{
+                px: { base: 4, md: 9, lg: "48px" }
+            }}
+        >
             <Flex flexDirection="column" gap={4} userSelect="none">
                 <AppSkeleton isLoaded={!isFetching} borderRadius={8}>
                     <AppInput
@@ -69,7 +76,7 @@ export default function GeneratedUrls({ businessCategory, businessDescribe }: Pr
                         }
                     />
                 </AppSkeleton>
-                <Flex flexWrap="wrap"  gap={4} overflow="auto" >
+                <Flex flexWrap="wrap" gap={4} overflow="auto" >
                     {isFetching && <SelectableItemsSkeleton />}
 
                     {!isFetching && urls?.map((url, index) => (
