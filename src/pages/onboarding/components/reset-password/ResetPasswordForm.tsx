@@ -1,15 +1,15 @@
-import { Box, Text } from '@chakra-ui/react';
-import AppButton from 'components/redesign/button/AppButton';
-import AppInput from 'components/redesign/input/AppInput';
-import InteractiveText from 'components/redesign/interactive-text/InteractiveText';
-import { Form, Formik } from 'formik';
-import useAppToast from 'hooks/toast/useToast';
-import { forgetPasswordService } from 'lib/apis/user/services';
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding';
-import React from 'react';
-import * as Yup from 'yup';
-import OnboardingStepHeader from '../common/OnboardingStepHeader';
+import { Box, Text } from '@chakra-ui/react'
+import AppButton from 'components/redesign/button/AppButton'
+import AppInput from 'components/redesign/input/AppInput'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import { Form, Formik } from 'formik'
+import useAppToast from 'hooks/toast/useToast'
+import { forgetPasswordService } from 'lib/apis/user/services'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
+import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import React from 'react'
+import * as Yup from 'yup'
+import OnboardingStepHeader from '../common/OnboardingStepHeader'
 
 const formSchema = Yup.object().shape({
   email: Yup.string()
@@ -40,9 +40,7 @@ function ResetPasswordForm({ onNext }: OnboardingStepProps) {
       />
 
       <Formik
-        initialValues={{
-          email: ''
-        }}
+        initialValues={{ email: '' }}
         validateOnChange={false}
         validationSchema={formSchema}
         onSubmit={handleSubmit}

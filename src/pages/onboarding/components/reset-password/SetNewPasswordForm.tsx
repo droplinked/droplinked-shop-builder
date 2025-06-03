@@ -27,26 +27,23 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
         if (resetToken === null) {
-            showToast({ type: "error", message: "Reset token not found. Please try again." });
-            return;
+            showToast({ type: "error", message: "Reset token not found. Please try again." })
+            return
         }
 
         try {
-            await resetPassword({
-                token: resetToken || '',
-                newPassword: values.password
-            });
+            await resetPassword({ token: resetToken || '', newPassword: values.password })
 
             updateOnboardingState("credentials", {
                 email: credentials.email,
                 password: values.password
-            });
+            })
             // Clear the reset token after successful password reset
-            updateOnboardingState("resetToken", null);
-            showToast({ type: "success", message: "Password reset successfully" });
-            onNext();
+            updateOnboardingState("resetToken", null)
+            showToast({ type: "success", message: "Password reset successfully" })
+            onNext()
         } catch (error) {
-            showToast({ type: "error", message: error?.response?.data?.message || "Failed to reset password" });
+            showToast({ type: "error", message: error?.response?.data?.message || "Failed to reset password" })
         }
     }
 
