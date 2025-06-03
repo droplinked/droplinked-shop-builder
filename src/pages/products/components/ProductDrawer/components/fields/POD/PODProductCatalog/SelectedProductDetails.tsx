@@ -25,8 +25,10 @@ const SelectedProductDetails = ({ productId, onBack }: Props) => {
             const fetchedProduct = data.data.data
             updateProductPageState("selectedPODProduct", fetchedProduct)
             setFieldValue("pod_blank_product_id", productId)
-            setFieldValue("title", fetchedProduct.title)
-            setFieldValue("description", fetchedProduct.description)
+            if (!editingProductId) {
+                setFieldValue("title", fetchedProduct.title)
+                setFieldValue("description", fetchedProduct.description)
+            }
         },
         onError: () => {
             showToast({ message: "Unable to retrieve details for the selected product.", type: "error" })
