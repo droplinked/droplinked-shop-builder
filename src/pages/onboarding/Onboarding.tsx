@@ -8,14 +8,14 @@ import PaymentFeatures from './components/payment-features/PaymentFeatures'
 import PaymentSetup from './components/payment-setup/PaymentSetup'
 import ProductCards from './components/product-cards/ProductCards'
 import PasswordUpdatedForm from './components/reset-password/PasswordUpdatedForm'
-import ResetPasswordForm from './components/reset-password/ResetPasswordForm'
 import ResetPasswordEmailConfirmation from './components/reset-password/ResetPasswordEmailConfirmation'
+import ResetPasswordForm from './components/reset-password/ResetPasswordForm'
 import SetNewPasswordForm from './components/reset-password/SetNewPasswordForm'
 import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
-import SignUpForm from './components/sign-up/SignUpForm'
 import SignUpEmailConfirmation from './components/sign-up/SignUpEmailConfirmation'
+import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
 import useOnboardingStore from './stores/useOnboardingStore'
@@ -30,9 +30,7 @@ function Onboarding() {
 
         if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
         else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-        else if (entry === 'resetPassword') updateOnboardingState('currentStep', 'RESET_PASSWORD')
         else if (entry === 'payment') updateOnboardingState('currentStep', 'PAYMENT_DETAILS')
-        
     }, [updateOnboardingState])
 
     useEffect(() => {
@@ -88,12 +86,12 @@ function Onboarding() {
 
     const { leftContent, rightContent } = stepContentMap[currentStep]
     const isAuthStep = [
-        'SIGN_IN', 
-        'SIGN_UP', 
-        'RESET_PASSWORD', 
+        'SIGN_IN',
+        'SIGN_UP',
+        'RESET_PASSWORD',
         'SIGNUP_EMAIL_VERIFICATION',
-        'RESET_PASSWORD_VERIFICATION', 
-        'SET_NEW_PASSWORD', 
+        'RESET_PASSWORD_VERIFICATION',
+        'SET_NEW_PASSWORD',
         'PASSWORD_UPDATED'
     ].includes(currentStep)
 
