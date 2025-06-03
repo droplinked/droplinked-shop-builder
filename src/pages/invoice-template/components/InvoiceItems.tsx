@@ -10,7 +10,8 @@ const InvoiceItems: React.FC = () => {
         tax,
         total,
         currency,
-        transactionType
+        transactionType,
+        transactionAmount
     } = invoiceData;
 
     return (
@@ -30,13 +31,13 @@ const InvoiceItems: React.FC = () => {
                             <p className="item-description">{itemDescription}</p>
                         </td>
                         <td className="item-cycle">{transactionType}</td>
-                        <td className="item-amount">{total}</td>
+                        <td className="item-amount">{transactionAmount}</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr className="subtotal-row">
                         <td colSpan={2} className="summary-label">Subtotal</td>
-                        <td className="summary-value">{total}</td>
+                        <td className="summary-value">{subtotal}</td>
                     </tr>
                     <tr>
                         <td colSpan={2} className="summary-label">Tax</td>
@@ -45,7 +46,7 @@ const InvoiceItems: React.FC = () => {
                     <tr className="total-row">
                         <td colSpan={2} className="summary-label">Total</td>
                         <td className="total-amount" style={{ whiteSpace: 'nowrap' }}>
-                            {subtotal}<span className="currency">{currency}</span>
+                            {total}<span className="currency">{currency}</span>
                         </td>
                     </tr>
                 </tfoot>
