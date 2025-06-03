@@ -7,38 +7,45 @@ import useOnboardingStore from '../stores/useOnboardingStore'
 
 interface EmailVerificationConfig {
     mode: 'signup' | 'reset';
-    onSuccess?: () => void;
+    onNext?: () => void;
 }
 
-export const useEmailVerification = ({ mode, onSuccess }: EmailVerificationConfig) => {
+type InputState = 'default' | 'error' | 'success';
+
+const getServices = (mode: 'signup' | 'reset', email: string, code: string) => ({
+    verify: mode === 'signup'
+        ? () => verifyEmailCode({ code, email })
+        : () => verifyResetPasswordCode({ code, email }),
+    resend: mode === 'signup'
+        ? () => resendEmailService({ email })
+        : () => forgetPasswordService({ email })
+});
+
+export const useEmailVerification = ({ mode, onNext }: EmailVerificationConfig) => {
     const [otp, setOtp] = useState("")
-    const [inputState, setInputState] = useState<'default' | 'error' | 'success'>("default")
+    const [inputState, setInputState] = useState<InputState>("default")
     const { credentials, updateOnboardingState } = useOnboardingStore()
     const { onLoginSubmit, loading: loginLoading } = useLogin()
     const { showToast } = useAppToast()
 
-    const verifyService = mode === 'signup' 
-        ? () => verifyEmailCode({ code: otp, email: credentials.email })
-        : () => verifyResetPasswordCode({ code: otp, email: credentials.email });
+    const services = getServices(mode, credentials.email, otp)
 
-    const resendService = mode === 'signup'
-        ? () => resendEmailService({ email: credentials.email })
-        : () => forgetPasswordService({ email: credentials.email });
-
-    const handleSuccess = async (response: any) => {
+    const handleVerifySuccess = async (response: any) => {
         setInputState("success")
+        
         if (mode === 'signup') {
             await onLoginSubmit(credentials)
-        } else {
-            updateOnboardingState('resetToken', response.data.data.resetToken)
-            showToast({ type: "success", message: "Code verified successfully" })
-            onSuccess?.()
+            return
         }
+        
+        updateOnboardingState('resetToken', response.data.data.resetToken)
+        showToast({ type: "success", message: "Code verified successfully" })
+        onNext?.()
     }
 
     const { mutateAsync: verifyEmail, isLoading: verifyLoading } = useMutation({
-        mutationFn: verifyService,
-        onSuccess: handleSuccess,
+        mutationFn: services.verify,
+        onSuccess: handleVerifySuccess,
         onError: (error: any) => {
             setInputState("error")
             showToast({ 
@@ -50,16 +57,16 @@ export const useEmailVerification = ({ mode, onSuccess }: EmailVerificationConfi
 
     const { refetch: resendCode, isFetching: resendLoading } = useQuery({
         queryKey: ["resend-email-code", mode],
-        queryFn: resendService,
-        enabled: mode === 'signup',
-        onSettled() {
+        queryFn: services.resend,
+        enabled: false,
+        onSettled: () => {
             setInputState("default")
             setOtp("")
         },
-        onSuccess() {
-            showToast({ type: "success", message: mode === 'signup' ? "Verification code sent to your email" : "Code sent successfully" })
+        onSuccess: () => {
+            showToast({ type: "success", message: "Verification code sent to your email" })
         },
-        onError(error: any) {
+        onError: (error: any) => {
             showToast({ 
                 type: "error", 
                 message: error?.response?.data?.message || "Failed to send code" 

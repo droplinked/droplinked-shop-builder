@@ -9,10 +9,10 @@ import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerificatio
 interface EmailConfirmationProps {
     mode: 'signup' | 'reset';
     onBack: () => void;
-    onSuccess?: () => void;
+    onNext?: () => void;
 }
 
-function EmailConfirmation({mode, onBack,onSuccess}: EmailConfirmationProps) {
+function EmailConfirmation({mode, onBack, onNext}: EmailConfirmationProps) {
     const {
         otp,
         inputState,
@@ -22,7 +22,7 @@ function EmailConfirmation({mode, onBack,onSuccess}: EmailConfirmationProps) {
         verifyLoading,
         resendLoading,
         loginLoading
-    } = useEmailVerification({ mode,onSuccess })
+    } = useEmailVerification({ mode, onNext })
   
     return (
         <>
