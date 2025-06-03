@@ -87,6 +87,7 @@ export default function GenerationDrawer({ isOpen, onClose, onNextStep, generate
                             <TabPanel
                                 key={tab.title}
                                 background="#1C1C1C"
+                                padding="0px"
                                 {...index === 0 && { height: "100dvh" }}
                             >
                                 {tab.content}
