@@ -6,15 +6,15 @@ import InvoiceFooter from './components/InvoiceFooter'
 import InvoiceHeader from './components/InvoiceHeader'
 import PageHeader from './components/PageHeader'
 import { InvoiceProvider } from './context/InvoiceContext'
-import './styles/styles.css'
 import useInvoiceData from './hooks/useInvoiceData'
+import './styles/styles.css'
 
 export const InvoiceTemplate: React.FC = () => {
     const [isSmallerThan768] = useMediaQuery('(max-width: 768px)')
     const { data, isFetching, isDownloading, targetRef, handleDownload } = useInvoiceData()
 
     return (
-        <Box>
+        <>
             <PageHeader
                 onDownload={handleDownload}
                 isDownloading={isDownloading}
@@ -33,22 +33,20 @@ export const InvoiceTemplate: React.FC = () => {
                 px={{ base: "10px", md: "0px" }}
                 overflow={isDownloading ? "hidden" : "auto"}
             >
-                {isFetching ?
-                    <AppSkeleton width="595px" height="800px" isLoaded={false} mx="auto" my="10px" />
-                    :
-                    <InvoiceProvider invoiceData={data}>
-                        <div
-                            className="invoice-container"
-                            ref={targetRef}
-                        >
-                            <InvoiceHeader />
-                            <InvoiceContent />
-                            <InvoiceFooter />
-                        </div>
-                    </InvoiceProvider>
+                {isFetching
+                    ? <AppSkeleton width="595px" height="800px" isLoaded={false} mx="auto" my="10px" />
+                    : (
+                        <InvoiceProvider invoiceData={data}>
+                            <div ref={targetRef} className="invoice-container">
+                                <InvoiceHeader />
+                                <InvoiceContent />
+                                <InvoiceFooter />
+                            </div>
+                        </InvoiceProvider>
+                    )
                 }
-            </Box >
-        </Box >
+            </Box>
+        </>
     )
 }
 
