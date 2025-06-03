@@ -3,7 +3,7 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import React from 'react'
+import React, { useState } from 'react'
 import { useIdentifiedItems } from '../../hooks/useIdentifiedItems'
 import IdentifiedItemsBody from './IdentifiedItemsBody'
 import IdentifiedItemsFooter from './IdentifiedItemsFooter'
@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }: Props) {
+    const [shouldDrop, setShouldDrop] = useState(false)
     const { crawledProducts } = useProductPageStore()
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
     const crawledProductsCount = crawledProducts?.length || 0
@@ -34,13 +35,15 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
 
     const handleImport = async () => {
         if (selectedProducts.length > 0) {
-            await crawlSelectedProducts(selectedProducts)
+            await crawlSelectedProducts({ selectedProducts, shouldDrop })
+            setShouldDrop(false)
             resetSelection()
         }
     }
 
     const handleDiscard = () => {
         resetSelection()
+        setShouldDrop(false)
         onClose()
     }
 
@@ -69,6 +72,8 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
                 crawledProduct={crawledProducts}
                 maxSelectableItems={maxSelectableItems}
                 isSelectionDisabled={isSelectionDisabled}
+                shouldDrop={shouldDrop}
+                setShouldDrop={setShouldDrop}
             />
             <IdentifiedItemsFooter
                 selectedProductsCount={selectedProducts.length}
