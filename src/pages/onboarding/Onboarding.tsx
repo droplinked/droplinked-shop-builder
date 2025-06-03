@@ -1,5 +1,6 @@
 import { useBreakpointValue } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import EmailConfirmation from './components/common/email-confirmation/EmailConfirmation'
 import CompletionSection from './components/completion/CompletionSection'
 import DesktopLayout from './components/layout/DesktopLayout'
 import MobileLayout from './components/layout/MobileLayout'
@@ -8,13 +9,11 @@ import PaymentFeatures from './components/payment-features/PaymentFeatures'
 import PaymentSetup from './components/payment-setup/PaymentSetup'
 import ProductCards from './components/product-cards/ProductCards'
 import PasswordUpdatedForm from './components/reset-password/PasswordUpdatedForm'
-import ResetPasswordEmailConfirmation from './components/reset-password/ResetPasswordEmailConfirmation'
 import ResetPasswordForm from './components/reset-password/ResetPasswordForm'
 import SetNewPasswordForm from './components/reset-password/SetNewPasswordForm'
 import ShopPreview from './components/shop-preview/ShopPreview'
 import ShopSetupForm from './components/shop-setup/ShopSetupForm'
 import SignInForm from './components/sign-in/SignInForm'
-import SignUpEmailConfirmation from './components/sign-up/SignUpEmailConfirmation'
 import SignUpForm from './components/sign-up/SignUpForm'
 import SubscriptionPlansDisplay from './components/subscription-plans-display/SubscriptionPlansDisplay'
 import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans'
@@ -51,11 +50,11 @@ function Onboarding() {
             rightContent: <ProductCards />
         },
         'SIGNUP_EMAIL_VERIFICATION': {
-            leftContent: <SignUpEmailConfirmation onBack={prevStep} onNext={nextStep} />,
+            leftContent: <EmailConfirmation mode='signup' onBack={prevStep} onNext={nextStep} />,
             rightContent: <ProductCards />
         },
         'RESET_PASSWORD_VERIFICATION': {
-            leftContent: <ResetPasswordEmailConfirmation onBack={prevStep} onNext={nextStep} />,
+            leftContent: <EmailConfirmation mode='reset' onBack={prevStep} onNext={nextStep} />,
             rightContent: <ProductCards />
         },
         'SET_NEW_PASSWORD': {

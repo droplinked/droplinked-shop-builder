@@ -1,18 +1,18 @@
 import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
+import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 import React from 'react'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
-import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
 
 interface EmailConfirmationProps {
-    mode: 'signup' | 'reset';
-    onBack: () => void;
-    onNext?: () => void;
+    mode: 'signup' | 'reset'
+    onBack: () => void
+    onNext: () => void
 }
 
-function EmailConfirmation({mode, onBack, onNext}: EmailConfirmationProps) {
+function EmailConfirmation({ mode, onBack, onNext }: EmailConfirmationProps) {
     const {
         otp,
         inputState,
@@ -23,7 +23,7 @@ function EmailConfirmation({mode, onBack, onNext}: EmailConfirmationProps) {
         resendLoading,
         loginLoading
     } = useEmailVerification({ mode, onNext })
-  
+
     return (
         <>
             <OnboardingStepHeader
