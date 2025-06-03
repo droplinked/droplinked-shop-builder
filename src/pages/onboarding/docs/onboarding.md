@@ -63,7 +63,7 @@ function App() {
 ```
 
 ## 🚨 Important Notes
-- Steps with authentication (`SIGN_IN`, `SIGN_UP`, `EMAIL_CONFIRMATION`) have special layout handling
+- Steps with authentication (`SIGN_IN`, `SIGN_UP`, `SIGNUP_EMAIL_VERIFICATION`) have special layout handling
 - Right content is optional (null for completion step)
 - Smooth scrolling enabled for step transitions
 - URL parameters control initial entry point
