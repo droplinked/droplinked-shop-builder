@@ -8,8 +8,8 @@ function Crossmint() {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title="Crossmint"
-                description='Description'
+                title="Merchant Assistant"
+                description='The AI merchant assistant is dedicated to optimizing inventory for agentic commerce.'
             />
             <PageGrid.Content>
                 <RuledGrid columns={1} nested>

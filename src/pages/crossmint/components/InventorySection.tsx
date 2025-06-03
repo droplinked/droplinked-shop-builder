@@ -15,12 +15,12 @@ function InventorySection() {
     ]
 
     return (
-        <SectionContainer title="Inventory">
+        <SectionContainer title="Onchain Inventory">
             <SectionContent
                 title="Recorded Products"
-                description="Discover and organize recorded products and import them seamlessly."
+                description="Browse, organize and transfer inventory records from here."
                 rightContent={
-                    <AppButton variant='normal' marginLeft="auto" padding="10px 14px">Import All Products</AppButton>
+                    <AppButton variant='normal' marginLeft="auto" padding="10px 14px">Transfer Records</AppButton>
                 }
             />
             <RuledGrid columns={1} borderRadius={8}>
