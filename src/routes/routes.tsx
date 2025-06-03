@@ -60,6 +60,7 @@ const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"))
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
+const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplate"))
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
@@ -213,6 +214,7 @@ const router = createBrowserRouter([
         ],
 
     },
+    { path: "invoice/:txId", element: <InvoiceTemplate /> },
     { path: "*", element: <NotFoundPage /> }
 ])
 

@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IAvailableFilterTypesResponse, ICreditAnalyticsData, IDetailedAnalyticData, IGetCreditAnalytics } from "./interfaces"
+import { IAvailableFilterTypesResponse, ICreditAnalyticsData, IDetailedAnalyticData, IGetCreditAnalytics, PdfExportDataResponse } from "./interfaces"
 
 export const getCreditAnalytics = ({ endDate, startDate }: IGetCreditAnalytics) =>
     axiosInstance.get<{ data: ICreditAnalyticsData }>(`shop/credit/analytics?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
@@ -11,4 +11,4 @@ export const getAvailableFilterTypes = () =>
     axiosInstance.get<{ data: IAvailableFilterTypesResponse }>(`shop/credit/transaction-types`)
 
 export const downloadCreditChangeInvoice = (transactionId: string) =>
-    axiosInstance.get(`shop/credit-transactions/${transactionId}/pdf`, { responseType: 'blob' }).then(res => res.data)
+    axiosInstance.get<{ data: PdfExportDataResponse }>(`/shop/credit-transactions/${transactionId}/pdf`).then(res => res.data)
