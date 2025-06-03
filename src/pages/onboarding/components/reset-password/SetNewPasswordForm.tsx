@@ -2,7 +2,7 @@ import { VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { resetPassword } from 'lib/apis/user/services'
+import { resetPasswordService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
@@ -26,13 +26,8 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
     const { showToast } = useAppToast()
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
-        if (resetToken === null) {
-            showToast({ type: "error", message: "Reset token not found. Please try again." })
-            return
-        }
-
         try {
-            await resetPassword({ token: resetToken || '', newPassword: values.password })
+            await resetPasswordService({ token: resetToken , newPassword: values.password })
 
             updateOnboardingState("credentials", {
                 email: credentials.email,

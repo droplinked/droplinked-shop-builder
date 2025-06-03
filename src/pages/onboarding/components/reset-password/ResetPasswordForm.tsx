@@ -4,7 +4,7 @@ import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { forgetPasswordService } from 'lib/apis/user/services'
+import { forgetPasswordService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
@@ -58,7 +58,7 @@ function ResetPasswordForm({ onNext }: OnboardingStepProps) {
               message={errors.email?.toString()}
             />
 
-            <AppButton size="lg" type="submit" isLoading={isSubmitting}>
+            <AppButton type="submit" isLoading={isSubmitting}>
               Continue
             </AppButton>
 

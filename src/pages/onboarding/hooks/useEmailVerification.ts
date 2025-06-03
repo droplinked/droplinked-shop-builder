@@ -1,5 +1,6 @@
 import useAppToast from 'hooks/toast/useToast'
-import { forgetPasswordService, resendEmailService, verifyEmailCode, verifyResetPasswordCode } from 'lib/apis/user/services'
+import { forgetPasswordService, verifyResetPasswordCodeService } from 'lib/apis/auth/services'
+import { resendEmailService, verifyEmailCode } from 'lib/apis/user/services'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
 import useOnboardingStore from '../stores/useOnboardingStore'
@@ -24,7 +25,7 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
     // Service selection based on mode
     const verifyConfirmationCodeService = mode === 'signup'
         ? () => verifyEmailCode({ code: otp, email })
-        : () => verifyResetPasswordCode({ code: otp, email })
+        : () => verifyResetPasswordCodeService({ code: otp, email })
 
     const resendConfirmationCodeService = mode === 'signup'
         ? () => resendEmailService({ email })
