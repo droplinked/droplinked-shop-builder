@@ -5,20 +5,7 @@ import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { producerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-
-interface SidebarItem  {
-    title: string;
-    icon: any;
-    linkTo?: string | null;
-    list: Array<{ listTitle: string; linkTo: string }>;
-    onClick?: () => void;
-    external?: boolean;
-};
-
-interface SidebarGroup {
-    group: string;
-    items: SidebarItem[];
-}
+import { SidebarGroupType } from '../Sidebar/SidebarGroup'
 
 interface CustomBreadcrumbItem {
     title: string
@@ -37,7 +24,7 @@ export const Breadcrumbs = () => {
     const getBreadcrumbs = (path: string): CustomBreadcrumbItem[] => {
         const breadcrumbs: CustomBreadcrumbItem[] = [{ title: 'Home', linkTo: '/analytics' }]
 
-        producerSidebarLinks.forEach((group: SidebarGroup) => {
+        producerSidebarLinks.forEach((group: SidebarGroupType) => {
             group.items.forEach((item) => {
                 // Check top-level item
                 if (item.linkTo === path) {
