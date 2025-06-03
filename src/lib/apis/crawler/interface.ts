@@ -1,6 +1,7 @@
 export interface SelectedProductsForCrawl {
     poolId: string
     selectedUrls: string[]
+    shouldRecord: boolean
 }
 
 export interface StartWebsiteCrawlingResponse {
@@ -26,4 +27,11 @@ export interface RecentCrawlerTasksResponse {
     }
     createdAt: string
     updatedAt: string
+}
+
+export interface RecordedProduct {
+    id: string,
+    title: string,
+    image: string,
+    status: string
 }
