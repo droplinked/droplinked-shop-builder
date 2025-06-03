@@ -28,7 +28,7 @@ function WalletSection() {
         <SectionContainer title="Crossmint Wallet">
             <SectionContent
                 title="Wallet Address"
-                description="The crossmint wallet offers a secure and seamless experience."
+                description="Onchain inventory records are stored here by default"
                 rightContent={
                     <AppInput
                         rightElement={<CopyButton />}
