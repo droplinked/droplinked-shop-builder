@@ -35,6 +35,7 @@ function InventorySection({ wallet }: { wallet?: string }) {
     })
 
     const polygonWallet = wallets?.find((w) => w.type === "POLYGON")
+    const isEmpty = data?.length === 0
 
     return (
         <SectionContainer title="Onchain Inventory">
@@ -72,7 +73,7 @@ function InventorySection({ wallet }: { wallet?: string }) {
                 </Box>
             }
             {isFetching && <LoadingSkeleton isFetching={isFetching} />}
-            {!isFetching &&
+            {!isFetching && !isEmpty &&
                 <RuledGrid
                     columns={1}
                     borderRadius={8}
