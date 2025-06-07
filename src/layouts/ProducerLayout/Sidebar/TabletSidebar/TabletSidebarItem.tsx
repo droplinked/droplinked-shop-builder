@@ -1,4 +1,5 @@
 import { Box, Link as ChakraLink, Popover, PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger, Portal, useDisclosure } from "@chakra-ui/react"
+import AppTooltip from "components/common/tooltip/AppTooltip"
 import React from "react"
 import { NavLink as RouterLink, useLocation } from "react-router-dom"
 import { SidebarItemType } from "../SidebarGroup"
@@ -23,35 +24,35 @@ function TabletSidebarItem({ item }: { item: SidebarItemType }) {
     // If the item is a direct link, render it immediately
     if (item.linkTo) {
         return (
-            <ChakraLink
-                as={RouterLink}
-                to={item.linkTo}
-                onClick={item.onClick}
-                isExternal={item.external}
-                {...baseButtonStyles}
-                {...(isActive ? activeStyles : {})}
-            >
-                {item.icon}
-            </ChakraLink>
+            <AppTooltip label={item.title}>
+                <ChakraLink
+                    as={RouterLink}
+                    to={item.linkTo}
+                    onClick={item.onClick}
+                    isExternal={item.external}
+                    {...baseButtonStyles}
+                    {...(isActive ? activeStyles : {})}
+                >
+                    {item.icon}
+                </ChakraLink>
+            </AppTooltip>
         )
     }
 
     // Otherwise, render a popover with a list of links
     return (
-        <Popover
-            placement="right-start"
-            isOpen={disclosure.isOpen}
-            onOpen={disclosure.onOpen}
-            onClose={disclosure.onClose}
-            closeOnBlur
-        >
+        <Popover placement="right-start" {...disclosure}>
             <PopoverTrigger>
-                <Box
-                    as="button"
-                    {...baseButtonStyles}
-                    {...(isActive ? activeStyles : {})}
-                >
-                    {item.icon}
+                <Box>
+                    <AppTooltip label={item.title}>
+                        <Box
+                            as="button"
+                            {...baseButtonStyles}
+                            {...(isActive ? activeStyles : {})}
+                        >
+                            {item.icon}
+                        </Box>
+                    </AppTooltip>
                 </Box>
             </PopoverTrigger>
 
