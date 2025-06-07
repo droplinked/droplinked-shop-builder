@@ -35,7 +35,7 @@ function StatisticModal({ data }: IProps) {
             <AppButton
                 variant="outlined"
                 color="neutral.white"
-                borderColor="gray.800"
+                borderColor="neutral.gray.800"
                 onClick={onOpen}
                 leftIcon={<AppIcons.Statistics />}
             >
