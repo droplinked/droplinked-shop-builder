@@ -11,7 +11,7 @@ import { GiftMd } from "assets/icons/System/Gift/GiftMd";
 import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
 import React from "react";
 
-export const producerSidebarLinks = [
+const baseSidebarLinks = [
     {
         group: 'Performance',
         items: [
@@ -114,4 +114,20 @@ export const producerSidebarLinks = [
             }
         ]
     }
-]
+];
+
+// Utility function to filter sidebar links based on conditions
+export const getFilteredSidebarLinks = (hasCompletedQuests: boolean) => {
+    return baseSidebarLinks.map(group => ({
+        ...group,
+        items: group.items.filter(item => {
+            // Filter out Quests if they are completed
+            if (item.title === 'Quests' && hasCompletedQuests) {
+                return false;
+            }
+            return true;
+        })
+    }));
+};
+
+export const producerSidebarLinks = baseSidebarLinks;
