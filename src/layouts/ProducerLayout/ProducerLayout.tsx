@@ -29,7 +29,7 @@ function ProducerLayout({ children, hideSidebar = false, showBackground = false 
         <ProducerLayoutProvider>
             <Grid
                 position="relative"
-                templateColumns={{ base: '1fr', md: hideSidebar ? '1fr' : '72px 1fr', xl: hideSidebar ? '1fr' : '288px 1fr' }}
+                templateColumns={hideSidebar ? '1fr' : { md: '72px 1fr', xl: '288px 1fr' }}
                 templateRows="auto 1fr auto"
                 minH="100vh"
             >
