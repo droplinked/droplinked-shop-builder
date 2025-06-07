@@ -58,59 +58,58 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
 
             <Portal>
                 <PopoverContent
+                    position="relative"
                     left={6}
+                    top={-2}
                     width="288px"
                     border="none"
                     bgColor="transparent"
                     boxShadow="none"
-                    position="relative"
                     zIndex="popover"
                 >
-                    <Box position="relative">
-                        <Box position="absolute" top="36px" transform="translateY(-50%)" left="-11px">
-                            <LeftArrowSVG />
-                        </Box>
+                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-11px">
+                        <LeftArrowSVG />
+                    </Box>
 
-                        <Flex 
-                            position="relative" 
-                            bg="neutral.gray.1000" 
-                            borderRadius="lg" 
-                            border="1px solid"
-                            borderColor="neutral.gray.800"
-                            flexDirection="column" 
-                            overflow="hidden"
-                        >
-                            <Flex w="full" p="4" justifyContent="start" alignItems="center" gap="3">
-                                <Text flex="1" color="white" fontSize="sm" fontWeight="normal" lineHeight="tight">
-                                    {item.title}
-                                </Text>
-                            </Flex>
-
-                            <Divider borderColor="neutral.gray.800" />
-
-                            <Flex w="full" px="5" py="4" flexDirection="column" gap="3">
-                                {item.list?.map((listItem, index) => (
-                                    <ChakraLink
-                                        key={index}
-                                        as={RouterLink}
-                                        to={listItem.linkTo}
-                                        fontSize={14}
-                                        color="text.subtext.placeholder.light"
-                                        isExternal={listItem.external}
-                                        onClick={() => {
-                                            disclosure.onClose()
-                                            listItem.onClick?.()
-                                        }}
-                                    >
-                                        {listItem.listTitle}
-                                    </ChakraLink>
-                                ))}
-                            </Flex>
+                    <Flex
+                        position="relative"
+                        bg="neutral.gray.1000"
+                        borderRadius="lg"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
+                        flexDirection="column"
+                        overflow="hidden"
+                    >
+                        <Flex w="full" p="4" justifyContent="start" alignItems="center" gap="3">
+                            <Text flex="1" color="white" fontSize="sm" fontWeight="normal" lineHeight="tight">
+                                {item.title}
+                            </Text>
                         </Flex>
 
-                        <Box position="absolute" top="36px" transform="translateY(-50%)" left="-10px">
-                            <BackgroundArrowSVG />
-                        </Box>
+                        <Divider borderColor="neutral.gray.800" />
+
+                        <Flex w="full" px="5" py="4" flexDirection="column" gap="3">
+                            {item.list?.map((listItem, index) => (
+                                <ChakraLink
+                                    key={index}
+                                    as={RouterLink}
+                                    to={listItem.linkTo}
+                                    fontSize={14}
+                                    color="text.subtext.placeholder.light"
+                                    isExternal={listItem.external}
+                                    onClick={() => {
+                                        disclosure.onClose()
+                                        listItem.onClick?.()
+                                    }}
+                                >
+                                    {listItem.listTitle}
+                                </ChakraLink>
+                            ))}
+                        </Flex>
+                    </Flex>
+
+                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-10px">
+                        <BackgroundArrowSVG />
                     </Box>
                 </PopoverContent>
             </Portal>
