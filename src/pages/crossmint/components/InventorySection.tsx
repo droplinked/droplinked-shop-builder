@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import LoadingSkeleton from './LoadingSkeleton'
 
-function InventorySection({ wallet }: { wallet?: string }) {
+function InventorySection({ crossmintWallet }: { crossmintWallet?: string }) {
     const { showToast } = useAppToast()
     const { user: { wallets } } = useAppStore()
     const { mutateAsync, isLoading } = useMutation({
@@ -28,10 +28,10 @@ function InventorySection({ wallet }: { wallet?: string }) {
     const { isFetching, data } = useQuery({
         queryFn: () => getRecordedProducts(),
         queryKey: ['recorded-products'],
-        enabled: !!wallet,
+        enabled: !!crossmintWallet,
         select(data) {
             return data.data
-        },
+        }
     })
 
     const polygonWallet = wallets?.find((w) => w.type === "POLYGON")

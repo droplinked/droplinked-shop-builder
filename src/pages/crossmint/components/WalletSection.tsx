@@ -5,11 +5,12 @@ import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 
-function WalletSection({ wallet }: { wallet?: string }) {
+function WalletSection({ crossmintWallet }: { crossmintWallet?: string }) {
     const { showToast } = useAppToast()
 
     const handleCopyAddress = () => {
-        navigator.clipboard.writeText(wallet)
+        if (!crossmintWallet) return
+        navigator.clipboard.writeText(crossmintWallet)
         showToast({
             type: "success",
             message: "The wallet address has been copied to your clipboard."
@@ -32,7 +33,7 @@ function WalletSection({ wallet }: { wallet?: string }) {
                         rightElement={<CopyButton />}
                         inputProps={{
                             placeholder: "Wallet Address",
-                            value: wallet,
+                            value: crossmintWallet,
                             name: "walletAddress",
                             isDisabled: true
                         }}
