@@ -8,9 +8,11 @@ const InvoiceFooter: React.FC = () => {
     return (
         <footer className="invoice-footer">
             <div className="footer-content">
-                <span>www.{companyWebsite}</span>
+                <a href={`https://${companyWebsite}`}>
+                    {companyWebsite}
+                </a>
                 <span></span>
-                <span>{companyEmail}</span>
+                <a href={`mailto:${companyEmail}`}>{companyEmail}</a>
             </div>
         </footer>
     )
