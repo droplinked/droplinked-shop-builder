@@ -5,7 +5,7 @@ import BlueButton from "components/redesign/button/BlueButton";
 import { Formik } from "formik";
 import useAppToast from "hooks/toast/useToast";
 import { addressByIdService, createAddressService, updateAddressService } from "lib/apis/address/addressServices";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
 import { useMutation, useQuery } from "react-query";

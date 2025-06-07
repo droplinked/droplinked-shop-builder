@@ -54,13 +54,15 @@ export default function ProductImages() {
                     flexProps={{ minH: "140px" }}
                 />
 
-                <Flex direction="column" gap={3}>
-                    {sortedMedia.map((mediaItem) => (
-                        <SelectedFileCard key={mediaItem.url} previewImage={mediaItem.thumbnail} {...mediaItem}>
-                            <MediaActions image={mediaItem} />
-                        </SelectedFileCard>
-                    ))}
-                </Flex>
+                {sortedMedia.length > 0 && (
+                    <Flex direction="column" gap={3}>
+                        {sortedMedia.map((mediaItem) => (
+                            <SelectedFileCard key={mediaItem.url} previewImage={mediaItem.thumbnail} {...mediaItem}>
+                                <MediaActions image={mediaItem} />
+                            </SelectedFileCard>
+                        ))}
+                    </Flex>
+                )}
             </Flex>
         </FormFieldWrapper>
     )

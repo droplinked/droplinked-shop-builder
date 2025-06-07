@@ -3,7 +3,7 @@ import AppIcons from "assets/icon/Appicons";
 import AppSkeleton from "components/common/skeleton/AppSkeleton";
 import AppTypography from "components/common/typography/AppTypography";
 import { getShopPrivateKeyService } from "lib/apis/shop/shopServices";
-import { useHasPermission } from "lib/stores/app/appStore";
+import { useHasPermission } from "stores/app/appStore";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 

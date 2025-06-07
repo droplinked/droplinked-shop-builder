@@ -7,7 +7,7 @@ import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
 import { IPostWithdrawCircleWallet } from "lib/apis/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "lib/apis/shop/shopServices";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";

@@ -1,4 +1,4 @@
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import axiosInstance from "../axiosConfig";
 import { ShopSubscriptionData, SubscriptionCheckout, SubscriptionCryptoCheckout, SubscriptionPlan, SubscriptionPlanPaymentMethod, SubscriptionStripePaymentResult, We3TransactionData } from "./interfaces";
 
@@ -23,3 +23,5 @@ export const subscriptionPlanCryptoPaymentService = ({ chain, token, checkoutDat
 export const sendPlanPurchaseTransactionToWeb3Service = (chain: string, web3Data: We3TransactionData) => axiosInstance.post(`${endpoint}/payment/${chain}`, web3Data).then(res => res.data)
 
 export const subscriptionPlanStripePaymentService = (checkoutData: SubscriptionCheckout) => axiosInstance.post<{ data: SubscriptionStripePaymentResult }>(`${endpoint}/buy`, checkoutData).then(res => res.data)
+
+export const cancelSubscription = () => axiosInstance.post(`subscription/cancel`)

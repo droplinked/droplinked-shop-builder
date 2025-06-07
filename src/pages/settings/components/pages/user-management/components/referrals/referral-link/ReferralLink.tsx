@@ -1,4 +1,4 @@
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import SectionContent from 'pages/settings/components/common/SectionContent'
 import React from 'react'
 import LinkContainer from './LinkContainer'

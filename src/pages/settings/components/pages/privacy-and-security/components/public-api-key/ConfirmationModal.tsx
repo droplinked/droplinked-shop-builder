@@ -5,7 +5,7 @@ import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
-import { useCheckPermission } from 'lib/stores/app/appStore'
+import { useCheckPermission } from 'stores/app/appStore'
 import React from 'react'
 import { useMutation } from 'react-query'
 

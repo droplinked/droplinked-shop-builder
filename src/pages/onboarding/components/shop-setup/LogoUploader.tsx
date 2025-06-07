@@ -77,6 +77,6 @@ export default function LogoUploader() {
                     />
                 </Flex>
             </Flex>
-        </FieldWrapper >
+        </FieldWrapper>
     )
 }

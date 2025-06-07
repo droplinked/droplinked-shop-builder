@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
 import React from 'react'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import { shopUpdateService, shopInfoService } from 'lib/apis/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
 

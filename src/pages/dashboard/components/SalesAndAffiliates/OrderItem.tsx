@@ -37,7 +37,7 @@ function OrderItem({ order, onNavigate }: Props) {
                 as="button"
                 flexShrink={0}
                 padding="10px"
-                onClick={() => onNavigate("/analytics/orders")}
+                onClick={() => onNavigate("/analytics/purchase-history")}
             >
                 <ChevronrightMd color='white' />
             </Box>

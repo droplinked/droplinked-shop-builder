@@ -6,16 +6,11 @@ import {
     ISubscribeFeature,
     IchangePasswordService,
     IemailVerifyService,
-    IforgetPasswordService,
     IresendEmailService,
     IuserUpdateService,
     IPostUserVerifyPartner,
     VerifyEmailPayload,
 } from "./interfaces";
-
-export const forgetPasswordService = (props: IforgetPasswordService) => {
-    return axiosInstance.post(`user/forgot-password`, props);
-};
 
 export const changePasswordService = (props: IchangePasswordService) => {
     return axiosInstance.put(`user/recover-account`, props);

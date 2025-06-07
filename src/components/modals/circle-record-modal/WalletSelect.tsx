@@ -1,4 +1,4 @@
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import AppSelect from 'components/redesign/select/AppSelect'
 import React from 'react'
 

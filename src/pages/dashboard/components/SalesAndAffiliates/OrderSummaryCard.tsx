@@ -17,7 +17,7 @@ function OrderSummaryCard({ isLoading, recentOrders }: Props) {
     return (
         <SectionContainer
             title="Order Summary"
-            onNavigate={() => navigate("/analytics/orders")}
+            onNavigate={() => navigate("/analytics/purchase-history")}
         >
             {!recentOrders?.length
                 ? <OrderSummaryEmptyState />

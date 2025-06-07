@@ -1,76 +1,84 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import { ColumnDef } from '@tanstack/react-table';
-import AppTypography from 'components/common/typography/AppTypography';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import Table from 'components/redesign/table/Table';
-import useCreditsData from 'hooks/credits-and-activity/useCreditsData';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
-import React from 'react';
-import StatusBadge from '../StatusBadge';
-import TransactionsCards from './TransactionsCards';
-import TypeColumn from './TypeColumn';
-import { formatDateToLongStyle } from 'utils/helpers';
+import { Text, useBreakpointValue, useMediaQuery } from '@chakra-ui/react'
+import { ColumnDef } from '@tanstack/react-table'
+import { DocumentdownloadLg } from 'assets/icons/Action/DocumentDownload/DocumentdownloadLg'
+import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import Table from 'components/redesign/table/Table'
+import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
+import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { formatDateToLongStyle } from 'utils/helpers'
+import StatusBadge from '../StatusBadge'
+import TransactionsCards from './TransactionsCards'
+import TypeColumn from './TypeColumn'
 
-export default function ResponsiveTable() {
-    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    const { transactionsQuery } = useCreditsData()
-    const { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } = transactionsQuery
-    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || [];
+export default function TransactionsTable() {
+    const [isMobile] = useMediaQuery('(max-width: 768px)')
+    const downloadIcon = useBreakpointValue({
+        base: <DocumentdownloadMd color='#FFF' />,
+        xl: <DocumentdownloadLg color='#FFF' />
+    })
+
+    const { transactionsQuery: { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
+
+    const allTransactions = data?.pages.flatMap(data => data.data.data.data) || []
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
             accessorKey: "type",
             header: "Type",
-            cell: (info) => <TypeColumn type={info.row.original.type} amountType={info.row.original.amountType} />,
+            cell: (info) => <TypeColumn type={info.getValue() as string} amountType={info.row.original.amountType} />,
         },
         {
             accessorKey: "amount",
             header: "Amount",
-            cell: (info) => <FormattedPrice price={info.row.original.amount} fontSize={16} />,
+            cell: (info) => <FormattedPrice price={info.getValue() as number} fontSize={16} />,
         },
         {
-            accessorKey: "date",
+            accessorKey: "createdAt",
             header: "Date",
-            cell: (info) => formatDateToLongStyle(new Date(info.row.original.createdAt))
+            cell: (info) => formatDateToLongStyle(new Date(info.getValue() as string))
         },
         {
             accessorKey: "status",
             header: "Status",
-            cell: (info) => <StatusBadge status={info.row.original.status} />,
+            cell: (info) => <StatusBadge status={info.getValue() as "SUCCESS" | "FAILED"} />,
         },
         {
-            accessorKey: "transactionId",
+            accessorKey: "id",
             header: "Transaction ID",
-            cell: (info) => <AppTypography
-                color={"#fff"}
-                fontSize={16}
-                fontWeight={400}
-                userSelect="all"
+            cell: (info) => <Text color="text.white" userSelect="all">{info.getValue() as string ?? "-"}</Text>
+        }
+    ]
+
+    const renderActions = (tx: IDetailedTransaction) => {
+        return (
+            <Link
+                to={`/invoice/${tx.id}`}
+                target='_blank'
+                rel="noreferrer"
             >
-                {info.row.original.id ?? "-"}
-            </AppTypography>,
-        },
-        // {
-        //     accessorKey: "details",
-        //     header: "Details",
-        //     cell: (info) => <AppTooltip label={info.row.original.details} placement='bottom-start'>{info.row.original.details}</AppTooltip>,
-        // },
-    ];
+                {downloadIcon}
+            </Link>
+        )
+    }
+
+    if (isMobile) return <TransactionsCards />
 
     return (
-        isSmallerThan768 ?
-            <TransactionsCards />
-            : <Table
-                infiniteScroll={{
-                    hasMore: hasNextPage,
-                    next: fetchNextPage,
-                    isFetchingNextPage: isFetchingNextPage,
-                    dataLength: 20,
-                }}
-                isLoading={isFetching}
-                data={transactions}
-                columns={columns}
-                tableFontSize={16}
-            />
+        <Table
+            isLoading={isFetching}
+            data={allTransactions}
+            columns={columns}
+            renderActions={renderActions}
+            tableFontSize={16}
+            infiniteScroll={{
+                hasMore: hasNextPage,
+                next: fetchNextPage,
+                isFetchingNextPage,
+                dataLength: allTransactions.length
+            }}
+        />
     )
 }

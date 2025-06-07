@@ -1,4 +1,4 @@
-import { createQueryString } from "../_utils/with.query"
+import { createQueryString } from "utils/helpers/urlUtils"
 import axiosInstance from "../axiosConfig"
 import { ChangelogEntry, ChangelogQueryParams, ChangelogResponse } from "./interfaces"
 

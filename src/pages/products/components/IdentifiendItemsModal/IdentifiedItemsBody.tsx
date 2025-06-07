@@ -5,6 +5,8 @@ import MessageBox from 'components/redesign/message-box/MessageBox'
 import { CrawledProductsType } from 'pages/products/utils/types'
 import ItemsTable from './ItemsTable'
 import { usePagination } from '../../hooks/usePagination'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import SwitchBox from 'components/redesign/switch-box/SwitchBox'
 
 interface Props {
     selectedProducts: string[]
@@ -14,9 +16,11 @@ interface Props {
     isSelectionDisabled: (url: string) => boolean
     crawledProduct: CrawledProductsType[]
     maxSelectableItems: number
+    shouldRecord: boolean
+    setshouldRecord: (value: boolean) => void
 }
 
-export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled }: Props) {
+export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled, setshouldRecord, shouldRecord }: Props) {
     const ITEMS_PER_PAGE = 8
 
     const {
@@ -49,6 +53,16 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
                         theme='warning'
                     />
                 )}
+
+                <RuledGrid columns={1} borderRadius={8} p="16px 24px">
+                    <SwitchBox
+                        title="Drop (Digital Product Passport Records)"
+                        description="Create onchain digital records for the inventory selected below."
+                        isChecked={shouldRecord}
+                        onToggle={() => setshouldRecord(!shouldRecord)}
+                        showBetaBadge
+                    />
+                </RuledGrid>
 
                 <ItemsTable
                     items={currentItems}

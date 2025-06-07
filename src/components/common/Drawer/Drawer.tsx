@@ -82,7 +82,7 @@ function Drawer({
                     padding={9}
                     {...drawerHeaderStyle}
                 >
-                    <Flex justifyContent="space-between" alignItems="center" width="100%">
+                    <Flex justifyContent="space-between" alignItems="baseline" width="100%">
                         {icon}
                         {title &&
                             <Flex flexDirection="column" gap={1}>

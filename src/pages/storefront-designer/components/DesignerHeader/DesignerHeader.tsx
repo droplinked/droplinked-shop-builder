@@ -20,7 +20,7 @@ function DesignerHeader(): React.ReactElement {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      top="75px"
+      top="0"
       zIndex={2}
       paddingX={8}
       paddingY={4}

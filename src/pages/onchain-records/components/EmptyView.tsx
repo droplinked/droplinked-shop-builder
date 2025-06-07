@@ -4,7 +4,7 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
-import ConnectWalletModal from './ConnectWalletModal'
+import ConnectWalletModal from './connect-wallets-modal/ConnectWalletModal'
 
 export default function EmptyView() {
     const { onClose, onOpen, isOpen } = useDisclosure();
