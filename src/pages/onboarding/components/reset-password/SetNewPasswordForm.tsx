@@ -27,7 +27,7 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
 
     const handleSubmit = async (values: { password: string, confirmPassword: string }) => {
         try {
-            await resetPasswordService({ token: resetToken , newPassword: values.password })
+            await resetPasswordService({ token: resetToken, newPassword: values.password })
 
             updateOnboardingState("credentials", {
                 email: credentials.email,
@@ -38,7 +38,7 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
             showToast({ type: "success", message: "Password reset successfully" })
             onNext()
         } catch (error) {
-            showToast({ type: "error", message: error?.response?.data?.message || "Failed to reset password" })
+            showToast({ type: "error", message: error?.response?.data?.data?.message || "Failed to reset password" })
         }
     }
 
