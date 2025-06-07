@@ -1,4 +1,4 @@
-import { Box, Link as ChakraLink, Popover, PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger, useDisclosure } from "@chakra-ui/react"
+import { Box, Link as ChakraLink, Popover, PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger, Portal, useDisclosure } from "@chakra-ui/react"
 import React from "react"
 import { NavLink as RouterLink, useLocation } from "react-router-dom"
 import { SidebarItemType } from "../SidebarGroup"
@@ -7,12 +7,11 @@ function TabletSidebarItem({ item }: { item: SidebarItemType }) {
     const disclosure = useDisclosure()
     const location = useLocation()
 
-    const activeStyles = { bg: 'neutral.gray.800' }
-
+    const activeStyles = { bg: "neutral.gray.800" }
     const baseButtonStyles = {
         borderRadius: 8,
-        padding: '10px',
-        transition: 'background-color 0.2s',
+        padding: "10px",
+        transition: "background-color 0.2s",
         _hover: activeStyles
     }
 
@@ -39,47 +38,65 @@ function TabletSidebarItem({ item }: { item: SidebarItemType }) {
 
     // Otherwise, render a popover with a list of links
     return (
-        <Popover placement="right-start" {...disclosure}>
+        <Popover
+            placement="right-start"
+            isOpen={disclosure.isOpen}
+            onOpen={disclosure.onOpen}
+            onClose={disclosure.onClose}
+            closeOnBlur
+        >
             <PopoverTrigger>
-                <Box as="button" {...baseButtonStyles}  {...(isActive ? activeStyles : {})}>
+                <Box
+                    as="button"
+                    {...baseButtonStyles}
+                    {...(isActive ? activeStyles : {})}
+                >
                     {item.icon}
                 </Box>
             </PopoverTrigger>
-            <PopoverContent
-                left={6}
-                width="288px"
-                border="none"
-                borderRadius={8}
-                bgColor="neutral.gray.1000"
-            >
-                <PopoverHeader
-                    borderBottomColor="neutral.gray.800"
-                    padding={4}
-                    fontSize={14}
-                    color="text.white"
+
+            <Portal>
+                <PopoverContent
+                    left={6}
+                    width="288px"
+                    border="none"
+                    borderRadius={8}
+                    bgColor="neutral.gray.1000"
+                    zIndex="popover"
                 >
-                    {item.title}
-                </PopoverHeader>
-                <PopoverBody
-                    display="flex"
-                    flexDirection="column"
-                    gap={3}
-                    padding="16px 20px"
-                >
-                    {item.list?.map((listItem, index) => (
-                        <ChakraLink
-                            key={index}
-                            as={RouterLink}
-                            to={listItem.linkTo}
-                            fontSize={14}
-                            color="text.subtext.placeholder.light"
-                            onClick={disclosure.onClose}
-                        >
-                            {listItem.listTitle}
-                        </ChakraLink>
-                    ))}
-                </PopoverBody>
-            </PopoverContent>
+                    <PopoverHeader
+                        borderBottomColor="neutral.gray.800"
+                        padding={4}
+                        fontSize={14}
+                        color="text.white"
+                    >
+                        {item.title}
+                    </PopoverHeader>
+                    <PopoverBody
+                        display="flex"
+                        flexDirection="column"
+                        gap={3}
+                        padding="16px 20px"
+                    >
+                        {item.list?.map((listItem, index) => (
+                            <ChakraLink
+                                key={index}
+                                as={RouterLink}
+                                to={listItem.linkTo}
+                                fontSize={14}
+                                color="text.subtext.placeholder.light"
+                                isExternal={listItem.external}
+                                onClick={() => {
+                                    disclosure.onClose()
+                                    listItem.onClick?.()
+                                }}
+                            >
+                                {listItem.listTitle}
+                            </ChakraLink>
+                        ))}
+                    </PopoverBody>
+                </PopoverContent>
+            </Portal>
         </Popover>
     )
 }
