@@ -1,10 +1,10 @@
-import { Box, Link as ChakraLink, Popover, PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger, Portal, useDisclosure } from "@chakra-ui/react"
+import { Box, Link as ChakraLink, Divider, Flex, Popover, PopoverContent, PopoverTrigger, Portal, Text, useDisclosure } from "@chakra-ui/react"
 import AppTooltip from "components/common/tooltip/AppTooltip"
 import React from "react"
 import { NavLink as RouterLink, useLocation } from "react-router-dom"
 import { SidebarItemType } from "../SidebarGroup"
 
-function TabletSidebarItem({ item }: { item: SidebarItemType }) {
+export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
     const disclosure = useDisclosure()
     const location = useLocation()
 
@@ -58,48 +58,81 @@ function TabletSidebarItem({ item }: { item: SidebarItemType }) {
 
             <Portal>
                 <PopoverContent
+                    position="relative"
                     left={6}
+                    top={-2}
                     width="288px"
                     border="none"
-                    borderRadius={8}
-                    bgColor="neutral.gray.1000"
+                    bgColor="transparent"
+                    boxShadow="none"
                     zIndex="popover"
                 >
-                    <PopoverHeader
-                        borderBottomColor="neutral.gray.800"
-                        padding={4}
-                        fontSize={14}
-                        color="text.white"
-                    >
-                        {item.title}
-                    </PopoverHeader>
-                    <PopoverBody
-                        display="flex"
+                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-11px">
+                        <LeftArrowSVG />
+                    </Box>
+
+                    <Flex
+                        position="relative"
+                        bg="neutral.gray.1000"
+                        borderRadius="lg"
+                        border="1px solid"
+                        borderColor="neutral.gray.800"
                         flexDirection="column"
-                        gap={3}
-                        padding="16px 20px"
+                        overflow="hidden"
                     >
-                        {item.list?.map((listItem, index) => (
-                            <ChakraLink
-                                key={index}
-                                as={RouterLink}
-                                to={listItem.linkTo}
-                                fontSize={14}
-                                color="text.subtext.placeholder.light"
-                                isExternal={listItem.external}
-                                onClick={() => {
-                                    disclosure.onClose()
-                                    listItem.onClick?.()
-                                }}
-                            >
-                                {listItem.listTitle}
-                            </ChakraLink>
-                        ))}
-                    </PopoverBody>
+                        <Flex w="full" p="4" justifyContent="start" alignItems="center" gap="3">
+                            <Text flex="1" color="white" fontSize="sm" fontWeight="normal" lineHeight="tight">
+                                {item.title}
+                            </Text>
+                        </Flex>
+
+                        <Divider borderColor="neutral.gray.800" />
+
+                        <Flex w="full" px="5" py="4" flexDirection="column" gap="3">
+                            {item.list?.map((listItem, index) => (
+                                <ChakraLink
+                                    key={index}
+                                    as={RouterLink}
+                                    to={listItem.linkTo}
+                                    fontSize={14}
+                                    color="text.subtext.placeholder.light"
+                                    isExternal={listItem.external}
+                                    onClick={() => {
+                                        disclosure.onClose()
+                                        listItem.onClick?.()
+                                    }}
+                                >
+                                    {listItem.listTitle}
+                                </ChakraLink>
+                            ))}
+                        </Flex>
+                    </Flex>
+
+                    <Box position="absolute" top="28px" transform="translateY(-50%)" left="-10px">
+                        <BackgroundArrowSVG />
+                    </Box>
                 </PopoverContent>
             </Portal>
         </Popover>
     )
 }
 
-export default TabletSidebarItem
+
+const LeftArrowSVG = () => (
+    <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M1.75 6.83494C0.0833318 7.79719 0.083336 10.2028 1.75 11.1651L10.75 16.3612C12.4167 17.3235 14.5 16.1207 14.5 14.1962V3.80385C14.5 1.87934 12.4167 0.676535 10.75 1.63878L1.75 6.83494Z"
+            fill="#1C1C1C"
+            stroke="#292929"
+        />
+    </svg>
+)
+
+const BackgroundArrowSVG = () => (
+    <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M1 9.73205C-0.333332 8.96225 -0.333334 7.03775 0.999999 6.26795L10 1.0718C11.3333 0.301996 13 1.26425 13 2.80385V13.1962C13 14.7358 11.3333 15.698 10 14.9282L1 9.73205Z"
+            fill="#1C1C1C"
+        />
+    </svg>
+)
