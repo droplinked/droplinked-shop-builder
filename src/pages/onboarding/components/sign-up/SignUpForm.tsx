@@ -47,7 +47,6 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
-            showToast({ message: "Account successfully created", type: "success" })
             onNext()
         }
         catch (error: any) {
