@@ -59,8 +59,8 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
             <Portal>
                 <PopoverContent
                     position="relative"
-                    left={6}
                     top={-2}
+                    left={6}
                     width="288px"
                     border="none"
                     bgColor="transparent"
@@ -73,12 +73,11 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
 
                     <Flex
                         position="relative"
-                        bg="neutral.gray.1000"
-                        borderRadius="lg"
+                        flexDirection="column"
                         border="1px solid"
                         borderColor="neutral.gray.800"
-                        flexDirection="column"
-                        overflow="hidden"
+                        borderRadius={8}
+                        bg="neutral.gray.1000"
                     >
                         <Flex w="full" p="4" justifyContent="start" alignItems="center" gap="3">
                             <Text flex="1" color="white" fontSize="sm" fontWeight="normal" lineHeight="tight">
@@ -88,7 +87,7 @@ export default function TabletSidebarItem({ item }: { item: SidebarItemType }) {
 
                         <Divider borderColor="neutral.gray.800" />
 
-                        <Flex w="full" px="5" py="4" flexDirection="column" gap="3">
+                        <Flex flexDirection="column" gap={3} padding="16px 20px">
                             {item.list?.map((listItem, index) => (
                                 <ChakraLink
                                     key={index}
