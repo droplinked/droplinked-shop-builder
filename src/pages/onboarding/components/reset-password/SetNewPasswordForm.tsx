@@ -81,7 +81,7 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
                                 placeholder="Confirm New Password"
                             />
 
-                            <AppButton type="submit" isLoading={isSubmitting} isDisabled={isSubmitting || !isPasswordValid}>
+                            <AppButton type="submit" isLoading={isSubmitting} isDisabled={isSubmitting || !isPasswordValid} mt="3">
                                 Reset password
                             </AppButton>
                         </Form>

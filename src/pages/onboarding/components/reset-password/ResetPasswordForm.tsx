@@ -46,7 +46,7 @@ function ResetPasswordForm({ onNext }: OnboardingStepProps) {
         onSubmit={handleSubmit}
       >
         {({ values, errors, handleChange, isSubmitting }) => (
-          <Form style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <Form style={{ display: 'flex', flexDirection: 'column' }}>
             <AppInput
               label="Email Address"
               inputProps={{
@@ -57,12 +57,12 @@ function ResetPasswordForm({ onNext }: OnboardingStepProps) {
               }}
               message={errors.email?.toString()}
             />
+                
+              <AppButton type="submit" isLoading={isSubmitting} width="100%" margin="36px 0 24px">
+                Continue
+              </AppButton>
 
-            <AppButton type="submit" isLoading={isSubmitting}>
-              Continue
-            </AppButton>
-
-            <Box display="flex" flexDirection="column" gap={2} mt={6}>
+            <Box display="flex" flexDirection="column" gap={2} >
               <Text fontSize="14px" color="text.white" display="flex" gap={1}>
                 Remember your password?
                 <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>
