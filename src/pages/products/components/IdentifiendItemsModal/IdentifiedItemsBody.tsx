@@ -7,6 +7,7 @@ import ItemsTable from './ItemsTable'
 import { usePagination } from '../../hooks/usePagination'
 import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import SwitchBox from 'components/redesign/switch-box/SwitchBox'
+import { appDevelopment } from 'utils/app/variable'
 
 interface Props {
     selectedProducts: string[]
@@ -54,15 +55,17 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
                     />
                 )}
 
-                <RuledGrid columns={1} borderRadius={8} p="16px 24px">
-                    <SwitchBox
-                        title="Drop (Digital Product Passport Records)"
-                        description="Create onchain digital records for the inventory selected below."
-                        isChecked={shouldRecord}
-                        onToggle={() => setshouldRecord(!shouldRecord)}
-                        showBetaBadge
-                    />
-                </RuledGrid>
+                {appDevelopment && (
+                    <RuledGrid columns={1} borderRadius={8} p="16px 24px">
+                        <SwitchBox
+                            title="Drop (Digital Product Passport Records)"
+                            description="Create onchain digital records for the inventory selected below."
+                            isChecked={shouldRecord}
+                            onToggle={() => setshouldRecord(!shouldRecord)}
+                            showBetaBadge
+                        />
+                    </RuledGrid>
+                )}
 
                 <ItemsTable
                     items={currentItems}
