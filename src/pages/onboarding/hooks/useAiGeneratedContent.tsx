@@ -16,6 +16,8 @@ export const useAiGeneratedContent = (businessCategory: string, businessDescribe
         name: storeSetup.name || '',
     });
 
+    const defaultLogo = "https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png"
+
     useEffect(() => {
         setStagedState({
             logo: logos?.[0] || '',
@@ -36,7 +38,7 @@ export const useAiGeneratedContent = (businessCategory: string, businessDescribe
             showToast({ message: err.response.data.data.message, type: "error" });
         },
         onSuccess(data) {
-            handleLogoChange(data?.[0]);
+            handleLogoChange(data?.[0] || defaultLogo);
         },
         refetchOnMount: false,
     });
