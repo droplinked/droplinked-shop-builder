@@ -12,6 +12,7 @@ import { useMutation, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import LoadingSkeleton from './LoadingSkeleton'
+import { appDevelopment } from 'utils/app/variable'
 
 function InventorySection({ crossmintWallet }: { crossmintWallet?: string }) {
     const { showToast } = useAppToast()
@@ -43,18 +44,19 @@ function InventorySection({ crossmintWallet }: { crossmintWallet?: string }) {
                 title="Recorded Products"
                 description="Browse, organize and transfer inventory records from here."
                 rightContent={
-                    <AppButton
-                        variant='normal'
-                        marginLeft="auto"
-                        padding="10px 14px"
-                        isLoading={isLoading}
-                        loadingText="Claiming NFTs..."
-                        isDisabled={!polygonWallet?.address}
-                        onClick={() => mutateAsync(polygonWallet?.address)}
-                    >
-                        Transfer Records
-                    </AppButton>
-                }
+                    appDevelopment && (
+                        <AppButton
+                            variant='normal'
+                            marginLeft="auto"
+                            padding="10px 14px"
+                            isLoading={isLoading}
+                            loadingText="Claiming NFTs..."
+                            isDisabled={!polygonWallet?.address}
+                            onClick={() => mutateAsync(polygonWallet?.address)}
+                        >
+                            Transfer Records
+                        </AppButton>
+                    )}
             />
             {!polygonWallet?.address &&
                 <Box width="600px">
