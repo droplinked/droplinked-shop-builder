@@ -25,3 +25,13 @@ export interface IsignupService {
     udUserId?: string
     subscriptionId?: string
 }
+
+export interface IResetPasswordCodeVerify {
+    email: string;
+    code: string;
+}
+
+export interface IResetPassword {
+    token: string;
+    newPassword: string;
+}

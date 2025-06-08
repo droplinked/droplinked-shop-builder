@@ -44,7 +44,7 @@ export interface IDetailedTransaction {
     amount: number;
     previousAmount: number;
     newAmount: number;
-    status: "SUCCESS" | "FAILED";
+    status: "SUCCESS" | "FAILED" | "PENDING";
     amountType: string;
     type: string;
     stripePaymentIntentId: string;
@@ -64,4 +64,31 @@ export interface IDetailedAnalyticData {
     previousPage: number;
     limit: number;
     totalDocuments: number;
-} 
+}
+
+export interface PdfExportDataResponse {
+    invoiceId: string;
+    invoiceDate: string;
+    transactionId: string;
+    clientName: string;
+    clientEmail: string;
+    clientAddress: string;
+    clientPhone: string;
+    paymentMethod: string;
+    shopName: string;
+    shopDescription: string;
+    shopLogo: string;
+    transactionType: string;
+    transactionAmount: string;
+    transactionStatus: string;
+    transactionDate: string;
+    previousAmount: string;
+    newAmount: string;
+    subtotal: string;
+    tax: string;
+    total: string;
+    currency: string;
+    itemName: string;
+    itemDescription: string;
+    currentYear: number;
+}

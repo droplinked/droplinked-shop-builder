@@ -1,7 +1,7 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppButton from 'components/redesign/button/AppButton'
-import useAppStore from 'lib/stores/app/appStore'
+import useAppStore from 'stores/app/appStore'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CircleManage from './CircleManage'

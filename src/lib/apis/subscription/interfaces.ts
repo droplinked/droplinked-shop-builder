@@ -12,18 +12,26 @@ export interface IFeature {
     items: Array<string>
 }
 export interface IPrice {
-    month: number,
-    discount?: number,
-    price: string,
-    discountPrice?: string
+    month: number;
+    price: string;
+    stripePriceId: string;
+    discount?: number;
+    discountPrice?: string;
 }
 
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    price: Array<IPrice> | Array<string>,
-    description?: string;
-    subOptionIds: SubOptionId[]
+    subOptionIds: Array<{
+        title?: string;
+        key: string;
+        value: Array<{
+            title: string;
+            key: string;
+            value: boolean | string;
+        }>;
+    }>;
+    price: IPrice[] | string;
 }
 
 export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop" | "event"
@@ -57,6 +65,7 @@ export interface ShopSubscriptionData {
     startsAt: string;
     expiresAt: string;
     legalUsage: LegalUsage[]
+    autoRenew: boolean;
 }
 
 export interface SubscriptionCheckout {

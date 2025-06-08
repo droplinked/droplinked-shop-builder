@@ -2,7 +2,7 @@ import AppIcons from "assets/icon/Appicons";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import React from "react";
 import CouponsTable from "./CouponsTable";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import UpgradePlan from "pages/settings/components/common/upgrade-plan/UpgradePlan";
 import { useDisclosure } from "@chakra-ui/react";
 import AccessLevelBadge from "components/redesign/access-level-badge/AccessLevelBadge";

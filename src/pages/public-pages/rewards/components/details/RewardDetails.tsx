@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import useAppStore from 'lib/stores/app/appStore';
+import useAppStore from 'stores/app/appStore';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomizableSection from './CustomizableSection';

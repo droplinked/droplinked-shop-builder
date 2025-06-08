@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import useSubscriptionPlanStore from 'lib/stores/subscription-plan.ts/subscriptionPlanStore';
+import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 
 interface BillingSummaryProps {
   subscriptionCost: number;

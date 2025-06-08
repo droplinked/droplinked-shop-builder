@@ -48,7 +48,7 @@ export default function GenerationModal({ isOpen, onClose, generateWithAiData, s
                         />
                     </ModalBody>
                 </Flex>
-                <GeneratedContents generateWithAiData={generateWithAiData} />
+                <GeneratedContents generateWithAiData={generateWithAiData} onClose={onClose} />
             </Grid>
         </AppModal>
     )

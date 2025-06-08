@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import HorizontalBarChart from "components/redesign/horizontal-bar-chart/horizontalBarChart"
+import HorizontalBarChart from "components/redesign/horizontal-bar-chart/HorizontalBarChart"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
 import React, { ReactNode } from "react"

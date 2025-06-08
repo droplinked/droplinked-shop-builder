@@ -1,82 +1,78 @@
-import MainLayout from "components/layouts/app/main/MainLayout";
-import StandaloneLayout from "components/layouts/standalone/StandaloneLayout";
-import DashboardLayout from "components/layouts/dashboard/DashboardLayout";
-import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading";
-import BlogCreatePage from "pages/blogs/components/BlogCreatePage";
-import BlogEditPage from "pages/blogs/components/BlogEditPage";
-import Changelog from "pages/changelog/Changelog";
-import ChangelogDetail from "pages/changelog/components/ChangelogDetail";
-import Onboarding from "pages/onboarding/Onboarding";
-import Blog from "pages/public-pages/blogs/blogs.blog";
-import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage";
-import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage";
-import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage";
-import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage";
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage";
-import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage";
-import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page";
-import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage";
-import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage";
-import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage";
-import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage";
-import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage";
-import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage";
-import ROIPage from "pages/public-pages/landings/roi-page/ROIPage";
-import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage";
-import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage";
-import Rewards from "pages/public-pages/rewards/Rewards";
-import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner";
-
-import React, { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
+import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
+import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
+import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
+import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
+import BlogEditPage from "pages/blogs/components/BlogEditPage"
+import Changelog from "pages/changelog/Changelog"
+import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
+import Onboarding from "pages/onboarding/Onboarding"
+import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
+import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
+import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
+import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
+import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
+import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
+import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
+import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
+import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
+import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
+import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
+import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
+import Rewards from "pages/public-pages/rewards/Rewards"
+import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner"
+import React, { lazy, Suspense } from "react"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 // Lazy-loaded Components
-const Dashboard = lazy(() => import("pages/dashboard/Dashboard"));
-const Blogs = lazy(() => import("pages/blogs/Blogs"));
-const Collections = lazy(() => import("pages/collections/Collections"));
-const Analytics = lazy(() => import("pages/analytics/Analytics"));
-const Gamification = lazy(() => import("pages/gamification/Gamification"));
-const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })));
+const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
+const Blogs = lazy(() => import("pages/blogs/Blogs"))
+const Collections = lazy(() => import("pages/collections/Collections"))
+const Analytics = lazy(() => import("pages/analytics/Analytics"))
+const Gamification = lazy(() => import("pages/gamification/Gamification"))
+const InvoiceManagement = lazy(() => import("pages/invoice-management").then(module => ({ default: module.InvoiceManagement })))
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
-const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"));
-const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"));
-const ProductsV2 = lazy(() => import("pages/products/ProductsV2"));
-const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"));
-const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"));
-const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"));
-const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"));
-const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"));
-const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"));
-const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"));
-const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"));
-const AffiliateMarket = lazy(() => import("pages/affiliate/market/AffiliateMarket"));
-const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"));
-const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"));
-const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"));
-const AffiliateStoresProfile = lazy(() => import("pages/affiliate/stores/profile/AffiliateStoresProfile"));
-const RegisterPagesWrapper = lazy(() => import("pages/register-pages/RegisterPageWrapper"));
-const PaymentLink = lazy(() => import("pages/register-pages/pages/payment-link/PaymentLink"));
-const SimpleRegistration = lazy(() => import("pages/register-pages/pages/simple-registration/SimpleRegistration"));
-const TileDesign = lazy(() => import("pages/register-pages/pages/tile-design/TileDesign"));
-const SettingsPage = lazy(() => import("pages/settings/SettingsPage"));
-const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"));
-const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"));
-const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"));
-const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"));
-const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"));
-const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"));
-const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"));
-const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"));
-const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"));
+const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"))
+const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"))
+const ProductsV2 = lazy(() => import("pages/products/ProductsV2"))
+const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"))
+const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"))
+const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"))
+const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"))
+const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"))
+const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"))
+const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"))
+const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"))
+const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"))
+const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"))
+const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
+const PaymentLink = lazy(() => import("pages/payment-link/PaymentLink"))
+const SimpleRegistration = lazy(() => import("pages/simple-registration/SimpleRegistration"))
+const TileDesign = lazy(() => import("pages/tile-design/TileDesign"))
+const SettingsPage = lazy(() => import("pages/settings/SettingsPage"))
+const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"))
+const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"))
+const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"))
+const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
+const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
+const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
+const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplate"))
+const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
+const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
+const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout />,
+        element: <LandingPageLayout />,
         errorElement: (
-            <MainLayout>
+            <LandingPageLayout>
                 <MaintenancePage />
-            </MainLayout>
+            </LandingPageLayout>
         ),
         children: [
             { index: true, element: <HomePage /> },
@@ -124,23 +120,21 @@ const router = createBrowserRouter([
     },
     {
         path: "analytics",
-        element: <DashboardLayout />,
+        element: <ProducerLayout />,
         errorElement: (
-            <DashboardLayout>
+            <ProducerLayout>
                 <MaintenancePage />
-            </DashboardLayout>
+            </ProducerLayout>
         ),
         children: [
             { index: true, element: <Analytics /> },
             { path: "dashboard", element: <Dashboard /> },
             { path: "registration", element: <SimpleRegistration /> },
             {
-                path: "settings",
-                element: <RegisterPagesWrapper />,
+                path: "style-center",
                 children: [
-                    { path: "design", element: <DesignPage /> },
-                    { path: "tile", element: <TileDesign /> },
-                    { path: "payment-link-design", element: <PaymentLink /> },
+                    { path: "product-tiles", element: <TileDesign /> },
+                    { path: "product-links", element: <PaymentLink /> },
                 ],
             },
             { path: "account-settings", element: <SettingsPage /> },
@@ -158,7 +152,6 @@ const router = createBrowserRouter([
             {
                 path: "affiliate",
                 children: [
-                    { path: "market", element: <AffiliateMarket /> },
                     {
                         path: "products",
                         children: [
@@ -200,12 +193,13 @@ const router = createBrowserRouter([
                     { index: true, element: <Changelog /> },
                     { path: ":id", element: <ChangelogDetail /> },
                 ]
-            }
+            },
+            { path: "crossmint", element: <Crossmint /> },
         ],
     },
     {
         path: "shop-management",
-        element: <StandaloneLayout />,
+        element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <ShopManagement /> },
@@ -213,22 +207,23 @@ const router = createBrowserRouter([
     },
     {
         path: 'style-center/storefront-designer',
-        element: (
-            <StandaloneLayout showBackground={false} padding="0">
-                <StorefrontDesigner />
-            </StandaloneLayout>
-        ),
+        element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
+        children: [
+            { index: true, element: <StorefrontDesigner /> },
+        ],
+
     },
-    { path: "*", element: <NotFoundPage /> },
-]);
+    { path: "invoice/:txId", element: <InvoiceTemplate /> },
+    { path: "*", element: <NotFoundPage /> }
+])
 
 function AppRoutes() {
     return (
         <Suspense fallback={<FullScreenLoading />}>
             <RouterProvider router={router} />
         </Suspense>
-    );
+    )
 }
 
 export default AppRoutes;

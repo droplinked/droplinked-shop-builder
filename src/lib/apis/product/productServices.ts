@@ -1,6 +1,6 @@
+import { PaymentLinkData } from "pages/payment-link/context/PaymentLinkContext";
 import { Product } from "pages/products/utils/types";
-import { PaymentLinkData } from "pages/register-pages/pages/payment-link/context/PaymentLinkContext";
-import { createQueryString } from "../_utils/with.query";
+import { createQueryString } from "utils/helpers/urlUtils";
 import axiosInstance from "../axiosConfig";
 import {
     IGetHotProductsParams,
@@ -83,3 +83,6 @@ export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
         .post<{ data: string[] }>("product/printful-available-shipping", { product_id })
         .then(res => res.data)
+
+export const createDefaultSampleProducts = (logo: string) =>
+    axiosInstance.post('/product/create-template-products', { logo }).then(res => res.data)

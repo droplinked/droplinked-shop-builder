@@ -4,7 +4,7 @@ import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
 import React, { useState } from 'react'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
-import { planDurations } from 'lib/stores/subscription-plan.ts/subscriptionPlanStore'
+import { planDurations } from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import { PlanType } from 'pages/onboarding/types/onboarding'
 
 interface SubscriptionPlanCardProps {

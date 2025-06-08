@@ -24,8 +24,6 @@ function IconWrapper({ icon, ...rest }: Props) {
             borderColor="neutral.gray.800"
             borderRadius={8}
             bg="neutral.gray.1000"
-            // TODO: Remove this line when all new icons are replaced and AppIcons object is complete
-            sx={{ svg: { width: 6, height: 6 } }}
             {...rest}
         >
             {icon}

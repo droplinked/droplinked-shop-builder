@@ -1,14 +1,12 @@
+import { Box, Flex } from '@chakra-ui/react'
+import AppIcons from 'assets/icon/Appicons'
+import AppButton from 'components/redesign/button/AppButton'
+import AppSelect from 'components/redesign/select/AppSelect'
+import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
+import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
 import React, { useState } from 'react'
 import { Coupon } from '../../../interface'
-import { Box, Flex } from '@chakra-ui/react'
-import AppButton from 'components/redesign/button/AppButton'
-import AppIcons from 'assets/icon/Appicons'
-import { useMutation } from 'react-query'
-import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
-import { AxiosError } from 'axios'
-import useAppToast from 'hooks/toast/useToast'
 import CodesList from './CodesList'
-import AppSelect from 'components/redesign/select/AppSelect'
 
 export enum Filters {
     All = 'All',
@@ -23,59 +21,35 @@ interface Props {
 
 export default function CodesTab({ coupon, onClose }: Props) {
     const [currentFilter, setCurrentFilter] = useState(Filters.All)
-    const { showToast } = useAppToast();
-    const { mutate, isLoading } = useMutation(
-        () => exportCouponsReport({ giftCardId: coupon._id }),
-        {
-            onSuccess: (data) => {
-                const url = window.URL.createObjectURL(data);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `${Date.now()}.xlsx`;
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
-                setTimeout(() => {
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-                onClose()
-            },
-            onError: (error: AxiosError) => {
-                showToast({ message: error.message, type: "error" });
-                onClose()
-            }
-        }
-    );
+    const { download, isLoading } = useDownloadFile({
+        fetcher: exportCouponsReport,
+        fileNameResolver: () => `${Date.now()}.xlsx`,
+        onSuccess: () => onClose(),
+        onError: () => onClose()
+    })
 
     return (
-        <Flex gap={4} flexDirection={"column"}>
-            <Flex alignItems={"center"} justifyContent={"space-between"}>
-                <Box width={"150px"}>
+        <Flex gap={4} flexDirection='column'>
+            <Flex alignItems='center' justifyContent='space-between'>
+                <Box width='150px'>
                     <AppSelect
                         items={[
-                            {
-                                label: Filters.All,
-                                value: Filters.All
-                            },
-                            {
-                                label: Filters.Used,
-                                value: Filters.Used
-                            },
-                            {
-                                label: Filters.Available,
-                                value: Filters.Available
-                            }
+                            { label: Filters.All, value: Filters.All },
+                            { label: Filters.Used, value: Filters.Used },
+                            { label: Filters.Available, value: Filters.Available }
                         ]}
                         labelAccessor='label'
                         valueAccessor='value'
-                        selectProps={{ value: currentFilter, onChange: (e) => setCurrentFilter(e.target.value as Filters) }}
+                        selectProps={{
+                            value: currentFilter,
+                            onChange: e => setCurrentFilter(e.target.value as Filters)
+                        }}
                     />
                 </Box>
-                {/* TODO: Check with the design */}
-                <AppButton 
-                    variant='secondary' 
-                    onClick={() => mutate()} 
-                    isLoading={isLoading} 
+                <AppButton
+                    variant='secondary'
+                    onClick={() => download({ giftCardId: coupon._id })}
+                    isLoading={isLoading}
                     leftIcon={<AppIcons.Download />}
                 >
                     Download

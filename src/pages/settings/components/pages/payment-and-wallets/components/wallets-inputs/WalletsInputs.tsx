@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/formConfigs";
-import useAppStore from "lib/stores/app/appStore";
+import useAppStore from "stores/app/appStore";
 import useAppToast from "hooks/toast/useToast";
 import { getDescription, getWalletsData } from "./helpers";
 import { WalletData } from "./types";

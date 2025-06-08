@@ -1,11 +1,13 @@
 import { Grid } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { CoinbaseLogo } from "assets/logo/NetworkAndTokens/Coinbase/Coinbase/CoinbaseLogo";
+import { PaymobLogo } from "assets/logo/NetworkAndTokens/Paymob/PaymobLogo";
+import { StripeLogo } from "assets/logo/NetworkAndTokens/Stripe/StripeLogo";
 import { useFormikContext } from "formik";
 import { getStripeOnboardingUrl } from "lib/apis/stripe/services";
-import useAppStore from "lib/stores/app/appStore";
 import { ISettings } from "pages/settings/formConfigs";
 import React, { ReactElement } from "react";
 import { useQuery } from "react-query";
+import useAppStore from "stores/app/appStore";
 import PaymentProviderCard from "./PaymentProviderCard";
 
 export interface Provider {
@@ -47,7 +49,7 @@ const PaymentProviderList: React.FC = () => {
       isExternal: true,
       isFetching: isFetching,
       tooltip: "Connect a Stripe account to receive deposits directly into an existing account.",
-      icon: <AppIcons.StripeS />,
+      icon: <StripeLogo />,
     },
     {
       title: "Coinbase Commerce",
@@ -56,7 +58,7 @@ const PaymentProviderList: React.FC = () => {
       link: "#",
       isExternal: true,
       tooltip: "The easy way to accept payments from around the world. Instant settlement, low fees, and broad support for over +200 digital assets.",
-      icon: <AppIcons.Coinbase />,
+      icon: <CoinbaseLogo />,
     },
     {
       title: "Paymob",
@@ -65,7 +67,7 @@ const PaymentProviderList: React.FC = () => {
       isExternal: false,
       isDisabled: true,
       tooltip: "Connect a Paymob account to receive deposits directly into an existing account.",
-      icon: <AppIcons.Paymob color="#004eff" />,
+      icon: <PaymobLogo />,
     },
   ];
 
