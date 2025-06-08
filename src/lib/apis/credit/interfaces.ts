@@ -44,7 +44,7 @@ export interface IDetailedTransaction {
     amount: number;
     previousAmount: number;
     newAmount: number;
-    status: "SUCCESS" | "FAILED";
+    status: "SUCCESS" | "FAILED" | "PENDING";
     amountType: string;
     type: string;
     stripePaymentIntentId: string;
