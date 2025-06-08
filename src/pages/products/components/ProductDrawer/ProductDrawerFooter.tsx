@@ -12,7 +12,7 @@ interface Props {
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
     const { showToast } = useAppToast()
-    const { values, errors, setFieldValue, handleSubmit, isSubmitting } = useProductForm()
+    const { values, errors, setFieldValue, handleSubmit, isSubmitting, validateForm } = useProductForm()
     const { _id: editingProductId, sku, publish_product } = values
 
     const isProductRecorded = checkIfProductIsRecorded(sku)
@@ -21,8 +21,11 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
     const handleAction = async (action: string) => {
         if (isProductRecorded) return
 
-        const errorMessage = getFieldErrorMessage(errors)
-        if (errorMessage) {
+        // First validate all fields
+        const errors = await validateForm()
+        // Check if there are any errors
+        if (Object.keys(errors).length > 0) {
+            const errorMessage = getFieldErrorMessage(errors)
             showToast({ type: 'error', message: errorMessage })
             return
         }
