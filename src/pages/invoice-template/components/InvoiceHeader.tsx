@@ -33,7 +33,7 @@ const InvoiceHeader: React.FC = () => {
                     <DroplinkedLogo className='logo-img' />
                 </div>
                 <div className="company-details">
-                    <DroplinkedTypography className="company-logo-img" color='#2bcfa1' />
+                    <DroplinkedTypography width={"85px"} height="16px" color='#2bcfa1' />
                     <div className="company-contact">
                         <p>{companyWebsite}</p>
                         <p>{companyAddress}</p>
