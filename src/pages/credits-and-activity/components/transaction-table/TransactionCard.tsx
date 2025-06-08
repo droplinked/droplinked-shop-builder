@@ -28,7 +28,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 <TypeColumn type={type} amountType={amountType} />
                 <Flex align="center" gap={4}>
                     <StatusBadge status={status} />
-                    {id && (
+                    {(id && status === "SUCCESS") && (
                         <Center
                             as="a"
                             href={`/invoice/${id}`}

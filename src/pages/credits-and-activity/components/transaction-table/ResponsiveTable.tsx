@@ -43,7 +43,7 @@ export default function TransactionsTable() {
         {
             accessorKey: "status",
             header: "Status",
-            cell: (info) => <StatusBadge status={info.getValue() as "SUCCESS" | "FAILED"} />,
+            cell: (info) => <StatusBadge status={info.getValue() as IDetailedTransaction["status"]} />,
         },
         {
             accessorKey: "id",
@@ -53,6 +53,8 @@ export default function TransactionsTable() {
     ]
 
     const renderActions = (tx: IDetailedTransaction) => {
+        if (!tx.id || tx.status !== "SUCCESS") return null
+
         return (
             <Link
                 to={`/invoice/${tx.id}`}
