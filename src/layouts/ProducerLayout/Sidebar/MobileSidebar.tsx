@@ -6,11 +6,13 @@ import NavLinks from './NavLinks'
 function MobileSidebar() {
   const { isSidebarOpen, toggleSidebar } = useProducerLayout()
 
+  if (!isSidebarOpen) return null
+
   return (
     <Drawer
       isOpen={isSidebarOpen}
-      placement="left"
       onClose={toggleSidebar}
+      placement="left"
     >
       <DrawerOverlay bg="rgba(0, 0, 0, 0.4)" />
       <DrawerContent
