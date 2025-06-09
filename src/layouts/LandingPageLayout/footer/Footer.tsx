@@ -11,7 +11,7 @@ function Footer() {
     const withoutNewsletterPage = ["/payment-links", "/shop-management"]
 
     return (
-        <Box width={"100%"}>
+        <Box width={"100%"} position="relative" zIndex={9999}>
             {!withoutNewsletterPage.includes(location.pathname) && <NewsLetter />}
             <Box px={{ sm: "2rem", md: "6rem" }} background={"#000"} display={"flex"} py={"4rem"} flexDirection={{ sm: "column", md: "column", lg: "row" }} justifyContent={"space-around"} alignItems={"start"} width={"100%"}>
                 <IconsSection />
