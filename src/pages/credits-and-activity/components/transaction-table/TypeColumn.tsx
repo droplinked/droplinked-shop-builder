@@ -11,11 +11,12 @@ interface Props {
 }
 
 export default function TypeColumn({ amountType, type }: Props) {
-    const isInbound = amountType === "INCREASE"
     const [isMobile] = useMediaQuery('(max-width: 768px)')
+    const isInbound = amountType === "INCREASE"
 
     return (
         <Flex
+            maxWidth="50%"
             direction={isMobile ? 'column' : 'row'}
             alignItems={isMobile ? 'flex-start' : 'center'}
             gap={4}
