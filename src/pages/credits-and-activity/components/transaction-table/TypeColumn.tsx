@@ -16,7 +16,7 @@ export default function TypeColumn({ amountType, type }: Props) {
 
     return (
         <Flex
-            maxWidth="50%"
+            maxWidth={isMobile ? "50%" : "100%"}
             direction={isMobile ? 'column' : 'row'}
             alignItems={isMobile ? 'flex-start' : 'center'}
             gap={4}
