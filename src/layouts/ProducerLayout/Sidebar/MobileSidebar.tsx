@@ -30,7 +30,7 @@ function MobileSidebar() {
         opacity={isSidebarOpen ? 1 : 0}
         visibility={isSidebarOpen ? 'visible' : 'hidden'}
         bg="rgba(0, 0, 0, 0.4)"
-        transition="opacity 0.3s ease-in-out, visibility 0.3s ease-in-out"
+        transition="all 0.6s cubic-bezier(0.65, 0, 0.35, 1)"
         onClick={toggleSidebar}
       />
       <Box
@@ -44,8 +44,8 @@ function MobileSidebar() {
         paddingBlock={8}
         paddingInline={4}
         bg="neutral.background"
-        overflow="auto"
-        transition="transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+        overflow={isSidebarOpen ? "auto" : "hidden"}
+        transition="all 0.6s cubic-bezier(0.65, 0, 0.35, 1)"
       >
         <NavLinks />
       </Box>
