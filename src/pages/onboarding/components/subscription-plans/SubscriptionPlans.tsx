@@ -27,17 +27,13 @@ function SubscriptionPlans() {
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
-    })
-
-    // Update store when plans are fetched
-    useEffect(() => {
-        if (data?.data) {
+        onSuccess: (data) => {
             const selectedPlanData = data.data.find((plan) => plan.type === selectedPlan)
             if (selectedPlanData) {
                 updateSelectedPlan(selectedPlanData)
             }
         }
-    }, [data?.data, selectedPlan, updateSelectedPlan])
+    })
 
     const { mutateAsync: createPaymentIntent } = useMutation(subscriptionPlanStripePaymentService, {
         onSuccess: (response) => {
@@ -49,7 +45,7 @@ function SubscriptionPlans() {
     const plans: SubscriptionPlan[] = data?.data || []
 
     const handleNext = async (): Promise<void> => {
-        if (selectedPlan === "ENTERPRISE" || selectedPlan === "STARTER") {
+        if (selectedPlan === "STARTER") {
             updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
             return
         }
@@ -67,15 +63,12 @@ function SubscriptionPlans() {
         }
     }
 
-    const handleCloseModal = (): void => {
-        setIsPaymentModalOpen(false)
-    }
-
     if (isFetching) return <Loading />
 
     return (
         <>
             <OnboardingStepHeader heading="Plans" description="Choose from the different package options below." />
+
             <BlueButton
                 fontSize="16px"
                 mt="-46px"
@@ -116,7 +109,7 @@ function SubscriptionPlans() {
             <PaymentModal
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
-                onClose={handleCloseModal}
+                onClose={() => setIsPaymentModalOpen(false)}
                 clientSecret={clientSecret}
             />
         </>
