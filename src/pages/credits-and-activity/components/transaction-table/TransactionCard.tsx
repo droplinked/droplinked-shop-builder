@@ -26,6 +26,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
         >
             <Flex justify="space-between" align="start">
                 <TypeColumn type={type} amountType={amountType} />
+
                 <Flex align="center" gap={4}>
                     <StatusBadge status={status} />
                     {(id && status === "SUCCESS") && (
