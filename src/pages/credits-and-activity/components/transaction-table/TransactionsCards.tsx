@@ -7,13 +7,13 @@ import TransactionCard from './TransactionCard'
 
 export default function TransactionsCards() {
     const { transactionsQuery: { data, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
-    const transactions = data?.pages.flatMap((data) => data.data.data.data) || []
+    const transactions = data?.pages.flatMap(data => data.data.data.data) || []
 
     return (
         <InfiniteScroll
-            dataLength={data?.pageParams?.length || 0}
+            dataLength={transactions.length}
             next={fetchNextPage}
-            hasMore={hasNextPage || false}
+            hasMore={hasNextPage}
             loader={
                 isFetchingNextPage && (
                     <AppSkeleton isLoaded={false} mt={4} borderRadius="8px" >
