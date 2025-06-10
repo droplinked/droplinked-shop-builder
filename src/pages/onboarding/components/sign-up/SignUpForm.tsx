@@ -7,7 +7,6 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { signupService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -25,7 +24,7 @@ const formSchema = Yup.object().shape({
     referralCode: Yup.string()
 })
 
-function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
+function SignUpForm() {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
@@ -47,7 +46,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
-            onNext()
+            updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
             const errorMessage = error?.response?.data?.data?.message || "Signup failed"
@@ -146,7 +145,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 <Text fontSize={14} color="text.white">
                                     Already have an account?
                                 </Text>
-                                <InteractiveText onClick={onBack}>Sign in</InteractiveText>
+                                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>Sign in</InteractiveText>
                             </Flex>
                         </Form>
                     )

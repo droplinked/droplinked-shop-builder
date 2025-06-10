@@ -4,7 +4,6 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { resetPasswordService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React from 'react'
 import * as Yup from 'yup'
@@ -21,7 +20,7 @@ const formSchema = Yup.object().shape({
         .oneOf([Yup.ref("password"), null], "Passwords must match.")
 })
 
-function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
+function SetNewPasswordForm() {
     const { updateOnboardingState, credentials, resetToken } = useOnboardingStore()
     const { showToast } = useAppToast()
 
@@ -36,7 +35,7 @@ function SetNewPasswordForm({ onNext, onBack }: OnboardingStepProps) {
             // Clear the reset token after successful password reset
             updateOnboardingState("resetToken", null)
             showToast({ type: "success", message: "Password reset successfully" })
-            onNext()
+            updateOnboardingState('currentStep', 'PASSWORD_UPDATED')
         } catch (error) {
             showToast({ type: "error", message: error?.response?.data?.data?.message || "Failed to reset password" })
         }
