@@ -5,14 +5,14 @@ import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerificatio
 import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 interface EmailConfirmationProps {
     mode: 'signup' | 'reset'
-    onBack: () => void
-    onNext: () => void
 }
 
-function EmailConfirmation({ mode, onBack, onNext }: EmailConfirmationProps) {
+function EmailConfirmation({ mode }: EmailConfirmationProps) {
+    const { updateOnboardingState } = useOnboardingStore()
     const {
         otp,
         inputState,
@@ -22,7 +22,9 @@ function EmailConfirmation({ mode, onBack, onNext }: EmailConfirmationProps) {
         verifyLoading,
         resendLoading,
         loginLoading
-    } = useEmailVerification({ mode, onNext })
+    } = useEmailVerification({ mode })
+
+    const onBack = () => updateOnboardingState('currentStep', mode === 'signup' ? 'SIGN_UP' : 'RESET_PASSWORD') 
 
     useEffect(() => {
         if (mode === 'signup') {

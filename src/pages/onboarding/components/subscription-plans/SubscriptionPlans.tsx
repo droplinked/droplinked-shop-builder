@@ -4,7 +4,7 @@ import BlueButton from "components/redesign/button/BlueButton"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import { getSubscriptionPlansService, subscriptionPlanStripePaymentService, } from "lib/apis/subscription/subscriptionServices"
-import { OnboardingStepProps, PlanType } from "pages/onboarding/types/onboarding"
+import { PlanType } from "pages/onboarding/types/onboarding"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useEffect, useState } from "react"
@@ -14,11 +14,13 @@ import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 
-function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
+function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
     const [clientSecret, setClientSecret] = useState<string>("")
+    const { updateOnboardingState } = useOnboardingStore()
     const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
 
@@ -48,7 +50,7 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
 
     const handleNext = async (): Promise<void> => {
         if (selectedPlan === "ENTERPRISE" || selectedPlan === "STARTER") {
-            onNext()
+            updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
             return
         }
 
@@ -104,7 +106,12 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 })}
             </Grid>
 
-            <ControlButtons onBack={onBack} onSubmit={handleNext} continueText={getContinueText(selectedPlan)} />
+            <ControlButtons 
+                continueText={getContinueText(selectedPlan)} 
+                onSubmit={handleNext} 
+                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')} 
+                onSkip={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
+            />
 
             <PaymentModal
                 plan={selectedPlan}

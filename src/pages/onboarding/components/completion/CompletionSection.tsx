@@ -1,11 +1,15 @@
 import { Flex } from '@chakra-ui/react'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import DroplinkedBrand from '../common/DroplinkedBrand'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CompletionSlider from './CompletionSlider'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
-function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
+function CompletionSection() {
+    const { updateOnboardingState } = useOnboardingStore()
+
+    const handleBack = () => updateOnboardingState('currentStep', 'PLAN_SELECTION')
+
     return (
         <Flex
             minHeight="100vh"
@@ -22,7 +26,7 @@ function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
                 textAlign="center"
             />
 
-            <CompletionSlider onBack={onBack} />
+            <CompletionSlider onBack={handleBack} />
         </Flex>
     )
 }

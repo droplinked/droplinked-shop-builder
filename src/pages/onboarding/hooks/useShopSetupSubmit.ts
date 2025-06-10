@@ -6,13 +6,9 @@ import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import { validateStoreData } from '../utils/shopSetupFormValidation'
 
-interface UseShopSetupSubmitProps {
-    onSuccess?: () => void
-}
-
-export function useShopSetupSubmit({ onSuccess }: UseShopSetupSubmitProps) {
+export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
-    const { storeSetup, setError } = useOnboardingStore()
+    const { storeSetup, setError , resetOnboarding ,updateOnboardingState} = useOnboardingStore()
     const { showToast } = useAppToast()
 
     const { autoAddSampleProductsEnabled, ...shopData } = storeSetup
@@ -26,7 +22,7 @@ export function useShopSetupSubmit({ onSuccess }: UseShopSetupSubmitProps) {
         onSuccess: (data) => {
             updateState({ key: "shop", params: { ...shop, ...data.data.data } })
             updateState({ key: "user", params: { ...user, status: "SHOP_INFO_COMPLETED" } })
-            onSuccess?.()
+            updateOnboardingState('currentStep', 'PAYMENT_DETAILS')
         },
         onError: (error: any) => {
             const errorMessage = error?.response?.data?.data?.message
@@ -45,6 +41,7 @@ export function useShopSetupSubmit({ onSuccess }: UseShopSetupSubmitProps) {
 
     return {
         handleSubmit,
-        isLoading
+        isLoading,
+        resetOnboarding
     }
-} 
+}

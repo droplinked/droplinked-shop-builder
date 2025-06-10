@@ -1,13 +1,14 @@
 import { Flex } from '@chakra-ui/react'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import ControlButtons from '../common/ControlButtons'
 import CurrencySection from './CurrencySection'
 import FinancialServices from './FinancialServices'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
-function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
+function PaymentSetup() {
   const [isLoading, setIsLoading] = useState(false)
+  const { updateOnboardingState } = useOnboardingStore()
 
   const handleCurrencyLoading = (loading: boolean) => {
     setIsLoading(loading)
@@ -20,9 +21,9 @@ function PaymentSetup({ onBack, onNext }: OnboardingStepProps) {
         <FinancialServices />
         <CurrencySection onLoadingChange={handleCurrencyLoading} />
         <ControlButtons 
-          onBack={onBack} 
-          onSubmit={onNext} 
-          onSkip={onNext} 
+          onBack={() => updateOnboardingState('currentStep', 'STORE_DETAILS')} 
+          onSubmit={() => updateOnboardingState('currentStep', 'PLAN_SELECTION')} 
+          onSkip={() => updateOnboardingState('currentStep', 'PLAN_SELECTION')} 
           showBackButton={false} 
           isLoading={isLoading}
         />

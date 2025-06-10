@@ -20,83 +20,40 @@ import SubscriptionPlans from './components/subscription-plans/SubscriptionPlans
 import useOnboardingStore from './stores/useOnboardingStore'
 
 function Onboarding() {
-    const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
-    const { currentStep, updateOnboardingState, nextStep, prevStep } = useOnboardingStore()
+  const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
+  const { currentStep, updateOnboardingState } = useOnboardingStore()
 
-    useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search)
-        const entry = searchParams.get("entry")
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    const entry = searchParams.get('entry')
 
-        if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
-        else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-        else if (entry === 'payment') updateOnboardingState('currentStep', 'PAYMENT_DETAILS')
-    }, [updateOnboardingState])
+    if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
+    else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
+    else if (entry === 'payment') updateOnboardingState('currentStep', 'PAYMENT_DETAILS')
+  }, [updateOnboardingState])
 
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [currentStep])
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentStep])
 
-    const stepContentMap = {
-        'SIGN_IN': {
-            leftContent: <SignInForm onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'SIGN_UP': {
-            leftContent: <SignUpForm onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'RESET_PASSWORD': {
-            leftContent: <ResetPasswordForm onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'SIGNUP_EMAIL_VERIFICATION': {
-            leftContent: <EmailConfirmation mode='signup' onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'RESET_PASSWORD_VERIFICATION': {
-            leftContent: <EmailConfirmation mode='reset' onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'SET_NEW_PASSWORD': {
-            leftContent: <SetNewPasswordForm onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ProductCards />
-        },
-        'PASSWORD_UPDATED': {
-            leftContent: <PasswordUpdatedForm />,
-            rightContent: <ProductCards />
-        },
-        'STORE_DETAILS': {
-            leftContent: <ShopSetupForm onBack={prevStep} onNext={nextStep} />,
-            rightContent: <ShopPreview />
-        },
-        'PAYMENT_DETAILS': {
-            leftContent: <PaymentSetup onBack={prevStep} onNext={nextStep} />,
-            rightContent: <PaymentFeatures />
-        },
-        'PLAN_SELECTION': {
-            leftContent: <SubscriptionPlans onBack={prevStep} onNext={nextStep} />,
-            rightContent: <SubscriptionPlansDisplay />
-        },
-        'YOU_ARE_ALL_SET': {
-            leftContent: <CompletionSection onBack={prevStep} />,
-            rightContent: null
-        }
-    }
+  const stepContentMap = {
+    SIGN_IN: { leftContent: <SignInForm />, rightContent: <ProductCards />, isAuthStep: true },
+    SIGN_UP: { leftContent: <SignUpForm />, rightContent: <ProductCards />, isAuthStep: true },
+    RESET_PASSWORD: { leftContent: <ResetPasswordForm />, rightContent: <ProductCards />, isAuthStep: true },
+    SIGNUP_EMAIL_VERIFICATION: { leftContent: <EmailConfirmation mode="signup" />, rightContent: <ProductCards />, isAuthStep: true },
+    RESET_PASSWORD_VERIFICATION: { leftContent: <EmailConfirmation mode="reset" />, rightContent: <ProductCards />, isAuthStep: true },
+    SET_NEW_PASSWORD: { leftContent: <SetNewPasswordForm />, rightContent: <ProductCards />, isAuthStep: true },
+    PASSWORD_UPDATED: { leftContent: <PasswordUpdatedForm />, rightContent: <ProductCards />, isAuthStep: true },
+    STORE_DETAILS: { leftContent: <ShopSetupForm />, rightContent: <ShopPreview />, isAuthStep: false },
+    PAYMENT_DETAILS: { leftContent: <PaymentSetup />, rightContent: <PaymentFeatures />, isAuthStep: false },
+    PLAN_SELECTION: { leftContent: <SubscriptionPlans />, rightContent: <SubscriptionPlansDisplay />, isAuthStep: false },
+    YOU_ARE_ALL_SET: { leftContent: <CompletionSection />, rightContent: null, isAuthStep: false },
+    PLAN_SELECTION_DISPLAY: { leftContent: <SubscriptionPlansDisplay />, rightContent: null, isAuthStep: false }
+  }
 
-    const { leftContent, rightContent } = stepContentMap[currentStep]
-    const isAuthStep = [
-        'SIGN_IN',
-        'SIGN_UP',
-        'RESET_PASSWORD',
-        'SIGNUP_EMAIL_VERIFICATION',
-        'RESET_PASSWORD_VERIFICATION',
-        'SET_NEW_PASSWORD',
-        'PASSWORD_UPDATED'
-    ].includes(currentStep)
+  const { leftContent, rightContent, isAuthStep } = stepContentMap[currentStep]
 
-    return (!rightContent)
-        ? leftContent
-        : <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
+  return !rightContent ? leftContent : <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
 }
 
 export default Onboarding

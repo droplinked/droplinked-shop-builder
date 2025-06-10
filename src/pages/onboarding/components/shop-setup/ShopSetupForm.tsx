@@ -1,6 +1,5 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import useAppStore from 'stores/app/appStore'
 import { useShopSetupSubmit } from '../../hooks/useShopSetupSubmit'
@@ -16,11 +15,10 @@ import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
 
-function ShopSetupForm({ onNext }: OnboardingStepProps) {
+function ShopSetupForm() {
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
     const { reset } = useAppStore()
-    const { resetOnboarding } = useOnboardingStore()
-    const { handleSubmit, isLoading } = useShopSetupSubmit({ onSuccess: onNext })
+    const { handleSubmit, isLoading, resetOnboarding } = useShopSetupSubmit()
 
     const handleBack = () => {
         reset()

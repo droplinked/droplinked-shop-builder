@@ -8,10 +8,9 @@ import { useLogin } from './useLogin'
 
 interface Props {
     mode: 'signup' | 'reset'
-    onNext: () => void
 }
 
-export const useEmailVerification = ({ mode, onNext }: Props) => {
+export const useEmailVerification = ({ mode }: Props) => {
     // State management
     const [otp, setOtp] = useState("")
     const [inputState, setInputState] = useState<'default' | 'error' | 'success'>("default")
@@ -37,12 +36,13 @@ export const useEmailVerification = ({ mode, onNext }: Props) => {
 
         if (mode === 'signup') {
             await onLoginSubmit(credentials)
+            updateOnboardingState('currentStep','STORE_DETAILS') 
             return
         }
 
         updateOnboardingState('resetToken', response.data.data.resetToken)
+        updateOnboardingState('currentStep','SET_NEW_PASSWORD') 
         showToast({ type: "success", message: "Code verified successfully" })
-        onNext()
     }
 
     // Verification mutation

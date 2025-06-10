@@ -7,7 +7,6 @@ import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
@@ -23,7 +22,7 @@ const formSchema = Yup.object().shape({
 const savedEmail = Cookies.get('remembered_email')
 const savedPassword = Cookies.get('remembered_password')
 
-function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
+function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
@@ -83,11 +82,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             >
                                 Remember my password
                             </Checkbox>
-                            <InteractiveText 
-                                onClick={() => {
-                                    updateOnboardingState("currentStep", "RESET_PASSWORD")
-                                }}
-                            >
+                            <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
                                 Reset Password
                             </InteractiveText>
                         </Flex>
@@ -110,7 +105,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             <Text fontSize={14} color="text.white">
                                 Don't have an account?
                             </Text>
-                            <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
+                            <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_UP')}>Join us and create one!</InteractiveText>
                         </Flex>
                     </Form>
                 )}

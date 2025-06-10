@@ -6,7 +6,6 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { forgetPasswordService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import * as Yup from 'yup'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -17,7 +16,7 @@ const formSchema = Yup.object().shape({
     .required("Email address is required.")
 })
 
-function ResetPasswordForm({ onNext }: OnboardingStepProps) {
+function ResetPasswordForm() {
   const { updateOnboardingState } = useOnboardingStore()
   const { showToast } = useAppToast()
 
@@ -26,7 +25,7 @@ function ResetPasswordForm({ onNext }: OnboardingStepProps) {
       await forgetPasswordService({ email })
       updateOnboardingState('credentials', { email, password: '' })
       showToast({ type: "success", message: "Reset password email sent successfully" })
-      onNext()
+      updateOnboardingState('currentStep', 'RESET_PASSWORD_VERIFICATION')
     } catch (error) {
       showToast({ type: "error", message: error?.response?.data?.message || "Failed to send reset password email" })
     }
