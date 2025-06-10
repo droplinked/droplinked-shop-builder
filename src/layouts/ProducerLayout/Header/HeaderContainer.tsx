@@ -10,7 +10,7 @@ export const HeaderContainer = ({ children, ...rest }: GridItemProps) => {
             borderBottom="1px solid"
             borderColor="neutral.gray.800"
             backgroundColor="neutral.background"
-            zIndex={9999}
+            zIndex={999}
             display="flex"
             {...rest}
         >
