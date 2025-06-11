@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import MaxWidthWrapper from '../components/common/MaxWidthWrapper'
 import SectionContainer from '../components/common/SectionContainer/SectionContainer'
-import { Flex, Link } from '@chakra-ui/react'
+import { Box, Link } from '@chakra-ui/react'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
+import { motion } from 'framer-motion';
 
 export default function PartnersSection() {
     const partners = [
@@ -73,33 +74,57 @@ export default function PartnersSection() {
         },
     ];
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     return (
         <MaxWidthWrapper boxProps={{ paddingBlock: 6 }}>
             <SectionContainer
                 sectionTitle='ECOSYSTEM PARTNERS'
                 flexProps={{ paddingBlock: 6 }}
             >
-                <Flex gap={4} alignItems="center">
-                    {partners.map((partner) => (
-                        <Link
-                            href={partner.url}
-                            key={partner.title}
-                        >
-                            <IconWrapper
-                                background="neutral.background"
-                                border="none"
-                                icon={
-                                    <img
-                                        width="20px"
-                                        height="20px"
-                                        src={partner.icon}
-                                        alt={partner.title}
-                                    />
-                                }
-                            />
-                        </Link>
-                    ))}
-                </Flex>
+                <Box width="min-content" overflow="hidden" position="relative">
+                    <motion.div
+                        ref={containerRef}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            width: 'max-content',
+                            gap: '16px',
+                        }}
+                        animate={{
+                            x: [0, -800],
+                        }}
+                        transition={{
+                            x: {
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                duration: 30,
+                                ease: "linear",
+                            }
+                        }}
+                    >
+                        {/* Original partners */}
+                        {partners.map((partner) => (
+                            <Link
+                                href={partner.url}
+                                key={partner.title}
+                            >
+                                <IconWrapper
+                                    background="neutral.background"
+                                    border="none"
+                                    icon={
+                                        <img
+                                            width="20px"
+                                            height="20px"
+                                            src={partner.icon}
+                                            alt={partner.title}
+                                        />
+                                    }
+                                />
+                            </Link>
+                        ))}
+                    </motion.div>
+                </Box>
             </SectionContainer>
         </MaxWidthWrapper>
     )
