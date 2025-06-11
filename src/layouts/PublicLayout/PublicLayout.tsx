@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Footer from './Footer'
@@ -11,11 +12,15 @@ function PublicLayout({ children }: PropsWithChildren) {
     }, [pathname])
 
     return (
-        <>
+        <Flex
+            minHeight="100vh"
+            direction="column"
+            bg="neutral.websiteBackground"
+        >
             <Header />
             {children ?? <Outlet />}
             <Footer />
-        </>
+        </Flex>
     )
 }
 
