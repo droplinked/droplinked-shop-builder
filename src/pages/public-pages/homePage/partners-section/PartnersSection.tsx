@@ -19,6 +19,8 @@ export default function PartnersSection() {
                             href={partner.url}
                             key={partner.title}
                             aria-label={partner.title}
+                            target='_blank'
+                            rel='noopener noreferrer'
                         >
                             <IconWrapper
                                 background="neutral.background"
