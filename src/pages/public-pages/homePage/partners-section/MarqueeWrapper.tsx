@@ -33,6 +33,7 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
                 pauseOnHover
                 direction='left'
                 autoFill
+                speed={25}
             >
                 {children}
             </Marquee>

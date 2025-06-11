@@ -1,6 +1,7 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function HeroSection() {
     return (
@@ -37,12 +38,16 @@ export default function HeroSection() {
                     </Text>
                 </Flex>
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
-                    <AppButton>
-                        Start Now
-                    </AppButton>
-                    <AppButton variant='normal' color="neutral.white">
-                        Request a Demo
-                    </AppButton>
+                    <Link to="/onboarding?entry=signup">
+                        <AppButton>
+                            Start Now
+                        </AppButton>
+                    </Link>
+                    <Link to="mailto:support@droplinked.com">
+                        <AppButton variant='normal' color="neutral.white">
+                            Request a Demo
+                        </AppButton>
+                    </Link>
                 </Flex>
             </Box>
             <Box
