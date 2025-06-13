@@ -5,39 +5,47 @@ import { HamburgermenuLg } from 'assets/icons/Navigation/HamburgerMenu/Hamburger
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React from 'react'
 import { Link } from "react-router-dom"
-import { MouseEvent } from 'types/eventTypes'
-import MobileDrawer from './MobileDrawer'
+import MobileDrawer from './MobileDrawer/MobileDrawer'
 
 const BrandIcon = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const isMobile = useBreakpointValue({ base: true, lg: false })
-
-    const handleHamburgerClick = (event: MouseEvent) => {
-        event.stopPropagation()
-        onOpen()
-    }
+    const { showHamburgerMenu, typography } = useBreakpointValue({
+        base: {
+            showHamburgerMenu: true,
+            typography: { width: "107px", height: "20px" }
+        },
+        md: {
+            showHamburgerMenu: true,
+            typography: { width: "129px", height: "24px" }
+        },
+        xl: {
+            showHamburgerMenu: false,
+            typography: { width: "129px", height: "24px" }
+        }
+    })
 
     const flexContainerStyles = { display: 'flex', alignItems: 'center', gap: 3 }
 
     const content = (
         <>
             <IconWrapper
+                as={showHamburgerMenu ? "button" : "div"}
                 width={10}
                 height={10}
                 bg="transparent"
                 icon={
-                    isMobile
-                        ? <HamburgermenuLg color='#fff' onClick={handleHamburgerClick} />
+                    showHamburgerMenu
+                        ? <HamburgermenuLg color='#fff' onClick={onOpen} />
                         : <Drop3 width="24px" height="24px" color='#fff' />
                 }
             />
-            <DroplinkedTypography width="127px" height="24px" color='#fff' />
+            <DroplinkedTypography width={typography.width} height={typography.height} color='#fff' />
         </>
     )
 
     return (
         <>
-            {isMobile
+            {showHamburgerMenu
                 ? <Box {...flexContainerStyles}>{content}</Box>
                 : <ChakraLink as={Link} to="/" {...flexContainerStyles}>{content}</ChakraLink>
             }

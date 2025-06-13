@@ -1,5 +1,6 @@
-import { Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
+import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay } from '@chakra-ui/react'
 import React from 'react'
+import QuickLinks from '../QuickLinks/QuickLinks'
 
 interface Props {
     isOpen: boolean
@@ -18,7 +19,12 @@ export default function MobileDrawer({ isOpen, onClose }: Props) {
             <DrawerContent
                 bg="neutral.websiteBackground"
             >
-                <DrawerCloseButton />
+                <DrawerHeader>
+                    <DrawerCloseButton />
+                </DrawerHeader>
+                <DrawerBody>
+                    <QuickLinks />
+                </DrawerBody>
             </DrawerContent>
         </Drawer>
     )

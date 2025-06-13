@@ -17,7 +17,7 @@ export default function MobilePreviewDrawer() {
                 onClose={onClose}
                 size="full"
             >
-                <DrawerOverlay />
+                <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
                 <DrawerContent background="#1C1C1C" height="100dvh">
                     <DrawerHeader borderColor="#292929" background="#141414">
                         <ShopPreviewHeader

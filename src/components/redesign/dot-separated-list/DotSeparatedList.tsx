@@ -22,7 +22,7 @@ function DotSeparatedList({ children, ...props }: FlexProps) {
       {validChildren.map((child, index) => (
         <React.Fragment key={index}>
           {child}
-          {index < validChildren.length - 1 && <Circle size={1} bg="neutral.gray.800" />}
+          {index < validChildren.length - 1 && <Circle className="dot-separator" size={1} bg="neutral.gray.800" />}
         </React.Fragment>
       ))}
     </Flex>
