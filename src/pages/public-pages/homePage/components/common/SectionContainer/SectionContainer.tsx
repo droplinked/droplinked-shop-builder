@@ -1,7 +1,10 @@
-import { Box, Text, Heading, Flex, FlexProps } from '@chakra-ui/react'
-import React from 'react'
-import IconMapper, { Icon } from './IconMapper'
+import { Box, Flex, FlexProps } from '@chakra-ui/react';
+import React from 'react';
+import HeadingTitle from './HeadingTitle';
+import IconMapper, { Icon } from './IconMapper';
 import SectionTitle from './SectionTitle';
+import HeadingSubtitle from './HeadingSubtitle';
+import TypographyText from './TypographyText';
 
 interface Props {
     children?: React.ReactNode;
@@ -19,35 +22,16 @@ export default function SectionContainer({ children, sectionTitle, headingTitle,
         <Flex
             flexDirection="column"
             alignItems="center"
-            paddingBlock={{ base: "80px", "2xl": "128px" }}
             {...flexProps}
         >
             <IconMapper icon={icon as Icon} />
             <SectionTitle sectionTitle={sectionTitle} icon={icon} />
-
-            {headingTitle && (
-                <Heading as="h2" textAlign="center" mt={2} size="xl">
-                    {headingTitle}
-                </Heading>
-            )}
-
-            {headingSubtitle && (
-                <Text mt={2} textAlign="center" color="gray.600">
-                    {headingSubtitle}
-                </Text>
-            )}
-
+            <HeadingTitle title={headingTitle} />
+            <HeadingSubtitle subTitle={headingSubtitle} />
             {subTitleElement && (
-                <Box mt={2} textAlign="center">
-                    {subTitleElement}
-                </Box>
+                subTitleElement
             )}
-
-            {typographyText && (
-                <Text mt={4} textAlign="center">
-                    {typographyText}
-                </Text>
-            )}
+            <TypographyText text={typographyText} />
 
             {children}
         </Flex>
