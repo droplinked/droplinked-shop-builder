@@ -6,7 +6,7 @@ import AnimationFrame from './AnimationFrame'
 import StepTexts from './StepTexts'
 
 export default function Stepper() {
-    const { containerRef, step, completedSteps, fixedPercentage, LottieView } = useStepController()
+    const { containerRef, step, completedSteps, fixedPercentage, LottieView, isTransitioning } = useStepController()
 
     return (
         <Flex
@@ -17,7 +17,11 @@ export default function Stepper() {
             justifyContent="center"
             px={{ base: 4, md: 8, lg: 12 }}
         >
-            <AnimationFrame LottieView={LottieView} completedSteps={completedSteps} />
+            <AnimationFrame
+                LottieView={LottieView}
+                completedSteps={completedSteps}
+                isTransitioning={isTransitioning}
+            />
             <Flex
                 width="100%"
                 direction={{ base: "row", md: "column" }}

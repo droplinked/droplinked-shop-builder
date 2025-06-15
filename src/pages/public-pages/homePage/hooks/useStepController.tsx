@@ -2,7 +2,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { LottieOptions, useLottie } from 'lottie-react'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Step1 from '../lottie/GoLive/Step1.json'
 import Step2 from '../lottie/GoLive/Step2.json'
 import Step3 from '../lottie/GoLive/Step3.json'
@@ -12,6 +12,8 @@ gsap.registerPlugin(ScrollTrigger)
 export function useStepController() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [step, setStep] = useState(1)
+    const [previousStep, setPreviousStep] = useState(1)
+    const [isTransitioning, setIsTransitioning] = useState(false)
     const [completedSteps, setCompletedSteps] = useState<number[]>([])
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
@@ -23,6 +25,32 @@ export function useStepController() {
     }
 
     const { View } = useLottie(options)
+
+    // Handle step transitions with animation
+    useEffect(() => {
+        if (step !== previousStep) {
+            setIsTransitioning(true)
+
+            const timer = setTimeout(() => {
+                setPreviousStep(step)
+
+                // Update completed steps simultaneously with fade in
+                const completed = []
+                if (step >= 2) completed.push(1)
+                if (step >= 3) completed.push(2)
+                setCompletedSteps(completed)
+
+                // Add delay before fade in starts
+                const fadeInTimer = setTimeout(() => {
+                    setIsTransitioning(false)
+                }, 100) // Reduced from 200ms to 100ms
+
+                return () => clearTimeout(fadeInTimer)
+            }, 200) // Reduced from 400ms to 200ms
+
+            return () => clearTimeout(timer)
+        }
+    }, [step, previousStep])
 
     useGSAP(() => {
         if (!containerRef.current) return
@@ -40,11 +68,7 @@ export function useStepController() {
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
 
-                    // Track completed steps for layering effect
-                    const completed = []
-                    if (newStep >= 2) completed.push(1)
-                    if (newStep >= 3) completed.push(2)
-                    setCompletedSteps(completed)
+                    // Remove completed steps logic from here since it's now handled in useEffect
                 }
             }
         })
@@ -53,6 +77,8 @@ export function useStepController() {
     return {
         containerRef,
         step,
+        previousStep,
+        isTransitioning,
         completedSteps,
         fixedPercentage,
         LottieView: View

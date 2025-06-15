@@ -3,10 +3,12 @@ import React from 'react'
 
 export default function AnimationFrame({
     LottieView,
-    completedSteps = []
+    completedSteps = [],
+    isTransitioning = false
 }: {
     LottieView: React.ReactNode
     completedSteps?: number[]
+    isTransitioning?: boolean
 }) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
@@ -24,11 +26,25 @@ export default function AnimationFrame({
             top={zIndex > 0 ? `-${zIndex * 25}px` : "0"}
             left={zIndex > 0 ? `-${zIndex * 8}px` : "0"}
             zIndex={10 - zIndex}
-            opacity={opacity}
-            transform={`scale(${1 - zIndex * 0.05})`}
+            opacity={isActive && isTransitioning ? 0 : opacity}
+            transform={`scale(${1 - zIndex * 0.05}) ${isActive && isTransitioning ? 'scale(0.9)' : ''}`}
+            filter={isActive && isTransitioning ? "blur(12px)" : "blur(0px)"}
+            transition="all 0.4s ease-in-out"
+            // Add animation for background layers
+            animation={zIndex > 0 ? "layerFadeIn 0.3s ease-out" : undefined}
             sx={{
                 "svg": {
                     borderRadius: "16px 16px 0 0"
+                },
+                "@keyframes layerFadeIn": {
+                    "0%": {
+                        opacity: 0,
+                        transform: `scale(${1 - zIndex * 0.05 - 0.1})`
+                    },
+                    "100%": {
+                        opacity: opacity,
+                        transform: `scale(${1 - zIndex * 0.05})`
+                    }
                 }
             }}
         >
