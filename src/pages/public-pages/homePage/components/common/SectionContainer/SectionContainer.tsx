@@ -1,9 +1,9 @@
-import { Box, Flex, FlexProps } from '@chakra-ui/react';
+import { Flex, FlexProps } from '@chakra-ui/react';
 import React from 'react';
+import HeadingSubtitle from './HeadingSubtitle';
 import HeadingTitle from './HeadingTitle';
 import IconMapper, { Icon } from './IconMapper';
 import SectionTitle from './SectionTitle';
-import HeadingSubtitle from './HeadingSubtitle';
 import TypographyText from './TypographyText';
 
 interface Props {

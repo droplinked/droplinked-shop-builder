@@ -3,6 +3,7 @@ import React from 'react'
 
 export default function AnimationFrame({ LottieView }: { LottieView: React.ReactNode }) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
+    console.log(LottieView)
 
     return (
         <>

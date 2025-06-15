@@ -5,7 +5,7 @@ export default function ProgressBar({ percentage }: { percentage: number }) {
     return (
         <Box
             width={{ base: "8px", md: "100%" }}
-            height={{ base: "200px", md: "8px" }}
+            height={{ base: "100%", md: "8px" }}
             borderRadius="8px"
             padding="0px 2px"
             background="neutral.background"
