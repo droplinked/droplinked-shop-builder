@@ -33,7 +33,7 @@ export default function StepTexts({ currentStep }: StepTextsProps) {
             justifyContent="space-between"
             alignItems={{ base: "flex-start", md: "center" }}
             gap={{ base: 4, md: 8 }}
-            mt={6}
+            mt={{ base: 0, md: 6 }}
             px={{ base: 4, md: 0 }}
         >
             {stepData.map((step, index) => {

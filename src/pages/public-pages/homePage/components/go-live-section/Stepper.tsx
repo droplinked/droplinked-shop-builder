@@ -18,8 +18,16 @@ export default function Stepper() {
             px={{ base: 4, md: 8, lg: 12 }}
         >
             <AnimationFrame LottieView={LottieView} />
-            <ProgressBar percentage={fixedPercentage} />
-            <StepTexts currentStep={step} />
+            <Flex
+                width="100%"
+                direction={{ base: "row", md: "column" }}
+                alignItems={{ base: "flex-start", md: "center" }}
+                gap={{ base: 6, md: 0 }}
+                mt={4}
+            >
+                <ProgressBar percentage={fixedPercentage} />
+                <StepTexts currentStep={step} />
+            </Flex>
         </Flex>
     )
 }
