@@ -1,9 +1,8 @@
-import { Link } from '@chakra-ui/react';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import React from 'react';
+import { partners } from '../../utils/partnersList';
 import MaxWidthWrapper from '../common/MaxWidthWrapper';
 import SectionContainer from '../common/SectionContainer/SectionContainer';
-import { partners } from '../../utils/partnersList';
 import MarqueeWrapper from './MarqueeWrapper';
 
 export default function PartnersSection() {
