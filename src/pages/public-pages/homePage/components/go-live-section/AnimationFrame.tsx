@@ -1,31 +1,57 @@
 import { Box, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 
-export default function AnimationFrame({ LottieView }: { LottieView: React.ReactNode }) {
+export default function AnimationFrame({
+    LottieView,
+    completedSteps = []
+}: {
+    LottieView: React.ReactNode
+    completedSteps?: number[]
+}) {
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
-    console.log(LottieView)
+
+    const renderLayer = (zIndex: number, opacity: number = 1, isActive: boolean = false) => (
+        <Box
+            width="100%"
+            height="100%"
+            borderRadius="24px 24px 0px 0px"
+            border="1px solid rgba(43, 207, 161, 0.16)"
+            borderBottom="none"
+            background="linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%)"
+            backdropFilter="blur(50px)"
+            padding="8px 8px 0px 8px"
+            position={zIndex > 0 ? "absolute" : "relative"}
+            top={zIndex > 0 ? `-${zIndex * 25}px` : "0"}
+            left={zIndex > 0 ? `-${zIndex * 8}px` : "0"}
+            zIndex={10 - zIndex}
+            opacity={opacity}
+            transform={`scale(${1 - zIndex * 0.05})`}
+            sx={{
+                "svg": {
+                    borderRadius: "16px 16px 0 0"
+                }
+            }}
+        >
+            {isActive && LottieView}
+        </Box>
+    )
 
     return (
         <>
-            {isSmallerThan768 &&
-                <Box
-                    borderRadius="24px 24px 0px 0px"
-                    border="1px solid rgba(43, 207, 161, 0.16)"
-                    borderBottom="none"
-                    background="linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%)"
-                    backdropFilter="blur(50px)"
-                    padding="8px 8px 0px 8px"
-                    sx={{
-                        "svg": {
-                            borderRadius: "16px 16px 0 0"
-                        }
-                    }}
-                >
-                    {LottieView}
+            {isSmallerThan768 && (
+                <Box position="relative">
+                    {/* Render completed step layers */}
+                    {completedSteps.map((stepNum, index) => (
+                        <React.Fragment key={stepNum}>
+                            {renderLayer(index + 1, 0.6)}
+                        </React.Fragment>
+                    ))}
+                    {/* Render active layer */}
+                    {renderLayer(0, 1, true)}
                 </Box>
-            }
+            )}
 
-            {!isSmallerThan768 &&
+            {!isSmallerThan768 && (
                 <Box
                     position="relative"
                     backgroundImage="url('https://upload-file-droplinked.s3.amazonaws.com/23cf80fd633d9c14976dbd81b510663bca2e8584b4ac09ad667e6da2c34dbd52.png')"
@@ -34,22 +60,18 @@ export default function AnimationFrame({ LottieView }: { LottieView: React.React
                     backgroundPosition="center"
                     padding={{ md: "24px 24px 0px 24px", lg: "48px 48px 0px 48px" }}
                 >
-                    <Box
-                        borderRadius="24px 24px 0px 0px"
-                        border="1px solid rgba(43, 207, 161, 0.16)"
-                        borderBottom="none"
-                        background="linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%)"
-                        backdropFilter="blur(50px)"
-                        padding="8px 8px 0px 8px"
-                        sx={{
-                            "svg": {
-                                borderRadius: "16px 16px 0 0"
-                            }
-                        }}
-                    >
-                        {LottieView}
+                    <Box position="relative">
+                        {/* Render completed step layers */}
+                        {completedSteps.map((stepNum, index) => (
+                            <React.Fragment key={stepNum}>
+                                {renderLayer(index + 1, 0.6)}
+                            </React.Fragment>
+                        ))}
+                        {/* Render active layer */}
+                        {renderLayer(0, 1, true)}
                     </Box>
-                </Box>}
+                </Box>
+            )}
         </>
     )
 }

@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 export function useStepController() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [step, setStep] = useState(1)
+    const [completedSteps, setCompletedSteps] = useState<number[]>([])
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
     const options: LottieOptions = {
@@ -36,7 +37,14 @@ export function useStepController() {
                 pinSpacing: true,
                 onUpdate: (self) => {
                     const progress = self.progress * 100
-                    setStep(progress < 33 ? 1 : progress < 66 ? 2 : 3)
+                    const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
+                    setStep(newStep)
+
+                    // Track completed steps for layering effect
+                    const completed = []
+                    if (newStep >= 2) completed.push(1)
+                    if (newStep >= 3) completed.push(2)
+                    setCompletedSteps(completed)
                 }
             }
         })
@@ -45,6 +53,7 @@ export function useStepController() {
     return {
         containerRef,
         step,
+        completedSteps,
         fixedPercentage,
         LottieView: View
     }
