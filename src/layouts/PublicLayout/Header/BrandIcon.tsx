@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import MobileDrawer from './MobileDrawer/MobileDrawer'
 
 const BrandIcon = () => {
-    const { isOpen, onOpen, onClose, onToggle } = useDisclosure()
+    const { isOpen, onClose, onToggle } = useDisclosure()
     const { showHamburgerMenu, typography } = useBreakpointValue({
         base: {
             showHamburgerMenu: true,
