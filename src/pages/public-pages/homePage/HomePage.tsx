@@ -4,10 +4,18 @@ import { LazyLoad } from './components/common/LazyLoad'
 import PartnersSection from './partners-section/PartnersSection'
 
 export default function HomePage() {
+  const sections = [
+    { id: 'hero', component: <HeroSection /> },
+    { id: 'partners-section', component: <PartnersSection /> },
+  ];
+
   return (
-    <LazyLoad>
-      <HeroSection />
-      <PartnersSection />
-    </LazyLoad>
+    <>
+      {sections.map((section) => (
+        <LazyLoad key={section.id}>
+          {section.component}
+        </LazyLoad>
+      ))}
+    </>
   )
 }

@@ -5,7 +5,7 @@ import Marquee from 'react-fast-marquee'
 export default function MarqueeWrapper({ children }: { children: React.ReactNode }) {
     return (
         <Box
-            width={{ base: "100%", lg: "80%", xl: "50%" }}
+            width="100%"
             position="relative"
             sx={{
                 '.rfm-child': {
@@ -30,7 +30,6 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
             }}
         >
             <Marquee
-                pauseOnHover
                 direction='left'
                 autoFill
                 speed={25}

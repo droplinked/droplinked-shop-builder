@@ -15,27 +15,19 @@ export default function PartnersSection() {
             >
                 <MarqueeWrapper>
                     {partners.map((partner) => (
-                        <Link
-                            href={partner.url}
-                            key={partner.title}
-                            aria-label={partner.title}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            <IconWrapper
-                                background="neutral.background"
-                                border="none"
-                                p={2}
-                                icon={
-                                    <img
-                                        width="20px"
-                                        height="20px"
-                                        src={partner.icon}
-                                        alt={partner.title}
-                                    />
-                                }
-                            />
-                        </Link>
+                        <IconWrapper
+                            background="neutral.background"
+                            border="none"
+                            p={2}
+                            icon={
+                                <img
+                                    width="20px"
+                                    height="20px"
+                                    src={partner.icon}
+                                    alt={partner.title}
+                                />
+                            }
+                        />
                     ))}
                 </MarqueeWrapper>
             </SectionContainer>
