@@ -19,11 +19,12 @@ export default function Header() {
             position="sticky"
             top={0}
             zIndex="sticky"
+            height="72px"
             boxShadow={isScrolled ? 'sm' : 'none'}
             display="flex"
             justifyContent="space-between"
+            alignItems="center"
             gap={6}
-            paddingBlock={4}
             paddingInline={{ base: 4, md: 9, xl: "60px", "2xl": "72px" }}
             bg={isScrolled ? 'neutral.websiteBackground' : 'transparent'}
             transition="background-color 0.3s ease"

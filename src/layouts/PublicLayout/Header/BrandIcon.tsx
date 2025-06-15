@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import MobileDrawer from './MobileDrawer/MobileDrawer'
 
 const BrandIcon = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose, onToggle } = useDisclosure()
     const { showHamburgerMenu, typography } = useBreakpointValue({
         base: {
             showHamburgerMenu: true,
@@ -35,7 +35,7 @@ const BrandIcon = () => {
                 bg="transparent"
                 icon={
                     showHamburgerMenu
-                        ? <HamburgermenuLg color='#fff' onClick={onOpen} />
+                        ? <HamburgermenuLg color='#fff' onClick={onToggle} />
                         : <Drop3 width="24px" height="24px" color='#fff' />
                 }
             />
@@ -43,15 +43,14 @@ const BrandIcon = () => {
         </>
     )
 
-    return (
+    if (showHamburgerMenu) return (
         <>
-            {showHamburgerMenu
-                ? <Box {...flexContainerStyles}>{content}</Box>
-                : <ChakraLink as={Link} to="/" {...flexContainerStyles}>{content}</ChakraLink>
-            }
+            <Box {...flexContainerStyles}>{content}</Box>
             <MobileDrawer isOpen={isOpen} onClose={onClose} />
         </>
     )
+
+    return <ChakraLink as={Link} to="/" {...flexContainerStyles}>{content}</ChakraLink>
 }
 
 export default BrandIcon
