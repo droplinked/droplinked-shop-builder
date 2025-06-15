@@ -10,7 +10,7 @@ export default function GoLiveSection() {
     return (
         <MaxWidthWrapper>
             <SectionContainer
-                // icon='sparkle'
+                icon='sparkle'
                 sectionTitle='GO LIVE IN MINUTES'
                 headingTitle={`Effortlessly Designed \n Storefronts and Marketplaces`}
                 headingSubtitle={`droplinked makes it simple to sell physical and digital inventory while allowing you \n to earn in cash or crypto`}
