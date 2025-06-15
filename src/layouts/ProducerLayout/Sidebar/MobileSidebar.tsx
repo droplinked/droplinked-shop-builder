@@ -14,7 +14,7 @@ function MobileSidebar() {
       onClose={toggleSidebar}
       placement="left"
     >
-      <DrawerOverlay bg="rgba(0, 0, 0, 0.4)" />
+      <DrawerOverlay background="rgba(0, 0, 0, 0.75)" />
       <DrawerContent
         mt="119px" // Start from below the header
         bg="neutral.background"

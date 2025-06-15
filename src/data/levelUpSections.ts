@@ -1,5 +1,5 @@
-import { ArrowrightLg } from 'assets/icons/Navigation/ArrowRight/ArrowrightLg';
-import { ExternalarrowLg } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowLg';
+import { ArrowrightLg } from 'assets/icons/Navigation/ArrowRight/ArrowrightLg'
+import { ExternalarrowLg } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowLg'
 
 export const levelUpSections = [
   {
@@ -54,8 +54,8 @@ export const levelUpSections = [
             label: 'Create Product',
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/products');
+              onClose?.()
+              navigate?.('/analytics/products')
             }
           }
         }
@@ -75,8 +75,8 @@ export const levelUpSections = [
             label: 'Storefront Customization',
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/style-center/storefront-designer');
+              onClose?.()
+              navigate?.('/style-center/storefront-designer')
             }
           }
         }
@@ -96,8 +96,8 @@ export const levelUpSections = [
             label: 'Affiliate Market',
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/affiliate/products');
+              onClose?.()
+              navigate?.('/analytics/affiliate/products')
             }
           }
         }
@@ -168,7 +168,7 @@ export const levelUpSections = [
         }
       },
       {
-        title: 'Social Tile', 
+        title: 'Social Tile',
         description: 'Share products on Twitter with an embeddable tile that allows customers to view details and purchase directly.',
         link: {
           linkTitle: 'Learn more about it in our Help Center',
@@ -185,12 +185,12 @@ export const levelUpSections = [
             label: 'Create Product',
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/style-center/product-tiles');
+              onClose?.()
+              navigate?.('/analytics/style-center/product-tiles')
             }
           }
         }
       }
     ]
   }
-];
+]
