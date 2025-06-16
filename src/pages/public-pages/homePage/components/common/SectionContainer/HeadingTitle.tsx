@@ -9,7 +9,7 @@ export default function HeadingTitle({ title }: { title?: string }) {
             as="h1"
             color="neutral.white"
             textAlign="center"
-            my={{ base: 2, lg: 4 }}
+            mb={{ base: 2, lg: 4 }}
             fontSize={{ base: 24, md: 36, lg: 48 }}
             fontWeight="500"
             lineHeight={{ base: "36px", md: "52px", lg: "64px" }}

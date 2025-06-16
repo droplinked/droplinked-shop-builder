@@ -27,7 +27,7 @@ export default function SectionContainer({ children, sectionTitle, headingTitle,
             <IconMapper icon={icon as Icon} />
             <SectionTitle sectionTitle={sectionTitle} icon={icon} />
             <HeadingTitle title={headingTitle} />
-            <HeadingSubtitle subTitle={headingSubtitle} />
+            <HeadingSubtitle subTitle={headingSubtitle} hasTypographyText={!!typographyText} />
             {subTitleElement && (
                 subTitleElement
             )}

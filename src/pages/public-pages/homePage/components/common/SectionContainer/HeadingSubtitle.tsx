@@ -1,7 +1,12 @@
 import { Text } from '@chakra-ui/react'
 import React from 'react'
 
-export default function HeadingSubtitle({ subTitle }: { subTitle?: string }) {
+interface Props {
+    subTitle?: string;
+    hasTypographyText?: boolean;
+}
+
+export default function HeadingSubtitle({ subTitle, hasTypographyText }: Props) {
     if (!subTitle) return null
 
     return (
@@ -12,7 +17,7 @@ export default function HeadingSubtitle({ subTitle }: { subTitle?: string }) {
             fontWeight="400"
             lineHeight={{ base: "20px", lg: "24px" }}
             whiteSpace="pre-wrap"
-            mb={6}
+            mb={hasTypographyText ? 6 : 0}
         >
             {subTitle}
         </Text>
