@@ -24,7 +24,7 @@ export default function AnimationFrame({
             padding="8px 8px 0px 8px"
             position={zIndex > 0 ? "absolute" : "relative"}
             top={zIndex > 0 ? `-${zIndex * 25}px` : "0"}
-            left={zIndex > 0 ? `-${zIndex * 8}px` : "0"}
+            left={zIndex > 0 ? `-${zIndex}px` : "0"}
             zIndex={10 - zIndex}
             opacity={isActive && isTransitioning ? 0 : opacity}
             transform={`scale(${1 - zIndex * 0.05}) ${isActive && isTransitioning ? 'scale(0.9)' : ''}`}

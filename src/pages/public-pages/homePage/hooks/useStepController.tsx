@@ -67,8 +67,6 @@ export function useStepController() {
                     const progress = self.progress * 100
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
-
-                    // Remove completed steps logic from here since it's now handled in useEffect
                 }
             }
         })
