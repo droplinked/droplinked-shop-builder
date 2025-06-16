@@ -7,7 +7,7 @@ import MarqueeWrapper from './MarqueeWrapper';
 
 export default function PartnersSection() {
     return (
-        <MaxWidthWrapper boxProps={{ paddingBlock: 6 }}>
+        <MaxWidthWrapper paddingBlock={6}>
             <SectionContainer
                 sectionTitle='ECOSYSTEM PARTNERS'
                 flexProps={{ paddingBlock: 6 }}

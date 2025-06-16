@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import MaxWidthWrapper from 'pages/public-pages/homePage/components/common/MaxWidthWrapper'
 import React, { useEffect, useState } from 'react'
 import AuthButtons from './AuthButtons'
 import BrandIcon from './BrandIcon'
@@ -14,7 +14,7 @@ export default function Header() {
     }, [])
 
     return (
-        <Box
+        <MaxWidthWrapper
             as="header"
             position="sticky"
             top={0}
@@ -25,13 +25,12 @@ export default function Header() {
             justifyContent="space-between"
             alignItems="center"
             gap={6}
-            paddingInline={{ base: 4, md: 9, xl: "60px", "2xl": "72px" }}
             bg={isScrolled ? 'neutral.websiteBackground' : 'transparent'}
             transition="background-color 0.3s ease"
         >
             <BrandIcon />
             <NavigationMenu />
             <AuthButtons />
-        </Box>
+        </MaxWidthWrapper>
     )
 }
