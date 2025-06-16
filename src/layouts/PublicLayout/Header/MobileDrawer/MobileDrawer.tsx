@@ -1,10 +1,10 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { Layer1Md } from 'assets/icons/System/Layer1/Layer1Md'
 import publicHeaderLinks from 'data/publicHeaderLinks'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import QuickLinks from '../QuickLinks/QuickLinks'
 import { NavItem } from './NavItem'
-import PlatformSubmenu from './PlatformSubmenu'
+import PlatformSubmenu from './PlatformSubmenu/PlatformSubmenu'
 import SlideDrawer from './SlideDrawer'
 
 interface Props {
@@ -15,11 +15,20 @@ interface Props {
 export default function MobileDrawer({ isOpen, onClose }: Props) {
     const [isPlatformSubmenuOpen, setIsPlatformSubmenuOpen] = useState(false)
 
+    // Close platform submenu when drawer is closed
+    useEffect(() => {
+        if (!isOpen) setIsPlatformSubmenuOpen(false)
+    }, [isOpen])
+
+    const handleCloseAll = () => {
+        setIsPlatformSubmenuOpen(false)
+        onClose()
+    }
+
     return (
         <>
             <SlideDrawer
                 isOpen={isOpen}
-                lockBodyScroll
                 top="72px"
                 width="100%"
                 padding={{ base: 4, md: 5 }}
@@ -52,6 +61,7 @@ export default function MobileDrawer({ isOpen, onClose }: Props) {
             <PlatformSubmenu
                 isOpen={isPlatformSubmenuOpen}
                 onClose={() => setIsPlatformSubmenuOpen(false)}
+                onCloseAll={handleCloseAll}
             />
         </>
     )

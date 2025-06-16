@@ -9,9 +9,16 @@ interface Props extends BoxProps {
 export default function SlideDrawer({ isOpen, children, lockBodyScroll = true, ...rest }: Props) {
     useEffect(() => {
         if (lockBodyScroll) {
-            document.body.style.overflow = isOpen ? 'hidden' : 'unset'
+            const openDrawers = document.querySelectorAll('.slide-drawer.open')
+            const shouldLockScroll = openDrawers.length > 0
+
+            document.body.style.overflow = shouldLockScroll ? 'hidden' : 'unset'
+
             return () => {
-                document.body.style.overflow = 'unset'
+                const remainingOpenDrawers = document.querySelectorAll('.slide-drawer.open')
+                if (remainingOpenDrawers.length === 0) {
+                    document.body.style.overflow = 'unset'
+                }
             }
         }
     }, [isOpen, lockBodyScroll])
@@ -25,6 +32,7 @@ export default function SlideDrawer({ isOpen, children, lockBodyScroll = true, .
 
     return (
         <Box
+            className={`slide-drawer ${isOpen ? 'open' : 'closed'}`}
             position="fixed"
             bottom={0}
             transition="0.4s"
