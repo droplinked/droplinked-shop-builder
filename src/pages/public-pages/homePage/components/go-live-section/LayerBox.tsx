@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 
 interface LayerBoxProps {
@@ -10,6 +10,8 @@ interface LayerBoxProps {
 }
 
 export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = false, isTransitioning = false }: LayerBoxProps) {
+    const topCalculateNumber = useBreakpointValue({ base: 10, md: 13, lg: 15, xl: 25 });
+
     return (
         <Box
             width="100%"
@@ -21,7 +23,7 @@ export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = f
             backdropFilter="blur(50px)"
             padding="8px 8px 0px 8px"
             position={zIndex > 0 ? "absolute" : "relative"}
-            top={zIndex > 0 ? `-${zIndex * 25}px` : "0"}
+            top={zIndex > 0 ? `-${zIndex * topCalculateNumber}px` : "0"}
             left={zIndex > 0 ? `-${zIndex}px` : "0"}
             zIndex={10 - zIndex}
             opacity={isActive && isTransitioning ? 0 : opacity}

@@ -16,7 +16,7 @@ export default function DesktopAnimationFrame({ LottieView, completedSteps, isTr
             backgroundSize="contain"
             backgroundRepeat="no-repeat"
             backgroundPosition="center"
-            padding={{ md: "24px 24px 0px 24px", lg: "48px 48px 0px 48px" }}
+            padding={{ md: "16px 16px 0px 16px", lg: "24px 24px 0px 24px", xl: "48px 48px 0px 48px" }}
         >
             <Box position="relative">
                 {/* Render completed step layers */}

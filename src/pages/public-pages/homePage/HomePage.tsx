@@ -14,9 +14,9 @@ export default function HomePage() {
   return (
     <>
       {sections.map((section) => (
-        <LazyLoad key={section.id}>
-          {section.component}
-        </LazyLoad>
+        // <LazyLoad key={section.id}>
+        section.component
+        // </LazyLoad>
       ))}
     </>
   )
