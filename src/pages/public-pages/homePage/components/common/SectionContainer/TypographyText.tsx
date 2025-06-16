@@ -11,6 +11,7 @@ export default function TypographyText({ text }: { text?: string }) {
         <Heading
             display={isSmallerThanMd ? 'none' : 'block'}
             mt="48px"
+            mb="-1rem"
             fontSize={{ base: '88px', lg: '144px', xl: '160px' }}
             fontWeight={900}
             lineHeight={{ base: '88px', lg: '144px', xl: '160px' }}

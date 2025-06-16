@@ -7,15 +7,17 @@ interface Props {
     title: string;
     description: string;
     animation: React.ReactNode;
+    gridColumn?: string | { base?: string; md?: string; lg?: string };
 }
 
-export default function ProductOfferingCard({ icon, title, description, animation }: Props) {
+export default function ProductOfferingCard({ icon, title, description, animation, gridColumn }: Props) {
     return (
         <Flex
             flexDirection="column"
             border="1px solid"
             borderColor="neutral.gray.900"
             borderRadius={16}
+            gridColumn={gridColumn}
         >
             <Flex flexDirection="column" gap={4} p={6}>
                 <IconWrapper
