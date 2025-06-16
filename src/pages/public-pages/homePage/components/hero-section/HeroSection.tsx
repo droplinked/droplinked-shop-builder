@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroAnimation from './HeroAnimation'
@@ -39,7 +40,7 @@ export default function HeroSection() {
                     </Text>
                 </Flex>
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
-                    <Link to="/onboarding?entry=signup">
+                    <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
                             Start Now
                         </AppButton>
