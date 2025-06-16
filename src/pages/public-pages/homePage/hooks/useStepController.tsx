@@ -1,6 +1,7 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import Lottie from 'lottie-react'
 import { useRef, useState, useEffect } from 'react'
 import Step1 from '../lottie/GoLive/Step1.json'
@@ -9,7 +10,7 @@ import Step3 from '../lottie/GoLive/Step3.json'
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 export function useStepController() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -56,14 +57,16 @@ export function useStepController() {
                 start: "top top",
                 end: "+=100%",
                 scrub: 1,
+                anticipatePin: 1,
                 pin: true,
                 pinSpacing: true,
+                snap: 0.35,
                 onUpdate: (self) => {
                     const progress = self.progress * 100
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
                 }
-            }
+            },
         })
     }, { scope: containerRef })
 
