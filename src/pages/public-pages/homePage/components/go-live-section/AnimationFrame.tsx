@@ -31,7 +31,7 @@ export default function AnimationFrame({
             filter={isActive && isTransitioning ? "blur(12px)" : "blur(0px)"}
             transition="all 0.4s ease-in-out"
             // Add animation for background layers
-            animation={zIndex > 0 ? "layerFadeIn 0.3s ease-out" : undefined}
+            animation="layerFadeIn 0.3s ease-out"
             sx={{
                 "svg": {
                     borderRadius: "16px 16px 0 0"
@@ -39,11 +39,9 @@ export default function AnimationFrame({
                 "@keyframes layerFadeIn": {
                     "0%": {
                         opacity: 0,
-                        transform: `scale(${1 - zIndex * 0.05 - 0.1})`
                     },
                     "100%": {
                         opacity: opacity,
-                        transform: `scale(${1 - zIndex * 0.05})`
                     }
                 }
             }}

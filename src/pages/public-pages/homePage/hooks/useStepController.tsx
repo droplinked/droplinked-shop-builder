@@ -28,28 +28,22 @@ export function useStepController() {
 
     // Handle step transitions with animation
     useEffect(() => {
-        if (step !== previousStep) {
-            setIsTransitioning(true)
+        if (step === previousStep) return
 
-            const timer = setTimeout(() => {
-                setPreviousStep(step)
+        setIsTransitioning(true)
 
-                // Update completed steps simultaneously with fade in
-                const completed = []
-                if (step >= 2) completed.push(1)
-                if (step >= 3) completed.push(2)
-                setCompletedSteps(completed)
+        // Update completed steps immediately
+        const completed = []
+        if (step >= 2) completed.push(1)
+        if (step >= 3) completed.push(2)
+        setCompletedSteps(completed)
 
-                // Add delay before fade in starts
-                const fadeInTimer = setTimeout(() => {
-                    setIsTransitioning(false)
-                }, 100) // Reduced from 200ms to 100ms
+        const timer = setTimeout(() => {
+            setPreviousStep(step)
+            setIsTransitioning(false)
+        }, 300)
 
-                return () => clearTimeout(fadeInTimer)
-            }, 200) // Reduced from 400ms to 200ms
-
-            return () => clearTimeout(timer)
-        }
+        return () => clearTimeout(timer)
     }, [step, previousStep])
 
     useGSAP(() => {
