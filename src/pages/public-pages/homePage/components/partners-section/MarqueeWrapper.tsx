@@ -31,7 +31,6 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
         >
             <Marquee
                 direction='left'
-                autoFill
                 speed={25}
             >
                 {children}

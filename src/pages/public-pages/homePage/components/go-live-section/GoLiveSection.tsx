@@ -2,9 +2,10 @@ import React from 'react'
 import SectionContainer from '../common/SectionContainer/SectionContainer'
 import MaxWidthWrapper from '../common/MaxWidthWrapper'
 import AppButton from 'components/redesign/button/AppButton'
-import { Link } from '@chakra-ui/react'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import Stepper from './Stepper'
+import { Link } from 'react-router-dom'
+import { AUTH_ROUTES } from 'constants/authRoutes'
 
 export default function GoLiveSection() {
     return (
@@ -16,7 +17,7 @@ export default function GoLiveSection() {
                 headingSubtitle={`droplinked makes it simple to sell physical and digital inventory while allowing you \n to earn in cash or crypto`}
                 typographyText='How It Works'
                 subTitleElement={
-                    <Link href='/onboarding?entry=signup'>
+                    <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton rightIcon={<ArrowrightMd />}>
                             Get Started
                         </AppButton>
