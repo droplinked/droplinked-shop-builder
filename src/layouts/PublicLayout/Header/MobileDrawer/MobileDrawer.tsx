@@ -3,9 +3,9 @@ import { Layer1Md } from 'assets/icons/System/Layer1/Layer1Md'
 import publicHeaderLinks from 'data/publicHeaderLinks'
 import React, { useState } from 'react'
 import QuickLinks from '../QuickLinks/QuickLinks'
-import SlideDrawer from './AnimatedDrawer'
 import { NavItem } from './NavItem'
 import PlatformSubmenu from './PlatformSubmenu'
+import SlideDrawer from './SlideDrawer'
 
 interface Props {
     isOpen: boolean

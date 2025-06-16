@@ -1,5 +1,8 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, VStack } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
 import React from 'react'
+import SlideDrawer from './SlideDrawer'
 
 interface Props {
     isOpen: boolean
@@ -8,32 +11,33 @@ interface Props {
 
 export default function PlatformSubmenu({ isOpen, onClose }: Props) {
     return (
-        <Drawer
+        <SlideDrawer
             isOpen={isOpen}
-            onClose={onClose}
-            placement="left"
-            size="full"
+            lockBodyScroll
+            top="72px"
+            width="100%"
         >
-            <DrawerOverlay bg="rgba(0, 0, 0, 0.75)" />
-            <DrawerContent
-                bg="neutral.websiteBackground"
-            >
-                <DrawerHeader>
-                    <DrawerCloseButton />
-                </DrawerHeader>
-                <DrawerBody>
-                    <VStack spacing={4} align="stretch">
-                        <Button
-                            onClick={onClose}
-                            colorScheme="gray"
-                            size="lg"
-                        >
-                            Back to Main Menu
-                        </Button>
-                        {/* Add your platform submenu items here */}
-                    </VStack>
-                </DrawerBody>
-            </DrawerContent>
-        </Drawer>
+            <RuledGrid columns={1} nested>
+                <Flex
+                    as="button"
+                    alignItems="center"
+                    gap={1}
+                    padding={{ base: 4, md: "24px 36px" }}
+                    fontSize={14}
+                    fontWeight={500}
+                    color="text.white"
+                    onClick={onClose}
+                >
+                    <ChevronleftMd color='#fff' />
+                    Back
+                </Flex>
+
+                <Flex>
+                    <Text>
+                        Platform
+                    </Text>
+                </Flex>
+            </RuledGrid>
+        </SlideDrawer>
     )
 } 
