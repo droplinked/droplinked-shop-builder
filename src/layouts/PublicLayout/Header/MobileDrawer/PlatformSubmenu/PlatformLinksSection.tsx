@@ -1,6 +1,6 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import React from 'react'
-import PlatformLink from './PlatformLink'
+import PlatformLink from '../../PlatformLink'
 
 interface Props {
     section: any
