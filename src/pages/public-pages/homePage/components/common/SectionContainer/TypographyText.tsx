@@ -1,22 +1,19 @@
-import { Heading, useMediaQuery } from '@chakra-ui/react';
-import React from 'react';
+import { Heading, useMediaQuery } from '@chakra-ui/react'
+import React from 'react'
 
+function TypographyText({ text }: { text?: string }) {
+    const [isSmallerThanMd] = useMediaQuery('(max-width: 768px)')
 
-
-export default function TypographyText({ text }: { text?: string }) {
-    const [isSmallerThanMd] = useMediaQuery('(max-width: 768px)');
-    if (!text) return null;
+    if (!text || isSmallerThanMd) return null
 
     return (
         <Heading
-            display={isSmallerThanMd ? 'none' : 'block'}
-            mt="48px"
-            mb="-1rem"
-            fontSize={{ base: '88px', lg: '144px', xl: '160px' }}
-            fontWeight={900}
-            lineHeight={{ base: '88px', lg: '144px', xl: '160px' }}
-            letterSpacing={{ base: "-1.76px", lg: "-2.88px", xl: "-3.2px" }}
+            mb="-16px"
             textAlign="center"
+            fontSize={{ md: '78px', xl: '144px', '2xl': '160px' }}
+            fontWeight={900}
+            lineHeight={{ md: '88px', xl: '136px', '2xl': '144px' }}
+            letterSpacing={{ md: "-1.76px", xl: "-2.88px", '2xl': "-3.2px" }}
             sx={{
                 background: 'linear-gradient(180deg, rgba(20, 20, 20, 0.50) 0%, rgba(20, 20, 20, 0.25) 70%, rgba(20, 20, 20, 0.00) 100%)',
                 backgroundClip: 'text',
@@ -24,10 +21,12 @@ export default function TypographyText({ text }: { text?: string }) {
                 WebkitTextFillColor: 'transparent',
                 position: 'relative',
                 maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
             }}
         >
             {text}
         </Heading>
-    );
+    )
 }
+
+export default TypographyText

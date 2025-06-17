@@ -9,61 +9,60 @@ import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function BrandIdentity() {
-    const socialMediaLinks = [
-        { icon: <XMd color='#fff' />, url: 'https://x.com/droplinked' },
-        { icon: <LinkedinMd color='#fff' />, url: 'https://www.linkedin.com/company/droplinked' },
-        { icon: <InstagramMd color='#fff' />, url: 'https://www.instagram.com/drop_linked' },
-        { icon: <TelegramMd color='#fff' />, url: 'https://t.me/droplinked' },
-        { icon: <DiscordMd color='#fff' />, url: 'https://discord.com/channels/1068939465025916959/1088500920406515763' }
-    ]
+const SOCIAL_MEDIA_LINKS = [
+    { icon: <XMd color='#fff' />, url: 'https://x.com/droplinked' },
+    { icon: <LinkedinMd color='#fff' />, url: 'https://www.linkedin.com/company/droplinked' },
+    { icon: <InstagramMd color='#fff' />, url: 'https://www.instagram.com/drop_linked' },
+    { icon: <TelegramMd color='#fff' />, url: 'https://t.me/droplinked' },
+    { icon: <DiscordMd color='#fff' />, url: 'https://discord.com/channels/1068939465025916959/1088500920406515763' }
+] as const
 
+const ICON_WRAPPER_STYLES = {
+    display: "grid",
+    placeItems: "center",
+    width: 10,
+    height: 10,
+    border: "1px solid",
+    borderColor: "neutral.gray.900",
+    borderRadius: 8
+} as const
+
+function BrandIdentity() {
     return (
-        <Box
-            sx={{
-                ".icon-wrapper": {
-                    display: "grid",
-                    placeItems: "center",
-                    width: 10,
-                    height: 10,
-                    border: "1px solid",
-                    borderColor: "neutral.gray.900",
-                    borderRadius: 8
-                }
-            }}
-        >
-            <ChakraLink
+        <Box>
+            <Flex
                 as={Link}
                 to="/"
-                display="flex"
                 alignItems="center"
                 gap={3}
                 marginBottom={3}
             >
-                <Box className='icon-wrapper'>
+                <Box {...ICON_WRAPPER_STYLES}>
                     <Drop3 width="24px" height="24px" color='#fff' />
                 </Box>
                 <DroplinkedTypography width="129px" height="24px" color='#fff' />
-            </ChakraLink>
+            </Flex>
 
             <Text fontSize={{ base: 14, md: 16 }} fontWeight={500} color="text.white">
                 Commerce tools to sell and settle transparently
             </Text>
 
             <Flex marginBlock={{ base: 4, xl: 6 }} gap={2}>
-                {socialMediaLinks.map((link) => (
+                {SOCIAL_MEDIA_LINKS.map(({ icon, url }) => (
                     <ChakraLink
-                        className='icon-wrapper'
-                        key={link.url}
-                        href={link.url}
+                        key={url}
+                        href={url}
                         target="_blank"
                         transition="0.3s ease-in-out"
                         _hover={{ bgColor: "neutral.gray.1000" }}
+                        {...ICON_WRAPPER_STYLES}
                     >
-                        {link.icon}
+                        {icon}
                     </ChakraLink>
                 ))}
             </Flex>
         </Box>
     )
 }
+
+export default BrandIdentity

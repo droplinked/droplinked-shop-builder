@@ -4,6 +4,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { appVersion } from 'utils/app/variable'
 
+const LEGAL_LINKS = [
+    { to: '/terms', label: 'Cookies' },
+    { to: '/terms', label: 'Privacy & Data Collection' },
+    { to: '/privacy', label: 'Terms of service' }
+] as const
+
 function FooterLegal() {
     const currentYear = new Date().getFullYear()
 
@@ -23,9 +29,11 @@ function FooterLegal() {
             </DotSeparatedList>
 
             <DotSeparatedList>
-                <ChakraLink as={Link} to="/terms">Cookies</ChakraLink>
-                <ChakraLink as={Link} to="/terms">Privacy & Data Collection</ChakraLink>
-                <ChakraLink as={Link} to="/privacy">Terms of service</ChakraLink>
+                {LEGAL_LINKS.map(({ to, label }) => (
+                    <ChakraLink key={label} as={Link} to={to}>
+                        {label}
+                    </ChakraLink>
+                ))}
             </DotSeparatedList>
         </Flex>
     )
