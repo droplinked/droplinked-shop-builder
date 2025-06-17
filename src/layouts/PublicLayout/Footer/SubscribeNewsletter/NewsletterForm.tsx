@@ -51,6 +51,8 @@ function NewsletterForm() {
                         rightElement={
                             <AppButton
                                 type="submit"
+                                size="sm"
+                                padding="8px 12px"
                                 isLoading={isSubmitting}
                                 isDisabled={isSubmitting}
                             >
