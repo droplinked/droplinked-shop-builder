@@ -1,4 +1,4 @@
-import { Box, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
+import { Box, Link as ChakraLink, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import Drop3 from 'assets/brand-identity/Drop3'
 import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography'
 import { HamburgermenuLg } from 'assets/icons/Navigation/HamburgerMenu/HamburgermenuLg'
@@ -50,7 +50,7 @@ const BrandIcon = () => {
         </>
     )
 
-    return <Link to="/" {...flexContainerStyles}>{content}</Link>
+    return <ChakraLink as={Link} to="/" {...flexContainerStyles}>{content}</ChakraLink>
 }
 
 export default BrandIcon
