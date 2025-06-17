@@ -64,17 +64,16 @@ function NavigationLinks() {
                                     height="100%"
                                     borderRadius={2}
                                     bg="neutral.white"
-                                    opacity={isActive ? 1 : 0}
+                                    opacity={0}
                                     transition="opacity 0.3s ease-in-out"
                                 />
                                 <Box
                                     as="span"
                                     display="inline-block"
                                     fontSize={14}
-                                    fontWeight={isActive ? 500 : 400}
-                                    color={isActive ? 'text.white' : 'text.subtext.placeholder.dark'}
+                                    fontWeight={400}
+                                    color='text.subtext.placeholder.dark'
                                     transition="transform 0.3s ease-in-out"
-                                    transform={isActive ? 'translateX(8px)' : 'none'}
                                 >
                                     {label}
                                 </Box>

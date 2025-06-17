@@ -52,7 +52,14 @@ export default function BrandIdentity() {
 
             <Flex marginBlock={{ base: 4, xl: 6 }} gap={2}>
                 {socialMediaLinks.map((link) => (
-                    <ChakraLink className='icon-wrapper' key={link.url} href={link.url} target="_blank">
+                    <ChakraLink
+                        className='icon-wrapper'
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        transition="0.3s ease-in-out"
+                        _hover={{ bgColor: "neutral.gray.1000" }}
+                    >
                         {link.icon}
                     </ChakraLink>
                 ))}
