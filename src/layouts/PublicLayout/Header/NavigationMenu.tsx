@@ -16,7 +16,7 @@ export default function NavigationMenu() {
                     as={Link}
                     key={link.href}
                     to={link.href}
-                    fontWeight={14}
+                    fontSize={14}
                     color="text.subtext.placeholder.dark"
                     _hover={{ color: 'text.white', textDecoration: 'none' }}
                 >
