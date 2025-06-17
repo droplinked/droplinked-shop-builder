@@ -26,7 +26,7 @@ export default function NavigationLinks() {
     ]
 
     return (
-        <Grid templateColumns="repeat(4, auto)" gap={8}>
+        <Grid templateColumns={{ base: 'repeat(2, auto)', md: 'repeat(4, auto)' }} gap={8}>
             {navigationLinks.map((group) => <NavigationGroup key={group.label} {...group} />)}
         </Grid>
     )

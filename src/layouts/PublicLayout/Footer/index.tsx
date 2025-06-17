@@ -1,16 +1,16 @@
-import { Flex, Grid, useMediaQuery } from "@chakra-ui/react"
+import { Flex, Grid, useBreakpointValue } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
 import MaxWidthWrapper from "pages/public-pages/homePage/components/common/MaxWidthWrapper"
 import React from "react"
 import BrandIdentity from "./BrandIdentity"
 import FooterLegal from "./FooterLegal"
 import NavigationLinks from "./NavigationLinks"
-import SubscribeNewsletter from "./SubscribeNewsletter"
+import SubscribeNewsletter from "./SubscribeNewsletter/SubscribeNewsletter"
 
 export default function Footer() {
-    const [isMobile] = useMediaQuery("(max-width: 768px)")
+    const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: DesktopLayout })
 
-    return isMobile ? <MobileLayout /> : <DesktopLayout />
+    return <LayoutComponent />
 }
 
 const MobileLayout = () => (
