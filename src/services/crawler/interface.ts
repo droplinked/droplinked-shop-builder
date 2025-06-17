@@ -1,6 +1,7 @@
 export interface SelectedProductsForCrawl {
     poolId: string
     selectedUrls: string[]
+    shouldRecord: boolean
 }
 
 export interface StartWebsiteCrawlingResponse {
@@ -11,7 +12,7 @@ export interface StartWebsiteCrawlingResponse {
 
 export interface RecentCrawlerTasksResponse {
     _id: string
-    status: "previews_ready" | "pending" | "processing_preview" | "products_selected" | "crawling" | "completed" | "error"
+    status: "previews_ready" | "pending" | "processing_preview" | "products_selected" | "crawling" | "completed" | "error" | "recording" | "recorded"
     websiteUrl: string
     previewUrls: string[]
     selectedUrls: string[],
@@ -26,4 +27,11 @@ export interface RecentCrawlerTasksResponse {
     }
     createdAt: string
     updatedAt: string
+}
+
+export interface RecordedProduct {
+    id: string,
+    title: string,
+    image: string,
+    status: string
 }

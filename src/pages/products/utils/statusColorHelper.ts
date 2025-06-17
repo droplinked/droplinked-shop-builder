@@ -17,6 +17,8 @@ export const getStatusColor = (status: RecentCrawlerTasksResponse["status"]) => 
     switch (status) {
         case "completed":
             return "text.primary";
+        case "recorded":
+            return "text.primary";
 
         case "error":
             return "text.error";

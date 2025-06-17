@@ -1,35 +1,27 @@
-import { Badge } from '@chakra-ui/react'
-import React from 'react'
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import AppBadge from 'components/redesign/badge/AppBadge';
+import { IDetailedTransaction } from 'services/credit/interfaces';
+import React from 'react';
 
-export default function StatusBadge({ status }: { status: "SUCCESS" | "FAILED" }) {
-    const { t } = useLocaleResources("creditsAndActivity")
-    const statusKey = status === "SUCCESS" ? "completed" : "failed"
-    const statusText = t(`transactionTable.status.${statusKey}`)
-
-    const completedStyle = {
-        bg: '#092C22',
-        color: '#2BCFA1',
-        borderColor: '#2BCFA1',
+export default function StatusBadge({ status }: { status: IDetailedTransaction["status"] }) {
+    const statusMapping = {
+        "SUCCESS": { badgeStatus: "success" as const, text: "Completed" },
+        "FAILED": { badgeStatus: "error" as const, text: "Failed" },
+        "PENDING": { badgeStatus: "pending" as const, text: "Pending" }
     }
-    const failedStyle = {
-        bg: 'rgba(255, 34, 68, 0.05)',
-        color: '#FF2244',
-        borderColor: '#FF2244',
+
+    // Use the mapped status if available, otherwise default to neutral with the status as text
+    const { badgeStatus, text } = statusMapping[status] || {
+        badgeStatus: "neutral" as const,
+        text: status?.charAt(0) + status?.slice(1).toLowerCase()
     }
 
     return (
-        <Badge
-            border={"1px solid"}
-            borderRadius={24}
+        <AppBadge
+            text={text}
+            status={badgeStatus}
+            fontSize={14}
             paddingBlock={1}
             paddingInline={4}
-            fontSize={14}
-            fontWeight={400}
-            textTransform={"capitalize"}
-            {...status === "SUCCESS" ? { ...completedStyle } : { ...failedStyle }}
-        >
-            {statusText}
-        </Badge>
+        />
     )
 }

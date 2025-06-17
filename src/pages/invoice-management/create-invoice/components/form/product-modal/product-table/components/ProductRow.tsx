@@ -52,7 +52,7 @@ const ProductRow = forwardRef<HTMLTableRowElement, Props>(function (props, ref) 
             <Td>
                 <Flex alignItems="center" gap={6}>
                     <AppImage src={product.media[0]?.url} width={12} height={12} />
-                    <ProductTitleCell title={product.title} wordLimit={35} />
+                    <ProductTitleCell title={product.title} wordLimit={20} />
                 </Flex>
             </Td>
             <Td>

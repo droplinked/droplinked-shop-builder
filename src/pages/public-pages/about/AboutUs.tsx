@@ -1,10 +1,9 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import { SimpleGrid } from '@chakra-ui/react'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/public-pages/about/ar.json'
 import enLocale from 'locales/public-pages/about/en.json'
+import React from 'react'
 
 function AboutUs() {
     const { t } = useLocaleResources("about", {

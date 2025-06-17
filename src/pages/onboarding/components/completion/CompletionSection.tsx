@@ -1,18 +1,12 @@
 import { Flex } from '@chakra-ui/react'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
 import DroplinkedBrand from '../common/DroplinkedBrand'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CompletionSlider from './CompletionSlider'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 
-function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
+function CompletionSection() {
+    const { t } = useLocaleResources('onboarding')
 
     return (
         <Flex
@@ -30,7 +24,7 @@ function CompletionSection({ onBack }: Pick<OnboardingStepProps, "onBack">) {
                 textAlign="center"
             />
 
-            <CompletionSlider onBack={onBack} />
+            <CompletionSlider />
         </Flex>
     )
 }

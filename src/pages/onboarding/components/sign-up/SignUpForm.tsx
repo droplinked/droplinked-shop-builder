@@ -7,7 +7,6 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { signupService } from 'services/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -17,10 +16,10 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
-import PasswordValidationRules from './PasswordValidationRules'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/onboarding/ar.json'
 import enLocale from 'locales/onboarding/en.json'
+import PasswordValidationRules from '../common/PasswordValidationRules'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -28,7 +27,7 @@ const formSchema = Yup.object().shape({
     referralCode: Yup.string()
 })
 
-function SignUpForm({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "onNext">) {
+function SignUpForm() {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
@@ -54,8 +53,7 @@ function SignUpForm({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "on
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
-            showToast({ message: t('signUp.successMessage'), type: "success" })
-            onNext()
+            updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
             const errorMessage = error?.response?.data?.data?.message || t('signUp.errorMessage')
@@ -121,7 +119,7 @@ function SignUpForm({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "on
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    {t('signUp.termsPrefix')}
+                                   {t('signUp.termsPrefix')}
                                     <InteractiveText to="/terms">{t('signUp.termsLink')}</InteractiveText>
                                 </Text>
                             </Checkbox>
@@ -154,7 +152,9 @@ function SignUpForm({ onBack, onNext }: Pick<OnboardingStepProps, "onBack" | "on
                                 <Text fontSize={14} color="text.white">
                                     {t('signUp.haveAccountText')}
                                 </Text>
-                                <InteractiveText onClick={onBack}>{t('signUp.signInLink')}</InteractiveText>
+                                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>
+                                    {t('signUp.signInLink')}
+                                </InteractiveText>
                             </Flex>
                         </Form>
                     )

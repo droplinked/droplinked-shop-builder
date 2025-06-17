@@ -7,9 +7,10 @@ import onboardingArLocale from 'locales/onboarding/ar.json'
 import onboardingEnLocale from 'locales/onboarding/en.json'
 import subscriptionArLocale from 'locales/subscription/ar.json'
 import subscriptionEnLocale from 'locales/subscription/en.json'
-import { OnboardingStepProps, PlanType } from "pages/onboarding/types/onboarding"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
+import { PlanType } from "pages/onboarding/types/onboarding"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useMutation, useQuery } from "react-query"
 import { SubscriptionPlan } from "services/subscription/interfaces"
 import { getSubscriptionPlansService, subscriptionPlanStripePaymentService } from "services/subscription/subscriptionServices"
@@ -20,10 +21,11 @@ import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
 
-function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
+function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
     const [clientSecret, setClientSecret] = useState<string>("")
+    const { updateOnboardingState } = useOnboardingStore()
     const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
     const { t: tOnboarding } = useLocaleResources('onboarding', {
@@ -38,17 +40,13 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
-    })
-
-    // Update store when plans are fetched
-    useEffect(() => {
-        if (data?.data) {
+        onSuccess: (data) => {
             const selectedPlanData = data.data.find((plan) => plan.type === selectedPlan)
             if (selectedPlanData) {
                 updateSelectedPlan(selectedPlanData)
             }
         }
-    }, [data?.data, selectedPlan, updateSelectedPlan])
+    })
 
     const { mutateAsync: createPaymentIntent } = useMutation(subscriptionPlanStripePaymentService, {
         onSuccess: (response) => {
@@ -60,8 +58,8 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
     const plans: SubscriptionPlan[] = data?.data || []
 
     const handleNext = async (): Promise<void> => {
-        if (selectedPlan === "ENTERPRISE" || selectedPlan === "STARTER") {
-            onNext()
+        if (selectedPlan === "STARTER") {
+            updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
             return
         }
 
@@ -78,18 +76,15 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
         }
     }
 
-    const handleCloseModal = (): void => {
-        setIsPaymentModalOpen(false)
-    }
-
     if (isFetching) return <Loading />
 
     return (
         <>
             <OnboardingStepHeader
-                heading={tOnboarding('subscriptionPlans.title')}
-                description={tOnboarding('subscriptionPlans.subtitle')}
+                 heading={tOnboarding('subscriptionPlans.title')} 
+                 description={tOnboarding('subscriptionPlans.subtitle')}
             />
+
             <BlueButton
                 fontSize="16px"
                 mt="-46px"
@@ -120,16 +115,17 @@ function SubscriptionPlans({ onBack, onNext }: OnboardingStepProps) {
                 })}
             </Grid>
 
-            <ControlButtons
-                onBack={onBack}
-                onSubmit={handleNext}
-                continueText={getContinueText(selectedPlan, tSubscription)}
+            <ControlButtons 
+                continueText={getContinueText(selectedPlan, tSubscription)} 
+                onSubmit={handleNext} 
+                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')} 
+                onSkip={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
             />
 
             <PaymentModal
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
-                onClose={handleCloseModal}
+                onClose={() => setIsPaymentModalOpen(false)}
                 clientSecret={clientSecret}
             />
         </>

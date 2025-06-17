@@ -7,7 +7,6 @@ import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
 import DividerText from '../common/DividerText'
@@ -26,7 +25,7 @@ const formSchema = Yup.object().shape({
 const savedEmail = Cookies.get('remembered_email')
 const savedPassword = Cookies.get('remembered_password')
 
-function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
+function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
@@ -85,15 +84,20 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             message={errors.password ? t('common.passwordError') : undefined}
                         />
 
-                        <Checkbox
-                            marginBlock={3}
-                            isChecked={rememberPassword}
-                            onChange={(e) => setRememberPassword(e.target.checked)}
-                        >
-                            {t('signIn.rememberPassword')}
-                        </Checkbox>
+                        <Flex alignItems="center" justifyContent="space-between" marginBlock={3}>
+                            <Checkbox
+                                isChecked={rememberPassword}
+                                onChange={(e) => setRememberPassword(e.target.checked)}
+                            >
+                                {t('signIn.rememberPassword')}
+                            </Checkbox>
+                            <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
+                            {t('signIn.resetPassword')} 
+                            {/* TODO : add link to reset password page  Text:Reset Password */}
+                            </InteractiveText>
+                        </Flex>
 
-                        <AppButton size='lg' type="submit" isLoading={isSubmitting}>
+                        <AppButton type="submit" isLoading={isSubmitting}>
                             {t('signIn.signInButton')}
                         </AppButton>
 
@@ -109,9 +113,11 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             marginTop={3}
                         >
                             <Text fontSize={14} color="text.white">
-                                {t('signIn.noAccountText')}
+                            {t('signIn.noAccountText')}
                             </Text>
-                            <InteractiveText onClick={onNext}>{t('signIn.createAccountText')}</InteractiveText>
+                            <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_UP')}>
+                                {t('signIn.createAccountText')}
+                            </InteractiveText>
                         </Flex>
                     </Form>
                 )}

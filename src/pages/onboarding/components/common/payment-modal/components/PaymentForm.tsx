@@ -14,7 +14,7 @@ interface PaymentFormProps {
 
 const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('')
-  const nextStep = useOnboardingStore(state => state.nextStep)
+  const { updateOnboardingState } = useOnboardingStore()
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
@@ -50,7 +50,7 @@ const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) =>
 
       // Close the modal and proceed to next step
       onClose()
-      nextStep()
+      updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
     } catch (err) {
       const errorMessage = 'An unexpected error occurred. Please try again.'
       setErrorMessage(errorMessage)

@@ -1,11 +1,11 @@
 import { Flex } from '@chakra-ui/react'
-import AppButton from 'components/redesign/button/AppButton'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
-import React, { useState } from 'react'
 import AppTypography from 'components/common/typography/AppTypography'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/onboarding/ar.json'
 import enLocale from 'locales/onboarding/en.json'
+import AppButton from 'components/redesign/button/AppButton'
+import React, { useState } from 'react'
 
 interface ControlButtonsProps {
     onBack: () => void

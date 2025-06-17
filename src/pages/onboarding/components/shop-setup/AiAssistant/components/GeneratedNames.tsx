@@ -1,59 +1,39 @@
 import { Grid } from '@chakra-ui/react'
-import useAppToast from 'hooks/toast/useToast'
-import { generateShopNames } from 'services/ai/services'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
 import React from 'react'
-import { useQuery } from 'react-query'
 import GeneratedContentWrapper from './GeneratedContentWrapper'
 import SelectableItem from './SelectableItem'
 import SelectableItemsSkeleton from './SelectableItemsSkeleton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props extends GenerateWithAiData {
-    businessCategory: string
-    businessDescribe: string
+    names: string[]
+    isLoading: boolean
+    refetch: () => void
+    selectedName: string
+    onNameChange: (name: string) => void
 }
 
-export default function GeneratedNames({ businessCategory, businessDescribe }: Props) {
-    const { updateOnboardingState, storeSetup } = useOnboardingStore()
-    const { showToast } = useAppToast()
+export default function GeneratedNames({ names, isLoading, refetch, selectedName, onNameChange }: Props) {
     const { t } = useLocaleResources('onboarding')
-
-    const { isFetching, data: names, refetch } = useQuery({
-        queryFn: () => generateShopNames({ category: businessCategory, prompt: businessDescribe }),
-        queryKey: ["generateShopNames"],
-        enabled: !!businessCategory && !!businessDescribe,
-        select(data) {
-            return data.data.shopNames || []
-        },
-        onSuccess(data) {
-            handleClick(data?.[0])
-
-        },
-        onError(err: any) {
-            showToast({ message: err.response.data.data.message, type: "error" })
-        },
-        refetchOnMount: false,
-    })
-
-    const selectedName = storeSetup.name
-
-    const handleClick = (name: string) => {
-        updateOnboardingState("storeSetup", { ...storeSetup, name })
-    }
-
     return (
-        <GeneratedContentWrapper title={t('aiAssistant.generationModal.names.title')} onRetry={refetch} isLoading={isFetching}>
+        <GeneratedContentWrapper
+            title={t('aiAssistant.generationModal.names.title')}
+            onRetry={refetch}
+            isLoading={isLoading}
+            flexProps={{
+                px: { base: 4, md: 9, lg: "48px" }
+            }}
+        >
             <Grid templateColumns="1fr 1fr 1fr" gap={4} overflowX="auto">
-                {isFetching && <SelectableItemsSkeleton />}
+                {isLoading && <SelectableItemsSkeleton />}
 
-                {!isFetching && names?.map((name, index) => (
+                {!isLoading && names?.map((name, index) => (
                     <SelectableItem
                         key={index}
                         isSelected={selectedName === name}
                         item={{ title: name, key: name }}
-                        onClick={() => handleClick(name)}
+                        onClick={() => onNameChange(name)}
                     />
                 ))}
             </Grid>

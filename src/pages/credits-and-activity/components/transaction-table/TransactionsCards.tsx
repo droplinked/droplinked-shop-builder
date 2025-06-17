@@ -1,20 +1,19 @@
 import { Flex } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import useCreditsData from 'hooks/credits-and-activity/useCreditsData'
-import { IDetailedTransaction } from 'services/credit/interfaces'
 import React from 'react'
 import InfiniteScroll from "react-infinite-scroll-component"
 import TransactionCard from './TransactionCard'
 
 export default function TransactionsCards() {
     const { transactionsQuery: { data, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
-    const transactions = data?.pages.flatMap((data: { data: { data: { data: IDetailedTransaction[] } } }) => data.data.data.data) || []
+    const transactions = data?.pages.flatMap(data => data.data.data.data) || []
 
     return (
         <InfiniteScroll
-            dataLength={data?.pageParams?.length || 0}
+            dataLength={transactions.length}
             next={fetchNextPage}
-            hasMore={hasNextPage || false}
+            hasMore={hasNextPage}
             loader={
                 isFetchingNextPage && (
                     <AppSkeleton isLoaded={false} mt={4} borderRadius="8px" >

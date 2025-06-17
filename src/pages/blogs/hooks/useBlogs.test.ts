@@ -3,7 +3,7 @@ jest.mock('react-query', () => ({
     useInfiniteQuery: jest.fn(),
     useQueryClient: jest.fn()
 }))
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     getShopBlogsService: jest.fn()
 }))

@@ -5,27 +5,12 @@ import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { SidebarGroupType } from '../Sidebar/SidebarGroup'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import levelUpEnLocale from 'locales/layout/levelUp/en.json'
-import levelUpArLocale from 'locales/layout/levelUp/ar.json'
-import sidebarEnLocale from 'locales/layout/sidebar/en.json'
-import sidebarArLocale from 'locales/layout/sidebar/ar.json'
+import enLocale from 'locales/layout/sidebar/en.json'
+import arLocale from 'locales/layout/sidebar/ar.json'
 
-interface SidebarItem  {
-    title: string;
-    icon: any;
-    linkTo?: string | null;
-    list: Array<{ listTitle: string; linkTo: string }>;
-    onClick?: () => void;
-    external?: boolean;
-}
-
-interface SidebarGroup {
-    group: string;
-    items: SidebarItem[];
-}
-
-interface BreadcrumbItem {
+interface CustomBreadcrumbItem {
     title: string
     linkTo?: string
 }
@@ -33,10 +18,7 @@ interface BreadcrumbItem {
 export const Breadcrumbs = () => {
     const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
-    const { t } = useLocaleResources('layout/sidebar', {
-        en: sidebarEnLocale,
-        ar: sidebarArLocale
-    })
+    const { t } = useLocaleResources('layout/sidebar', { en: enLocale, ar: arLocale })
     const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'
@@ -44,10 +26,10 @@ export const Breadcrumbs = () => {
         : <ChevronrightSm color='#b1b1b1' />
 
     // Function to generate breadcrumbs based on the current path
-    const getBreadcrumbs = (path: string): BreadcrumbItem[] => {
-        const breadcrumbs: BreadcrumbItem[] = [{ title: t('home'), linkTo: '/analytics' }]
+    const getBreadcrumbs = (path: string): CustomBreadcrumbItem[] => {
+        const breadcrumbs: CustomBreadcrumbItem[] = [{ title: t('items.home'), linkTo: '/analytics' }]
 
-        sidebarLinks.forEach((group: SidebarGroup) => {
+        sidebarLinks.forEach((group: SidebarGroupType) => {
             group.items.forEach((item) => {
                 // Check top-level item
                 if (item.linkTo === path) {
@@ -75,18 +57,18 @@ export const Breadcrumbs = () => {
         <Breadcrumb separator={separator}>
             {breadcrumbs
                 .filter(crumb => crumb.linkTo)
-                .map((crumb, index) => {
-                    const isCurrentPage = pathname === crumb.linkTo
+                .map((crumb, index, items) => {
+                    const isWhiteText = items.length === 1 || pathname === crumb.linkTo
 
                     return (
-                        <BreadcrumbItem key={index} isCurrentPage={isCurrentPage}>
+                        <BreadcrumbItem key={index} isCurrentPage={pathname === crumb.linkTo}>
                             <BreadcrumbLink
                                 as={NavLink}
-                                {...(!isCurrentPage && { to: crumb.linkTo })}
+                                to={pathname !== crumb.linkTo ? crumb.linkTo : undefined}
                                 fontSize={{ base: 14, md: 16, xl: 20 }}
-                                fontWeight={isCurrentPage ? { base: 500, md: 700 } : 400}
-                                color={isCurrentPage ? "text.white" : 'text.subtext.placeholder.light'}
-                                cursor={isCurrentPage ? 'default' : 'pointer'}
+                                fontWeight={isWhiteText ? { base: 500, md: 700 } : 400}
+                                color={isWhiteText ? "text.white" : 'text.subtext.placeholder.light'}
+                                cursor={isWhiteText ? 'default' : 'pointer'}
                             >
                                 {crumb.title}
                             </BreadcrumbLink>

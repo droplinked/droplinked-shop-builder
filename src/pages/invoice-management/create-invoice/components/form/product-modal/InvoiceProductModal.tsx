@@ -1,4 +1,4 @@
-import { ModalBody } from '@chakra-ui/react';
+import { ModalBody, Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading';
 import AppInput from 'components/redesign/input/AppInput';
@@ -11,6 +11,7 @@ import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoi
 import React, { useEffect, useMemo, useState } from 'react';
 import { areArraysEqual } from 'utils/helpers';
 import ProductTable from './product-table/ProductTable';
+import { SearchMd } from 'assets/icons/System/Search/SearchMd'
 
 interface Props {
     isOpen: boolean;
@@ -66,12 +67,18 @@ function InvoiceProductModal({ isOpen, onClose }: Props) {
 
             <ModalBody display="flex" flexDirection="column" gap={6}>
                 <AppInput
+                    inputContainerProps={{
+                        width: "300px"
+                    }}
+                    inputGroupProps={{
+                        alignItems: "flex-start"
+                    }}
                     inputProps={{
-                        width: "300px",
                         placeholder: "Product name",
                         value: searchTerm,
                         onChange: (e) => setSearchTerm(e.target.value)
                     }}
+                    leftElement={<SearchMd  color='#7b7b7b'/>}
                 />
                 <ProductTable debouncedSearchTerm={debouncedSearchTerm} cart={cart} setCart={setCart} />
 

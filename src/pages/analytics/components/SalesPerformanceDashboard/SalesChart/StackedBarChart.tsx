@@ -107,8 +107,31 @@ export default function StackedBarChart({ salesData }: Props) {
                     tooltipEl.style.opacity = "1"
                     tooltipEl.style.minWidth = '250px';
                     tooltipEl.style.position = 'absolute';
-                    tooltipEl.style.top = tooltipModel.caretY + 150 + 'px';
-                    tooltipEl.style.left = tooltipModel.caretX + 200 + 'px';
+                    
+                    // Get viewport dimensions
+                    const viewportWidth = window.innerWidth;
+                    const viewportHeight = window.innerHeight;
+                    
+                    // Calculate initial positions
+                    let topPosition = tooltipModel.caretY + 150;
+                    let leftPosition = tooltipModel.caretX + 200;
+                    
+                    // Get tooltip dimensions
+                    const tooltipWidth = tooltipEl.offsetWidth;
+                    const tooltipHeight = tooltipEl.offsetHeight;
+                    
+                    // Adjust horizontal position if tooltip would overflow viewport
+                    if (leftPosition + tooltipWidth > viewportWidth) {
+                        leftPosition = Math.max(0, viewportWidth - tooltipWidth - 20); // 20px padding from edge
+                    }
+                    
+                    // Adjust vertical position if tooltip would overflow viewport
+                    if (topPosition + tooltipHeight > viewportHeight) {
+                        topPosition = Math.max(0, viewportHeight - tooltipHeight - 20); // 20px padding from edge
+                    }
+                    
+                    tooltipEl.style.top = topPosition + 'px';
+                    tooltipEl.style.left = leftPosition + 'px';
                     tooltipEl.style.border = "1px solid #292929";
                     tooltipEl.style.borderRadius = "8px";
                     tooltipEl.style.padding = "0";

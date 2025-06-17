@@ -12,7 +12,7 @@ import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
 import React from "react";
 import { TFunction } from "i18next";
 
-export const getProducerSidebarLinks = (t: TFunction) => [
+const createSidebarLinks = (t: TFunction) => [
     {
         group: t('groups.performance'),
         items: [
@@ -115,4 +115,20 @@ export const getProducerSidebarLinks = (t: TFunction) => [
             }
         ]
     }
-]
+];
+
+// Utility function to filter sidebar links based on conditions
+export const getFilteredSidebarLinks = (t: TFunction, hasCompletedQuests: boolean) => {
+    return createSidebarLinks(t).map(group => ({
+        ...group,
+        items: group.items.filter(item => {
+            // Filter out Quests if they are completed
+            if (item.title === t('items.quests') && hasCompletedQuests) {
+                return false;
+            }
+            return true;
+        })
+    }));
+};
+
+export const getProducerSidebarLinks = (t: TFunction) => createSidebarLinks(t);

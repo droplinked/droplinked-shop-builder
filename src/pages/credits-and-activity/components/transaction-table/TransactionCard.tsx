@@ -1,11 +1,8 @@
-import { Center, Flex, Spinner, Text } from '@chakra-ui/react'
+import { Center, Flex, Text } from '@chakra-ui/react'
 import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { IDetailedTransaction } from 'services/credit/interfaces'
-import { downloadCreditChangeInvoice } from 'services/credit/services'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TypeColumn from './TypeColumn'
@@ -16,11 +13,6 @@ interface TransactionCardProps {
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
-    const { t } = useLocaleResources("creditsAndActivity")
-    const { download, isLoading } = useDownloadFile({
-        fetcher: downloadCreditChangeInvoice,
-        fileNameResolver: () => `${Date.now()}.xlsx`
-    })
 
     return (
         <Flex
@@ -34,17 +26,19 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
         >
             <Flex justify="space-between" align="start">
                 <TypeColumn type={type} amountType={amountType} />
+
                 <Flex align="center" gap={4}>
-                    <StatusBadge status={status} />
-                    {id && (
+                    <StatusBadge status={status as "SUCCESS" | "FAILED"} />
+                    {(id && status === "SUCCESS") && (
                         <Center
-                            as="button"
+                            as="a"
+                            href={`/invoice/${id}`}
+                            target="_blank"
+                            rel="noreferrer"
                             w={10}
                             h={10}
-                            onClick={() => id && download(id)}
-                            disabled={isLoading}
                         >
-                            {isLoading ? <Spinner /> : <DocumentdownloadMd color="#FFF" />}
+                            <DocumentdownloadMd color="#FFF" />
                         </Center>
                     )}
                 </Flex>

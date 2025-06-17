@@ -11,7 +11,7 @@ export const ShopMd = ({ color = "black", ...props }: SVGProps<SVGSVGElement>) =
             <path d="M18.1816 7.27272V8.63636C18.1816 9.35967 17.8943 10.0534 17.3828 10.5648C16.8713 11.0763 16.1776 11.3636 15.4543 11.3636C14.731 11.3636 14.0373 11.0763 13.5259 10.5648C13.0144 10.0534 12.7271 9.35967 12.7271 8.63636V7.27272" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </g>
         <defs>
-            <clipPath id="clip0_8234_463999">
+            <clipPath id="clip0_8234">
                 <rect width="20" height="20" fill="white" />
             </clipPath>
         </defs>

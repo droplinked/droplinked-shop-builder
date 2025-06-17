@@ -1,7 +1,8 @@
 import { IUserWalletsProps } from "stores/app/appStore";
 
-export interface IforgetPasswordService {
-    email: string;
+export interface IResetPassword {
+    token: string;
+    newPassword: string;
 }
 
 export interface IresendEmailService {

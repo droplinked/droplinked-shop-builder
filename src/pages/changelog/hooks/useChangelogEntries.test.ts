@@ -10,7 +10,7 @@ jest.mock('react-query', () => ({
     __esModule: true,
     useInfiniteQuery: jest.fn()
 }))
-jest.mock('lib/apis/changelog/services', () => ({
+jest.mock('services/changelog/services', () => ({
     __esModule: true,
     getChangelogEntries: jest.fn()
 }))

@@ -26,7 +26,7 @@ export function useLogin() {
 
             switch (status) {
                 case "NEW":
-                    return updateOnboardingState("currentStep", "EMAIL_CONFIRMATION")
+                    return updateOnboardingState("currentStep", "SIGNUP_EMAIL_VERIFICATION")
 
                 case "VERIFIED":
                 case "PROFILE_COMPLETED":

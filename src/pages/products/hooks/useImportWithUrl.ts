@@ -1,8 +1,9 @@
 import { UseDisclosureProps } from "@chakra-ui/react"
+import { AxiosResponse } from "axios"
 import useAppToast from "hooks/toast/useToast"
 import { RecentCrawlerTasksResponse } from "services/crawler/interface"
 import { CrawlSelectedProducts, getProductsWithPoolId, getRecentCrawlerTasks, startWebsiteCrawling } from "services/crawler/services"
-import { useMutation, useQuery, useQueryClient } from "react-query"
+import { UseMutateAsyncFunction, useMutation, useQuery, useQueryClient } from "react-query"
 import useProductPageStore from "../stores/ProductPageStore"
 
 interface Params {
@@ -13,12 +14,12 @@ interface Params {
 export interface UseImportWithUrl {
     startCrawling: () => void
     crawlingLoading: boolean
-    getProducts: () => void
+    getProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, string, unknown>
     getProductsLoading: boolean
     getRecentTasks: () => void
     recentTasksLoading: boolean
     recentTasks: RecentCrawlerTasksResponse[]
-    crawlSelectedProducts: (selectedProducts: string[]) => void
+    crawlSelectedProducts: UseMutateAsyncFunction<AxiosResponse<any, any>, any, { selectedProducts: string[], shouldRecord: boolean }, unknown>
     crawlingSelectedLoading: boolean
 }
 
@@ -78,8 +79,8 @@ export const useImportWithUrl = (props: Params) => {
     })
 
     const { mutateAsync: crawlSelectedProducts, isLoading: crawlingSelectedLoading } = useMutation({
-        mutationFn: (selectedProducts: string[]) =>
-            CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId }),
+        mutationFn: ({ selectedProducts, shouldRecord }: { selectedProducts: string[], shouldRecord: boolean }) =>
+            CrawlSelectedProducts({ selectedUrls: selectedProducts, poolId: selectedPoolId, shouldRecord }),
         onSuccess: () => {
             showToast({
                 message: "Import task started",

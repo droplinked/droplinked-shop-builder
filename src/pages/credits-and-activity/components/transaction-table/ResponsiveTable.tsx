@@ -1,4 +1,4 @@
-import { Spinner, Text, useBreakpointValue, useMediaQuery } from '@chakra-ui/react'
+import { Text, useBreakpointValue, useMediaQuery } from '@chakra-ui/react'
 import { ColumnDef } from '@tanstack/react-table'
 import { DocumentdownloadLg } from 'assets/icons/Action/DocumentDownload/DocumentdownloadLg'
 import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
@@ -10,6 +10,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import { IDetailedTransaction } from 'services/credit/interfaces'
 import { downloadCreditChangeInvoice } from 'services/credit/services'
+import { Link } from 'react-router-dom'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TransactionsCards from './TransactionsCards'
@@ -26,37 +27,29 @@ export default function TransactionsTable() {
 
     const { transactionsQuery: { data, isFetching, fetchNextPage, hasNextPage, isFetchingNextPage } } = useCreditsData()
 
-    // track each row’s download status
-    const [downloadingTransactionIds, setDownloadingTransactionIds] = useState<string[]>([])
-
-    const { download, isLoading } = useDownloadFile({
-        fetcher: (transactionId: string) => downloadCreditChangeInvoice(transactionId),
-        fileNameResolver: () => `${Date.now()}.xlsx`,
-        onSettled: (_, __, transactionId) => setDownloadingTransactionIds(prev => prev.filter(id => id !== transactionId))
-    })
-
     const allTransactions = data?.pages.flatMap(data => data.data.data.data) || []
 
     const columns: ColumnDef<IDetailedTransaction>[] = [
         {
             accessorKey: "type",
+
             header: t("transactionTable.columns.type"),
-            cell: (info) => <TypeColumn type={info.row.original.type} amountType={info.row.original.amountType} />,
+            cell: (info) => <TypeColumn type={info.getValue() as string} amountType={info.row.original.amountType} />,
         },
         {
             accessorKey: "amount",
             header: t("transactionTable.columns.amount"),
-            cell: (info) => <FormattedPrice price={info.row.original.amount} fontSize={16} />,
+            cell: (info) => <FormattedPrice price={info.getValue() as number} fontSize={16} />,
         },
         {
-            accessorKey: "date",
+            accessorKey: "createdAt",
             header: t("transactionTable.columns.date"),
-            cell: (info) => formatDateToLongStyle(new Date(info.row.original.createdAt))
+            cell: (info) => formatDateToLongStyle(new Date(info.getValue() as string))
         },
         {
             accessorKey: "status",
             header: t("transactionTable.columns.status"),
-            cell: (info) => <StatusBadge status={info.row.original.status} />,
+            cell: (info) => <StatusBadge status={info.getValue() as "SUCCESS" | "FAILED"} />,
         },
         {
             accessorKey: "id",
@@ -65,21 +58,17 @@ export default function TransactionsTable() {
         }
     ]
 
-    const handleDownload = async (transactionId: string) => {
-        setDownloadingTransactionIds(prev => [...prev, transactionId])
-        download(transactionId)
-    }
-
     const renderActions = (tx: IDetailedTransaction) => {
-        if (!tx.id) return null
-        const isThisDownloading = downloadingTransactionIds.includes(tx.id)
+        if (!tx.id || tx.status !== "SUCCESS") return null
+
         return (
-            <button
-                onClick={() => handleDownload(tx.id)}
-                disabled={isThisDownloading || isLoading}
+            <Link
+                to={`/invoice/${tx.id}`}
+                target='_blank'
+                rel="noreferrer"
             >
-                {isThisDownloading ? <Spinner size={{ base: 'sm', xl: 'md' }} /> : downloadIcon}
-            </button>
+                {downloadIcon}
+            </Link>
         )
     }
 

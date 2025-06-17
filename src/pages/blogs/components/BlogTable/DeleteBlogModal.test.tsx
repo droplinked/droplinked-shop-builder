@@ -20,7 +20,7 @@ jest.mock('pages/blogs/hooks/useBlogs', () => ({
     useInvalidateBlogList: jest.fn()
 }))
 
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     deleteBlogService: jest.fn()
 }))
@@ -64,7 +64,7 @@ describe('DeleteBlogModal', () => {
     })
 
     it('calls deleteBlogService and triggers success flow when confirm clicked', async () => {
-        const deleteService = require('lib/apis/blog/services').deleteBlogService as jest.Mock
+        const deleteService = require('services/blog/services').deleteBlogService as jest.Mock
         deleteService.mockResolvedValueOnce({})
 
         render(
@@ -89,7 +89,7 @@ describe('DeleteBlogModal', () => {
     })
 
     it('calls error flow when deleteBlogService rejects', async () => {
-        const deleteService = require('lib/apis/blog/services').deleteBlogService as jest.Mock
+        const deleteService = require('services/blog/services').deleteBlogService as jest.Mock
         deleteService.mockRejectedValueOnce(new Error('fail'))
 
         render(

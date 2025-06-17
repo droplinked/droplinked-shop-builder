@@ -7,7 +7,7 @@ jest.mock('react-router-dom', () => ({
     useParams: jest.fn(),
     useNavigate: jest.fn()
 }))
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     getBlogByIdService: jest.fn()
 }))

@@ -1,12 +1,8 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react'
-import useAppToast from 'hooks/toast/useToast'
-import { setupShop } from 'services/shop/shopServices'
-import useAppStore from 'stores/app/appStore'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import { useMutation } from 'react-query'
-import { validateStoreData } from '../../utils/shopSetupFormValidation'
+import useAppStore from 'stores/app/appStore'
+import { useShopSetupSubmit } from '../../hooks/useShopSetupSubmit'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import ShopPreview from '../shop-preview/ShopPreview'
@@ -17,38 +13,12 @@ import DescriptionField from './DescriptionField'
 import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
 
-export const ShopSetupForm = ({ onNext }: OnboardingStepProps) => {
-    const { reset, updateState, user, shop } = useAppStore()
-    const { storeSetup, setError, resetOnboarding } = useOnboardingStore()
-    const { showToast } = useAppToast()
+function ShopSetupForm() {
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
-
-    const { mutateAsync: setupShopMutation, isLoading } = useMutation({
-        mutationFn: () => setupShop(storeSetup),
-        onSuccess: (data) => {
-            updateState({ key: "shop", params: { ...shop, ...data.data.data } })
-            updateState({ key: "user", params: { ...user, status: "SHOP_INFO_COMPLETED" } })
-            onNext()
-        },
-        onError: (error: any) => {
-            showToast({
-                type: "error",
-                message: error.response.data.data.message || t('common.errors.generic'),
-            })
-        }
-    })
-
-    const handleSubmit = async () => {
-        if (validateStoreData(storeSetup, setError, t)) await setupShopMutation()
-    }
+    const { reset } = useAppStore()
+    const { handleSubmit, isLoading, resetOnboarding } = useShopSetupSubmit()
+    const { t } = useLocaleResources('onboarding')
 
     const handleBack = () => {
         reset()

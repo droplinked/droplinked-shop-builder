@@ -2,15 +2,13 @@ import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
-import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import OtpField from './OtpField'
+import OnboardingStepHeader from '../OnboardingStepHeader'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/onboarding/ar.json'
-import enLocale from 'locales/onboarding/en.json'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
-function EmailConfirmation({ onBack }: OnboardingStepProps) {
+function EmailConfirmation() {
     const {
         otp,
         inputState,
@@ -20,18 +18,17 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
         verifyLoading,
         resendLoading,
         loginLoading
-    } = useEmailVerification()
+    } = useEmailVerification({ mode: 'signup' })
+    
+    const { t } = useLocaleResources('onboarding')
+    const { updateOnboardingState } = useOnboardingStore()
 
-    const { t } = useLocaleResources('onboarding', {
-        en: enLocale,
-        ar: arLocale
-    })
 
     return (
         <>
             <OnboardingStepHeader
                 heading={t('emailConfirmation.title')}
-                description={t('emailConfirmation.subtitle')}
+                description={t('emailConfirmation.description')}
             />
 
             <Flex direction="column">
@@ -47,7 +44,7 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     onClick={() => verifyEmail()}
                     isLoading={verifyLoading || loginLoading}
                 >
-                    {t('emailConfirmation.verifyButton')}
+                    Verify
                 </AppButton>
 
                 <Box
@@ -55,15 +52,15 @@ function EmailConfirmation({ onBack }: OnboardingStepProps) {
                     sx={{ "p": { color: "#FFF", fontSize: 14 } }}
                 >
                     <Text display="flex" gap={1}>
-                        {t('emailConfirmation.noCodeText')}{" "}
+                        Didn’t receive the code? {" "}
                         <InteractiveText onClick={resendCode}>
-                            {resendLoading ? <Spinner color='#fff' size="xs" /> : t('emailConfirmation.resendButton')}
+                            {resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
                         </InteractiveText>
                     </Text>
 
                     <Text display={'flex'} gap={1} marginTop={2}>
-                        {t('emailConfirmation.changeEmailText')}{" "}
-                        <InteractiveText onClick={onBack}>{t('emailConfirmation.goBackButton')}</InteractiveText>
+                        Want to change your email address? {" "}
+                        <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_UP')}>{t('emailConfirmation.goBack')}</InteractiveText>
                     </Text>
                 </Box>
             </Flex>

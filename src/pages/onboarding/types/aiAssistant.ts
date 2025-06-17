@@ -1,4 +1,4 @@
 export interface GenerateWithAiData {
-    businessDescribe: string
-    businessCategory: string
+    businessDescribe?: string
+    businessCategory?: string
 }

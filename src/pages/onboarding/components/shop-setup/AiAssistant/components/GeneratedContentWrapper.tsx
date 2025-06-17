@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, FlexProps, Text } from '@chakra-ui/react'
 import { Refresh1Md } from 'assets/icons/Action/Refresh1/Refresh1Md'
 import BlueButton from 'components/redesign/button/BlueButton'
 import React from 'react'
@@ -9,13 +9,14 @@ interface Props {
     onRetry?: () => void
     isLoading?: boolean
     title: string
+    flexProps?: FlexProps
 }
 
-export default function GeneratedContentWrapper({ children, onRetry, title, isLoading }: Props) {
+export default function GeneratedContentWrapper({ children, onRetry, title, isLoading, flexProps }: Props) {
     const { t } = useLocaleResources('onboarding')
-
+    
     return (
-        <Flex flexDirection="column" gap={4}>
+        <Flex flexDirection="column" gap={4} {...flexProps}>
             <Flex justifyContent="space-between" alignItems="center">
                 <Text color="#fff" fontSize="16px" fontWeight="500">{title}</Text>
                 <BlueButton

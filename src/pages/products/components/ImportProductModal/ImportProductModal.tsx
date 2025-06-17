@@ -3,11 +3,11 @@ import fileTemplate from "assets/samples/import_product_template.xlsx"
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
+import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import React, { useState } from 'react'
 import ImportProductModalBody from './ImportProductModalBody'
 import ImportProductModalFooter from './ImportProductModalFooter'
-import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
-import { useQueryClient } from 'react-query'
 
 interface Props {
     isOpen: boolean
@@ -17,10 +17,10 @@ interface Props {
 
 function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
     const [uploadedFile, setUploadedFile] = useState(null)
-    const queryClient = useQueryClient()
+    const { invalidateProductsQuery } = useInvalidateProductsQuery()
 
     const handleClose = () => {
-        queryClient.invalidateQueries({ queryKey: ["PRODUCTS"] })
+        invalidateProductsQuery()
         onClose()
     }
 

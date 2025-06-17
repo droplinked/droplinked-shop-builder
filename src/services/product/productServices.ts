@@ -83,3 +83,6 @@ export const getPODShippingAvailability = (product_id: string) =>
     axiosInstance
         .post<{ data: string[] }>("product/printful-available-shipping", { product_id })
         .then(res => res.data)
+
+export const createDefaultSampleProducts = (logo: string) =>
+    axiosInstance.post('/product/create-template-products', { logo }).then(res => res.data)

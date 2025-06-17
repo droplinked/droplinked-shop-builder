@@ -1,0 +1,27 @@
+import PageGrid from 'components/redesign/page-grid/PageGrid'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import React from 'react'
+import useAppStore from 'stores/app/appStore'
+import InventorySection from './components/InventorySection'
+import WalletSection from './components/WalletSection'
+
+function Crossmint() {
+    const { shop: { crossmintWallet } } = useAppStore()
+
+    return (
+        <PageGrid.Root>
+            <PageGrid.Header
+                title="Merchant Assistant"
+                description='The AI merchant assistant is dedicated to optimizing inventory for agentic commerce.'
+            />
+            <PageGrid.Content>
+                <RuledGrid columns={1} nested>
+                    <WalletSection crossmintWallet={crossmintWallet} />
+                    <InventorySection crossmintWallet={crossmintWallet} />
+                </RuledGrid>
+            </PageGrid.Content>
+        </PageGrid.Root>
+    )
+}
+
+export default Crossmint

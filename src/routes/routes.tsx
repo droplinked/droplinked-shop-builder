@@ -1,6 +1,7 @@
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
+import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
 import Changelog from "pages/changelog/Changelog"
@@ -59,8 +60,10 @@ const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"))
 const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
 const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
+const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplate"))
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
+const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
 
 const router = createBrowserRouter([
     {
@@ -163,7 +166,7 @@ const router = createBrowserRouter([
                             {
                                 path: ":shopId",
                                 children: [
-                                    // { index: true, element: <AffiliateStoresProfile /> },
+                                    { index: true, element: <AffiliateStoresProfile /> },
                                     { path: ":slug", element: <AffiliateProductsSinglePage /> },
                                 ],
                             },
@@ -190,7 +193,8 @@ const router = createBrowserRouter([
                     { index: true, element: <Changelog /> },
                     { path: ":id", element: <ChangelogDetail /> },
                 ]
-            }
+            },
+            { path: "crossmint", element: <Crossmint /> },
         ],
     },
     {
@@ -210,6 +214,7 @@ const router = createBrowserRouter([
         ],
 
     },
+    { path: "invoice/:txId", element: <InvoiceTemplate /> },
     { path: "*", element: <NotFoundPage /> }
 ])
 

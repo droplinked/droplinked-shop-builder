@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn()
 }))
 
-jest.mock('lib/apis/changelog/services', () => ({
+jest.mock('services/changelog/services', () => ({
     __esModule: true,
     getChangelogEntry: jest.fn()
 }))
