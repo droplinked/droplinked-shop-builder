@@ -1,7 +1,7 @@
 import MaxWidthWrapper from 'pages/public-pages/homePage/components/common/MaxWidthWrapper'
 import React, { useEffect, useState } from 'react'
 import AuthButtons from './AuthButtons'
-import BrandIcon from './BrandIcon'
+import BrandIcon from './BrandIcon/BrandIcon'
 import NavigationMenu from './NavigationMenu'
 
 export default function Header() {
