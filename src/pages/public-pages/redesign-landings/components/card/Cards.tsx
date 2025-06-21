@@ -2,7 +2,7 @@ import { Grid } from '@chakra-ui/react'
 import React from 'react'
 import Card from './Card'
 
-interface CardData {
+export interface CardData {
     icon: React.ReactNode;
     title: string;
     description: string;

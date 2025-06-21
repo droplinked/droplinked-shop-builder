@@ -1,17 +1,31 @@
-import React from 'react'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
-import MaxWidthWrapper from '../../components/MaxWidthWrapper'
-import { Cards } from 'pages/public-pages/redesign-landings/components/card'
+import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
+import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg';
+import { NftLg } from 'assets/icons/System/NFT/NftLg';
+import { Cards } from 'pages/public-pages/redesign-landings/components/card';
+import React from 'react';
+import { CardData } from '../../components/card/Cards';
+import MaxWidthWrapper from '../../components/MaxWidthWrapper';
+import SectionContainer from '../../components/SectionContainer/SectionContainer';
 
 export default function SetOfPerks() {
-    // Example cards data for Crossmint perks
-    const cardsData = [
+    const cardsData: CardData[] = [
         {
-            icon: <div>🎁</div>, // You can replace with actual icons
-            title: "3 Months Free Pro Plan",
-            description: "Get full access to droplinked's professional features for 3 months at no cost"
+            icon: <ConfigureLg color="#fff" />,
+            title: "Store Setup Simplified",
+            description: "Use droplinked tools to launch your shop",
+            gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
-        // Add more cards as needed
+        {
+            icon: <BuildingLg color="#fff" />,
+            title: "Enterprise-Level Tools",
+            description: "Unlock advanced features to scale your business from the start",
+            gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
+        }, {
+            icon: <NftLg color="#fff" />,
+            title: "Seamless NFT Integration",
+            description: "Create, manage, and sell NFTs on a customizable storefront",
+            gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
+        },
     ];
 
     return (
@@ -23,7 +37,14 @@ export default function SetOfPerks() {
                 headingSubtitle='droplinked is offering 3 months of a pro plan for free'
                 typographyText='Perks'
             />
-            <Cards cardsData={cardsData} />
+            <Cards
+                cardsData={cardsData}
+                templateColumns={{
+                    base: '1fr',
+                    md: 'repeat(3, 1fr)',
+                    lg: 'repeat(3, 1fr)'
+                }}
+            />
         </MaxWidthWrapper>
     )
 }
