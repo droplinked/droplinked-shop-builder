@@ -7,6 +7,7 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
 import Crossmint from 'assets/brand-identity/Crossmint'
+import Animation from '../lottie/Crossmint.json'
 
 export default function CrossmintHero() {
     return (
@@ -14,6 +15,12 @@ export default function CrossmintHero() {
             title={`Powering \n Agentic Commerce`}
             subtitle={`Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today.`}
             backgroundImage="https://upload-file-droplinked.s3.amazonaws.com/bb43d560151ac7d20966da30d1d9affdd9b462943a49cbf40e4f893e35c94b07.png"
+            heroDesktop={Animation}
+            heroMobile={Animation}
+            heroTablet={Animation}
+            lottieOptions={{
+                loop: true,
+            }}
             subTitleElements={
                 <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to="#">
@@ -39,8 +46,8 @@ export default function CrossmintHero() {
                         <Flex
                             border="1px solid rgba(43, 207, 161, 0.20)"
                             borderRadius="128px"
-                            p={4}
-                            gap={6}
+                            p={{ base: 3, md: 4 }}
+                            gap={{ base: 4, md: 6 }}
                             alignItems="center"
                         >
                             <IconWrapper
@@ -50,8 +57,8 @@ export default function CrossmintHero() {
                                 borderColor="rgba(43, 207, 161, 0.10)"
                                 borderRadius="48px"
                                 backdropFilter="blur(12.5px)"
-                                width="88px"
-                                height="88px"
+                                width={{ base: "48px", md: "64px", xl: "88px" }}
+                                height={{ base: "48px", md: "64px", xl: "88px" }}
                             />
 
                             <TransferLg color='#fff' />
@@ -63,8 +70,8 @@ export default function CrossmintHero() {
                                 borderColor="rgba(43, 207, 161, 0.10)"
                                 borderRadius="48px"
                                 backdropFilter="blur(12.5px)"
-                                width="88px"
-                                height="88px"
+                                width={{ base: "48px", md: "64px", xl: "88px" }}
+                                height={{ base: "48px", md: "64px", xl: "88px" }}
                             />
                         </Flex>
 

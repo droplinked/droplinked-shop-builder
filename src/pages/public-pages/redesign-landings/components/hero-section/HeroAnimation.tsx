@@ -5,17 +5,14 @@ interface HeroAnimationProps {
     heroDesktop?: Object
     heroTablet?: Object
     heroMobile?: Object
-    customStyles?: {
-        marginTop?: string
-        marginInline?: string | { mobile?: string, tablet?: string, desktop?: string }
-    }
+    lottieOptions?: LottieOptions
 }
 
 export default function HeroAnimation({
     heroDesktop,
     heroTablet,
     heroMobile,
-    customStyles
+    lottieOptions
 }: HeroAnimationProps) {
     const [isTablet] = useMediaQuery("(min-width: 768px) and (max-width: 1280px)")
     const [isMobile] = useMediaQuery("(max-width: 768px)")
@@ -24,13 +21,12 @@ export default function HeroAnimation({
     const defaultAnimationData = null // Replace with your default animation
 
     const getMarginInline = () => {
-        if (customStyles?.marginInline) {
-            if (typeof customStyles.marginInline === 'string') {
-                return customStyles.marginInline
+        if (lottieOptions?.style?.marginInline) {
+            if (typeof lottieOptions?.style?.marginInline === 'string') {
+                return lottieOptions?.style?.marginInline
             } else {
-                return isMobile ? customStyles.marginInline.mobile || "20px"
-                    : isTablet ? customStyles.marginInline.tablet || "36px"
-                        : customStyles.marginInline.desktop || "48px"
+                return isMobile ? "20px"
+                    : isTablet ? "36px" : "48px"
             }
         }
         return isMobile ? "20px" : isTablet ? "36px" : "48px"
@@ -45,9 +41,10 @@ export default function HeroAnimation({
         autoplay: true,
         animationData,
         style: {
-            marginTop: customStyles?.marginTop || "48px",
+            marginTop: lottieOptions?.style?.marginTop || "48px",
             marginInline: getMarginInline(),
-        }
+        },
+        ...lottieOptions
     }
 
     const { View } = useLottie(options)

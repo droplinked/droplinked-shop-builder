@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react';
-import BoltCircle from 'pages/public-pages/redesign-landings/homePage/svgs/icons/BoltCircle';
-import ChatHeart from 'pages/public-pages/redesign-landings/homePage/svgs/icons/ChatHeart';
-import Globe from 'pages/public-pages/redesign-landings/homePage/svgs/icons/Globe';
-import Layer from 'pages/public-pages/redesign-landings/homePage/svgs/icons/Layer';
-import Sparkle from 'pages/public-pages/redesign-landings/homePage/svgs/icons/Sparkle';
-import Story from 'pages/public-pages/redesign-landings/homePage/svgs/icons/Story';
+import BoltCircle from '../svgs/icons/BoltCircle';
+import ChatHeart from '../svgs/icons/ChatHeart';
+import Globe from '../svgs/icons/Globe';
+import Layer from '../svgs/icons/Layer';
+import Sparkle from '../svgs/icons/Sparkle';
+import Story from '../svgs/icons/Story';
 import React from 'react';
 
 

@@ -1,6 +1,7 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
+import { LottieOptions } from 'lottie-react'
 
 interface HeroSectionProps {
     title?: string
@@ -10,10 +11,7 @@ interface HeroSectionProps {
     heroDesktop?: Object
     heroTablet?: Object
     heroMobile?: Object
-    animationStyles?: {
-        marginTop?: string
-        marginInline?: string | { mobile?: string, tablet?: string, desktop?: string }
-    }
+    lottieOptions?: LottieOptions
 }
 
 export default function HeroSection({
@@ -24,7 +22,7 @@ export default function HeroSection({
     heroDesktop,
     heroTablet,
     heroMobile,
-    animationStyles
+    lottieOptions,
 }: HeroSectionProps) {
     return (
         <Grid
@@ -64,7 +62,7 @@ export default function HeroSection({
                 heroDesktop={heroDesktop}
                 heroTablet={heroTablet}
                 heroMobile={heroMobile}
-                customStyles={animationStyles}
+                lottieOptions={lottieOptions}
             />
         </Grid>
     )

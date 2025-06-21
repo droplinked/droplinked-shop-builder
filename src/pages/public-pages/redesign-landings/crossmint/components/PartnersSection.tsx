@@ -1,6 +1,6 @@
 import React from 'react';
 import MarqueeSection from '../../components/marquee-wrapper/MarqueeSection';
-import { partners } from '../../homePage/utils/partnersList';
+import { partners } from '../../components/utils/partnersList';
 
 export default function PartnersSection() {
     return (
