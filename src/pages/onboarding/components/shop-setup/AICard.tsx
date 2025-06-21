@@ -100,11 +100,11 @@ function AICard() {
         </Box>
       </Box>
 
-      <ProTrialModal
+      {/* <ProTrialModal
         isOpen={isProTrialModalOpen}
         onClose={handleCloseProTrialModal}
         unlockedMonths={1}
-      />
+      /> */}
     </Box>
   );
 }
