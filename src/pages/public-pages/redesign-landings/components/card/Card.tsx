@@ -6,11 +6,11 @@ interface Props {
     icon: React.ReactNode;
     title: string;
     description: string;
-    animation: React.ReactNode;
+    animation?: React.ReactNode;
     gridColumn?: string | { base?: string; md?: string; lg?: string };
 }
 
-export default function ProductOfferingCard({ icon, title, description, animation, gridColumn }: Props) {
+export default function Card({ icon, title, description, animation, gridColumn }: Props) {
     return (
         <Flex
             flexDirection="column"
