@@ -1,6 +1,6 @@
 import React from 'react'
-import SectionContainer from '../common/SectionContainer/SectionContainer'
-import MaxWidthWrapper from '../common/MaxWidthWrapper'
+import SectionContainer from '../../../components/SectionContainer/SectionContainer'
+import MaxWidthWrapper from '../../../components/MaxWidthWrapper'
 import AppButton from 'components/redesign/button/AppButton'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import Stepper from './Stepper'

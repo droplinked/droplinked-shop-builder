@@ -1,4 +1,4 @@
-import MaxWidthWrapper from 'pages/public-pages/redesign-landings/homePage/components/common/MaxWidthWrapper'
+import MaxWidthWrapper from 'pages/public-pages/redesign-landings/components/MaxWidthWrapper'
 import React, { useEffect, useState } from 'react'
 import AuthButtons from './AuthButtons'
 import BrandIcon from './BrandIcon/BrandIcon'

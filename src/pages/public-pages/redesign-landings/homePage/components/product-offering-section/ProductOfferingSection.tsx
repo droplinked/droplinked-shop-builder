@@ -1,6 +1,6 @@
 import React from 'react'
-import MaxWidthWrapper from '../common/MaxWidthWrapper'
-import SectionContainer from '../common/SectionContainer/SectionContainer'
+import MaxWidthWrapper from '../../../components/MaxWidthWrapper'
+import SectionContainer from '../../../components/SectionContainer/SectionContainer'
 import CardsGrid from './CardsGrid'
 
 export default function ProductOfferingSection() {
