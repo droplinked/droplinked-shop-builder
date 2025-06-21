@@ -71,7 +71,8 @@ export interface ShopSubscriptionData {
 export interface SubscriptionCheckout {
     month: number;
     subId: string;
-    recurring: boolean
+    recurring: boolean;
+    isTrial?: boolean;
 }
 
 export interface SubscriptionCryptoCheckout {
@@ -85,6 +86,7 @@ export interface SubscriptionStripePaymentResult {
     transactionId: string;
     clientSecret: string;
     paymentIntentId: string;
+    intentType: "payment" | "setup";
 }
 
 interface PaymentMethodToken {

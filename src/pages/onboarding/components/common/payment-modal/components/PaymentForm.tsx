@@ -9,46 +9,58 @@ import useOnboardingStore from '../../../../stores/useOnboardingStore'
 interface PaymentFormProps {
   onClose: () => void;
   planDetail: any;
-  clientSecret: string;
 }
 
-const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) => {
+const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('')
+  const [intentType, setIntentType] = useState<'payment' | 'setup'>()
+  const [clientSecret, setClientSecret] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
   const { updateOnboardingState } = useOnboardingStore()
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
   
+  const initializePayment = async () => {
+    try {
+      const plansResponse = await getSubscriptionPlansService()
+      const updatedPlan = plansResponse.data.find(plan => plan.type === planDetail.type)
+      const paymentResponse = await subscriptionPlanStripePaymentService({
+        month: preferredPlanDuration.month,
+        subId: updatedPlan._id,
+        recurring: true,
+        isTrial: true,
+      })
+      
+      setIntentType(paymentResponse.data.intentType)
+      setClientSecret(paymentResponse.data.clientSecret)
+      setIsLoading(false)
+    } catch (err) {
+      const errorMessage = 'Failed to initialize payment. Please try again.'
+      setErrorMessage(errorMessage)
+      showToast({ message: errorMessage, type: 'error' })
+      setIsLoading(false)
+    }
+  }
+
+  // Initialize payment on component mount
+  if (isLoading && !intentType) {
+    initializePayment()
+  }
+  
   const handleSuccess = async () => {
     try {
-      // Get the original plan data from the API
+      await getShopSubscriptionDataService()
+      
       const plansResponse = await getSubscriptionPlansService()
       const updatedPlan = plansResponse.data.find(plan => plan.type === planDetail.type)
       
-      if (!updatedPlan) {
-        console.error('Plan not found in API response:', planDetail.type)
-        showToast({ message: 'Failed to find subscription plan. Please contact support.', type: 'error' })
-        return
+      if (updatedPlan) {
+        updateSelectedPlan(updatedPlan)
       }
-
-      // Confirm payment with server using the selected duration
-      await subscriptionPlanStripePaymentService({
-        month: preferredPlanDuration.month,
-        subId: updatedPlan._id,
-        recurring: true
-      })
       
-      // Fetch updated subscription data
-      await getShopSubscriptionDataService()
-      
-      // Update the store with the plan from API
-      updateSelectedPlan(updatedPlan)
-      
-      // Show success toast
       showToast({ message: 'Payment successful! Your subscription has been activated.', type: 'success' })
 
-      
-      // Close the modal and proceed to next step
       onClose()
       updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
     } catch (err) {
@@ -64,11 +76,28 @@ const PaymentForm = ({ onClose, planDetail, clientSecret }: PaymentFormProps) =>
     showToast({ message: errorMsg, type: 'error' })
   }
 
+  if (isLoading) {
+    return (
+      <Box p={6}>
+        <Text>Initializing payment...</Text>
+      </Box>
+    )
+  }
+
+  if (!intentType || !clientSecret) {
+    return (
+      <Box p={6}>
+        <Text color="red.500">Failed to initialize payment.</Text>
+      </Box>
+    )
+  }
+
   return (
     <>
       <Box p={6}>
         <DroplinkedPaymentForm
           clientSecret={clientSecret}
+          intentType={intentType}
           onSuccess={handleSuccess}
           onError={handleError}
           onCancel={onClose}

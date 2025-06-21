@@ -3,12 +3,12 @@ import { ExternalarrowMd } from "assets/icons/Navigation/ExternalArrow/Externala
 import BlueButton from "components/redesign/button/BlueButton"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
-import { getSubscriptionPlansService, subscriptionPlanStripePaymentService, } from "lib/apis/subscription/subscriptionServices"
+import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices"
 import { PlanType } from "pages/onboarding/types/onboarding"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useEffect, useState } from "react"
-import { useMutation, useQuery } from "react-query"
+import { useQuery } from "react-query"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import PaymentModal from "../common/payment-modal/PaymentModal"
@@ -19,7 +19,6 @@ import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
-    const [clientSecret, setClientSecret] = useState<string>("")
     const { updateOnboardingState } = useOnboardingStore()
     const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
@@ -35,13 +34,6 @@ function SubscriptionPlans() {
         }
     })
 
-    const { mutateAsync: createPaymentIntent } = useMutation(subscriptionPlanStripePaymentService, {
-        onSuccess: (response) => {
-            setClientSecret(response.data.clientSecret)
-            setIsPaymentModalOpen(true)
-        },
-    })
-
     const plans: SubscriptionPlan[] = data?.data || []
 
     const handleNext = async (): Promise<void> => {
@@ -50,17 +42,8 @@ function SubscriptionPlans() {
             return
         }
 
-        try {
-            const selectedPlanData = plans.find((plan) => plan.type === selectedPlan)
-
-            await createPaymentIntent({
-                month: preferredPlanDuration.month,
-                subId: selectedPlanData._id,
-                recurring: true,
-            })
-        } catch (error) {
-            console.error("Failed to create payment intent:", error)
-        }
+        // Open payment modal - PaymentForm will handle the payment logic
+        setIsPaymentModalOpen(true)
     }
 
     if (isFetching) return <Loading />
@@ -110,7 +93,6 @@ function SubscriptionPlans() {
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
                 onClose={() => setIsPaymentModalOpen(false)}
-                clientSecret={clientSecret}
             />
         </>
     )
