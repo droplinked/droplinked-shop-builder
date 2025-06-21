@@ -4,17 +4,17 @@ import BlueButton from "components/redesign/button/BlueButton"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices"
+import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import { PlanType } from "pages/onboarding/types/onboarding"
-import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useQuery } from "react-query"
+import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
-import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
@@ -82,10 +82,10 @@ function SubscriptionPlans() {
                 })}
             </Grid>
 
-            <ControlButtons 
-                continueText={getContinueText(selectedPlan)} 
-                onSubmit={handleNext} 
-                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')} 
+            <ControlButtons
+                continueText={getContinueText(selectedPlan)}
+                onSubmit={handleNext}
+                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')}
             />
 
             <PaymentModal

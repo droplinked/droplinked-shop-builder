@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
@@ -7,36 +6,34 @@ import FileUpload from './FileUpload'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()
-    const { storeSetup, updateOnboardingState } = useOnboardingStore()
+    const { shopData, updateShopData } = useOnboardingStore()
 
     const handleFileChange = async (file: File) => {
         if (file) {
             const formData = new FormData()
             formData.append('image', file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeSetup', { ...storeSetup, hero_section: original })
+            updateShopData('hero_section', original)
         } else {
-            updateOnboardingState('storeSetup', { ...storeSetup, hero_section: '' })
+            updateShopData('hero_section', '')
         }
     }
 
     return (
-        <Box>
-            <FieldWrapper title='Cover Image'>
-                <FileUpload
-                    onFileChange={handleFileChange}
-                    isLoading={isLoading}
-                    accept={{
-                        'image/jpeg': ['.jpeg', '.jpg'],
-                        'image/png': ['.png'],
-                    }}
-                    boxProps={{
-                        paddingBlock: 6
-                    }}
-                    dropDescription='JPG, JPEG, and PNG'
-                    value={storeSetup.hero_section}
-                />
-            </FieldWrapper>
-        </Box>
+        <FieldWrapper title='Cover Image'>
+            <FileUpload
+                onFileChange={handleFileChange}
+                isLoading={isLoading}
+                accept={{
+                    'image/jpeg': ['.jpeg', '.jpg'],
+                    'image/png': ['.png'],
+                }}
+                boxProps={{
+                    paddingBlock: 6
+                }}
+                dropDescription='JPG, JPEG, and PNG'
+                value={shopData.hero_section}
+            />
+        </FieldWrapper>
     )
 }

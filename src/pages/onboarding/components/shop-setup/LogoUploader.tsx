@@ -3,16 +3,16 @@ import { UploadMd } from 'assets/icons/Action/Upload/UploadMd'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
-import useOnboardingStore, { initialStoreSetup } from 'pages/onboarding/stores/useOnboardingStore'
+import useOnboardingStore, { initialShopData } from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useRef } from 'react'
 import FieldWrapper from './FieldWrapper'
 
 export default function LogoUploader() {
     const { mutateAsync, isLoading } = useFileUpload()
     const fileInputRef = useRef<HTMLInputElement>(null)
-    const { storeSetup, updateOnboardingState } = useOnboardingStore()
+    const { shopData, updateShopData } = useOnboardingStore()
 
-    const isDefaultLogo = storeSetup.logo === initialStoreSetup.logo
+    const isDefaultLogo = shopData.logo === initialShopData.logo
 
     const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
@@ -20,7 +20,7 @@ export default function LogoUploader() {
             const formData = new FormData()
             formData.append("image", file)
             const { original } = await mutateAsync(formData)
-            updateOnboardingState('storeSetup', { ...storeSetup, logo: original || '' })
+            updateShopData('logo', original || '')
         }
     }
 
@@ -29,10 +29,14 @@ export default function LogoUploader() {
     }
 
     const handleRemove = () => {
-        updateOnboardingState('storeSetup', { ...storeSetup, logo: 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png' })
+        updateShopData('logo', 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png')
         if (fileInputRef.current) {
             fileInputRef.current.value = ''
         }
+    }
+
+    const handleSelectLogo = (logo: string) => {
+        updateShopData('logo', logo)
     }
 
     return (
@@ -42,7 +46,7 @@ export default function LogoUploader() {
                     <Avatar
                         width="80px"
                         height="80px"
-                        src={storeSetup.logo || undefined}
+                        src={shopData.logo || undefined}
                         name="Logo"
                         userSelect="none"
                     />
@@ -55,9 +59,9 @@ export default function LogoUploader() {
                         onClick={handleLogoChange}
                         isLoading={isLoading}
                     >
-                        {storeSetup.logo ? "Change" : "Upload"}
+                        {shopData.logo ? "Change" : "Upload"}
                     </BlueButton>
-                    {storeSetup.logo && !isLoading &&
+                    {shopData.logo && !isLoading &&
                         <BlueButton
                             color="#FF2244"
                             fontSize={14}
@@ -77,6 +81,13 @@ export default function LogoUploader() {
                     />
                 </Flex>
             </Flex>
+
+            {/* <AiOptionsDisplay
+                type="logos"
+                title="AI Generated Logos"
+                onSelect={handleSelectLogo}
+                selectedValue={shopData.logo}
+            /> */}
         </FieldWrapper>
     )
 }

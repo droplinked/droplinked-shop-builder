@@ -9,11 +9,11 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import YesNoRadioCard from './YesNoRadioCard'
 
 function ExistingWebsite() {
-    const { updateOnboardingState, storeSetup } = useOnboardingStore()
+    const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
-        onChange: (value: string) => updateOnboardingState('storeSetup', { ...storeSetup, hasExistingShop: value === 'yes' }),
-        value: storeSetup.hasExistingShop ? 'yes' : 'no'
+        onChange: (value: string) => updateShopSetupUI('hasExistingShop', value === 'yes'),
+        value: shopSetupUI.hasExistingShop ? 'yes' : 'no'
     })
 
     const options = [

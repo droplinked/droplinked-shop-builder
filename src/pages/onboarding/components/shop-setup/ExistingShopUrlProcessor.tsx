@@ -10,9 +10,9 @@ const validationSchema = Yup.object().shape({
 })
 
 function ExistingShopUrlProcessor() {
-    const { storeSetup } = useOnboardingStore()
+    const { shopSetupUI } = useOnboardingStore()
 
-    if (!storeSetup.hasExistingShop) return null
+    if (!shopSetupUI.hasExistingShop) return null
 
     const handleSubmit = (values) => {
         try {

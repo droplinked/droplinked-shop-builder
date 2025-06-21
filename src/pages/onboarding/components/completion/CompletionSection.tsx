@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import DroplinkedBrand from '../common/DroplinkedBrand'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CompletionSlider from './CompletionSlider'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 function CompletionSection() {
     const { updateOnboardingState } = useOnboardingStore()
@@ -26,7 +26,7 @@ function CompletionSection() {
                 textAlign="center"
             />
 
-            <CompletionSlider onBack={handleBack} />
+            <CompletionSlider />
         </Flex>
     )
 }

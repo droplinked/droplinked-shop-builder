@@ -8,15 +8,23 @@ import { validateStoreData } from '../utils/shopSetupFormValidation'
 
 export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
-    const { storeSetup, setError , resetOnboarding ,updateOnboardingState} = useOnboardingStore()
+    const {
+        shopData,
+        shopSetupUI,
+        setError,
+        resetOnboarding,
+        updateOnboardingState
+    } = useOnboardingStore()
     const { showToast } = useAppToast()
 
-    const { autoAddSampleProductsEnabled, ...shopData } = storeSetup
+    const { autoAddSampleProductsEnabled } = shopSetupUI
 
     const { mutateAsync: submitShopSetup, isLoading } = useMutation({
         mutationFn: async () => {
             const shopResponse = await setupShop(shopData)
-            if (autoAddSampleProductsEnabled) await createDefaultSampleProducts(shopData.logo)
+            if (autoAddSampleProductsEnabled) {
+                await createDefaultSampleProducts(shopData.logo)
+            }
             return shopResponse
         },
         onSuccess: (data) => {
