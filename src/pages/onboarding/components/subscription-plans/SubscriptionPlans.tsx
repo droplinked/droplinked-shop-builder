@@ -86,7 +86,6 @@ function SubscriptionPlans() {
                 continueText={getContinueText(selectedPlan)} 
                 onSubmit={handleNext} 
                 onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')} 
-                onSkip={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
             />
 
             <PaymentModal

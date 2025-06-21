@@ -1,5 +1,5 @@
 import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react'
-import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import { MagicwandLg } from 'assets/icons/AI/MagicWand/MagicwandLg'
 import AppButton from 'components/redesign/button/AppButton'
 import React, { useState } from 'react'
 import PlansModal from './PlansModal'

@@ -1,5 +1,5 @@
 import { Box, Flex, Text, useMediaQuery } from '@chakra-ui/react'
-import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import { MagicwandLg } from 'assets/icons/AI/MagicWand/MagicwandLg'
 import Drawer from 'components/common/Drawer/Drawer'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import Textarea from 'components/redesign/textarea/Textarea'

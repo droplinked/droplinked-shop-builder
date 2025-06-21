@@ -29,7 +29,7 @@ function Onboarding() {
 
     if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
     else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-    else if (entry === 'payment') updateOnboardingState('currentStep', 'PAYMENT_DETAILS')
+    else if (entry === 'payment') updateOnboardingState('currentStep', 'PLAN_SELECTION')
   
   }, [updateOnboardingState])
 

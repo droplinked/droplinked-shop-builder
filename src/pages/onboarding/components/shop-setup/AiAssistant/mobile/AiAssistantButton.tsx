@@ -1,5 +1,5 @@
 import { useDisclosure } from '@chakra-ui/react'
-import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import { MagicwandLg } from 'assets/icons/AI/MagicWand/MagicwandLg'
 import AppButton from 'components/redesign/button/AppButton'
 import PaymentModal from 'pages/onboarding/components/common/payment-modal/PaymentModal'
 import { GenerateWithAiData } from 'pages/onboarding/types/aiAssistant'
