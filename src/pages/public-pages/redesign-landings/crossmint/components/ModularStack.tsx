@@ -33,7 +33,8 @@ export default function ModularStack() {
                 headingTitle='Platform Functionalities'
                 headingSubtitle='droplinked provides customizable tools and integrations to support any business'
                 typographyText='Modular Stack'
-            >                <Cards
+            >
+                <Cards
                     cardsData={cardsData}
                     templateColumns={{
                         base: '1fr',
