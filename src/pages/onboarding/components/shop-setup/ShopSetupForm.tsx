@@ -7,6 +7,7 @@ import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import ShopPreview from '../shop-preview/ShopPreview'
 import AiAssistant from './AiAssistant/desktop/AiAssistant'
 import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
+import AICard from './AICard'
 import AutoPopulateSampleProductsToggle from './AutoPopulateSampleProductsToggle'
 import CoverImage from './CoverImage'
 import DescriptionField from './DescriptionField'
@@ -32,6 +33,7 @@ function ShopSetupForm() {
                 {isSmallerThan1024 && <AiAssistantButton />}
             </Flex>
             <ExistingShopUrlProcessor />
+            <AICard />
             <LogoUploader />
             <CoverImage />
             <UrlChooser />
