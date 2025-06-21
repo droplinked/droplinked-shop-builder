@@ -28,7 +28,6 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
       const paymentResponse = await subscriptionPlanStripePaymentService({
         month: preferredPlanDuration.month,
         subId: updatedPlan._id,
-        recurring: true,
         isTrial: true,
       })
       

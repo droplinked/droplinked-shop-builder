@@ -51,7 +51,6 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		subscriptionPlanStripePaymentService({
 			month: preferredPlanDuration.month,
 			subId: selectedPlanId,
-			recurring: true,
 			isTrial: false,
 		})
 	);
@@ -113,7 +112,6 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 				checkoutData: {
 					month: preferredPlanDuration.month,
 					subId: selectedPlanId,
-					recurring: false,
 				},
 			});
 			const { transactionHash } = await paymentProvider.customPayment({

@@ -71,7 +71,6 @@ export interface ShopSubscriptionData {
 export interface SubscriptionCheckout {
     month: number;
     subId: string;
-    recurring: boolean;
     isTrial?: boolean;
 }
 
