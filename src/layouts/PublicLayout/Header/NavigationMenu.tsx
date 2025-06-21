@@ -2,6 +2,7 @@ import { Link as ChakraLink, Flex, useBreakpointValue } from '@chakra-ui/react'
 import publicHeaderLinks from 'data/publicHeaderLinks'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import MegaMenu from './MegaMenu/MegaMenu'
 
 export default function NavigationMenu() {
     const isMobileView = useBreakpointValue({ base: true, xl: false })
@@ -10,7 +11,7 @@ export default function NavigationMenu() {
 
     return (
         <Flex as="nav" align="center" gap={6}>
-            {/* <MegaMenu /> */}
+            <MegaMenu />
             {publicHeaderLinks.map(link => (
                 <ChakraLink
                     as={Link}

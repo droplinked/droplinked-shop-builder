@@ -1,65 +1,95 @@
-import { Box, Flex, Popover, PopoverContent, PopoverTrigger, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Grid, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, useBreakpointValue } from '@chakra-ui/react'
 import React, { useState } from 'react'
-
-const tabData = [
-    {
-        label: 'Platform Functionalities',
-        content: 'Physical Inventory, Portable Supply Chain Management, Digital Goods and more...',
-    },
-    {
-        label: 'Enterprise',
-        content: 'DIMS+, Onchain Inventory Management, Metaverse Showroom...',
-    },
-    {
-        label: 'Partners',
-        content: 'Unstoppable Domains, D&D3...',
-    },
-]
+import publicMegaMenuItems from '../../../../data/publicMegaMenuItems'
+import PlatformLink from '../PlatformLink'
+import QuickLinks from '../QuickLinks'
 
 export default function MegaMenu() {
-    const [isOpen, setIsOpen] = useState(false)
-    const disclosure = useDisclosure()
+    const [activeTab, setActiveTab] = useState(0)
+    const isLgOrAbove = useBreakpointValue({ base: false, lg: true })
+    const gridColumns = useBreakpointValue({ lg: 2, '2xl': 3 })
+
+    // Return null if below lg breakpoint
+    if (!isLgOrAbove) {
+        return null
+    }
+
+    const handleTabChange = (index: number) => setActiveTab(index)
+
+    const handleCloseAll = () => {
+        // This will be handled by the Popover's onClose
+    }
 
     return (
-        <Popover {...disclosure} placement="bottom-start">
+        <Popover trigger="hover" gutter={32}>
             <PopoverTrigger>
-                <Flex as="button" alignItems="center">
-
-                </Flex>
+                <Text
+                    as="button"
+                    fontSize={14}
+                    color="text.subtext.placeholder.dark"
+                    _hover={{ color: 'text.white', textDecoration: 'none' }}
+                    cursor="pointer"
+                >
+                    Platform
+                </Text>
             </PopoverTrigger>
-            <PopoverContent w="3xl" p={0} bg="gray.800" borderRadius="md" boxShadow="xl">
-                <Flex>
-                    <Box bg="gray.700" p={4} w="200px">
-                        <Tabs orientation="vertical" variant="unstyled">
-                            <TabList>
-                                {tabData.map((tab, index) => (
-                                    <Tab
-                                        key={index}
-                                        justifyContent="flex-start"
-                                        _selected={{ bg: 'teal.700', color: 'white', fontWeight: 'semibold' }}
-                                        _hover={{ bg: 'gray.600' }}
-                                        borderRadius="md"
-                                        p={3}
-                                        color="gray.300"
-                                    >
-                                        {tab.label}
-                                    </Tab>
-                                ))}
-                            </TabList>
-                        </Tabs>
-                    </Box>
-                    <Box p={6} flex={1} bg="gray.800" color="white">
-                        <Tabs>
-                            <TabPanels>
-                                {tabData.map((tab, index) => (
-                                    <TabPanel key={index} p={0}>
-                                        <Text fontSize="md">{tab.content}</Text>
-                                    </TabPanel>
-                                ))}
-                            </TabPanels>
-                        </Tabs>
-                    </Box>
-                </Flex>
+            <PopoverContent
+                width="calc(100vw - 32px)"
+                maxWidth="calc(100vw - 32px)"
+                left="16px !important"
+                right="16px !important"
+                border="none"
+                borderRadius={16}
+            >
+                <PopoverBody padding={0} border="inherit" overflow="hidden">
+                    <Flex>
+                        {/* Left side - Tab buttons */}
+                        <Flex direction="column" gap={2} bgColor="neutral.websiteBackground">
+                            {publicMegaMenuItems.map((item, index) => (
+                                <Button
+                                    key={item.label}
+                                    variant="ghost"
+                                    justifyContent="flex-start"
+                                    alignItems="center"
+                                    gap={3}
+                                    padding={3}
+                                    borderRadius={8}
+                                    backgroundColor={activeTab === index ? 'rgba(255, 255, 255, 0.1)' : 'transparent'}
+                                    color={activeTab === index ? 'text.primary' : 'text.white'}
+                                    _hover={{
+                                        backgroundColor: activeTab === index ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.05)'
+                                    }}
+                                    onClick={() => handleTabChange(index)}
+                                    transition="all 0.2s ease-in-out"
+                                >
+                                    {item.icon && React.cloneElement(item.icon({
+                                        color: activeTab === index ? '#2bcfa1' : '#fff',
+                                    }))}
+                                    <Text fontSize={14} fontWeight={activeTab === index ? 500 : 400}>
+                                        {item.label}
+                                    </Text>
+                                </Button>
+                            ))}
+                        </Flex>
+
+                        {/* Right side - Links in Grid */}
+                        <Grid
+                            flex={1}
+                            templateColumns={`repeat(${gridColumns}, 1fr)`}
+                            gap={4}
+                            bgColor="neutral.background"
+                        >
+                            {publicMegaMenuItems[activeTab].links.map((link) => (
+                                <PlatformLink
+                                    key={link.label}
+                                    link={link}
+                                    onCloseAll={handleCloseAll}
+                                />
+                            ))}
+                        </Grid>
+                    </Flex>
+                    <QuickLinks />
+                </PopoverBody>
             </PopoverContent>
         </Popover>
     )
