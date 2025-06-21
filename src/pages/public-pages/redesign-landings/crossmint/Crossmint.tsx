@@ -1,7 +1,10 @@
 import React from 'react'
+import CrossmintHero from './components/CrossmintHero';
 
-export default function Corssmint() {
-    const sections = [];
+export default function Crossmint() {
+    const sections = [
+        { id: 'hero', component: <CrossmintHero /> },
+    ];
 
     return (
         <>
