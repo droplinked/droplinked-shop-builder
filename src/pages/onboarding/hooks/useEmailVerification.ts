@@ -36,12 +36,12 @@ export const useEmailVerification = ({ mode }: Props) => {
 
         if (mode === 'signup') {
             await onLoginSubmit(credentials)
-            updateOnboardingState('currentStep','STORE_DETAILS') 
+            updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
             return
         }
 
         updateOnboardingState('resetToken', response.data.data.resetToken)
-        updateOnboardingState('currentStep','SET_NEW_PASSWORD') 
+        updateOnboardingState('currentStep', 'SET_NEW_PASSWORD')
         showToast({ type: "success", message: "Code verified successfully" })
     }
 

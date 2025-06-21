@@ -8,10 +8,24 @@ export type StoreSetup = {
     name: string
     description: string
     autoAddSampleProductsEnabled: boolean
+    hasExistingShop: boolean
 }
 
 export type OnboardingStates = {
-    currentStep: 'SIGN_IN' | 'SIGN_UP' | 'SIGNUP_EMAIL_VERIFICATION' | 'RESET_PASSWORD' | 'RESET_PASSWORD_VERIFICATION' | 'SET_NEW_PASSWORD' | 'PASSWORD_UPDATED' | 'STORE_DETAILS' | 'PAYMENT_DETAILS' | 'PLAN_SELECTION' | 'YOU_ARE_ALL_SET' | 'PLAN_SELECTION_DISPLAY'
+    currentStep:
+    'SIGN_IN' |
+    'SIGN_UP' |
+    'SIGNUP_EMAIL_VERIFICATION' |
+    'RESET_PASSWORD' |
+    'RESET_PASSWORD_VERIFICATION' |
+    'SET_NEW_PASSWORD' |
+    'PASSWORD_UPDATED' |
+    'EXISTING_WEBSITE' |
+    'STORE_DETAILS' |
+    'PAYMENT_DETAILS' |
+    'PLAN_SELECTION' |
+    'YOU_ARE_ALL_SET' |
+    'PLAN_SELECTION_DISPLAY'
     storeSetup: StoreSetup
     storeSetupErrors: Partial<Record<keyof StoreSetup, string>>
     credentials: {

@@ -2,14 +2,16 @@ import { Box, Flex } from '@chakra-ui/react'
 import { PriceplanMd } from 'assets/icons/Finance/PricePlan/PriceplanMd'
 import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
 import { ShopMd } from 'assets/icons/System/Shop/ShopMd'
+import { SoonMd } from 'assets/icons/System/Soon/SoonMd'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
-import React, { cloneElement, Fragment } from 'react'
+import React, { Fragment, cloneElement } from 'react'
 import useOnboardingStore from '../../../stores/useOnboardingStore'
 
 function DesktopStepper() {
     const { currentStep } = useOnboardingStore()
 
     const steps = [
+        { icon: <SoonMd />, name: 'EXISTING_WEBSITE' },
         { icon: <ShopMd />, name: 'STORE_DETAILS' },
         { icon: <WalletMd />, name: 'PAYMENT_DETAILS' },
         { icon: <PriceplanMd />, name: 'PLAN_SELECTION' }

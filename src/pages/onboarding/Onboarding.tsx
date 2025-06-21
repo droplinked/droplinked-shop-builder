@@ -2,6 +2,8 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import EmailConfirmation from './components/common/email-confirmation/EmailConfirmation'
 import CompletionSection from './components/completion/CompletionSection'
+import ExistingWebsite from './components/existing-website/ExistingWebsite'
+import ExistingWebsiteVisual from './components/existing-website/ExistingWebsiteVisual'
 import DesktopLayout from './components/layout/DesktopLayout'
 import MobileLayout from './components/layout/MobileLayout'
 import TabletLayout from './components/layout/TabletLayout'
@@ -39,11 +41,12 @@ function Onboarding() {
   const stepContentMap = {
     SIGN_IN: { leftContent: <SignInForm />, rightContent: <ProductCards />, isAuthStep: true },
     SIGN_UP: { leftContent: <SignUpForm />, rightContent: <ProductCards />, isAuthStep: true },
-    RESET_PASSWORD: { leftContent: <ResetPasswordForm />, rightContent: <ProductCards />, isAuthStep: true },
     SIGNUP_EMAIL_VERIFICATION: { leftContent: <EmailConfirmation mode="signup" />, rightContent: <ProductCards />, isAuthStep: true },
+    RESET_PASSWORD: { leftContent: <ResetPasswordForm />, rightContent: <ProductCards />, isAuthStep: true },
     RESET_PASSWORD_VERIFICATION: { leftContent: <EmailConfirmation mode="reset" />, rightContent: <ProductCards />, isAuthStep: true },
     SET_NEW_PASSWORD: { leftContent: <SetNewPasswordForm />, rightContent: <ProductCards />, isAuthStep: true },
     PASSWORD_UPDATED: { leftContent: <PasswordUpdatedForm />, rightContent: <ProductCards />, isAuthStep: true },
+    EXISTING_WEBSITE: { leftContent: <ExistingWebsite />, rightContent: <ExistingWebsiteVisual />, isAuthStep: false },
     STORE_DETAILS: { leftContent: <ShopSetupForm />, rightContent: <ShopPreview />, isAuthStep: false },
     PAYMENT_DETAILS: { leftContent: <PaymentSetup />, rightContent: <PaymentFeatures />, isAuthStep: false },
     PLAN_SELECTION: { leftContent: <SubscriptionPlans />, rightContent: <SubscriptionPlansDisplay />, isAuthStep: false },
@@ -53,7 +56,9 @@ function Onboarding() {
 
   const { leftContent, rightContent, isAuthStep } = stepContentMap[currentStep]
 
-  return !rightContent ? leftContent : <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
+  return !rightContent
+    ? leftContent :
+    <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
 }
 
 export default Onboarding

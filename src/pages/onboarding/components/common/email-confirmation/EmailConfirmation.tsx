@@ -2,10 +2,10 @@ import { Box, Flex, Spinner, Text } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { useEmailVerification } from 'pages/onboarding/hooks/useEmailVerification'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 interface EmailConfirmationProps {
     mode: 'signup' | 'reset'
@@ -13,23 +13,12 @@ interface EmailConfirmationProps {
 
 function EmailConfirmation({ mode }: EmailConfirmationProps) {
     const { updateOnboardingState } = useOnboardingStore()
-    const {
-        otp,
-        inputState,
-        onOtpChange,
-        verifyEmail,
-        resendCode,
-        verifyLoading,
-        resendLoading,
-        loginLoading
-    } = useEmailVerification({ mode })
+    const { otp, inputState, onOtpChange, verifyEmail, resendCode, verifyLoading, resendLoading, loginLoading } = useEmailVerification({ mode })
 
-    const onBack = () => updateOnboardingState('currentStep', mode === 'signup' ? 'SIGN_UP' : 'RESET_PASSWORD') 
+    const onBack = () => updateOnboardingState('currentStep', mode === 'signup' ? 'SIGN_UP' : 'RESET_PASSWORD')
 
     useEffect(() => {
-        if (mode === 'signup') {
-            resendCode()
-        }
+        if (mode === 'signup') resendCode()
     }, [mode, resendCode])
 
     return (

@@ -8,14 +8,15 @@ export const initialStoreSetup = {
     shop_url: '',
     name: '',
     description: '',
-    autoAddSampleProductsEnabled: false
+    autoAddSampleProductsEnabled: false,
+    hasExistingShop: false
 }
 
 const initialState: OnboardingStates = {
     currentStep: 'SIGN_IN',
     storeSetup: initialStoreSetup,
     storeSetupErrors: {},
-    credentials: { email: '',password: '' },
+    credentials: { email: '', password: '' },
     resetToken: null
 }
 

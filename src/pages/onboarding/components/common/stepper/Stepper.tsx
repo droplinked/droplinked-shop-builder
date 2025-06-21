@@ -7,7 +7,7 @@ import MobileStepper from './MobileStepper'
 function Stepper() {
     const { currentStep } = useOnboardingStore()
 
-    const visibleSteps = ['STORE_DETAILS', 'PAYMENT_DETAILS', 'PLAN_SELECTION']
+    const visibleSteps = ['EXISTING_WEBSITE', 'STORE_DETAILS', 'PAYMENT_DETAILS', 'PLAN_SELECTION']
 
     if (!visibleSteps.includes(currentStep)) return null
 

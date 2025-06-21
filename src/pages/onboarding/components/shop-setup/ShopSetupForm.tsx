@@ -1,5 +1,4 @@
 import { Flex, useMediaQuery } from '@chakra-ui/react'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import useAppStore from 'stores/app/appStore'
 import { useShopSetupSubmit } from '../../hooks/useShopSetupSubmit'
@@ -11,6 +10,7 @@ import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
 import AutoPopulateSampleProductsToggle from './AutoPopulateSampleProductsToggle'
 import CoverImage from './CoverImage'
 import DescriptionField from './DescriptionField'
+import ExistingShopUrlProcessor from './ExistingShopUrlProcessor'
 import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
@@ -28,9 +28,10 @@ function ShopSetupForm() {
     return (
         <>
             <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
-                <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
+                <OnboardingStepHeader heading='Account Details' description='Complete the information below to optimize your storefront.' />
                 {isSmallerThan1024 && <AiAssistantButton />}
             </Flex>
+            <ExistingShopUrlProcessor />
             <LogoUploader />
             <CoverImage />
             <UrlChooser />
