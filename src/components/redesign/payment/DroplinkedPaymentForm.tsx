@@ -5,6 +5,7 @@ import { appDevelopment } from "utils/app/variable";
 
 interface DroplinkedPaymentFormProps {
     clientSecret: string;
+    intentType: "payment" | "setup";
     onSuccess: () => void;
     onError: (error?: any) => void;
     onCancel: () => void;
@@ -13,6 +14,7 @@ interface DroplinkedPaymentFormProps {
 
 const DroplinkedPaymentForm: React.FC<DroplinkedPaymentFormProps> = ({
     clientSecret,
+    intentType,
     onSuccess,
     onError,
     onCancel,
@@ -22,6 +24,7 @@ const DroplinkedPaymentForm: React.FC<DroplinkedPaymentFormProps> = ({
         <Box sx={containerStyles}>
             <DroplinkedPaymentIntent
                 clientSecret={clientSecret}
+                intentType={intentType}
                 type="stripe"
                 isTestnet={appDevelopment}
                 onSuccess={onSuccess}

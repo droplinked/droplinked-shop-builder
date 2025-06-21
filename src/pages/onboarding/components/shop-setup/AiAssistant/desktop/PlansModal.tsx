@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, ModalBody } from '@chakra-ui/react'
-import { MagicwandLg } from 'assets/icons/StyleDesigner/MagicWand/MagicwandLg'
+import { MagicwandLg } from 'assets/icons/AI/MagicWand/MagicwandLg'
 import ModalHeaderIconWrapper from 'components/redesign/modal-header-icon-wrapper/ModalHeaderIconWrapper'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'

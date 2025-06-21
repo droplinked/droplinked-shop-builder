@@ -7,11 +7,11 @@ import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPayment
 
 interface Props {
     clientSecret: string;
+    intentType: 'payment' | 'setup';
     setPlanPurchaseModalStep: (step: ModalStep) => void;
-    close: () => void;
 }
 
-function StripePayment({ clientSecret, setPlanPurchaseModalStep, close }: Props) {
+function StripePayment({ clientSecret, intentType, setPlanPurchaseModalStep }: Props) {
     
     const onSuccess = () => {
         setPlanPurchaseModalStep("SuccessfulPayment");
@@ -35,6 +35,7 @@ function StripePayment({ clientSecret, setPlanPurchaseModalStep, close }: Props)
 
         <ModalBody>
           <DroplinkedPaymentForm
+            intentType={intentType}
             clientSecret={clientSecret}
             onSuccess={onSuccess}
             onError={onError}

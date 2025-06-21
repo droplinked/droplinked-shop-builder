@@ -6,10 +6,9 @@ interface PaymentDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   planDetail: any;
-  clientSecret: string;
 }
 
-const PaymentDrawer = ({ isOpen, onClose, planDetail, clientSecret }: PaymentDrawerProps) => {
+const PaymentDrawer = ({ isOpen, onClose, planDetail }: PaymentDrawerProps) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -25,12 +24,7 @@ const PaymentDrawer = ({ isOpen, onClose, planDetail, clientSecret }: PaymentDra
       title="Credit card information"
       description="Choose a credit card on file or add a new one."
     >
-      <PaymentContent
-        isDrawer
-        onClose={onClose}
-        planDetail={planDetail}
-        clientSecret={clientSecret}
-      />
+      <PaymentContent isDrawer onClose={onClose} planDetail={planDetail} />
     </Drawer>
   );
 };

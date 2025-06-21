@@ -10,14 +10,13 @@ interface PaymentContentProps {
   onClose: () => void;
   planDetail: any; 
   isDrawer?: boolean;
-  clientSecret: string;
 }
 
-const PaymentContent = ({ onClose,  planDetail, isDrawer, clientSecret }: PaymentContentProps) => {
+const PaymentContent = ({ onClose,  planDetail, isDrawer }: PaymentContentProps) => {
   if (isDrawer) {
     return (
       <Flex direction="column" gap={4} background="neutral.gray.1000">
-        <PaymentForm onClose={onClose} planDetail={planDetail} clientSecret={clientSecret} />
+        <PaymentForm onClose={onClose} planDetail={planDetail} />
         <ExpandableInfo
           icon={<planDetail.icon color="white" />}
           title={planDetail.title}
@@ -43,7 +42,7 @@ const PaymentContent = ({ onClose,  planDetail, isDrawer, clientSecret }: Paymen
           }}
         />
         <ModalBody padding="0px !important">
-          <PaymentForm onClose={onClose} planDetail={planDetail}clientSecret={clientSecret} />
+          <PaymentForm onClose={onClose} planDetail={planDetail} />
         </ModalBody>
       </Flex>
 

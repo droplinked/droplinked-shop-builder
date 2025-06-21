@@ -9,16 +9,15 @@ export interface PaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
   plan: PlanType;
-  clientSecret: string;
 }
 
-export default function PaymentModal({ isOpen, onClose, plan, clientSecret }: PaymentModalProps) {
+export default function PaymentModal({ isOpen, onClose, plan }: PaymentModalProps) {
   const [isMobileOrTablet] = useMediaQuery('(max-width: 1024px)');
   const planDetail = subscriptionPlans[plan];
 
   if (isMobileOrTablet) {
-    return <PaymentDrawer isOpen={isOpen} onClose={onClose} planDetail={planDetail} clientSecret={clientSecret} />;
+    return <PaymentDrawer isOpen={isOpen} onClose={onClose} planDetail={planDetail} />;
   }
 
-  return <BaseModal isOpen={isOpen} onClose={onClose} planDetail={planDetail} clientSecret={clientSecret} />;
+  return <BaseModal isOpen={isOpen} onClose={onClose} planDetail={planDetail} />;
 }

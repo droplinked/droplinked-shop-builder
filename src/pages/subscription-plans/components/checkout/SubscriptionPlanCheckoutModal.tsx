@@ -15,6 +15,7 @@ function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
     const [modalData, setModalData] = useState<ModalState>({
         step: "PlanConfirmation",
         stripeClientSecret: "",
+        intentType: "payment",
         selectedPaymentMethod: null
     })
 
@@ -22,7 +23,7 @@ function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
         setModalData({ ...modalData, [key]: value })
 
     const renderContent = () => {
-        const { step, stripeClientSecret } = modalData
+        const { step, stripeClientSecret, intentType } = modalData
         if (step === 'PlanConfirmation')
             return <ConfirmPlan
                 setPlanPurchaseModalStep={(step) => updateModalData("step", step)}
@@ -38,8 +39,8 @@ function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
         else if (step === "StripePayment")
             return <StripePayment
                 clientSecret={stripeClientSecret}
+                intentType={intentType}
                 setPlanPurchaseModalStep={(step) => updateModalData("step", step)}
-                close={close}
             />
 
         return <PaymentStatus

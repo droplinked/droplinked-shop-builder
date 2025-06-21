@@ -52,6 +52,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 			month: preferredPlanDuration.month,
 			subId: selectedPlanId,
 			recurring: true,
+			isTrial: false,
 		})
 	);
 	const { getRootProps, getRadioProps } = useRadioGroup({
@@ -73,13 +74,12 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 	const hndleStripePayment = async () => {
 		try {
 			setTransactionInProgress(true);
-			const {
-				data: { clientSecret },
-			} = await confirmStripePayment();
+			const paymentResponse = await confirmStripePayment();
 			setModalData((prevData) => ({
 				...prevData,
 				step: 'StripePayment',
-				stripeClientSecret: clientSecret,
+				stripeClientSecret: paymentResponse.data.clientSecret,
+				intentType: paymentResponse.data.intentType,
 			}));
 		} catch (e) {
 			showToast({ message: (e as Error).message, type: 'error' });
