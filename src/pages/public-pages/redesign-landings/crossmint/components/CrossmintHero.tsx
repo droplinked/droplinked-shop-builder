@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroSection from '../../components/hero-section/HeroSection'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, useBreakpointValue } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import AppButton from 'components/redesign/button/AppButton'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
@@ -10,6 +10,9 @@ import Crossmint from 'assets/brand-identity/Crossmint'
 import Animation from '../lottie/Crossmint.json'
 
 export default function CrossmintHero() {
+    const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
+    const crossmintSize = useBreakpointValue({ base: "20px", md: "32px", lg: "40px" })
+
     return (
         <HeroSection
             title={`Powering \n Agentic Commerce`}
@@ -51,27 +54,27 @@ export default function CrossmintHero() {
                             alignItems="center"
                         >
                             <IconWrapper
-                                icon={<Drop3 width="48px" height="48px" color='#fff' />}
+                                icon={<Drop3 width={droplinkedSize} height={droplinkedSize} color='#fff' />}
                                 background="rgba(43, 207, 161, 0.32)"
                                 border="1px solid"
                                 borderColor="rgba(43, 207, 161, 0.10)"
                                 borderRadius="48px"
                                 backdropFilter="blur(12.5px)"
-                                width={{ base: "48px", md: "64px", xl: "88px" }}
-                                height={{ base: "48px", md: "64px", xl: "88px" }}
+                                width={{ base: "48px", md: "64px", lg: "88px" }}
+                                height={{ base: "48px", md: "64px", lg: "88px" }}
                             />
 
                             <TransferLg color='#fff' />
 
                             <IconWrapper
-                                icon={<Crossmint width="40px" height="40px" color='#fff' />}
+                                icon={<Crossmint width={crossmintSize} height={crossmintSize} color='#fff' />}
                                 background="rgba(43, 207, 161, 0.32)"
                                 border="1px solid"
                                 borderColor="rgba(43, 207, 161, 0.10)"
                                 borderRadius="48px"
                                 backdropFilter="blur(12.5px)"
-                                width={{ base: "48px", md: "64px", xl: "88px" }}
-                                height={{ base: "48px", md: "64px", xl: "88px" }}
+                                width={{ base: "48px", md: "64px", lg: "88px" }}
+                                height={{ base: "48px", md: "64px", lg: "88px" }}
                             />
                         </Flex>
 
