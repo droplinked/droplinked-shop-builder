@@ -1,18 +1,38 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
-import AppButton from 'components/redesign/button/AppButton'
-import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import HeroAnimation from './HeroAnimation'
 
-export default function HeroSection() {
+interface HeroSectionProps {
+    title?: string
+    subtitle?: string
+    backgroundImage?: string
+    subTitleElements?: React.ReactNode
+    heroDesktop?: Object
+    heroTablet?: Object
+    heroMobile?: Object
+    animationStyles?: {
+        marginTop?: string
+        marginInline?: string | { mobile?: string, tablet?: string, desktop?: string }
+    }
+}
+
+export default function HeroSection({
+    title,
+    subtitle,
+    backgroundImage,
+    subTitleElements,
+    heroDesktop,
+    heroTablet,
+    heroMobile,
+    animationStyles
+}: HeroSectionProps) {
     return (
         <Grid
             templateColumns="1fr"
             templateRows="repeat(1, 1fr)"
             height="max-content"
             mx={{ base: 4, lg: 6 }}
-            backgroundImage="url(https://upload-file-droplinked.s3.amazonaws.com/bb43d560151ac7d20966da30d1d9affdd9b462943a49cbf40e4f893e35c94b07.png)"
+            backgroundImage={`url(${backgroundImage})`}
             backgroundSize="cover"
             backgroundRepeat="no-repeat"
             borderRadius="24px"
@@ -28,31 +48,24 @@ export default function HeroSection() {
                         whiteSpace="pre-line"
                         textAlign="center"
                     >
-                        {`Commerce That \n Earns The Most`}
-                    </Text>
-                    <Text
+                        {title}
+                    </Text>                    <Text
                         color="text.subtext.placeholder.light"
                         maxWidth={{ base: "90%", md: "80%", xl: "45%" }}
                         textAlign="center"
                         fontSize={{ base: "14px", md: "16px" }}
                     >
-                        From the largest enterprises to solo merchants, droplinked provides tools enabling businesses and entrepreneurs to finance growth and earn more on every sale
+                        {subtitle}
                     </Text>
                 </Flex>
-                <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
-                    <Link to={AUTH_ROUTES.SIGN_UP}>
-                        <AppButton>
-                            Start Now
-                        </AppButton>
-                    </Link>
-                    <Link to="mailto:support@droplinked.com">
-                        <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
-                        </AppButton>
-                    </Link>
-                </Flex>
+                {subTitleElements}
             </Box>
-            <HeroAnimation />
+            <HeroAnimation
+                heroDesktop={heroDesktop}
+                heroTablet={heroTablet}
+                heroMobile={heroMobile}
+                customStyles={animationStyles}
+            />
         </Grid>
     )
 }
