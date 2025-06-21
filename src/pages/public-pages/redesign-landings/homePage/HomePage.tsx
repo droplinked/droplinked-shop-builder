@@ -1,6 +1,6 @@
 import React from 'react'
 import { LazyLoad } from '../components/LazyLoad'
-import PartnersSection from './components/partners-section/PartnersSection'
+import PartnersSection from './components/PartnersSection'
 import GoLiveSection from './components/go-live-section/GoLiveSection';
 import ProductOfferingSection from './components/product-offering-section/ProductOfferingSection';
 import HomePageHero from './components/HeroSection';
