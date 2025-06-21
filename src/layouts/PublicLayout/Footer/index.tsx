@@ -1,6 +1,6 @@
 import { Flex, Grid, useBreakpointValue } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import MaxWidthWrapper from "pages/public-pages/homePage/components/common/MaxWidthWrapper"
+import MaxWidthWrapper from "pages/public-pages/redesign-landings/homePage/components/common/MaxWidthWrapper"
 import React from "react"
 import BrandIdentity from "./BrandIdentity"
 import FooterLegal from "./FooterLegal"

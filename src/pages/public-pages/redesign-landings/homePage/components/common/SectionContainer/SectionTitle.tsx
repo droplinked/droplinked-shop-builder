@@ -1,8 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Icon } from './IconMapper';
-import TitleLeftIllustration from 'pages/public-pages/homePage/svgs/TitleLeftIllustration';
-import TitleRightIllustration from 'pages/public-pages/homePage/svgs/TitleRightIllustration';
+import TitleLeftIllustration from 'pages/public-pages/redesign-landings/homePage/svgs/TitleLeftIllustration';
+import TitleRightIllustration from 'pages/public-pages/redesign-landings/homePage/svgs/TitleRightIllustration';
 
 interface Props {
     sectionTitle?: string;

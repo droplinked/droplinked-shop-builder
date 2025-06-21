@@ -19,6 +19,7 @@ import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Corssmint"
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
@@ -43,7 +44,7 @@ const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"))
 const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"))
 const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"))
 const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"))
-const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"))
+const HomePage = lazy(() => import("pages/public-pages/redesign-landings/homePage/HomePage"))
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"))
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"))
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"))
@@ -76,6 +77,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <HomePage /> },
+            { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },
