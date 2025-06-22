@@ -5,7 +5,6 @@ import { useMutation } from 'react-query';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
 import useAppStore from 'stores/app/appStore';
-import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
