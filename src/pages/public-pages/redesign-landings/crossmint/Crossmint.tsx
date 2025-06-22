@@ -5,6 +5,7 @@ import SetOfPerks from './components/SetOfPerks';
 import ModularStack from './components/ModularStack';
 import JoinTheCommuity from './components/JoinTheCommuity';
 import { LazyLoad } from '../components/LazyLoad';
+import ClaimNow from './components/ClaimNow';
 
 export default function Crossmint() {
     const sections = [
@@ -13,6 +14,7 @@ export default function Crossmint() {
         { id: 'set-of-perks', component: <SetOfPerks /> },
         { id: 'modular-stack', component: <ModularStack /> },
         { id: 'join-the-community', component: <JoinTheCommuity /> },
+        { id: 'claim-now', component: <ClaimNow /> },
     ];
 
     return (
