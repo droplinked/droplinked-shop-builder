@@ -53,7 +53,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
                     </Text>
                 </Box>
             </Flex>
-            {children && <Box position="relative" zIndex={1}>{children}</Box>}
+            {children && <Box height="100%" position="relative" zIndex={1}>{children}</Box>}
         </Flex>
     );
 }
