@@ -33,7 +33,7 @@ function PriceContent({ planType, targetPrice, hasDiscount, mainFontSize, discou
         return (
             <>
                 <AppTypography fontSize={mainFontSize}>${discountPrice}</AppTypography>
-                <AppTypography as="span" fontSize={discountFontSize} fontWeight={400} color="#FF2244" textDecoration="line-through">
+                <AppTypography as="span" fontSize={discountFontSize} fontWeight={400} color="text.error" textDecoration="line-through">
                     ${price}
                 </AppTypography>
             </>

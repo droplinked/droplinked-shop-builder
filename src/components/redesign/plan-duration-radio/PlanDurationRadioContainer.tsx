@@ -9,9 +9,11 @@ import PlanDurationRadio from './PlanDurationRadio'
  * Horizontal scrollable container of radio options for selecting subscription
  * plan durations, with global state integration and custom scrollbar styling.
  * 
+ * @param {string} bgColor - Custom background color for the container
+ * @param {string} border - Optional border styling for the container
  * @returns {JSX.Element} A scrollable radio group for selecting plan durations
  */
-function PlanDurationRadioContainer() {
+function PlanDurationRadioContainer({ bgColor = "neutral.gray.1000", showBorder = false }) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const updatePlanDuration = useSubscriptionPlanPurchaseStore((state) => state.updatePlanDuration)
 
@@ -29,7 +31,9 @@ function PlanDurationRadioContainer() {
             height={12}
             alignItems={"center"}
             gap={1}
-            bg={"neutral.gray.1000"}
+            bg={bgColor}
+            border={showBorder ? "1px solid" : "none"}
+            borderColor={showBorder ? "neutral.gray.800" : "transparent"}
             p={"6px"}
             borderRadius={8}
             sx={{
