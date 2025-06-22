@@ -14,6 +14,7 @@ import ExistingShopUrlProcessor from './ExistingShopUrlProcessor'
 import LogoUploader from './LogoUploader'
 import NameField from './NameField'
 import UrlChooser from './UrlChooser'
+import AICard from './AICard'
 
 function ShopSetupForm() {
     const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
@@ -32,6 +33,7 @@ function ShopSetupForm() {
                 {isSmallerThan1024 && <AiAssistantButton />}
             </Flex>
             <ExistingShopUrlProcessor />
+            <AICard />
             <LogoUploader />
             <CoverImage />
             <UrlChooser />

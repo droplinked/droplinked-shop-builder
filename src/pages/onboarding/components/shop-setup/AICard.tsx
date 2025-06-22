@@ -1,28 +1,53 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
-import React, { useState } from 'react';
-import { SuitcaseSm } from 'assets/icons/System/SuitCase/SuitcaseSm';
 import { AILg } from 'assets/icons/AI';
+import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
+import { SuitcaseSm } from 'assets/icons/System/SuitCase/SuitcaseSm';
+import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal';
+import AppButton from 'components/redesign/button/AppButton';
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import AppSelect from 'components/redesign/select/AppSelect';
-import AppButton from 'components/redesign/button/AppButton';
 import Textarea from 'components/redesign/textarea/Textarea';
-import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
-import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal';
+import { categories } from 'pages/onboarding/constants/categories';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
+import React, { useState } from 'react';
+import useAppStore from 'stores/app/appStore';
+import { useAiGeneratedContent } from '../../hooks/useAiGeneratedContent';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false);
+  const { shopSetupUI, updateShopSetupUI } = useOnboardingStore()
+  const { generateAllContent } = useAiGeneratedContent()
+  const { hasPaidSubscription } = useAppStore()
 
   const toggleOpen = () => setIsOpen(!isOpen);
+  
+  const handleChange = (key: string, value: string) => {
+    if (key === 'businessDescribe') {
+      updateShopSetupUI('businessDescription', value)
+    } else if (key === 'businessCategory') {
+      updateShopSetupUI('businessCategory', value)
+    }
+  }
 
   const handleGenerateWithAI = () => {
-    setIsProTrialModalOpen(true);
+    const hasValidSubscription = hasPaidSubscription()
+    
+    if (hasValidSubscription) {
+      // User has a valid subscription (Pro, Premium, or Enterprise), generate content
+      generateAllContent();
+    } else {
+      // User has no subscription or has STARTER plan, show pro trial modal
+      setIsProTrialModalOpen(true);
+    }
   };
 
   const handleCloseProTrialModal = () => {
     setIsProTrialModalOpen(false);
   };
+
+  if (shopSetupUI.hasExistingShop) return null
 
   return (
     <Box
@@ -79,32 +104,31 @@ function AICard() {
             fontFamily="14px"
             isRequired
             placeholder="Please describe your shop to help our AI create a more accurate and efficient representation of your business."
-            value=""
-            onChange={() => {}}
+            value={shopSetupUI.businessDescription}
+            onChange={(e) => handleChange("businessDescribe", e.target.value)}
           />
 
           <AppSelect
             label="Business Category"
             isRequired
-            items={[]}
+            items={categories}
             valueAccessor="id"
             labelAccessor="name"
             selectProps={{
               placeholder: 'Select Category',
-              value: '',
-              onChange: () => {}
+              value: shopSetupUI.businessCategory,
+              onChange: (e) => handleChange("businessCategory", e.target.value)
             }}
           />
 
-          <AppButton size="lg" onClick={handleGenerateWithAI}>Generate Shop Details with AI</AppButton>
+          <AppButton size="lg" onClick={handleGenerateWithAI }>Generate Shop Details with AI</AppButton>
         </Box>
       </Box>
 
-      {/* <ProTrialModal
+       <ProTrialModal
         isOpen={isProTrialModalOpen}
         onClose={handleCloseProTrialModal}
-        unlockedMonths={1}
-      /> */}
+      /> 
     </Box>
   );
 }

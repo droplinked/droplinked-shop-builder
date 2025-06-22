@@ -5,7 +5,7 @@ import HeaderIcon from "./HeaderIcon"
 import ShopLogo from "./ShopLogo"
 
 export default function ShopBar() {
-    const { storeSetup: { name } } = useOnboardingStore()
+    const { shopData } = useOnboardingStore()
 
     return (
         <Flex
@@ -32,7 +32,7 @@ export default function ShopBar() {
                 gap={{ base: 2, sm: 0 }}
             >
                 <Text fontSize={{ base: 20, xl: 24 }} fontWeight={700} color="#fff" >
-                    {name || "Shop Name"}
+                    {shopData.name || "Shop Name"}
                 </Text>
                 <Flex gap={3}>
                     <HeaderIcon />
