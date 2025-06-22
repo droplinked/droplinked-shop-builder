@@ -34,17 +34,15 @@ export default function MegaMenu() {
                 </Text>
             </PopoverTrigger>
             <PopoverContent
-                width="calc(100vw - 32px)"
-                maxWidth="calc(100vw - 32px)"
-                left="16px !important"
-                right="16px !important"
+                width={{ xl: "calc(100vw - 32px)", "2xl": "calc(100vw - 48px)" }}
+                maxWidth={{ xl: "calc(100vw - 32px)", "2xl": "calc(100vw - 48px)" }}
                 border="none"
                 borderRadius={16}
             >
                 <PopoverBody padding={0} border="inherit" overflow="hidden">
                     <Flex>
                         {/* Left side - Tab buttons */}
-                        <Flex direction="column" gap={2} bgColor="neutral.websiteBackground">
+                        <Flex direction="column" gap={2} padding={{ xl: 4, "2xl": 6 }} bgColor="neutral.websiteBackground">
                             {publicMegaMenuItems.map((item, index) => (
                                 <Button
                                     key={item.label}
@@ -77,6 +75,7 @@ export default function MegaMenu() {
                             flex={1}
                             templateColumns={`repeat(${gridColumns}, 1fr)`}
                             gap={4}
+                            padding={{ xl: 4, "2xl": 6 }}
                             bgColor="neutral.background"
                         >
                             {publicMegaMenuItems[activeTab].links.map((link) => (
