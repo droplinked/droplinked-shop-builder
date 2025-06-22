@@ -6,9 +6,10 @@ import Layer from '../svgs/icons/Layer';
 import Sparkle from '../svgs/icons/Sparkle';
 import Story from '../svgs/icons/Story';
 import React from 'react';
+import LayerWeb from '../svgs/icons/LayerWeb';
 
 
-export type Icon = 'bolt' | 'chat-heart' | 'globe' | 'layer' | 'story' | 'sparkle';
+export type Icon = 'bolt' | 'chat-heart' | 'globe' | 'layer' | 'story' | 'sparkle' | 'layer-web';
 
 interface IconMapperProps {
     icon: Icon;
@@ -22,7 +23,8 @@ export default function IconMapper({ icon, ...props }: IconMapperProps) {
         'globe': Globe,
         'layer': Layer,
         'story': Story,
-        'sparkle': Sparkle
+        'sparkle': Sparkle,
+        'layer-web': LayerWeb
     };
 
     const IconComponent = iconMap[icon];

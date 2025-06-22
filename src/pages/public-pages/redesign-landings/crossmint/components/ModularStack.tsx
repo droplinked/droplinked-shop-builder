@@ -28,7 +28,7 @@ export default function ModularStack() {
     return (
         <MaxWidthWrapper my="80px">
             <SectionContainer
-                icon='layer'
+                icon='layer-web'
                 sectionTitle='MODULAR STACK'
                 headingTitle='Platform Functionalities'
                 headingSubtitle='droplinked provides customizable tools and integrations to support any business'
