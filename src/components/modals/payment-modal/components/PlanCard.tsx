@@ -10,16 +10,12 @@ export default function PlanCard({ plan }) {
       borderColor={'neutral.gray.800'}
       borderRadius={8}
       padding={{ xl: 9, base: 6 }}
-      backgroundImage={'/assets/images/popular-plan-bg.png'}
       backgroundColor={'neutral.gray.1000'}
-      backgroundPosition={'top right'}
-      backgroundRepeat={'no-repeat'}
-      backgroundSize={'auto 180%'}
       gap={4}
       w="100%"
     >
-      <Box w="fit-content" bg="neutral.gray.900" border={'1px solid'} borderColor="neutral.gray.800" p={2} borderRadius="8px">
-        <plan.icon color="white" />
+      <Box w="fit-content" bg="label.primary" border={'1px solid'} borderColor="neutral.gray.800" p={2} borderRadius="8px">
+        <plan.icon color="#2BCFA1" />
       </Box>
       <Flex flexDir="column">
         <AppTypography color="#fff" fontSize="18px" fontWeight={700}>

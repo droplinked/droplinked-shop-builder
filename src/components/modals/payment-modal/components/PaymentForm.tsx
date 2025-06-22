@@ -4,14 +4,16 @@ import useAppToast from 'hooks/toast/useToast'
 import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices'
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import React, { useState } from 'react'
-import useOnboardingStore from '../../../../stores/useOnboardingStore'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 
 interface PaymentFormProps {
   onClose: () => void;
   planDetail: any;
+  onSuccess?: () => void;
+  successMessage?: string;
 }
 
-const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
+const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [intentType, setIntentType] = useState<'payment' | 'setup'>()
   const [clientSecret, setClientSecret] = useState<string>('')
@@ -58,10 +60,14 @@ const PaymentForm = ({ onClose, planDetail }: PaymentFormProps) => {
         updateSelectedPlan(updatedPlan)
       }
       
-      showToast({ message: 'Payment successful! Your subscription has been activated.', type: 'success' })
+      const message = successMessage || 'Payment successful! Your subscription has been activated.'
+      showToast({ message, type: 'success' })
 
       onClose()
-      updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
+      
+      if (onSuccess) {
+        onSuccess()
+      }
     } catch (err) {
       const errorMessage = 'An unexpected error occurred. Please try again.'
       setErrorMessage(errorMessage)

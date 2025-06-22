@@ -5,7 +5,7 @@ type PlanDuration = { month: number, label: string, discount?: number }
 
 export const planDurations: PlanDuration[] = [
     { month: 1, label: "Monthly" },
-    { month: 12, label: "Annually", discount: 10 },
+    { month: 12, label: "Yearly", discount: 10 },
     { month: 36, label: "3-Year", discount: 25 },
 ]
 

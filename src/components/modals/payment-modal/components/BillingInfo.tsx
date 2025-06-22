@@ -24,16 +24,14 @@ const BillingInfo = ({ planDetail }: BillingInfoProps) => {
   const originalPrice = targetPrice?.price ? parseFloat(targetPrice.price) : 0;
   const discount = targetPrice?.discount || 0;
   const subscriptionCost = Number((originalPrice * (1 - discount / 100)).toFixed(2));
-  const tax = 0;
-  const total = (subscriptionCost + tax).toFixed(2);
+  const total = subscriptionCost.toFixed(2);
 
   return (
     <VStack spacing={4} alignItems="flex-start">
       <PlanCard plan={planDetail} /> 
       <BillingSummary 
         subscriptionCost={subscriptionCost} 
-        tax={tax} 
-        total={`$${total}`} 
+        total={total}
       />
       <Flex w="473px" alignItems="center" gap={1}>
         <InformationSm color="#7b7b7b" />

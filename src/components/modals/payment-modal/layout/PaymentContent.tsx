@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Grid, ModalBody } from '@chakra-ui/react';
 import { CreditcardLg } from 'assets/icons/Finance/CreditCard/CreditcardLg';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import ExpandableInfo from '../../../shop-setup/AiAssistant/components/ExpandableInfo';
+import ExpandableInfo from 'pages/onboarding/components/shop-setup/AiAssistant/components/ExpandableInfo';
 import PaymentForm from '../components/PaymentForm';
 import BillingInfo from '../components/BillingInfo';
 
@@ -10,13 +10,20 @@ interface PaymentContentProps {
   onClose: () => void;
   planDetail: any; 
   isDrawer?: boolean;
+  onSuccess?: () => void;
+  successMessage?: string;
 }
 
-const PaymentContent = ({ onClose,  planDetail, isDrawer }: PaymentContentProps) => {
+const PaymentContent = ({ onClose, planDetail, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
   if (isDrawer) {
     return (
       <Flex direction="column" gap={4} background="neutral.gray.1000">
-        <PaymentForm onClose={onClose} planDetail={planDetail} />
+        <PaymentForm 
+          onClose={onClose} 
+          planDetail={planDetail}
+          onSuccess={onSuccess}
+          successMessage={successMessage}
+        />
         <ExpandableInfo
           icon={<planDetail.icon color="white" />}
           title={planDetail.title}
@@ -42,7 +49,12 @@ const PaymentContent = ({ onClose,  planDetail, isDrawer }: PaymentContentProps)
           }}
         />
         <ModalBody padding="0px !important">
-          <PaymentForm onClose={onClose} planDetail={planDetail} />
+          <PaymentForm 
+            onClose={onClose} 
+            planDetail={planDetail}
+            onSuccess={onSuccess}
+            successMessage={successMessage}
+          />
         </ModalBody>
       </Flex>
 

@@ -1,5 +1,6 @@
 import { Grid } from "@chakra-ui/react"
 import { ExternalarrowMd } from "assets/icons/Navigation/ExternalArrow/ExternalarrowMd"
+import PaymentModal from "components/modals/payment-modal/PaymentModal"
 import BlueButton from "components/redesign/button/BlueButton"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
@@ -12,7 +13,6 @@ import { useQuery } from "react-query"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
-import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
 
@@ -20,7 +20,6 @@ function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
-    const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
 
     const { isFetching, data } = useQuery({
@@ -44,6 +43,11 @@ function SubscriptionPlans() {
 
         // Open payment modal - PaymentForm will handle the payment logic
         setIsPaymentModalOpen(true)
+    }
+
+    // Custom success handler for onboarding flow
+    const handlePaymentSuccess = () => {
+        updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
     }
 
     if (isFetching) return <Loading />
@@ -76,7 +80,6 @@ function SubscriptionPlans() {
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
-                            planDuration={preferredPlanDuration}
                         />
                     )
                 })}
@@ -92,6 +95,8 @@ function SubscriptionPlans() {
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
                 onClose={() => setIsPaymentModalOpen(false)}
+                onSuccess={handlePaymentSuccess}
+                successMessage="Payment successful! Your subscription has been activated and you're all set!"
             />
         </>
     )

@@ -4,17 +4,16 @@ import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPl
 
 interface BillingSummaryProps {
   subscriptionCost: number;
-  tax: number;
   total: string;
 }
 
-const BillingSummary: React.FC<BillingSummaryProps> = ({ subscriptionCost, tax, total }) => {
+function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration);
   
   const getBillingCycleText = () => {
     if (preferredPlanDuration.month === 1) return 'Monthly';
     if (preferredPlanDuration.month === 12) return 'Annual';
-    if (preferredPlanDuration.month === 60) return '5-Year';
+    if (preferredPlanDuration.month === 36) return '3-Year';
     return `${preferredPlanDuration.month} Months`;
   };
 
@@ -44,19 +43,6 @@ const BillingSummary: React.FC<BillingSummaryProps> = ({ subscriptionCost, tax, 
           </Flex>
         </Flex>
 
-        <Flex justifyContent="space-between" alignItems="center" width="100%">
-          <Text color="white" fontSize="base">
-            Tax
-          </Text>
-          <Flex alignItems="center" gap={1}>
-            <Text color="white" fontSize="base" fontWeight="medium">
-              ${tax}
-            </Text>
-            <Text color="#868686" fontSize="base">
-              USD
-            </Text>
-          </Flex>
-        </Flex>
       </Box>
 
       <Box width="100%" height="1px" borderTop="1px solid" borderColor="#282828" />
@@ -67,7 +53,7 @@ const BillingSummary: React.FC<BillingSummaryProps> = ({ subscriptionCost, tax, 
         </Text>
         <Flex alignItems="center" gap={1}>
           <Text color="white" fontSize="base" fontWeight="medium">
-            {total}
+            {total === '0.00' ? 'Free' : `$${total}`}
           </Text>
         </Flex>
       </Flex>
