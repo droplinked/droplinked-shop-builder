@@ -1,29 +1,42 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
-import React from "react";
+import React, { useState } from "react";
+import CardHoverEffect from "./CardHoverEffect";
 
 interface Props {
     icon: React.ReactNode;
     title: string;
     description: string;
-    animation?: React.ReactNode;
+    children?: React.ReactNode;
     gridColumn?: string | { base?: string; md?: string; lg?: string };
+    hasHoverEffect?: boolean;
 }
 
-export default function Card({ icon, title, description, animation, gridColumn }: Props) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect }: Props) {
+    const [isHovered, setIsHovered] = useState(false);
+    const hovered = isHovered && hasHoverEffect;
+
     return (
         <Flex
+            role="group"
+            position="relative"
+            overflow="hidden"
             flexDirection="column"
             border="1px solid"
             borderColor="neutral.gray.900"
             borderRadius={16}
             gridColumn={gridColumn}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            cursor="default"
         >
-            <Flex flexDirection="column" gap={4} p={6}>
+            {hasHoverEffect && <CardHoverEffect />}
+            <Flex flexDirection="column" gap={4} p={6} position="relative" zIndex={1}>
                 <IconWrapper
                     border="1px solid"
-                    borderColor="neutral.gray.900"
-                    background="neutral.background"
+                    borderColor={hovered ? "label.primary.success" : "neutral.gray.900"}
+                    background={hovered ? "label.primary.success" : "neutral.background"}
+                    transition="all 0.3s ease-in-out"
                     icon={icon}
                 />
                 <Box>
@@ -40,7 +53,7 @@ export default function Card({ icon, title, description, animation, gridColumn }
                     </Text>
                 </Box>
             </Flex>
-            {animation}
+            {children && <Box position="relative" zIndex={1}>{children}</Box>}
         </Flex>
     );
 }

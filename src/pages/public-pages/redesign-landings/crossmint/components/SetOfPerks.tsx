@@ -39,6 +39,7 @@ export default function SetOfPerks() {
             />
             <Cards
                 cardsData={cardsData}
+                hasHoverEffect={true}
                 templateColumns={{
                     base: '1fr',
                     md: 'repeat(3, 1fr)',

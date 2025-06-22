@@ -6,7 +6,7 @@ export interface CardData {
     icon: React.ReactNode;
     title: string;
     description: string;
-    animation?: React.ReactNode;
+    children?: React.ReactNode;
     gridColumn?: string | { base?: string; md?: string; lg?: string };
 }
 
@@ -17,10 +17,11 @@ interface Props {
         md?: string;
         lg?: string;
     };
+    hasHoverEffect?: boolean;
     gap?: number;
 }
 
-export default function Cards({ cardsData, templateColumns, gap = 6 }: Props) {
+export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEffect }: Props) {
     const defaultTemplateColumns = {
         base: '1fr',
         md: 'repeat(2, 1fr)',
@@ -38,8 +39,9 @@ export default function Cards({ cardsData, templateColumns, gap = 6 }: Props) {
                     icon={card.icon}
                     title={card.title}
                     description={card.description}
-                    animation={card.animation}
+                    children={card.children}
                     gridColumn={card.gridColumn}
+                    hasHoverEffect={hasHoverEffect}
                 />
             ))}
         </Grid>
