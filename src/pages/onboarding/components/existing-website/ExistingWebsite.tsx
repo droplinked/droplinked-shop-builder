@@ -1,6 +1,6 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
+import { AILg } from 'assets/icons/AI'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
-import { AisummaryLg } from 'assets/icons/Sign/AiSummary/AiSummaryLg'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
 import AppButton from 'components/redesign/button/AppButton'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
@@ -18,7 +18,7 @@ function ExistingWebsite() {
 
     const options = [
         { value: 'yes', label: 'Yes', description: 'Import inventory and data over in just a few clicks.', icon: <ShopLg /> },
-        { value: 'no', label: 'No', description: 'Create a storefront with the AI assistant.', icon: <AisummaryLg /> }
+        { value: 'no', label: 'No', description: 'Create a storefront with the AI assistant.', icon: <AILg /> }
     ]
 
     return (
@@ -31,7 +31,7 @@ function ExistingWebsite() {
             <Flex
                 flex={1}
                 direction="column"
-                gap={6}
+                gap={{ base: 4, xl: 6 }}
                 {...getRootProps()}
             >
                 {options.map((option) => (
@@ -45,8 +45,8 @@ function ExistingWebsite() {
 
             <AppButton
                 alignSelf='flex-end'
-                onClick={() => updateOnboardingState('currentStep', 'STORE_DETAILS')}
                 rightIcon={<ArrowrightMd />}
+                onClick={() => updateOnboardingState('currentStep', 'STORE_DETAILS')}
             >
                 Continue
             </AppButton>

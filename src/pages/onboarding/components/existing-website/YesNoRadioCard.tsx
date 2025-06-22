@@ -22,6 +22,7 @@ function YesNoRadioCard(props: Props) {
         <FormLabel
             w="full"
             display="flex"
+            flexDirection={{ base: "column", md: "row" }}
             gap={3}
             margin={0}
             border="1px solid"
@@ -35,16 +36,49 @@ function YesNoRadioCard(props: Props) {
         >
             <input {...getInputProps()} hidden />
 
-            <IconWrapper icon={iconWithColor} />
+            {/* Icons row - on mobile both icons are in one row, on desktop they're separated */}
+            <Flex
+                width={{ base: "full", md: "auto" }}
+                direction={{ base: "row", md: "column" }}
+                justifyContent={{ base: "space-between", md: "flex-start" }}
+                alignItems={{ base: "center", md: "flex-start" }}
+                gap={3}
+            >
+                <IconWrapper
+                    icon={iconWithColor}
+                    {...(isChecked && {
+                        borderColor: "label.primary",
+                        bgColor: "label.primary"
+                    })}
+                />
 
-            <Flex flex={1} direction="column" gap={1}>
-                <Text fontWeight={500} color="neutral.white">{label}</Text>
-                <Text fontSize={14} color="text.subtext.placeholder.light">
-                    {description}
-                </Text>
+                <Center
+                    display={{ base: "flex", md: "none" }}
+                    padding={{ base: "10px", md: 3 }}
+                    opacity={isChecked ? 1 : 0}
+                >
+                    <ChevronrightLg color='#2BCFA1' />
+                </Center>
             </Flex>
 
-            <Center as='button' padding={3} opacity={isChecked ? 1 : 0}>
+            {/* Content container */}
+            <Flex
+                flex={1}
+                direction="column"
+                gap={1}
+                order={{ base: 2, md: 1 }}
+            >
+                <Text fontWeight={500} color="neutral.white">{label}</Text>
+                <Text fontSize={14} color="text.subtext.placeholder.light">{description}</Text>
+            </Flex>
+
+            {/* Desktop chevron - only visible on desktop */}
+            <Center
+                display={{ base: "none", md: "flex" }}
+                padding={{ base: "10px", md: 3 }}
+                opacity={isChecked ? 1 : 0}
+                order={{ base: 1, md: 2 }}
+            >
                 <ChevronrightLg color='#2BCFA1' />
             </Center>
         </FormLabel>
