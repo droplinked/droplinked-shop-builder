@@ -4,13 +4,17 @@ import { useState } from 'react';
 import { useMutation } from 'react-query';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
+import useAppStore from 'stores/app/appStore';
+import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
     const [revertData, setRevertData] = useState("");
+    const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false);
     const { isAiGenerateLoading, updateProductPageState } = useProductPageStore();
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
+    const { hasPaidSubscription } = useAppStore();
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
         (tone: string) => {
@@ -36,15 +40,31 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     );
 
     const handleSelectItem = async (item: string) => {
+        if (!hasPaidSubscription()) {
+            setIsProTrialModalOpen(true);
+            return;
+        }
+
         setSelectedItem(item);
         await mutateAsync(item.toUpperCase());
     };
 
-    const handleTryAgain = () => mutateAsync(selectedItem.toUpperCase());
+    const handleTryAgain = () => {
+        if (!hasPaidSubscription()) {
+            setIsProTrialModalOpen(true);
+            return;
+        }
+
+        mutateAsync(selectedItem.toUpperCase());
+    };
 
     const handleRevert = () => {
         setFieldValue(type, revertData);
         setSelectedItem("");
+    };
+
+    const handleCloseProTrialModal = () => {
+        setIsProTrialModalOpen(false);
     };
 
     return {
@@ -53,6 +73,8 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
         handleTryAgain,
         handleRevert,
         isImproveLoading: isLoading || isAiGenerateLoading,
-        isLoaded: !!isSuccess && !!selectedItem
+        isLoaded: !!isSuccess && !!selectedItem,
+        isProTrialModalOpen,
+        handleCloseProTrialModal
     };
 };
