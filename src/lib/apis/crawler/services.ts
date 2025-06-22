@@ -1,8 +1,8 @@
 import axiosInstance from "../axiosConfig"
-import { RecentCrawlerTasksResponse, RecordedProduct, SelectedProductsForCrawl, StartWebsiteCrawlingResponse } from "./interface"
+import { RecentCrawlerTasksResponse, RecordedProduct, SelectedProductsForCrawl, ShopExtractedDataResponse, StartWebsiteCrawlingRequest, StartWebsiteCrawlingResponse } from "./interface"
 
-export const startWebsiteCrawling = (websiteUrl: string) => {
-    return axiosInstance.post<StartWebsiteCrawlingResponse>(`/crawler/website`, { websiteUrl })
+export const startWebsiteCrawling = (params: StartWebsiteCrawlingRequest) => {
+    return axiosInstance.post<StartWebsiteCrawlingResponse>(`/crawler/website`, params)
 }
 
 export const getRecentCrawlerTasks = () => {
@@ -23,4 +23,8 @@ export const getRecordedProducts = () => {
 
 export const initiateNftCliming = (receiverAddress: string) => {
     return axiosInstance.post("/crawler/claim-nfts", { receiverAddress })
+}
+
+export const getShopExtractedData = (poolId: string) => {
+    return axiosInstance.get<ShopExtractedDataResponse>(`/crawler/shop-info/${poolId}`)
 }

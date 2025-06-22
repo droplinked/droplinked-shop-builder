@@ -1,3 +1,8 @@
+export interface StartWebsiteCrawlingRequest {
+    websiteUrl: string
+    extractShopInfo?: boolean
+}
+
 export interface SelectedProductsForCrawl {
     poolId: string
     selectedUrls: string[]
@@ -34,4 +39,19 @@ export interface RecordedProduct {
     title: string,
     image: string,
     status: string
+}
+
+export interface ShopExtractedDataResponse {
+    ready: boolean
+    processing: boolean
+    data?: {
+        shopName: string
+        logo?: string
+        banner?: string
+        description?: string
+        extractionMethod?: string
+        confidence?: number
+    }
+    status: string
+    message: string
 }
