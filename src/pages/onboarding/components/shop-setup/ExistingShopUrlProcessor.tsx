@@ -49,6 +49,7 @@ function ExistingShopUrlProcessor() {
                             value: values.url,
                             onChange: handleChange,
                             name: 'url',
+                            fontSize: { base: 14, xl: 16 }
                         }}
                         state={errors.url ? 'error' : undefined}
                         message={errors.url as string ?? undefined}
