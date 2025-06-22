@@ -4,7 +4,6 @@ import { NftLg } from 'assets/icons/System/NFT/NftLg';
 import { Cards } from 'pages/public-pages/redesign-landings/components/card';
 import React from 'react';
 import { CardData } from '../../components/card/Cards';
-import MaxWidthWrapper from '../../components/MaxWidthWrapper';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 
 export default function SetOfPerks() {
@@ -29,14 +28,13 @@ export default function SetOfPerks() {
     ];
 
     return (
-        <MaxWidthWrapper my="80px">
-            <SectionContainer
-                icon='story'
-                sectionTitle='SET OF PERKS'
-                headingTitle='Perks for Crossmint Members'
-                headingSubtitle='droplinked is offering 3 months of a pro plan for free'
-                typographyText='Perks'
-            />
+        <SectionContainer
+            icon='story'
+            sectionTitle='SET OF PERKS'
+            headingTitle='Perks for Crossmint Members'
+            headingSubtitle='droplinked is offering 3 months of a pro plan for free'
+            typographyText='Perks'
+        >
             <Cards
                 cardsData={cardsData}
                 hasHoverEffect={true}
@@ -46,6 +44,6 @@ export default function SetOfPerks() {
                     lg: 'repeat(3, 1fr)'
                 }}
             />
-        </MaxWidthWrapper>
+        </SectionContainer>
     )
 }

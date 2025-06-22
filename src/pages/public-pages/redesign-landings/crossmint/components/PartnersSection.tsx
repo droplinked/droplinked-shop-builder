@@ -8,7 +8,6 @@ export default function PartnersSection() {
             sectionTitle="ECOSYSTEM PARTNERS"
             images={partners}
             flexProps={{ paddingBlock: 6 }}
-            paddingBlock={6}
         />
     )
 }

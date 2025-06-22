@@ -1,12 +1,11 @@
-import React from 'react'
-import MaxWidthWrapper from '../../components/MaxWidthWrapper'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
-import { Cards } from 'pages/public-pages/redesign-landings/components/card'
-import { PositionLg } from 'assets/icons/Sign/Position/PositionLg'
-import Lottie from 'lottie-react'
-import { ImageLg } from 'assets/icons/System/Image/ImageLg'
 import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
+import { PositionLg } from 'assets/icons/Sign/Position/PositionLg'
+import { ImageLg } from 'assets/icons/System/Image/ImageLg'
 import { MinttomerchLg } from 'assets/icons/System/MintToMerch/MinttomerchLg'
+import Lottie from 'lottie-react'
+import { Cards } from 'pages/public-pages/redesign-landings/components/card'
+import React from 'react'
+import SectionContainer from '../../components/SectionContainer/SectionContainer'
 import DigitalProduct from '../lottie/product-offering/DigitalProducts.json'
 import PhysicalProducts from '../lottie/product-offering/PhysicalProducts.json'
 import POD from '../lottie/product-offering/POD.json'
@@ -49,15 +48,14 @@ export default function ProductOfferingSection() {
     ];
 
     return (
-        <MaxWidthWrapper>
-            <SectionContainer
-                icon='story'
-                sectionTitle='PRODUCT OFFERINGS'
-                headingTitle='Sell Across Any Vertical'
-                headingSubtitle={headingSubtitle}
-                typographyText='Products'
-            />
+        <SectionContainer
+            icon='story'
+            sectionTitle='PRODUCT OFFERINGS'
+            headingTitle='Sell Across Any Vertical'
+            headingSubtitle={headingSubtitle}
+            typographyText='Products'
+        >
             <Cards cardsData={cardsData} />
-        </MaxWidthWrapper>
+        </SectionContainer>
     )
 }

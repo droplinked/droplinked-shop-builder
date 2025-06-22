@@ -17,7 +17,7 @@ export default function HeadingSubtitle({ subTitle, hasTypographyText }: Props) 
             fontWeight="400"
             lineHeight={{ base: "20px", lg: "24px" }}
             whiteSpace="pre-wrap"
-            mb={hasTypographyText ? 6 : 0}
+            mb={hasTypographyText ? "48px" : 0}
         >
             {subTitle}
         </Text>

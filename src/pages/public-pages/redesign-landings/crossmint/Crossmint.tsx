@@ -6,6 +6,7 @@ import ModularStack from './components/ModularStack';
 import JoinTheCommuity from './components/JoinTheCommuity';
 import { LazyLoad } from '../components/LazyLoad';
 import ClaimNow from './components/ClaimNow';
+import MaxWidthWrapper from '../components/MaxWidthWrapper';
 
 export default function Crossmint() {
     const sections = [
@@ -18,12 +19,12 @@ export default function Crossmint() {
     ];
 
     return (
-        <>
+        <MaxWidthWrapper>
             {sections.map((section) => (
                 <LazyLoad key={section.id}>
                     {section.component}
                 </LazyLoad>
             ))}
-        </>
+        </MaxWidthWrapper>
     )
 }

@@ -22,6 +22,7 @@ export default function SectionContainer({ children, sectionTitle, headingTitle,
         <Flex
             flexDirection="column"
             alignItems="center"
+            paddingBlock={{ base: "80px", lg: "128px" }}
             {...flexProps}
         >
             <IconMapper icon={icon as Icon} />

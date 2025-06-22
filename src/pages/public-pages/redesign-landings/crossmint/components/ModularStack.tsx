@@ -1,12 +1,11 @@
-import React from 'react'
-import MaxWidthWrapper from '../../components/MaxWidthWrapper'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
-import { Cards } from '../../components/card'
-import { CardData } from '../../components/card/Cards';
 import { BoxLg } from 'assets/icons/Finance/Box/BoxLg';
-import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg';
 import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg';
+import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg';
 import AppImage from 'components/common/image/AppImage';
+import React from 'react';
+import SectionContainer from '../../components/SectionContainer/SectionContainer';
+import { Cards } from '../../components/card';
+import { CardData } from '../../components/card/Cards';
 
 export default function ModularStack() {
     const cardsData: CardData[] = [{
@@ -29,23 +28,21 @@ export default function ModularStack() {
     }];
 
     return (
-        <MaxWidthWrapper my="80px">
-            <SectionContainer
-                icon='layer-web'
-                sectionTitle='MODULAR STACK'
-                headingTitle='Platform Functionalities'
-                headingSubtitle='droplinked provides customizable tools and integrations to support any business'
-                typographyText='Modular Stack'
-            >
-                <Cards
-                    cardsData={cardsData}
-                    templateColumns={{
-                        base: '1fr',
-                        md: 'repeat(2, 1fr)',
-                        lg: 'repeat(2, 1fr)'
-                    }}
-                />
-            </SectionContainer>
-        </MaxWidthWrapper>
+        <SectionContainer
+            icon='layer-web'
+            sectionTitle='MODULAR STACK'
+            headingTitle='Platform Functionalities'
+            headingSubtitle='droplinked provides customizable tools and integrations to support any business'
+            typographyText='Modular Stack'
+        >
+            <Cards
+                cardsData={cardsData}
+                templateColumns={{
+                    base: '1fr',
+                    md: 'repeat(2, 1fr)',
+                    lg: 'repeat(2, 1fr)'
+                }}
+            />
+        </SectionContainer>
     )
 }
