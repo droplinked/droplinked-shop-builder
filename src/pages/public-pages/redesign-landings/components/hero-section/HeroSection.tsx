@@ -11,7 +11,7 @@ interface HeroSectionProps {
     heroDesktop?: Object
     heroTablet?: Object
     heroMobile?: Object
-    lottieOptions?: LottieOptions
+    lottieOptions?: Omit<LottieOptions, 'animationData'>
 }
 
 export default function HeroSection({

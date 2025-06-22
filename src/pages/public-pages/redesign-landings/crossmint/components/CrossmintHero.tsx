@@ -8,6 +8,7 @@ import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
 import Crossmint from 'assets/brand-identity/Crossmint'
 import Animation from '../lottie/Crossmint.json'
+import { AUTH_ROUTES } from 'constants/authRoutes'
 
 export default function CrossmintHero() {
     const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
@@ -26,7 +27,7 @@ export default function CrossmintHero() {
             }}
             subTitleElements={
                 <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
-                    <Link to="#">
+                    <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
                             Claim Now
                         </AppButton>
