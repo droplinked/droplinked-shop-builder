@@ -13,7 +13,7 @@ import PlanDurationRadioContainer from 'components/redesign/plan-duration-radio/
 import PaymentModal from 'components/modals/payment-modal/PaymentModal';
 import { getFeaturesWithInheritance } from 'pages/onboarding/components/subscription-plans/utils';
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 
@@ -25,20 +25,18 @@ export interface Props {
 const ProPlanModal = ({ isOpen, onClose }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const queryClient = useQueryClient();
   const { preferredPlanDuration } = useSubscriptionPlanPurchaseStore((state) => ({
     preferredPlanDuration: state.preferredPlanDuration
   }));
 
-  // Fetch subscription plans from backend
   const { data: subscriptionPlansData } = useQuery({
-    queryKey: ["subscription-plans"],
-    queryFn: () => getSubscriptionPlansService(),
+    queryKey: ['subscription-plans'],
+    queryFn: () => getSubscriptionPlansService()
   });
 
-  // Find the BUSINESS plan
-  const businessPlan = subscriptionPlansData?.data?.find((plan) => plan.type === "BUSINESS");
+  const businessPlan = subscriptionPlansData?.data?.find((plan) => plan.type === 'BUSINESS');
 
-  // Get the original price based on selected duration from backend
   const getOriginalPrice = () => {
     if (!businessPlan || typeof businessPlan.price === 'string') {
       return 0;
@@ -48,6 +46,10 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
     return targetPrice ? parseFloat(targetPrice.price) : 0;
   };
 
+  const handlePaymentSuccess = () => {
+    queryClient.invalidateQueries({ queryKey: ['shop-subscription-plan'] });
+    onClose();
+  };
 
   return (
     <AppModal modalRootProps={{ isOpen, onClose, size: 'xl', isCentered: true }} modalContentProps={{ width: 'auto !important', padding: '0px !important' }}>
@@ -62,7 +64,7 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
               Use droplinked AI to Create A Shop
             </Text>
             <Text fontSize="md" color="text.subtext.placeholder.light" textAlign="center">
-              Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.∫∫
+              Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.
             </Text>
           </Flex>
         </Box>
@@ -167,9 +169,13 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
         </Flex>
       </ModalBody>
 
-      <PaymentModal isOpen={isPaymentModalOpen} onClose={() => setIsPaymentModalOpen(false)} plan="BUSINESS" onSuccess={() => {
-        onClose()
-      }} />
+      <PaymentModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+        plan="BUSINESS"
+        onSuccess={handlePaymentSuccess}
+        successMessage="Trial activated successfully! Your Pro features are now available."
+      />
     </AppModal>
   );
 };
