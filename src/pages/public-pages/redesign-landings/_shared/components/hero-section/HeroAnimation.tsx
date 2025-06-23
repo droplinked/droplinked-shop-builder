@@ -24,9 +24,6 @@ export default function HeroAnimation({
         loop: false,
         autoplay: true,
         animationData,
-        style: {
-            marginTop: lottieOptions?.style?.marginTop || "48px",
-        },
         ...lottieOptions
     }
 

@@ -25,7 +25,7 @@ export default function SubtitleElements() {
                 alignItems="center"
                 gap={4}
                 width="100%"
-                paddingBlock="48px"
+                paddingBlock={{ base: "48px", md: "88px", lg: "48px" }}
             >
                 <Box
                     height="2px"

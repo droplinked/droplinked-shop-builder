@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
 import { LottieOptions } from 'lottie-react'
@@ -24,6 +24,8 @@ export default function HeroSection({
     heroMobile,
     lottieOptions,
 }: HeroSectionProps) {
+    const responsiveTop = useBreakpointValue({ base: "30%", md: "45%" })
+
     return (
         <Grid
             templateColumns="1fr"
@@ -40,7 +42,7 @@ export default function HeroSection({
                 position="absolute"
                 inset="0"
                 zIndex={0}
-                bg="linear-gradient(0deg, rgba(43, 207, 161, 0.04) 0%, rgba(43, 207, 161, 0.04) 100%), linear-gradient(0deg, rgba(10, 10, 10, 0.00) 0%, #0A0A0A 100%)"
+                bg="linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.4) 30%, rgba(43, 207, 161, 0.04) 100%)"
             >
                 <Box
                     position="absolute"
@@ -49,7 +51,7 @@ export default function HeroSection({
                     bgPosition="center"
                     bgSize="cover"
                     bgRepeat="no-repeat"
-                    bgColor="lightgray"
+                    mixBlendMode="plus-lighter"
                 />
                 <Box
                     position="absolute"
@@ -66,7 +68,7 @@ export default function HeroSection({
                     }}
                     style={{
                         position: 'absolute',
-                        top: '45%',
+                        top: responsiveTop,
                         left: '-50%',
                         width: '200%',
                         height: '200%',
