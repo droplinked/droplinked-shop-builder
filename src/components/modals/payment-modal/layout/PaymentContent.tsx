@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Grid, ModalBody } from '@chakra-ui/react';
 import { CreditcardLg } from 'assets/icons/Finance/CreditCard/CreditcardLg';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import ExpandableInfo from 'pages/onboarding/components/shop-setup/AiAssistant/components/ExpandableInfo';
+import ExpandableInfo from '../components/ExpandableInfo';
 import PaymentForm from '../components/PaymentForm';
 import BillingInfo from '../components/BillingInfo';
 

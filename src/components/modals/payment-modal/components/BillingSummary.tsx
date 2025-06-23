@@ -12,7 +12,7 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
   
   const getBillingCycleText = () => {
     if (preferredPlanDuration.month === 1) return 'Monthly';
-    if (preferredPlanDuration.month === 12) return 'Annual';
+    if (preferredPlanDuration.month === 12) return 'Yearly';
     if (preferredPlanDuration.month === 36) return '3-Year';
     return `${preferredPlanDuration.month} Months`;
   };
