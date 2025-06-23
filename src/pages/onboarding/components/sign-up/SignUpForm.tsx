@@ -112,8 +112,8 @@ function SignUpForm() {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    By signing up, I agree to your
-                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                    By signing up, I agree to your {" "}
+                                    <InteractiveText to="/terms" display="contents">Terms and Conditions.</InteractiveText>
                                 </Text>
                             </Checkbox>
 

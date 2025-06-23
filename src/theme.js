@@ -19,6 +19,9 @@ export const theme = extendTheme({
   colors: {
     neutral: {
       white: '#ffffff',
+      black: '#000000',
+      background: '#141414',
+      websiteBackground: '#0A0A0A',
       gray: {
         50: '#f9f9f9',
         100: '#f2f2f2',
@@ -36,9 +39,7 @@ export const theme = extendTheme({
         850: '#262626',
         900: '#222222',
         1000: '#1c1c1c'
-      },
-      background: '#141414',
-      black: '#000000',
+      }
     },
     main: {
       primary: '#2bcfa1',

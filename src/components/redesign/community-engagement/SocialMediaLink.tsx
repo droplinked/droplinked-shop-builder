@@ -1,14 +1,15 @@
-import { Box, Flex, Link, Text } from "@chakra-ui/react"
+import { Box, Flex, Link, LinkProps, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
 import React from "react"
 import { SocialMediaItem } from "utils/constants/socialMediaLinks"
 
 interface Props {
-  linkData: SocialMediaItem
+  linkData: SocialMediaItem,
+  linkProps?: LinkProps
 }
 
-function SocialMediaLink({ linkData }: Props) {
+function SocialMediaLink({ linkData, linkProps }: Props) {
   const { icon, label, hoverEffect, url } = linkData
 
   return (
@@ -32,6 +33,7 @@ function SocialMediaLink({ linkData }: Props) {
         }
       }}
       sx={{ "*": { transition: "all 0.3s" } }}
+      {...linkProps}
     >
       {/* Background Icon Layer with Gradient */}
       <Box

@@ -1,6 +1,6 @@
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
-import LandingPageLayout from "layouts/LandingPageLayout/LandingPageLayout"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
+import PublicLayout from "layouts/PublicLayout/PublicLayout"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
@@ -19,6 +19,7 @@ import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
@@ -68,14 +69,15 @@ const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <LandingPageLayout />,
+        element: <PublicLayout />,
         errorElement: (
-            <LandingPageLayout>
+            <PublicLayout>
                 <MaintenancePage />
-            </LandingPageLayout>
+            </PublicLayout>
         ),
         children: [
             { index: true, element: <HomePage /> },
+            { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },
@@ -102,21 +104,19 @@ const router = createBrowserRouter([
                 path: "blogs",
                 children: [
                     { index: true, element: <PublicBlogs /> },
-                    { path: ":slug", element: <PublicBlog /> },
-                ],
+                    { path: ":slug", element: <PublicBlog /> }
+                ]
             },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
-            { path: "onboarding", element: <Onboarding /> },
             {
                 path: "affiliate/products",
                 children: [
                     { index: true, element: <AffiliateProductsPage isPublic={true} /> },
                     { path: ":slug", element: <AffiliateProductsSinglePage isPublic={true} /> },
-                ],
-            },
-
-        ],
+                ]
+            }
+        ]
     },
     {
         path: "analytics",
@@ -134,8 +134,8 @@ const router = createBrowserRouter([
                 path: "style-center",
                 children: [
                     { path: "product-tiles", element: <TileDesign /> },
-                    { path: "product-links", element: <PaymentLink /> },
-                ],
+                    { path: "product-links", element: <PaymentLink /> }
+                ]
             },
             { path: "account-settings", element: <SettingsPage /> },
             { path: "credits-and-activity", element: <CreditsAndActivity /> },
@@ -144,8 +144,8 @@ const router = createBrowserRouter([
                 path: "products",
                 children: [
                     { index: true, element: <ProductsV2 /> },
-                    { path: "order/:productID", element: <ProductOrder /> },
-                ],
+                    { path: "order/:productID", element: <ProductOrder /> }
+                ]
             },
             { path: "collections", element: <Collections /> },
             { path: "purchase-history", element: <PurchaseHistory /> },
@@ -156,8 +156,8 @@ const router = createBrowserRouter([
                         path: "products",
                         children: [
                             { index: true, element: <AffiliateProductsPage /> },
-                            { path: ":slug", element: <AffiliateProductsSinglePage /> },
-                        ],
+                            { path: ":slug", element: <AffiliateProductsSinglePage /> }
+                        ]
                     },
                     {
                         path: "stores",
@@ -167,20 +167,20 @@ const router = createBrowserRouter([
                                 path: ":shopId",
                                 children: [
                                     { index: true, element: <AffiliateStoresProfile /> },
-                                    { path: ":slug", element: <AffiliateProductsSinglePage /> },
-                                ],
-                            },
-                        ],
-                    },
-                ],
+                                    { path: ":slug", element: <AffiliateProductsSinglePage /> }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 path: "blogs",
                 children: [
                     { index: true, element: <Blogs /> },
                     { path: "new", element: <BlogCreatePage /> },
-                    { path: ":id", element: <BlogEditPage /> },
-                ],
+                    { path: ":id", element: <BlogEditPage /> }
+                ]
             },
             { path: "plans", element: <SubscriptionPlans /> },
             { path: "gamification", element: <Gamification /> },
@@ -191,29 +191,29 @@ const router = createBrowserRouter([
                 path: "changelog",
                 children: [
                     { index: true, element: <Changelog /> },
-                    { path: ":id", element: <ChangelogDetail /> },
+                    { path: ":id", element: <ChangelogDetail /> }
                 ]
             },
-            { path: "crossmint", element: <Crossmint /> },
-        ],
+            { path: "crossmint", element: <Crossmint /> }
+        ]
     },
     {
         path: "shop-management",
         element: <ProducerLayout hideSidebar={true} showBackground={true} />,
         errorElement: <MaintenancePage />,
         children: [
-            { index: true, element: <ShopManagement /> },
-        ],
+            { index: true, element: <ShopManagement /> }
+        ]
     },
     {
         path: 'style-center/storefront-designer',
         element: <ProducerLayout hideSidebar={true} />,
         errorElement: <MaintenancePage />,
         children: [
-            { index: true, element: <StorefrontDesigner /> },
-        ],
-
+            { index: true, element: <StorefrontDesigner /> }
+        ]
     },
+    { path: "onboarding", element: <Onboarding /> },
     { path: "invoice/:txId", element: <InvoiceTemplate /> },
     { path: "*", element: <NotFoundPage /> }
 ])
@@ -226,4 +226,4 @@ function AppRoutes() {
     )
 }
 
-export default AppRoutes;
+export default AppRoutes
