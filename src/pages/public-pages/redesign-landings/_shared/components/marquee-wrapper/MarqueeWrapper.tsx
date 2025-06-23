@@ -30,7 +30,7 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
             }}
         >
             <Marquee
-                direction='left'
+                direction='right'
                 speed={25}
             >
                 {children}
