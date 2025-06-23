@@ -7,21 +7,24 @@ import TabPanel from './TabPanel'
 
 export default function MegaMenu() {
     const [activeTab, setActiveTab] = useState(0)
+    const [isOpen, setIsOpen] = useState(false)
     const isLgOrAbove = useBreakpointValue({ base: false, lg: true })
 
     // Return null if below lg breakpoint
-    if (!isLgOrAbove) {
-        return null
-    }
+    if (!isLgOrAbove) return null
 
     const handleTabChange = (index: number) => setActiveTab(index)
 
-    const handleCloseAll = () => {
-        // This will be handled by the Popover's onClose
-    }
+    const handleCloseAll = () => setIsOpen(false)
 
     return (
-        <Popover trigger="hover" gutter={32}>
+        <Popover
+            trigger="hover"
+            gutter={32}
+            isOpen={isOpen}
+            onOpen={() => setIsOpen(true)}
+            onClose={() => setIsOpen(false)}
+        >
             <PopoverTrigger>
                 <Text
                     as="button"
