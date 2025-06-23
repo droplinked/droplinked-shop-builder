@@ -12,7 +12,7 @@ export default function ImageSkeleton() {
                     height="150px"
                     objectFit="cover"
                 />
-            </AppSkeleton >
+            </AppSkeleton>
         )
     )
 }
