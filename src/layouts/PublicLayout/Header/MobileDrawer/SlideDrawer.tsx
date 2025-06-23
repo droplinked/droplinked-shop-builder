@@ -35,7 +35,7 @@ export default function SlideDrawer({ isOpen, children, lockBodyScroll = true, .
             className={`slide-drawer ${isOpen ? 'open' : 'closed'}`}
             position="fixed"
             bottom={0}
-            transition="0.4s"
+            transition="0.3s ease-in-out"
             backgroundColor="neutral.websiteBackground"
             zIndex={10}
             {...getPosition()}

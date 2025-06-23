@@ -37,7 +37,7 @@ export const NavItem = ({ icon, label, onClick, to }: NavItemProps) => {
                 {icon}
                 {label}
             </Flex>
-            <Box className='icon-wrapper' opacity={0} transition="opacity 0.2s">
+            <Box className='icon-wrapper' opacity={0} transition="opacity 0.3s ease-in-out">
                 <ChevronrightMd color='#fff' />
             </Box>
         </>
