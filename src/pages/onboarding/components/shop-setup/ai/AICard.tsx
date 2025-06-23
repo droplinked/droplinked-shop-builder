@@ -16,13 +16,13 @@ import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false);
+  const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false); 
   const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
   const { generateAllContent, isLoading } = useAiGeneratedContent();
   const { hasPaidSubscription } = useAppStore();
 
   // Check if any content is currently being generated
-  const isGenerating = isLoading.logos || isLoading.covers || isLoading.urls || isLoading.names;
+  const isGenerating = Object.values(isLoading).every((value) => value === true);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -50,8 +50,6 @@ function AICard() {
     setIsProTrialModalOpen(false);
   };
 
-  if (shopSetupUI.hasExistingShop) return null;
-
   return (
     <Box
       bg={isOpen ? 'transparent' : 'label.primary'}
@@ -62,6 +60,7 @@ function AICard() {
       flexDir="column"
       overflow="hidden"
     >
+      {/* Header */}
       <Flex
         p={4}
         justifyContent="space-between"
@@ -100,6 +99,7 @@ function AICard() {
         </Box>
       </Flex>
 
+      {/* Content */}
       <Box maxHeight={isOpen ? '500px' : '0px'} opacity={isOpen ? 1 : 0} overflow="hidden" transition="all 0.3s ease-in-out">
         <Box p={4} display="flex" flexDir="column" gap={6}>
           <Textarea

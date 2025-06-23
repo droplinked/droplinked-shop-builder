@@ -13,11 +13,14 @@ import ExistingShopUrlProcessor from './inputs/ExistingShopUrlProcessor';
 import LogoUploader from './uploads/LogoUploader';
 import NameField from './inputs/NameField';
 import UrlChooser from './inputs/UrlChooser';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
+
 
 function ShopSetupForm() {
   const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)');
   const { reset } = useAppStore();
   const { handleSubmit, isLoading, resetOnboarding } = useShopSetupSubmit();
+  const { shopSetupUI } = useOnboardingStore()
 
   const handleBack = () => {
     reset();
@@ -29,8 +32,7 @@ function ShopSetupForm() {
       <Flex flexDirection={{ base: 'column', md: 'row' }} justifyContent="space-between" gap={4}>
         <OnboardingStepHeader heading="Account Details" description="Complete the information below to optimize your storefront." />
       </Flex>
-      <ExistingShopUrlProcessor />
-      <AICard />
+      {shopSetupUI.hasExistingShop ? <ExistingShopUrlProcessor /> :  <AICard />} 
       <LogoUploader />
       <CoverImage />
       <UrlChooser />
@@ -44,3 +46,4 @@ function ShopSetupForm() {
 }
 
 export default ShopSetupForm;
+ 

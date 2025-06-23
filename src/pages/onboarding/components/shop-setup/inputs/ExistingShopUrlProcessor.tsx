@@ -2,7 +2,6 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import { Form, Formik } from 'formik'
 import { useShopUrlProcessor } from 'pages/onboarding/hooks/useShopUrlProcessor'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import * as Yup from 'yup'
 
@@ -11,10 +10,7 @@ const validationSchema = Yup.object().shape({
 })
 
 function ExistingShopUrlProcessor() {
-    const { shopSetupUI } = useOnboardingStore()
     const { processShopUrl, isLoading } = useShopUrlProcessor()
-
-    if (!shopSetupUI.hasExistingShop) return null
 
     const handleSubmit = async (values) => await processShopUrl(values.url)
 
