@@ -25,7 +25,7 @@ export default function Header() {
             alignItems="center"
             gap={6}
             bg={isScrolled ? 'neutral.websiteBackground' : 'transparent'}
-            transition="background-color 0.3s ease-in-out"
+            transition="0.3s ease-in-out"
         >
             <BrandIcon />
             <NavigationMenu />

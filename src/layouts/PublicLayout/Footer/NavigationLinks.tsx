@@ -52,7 +52,7 @@ function NavigationLink({ label, href, isExternal }) {
             as={LinkComponent}
             {...linkProps}
             position="relative"
-            transition="all 0.3s ease-in-out"
+            transition="0.3s ease-in-out"
             _hover={{
                 '& > span': { color: 'text.white', transform: 'translateX(8px)' },
                 '& > .border': { opacity: 1 }

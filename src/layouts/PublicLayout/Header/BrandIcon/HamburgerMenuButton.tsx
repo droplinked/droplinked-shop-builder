@@ -30,7 +30,7 @@ function HamburgerMenuButton({ isOpen, onToggle }: Props) {
                     height="2px"
                     borderRadius={8}
                     backgroundColor="neutral.white"
-                    transition="all 0.3s ease-in-out"
+                    transition="0.3s ease-in-out"
                     transform={isOpen ? "translateY(6px) rotate(45deg)" : "none"}
                 />
                 <Box
@@ -38,7 +38,7 @@ function HamburgerMenuButton({ isOpen, onToggle }: Props) {
                     height="2px"
                     borderRadius={8}
                     backgroundColor="neutral.white"
-                    transition="all 0.3s ease-in-out"
+                    transition="0.3s ease-in-out"
                     opacity={isOpen ? 0 : 1}
                 />
                 <Box
@@ -46,7 +46,7 @@ function HamburgerMenuButton({ isOpen, onToggle }: Props) {
                     height="2px"
                     borderRadius={8}
                     backgroundColor="neutral.white"
-                    transition="all 0.3s ease-in-out"
+                    transition="0.3s ease-in-out"
                     transform={isOpen ? "translateY(-6px) rotate(-45deg)" : "none"}
                 />
             </Center>
