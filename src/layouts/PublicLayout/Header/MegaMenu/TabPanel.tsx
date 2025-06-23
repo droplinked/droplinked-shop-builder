@@ -21,6 +21,7 @@ function TabPanel({ links, onNavigate }: Props) {
             gap={4}
             padding={{ xl: 4, "2xl": 6 }}
             bgColor="neutral.background"
+            alignContent="start"
         >
             {links.map((link) => (
                 <PlatformLink
