@@ -40,7 +40,7 @@ export default function SubscribeNewsletter() {
                 alignItems="center"
                 {...containerStyles}
             >
-                <GridItem paddingInline={8}>
+                <GridItem padding={8}>
                     <NewsletterHeader />
                     <NewsletterForm />
                 </GridItem>
