@@ -60,7 +60,7 @@ export default function MegaMenu() {
 
                         {/* Right side - Links in Grid */}
                         <TabPanel
-                            links={publicMegaMenuItems[activeTab].links}
+                            selectedTab={publicMegaMenuItems[activeTab]}
                             onNavigate={handleNavigate}
                         />
                     </Flex>

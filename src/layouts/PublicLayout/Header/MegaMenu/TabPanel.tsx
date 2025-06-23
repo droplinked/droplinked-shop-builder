@@ -1,36 +1,41 @@
-import { Grid, useBreakpointValue } from '@chakra-ui/react'
+import { Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import PlatformLink from '../PlatformLink'
 
 interface Props {
-    links: Array<{
-        label: string
-        href: string
-        description?: string
-    }>
+    selectedTab: any
     onNavigate: () => void
 }
 
-function TabPanel({ links, onNavigate }: Props) {
+function TabPanel({ selectedTab, onNavigate }: Props) {
     const gridColumns = useBreakpointValue({ lg: 2, '2xl': 3 })
 
     return (
-        <Grid
+        <Flex
             flex={1}
-            templateColumns={`repeat(${gridColumns}, 1fr)`}
+            direction="column"
             gap={4}
             padding={{ xl: 4, "2xl": 6 }}
             bgColor="neutral.background"
-            alignContent="start"
         >
-            {links.map((link) => (
-                <PlatformLink
-                    key={link.label}
-                    link={link}
-                    onNavigate={onNavigate}
-                />
-            ))}
-        </Grid>
+            <Text paddingInline={3} fontSize={12} color="text.subtext.placeholder.dark">
+                {selectedTab.label}
+            </Text>
+
+            <Grid
+                templateColumns={`repeat(${gridColumns}, 1fr)`}
+                gap={4}
+                alignContent="start"
+            >
+                {selectedTab.links.map((link) => (
+                    <PlatformLink
+                        key={link.label}
+                        link={link}
+                        onNavigate={onNavigate}
+                    />
+                ))}
+            </Grid>
+        </Flex>
     )
 }
 

@@ -1,12 +1,9 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import TabButton from './TabButton'
 
 interface Props {
-    items: Array<{
-        label: string
-        icon: (props: { color: string }) => React.ReactElement
-    }>
+    items: any[]
     activeTab: number
     onTabChange: (index: number) => void
 }
@@ -22,6 +19,15 @@ function TabList({ items, activeTab, onTabChange }: Props) {
             padding={{ xl: 4, "2xl": 6 }}
             bgColor="neutral.websiteBackground"
         >
+            <Text
+                marginBottom={2}
+                paddingInline={3}
+                fontSize={12}
+                color="text.subtext.placeholder.dark"
+            >
+                Platform
+            </Text>
+
             {items.map((item, index) => (
                 <TabButton
                     key={item.label}
