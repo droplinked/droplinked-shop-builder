@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@chakra-ui/react'
+import { useBreakpointValue } from '@chakra-ui/react'
 import { LottieOptions, useLottie } from 'lottie-react'
 
 interface HeroAnimationProps {
@@ -14,15 +14,11 @@ export default function HeroAnimation({
     heroMobile,
     lottieOptions
 }: HeroAnimationProps) {
-    const [isTablet] = useMediaQuery("(min-width: 768px) and (max-width: 1280px)")
-    const [isMobile] = useMediaQuery("(max-width: 768px)")
-
-    // Default animation data (you can import your default animations here)
-    const defaultAnimationData = null // Replace with your default animation
-
-    const animationData = isMobile ? (heroMobile || defaultAnimationData)
-        : isTablet ? (heroTablet || defaultAnimationData)
-            : (heroDesktop || defaultAnimationData)
+    const animationData = useBreakpointValue({
+        base: heroMobile || null,
+        md: heroTablet || null,
+        xl: heroDesktop || null,
+    })
 
     const options: LottieOptions = {
         loop: false,

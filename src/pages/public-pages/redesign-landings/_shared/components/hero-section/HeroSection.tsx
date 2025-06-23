@@ -47,7 +47,8 @@ export default function HeroSection({
                         textAlign="center"
                     >
                         {title}
-                    </Text>                    <Text
+                    </Text>
+                    <Text
                         color="text.subtext.placeholder.light"
                         maxWidth={{ base: "90%", md: "80%", xl: "45%" }}
                         textAlign="center"
