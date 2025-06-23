@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom'
 import { appVersion } from 'utils/app/variable'
 
 const LEGAL_LINKS = [
-    { to: '/terms', label: 'Cookies' },
-    { to: '/terms', label: 'Privacy & Data Collection' },
-    { to: '/privacy', label: 'Terms of service' }
+    { to: '/privacy', label: 'Privacy & Data Collection' },
+    { to: '/terms', label: 'Terms of service' }
 ] as const
 
 function FooterLegal() {

@@ -39,21 +39,23 @@ export default function PlatformLink({ link, onNavigate }: Props) {
                 >
                     {link.label}
                 </Text>
-                <Text fontSize={14} color='text.white'>{link.description}</Text>
+                <Text fontSize={14} color={isActive ? 'text.white' : 'text.subtext.placeholder.dark'}>{link.description}</Text>
             </Flex>
 
-            {isActive && (
-                <Box
-                    position="absolute"
-                    width="32px"
-                    height="32px"
-                    left="-16px"
-                    bottom="-16px"
-                    borderRadius="24px"
-                    backgroundColor="var(--Main-Primary, #2BCFA1)"
-                    filter="blur(40px)"
-                />
-            )}
-        </ChakraLink>
+            {
+                isActive && (
+                    <Box
+                        position="absolute"
+                        width="32px"
+                        height="32px"
+                        left="-16px"
+                        bottom="-16px"
+                        borderRadius="24px"
+                        backgroundColor="var(--Main-Primary, #2BCFA1)"
+                        filter="blur(40px)"
+                    />
+                )
+            }
+        </ChakraLink >
     )
 } 
