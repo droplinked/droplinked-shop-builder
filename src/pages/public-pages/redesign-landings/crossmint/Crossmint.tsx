@@ -1,5 +1,5 @@
 import React from 'react'
-import CrossmintHero from './components/CrossmintHero';
+import CrossmintHero from './components/crossmint-hero/CrossmintHero';
 import PartnersSection from './components/PartnersSection';
 import SetOfPerks from './components/SetOfPerks';
 import ModularStack from './components/ModularStack';

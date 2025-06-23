@@ -20,18 +20,6 @@ export default function HeroAnimation({
     // Default animation data (you can import your default animations here)
     const defaultAnimationData = null // Replace with your default animation
 
-    const getMarginInline = () => {
-        if (lottieOptions?.style?.marginInline) {
-            if (typeof lottieOptions?.style?.marginInline === 'string') {
-                return lottieOptions?.style?.marginInline
-            } else {
-                return isMobile ? "20px"
-                    : isTablet ? "36px" : "48px"
-            }
-        }
-        return isMobile ? "20px" : isTablet ? "36px" : "48px"
-    }
-
     const animationData = isMobile ? (heroMobile || defaultAnimationData)
         : isTablet ? (heroTablet || defaultAnimationData)
             : (heroDesktop || defaultAnimationData)
@@ -42,7 +30,6 @@ export default function HeroAnimation({
         animationData,
         style: {
             marginTop: lottieOptions?.style?.marginTop || "48px",
-            marginInline: getMarginInline(),
         },
         ...lottieOptions
     }
