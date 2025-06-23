@@ -71,7 +71,7 @@ function QuickLinks(props: FlexProps) {
                         <Text as="span" fontSize={14}>{label}</Text>
                     </ChakraLink>
                 ))}
-            </DotSeparatedList >
+            </DotSeparatedList>
         </Flex>
     )
 }

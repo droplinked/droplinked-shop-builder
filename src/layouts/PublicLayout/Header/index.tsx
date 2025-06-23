@@ -20,13 +20,12 @@ export default function Header() {
             top={0}
             zIndex="sticky"
             height="72px"
-            boxShadow={isScrolled ? 'sm' : 'none'}
             display="flex"
             justifyContent="space-between"
             alignItems="center"
             gap={6}
             bg={isScrolled ? 'neutral.websiteBackground' : 'transparent'}
-            transition="background-color 0.3s ease"
+            transition="background-color 0.3s ease-in-out"
         >
             <BrandIcon />
             <NavigationMenu />
