@@ -14,6 +14,7 @@ import { IPrice } from 'lib/apis/subscription/interfaces'
  * @param {number|undefined} props.hasDiscount - Discount percentage if applicable
  * @param {number} props.mainFontSize - Font size for the main price display
  * @param {number} props.discountFontSize - Font size for the crossed-out original price
+ * @param {boolean} [props.showFree=false] - Override to show "Free" instead of actual price
  */
 interface PriceContentProps {
     planType: string
@@ -21,9 +22,11 @@ interface PriceContentProps {
     hasDiscount: number | undefined
     mainFontSize: number
     discountFontSize: number
+    showFree?: boolean
 }
 
-function PriceContent({ planType, targetPrice, hasDiscount, mainFontSize, discountFontSize }: PriceContentProps) {
+function PriceContent({ planType, targetPrice, hasDiscount, mainFontSize, discountFontSize, showFree = false }: PriceContentProps) {
+    if (showFree) return <AppTypography fontSize={mainFontSize}>Free</AppTypography>
     if (planType === 'STARTER') return <AppTypography fontSize={mainFontSize}>Free</AppTypography>
     if (planType === 'ENTERPRISE') return <AppTypography fontSize={mainFontSize}>Let's talk</AppTypography>
     if (!targetPrice) return null

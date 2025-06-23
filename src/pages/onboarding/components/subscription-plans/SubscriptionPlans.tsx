@@ -15,6 +15,7 @@ import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
+import ExternalLink from "components/redesign/external-link/ExternalLink"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
@@ -56,15 +57,16 @@ function SubscriptionPlans() {
         <>
             <OnboardingStepHeader heading="Plans" description="Choose from the different package options below." />
 
-            <BlueButton
+            <ExternalLink
                 fontSize="16px"
                 mt="-46px"
                 justifyContent="flex-start"
                 padding={0}
+                hasArrow={true}
                 onClick={() => window.open("/plans", "_blank")}
             >
-                View all plans and compare <ExternalarrowMd color="#179EF8" />
-            </BlueButton>
+                View all plans and compare 
+            </ExternalLink>
 
             <PlanDurationRadioContainer />
 

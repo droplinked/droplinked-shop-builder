@@ -6,16 +6,18 @@ import { DashboardMd } from 'assets/icons/System/Dashboard/DashboardMd';
 import { MedalstarLg } from 'assets/icons/System/MedalStar/MedalstarLg';
 import { ShieldMd } from 'assets/icons/System/Shield/ShieldMd';
 import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
+import PaymentModal from 'components/modals/payment-modal/PaymentModal';
 import AppButton from 'components/redesign/button/AppButton';
+import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import AppModal from 'components/redesign/modal/AppModal';
 import PlanDurationRadioContainer from 'components/redesign/plan-duration-radio/PlanDurationRadioContainer';
-import PaymentModal from 'components/modals/payment-modal/PaymentModal';
+import PlanPrice from 'components/redesign/plan-price/PlanPrice';
+import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
 import { getFeaturesWithInheritance } from 'pages/onboarding/components/subscription-plans/utils';
 import React, { useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
-import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
+import useAppStore from 'stores/app/appStore';
 
 export interface Props {
   isOpen: boolean;
@@ -26,45 +28,37 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const queryClient = useQueryClient();
-  const { preferredPlanDuration } = useSubscriptionPlanPurchaseStore((state) => ({
-    preferredPlanDuration: state.preferredPlanDuration
-  }));
+  const { shop } = useAppStore();
 
-  const { data: subscriptionPlansData } = useQuery({
-    queryKey: ['subscription-plans'],
-    queryFn: () => getSubscriptionPlansService()
-  });
-
-  const businessPlan = subscriptionPlansData?.data?.find((plan) => plan.type === 'BUSINESS');
-
-  const getOriginalPrice = () => {
-    if (!businessPlan || typeof businessPlan.price === 'string') {
-      return 0;
-    }
-
-    const targetPrice = businessPlan.price.find((price) => price.month === preferredPlanDuration.month);
-    return targetPrice ? parseFloat(targetPrice.price) : 0;
-  };
+  const canActivateTrial = shop.subscription.canActivateTrial;
 
   const handlePaymentSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ['shop-subscription-plan'] });
     onClose();
   };
 
+  const businessPlan = useQuery({
+    queryKey: ['subscription-plans'],
+    queryFn: () => getSubscriptionPlansService(),
+    select: (data) => data.data.find((plan) => plan.type === 'BUSINESS')
+  });
+
   return (
     <AppModal modalRootProps={{ isOpen, onClose, size: 'xl', isCentered: true }} modalContentProps={{ width: 'auto !important', padding: '0px !important' }}>
       <ModalBody bg="neutral.grey.1000" display="flex" flexDirection="column" justifyContent="center" alignItems="center" padding="0px !important" rounded="24px">
         <Box w="100%">
           <Image src="https://upload-file-droplinked.s3.amazonaws.com/a8127623df1b0dc11be743677f3ca3c1eb5c0d2251d5801eb61a96835ac39ce9.png" position="absolute" />
-          <Flex p={6} flexDirection="column" justifyContent="center" alignItems="center" gap={6} position="relative" zIndex={2}>
+          <Flex p={12} flexDirection="column" justifyContent="center" alignItems="center" gap={2} position="relative" zIndex={2}>
             <Flex p={3} bg="rgba(43, 206, 161, 0.1)" borderRadius="lg" border="1px solid rgba(43, 206, 161, 0.1)" alignItems="center" gap={2}>
               <MedalstarLg color="#2BCFA1" />
             </Flex>
             <Text fontSize="2xl" fontWeight="bold" color="white">
-              Use droplinked AI to Create A Shop
+              {canActivateTrial ? 'Use droplinked AI to Create A Shop' : 'Access Exclusive Features'}
             </Text>
             <Text fontSize="md" color="text.subtext.placeholder.light" textAlign="center">
-              Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.
+              {canActivateTrial
+                ? 'Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.'
+                : 'Upgrade today to take advantage of the benefits associated with a Premium Plan.'}
             </Text>
           </Flex>
         </Box>
@@ -98,14 +92,7 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
                 </Text>
               </VStack>
 
-              <Flex justify="end" alignItems="end" gap={2}>
-                <Text fontSize="2xl" fontWeight="bold" color="white">
-                  Free
-                </Text>
-                <Text textAlign="center" color="text.error" fontSize="lg" fontWeight="medium" textDecoration={'line-through'}>
-                  ${getOriginalPrice().toFixed(2)}
-                </Text>
-              </Flex>
+              <PlanPrice plan={businessPlan.data} showFree={canActivateTrial} />
             </VStack>
 
             <Flex w="full" justify="start" alignItems="center" gap={6}>
@@ -149,7 +136,7 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
             </>
           ) : null}
 
-          <Flex w="full" px={4} py={2.5} justify="center" alignItems="center" gap={1.5} onClick={() => setIsExpanded(!isExpanded)}>
+          <Flex w="full" px={4} py={2} justify="center" alignItems="center" gap={1.5} onClick={() => setIsExpanded(!isExpanded)}>
             <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
               More
             </Text>
@@ -157,14 +144,18 @@ const ProPlanModal = ({ isOpen, onClose }: Props) => {
           </Flex>
         </Box>
 
+        {canActivateTrial ? (
+          null
+        ) : <Text display="flex" fontSize="sm" justifyContent="center" alignItems="center" gap={1} mt={6} color="white" > Still unsure? <ExternalLink onClick={() => window.open("/plans", "_blank")}>Compare plans and pricing options</ExternalLink></Text>}
+
         <Box mt={9} w="full" h="0" border="1px solid" borderColor="neutral.gray.900" />
 
         <Flex py={9} px={12} gap={4} w="full">
           <AppButton variant="secondary" onClick={onClose}>
-            Close
+            {canActivateTrial ? 'Close' : 'Keep Current Plan'}
           </AppButton>
           <AppButton flex={1} onClick={() => setIsPaymentModalOpen(true)}>
-            Claim Trial Now
+            {canActivateTrial ? 'Claim Trial Now' : 'Upgrade'}
           </AppButton>
         </Flex>
       </ModalBody>
