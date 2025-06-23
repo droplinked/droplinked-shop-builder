@@ -12,9 +12,9 @@ function QuickLinks(props: FlexProps) {
     const layout = useBreakpointValue({ base: 'mobile', md: 'tablet', xl: 'desktop' })
 
     const LINK_ITEMS = [
-        { icon: <PlayMd color='#b1b1b1' />, label: 'Video Tutorials', href: '/video-tutorials' },
-        { icon: <ChatMd color='#b1b1b1' />, label: 'Contact Support', href: '/contact-support' },
-        { icon: <DocumentMd color='#b1b1b1' />, label: 'Documentation', href: '/documentation' }
+        { icon: <PlayMd color='#b1b1b1' />, label: 'Video Tutorials', href: 'https://www.youtube.com/@droplinked-fj6nt', isExternal: true },
+        { icon: <ChatMd color='#b1b1b1' />, label: 'Contact Support', href: '/contact-us', isExternal: false },
+        { icon: <DocumentMd color='#b1b1b1' />, label: 'Documentation', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
     ].filter(item => {
         if (layout === 'tablet') return ['Video Tutorials', 'Contact Support'].includes(item.label)
         if (layout === 'desktop') return true
@@ -45,32 +45,37 @@ function QuickLinks(props: FlexProps) {
                 gap={3}
                 sx={{ '.dot-separator': { bgColor: 'label.primary' } }}
             >
-                {LINK_ITEMS.map(({ icon, label, href }) => (
-                    <ChakraLink
-                        key={href}
-                        as={Link}
-                        to={href}
-                        display="flex"
-                        alignItems="center"
-                        gap="6px"
-                        color="text.subtext.placeholder.light"
-                        opacity={0.8}
-                        transition="0.3s ease-in-out"
-                        _hover={{
-                            opacity: 1,
-                            color: 'text.white',
-                            '& > svg': { color: '#fff' }
-                        }}
-                        _active={{
-                            opacity: 1,
-                            color: 'text.white',
-                            '& > svg': { color: '#fff' }
-                        }}
-                    >
-                        {icon}
-                        <Text as="span" fontSize={14}>{label}</Text>
-                    </ChakraLink>
-                ))}
+                {LINK_ITEMS.map(({ icon, label, href, isExternal }) => {
+                    const linkProps = isExternal
+                        ? { href, target: '_blank', rel: 'noopener noreferrer' }
+                        : { as: Link, to: href }
+
+                    return (
+                        <ChakraLink
+                            key={href}
+                            {...linkProps}
+                            display="flex"
+                            alignItems="center"
+                            gap="6px"
+                            color="text.subtext.placeholder.light"
+                            opacity={0.8}
+                            transition="0.3s ease-in-out"
+                            _hover={{
+                                opacity: 1,
+                                color: 'text.white',
+                                '& > svg': { color: '#fff' }
+                            }}
+                            _active={{
+                                opacity: 1,
+                                color: 'text.white',
+                                '& > svg': { color: '#fff' }
+                            }}
+                        >
+                            {icon}
+                            <Text as="span" fontSize={14}>{label}</Text>
+                        </ChakraLink>
+                    )
+                })}
             </DotSeparatedList>
         </Flex>
     )
