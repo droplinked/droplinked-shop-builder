@@ -10,7 +10,6 @@ import {
 	getSubscriptionPaymentMethodsService,
 	sendPlanPurchaseTransactionToWeb3Service,
 	subscriptionPlanCryptoPaymentService,
-	subscriptionPlanStripePaymentService,
 } from 'lib/apis/subscription/subscriptionServices';
 import { appDevelopment } from 'utils/app/variable';
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
@@ -47,13 +46,6 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 				}));
 		},
 	});
-	const { mutateAsync: confirmStripePayment } = useMutation(() =>
-		subscriptionPlanStripePaymentService({
-			month: preferredPlanDuration.month,
-			subId: selectedPlanId,
-			isTrial: false,
-		})
-	);
 	const { getRootProps, getRadioProps } = useRadioGroup({
 		name: 'preferred-payment-method',
 		onChange: (type) =>
@@ -73,12 +65,9 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 	const hndleStripePayment = async () => {
 		try {
 			setTransactionInProgress(true);
-			const paymentResponse = await confirmStripePayment();
 			setModalData((prevData) => ({
 				...prevData,
 				step: 'StripePayment',
-				stripeClientSecret: paymentResponse.data.clientSecret,
-				intentType: paymentResponse.data.intentType,
 			}));
 		} catch (e) {
 			showToast({ message: (e as Error).message, type: 'error' });
