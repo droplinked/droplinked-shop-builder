@@ -12,28 +12,31 @@ import { categories } from 'pages/onboarding/constants/categories';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { useState } from 'react';
 import useAppStore from 'stores/app/appStore';
-import { useAiGeneratedContent } from '../../hooks/useAiGeneratedContent';
+import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false);
-  const { shopSetupUI, updateShopSetupUI } = useOnboardingStore()
-  const { generateAllContent } = useAiGeneratedContent()
-  const { hasPaidSubscription } = useAppStore()
+  const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
+  const { generateAllContent, isLoading } = useAiGeneratedContent();
+  const { hasPaidSubscription } = useAppStore();
+
+  // Check if any content is currently being generated
+  const isGenerating = isLoading.logos || isLoading.covers || isLoading.urls || isLoading.names;
 
   const toggleOpen = () => setIsOpen(!isOpen);
-  
+
   const handleChange = (key: string, value: string) => {
     if (key === 'businessDescribe') {
-      updateShopSetupUI('businessDescription', value)
+      updateShopSetupUI('businessDescription', value);
     } else if (key === 'businessCategory') {
-      updateShopSetupUI('businessCategory', value)
+      updateShopSetupUI('businessCategory', value);
     }
-  }
+  };
 
   const handleGenerateWithAI = () => {
-    const hasValidSubscription = hasPaidSubscription()
-    
+    const hasValidSubscription = hasPaidSubscription();
+
     if (hasValidSubscription) {
       // User has a valid subscription (Pro, Premium, or Enterprise), generate content
       generateAllContent();
@@ -47,7 +50,7 @@ function AICard() {
     setIsProTrialModalOpen(false);
   };
 
-  if (shopSetupUI.hasExistingShop) return null
+  if (shopSetupUI.hasExistingShop) return null;
 
   return (
     <Box
@@ -88,7 +91,7 @@ function AICard() {
               </Flex>
             </DotSeparatedList>
             <Text color="text.subtext.placeholder.dark" fontSize="sm">
-              Customize your shop with droplinked AI
+              Customize the account with the droplinked assistant
             </Text>
           </Flex>
         </Flex>
@@ -103,9 +106,9 @@ function AICard() {
             label="Describe Your Business"
             fontFamily="14px"
             isRequired
-            placeholder="Please describe your shop to help our AI create a more accurate and efficient representation of your business."
+            placeholder="Add descriptive information about the category and customer base to improve results."
             value={shopSetupUI.businessDescription}
-            onChange={(e) => handleChange("businessDescribe", e.target.value)}
+            onChange={(e) => handleChange('businessDescribe', e.target.value)}
           />
 
           <AppSelect
@@ -117,18 +120,17 @@ function AICard() {
             selectProps={{
               placeholder: 'Select Category',
               value: shopSetupUI.businessCategory,
-              onChange: (e) => handleChange("businessCategory", e.target.value)
+              onChange: (e) => handleChange('businessCategory', e.target.value)
             }}
           />
 
-          <AppButton size="lg" onClick={handleGenerateWithAI }>Generate Shop Details with AI</AppButton>
+          <AppButton size="lg" onClick={handleGenerateWithAI} isLoading={isGenerating} isDisabled={isGenerating}>
+            Generate Account Details
+          </AppButton>
         </Box>
       </Box>
 
-       <ProTrialModal
-        isOpen={isProTrialModalOpen}
-        onClose={handleCloseProTrialModal}
-      /> 
+      <ProTrialModal isOpen={isProTrialModalOpen} onClose={handleCloseProTrialModal} />
     </Box>
   );
 }

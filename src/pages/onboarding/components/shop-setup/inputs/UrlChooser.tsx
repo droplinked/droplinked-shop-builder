@@ -7,7 +7,7 @@ import { useUsernameAvailability } from 'pages/onboarding/hooks/useUsernameAvail
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
-import AiOptionsDisplay from './AiOptionsDisplay'
+import AiOptionsDisplay from '../ai/AiOptionsDisplay'
 
 export default function UrlChooser() {
     const { updateShopData, shopData, storeSetupErrors, setError } = useOnboardingStore()

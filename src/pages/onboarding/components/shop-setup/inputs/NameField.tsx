@@ -2,7 +2,7 @@ import { VStack } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
-import AiOptionsDisplay from './AiOptionsDisplay'
+import AiOptionsDisplay from '../ai/AiOptionsDisplay'
 
 export default function NameField() {
     const { shopData, updateShopData, storeSetupErrors, setError } = useOnboardingStore()

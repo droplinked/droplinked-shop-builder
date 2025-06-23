@@ -1,8 +1,9 @@
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
-import FieldWrapper from './FieldWrapper'
+import FieldWrapper from '../inputs/FieldWrapper'
 import FileUpload from './FileUpload'
+import AiOptionsDisplay from '../ai/AiOptionsDisplay'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()
@@ -19,6 +20,10 @@ export default function CoverImage() {
         }
     }
 
+    const handleSelectCover = (cover: string) => {
+        updateShopData('hero_section', cover)
+    }
+
     return (
         <FieldWrapper title='Cover Image'>
             <FileUpload
@@ -33,6 +38,13 @@ export default function CoverImage() {
                 }}
                 dropDescription='JPG, JPEG, and PNG'
                 value={shopData.hero_section}
+            />
+
+            <AiOptionsDisplay
+                type="covers"
+                title="AI Generated Covers"
+                onSelect={handleSelectCover}
+                selectedValue={shopData.hero_section}
             />
         </FieldWrapper>
     )
