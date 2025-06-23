@@ -26,16 +26,17 @@ interface PriceContentProps {
 }
 
 function PriceContent({ planType, targetPrice, hasDiscount, mainFontSize, discountFontSize, showFree = false }: PriceContentProps) {
-    if (showFree) return <AppTypography fontSize={mainFontSize}>Free</AppTypography>
     if (planType === 'STARTER') return <AppTypography fontSize={mainFontSize}>Free</AppTypography>
     if (planType === 'ENTERPRISE') return <AppTypography fontSize={mainFontSize}>Let's talk</AppTypography>
     if (!targetPrice) return null
 
     const { price, discountPrice } = targetPrice
+    const priceDisplay = showFree ? 'Free' : `$${discountPrice}`
+
     if (hasDiscount && discountPrice) {
         return (
             <>
-                <AppTypography fontSize={mainFontSize}>${discountPrice}</AppTypography>
+                <AppTypography fontSize={mainFontSize}>{priceDisplay}</AppTypography>
                 <AppTypography as="span" fontSize={discountFontSize} fontWeight={400} color="text.error" textDecoration="line-through">
                     ${price}
                 </AppTypography>
