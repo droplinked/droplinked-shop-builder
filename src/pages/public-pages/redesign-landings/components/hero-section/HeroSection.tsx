@@ -40,8 +40,8 @@ export default function HeroSection({
                     <Text
                         color="neutral.white"
                         fontWeight={500}
-                        lineHeight={{ base: "52px", md: "64px", xl: "72px", "2xl": "80px" }}
-                        fontSize={{ base: "36px", md: "48px", xl: "56px", "2xl": "64px" }}
+                        lineHeight={{ base: "48px", md: "64px", xl: "72px", "2xl": "80px" }}
+                        fontSize={{ base: "32px", md: "48px", xl: "56px", "2xl": "64px" }}
                         mt={{ base: "48px", "md": "80px" }}
                         whiteSpace="pre-line"
                         textAlign="center"
@@ -51,7 +51,7 @@ export default function HeroSection({
                         color="text.subtext.placeholder.light"
                         maxWidth={{ base: "90%", md: "80%", xl: "45%" }}
                         textAlign="center"
-                        fontSize={{ base: "14px", md: "16px" }}
+                        fontSize={{ base: "14px", lg: "16px" }}
                     >
                         {subtitle}
                     </Text>

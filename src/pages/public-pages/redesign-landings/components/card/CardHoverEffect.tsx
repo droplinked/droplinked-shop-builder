@@ -1,7 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 
-export default function CardHoverEffect() {
+export default function CardHoverEffect({ isStatic }: { isStatic: boolean }) {
+    const defaultOpacity = isStatic ? 1 : 0
+
     return (
         <>
             <Box
@@ -15,7 +17,7 @@ export default function CardHoverEffect() {
                 bgPosition="50%"
                 bgRepeat="no-repeat"
                 mixBlendMode="exclusion"
-                opacity={0}
+                opacity={defaultOpacity}
                 transition="opacity 0.3s ease-in-out"
                 _groupHover={{ opacity: 1 }}
             />
@@ -27,7 +29,7 @@ export default function CardHoverEffect() {
                 h="full"
                 bg="#2BCFA1"
                 mixBlendMode="color"
-                opacity={0}
+                opacity={defaultOpacity}
                 transition="opacity 0.3s ease-in-out"
                 _groupHover={{ opacity: 1 }}
             />
@@ -38,7 +40,7 @@ export default function CardHoverEffect() {
                 w="full"
                 h="full"
                 bg="linear-gradient(180deg, #0A0A0A 0%, rgba(10, 10, 10, 0.00) 50%)"
-                opacity={0}
+                opacity={defaultOpacity}
                 transition="opacity 0.3s ease-in-out"
                 _groupHover={{ opacity: 1 }}
             />

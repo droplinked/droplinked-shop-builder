@@ -10,9 +10,10 @@ interface Props {
     children?: React.ReactNode;
     gridColumn?: string | { base?: string; md?: string; lg?: string };
     hasHoverEffect?: boolean;
+    hasBackgroundOverlay?: boolean
 }
 
-export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect }: Props) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay }: Props) {
     const [isHovered, setIsHovered] = useState(false);
     const hovered = isHovered && hasHoverEffect;
 
@@ -30,7 +31,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
             onMouseLeave={() => setIsHovered(false)}
             cursor="default"
         >
-            {hasHoverEffect && <CardHoverEffect />}
+            {(hasHoverEffect || hasBackgroundOverlay) && <CardHoverEffect isStatic={hasBackgroundOverlay} />}
             <Flex flexDirection="column" gap={4} p={6} position="relative" zIndex={1}>
                 <IconWrapper
                     border="1px solid"
@@ -40,11 +41,11 @@ export default function Card({ icon, title, description, children, gridColumn, h
                     icon={icon}
                 />
                 <Box>
-                    <Text fontSize={20} fontWeight={500} color="text.white" mb={1}>
+                    <Text fontSize={{ base: 16, lg: 20 }} fontWeight={500} color="text.white" mb={1}>
                         {title}
                     </Text>
                     <Text
-                        fontSize={16}
+                        fontSize={{ base: 14, lg: 16 }}
                         fontWeight={400}
                         color="text.subtext.placeholder.dark"
                         mb={1}

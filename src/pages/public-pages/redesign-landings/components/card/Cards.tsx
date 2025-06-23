@@ -8,6 +8,7 @@ export interface CardData {
     description: string;
     children?: React.ReactNode;
     gridColumn?: string | { base?: string; md?: string; lg?: string };
+    hasBackgroundOverlay?: boolean
 }
 
 interface Props {
@@ -42,6 +43,7 @@ export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEff
                     children={card.children}
                     gridColumn={card.gridColumn}
                     hasHoverEffect={hasHoverEffect}
+                    hasBackgroundOverlay={card.hasBackgroundOverlay}
                 />
             ))}
         </Grid>
