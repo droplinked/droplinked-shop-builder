@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroSection from '../../components/hero-section/HeroSection'
+import HeroSection from '../../_shared/components/hero-section/HeroSection'
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import AppButton from 'components/redesign/button/AppButton'

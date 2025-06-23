@@ -3,13 +3,13 @@ import { PositionLg } from 'assets/icons/Sign/Position/PositionLg'
 import { ImageLg } from 'assets/icons/System/Image/ImageLg'
 import { MinttomerchLg } from 'assets/icons/System/MintToMerch/MinttomerchLg'
 import Lottie from 'lottie-react'
-import { Cards } from 'pages/public-pages/redesign-landings/components/card'
 import React from 'react'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import DigitalProduct from '../lottie/product-offering/DigitalProducts.json'
 import PhysicalProducts from '../lottie/product-offering/PhysicalProducts.json'
 import POD from '../lottie/product-offering/POD.json'
 import Services from '../lottie/product-offering/Services.json'
+import { Cards } from '../../_shared/components/card'
 
 export default function ProductOfferingSection() {
     const headingSubtitle = `droplinked supports a wide variety of inventory, from digital goods, physical items,

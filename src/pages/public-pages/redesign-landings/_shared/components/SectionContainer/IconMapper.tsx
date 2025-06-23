@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/react';
-import BoltCircle from '../svgs/icons/BoltCircle';
-import ChatHeart from '../svgs/icons/ChatHeart';
-import Globe from '../svgs/icons/Globe';
-import Layer from '../svgs/icons/Layer';
-import Sparkle from '../svgs/icons/Sparkle';
-import Story from '../svgs/icons/Story';
 import React from 'react';
-import LayerWeb from '../svgs/icons/LayerWeb';
+import BoltCircle from '../../svgs/icons/BoltCircle';
+import ChatHeart from '../../svgs/icons/ChatHeart';
+import Globe from '../../svgs/icons/Globe';
+import Layer from '../../svgs/icons/Layer';
+import LayerWeb from '../../svgs/icons/LayerWeb';
+import Sparkle from '../../svgs/icons/Sparkle';
+import Story from '../../svgs/icons/Story';
 
 
 export type Icon = 'bolt' | 'chat-heart' | 'globe' | 'layer' | 'story' | 'sparkle' | 'layer-web';

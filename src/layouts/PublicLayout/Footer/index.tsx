@@ -1,11 +1,11 @@
 import { Flex, Grid, useBreakpointValue } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import MaxWidthWrapper from "pages/public-pages/redesign-landings/components/MaxWidthWrapper"
 import React from "react"
 import BrandIdentity from "./BrandIdentity"
 import FooterLegal from "./FooterLegal"
 import NavigationLinks from "./NavigationLinks"
 import SubscribeNewsletter from "./SubscribeNewsletter/SubscribeNewsletter"
+import MaxWidthWrapper from "pages/public-pages/redesign-landings/_shared/components/MaxWidthWrapper"
 
 export default function Footer() {
     const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: DesktopLayout })

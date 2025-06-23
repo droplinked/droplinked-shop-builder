@@ -1,6 +1,6 @@
 import AppButton from 'components/redesign/button/AppButton'
 import React from 'react'
-import SectionContainer from '../../components/SectionContainer/SectionContainer'
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Lottie from 'lottie-react'
 import FinalCta from '../lottie/FinalCta.json'
 import { Link } from 'react-router-dom'

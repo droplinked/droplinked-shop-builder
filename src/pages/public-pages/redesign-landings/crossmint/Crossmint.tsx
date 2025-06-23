@@ -4,9 +4,9 @@ import PartnersSection from './components/PartnersSection';
 import SetOfPerks from './components/SetOfPerks';
 import ModularStack from './components/ModularStack';
 import JoinTheCommuity from './components/JoinTheCommuity';
-import { LazyLoad } from '../components/LazyLoad';
 import ClaimNow from './components/ClaimNow';
-import MaxWidthWrapper from '../components/MaxWidthWrapper';
+import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper';
+import { LazyLoad } from '../_shared/components/LazyLoad';
 
 export default function Crossmint() {
     const sections = [

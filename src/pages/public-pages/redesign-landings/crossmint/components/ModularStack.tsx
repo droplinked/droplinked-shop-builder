@@ -3,9 +3,9 @@ import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg';
 import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg';
 import AppImage from 'components/common/image/AppImage';
 import React from 'react';
-import SectionContainer from '../../components/SectionContainer/SectionContainer';
-import { Cards } from '../../components/card';
-import { CardData } from '../../components/card/Cards';
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer';
+import { Cards } from '../../_shared/components/card';
+import { CardData } from '../../_shared/components/card/Cards';
 import ProPlanCard from './ProPlanCard';
 
 export default function ModularStack() {

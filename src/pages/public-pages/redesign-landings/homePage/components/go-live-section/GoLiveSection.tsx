@@ -3,7 +3,7 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SectionContainer from '../../../components/SectionContainer/SectionContainer'
+import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
 import Stepper from './Stepper'
 
 export default function GoLiveSection() {

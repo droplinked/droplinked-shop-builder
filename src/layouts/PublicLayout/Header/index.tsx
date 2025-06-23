@@ -1,8 +1,8 @@
-import MaxWidthWrapper from 'pages/public-pages/redesign-landings/components/MaxWidthWrapper'
 import React, { useEffect, useState } from 'react'
 import AuthButtons from './AuthButtons'
 import BrandIcon from './BrandIcon/BrandIcon'
 import NavigationMenu from './NavigationMenu'
+import MaxWidthWrapper from 'pages/public-pages/redesign-landings/_shared/components/MaxWidthWrapper'
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false)

@@ -1,10 +1,9 @@
 import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg';
 import { NftLg } from 'assets/icons/System/NFT/NftLg';
-import { Cards } from 'pages/public-pages/redesign-landings/components/card';
 import React from 'react';
-import { CardData } from '../../components/card/Cards';
-import SectionContainer from '../../components/SectionContainer/SectionContainer';
+import Cards, { CardData } from '../../_shared/components/card/Cards';
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer';
 
 export default function SetOfPerks() {
     const cardsData: CardData[] = [
