@@ -2,16 +2,16 @@ import { Grid, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import PlatformLink from '../PlatformLink'
 
-interface TabPanelProps {
+interface Props {
     links: Array<{
         label: string
         href: string
         description?: string
     }>
-    onCloseAll: () => void
+    onNavigate: () => void
 }
 
-export default function TabPanel({ links, onCloseAll }: TabPanelProps) {
+function TabPanel({ links, onNavigate }: Props) {
     const gridColumns = useBreakpointValue({ lg: 2, '2xl': 3 })
 
     return (
@@ -26,9 +26,11 @@ export default function TabPanel({ links, onCloseAll }: TabPanelProps) {
                 <PlatformLink
                     key={link.label}
                     link={link}
-                    onCloseAll={onCloseAll}
+                    onNavigate={onNavigate}
                 />
             ))}
         </Grid>
     )
-} 
+}
+
+export default TabPanel

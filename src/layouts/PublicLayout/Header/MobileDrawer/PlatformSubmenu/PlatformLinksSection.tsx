@@ -4,13 +4,19 @@ import PlatformLink from '../../PlatformLink'
 
 interface Props {
     section: any
-    onCloseAll: () => void
+    onNavigate: () => void
 }
 
-function PlatformLinksSection({ section, onCloseAll }: Props) {
+function PlatformLinksSection({ section, onNavigate }: Props) {
     return (
         <Flex flexDirection="column" gap={2}>
-            <Text paddingInline={3} fontSize={12} color="text.subtext.placeholder.dark">{section.label}</Text>
+            <Text
+                paddingInline={3}
+                fontSize={12}
+                color="text.subtext.placeholder.dark"
+            >
+                {section.label}
+            </Text>
 
             <SimpleGrid
                 columns={{ base: 1, md: 2, lg: 3 }}
@@ -18,7 +24,7 @@ function PlatformLinksSection({ section, onCloseAll }: Props) {
                 columnGap={4}
             >
                 {section.links.map(link => (
-                    <PlatformLink key={link.label} link={link} onCloseAll={onCloseAll} />
+                    <PlatformLink key={link.label} link={link} onNavigate={onNavigate} />
                 ))}
             </SimpleGrid>
         </Flex>

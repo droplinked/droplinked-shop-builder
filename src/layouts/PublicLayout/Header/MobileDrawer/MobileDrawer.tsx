@@ -61,7 +61,7 @@ export default function MobileDrawer({ isOpen, onClose }: Props) {
             <PlatformSubmenu
                 isOpen={isPlatformSubmenuOpen}
                 onClose={() => setIsPlatformSubmenuOpen(false)}
-                onCloseAll={handleCloseAll}
+                onNavigate={handleCloseAll}
             />
         </>
     )

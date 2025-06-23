@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import TabButton from './TabButton'
 
-interface TabListProps {
+interface Props {
     items: Array<{
         label: string
         icon: (props: { color: string }) => React.ReactElement
@@ -11,12 +11,14 @@ interface TabListProps {
     onTabChange: (index: number) => void
 }
 
-export default function TabList({ items, activeTab, onTabChange }: TabListProps) {
+function TabList({ items, activeTab, onTabChange }: Props) {
     return (
         <Flex
             width="354px"
             direction="column"
             gap={2}
+            borderRight="1px solid"
+            borderColor="neutral.gray.900"
             padding={{ xl: 4, "2xl": 6 }}
             bgColor="neutral.websiteBackground"
         >
@@ -31,3 +33,5 @@ export default function TabList({ items, activeTab, onTabChange }: TabListProps)
         </Flex>
     )
 }
+
+export default TabList

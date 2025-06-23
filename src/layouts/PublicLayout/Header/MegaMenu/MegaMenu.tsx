@@ -15,7 +15,7 @@ export default function MegaMenu() {
 
     const handleTabChange = (index: number) => setActiveTab(index)
 
-    const handleCloseAll = () => setIsOpen(false)
+    const handleNavigate = () => setIsOpen(false)
 
     return (
         <Popover
@@ -61,7 +61,7 @@ export default function MegaMenu() {
                         {/* Right side - Links in Grid */}
                         <TabPanel
                             links={publicMegaMenuItems[activeTab].links}
-                            onCloseAll={handleCloseAll}
+                            onNavigate={handleNavigate}
                         />
                     </Flex>
                     <QuickLinks />

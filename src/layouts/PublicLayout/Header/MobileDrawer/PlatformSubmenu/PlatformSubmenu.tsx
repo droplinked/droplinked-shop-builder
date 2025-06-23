@@ -10,10 +10,10 @@ import PlatformLinksSection from './PlatformLinksSection'
 interface Props {
     isOpen: boolean
     onClose: () => void
-    onCloseAll: () => void
+    onNavigate: () => void
 }
 
-export default function PlatformSubmenu({ isOpen, onClose, onCloseAll }: Props) {
+function PlatformSubmenu({ isOpen, onClose, onNavigate }: Props) {
     return (
         <SlideDrawer isOpen={isOpen} top="72px" width="100%" overflow="auto">
             <RuledGrid columns={1} nested>
@@ -25,7 +25,11 @@ export default function PlatformSubmenu({ isOpen, onClose, onCloseAll }: Props) 
                     padding={{ base: 4, md: 6 }}
                 >
                     {publicMegaMenuItems.map(item => (
-                        <PlatformLinksSection key={item.label} section={item} onCloseAll={onCloseAll} />
+                        <PlatformLinksSection
+                            key={item.label}
+                            section={item}
+                            onNavigate={onNavigate}
+                        />
                     ))}
                 </Flex>
             </RuledGrid>
@@ -33,4 +37,6 @@ export default function PlatformSubmenu({ isOpen, onClose, onCloseAll }: Props) 
             <QuickLinks position="sticky" bottom={0} />
         </SlideDrawer>
     )
-} 
+}
+
+export default PlatformSubmenu
