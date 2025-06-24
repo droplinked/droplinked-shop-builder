@@ -1,11 +1,11 @@
-import { BoxLg } from 'assets/icons/Finance/Box/BoxLg';
-import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg';
-import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg';
-import React from 'react';
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer';
-import { Cards } from '../../_shared/components/card';
-import { CardData } from '../../_shared/components/card/Cards';
-import ProPlanCard from './ProPlanCard';
+import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
+import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg'
+import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg'
+import React from 'react'
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
+import { Cards } from '../../_shared/components/card'
+import { CardData } from '../../_shared/components/card/Cards'
+import ProPlanCard from './ProPlanCard'
 
 export default function ModularStack() {
     const cardsData: CardData[] = [{
@@ -27,7 +27,7 @@ export default function ModularStack() {
         gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
         hasBackgroundOverlay: true,
         children: <ProPlanCard />
-    }];
+    }]
 
     return (
         <SectionContainer

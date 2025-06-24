@@ -2,8 +2,8 @@ import { Text } from '@chakra-ui/react'
 import React from 'react'
 
 interface Props {
-    subTitle?: string;
-    hasTypographyText?: boolean;
+    subTitle?: string
+    hasTypographyText?: boolean
 }
 
 export default function HeadingSubtitle({ subTitle, hasTypographyText }: Props) {

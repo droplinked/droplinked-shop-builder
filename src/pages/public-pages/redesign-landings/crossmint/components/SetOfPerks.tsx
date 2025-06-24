@@ -1,9 +1,9 @@
-import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
-import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg';
-import { NftLg } from 'assets/icons/System/NFT/NftLg';
-import React from 'react';
-import Cards, { CardData } from '../../_shared/components/card/Cards';
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer';
+import { BuildingLg } from 'assets/icons/System/Building/BuildingLg'
+import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
+import { NftLg } from 'assets/icons/System/NFT/NftLg'
+import React from 'react'
+import Cards, { CardData } from '../../_shared/components/card/Cards'
+import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 
 export default function SetOfPerks() {
     const cardsData: CardData[] = [
@@ -24,7 +24,7 @@ export default function SetOfPerks() {
             description: "Create, manage, and sell NFTs on a customizable storefront",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
-    ];
+    ]
 
     return (
         <SectionContainer

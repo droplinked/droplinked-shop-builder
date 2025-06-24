@@ -10,7 +10,7 @@ interface LayerBoxProps {
 }
 
 export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = false, isTransitioning = false }: LayerBoxProps) {
-    const topCalculateNumber = useBreakpointValue({ base: 10, md: 13, lg: 15, xl: 25 });
+    const topCalculateNumber = useBreakpointValue({ base: 10, md: 13, lg: 15, xl: 25 })
 
     return (
         <Box

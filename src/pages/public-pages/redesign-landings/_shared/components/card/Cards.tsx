@@ -3,23 +3,23 @@ import React from 'react'
 import Card from './Card'
 
 export interface CardData {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    children?: React.ReactNode;
-    gridColumn?: string | { base?: string; md?: string; lg?: string };
+    icon: React.ReactNode
+    title: string
+    description: string
+    children?: React.ReactNode
+    gridColumn?: string | { base?: string; md?: string; lg?: string }
     hasBackgroundOverlay?: boolean
 }
 
 interface Props {
-    cardsData: CardData[];
+    cardsData: CardData[]
     templateColumns?: {
-        base?: string;
-        md?: string;
-        lg?: string;
-    };
-    hasHoverEffect?: boolean;
-    gap?: number;
+        base?: string
+        md?: string
+        lg?: string
+    }
+    hasHoverEffect?: boolean
+    gap?: number
 }
 
 export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEffect }: Props) {
@@ -27,7 +27,7 @@ export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEff
         base: '1fr',
         md: 'repeat(2, 1fr)',
         lg: 'repeat(3, 1fr)'
-    };
+    }
 
     return (
         <Grid

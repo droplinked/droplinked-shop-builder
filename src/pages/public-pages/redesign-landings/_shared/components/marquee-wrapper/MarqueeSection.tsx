@@ -1,8 +1,8 @@
-import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
-import React from 'react';
-import { partners } from '../../utils/partnersList';
-import SectionContainer from '../SectionContainer/SectionContainer';
-import MarqueeWrapper from './MarqueeWrapper';
+import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
+import React from 'react'
+import { partners } from '../../utils/partnersList'
+import SectionContainer from '../SectionContainer/SectionContainer'
+import MarqueeWrapper from './MarqueeWrapper'
 
 export default function MarqueeSection() {
     return (

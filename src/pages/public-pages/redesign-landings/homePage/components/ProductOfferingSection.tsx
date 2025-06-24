@@ -45,7 +45,7 @@ export default function ProductOfferingSection() {
             animation: <Lottie animationData={POD} />,
             gridColumn: { base: '1', md: '1 / -1', lg: '2 / 4' }
         }
-    ];
+    ]
 
     return (
         <SectionContainer

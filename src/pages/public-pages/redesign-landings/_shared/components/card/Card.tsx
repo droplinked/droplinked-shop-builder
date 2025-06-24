@@ -1,21 +1,21 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
-import React, { useState } from "react";
-import CardHoverEffect from "./CardHoverEffect";
+import { Box, Flex, Text } from "@chakra-ui/react"
+import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
+import React, { useState } from "react"
+import CardHoverEffect from "./CardHoverEffect"
 
 interface Props {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    children?: React.ReactNode;
-    gridColumn?: string | { base?: string; md?: string; lg?: string };
-    hasHoverEffect?: boolean;
+    icon: React.ReactNode
+    title: string
+    description: string
+    children?: React.ReactNode
+    gridColumn?: string | { base?: string; md?: string; lg?: string }
+    hasHoverEffect?: boolean
     hasBackgroundOverlay?: boolean
 }
 
 export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay }: Props) {
-    const [isHovered, setIsHovered] = useState(false);
-    const hovered = isHovered && hasHoverEffect;
+    const [isHovered, setIsHovered] = useState(false)
+    const hovered = isHovered && hasHoverEffect
 
     return (
         <Flex
@@ -56,5 +56,5 @@ export default function Card({ icon, title, description, children, gridColumn, h
             </Flex>
             {children && <Box height="100%" position="relative" zIndex={1}>{children}</Box>}
         </Flex>
-    );
+    )
 }

@@ -131,4 +131,4 @@ export const partners = [
         title: 'Xverse',
         icon: '/assets/images/partners/Xverse.svg',
     },
-];
+]

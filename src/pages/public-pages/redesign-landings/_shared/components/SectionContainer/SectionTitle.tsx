@@ -1,16 +1,16 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
-import { Icon } from './IconMapper';
-import TitleLeftIllustration from '../../svgs/TitleLeftIllustration';
-import TitleRightIllustration from '../../svgs/TitleRightIllustration';
+import { Icon } from './IconMapper'
+import TitleLeftIllustration from '../../svgs/TitleLeftIllustration'
+import TitleRightIllustration from '../../svgs/TitleRightIllustration'
 
 interface Props {
-    sectionTitle?: string;
+    sectionTitle?: string
     icon: Icon
 }
 
 export default function SectionTitle({ sectionTitle, icon }: Props) {
-    if (!sectionTitle) return null;
+    if (!sectionTitle) return null
 
     return (
         <Box

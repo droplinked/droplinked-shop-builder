@@ -1,8 +1,8 @@
-import React from 'react';
-import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection';
-import HomePageHero from './components/HeroSection';
-import ProductOfferingSection from './components/ProductOfferingSection';
-import GoLiveSection from './components/go-live-section/GoLiveSection';
+import React from 'react'
+import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
+import HomePageHero from './components/HeroSection'
+import ProductOfferingSection from './components/ProductOfferingSection'
+import GoLiveSection from './components/go-live-section/GoLiveSection'
 
 export default function HomePage() {
   const sections = [

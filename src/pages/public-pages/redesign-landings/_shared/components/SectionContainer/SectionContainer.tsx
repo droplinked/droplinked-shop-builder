@@ -1,18 +1,18 @@
-import { Flex, FlexProps } from '@chakra-ui/react';
-import React from 'react';
-import HeadingSubtitle from './HeadingSubtitle';
-import HeadingTitle from './HeadingTitle';
-import IconMapper, { Icon } from './IconMapper';
-import SectionTitle from './SectionTitle';
-import TypographyText from './TypographyText';
+import { Flex, FlexProps } from '@chakra-ui/react'
+import React from 'react'
+import HeadingSubtitle from './HeadingSubtitle'
+import HeadingTitle from './HeadingTitle'
+import IconMapper, { Icon } from './IconMapper'
+import SectionTitle from './SectionTitle'
+import TypographyText from './TypographyText'
 
 interface Props extends FlexProps {
-    icon?: Icon;
-    sectionTitle?: string;
-    headingTitle?: string;
-    headingSubtitle?: string;
-    subTitleElement?: React.ReactNode;
-    typographyText?: string;
+    icon?: Icon
+    sectionTitle?: string
+    headingTitle?: string
+    headingSubtitle?: string
+    subTitleElement?: React.ReactNode
+    typographyText?: string
 }
 
 export default function SectionContainer({ icon, sectionTitle, headingTitle, headingSubtitle, subTitleElement, typographyText, children, ...rest }: Props) {

@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import { Box } from "@chakra-ui/react"
+import React from "react"
 
 export default function CardHoverEffect({ isStatic }: { isStatic: boolean }) {
     const defaultOpacity = isStatic ? 1 : 0
@@ -45,5 +45,5 @@ export default function CardHoverEffect({ isStatic }: { isStatic: boolean }) {
                 _groupHover={{ opacity: 1 }}
             />
         </>
-    );
+    )
 }
