@@ -1,8 +1,6 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
-import AppButton from 'components/redesign/button/AppButton'
-import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import ClaimNowButton from './ClaimNowButton'
 
 export default function ProPlanCard() {
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
@@ -15,11 +13,7 @@ export default function ProPlanCard() {
             alignItems="start"
             height={{ base: "auto", md: "20rem" }}
         >
-            <Link to={AUTH_ROUTES.SIGN_UP}>
-                <AppButton marginLeft={6}>
-                    Claim Now
-                </AppButton>
-            </Link>
+            <ClaimNowButton />
 
             <img
                 style={{

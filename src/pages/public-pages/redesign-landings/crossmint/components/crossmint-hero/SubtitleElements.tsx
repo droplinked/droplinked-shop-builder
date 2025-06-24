@@ -2,11 +2,9 @@ import { Box, Flex, useBreakpointValue } from '@chakra-ui/react'
 import Crossmint from 'assets/brand-identity/Crossmint'
 import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
-import AppButton from 'components/redesign/button/AppButton'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
-import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import ClaimNowButton from '../ClaimNowButton'
 
 export default function SubtitleElements() {
     const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
@@ -14,11 +12,7 @@ export default function SubtitleElements() {
 
     return (
         <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
-            <Link to={AUTH_ROUTES.SIGN_UP}>
-                <AppButton>
-                    Claim Now
-                </AppButton>
-            </Link>
+            <ClaimNowButton />
 
             <Flex
                 justifyContent="center"
