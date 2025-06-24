@@ -1,69 +1,51 @@
-import AppButton from 'components/redesign/button/AppButton'
+import { useBreakpointValue } from '@chakra-ui/react'
 import AppInput from 'components/redesign/input/AppInput'
-import { Form, Formik, FormikHelpers } from 'formik'
-import useAppToast from 'hooks/toast/useToast'
-import { subscribeFeature } from 'lib/apis/user/services'
+import { Form, Formik } from 'formik'
+import useNewsletterSubmission from 'hooks/useNewsletterSubmission/useNewsletterSubmission'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import * as Yup from 'yup'
-
-interface NewsletterFormValues {
-    email: string;
-}
+import SubscribeButton from './SubscribeButton'
 
 const newsletterFormSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Email is required")
 })
 
 function NewsletterForm() {
-    const { showToast } = useAppToast()
-    const { pathname } = useLocation()
-    const feature = pathname !== "/" ? pathname : "/home"
-
-    const handleSubmit = async (values: NewsletterFormValues, { resetForm }: FormikHelpers<NewsletterFormValues>) => {
-        try {
-            await subscribeFeature({ feature, email: values.email })
-            showToast({ type: "success", message: "Thank you for subscribing to our newsletter" })
-            resetForm()
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "An error occurred while subscribing to the newsletter"
-            showToast({ type: "error", message: errorMessage })
-        }
-    }
+    const isMobileBreakpoint = useBreakpointValue({ base: true, md: false })
+    const { handleSubmit } = useNewsletterSubmission()
 
     return (
-        <Formik<NewsletterFormValues>
+        <Formik
             initialValues={{ email: '' }}
             validationSchema={newsletterFormSchema}
             validateOnChange={false}
             onSubmit={handleSubmit}
         >
-            {({ errors, values, handleChange, isSubmitting }) => (
-                <Form>
-                    <AppInput
-                        inputContainerProps={{ padding: 2, paddingLeft: 4 }}
-                        inputProps={{
-                            name: 'email',
-                            placeholder: 'Enter your email',
-                            value: values.email,
-                            onChange: handleChange
-                        }}
-                        rightElement={
-                            <AppButton
-                                type="submit"
-                                size="sm"
-                                padding="8px 12px"
-                                isLoading={isSubmitting}
-                                isDisabled={isSubmitting}
-                            >
-                                Subscribe
-                            </AppButton>
-                        }
-                        {...errors.email && { state: "error", message: errors.email }}
-                        showErrorIcon={false}
-                    />
-                </Form>
-            )}
+            {({ errors, values, handleChange, isSubmitting }) => {
+                const rightElement = isMobileBreakpoint
+                    ? undefined
+                    : <SubscribeButton isSubmitting={isSubmitting} />
+
+                return (
+                    <Form>
+                        <AppInput
+                            inputContainerProps={{
+                                padding: { base: "12px 16px", md: "8px 8px 8px 16px" }
+                            }}
+                            inputProps={{
+                                name: 'email',
+                                placeholder: 'Enter your email',
+                                value: values.email,
+                                onChange: handleChange
+                            }}
+                            rightElement={rightElement}
+                            {...errors.email && { state: "error", message: errors.email }}
+                            showErrorIcon={false}
+                        />
+                        {isMobileBreakpoint && <SubscribeButton isSubmitting={isSubmitting} isFullWidth />}
+                    </Form>
+                )
+            }}
         </Formik>
     )
 }
