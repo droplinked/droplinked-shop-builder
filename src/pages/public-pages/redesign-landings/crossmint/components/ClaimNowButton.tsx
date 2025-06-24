@@ -5,8 +5,14 @@ import React from 'react'
 export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
     const { navigateBasedOnStatus } = useAuthNavigation()
 
+    const handleClaimNow = () => navigateBasedOnStatus({ source: 'crossmint' })
+
     return (
-        <AppButton mt={6} onClick={navigateBasedOnStatus} {...buttonProps}>
+        <AppButton
+            mt={6}
+            onClick={handleClaimNow}
+            {...buttonProps}
+        >
             Claim Now
         </AppButton>
     )
