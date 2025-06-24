@@ -1,8 +1,8 @@
 import { Box, Grid, GridItem, Image, useBreakpointValue } from '@chakra-ui/react'
+import TypographyText from 'pages/public-pages/redesign-landings/_shared/components/SectionContainer/TypographyText'
 import React from 'react'
 import NewsletterForm from './NewsletterForm'
 import NewsletterHeader from './NewsletterHeader'
-import TypographyText from 'pages/public-pages/redesign-landings/_shared/components/SectionContainer/TypographyText'
 
 const containerStyles = {
     border: "1px solid",
@@ -33,7 +33,7 @@ export default function SubscribeNewsletter() {
     }
 
     return (
-        <>
+        <Box>
             <TypographyText text="Subscribe Now" />
             <Grid
                 templateColumns="1fr 1fr"
@@ -49,6 +49,6 @@ export default function SubscribeNewsletter() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/58b695b2dabf3d3ca2090feea5890f51722cb03479214d2f7ca8288120f3f552.png'
                 />
             </Grid>
-        </>
+        </Box>
     )
 }
