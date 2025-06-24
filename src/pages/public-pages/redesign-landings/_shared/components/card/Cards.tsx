@@ -31,6 +31,7 @@ export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEff
 
     return (
         <Grid
+            width="100%"
             templateColumns={templateColumns || defaultTemplateColumns}
             gap={gap}
         >
