@@ -31,6 +31,8 @@ function Onboarding() {
 
     if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
     else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
+    else if (entry === 'email-verification') updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
+    else if (entry === 'existing-website') updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
   }, [updateOnboardingState])
 
   useEffect(() => {

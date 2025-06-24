@@ -13,7 +13,7 @@ export default function ProPlanCard() {
             alignItems="start"
             height={{ base: "auto", md: "20rem" }}
         >
-            <ClaimNowButton />
+            <ClaimNowButton marginLeft={6} />
 
             <img
                 style={{
