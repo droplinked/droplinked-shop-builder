@@ -15,13 +15,17 @@ function TypographyText({ text }: { text?: string }) {
             lineHeight={{ md: '88px', xl: '136px', '2xl': '144px' }}
             letterSpacing={{ md: "-1.76px", xl: "-2.88px", '2xl': "-3.2px" }}
             sx={{
-                background: 'linear-gradient(180deg, rgba(20, 20, 20, 0.50) 0%, rgba(20, 20, 20, 0.25) 70%, rgba(20, 20, 20, 0.00) 100%)',
+                background: 'linear-gradient(180deg, rgba(20, 20, 20, 0.50) 0%, rgba(20, 20, 20, 0.00) 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 position: 'relative',
                 maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                textShadow: `
+                    0px 2px 0px rgba(20, 20, 20, 0.3),
+                    0px 4px 0px rgba(20, 20, 20, 0.25)
+                `,
             }}
         >
             {text}
