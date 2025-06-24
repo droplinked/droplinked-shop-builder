@@ -80,3 +80,5 @@ export const subscriptionPlans = {
     type: 'ENTERPRISE'
   }
 } as const; 
+
+export type PlanType = keyof typeof subscriptionPlans;

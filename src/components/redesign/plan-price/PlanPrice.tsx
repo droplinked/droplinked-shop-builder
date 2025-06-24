@@ -48,6 +48,7 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, showFree = 
         <Flex {...flexProps} {...props}>
             <PriceContent
                 planType={plan.type}
+                planDuration={preferredPlanDuration.month}
                 targetPrice={targetPrice}
                 hasDiscount={preferredPlanDuration.discount}
                 mainFontSize={mainFontSize}
