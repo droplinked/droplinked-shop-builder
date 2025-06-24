@@ -1,69 +1,85 @@
-import { Box, Flex, Image, Input } from '@chakra-ui/react';
-import { UploadLg } from 'assets/icons/Action/Upload/UploadLg';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
-import BlueButton from 'components/redesign/button/BlueButton';
-import useFileUpload from 'hooks/useFileUpload/useFileUpload';
-import useOnboardingStore, { initialShopData } from 'pages/onboarding/stores/useOnboardingStore';
-import React, { useRef } from 'react';
-import AiOptionsDisplay from '../ai/AiOptionsDisplay';
-import FieldWrapper from '../inputs/FieldWrapper';
-import AppButton from 'components/redesign/button/AppButton';
-import { TrashLg } from 'assets/icons/Action/Trash/TrashLg';
+import { Center, Flex, Input } from '@chakra-ui/react'
+import { TrashLg } from 'assets/icons/Action/Trash/TrashLg'
+import { UploadLg } from 'assets/icons/Action/Upload/UploadLg'
+import AppImage from 'components/common/image/AppImage'
+import AppButton from 'components/redesign/button/AppButton'
+import useFileUpload from 'hooks/useFileUpload/useFileUpload'
+import useOnboardingStore, { initialShopData } from 'pages/onboarding/stores/useOnboardingStore'
+import React, { useRef } from 'react'
+import AiOptionsDisplay from '../ai/AiOptionsDisplay'
+import FieldWrapper from '../inputs/FieldWrapper'
 
-export default function LogoUploader() {
-  const { mutateAsync, isLoading } = useFileUpload();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const { shopData, updateShopData } = useOnboardingStore();
+function LogoUploader() {
+  const { mutateAsync, isLoading } = useFileUpload()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const { shopData, updateShopData } = useOnboardingStore()
 
-  const isDefaultLogo = shopData.logo === initialShopData.logo;
+  const hasCustomLogo = shopData.logo !== initialShopData.logo
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0]
     if (file) {
-      const formData = new FormData();
-      formData.append('image', file);
-      const { original } = await mutateAsync(formData);
-      updateShopData('logo', original || '');
+      const formData = new FormData()
+      formData.append('image', file)
+      const { original } = await mutateAsync(formData)
+      updateShopData('logo', original || '')
     }
-  };
+  }
 
-  const handleLogoChange = () => {
-    fileInputRef.current?.click();
-  };
+  const handleLogoUpload = () => fileInputRef.current?.click()
 
-  const handleRemove = () => {
-    updateShopData('logo', 'https://upload-file-droplinked.s3.amazonaws.com/0ef9cb6d7f894a0fbb562bb2a15357834bec3c5bf8ea35b03d99e38fccda5b58.png');
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
+  const handleLogoRemove = () => {
+    updateShopData('logo', initialShopData.logo)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
-  const handleSelectLogo = (logo: string) => {
-    updateShopData('logo', logo);
-  };
+  const handleLogoSelect = (logo: string) => updateShopData('logo', logo)
 
   return (
     <FieldWrapper title="Logo">
-      <Flex align="center" border="1px solid" borderColor="neutral.gray.800" borderRadius="16px" p={4} justify="space-between">
-      <Box width="64px" height="64px" borderRadius="8px" bg="neutral.gray.1000">
-          <Image p={2} src={shopData.logo} alt="logo" width="100%" height="100%" objectFit="cover" />
-        </Box>
-        <Flex gap={0}>
-          <AppButton variant="normal" size="lg" color="system.link" leftIcon={<UploadLg />} padding={0} onClick={handleLogoChange} isLoading={isLoading} _hover={'none'}>
-            {!isDefaultLogo ? '' : 'Upload'}
+      <Flex
+        justify="space-between"
+        align="center"
+        border="1px solid"
+        borderColor="neutral.gray.800"
+        borderRadius="16px"
+        padding={4}
+        paddingRight={6}
+      >
+        <Input type="file" accept="image/jpeg,image/png,image/jpg" hidden ref={fileInputRef} onChange={handleFileChange} />
+        <AppImage width="64px" height="64px" alt="logo" objectFit="cover" src={shopData.logo} />
+        <Flex>
+          <AppButton
+            variant="normal"
+            size="lg"
+            color="system.link"
+            leftIcon={<UploadLg />}
+            paddingBlock={3}
+            paddingInline={hasCustomLogo ? 3 : 4}
+            _hover='none'
+            _active='none'
+            isLoading={isLoading}
+            onClick={handleLogoUpload}
+          >
+            {!hasCustomLogo ? 'Upload' : ''}
           </AppButton>
-      
-          {shopData.logo && !isDefaultLogo && (
-            <AppButton variant="normal" size="lg" color="system.error" leftIcon={<TrashLg />} padding={0} onClick={handleRemove} _hover={'none'}></AppButton>
-          )}
 
-          <Input type="file" accept="image/jpeg,image/png,image/jpg" hidden ref={fileInputRef} onChange={handleFileChange} />
+          {hasCustomLogo && (
+            <Center as='button' padding={3} onClick={handleLogoRemove}>
+              <TrashLg color='#F24' />
+            </Center>
+          )}
         </Flex>
-        
-        
       </Flex>
 
-      <AiOptionsDisplay type="logos" title="AI Generated Logos" onSelect={handleSelectLogo} selectedValue={shopData.logo} />
+      <AiOptionsDisplay
+        type="logos"
+        title="AI Generated Logos"
+        onSelect={handleLogoSelect}
+        selectedValue={shopData.logo}
+      />
     </FieldWrapper>
-  );
+  )
 }
+
+export default LogoUploader
