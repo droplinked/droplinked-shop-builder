@@ -45,16 +45,12 @@ export type OnboardingStates = {
     'STORE_DETAILS' |
     'PAYMENT_DETAILS' |
     'PLAN_SELECTION' |
-    'YOU_ARE_ALL_SET' |
-    'PLAN_SELECTION_DISPLAY'
+    'YOU_ARE_ALL_SET'
     shopData: ShopData
     shopSetupUI: ShopSetupUI
     aiGeneratedContent: AiGeneratedContent
     storeSetupErrors: Partial<Record<keyof ShopData, string>>
-    credentials: {
-        email: string
-        password: string
-    }
+    credentials: { email: string, password: string }
     resetToken: string | null
 }
 

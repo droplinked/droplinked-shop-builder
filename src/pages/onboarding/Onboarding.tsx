@@ -31,7 +31,6 @@ function Onboarding() {
 
     if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
     else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
-  
   }, [updateOnboardingState])
 
   useEffect(() => {
@@ -51,14 +50,13 @@ function Onboarding() {
     PAYMENT_DETAILS: { leftContent: <PaymentSetup />, rightContent: <PaymentFeatures />, isAuthStep: false },
     PLAN_SELECTION: { leftContent: <SubscriptionPlans />, rightContent: <SubscriptionPlansDisplay />, isAuthStep: false },
     YOU_ARE_ALL_SET: { leftContent: <CompletionSection />, rightContent: null, isAuthStep: false },
-    PLAN_SELECTION_DISPLAY: { leftContent: <SubscriptionPlansDisplay />, rightContent: null, isAuthStep: false }
   }
 
   const { leftContent, rightContent, isAuthStep } = stepContentMap[currentStep]
 
-  return !rightContent
-    ? leftContent :
-    <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
+  return rightContent
+    ? <LayoutComponent leftContent={leftContent} rightContent={rightContent} isAuthStep={isAuthStep} />
+    : leftContent
 }
 
 export default Onboarding
