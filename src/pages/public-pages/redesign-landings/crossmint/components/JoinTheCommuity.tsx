@@ -15,7 +15,7 @@ export default function JoinTheCommuity() {
         >
             <Grid
                 width="100%"
-                templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
+                templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' }}
                 gap={4}
             >
                 {[...SOCIAL_MEDIA_LINKS, BLUE_SKY_LINK].map((socialMediaLink) => (
@@ -23,11 +23,9 @@ export default function JoinTheCommuity() {
                         border="1px solid"
                         borderColor="neutral.gray.900"
                         borderRadius="16px"
+                        overflow="hidden"
                     >
                         <SocialMediaLink
-                            linkProps={{
-                                borderRadius: "16px"
-                            }}
                             key={socialMediaLink.label}
                             linkData={socialMediaLink}
                         />

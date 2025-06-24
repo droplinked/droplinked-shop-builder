@@ -6,34 +6,29 @@ import IconMapper, { Icon } from './IconMapper';
 import SectionTitle from './SectionTitle';
 import TypographyText from './TypographyText';
 
-interface Props {
-    children?: React.ReactNode;
+interface Props extends FlexProps {
+    icon?: Icon;
     sectionTitle?: string;
     headingTitle?: string;
     headingSubtitle?: string;
     subTitleElement?: React.ReactNode;
-    icon?: Icon;
     typographyText?: string;
-    flexProps?: FlexProps;
 }
 
-export default function SectionContainer({ children, sectionTitle, headingTitle, headingSubtitle, subTitleElement, icon, typographyText, flexProps }: Props) {
+export default function SectionContainer({ icon, sectionTitle, headingTitle, headingSubtitle, subTitleElement, typographyText, children, ...rest }: Props) {
     return (
         <Flex
             flexDirection="column"
             alignItems="center"
             paddingBlock={{ base: "80px", lg: "128px" }}
-            {...flexProps}
+            {...rest}
         >
             <IconMapper icon={icon as Icon} />
             <SectionTitle sectionTitle={sectionTitle} icon={icon} />
             <HeadingTitle title={headingTitle} />
             <HeadingSubtitle subTitle={headingSubtitle} hasTypographyText={!!typographyText} />
-            {subTitleElement && (
-                subTitleElement
-            )}
+            {subTitleElement}
             <TypographyText text={typographyText} />
-
             {children}
         </Flex>
     )

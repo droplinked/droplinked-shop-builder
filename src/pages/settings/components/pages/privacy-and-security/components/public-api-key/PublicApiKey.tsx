@@ -1,17 +1,17 @@
-import SectionContainer from 'pages/settings/components/common/SectionContainer'
-import React from 'react'
-import SectionContent from 'pages/settings/components/common/SectionContent'
-import DomainField from './DomainField'
 import { Box, Flex } from '@chakra-ui/react'
-import Domains from './Domains'
-import { getShopAPIKeyService } from 'lib/apis/shop/shopServices'
-import { useQuery } from 'react-query'
-import { useHasPermission } from 'stores/app/appStore'
+import AppIcons from 'assets/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { appDevelopment } from 'utils/app/variable'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
-import AppIcons from 'assets/icon/Appicons'
+import { getShopAPIKeyService } from 'lib/apis/shop/shopServices'
+import SectionContainer from 'pages/settings/components/common/SectionContainer'
+import SectionContent from 'pages/settings/components/common/SectionContent'
+import React from 'react'
+import { useQuery } from 'react-query'
+import { useHasPermission } from 'stores/app/appStore'
+import { appDevelopment } from 'utils/app/variable'
+import DomainField from './DomainField'
+import Domains from './Domains'
 
 
 export default function PublicApiKey() {
@@ -23,9 +23,7 @@ export default function PublicApiKey() {
     return (
         <SectionContainer
             title="Public API Key"
-            badge={
-                <AccessLevelBadge justLevel level="Premium" />
-            }
+            badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <ExternalLink
                     href={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
