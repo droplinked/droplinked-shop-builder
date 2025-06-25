@@ -47,7 +47,18 @@ function LogoUploader() {
         paddingRight={6}
       >
         <Input type="file" accept="image/jpeg,image/png,image/jpg" hidden ref={fileInputRef} onChange={handleFileChange} />
-        <AppImage width="64px" height="64px" alt="logo" objectFit="cover" src={shopData.logo} />
+        <AppImage
+          width="64px"
+          height="64px"
+          {...hasCustomLogo && {
+            border: '1px solid',
+            borderColor: 'neutral.gray.800',
+          }}
+          objectFit="cover"
+          alt="logo"
+          src={shopData.logo}
+          borderRadius="8px"
+        />
         <Flex>
           <AppButton
             variant="normal"
