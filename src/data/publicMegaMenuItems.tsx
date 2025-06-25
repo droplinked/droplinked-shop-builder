@@ -1,4 +1,8 @@
-import { LinkMd, LinkMd as PartnerLinkMd } from "assets/icons/Action/Link/LinkMd"
+import CrossmintWhite from "assets/brand-identity/CrossmintWhite"
+import D3 from "assets/brand-identity/D3"
+import Polygon from "assets/brand-identity/Polygon"
+import UnstoppableDomains from "assets/brand-identity/UnstoppableDomains"
+import { LinkMd } from "assets/icons/Action/Link/LinkMd"
 import { BoxMd } from "assets/icons/Finance/Box/BoxMd"
 import { CoinsMd } from "assets/icons/Finance/Coins/CoinsMd"
 import { ShirtMd } from "assets/icons/Items/Shirt/ShirtMd"
@@ -46,9 +50,10 @@ const publicMegaMenuItems = [
         label: 'Partners',
         icon: PositionLg,
         links: [
-            { label: 'Unstoppable Domains', description: 'droplinked & Unstoppable Domains', icon: PartnerLinkMd, href: '/unstoppable-domains' },
-            { label: 'D3', description: 'droplinked & D3', icon: PartnerLinkMd, href: '/d3' },
-            { label: 'Polygon', description: 'droplinked & Polygon', icon: PartnerLinkMd, href: '/polygon' }
+            { label: 'Unstoppable Domains', description: 'droplinked & Unstoppable Domains', icon: UnstoppableDomains, href: '/unstoppable-domains' },
+            { label: 'D3', description: 'droplinked & D3', icon: D3, href: '/d3' },
+            { label: 'Polygon', description: 'droplinked & Polygon', icon: Polygon, href: '/polygon' },
+            { label: 'Crossmint', description: 'droplinked & Crossmint', icon: CrossmintWhite, href: '/crossmint' }
         ]
     }
 ]
