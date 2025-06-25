@@ -32,8 +32,8 @@ export default function HeroSection({
             <Grid
                 templateColumns="1fr"
                 templateRows="repeat(1, 1fr)"
-                height="max-content"
-                mx={{ base: 4, lg: 6 }}
+                height={{ base: "728px", md: "max-content" }}
+                mx={{ base: 2, md: 4, lg: 6 }}
                 backgroundSize="cover"
                 backgroundRepeat="no-repeat"
                 borderRadius="24px"

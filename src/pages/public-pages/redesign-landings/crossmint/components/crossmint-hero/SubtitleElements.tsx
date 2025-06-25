@@ -20,6 +20,7 @@ export default function SubtitleElements() {
                 gap={4}
                 width="100%"
                 paddingBlock={{ base: "48px", md: "88px", lg: "48px" }}
+                maxWidth="1440px"
             >
                 <Box
                     height="2px"
