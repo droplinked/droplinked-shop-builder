@@ -34,7 +34,7 @@ function PlanDurationRadioContainer({ bgColor = "neutral.gray.1000", showBorder 
                 updatePlanDuration(duration)
             }
         }
-    }, [defaultDuration, updatePlanDuration, preferredPlanDuration.label])
+    }, [defaultDuration, updatePlanDuration])
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'preferred-plan-duration',
