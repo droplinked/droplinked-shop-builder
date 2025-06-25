@@ -14,13 +14,15 @@ function TypographyText({ text }: { text?: string }) {
             fontWeight={900}
             lineHeight={{ md: '88px', xl: '136px', '2xl': '144px' }}
             letterSpacing={{ md: "-1.76px", xl: "-2.88px", '2xl': "-3.2px" }}
-            bgGradient="linear(to-b, rgba(20, 20, 20, 0.50) 0%, rgba(20, 20, 20, 0.00) 100%)"
+            bgGradient="linear-gradient(180deg, rgba(20, 20, 20, 0.75) 0%, rgba(20, 20, 20, 0.00) 100%)"
             bgClip="text"
             sx={{
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                textStroke: '1px rgba(20, 20, 20, 0.50)',
-                WebkitTextStroke: '1px rgba(20, 20, 20, 0.50)'
+                textStroke: '1px #2929299e',
+                WebkitTextStroke: '1px #2929299e',
+                maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
             }}
         >
             {text}

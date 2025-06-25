@@ -24,6 +24,7 @@ export default function JoinTheCommuity() {
                         borderColor="neutral.gray.900"
                         borderRadius="16px"
                         overflow="hidden"
+                        background="neutral.websiteBackground"
                     >
                         <SocialMediaLink
                             key={socialMediaLink.label}

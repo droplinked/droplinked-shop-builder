@@ -29,6 +29,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
             gridColumn={gridColumn}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            background="neutral.websiteBackground"
             cursor="default"
         >
             {(hasHoverEffect || hasBackgroundOverlay) && <CardHoverEffect isStatic={hasBackgroundOverlay} />}
