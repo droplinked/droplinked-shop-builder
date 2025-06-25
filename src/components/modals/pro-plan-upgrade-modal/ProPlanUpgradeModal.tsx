@@ -69,6 +69,7 @@ const ProPlanUpgradeModal = ({ isOpen, onClose, isCrossmint = false }: Props) =>
         isOpen={isPaymentModalOpen}
         onClose={closePaymentModal}
         onSuccess={onClose}
+        TrialMonths={isCrossmint ? 3 : 1}
         successMessage="Trial activated successfully! Your Pro features are now available."
       />
     </AppModal>

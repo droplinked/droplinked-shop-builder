@@ -6,11 +6,12 @@ interface PaymentDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   planDetail: any;
+  TrialMonths?: number;
   onSuccess?: () => void;
   successMessage?: string;
 }
 
-const PaymentDrawer = ({ isOpen, onClose, planDetail, onSuccess, successMessage }: PaymentDrawerProps) => {
+const PaymentDrawer = ({ isOpen, onClose, planDetail, TrialMonths, onSuccess, successMessage }: PaymentDrawerProps) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -30,6 +31,7 @@ const PaymentDrawer = ({ isOpen, onClose, planDetail, onSuccess, successMessage 
         isDrawer 
         onClose={onClose} 
         planDetail={planDetail}
+        TrialMonths={TrialMonths}
         onSuccess={onSuccess}
         successMessage={successMessage}
       />

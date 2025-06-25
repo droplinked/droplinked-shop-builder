@@ -9,12 +9,13 @@ import BillingInfo from '../components/BillingInfo';
 interface PaymentContentProps {
   onClose: () => void;
   planDetail: any; 
+  TrialMonths?: number;
   isDrawer?: boolean;
   onSuccess?: () => void;
   successMessage?: string;
 }
 
-const PaymentContent = ({ onClose, planDetail, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
+const PaymentContent = ({ onClose, planDetail,TrialMonths, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
   if (isDrawer) {
     return (
       <Flex direction="column" gap={4} background="neutral.gray.1000">
@@ -50,8 +51,9 @@ const PaymentContent = ({ onClose, planDetail, isDrawer, onSuccess, successMessa
         />
         <ModalBody padding="0px !important">
           <PaymentForm 
-            onClose={onClose} 
             planDetail={planDetail}
+            TrialMonths={TrialMonths}
+            onClose={onClose}
             onSuccess={onSuccess}
             successMessage={successMessage}
           />

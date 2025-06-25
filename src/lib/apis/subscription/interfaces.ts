@@ -73,7 +73,7 @@ export interface ShopSubscriptionData {
 export interface SubscriptionCheckout {
     month: number;
     subId: string;
-    isTrial?: boolean;
+    trialMonths?: number;
 }
 
 export interface SubscriptionCryptoCheckout {
