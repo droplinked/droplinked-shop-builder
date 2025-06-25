@@ -38,10 +38,10 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
             Subscription cost
           </Text>
           <Flex alignItems="center" gap={1}>
-            <Text color="white" fontSize="base" fontWeight="medium">
+            <Text display="flex" alignItems="center" gap={1} color="white" fontSize="base" fontWeight="medium">
               {source === 'crossmint' ? '3 month free' : canActivateTrial ? 'First month free' : (
                 <>
-                  `$${subscriptionCost}`{' '}
+                  {subscriptionCost}
                   <Text color="#868686" fontSize="base">
                     USD
                   </Text>

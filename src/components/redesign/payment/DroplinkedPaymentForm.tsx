@@ -10,6 +10,7 @@ interface DroplinkedPaymentFormProps {
     onError: (error?: any) => void;
     onCancel: () => void;
     containerStyles?: React.CSSProperties;
+    isProcessing?: boolean;
 }
 
 const DroplinkedPaymentForm: React.FC<DroplinkedPaymentFormProps> = ({
@@ -19,6 +20,7 @@ const DroplinkedPaymentForm: React.FC<DroplinkedPaymentFormProps> = ({
     onError,
     onCancel,
     containerStyles,
+    isProcessing = false,
 }) => {
     return (
         <Box sx={containerStyles}>
@@ -39,14 +41,14 @@ const DroplinkedPaymentForm: React.FC<DroplinkedPaymentFormProps> = ({
                     colorBorderInput: "#292929",
                     borderRadius: "8px",
                     cancelButton: {
-                        backgroundColor: "#292929",
+                        backgroundColor: isProcessing ? "#666666" : "#292929",
                         borderRadius: "8px",
-                        textColor: "#fff",
+                        textColor: isProcessing ? "#999999" : "#fff",
                     },
                     submitButton: {
-                        backgroundColor: "#2BCFA1",
+                        backgroundColor: isProcessing ? "#666666" : "#2BCFA1",
                         borderRadius: "8px",
-                        textColor: "#000",
+                        textColor: isProcessing ? "#999999" : "#000",
                     },
                     verticalPadding: "1rem",
                     theme: "dark",

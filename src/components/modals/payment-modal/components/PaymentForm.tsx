@@ -17,6 +17,7 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   const [intentType, setIntentType] = useState<'payment' | 'setup'>()
   const [clientSecret, setClientSecret] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false)
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
@@ -48,6 +49,7 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   }
   
   const handleSuccess = async () => {
+    setIsProcessingPayment(true)
     try {
       await new Promise((resolve) => setTimeout(resolve, 3000));
       await getShopSubscriptionDataService()
@@ -71,10 +73,13 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
       const errorMessage = 'An unexpected error occurred. Please try again.'
       setErrorMessage(errorMessage)
       showToast({ message: errorMessage, type: 'error' })
+    } finally {
+      setIsProcessingPayment(false)
     }
   }
 
   const handleError = (error: any) => {
+    setIsProcessingPayment(false)
     const errorMsg = error?.message || 'An error occurred during payment processing.'
     setErrorMessage(errorMsg)
     showToast({ message: errorMsg, type: 'error' })
@@ -83,9 +88,15 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   if (isLoading) {
     return (
       <Box p={6}>
-        <Text>Initializing payment...</Text>
+        <Text color="white">Initializing payment...</Text>
       </Box>
     )
+  }
+
+  const handleCancel = () => {
+    if (!isProcessingPayment) {
+      onClose()
+    }
   }
 
   if (!intentType || !clientSecret) {
@@ -99,12 +110,18 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   return (
     <>
       <Box p={6}>
+        {isProcessingPayment && (
+          <Text color="blue.400" mb={4} fontSize="sm" textAlign="center">
+            Processing payment... Please wait.
+          </Text>
+        )}
         <DroplinkedPaymentForm
           clientSecret={clientSecret}
           intentType={intentType}
           onSuccess={handleSuccess}
           onError={handleError}
-          onCancel={onClose}
+          onCancel={handleCancel}
+          isProcessing={isProcessingPayment}
         />
       </Box>
       {errorMessage && (

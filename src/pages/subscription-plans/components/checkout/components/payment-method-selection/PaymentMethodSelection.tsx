@@ -71,6 +71,13 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 
 	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? handleStripePayment() : handleCryptoPayment());
 
+	const handleBack = () => {
+		setModalData((prevData) => ({
+			...prevData,
+			step: 'PlanConfirmation',
+		}));
+	};
+
 	const handleStripePayment = async () => {
 		try {
 			setTransactionInProgress(true);
@@ -179,12 +186,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 					width={'50%'}
 					isDisabled={isTransactionInProgress}
 					variant="outline"
-					onClick={() =>
-						setModalData((prevData) => ({
-							...prevData,
-							step: 'PlanConfirmation',
-						}))
-					}
+					onClick={handleBack}
 				>
 					Back
 				</BasicButton>
