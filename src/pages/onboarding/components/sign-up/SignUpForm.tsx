@@ -34,7 +34,7 @@ function SignUpForm() {
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
     const udId = searchParams.get("ud-id")
-    const crossmintId = searchParams.get("crossmint-id")
+    const source = searchParams.get("source")
 
     async function handleSignUp(values: any) {
         try {
@@ -135,7 +135,7 @@ function SignUpForm() {
                                 referralCode={values.referralCode}
                                 d3Id={d3Id}
                                 udId={udId}
-                                crossmintId={crossmintId}
+                                source={source}
                             />
 
                             <AuthRedirectLink

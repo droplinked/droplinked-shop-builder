@@ -11,10 +11,10 @@ interface GoogleAuthButtonProps {
     referralCode?: string
     d3Id?: string | null
     udId?: string | null
-    crossmintId?: string | null
+    source?: string | null
 }
 
-function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, crossmintId }: GoogleAuthButtonProps) {
+function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
     const [searchParams] = useSearchParams()
     const { authenticateUser, finalizeLogin, loading } = useLogin()
 
@@ -25,7 +25,7 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, cros
             if (referralCode) googleAuthUrl.searchParams.append("referralCode", referralCode)
             if (d3Id) googleAuthUrl.searchParams.append("d3UserId", d3Id)
             if (udId) googleAuthUrl.searchParams.append("udUserId", udId)
-            if (crossmintId) googleAuthUrl.searchParams.append("crossmintUserId", crossmintId)
+            if (source === "crossmint") googleAuthUrl.searchParams.append("crossmintUserId", "some-random-id")
         }
 
         window.location.href = googleAuthUrl.toString()
