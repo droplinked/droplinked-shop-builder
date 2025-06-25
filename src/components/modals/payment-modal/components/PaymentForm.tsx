@@ -2,7 +2,8 @@ import { Box, Text } from '@chakra-ui/react';
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm';
 import useAppToast from 'hooks/toast/useToast';
 import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery } from 'react-query';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 
 interface PaymentFormProps {
@@ -13,42 +14,71 @@ interface PaymentFormProps {
   successMessage?: string;
 }
 
+
 const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessage }: PaymentFormProps) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [intentType, setIntentType] = useState<'payment' | 'setup'>();
-  const [clientSecret, setClientSecret] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [clientSecret, setClientSecret] = useState('');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
   const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan);
   const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration);
   const { showToast } = useAppToast();
 
-  const initializePayment = async () => {
-    try {
-      const plansResponse = await getSubscriptionPlansService();
 
-      const updatedPlan = plansResponse.data.find((plan) => plan.type === planDetail.type);
-      const paymentResponse = await subscriptionPlanStripePaymentService({
-        month: preferredPlanDuration.month,
-        subId: updatedPlan._id,
-        trialMonths: TrialMonths
-      });
+  const {
+    data: plansData,
+    isLoading: isPlansLoading,
+    error: plansError
+  } = useQuery(['subscriptionPlans'], getSubscriptionPlansService);
 
-      setIntentType(paymentResponse.data.intentType);
-      setClientSecret(paymentResponse.data.clientSecret);
-      setIsLoading(false);
-    } catch (err) {
-      const errorMessage = 'Failed to initialize payment. Please try again.';
-      setErrorMessage(errorMessage);
+
+  const paymentMutation = useMutation({
+    mutationFn: subscriptionPlanStripePaymentService,
+    retry: false,
+    onSuccess: (data) => {
+      setClientSecret(data.data.clientSecret);
+      setIntentType(data.data.intentType);
+    },
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.data?.message || 'Failed to initialize payment. Please try again.';
       showToast({ message: errorMessage, type: 'error' });
-      setIsLoading(false);
     }
-  };
+  });
 
-  // Initialize payment on component mount
-  if (isLoading && !intentType) {
-    initializePayment();
-  }
+
+  useEffect(() => {
+    if (plansError) {
+      showToast({ message: 'Failed to fetch subscription plans. Please try again.', type: 'error' });
+      onClose();
+      return;
+    }
+  
+    if (plansData && !clientSecret && !intentType && !paymentMutation.isLoading) {
+      const selectedPlan = plansData.data.find((plan) => plan.type === planDetail.type);
+  
+      if (!selectedPlan) {
+        showToast({ message: 'Selected plan not found. Please try again.', type: 'error' });
+        onClose();
+        return;
+      }
+  
+      paymentMutation.mutate(
+        {
+          month: preferredPlanDuration.month,
+          subId: selectedPlan._id,
+          trialMonths: TrialMonths
+        },
+        {
+          onError: () => {
+            showToast({ message: 'Failed to initialize payment. Please try again.', type: 'error' });
+            onClose();
+          }
+        }
+      );
+    }
+  }, [plansData, plansError, planDetail, preferredPlanDuration, clientSecret, intentType, paymentMutation.isLoading]);
 
   const handleSuccess = async () => {
     setIsProcessingPayment(true);
@@ -58,20 +88,13 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
 
       const plansResponse = await getSubscriptionPlansService();
       const updatedPlan = plansResponse.data.find((plan) => plan.type === planDetail.type);
+      if (updatedPlan) updateSelectedPlan(updatedPlan);
 
-      if (updatedPlan) {
-        updateSelectedPlan(updatedPlan);
-      }
-
-      const message = successMessage || 'Payment successful! Your subscription has been activated.';
-      showToast({ message, type: 'success' });
+      showToast({ message: successMessage || 'Payment successful! Your subscription has been activated.', type: 'success' });
 
       onClose();
-
-      if (onSuccess) {
-        onSuccess();
-      }
-    } catch (err) {
+      onSuccess?.();
+    } catch {
       const errorMessage = 'An unexpected error occurred. Please try again.';
       setErrorMessage(errorMessage);
       showToast({ message: errorMessage, type: 'error' });
@@ -87,7 +110,13 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
     showToast({ message: errorMsg, type: 'error' });
   };
 
-  if (isLoading) {
+  const handleCancel = () => {
+    if (!isProcessingPayment) {
+      onClose();
+    }
+  };
+
+  if (isPlansLoading || paymentMutation.isLoading) {
     return (
       <Box p={6}>
         <Text color="white">Initializing payment...</Text>
@@ -95,13 +124,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
     );
   }
 
-  const handleCancel = () => {
-    if (!isProcessingPayment) {
-      onClose();
-    }
-  };
-
-  if (!intentType || !clientSecret) {
+  if (plansError || paymentMutation.isError || !intentType || !clientSecret) {
     return (
       <Box p={6}>
         <Text color="red.500">Failed to initialize payment.</Text>
