@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd';
+import { ChevronupMd } from 'assets/icons/Navigation/ChevronUp/ChevronupMd';
 import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm';
 import { getFeaturesWithInheritance } from 'pages/onboarding/components/subscription-plans/utils';
 import React from 'react';
@@ -25,16 +26,19 @@ const ProPlanFeatures: React.FC<ProPlanFeaturesProps> = ({ isExpanded, isCrossmi
               </Flex>
             ))}
           </Box>
-          <Box w="full" h="0" border="1px solid" borderColor="label.primary" />
+
         </>
       )}
       {!isCrossmint && (
+        <>
+          <Box w="full" h="0" border="1px solid" borderColor="label.primary" />
         <Flex w="full" px={4} py={2} justify="center" alignItems="center" gap={1.5} onClick={onToggleExpanded}>
           <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
-            More
+            {isExpanded ? 'Less' : 'More'}
           </Text>
-          <ChevrondownMd />
+          {isExpanded ? <ChevronupMd /> : <ChevrondownMd />}
         </Flex>
+        </>
       )}
     </>
   );
