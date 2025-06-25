@@ -1,10 +1,10 @@
 import { Heading, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 
-function TypographyText({ text }: { text?: string }) {
+function TypographyText({ text }: { text: string }) {
     const [isSmallerThanMd] = useMediaQuery('(max-width: 768px)')
 
-    if (!text || isSmallerThanMd) return null
+    if (isSmallerThanMd) return null
 
     return (
         <Heading
