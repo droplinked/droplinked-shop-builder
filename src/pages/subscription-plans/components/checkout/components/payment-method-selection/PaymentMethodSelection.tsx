@@ -38,21 +38,30 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		queryKey: 'plan-payment-methods',
 		queryFn: () => getSubscriptionPaymentMethodsService(),
 		staleTime: 1000 * 60 * 5, // 5 minutes
-		onSuccess: (data) => {
-			if (!selectedPaymentMethod)
+		onSuccess: (data: any) => {
+			const paymentMethodsData = data?.data?.data;
+			if (!selectedPaymentMethod && paymentMethodsData?.length > 0) {
 				setModalData((prevData) => ({
 					...prevData,
-					selectedPaymentMethod: data.data[0],
+					selectedPaymentMethod: paymentMethodsData[0],
 				}));
+			}
 		},
 	});
 	const { getRootProps, getRadioProps } = useRadioGroup({
 		name: 'preferred-payment-method',
-		onChange: (type) =>
-			setModalData((prevData) => ({
-				...prevData,
-				selectedPaymentMethod: paymentMethods.data.find((method) => method.type === type),
-			})),
+		onChange: (type) => {
+			const paymentMethodsData = (paymentMethods as any)?.data?.data;
+			if (paymentMethodsData?.length) {
+				const selectedMethod = paymentMethodsData.find((method) => method.type === type);
+				if (selectedMethod) {
+					setModalData((prevData) => ({
+						...prevData,
+						selectedPaymentMethod: selectedMethod,
+					}));
+				}
+			}
+		},
 		value: selectedPaymentMethod?.type,
 	});
 
@@ -60,9 +69,9 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		if (!selectedPaymentMethod) refetchPaymentMethods();
 	}, [selectedPaymentMethod, refetchPaymentMethods]);
 
-	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? hndleStripePayment() : handleCryptoPayment());
+	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? handleStripePayment() : handleCryptoPayment());
 
-	const hndleStripePayment = async () => {
+	const handleStripePayment = async () => {
 		try {
 			setTransactionInProgress(true);
 			setModalData((prevData) => ({
@@ -136,7 +145,22 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 				</AppTypography>
 			);
 
-		return paymentMethods.data.map((paymentMethod) => <PaymentMethodRadio key={paymentMethod.type} paymentMethod={paymentMethod} {...getRadioProps({ value: paymentMethod.type })} />);
+		const paymentMethodsData = (paymentMethods as any)?.data?.data;
+		if (!paymentMethodsData?.length) {
+			return (
+				<AppTypography fontSize={16} color={'gray.500'}>
+					No payment methods available
+				</AppTypography>
+			);
+		}
+		
+		return paymentMethodsData.map((paymentMethod) => (
+			<PaymentMethodRadio 
+				key={paymentMethod.type} 
+				paymentMethod={paymentMethod} 
+				{...getRadioProps({ value: paymentMethod.type })} 
+			/>
+		));
 	};
 
 	return (
