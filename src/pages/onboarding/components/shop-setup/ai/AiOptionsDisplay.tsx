@@ -2,9 +2,11 @@ import { Box, Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import { AISm } from 'assets/icons/AI';
 import { Refresh1Sm } from 'assets/icons/Action/Refresh1/Refresh1Sm';
 import AppButton from 'components/redesign/button/AppButton';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 import useOnboardingStore from '../../../stores/useOnboardingStore';
+import { initialShopData } from '../../../stores/useOnboardingStore';
+import RemoveConfirmationModal from '../uploads/RemoveConfirmationModal';
 import { ImageSlider } from './ImageSlider';
 
 interface AiOptionsDisplayProps {
@@ -16,13 +18,55 @@ interface AiOptionsDisplayProps {
 
 const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSelect, selectedValue }) => {
   const { isLoading, generateContent } = useAiGeneratedContent();
-  const { aiGeneratedContent } = useOnboardingStore();
+  const { aiGeneratedContent, shopData } = useOnboardingStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [pendingSelection, setPendingSelection] = useState<string | null>(null); //TODO : Replace with useRef
 
   const options = aiGeneratedContent[type];
   const isContentLoading = isLoading[type];
 
+  // Mapping between type and shop data field
+  const getShopDataField = (type: string) => {
+    switch (type) {
+      case 'logos': return 'logo';
+      case 'covers': return 'cover_image';
+      case 'urls': return 'shop_url';
+      case 'names': return 'name';
+      default: return '';
+    }
+  };
+
+  const shopDataField = getShopDataField(type);
+
   const handleRegenerate = () => {
     generateContent(type);
+  };
+
+  const handleOptionSelect = (value: string) => {
+    // Check if we need to show confirmation modal
+    const shouldShowModal = shopData[shopDataField] &&
+      shopData[shopDataField] !== initialShopData[shopDataField] &&
+      !aiGeneratedContent[type].includes(shopData[shopDataField]);
+
+    if (shouldShowModal) {
+      setPendingSelection(value);
+      setIsModalOpen(true);
+    } else {
+      onSelect(value);
+    }
+  };
+
+  const handleConfirmSelection = () => {
+    if (pendingSelection) {
+      onSelect(pendingSelection);
+      setPendingSelection(null);
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleCancelSelection = () => {
+    setPendingSelection(null);
+    setIsModalOpen(false);
   };
 
   // Common header component
@@ -57,7 +101,7 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
                 cursor="pointer"
                 borderColor={selectedValue === option ? 'main.primary' : 'neutral.gray.800'}
                 bg={selectedValue === option ? 'label.primary' : 'transparent'}
-                onClick={() => onSelect(option)}
+                onClick={() => handleOptionSelect(option)}
                 minW="fit-content"
               >
                 <Text fontWeight={selectedValue === option ? '500' : '400'} color={selectedValue === option ? 'main.primary' : 'neutral.white'} textAlign="center">
@@ -81,7 +125,7 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
       ) : (
         <Flex flexWrap="wrap" gap={4} minW="max-content">
           {options.map((option, index) => (
-            <Box key={index} cursor="pointer" onClick={() => onSelect(option)}>
+            <Box key={index} cursor="pointer" onClick={() => handleOptionSelect(option)}>
               <Box
                 width="64px"
                 height="64px"
@@ -108,7 +152,7 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
         </Flex>
       ) : (
         <Flex alignItems="center" gap={4}>
-          <ImageSlider images={options} onChange={onSelect} isLoading={isContentLoading} selectedValue={selectedValue} />
+          <ImageSlider images={options} onChange={handleOptionSelect} isLoading={isContentLoading} selectedValue={selectedValue} />
         </Flex>
       )}
     </Box>
@@ -119,10 +163,19 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
   }
 
   return (
-    <Box p={4} w="100%" borderWidth="1px" borderRadius="16px" borderColor="neutral.gray.800">
-      <OptionsHeader />
-      {type === 'urls' || type === 'names' ? <TextBasedOptions /> : type === 'logos' ? <LogoOptions /> : <CoverOptions />}
-    </Box>
+    <>
+      <Box p={4} w="100%" borderWidth="1px" borderRadius="16px" borderColor="neutral.gray.800">
+        <OptionsHeader />
+        {type === 'urls' || type === 'names' ? <TextBasedOptions /> : type === 'logos' ? <LogoOptions /> : <CoverOptions />}
+      </Box>
+      
+      <RemoveConfirmationModal
+        isOpen={isModalOpen}
+        onClose={handleCancelSelection}
+        onConfirm={handleConfirmSelection}
+        type={type}
+      />
+    </>
   );
 };
 
