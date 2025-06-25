@@ -1,13 +1,13 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
-import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { forgetPasswordService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 
 const formSchema = Yup.object().shape({
@@ -45,7 +45,7 @@ function ResetPasswordForm() {
         onSubmit={handleSubmit}
       >
         {({ values, errors, handleChange, isSubmitting }) => (
-          <Form style={{ display: 'flex', flexDirection: 'column' }}>
+          <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <AppInput
               label="Email Address"
               inputProps={{
@@ -56,25 +56,24 @@ function ResetPasswordForm() {
               }}
               message={errors.email?.toString()}
             />
-                
-              <AppButton type="submit" isLoading={isSubmitting} width="100%" margin="36px 0 24px">
-                Continue
-              </AppButton>
 
-            <Box display="flex" flexDirection="column" gap={2} >
-              <Text fontSize="14px" color="text.white" display="flex" gap={1}>
-                Remember your password?
-                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>
-                  Sign In
-                </InteractiveText>
-              </Text>
-              <Text fontSize="14px" color="text.white" display="flex" gap={1}>
-                Don't have an account?
-                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_UP')}>
-                  Join us and create one!
-                </InteractiveText>
-              </Text>
-            </Box>
+            <AppButton type="submit" marginTop={3} isLoading={isSubmitting}>
+              Continue
+            </AppButton>
+
+            <Flex direction="column" gap={2}>
+              <AuthRedirectLink
+                text="Remember your password?"
+                action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
+                linkText="Sign In"
+              />
+
+              <AuthRedirectLink
+                text="Don't have an account?"
+                action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
+                linkText="Join us and create one!"
+              />
+            </Flex>
           </Form>
         )}
       </Formik>

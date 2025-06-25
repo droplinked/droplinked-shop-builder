@@ -1,4 +1,4 @@
-import { Flex, Text, VStack } from '@chakra-ui/react'
+import { Text, VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
@@ -12,6 +12,7 @@ import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -135,18 +136,12 @@ function SignUpForm() {
                                 udId={udId}
                             />
 
-                            <Flex
-                                flexDirection={{ base: "column", md: "row" }}
+                            <AuthRedirectLink
                                 justifyContent="center"
-                                alignItems="center"
-                                gap={{ base: 1, md: 2 }}
-                                marginTop={3}
-                            >
-                                <Text fontSize={14} color="text.white">
-                                    Already have an account?
-                                </Text>
-                                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>Sign in</InteractiveText>
-                            </Flex>
+                                text='Already have an account?'
+                                linkText='Sign in'
+                                action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
+                            />
                         </Form>
                     )
                 }}

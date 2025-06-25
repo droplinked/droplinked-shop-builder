@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
@@ -9,6 +9,7 @@ import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -95,18 +96,12 @@ function SignInForm() {
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
-                        <Flex
-                            flexDirection={{ base: "column", md: "row" }}
+                        <AuthRedirectLink
                             justifyContent="center"
-                            alignItems="center"
-                            gap={{ base: 1, md: 2 }}
-                            marginTop={3}
-                        >
-                            <Text fontSize={14} color="text.white">
-                                Don't have an account?
-                            </Text>
-                            <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_UP')}>Join us and create one!</InteractiveText>
-                        </Flex>
+                            text="Don't have an account?"
+                            action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
+                            linkText="Join us and create one!"
+                        />
                     </Form>
                 )}
             </Formik>
