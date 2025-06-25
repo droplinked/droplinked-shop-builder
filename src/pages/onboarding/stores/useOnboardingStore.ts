@@ -34,7 +34,7 @@ export const initialAiContent = {
 }
 
 const initialState: OnboardingStates = {
-    currentStep: 'EXISTING_WEBSITE',
+    currentStep: 'SIGN_IN',
     shopData: initialShopData,
     shopSetupUI: initialShopSetupUI,
     aiGeneratedContent: initialAiContent,
