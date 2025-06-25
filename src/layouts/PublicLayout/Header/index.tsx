@@ -3,6 +3,7 @@ import AuthButtons from './AuthButtons'
 import BrandIcon from './BrandIcon/BrandIcon'
 import NavigationMenu from './NavigationMenu'
 import MaxWidthWrapper from 'pages/public-pages/redesign-landings/_shared/components/MaxWidthWrapper'
+import { Box } from '@chakra-ui/react'
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -14,22 +15,26 @@ export default function Header() {
     }, [])
 
     return (
-        <MaxWidthWrapper
+        <Box
             as="header"
             position="sticky"
             top={0}
             zIndex="sticky"
-            height="72px"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            gap={6}
+            width="100%"
             bg={isScrolled ? 'neutral.websiteBackground' : 'transparent'}
             transition="0.3s ease-in-out"
         >
-            <BrandIcon />
-            <NavigationMenu />
-            <AuthButtons />
-        </MaxWidthWrapper>
+            <MaxWidthWrapper
+                height="72px"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                gap={6}
+            >
+                <BrandIcon />
+                <NavigationMenu />
+                <AuthButtons />
+            </MaxWidthWrapper>
+        </Box>
     )
 }
