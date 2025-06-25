@@ -1,22 +1,23 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal'
+import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useAppToast from 'hooks/toast/useToast'
 import { IGenerateTitleDescription } from 'lib/apis/ai/interfaces'
 import { generateTitleDescription } from 'lib/apis/ai/services'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
-import useAppStore from 'stores/app/appStore'
-import React, { useState } from 'react'
+import React from 'react'
 import { useMutation } from 'react-query'
+import useAppStore from 'stores/app/appStore'
 import AnimatedBox from './AnimatedBox'
 
 function GenerateWithAI() {
+    const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
     const { values: { media }, setFieldValue } = useProductForm()
     const { updateProductPageState, isAiGenerateLoading, isGenerateDisabled } = useProductPageStore()
     const { showToast } = useAppToast()
     const { hasPaidSubscription } = useAppStore()
-    const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false)
+   
     
     const { mutateAsync } = useMutation((params: IGenerateTitleDescription) => generateTitleDescription(params),
         {
@@ -38,7 +39,7 @@ function GenerateWithAI() {
 
     const handleMutate = () => {
         if (!hasPaidSubscription()) {
-            setIsProTrialModalOpen(true);
+            openProTrialModal();
             return;
         }
 
@@ -47,7 +48,7 @@ function GenerateWithAI() {
     }
 
     const handleCloseProTrialModal = () => {
-        setIsProTrialModalOpen(false);
+        closeProTrialModal();
     };
 
     const isDisabled = media.length === 0 || isAiGenerateLoading || isGenerateDisabled;

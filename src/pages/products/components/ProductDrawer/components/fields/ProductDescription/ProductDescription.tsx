@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
-import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal'
+import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useRef } from 'react'

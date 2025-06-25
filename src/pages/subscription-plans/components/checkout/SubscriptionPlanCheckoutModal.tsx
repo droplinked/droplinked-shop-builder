@@ -24,10 +24,6 @@ function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
     const updateModalData = <K extends keyof ModalState>(key: K, value: ModalState[K]) =>
         setModalData({ ...modalData, [key]: value })
 
-    const handlePaymentSuccess = () => {
-        updateModalData("step", "SuccessfulPayment")
-    }
-
     const renderContent = () => {
         const { step } = modalData
         
@@ -49,7 +45,7 @@ function SubscriptionPlanCheckoutModal({ isOpen, close }: Props) {
                     isOpen={true}
                     onClose={() => updateModalData("step", "PlanConfirmation")}
                     plan={selectedPlan.type as PlanType}
-                    onSuccess={handlePaymentSuccess}
+                    onSuccess={() => updateModalData("step", "SuccessfulPayment")}
                     successMessage="Subscription activated successfully!"
                 />
             ) : null

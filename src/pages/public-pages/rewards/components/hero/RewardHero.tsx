@@ -1,4 +1,4 @@
-import { VStack } from '@chakra-ui/react';
+import { useDisclosure, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppStore from 'stores/app/appStore';
 import React, { useState } from 'react';
@@ -10,8 +10,8 @@ import RewardHeader from './RewardHeader';
 
 const RewardHero = () => {
   const navigate = useNavigate()
-  const [isProPlanOpen, setProPlanOpen] = useState(false);
   const [unlockedMonths, setUnlockedMonths] = useState<number | undefined>();
+  const { isOpen: isProPlanOpen, onOpen: openProPlan, onClose: closeProPlan } = useDisclosure();
   const { isLoggedIn } = useAppStore();
   const { grantProPlan, loading } = useFollowStatus();
 
@@ -25,7 +25,7 @@ const RewardHero = () => {
       const result = await grantProPlan();
       if (result.success) {
         setUnlockedMonths(result.unlockedMonths);
-        setProPlanOpen(true);
+        openProPlan();
       }
     }
     catch (error) {
@@ -44,7 +44,7 @@ const RewardHero = () => {
           </BasicButton>
         </VStack>
       </VStack>
-      {isLoggedIn && <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={() => setProPlanOpen(false)} />}
+      {isLoggedIn && <ProPlanModal unlockedMonths={unlockedMonths} isOpen={isProPlanOpen} onClose={closeProPlan} />}
     </>
   );
 };

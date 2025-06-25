@@ -13,35 +13,13 @@ export interface PaymentModalProps {
   successMessage?: string;
 }
 
-export default function PaymentModal({ 
-  isOpen, 
-  onClose, 
-  plan, 
-  onSuccess,
-  successMessage 
-}: PaymentModalProps) {
+export default function PaymentModal({ isOpen, onClose, plan, onSuccess, successMessage }: PaymentModalProps) { 
   const [isMobileOrTablet] = useMediaQuery('(max-width: 1024px)');
   const planDetail = subscriptionPlans[plan];
 
   if (isMobileOrTablet) {
-    return (
-      <PaymentDrawer 
-        isOpen={isOpen} 
-        onClose={onClose} 
-        planDetail={planDetail}
-        onSuccess={onSuccess}
-        successMessage={successMessage}
-      />
-    );
+    return <PaymentDrawer isOpen={isOpen} onClose={onClose} planDetail={planDetail} onSuccess={onSuccess} successMessage={successMessage} />;
   }
 
-  return (
-    <BaseModal 
-      isOpen={isOpen} 
-      onClose={onClose} 
-      planDetail={planDetail}
-      onSuccess={onSuccess}
-      successMessage={successMessage}
-    />
-  );
+  return <BaseModal isOpen={isOpen} onClose={onClose} planDetail={planDetail} onSuccess={onSuccess} successMessage={successMessage} />;
 }

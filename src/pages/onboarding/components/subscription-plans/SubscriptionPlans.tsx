@@ -1,7 +1,6 @@
-import { Grid } from "@chakra-ui/react"
-import { ExternalarrowMd } from "assets/icons/Navigation/ExternalArrow/ExternalarrowMd"
+import { Grid, useDisclosure } from "@chakra-ui/react"
 import PaymentModal from "components/modals/payment-modal/PaymentModal"
-import BlueButton from "components/redesign/button/BlueButton"
+import ExternalLink from "components/redesign/external-link/ExternalLink"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices"
@@ -15,11 +14,10 @@ import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
 import { getContinueText, getFeaturesWithInheritance } from "./utils"
-import ExternalLink from "components/redesign/external-link/ExternalLink"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
-    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
+    const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure()
     const { updateOnboardingState } = useOnboardingStore()
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
 
@@ -41,14 +39,8 @@ function SubscriptionPlans() {
             updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
             return
         }
-
         // Open payment modal - PaymentForm will handle the payment logic
-        setIsPaymentModalOpen(true)
-    }
-
-    // Custom success handler for onboarding flow
-    const handlePaymentSuccess = () => {
-        updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
+        openPaymentModal()
     }
 
     if (isFetching) return <Loading />
@@ -96,8 +88,8 @@ function SubscriptionPlans() {
             <PaymentModal
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
-                onClose={() => setIsPaymentModalOpen(false)}
-                onSuccess={handlePaymentSuccess}
+                onClose={closePaymentModal}
+                onSuccess={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
                 successMessage="Payment successful! Your subscription has been activated and you're all set!"
             />
         </>

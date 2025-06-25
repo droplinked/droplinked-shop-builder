@@ -5,11 +5,12 @@ import { useMutation } from 'react-query';
 import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
 import useAppStore from 'stores/app/appStore';
+import { useDisclosure } from '@chakra-ui/react';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
     const [revertData, setRevertData] = useState("");
-    const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false);
+    const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure();
     const { isAiGenerateLoading, updateProductPageState } = useProductPageStore();
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
@@ -40,7 +41,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
 
     const handleSelectItem = async (item: string) => {
         if (!hasPaidSubscription()) {
-            setIsProTrialModalOpen(true);
+            openProTrialModal();
             return;
         }
 
@@ -50,7 +51,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
 
     const handleTryAgain = () => {
         if (!hasPaidSubscription()) {
-            setIsProTrialModalOpen(true);
+            openProTrialModal();
             return;
         }
 
@@ -63,7 +64,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     };
 
     const handleCloseProTrialModal = () => {
-        setIsProTrialModalOpen(false);
+        closeProTrialModal();
     };
 
     return {

@@ -1,8 +1,8 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { AILg } from 'assets/icons/AI';
 import { ChevronupLg } from 'assets/icons/Navigation/ChevronUp/ChevronupLg';
 import { SuitcaseSm } from 'assets/icons/System/SuitCase/SuitcaseSm';
-import ProTrialModal from 'components/modals/pro-trial-modal/ProTrialModal';
+import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal';
 import AppButton from 'components/redesign/button/AppButton';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
@@ -16,7 +16,7 @@ import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 
 function AICard() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isProTrialModalOpen, setIsProTrialModalOpen] = useState(false); 
+  const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure();
   const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
   const { generateAllContent, isLoading } = useAiGeneratedContent();
   const { hasPaidSubscription } = useAppStore();
@@ -42,12 +42,12 @@ function AICard() {
       generateAllContent();
     } else {
       // User has no subscription or has STARTER plan, show pro trial modal
-      setIsProTrialModalOpen(true);
+      openProTrialModal();
     }
   };
 
   const handleCloseProTrialModal = () => {
-    setIsProTrialModalOpen(false);
+    closeProTrialModal();
   };
 
   return (

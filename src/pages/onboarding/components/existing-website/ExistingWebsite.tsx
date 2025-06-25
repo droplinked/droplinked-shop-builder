@@ -1,20 +1,33 @@
-import { Flex, useRadioGroup } from '@chakra-ui/react'
+import { Flex, useDisclosure, useRadioGroup } from '@chakra-ui/react'
 import { AILg } from 'assets/icons/AI'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import { ShopLg } from 'assets/icons/System/Shop/ShopLg'
 import AppButton from 'components/redesign/button/AppButton'
+import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import React from 'react'
+import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import YesNoRadioCard from './YesNoRadioCard'
 
 function ExistingWebsite() {
     const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
+    const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
+    
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
         onChange: (value: string) => updateShopSetupUI('hasExistingShop', value === 'yes'),
         value: shopSetupUI.hasExistingShop ? 'yes' : 'no'
     })
+
+    // Check for source=crossmint query parameter on component mount
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search)
+        const source = searchParams.get('source')
+        
+        if (source === 'crossmint') {
+            openProTrialModal()
+        }
+    }, [openProTrialModal])
 
     const options = [
         { value: 'yes', label: 'Yes', description: 'Import inventory and data over in just a few clicks.', icon: <ShopLg /> },
@@ -50,6 +63,12 @@ function ExistingWebsite() {
             >
                 Continue
             </AppButton>
+
+            <ProTrialModal
+                isOpen={isProTrialModalOpen}
+                onClose={closeProTrialModal}
+                isCrossmint={true}
+            />
         </>
     )
 }

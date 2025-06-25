@@ -2,9 +2,8 @@ import { Box, Text } from '@chakra-ui/react'
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm'
 import useAppToast from 'hooks/toast/useToast'
 import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices'
-import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 import React, { useState } from 'react'
-import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
+import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
 
 interface PaymentFormProps {
   onClose: () => void;
@@ -18,7 +17,6 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   const [intentType, setIntentType] = useState<'payment' | 'setup'>()
   const [clientSecret, setClientSecret] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
-  const { updateOnboardingState } = useOnboardingStore()
   const updateSelectedPlan = useSubscriptionPlanStore(state => state.updateSelectedPlan)
   const preferredPlanDuration = useSubscriptionPlanStore(state => state.preferredPlanDuration)
   const { showToast } = useAppToast()
@@ -51,6 +49,7 @@ const PaymentForm = ({ onClose, planDetail, onSuccess, successMessage }: Payment
   
   const handleSuccess = async () => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       await getShopSubscriptionDataService()
       
       const plansResponse = await getSubscriptionPlansService()
