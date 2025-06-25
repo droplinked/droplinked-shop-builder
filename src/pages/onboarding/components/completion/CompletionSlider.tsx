@@ -10,13 +10,11 @@ import VideoPlayer from './VideoPlayer'
 function CompletionSlider() {
     const navigate = useNavigate()
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
-    const [isVideoPlaying, setIsVideoPlaying] = useState(false)
     const communityEngagementColumns = useBreakpointValue({ base: 1, md: 2, lg: 3 })
     const { updateOnboardingState } = useOnboardingStore()
 
     const handleSlideChange = (index: number) => {
         setCurrentSlideIndex(index)
-        setIsVideoPlaying(index === 0)
     }
 
     const handlePreviousAction = () => {
@@ -45,7 +43,7 @@ function CompletionSlider() {
         >
             {
                 currentSlideIndex === 0
-                    ? <VideoPlayer isPlaying={isVideoPlaying} />
+                    ? <VideoPlayer />
                     : <CommunityEngagement columns={communityEngagementColumns} includeBlueSky borderRadius={8} />
             }
 
