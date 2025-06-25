@@ -10,7 +10,6 @@ import CrossmintHero from './components/crossmint-hero/CrossmintHero'
 
 export default function Crossmint() {
     const sections = [
-        { id: 'hero', component: <CrossmintHero /> },
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'set-of-perks', component: <SetOfPerks /> },
         { id: 'modular-stack', component: <ModularStack /> },
@@ -19,12 +18,15 @@ export default function Crossmint() {
     ]
 
     return (
-        <MaxWidthWrapper>
-            {sections.map((section) => (
-                <LazyLoad key={section.id}>
-                    {section.component}
-                </LazyLoad>
-            ))}
-        </MaxWidthWrapper>
+        <>
+            <CrossmintHero />
+            <MaxWidthWrapper>
+                {sections.map((section) => (
+                    <LazyLoad key={section.id}>
+                        {section.component}
+                    </LazyLoad>
+                ))}
+            </MaxWidthWrapper>
+        </>
     )
 }
