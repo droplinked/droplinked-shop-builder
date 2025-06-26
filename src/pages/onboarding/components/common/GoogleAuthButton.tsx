@@ -9,9 +9,9 @@ interface GoogleAuthButtonProps {
     isSignUp: boolean
     isDisabled?: boolean
     referralCode?: string
-    d3Id?: string | null
-    udId?: string | null
-    source?: string | null
+    d3Id?: string
+    udId?: string
+    source?: string
 }
 
 function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
