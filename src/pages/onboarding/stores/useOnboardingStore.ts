@@ -16,7 +16,8 @@ export const initialShopSetupUI = {
     autoAddSampleProductsEnabled: false,
     hasExistingShop: false,
     businessCategory: '',
-    businessDescription: ''
+    businessDescription: '',
+    isFromCrossmint: false
 }
 
 // AI generated content state

@@ -1,4 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React from 'react';
 import useAppStore from 'stores/app/appStore';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
@@ -9,10 +10,10 @@ interface BillingSummaryProps {
 }
 
 function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
+  const shopSetupUI = useOnboardingStore(s => s.shopSetupUI)
   const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration);
   const { shop } = useAppStore();
   const canActivateTrial = shop?.subscription?.canActivateTrial ?? false;
-  const source = new URLSearchParams(window.location.search).get('source');
 
   const getBillingCycleText = () => {
     if (preferredPlanDuration.month === 1) return 'Monthly';
@@ -39,7 +40,7 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
           </Text>
           <Flex alignItems="center" gap={1}>
             <Text display="flex" alignItems="center" gap={1} color="white" fontSize="base" fontWeight="medium">
-              {source === 'crossmint' ? '3 month free' : canActivateTrial ? 'First month free' : (
+              {shopSetupUI.isFromCrossmint ? '3 month free' : canActivateTrial ? 'First month free' : (
                 <>
                   {subscriptionCost}
                   <Text color="#868686" fontSize="base">

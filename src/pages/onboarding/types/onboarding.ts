@@ -16,6 +16,7 @@ export type ShopSetupUI = {
     hasExistingShop: boolean
     businessCategory: string
     businessDescription: string
+    isFromCrossmint: boolean
 }
 
 // AI generated content state

@@ -19,12 +19,9 @@ function ExistingWebsite() {
         value: shopSetupUI.hasExistingShop ? 'yes' : 'no'
     })
 
-    // Check for source=crossmint query parameter on component mount
+    // If user came from Crossmint landing page, open the pro trial modal
     useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search)
-        const source = searchParams.get('source')
-
-        if (source === 'crossmint') openProTrialModal()
+        if (shopSetupUI.isFromCrossmint) openProTrialModal()
     }, [openProTrialModal])
 
     const options = [

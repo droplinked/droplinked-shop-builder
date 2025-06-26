@@ -23,16 +23,20 @@ import useOnboardingStore from './stores/useOnboardingStore'
 
 function Onboarding() {
   const LayoutComponent = useBreakpointValue({ base: MobileLayout, md: TabletLayout, lg: DesktopLayout })
-  const { currentStep, updateOnboardingState } = useOnboardingStore()
+  const { currentStep, updateOnboardingState, shopSetupUI } = useOnboardingStore()
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
     const entry = searchParams.get('entry')
+    const source = searchParams.get('source')
 
     if (entry === 'signin') updateOnboardingState('currentStep', 'SIGN_IN')
     else if (entry === 'signup') updateOnboardingState('currentStep', 'SIGN_UP')
     else if (entry === 'email-verification') updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
     else if (entry === 'existing-website') updateOnboardingState('currentStep', 'EXISTING_WEBSITE')
+
+    // Check if user came from Crossmint landing page
+    if (source === 'crossmint') updateOnboardingState('shopSetupUI', { ...shopSetupUI, isFromCrossmint: true })
   }, [updateOnboardingState])
 
   useEffect(() => {
