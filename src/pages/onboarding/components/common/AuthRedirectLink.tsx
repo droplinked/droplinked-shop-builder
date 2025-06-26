@@ -11,9 +11,7 @@ interface Props extends FlexProps {
 function AuthRedirectLink({ text, linkText, action, ...rest }: Props) {
     return (
         <Flex
-            flexDirection={{ base: "column", md: "row" }}
-            alignItems="center"
-            gap={{ base: 1, md: 2 }}
+            gap={2}
             {...rest}
         >
             <Text fontSize={14} color="text.white">

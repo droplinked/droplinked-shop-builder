@@ -13,7 +13,7 @@ import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPl
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
-import { getContinueText, getFeaturesWithInheritance } from "./utils"
+import { getContinueText, getFeaturesWithInheritance } from "../../utils/subscriptionPlan"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")

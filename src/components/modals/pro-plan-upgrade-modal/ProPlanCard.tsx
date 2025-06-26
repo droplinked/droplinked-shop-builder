@@ -5,7 +5,8 @@ import { ShieldMd } from 'assets/icons/System/Shield/ShieldMd';
 import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import PlanPrice from 'components/redesign/plan-price/PlanPrice';
-import React from 'react';
+import React, { useState } from 'react';
+import ProPlanFeatures from './ProPlanFeatures';
 
 interface ProPlanCardProps {
   isCrossmint: boolean;
@@ -14,6 +15,7 @@ interface ProPlanCardProps {
 }
 
 const ProPlanCard: React.FC<ProPlanCardProps> = ({ isCrossmint, canActivateTrial, businessPlan }) => {
+  const [isFeaturesExpanded, setIsFeaturesExpanded] = useState(false);
   return (
     <Box
       borderRadius="2xl"
@@ -66,6 +68,12 @@ const ProPlanCard: React.FC<ProPlanCardProps> = ({ isCrossmint, canActivateTrial
           </Flex>
         </Flex>
       </VStack>
+
+      <ProPlanFeatures 
+          isExpanded={isFeaturesExpanded} 
+          isCrossmint={isCrossmint} 
+          onToggleExpanded={() => setIsFeaturesExpanded(!isFeaturesExpanded)} 
+        />
     </Box>
   );
 };

@@ -97,7 +97,10 @@ function SignInForm() {
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
                         <AuthRedirectLink
+                            flexDirection={{ base: "column", md: "row" }}
                             justifyContent="center"
+                            alignItems="center"
+                            gap={{ base: 1, md: 2 }}
                             text="Don't have an account?"
                             action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
                             linkText="Join us and create one!"

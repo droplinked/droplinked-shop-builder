@@ -1,15 +1,14 @@
 import { Box, ModalBody, useDisclosure } from '@chakra-ui/react';
 import PaymentModal from 'components/modals/payment-modal/PaymentModal';
+import AppModal from 'components/redesign/modal/AppModal';
 import PlanDurationRadioContainer from 'components/redesign/plan-duration-radio/PlanDurationRadioContainer';
 import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import useAppStore from 'stores/app/appStore';
 import ProPlanCard from './ProPlanCard';
-import ProPlanFeatures from './ProPlanFeatures';
 import ProPlanFooter from './ProPlanFooter';
 import ProPlanHeader from './ProPlanHeader';
-import AppModal from 'components/redesign/modal/AppModal';
 
 export interface Props {
   isOpen: boolean;
@@ -18,7 +17,6 @@ export interface Props {
 }
 
 const ProPlanUpgradeModal = ({ isOpen, onClose, isCrossmint = false }: Props) => {
-  const [isFeaturesExpanded, setIsFeaturesExpanded] = useState(false);
   const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure();
   const { shop } = useAppStore();
 
@@ -51,11 +49,7 @@ const ProPlanUpgradeModal = ({ isOpen, onClose, isCrossmint = false }: Props) =>
           businessPlan={businessPlan.data} 
         />
 
-        <ProPlanFeatures 
-          isExpanded={isFeaturesExpanded} 
-          isCrossmint={isCrossmint} 
-          onToggleExpanded={() => setIsFeaturesExpanded(!isFeaturesExpanded)} 
-        />
+        
 
         <ProPlanFooter 
           canActivateTrial={canActivateTrial} 
