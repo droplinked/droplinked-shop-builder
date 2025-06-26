@@ -1,7 +1,7 @@
 import useAppToast from "hooks/toast/useToast"
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate"
-import useAppStore from "stores/app/appStore"
 import { useCallback } from "react"
+import useAppStore from "stores/app/appStore"
 import useOnboardingStore from "../stores/useOnboardingStore"
 
 export function useLogin() {
@@ -30,10 +30,9 @@ export function useLogin() {
 
                 case "VERIFIED":
                 case "PROFILE_COMPLETED":
-                    return updateOnboardingState("currentStep", "STORE_DETAILS")
+                    return updateOnboardingState("currentStep", "EXISTING_WEBSITE")
 
                 case "SHOP_INFO_COMPLETED":
-                case "IMS_TYPE_COMPLETED":
                 case "ACTIVE":
                     return shopNavigate("dashboard")
             }

@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
@@ -7,9 +7,9 @@ import { Form, Formik } from 'formik'
 import Cookies from 'js-cookie'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -23,7 +23,7 @@ const formSchema = Yup.object().shape({
 const savedEmail = Cookies.get('remembered_email')
 const savedPassword = Cookies.get('remembered_password')
 
-function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
+function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
@@ -83,11 +83,7 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
                             >
                                 Remember my password
                             </Checkbox>
-                            <InteractiveText 
-                                onClick={() => {
-                                    updateOnboardingState("currentStep", "RESET_PASSWORD")
-                                }}
-                            >
+                            <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
                                 Reset Password
                             </InteractiveText>
                         </Flex>
@@ -100,18 +96,15 @@ function SignInForm({ onNext }: Pick<OnboardingStepProps, "onNext">) {
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
-                        <Flex
+                        <AuthRedirectLink
                             flexDirection={{ base: "column", md: "row" }}
                             justifyContent="center"
                             alignItems="center"
                             gap={{ base: 1, md: 2 }}
-                            marginTop={3}
-                        >
-                            <Text fontSize={14} color="text.white">
-                                Don't have an account?
-                            </Text>
-                            <InteractiveText onClick={onNext}>Join us and create one!</InteractiveText>
-                        </Flex>
+                            text="Don't have an account?"
+                            action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
+                            linkText="Join us and create one!"
+                        />
                     </Form>
                 )}
             </Formik>

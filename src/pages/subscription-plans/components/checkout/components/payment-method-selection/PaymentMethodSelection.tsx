@@ -10,12 +10,11 @@ import {
 	getSubscriptionPaymentMethodsService,
 	sendPlanPurchaseTransactionToWeb3Service,
 	subscriptionPlanCryptoPaymentService,
-	subscriptionPlanStripePaymentService,
 } from 'lib/apis/subscription/subscriptionServices';
-import { appDevelopment } from 'utils/app/variable';
-import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import React, { useEffect, useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
+import { appDevelopment } from 'utils/app/variable';
 import { ModalState } from '../../types/interfaces';
 import Loading from './Loading';
 import PaymentMethodRadio from './PaymentMethodRadio';
@@ -39,28 +38,30 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		queryKey: 'plan-payment-methods',
 		queryFn: () => getSubscriptionPaymentMethodsService(),
 		staleTime: 1000 * 60 * 5, // 5 minutes
-		onSuccess: (data) => {
-			if (!selectedPaymentMethod)
+		onSuccess: (data: any) => {
+			const paymentMethodsData = data?.data?.data;
+			if (!selectedPaymentMethod && paymentMethodsData?.length > 0) {
 				setModalData((prevData) => ({
 					...prevData,
-					selectedPaymentMethod: data.data[0],
+					selectedPaymentMethod: paymentMethodsData[0],
 				}));
+			}
 		},
 	});
-	const { mutateAsync: confirmStripePayment } = useMutation(() =>
-		subscriptionPlanStripePaymentService({
-			month: preferredPlanDuration.month,
-			subId: selectedPlanId,
-			recurring: true,
-		})
-	);
 	const { getRootProps, getRadioProps } = useRadioGroup({
 		name: 'preferred-payment-method',
-		onChange: (type) =>
-			setModalData((prevData) => ({
-				...prevData,
-				selectedPaymentMethod: paymentMethods.data.find((method) => method.type === type),
-			})),
+		onChange: (type) => {
+			const paymentMethodsData = (paymentMethods as any)?.data?.data;
+			if (paymentMethodsData?.length) {
+				const selectedMethod = paymentMethodsData.find((method) => method.type === type);
+				if (selectedMethod) {
+					setModalData((prevData) => ({
+						...prevData,
+						selectedPaymentMethod: selectedMethod,
+					}));
+				}
+			}
+		},
 		value: selectedPaymentMethod?.type,
 	});
 
@@ -68,18 +69,21 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		if (!selectedPaymentMethod) refetchPaymentMethods();
 	}, [selectedPaymentMethod, refetchPaymentMethods]);
 
-	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? hndleStripePayment() : handleCryptoPayment());
+	const handlePayment = () => (selectedPaymentMethod.type === 'STRIPE' ? handleStripePayment() : handleCryptoPayment());
 
-	const hndleStripePayment = async () => {
+	const handleBack = () => {
+		setModalData((prevData) => ({
+			...prevData,
+			step: 'PlanConfirmation',
+		}));
+	};
+
+	const handleStripePayment = async () => {
 		try {
 			setTransactionInProgress(true);
-			const {
-				data: { clientSecret },
-			} = await confirmStripePayment();
 			setModalData((prevData) => ({
 				...prevData,
 				step: 'StripePayment',
-				stripeClientSecret: clientSecret,
 			}));
 		} catch (e) {
 			showToast({ message: (e as Error).message, type: 'error' });
@@ -113,7 +117,6 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 				checkoutData: {
 					month: preferredPlanDuration.month,
 					subId: selectedPlanId,
-					recurring: false,
 				},
 			});
 			const { transactionHash } = await paymentProvider.customPayment({
@@ -149,7 +152,22 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 				</AppTypography>
 			);
 
-		return paymentMethods.data.map((paymentMethod) => <PaymentMethodRadio key={paymentMethod.type} paymentMethod={paymentMethod} {...getRadioProps({ value: paymentMethod.type })} />);
+		const paymentMethodsData = (paymentMethods as any)?.data?.data;
+		if (!paymentMethodsData?.length) {
+			return (
+				<AppTypography fontSize={16} color={'gray.500'}>
+					No payment methods available
+				</AppTypography>
+			);
+		}
+		
+		return paymentMethodsData.map((paymentMethod) => (
+			<PaymentMethodRadio 
+				key={paymentMethod.type} 
+				paymentMethod={paymentMethod} 
+				{...getRadioProps({ value: paymentMethod.type })} 
+			/>
+		));
 	};
 
 	return (
@@ -168,12 +186,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 					width={'50%'}
 					isDisabled={isTransactionInProgress}
 					variant="outline"
-					onClick={() =>
-						setModalData((prevData) => ({
-							...prevData,
-							step: 'PlanConfirmation',
-						}))
-					}
+					onClick={handleBack}
 				>
 					Back
 				</BasicButton>

@@ -1,17 +1,17 @@
-import { BasketMd } from "assets/icons/Finance/Basket/BasketMd";
-import { BoxMd } from "assets/icons/Finance/Box/BoxMd";
-import { ChartMd } from "assets/icons/Finance/Chart/ChartMd";
-import { HelpMd } from "assets/icons/Sign/Help/HelpMd";
-import { TargetMd } from "assets/icons/Sign/Target/TargetMd";
-import { BrushMd } from "assets/icons/StyleDesigner/Brush/BrushMd";
-import { AffiliateMd } from "assets/icons/System/Affiliate/AffiliateMd";
-import { ChatMd } from "assets/icons/System/Chat/ChatMd";
-import { DashboardMd } from "assets/icons/System/Dashboard/DashboardMd";
-import { GiftMd } from "assets/icons/System/Gift/GiftMd";
-import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd";
-import React from "react";
+import { BasketMd } from "assets/icons/Finance/Basket/BasketMd"
+import { BoxMd } from "assets/icons/Finance/Box/BoxMd"
+import { ChartMd } from "assets/icons/Finance/Chart/ChartMd"
+import { HelpMd } from "assets/icons/Sign/Help/HelpMd"
+import { TargetMd } from "assets/icons/Sign/Target/TargetMd"
+import { BrushMd } from "assets/icons/StyleDesigner/Brush/BrushMd"
+import { AffiliateMd } from "assets/icons/System/Affiliate/AffiliateMd"
+import { ChatMd } from "assets/icons/System/Chat/ChatMd"
+import { DashboardMd } from "assets/icons/System/Dashboard/DashboardMd"
+import { GiftMd } from "assets/icons/System/Gift/GiftMd"
+import { SettinggearMd } from "assets/icons/System/SettingGear/SettinggearMd"
+import React from "react"
 
-const baseSidebarLinks = [
+const producerSidebarLinks = [
     {
         group: 'Performance',
         items: [
@@ -114,20 +114,20 @@ const baseSidebarLinks = [
             }
         ]
     }
-];
+]
 
 // Utility function to filter sidebar links based on conditions
-export const getFilteredSidebarLinks = (hasCompletedQuests: boolean) => {
-    return baseSidebarLinks.map(group => ({
+const getFilteredSidebarLinks = (hasCompletedQuests: boolean) => {
+    return producerSidebarLinks.map(group => ({
         ...group,
         items: group.items.filter(item => {
             // Filter out Quests if they are completed
             if (item.title === 'Quests' && hasCompletedQuests) {
-                return false;
+                return false
             }
-            return true;
+            return true
         })
-    }));
-};
+    }))
+}
 
-export const producerSidebarLinks = baseSidebarLinks;
+export { getFilteredSidebarLinks, producerSidebarLinks }

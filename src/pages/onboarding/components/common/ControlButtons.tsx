@@ -9,7 +9,6 @@ interface ControlButtonsProps {
     onSubmit: () => void | Promise<void>
     onSkip?: (() => void) | null
     continueText?: string
-    backText?: string
     isLoading?: boolean
     showBackButton?: boolean
 }
@@ -19,7 +18,6 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     onSubmit,
     onSkip = null,
     continueText = "Continue",
-    backText = "Back",
     isLoading: externalLoading = false,
     showBackButton = true,
 }) => {
@@ -30,7 +28,8 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
         setInternalLoading(true)
         try {
             await onSubmit()
-        } finally {
+        }
+        finally {
             setInternalLoading(false)
         }
     }
@@ -58,7 +57,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                         onClick={onBack}
                         isDisabled={isButtonLoading}
                     >
-                        {backText}
+                        Back
                     </AppButton>
                 }
                 <AppButton

@@ -8,13 +8,26 @@ import MenuItemAppVersion from './MenuItemAppVersion'
 import MenuItemShopInfo from './MenuItemShopInfo'
 import MenuItemShopSubscription from './MenuItemShopSubscription'
 
-export const UserMenu = () => {
+interface Props {
+    trigger?: React.ReactNode
+}
+
+export const UserMenu = ({ trigger }: Props) => {
     const disclosure = useDisclosure()
+
+    const defaultTrigger = (
+        <IconWrapper
+            width={10}
+            height={10}
+            bgColor="transparent"
+            icon={<UserMd color='#fff' />}
+        />
+    )
 
     return (
         <Menu variant="unstyled" {...disclosure}>
             <MenuButton>
-                <IconWrapper width={10} height={10} bgColor="transparent" icon={<UserMd color='#fff' />} />
+                {trigger || defaultTrigger}
             </MenuButton>
 
             <MenuList
