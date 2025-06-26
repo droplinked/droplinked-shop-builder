@@ -64,6 +64,7 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
             {paymentData.clientSecret ? (
                 <ModalBody px={{ base: 4, md: 8 }} py={4}> 
                     <DroplinkedPaymentForm
+                        intentType="payment"
                         clientSecret={paymentData.clientSecret}
                         onSuccess={handleSuccessPayment}
                         onError={handleError}

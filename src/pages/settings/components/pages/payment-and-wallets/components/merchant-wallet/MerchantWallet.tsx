@@ -11,16 +11,12 @@ const MerchantWallet: React.FC = () => {
     <>
       <SectionContainer
         title=" Merchant Wallet"
-        rightContent={
-          <ManageRechargeButtons />
-        }
+        rightContent={<ManageRechargeButtons />}
       >
         <SectionContent
           title="Address"
           description="The merchant wallet enables USDC acceptance for all businesses. It offers a secure and seamless way to manage revenue while minimizing merchant processing fees."
-          rightContent={
-            <WalletInput />
-          }
+          rightContent={<WalletInput />}
         >
           <WalletFeatures />
         </SectionContent>

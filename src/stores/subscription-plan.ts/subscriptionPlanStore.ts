@@ -5,7 +5,7 @@ type PlanDuration = { month: number, label: string, discount?: number }
 
 export const planDurations: PlanDuration[] = [
     { month: 1, label: "Monthly" },
-    { month: 12, label: "Annually", discount: 10 },
+    { month: 12, label: "Yearly", discount: 10 },
     { month: 36, label: "3-Year", discount: 25 },
 ]
 
@@ -28,7 +28,7 @@ type Action = {
 const useSubscriptionPlanStore = create<State & Action>((set, get) => ({
     selectedPlan: null,
     selectedPlanPrice: 0,
-    preferredPlanDuration: planDurations[1],
+    preferredPlanDuration: planDurations[0],
     planCardStyles: {
         descriptionHeight: 48,
         priceHeight: 48

@@ -2,12 +2,12 @@ import { Box, Flex, ModalBody, StyleProps, useDisclosure } from '@chakra-ui/reac
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSideIcons'
+import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import React, { useContext, useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import PartnerContext, { StepsType } from '../../context/partner.context'
 import { useWalletVerification } from './useWalletVerification'
-import AppButton from 'components/redesign/button/AppButton'
 
 const WalletVerificationModal = () => {
 	const navigate = useNavigate()
@@ -37,7 +37,7 @@ const WalletVerificationModal = () => {
 	} = {
 		connect: {
 			title: 'Connect Wallet for Verification',
-			description: `Connect your wallet to check if you're eligible for the  ${planDurationMonths} month Pro Plan`,
+			description: `Connect your wallet to check if you're eligible for the ${planDurationMonths} month Pro Plan`,
 			buttons: {
 				left: { label: 'Close', onClick: onClose, styles: {} },
 				right: {
@@ -256,7 +256,6 @@ const WalletVerificationModal = () => {
 									fontSize={{ base: '14px', md: '16px' }}
 									onClick={current_state?.buttons?.right?.onClick}
 									{...current_state.buttons?.right?.styles}
-									disabled={true}
 								>
 									{current_state?.buttons?.right?.label}
 									{current_state?.buttons?.right?.rightIcon}

@@ -1,4 +1,4 @@
-import { Flex, Text, VStack } from '@chakra-ui/react'
+import { Text, VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
@@ -7,12 +7,12 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import { signupService } from 'lib/apis/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -25,7 +25,7 @@ const formSchema = Yup.object().shape({
     referralCode: Yup.string()
 })
 
-function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
+function SignUpForm() {
     const [searchParams] = useSearchParams()
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
@@ -34,6 +34,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
     const udId = searchParams.get("ud-id")
+    const source = searchParams.get("source")
 
     async function handleSignUp(values: any) {
         try {
@@ -47,7 +48,7 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                 hasProducerAccount: true
             })
             updateOnboardingState("credentials", { email, password })
-            onNext()
+            updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
             const errorMessage = error?.response?.data?.data?.message || "Signup failed"
@@ -113,8 +114,8 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    By signing up, I agree to your
-                                    <InteractiveText to="/terms">Terms and Conditions.</InteractiveText>
+                                    By signing up, I agree to your {" "}
+                                    <InteractiveText to="/terms" display="contents">Terms and Conditions.</InteractiveText>
                                 </Text>
                             </Checkbox>
 
@@ -134,20 +135,15 @@ function SignUpForm({ onBack, onNext }: OnboardingStepProps) {
                                 referralCode={values.referralCode}
                                 d3Id={d3Id}
                                 udId={udId}
+                                source={source}
                             />
 
-                            <Flex
-                                flexDirection={{ base: "column", md: "row" }}
+                            <AuthRedirectLink
                                 justifyContent="center"
-                                alignItems="center"
-                                gap={{ base: 1, md: 2 }}
-                                marginTop={3}
-                            >
-                                <Text fontSize={14} color="text.white">
-                                    Already have an account?
-                                </Text>
-                                <InteractiveText onClick={onBack}>Sign in</InteractiveText>
-                            </Flex>
+                                text='Already have an account?'
+                                linkText='Sign in'
+                                action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
+                            />
                         </Form>
                     )
                 }}

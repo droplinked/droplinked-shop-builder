@@ -1,11 +1,10 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
+import { PlanType } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
-import { planDurations } from 'stores/subscription-plan.ts/subscriptionPlanStore'
-import { PlanType } from 'pages/onboarding/types/onboarding'
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -13,10 +12,9 @@ interface SubscriptionPlanCardProps {
   isPopular?: boolean
   isSelected?: boolean
   onSelect?: (planType: PlanType) => void
-  planDuration: typeof planDurations[0]
 }
 
-function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {
+function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   
   const handleSelect = () => {

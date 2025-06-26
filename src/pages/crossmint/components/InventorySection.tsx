@@ -11,8 +11,8 @@ import React from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
-import LoadingSkeleton from './LoadingSkeleton'
 import { appDevelopment } from 'utils/app/variable'
+import LoadingSkeleton from './LoadingSkeleton'
 
 function InventorySection({ crossmintWallet }: { crossmintWallet?: string }) {
     const { showToast } = useAppToast()

@@ -4,6 +4,7 @@ export type ModalStep = 'PlanConfirmation' | 'PaymentMethodSelection' | 'StripeP
 
 export interface ModalState {
     step: ModalStep;
-    stripeClientSecret: string;
+    stripeClientSecret?: string;
+    intentType?: 'payment' | 'setup';
     selectedPaymentMethod: SubscriptionPlanPaymentMethod;
 }

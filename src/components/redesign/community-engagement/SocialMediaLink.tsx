@@ -5,7 +5,7 @@ import React from "react"
 import { SocialMediaItem } from "utils/constants/socialMediaLinks"
 
 interface Props {
-  linkData: SocialMediaItem
+  linkData: SocialMediaItem,
 }
 
 function SocialMediaLink({ linkData }: Props) {

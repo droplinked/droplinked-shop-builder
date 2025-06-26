@@ -5,8 +5,8 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React from 'react'
 
 export default function ShopBanner() {
-    const { storeSetup } = useOnboardingStore()
-    const { hero_section, logo } = storeSetup
+    const { shopData } = useOnboardingStore()
+    const { hero_section, logo } = shopData
 
     return (
         <Flex
@@ -23,9 +23,9 @@ export default function ShopBanner() {
         >
             {!hero_section &&
                 <>
-                    {logo ?
-                        <AppImage src={logo} width="80px" height="80px" borderRadius="full" /> :
-                        <Drop3 width="80px" height="80px" color='#2bcfa1' />
+                    {logo
+                        ? <AppImage src={logo} width="80px" height="80px" borderRadius="full" />
+                        : <Drop3 width="80px" height="80px" color='#2bcfa1' />
                     }
                     <Text
                         fontSize={{ base: 16, xl: 24 }}

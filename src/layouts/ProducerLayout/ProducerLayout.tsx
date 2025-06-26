@@ -18,7 +18,8 @@ function ProducerLayout({ children, hideSidebar = false, showBackground = false 
     const { user } = useAppStore()
     const { resetOnboarding } = useOnboardingStore()
 
-    // Redirect users with specific statuses
+    // Prevent users from accessing panel and other areas until store setup is complete
+    // Redirects users with incomplete profiles to onboarding and prevents default URL access
     useEffect(() => {
         if (['PROFILE_COMPLETED', 'VERIFIED'].includes(user?.status))
             navigate('/onboarding?entry=store-details')

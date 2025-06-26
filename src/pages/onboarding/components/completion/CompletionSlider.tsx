@@ -1,25 +1,24 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import confetti from 'canvas-confetti'
 import CommunityEngagement from 'components/redesign/community-engagement/CommunityEngagement'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ActionControls from './ActionControls'
 import VideoPlayer from './VideoPlayer'
 
-function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
+function CompletionSlider() {
     const navigate = useNavigate()
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
-    const [isVideoPlaying, setIsVideoPlaying] = useState(false)
     const communityEngagementColumns = useBreakpointValue({ base: 1, md: 2, lg: 3 })
+    const { updateOnboardingState } = useOnboardingStore()
 
     const handleSlideChange = (index: number) => {
         setCurrentSlideIndex(index)
-        setIsVideoPlaying(index === 0)
     }
 
     const handlePreviousAction = () => {
-        if (currentSlideIndex === 0) return onBack()
+        if (currentSlideIndex === 0) return updateOnboardingState('currentStep', 'PLAN_SELECTION')
         handleSlideChange(0)
     }
 
@@ -44,7 +43,7 @@ function CompletionSlider({ onBack }: Pick<OnboardingStepProps, "onBack">) {
         >
             {
                 currentSlideIndex === 0
-                    ? <VideoPlayer isPlaying={isVideoPlaying} />
+                    ? <VideoPlayer />
                     : <CommunityEngagement columns={communityEngagementColumns} includeBlueSky borderRadius={8} />
             }
 

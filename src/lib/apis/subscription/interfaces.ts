@@ -1,3 +1,5 @@
+import { PlanType } from "utils/constants/subscriptionPlans";
+
 export interface SubOptionId {
     title: string;
     key: string;
@@ -21,7 +23,7 @@ export interface IPrice {
 
 export interface SubscriptionPlan {
     _id: string;
-    type: string;
+    type: PlanType;
     subOptionIds: Array<{
         title?: string;
         key: string;
@@ -71,7 +73,7 @@ export interface ShopSubscriptionData {
 export interface SubscriptionCheckout {
     month: number;
     subId: string;
-    recurring: boolean
+    trialMonths?: number;
 }
 
 export interface SubscriptionCryptoCheckout {
@@ -85,6 +87,7 @@ export interface SubscriptionStripePaymentResult {
     transactionId: string;
     clientSecret: string;
     paymentIntentId: string;
+    intentType: "payment" | "setup";
 }
 
 interface PaymentMethodToken {

@@ -27,12 +27,12 @@ const stateColorMap = new Map([
         focusBorder: "#2BCFA1",
         color: "#2BCFA1",
         backgroundColor: "rgba(43, 207, 161, 0.10)"
-    }],
+    }]
 ])
 
 export default function OtpField({ value, onChange, isLoading, state = "default" }: Props) {
-    const colors = stateColorMap.get(state)
     const containerRef = useRef<HTMLDivElement>(null)
+    const colors = stateColorMap.get(state)
 
     // Handle paste event
     useEffect(() => {
@@ -53,27 +53,29 @@ export default function OtpField({ value, onChange, isLoading, state = "default"
         }
 
         const container = containerRef.current
-        if (container) {
-            container.addEventListener('paste', handlePaste)
-        }
+        container?.addEventListener('paste', handlePaste)
 
         return () => {
-            if (container) {
-                container.removeEventListener('paste', handlePaste)
-            }
+            container?.removeEventListener('paste', handlePaste)
         }
     }, [onChange])
 
     return (
         <Flex
             ref={containerRef}
-            alignItems="center"
             justifyContent="center"
+            alignItems="center"
+            gap={4}
             marginTop={{ base: "0px", md: "38px" }}
             marginBottom={{ base: "48px", md: "80px" }}
-            gap={{ base: 4, md: 6 }}
         >
-            <PinInput otp placeholder="*" onChange={onChange} value={value} isDisabled={isLoading}>
+            <PinInput
+                otp
+                placeholder="*"
+                value={value}
+                isDisabled={isLoading}
+                onChange={onChange}
+            >
                 {Array.from({ length: 6 }).map((_, index) => (
                     <PinInputField
                         key={index}

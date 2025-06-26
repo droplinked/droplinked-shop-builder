@@ -18,11 +18,11 @@ function DotSeparatedList({ children, ...props }: FlexProps) {
   if (validChildren.length === 0) return null
 
   return (
-    <Flex alignItems="center" gap={2} {...props}>
+    <Flex flexWrap="wrap" alignItems="center" gap={2} {...props}>
       {validChildren.map((child, index) => (
         <React.Fragment key={index}>
           {child}
-          {index < validChildren.length - 1 && <Circle size={1} bg="neutral.gray.800" />}
+          {index < validChildren.length - 1 && <Circle className="dot-separator" size={1} bg="neutral.gray.800" />}
         </React.Fragment>
       ))}
     </Flex>

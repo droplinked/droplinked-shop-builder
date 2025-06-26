@@ -1,15 +1,15 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import SectionContainer from 'pages/settings/components/common/SectionContainer'
-import React from 'react'
-import UserManagementTable from './UserManagementTable'
-import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
-import useAppStore from 'stores/app/appStore'
-import InviteUserModal from './InviteUserModal'
-import { useQuery } from 'react-query'
-import { getInvitationsService } from 'lib/apis/user/services'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
 import BlueButton from 'components/redesign/button/BlueButton'
+import { getInvitationsService } from 'lib/apis/user/services'
+import SectionContainer from 'pages/settings/components/common/SectionContainer'
+import React from 'react'
+import { useQuery } from 'react-query'
+import useAppStore from 'stores/app/appStore'
+import UpgradePlan from '../../../../common/upgrade-plan/UpgradePlan'
+import InviteUserModal from './InviteUserModal'
+import UserManagementTable from './UserManagementTable'
 
 export default function UserManagementSection() {
     const { isFetching, data, refetch } = useQuery({ queryKey: ["userManagementTable"], queryFn: () => getInvitationsService() })
@@ -23,9 +23,7 @@ export default function UserManagementSection() {
         <SectionContainer
             title="User Management"
             description='Add or remove team members by entering their email addresses. An invite with the required instructions to join the account will be sent.'
-            badge={
-                <AccessLevelBadge justLevel level="Premium" />
-            }
+            badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <>
                     <BlueButton

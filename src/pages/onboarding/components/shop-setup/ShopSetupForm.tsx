@@ -1,49 +1,43 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/react'
+import { useShopSetupSubmit } from 'pages/onboarding/hooks/useShopSetupSubmit'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
-import { OnboardingStepProps } from 'pages/onboarding/types/onboarding'
 import React from 'react'
-import useAppStore from 'stores/app/appStore'
-import { useShopSetupSubmit } from '../../hooks/useShopSetupSubmit'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import ShopPreview from '../shop-preview/ShopPreview'
-import AiAssistant from './AiAssistant/desktop/AiAssistant'
-import AiAssistantButton from './AiAssistant/mobile/AiAssistantButton'
-import AutoPopulateSampleProductsToggle from './AutoPopulateSampleProductsToggle'
-import CoverImage from './CoverImage'
-import DescriptionField from './DescriptionField'
-import LogoUploader from './LogoUploader'
-import NameField from './NameField'
-import UrlChooser from './UrlChooser'
+import AICard from './ai/AICard'
+import AutoPopulateSampleProductsToggle from './inputs/AutoPopulateSampleProductsToggle'
+import DescriptionField from './inputs/DescriptionField'
+import ExistingShopUrlProcessor from './inputs/ExistingShopUrlProcessor'
+import NameField from './inputs/NameField'
+import UrlChooser from './inputs/UrlChooser'
+import CoverImage from './uploads/CoverImage'
+import LogoUploader from './uploads/LogoUploader'
 
-function ShopSetupForm({ onNext }: OnboardingStepProps) {
-    const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)")
-    const { reset } = useAppStore()
-    const { resetOnboarding } = useOnboardingStore()
-    const { handleSubmit, isLoading } = useShopSetupSubmit({ onSuccess: onNext })
+function ShopSetupForm() {
+  const [isSmallerThan1024] = useMediaQuery('(max-width: 1024px)')
+  const { handleSubmit, isLoading } = useShopSetupSubmit()
+  const { shopSetupUI: { hasExistingShop }, updateOnboardingState } = useOnboardingStore()
 
-    const handleBack = () => {
-        reset()
-        resetOnboarding()
-    }
+  const handleBack = () => updateOnboardingState("currentStep", "EXISTING_WEBSITE")
 
-    return (
-        <>
-            <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" gap={4}>
-                <OnboardingStepHeader heading='Store Details' description='Complete the information below to optimize your storefront.' />
-                {isSmallerThan1024 && <AiAssistantButton />}
-            </Flex>
-            <LogoUploader />
-            <CoverImage />
-            <UrlChooser />
-            <NameField />
-            <DescriptionField />
-            <AutoPopulateSampleProductsToggle />
-            <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} backText='Exit' />
-            {!isSmallerThan1024 && <AiAssistant />}
-            {isSmallerThan1024 && <ShopPreview />}
-        </>
-    )
+  return (
+    <>
+      <OnboardingStepHeader
+        heading="Account Details"
+        description="Complete the information below to optimize your storefront."
+      />
+      {hasExistingShop ? <ExistingShopUrlProcessor /> : <AICard />}
+      <LogoUploader />
+      <CoverImage />
+      <UrlChooser />
+      <NameField />
+      <DescriptionField />
+      <AutoPopulateSampleProductsToggle />
+      <ControlButtons onBack={handleBack} onSubmit={handleSubmit} isLoading={isLoading} />
+      {isSmallerThan1024 && <ShopPreview />}
+    </>
+  )
 }
 
 export default ShopSetupForm

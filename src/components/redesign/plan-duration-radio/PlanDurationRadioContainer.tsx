@@ -1,7 +1,13 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import useSubscriptionPlanPurchaseStore, { planDurations } from '../../../stores/subscription-plan.ts/subscriptionPlanStore'
 import PlanDurationRadio from './PlanDurationRadio'
+
+interface PlanDurationRadioContainerProps {
+    bgColor?: string
+    showBorder?: boolean
+    defaultDuration?: string
+}
 
 /**
  * PlanDurationRadioContainer Component - Plan duration selection group
@@ -9,11 +15,26 @@ import PlanDurationRadio from './PlanDurationRadio'
  * Horizontal scrollable container of radio options for selecting subscription
  * plan durations, with global state integration and custom scrollbar styling.
  * 
+ * @param {string} bgColor - Custom background color for the container
+ * @param {string} border - Optional border styling for the container
+ * @param {string} defaultDuration - Optional default duration label to set on mount
  * @returns {JSX.Element} A scrollable radio group for selecting plan durations
  */
-function PlanDurationRadioContainer() {
+
+
+function PlanDurationRadioContainer({ bgColor = "neutral.gray.1000", showBorder = false, defaultDuration = "Monthly" }: PlanDurationRadioContainerProps) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const updatePlanDuration = useSubscriptionPlanPurchaseStore((state) => state.updatePlanDuration)
+
+    // Set default duration on mount if provided
+    useEffect(() => {
+        if (defaultDuration) {
+            const duration = planDurations.find((d) => d.label === defaultDuration)
+            if (duration && duration.label !== preferredPlanDuration.label) {
+                updatePlanDuration(duration)
+            }
+        }
+    }, [defaultDuration, updatePlanDuration])
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'preferred-plan-duration',
@@ -29,7 +50,9 @@ function PlanDurationRadioContainer() {
             height={12}
             alignItems={"center"}
             gap={1}
-            bg={"neutral.gray.1000"}
+            bg={bgColor}
+            border={showBorder ? "1px solid" : "none"}
+            borderColor={showBorder ? "neutral.gray.800" : "transparent"}
             p={"6px"}
             borderRadius={8}
             sx={{

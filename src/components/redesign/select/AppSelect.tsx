@@ -1,5 +1,6 @@
-import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text } from '@chakra-ui/react'
+import { Select as ChakraSelect, FormLabel, InputGroup, InputGroupProps, SelectProps, Spinner, Text, Flex, Box } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
+import { AsteriskSm } from 'assets/icons/Sign/Asterisk/AsteriskSm'
 import React, { useMemo } from 'react'
 import ErrorMessage from '../error-message/ErrorMessage'
 
@@ -19,6 +20,7 @@ import ErrorMessage from '../error-message/ErrorMessage'
  * @param {string} [props.itemBackgroundColor] - Background color for dropdown items
  * @param {string} [props.itemColor] - Text color for dropdown items
  * @param {SelectProps} [props.selectProps] - Props for the select element including value and onChange
+ * @param {boolean} [props.isRequired] - Whether the field is required (displays asterisk)
  * 
  * @returns {JSX.Element} Customizable select component
  */
@@ -35,10 +37,11 @@ interface Props {
     itemBackgroundColor?: string
     itemColor?: string;
     selectProps?: SelectProps
+    isRequired?: boolean
 }
 
 function AppSelect(props: Props) {
-    const { label, description, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, itemColor, itemBackgroundColor, selectProps } = props
+    const { label, description, items, labelAccessor = "name", valueAccessor, dataAttributes, isLoading, error, inputGroupProps, itemColor, itemBackgroundColor, selectProps, isRequired } = props
     const { value, onChange } = selectProps
 
     const options = useMemo(() => {
@@ -103,7 +106,11 @@ function AppSelect(props: Props) {
 
     return (
         <InputGroup display="flex" flexDirection="column" {...inputGroupProps}>
-            <FormLabel mb={description ? 1 : 4} fontSize={14} fontWeight={500} color="text.white">{label}</FormLabel>
+            <Flex gap={2} alignItems="center" mb={description ? 1 : 4}>
+                <FormLabel display="flex" gap={1} alignItems="center" fontSize={14} fontWeight={500} color="text.white">
+                    {label} {isRequired && <AsteriskSm width="12px" height="12px" color='#FF2244' />}
+                </FormLabel>
+            </Flex>
             {description && <Text mb={4} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>}
             {selectElement}
             {error && <ErrorMessage mt={2}>{error}</ErrorMessage>}
