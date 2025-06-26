@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { ChevrondownMd } from 'assets/icons/Navigation/ChevronDown/ChevrondownMd';
 import { ChevronupMd } from 'assets/icons/Navigation/ChevronUp/ChevronupMd';
 import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm';
-import { getFeaturesWithInheritance } from 'pages/onboarding/components/subscription-plans/utils';
+import { getFeaturesWithInheritance } from 'pages/onboarding/utils/subscriptionPlan';
 import React from 'react';
 
 interface ProPlanFeaturesProps {
