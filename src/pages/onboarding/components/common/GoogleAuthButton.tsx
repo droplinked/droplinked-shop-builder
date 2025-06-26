@@ -25,6 +25,7 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, sour
             if (referralCode) googleAuthUrl.searchParams.append("referralCode", referralCode)
             if (d3Id) googleAuthUrl.searchParams.append("d3UserId", d3Id)
             if (udId) googleAuthUrl.searchParams.append("udUserId", udId)
+            // I know this is hilarious, but the backend team wanted it this way
             if (source === "crossmint") googleAuthUrl.searchParams.append("crossmintUserId", "some-random-id")
         }
 
