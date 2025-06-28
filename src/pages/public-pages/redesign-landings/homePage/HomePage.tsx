@@ -9,7 +9,7 @@ import { LazyLoad } from '../_shared/components/LazyLoad'
 export default function HomePage() {
   const sections = [
     { id: 'partners-section', component: <MarqueeSection /> },
-    // { id: 'goLive-section', component: <GoLiveSection /> },
+    { id: 'goLive-section', component: <GoLiveSection /> },
     { id: 'product-offering-section', component: <ProductOfferingSection /> }
   ]
 

@@ -1,13 +1,13 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Lottie from 'lottie-react'
 import { useRef, useState, useEffect } from 'react'
-import Step1 from '../lottie/GoLive/Step1.json'
-import Step2 from '../lottie/GoLive/Step2.json'
-import Step3 from '../lottie/GoLive/Step3.json'
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
+import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
+import Step1 from '../videos/step1.webm'
+import Step2 from '../videos/step2.webm'
+import Step3 from '../videos/step3.webm'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,26 +20,39 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
-    const LottieStep1 = <Lottie
-        loop={false}
-        animationData={Step1}
-        style={{ height }}
-        onComplete={() => setStep(2)}
-    />
+    const handleVideoEnded = (nextStep: number) => {
+        setStep(nextStep);
+    };
 
-    const LottieStep2 = <Lottie
-        loop={false}
-        animationData={Step2}
-        style={{ height }}
-        onComplete={() => setStep(3)}
-    />
+    const VideoStep1 = (
+        <InlineVideoPlayer
+            style={{ borderRadius: "16px 16px 0px 0px" }}
+            src={Step1}
+            height={height}
+            onEnded={() => handleVideoEnded(2)}
+            playing={step === 1}
+        />
+    );
 
-    const LottieStep3 = <Lottie
-        loop={false}
-        animationData={Step3}
-        style={{ height }}
-        onComplete={() => setStep(1)}
-    />
+    const VideoStep2 = (
+        <InlineVideoPlayer
+            style={{ borderRadius: "16px 16px 0px 0px" }}
+            src={Step2}
+            height={height}
+            onEnded={() => handleVideoEnded(3)}
+            playing={step === 2}
+        />
+    );
+
+    const VideoStep3 = (
+        <InlineVideoPlayer
+            style={{ borderRadius: "16px 16px 0px 0px" }}
+            src={Step3}
+            height={height}
+            onEnded={() => handleVideoEnded(1)}
+            playing={step === 3}
+        />
+    );
 
     // Handle step transitions with animation
     useEffect(() => {
@@ -70,7 +83,7 @@ export function useStepController() {
                 start: "top top",
                 end: "+=100%",
                 scrub: 1,
-                anticipatePin: 2,
+                anticipatePin: 1,
                 pin: true,
                 pinSpacing: true,
                 snap: 0.35,
@@ -90,6 +103,6 @@ export function useStepController() {
         isTransitioning,
         completedSteps,
         fixedPercentage,
-        LottieView: step === 1 ? LottieStep1 : step === 2 ? LottieStep2 : LottieStep3
+        LottieView: step === 1 ? VideoStep1 : step === 2 ? VideoStep2 : VideoStep3
     }
 }

@@ -5,7 +5,7 @@ function TypographyText({ svg }: { svg: React.ReactNode }) {
     const isSmallerThanMd = useBreakpointValue({ base: true, md: false })
     const scale = useBreakpointValue({ base: 0.6, md: 0.7, xl: 0.8, "2xl": 1 })
 
-    if (isSmallerThanMd) return null
+    if (isSmallerThanMd) return <Box display="none" />;
 
     return (
         <Box
