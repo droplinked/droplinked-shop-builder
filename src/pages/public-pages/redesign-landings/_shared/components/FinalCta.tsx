@@ -24,7 +24,16 @@ export default function FinalCta(props: Props) {
             subTitleElement={props.subTitleElement}
             {...props}
         >
-            <InlineVideoPlayer src={Video} style={{ paddingTop: "16px" }} />
+            <InlineVideoPlayer
+                src={Video}
+                style={{ paddingTop: "16px" }}
+                poster='https://upload-file-droplinked.s3.amazonaws.com/68c5fdbea929a9a9188d93918b2830a9d007e69b6ab32dbd637ea1bc2ae7daed.png'
+                fallback={<img
+                    src="https://upload-file-droplinked.s3.amazonaws.com/68c5fdbea929a9a9188d93918b2830a9d007e69b6ab32dbd637ea1bc2ae7daed.png"
+                    alt="Final CTA Placeholder"
+                    style={{ width: '100%', height: 'auto' }}
+                />}
+            />
         </SectionContainer >
     )
 }
