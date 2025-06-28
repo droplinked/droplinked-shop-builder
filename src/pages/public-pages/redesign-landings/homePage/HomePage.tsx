@@ -5,7 +5,7 @@ import ProductOfferingSection from './components/ProductOfferingSection'
 import GoLiveSection from './components/go-live-section/GoLiveSection'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import { LazyLoad } from '../_shared/components/LazyLoad'
-import KeyFeatures from './components/KeyFeatures'
+import KeyFeatures from './components/key-features/KeyFeatures'
 
 export default function HomePage() {
   const sections = [

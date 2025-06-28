@@ -3,7 +3,7 @@ import React from 'react'
 import Card from './Card'
 
 export interface CardData {
-    icon: React.ReactNode
+    icon?: React.ReactNode
     title: string
     description: string
     children?: React.ReactNode
@@ -20,9 +20,10 @@ interface Props {
     }
     hasHoverEffect?: boolean
     gap?: number
+    flexDirection?: 'column' | 'column-reverse'
 }
 
-export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect }: Props) {
+export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect, flexDirection }: Props) {
     const responsiveGap = useBreakpointValue({ base: 4, "2xl": 6 })
 
     const defaultTemplateColumns = {
@@ -47,6 +48,7 @@ export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect 
                     gridColumn={card.gridColumn}
                     hasHoverEffect={hasHoverEffect}
                     hasBackgroundOverlay={card.hasBackgroundOverlay}
+                    flexDirection={flexDirection}
                 />
             ))}
         </Grid>
