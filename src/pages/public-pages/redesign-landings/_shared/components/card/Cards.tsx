@@ -21,9 +21,10 @@ interface Props {
     hasHoverEffect?: boolean
     gap?: number
     flexDirection?: 'column' | 'column-reverse'
+    hasGradiantOverlay?: boolean
 }
 
-export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect, flexDirection }: Props) {
+export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect, flexDirection, hasGradiantOverlay }: Props) {
     const responsiveGap = useBreakpointValue({ base: 4, "2xl": 6 })
 
     const defaultTemplateColumns = {
@@ -49,6 +50,7 @@ export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect,
                     hasHoverEffect={hasHoverEffect}
                     hasBackgroundOverlay={card.hasBackgroundOverlay}
                     flexDirection={flexDirection}
+                    hasGradiantOverlay={hasGradiantOverlay}
                 />
             ))}
         </Grid>

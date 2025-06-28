@@ -57,7 +57,10 @@ export default function ProductOfferingSection() {
             headingSubtitle={headingSubtitle}
             typographySvg={<Products />}
         >
-            <Cards cardsData={cardsData} />
+            <Cards
+                hasGradiantOverlay={true}
+                cardsData={cardsData}
+            />
         </SectionContainer>
     )
 }

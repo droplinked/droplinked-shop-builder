@@ -62,6 +62,7 @@ export default function KeyFeatures() {
             <Cards
                 cardsData={doubleCards}
                 flexDirection='column-reverse'
+                hasGradiantOverlay={true}
                 templateColumns={{
                     base: '1fr',
                     md: 'repeat(2, 1fr)',
@@ -73,6 +74,7 @@ export default function KeyFeatures() {
                 <Cards
                     cardsData={tripleCards}
                     flexDirection='column-reverse'
+                    hasGradiantOverlay={true}
                     templateColumns={{
                         base: '1fr',
                         md: 'repeat(2, 1fr)',

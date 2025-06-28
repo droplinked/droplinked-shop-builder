@@ -7,11 +7,17 @@ import { CardData } from "./Cards"
 interface CardProps extends CardData {
     hasHoverEffect?: boolean
     flexDirection?: 'column' | 'column-reverse'
+    hasGradiantOverlay?: boolean
 }
 
-export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection }: CardProps) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay }: CardProps) {
     const [isHovered, setIsHovered] = useState(false)
     const hovered = isHovered && hasHoverEffect
+
+    // Determine gradient based on flex direction
+    const gradientStyle = flexDirection === 'column-reverse'
+        ? "linear-gradient(180deg, rgba(10, 10, 10, 0.00) 50%, #0A0A0A 100%)"
+        : "linear-gradient(180deg, #0A0A0A 0%, rgba(10, 10, 10, 0.00) 50%)";
 
     return (
         <Flex
@@ -53,7 +59,24 @@ export default function Card({ icon, title, description, children, gridColumn, h
                     </Text>
                 </Box>
             </Flex>
-            {children && <Box height="auto" position="relative" zIndex={1}>{children}</Box>}
+            {children && (
+                <Box height="auto" position="relative" zIndex={1}>
+                    {/* Gradient overlay for children */}
+                    <Box
+                        position="absolute"
+                        top={0}
+                        left={0}
+                        right={0}
+                        bottom={0}
+                        bgImage={hasGradiantOverlay ? gradientStyle : undefined}
+                        zIndex={2}
+                        pointerEvents="none"
+                    />
+                    <Box position="relative" zIndex={1}>
+                        {children}
+                    </Box>
+                </Box>
+            )}
         </Flex>
     )
 }
