@@ -2,6 +2,7 @@ import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
 import { LazyLoad } from '../LazyLoad'
+import { ReactPlayerProps } from 'react-player/dist/types'
 
 interface HeroSectionProps {
     title?: string
@@ -12,6 +13,7 @@ interface HeroSectionProps {
     videoMobile?: string
     poster?: string
     videoStyle?: React.CSSProperties
+    playerProps?: ReactPlayerProps
 }
 
 export default function HeroSection({
@@ -23,6 +25,7 @@ export default function HeroSection({
     videoMobile,
     poster,
     videoStyle,
+    playerProps,
 }: HeroSectionProps) {
     const backgroundImage = useBreakpointValue({
         base: "url(https://upload-file-droplinked.s3.amazonaws.com/5faebef9a91644efc0f2a81b0283762ab54982d57fcbac6969d51f4f08fde1a7.png)", // 767 به پایین
@@ -77,6 +80,7 @@ export default function HeroSection({
                         videoMobile={videoMobile}
                         poster={poster}
                         style={videoStyle}
+                        playerProps={playerProps}
                     />
                 </Box>
             </Grid>

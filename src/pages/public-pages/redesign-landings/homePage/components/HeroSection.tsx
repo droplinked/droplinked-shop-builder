@@ -1,19 +1,15 @@
-import React from 'react'
-import HeroSection from '../../_shared/components/hero-section/HeroSection'
-import { AUTH_ROUTES } from 'constants/authRoutes'
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import { AUTH_ROUTES } from 'constants/authRoutes'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import HeroSection from '../../_shared/components/hero-section/HeroSection'
 import VideoDesktop from '../videos/hero-desktop.webm'
-import VideoTablet from '../videos/hero-tablet.webm'
 import VideoMobile from '../videos/hero-mobile.webm'
+import VideoTablet from '../videos/hero-tablet.webm'
 
 export default function HomePageHero() {
-    const poster = useBreakpointValue({
-        base: '../videos/hero-mobile-poster.jpg',
-        md: '../videos/hero-tablet-poster.jpg',
-        lg: '../videos/hero-desktop-poster.jpg',
-    })
+    const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })
 
     return (
         <HeroSection
@@ -23,7 +19,11 @@ export default function HomePageHero() {
             videoTablet={VideoTablet}
             videoMobile={VideoMobile}
             videoStyle={{
-                marginTop: "48px"
+                margin: "48px auto auto",
+                paddingInline
+            }}
+            playerProps={{
+                loop: false,
             }}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
