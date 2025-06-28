@@ -3,10 +3,10 @@ import React from 'react'
 
 interface Props {
     subTitle?: string
-    hasTypographyText?: boolean
+    hasTypographySvg?: boolean
 }
 
-export default function HeadingSubtitle({ subTitle, hasTypographyText }: Props) {
+export default function HeadingSubtitle({ subTitle, hasTypographySvg }: Props) {
     if (!subTitle) return null
 
     return (
@@ -17,7 +17,7 @@ export default function HeadingSubtitle({ subTitle, hasTypographyText }: Props) 
             fontWeight="400"
             lineHeight={{ base: "20px", lg: "24px" }}
             whiteSpace="pre-wrap"
-            mb={hasTypographyText ? "48px" : 0}
+            mb={hasTypographySvg ? "48px" : 0}
         >
             {subTitle}
         </Text>

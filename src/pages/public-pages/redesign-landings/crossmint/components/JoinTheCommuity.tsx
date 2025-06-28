@@ -3,6 +3,7 @@ import SocialMediaLink from 'components/redesign/community-engagement/SocialMedi
 import React from 'react'
 import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'utils/constants/socialMediaLinks'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
+import Community from '../svgs/Community'
 
 export default function JoinTheCommuity() {
     return (
@@ -11,7 +12,7 @@ export default function JoinTheCommuity() {
             sectionTitle='GROW TOGETHER'
             headingTitle='Join the Community'
             headingSubtitle='Follow us across our channels to get the latest news, updates and exclusive offers'
-            typographyText='Community!'
+            typographySvg={<Community style={{ marginBottom: "-26px" }} />}
         >
             <Grid
                 width="100%"
