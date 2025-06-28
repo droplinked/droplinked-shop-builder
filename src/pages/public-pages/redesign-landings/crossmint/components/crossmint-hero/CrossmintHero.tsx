@@ -3,7 +3,6 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import HeroSection from '../../../_shared/components/hero-section/HeroSection'
 import SubtitleElements from './SubtitleElements'
 import videoUrl from '../../videos/Partners.webm'
-import thumbnailUrl from '../../thumbnails/Thumbnail.png'
 
 export default function CrossmintHero() {
     const responsiveWidth = useBreakpointValue({ base: '250%', md: '100%' })
@@ -25,7 +24,7 @@ export default function CrossmintHero() {
             videoDesktop={videoUrl}
             videoTablet={videoUrl}
             videoMobile={videoUrl}
-            poster={thumbnailUrl}
+            poster="https://upload-file-droplinked.s3.amazonaws.com/ce9a3bab52d874b2f393a89ef97462c57bbe37b782e52332b5df354b714afc7e.png"
             videoStyle={videoStyle}
             subTitleElements={
                 <SubtitleElements />
