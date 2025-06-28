@@ -6,7 +6,7 @@ export default function InlineVideoPlayer(props: ReactPlayerProps) {
     return (
         <ReactPlayer
             width="100%"
-            height="100%"
+            height="auto"
             muted={true}
             playsInline={true}
             autoPlay={true}

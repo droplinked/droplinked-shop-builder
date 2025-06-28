@@ -13,7 +13,6 @@ export default function CrossmintHero() {
         right: responsiveRight,
         maxWidth: "1440px",
         marginInline: "auto",
-        height: "auto",
         position: "relative" as const
     }
 
