@@ -1,4 +1,4 @@
-import { Grid } from '@chakra-ui/react'
+import { Grid, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import Card from './Card'
 
@@ -22,7 +22,9 @@ interface Props {
     gap?: number
 }
 
-export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEffect }: Props) {
+export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect }: Props) {
+    const responsiveGap = useBreakpointValue({ base: 4, "2xl": 6 })
+
     const defaultTemplateColumns = {
         base: '1fr',
         md: 'repeat(2, 1fr)',
@@ -33,7 +35,7 @@ export default function Cards({ cardsData, templateColumns, gap = 6, hasHoverEff
         <Grid
             width="100%"
             templateColumns={templateColumns || defaultTemplateColumns}
-            gap={gap}
+            gap={gap || responsiveGap}
         >
             {cardsData.map((card, index) => (
                 <Card

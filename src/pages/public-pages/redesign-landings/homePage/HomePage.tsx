@@ -5,12 +5,14 @@ import ProductOfferingSection from './components/ProductOfferingSection'
 import GoLiveSection from './components/go-live-section/GoLiveSection'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import { LazyLoad } from '../_shared/components/LazyLoad'
+import KeyFeatures from './components/KeyFeatures'
 
 export default function HomePage() {
   const sections = [
     { id: 'partners-section', component: <MarqueeSection /> },
-    { id: 'goLive-section', component: <GoLiveSection /> },
-    { id: 'product-offering-section', component: <ProductOfferingSection /> }
+    // { id: 'goLive-section', component: <GoLiveSection /> },
+    { id: 'product-offering-section', component: <ProductOfferingSection /> },
+    { id: 'key-features', component: <KeyFeatures /> }
   ]
 
   return (
