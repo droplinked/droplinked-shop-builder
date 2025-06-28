@@ -1,7 +1,8 @@
-import Lottie from 'lottie-react'
 import React from 'react'
+import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import FinalCta from '../lottie/FinalCta.json'
+// @ts-ignore
+import Video from '../../_shared/video/finalCTa.webm'
 import ClaimNowButton from './ClaimNowButton'
 
 export default function ClaimNow() {
@@ -17,7 +18,7 @@ export default function ClaimNow() {
                 <ClaimNowButton />
             }
         >
-            <Lottie animationData={FinalCta} style={{ paddingTop: '16px' }} />
+            <InlineVideoPlayer src={Video} style={{ paddingTop: "16px" }} />
         </SectionContainer >
     )
 }
