@@ -13,7 +13,6 @@ export default function HomePageHero() {
         <HeroSection
             title={`Commerce That \n Earns The Most`}
             subtitle="From the largest enterprises to solo merchants, droplinked provides tools enabling businesses and entrepreneurs to finance growth and earn more on every sale"
-            backgroundImage="https://upload-file-droplinked.s3.amazonaws.com/bb43d560151ac7d20966da30d1d9affdd9b462943a49cbf40e4f893e35c94b07.png"
             heroDesktop={HeroDesktop}
             heroTablet={HeroTablet}
             heroMobile={HeroMobile}

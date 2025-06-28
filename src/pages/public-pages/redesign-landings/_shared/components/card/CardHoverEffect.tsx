@@ -12,34 +12,10 @@ export default function CardHoverEffect({ isStatic }: { isStatic: boolean }) {
                 left={0}
                 w="full"
                 h="full"
-                bgImage="url(https://upload-file-droplinked.s3.amazonaws.com/67d24e75abf96fe4cdd2c9092aa85834d55de9c119f8dc77308161c9553d8293.png)"
+                bgImage="url(https://upload-file-droplinked.s3.amazonaws.com/d5015d5fd7a596899973fa59c29f6ec6093415eb45f76049cf83e18aeb7cfb14.png)"
                 bgSize="cover"
-                bgPosition="50%"
+                bgPosition="center"
                 bgRepeat="no-repeat"
-                mixBlendMode="exclusion"
-                opacity={defaultOpacity}
-                transition="opacity 0.3s ease-in-out"
-                _groupHover={{ opacity: 1 }}
-            />
-            <Box
-                position="absolute"
-                top={0}
-                left={0}
-                w="full"
-                h="full"
-                bg="#2BCFA1"
-                mixBlendMode="color"
-                opacity={defaultOpacity}
-                transition="opacity 0.3s ease-in-out"
-                _groupHover={{ opacity: 1 }}
-            />
-            <Box
-                position="absolute"
-                top={0}
-                left={0}
-                w="full"
-                h="full"
-                bg="linear-gradient(180deg, #0A0A0A 0%, rgba(10, 10, 10, 0.00) 50%)"
                 opacity={defaultOpacity}
                 transition="opacity 0.3s ease-in-out"
                 _groupHover={{ opacity: 1 }}

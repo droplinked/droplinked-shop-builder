@@ -30,9 +30,6 @@ const TokenizingProductsPage = lazy(() => import("pages/public-pages/landings/to
 const TokanpayPage = lazy(() => import("pages/public-pages/landings/tokenpay-page/TokanpayPage"))
 const Rewards = lazy(() => import("pages/public-pages/rewards/Rewards"))
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
-
-
-// Lazy-loaded Components
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
 const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
@@ -68,6 +65,7 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
+const HomePageV2 = lazy(() => import("pages/public-pages/redesign-landings/homePage/HomePage"))
 
 const router = createBrowserRouter([
     {
@@ -80,6 +78,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <HomePage /> },
+            { path: "homepageV2", element: <HomePageV2 /> },
             { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },

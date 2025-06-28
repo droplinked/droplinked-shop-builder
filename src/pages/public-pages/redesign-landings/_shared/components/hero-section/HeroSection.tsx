@@ -1,27 +1,28 @@
 import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
-import { LottieOptions } from 'lottie-react'
 import { LazyLoad } from '../LazyLoad'
 
 interface HeroSectionProps {
     title?: string
     subtitle?: string
     subTitleElements?: React.ReactNode
-    heroDesktop?: Object
-    heroTablet?: Object
-    heroMobile?: Object
-    lottieOptions?: Omit<LottieOptions, 'animationData'>
+    videoDesktop?: string
+    videoTablet?: string
+    videoMobile?: string
+    poster?: string
+    videoStyle?: React.CSSProperties
 }
 
 export default function HeroSection({
     title,
     subtitle,
     subTitleElements,
-    heroDesktop,
-    heroTablet,
-    heroMobile,
-    lottieOptions,
+    videoDesktop,
+    videoTablet,
+    videoMobile,
+    poster,
+    videoStyle,
 }: HeroSectionProps) {
     const backgroundImage = useBreakpointValue({
         base: "url(https://upload-file-droplinked.s3.amazonaws.com/5faebef9a91644efc0f2a81b0283762ab54982d57fcbac6969d51f4f08fde1a7.png)", // 767 به پایین
@@ -71,10 +72,11 @@ export default function HeroSection({
                         {subTitleElements}
                     </Box>
                     <HeroAnimation
-                        heroDesktop={heroDesktop}
-                        heroTablet={heroTablet}
-                        heroMobile={heroMobile}
-                        lottieOptions={lottieOptions}
+                        videoDesktop={videoDesktop}
+                        videoTablet={videoTablet}
+                        videoMobile={videoMobile}
+                        poster={poster}
+                        style={videoStyle}
                     />
                 </Box>
             </Grid>
