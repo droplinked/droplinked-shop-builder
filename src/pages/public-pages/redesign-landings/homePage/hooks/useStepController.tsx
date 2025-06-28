@@ -26,7 +26,7 @@ export function useStepController() {
 
     const VideoStep1 = (
         <InlineVideoPlayer
-            style={{ borderRadius: "16px 16px 0px 0px" }}
+            style={{ borderRadius: "24px 24px 0px 0px" }}
             src={Step1}
             height={height}
             onEnded={() => handleVideoEnded(2)}
@@ -36,7 +36,7 @@ export function useStepController() {
 
     const VideoStep2 = (
         <InlineVideoPlayer
-            style={{ borderRadius: "16px 16px 0px 0px" }}
+            style={{ borderRadius: "24px 24px 0px 0px" }}
             src={Step2}
             height={height}
             onEnded={() => handleVideoEnded(3)}
@@ -46,7 +46,7 @@ export function useStepController() {
 
     const VideoStep3 = (
         <InlineVideoPlayer
-            style={{ borderRadius: "16px 16px 0px 0px" }}
+            style={{ borderRadius: "24px 24px 0px 0px" }}
             src={Step3}
             height={height}
             onEnded={() => handleVideoEnded(1)}
@@ -83,7 +83,7 @@ export function useStepController() {
                 start: "top top",
                 end: "+=100%",
                 scrub: 1,
-                anticipatePin: 1,
+                anticipatePin: 2,
                 pin: true,
                 pinSpacing: true,
                 snap: 0.35,
