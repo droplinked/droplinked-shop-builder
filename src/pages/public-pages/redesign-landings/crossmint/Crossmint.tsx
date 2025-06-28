@@ -2,11 +2,11 @@ import React from 'react'
 import { LazyLoad } from '../_shared/components/LazyLoad'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
-import ClaimNow from './components/ClaimNow'
-import JoinTheCommuity from './components/JoinTheCommuity'
+import JoinTheCommuity from '../_shared/components/JoinTheCommuity'
 import ModularStack from './components/ModularStack'
 import SetOfPerks from './components/SetOfPerks'
 import CrossmintHero from './components/crossmint-hero/CrossmintHero'
+import ClaimNow from './components/ClaimNow'
 
 export default function Crossmint() {
     const sections = [

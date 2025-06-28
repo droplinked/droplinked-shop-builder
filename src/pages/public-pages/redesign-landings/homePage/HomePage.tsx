@@ -6,13 +6,17 @@ import GoLiveSection from './components/go-live-section/GoLiveSection'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import { LazyLoad } from '../_shared/components/LazyLoad'
 import KeyFeatures from './components/key-features/KeyFeatures'
+import JoinTheCommuity from '../_shared/components/JoinTheCommuity'
+import JoinNow from './components/JoinNow'
 
 export default function HomePage() {
   const sections = [
     { id: 'partners-section', component: <MarqueeSection /> },
     // { id: 'goLive-section', component: <GoLiveSection /> },
     { id: 'product-offering-section', component: <ProductOfferingSection /> },
-    { id: 'key-features', component: <KeyFeatures /> }
+    { id: 'key-features', component: <KeyFeatures /> },
+    { id: 'join-the-community', component: <JoinTheCommuity /> },
+    { id: 'join-now', component: <JoinNow /> },
   ]
 
   return (
