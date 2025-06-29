@@ -1,10 +1,16 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useEffect, useState } from 'react';
 import DescriptionContent from './components/DescriptionContent';
 import ShippingAvailability from './components/ShippingAvailability';
 import ProductCard from './components/ProductCard';
 
-const ProductDescription: React.FC<any> = ({ product }) => {
+interface ProductDescriptionProps {
+  product: any;
+}
+
+const ProductDescription: React.FC<ProductDescriptionProps> = ({ product }) => {
+  const { t } = useLocaleResources('affiliate');
   const [activeSection, setActiveSection] = useState<string>('description');
 
   useEffect(() => {
@@ -59,7 +65,7 @@ const ProductDescription: React.FC<any> = ({ product }) => {
           onClick={() => scrollToSection('description')}
           color="white"
         >
-          Description
+          {t('products.productDetails.description')}
         </Text>
 
         {product?.pod_blank_product_id && (
@@ -73,7 +79,7 @@ const ProductDescription: React.FC<any> = ({ product }) => {
             onClick={() => scrollToSection('shipping')}
             color="white"
           >
-            Shipping Availability
+            {t('products.productDetails.shippingAvailability')}
           </Text>
         )}
       </Box>
