@@ -3,6 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { Invoice, InvoiceStatus } from 'lib/services/invoice/interfaces'
 import { SHOP_URL } from 'utils/app/variable'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
@@ -21,13 +22,14 @@ interface Props {
 }
 
 function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
+    const { t } = useLocaleResources('invoice-management');
     const { getFormattedPrice } = useCurrencyConverter()
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const columns: ColumnDef<Invoice>[] = [
         {
             accessorKey: 'email',
-            header: 'Client',
+            header: t('table.columns.client'),
             cell: info => {
                 const { email, checkoutAddressID } = info.row.original
                 const { firstName, lastName } = checkoutAddressID ?? {}
@@ -43,17 +45,17 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 return "-"
             }
         },
-        { accessorKey: 'createdAt', header: 'Created', cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
+        { accessorKey: 'createdAt', header: t('table.columns.date'), cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
         {
             accessorKey: 'amount',
-            header: 'Amount',
+            header: t('table.columns.amount'),
             cell: (info) => {
                 const amount = info.getValue() as number
                 if (amount) return `${getFormattedPrice({ amount, toFixed: true })}`
                 return "-"
             }
         },
-        { accessorKey: 'status', header: 'Status', cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
+        { accessorKey: 'status', header: t('table.columns.status'), cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 
     const openDetailsModal = (invoice: Invoice) => {
@@ -82,7 +84,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 renderActions={renderActions}
                 emptyView={
                     <AppTypography fontSize={16} fontWeight={500} color="white">
-                        No invoices available. Create a new invoice to get started.
+                        {t('table.empty.description')}
                     </AppTypography>
                 }
                 infiniteScroll={{ dataLength, hasMore, next, isFetchingNextPage }}

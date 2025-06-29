@@ -1,35 +1,38 @@
 import { Badge, BadgeProps } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { InvoiceStatus } from 'lib/services/invoice/interfaces'
 import React from 'react'
 
-const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = {
-    "CHECKED_OUT": {
-        label: "Checked Out",
-        styles: {
-            bg: '#092C22',
-            color: '#2BCFA1',
-            borderColor: '#2BCFA1',
-        }
-    },
-    "PENDING": {
-        label: "Pending",
-        styles: {
-            bg: '#FF22441A',
-            color: '#FF2244',
-            borderColor: '#FF2244',
-        }
-    },
-    "ACTIVE": {
-        label: "Active",
-        styles: {
-            bg: '#292929',
-            color: '#fff',
-            borderColor: '#616161',
+function StatusBadge({ status }: { status: InvoiceStatus }) {
+    const { t } = useLocaleResources('invoice-management');
+    
+    const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = {
+        "CHECKED_OUT": {
+            label: t('table.status.checkedOut'),
+            styles: {
+                bg: '#092C22',
+                color: '#2BCFA1',
+                borderColor: '#2BCFA1',
+            }
+        },
+        "PENDING": {
+            label: t('table.status.pending'),
+            styles: {
+                bg: '#FF22441A',
+                color: '#FF2244',
+                borderColor: '#FF2244',
+            }
+        },
+        "ACTIVE": {
+            label: t('table.status.active'),
+            styles: {
+                bg: '#292929',
+                color: '#fff',
+                borderColor: '#616161',
+            }
         }
     }
-}
 
-function StatusBadge({ status }: { status: InvoiceStatus }) {
     const { label, styles } = statusMap[status]
 
     return (
