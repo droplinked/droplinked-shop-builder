@@ -55,7 +55,7 @@ export function useStepController() {
             <InlineVideoPlayer
                 ref={video1Ref}
                 style={getVideoStyle(1)}
-                src="/assets/video/home-page/step1.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/b547aadc75195664a89484cc3738f80cce911a9ced71c3a7ab9eb445b45342e9_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(2)}
                 playing={step === 1 && video1InView}
@@ -64,7 +64,7 @@ export function useStepController() {
             <InlineVideoPlayer
                 ref={video2Ref}
                 style={getVideoStyle(2)}
-                src="/assets/video/home-page/step2.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/4e76691acd8c158e484704da1c5668216ef0e513403cf6fcd44807aaf8e8e307_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(3)}
                 playing={step === 2 && video2InView}
@@ -73,7 +73,7 @@ export function useStepController() {
             <InlineVideoPlayer
                 ref={video3Ref}
                 style={getVideoStyle(3)}
-                src="/assets/video/home-page/step3.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/a09ff57a9e5b5eb37d158b4baf90bde0edf6f5773711c28da3988494fc634781_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(1)}
                 playing={step === 3 && video3InView}

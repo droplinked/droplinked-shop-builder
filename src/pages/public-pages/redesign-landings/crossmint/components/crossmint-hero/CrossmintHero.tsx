@@ -15,7 +15,7 @@ export default function CrossmintHero() {
         position: "relative" as const
     }
 
-    const videoUrl = '/assets/video/crossmint-landing/Partners.webm'
+    const videoUrl = 'https://upload-file-droplinked.s3.amazonaws.com/50e0182a151bd9e3247744b6082939265383af48283b11306427b6a52a428ad7_or.glb'
 
     return (
         <HeroSection
