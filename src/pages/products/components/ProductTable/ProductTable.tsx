@@ -4,6 +4,7 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import Table from 'components/redesign/table/Table'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProducts, { productTypeMap } from 'hooks/products/useProducts'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
@@ -15,13 +16,14 @@ interface Props {
 }
 
 function ProductTable({ searchTerm }: Props) {
+    const { t } = useLocaleResources('products');
     const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
     const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
         {
             accessorKey: '_',
-            header: 'Product Name',
+            header: t('productTable.columns.product'),
             cell: info => {
                 const { media, title } = info.row.original
                 const imageURL = (media.find(m => m.isMain === "true") ?? media[0])?.thumbnail
@@ -37,18 +39,18 @@ function ProductTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'lowestSkuPrice',
-            header: 'Price',
+            header: t('productTable.columns.price'),
             cell: (info) => {
                 const price = info.getValue() as number
                 if (price) return <FormattedPrice price={price} />
                 return "-"
             }
         },
-        { accessorKey: 'productCollectionID', header: 'Collection', cell: info => (info.getValue() as any).title },
-        { accessorKey: 'product_type', header: 'Type', cell: info => productTypeMap[info.getValue() as string] },
+        { accessorKey: 'productCollectionID', header: t('productTable.columns.collection'), cell: info => (info.getValue() as any).title },
+        { accessorKey: 'product_type', header: t('productTable.columns.type'), cell: info => productTypeMap[info.getValue() as string] },
         {
             accessorKey: 'publish_status',
-            header: 'Status',
+            header: t('productTable.columns.status'),
             cell: info => {
                 const { publish_status, purchaseAvailable } = info.row.original
                 return <ProductStatusBadge status={publish_status} purchaseAvailable={purchaseAvailable} />

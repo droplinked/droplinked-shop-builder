@@ -19,10 +19,8 @@ export const getStatusColor = (status: RecentCrawlerTasksResponse["status"]) => 
             return "text.primary";
         case "recorded":
             return "text.primary";
-
         case "error":
             return "text.error";
-
         default:
             return "text.link";
     }

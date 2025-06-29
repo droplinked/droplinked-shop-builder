@@ -4,6 +4,7 @@ import AppImage from 'components/common/image/AppImage'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import Table from 'components/redesign/table/Table'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { CrawledProductsType } from 'pages/products/utils/types'
 import React from 'react'
 
@@ -18,6 +19,7 @@ interface ItemsTableProps {
 }
 
 export default function ItemsTable({ items, selectedProducts, headerCheckState, onHeaderCheckboxChange, onItemClick, isSelectionDisabled, isLoading = false }: ItemsTableProps) {
+    const { t } = useLocaleResources('products');
 
     const columns: ColumnDef<CrawledProductsType>[] = [
         {
@@ -45,9 +47,9 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
         },
         {
             accessorKey: 'title',
-            header: 'Title',
+            header: t('identifiedItemsModal.table.columns.title'),
             cell: info => {
-                const title = info.row.original.title ?? "No Title"
+                const title = info.row.original.title ?? t('identifiedItemsModal.table.noTitle')
                 const image = info.row.original.image ?? "#"
                 const truncatedTitle = title.length <= 40 ? title : `${title.slice(0, 40)}...`
 
@@ -67,7 +69,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
         },
         {
             accessorKey: 'url',
-            header: 'URL',
+            header: t('identifiedItemsModal.table.columns.url'),
             cell: info => {
                 const url = info.getValue() as string
                 const truncatedUrl = url.length <= 30 ? url : `${url.slice(0, 30)}...`
@@ -96,7 +98,7 @@ export default function ItemsTable({ items, selectedProducts, headerCheckState, 
             emptyView={
                 <Flex justifyContent="center" py={8}>
                     <Text fontSize={16} fontWeight={500} color="white">
-                        No items available
+                        {t('identifiedItemsModal.table.noItems')}
                     </Text>
                 </Flex>
             }

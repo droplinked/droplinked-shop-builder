@@ -4,6 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { getAllProductsService } from 'services/product/productServices'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function ProductReorderModal({ isOpen, onClose }: Props) {
+    const { t } = useLocaleResources('products');
     const [products, setProducts] = useState([])
     const [initialProducts, setInitialProducts] = useState([])
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
@@ -28,7 +30,7 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
             setInitialProducts(data.data)
         },
         onError: () => {
-            showToast({ type: 'error', message: 'Something went wrong!' })
+            showToast({ type: 'error', message: t('common.error') })
             onClose()
         }
     })
@@ -46,8 +48,8 @@ function ProductReorderModal({ isOpen, onClose }: Props) {
         >
             <ModalHeaderData
                 icon={<BoxLg color="white" />}
-                title="Reorder Products"
-                description="Organize products by dragging and dropping them in the order that they should be displayed on the storefront."
+                title={t('productReorderModal.title')}
+                description={t('productReorderModal.description')}
                 modalHeaderProps={{
                     bgColor: '#141414',
                     paddingBlock: { lg: '48px !important', md: '32px !important', base: '16px !important' },

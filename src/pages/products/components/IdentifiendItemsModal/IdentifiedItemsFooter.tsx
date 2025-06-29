@@ -1,5 +1,6 @@
 import { ModalFooter } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props {
@@ -10,9 +11,11 @@ interface Props {
 }
 
 export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard, onImport, isLoading = false }: Props) {
+    const { t } = useLocaleResources('products');
+    
     const buttonText = selectedProductsCount > 0
-        ? `Import ${selectedProductsCount} Selected Items`
-        : 'Select Items to Import'
+        ? t('identifiedItemsModal.footer.importSelected', { count: selectedProductsCount })
+        : t('identifiedItemsModal.footer.selectItems')
 
     return (
         <ModalFooter
@@ -22,7 +25,7 @@ export default function IdentifiedItemsFooter({ selectedProductsCount, onDiscard
             paddingBlock="36px !important"
         >
             <AppButton variant="secondary" onClick={onDiscard}>
-                Discard
+                {t('identifiedItemsModal.footer.discard')}
             </AppButton>
             <AppButton
                 isDisabled={selectedProductsCount === 0}

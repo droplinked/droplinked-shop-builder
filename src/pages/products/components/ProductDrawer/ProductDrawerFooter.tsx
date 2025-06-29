@@ -1,6 +1,7 @@
 import { DrawerFooter as ChakraDrawerFooter, Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
 import { checkIfProductIsRecorded } from 'pages/products/utils/skuUtils'
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const ProductDrawerFooter = ({ onClose }: Props) => {
+    const { t } = useLocaleResources('products');
     const { showToast } = useAppToast()
     const { values, errors, setFieldValue, handleSubmit, isSubmitting, validateForm } = useProductForm()
     const { _id: editingProductId, sku, publish_product } = values
@@ -51,7 +53,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
             padding={9}
         >
             <AppButton type="button" variant="secondary" isDisabled={isSubmitting} onClick={onClose}>
-                Discard
+                {t('productDrawer.actions.discard')}
             </AppButton>
 
             <Flex gap={4}>
@@ -62,7 +64,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                     isLoading={isSubmitting && !publish_product}
                     onClick={() => handleAction('save-as-draft')}
                 >
-                    Save as draft
+                    {t('productDrawer.actions.saveAsDraft')}
                 </AppButton>
 
                 <AppButton
@@ -71,7 +73,7 @@ const ProductDrawerFooter = ({ onClose }: Props) => {
                     isLoading={isSubmitting && publish_product}
                     onClick={() => handleAction('publish-product')}
                 >
-                    {editingProductId ? 'Update Product' : 'Add Product'}
+                    {editingProductId ? t('productDrawer.actions.updateProduct') : t('productDrawer.actions.addProduct')}
                 </AppButton>
             </Flex>
         </ChakraDrawerFooter>

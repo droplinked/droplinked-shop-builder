@@ -4,6 +4,7 @@ import ExternalLink from 'components/redesign/external-link/ExternalLink'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import React, { useState } from 'react'
 import ImportProductModalBody from './ImportProductModalBody'
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
+    const { t } = useLocaleResources('products');
     const [uploadedFile, setUploadedFile] = useState(null)
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
 
@@ -31,8 +33,8 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
         >
             <ModalHeaderData
                 icon={<AppIcons.Download />}
-                title="Import Products"
-                description="Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL."
+                title={t('importModal.title')}
+                description={t('importModal.description')}
                 descriptionProps={{
                     color: "#B1B1B1 !important",
                 }}
@@ -47,7 +49,7 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
                     href={fileTemplate}
                     download="import_product_template.xlsx"
                 >
-                    Download Template
+                    {t('importModal.downloadTemplate')}
                 </ExternalLink>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} importWithUrl={importWithUrl} />

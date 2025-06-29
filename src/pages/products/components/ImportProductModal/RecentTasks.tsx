@@ -3,6 +3,7 @@ import { ChevronrightLg } from "assets/icons/Navigation/ChevronRight/Chevronrigh
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList";
 import InteractiveText from "components/redesign/interactive-text/InteractiveText";
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { RecentCrawlerTasksResponse } from "services/crawler/interface";
 import { getStatusColor } from "pages/products/utils/statusColorHelper";
 import React from "react";
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function RecentTasks({ recentTasks, isLoading, getProducts, getProductsLoading }: Props) {
+    const { t } = useLocaleResources('products');
     const [selectedProduct, setSelectedProduct] = React.useState("");
 
     const handleProductClick = (url: string) => {
@@ -54,7 +56,7 @@ export default function RecentTasks({ recentTasks, isLoading, getProducts, getPr
                             variant="ghost"
                             _hover={{ background: "transparent" }}
                             disabled={task.status !== "previews_ready"}
-                            aria-label="View Preview"
+                            aria-label={t('importModal.recentTasks.viewPreview')}
                             isLoading={selectedProduct === task._id && getProductsLoading}
                             onClick={() => handleProductClick(task._id)}
                             color="#fff"
