@@ -33,7 +33,7 @@ export interface IGenerateWithAiDirectResponse {
 
 // Response for getAiImageStatus
 export interface IAiImageStatusResponse {
-    status: "PENDING" | "SUCCESS";
+    status: "PENDING" | "SUCCESS" | "FAILURE";
     result: string;
     revisedPrompt?: string;
     openaiImageId?: string;
