@@ -37,7 +37,7 @@ export function useStepController() {
 
     // Common video style with display property based on current step
     const getVideoStyle = (videoStep: number) => ({
-        borderRadius: "24px 24px 0px 0px",
+        borderRadius: "16px 16px 0px 0px",
         display: step === videoStep ? 'block' : 'none'
     });
 
