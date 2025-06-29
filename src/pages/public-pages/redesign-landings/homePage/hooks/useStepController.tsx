@@ -74,24 +74,45 @@ export function useStepController() {
     useGSAP(() => {
         if (!containerRef.current) return
 
-        gsap.timeline({
+        // Kill any existing ScrollTrigger instances to prevent duplicates
+        ScrollTrigger.getAll().forEach(st => st.kill(true));
+
+        const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: "+=100%",
+                end: "+=500%",
                 scrub: 1,
-                anticipatePin: 2,
                 pin: true,
                 pinSpacing: true,
-                snap: 0.35,
+                markers: true, // Set to true for debugging
                 onUpdate: (self) => {
                     const progress = self.progress * 100
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
+                },
+                onRefresh: (self) => {
+                    // Ensure ScrollTrigger recalculates properly on refresh
+                    self.update();
                 }
             },
         })
-    }, { scope: containerRef })
+
+        // Return cleanup function
+        return () => {
+            timeline.kill();
+            ScrollTrigger.getAll().forEach(st => st.kill(true));
+        }
+    }, [])
+
+    // Add a manual refresh when the component is fully loaded
+    useEffect(() => {
+        const refreshTimer = setTimeout(() => {
+            ScrollTrigger.refresh(true);
+        }, 500);
+
+        return () => clearTimeout(refreshTimer);
+    }, []);
 
     return {
         containerRef,

@@ -10,24 +10,31 @@ import JoinTheCommuity from '../_shared/components/JoinTheCommuity'
 import JoinNow from './components/JoinNow'
 
 export default function HomePage() {
-  const sections = [
-    { id: 'partners-section', component: <MarqueeSection /> },
-    { id: 'goLive-section', component: <GoLiveSection /> },
-    { id: 'product-offering-section', component: <ProductOfferingSection /> },
-    { id: 'key-features', component: <KeyFeatures /> },
-    { id: 'join-the-community', component: <JoinTheCommuity /> },
-    { id: 'join-now', component: <JoinNow /> },
-  ]
+  // const sections = [
+  //   { id: 'partners-section', component: },
+  //   { id: 'goLive-section', component:  },
+  //   { id: 'product-offering-section', component:  },
+  //   { id: 'key-features', component: },
+  //   { id: 'join-the-community', component: <JoinTheCommuity /> },
+  //   { id: 'join-now', component: <JoinNow /> },
+  // ]
 
   return (
     <>
       <HomePageHero />
       <MaxWidthWrapper>
-        {sections.map((section) => (
+        <MarqueeSection />
+        <GoLiveSection />
+        <ProductOfferingSection />
+        <KeyFeatures />
+        <JoinTheCommuity />
+        <JoinNow />
+
+        {/* {sections.map((section) => (
           <LazyLoad key={section.id}>
             {section.component}
           </LazyLoad>
-        ))}
+        ))} */}
       </MaxWidthWrapper>
     </>
   )
