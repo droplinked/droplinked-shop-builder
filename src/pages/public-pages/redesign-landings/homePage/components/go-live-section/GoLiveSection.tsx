@@ -1,13 +1,12 @@
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import Stepper from './Stepper'
-import HowItWorks from '../../svgs/HowItWorks'
 import { useStepController } from '../../hooks/useStepController'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import HowItWorks from '../../svgs/HowItWorks'
+import Stepper from './Stepper'
 
 export default function GoLiveSection() {
     const stepControllerValues = useStepController();
