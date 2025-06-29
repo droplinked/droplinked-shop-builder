@@ -2,7 +2,6 @@ import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import HeroSection from '../../../_shared/components/hero-section/HeroSection'
 import SubtitleElements from './SubtitleElements'
-import videoUrl from '../../videos/Partners.webm'
 
 export default function CrossmintHero() {
     const responsiveWidth = useBreakpointValue({ base: '250%', md: '100%' })
@@ -15,6 +14,8 @@ export default function CrossmintHero() {
         marginInline: "auto",
         position: "relative" as const
     }
+
+    const videoUrl = '/assets/video/crossmint-landing/Partners.webm'
 
     return (
         <HeroSection

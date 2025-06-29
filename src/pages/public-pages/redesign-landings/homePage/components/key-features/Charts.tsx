@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Chart1 from '../../videos/chart1.webm'
-import Chart2 from '../../videos/chart2.webm'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { BarchartSm } from 'assets/icons/Finance/BarChart/BarchartSm'
 import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm'
@@ -131,13 +129,13 @@ export default function Charts() {
                 {chartNumber === 1 ? (
                     <InlineVideoPlayer
                         key={`chart1-${videoKey}`}
-                        src={Chart1}
+                        src="/assets/video/home-page/chart1.webm"
                         loop={false}
                     />
                 ) : (
                     <InlineVideoPlayer
                         key={`chart2-${videoKey}`}
-                        src={Chart2}
+                        src="/assets/video/home-page/chart2.webm"
                         loop={false}
                     />
                 )}

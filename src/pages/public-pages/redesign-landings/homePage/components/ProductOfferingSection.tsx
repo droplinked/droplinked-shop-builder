@@ -8,10 +8,6 @@ import { CardData } from '../../_shared/components/card/Cards'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Products from '../svgs/Products'
-import DigitalProductVideo from '../videos/digital-products.webm'
-import PhysicalProductsVideo from '../videos/physical-products.webm'
-import PODVideo from '../videos/pod.webm'
-import ServicesVideo from '../videos/services.webm'
 
 export default function ProductOfferingSection() {
     const headingSubtitle = `droplinked supports a wide variety of inventory, from digital goods, physical items,
@@ -24,28 +20,28 @@ export default function ProductOfferingSection() {
             title: "Services",
             description: "Offer skills like consulting, design work, and more with onchain automation",
             gridColumn: { base: '1', md: '1 / -1', lg: '1 / 3' },
-            children: <InlineVideoPlayer src={ServicesVideo} />
+            children: <InlineVideoPlayer src="/assets/video/home-page/services.webm" />
         },
         {
             icon: <ImageLg color='#fff' />,
             title: "Physical Products",
             description: "Manage inventory and sales with secure blockchain-backed transactions",
             gridColumn: { base: '1', md: '1', lg: '3' },
-            children: <InlineVideoPlayer src={PhysicalProductsVideo} />
+            children: <InlineVideoPlayer src="/assets/video/home-page/physical-products.webm" />
         },
         {
             icon: <BoxLg color='#fff' />,
             title: "Digital Products",
             description: "Offer eBooks, online courses, software, and more with easy distribution",
             gridColumn: { base: '1', md: '2', lg: '1' },
-            children: <InlineVideoPlayer src={DigitalProductVideo} />
+            children: <InlineVideoPlayer src="/assets/video/home-page/digital-products.webm" />
         },
         {
             icon: <MinttomerchLg color='#fff' />,
             title: "POD and NFT's - Mint to MerchTM",
             description: "Create and sell unique items using digital art, collectibles, and other blockchain-based items",
             gridColumn: { base: '1', md: '1 / -1', lg: '2 / 4' },
-            children: <InlineVideoPlayer src={PODVideo} />
+            children: <InlineVideoPlayer src="/assets/video/home-page/pod.webm" />
         }
     ]
 

@@ -4,9 +4,6 @@ import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../../_shared/components/hero-section/HeroSection'
-import VideoDesktop from '../videos/hero-desktop.webm'
-import VideoMobile from '../videos/hero-mobile.webm'
-import VideoTablet from '../videos/hero-tablet.webm'
 
 export default function HomePageHero() {
     const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })
@@ -15,9 +12,9 @@ export default function HomePageHero() {
         <HeroSection
             title={`Commerce That \n Earns The Most`}
             subtitle="From the largest enterprises to solo merchants, droplinked provides tools enabling businesses and entrepreneurs to finance growth and earn more on every sale"
-            videoDesktop={VideoDesktop}
-            videoTablet={VideoTablet}
-            videoMobile={VideoMobile}
+            videoDesktop="/assets/video/home-page/hero-desktop.webm"
+            videoTablet="/assets/video/home-page/hero-tablet.webm"
+            videoMobile="/assets/video/home-page/hero-mobile.webm"
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline
