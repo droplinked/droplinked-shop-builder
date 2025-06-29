@@ -8,10 +8,11 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import AppSelect from 'components/redesign/select/AppSelect';
 import Textarea from 'components/redesign/textarea/Textarea';
-import { categories } from 'pages/onboarding/constants/categories';
+import { getCategories } from 'pages/onboarding/constants/categories';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { useState } from 'react';
 import useAppStore from 'stores/app/appStore';
+import { useTranslation } from 'react-i18next';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 
 function AICard() {
@@ -20,6 +21,9 @@ function AICard() {
   const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
   const { generateAllContent, isLoading } = useAiGeneratedContent();
   const { hasPaidSubscription } = useAppStore();
+  const { t } = useTranslation();
+
+  const categories = getCategories(t);
 
   // Check if any content is currently being generated
   const isGenerating = Object.values(isLoading).every((value) => value === true);
