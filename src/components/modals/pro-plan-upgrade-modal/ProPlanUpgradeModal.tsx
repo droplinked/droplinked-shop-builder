@@ -2,7 +2,7 @@ import { Box, ModalBody, useDisclosure } from '@chakra-ui/react';
 import PaymentModal from 'components/modals/payment-modal/PaymentModal';
 import AppModal from 'components/redesign/modal/AppModal';
 import PlanDurationRadioContainer from 'components/redesign/plan-duration-radio/PlanDurationRadioContainer';
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
+import { getSubscriptionPlansService } from 'services/subscription/subscriptionServices';
 import React from 'react';
 import { useQuery } from 'react-query';
 import useAppStore from 'stores/app/appStore';

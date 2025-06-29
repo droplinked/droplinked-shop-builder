@@ -1,6 +1,6 @@
 import { FormikHelpers } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { subscribeFeature } from 'lib/apis/user/services'
+import { subscribeFeature } from 'services/user/services'
 import { useLocation } from 'react-router-dom'
 
 interface NewsletterFormValues {

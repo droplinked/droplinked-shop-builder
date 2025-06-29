@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { getShopExtractedData, startWebsiteCrawling } from 'lib/apis/crawler/services'
+import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/services'
 import { useEffect, useRef, useState } from 'react'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'

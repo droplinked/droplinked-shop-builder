@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { generateDomains, generateHeroSection, generateLogos, generateShopNames } from 'lib/apis/ai/services'
+import { generateDomains, generateHeroSection, generateLogos, generateShopNames } from 'services/ai/services'
 import { useMutation } from 'react-query'
 import useOnboardingStore from '../stores/useOnboardingStore'
 
