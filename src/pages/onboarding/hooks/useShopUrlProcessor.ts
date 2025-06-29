@@ -11,7 +11,6 @@ export const useShopUrlProcessor = () => {
 
     const polling = usePolling({
         onError: (error) => {
-            console.error('Error polling shop extracted data:', error)
             showToast({ type: "error", message: "Failed to import shop data" })
         },
         onTimeout: () => {
@@ -43,7 +42,7 @@ export const useShopUrlProcessor = () => {
 
             return false
         } catch (error) {
-            console.error('Error polling shop extracted data:', error)
+            showToast({ type: "error", message: "Failed to import shop data" })
             return false
         }
     }
