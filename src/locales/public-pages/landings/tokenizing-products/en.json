@@ -1,0 +1,61 @@
+{
+  "aboveTheFold": {
+    "title": "Better Attribution for Inventory",
+    "description": "Leverage onchain technology to tokenize inventory ensuring ownership and transparency while unlocking working capital for the business.",
+    "ctaButton": "Get Started"
+  },
+  "details": {
+    "title": "No-Code Tools to Tokenize Inventory",
+    "description": "Create digital records of inventory and assets onchain to ensure secure and transparent distribution and trading",
+    "items": {
+      "blockchainOwnership": {
+        "title": "Blockchain Backed Ownership",
+        "description": "Transform goods into tokenized assets that are secured onchain for tamper-proof ownership."
+      },
+      "simplifyingTokenization": {
+        "title": "Simplifying Tokenization",
+        "description": "Easily tokenize luxury collectibles, physical items and other assets with NFT technology that enables custody ownership for distribution."
+      },
+      "globalTrading": {
+        "title": "Global Trading & Liquidity",
+        "description": "Unlock new global markets by making tokenized inventory tradable, increasing liquidity and reach with value-add partners and businesses."
+      }
+    }
+  },
+  "dualSideFlex": {
+    "secureCustody": {
+      "title": "Secure Custody and Ownership",
+      "description": "Work with trusted custodians to securely store assets with the tokenized product records for onchain ownership and availability."
+    },
+    "transparentRecords": {
+      "title": "Transparent and Immutable Records",
+      "description": "Tokenization ensures all relevant product information, transaction history and ownership are stored immutably for accurate attribution."
+    },
+    "simpleTransfers": {
+      "title": "Simple and Secure Transfers",
+      "description": "Send and trade tokenized physical and digital items across platforms with onchain transparency to ensure trust between parties."
+    }
+  },
+  "features": {
+    "digitalRepresentation": {
+      "title": "Digital Representation of Inventory",
+      "description": "Tokenization allows you to create records representing inventory to enhancing traceability and secure ownership onchain."
+    },
+    "transparency": {
+      "title": "Enhanced Transparency",
+      "description": "All details involved with the inventory from transaction history to product metadata are stored onchain to display to 3rd parties."
+    },
+    "marketAccess": {
+      "title": "Global Market Access",
+      "description": "Tokenized assets can be traded globally to further unlock new market opportunities by adding liquidity for existing inventory."
+    },
+    "custodianship": {
+      "title": "Secure Custodianship",
+      "description": "Inventory can be securely stored by trusted third parties while ownership records can be traded until the rightful owner claims possession of the item."
+    },
+    "efficiency": {
+      "title": "Increased Efficiency in Ownership Transfer",
+      "description": "Instantly transfer ownership to reduce the time and cost associated with traditional methods of transferring inventory."
+    }
+  }
+} 

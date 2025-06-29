@@ -1,0 +1,173 @@
+{
+    "pageHeader": {
+      "title": "المنتجات",
+      "description": "قم بإدارة جميع منتجاتك في مكان واحد. أنشئ، اعرض، وتتبّع المنتجات بسهولة هنا.",
+      "actions": {
+        "reorderProducts": "إعادة ترتيب المنتجات",
+        "import": "استيراد",
+        "newProduct": "منتج جديد"
+      }
+    },
+    "productTypes": {
+      "physicalItems": {
+        "title": "منتجات مادية",
+        "description": "قم ببيع سلع مادية وبضائع موجودة في المخزون."
+      },
+      "digitalGoods": {
+        "title": "منتجات رقمية",
+        "description": "قم ببيع عناصر رقمية مثل الملفات والأصول داخل الألعاب وNFTs."
+      },
+      "pod": {
+        "title": "حسب الطلب (POD)",
+        "description": "قدّم عناصر مخصصة يتم إنتاجها عند الطلب مثل الملابس والأكواب."
+      },
+      "events": {
+        "title": "الفعاليات",
+        "description": "بيع تذاكر للفعاليات والحفلات والاجتماعات الأخرى."
+      }
+    },
+    "importModal": {
+      "title": "استيراد المنتجات",
+      "description": "استورد قوائم المخزون بسهولة عن طريق رفع ملف CSV أو Excel. يمكنك أيضًا استخدام أداة الاستيراد الخاصة بنا لجلب منتج واحد أو كتالوج كامل من Shopify أو WooCommerce باستخدام رابط.",
+      "downloadTemplate": "تحميل النموذج",
+      "fileUpload": {
+        "title": "رفع الملف",
+        "description": "اسحب الملف وأسقطه هنا، أو انقر للاستعراض",
+        "supportedFormats": "فقط CSV (حتى 1 ميجابايت)",
+        "maxSize": "الحد الأقصى لحجم الملف: 10 ميجابايت",
+        "dropHere": "أسقط الملف هنا...",
+        "click": "انقر",
+        "dragDropText": "لإضافة ملف جديد أو اسحبه إلى هنا.",
+        "uploadFile": "رفع الملف"
+      },
+      "urlInput": {
+        "title": "الاستيراد من رابط",
+        "placeholder": "أدخل رابط منتج من Shopify أو WooCommerce",
+        "description": "استورد المنتجات مباشرة من رابط متجرك",
+        "error": "الرابط غير صالح. يرجى إدخال رابط صالح من Shopify أو WooCommerce."
+      },
+      "recentTasks": {
+        "title": "مهام الاستيراد الأخيرة",
+        "noTasks": "لا توجد مهام استيراد حديثة",
+        "viewPreview": "عرض المعاينة",
+        "status": {
+          "pending": "قيد الانتظار",
+          "processing": "جاري المعالجة",
+          "completed": "اكتمل",
+          "failed": "فشل"
+        }
+      },
+      "footer": {
+        "cancel": "إلغاء",
+        "import": "استيراد المنتجات"
+      }
+    },
+    "productTable": {
+      "columns": {
+        "product": "اسم المنتج",
+        "type": "النوع",
+        "price": "السعر",
+        "status": "الحالة",
+        "collection": "المجموعة",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "edit": "تعديل",
+        "delete": "حذف",
+        "duplicate": "نسخ",
+        "view": "عرض",
+        "details": "تفاصيل",
+        "dropInfo": "معلومات DROP",
+        "orderPodSample": "طلب عينة POD",
+        "share": "مشاركة",
+        "remove": "إزالة",
+        "makeStatus": "تغيير الحالة إلى {status}"
+      },
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط",
+        "draft": "مسودة",
+        "public": "عام",
+        "private": "خاص"
+      },
+      "empty": {
+        "title": "لا توجد منتجات",
+        "description": "ابدأ بإضافة أول منتج لك",
+        "alt": "جدول فارغ"
+      }
+    },
+    "productDrawer": {
+      "title": "تفاصيل المنتج",
+      "sections": {
+        "basic": "معلومات أساسية",
+        "pricing": "التسعير",
+        "inventory": "المخزون",
+        "shipping": "الشحن",
+        "media": "الوسائط",
+        "variants": "الخيارات"
+      },
+      "actions": {
+        "save": "حفظ المنتج",
+        "cancel": "إلغاء",
+        "delete": "حذف المنتج",
+        "discard": "تجاهل",
+        "saveAsDraft": "حفظ كمسودة",
+        "updateProduct": "تحديث المنتج",
+        "addProduct": "إضافة منتج"
+      }
+    },
+    "common": {
+      "loading": "جارٍ التحميل...",
+      "error": "حدث خطأ",
+      "success": "تم بنجاح",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "close": "إغلاق",
+      "back": "عودة",
+      "next": "التالي",
+      "previous": "السابق",
+      "search": "بحث",
+      "filter": "تصفية",
+      "sort": "ترتيب",
+      "refresh": "تحديث",
+      "download": "تحميل",
+      "upload": "رفع",
+      "uploading": "جاري الرفع",
+      "import": "استيراد",
+      "export": "تصدير",
+      "or": "أو",
+      "update": "تحديث",
+      "add": "إضافة"
+    },
+    "identifiedItemsModal": {
+      "title": "العناصر المحددة",
+      "description": "نجح مستورد المنتجات في التعرف على {count} عنصر.",
+      "maxSelectionLimit": {
+        "title": "تم الوصول إلى الحد الأقصى للاختيار",
+        "description": "لقد قمت بتحديد {selected} من أصل {total} عنصر متاح. لا يمكنك تحديد المزيد حاليًا."
+      },
+      "dropRecords": {
+        "title": "DROP (سجلات المنتج الرقمي)",
+        "description": "أنشئ سجلات رقمية على السلسلة للمخزون المحدد أدناه."
+      },
+      "table": {
+        "columns": {
+          "title": "العنوان",
+          "url": "الرابط"
+        },
+        "noTitle": "لا يوجد عنوان",
+        "noItems": "لا توجد عناصر متاحة"
+      },
+      "pagination": {
+        "previousPage": "الصفحة السابقة",
+        "nextPage": "الصفحة التالية"
+      },
+      "footer": {
+        "discard": "تجاهل",
+        "importSelected": "استيراد {count} عنصر محدد",
+        "selectItems": "اختر العناصر للاستيراد"
+      }
+    }
+  }

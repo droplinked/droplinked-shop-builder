@@ -1,0 +1,110 @@
+{
+    "collaborationDetails": {
+      "title": "مزايا لأعضاء {{partnerName}}",
+      "items": {
+        "storeSetupSimplified": {
+          "title": "إعداد المتجر بسهولة",
+          "description": "ادمج نطاق {{partnerName}} الخاص بك على دروبلينكد وابدأ متجرك"
+        },
+        "enterpriseLevelTools": {
+          "title": "أدوات بمستوى المؤسسات",
+          "description": "افتح ميزات متقدمة لتنمية أعمالك من اليوم الأول"
+        },
+        "seamlessNftIntegration": {
+          "title": "تكامل سلس مع NFTs",
+          "description": "أنشئ، وأدر، وبِع الرموز غير القابلة للاستبدال على واجهة متجر قابلة للتخصيص"
+        }
+      }
+    },
+    "collaborationFeatures": {
+      "items": {
+        "proPlan": {
+          "title": "خطة {{planType}} لمدة {{planDurationMonths}} شهر",
+          "description": "استمتع بالميزات المميزة لمدة {{planDurationMonths}} شهرًا بصفتك عميلاً مخلصًا لـ {{partnerName}}."
+        },
+        "accessProducts": {
+          "title": "الوصول الفوري إلى +10 آلاف منتج",
+          "description": "اختر من كتالوج ضخم لتخصيص وبيع منتجات فريدة عند الطلب."
+        },
+        "web3Support": {
+          "title": "دعم تقنيات Web3",
+          "description": "ادمج NFTs بسلاسة مع ميزات البلوكشين لابتكار تجارب جديدة باستخدام الأصول التي تمتلكها أو ترغب في تقديمها."
+        }
+      }
+    },
+    "proPlan": {
+      "title": "خطة برو مجانية لمدة {{planDurationMonths}} شهر",
+      "description": "افتح خطة برو لمدة {{planDurationMonths}} شهر مجانًا تمامًا!<br />فعّل العرض الحصري اليوم."
+    },
+    "d3Community": {
+      "title": "انضم إلى مجتمعك اليوم",
+      "items": {
+        "victorin": {
+          "title": "فيكتورين",
+          "description": ".vic"
+        },
+        "coreChain": {
+          "title": "كور تشين",
+          "description": ".core"
+        },
+        "shibaInu": {
+          "title": "شيبا إينو",
+          "description": ".shib"
+        }
+      }
+    },
+    "walletVerification": {
+      "claimNow": "احصل عليه الآن",
+      "steps": {
+        "connect": {
+          "title": "اتصل بالمحفظة للتحقق",
+          "description": "اتصل بمحفظتك للتحقق مما إذا كنت مؤهلاً لخطة برو لمدة {{planDurationMonths}} شهر",
+          "buttons": {
+            "close": "إغلاق",
+            "checkEligibility": "تحقق من الأهلية"
+          }
+        },
+        "loading": {
+          "title": "جارٍ التحقق من حالة المحفظة",
+          "description": "يرجى الانتظار أثناء التحقق من أهليتك.",
+          "buttons": {
+            "close": "إغلاق",
+            "checkEligibility": "تحقق من الأهلية"
+          }
+        },
+        "error": {
+          "title": "فشل التحقق من المحفظة",
+          "description": "يبدو أن محفظتك لا تفي بالمعايير. للأسف، أنت غير مؤهل للحصول على هذا العرض.",
+          "buttons": {
+            "return": "العودة"
+          }
+        },
+        "done": {
+          "title": "مبروك، تم التحقق من العرض",
+          "description": "يمكنك الآن إنشاء حساب والاستمتاع بخطة برو لمدة {{planDurationMonths}} شهر.",
+          "buttons": {
+            "claimNow": "احصل عليه الآن"
+          }
+        }
+      },
+      "features": {
+        "proPlan": "خطة برو لمدة {{planDurationMonths}} شهر",
+        "instantVerification": "تحقق فوري"
+      }
+    },
+    "partners": {
+      "ud": {
+        "heading": "دروبلينكد & Unstoppable Domains",
+        "description": "افتح خطة برو مجانية لمدة 3 أشهر! فعّل العرض الحصري اليوم بصفتك حامل نطاق."
+      },
+      "d3": {
+        "heading": "دروبلينكد & D3",
+        "description": "افتح خطة برو مجانية لمدة 6 أشهر! فعّل العرض الحصري اليوم.",
+        "valueText": "بقيمة 30 دولار"
+      },
+      "polygon": {
+        "heading": "دروبلينكد & Polygon",
+        "description": "افتح خطة برو مجانية لمدة 3 أشهر! فعّل العرض الحصري اليوم بصفتك حامل نطاق .polygon"
+      }
+    }
+  }

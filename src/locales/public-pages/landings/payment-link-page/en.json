@@ -1,0 +1,55 @@
+{
+  "aboveTheFoldSection": {
+    "title": "Seamless Payments Anytime, Anywhere",
+    "description": "Create and share direct payment links with ease, offering a quick and simple purchase experience within a couple of clicks.",
+    "ctaButtonText": "Get Started"
+  },
+  "detailsSection": {
+    "title": "Sell Effortlessly with Maximum Flexibility",
+    "description": "Generate payment links in seconds to sell anywhere without customers needing to visit your site or app",
+    "detailItems": {
+      "instantPaymentLinks": {
+        "title": "Instant Payment Links",
+        "description": "Share URLs or QR codes to enable fast purchases for items or invoices within just a few clicks."
+      },
+      "customizablePaymentPages": {
+        "title": "Customizable Payment Pages",
+        "description": "Create payment pages align with your look, and choose between dark and light modes while customizing product details to display."
+      },
+      "cryptoAndFiatPayments": {
+        "title": "Crypto And Fiat Payments",
+        "description": "Offer customers flexible payment options with a wide range of cryptocurrencies alongside traditional payment methods."
+      }
+    }
+  },
+  "dualSideFlexData": {
+    "sellAnywhereAnytime": {
+      "title": "Sell Anywhere, Anytime",
+      "description": "Generate traffic and sales from wherever customers are by easily sharing payment links across any platform"
+    },
+    "noCodingRequired": {
+      "title": "No Coding Required",
+      "description": "Configure payment pages all within a few clicks, no technical skills are required"
+    },
+    "streamlinedCheckout": {
+      "title": "Streamlined Checkout",
+      "description": "Simplified checkout flows for customers making payments a breeze by only collecting the basic information you need"
+    }
+  },
+  "featureGroups": {
+    "features": {
+      "directPaymentLinks": {
+        "title": "Direct Payment Links & QR Codes",
+        "description": "Enable quick, frictionless purchases with shareable payment links and QR codes."
+      },
+      "customizableExperience": {
+        "title": "Customizable Experience",
+        "description": "Customize payment pages to reflect your brand's identity, ensuring a cohesive customer experience."
+      },
+      "alternativePaymentMethods": {
+        "title": "Alternative Payment Methods",
+        "description": "Accept cryptocurrencies pegged to stable coins to add more flexibility for customers during checkout."
+      }
+    }
+  }
+} 

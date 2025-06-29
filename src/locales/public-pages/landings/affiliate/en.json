@@ -1,0 +1,100 @@
+{
+    "aboveTheFold": {
+        "title": "Transparent commerce to earn the most from every sale",
+        "description": "Unlock new opportunities as a merchant or co-seller with the latest onchain technology. As a community-driven platform, droplinked empowers anyone with the tools needed to earn more on every sale while getting paid faster."
+    },
+    "details": {
+        "title": "Transparent Attribution from Point of Production to Point of Sale",
+        "description": "Earn affiliate commissions effortlessly with smart contracts, eliminating the need for trust between partners.",
+        "items": {
+            "automatedDistributions": {
+                "title": "Automated Distributions",
+                "description": "Earnings and commissions are processed and distributed automatically, eliminating the legacy processes and manual steps typically used on merchant networks today."
+            },
+            "transparentTransactions": {
+                "title": "Transparent Transactions",
+                "description": "Leverage the power of blockchain technology to ensure full transparency. All transactions are recorded on-chain, providing tamper-proof operations for both brands and co-sellers."
+            },
+            "directSettlements": {
+                "title": "Direct Settlements",
+                "description": "Enjoy instant, direct payouts on each sale. Whitelisted co-sellers receive commissions immediately without any intermediaries so that you can pay them the most."
+            }
+        }
+    },
+    "dualSideFlex": {
+        "merchantBenefits": {
+            "title": "Merchant Benefits",
+            "description": {
+                "expandReach": {
+                    "boldText": "Expand reach",
+                    "rest": "by connecting with trusted co-sellers you whitelist to access inventory"
+                },
+                "trackSales": {
+                    "boldText": "Track sales and performance",
+                    "rest": "in real-time with comprehensive analytics on first and ongoing sales"
+                },
+                "automaticPayouts": {
+                    "boldText": "Automatic commission payouts",
+                    "rest": "ensure smooth, hassle-free transactions for every sale that is made"
+                }
+            }
+        },
+        "coSellingBenefits": {
+            "title": "Co-selling Benefits",
+            "description": {
+                "discoverPromote": {
+                    "boldText": "Easily discover and promote",
+                    "rest": "products based on personalized offers made by merchants"
+                },
+                "createStorefronts": {
+                    "boldText": "Create customizable storefronts",
+                    "rest": "or product embeddable tiles to showcase and sell products more effectively on any property or social channel"
+                },
+                "earnCommissions": {
+                    "boldText": "Earn commissions",
+                    "rest": "instantly on every successful sale made based on merchant terms"
+                }
+            }
+        },
+        "easySetup": {
+            "title": "Easy Setup",
+            "description": "Begin your affiliate marketing journey in no time without any coding needed. Simply customize your preferred settings on your account and let the system do the rest."
+        }
+    },
+    "features": {
+        "merchant": {
+            "title": "Merchant Features",
+            "items": {
+                "createStorefronts": {
+                    "title": "Create Storefronts",
+                    "description": "Set up a branded store, upload products, activate affiliates and set commission rates in minutes"
+                },
+                "manageRequests": {
+                    "title": "Manage Requests",
+                    "description": "Review and approve co-seller requests inside the affiliate panel to whitelist trusted co-sellers"
+                },
+                "collaborateGrow": {
+                    "title": "Collaborate & Grow",
+                    "description": "Partner with co-sellers to boost product visibility and increase sales to earn more"
+                }
+            }
+        },
+        "coSelling": {
+            "title": "Co-selling Features",
+            "items": {
+                "gettingStarted": {
+                    "title": "Getting Started",
+                    "description": "Create a storefront and explore the affiliate panel to find a variety of brand products to instantly add to a shop or product tile"
+                },
+                "promoteEarn": {
+                    "title": "Promote & Earn",
+                    "description": "Select products, submit approval requests and track the status of requests and sales on the go"
+                },
+                "collaborateSell": {
+                    "title": "Collaborate to Sell",
+                    "description": "When approved, products are instantly accessible so you can start promoting and earning better commissions transparently."
+                }
+            }
+        }
+    }
+} 

@@ -98,7 +98,11 @@
     "empty": "You don't have any shops yet",
     "createNew": "Create New Shop",
     "loading": "Loading shops...",
-    "error": "Failed to load shops"
+    "error": "Failed to load shops",
+    "createStore": "Create Store",
+    "error": {
+      "message": "Failed to load shops. Please try again."
+    }
   },
   "shopCard": {
     "products": "Products",
@@ -133,5 +137,18 @@
     "switchConfirm": "Are you sure you want to switch to this shop?",
     "success": "Operation completed successfully",
     "error": "An error occurred. Please try again"
+  },
+  "main": {
+    "title": "Shop Management",
+    "description": "Manage all your shops in one place. Create, edit, and switch between your stores easily."
+  },
+  "shopRow": {
+    "switch": "Switch",
+    "error": {
+      "message": "Failed to switch shop. Please try again."
+    }
+  },
+  "emptyBox": {
+    "message": "Oops! It looks like you have no shops yet. Create your first shop to get started."
   }
 } 

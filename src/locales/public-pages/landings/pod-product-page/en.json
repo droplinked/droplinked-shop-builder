@@ -1,0 +1,29 @@
+{
+  "aboveTheFoldSection": {
+    "title": "Transform Artwork and IP into Premium Merchandise",
+    "description": "With droplinked you can create and sell customizable on-demand products with no inventory and shipment hassles"
+  },
+  "dualSideFlexData": {
+    "customize": {
+      "title": "More than +10K Items to Customize",
+      "description": "Explore high quality merchandise blanks customizable and ready to sell on-demand"
+    },
+    "easyCustomization": {
+      "title": "Admin Console to Design, Publish and Track Performance",
+      "description": "Quickly design your favorite products with our free design tool"
+    },
+    "automatedShipping": {
+      "title": "Automated Shipping and Fulfillment",
+      "description": "Hassle-free shipping and fulfillment, everything is handled on your behalf"
+    },
+    "mintToMerch": {
+      "title": "Mint to Merch",
+      "description": "Empower community members to design merchandise with exclusive designs or NFT artwork they own"
+    }
+  },
+  "starryBorder": {
+    "title": "Launch a Store Today",
+    "description": "Simple setup, secure transactions and endless possibilities await your community.",
+    "buttonText": "Get Started"
+  }
+} 

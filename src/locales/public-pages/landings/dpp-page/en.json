@@ -1,0 +1,122 @@
+{
+  "section1": {
+    "title": "Futureproof your organization's product lifecycle management",
+    "description": "Droplinked's Digital Product Passport provides attribution efficiency and compliance for inventory management at scale."
+  },
+  "section2": {
+    "title": "Tokenized Digital Product Passports",
+    "description": "Generate a certificate of authenticity and ownership from the start, facilitating easy proof transfer and using NFT technology for lifecycle incentives."
+  },
+  "section5": {
+    "title": "Provide Comprehensive Product Information",
+    "description": "Offer customers detailed insights into product specifications, materials, and production processes for clear purchase transparency."
+  },
+  "dppBenefits": {
+    "title": "Digital Product Passport Benefits",
+    "description": "Our Digital Product Passport solution is designed to bring unparalleled transparency, efficiency, and sustainability to your product management. Embrace a greener, smarter way to track, manage, and report every phase of your product's journey.",
+    "items": {
+      "comprehensiveLifecycleData": {
+        "number": "01",
+        "title": "Comprehensive Lifecycle Data",
+        "description": "Capture and access detailed information from production to disposal, ensuring full lifecycle traceability."
+      },
+      "advancedTechnologyIntegration": {
+        "number": "02",
+        "title": "Advanced Technology Integration",
+        "description": "Leverage state-of-the-art technologies such as blockchain, QR codes, and RFID for secure, reliable data management."
+      },
+      "enhancedSustainability": {
+        "number": "03",
+        "title": "Enhanced Sustainability",
+        "description": "Make informed decisions with insights into materials, sourcing, and environmental impact, driving sustainable practices."
+      },
+      "regulatoryCompliance": {
+        "number": "04",
+        "title": "Regulatory Compliance Made Easy",
+        "description": "Stay ahead of the curve with automatic compliance updates, keeping products aligned with the latest regulations."
+      },
+      "userFriendlyInterface": {
+        "number": "05",
+        "title": "User-Friendly Interface",
+        "description": "Our intuitive platform allows for easy access and analysis of your data, streamlining management processes."
+      },
+      "dataDrivenDecisionMaking": {
+        "number": "06",
+        "title": "Data-Driven Decision Making",
+        "description": "Utilize rich analytics and reports to make strategic decisions, enhancing product's value and market competitiveness."
+      }
+    }
+  },
+  "dppBlockchain": {
+    "title": "Enhancing DPPs with Blockchain",
+    "description": "Using blockchain technology to implement Digital Product Passports (DPPs) as Non-Fungible Tokens (NFTs) can significantly enhance their value in terms of security, transparency, and traceability.",
+    "benefits": {
+      "traceability": {
+        "title": "Traceability",
+        "benefits": ["Real-Time Tracking", "Supply Chain Insights", "Counterfeit Prevention"]
+      },
+      "transparency": {
+        "title": "Transparency",
+        "benefits": ["Product History Visibility", "Public Verification", "Consistent Information"]
+      },
+      "security": {
+        "title": "Security",
+        "benefits": ["Immutable Records", "Decentralization", "Controlled Access"]
+      }
+    }
+  },
+  "dppChart": {
+    "title": "Transparency with Enhanced Sustainability",
+    "description": "The Digital Product Passport (DPP), proposed by the EU, supports circularity and sustainability in line with the EU's Circular Economy Action Plan and the European Green Deal, targeting Europe's climate neutrality by 2050.",
+    "subtitle": "Less than 10% of material used are currently fed back to the cycle"
+  },
+  "dppContactUs": {
+    "title": "Contact us to learn more",
+    "form": {
+      "firstName": {
+        "placeholder": "First Name",
+        "error": "This field is required."
+      },
+      "lastName": {
+        "placeholder": "Last Name",
+        "error": "This field is required."
+      },
+      "email": {
+        "placeholder": "Email",
+        "error": "This field is required.",
+        "invalidError": "Please enter a valid email address."
+      },
+      "message": {
+        "placeholder": "Your message",
+        "error": "This field is required."
+      },
+      "submit": "Send"
+    },
+    "toast": {
+      "success": "Message sent successfully!",
+      "error": "Oops. Something went wrong!"
+    }
+  },
+  "productPassport": {
+    "view3DModel": "View 3D Model",
+    "productOptions": {
+      "productId": "Product ID",
+      "weight": "Weight",
+      "traceability": "Traceability",
+      "manufacturingSite": "Manufacturing site",
+      "certifications": "Certifications",
+      "circularCharacteristics": "Circular characteristics",
+      "sourcingComposition": "Sourcing composition",
+      "lca": "LCA"
+    },
+    "chainOfCustody": "Chain of custody",
+    "productCreated": "Product created",
+    "categories": {
+      "accessories": "Accesories",
+      "jewelry": "Jewelry",
+      "retail": "Retail",
+      "electronics": "Electronics",
+      "industrial": "Industrial"
+    }
+  }
+} 

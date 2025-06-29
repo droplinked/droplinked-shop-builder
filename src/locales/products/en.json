@@ -1,0 +1,173 @@
+{
+  "pageHeader": {
+    "title": "Products",
+    "description": "Manage products all in one place. Easily create, view, and track them here.",
+    "actions": {
+      "reorderProducts": "Reorder Products",
+      "import": "Import",
+      "newProduct": "New Product"
+    }
+  },
+  "productTypes": {
+    "physicalItems": {
+      "title": "Physical Items",
+      "description": "Sell tangible goods and merchandise currently in stock."
+    },
+    "digitalGoods": {
+      "title": "Digital Goods",
+      "description": "Sell digital items like files, in-game assets and NFTs."
+    },
+    "pod": {
+      "title": "POD",
+      "description": "Offer custom produced items on-demand, such as apparel and mugs."
+    },
+    "events": {
+      "title": "Events",
+      "description": "Sell tickets for events, concerts, and other gatherings."
+    }
+  },
+  "importModal": {
+    "title": "Import Products",
+    "description": "Import inventory catalogs effortlessly by uploading a CSV or Excel file. Also, you can use our fetch tool to import one product or an entire catalog easily from Shopify or WooCommerce using a URL.",
+    "downloadTemplate": "Download Template",
+    "fileUpload": {
+      "title": "Upload File",
+      "description": "Drag and drop your file here, or click to browse",
+      "supportedFormats": "Just CSV (Up to 1MB)",
+      "maxSize": "Max file size: 10MB",
+      "dropHere": "Drop the file here ...",
+      "click": "Click",
+      "dragDropText": "to add a new file or drag and drop it here.",
+      "uploadFile": "Upload file"
+    },
+    "urlInput": {
+      "title": "Import from URL",
+      "placeholder": "Enter product URL from Shopify or WooCommerce",
+      "description": "Import products directly from your store URL",
+      "error": "Invalid URL. Please enter a valid Shopify or WooCommerce URL."
+    },
+    "recentTasks": {
+      "title": "Recent Import Tasks",
+      "noTasks": "No recent import tasks",
+      "viewPreview": "View Preview",
+      "status": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed"
+      }
+    },
+    "footer": {
+      "cancel": "Cancel",
+      "import": "Import Products"
+    }
+  },
+  "productTable": {
+    "columns": {
+      "product": "Product Name",
+      "type": "Type",
+      "price": "Price",
+      "status": "Status",
+      "collection": "Collection",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "duplicate": "Duplicate",
+      "view": "View",
+      "details": "Details",
+      "dropInfo": "DROP Information",
+      "orderPodSample": "Order POD Sample",
+      "share": "Share",
+      "remove": "Remove",
+      "makeStatus": "Make {status}"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "draft": "Draft",
+      "public": "Public",
+      "private": "Private"
+    },
+    "empty": {
+      "title": "No products found",
+      "description": "Get started by adding your first product",
+      "alt": "Empty Table"
+    }
+  },
+  "productDrawer": {
+    "title": "Product Details",
+    "sections": {
+      "basic": "Basic Information",
+      "pricing": "Pricing",
+      "inventory": "Inventory",
+      "shipping": "Shipping",
+      "media": "Media",
+      "variants": "Variants"
+    },
+    "actions": {
+      "save": "Save Product",
+      "cancel": "Cancel",
+      "delete": "Delete Product",
+      "discard": "Discard",
+      "saveAsDraft": "Save as draft",
+      "updateProduct": "Update Product",
+      "addProduct": "Add Product"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "download": "Download",
+    "upload": "Upload",
+    "uploading": "Uploading",
+    "import": "Import",
+    "export": "Export",
+    "or": "or",
+    "update": "Update",
+    "add": "Add"
+  },
+  "identifiedItemsModal": {
+    "title": "Identified Items",
+    "description": "The product importer successfully identified {count} items.",
+    "maxSelectionLimit": {
+      "title": "Maximum selection limit reached",
+      "description": "You have selected {selected} items out of {total} available items. You cannot select more items at this time."
+    },
+    "dropRecords": {
+      "title": "Drop (Digital Product Passport Records)",
+      "description": "Create onchain digital records for the inventory selected below."
+    },
+    "table": {
+      "columns": {
+        "title": "Title",
+        "url": "URL"
+      },
+      "noTitle": "No Title",
+      "noItems": "No items available"
+    },
+    "pagination": {
+      "previousPage": "Previous page",
+      "nextPage": "Next page"
+    },
+    "footer": {
+      "discard": "Discard",
+      "importSelected": "Import {count} Selected Items",
+      "selectItems": "Select Items to Import"
+    }
+  }
+} 
