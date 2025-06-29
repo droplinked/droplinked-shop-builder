@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from 'react'
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
+import { appDevelopment } from 'utils/app/variable'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -104,7 +105,8 @@ export function useStepController() {
                 scrub: 1,
                 pin: true,
                 pinSpacing: true,
-                markers: true, // Set to true for debugging
+                anticipatePin: 1,
+                markers: appDevelopment, // Set to true for debugging
                 onUpdate: (self) => {
                     // Calculate which step we're in based on scroll progress
                     const progress = self.progress * 100
