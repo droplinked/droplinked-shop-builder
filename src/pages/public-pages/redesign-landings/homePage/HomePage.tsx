@@ -12,7 +12,7 @@ import JoinNow from './components/JoinNow'
 export default function HomePage() {
   const sections = [
     { id: 'partners-section', component: <MarqueeSection /> },
-    // { id: 'goLive-section', component: <GoLiveSection /> },
+    { id: 'goLive-section', component: <GoLiveSection /> },
     { id: 'product-offering-section', component: <ProductOfferingSection /> },
     { id: 'key-features', component: <KeyFeatures /> },
     { id: 'join-the-community', component: <JoinTheCommuity /> },

@@ -5,9 +5,6 @@ import { useRef, useState, useEffect } from 'react'
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
-import Step1 from '../videos/step1.webm'
-import Step2 from '../videos/step2.webm'
-import Step3 from '../videos/step3.webm'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,7 +24,7 @@ export function useStepController() {
     const VideoStep1 = (
         <InlineVideoPlayer
             style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step1}
+            src="/assets/video/home-page/step1.webm"
             height={height}
             onEnded={() => handleVideoEnded(2)}
             playing={step === 1}
@@ -37,7 +34,7 @@ export function useStepController() {
     const VideoStep2 = (
         <InlineVideoPlayer
             style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step2}
+            src="/assets/video/home-page/step2.webm"
             height={height}
             onEnded={() => handleVideoEnded(3)}
             playing={step === 2}
@@ -47,7 +44,7 @@ export function useStepController() {
     const VideoStep3 = (
         <InlineVideoPlayer
             style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step3}
+            src="/assets/video/home-page/step3.webm"
             height={height}
             onEnded={() => handleVideoEnded(1)}
             playing={step === 3}
