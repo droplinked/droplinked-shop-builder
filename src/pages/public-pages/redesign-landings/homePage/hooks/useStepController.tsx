@@ -6,6 +6,7 @@ import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 import { appDevelopment } from 'utils/app/variable'
+import { useInView } from 'react-intersection-observer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,6 +32,11 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
+    // Create refs for tracking if videos are in view
+    const [video1Ref, video1InView] = useInView({ threshold: 0.3 });
+    const [video2Ref, video2InView] = useInView({ threshold: 0.3 });
+    const [video3Ref, video3InView] = useInView({ threshold: 0.3 });
+
     // Handle when a video ends - advance to the next step
     const handleVideoEnded = (nextStep: number) => {
         setStep(nextStep);
@@ -47,27 +53,30 @@ export function useStepController() {
     const allVideos = (
         <>
             <InlineVideoPlayer
+                ref={video1Ref}
                 style={getVideoStyle(1)}
                 src="/assets/video/home-page/step1.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(2)}
-                playing={step === 1}
+                playing={step === 1 && video1InView}
                 key="video-step-1"
             />
             <InlineVideoPlayer
+                ref={video2Ref}
                 style={getVideoStyle(2)}
                 src="/assets/video/home-page/step2.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(3)}
-                playing={step === 2}
+                playing={step === 2 && video2InView}
                 key="video-step-2"
             />
             <InlineVideoPlayer
+                ref={video3Ref}
                 style={getVideoStyle(3)}
                 src="/assets/video/home-page/step3.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(1)}
-                playing={step === 3}
+                playing={step === 3 && video3InView}
                 key="video-step-3"
             />
         </>
