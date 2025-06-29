@@ -17,7 +17,6 @@ function CompletionSection() {
             padding={{ base: 4, md: 6, lg: 9, xl: 12, '3xl': 16 }}
         >
             <DroplinkedBrand />
-
             <OnboardingStepHeader
                 heading={t('completion.title')}
                 description={t('completion.subtitle')}

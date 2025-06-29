@@ -3,6 +3,7 @@ import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
 import React from "react";
+import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
 
 interface Props {
     handleSelectItem: (item: string) => void;
@@ -92,7 +93,6 @@ export default function ImproveWithAi({
             ) : (
                 <Menu isOpen={isOpen} onClose={onClose} placement="end" isLazy>
                     <MenuButton type="button" disabled={isDisabled} cursor={isDisabled ? "not-allowed" : "pointer"} onClick={onOpen}>
-                    {/* TODO: check with the design */}
                         <AppButton
                             variant="secondary"
                             size="sm"
@@ -100,7 +100,7 @@ export default function ImproveWithAi({
                             bg={"neutral.gray.1000"}
                             borderColor={"neutral.gray.800"}
                             isDisabled={isImproveLoading || isDisabled}
-                            leftIcon={<AppIcons.MagicWind width={"16px"} height={"16px"} />}
+                            leftIcon={<MagicwandSm/>}
                         >
                             {!isImproveLoading && "Improve With AI"}
                         </AppButton>

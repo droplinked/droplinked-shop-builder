@@ -3,25 +3,18 @@ import { LeafLg } from 'assets/icons/System/Leaf/LeafLg';
 import { Star2Lg } from 'assets/icons/System/Star2/Star2Lg';
 import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
 import { TFunction } from 'i18next';
-import { FC } from 'react';
+import { PlanType } from 'services/subscription/interfaces';
 
-export type SubscriptionPlan = {
-  icon: FC;
+type SubscriptionPlans = Record<PlanType, {
+  icon: React.ComponentType;
   title: string;
   description: string;
   features: {
     title: string;
     items: string[];
   };
-  type: 'STARTER' | 'BUSINESS' | 'BUSINESS_PRO' | 'ENTERPRISE';
-};
-
-export type SubscriptionPlans = {
-  STARTER: SubscriptionPlan;
-  BUSINESS: SubscriptionPlan;
-  BUSINESS_PRO: SubscriptionPlan;
-  ENTERPRISE: SubscriptionPlan;
-};
+  type: PlanType;
+}>;
 
 export const getSubscriptionPlans = (t: TFunction): SubscriptionPlans => ({
   STARTER: { 
@@ -99,4 +92,4 @@ export const getSubscriptionPlans = (t: TFunction): SubscriptionPlans => ({
     },
     type: 'ENTERPRISE'
   }
-}); 
+})

@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = function override(config, env) {
 	config.resolve.fallback = {
@@ -9,14 +10,18 @@ module.exports = function override(config, env) {
 		util: require.resolve("util"),
 		fs: false
 	}
-	config.resolve.extensions = [...config.resolve.extensions, '.ts', '.js', '.tsx']
+
+	// Ensure TypeScript extensions are properly resolved
+	config.resolve.extensions = ['.tsx', '.ts', '.jsx', '.js', '.json']
+
 	config.plugins = [
 		...config.plugins,
 		new webpack.ProvidePlugin({
 			process: 'process/browser',
 			Buffer: ['buffer', 'Buffer'],
-		}),
+		})
 	]
+
 	config.module.rules = [
 		...config.module.rules,
 		...[
@@ -36,6 +41,21 @@ module.exports = function override(config, env) {
 			},
 		]
 	]
+
+	// Add bundle analyzer when ANALYZE environment variable is set
+	if (process.env.ANALYZE === 'true') {
+		config.plugins.push(
+			new BundleAnalyzerPlugin({
+				analyzerMode: 'server',
+				analyzerHost: 'localhost',
+				analyzerPort: 8888,
+				openAnalyzer: true,
+				generateStatsFile: false,
+				statsFilename: 'stats.json',
+				logLevel: 'info'
+			})
+		)
+	}
 
 	return config
 }

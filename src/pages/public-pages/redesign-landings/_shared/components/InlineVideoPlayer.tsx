@@ -1,0 +1,17 @@
+import React from 'react'
+import ReactPlayer from 'react-player'
+import { ReactPlayerProps } from 'react-player/dist/types'
+
+export default function InlineVideoPlayer(props: ReactPlayerProps) {
+    return (
+        <ReactPlayer
+            width="100%"
+            height="auto"
+            muted={true}
+            playsInline={true}
+            autoPlay={true}
+            loop={true}
+            {...props}
+        />
+    )
+}

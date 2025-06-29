@@ -28,7 +28,7 @@ type Action = {
 const useSubscriptionPlanStore = create<State & Action>((set, get) => ({
     selectedPlan: null,
     selectedPlanPrice: 0,
-    preferredPlanDuration: planDurations[1],
+    preferredPlanDuration: planDurations[0],
     planCardStyles: {
         descriptionHeight: 48,
         priceHeight: 48

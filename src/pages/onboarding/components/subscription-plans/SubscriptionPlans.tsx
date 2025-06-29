@@ -1,6 +1,6 @@
-import { Grid } from "@chakra-ui/react"
-import { ExternalarrowMd } from "assets/icons/Navigation/ExternalArrow/ExternalarrowMd"
-import BlueButton from "components/redesign/button/BlueButton"
+import { Grid, useDisclosure } from "@chakra-ui/react"
+import PaymentModal from "components/modals/payment-modal/PaymentModal"
+import ExternalLink from "components/redesign/external-link/ExternalLink"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import onboardingArLocale from 'locales/onboarding/ar.json'
@@ -11,22 +11,19 @@ import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import { PlanType } from "pages/onboarding/types/onboarding"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useState } from "react"
-import { useMutation, useQuery } from "react-query"
+import { useQuery } from "react-query"
 import { SubscriptionPlan } from "services/subscription/interfaces"
-import { getSubscriptionPlansService, subscriptionPlanStripePaymentService } from "services/subscription/subscriptionServices"
+import { getSubscriptionPlansService} from "services/subscription/subscriptionServices"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
-import PaymentModal from "../common/payment-modal/PaymentModal"
 import SubscriptionPlanCard from "./SubscriptionPlanCard"
-import { getContinueText, getFeaturesWithInheritance } from "./utils"
+import { getContinueText, getFeaturesWithInheritance } from "../../utils/subscriptionPlan"
 
 function SubscriptionPlans() {
     const [selectedPlan, setSelectedPlan] = useState<PlanType>("BUSINESS")
-    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
-    const [clientSecret, setClientSecret] = useState<string>("")
+    const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure()
     const { updateOnboardingState } = useOnboardingStore()
-    const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration)
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
     const { t: tOnboarding } = useLocaleResources('onboarding', {
         en: onboardingEnLocale,
@@ -48,13 +45,6 @@ function SubscriptionPlans() {
         }
     })
 
-    const { mutateAsync: createPaymentIntent } = useMutation(subscriptionPlanStripePaymentService, {
-        onSuccess: (response) => {
-            setClientSecret(response.data.clientSecret)
-            setIsPaymentModalOpen(true)
-        },
-    })
-
     const plans: SubscriptionPlan[] = data?.data || []
 
     const handleNext = async (): Promise<void> => {
@@ -62,18 +52,8 @@ function SubscriptionPlans() {
             updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')
             return
         }
-
-        try {
-            const selectedPlanData = plans.find((plan) => plan.type === selectedPlan)
-
-            await createPaymentIntent({
-                month: preferredPlanDuration.month,
-                subId: selectedPlanData._id,
-                recurring: true,
-            })
-        } catch (error) {
-            console.error(tOnboarding('subscriptionPlans.paymentError'), error)
-        }
+        // Open payment modal - PaymentForm will handle the payment logic
+        openPaymentModal()
     }
 
     if (isFetching) return <Loading />
@@ -85,15 +65,16 @@ function SubscriptionPlans() {
                  description={tOnboarding('subscriptionPlans.subtitle')}
             />
 
-            <BlueButton
+            <ExternalLink
                 fontSize="16px"
                 mt="-46px"
                 justifyContent="flex-start"
                 padding={0}
+                hasArrow={true}
                 onClick={() => window.open("/plans", "_blank")}
             >
-                {tOnboarding('subscriptionPlans.viewAllPlans')} <ExternalarrowMd color="#179EF8" />
-            </BlueButton>
+                {tOnboarding('subscriptionPlans.viewAllPlans')} 
+            </ExternalLink>
 
             <PlanDurationRadioContainer />
 
@@ -109,24 +90,23 @@ function SubscriptionPlans() {
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
-                            planDuration={preferredPlanDuration}
                         />
                     )
                 })}
             </Grid>
 
-            <ControlButtons 
-                continueText={getContinueText(selectedPlan, tSubscription)} 
-                onSubmit={handleNext} 
-                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')} 
-                onSkip={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
+            <ControlButtons
+                 continueText={getContinueText(selectedPlan, tSubscription)} 
+                onSubmit={handleNext}
+                onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')}
             />
 
             <PaymentModal
                 plan={selectedPlan}
                 isOpen={isPaymentModalOpen}
-                onClose={() => setIsPaymentModalOpen(false)}
-                clientSecret={clientSecret}
+                onClose={closePaymentModal}
+                onSuccess={() => updateOnboardingState('currentStep', 'YOU_ARE_ALL_SET')}
+                successMessage="Payment successful! Your subscription has been activated and you're all set!"
             />
         </>
     )

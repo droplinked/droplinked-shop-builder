@@ -55,8 +55,8 @@ export const getLevelUpSections = (t: TFunction) => [
             label: t('common.createProduct'),
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/products');
+              onClose?.()
+              navigate?.('/analytics/products')
             }
           }
         }
@@ -76,8 +76,8 @@ export const getLevelUpSections = (t: TFunction) => [
             label: t('common.storefrontCustomization'),
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/style-center/storefront-designer');
+              onClose?.()
+              navigate?.('/style-center/storefront-designer')
             }
           }
         }
@@ -97,8 +97,8 @@ export const getLevelUpSections = (t: TFunction) => [
             label: t('common.affiliateMarket'),
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/affiliate/products');
+              onClose?.()
+              navigate?.('/analytics/affiliate/products')
             }
           }
         }
@@ -186,12 +186,12 @@ export const getLevelUpSections = (t: TFunction) => [
             label: t('common.createProduct'),
             rightIcon: ExternalarrowLg,
             onClick: (setCurrentSubSection, onClose, navigate) => {
-              if (onClose) onClose();
-              if (navigate) navigate('/analytics/style-center/product-tiles');
+              onClose?.()
+              navigate?.('/analytics/style-center/product-tiles')
             }
           }
         }
       }
     ]
   }
-];
+]

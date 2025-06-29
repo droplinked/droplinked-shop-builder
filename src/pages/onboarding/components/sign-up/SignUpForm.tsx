@@ -1,4 +1,4 @@
-import { Flex, Text, VStack } from '@chakra-ui/react'
+import { Text, VStack } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import Checkbox from 'components/redesign/checkbox/Checkbox'
 import AppInput from 'components/redesign/input/AppInput'
@@ -12,6 +12,7 @@ import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { InputChangeEvent } from 'types/eventTypes'
 import * as Yup from 'yup'
+import AuthRedirectLink from '../common/AuthRedirectLink'
 import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
@@ -40,6 +41,7 @@ function SignUpForm() {
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
     const udId = searchParams.get("ud-id")
+    const source = searchParams.get("source")
 
     async function handleSignUp(values: any) {
         try {
@@ -119,8 +121,8 @@ function SignUpForm() {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                   {t('signUp.termsPrefix')}
-                                    <InteractiveText to="/terms">{t('signUp.termsLink')}</InteractiveText>
+                                    {t('signUp.termsPrefix')}
+                                    <InteractiveText to="/terms" display="contents">{t('signUp.termsLink')}</InteractiveText>
                                 </Text>
                             </Checkbox>
 
@@ -140,22 +142,15 @@ function SignUpForm() {
                                 referralCode={values.referralCode}
                                 d3Id={d3Id}
                                 udId={udId}
+                                source={source}
                             />
 
-                            <Flex
-                                flexDirection={{ base: "column", md: "row" }}
+                            <AuthRedirectLink
                                 justifyContent="center"
-                                alignItems="center"
-                                gap={{ base: 1, md: 2 }}
-                                marginTop={3}
-                            >
-                                <Text fontSize={14} color="text.white">
-                                    {t('signUp.haveAccountText')}
-                                </Text>
-                                <InteractiveText onClick={() => updateOnboardingState('currentStep', 'SIGN_IN')}>
-                                    {t('signUp.signInLink')}
-                                </InteractiveText>
-                            </Flex>
+                                text={t('signUp.haveAccountText')}
+                                linkText={t('signUp.signInLink')}
+                                action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
+                            />
                         </Form>
                     )
                 }}

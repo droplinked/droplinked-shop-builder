@@ -42,7 +42,7 @@ export default function Textarea({ label, description, maxCharacters, state, sta
     padding: "12px 16px",
     border: "1px solid",
     borderColor: borderColorMap[state] || "#292929",
-    resize: "none",
+    resize: "vertical",
     rows: 3,
     placeholder: "What's up?",
     maxLength: maxCharacters,

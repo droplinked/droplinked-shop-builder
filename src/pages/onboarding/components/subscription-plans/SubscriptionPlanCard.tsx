@@ -1,12 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { AvailableoutlinedSm } from 'assets/icons/Sign/AvailableOutlined/AvailableoutlinedSm'
-import { SubscriptionPlan } from 'services/subscription/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { PlanType } from 'pages/onboarding/types/onboarding'
 import React, { useState } from 'react'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
 import ExpandButton from './ExpandButton'
 import PlanHeader from './PlanHeader'
-import { planDurations } from 'stores/subscription-plan.ts/subscriptionPlanStore'
-import { PlanType } from 'pages/onboarding/types/onboarding'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface SubscriptionPlanCardProps {
   plan: SubscriptionPlan
@@ -14,10 +13,9 @@ interface SubscriptionPlanCardProps {
   isPopular?: boolean
   isSelected?: boolean
   onSelect?: (planType: PlanType) => void
-  planDuration: typeof planDurations[0]
 }
 
-function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect, planDuration }: SubscriptionPlanCardProps) {
+function SubscriptionPlanCard({ plan, features, isPopular, isSelected, onSelect }: SubscriptionPlanCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { t } = useLocaleResources('subscription')
 

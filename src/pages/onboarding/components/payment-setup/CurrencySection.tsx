@@ -1,10 +1,10 @@
 import { Flex, Text } from '@chakra-ui/react'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
+import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import { shopInfoService, shopUpdateService } from 'services/shop/shopServices'
 import useAppStore from 'stores/app/appStore'
-import { shopUpdateService, shopInfoService } from 'services/shop/shopServices'
-import useAppToast from 'hooks/toast/useToast'
 
 interface CurrencySectionProps {
   onLoadingChange?: (loading: boolean) => void
@@ -32,18 +32,16 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
       // Update the shop with all data preserved
       const response = await shopUpdateService(updatedShopData)
-
       // Update the local state with the complete shop data from the response
-      updateState({
-        key: 'shop',
-        params: response.data.data
-      })
-    } catch (error) {
+      updateState({ key: 'shop', params: response.data.data })
+    }
+    catch (error) {
       showToast({
         message: t('paymentSetup.currency.updateError'),
         type: 'error'
       })
-    } finally {
+    }
+    finally {
       setIsLoading(false)
       onLoadingChange?.(false)
     }
@@ -51,8 +49,12 @@ function CurrencySection({ onLoadingChange }: CurrencySectionProps) {
 
   return (
     <Flex direction="column" gap={4}>
-      <Text color={'text.white'}>{t('paymentSetup.currency.title')}</Text>
-      <CurrencySelect value={shop?.currency.abbreviation || 'USD'} onChange={(e) => handleCurrencyChange(e.target.value)} isDisabled={isLoading} />
+      <Text color='text.white'>{t('paymentSetup.currency.title')}</Text>
+      <CurrencySelect
+        value={shop?.currency.abbreviation || 'USD'}
+        onChange={(e) => handleCurrencyChange(e.target.value)}
+        isDisabled={isLoading}
+      />
     </Flex>
   )
 }

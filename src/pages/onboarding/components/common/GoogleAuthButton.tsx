@@ -12,11 +12,12 @@ interface GoogleAuthButtonProps {
     isSignUp: boolean
     isDisabled?: boolean
     referralCode?: string
-    d3Id?: string | null
-    udId?: string | null
+    d3Id?: string
+    udId?: string
+    source?: string
 }
 
-function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId }: GoogleAuthButtonProps) {
+function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
     const [searchParams] = useSearchParams()
     const { authenticateUser, finalizeLogin, loading } = useLogin()
     const { t } = useLocaleResources('onboarding', {
@@ -31,6 +32,8 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId }: Go
             if (referralCode) googleAuthUrl.searchParams.append("referralCode", referralCode)
             if (d3Id) googleAuthUrl.searchParams.append("d3UserId", d3Id)
             if (udId) googleAuthUrl.searchParams.append("udUserId", udId)
+            // I know this is hilarious, but the backend team wanted it this way
+            if (source === "crossmint") googleAuthUrl.searchParams.append("crossmintUserId", "some-random-id")
         }
 
         window.location.href = googleAuthUrl.toString()

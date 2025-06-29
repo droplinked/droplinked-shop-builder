@@ -31,7 +31,7 @@ export const useImportWithUrl = (props: Params) => {
     const { importProductModalController, identifiedItemsModalController } = props
 
     const { mutateAsync: startCrawling, isLoading: crawlingLoading } = useMutation({
-        mutationFn: () => startWebsiteCrawling(targetShopUrl),
+        mutationFn: () => startWebsiteCrawling({ websiteUrl: targetShopUrl }),
         onMutate() {
             updateProductPageState("crawlerError", "")
         },

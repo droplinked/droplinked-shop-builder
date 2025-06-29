@@ -1,0 +1,58 @@
+import { Grid, useBreakpointValue } from '@chakra-ui/react'
+import React from 'react'
+import Card from './Card'
+
+export interface CardData {
+    icon?: React.ReactNode
+    title: string
+    description: string
+    children?: React.ReactNode
+    gridColumn?: string | { base?: string; md?: string; lg?: string }
+    hasBackgroundOverlay?: boolean
+}
+
+interface Props {
+    cardsData: CardData[]
+    templateColumns?: {
+        base?: string
+        md?: string
+        lg?: string
+    }
+    hasHoverEffect?: boolean
+    gap?: number
+    flexDirection?: 'column' | 'column-reverse'
+    hasGradiantOverlay?: boolean
+}
+
+export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect, flexDirection, hasGradiantOverlay }: Props) {
+    const responsiveGap = useBreakpointValue({ base: 4, "2xl": 6 })
+
+    const defaultTemplateColumns = {
+        base: '1fr',
+        md: 'repeat(2, 1fr)',
+        lg: 'repeat(3, 1fr)'
+    }
+
+    return (
+        <Grid
+            width="100%"
+            templateColumns={templateColumns || defaultTemplateColumns}
+            gap={gap || responsiveGap}
+        >
+            {cardsData.map((card, index) => (
+                <Card
+                    key={index}
+                    icon={card.icon}
+                    title={card.title}
+                    description={card.description}
+                    children={card.children}
+                    gridColumn={card.gridColumn}
+                    hasHoverEffect={hasHoverEffect}
+                    hasBackgroundOverlay={card.hasBackgroundOverlay}
+                    flexDirection={flexDirection}
+                    hasGradiantOverlay={hasGradiantOverlay}
+                />
+            ))}
+        </Grid>
+    )
+}

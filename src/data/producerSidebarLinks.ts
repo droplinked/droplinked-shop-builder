@@ -115,7 +115,7 @@ const createSidebarLinks = (t: TFunction) => [
             }
         ]
     }
-];
+]
 
 // Utility function to filter sidebar links based on conditions
 export const getFilteredSidebarLinks = (t: TFunction, hasCompletedQuests: boolean) => {
@@ -126,9 +126,9 @@ export const getFilteredSidebarLinks = (t: TFunction, hasCompletedQuests: boolea
             if (item.title === t('items.quests') && hasCompletedQuests) {
                 return false;
             }
-            return true;
+            return true
         })
-    }));
-};
+    }))
+}
 
 export const getProducerSidebarLinks = (t: TFunction) => createSidebarLinks(t);

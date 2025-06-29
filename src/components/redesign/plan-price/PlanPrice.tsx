@@ -14,16 +14,18 @@ import PriceContent from './PriceContent'
  * @param {SubscriptionPlan} props.plan - The subscription plan object with pricing information
  * @param {number} [props.mainFontSize=32] - Font size for the main price amount
  * @param {number} [props.discountFontSize=20] - Font size for the discounted price display
+ * @param {boolean} [props.showFree=false] - Override to show "Free" instead of actual price
  * @param {FlexProps} props - Additional Chakra UI flex props
  */
 interface Props extends FlexProps {
     plan: SubscriptionPlan
     mainFontSize?: number
     discountFontSize?: number
+    showFree?: boolean
 }
 
-function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }: Props) {
-    const { preferredPlanDuration } = useSubscriptionPlanPurchaseStore(state => ({
+function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, showFree = false, ...props }: Props) {
+    const { preferredPlanDuration} = useSubscriptionPlanPurchaseStore(state => ({
         preferredPlanDuration: state.preferredPlanDuration,
     }))
 
@@ -46,10 +48,12 @@ function PlanPrice({ plan, mainFontSize = 32, discountFontSize = 20, ...props }:
         <Flex {...flexProps} {...props}>
             <PriceContent
                 planType={plan.type}
+                planDuration={preferredPlanDuration.month}
                 targetPrice={targetPrice}
                 hasDiscount={preferredPlanDuration.discount}
                 mainFontSize={mainFontSize}
                 discountFontSize={discountFontSize}
+                showFree={showFree}
             />
         </Flex>
     )
