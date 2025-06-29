@@ -24,3 +24,6 @@ export const generateDomains = (params: IGenerateWithAiRequest) =>
 
 export const getAiImageStatus = (requestId: string) =>
     axiosInstance.get<IAiImageStatusResponse>(`/ai/image-status/${requestId}`)
+
+export const uploadToCdn = (url: string) =>
+    axiosInstance.post("/uploader/cdn-upload", { url })
