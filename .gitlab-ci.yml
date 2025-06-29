@@ -4,12 +4,11 @@ build_dev:
   environment:
     name: dev
   script:
-  
-    - export NODE_OPTIONS="--max-old-space-size=8192"
+
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_DEV
     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_TEST
     - "npm install"
-    - CI=false NODE_OPTIONS="--max-old-space-size=8192" npm run build
+    - CI=false npm run build
     
   artifacts:
     paths:
