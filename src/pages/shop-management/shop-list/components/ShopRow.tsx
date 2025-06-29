@@ -3,6 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { UserShop } from 'services/shop/interfaces'
 import { appDevelopment } from 'utils/app/variable'
 import useShopSwitcher from 'hooks/shop/useShopSwitch'
@@ -10,6 +11,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function ShopRow({ shop }: { shop: UserShop }) {
+    const { t } = useLocaleResources('shop');
     const navigate = useNavigate()
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher()
     const { showToast } = useAppToast()
@@ -22,7 +24,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
             await switchShop(shop._id)
         }
         catch {
-            showToast({ type: "error", message: "Oops! Something went wrong." })
+            showToast({ type: "error", message: t('shopRow.error.message') })
         }
     }
 
@@ -57,7 +59,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
                 </Flex>
             </Flex>
 
-            <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={switchToShop}>Switch</BasicButton>
+            <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={switchToShop}>{t('shopRow.switch')}</BasicButton>
         </Flex>
     )
 }

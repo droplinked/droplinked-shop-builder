@@ -1,10 +1,13 @@
 import { Box, Divider, Flex, Heading } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import ShopList from './shop-list/ShopList'
 
 function ShopManagement() {
+    const { t } = useLocaleResources('shop');
+
     return (
         <Flex justifyContent={"center"} marginBlock={"120px"}>
             <Box
@@ -21,11 +24,11 @@ function ShopManagement() {
                     background={"rgba(20, 20, 20, 0.85)"}
                 >
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <Heading m={0} fontSize={24} color={"neutral.white"}>Manage Your Shops</Heading>
+                        <Heading m={0} fontSize={24} color={"neutral.white"}>{t('main.title')}</Heading>
                         <AppIcons.MultiShopManagement />
                     </Flex>
 
-                    <AppTypography fontSize={16} color={"#808080"}>Here you can manage all your shops in one place. Easily create, edit, and switch between shops</AppTypography>
+                    <AppTypography fontSize={16} color={"#808080"}>{t('main.description')}</AppTypography>
 
                     <Divider borderColor={"#808080"} />
 
