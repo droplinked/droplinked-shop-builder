@@ -1,13 +1,17 @@
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
 import Stepper from './Stepper'
 import HowItWorks from '../../svgs/HowItWorks'
+import { useStepController } from '../../hooks/useStepController'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function GoLiveSection() {
+    const stepControllerValues = useStepController();
+
     return (
         <SectionContainer
             icon='sparkle'
@@ -23,7 +27,7 @@ export default function GoLiveSection() {
                 </Link>
             }
         >
-            <Stepper />
+            <Stepper {...stepControllerValues} />
         </SectionContainer>
     )
 }
