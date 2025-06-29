@@ -1,5 +1,6 @@
 import { Box, VStack, HStack, Input, Select, Button } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useContext } from "react";
 import { TileDesignContext } from "./context/tile.design.context";
 
@@ -29,6 +30,7 @@ const sampleCartShippings = [
 ];
 
 const TileDesignPageInformation = () => {
+    const { t } = useLocaleResources('tile-design');
     const {
         state: {
             design: {
@@ -43,41 +45,41 @@ const TileDesignPageInformation = () => {
     return (
         <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <AppTypography fontSize={"16px"} fontWeight={"700px"}>
-                Information
+                {t('information.title')}
             </AppTypography>
             <VStack spacing={12} width={"full"}>
                 <HStack width={"full"} justifyContent={"space-between"}>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            First name
+                            {t('information.fields.firstName')}
                         </AppTypography>
                         <Input padding={"12px 16px"} id="firstName" placeholder="John" />
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            Last name
+                            {t('information.fields.lastName')}
                         </AppTypography>
                         <Input padding={"12px 16px"} id="lastName" placeholder="Doe" />
                     </VStack>
                 </HStack>
                 <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                     <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                        Email Address
+                        {t('information.fields.email')}
                     </AppTypography>
                     <Input padding={"12px 16px"} id="email" type="email" placeholder="you@example.com" />
                 </VStack>
                 <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                     <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                        Address
+                        {t('information.fields.address')}
                     </AppTypography>
-                    <Input padding={"12px 16px"} id="address" placeholder="your address" />
+                    <Input padding={"12px 16px"} id="address" placeholder={t('information.fields.addressPlaceholder')} />
                 </VStack>
                 <HStack width={"full"}>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            State
+                            {t('information.fields.state')}
                         </AppTypography>
-                        <Select id="state" placeholder="Select" size={"lg"}>
+                        <Select id="state" placeholder={t('common.select')} size={"lg"}>
                             {sampleLocations.countries.map((el) => (
                                 <option key={el.name} value={el.name}>
                                     {el.name}
@@ -87,9 +89,9 @@ const TileDesignPageInformation = () => {
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            City
+                            {t('information.fields.city')}
                         </AppTypography>
-                        <Select id="city" placeholder="Select" size={"lg"}>
+                        <Select id="city" placeholder={t('common.select')} size={"lg"}>
                             {sampleLocations.cities.map((el) => (
                                 <option key={el.name} value={el.name}>
                                     {el.name}
@@ -99,17 +101,17 @@ const TileDesignPageInformation = () => {
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            Zip Code
+                            {t('information.fields.zipCode')}
                         </AppTypography>
-                        <Input padding={"12px 16px"} id="zip" placeholder="Zip code" />
+                        <Input padding={"12px 16px"} id="zip" placeholder={t('information.fields.zipCodePlaceholder')} />
                     </VStack>
                 </HStack>
                 <HStack width={"full"} justify={"space-between"}>
                     <Button variant="outline" fontWeight={"400"} padding={"12px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                        Back to Shop
+                        {t('information.actions.backToShop')}
                     </Button>
                     <Button bg={white_if_dark_mode} width={"100px"} paddingX={"36px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                        Next
+                        {t('information.actions.next')}
                     </Button>
                 </HStack>
             </VStack>

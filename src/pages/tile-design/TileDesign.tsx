@@ -15,8 +15,10 @@ import { useMutation } from "react-query";
 import { IshopUpdateService } from "services/shop/interfaces";
 import useAppStore from "stores/app/appStore";
 import { useProfile } from "hooks/useProfile/useProfile";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 const TileDesign = () => {
+    const { t } = useLocaleResources('tile-design');
     const { shop } = useAppStore();
     const { updateShopData } = useProfile();
     const [States, setState] = useState<ITileDesignState>(shop?.productTileStyle ? { design: { ...initialTileDesignState.design, ...shop?.productTileStyle, }, current: initialTileDesignState?.current } : initialTileDesignState);
@@ -55,9 +57,9 @@ const TileDesign = () => {
                             <TileDesignForm />
                         </HStack>
                         <Flex justifyContent="flex-end" width={"full"} gap={"8px"}>
-                            <BasicButton variant="outline">Cancel</BasicButton>
+                            <BasicButton variant="outline">{t('common.cancel')}</BasicButton>
                             <BasicButton isLoading={isLoading} onClick={submit} isDisabled={JSON.stringify(initialTileDesignState) === JSON.stringify(States) || isLoading}>
-                                Save
+                                {t('common.save')}
                             </BasicButton>
                         </Flex>
                     </>

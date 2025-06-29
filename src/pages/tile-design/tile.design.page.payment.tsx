@@ -1,11 +1,13 @@
 import { Box, RadioGroup, Button, VStack, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useContext, useState } from "react";
 import { TileDesignContext } from "./context/tile.design.context";
 import "./styles/tile.radio.css";
 import AppIcons from "assets/icon/Appicons";
 
 const TileDesignPagePayment = () => {
+    const { t } = useLocaleResources('tile-design');
     const {
         state: {
             design: {
@@ -22,7 +24,7 @@ const TileDesignPagePayment = () => {
     return (
         <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <AppTypography fontSize={"16px"} fontWeight={"700"}>
-                Payment
+                {t('payment.title')}
             </AppTypography>
             <RadioGroup>
                 <VStack spacing={6} width={"full"}>
@@ -38,7 +40,7 @@ const TileDesignPagePayment = () => {
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
                             >
-                                <AppTypography>Casper Wallet</AppTypography>
+                                <AppTypography>{t('payment.methods.casperWallet')}</AppTypography>
                                 <AppIcons.CasperIcon width={"24px"} height={"24px"} />
                             </HStack>
                         </label>
@@ -53,7 +55,7 @@ const TileDesignPagePayment = () => {
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
                             >
-                                <AppTypography>Unstoppable Wallet</AppTypography>
+                                <AppTypography>{t('payment.methods.unstoppableWallet')}</AppTypography>
                                 <AppIcons.UnstoppableDomainsIcon width={"24px"} height={"24px"} />
                             </HStack>
                         </label>
@@ -62,28 +64,28 @@ const TileDesignPagePayment = () => {
             </RadioGroup>
             <VStack spacing={"16px"} width={"full"} color={grey_if_dark_mode}>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Total cart</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('payment.fields.totalCart')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Shipping</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('payment.fields.shipping')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Tax</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('payment.fields.tax')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>Total</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('payment.fields.total')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
             </VStack>
             <HStack width={"full"} justify={"space-between"}>
                 <Button variant="outline" fontWeight={"400"} padding={"12px"} fontSize={"14px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                    Back
+                    {t('common.back')}
                 </Button>
                 <Button bg={white_if_dark_mode} width={"200px"} paddingX={"36px"} fontSize={"14px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    Pay $246.98 USD
+                    {t('payment.actions.pay').replace('{{amount}}', '$246.98 USD')}
                 </Button>
             </HStack>
         </Box>
