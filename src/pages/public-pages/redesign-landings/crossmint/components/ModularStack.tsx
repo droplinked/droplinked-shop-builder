@@ -6,6 +6,7 @@ import SectionContainer from '../../_shared/components/SectionContainer/SectionC
 import { Cards } from '../../_shared/components/card'
 import { CardData } from '../../_shared/components/card/Cards'
 import ProPlanCard from './ProPlanCard'
+import ModularStackTypography from '../svgs/ModularStackTypography'
 
 export default function ModularStack() {
     const cardsData: CardData[] = [{
@@ -35,7 +36,7 @@ export default function ModularStack() {
             sectionTitle='MODULAR STACK'
             headingTitle='Platform Functionalities'
             headingSubtitle='droplinked provides customizable tools and integrations to support any business'
-            typographyText='Modular Stack'
+            typographySvg={<ModularStackTypography />}
         >
             <Cards
                 cardsData={cardsData}

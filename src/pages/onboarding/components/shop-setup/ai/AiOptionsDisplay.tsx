@@ -4,8 +4,7 @@ import { Refresh1Sm } from 'assets/icons/Action/Refresh1/Refresh1Sm';
 import AppButton from 'components/redesign/button/AppButton';
 import React, { useState } from 'react';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
-import useOnboardingStore from '../../../stores/useOnboardingStore';
-import { initialShopData } from '../../../stores/useOnboardingStore';
+import useOnboardingStore, { initialShopData } from '../../../stores/useOnboardingStore';
 import RemoveConfirmationModal from '../uploads/RemoveConfirmationModal';
 import { ImageSlider } from './ImageSlider';
 
@@ -18,9 +17,11 @@ interface AiOptionsDisplayProps {
 
 const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSelect, selectedValue }) => {
   const { isLoading, generateContent } = useAiGeneratedContent();
-  const { aiGeneratedContent, shopData } = useOnboardingStore();
+  const { aiGeneratedContent, shopData, shopSetupUI } = useOnboardingStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pendingSelection, setPendingSelection] = useState<string | null>(null); //TODO : Replace with useRef
+
+  if (shopSetupUI.hasExistingShop) return null;
 
   const options = aiGeneratedContent[type];
   const isContentLoading = isLoading[type];
@@ -168,7 +169,7 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
         <OptionsHeader />
         {type === 'urls' || type === 'names' ? <TextBasedOptions /> : type === 'logos' ? <LogoOptions /> : <CoverOptions />}
       </Box>
-      
+
       <RemoveConfirmationModal
         isOpen={isModalOpen}
         onClose={handleCancelSelection}

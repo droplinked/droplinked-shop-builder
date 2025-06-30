@@ -4,6 +4,7 @@ import { NftLg } from 'assets/icons/System/NFT/NftLg'
 import React from 'react'
 import Cards, { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
+import Perks from '../svgs/Perks'
 
 export default function SetOfPerks() {
     const cardsData: CardData[] = [
@@ -32,7 +33,7 @@ export default function SetOfPerks() {
             sectionTitle='SET OF PERKS'
             headingTitle='Perks for Crossmint Members'
             headingSubtitle='droplinked is offering 3 months of a pro plan for free'
-            typographyText='Perks'
+            typographySvg={<Perks />}
         >
             <Cards
                 cardsData={cardsData}

@@ -1,16 +1,28 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Lottie from 'lottie-react'
 import { useRef, useState, useEffect } from 'react'
-import Step1 from '../lottie/GoLive/Step1.json'
-import Step2 from '../lottie/GoLive/Step2.json'
-import Step3 from '../lottie/GoLive/Step3.json'
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
+import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
+import { appDevelopment } from 'utils/app/variable'
+import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/**
+ * useStepController - A custom hook for managing a multi-step scroll animation
+ * 
+ * This hook provides functionality for:
+ * 1. Tracking the current step of a scrolling animation (1-3)
+ * 2. Managing video playback based on the current step
+ * 3. Tracking completed steps to show progress
+ * 4. Handling smooth transitions between steps
+ * 5. Setting up GSAP ScrollTrigger for scroll-based animations
+ * 
+ * The animations are triggered by scroll position, with each step taking about 33%
+ * of the total scroll progress. Videos will only play when their step is active.
+ */
 export function useStepController() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [step, setStep] = useState(1)
@@ -20,29 +32,64 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
-    const LottieStep1 = <Lottie
-        loop={false}
-        animationData={Step1}
-        style={{ height }}
-        onComplete={() => setStep(2)}
-    />
+    // Track video visibility states
+    const [video1InView, setVideo1InView] = useState(false);
+    const [video2InView, setVideo2InView] = useState(false);
+    const [video3InView, setVideo3InView] = useState(false);
 
-    const LottieStep2 = <Lottie
-        loop={false}
-        animationData={Step2}
-        style={{ height }}
-        onComplete={() => setStep(3)}
-    />
+    // Create refs using your custom intersection observer
+    const video1Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo1InView(true), []);
+    const video2Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo2InView(true), []);
+    const video3Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo3InView(true), []);
 
-    const LottieStep3 = <Lottie
-        loop={false}
-        animationData={Step3}
-        style={{ height }}
-        onComplete={() => setStep(1)}
-    />
+    // Handle when a video ends - advance to the next step
+    const handleVideoEnded = (nextStep: number) => {
+        setStep(nextStep);
+    };
+
+    // Common video style with display property based on current step
+    const getVideoStyle = (videoStep: number) => ({
+        borderRadius: "16px 16px 0px 0px",
+        display: step === videoStep ? 'block' : 'none'
+    });
+
+    // Render all videos but only show the active one
+    // This prevents re-rendering issues while maintaining state
+    const allVideos = (
+        <>
+            <InlineVideoPlayer
+                ref={video1Ref}
+                style={getVideoStyle(1)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/b547aadc75195664a89484cc3738f80cce911a9ced71c3a7ab9eb445b45342e9_or.glb"
+                height={height}
+                onEnded={() => handleVideoEnded(2)}
+                playing={step === 1 && video1InView}
+                key="video-step-1"
+            />
+            <InlineVideoPlayer
+                ref={video2Ref}
+                style={getVideoStyle(2)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/4e76691acd8c158e484704da1c5668216ef0e513403cf6fcd44807aaf8e8e307_or.glb"
+                height={height}
+                onEnded={() => handleVideoEnded(3)}
+                playing={step === 2 && video2InView}
+                key="video-step-2"
+            />
+            <InlineVideoPlayer
+                ref={video3Ref}
+                style={getVideoStyle(3)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/a09ff57a9e5b5eb37d158b4baf90bde0edf6f5773711c28da3988494fc634781_or.glb"
+                height={height}
+                onEnded={() => handleVideoEnded(1)}
+                playing={step === 3 && video3InView}
+                key="video-step-3"
+            />
+        </>
+    )
 
     // Handle step transitions with animation
     useEffect(() => {
+        // Skip if the step hasn't changed
         if (step === previousStep) return
 
         setIsTransitioning(true)
@@ -53,6 +100,7 @@ export function useStepController() {
         if (step >= 3) completed.push(2)
         setCompletedSteps(completed)
 
+        // Delay the update to previous step to allow for transition animations
         const timer = setTimeout(() => {
             setPreviousStep(step)
             setIsTransitioning(false)
@@ -61,27 +109,40 @@ export function useStepController() {
         return () => clearTimeout(timer)
     }, [step, previousStep])
 
+    // Setup the GSAP ScrollTrigger to control the step based on scroll position
     useGSAP(() => {
-        if (!containerRef.current) return
-
         gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: "+=100%",
+                end: "+=500%",
                 scrub: 1,
-                anticipatePin: 2,
                 pin: true,
                 pinSpacing: true,
-                snap: 0.35,
+                anticipatePin: 1,
+                markers: appDevelopment, // Set to true for debugging
                 onUpdate: (self) => {
+                    // Calculate which step we're in based on scroll progress
                     const progress = self.progress * 100
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
+                },
+                onRefresh: (self) => {
+                    // Ensure ScrollTrigger recalculates properly on refresh
+                    self.update();
                 }
             },
         })
-    }, { scope: containerRef })
+    }, [])
+
+    // Add a manual refresh when the component is fully loaded
+    useEffect(() => {
+        const refreshTimer = setTimeout(() => {
+            ScrollTrigger.refresh(true);
+        }, 100);
+
+        return () => clearTimeout(refreshTimer);
+    }, []);
 
     return {
         containerRef,
@@ -90,6 +151,6 @@ export function useStepController() {
         isTransitioning,
         completedSteps,
         fixedPercentage,
-        LottieView: step === 1 ? LottieStep1 : step === 2 ? LottieStep2 : LottieStep3
+        LottieView: allVideos
     }
 }

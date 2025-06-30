@@ -1,42 +1,36 @@
 import { useBreakpointValue } from '@chakra-ui/react'
-import { LottieOptions, useLottie } from 'lottie-react'
+import InlineVideoPlayer from '../InlineVideoPlayer'
+import React from 'react'
+import { ReactPlayerProps } from 'react-player/dist/types'
 
 interface HeroAnimationProps {
-    heroDesktop?: Object
-    heroTablet?: Object
-    heroMobile?: Object
-    lottieOptions?: Omit<LottieOptions, 'animationData'>
+    videoDesktop?: string
+    videoTablet?: string
+    videoMobile?: string
+    poster?: string
+    style?: React.CSSProperties,
+    playerProps?: ReactPlayerProps
 }
 
-export default function HeroAnimation({
-    heroDesktop,
-    heroTablet,
-    heroMobile,
-    lottieOptions
-}: HeroAnimationProps) {
-    const responsiveWidth = useBreakpointValue({ base: '250%', md: '100%' })
-    const responsiveRight = useBreakpointValue({ base: '75%', md: '0%' })
-    const animationData = useBreakpointValue({
-        base: heroMobile || null,
-        md: heroTablet || null,
-        xl: heroDesktop || null,
+export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, poster, style, playerProps }: HeroAnimationProps) {
+    const videoUrl = useBreakpointValue({
+        base: videoMobile || videoDesktop,
+        md: videoTablet || videoDesktop,
+        xl: videoDesktop,
     })
 
-    const options: LottieOptions = {
-        loop: false,
-        autoplay: true,
-        animationData,
-        style: {
-            width: responsiveWidth,
-            right: responsiveRight,
-            maxWidth: "1440px",
-            marginInline: "auto",
-            position: "relative"
-        },
-        ...lottieOptions
-    }
-
-    const { View } = useLottie(options)
-
-    return animationData ? View : null
+    return (
+        <InlineVideoPlayer
+            src={videoUrl}
+            fallback={
+                <img
+                    src={poster}
+                    alt="Video poster"
+                    style={{ marginInline: "auto", ...style }}
+                />
+            }
+            style={style}
+            {...playerProps}
+        />
+    )
 }

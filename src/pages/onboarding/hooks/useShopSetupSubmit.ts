@@ -1,4 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
+import { uploadToCdn } from 'lib/apis/ai/services'
 import { createDefaultSampleProducts } from 'lib/apis/product/productServices'
 import { setupShop } from 'lib/apis/shop/shopServices'
 import { useMutation } from 'react-query'
@@ -8,22 +9,50 @@ import { validateStoreData } from '../utils/shopSetupFormValidation'
 
 export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
-    const {
-        shopData,
-        shopSetupUI,
-        setError,
-        resetOnboarding,
-        updateOnboardingState
-    } = useOnboardingStore()
     const { showToast } = useAppToast()
-
-    const { autoAddSampleProductsEnabled } = shopSetupUI
+    const { shopData, shopSetupUI, setError, resetOnboarding, updateOnboardingState } = useOnboardingStore()
 
     const { mutateAsync: submitShopSetup, isLoading } = useMutation({
         mutationFn: async () => {
-            const shopResponse = await setupShop(shopData)
-            if (autoAddSampleProductsEnabled) {
-                await createDefaultSampleProducts(shopData.logo)
+            let finalShopData = { ...shopData }
+
+            // Helper function to check if URL needs CDN upload
+            const needsCdnUpload = (url: string) => {
+                // If already uploaded to our CDN, no need to upload again
+                if (url.startsWith('https://upload-file-droplinked.s3.amazonaws.com/')) {
+                    return false
+                }
+
+                // Upload everything else (AI-generated images, blob URLs, data URLs, external URLs)
+                return true
+            }
+
+            // Upload logo if it's AI-generated or external URL
+            if (shopData.logo && needsCdnUpload(shopData.logo)) {
+                try {
+                    const { data } = await uploadToCdn(shopData.logo)
+                    finalShopData.logo = data.cdnUrl
+                }
+                catch (error) {
+                    console.error('Error uploading logo:', error)
+                    showToast({ type: "error", message: "Failed to upload logo" })
+                }
+            }
+
+            // Upload banner if it's AI-generated or external URL
+            if (shopData.hero_section && needsCdnUpload(shopData.hero_section)) {
+                try {
+                    const { data } = await uploadToCdn(shopData.hero_section)
+                    finalShopData.hero_section = data.cdnUrl
+                }
+                catch (error) {
+                    showToast({ type: "error", message: "Failed to upload banner" })
+                }
+            }
+
+            const shopResponse = await setupShop(finalShopData)
+            if (shopSetupUI.autoAddSampleProductsEnabled) {
+                await createDefaultSampleProducts(finalShopData.logo)
             }
             return shopResponse
         },
