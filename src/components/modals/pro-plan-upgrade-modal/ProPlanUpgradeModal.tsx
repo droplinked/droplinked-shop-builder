@@ -9,18 +9,20 @@ import useAppStore from 'stores/app/appStore';
 import ProPlanCard from './ProPlanCard';
 import ProPlanFooter from './ProPlanFooter';
 import ProPlanHeader from './ProPlanHeader';
+import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 
 export interface Props {
   isOpen: boolean;
   onClose: () => void;
-  isCrossmint?: boolean;
 }
 
-const ProPlanUpgradeModal = ({ isOpen, onClose, isCrossmint = false }: Props) => {
+const ProPlanUpgradeModal = ({ isOpen, onClose}: Props) => {
   const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure();
   const { shop } = useAppStore();
+  const { shopSetupUI } = useOnboardingStore()
 
   const canActivateTrial = shop?.subscription?.canActivateTrial ?? false;
+  const isCrossmint = shopSetupUI.isFromCrossmint ?? false;
 
   const businessPlan = useQuery({
     queryKey: ['subscription-plans'],
@@ -52,6 +54,7 @@ const ProPlanUpgradeModal = ({ isOpen, onClose, isCrossmint = false }: Props) =>
         
 
         <ProPlanFooter 
+          isCrossmint={isCrossmint}
           canActivateTrial={canActivateTrial} 
           onClose={onClose} 
           onUpgrade={handleUpgrade} 
