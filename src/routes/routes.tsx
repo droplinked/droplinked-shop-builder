@@ -44,7 +44,6 @@ const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"))
 const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"))
 const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"))
 const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"))
-const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"))
 const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"))
 const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"))
 const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"))
@@ -65,7 +64,7 @@ const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplat
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
 const PurchaseHistory = lazy(() => import("pages/purchase-history/PurchaseHistory"))
 const Crossmint = lazy(() => import("pages/crossmint/Crossmint"))
-const HomePageV2 = lazy(() => import("pages/public-pages/redesign-landings/homePage/HomePage"))
+const HomePage = lazy(() => import("pages/public-pages/redesign-landings/homePage/HomePage"))
 
 const router = createBrowserRouter([
     {
@@ -78,7 +77,6 @@ const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <HomePage /> },
-            { path: "homepageV2", element: <HomePageV2 /> },
             { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
