@@ -2,7 +2,7 @@ import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
 import { LazyLoad } from '../LazyLoad'
-import { ReactPlayerProps } from 'react-player'
+import { InlineVideoPlayerProps } from '../InlineVideoPlayer'
 
 interface HeroSectionProps {
     title?: string
@@ -11,9 +11,8 @@ interface HeroSectionProps {
     videoDesktop?: string
     videoTablet?: string
     videoMobile?: string
-    poster?: string
     videoStyle?: React.CSSProperties
-    playerProps?: ReactPlayerProps
+    playerProps?: InlineVideoPlayerProps
 }
 
 export default function HeroSection({
@@ -23,7 +22,6 @@ export default function HeroSection({
     videoDesktop,
     videoTablet,
     videoMobile,
-    poster,
     videoStyle,
     playerProps,
 }: HeroSectionProps) {
@@ -78,7 +76,6 @@ export default function HeroSection({
                         videoDesktop={videoDesktop}
                         videoTablet={videoTablet}
                         videoMobile={videoMobile}
-                        poster={poster}
                         style={videoStyle}
                         playerProps={playerProps}
                     />

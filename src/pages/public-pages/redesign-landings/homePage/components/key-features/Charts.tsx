@@ -40,13 +40,13 @@ const Charts = () => {
                 {chartNumber === 1 ? (
                     <InlineVideoPlayer
                         key={`chart1-${videoKey}`}
-                        src="https://upload-file-droplinked.s3.amazonaws.com/6fedce8ac2566852a44163f69939e9881fd0f5c631c1962d2f7fd36c1a830077_or.glb"
+                        src="https://upload-file-droplinked.s3.amazonaws.com/6fedce8ac2566852a44163f69939e9881fd0f5c631c1962d2f7fd36c1a830077_or.webm"
                         loop={false}
                     />
                 ) : (
                     <InlineVideoPlayer
                         key={`chart2-${videoKey}`}
-                        src="https://upload-file-droplinked.s3.amazonaws.com/d06babec14d7d3bb8efbaab93f64a2a6fed86260f8a16ba7b325b85930923c84_or.glb"
+                        src="https://upload-file-droplinked.s3.amazonaws.com/d06babec14d7d3bb8efbaab93f64a2a6fed86260f8a16ba7b325b85930923c84_or.webm"
                         loop={false}
                     />
                 )}

@@ -15,7 +15,7 @@ export default function CrossmintHero() {
         position: "relative" as const
     }
 
-    const videoUrl = 'https://upload-file-droplinked.s3.amazonaws.com/50e0182a151bd9e3247744b6082939265383af48283b11306427b6a52a428ad7_or.glb'
+    const videoUrl = 'https://upload-file-droplinked.s3.amazonaws.com/50e0182a151bd9e3247744b6082939265383af48283b11306427b6a52a428ad7_or.webm'
 
     return (
         <HeroSection
@@ -24,7 +24,6 @@ export default function CrossmintHero() {
             videoDesktop={videoUrl}
             videoTablet={videoUrl}
             videoMobile={videoUrl}
-            poster="https://upload-file-droplinked.s3.amazonaws.com/ce9a3bab52d874b2f393a89ef97462c57bbe37b782e52332b5df354b714afc7e.png"
             videoStyle={videoStyle}
             subTitleElements={
                 <SubtitleElements />
