@@ -89,7 +89,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
                             pointerEvents="none"
                         />
                     )}
-                    <Box position="relative" zIndex={1}>
+                    <Box display="flex" height="100%" position="relative" zIndex={1}>
                         {children}
                     </Box>
                 </Box>
