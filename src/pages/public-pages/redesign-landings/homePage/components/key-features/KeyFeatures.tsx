@@ -16,13 +16,13 @@ export default function KeyFeatures() {
             title: "Onchain Product Registration",
             description: "Register inventory on the blockchain for full accountability and security",
             gridColumn: { base: '1', md: '1 / -1', lg: '1 / 3' },
-            children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/c3dd2d77c5c4589b0ee2187b7190b03a4ed39b7bd7f0e8dc979f558b60186a55_or.glb' style={{ width: "max-content" }} />
+            children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/c3dd2d77c5c4589b0ee2187b7190b03a4ed39b7bd7f0e8dc979f558b60186a55_or.webm' style={{ width: "max-content" }} />
         },
         {
             title: "Instant Blockchain Payments",
             description: "Accept Stablecoins, Bitcoin, Ethereum, and other cryptocurrencies with zero middlemen",
             gridColumn: { base: '1', md: '1 / -1', lg: '3 / 5' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/c3a1b169f5e16f409900ec0fa9c0ee212ebb0177b7ba8736bc070b359cc3d5c8_or.glb" style={{ width: "max-content" }} />
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/c3a1b169f5e16f409900ec0fa9c0ee212ebb0177b7ba8736bc070b359cc3d5c8_or.webm" style={{ width: "max-content" }} />
         }
     ]
 
@@ -37,13 +37,13 @@ export default function KeyFeatures() {
             title: "Community-Driven",
             description: "Engage with a vibrant, global community of buyers and sellers",
             gridColumn: { base: '1', md: '2', lg: '2 / 3' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/e77d073e037bb44f73447cb1c1682eb1479d387e323e0155e91250d926944ef0_or.glb" />
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/e77d073e037bb44f73447cb1c1682eb1479d387e323e0155e91250d926944ef0_or.webm" />
         },
         {
             title: "Numbers That Matter",
             description: "Join our Growing Network of Leading Merchants",
             gridColumn: { base: '1', md: '1', lg: '3 / 4' },
-            children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/394e29c7d4bf498f00465cb339e2ef75ee508d6542b204d1915acf5643cddcde_or.glb' />
+            children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/394e29c7d4bf498f00465cb339e2ef75ee508d6542b204d1915acf5643cddcde_or.webm' />
         }
     ]
 

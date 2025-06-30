@@ -1,18 +1,16 @@
 import { useBreakpointValue } from '@chakra-ui/react'
-import InlineVideoPlayer from '../InlineVideoPlayer'
+import InlineVideoPlayer, { InlineVideoPlayerProps } from '../InlineVideoPlayer'
 import React from 'react'
-import { ReactPlayerProps } from 'react-player'
 
 interface HeroAnimationProps {
     videoDesktop?: string
     videoTablet?: string
     videoMobile?: string
-    poster?: string
     style?: React.CSSProperties,
-    playerProps?: ReactPlayerProps
+    playerProps?: InlineVideoPlayerProps
 }
 
-export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, poster, style, playerProps }: HeroAnimationProps) {
+export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, style, playerProps }: HeroAnimationProps) {
     const videoUrl = useBreakpointValue({
         base: videoMobile || videoDesktop,
         md: videoTablet || videoDesktop,
@@ -22,13 +20,6 @@ export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, 
     return (
         <InlineVideoPlayer
             src={videoUrl}
-            fallback={
-                <img
-                    src={poster}
-                    alt="Video poster"
-                    style={{ marginInline: "auto", ...style }}
-                />
-            }
             style={style}
             {...playerProps}
         />

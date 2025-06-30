@@ -1,16 +1,24 @@
-import React, { lazy, Suspense } from "react"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import PublicLayout from "layouts/PublicLayout/PublicLayout"
+import React, { lazy, Suspense } from "react"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 // public routes
+import AffiliateProductsSinglePage from "pages/affiliate/product/ProductPage"
+import AffiliateProductsPage from "pages/affiliate/products/AffiliateProductsPage"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
 import Changelog from "pages/changelog/Changelog"
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
 import Onboarding from "pages/onboarding/Onboarding"
+import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
+import PublicBlog from "pages/public-pages/blogs/blog/Blog"
+import PublicBlogs from "pages/public-pages/blogs/Blogs"
+import ContactUs from "pages/public-pages/contact-us/ContactUs"
+import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
@@ -23,24 +31,16 @@ import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
-import Rewards from "pages/public-pages/rewards/Rewards"
-import AboutUs from "pages/public-pages/about/AboutUs"
-import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
-import ContactUs from "pages/public-pages/contact-us/ContactUs"
-import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import TermsPage from "pages/public-pages/terms-page/TermsPage"
-import AffiliateProductsSinglePage from "pages/affiliate/product/ProductPage"
-import AffiliateProductsPage from "pages/affiliate/products/AffiliateProductsPage"
-import PublicBlogs from "pages/public-pages/blogs/Blogs"
-import PublicBlog from "pages/public-pages/blogs/blog/Blog"
+import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import HomePage from "pages/public-pages/redesign-landings/homePage/HomePage"
+import Rewards from "pages/public-pages/rewards/Rewards"
+import TermsPage from "pages/public-pages/terms-page/TermsPage"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -72,11 +72,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <PublicLayout />,
-        errorElement: (
-            <PublicLayout>
-                <MaintenancePage />
-            </PublicLayout>
-        ),
+        errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <HomePage /> },
             { path: "crossmint", element: <CrossmintLanding /> },

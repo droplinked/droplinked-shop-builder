@@ -18,7 +18,7 @@ const useScrollAnimation = (ref, length: number) => {
 };
 
 const PublicBlogs = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryFn: getSuperAdminBlogs,
     queryKey: "super_admin_blogs_post",
   });
@@ -26,9 +26,12 @@ const PublicBlogs = () => {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
   const [isLargerThanMd] = useMediaQuery("(min-width: 768px)");
   const ref = useRef(null);
-  const blogs: IBlog[] = data?.data?.data || [];
-  const { y } = useScrollAnimation(ref, blogs?.length);
+  const { y } = useScrollAnimation(ref, 0);
 
+
+  if (isLoading) return <LoadingBlogs />;
+  
+  const blogs: IBlog[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
   let columns;
   if (isLargerThan1024) {
     columns = [
@@ -44,8 +47,6 @@ const PublicBlogs = () => {
   } else {
     columns = [blogs];
   }
-
-  if (isLoading) return <LoadingBlogs />;
 
   return (
     <VStack

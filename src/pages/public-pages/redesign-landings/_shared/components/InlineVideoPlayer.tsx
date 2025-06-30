@@ -1,23 +1,34 @@
-import React, { forwardRef } from 'react'
-import ReactPlayer from 'react-player'
-import { ReactPlayerProps } from 'react-player'
+import React from 'react'
 
-// Use a more specific type for ReactPlayer's instance
-// ReactPlayer.ReactPlayerInstance is not exposed, so we'll use a more generic type
-const InlineVideoPlayer = forwardRef<any, ReactPlayerProps>((props, ref) => {
+export interface InlineVideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
+    width?: string | number;
+    height?: string | number;
+    muted?: boolean;
+    playsInline?: boolean;
+    autoPlay?: boolean;
+    loop?: boolean;
+}
+
+const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = (props) => {
+    const {
+        onEnded,
+        ...otherProps
+    } = props
+
     return (
-        <ReactPlayer
-            ref={ref}
+        <video
             width="100%"
-            height="auto"
+            height="metadata"
             muted={true}
             playsInline={true}
             autoPlay={true}
             loop={true}
-            {...props}
+            onEnded={onEnded}
+            preload='auto'
+            {...otherProps}
         />
     )
-})
+}
 
 // Add display name for better debugging
 InlineVideoPlayer.displayName = 'InlineVideoPlayer'
