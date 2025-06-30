@@ -11,24 +11,18 @@ export interface InlineVideoPlayerProps extends React.VideoHTMLAttributes<HTMLVi
 
 const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = (props) => {
     const {
-        width = "100%",
-        height = "auto",
-        muted = true,
-        playsInline = true,
-        autoPlay = true,
-        loop = true,
         onEnded,
         ...otherProps
     } = props
 
     return (
         <video
-            width={width}
-            height={height}
-            muted={muted}
-            playsInline={playsInline}
-            autoPlay={autoPlay}
-            loop={loop}
+            width="100%"
+            height="auto"
+            muted={true}
+            playsInline={true}
+            autoPlay={true}
+            loop={true}
             onEnded={onEnded}
             preload='auto'
             {...otherProps}
