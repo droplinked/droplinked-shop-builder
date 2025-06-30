@@ -1,7 +1,7 @@
 import { useBreakpointValue } from '@chakra-ui/react'
 import InlineVideoPlayer from '../InlineVideoPlayer'
 import React from 'react'
-import { ReactPlayerProps } from 'react-player/dist/types'
+import { ReactPlayerProps } from 'react-player'
 
 interface HeroAnimationProps {
     videoDesktop?: string

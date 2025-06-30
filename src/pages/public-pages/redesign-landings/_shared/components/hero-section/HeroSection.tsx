@@ -2,7 +2,7 @@ import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
 import { LazyLoad } from '../LazyLoad'
-import { ReactPlayerProps } from 'react-player/dist/types'
+import { ReactPlayerProps } from 'react-player'
 
 interface HeroSectionProps {
     title?: string
