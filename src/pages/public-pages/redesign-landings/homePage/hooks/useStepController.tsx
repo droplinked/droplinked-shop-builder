@@ -6,7 +6,7 @@ import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 import { appDevelopment } from 'utils/app/variable'
-import { useInView } from 'react-intersection-observer'
+import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,10 +32,15 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
-    // Create refs for tracking if videos are in view
-    const [video1Ref, video1InView] = useInView({ threshold: 0.3 });
-    const [video2Ref, video2InView] = useInView({ threshold: 0.3 });
-    const [video3Ref, video3InView] = useInView({ threshold: 0.3 });
+    // Track video visibility states
+    const [video1InView, setVideo1InView] = useState(false);
+    const [video2InView, setVideo2InView] = useState(false);
+    const [video3InView, setVideo3InView] = useState(false);
+
+    // Create refs using your custom intersection observer
+    const video1Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo1InView(true), []);
+    const video2Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo2InView(true), []);
+    const video3Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo3InView(true), []);
 
     // Handle when a video ends - advance to the next step
     const handleVideoEnded = (nextStep: number) => {
