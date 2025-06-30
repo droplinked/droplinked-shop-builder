@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import Chart1 from '../../videos/chart1.webm'
-import Chart2 from '../../videos/chart2.webm'
-import { Box, Flex, Text } from '@chakra-ui/react'
-import { BarchartSm } from 'assets/icons/Finance/BarChart/BarchartSm'
-import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm'
-import InlineVideoPlayer from 'pages/public-pages/redesign-landings/_shared/components/InlineVideoPlayer'
+import React, { useState, useEffect } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import InlineVideoPlayer from 'pages/public-pages/redesign-landings/_shared/components/InlineVideoPlayer';
+import { ChartSelector } from './ChartSelector';
+import { OrdersInfo } from './OrdersInfo';
 
-export default function Charts() {
-    const [chartNumber, setChartNumber] = useState(1)
-    const [videoKey, setVideoKey] = useState(0)
+const Charts = () => {
+    const [chartNumber, setChartNumber] = useState(1);
+    const [videoKey, setVideoKey] = useState(0);
     // Keep a consistent height to prevent layout shift
-    const videoContainerHeight = "385px"; // Adjust based on your video's aspect ratio
+    const videoContainerHeight = "385px";
 
     // Increment key when chart changes to force remount
     useEffect(() => {
-        setVideoKey(prevKey => prevKey + 1)
-    }, [chartNumber])
+        setVideoKey(prevKey => prevKey + 1);
+    }, [chartNumber]);
 
     const amounts = [
         {
@@ -30,118 +28,23 @@ export default function Charts() {
             label: "Producer",
             value: 40,
         }
-    ]
-
-    const ChartSelector = () => (
-        <Flex
-            gap={1}
-            alignItems="center"
-            backdropFilter="blur(10px)"
-            borderRadius={8}
-            border="1px solid rgba(10, 10, 10, 0.10)"
-            p={2}
-        >
-            <Box
-                background={chartNumber === 1 ? "rgba(43, 207, 161, 0.10)" : "transparent"}
-                opacity={chartNumber === 1 ? 1 : 0.25}
-                padding={2}
-                borderRadius={4}
-                onClick={() => setChartNumber(1)}
-                cursor="pointer"
-                transition="all 0.3s ease-in-out"
-                transform={chartNumber === 1 ? "scale(1.05)" : "scale(1)"}
-                _hover={{
-                    opacity: 0.9,
-                    background: chartNumber === 1
-                        ? "rgba(43, 207, 161, 0.15)"
-                        : "rgba(43, 207, 161, 0.05)",
-                    transform: "scale(1.05)"
-                }}
-            >
-                <BarchartSm color="#2BCFA1" />
-            </Box>
-
-            <Box
-                background={chartNumber === 2 ? "rgba(43, 207, 161, 0.10)" : "transparent"}
-                opacity={chartNumber === 2 ? 1 : 0.25}
-                padding={2}
-                borderRadius={4}
-                onClick={() => setChartNumber(2)}
-                cursor="pointer"
-                transition="all 0.3s ease-in-out"
-                transform={chartNumber === 2 ? "scale(1.05)" : "scale(1)"}
-                _hover={{
-                    opacity: 0.9,
-                    background: chartNumber === 2
-                        ? "rgba(43, 207, 161, 0.15)"
-                        : "rgba(43, 207, 161, 0.05)",
-                    transform: "scale(1.05)"
-                }}
-            >
-                <ChartSm color="#2BCFA1" />
-            </Box>
-        </Flex>
-    )
-
-    const OrdersInfo = () => (
-        <Flex flexDirection="column" gap={4}>
-            <Text
-                fontSize={{ base: "14px", "xl": "16px" }}
-                fontWeight={500}
-                color="text.white"
-            >
-                Orders
-            </Text>
-            <Flex gap={6} alignItems="center">
-                {amounts.map((amount, index) => (
-                    <Flex key={index} gap={3} alignItems="center">
-                        <Box>
-                            <Box background="main.primary" height="20px" width="2px" />
-                            <Box background="rgba(255, 255, 255, 0.10)" height="20px" width="2px" />
-                        </Box>
-                        <Box>
-                            <Text
-                                fontSize={{ base: "12px", "xl": "14px" }}
-                                fontWeight={500}
-                                color="text.white"
-                            >
-                                {amount.value}%
-                            </Text>
-                            <Text
-                                mt="2px"
-                                fontSize="12px"
-                                color="text.subtext.placeholder.dark"
-                            >
-                                {amount.label}
-                            </Text>
-                        </Box>
-                    </Flex>
-                ))}
-            </Flex>
-        </Flex>
-    )
+    ];
 
     return (
-        <Box position="relative">
-            <Box
-                position="relative"
-                width="100%"
-                minHeight={videoContainerHeight}
-            >
-                {chartNumber === 1 ? (
-                    <InlineVideoPlayer
-                        key={`chart1-${videoKey}`}
-                        src={Chart1}
-                        loop={false}
-                    />
-                ) : (
-                    <InlineVideoPlayer
-                        key={`chart2-${videoKey}`}
-                        src={Chart2}
-                        loop={false}
-                    />
-                )}
-            </Box>
+        <Box width="100%" minHeight={videoContainerHeight} position="relative">
+            {chartNumber === 1 ? (
+                <InlineVideoPlayer
+                    key={`chart1-${videoKey}`}
+                    src="https://upload-file-droplinked.s3.amazonaws.com/6fedce8ac2566852a44163f69939e9881fd0f5c631c1962d2f7fd36c1a830077_or.webm"
+                    loop={false}
+                />
+            ) : (
+                <InlineVideoPlayer
+                    key={`chart2-${videoKey}`}
+                    src="https://upload-file-droplinked.s3.amazonaws.com/d06babec14d7d3bb8efbaab93f64a2a6fed86260f8a16ba7b325b85930923c84_or.webm"
+                    loop={false}
+                />
+            )}
 
             <Flex
                 position="absolute"
@@ -152,9 +55,11 @@ export default function Charts() {
                 justifyContent="space-between"
                 zIndex={2}
             >
-                <OrdersInfo />
-                <ChartSelector />
+                <OrdersInfo amounts={amounts} />
+                <ChartSelector chartNumber={chartNumber} setChartNumber={setChartNumber} />
             </Flex>
         </Box>
-    )
-}
+    );
+};
+
+export default Charts;

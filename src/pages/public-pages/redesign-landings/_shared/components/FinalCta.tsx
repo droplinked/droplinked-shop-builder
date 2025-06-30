@@ -1,7 +1,5 @@
 import React from 'react'
 import { FlexProps } from '@chakra-ui/react'
-// @ts-ignore
-import Video from '../../_shared/video/finalCTa.webm'
 import SectionContainer from './SectionContainer/SectionContainer'
 import InlineVideoPlayer from './InlineVideoPlayer'
 
@@ -25,14 +23,8 @@ export default function FinalCta(props: Props) {
             {...props}
         >
             <InlineVideoPlayer
-                src={Video}
+                src="https://upload-file-droplinked.s3.amazonaws.com/a9b6c9cc9a5afe32c9fb3b663c1ed25f2d54fda6985a202c28da01cfb2e8dc26_or.webm"
                 style={{ paddingTop: "16px" }}
-                poster='https://upload-file-droplinked.s3.amazonaws.com/68c5fdbea929a9a9188d93918b2830a9d007e69b6ab32dbd637ea1bc2ae7daed.png'
-                fallback={<img
-                    src="https://upload-file-droplinked.s3.amazonaws.com/68c5fdbea929a9a9188d93918b2830a9d007e69b6ab32dbd637ea1bc2ae7daed.png"
-                    alt="Final CTA Placeholder"
-                    style={{ width: '100%', height: 'auto' }}
-                />}
             />
         </SectionContainer >
     )

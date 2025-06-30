@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import ContactUsForm from './parts/form/Form'
 import SpectrumHeader from '../landings/_components/spectrum-header/SpectrumHeader'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/public-pages/contact-us/ar.json'
 import enLocale from 'locales/public-pages/contact-us/en.json'
+import ContactUsForm from './parts/form/Form'
 
 function ContactUs() {
     const { t } = useLocaleResources("contactUs", {
@@ -19,8 +19,8 @@ function ContactUs() {
             <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex direction={"column"} alignItems={"center"} gap={20} paddingBlock={120} paddingInline={{ base: "16px", sm: "28px" }}>
                 <Flex direction={"column"} alignItems={"center"} gap={4}>
-                    <SpectrumHeader fontSize={{ base: 32, md: 48, lg: 64 }}>{t('header.title')}</SpectrumHeader>
-                    <AppTypography textAlign={"center"} fontSize={{ base: 20, md: 24 }} fontWeight={500} color={"#fff"}>{t('header.subtitle')}</AppTypography>
+                    <SpectrumHeader fontSize={{ base: 32, md: 48, lg: 64 }}>Get in touch</SpectrumHeader>
+                    <AppTypography textAlign={"center"} fontSize={{ base: 20, md: 24 }} fontWeight={500} color={"#fff"}>{t('header.title')}</AppTypography>
                 </Flex>
                 <Flex
                     width={{ base: "100%", xl: "75%" }}

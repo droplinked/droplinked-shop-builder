@@ -1,17 +1,36 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
-import { ReactPlayerProps } from 'react-player/dist/types'
 
-export default function InlineVideoPlayer(props: ReactPlayerProps) {
+export interface InlineVideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
+    width?: string | number;
+    height?: string | number;
+    muted?: boolean;
+    playsInline?: boolean;
+    autoPlay?: boolean;
+    loop?: boolean;
+}
+
+const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = (props) => {
+    const {
+        onEnded,
+        ...otherProps
+    } = props
+
     return (
-        <ReactPlayer
+        <video
             width="100%"
             height="auto"
             muted={true}
             playsInline={true}
             autoPlay={true}
             loop={true}
-            {...props}
+            onEnded={onEnded}
+            preload='metadata'
+            {...otherProps}
         />
     )
 }
+
+// Add display name for better debugging
+InlineVideoPlayer.displayName = 'InlineVideoPlayer'
+
+export default InlineVideoPlayer

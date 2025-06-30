@@ -8,9 +8,10 @@ interface CardProps extends CardData {
     hasHoverEffect?: boolean
     flexDirection?: 'column' | 'column-reverse'
     hasGradiantOverlay?: boolean
+    innerOverlay?: string
 }
 
-export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay }: CardProps) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay }: CardProps) {
     const [isHovered, setIsHovered] = useState(false)
     const hovered = isHovered && hasHoverEffect
 
@@ -60,7 +61,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
                 </Box>
             </Flex>
             {children && (
-                <Box height="auto" position="relative" zIndex={1}>
+                <Box height="100%" position="relative" zIndex={1}>
                     {/* Gradient overlay for children */}
                     <Box
                         position="absolute"
@@ -72,7 +73,23 @@ export default function Card({ icon, title, description, children, gridColumn, h
                         zIndex={2}
                         pointerEvents="none"
                     />
-                    <Box position="relative" zIndex={1}>
+                    {/* Inner overlay for PNG image */}
+                    {innerOverlay && (
+                        <Box
+                            position="absolute"
+                            top={0}
+                            left={0}
+                            right={0}
+                            bottom={0}
+                            bgImage={`url(${innerOverlay})`}
+                            bgSize="cover"
+                            bgPosition="center"
+                            bgRepeat="no-repeat"
+                            zIndex={3}
+                            pointerEvents="none"
+                        />
+                    )}
+                    <Box display="flex" height="100%" position="relative" zIndex={1}>
                         {children}
                     </Box>
                 </Box>

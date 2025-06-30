@@ -48,6 +48,7 @@ function MaintenancePage() {
                     {t("description")}
                 </AppTypography>
             </Flex>
+
             <AppButton
                 variant="secondary"
                 rightIcon={<AppIcons.BackArrow style={{ rotate: "180deg" }} />}

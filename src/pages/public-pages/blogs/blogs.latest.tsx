@@ -4,13 +4,20 @@ import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 import { IBlog } from "./blogs.interface";
 import { getTimeAgo } from "utils/helpers";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import arLocale from "locales/public-pages/blogs/ar.json";
+import enLocale from "locales/public-pages/blogs/en.json";
 
 interface Props {
     blog: IBlog;
-    t: (key: string, params?: Record<string, any>) => string;
 }
 
-const LatestBlog = ({ blog, t }: Props) => {
+const LatestBlog = ({ blog }: Props) => {
+    const { t } = useLocaleResources("blogs", {
+        ar: arLocale,
+        en: enLocale,
+      });
+      
     return (
         <Box width={"full"} pos={"relative"} height={"512px"}>
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
@@ -34,7 +41,7 @@ const LatestBlog = ({ blog, t }: Props) => {
                 <HStack>
                     <AppIcons.Clock fill="#C2C2C2" width={"16px"} height={"16px"} />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
-                        {t("latestBlog.lastUpdate", { time: getTimeAgo(blog?.updatedAt) })}
+                        {t("latestBlog.lastUpdate", { time: getTimeAgo(blog?.createdAt) })}
                     </AppTypography>
                 </HStack>
                 <HStack>

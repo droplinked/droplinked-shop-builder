@@ -1,28 +1,22 @@
 import useAppToast from 'hooks/toast/useToast'
 import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/services'
-import { useEffect, useRef, useState } from 'react'
+import { usePolling } from 'hooks/usePolling/usePolling'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
 
 export const useShopUrlProcessor = () => {
-    const [isPolling, setIsPolling] = useState(false)
-    const [isProcessing, setIsProcessing] = useState(false)
-    const pollingIntervalRef = useRef<NodeJS.Timeout | null>(null)
     const { hasPaidSubscription } = useAppStore()
     const { updateShopData } = useOnboardingStore()
     const { showToast } = useAppToast()
 
-    // Cleanup on unmount
-    useEffect(() => {
-        return () => {
-            if (pollingIntervalRef.current) {
-                clearInterval(pollingIntervalRef.current)
-                pollingIntervalRef.current = null
-            }
-            setIsPolling(false)
-            setIsProcessing(false)
+    const polling = usePolling({
+        onError: (error) => {
+            showToast({ type: "error", message: "Failed to import shop data" })
+        },
+        onTimeout: () => {
+            showToast({ type: "error", message: "Import timed out. Please try again." })
         }
-    }, [])
+    })
 
     const pollShopExtractedData = async (poolId: string): Promise<boolean> => {
         try {
@@ -34,7 +28,7 @@ export const useShopUrlProcessor = () => {
                 shopExtractedData?.data) {
 
                 // Stop polling
-                stopPolling()
+                polling.stopPolling()
 
                 // Update shop data
                 updateShopData('name', shopExtractedData.data?.shopName)
@@ -48,58 +42,35 @@ export const useShopUrlProcessor = () => {
 
             return false
         } catch (error) {
-            console.error('Error polling shop extracted data:', error)
+            showToast({ type: "error", message: "Failed to import shop data" })
             return false
         }
     }
 
-    const startPolling = (poolId: string) => {
-        setIsPolling(true)
-
-        // Poll every 5 seconds
-        pollingIntervalRef.current = setInterval(async () => {
-            const isReady = await pollShopExtractedData(poolId)
-            if (isReady) {
-                // Polling will be stopped in pollShopExtractedData
-                return
-            }
-        }, 5000) // 5 seconds interval
-    }
-
-    const stopPolling = () => {
-        if (pollingIntervalRef.current) {
-            clearInterval(pollingIntervalRef.current)
-            pollingIntervalRef.current = null
-        }
-        setIsPolling(false)
-        setIsProcessing(false)
-    }
-
     const processShopUrl = async (url: string): Promise<void> => {
         try {
-
-            setIsProcessing(true)
+            polling.startProcessing()
             const { data } = await startWebsiteCrawling({ websiteUrl: url, extractShopInfo: true })
 
             // Start polling for the extracted data
-            startPolling(data.poolId)
+            polling.startPolling(() => pollShopExtractedData(data.poolId))
 
             showToast({ type: "info", message: "Import started. Please wait while we process your website..." })
         } catch (error) {
             showToast({ type: "error", message: "Failed to start import. Please try again." })
-            setIsProcessing(false)
+            polling.stopProcessing()
         }
     }
 
     return {
         // State
-        isPolling,
-        isProcessing,
-        isLoading: isProcessing || isPolling,
+        isPolling: polling.isPolling,
+        isProcessing: polling.isProcessing,
+        isLoading: polling.isLoading,
 
         // Functions
         processShopUrl,
-        stopPolling,
+        stopPolling: polling.stopPolling,
         hasPaidSubscription
     }
 } 

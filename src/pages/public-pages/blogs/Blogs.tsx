@@ -1,16 +1,13 @@
-import React, { useRef } from "react";
-import { useQuery } from "react-query";
 import { HStack, VStack, useMediaQuery } from "@chakra-ui/react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+import { useQuery } from "react-query";
+import { getPublicBlogsService } from "services/blog/services";
+import { sortByDate } from "utils/helpers";
 import Blog from "./blogs.blog";
 import { IBlog } from "./blogs.interface";
-import { getSuperAdminBlogs } from "services/blog/services";
 import LatestBlog from "./blogs.latest";
-import { sortByDate } from "utils/helpers";
 import LoadingBlogs from "./blogs.loading";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
-import arLocale from "locales/public-pages/blogs/ar.json";
-import enLocale from "locales/public-pages/blogs/en.json";
 
 const useScrollAnimation = (ref, length: number) => {
   const end = length % 2 !== 0 ? 150 : 150;
@@ -21,21 +18,20 @@ const useScrollAnimation = (ref, length: number) => {
 };
 
 const PublicBlogs = () => {
-  const { t } = useLocaleResources("blogs", {
-    ar: arLocale,
-    en: enLocale,
-  });
   const { data, isLoading } = useQuery({
-    queryFn: getSuperAdminBlogs,
-    queryKey: "super_admin_blogs_post",
+    queryFn: getPublicBlogsService,
+    queryKey: ["public-blogs"],
   });
 
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
   const [isLargerThanMd] = useMediaQuery("(min-width: 768px)");
   const ref = useRef(null);
-  const blogs: IBlog[] = data?.data?.data || [];
-  const { y } = useScrollAnimation(ref, blogs?.length);
+  const { y } = useScrollAnimation(ref, 0);
 
+
+  if (isLoading) return <LoadingBlogs />;
+  
+  const blogs: IBlog[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
   let columns;
   if (isLargerThan1024) {
     columns = [
@@ -52,8 +48,6 @@ const PublicBlogs = () => {
     columns = [blogs];
   }
 
-  if (isLoading) return <LoadingBlogs />;
-
   return (
     <VStack
       ref={ref}
@@ -62,7 +56,7 @@ const PublicBlogs = () => {
       spacing={"32px"}
       padding={"108px 64px 64px 64px"}
     >
-      <LatestBlog blog={sortByDate(blogs, "createdAt")?.[0] || blogs?.[0]} t={t} />
+      <LatestBlog blog={sortByDate(blogs, "createdAt")?.[0] || blogs?.[0]} />
       <HStack
         spacing={"24px"}
         paddingY={isLargerThanMd ? "200px" : "32px"}

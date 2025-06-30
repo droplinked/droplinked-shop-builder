@@ -1,16 +1,26 @@
+import { useBreakpointValue } from '@chakra-ui/react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useRef, useState, useEffect } from 'react'
-import React from 'react'
-import { useBreakpointValue } from '@chakra-ui/react'
+import React, { useEffect, useRef, useState } from 'react'
+import { appDevelopment } from 'utils/app/variable'
 import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
-import Step1 from '../videos/step1.webm'
-import Step2 from '../videos/step2.webm'
-import Step3 from '../videos/step3.webm'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/**
+ * useStepController - A custom hook for managing a multi-step scroll animation
+ * 
+ * This hook provides functionality for:
+ * 1. Tracking the current step of a scrolling animation (1-3)
+ * 2. Managing video playback based on the current step
+ * 3. Tracking completed steps to show progress
+ * 4. Handling smooth transitions between steps
+ * 5. Setting up GSAP ScrollTrigger for scroll-based animations
+ * 
+ * The animations are triggered by scroll position, with each step taking about 33%
+ * of the total scroll progress. Videos will only play when their step is active.
+ */
 export function useStepController() {
     const containerRef = useRef<HTMLDivElement>(null)
     const [step, setStep] = useState(1)
@@ -20,42 +30,48 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
+    // Handle when a video ends - advance to the next step
     const handleVideoEnded = (nextStep: number) => {
         setStep(nextStep);
     };
 
-    const VideoStep1 = (
-        <InlineVideoPlayer
-            style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step1}
-            height={height}
-            onEnded={() => handleVideoEnded(2)}
-            playing={step === 1}
-        />
-    );
+    // Common video style with display property based on current step
+    const getVideoStyle = (videoStep: number) => ({
+        borderRadius: "16px 16px 0px 0px",
+        display: step === videoStep ? 'block' : 'none'
+    });
 
-    const VideoStep2 = (
-        <InlineVideoPlayer
-            style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step2}
-            height={height}
-            onEnded={() => handleVideoEnded(3)}
-            playing={step === 2}
-        />
-    );
-
-    const VideoStep3 = (
-        <InlineVideoPlayer
-            style={{ borderRadius: "24px 24px 0px 0px" }}
-            src={Step3}
-            height={height}
-            onEnded={() => handleVideoEnded(1)}
-            playing={step === 3}
-        />
-    );
+    // Render all videos but only show the active one
+    // This prevents re-rendering issues while maintaining state
+    const allVideos = (
+        <>
+            <InlineVideoPlayer
+                style={getVideoStyle(1)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/b547aadc75195664a89484cc3738f80cce911a9ced71c3a7ab9eb445b45342e9_or.webm"
+                height={height}
+                onEnded={() => handleVideoEnded(2)}
+                key="video-step-1"
+            />
+            <InlineVideoPlayer
+                style={getVideoStyle(2)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/4e76691acd8c158e484704da1c5668216ef0e513403cf6fcd44807aaf8e8e307_or.webm"
+                height={height}
+                onEnded={() => handleVideoEnded(3)}
+                key="video-step-2"
+            />
+            <InlineVideoPlayer
+                style={getVideoStyle(3)}
+                src="https://upload-file-droplinked.s3.amazonaws.com/a09ff57a9e5b5eb37d158b4baf90bde0edf6f5773711c28da3988494fc634781_or.webm"
+                height={height}
+                onEnded={() => handleVideoEnded(1)}
+                key="video-step-3"
+            />
+        </>
+    )
 
     // Handle step transitions with animation
     useEffect(() => {
+        // Skip if the step hasn't changed
         if (step === previousStep) return
 
         setIsTransitioning(true)
@@ -66,6 +82,7 @@ export function useStepController() {
         if (step >= 3) completed.push(2)
         setCompletedSteps(completed)
 
+        // Delay the update to previous step to allow for transition animations
         const timer = setTimeout(() => {
             setPreviousStep(step)
             setIsTransitioning(false)
@@ -74,27 +91,40 @@ export function useStepController() {
         return () => clearTimeout(timer)
     }, [step, previousStep])
 
+    // Setup the GSAP ScrollTrigger to control the step based on scroll position
     useGSAP(() => {
-        if (!containerRef.current) return
-
         gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: "top top",
-                end: "+=100%",
+                end: "+=500%",
                 scrub: 1,
-                anticipatePin: 2,
                 pin: true,
                 pinSpacing: true,
-                snap: 0.35,
+                anticipatePin: 1,
+                markers: appDevelopment, // Set to true for debugging
                 onUpdate: (self) => {
+                    // Calculate which step we're in based on scroll progress
                     const progress = self.progress * 100
                     const newStep = progress < 33 ? 1 : progress < 66 ? 2 : 3
                     setStep(newStep)
+                },
+                onRefresh: (self) => {
+                    // Ensure ScrollTrigger recalculates properly on refresh
+                    self.update();
                 }
             },
         })
-    }, { scope: containerRef })
+    }, [])
+
+    // Add a manual refresh when the component is fully loaded
+    useEffect(() => {
+        const refreshTimer = setTimeout(() => {
+            ScrollTrigger.refresh(true);
+        }, 100);
+
+        return () => clearTimeout(refreshTimer);
+    }, []);
 
     return {
         containerRef,
@@ -103,6 +133,6 @@ export function useStepController() {
         isTransitioning,
         completedSteps,
         fixedPercentage,
-        LottieView: step === 1 ? VideoStep1 : step === 2 ? VideoStep2 : VideoStep3
+        LottieView: allVideos
     }
 }

@@ -20,7 +20,7 @@ const Blog = ({ blog }: { blog: IBlog }) => {
             }}
         >
             <Box position="relative" role="group" width={"full"} height="300px" transition="all 0.5s ease-in-out">
-                <Link to={`/blogs/${blog.seoData.slug}`}>
+                <Link to={`/blogs/${blog?.slug}`}>
                     <Image
                         src={blog?.image}
                         objectFit="cover"
@@ -82,13 +82,13 @@ const Blog = ({ blog }: { blog: IBlog }) => {
                     <HStack>
                         <AppIcons.Clock fill="#C2C2C2" width={"14px"} height={"14px"} />
                         <AppTypography color="white" fontWeight="500" fontSize="10px">
-                            {t("blog.lastUpdate", { time: getTimeAgo(blog?.updatedAt) })}
+                            {t("blog.lastUpdate", { time: getTimeAgo(blog?.createdAt) })}
                         </AppTypography>
                     </HStack>
                 </VStack>
             </Box>
             <VStack width={"full"} alignItems={"flex-start"}>
-                <Link to={`/blogs/${blog.seoData.slug}`}>
+                <Link to={`/blogs/${blog.slug}`}>
                     <AppTypography color="white" fontSize="xl" cursor={"pointer"}>
                         {blog?.title}
                     </AppTypography>

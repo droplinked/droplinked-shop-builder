@@ -40,9 +40,9 @@ function AboutUs() {
             <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex justifyContent="center" position="relative" padding={{ base: "110px 0", lg: "180px 0" }}>
                 <VStack width="90%" maxWidth="1400px" align="stretch" spacing={{ base: "15px", lg: "45px" }}>
-                    <Box><AppTypography color="#FFF" fontSize={{ base: "24px", sm: "32px" }} fontWeight='bold'>{t("title")}</AppTypography></Box>
+                    <Box><AppTypography color="#FFF" fontSize={{ base: "24px", sm: "32px" }} fontWeight='bold'>Why droplinked?</AppTypography></Box>
                     <VStack color="#C3C3C3" align="stretch">
-                        <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description1")}</AppTypography></Box>
+                    <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description1")}</AppTypography></Box>
                         <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description2")}</AppTypography></Box>
                         <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description3")}</AppTypography></Box>
                         <Box><AppTypography fontSize={{ base: "16px", lg: "20px" }}>{t("description4")}</AppTypography></Box>

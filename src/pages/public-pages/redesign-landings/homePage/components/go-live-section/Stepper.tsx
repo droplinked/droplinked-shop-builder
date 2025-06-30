@@ -1,13 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { useStepController } from '../../hooks/useStepController'
-import ProgressBar from './ProgressBar'
 import AnimationFrame from './AnimationFrame'
+import ProgressBar from './ProgressBar'
 import StepTexts from './StepTexts'
 
-export default function Stepper() {
-    const { containerRef, step, completedSteps, fixedPercentage, LottieView, isTransitioning } = useStepController()
-
+export default function Stepper({ containerRef, step, completedSteps, fixedPercentage, LottieView, isTransitioning }) {
     return (
         <Flex
             ref={containerRef}
@@ -16,6 +13,7 @@ export default function Stepper() {
             alignItems="center"
             justifyContent="center"
             px={{ base: 4, md: 8, lg: 12 }}
+            className="stepper-content"
         >
             <AnimationFrame
                 LottieView={LottieView}
