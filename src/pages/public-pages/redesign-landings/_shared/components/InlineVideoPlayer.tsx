@@ -18,7 +18,7 @@ const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = (props) => {
     return (
         <video
             width="100%"
-            height="auto"
+            height="metadata"
             muted={true}
             playsInline={true}
             autoPlay={true}
