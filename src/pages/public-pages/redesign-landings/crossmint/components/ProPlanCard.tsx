@@ -12,6 +12,7 @@ export default function ProPlanCard() {
             flexDirection={{ base: "column", md: "row" }}
             alignItems="start"
             height={{ base: "auto", md: "20rem" }}
+            width="100%"
         >
             <ClaimNowButton marginLeft={6} />
 
