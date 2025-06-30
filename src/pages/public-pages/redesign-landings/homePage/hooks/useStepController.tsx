@@ -1,12 +1,10 @@
+import { useBreakpointValue } from '@chakra-ui/react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useRef, useState, useEffect } from 'react'
-import React from 'react'
-import { useBreakpointValue } from '@chakra-ui/react'
-import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
+import React, { useEffect, useRef, useState } from 'react'
 import { appDevelopment } from 'utils/app/variable'
-import useIntersectionObserver from 'hooks/intersection-observer/useIntersectionObserver'
+import InlineVideoPlayer from '../../_shared/components/InlineVideoPlayer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,16 +30,6 @@ export function useStepController() {
     const height = useBreakpointValue({ base: "185px", md: "280px", lg: "350px", xl: "auto" })
     const fixedPercentage = step === 1 ? 33 : step === 2 ? 66 : 100
 
-    // Track video visibility states
-    const [video1InView, setVideo1InView] = useState(false);
-    const [video2InView, setVideo2InView] = useState(false);
-    const [video3InView, setVideo3InView] = useState(false);
-
-    // Create refs using your custom intersection observer
-    const video1Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo1InView(true), []);
-    const video2Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo2InView(true), []);
-    const video3Ref = useIntersectionObserver<HTMLDivElement>(() => setVideo3InView(true), []);
-
     // Handle when a video ends - advance to the next step
     const handleVideoEnded = (nextStep: number) => {
         setStep(nextStep);
@@ -58,30 +46,27 @@ export function useStepController() {
     const allVideos = (
         <>
             <InlineVideoPlayer
-                ref={video1Ref}
                 style={getVideoStyle(1)}
                 src="https://upload-file-droplinked.s3.amazonaws.com/b547aadc75195664a89484cc3738f80cce911a9ced71c3a7ab9eb445b45342e9_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(2)}
-                playing={step === 1 && video1InView}
+                playing={step === 1}
                 key="video-step-1"
             />
             <InlineVideoPlayer
-                ref={video2Ref}
                 style={getVideoStyle(2)}
                 src="https://upload-file-droplinked.s3.amazonaws.com/4e76691acd8c158e484704da1c5668216ef0e513403cf6fcd44807aaf8e8e307_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(3)}
-                playing={step === 2 && video2InView}
+                playing={step === 2}
                 key="video-step-2"
             />
             <InlineVideoPlayer
-                ref={video3Ref}
                 style={getVideoStyle(3)}
                 src="https://upload-file-droplinked.s3.amazonaws.com/a09ff57a9e5b5eb37d158b4baf90bde0edf6f5773711c28da3988494fc634781_or.glb"
                 height={height}
                 onEnded={() => handleVideoEnded(1)}
-                playing={step === 3 && video3InView}
+                playing={step === 3}
                 key="video-step-3"
             />
         </>
