@@ -1,11 +1,11 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
+import React from 'react'
 
 interface VideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
     playing?: boolean
     fallback?: React.ReactNode
 }
 
-const InlineVideoPlayer = forwardRef<HTMLVideoElement, VideoPlayerProps>((props, ref) => {
+const InlineVideoPlayer: React.FC<VideoPlayerProps> = (props) => {
     const {
         width = "100%",
         height = "auto",
@@ -19,24 +19,6 @@ const InlineVideoPlayer = forwardRef<HTMLVideoElement, VideoPlayerProps>((props,
         ...otherProps
     } = props
 
-    const videoRef = useRef<HTMLVideoElement>(null)
-
-    // Expose video element through ref
-    useImperativeHandle(ref, () => videoRef.current as HTMLVideoElement, [])
-
-    // Handle playing prop changes
-    useEffect(() => {
-        if (videoRef.current) {
-            if (playing) {
-                videoRef.current.play().catch(() => {
-                    console.log('Video playback failed, possibly due to autoplay restrictions.')
-                })
-            } else {
-                videoRef.current.pause()
-            }
-        }
-    }, [playing])
-
     // Show fallback if src is not available
     if (!props.src && fallback) {
         return <>{fallback}</>
@@ -44,7 +26,6 @@ const InlineVideoPlayer = forwardRef<HTMLVideoElement, VideoPlayerProps>((props,
 
     return (
         <video
-            ref={videoRef}
             width={width}
             height={height}
             muted={muted}
@@ -57,7 +38,7 @@ const InlineVideoPlayer = forwardRef<HTMLVideoElement, VideoPlayerProps>((props,
             {fallback}
         </video>
     )
-})
+}
 
 // Add display name for better debugging
 InlineVideoPlayer.displayName = 'InlineVideoPlayer'
