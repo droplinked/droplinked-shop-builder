@@ -16,11 +16,11 @@ function AcceptInvitation() {
         onError: (error) => {
             navigate("/")
             showToast({ type: "error", message: (error as Error).message })
-        },
+        }
     })
 
     return (
-        <Box position="relative" >
+        <Box position="relative">
             <Image src='/assets/images/homepage/ef1.png' position="fixed" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
             <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex justifyContent={"center"} paddingBlock={120} paddingInline={{ base: "16px", sm: "28px" }}>
