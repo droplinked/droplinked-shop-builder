@@ -4,12 +4,19 @@ import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import React from 'react';
 
 interface ProPlanFooterProps {
+  isCrossmint: boolean;
   canActivateTrial: boolean;
   onClose: () => void;
   onUpgrade: () => void;
 }
 
-const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ canActivateTrial, onClose, onUpgrade }) => {
+const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateTrial, onClose, onUpgrade }) => {
+  const getButtonText = () => {
+    if (isCrossmint) return 'Continue';
+    if (canActivateTrial) return 'Claim Trial Now';
+    return 'Upgrade';
+  };
+
   return (
     <>
       {canActivateTrial ? null : (
@@ -23,10 +30,10 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ canActivateTrial, onClose
 
       <Flex py={9} px={12} gap={4} w="full">
         <AppButton variant="secondary" onClick={onClose}>
-          {canActivateTrial ? 'Close' : 'Keep Current Plan'}
+          {!canActivateTrial ? 'Keep Current Plan' : 'Close'}
         </AppButton>
         <AppButton flex={1} onClick={onUpgrade}>
-          {canActivateTrial ? 'Claim Trial Now' : 'Upgrade'}
+          {getButtonText()}
         </AppButton>
       </Flex>
     </>

@@ -12,7 +12,7 @@ function MaintenancePage() {
 
     // Checks if the user is in a dashboard route
     const isDashboardRoute = pathname.startsWith("/analytics") || pathname.startsWith("/shop-management");
-    const buttonText = isDashboardRoute ? "Dashboard" : "Homepage";
+    const buttonText = isDashboardRoute ? "Dashboard" : "Home";
 
     // Handles navigation to the appropriate page
     const handleNavigate = () => navigate(isDashboardRoute ? "/analytics/dashboard" : "/");
@@ -41,6 +41,7 @@ function MaintenancePage() {
                     Our system is currently undergoing maintenance to improve your experience. We’re working hard to bring everything back online as quickly as possible.
                 </AppTypography>
             </Flex>
+
             <AppButton
                 variant="secondary"
                 rightIcon={<AppIcons.BackArrow style={{ rotate: "180deg" }} />}

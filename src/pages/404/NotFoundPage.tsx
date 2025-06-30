@@ -1,11 +1,12 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
-import astronautLookingLeft from 'assets/image/astronaut-looking-left.png'
-import astronautLookingRight from 'assets/image/astronaut-looking-right.png'
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useAstronautImageSwitcher from './useAstronautImageSwitcher'
 
 export default function NotFoundPage() {
+  const astronautLookingRight= "https://upload-file-droplinked.s3.amazonaws.com/3cdae1c37ef98722d8a8b5b54994b275e899786fe296271777f62c5a3b7e3617.png"
+  const astronautLookingLeft= "https://upload-file-droplinked.s3.amazonaws.com/9887f54683f712041333f182eeabfaf0d8758121d2bd8a7d13d2ab4c2a7009af.png"
   const images = [astronautLookingRight, astronautLookingLeft]
   const { currentImageIndex } = useAstronautImageSwitcher()
 

@@ -3,6 +3,7 @@ import TypographyText from 'pages/public-pages/redesign-landings/_shared/compone
 import React from 'react'
 import NewsletterForm from './NewsletterForm'
 import NewsletterHeader from './NewsletterHeader'
+import SubscribeNow from './SubscribeNow'
 
 const containerStyles = {
     border: "1px solid",
@@ -23,7 +24,7 @@ export default function SubscribeNewsletter() {
     if (layout === "tablet") {
         return (
             <Box>
-                <TypographyText text="Subscribe Now" />
+                <TypographyText svg={<SubscribeNow />} />
                 <Box padding={4} {...containerStyles}>
                     <NewsletterHeader />
                     <NewsletterForm />
@@ -34,7 +35,7 @@ export default function SubscribeNewsletter() {
 
     return (
         <Box>
-            <TypographyText text="Subscribe Now" />
+            <TypographyText svg={<SubscribeNow />} mb="-5px" />
             <Grid
                 templateColumns="1fr 1fr"
                 alignItems="center"

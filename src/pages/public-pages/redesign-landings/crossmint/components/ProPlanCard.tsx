@@ -12,6 +12,7 @@ export default function ProPlanCard() {
             flexDirection={{ base: "column", md: "row" }}
             alignItems="start"
             height={{ base: "auto", md: "20rem" }}
+            width="100%"
         >
             <ClaimNowButton marginLeft={6} />
 
@@ -22,7 +23,7 @@ export default function ProPlanCard() {
                     transform: transformAmount
                 }}
                 alt='pro-plan-card'
-                src='/assets/images/crossmint-landing/proPlanVisual.png'
+                src='https://upload-file-droplinked.s3.amazonaws.com/ac3d91291f97b251af7b19c6c22096e1b6afcae4db1565556447a6e24304e954.png'
             />
         </Flex>
     )

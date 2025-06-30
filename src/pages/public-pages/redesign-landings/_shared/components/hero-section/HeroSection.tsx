@@ -1,31 +1,36 @@
 import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
-import { LottieOptions } from 'lottie-react'
-import { motion } from 'framer-motion'
-import { ReactComponent as BluredStar } from '../../svgs/BluredStar.svg'
 import { LazyLoad } from '../LazyLoad'
+import { InlineVideoPlayerProps } from '../InlineVideoPlayer'
 
 interface HeroSectionProps {
     title?: string
     subtitle?: string
     subTitleElements?: React.ReactNode
-    heroDesktop?: Object
-    heroTablet?: Object
-    heroMobile?: Object
-    lottieOptions?: Omit<LottieOptions, 'animationData'>
+    videoDesktop?: string
+    videoTablet?: string
+    videoMobile?: string
+    videoStyle?: React.CSSProperties
+    playerProps?: InlineVideoPlayerProps
 }
 
 export default function HeroSection({
     title,
     subtitle,
     subTitleElements,
-    heroDesktop,
-    heroTablet,
-    heroMobile,
-    lottieOptions,
+    videoDesktop,
+    videoTablet,
+    videoMobile,
+    videoStyle,
+    playerProps,
 }: HeroSectionProps) {
-    const responsiveTop = useBreakpointValue({ base: "30%", md: "45%" })
+    const backgroundImage = useBreakpointValue({
+        base: "url(https://upload-file-droplinked.s3.amazonaws.com/5faebef9a91644efc0f2a81b0283762ab54982d57fcbac6969d51f4f08fde1a7.png)",
+        md: "url(https://upload-file-droplinked.s3.amazonaws.com/3761e9e1835f3d39f9b409299913078b6b7cffa2c8af76007fe2b2b7fe8cdf0b.png)",
+        xl: "url(https://upload-file-droplinked.s3.amazonaws.com/7e5f157d56078d2736d69e135d1353a7cba7430d99fb433f8c329cb6169340f4.png)",
+        "2xl": "url(https://upload-file-droplinked.s3.amazonaws.com/b34093c1f326a8235b02ab761a21605c7c5dcc183cc6a87fccfd7b6c6ebb9130.png)"
+    })
 
     return (
         <LazyLoad>
@@ -34,58 +39,14 @@ export default function HeroSection({
                 templateRows="repeat(1, 1fr)"
                 height={{ base: "728px", md: "max-content" }}
                 mx={{ base: 2, md: 4, lg: 6 }}
+                backgroundImage={backgroundImage}
                 backgroundSize="cover"
                 backgroundRepeat="no-repeat"
+                backgroundPosition="center"
                 borderRadius="24px"
                 position="relative"
                 overflow="hidden"
             >
-                <Box
-                    position="absolute"
-                    inset="0"
-                    zIndex={0}
-                    bg="linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.4) 30%, rgba(43, 207, 161, 0.04) 100%)"
-                >
-                    <Box
-                        position="absolute"
-                        inset="0"
-                        bgImage="url(https://upload-file-droplinked.s3.amazonaws.com/3b12a2fc765465de8080fadb321a30195c0df35dcffea9f75956465f70d35826.png)"
-                        bgPosition="center"
-                        bgSize="cover"
-                        bgRepeat="no-repeat"
-                        mixBlendMode="plus-lighter"
-                    />
-                    <Box
-                        position="absolute"
-                        inset="0"
-                        bg="var(--Main-Primary, #2BCFA1)"
-                        mixBlendMode="color"
-                    />
-                    <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                            repeat: Infinity,
-                            duration: 40,
-                            ease: 'linear',
-                        }}
-                        style={{
-                            position: 'absolute',
-                            top: responsiveTop,
-                            left: '-50%',
-                            width: '200%',
-                            height: '200%',
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 999,
-                        }}
-                    >
-                        <BluredStar width="100%" height="100%" />
-                    </motion.div>
-                    <Box
-                        position="absolute"
-                        inset="0"
-                        backdropFilter="blur(50px)"
-                    />
-                </Box>
                 <Box zIndex={1} gridArea="1 / 1 / 2 / 2">
                     <Box>
                         <Flex flexDirection="column" alignItems="center" gap={{ base: 2, md: 4 }}>
@@ -112,10 +73,11 @@ export default function HeroSection({
                         {subTitleElements}
                     </Box>
                     <HeroAnimation
-                        heroDesktop={heroDesktop}
-                        heroTablet={heroTablet}
-                        heroMobile={heroMobile}
-                        lottieOptions={lottieOptions}
+                        videoDesktop={videoDesktop}
+                        videoTablet={videoTablet}
+                        videoMobile={videoMobile}
+                        style={videoStyle}
+                        playerProps={playerProps}
                     />
                 </Box>
             </Grid>

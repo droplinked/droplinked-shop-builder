@@ -4,9 +4,9 @@ import AppTypography from "components/common/typography/AppTypography";
 import { getTimeAgo } from "utils/helpers";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IBlogListItem } from "./blogs.interface";
+import { IBlog } from "./blogs.interface";
  
-const Blog = ({ blog }: { blog: IBlogListItem }) => {
+const Blog = ({ blog }: { blog: IBlog }) => {
 
     return (
         <VStack
@@ -86,7 +86,7 @@ const Blog = ({ blog }: { blog: IBlogListItem }) => {
                 </VStack>
             </Box>
             <VStack width={"full"} alignItems={"flex-start"}>
-                <Link to={`/blogs/${blog?.slug}`}>
+                <Link to={`/blogs/${blog.slug}`}>
                     <AppTypography color="white" fontSize="xl" cursor={"pointer"}>
                         {blog?.title}
                     </AppTypography>

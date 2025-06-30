@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IGenerateTitleDescription, IGenerateWithAiRequest, IGenerateWithAiResponse, IImproveDescription, IImproveTitle } from "./interfaces"
+import { IAiImageStatusResponse, IGenerateTitleDescription, IGenerateWithAiDirectResponse, IGenerateWithAiRequest, IGenerateWithAiResponse, IImproveDescription, IImproveTitle } from "./interfaces"
 
 export const improveTitle = ({ title, tone }: IImproveTitle) =>
     axiosInstance.post("ai/improve-title", { title, tone })
@@ -17,7 +17,13 @@ export const generateLogos = (params: IGenerateWithAiRequest) =>
     axiosInstance.post<IGenerateWithAiResponse>("/ai/generate-logos", params)
 
 export const generateShopNames = (params: IGenerateWithAiRequest) =>
-    axiosInstance.post<IGenerateWithAiResponse>("/ai/generate-shop-names", params)
+    axiosInstance.post<IGenerateWithAiDirectResponse>("/ai/generate-shop-names", params)
 
 export const generateDomains = (params: IGenerateWithAiRequest) =>
-    axiosInstance.post<IGenerateWithAiResponse>("/ai/generate-domains", params)
+    axiosInstance.post<IGenerateWithAiDirectResponse>("/ai/generate-domains", params)
+
+export const getAiImageStatus = (requestId: string) =>
+    axiosInstance.get<IAiImageStatusResponse>(`/ai/image-status/${requestId}`)
+
+export const uploadToCdn = (url: string) =>
+    axiosInstance.post("/uploader/cdn-upload", { url })

@@ -62,7 +62,6 @@ function ExistingWebsite() {
             <ProTrialModal
                 isOpen={isProTrialModalOpen}
                 onClose={closeProTrialModal}
-                isCrossmint={true}
             />
         </>
     )

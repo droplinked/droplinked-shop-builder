@@ -12,10 +12,10 @@ interface Props extends FlexProps {
     headingTitle?: string
     headingSubtitle?: string
     subTitleElement?: React.ReactNode
-    typographyText?: string
+    typographySvg?: React.ReactNode
 }
 
-export default function SectionContainer({ icon, sectionTitle, headingTitle, headingSubtitle, subTitleElement, typographyText, children, ...rest }: Props) {
+export default function SectionContainer({ icon, sectionTitle, headingTitle, headingSubtitle, subTitleElement, typographySvg, children, ...rest }: Props) {
     return (
         <Flex
             flexDirection="column"
@@ -26,9 +26,9 @@ export default function SectionContainer({ icon, sectionTitle, headingTitle, hea
             <IconMapper icon={icon as Icon} />
             <SectionTitle sectionTitle={sectionTitle} icon={icon} />
             <HeadingTitle title={headingTitle} />
-            <HeadingSubtitle subTitle={headingSubtitle} hasTypographyText={!!typographyText} />
+            <HeadingSubtitle subTitle={headingSubtitle} hasTypographySvg={!!typographySvg} />
             {subTitleElement}
-            <TypographyText text={typographyText} />
+            <TypographyText svg={typographySvg} />
             {children}
         </Flex>
     )

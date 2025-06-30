@@ -1,12 +1,24 @@
 import FullScreenLoading from "components/redesign/fullscreen-loading/FullScreenLoading"
 import ProducerLayout from "layouts/ProducerLayout/ProducerLayout"
 import PublicLayout from "layouts/PublicLayout/PublicLayout"
+import React, { lazy, Suspense } from "react"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+
+// public routes
+import AffiliateProductsSinglePage from "pages/affiliate/product/ProductPage"
+import AffiliateProductsPage from "pages/affiliate/products/AffiliateProductsPage"
 import AffiliateStoresProfile from "pages/affiliate/stores/profile/AffiliateStoresProfile"
 import BlogCreatePage from "pages/blogs/components/BlogCreatePage"
 import BlogEditPage from "pages/blogs/components/BlogEditPage"
 import Changelog from "pages/changelog/Changelog"
 import ChangelogDetail from "pages/changelog/components/ChangelogDetail"
 import Onboarding from "pages/onboarding/Onboarding"
+import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
+import PublicBlog from "pages/public-pages/blogs/blog/Blog"
+import PublicBlogs from "pages/public-pages/blogs/Blogs"
+import ContactUs from "pages/public-pages/contact-us/ContactUs"
+import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
@@ -19,17 +31,19 @@ import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
+import PricingPage from "pages/public-pages/pricing/PricingPage"
+import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
+import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
+import HomePage from "pages/public-pages/redesign-landings/homePage/HomePage"
 import Rewards from "pages/public-pages/rewards/Rewards"
-import StorefrontDesigner from "pages/storefront-designer/StorefrontDesigner"
-import React, { lazy, Suspense } from "react"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import TermsPage from "pages/public-pages/terms-page/TermsPage"
 
-// Lazy-loaded Components
+// Lazy-loaded components for other routes
+const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
 const Dashboard = lazy(() => import("pages/dashboard/Dashboard"))
 const Blogs = lazy(() => import("pages/blogs/Blogs"))
 const Collections = lazy(() => import("pages/collections/Collections"))
@@ -40,16 +54,6 @@ const CreateInvoice = lazy(() => import("pages/invoice-management").then(module 
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"))
 const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"))
 const ProductsV2 = lazy(() => import("pages/products/ProductsV2"))
-const AboutUs = lazy(() => import("pages/public-pages/about/AboutUs"))
-const AcceptInvitation = lazy(() => import("pages/public-pages/accept-invitation/AcceptInvitation"))
-const ContactUs = lazy(() => import("pages/public-pages/contact-us/ContactUs"))
-const Enquiry = lazy(() => import("pages/public-pages/enquiry-page/EnquiryPage"))
-const HomePage = lazy(() => import("pages/public-pages/homePage/HomePage"))
-const PricingPage = lazy(() => import("pages/public-pages/pricing/PricingPage"))
-const PrivacyPage = lazy(() => import("pages/public-pages/privacy-page/PrivacyPage"))
-const TermsPage = lazy(() => import("pages/public-pages/terms-page/TermsPage"))
-const AffiliateProductsSinglePage = lazy(() => import("pages/affiliate/product/ProductPage"))
-const AffiliateProductsPage = lazy(() => import("pages/affiliate/products/AffiliateProductsPage"))
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
 const PaymentLink = lazy(() => import("pages/payment-link/PaymentLink"))
 const SimpleRegistration = lazy(() => import("pages/simple-registration/SimpleRegistration"))
@@ -58,8 +62,6 @@ const SettingsPage = lazy(() => import("pages/settings/SettingsPage"))
 const ShopManagement = lazy(() => import("pages/shop-management/ShopManagement"))
 const SubscriptionPlans = lazy(() => import("pages/subscription-plans/SubscriptionPlans"))
 const NotFoundPage = lazy(() => import("pages/404/NotFoundPage"))
-const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
-const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 const CreditsAndActivity = lazy(() => import("pages/credits-and-activity/CreditsAndActivity"))
 const InvoiceTemplate = lazy(() => import("pages/invoice-template/InvoiceTemplate"))
 const OnchainRecords = lazy(() => import("pages/onchain-records/OnchainRecords"))
@@ -70,11 +72,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <PublicLayout />,
-        errorElement: (
-            <PublicLayout>
-                <MaintenancePage />
-            </PublicLayout>
-        ),
+        errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <HomePage /> },
             { path: "crossmint", element: <CrossmintLanding /> },
