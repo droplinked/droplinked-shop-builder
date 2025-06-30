@@ -9,6 +9,7 @@ import JoinNow from './components/JoinNow'
 import ProductOfferingSection from './components/ProductOfferingSection'
 import GoLiveSection from './components/go-live-section/GoLiveSection'
 import KeyFeatures from './components/key-features/KeyFeatures'
+import Testmonials from './components/testmonials/Testmonials'
 
 export default function HomePage() {
   const [searchParams] = useSearchParams()
@@ -41,6 +42,7 @@ export default function HomePage() {
         <GoLiveSection />
         <ProductOfferingSection />
         <KeyFeatures />
+        <Testmonials />
         <JoinTheCommuity />
         <JoinNow />
       </MaxWidthWrapper>
