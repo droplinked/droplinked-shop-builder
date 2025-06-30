@@ -93,7 +93,6 @@
 }
 
 ::-webkit-scrollbar-track {
-    // box-shadow: inset 0 0 5px black;
     border-radius: 4px;
 }
 
@@ -106,19 +105,8 @@
     background: #25bb92;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: "Inter";
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     background-color: #141414 !important;
-}
-
-.tox-notifications-container {
-    display: none;
 }
 
 .fp-watermark {
