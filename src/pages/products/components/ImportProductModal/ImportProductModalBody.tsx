@@ -1,13 +1,14 @@
+// import useProductPageStore from 'pages/products/stores/ProductPageStore'
+// import UrlInput from './UrlInput'
+// import RecentTasks from './RecentTasks'
 import { Box, Center, Flex, ModalBody } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
-import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
 import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from './FileUpload'
-import UrlInput from './UrlInput'
-import RecentTasks from './RecentTasks'
+
 
 interface Props {
     file: File | null
@@ -16,8 +17,8 @@ interface Props {
 }
 
 export default function ImportProductModalBody({ file, onFileChange, importWithUrl }: Props) {
-    const { crawlerError } = useProductPageStore()
-    const { recentTasks, recentTasksLoading, getProducts, getProductsLoading } = importWithUrl
+    // const { crawlerError } = useProductPageStore()
+    // const { recentTasks, recentTasksLoading, getProducts, getProductsLoading } = importWithUrl
 
     return (
         <ModalBody
@@ -31,13 +32,13 @@ export default function ImportProductModalBody({ file, onFileChange, importWithU
         >
             <FileUpload onFileChange={onFileChange} />
             {file && <FilePreview file={file} onFileChange={onFileChange} />}
-            <UrlInput isDisabled={!!file} crawlerError={crawlerError} />
-            <RecentTasks
+            {/* <UrlInput isDisabled={!!file} crawlerError={crawlerError} /> */}
+            {/* <RecentTasks
                 isLoading={recentTasksLoading}
                 recentTasks={recentTasks}
                 getProducts={getProducts}
                 getProductsLoading={getProductsLoading}
-            />
+            /> */}
         </ModalBody>
     )
 }
