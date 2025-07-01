@@ -3,6 +3,7 @@ import { Box, Flex, Input, Textarea } from "@chakra-ui/react";
 import { useMutation } from "react-query";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { TFunction } from "i18next";
 
 // API
 import { contactUsService } from 'services/constact-us/services';
@@ -19,7 +20,11 @@ interface IFormData {
   message: string;
 }
 
-const DppContactUs = () => {
+interface DppContactUsProps {
+  t: TFunction;
+}
+
+const DppContactUs = ({ t }: DppContactUsProps) => {
   const { mutateAsync, isLoading } = useMutation((data: IFormData) => contactUsService(data));
   const { showToast } = useAppToast();
 
@@ -27,23 +32,23 @@ const DppContactUs = () => {
     try {
       await mutateAsync(data);
       actions.resetForm();
-      showToast({ type: "success", message: "Message sent successfully!" });
+      showToast({ type: "success", message: t('dppContactUs.toast.success') });
     } catch (error) {
-      showToast({ type: "error", message: "Oops. Something went wrong!" });
+      showToast({ type: "error", message: t('dppContactUs.toast.error') });
     }
   };
 
   const formSchema = Yup.object().shape({
-    firstName: Yup.string().required("This field is required."),
-    lastName: Yup.string().required("This field is required."),
-    email: Yup.string().email("Please enter a valid email address.").required("This field is required."),
-    message: Yup.string().required("This field is required."),
+    firstName: Yup.string().required(t('dppContactUs.form.firstName.error')),
+    lastName: Yup.string().required(t('dppContactUs.form.lastName.error')),
+    email: Yup.string().email(t('dppContactUs.form.email.invalidError')).required(t('dppContactUs.form.email.error')),
+    message: Yup.string().required(t('dppContactUs.form.message.error')),
   });
 
   return (
     <Flex flexDirection={"column"} alignItems={"center"} gap={"32px"} padding={{ base: "28px", md: "32px" }} width={"100%"}>
       <AppTypography fontSize={{ base: "32px", md: "48px" }} fontWeight={700} color={"#FFF"} textAlign={"center"}>
-        Contact us to learn more
+        {t('dppContactUs.title')}
       </AppTypography>
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "", message: "" }}
@@ -58,7 +63,7 @@ const DppContactUs = () => {
                 <Box width="100%">
                   <Input
                     name="firstName"
-                    placeholder="First Name"
+                    placeholder={t('dppContactUs.form.firstName.placeholder')}
                     backgroundColor={"transparent"}
                     border="1px solid #E0E0E0"
                     padding={"12px 20px"}
@@ -75,7 +80,7 @@ const DppContactUs = () => {
                 <Box width="100%">
                   <Input
                     name="lastName"
-                    placeholder="Last Name"
+                    placeholder={t('dppContactUs.form.lastName.placeholder')}
                     backgroundColor={"transparent"}
                     border="1px solid #E0E0E0"
                     padding={"12px 20px"}
@@ -94,7 +99,7 @@ const DppContactUs = () => {
               <Box width="100%">
                 <Input
                   name="email"
-                  placeholder="Email"
+                  placeholder={t('dppContactUs.form.email.placeholder')}
                   backgroundColor={"transparent"}
                   border="1px solid #E0E0E0"
                   padding={"12px 20px"}
@@ -111,7 +116,7 @@ const DppContactUs = () => {
               <Box width="100%">
                 <Textarea
                   name="message"
-                  placeholder="Your message"
+                  placeholder={t('dppContactUs.form.message.placeholder')}
                   backgroundColor={"transparent"}
                   border="1px solid #E0E0E0"
                   padding={"12px 20px"}
@@ -135,7 +140,7 @@ const DppContactUs = () => {
                 isDisabled={!values.firstName || !values.lastName || !values.email || !values.message || isLoading}
                 isLoading={isLoading}
               >
-                Send
+                {t('dppContactUs.form.submit')}
               </BasicButton>
             </Flex>
           </Form>

@@ -1,58 +1,62 @@
 import { Flex, Image, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
-
-//Components
 import AppTypography from "components/common/typography/AppTypography";
 import SpectrumHeader from "pages/public-pages/landings/_components/spectrum-header/SpectrumHeader";
+import { TFunction } from "i18next";
 
-const itemsData = [
+interface DppBenefitsProps {
+  t: TFunction;
+}
+
+const getItemsData = (t: TFunction) => [
   {
-    number: "01",
-    title: "Comprehensive Lifecycle Data",
-    description: "Capture and access detailed information from production to disposal, ensuring full lifecycle traceability.",
+    number: t('dppBenefits.items.comprehensiveLifecycleData.number'),
+    title: t('dppBenefits.items.comprehensiveLifecycleData.title'),
+    description: t('dppBenefits.items.comprehensiveLifecycleData.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/0374091621cced8e5006487353dfa1a473591eb58f583712e60e6cf587bc688b.png_st.png"
   },
   {
-    number: "02",
-    title: "Advanced Technology Integration",
-    description: "Leverage state-of-the-art technologies such as blockchain, QR codes, and RFID for secure, reliable data management.",
+    number: t('dppBenefits.items.advancedTechnologyIntegration.number'),
+    title: t('dppBenefits.items.advancedTechnologyIntegration.title'),
+    description: t('dppBenefits.items.advancedTechnologyIntegration.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ea5f4d82fb5c0f87788916c0f4d5ae51b856803268809b23f509033c0cdb9f74.png_st.png"
   },
   {
-    number: "03",
-    title: "Enhanced Sustainability",
-    description: "Make informed decisions with insights into materials, sourcing, and environmental impact, driving sustainable practices.",
+    number: t('dppBenefits.items.enhancedSustainability.number'),
+    title: t('dppBenefits.items.enhancedSustainability.title'),
+    description: t('dppBenefits.items.enhancedSustainability.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/00a59ce747f3846ed5c02b49f8aec02da5c491b0dc75019bf8698f2f5ea85889.png_st.png"
   },
   {
-    number: "04",
-    title: "Regulatory Compliance Made Easy",
-    description: "Stay ahead of the curve with automatic compliance updates, keeping products aligned with the latest regulations.",
+    number: t('dppBenefits.items.regulatoryCompliance.number'),
+    title: t('dppBenefits.items.regulatoryCompliance.title'),
+    description: t('dppBenefits.items.regulatoryCompliance.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/dff82f55158193a02724765fb78c525d5d6f07710c368d527b607b6331c3ea62.png_st.png"
   },
   {
-    number: "05",
-    title: "User-Friendly Interface",
-    description: "Our intuitive platform allows for easy access and analysis of your data, streamlining management processes.",
+    number: t('dppBenefits.items.userFriendlyInterface.number'),
+    title: t('dppBenefits.items.userFriendlyInterface.title'),
+    description: t('dppBenefits.items.userFriendlyInterface.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b1707d01f7f1bc5352addf63ee5e9dd04603e10f1c74be50057de96a0ba2fa59.png_st.png"
   },
   {
-    number: "06",
-    title: "Data-Driven Decision Making",
-    description: "Utilize rich analytics and reports to make strategic decisions, enhancing product’s value and market competitiveness.",
+    number: t('dppBenefits.items.dataDrivenDecisionMaking.number'),
+    title: t('dppBenefits.items.dataDrivenDecisionMaking.title'),
+    description: t('dppBenefits.items.dataDrivenDecisionMaking.description'),
     imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/8a3da8f087d91ab34cd3e5d1c8eca15564274f8227d94ad8fc70dd937bcdcd0f.png_st.png"
   },
 ];
 
-const DppBenefits = () => {
+const DppBenefits = ({ t }: DppBenefitsProps) => {
   const [isLargerThan1250] = useMediaQuery("(min-width: 1250px)")
+  const itemsData = getItemsData(t);
 
   return (
     <Flex flexDirection={"column"} gap={"42px"}>
       <Flex alignItems={"center"} flexDirection={"column"} gap={"36px"}>
-        <SpectrumHeader>Digital Product Passport Benefits</SpectrumHeader>
+        <SpectrumHeader>{t('dppBenefits.title')}</SpectrumHeader>
         <AppTypography fontSize={"18px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>
-          Our Digital Product Passport solution is designed to bring unparalleled transparency, efficiency, and sustainability to your product management. Embrace a greener, smarter way to track, manage, and report every phase of your product's journey.
+          {t('dppBenefits.description')}
         </AppTypography>
       </Flex>
 

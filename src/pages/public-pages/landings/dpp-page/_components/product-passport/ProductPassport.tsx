@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { Flex, Image } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
+import { TFunction } from "i18next";
 
 // Components
 import AppTypography from "components/common/typography/AppTypography";
 import { Link } from "react-router-dom";
 
-const productPassportData = [
+interface ProductPassportProps {
+  t: TFunction;
+}
+
+const getProductPassportData = (t: TFunction) => [
   {
-    category: "Accesories",
-    productName: "Moschino Bag",
-    product_id: "Ca23A58BHG90CC3",
-    weight: "2.6kg",
-    traceability: "Full supply chain transparency",
-    manufacturingSite: "Milan, Italy",
-    certifications: "ISO 9001, ISO 14001",
-    circularCharacteristics: "Recyclable materials",
-    sourcingComposition: "Calf leather from EU farms",
-    LCA: "Low environmental impact, sustainable practices",
-    createdDate: "2021/04/11, 12:25",
+    category: t('productPassport.categories.accessories'),
+    productName: t('productPassport.products.moschinoBag.name'),
+    product_id: t('productPassport.products.moschinoBag.productId'),
+    weight: t('productPassport.products.moschinoBag.weight'),
+    traceability: t('productPassport.products.moschinoBag.traceability'),
+    manufacturingSite: t('productPassport.products.moschinoBag.manufacturingSite'),
+    certifications: t('productPassport.products.moschinoBag.certifications'),
+    circularCharacteristics: t('productPassport.products.moschinoBag.circularCharacteristics'),
+    sourcingComposition: t('productPassport.products.moschinoBag.sourcingComposition'),
+    LCA: t('productPassport.products.moschinoBag.lca'),
+    createdDate: t('productPassport.products.moschinoBag.createdDate'),
     imageSrc: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/d59e4ad7ff6ad5611a79950ccb34e7f9ad7ba78a6380a8594979f618c58139b4.png_or.png",
     blockchainLogo: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/af9f8268d446b5ca32242314e0fcf5cfe16018d15d3e14f92d8760b397da047c.png_or.png",
     QR_Code: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png",
@@ -26,17 +31,17 @@ const productPassportData = [
     videoSrc: "https://upload-file-droplinked.s3.amazonaws.com/09e85bddba18489902a30c2b41fd872eff9aa29107960cea32de7f3b4ff9b781_or.mp4",
   },
   {
-    category: "Jewelry",
-    productName: "Patek Philippe Chronograph Watch",
-    product_id: "LW45678EXQ",
-    weight: "0.2kg",
-    traceability: "Full supply chain transparency",
-    manufacturingSite: "Geneva, Switzerland",
-    certifications: "ISO 9001, Swiss Made",
-    circularCharacteristics: "Recyclable materials",
-    sourcingComposition: "Stainless steel from EU",
-    LCA: "Low environmental impact, durable design",
-    createdDate: "2020/10/16, 18:45",
+    category: t('productPassport.categories.jewelry'),
+    productName: t('productPassport.products.patekPhilippeWatch.name'),
+    product_id: t('productPassport.products.patekPhilippeWatch.productId'),
+    weight: t('productPassport.products.patekPhilippeWatch.weight'),
+    traceability: t('productPassport.products.patekPhilippeWatch.traceability'),
+    manufacturingSite: t('productPassport.products.patekPhilippeWatch.manufacturingSite'),
+    certifications: t('productPassport.products.patekPhilippeWatch.certifications'),
+    circularCharacteristics: t('productPassport.products.patekPhilippeWatch.circularCharacteristics'),
+    sourcingComposition: t('productPassport.products.patekPhilippeWatch.sourcingComposition'),
+    LCA: t('productPassport.products.patekPhilippeWatch.lca'),
+    createdDate: t('productPassport.products.patekPhilippeWatch.createdDate'),
     imageSrc: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ff0c5ea52ce72412f870d129e2d2e0f6794eed3f52ea8a71e07d74ae58f0c734.png_or.png",
     blockchainLogo: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/173b18e608b1d5c6896cbfc5a2c095619812ae12d85a94976c12543fdf83661f.png_or.png",
     QR_Code: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png",
@@ -44,17 +49,17 @@ const productPassportData = [
     videoSrc: "https://upload-file-droplinked.s3.amazonaws.com/55c5ebeab9b5ad69642ba4f7f52acef41f1a38b062389ff657207689198a00d5_or.mp4",
   },
   {
-    category: "Retail",
-    productName: "Timberland Classic Boot",
-    product_id: "TB98765XPL",
-    weight: "1.2kg",
-    traceability: "Full supply chain transparency",
-    manufacturingSite: "Newmarket, USA",
-    certifications: "ISO 9001, ISO 14001",
-    circularCharacteristics: "Recyclable materials",
-    sourcingComposition: "Leather from North USA farms",
-    LCA: "Low impact, sustainable manufacturing",
-    createdDate: "2022/08/21, 10:05",
+    category: t('productPassport.categories.retail'),
+    productName: t('productPassport.products.timberlandBoot.name'),
+    product_id: t('productPassport.products.timberlandBoot.productId'),
+    weight: t('productPassport.products.timberlandBoot.weight'),
+    traceability: t('productPassport.products.timberlandBoot.traceability'),
+    manufacturingSite: t('productPassport.products.timberlandBoot.manufacturingSite'),
+    certifications: t('productPassport.products.timberlandBoot.certifications'),
+    circularCharacteristics: t('productPassport.products.timberlandBoot.circularCharacteristics'),
+    sourcingComposition: t('productPassport.products.timberlandBoot.sourcingComposition'),
+    LCA: t('productPassport.products.timberlandBoot.lca'),
+    createdDate: t('productPassport.products.timberlandBoot.createdDate'),
     imageSrc: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/93a377bbcb80b42940a07d40f34459f955a54f8e4d0c97b8bff1daac0e4f692a.png_or.png",
     blockchainLogo: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/173b18e608b1d5c6896cbfc5a2c095619812ae12d85a94976c12543fdf83661f.png_or.png",
     QR_Code: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png",
@@ -62,17 +67,17 @@ const productPassportData = [
     videoSrc: "https://upload-file-droplinked.s3.amazonaws.com/fb4144bc6f7a3a1224f2e48c7199fcfeb9470219ea5331c9ad74f0a218f818a2_or.mp4",
   },
   {
-    category: "Electronics",
-    productName: "PlayStation 5",
-    product_id: "PS5US12345",
-    weight: "4.5kg",
-    traceability: "Partial supply chain transparency",
-    manufacturingSite: "Tokyo, Japan",
-    certifications: "ISO 9001, CE Marking",
-    circularCharacteristics: "Recyclable packaging",
-    sourcingComposition: "Electronics components",
-    LCA: "Moderate environmental impact",
-    createdDate: "2023/07/24, 14:30",
+    category: t('productPassport.categories.electronics'),
+    productName: t('productPassport.products.playstation5.name'),
+    product_id: t('productPassport.products.playstation5.productId'),
+    weight: t('productPassport.products.playstation5.weight'),
+    traceability: t('productPassport.products.playstation5.traceability'),
+    manufacturingSite: t('productPassport.products.playstation5.manufacturingSite'),
+    certifications: t('productPassport.products.playstation5.certifications'),
+    circularCharacteristics: t('productPassport.products.playstation5.circularCharacteristics'),
+    sourcingComposition: t('productPassport.products.playstation5.sourcingComposition'),
+    LCA: t('productPassport.products.playstation5.lca'),
+    createdDate: t('productPassport.products.playstation5.createdDate'),
     imageSrc: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/033b1fb5db4f5c6c4426fd24c19b64f1d581816c9c7f98d0255b70e914cae7a0.png_or.png",
     blockchainLogo: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/08eef0b07636efb6fad4af0317bf4c0f4cbfc84b5430d391bb5895bd2ed667ba.png_or.png",
     QR_Code: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png",
@@ -80,17 +85,17 @@ const productPassportData = [
     videoSrc: "https://upload-file-droplinked.s3.amazonaws.com/fd9869ab28f4196b00a0b56d2407fe28c8f84ec595c0a3fd5313b41dd3b3aab0_or.mp4",
   },
   {
-    category: "Industrial",
-    productName: "Neopulse Travelbag by Samsonite",
-    product_id: "RL2022TRAVEL",
-    weight: "3.5kg",
-    traceability: "Full supply chain transparency",
-    manufacturingSite: "Berlin, Germany",
-    certifications: "ISO 9001, ISO 14001",
-    circularCharacteristics: "Recyclable materials",
-    sourcingComposition: "Polycarbonate from EU suppliers",
-    LCA: "Low environmental impact, sustainable practices",
-    createdDate: "2023/05/10, 11:05",
+    category: t('productPassport.categories.industrial'),
+    productName: t('productPassport.products.samsoniteBag.name'),
+    product_id: t('productPassport.products.samsoniteBag.productId'),
+    weight: t('productPassport.products.samsoniteBag.weight'),
+    traceability: t('productPassport.products.samsoniteBag.traceability'),
+    manufacturingSite: t('productPassport.products.samsoniteBag.manufacturingSite'),
+    certifications: t('productPassport.products.samsoniteBag.certifications'),
+    circularCharacteristics: t('productPassport.products.samsoniteBag.circularCharacteristics'),
+    sourcingComposition: t('productPassport.products.samsoniteBag.sourcingComposition'),
+    LCA: t('productPassport.products.samsoniteBag.lca'),
+    createdDate: t('productPassport.products.samsoniteBag.createdDate'),
     imageSrc: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/033b1fb5db4f5c6c4426fd24c19b64f1d581816c9c7f98d0255b70e914cae7a0.png_or.png",
     blockchainLogo: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/2dcea53f446531e874210baacc1d6e61cfbbff22346cb768d2c15d41aefc259b.png_or.png",
     QR_Code: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png",
@@ -99,8 +104,9 @@ const productPassportData = [
   },
 ];
 
-const ProductPassport = () => {
-  const [activeCategory, setActiveCategory] = useState("Accesories");
+const ProductPassport = ({ t }: ProductPassportProps) => {
+  const productPassportData = getProductPassportData(t);
+  const [activeCategory, setActiveCategory] = useState(t('productPassport.categories.accessories'));
 
   const categories = Array.from(new Set(productPassportData.map(product => product.category)));
 
@@ -108,16 +114,18 @@ const ProductPassport = () => {
     (product) => product.category === activeCategory
   );
 
-  const productOptions = [
-    { label: "Product ID", value: activeProduct.product_id, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/e8484afab2db79beca0ea52244b7d6022b502bdfc138f0a8304b9a4e0154632c.png_st.png" },
-    { label: "Weight", value: activeProduct.weight, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/1a49141c98c67903387ec9f5fa96f7ae134d16abc06f14ab9b9f163e9dfc8d6c.png_st.png" },
-    { label: "Traceability", value: activeProduct.traceability, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b7ce0f43bfd9741447959d0d6e7d7ac13b0aee23659bb052b3cc1328fa9611b9.png_st.png" },
-    { label: "Manufacturing site", value: activeProduct.manufacturingSite, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/386a3c15720ebecea5a5f23b66cbf48a7a661dd521c3c38914ecb54b0f80abb9.png_st.png" },
-    { label: "Certifications", value: activeProduct.certifications, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/0518b602ffba9cd2c8539b817e8c3e245b75cd03d27d16ac523231006ccac730.png_st.png" },
-    { label: "Circular characteristics", value: activeProduct.circularCharacteristics, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6c88f22a538ede68647b3cffeb4798efd19559ee425b8ef844e2b52b3a2bc3b6.png_st.png" },
-    { label: "Sourcing composition", value: activeProduct.sourcingComposition, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b2fc63388419e09779ed114a5e1b2b28f42ffd0a1c37a2baf6bea5b0b0078503.png_st.png" },
-    { label: "LCA", value: activeProduct.LCA, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/54da0df50de53760d5b9bf4b730c0e28895fbea4c59314a6a353203484c2d87a.png_st.png" },
+  const getProductOptions = (t: TFunction) => [
+    { label: t('productPassport.productOptions.productId'), value: activeProduct.product_id, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/e8484afab2db79beca0ea52244b7d6022b502bdfc138f0a8304b9a4e0154632c.png_st.png" },
+    { label: t('productPassport.productOptions.weight'), value: activeProduct.weight, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/1a49141c98c67903387ec9f5fa96f7ae134d16abc06f14ab9b9f163e9dfc8d6c.png_st.png" },
+    { label: t('productPassport.productOptions.traceability'), value: activeProduct.traceability, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b7ce0f43bfd9741447959d0d6e7d7ac13b0aee23659bb052b3cc1328fa9611b9.png_st.png" },
+    { label: t('productPassport.productOptions.manufacturingSite'), value: activeProduct.manufacturingSite, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/386a3c15720ebecea5a5f23b66cbf48a7a661dd521c3c38914ecb54b0f80abb9.png_st.png" },
+    { label: t('productPassport.productOptions.certifications'), value: activeProduct.certifications, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/0518b602ffba9cd2c8539b817e8c3e245b75cd03d27d16ac523231006ccac730.png_st.png" },
+    { label: t('productPassport.productOptions.circularCharacteristics'), value: activeProduct.circularCharacteristics, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6c88f22a538ede68647b3cffeb4798efd19559ee425b8ef844e2b52b3a2bc3b6.png_st.png" },
+    { label: t('productPassport.productOptions.sourcingComposition'), value: activeProduct.sourcingComposition, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b2fc63388419e09779ed114a5e1b2b28f42ffd0a1c37a2baf6bea5b0b0078503.png_st.png" },
+    { label: t('productPassport.productOptions.lca'), value: activeProduct.LCA, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/54da0df50de53760d5b9bf4b730c0e28895fbea4c59314a6a353203484c2d87a.png_st.png" },
   ];
+
+  const productOptions = getProductOptions(t);
 
   return (
     <Flex
@@ -186,7 +194,7 @@ const ProductPassport = () => {
               />
               <Link to={activeProduct.view3D} target="_blank">
                 <Flex position={"absolute"} bottom={"60px"} left={"50%"} transform={"translateX(-50%)"} alignItems={"center"} justifyContent={"center"} borderRadius={"8px"} bgColor={"neutral.gray.1000"} padding={"12px"} width={"160px"} height={"40px"} cursor={"pointer"}>
-                  <AppTypography color="main.primary" textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>View 3D Model</AppTypography>
+                  <AppTypography color="main.primary" textAlign={"center"} fontSize={"16px"} fontWeight={700} textTransform={"capitalize"} width={"100%"}>{t('productPassport.view3DModel')}</AppTypography>
                 </Flex>
               </Link>
             </Flex>
@@ -211,12 +219,12 @@ const ProductPassport = () => {
 
           <Flex alignItems={"center"} justifyContent={"space-between"} flexDirection={{ base: "column", lg: "row" }} gap={"16px"} width={"100%"}>
             <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"10px"} width={"100%"}>
-              <AppTypography fontSize={{ base: "28px", md: "35px" }} fontWeight={700} color={"#2BCFA1"}>Chain of custody</AppTypography>
+              <AppTypography fontSize={{ base: "28px", md: "35px" }} fontWeight={700} color={"#2BCFA1"}>{t('productPassport.chainOfCustody')}</AppTypography>
               <Flex alignItems={"center"} gap="10px" flexWrap={"wrap"}>
                 <Image src={"https://upload-file-flatlay.s3.us-west-2.amazonaws.com/9299c3d7eabfb00567fdba7440c9efc7812e9e9269442e47bbbfc57579bb9c0b.png_st.png"} width={"40px"} height={"40px"} objectFit={"cover"} />
                 <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>{activeProduct.createdDate}</AppTypography>
                 <Flex width={"5px"} alignSelf={"stretch"} bgColor={"#2BCFA1"} />
-                <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>Product created</AppTypography>
+                <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>{t('productPassport.productCreated')}</AppTypography>
               </Flex>
             </Flex>
             <Flex width={"80%"} alignItems={"center"} justifyContent={"space-between"} flexDirection={{ base: "column", md: "row" }}>

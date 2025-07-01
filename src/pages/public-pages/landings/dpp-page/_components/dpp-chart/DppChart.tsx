@@ -1,17 +1,22 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import { TFunction } from "i18next";
 
 //Components
 import AppTypography from "components/common/typography/AppTypography";
 import SpectrumHeader from "pages/public-pages/landings/_components/spectrum-header/SpectrumHeader";
 import SliceIndicator from "./slice-indicator/SliceIndicator";
 
-const DppChart = () => {
+interface DppChartProps {
+  t: TFunction;
+}
+
+const DppChart = ({ t }: DppChartProps) => {
   return (
     <Flex flexDirection={"column"} alignItems={"center"} gap={"20px"}>
       <Flex flexDirection={"column"} alignItems={"center"} gap={"20px"}>
-        <SpectrumHeader>Transparency with Enhanced Sustainability</SpectrumHeader>
-        <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>The Digital Product Passport (DPP), proposed by the EU, supports circularity and sustainability in line with the EU's Circular Economy Action Plan and the European Green Deal, targeting Europe's climate neutrality by 2050.</AppTypography>
+        <SpectrumHeader>{t('dppChart.title')}</SpectrumHeader>
+        <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>{t('dppChart.description')}</AppTypography>
       </Flex>
 
       <Flex flexDirection={"column"} alignItems={"center"} width={"100%"}>
@@ -34,7 +39,7 @@ const DppChart = () => {
             },
           ]}
         />
-        <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>Less than 10% of material used are currently fed back to the cycle </AppTypography>
+        <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>{t('dppChart.subtitle')}</AppTypography>
       </Flex>
     </Flex>
   )
