@@ -12,6 +12,8 @@ import GoLiveSection from './components/go-live-section/GoLiveSection'
 import KeyFeatures from './components/key-features/KeyFeatures'
 import Testmonials from './components/testmonials/Testmonials'
 import useAppStore from 'stores/app/appStore'
+import { useVideoLoadingStore } from '../_shared/stores/videoLoadingStore'
+import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreenLoading'
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -19,6 +21,7 @@ export default function HomePage() {
   const { authenticateUser, finalizeLogin, loading } = useLogin()
   const { showToast } = useAppToast()
   const { isLoggedIn } = useAppStore()
+  const { isAnyVideoLoading } = useVideoLoadingStore()
 
   useEffect(() => {
     if (isLoggedIn) return navigate("/analytics/dashboard")
@@ -54,6 +57,7 @@ export default function HomePage() {
 
   return (
     <>
+      {isAnyVideoLoading() && <FullScreenLoading />}
       <HomePageHero />
       <MaxWidthWrapper>
         <MarqueeSection />
