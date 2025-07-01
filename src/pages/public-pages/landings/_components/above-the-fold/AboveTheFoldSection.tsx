@@ -5,6 +5,9 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import { IImageSection } from "../../types/interfaces"
 import SpectrumHeader from "../spectrum-header/SpectrumHeader"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import localEn from "locales/public-pages/landings/_components/en.json"
+import localAr from "locales/public-pages/landings/_components/ar.json"
 
 function AboveTheFoldSection(props: IImageSection) {
   return (
@@ -27,6 +30,7 @@ function AboveTheFoldSection(props: IImageSection) {
 
 function ContentSection({ title, description }: IImageSection) {
   const navigate = useNavigate()
+  const { t } = useLocaleResources('public-pages/landings/_components', { en: localEn , ar: localAr})
 
   const handleGetStartedClick = () => navigate("/onboarding?entry=signup")
 
@@ -44,7 +48,7 @@ function ContentSection({ title, description }: IImageSection) {
         {description}
       </AppTypography>
       <AppButton onClick={handleGetStartedClick}>
-        Get Started
+        {t('getStarted')}
       </AppButton>
     </Flex>
   )

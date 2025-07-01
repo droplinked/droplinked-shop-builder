@@ -1,24 +1,29 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { IFeatureGroup } from '../../types/interfaces'
 import SpectrumHeader from '../spectrum-header/SpectrumHeader'
+import enLocale from 'locales/public-pages/landings/_components/en.json'
+import arLocale from 'locales/public-pages/landings/_components/ar.json'
 
 export default function Features({ features }: { features?: IFeatureGroup[] }) {
+    const { t } = useLocaleResources('public-pages/landings/_components', { en: enLocale, ar: arLocale })
+    
     const defaultFeatureGroups: IFeatureGroup[] = [
         {
             features: [
                 {
-                    title: 'Offer Perks, Discounts and Token-gated Items',
-                    description: 'Grant exclusive access and discounts to customers that are community members',
+                    title: t('features.defaultFeatures.offerPerks.title'),
+                    description: t('features.defaultFeatures.offerPerks.description'),
                 },
                 {
-                    title: 'Embeddable Product Tiles for Products',
-                    description: 'Expand reach by promoting and selling inventory across third-party sites and platforms',
+                    title: t('features.defaultFeatures.embeddableTiles.title'),
+                    description: t('features.defaultFeatures.embeddableTiles.description'),
                 },
                 {
-                    title: 'Decentralized Affiliate Network',
-                    description: 'Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more',
+                    title: t('features.defaultFeatures.decentralizedNetwork.title'),
+                    description: t('features.defaultFeatures.decentralizedNetwork.description'),
                 }
             ]
         }
@@ -35,7 +40,7 @@ export default function Features({ features }: { features?: IFeatureGroup[] }) {
                     gap={{ base: 6, lg: 4, xl: 6 }}
                 >
                     <Box width={{ base: "100%", lg: "400px" }} flexShrink={0}>
-                        <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{title || "Features and Benefits"}</SpectrumHeader>
+                        <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{title || t('features.defaultTitle')}</SpectrumHeader>
                     </Box>
                     <Flex direction="column" gap={{ base: 6, lg: 9, xl: 14 }}>
                         {features.map((feature, index) => <FeatureItem key={index} {...feature} />)}

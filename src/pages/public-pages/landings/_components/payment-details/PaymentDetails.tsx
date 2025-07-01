@@ -1,8 +1,11 @@
 import { Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import Details from '../details/Details'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function PaymentDetails() {
+    const { t } = useLocaleResources('public-pages/landings/_components')
+    
     const networks = [
         'assets/images/homepage/black_and_white/eth.png',
         'assets/images/homepage/black_and_white/bitcoin.png',
@@ -22,8 +25,8 @@ function PaymentDetails() {
 
     return (
         <Details
-            title='Multiple Networks and Payment Methods'
-            description='Integrated with both Web2 and Web3 login and payment options'
+            title={t('paymentDetails.title')}
+            description={t('paymentDetails.description')}
         >
             <Flex
                 justifyContent="center"

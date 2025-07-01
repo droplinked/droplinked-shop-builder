@@ -4,30 +4,33 @@ import React from 'react'
 import Container from '../container/Container'
 import Details from '../details/Details'
 import SpectrumHeader from '../spectrum-header/SpectrumHeader'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function FrontModularity() {
+    const { t } = useLocaleResources('public-pages/landings/_components')
+    
     const detailItems = [
         {
             imageSrc: 'assets/images/physicalProduct/design-nib.png',
-            title: 'Template engine tools',
-            description: 'Utilize our template engine tools for easy customization',
+            title: t('frontModularity.items.templateEngine.title'),
+            description: t('frontModularity.items.templateEngine.description'),
         },
         {
             imageSrc: 'assets/images/physicalProduct/code.png',
-            title: 'Customization with CSS & HTML',
-            description: 'Ready to go further? Dive into customization with implementing CSS and HTML coding',
+            title: t('frontModularity.items.customization.title'),
+            description: t('frontModularity.items.customization.description'),
         },
         {
             imageSrc: 'assets/images/physicalProduct/template.png',
-            title: 'Create custom templates',
-            description: 'Seeking a unique template? Our designers are here to turn your vision into reality',
+            title: t('frontModularity.items.customTemplates.title'),
+            description: t('frontModularity.items.customTemplates.description'),
         },
     ]
 
     return (
         <Details
-            title="Front-End Modularity"
-            description="Empower your brand with our fully customizable storefront tools"
+            title={t('frontModularity.title')}
+            description={t('frontModularity.description')}
         >
             <Grid
                 width="100%"

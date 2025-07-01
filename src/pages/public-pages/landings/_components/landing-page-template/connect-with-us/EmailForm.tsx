@@ -2,15 +2,17 @@ import { Box, Flex, Input, InputGroup, useMediaQuery } from "@chakra-ui/react"
 import AppButton from "components/redesign/button/AppButton"
 import { Form, Formik } from "formik"
 import useAppToast from "hooks/toast/useToast"
-import { subscribeFeature } from "services/user/services"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 import { useLocation } from "react-router-dom"
+import { subscribeFeature } from "services/user/services"
 import * as Yup from "yup"
 
 export default function EmailForm() {
     const [isSmallerThan768] = useMediaQuery('(max-width: 767px)')
     const { pathname } = useLocation()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('public-pages/landings/_components')
 
     const formSchema = Yup.object().shape({ email: Yup.string().email().required() })
 
@@ -35,9 +37,9 @@ export default function EmailForm() {
             {({ values, setFieldValue, isSubmitting }) => (
                 <Form>
                     {isSmallerThan768 ?
-                        <VerticalFormLayout email={values.email} setFieldValue={setFieldValue} isSubmitting={isSubmitting} />
+                        <VerticalFormLayout t={t} email={values.email} setFieldValue={setFieldValue} isSubmitting={isSubmitting} />
                         :
-                        <HorizontalFormLayout email={values.email} setFieldValue={setFieldValue} isSubmitting={isSubmitting} />
+                        <HorizontalFormLayout t={t} email={values.email} setFieldValue={setFieldValue} isSubmitting={isSubmitting} />
                     }
                 </Form>
             )}
@@ -45,25 +47,25 @@ export default function EmailForm() {
     )
 }
 
-const VerticalFormLayout = ({ email, setFieldValue, isSubmitting }) => (
+const VerticalFormLayout = ({ email, setFieldValue, isSubmitting, t }) => (
     <Flex direction="column" gap={3} justify="stretch">
         <InputGroupContainer>
-            <EmailInput email={email} onChange={e => setFieldValue('email', e.target.value)} />
+            <EmailInput t={t} email={email} onChange={e => setFieldValue('email', e.target.value)} />
         </InputGroupContainer>
-        <SubmitButton isSubmitting={isSubmitting} />
+        <SubmitButton t={t} isSubmitting={isSubmitting} />
     </Flex>
 )
 
-const HorizontalFormLayout = ({ email, setFieldValue, isSubmitting }) => (
+const HorizontalFormLayout = ({ email, setFieldValue, isSubmitting, t }) => (
     <InputGroupContainer padding={3}>
         <InputGroup display="flex" alignItems="center" gap={3}>
-            <EmailInput email={email} onChange={e => setFieldValue('email', e.target.value)} />
-            <SubmitButton isSubmitting={isSubmitting} />
+            <EmailInput t={t} email={email} onChange={e => setFieldValue('email', e.target.value)} />
+            <SubmitButton t={t} isSubmitting={isSubmitting} />
         </InputGroup>
     </InputGroupContainer>
 )
 
-const EmailInput = ({ email, onChange }) => (
+const EmailInput = ({ email, onChange, t }) => (
     <Input
         name="email"
         value={email}
@@ -71,7 +73,7 @@ const EmailInput = ({ email, onChange }) => (
         background="none"
         fontSize={{ base: 14, md: 18 }}
         color="white"
-        placeholder="Enter your email address"
+        placeholder={t('connectWithUs.emailForm.placeholder')}
         _placeholder={{ color: "white" }}
         _hover={{}}
         _focus={{}}
@@ -88,7 +90,7 @@ const EmailInput = ({ email, onChange }) => (
     />
 )
 
-const SubmitButton = ({ isSubmitting }) => (
+const SubmitButton = ({ isSubmitting, t }) => (
     // TODO: Check with the design
     <AppButton
         type="submit"
@@ -97,7 +99,7 @@ const SubmitButton = ({ isSubmitting }) => (
         isLoading={isSubmitting}
         isDisabled={isSubmitting}
     >
-        Submit
+        {t('connectWithUs.emailForm.submit')}
     </AppButton>
 )
 

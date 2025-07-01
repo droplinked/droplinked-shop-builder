@@ -3,8 +3,9 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import SpectrumHeader from '../../spectrum-header/SpectrumHeader'
 import EmailForm from './EmailForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
-export default function ConnectWithUs() {
+export default function ConnectWithUs() {    
     return (
         <SimpleGrid
             columns={{ base: 1, lg: 2 }}
@@ -22,11 +23,15 @@ export default function ConnectWithUs() {
     )
 }
 
-const IntroSection = () => (
-    <Flex direction="column" gap={4}>
-        <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>Let's Stay Connected</SpectrumHeader>
-        <AppTypography fontSize={{ base: 16, md: 18 }} color="neutral.gray.400">
-            We appreciate your interest and would love to stay in touch. Feel free to add your email to our mailing list to stay up to date on all the latest features and releases.
-        </AppTypography>
-    </Flex>
-)
+const IntroSection = () => {
+    const { t } = useLocaleResources('public-pages/landings/_components')
+
+    return (
+        <Flex direction="column" gap={4}>
+            <SpectrumHeader fontSize={{ base: 20, lg: 28 }}>{t('connectWithUs.title')}</SpectrumHeader>
+            <AppTypography fontSize={{ base: 16, md: 18 }} color="neutral.gray.400">
+                {t('connectWithUs.description')}
+            </AppTypography>
+        </Flex>
+    )
+}
