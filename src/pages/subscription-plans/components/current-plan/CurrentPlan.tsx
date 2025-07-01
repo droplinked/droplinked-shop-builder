@@ -13,11 +13,12 @@ function CurrentPlan() {
     const subscriptionData = data?.data;
     const planType = subscriptionData?.subscriptionId?.type;
     const { t } = useLocaleResources('subscription');
-    const currentPlanInformation = getPlanDetails(planType, t);
 
-    if (isFetching) {
+    if (isFetching || !planType) {
         return <AppSkeleton borderRadius={"8px"} isLoaded={!isFetching} width={"100%"} height={"6rem"} />
     }
+
+    const currentPlanInformation = getPlanDetails(planType, t);
 
     return (
         <VStack
