@@ -3,19 +3,24 @@ import FinalCta from '../../_shared/components/FinalCta'
 import AppButton from 'components/redesign/button/AppButton'
 import { Link } from 'react-router-dom'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/redesign-landings/homePage/en.json'
+import localAr from 'locales/public-pages/redesign-landings/homePage/ar.json'
 
 export default function JoinNow() {
+    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+
     return (
         <FinalCta
-            sectionTitle='JOIN NOW'
-            headingTitle='Ready to Get Started?'
-            headingSubtitle="Now’s the chance to join the next wave of commerce and make an impact "
+            sectionTitle={t('joinNow.sectionTitle')}
+            headingTitle={t('joinNow.headingTitle')}
+            headingSubtitle={t('joinNow.headingSubtitle')}
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
                     <AppButton
                         mt={6}
                     >
-                        Get Started
+                        {t('joinNow.getStarted')}
                     </AppButton>
                 </Link>
             }

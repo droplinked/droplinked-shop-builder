@@ -2,6 +2,9 @@ import useAppToast from 'hooks/toast/useToast'
 import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import React, { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/redesign-landings/homePage/en.json'
+import localAr from 'locales/public-pages/redesign-landings/homePage/ar.json'
 import JoinTheCommuity from '../_shared/components/JoinTheCommuity'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
@@ -17,6 +20,7 @@ export default function HomePage() {
   const [searchParams] = useSearchParams()
   const { authenticateUser, finalizeLogin, loading } = useLogin()
   const { showToast } = useAppToast()
+  const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
 
   useEffect(() => {
     const handleGoogleAuth = async () => {
@@ -41,12 +45,12 @@ export default function HomePage() {
 
       } catch (error) {
         navigate('/', { replace: true })
-        showToast({ type: "error", message: error?.message || "Login failed. Please try again." })
+        showToast({ type: "error", message: error?.message || t("error.loginFailed") })
       }
     }
 
     handleGoogleAuth()
-  }, [searchParams, loading, authenticateUser, finalizeLogin, showToast, navigate])
+  }, [searchParams, loading, authenticateUser, finalizeLogin, showToast, navigate, t])
 
   return (
     <>
