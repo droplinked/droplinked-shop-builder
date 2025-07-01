@@ -1,6 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { Layer1Md } from 'assets/icons/System/Layer1/Layer1Md'
-import publicHeaderLinks from 'data/publicHeaderLinks'
+import getPublicHeaderLinks from 'data/publicHeaderLinks'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useEffect, useState } from 'react'
 import QuickLinks from '../QuickLinks'
 import { NavItem } from './NavItem'
@@ -14,6 +15,8 @@ interface Props {
 
 export default function MobileDrawer({ isOpen, onClose }: Props) {
     const [isPlatformSubmenuOpen, setIsPlatformSubmenuOpen] = useState(false)
+    const { t } = useLocaleResources('common')
+    const publicHeaderLinks = getPublicHeaderLinks(t)
 
     // Close platform submenu when drawer is closed
     useEffect(() => {
@@ -34,13 +37,13 @@ export default function MobileDrawer({ isOpen, onClose }: Props) {
                 padding={{ base: 4, md: 5 }}
             >
                 <Text paddingInline={3} fontSize={12} color="text.subtext.placeholder.dark">
-                    Platform
+                    {t('platform')}
                 </Text>
 
                 <Flex marginTop={3} direction="column" gap={2}>
                     <NavItem
                         icon={<Layer1Md color='#fff' />}
-                        label="Platform"
+                        label={t('platform')}
                         onClick={() => setIsPlatformSubmenuOpen(true)}
                     />
 
