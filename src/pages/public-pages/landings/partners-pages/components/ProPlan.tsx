@@ -1,11 +1,16 @@
 import { Flex, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
+import { TFunction } from 'i18next'
 import { usePartnerContext } from '../context/partner.context'
 import WalletVerificationModal from './WalletVerificationModal/WalletVerificationModal'
 import LandingText from './common/LandingText'
 
-export default function ProPlan() {
+interface ProPlanProps {
+    t: TFunction;
+}
+
+export default function ProPlan({ t }: ProPlanProps) {
     const { planDurationMonths } = usePartnerContext();
     return (
         <Flex
@@ -16,7 +21,7 @@ export default function ProPlan() {
             borderRadius={24}
             overflow="hidden"
         >
-            <Content planDurationMonths={planDurationMonths} />
+            <Content planDurationMonths={planDurationMonths} t={t} />
             <Image
                 maxWidth={{ base: "100%", lg: "50%" }}
                 src="https://upload-file-droplinked.s3.amazonaws.com/a27dff144c2ed4e705c1941ec92244ccdd6514bfc28e31c8e35763d6f2f94867.png"
@@ -26,7 +31,12 @@ export default function ProPlan() {
     )
 }
 
-function Content({ planDurationMonths }) {
+interface ContentProps {
+    planDurationMonths: number;
+    t: TFunction;
+}
+
+function Content({ planDurationMonths, t }: ContentProps) {
     return (
         <Flex
             direction="column"
@@ -36,14 +46,13 @@ function Content({ planDurationMonths }) {
         >
             <Flex direction="column" gap={{ base: 1, xl: 2 }}>
                 <AppTypography fontSize={{ base: 18, md: 20 }} fontWeight={700} color="white">
-                    Free {planDurationMonths} Month Pro Plan
+                    {t('proPlan.title', { planDurationMonths })}
                 </AppTypography>
                 <LandingText>
-                    Unlock {planDurationMonths} months of the Pro Plan absolutely free!<br />
-                    Redeem the exclusive offer today.
+                    {t('proPlan.description', { planDurationMonths })}
                 </LandingText>
             </Flex>
-            <WalletVerificationModal />
+            <WalletVerificationModal t={t} />
         </Flex>
     )
 }

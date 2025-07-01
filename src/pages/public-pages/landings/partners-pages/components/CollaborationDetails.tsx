@@ -2,47 +2,53 @@ import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
+import { TFunction } from 'i18next';
 import { IDetailsItem } from '../../types/interfaces';
 
 import PrimaryHeading from './common/PrimaryHeading';
 import { usePartnerContext } from '../context/partner.context';
 import LandingText from './common/LandingText';
 
-
-interface props {
-    collaboratorName: string;
+interface CollaborationDetailsProps {
+    t: TFunction;
 }
 
-export default function CollaborationDetails() {
+export default function CollaborationDetails({ t }: CollaborationDetailsProps) {
     const { partnerName } = usePartnerContext();
 
     return (
         <Flex direction="column" justifyContent="flex-start">
-            <PrimaryHeading textAlign="center">Perks for {partnerName} Members</PrimaryHeading>
-            <Details collaboratorName={partnerName} />
+            <PrimaryHeading textAlign="center">{t('collaborationDetails.title', { partnerName })}</PrimaryHeading>
+            <Details collaboratorName={partnerName} t={t} />
         </Flex>
     )
 }
 
+interface DetailsProps {
+    collaboratorName: string;
+    t: TFunction;
+}
 
-function Details({ collaboratorName }: props) {
-    const details: IDetailsItem[] = [
+function Details({ collaboratorName, t }: DetailsProps) {
+    const getDetails = (t: TFunction): IDetailsItem[] => [
         {
             icon: <AppIcons.D3ShopSetup className='d3-icon' />,
-            title: "Store Setup Simplified",
-            description: `Integrate your ${collaboratorName} domain on droplinked and launch your shop`
+            title: t('collaborationDetails.items.storeSetupSimplified.title'),
+            description: t('collaborationDetails.items.storeSetupSimplified.description', { partnerName: collaboratorName })
         },
         {
             icon: <AppIcons.D3EnterpriseTools className='d3-icon' />,
-            title: "Enterprise-Level Tools",
-            description: "Unlock advanced features to scale your business from the start"
+            title: t('collaborationDetails.items.enterpriseLevelTools.title'),
+            description: t('collaborationDetails.items.enterpriseLevelTools.description')
         },
         {
             icon: <AppIcons.D3NFTIntegration className='d3-icon' />,
-            title: "Seamless NFT Integration",
-            description: "Create, manage, and sell NFTs on a customizable storefront"
+            title: t('collaborationDetails.items.seamlessNftIntegration.title'),
+            description: t('collaborationDetails.items.seamlessNftIntegration.description')
         }
-    ]
+    ];
+
+    const details = getDetails(t);
 
     return (
         <SimpleGrid

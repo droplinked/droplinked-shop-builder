@@ -5,43 +5,54 @@ import WalletStatusSideIcons from 'components/common/walletStatus/WalletStatusSi
 import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import React, { useContext, useMemo } from 'react'
+import { TFunction } from 'i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import PartnerContext, { StepsType } from '../../context/partner.context'
 import { useWalletVerification } from './useWalletVerification'
+import enLocale from 'locales/public-pages/landings/partners-pages/en.json'
+import arLocale from 'locales/public-pages/landings/partners-pages/ar.json'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+
+
+interface ButtonConfig {
+	label: string;
+	onClick: () => void;
+	rightIcon?: React.ReactElement;
+	styles?: StyleProps;
+}
+
+interface StepConfig {
+	title: string;
+	description: string;
+	buttons: {
+		left?: ButtonConfig | null;
+		right: ButtonConfig;
+	};
+}
 
 const WalletVerificationModal = () => {
+	const { t } = useLocaleResources("public-pages/landings/partners-pages", {
+		en: enLocale,
+		ar: arLocale
+	})
 	const navigate = useNavigate()
 	const [searchParams] = useSearchParams()
 	const { isOpen, onClose, onOpen } = useDisclosure()
 	const { planDurationMonths, states: { currentStep }, methods: { updateStates } } = useContext(PartnerContext)
 	const { connectWallet } = useWalletVerification()
 
-	const connect_wallet_steps: {
-		[K in StepsType]: {
-			title: string
-			description: string
-			buttons: {
-				left?: {
-					label: string
-					onClick: () => void
-					styles?: StyleProps
-				}
-				right: {
-					label: string
-					onClick: () => void
-					rightIcon?: any
-					styles?: StyleProps
-				}
-			}
-		}
-	} = {
+	const getConnectWalletSteps = (): Record<StepsType, StepConfig> => ({
 		connect: {
-			title: 'Connect Wallet for Verification',
-			description: `Connect your wallet to check if you're eligible for the ${planDurationMonths} month Pro Plan`,
+			title: t('walletVerification.steps.connect.title'),
+			description: t('walletVerification.steps.connect.description', { planDurationMonths }),
 			buttons: {
-				left: { label: 'Close', onClick: onClose, styles: {} },
+				left: { 
+					label: t('walletVerification.steps.connect.buttons.close'), 
+					onClick: onClose, 
+					styles: {} 
+				},
 				right: {
-					label: 'Check Wallet Eligibility',
+					label: t('walletVerification.steps.connect.buttons.checkEligibility'),
 					onClick: async () => await connectWallet(),
 					rightIcon: <AppIcons.SidebarNext />,
 					styles: {}
@@ -49,16 +60,16 @@ const WalletVerificationModal = () => {
 			}
 		},
 		loading: {
-			title: 'Verifying Wallet Status',
-			description: 'Please wait while your wallet is verified for eligibility.',
+			title: t('walletVerification.steps.loading.title'),
+			description: t('walletVerification.steps.loading.description'),
 			buttons: {
 				left: {
-					label: 'Close',
+					label: t('walletVerification.steps.loading.buttons.close'),
 					onClick: () => { },
 					styles: { background: '#292929', color: '#737373', cursor: 'not-allowed' }
 				},
 				right: {
-					label: 'Check Wallet Eligibility',
+					label: t('walletVerification.steps.loading.buttons.checkEligibility'),
 					onClick: () => { },
 					rightIcon: <AppIcons.SidebarNext stroke="#737373" />,
 					styles: {
@@ -71,23 +82,23 @@ const WalletVerificationModal = () => {
 			}
 		},
 		error: {
-			title: 'Wallet Verification Unsuccessful',
-			description: "It looks like your wallet doesn’t meet the criteria. Unfortunately, you're not eligible to claim the offer.",
+			title: t('walletVerification.steps.error.title'),
+			description: t('walletVerification.steps.error.description'),
 			buttons: {
 				left: null,
 				right: {
-					label: 'Return',
+					label: t('walletVerification.steps.error.buttons.return'),
 					onClick: () => updateStates({ key: 'currentStep', value: 'connect' })
 				}
 			}
 		},
 		done: {
-			title: 'Congrats, Wallet Offer Verified',
-			description: `You can now create an account and enjoy ${planDurationMonths}  months of a Pro Plan.`,
+			title: t('walletVerification.steps.done.title'),
+			description: t('walletVerification.steps.done.description', { planDurationMonths }),
 			buttons: {
 				left: null,
 				right: {
-					label: 'Claim Now',
+					label: t('walletVerification.steps.done.buttons.claimNow'),
 					onClick: () => {
 						const d3Id = searchParams.get('d3-id')
 						const udId = searchParams.get('ud-id')
@@ -103,9 +114,10 @@ const WalletVerificationModal = () => {
 				}
 			}
 		}
-	}
+	});
 
-	const current_state = useMemo(() => connect_wallet_steps?.[currentStep], [currentStep])
+	const connect_wallet_steps = getConnectWalletSteps();
+	const current_state = useMemo(() => connect_wallet_steps?.[currentStep], [currentStep, connect_wallet_steps])
 
 	return (
 		<>
@@ -114,7 +126,7 @@ const WalletVerificationModal = () => {
 				fontSize={{ base: 14, lg: 16 }}
 				onClick={onOpen}
 			>
-				Claim Now
+				{t('walletVerification.claimNow')}
 			</AppButton>
 
 			<AppModal
@@ -189,8 +201,7 @@ const WalletVerificationModal = () => {
 										/>
 									</Box>
 									<AppTypography color="#FFF" fontSize="14px" fontWeight="400">
-										{planDurationMonths} Month
-										Pro Plan
+										{t('walletVerification.features.proPlan', { planDurationMonths })}
 									</AppTypography>
 								</Flex>
 								<Flex alignItems='center' gap='12px' flex='1 0 0'>
@@ -229,7 +240,7 @@ const WalletVerificationModal = () => {
 										/>
 									</Box>
 									<AppTypography color="#FFF" fontSize="14px" fontWeight="400">
-										Instant Verification
+										{t('walletVerification.features.instantVerification')}
 									</AppTypography>
 								</Flex>
 							</Flex>
@@ -248,7 +259,7 @@ const WalletVerificationModal = () => {
 											onClick={current_state?.buttons?.left?.onClick}
 											{...current_state?.buttons?.left?.styles}
 										>
-											Close
+											{current_state?.buttons?.left?.label}
 										</AppButton>
 									)}
 								</Flex>

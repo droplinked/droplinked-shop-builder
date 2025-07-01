@@ -1,4 +1,5 @@
 import React from "react";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import LandingHero from "../components/landing-hero/LandingHero";
 import AppIcons from "assets/icon/Appicons";
 import CollaborationDetails from "../components/CollaborationDetails";
@@ -7,8 +8,13 @@ import ProPlan from "../components/ProPlan";
 import Layout from "../components/Layout";
 import { PartnerProvider } from "../context/partner.context";
 import FeaturedTlds from "../components/FeaturedTlds";
+import localEn from 'locales/public-pages/landings/partners-pages/en.json';
+import localAr from 'locales/public-pages/landings/partners-pages/ar.json';
+
 
 function UdPage() {
+  const { t } = useLocaleResources('public-pages/landings/partners-pages', { en: localEn , ar: localAr });
+
   return (
     <PartnerProvider
       partnerName="Unstoppable Domains"
@@ -17,14 +23,14 @@ function UdPage() {
       planDurationMonths={3}
     >
       <LandingHero
-        heading="droplinked & Unstoppable Domains"
-        description="Unlock 3 months of the Pro Plan absolutely free! Redeem the exclusive offer today as a domain holder."
+        heading={t('partners.ud.heading')}
+        description={t('partners.ud.description')}
       />
       <Layout>
         <FeaturedTlds />
-        <CollaborationDetails />
-        <CollaborationFeatures />
-        <ProPlan />
+        <CollaborationDetails t={t} />
+        <CollaborationFeatures t={t} />
+        <ProPlan t={t} />
       </Layout>
     </PartnerProvider>
   );

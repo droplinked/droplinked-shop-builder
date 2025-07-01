@@ -2,23 +2,28 @@ import { Box, Flex, Grid, Image, SimpleGrid, useMediaQuery } from '@chakra-ui/re
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
+import { TFunction } from 'i18next'
 import { usePartnerContext } from '../context/partner.context'
 import LandingText from './common/LandingText'
 
-export default function CollaborationFeatures() {
+interface CollaborationFeaturesProps {
+    t: TFunction;
+}
+
+export default function CollaborationFeatures({ t }: CollaborationFeaturesProps) {
     const { partnerName, planType, planDurationMonths } = usePartnerContext();
 
-    const features = [
+    const getFeatures = (t: TFunction) => [
         {
             icon: <AppIcons.D3ProPlan className='d3-icon' />,
-            title: `${planDurationMonths} Month ${planType} Plan`,
-            description: `Enjoy premium features for ${planDurationMonths} months for being a loyal ${partnerName} customer.`,
+            title: t('collaborationFeatures.items.proPlan.title', { planDurationMonths, planType }),
+            description: t('collaborationFeatures.items.proPlan.description', { planDurationMonths, partnerName }),
             image: "https://upload-file-droplinked.s3.amazonaws.com/333a3fac7efdf0af33855603c3cf412949a26b2a648772bf0caa4e1effa75742.png"
         },
         {
             icon: <AppIcons.D3Access className='d3-icon' />,
-            title: "Access +10k Products Instantly",
-            description: "Choose from a vast catalog to customize and sell unique merchandise on demand.",
+            title: t('collaborationFeatures.items.accessProducts.title'),
+            description: t('collaborationFeatures.items.accessProducts.description'),
             image: {
                 base: "https://upload-file-droplinked.s3.amazonaws.com/b237d01671a1d6a4ae95d5ea0ecfe9a60357e8c7303038cb49325a07ea24e0e1.png",
                 md: "https://upload-file-droplinked.s3.amazonaws.com/b237d01671a1d6a4ae95d5ea0ecfe9a60357e8c7303038cb49325a07ea24e0e1.png"
@@ -26,11 +31,13 @@ export default function CollaborationFeatures() {
         },
         {
             icon: <AppIcons.D3Web3Support className='d3-icon' />,
-            title: "Web3 Technology Support",
-            description: "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer.",
+            title: t('collaborationFeatures.items.web3Support.title'),
+            description: t('collaborationFeatures.items.web3Support.description'),
             image: "https://upload-file-droplinked.s3.amazonaws.com/89cf86dd82ff59b8377f12e4ee58f2d51cda9acc3aca8e1e5c31c6698a6fc1bc.png"
         }
-    ]
+    ];
+
+    const features = getFeatures(t);
 
     return (
         <Grid templateColumns={{ base: "1fr", lg: "45% 55%" }} alignItems="start" gap={4}>
