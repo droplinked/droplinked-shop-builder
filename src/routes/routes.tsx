@@ -34,7 +34,7 @@ import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProd
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
-import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
+import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"

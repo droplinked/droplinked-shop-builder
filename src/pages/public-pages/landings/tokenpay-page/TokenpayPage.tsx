@@ -1,82 +1,52 @@
-import { Flex } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import Details from '../_components/details/Details'
-import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
-import FeatureGroups from '../_components/feature-groups/FeatureGroups'
-import { IAboveTheFoldSection, IDetailsItem, IDualSideFlexData, IFeatureGroup } from '../types/interfaces'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/tokenpay/en.json'
+import Layout from '../_components/layout/Layout'
+import StarryBorder from '../_components/starry-border/StarryBorder'
+import PricingPlans from './_components/pricing-plans/PricingPlans'
+import TokenpayFeatures from './_components/TokenpayFeatures'
+import localEn from 'locales/public-pages/landings/tokenpay-page/en.json'
+import localAr from 'locales/public-pages/landings/tokenpay-page/ar.json'
 
-export default function TokenpayPage() {
-    const { t } = useLocaleResources('public-pages/landings/tokenpay', { en: localEn })
-
-    const aboveTheFoldSection: IAboveTheFoldSection = {
-        title: t('aboveTheFold.title'),
-        description: t('aboveTheFold.description'),
-        imageSrc: 'assets/images/tokenpay/aboveTheFold.png',
-    }
-
-    const detailsSection: IDetailsItem[] = [
-        {
-            title: t('details.items.payment.title'),
-            description: t('details.items.payment.description'),
-            imageSrc: 'assets/images/tokenpay/payment.png',
-        },
-        {
-            title: t('details.items.transaction.title'),
-            description: t('details.items.transaction.description'),
-            imageSrc: 'assets/images/tokenpay/transaction.png',
-        },
-        {
-            title: t('details.items.security.title'),
-            description: t('details.items.security.description'),
-            imageSrc: 'assets/images/tokenpay/security.png',
-        },
-    ]
-
-    const dualSideFlexData: IDualSideFlexData[] = [
-        {
-            title: t('dualSideFlex.items.payment.title'),
-            description: t('dualSideFlex.items.payment.description'),
-            imageSrc: 'assets/images/tokenpay/payment.png',
-        },
-        {
-            title: t('dualSideFlex.items.transaction.title'),
-            description: t('dualSideFlex.items.transaction.description'),
-            imageSrc: 'assets/images/tokenpay/transaction.png',
-        },
-        {
-            title: t('dualSideFlex.items.security.title'),
-            description: t('dualSideFlex.items.security.description'),
-            imageSrc: 'assets/images/tokenpay/security.png',
-        },
-    ]
-
-    const featureGroups: IFeatureGroup[] = [
-        {
-            title: t('features.items.payment.title'),
-            description: t('features.items.payment.description'),
-            imageSrc: 'assets/images/tokenpay/payment.png',
-        },
-        {
-            title: t('features.items.transaction.title'),
-            description: t('features.items.transaction.description'),
-            imageSrc: 'assets/images/tokenpay/transaction.png',
-        },
-        {
-            title: t('features.items.security.title'),
-            description: t('features.items.security.description'),
-            imageSrc: 'assets/images/tokenpay/security.png',
-        },
-    ]
+function TokanpayPage() {
+    const navigate = useNavigate()
+    const { t } = useLocaleResources('public-pages/landings/tokenpay', { en: localEn , ar: localAr})
 
     return (
-        <Flex direction="column" gap={20}>
-            <AboveTheFoldSection {...aboveTheFoldSection} />
-            <Details items={detailsSection} />
-            <DualSideFlex items={dualSideFlexData} />
-            <FeatureGroups items={featureGroups} />
-        </Flex>
+        <Layout>
+            <AboveTheFoldSection
+                image="https://upload-file-droplinked.s3.amazonaws.com/51c344e1159facd26589efba426ffd829074e6bfe84cea08f4042e2625dccdcb_or.png"
+                title={t('aboveTheFold.title')}
+                description={t('aboveTheFold.description')}
+            />
+
+            <Details
+                title={t('cryptoCommerce.title')}
+                description={t('cryptoCommerce.description')}
+            />
+
+            <TokenpayFeatures />
+
+            <Image src="https://upload-file-droplinked.s3.amazonaws.com/0986e21b7c30093ae869581f68231307778821f8ddddd2ec68533757e9e63425_or.png" />
+
+            <Details
+                title={t('empowerCommunities.title')}
+                description={t('empowerCommunities.description')}
+            />
+
+            <PricingPlans />
+
+            <StarryBorder
+                title={t('starryBorder.title')}
+                description={t('starryBorder.description')}
+                buttonText={t('starryBorder.buttonText')}
+                onButtonClick={() => navigate('/onboarding?entry=signup')}
+            />
+        </Layout>
     )
-} 
+}
+
+export default TokanpayPage
