@@ -16,13 +16,13 @@ import useAppStore from 'stores/app/appStore'
 export default function HomePage() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { authenticateUser, finalizeLogin, loading ,  } = useLogin()
+  const { authenticateUser, finalizeLogin, loading } = useLogin()
   const { showToast } = useAppToast()
-  const { isLoggedIn } = useAppStore();
+  const { isLoggedIn } = useAppStore()
 
   useEffect(() => {
-    if (isLoggedIn) return navigate("/analytics/dashboard");
-    
+    if (isLoggedIn) return navigate("/analytics/dashboard")
+
     const handleGoogleAuth = async () => {
       const access_token = searchParams.get("access_token")
       const refresh_token = searchParams.get("refresh_token")
@@ -50,7 +50,7 @@ export default function HomePage() {
     }
 
     handleGoogleAuth()
-  }, [searchParams, loading, authenticateUser, finalizeLogin, showToast, navigate])
+  }, [searchParams, loading, authenticateUser, finalizeLogin, showToast, navigate, isLoggedIn])
 
   return (
     <>
