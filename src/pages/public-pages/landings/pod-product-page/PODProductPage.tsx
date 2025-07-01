@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
 import Features from '../_components/features/Features'
@@ -7,39 +8,44 @@ import FrontModularity from '../_components/front-modularity/FrontModularity'
 import Layout from '../_components/layout/Layout'
 import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
+import localEn from 'locales/public-pages/landings/pod-product-page/en.json';
+import localAr from 'locales/public-pages/landings/pod-product-page/ar.json';
 
 const PODProductPage = () => {
     const navigate = useNavigate()
+    const { t } = useLocaleResources('public-pages/landings/pod-product-page',{ en: localEn , ar: localAr });
 
-    const dualSideFlexData = [
+    const getDualSideFlexData = (t: any) => [
         {
             image: 'assets/images/podProduct/customize.png',
-            title: 'More than +10K Items to Customize',
-            description: 'Explore high quality merchandise blanks customizable and ready to sell on-demand',
+            title: t('dualSideFlexData.customize.title'),
+            description: t('dualSideFlexData.customize.description'),
         },
         {
             image: 'assets/images/podProduct/easy-customization.png',
-            title: 'Admin Console to Design, Publish and Track Performance',
-            description: 'Quickly design your favorite products with our free design tool',
+            title: t('dualSideFlexData.easyCustomization.title'),
+            description: t('dualSideFlexData.easyCustomization.description'),
         },
         {
             image: 'assets/images/podProduct/automated-shipping.png',
-            title: 'Automated Shipping and Fulfillment',
-            description: 'Hassle-free shipping and fulfillment, everything is handled on your behalf',
+            title: t('dualSideFlexData.automatedShipping.title'),
+            description: t('dualSideFlexData.automatedShipping.description'),
         },
         {
             image: 'assets/images/podProduct/mint-to-merch.png',
-            title: 'Mint to Merch',
-            description: 'Empower community members to design merchandise with exclusive designs or NFT artwork they own',
+            title: t('dualSideFlexData.mintToMerch.title'),
+            description: t('dualSideFlexData.mintToMerch.description'),
         }
-    ]
+    ];
+
+    const dualSideFlexData = getDualSideFlexData(t);
 
     return (
         <Layout>
             <AboveTheFoldSection
                 image="assets/images/podProduct/pod-lion.png"
-                title="Transform Artwork and IP into Premium Merchandise"
-                description="With droplinked you can create and sell customizable on-demand products with no inventory and shipment hassles"
+                title={t('aboveTheFoldSection.title')}
+                description={t('aboveTheFoldSection.description')}
             />
 
             <FrontModularity />
@@ -59,9 +65,9 @@ const PODProductPage = () => {
             <Features />
 
             <StarryBorder
-                title='Launch a Store Today'
-                description='Simple setup, secure transactions and endless possibilities await your community.'
-                buttonText='Get Started'
+                title={t('starryBorder.title')}
+                description={t('starryBorder.description')}
+                buttonText={t('starryBorder.buttonText')}
                 onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
         </Layout>
