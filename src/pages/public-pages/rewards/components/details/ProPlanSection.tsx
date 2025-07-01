@@ -1,21 +1,16 @@
 import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import React from 'react';
+import { TFunction } from 'i18next';
 
-const ProPlanSection = () => {
-  const features = [
-    'Token gating',
-    'Mint-to-Merch',
-    'Unlimited tokenization',
-    'Unlimited digital goods',
-    'Unlimited physical products',
-    'Customizable domains',
-    'Customizable fav icon',
-    'Customizable shipping',
-    'Digital coupons and giftcards',
-    'Warehouse system integration',
-    'Premium customer support'
-  ];
+interface ProPlanSectionProps {
+  t: TFunction;
+}
+
+const ProPlanSection = ({ t }: ProPlanSectionProps) => {
+  const getFeatures = (t: TFunction) => t('details.proPlanSection.features', { returnObjects: true }) as string[];
+
+  const features = getFeatures(t);
 
   return (
     <Box w={{ base: '100%', lg: '526px' }} flexShrink={0} position="relative">
@@ -26,10 +21,10 @@ const ProPlanSection = () => {
           </Box>
           <VStack spacing={1} align="start">
             <Text fontSize="xl" fontWeight="bold" color="white">
-              Pro Plan
+              {t('details.proPlanSection.title')}
             </Text>
             <Text fontSize="base" color="text.subtext.placeholder.dark">
-              Enjoy premium features.
+              {t('details.proPlanSection.subtitle')}
             </Text>
           </VStack>
         </Box>
@@ -73,16 +68,16 @@ const ProPlanSection = () => {
 
               <VStack spacing={1} align="start">
                 <Text fontSize="xl" fontWeight="bold" color="white">
-                  Pro Plan
+                  {t('details.proPlanSection.title')}
                 </Text>
                 <Text fontSize="base" color="text.subtext.placeholder.light">
-                  For small businesses and teams ready to grow.
+                  {t('details.proPlanSection.description')}
                 </Text>
               </VStack>
 
               <VStack spacing={4} align="start">
                 <Text fontSize="base" color="text.subtext.placeholder.light">
-                  Includes everything in Starter, plus:
+                  {t('details.proPlanSection.includesText')}
                 </Text>
                 {features.map((feature, index) => (
                   <HStack key={index} spacing={2}>

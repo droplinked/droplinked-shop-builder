@@ -2,12 +2,14 @@ import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppButton from 'components/redesign/button/AppButton';
 import React from 'react';
+import { TFunction } from 'i18next';
 
 interface Props {
-  onCreateStoreClick: () => void
+  onCreateStoreClick: () => void;
+  t: TFunction;
 }
 
-const CustomizableSection = ({ onCreateStoreClick }: Props) => (
+const CustomizableSection = ({ onCreateStoreClick, t }: Props) => (
   <Box flex="1" borderRadius="3xl" border="1px solid" borderColor="neutral.gray.900" display="flex" flexDirection="column" overflow="hidden">
     <Box p="8" display="flex" flexDirection="column" gap={6}>
       <Box w={`56px`} h={`56px`} bg="#141414" borderRadius="xl" border="1px solid" borderColor="neutral.gray.900" backdropFilter="blur(10px)" display="flex" justifyContent="center" alignItems="center">
@@ -15,12 +17,12 @@ const CustomizableSection = ({ onCreateStoreClick }: Props) => (
       </Box>
       <VStack spacing={4} align="start">
         <Text fontSize="xl" fontWeight="bold" color="white">
-          Customizable Storefront
+          {t('details.customizableSection.title')}
         </Text>
         <Text fontSize="base" color="text.subtext.placeholder.dark">
-          Make Storefront your own by customizing the design and enhance the experience by reflecting your brand identity.
+          {t('details.customizableSection.description')}
         </Text>
-        <AppButton onClick={onCreateStoreClick}>Create Store</AppButton>
+        <AppButton onClick={onCreateStoreClick}>{t('details.customizableSection.buttonText')}</AppButton>
       </VStack>
     </Box>
     <Box display="flex" justifyContent="center" alignItems="center">
