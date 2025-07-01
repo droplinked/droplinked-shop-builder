@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import AboveTheFoldSection from '../_components/above-the-fold/AboveTheFoldSection'
 import DualSideFlex from '../_components/dual-side-flex/DualSideFlex'
 import Features from '../_components/features/Features'
@@ -7,25 +8,28 @@ import FrontModularity from '../_components/front-modularity/FrontModularity'
 import Layout from '../_components/layout/Layout'
 import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
+import localEn from 'locales/public-pages/landings/digital-product-page/en.json'
+import localAr from 'locales/public-pages/landings/digital-product-page/ar.json'
 
 const DigitalProductPage = () => {
     const navigate = useNavigate()
+    const { t } = useLocaleResources('public-pages/landings/digital-product-page', { en: localEn , ar: localAr })
 
     const dualSideFlexData = [
         {
             image: 'assets/images/digitalProduct/create-nft.png',
-            title: 'Mint NFTs',
-            description: 'Convert art pieces, documents, audio, video, and ticketing into on-chain records',
+            title: t('dualSideFlex.mintNfts.title'),
+            description: t('dualSideFlex.mintNfts.description'),
         },
         {
             image: 'assets/images/digitalProduct/chain-support.png',
-            title: 'Multi-Chain Integration',
-            description: 'Supporting multiple blockchain networks to offer greater flexibility',
+            title: t('dualSideFlex.multiChainIntegration.title'),
+            description: t('dualSideFlex.multiChainIntegration.description'),
         },
         {
             image: 'assets/images/digitalProduct/royalty.png',
-            title: 'Loyalty and Royalty Programs',
-            description: 'Maximize earnings and rewards with co-selling and reselling',
+            title: t('dualSideFlex.loyaltyAndRoyalty.title'),
+            description: t('dualSideFlex.loyaltyAndRoyalty.description'),
         },
     ]
 
@@ -33,8 +37,8 @@ const DigitalProductPage = () => {
         <Layout>
             <AboveTheFoldSection
                 image="assets/images/digitalProduct/nft.png"
-                title="Minting and Monetizing Assets"
-                description="Convert digital assets into exclusive collectibles that work seamlessly with a storefront to engage the community"
+                title={t('aboveTheFold.title')}
+                description={t('aboveTheFold.description')}
             />
 
             <FrontModularity />
@@ -54,9 +58,9 @@ const DigitalProductPage = () => {
             <Features />
 
             <StarryBorder
-                title='Launch a Store Today'
-                description='Simple setup, secure transactions and endless possibilities await your community.'
-                buttonText='Get Started'
+                title={t('starryBorder.title')}
+                description={t('starryBorder.description')}
+                buttonText={t('starryBorder.buttonText')}
                 onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
         </Layout>
