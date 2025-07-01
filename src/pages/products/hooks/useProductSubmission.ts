@@ -10,6 +10,7 @@ import useGrowthHackStore from 'stores/level-up/levelUpStore'
 import { Product, ProductType } from 'pages/products/utils/types'
 import { useRef } from 'react'
 import { productTypeUsageLimits } from 'utils/constants'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Params {
     closeProductFormDrawer: () => void
@@ -27,6 +28,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     const { user: { wallets }, shop } = useAppStore()
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { convertPrice } = useCurrencyConverter()
+    const { t } = useLocaleResources('common')
 
     // Refs for global state inside the hook
     const shouldOpenCircleModal = useRef(false)
@@ -127,7 +129,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
         ) {
             await fetchLevelUpData()
         }
-        showToast({ message: "The product has been saved successfully!", type: "success" })
+        showToast({ message: t('products.hooks.success.productSaved'), type: "success" })
         closeProductFormDrawer()
         invalidateProductsQuery()
     }
@@ -162,7 +164,7 @@ const useProductSubmission = ({ closeProductFormDrawer, openDropModal, openCircl
     }
 
     const handleError = (error: any) => {
-        const errorMessage = error?.response?.data?.data?.message || error?.message || "An unexpected error occurred."
+        const errorMessage = error?.response?.data?.data?.message || error?.message || t('products.hooks.errors.unexpectedError')
         showToast({ message: errorMessage, type: "error" })
     }
 

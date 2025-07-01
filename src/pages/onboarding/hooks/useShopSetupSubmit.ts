@@ -6,11 +6,13 @@ import { useMutation } from 'react-query'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import { validateStoreData } from '../utils/shopSetupFormValidation'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export function useShopSetupSubmit() {
     const { updateState, user, shop } = useAppStore()
     const { showToast } = useAppToast()
     const { shopData, shopSetupUI, setError, resetOnboarding, updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('common')
 
     const { mutateAsync: submitShopSetup, isLoading } = useMutation({
         mutationFn: async () => {
@@ -35,7 +37,7 @@ export function useShopSetupSubmit() {
                 }
                 catch (error) {
                     console.error('Error uploading logo:', error)
-                    showToast({ type: "error", message: "Failed to upload logo" })
+                    showToast({ type: "error", message: t('onboarding.hooks.errors.failedToUploadLogo') })
                 }
             }
 
@@ -46,7 +48,7 @@ export function useShopSetupSubmit() {
                     finalShopData.hero_section = data.cdnUrl
                 }
                 catch (error) {
-                    showToast({ type: "error", message: "Failed to upload banner" })
+                    showToast({ type: "error", message: t('onboarding.hooks.errors.failedToUploadBanner') })
                 }
             }
 
@@ -65,13 +67,13 @@ export function useShopSetupSubmit() {
             const errorMessage = error?.response?.data?.data?.message
             showToast({
                 type: "error",
-                message: errorMessage || "Failed to complete shop setup"
+                message: errorMessage || t('onboarding.hooks.errors.failedToCompleteShopSetup')
             })
         }
     })
 
     const handleSubmit = async () => {
-        if (validateStoreData(shopData, setError)) {
+        if (validateStoreData(shopData, setError, t)) {
             await submitShopSetup()
         }
     }

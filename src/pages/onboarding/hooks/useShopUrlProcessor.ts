@@ -3,18 +3,20 @@ import { getShopExtractedData, startWebsiteCrawling } from 'services/crawler/ser
 import { usePolling } from 'hooks/usePolling/usePolling'
 import useAppStore from 'stores/app/appStore'
 import useOnboardingStore from '../stores/useOnboardingStore'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export const useShopUrlProcessor = () => {
     const { hasPaidSubscription } = useAppStore()
     const { updateShopData } = useOnboardingStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('common')
 
     const polling = usePolling({
         onError: (error) => {
-            showToast({ type: "error", message: "Failed to import shop data" })
+            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToImportShopData') })
         },
         onTimeout: () => {
-            showToast({ type: "error", message: "Import timed out. Please try again." })
+            showToast({ type: "error", message: t('onboarding.hooks.errors.importTimedOut') })
         }
     })
 
@@ -36,13 +38,13 @@ export const useShopUrlProcessor = () => {
                 updateShopData('hero_section', shopExtractedData.data?.banner)
                 updateShopData('description', shopExtractedData.data?.description)
 
-                showToast({ type: "success", message: "Shop data imported successfully!" })
+                showToast({ type: "success", message: t('onboarding.hooks.success.shopDataImported') })
                 return true
             }
 
             return false
         } catch (error) {
-            showToast({ type: "error", message: "Failed to import shop data" })
+            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToImportShopData') })
             return false
         }
     }
@@ -55,9 +57,9 @@ export const useShopUrlProcessor = () => {
             // Start polling for the extracted data
             polling.startPolling(() => pollShopExtractedData(data.poolId))
 
-            showToast({ type: "info", message: "Import started. Please wait while we process your website..." })
+            showToast({ type: "info", message: t('onboarding.hooks.info.importStarted') })
         } catch (error) {
-            showToast({ type: "error", message: "Failed to start import. Please try again." })
+            showToast({ type: "error", message: t('onboarding.hooks.errors.failedToStartImport') })
             polling.stopProcessing()
         }
     }

@@ -6,6 +6,7 @@ import useProductPageStore from '../stores/ProductPageStore';
 import useProductForm from './useProductForm';
 import useAppStore from 'stores/app/appStore';
 import { useDisclosure } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const [selectedItem, setSelectedItem] = useState("");
@@ -15,6 +16,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
     const { values: { description, title }, setFieldValue } = useProductForm();
     const { showToast } = useAppToast();
     const { hasPaidSubscription } = useAppStore();
+    const { t } = useLocaleResources('common');
 
     const { mutateAsync, isLoading, isSuccess } = useMutation(
         (tone: string) => {
@@ -34,7 +36,7 @@ export const useImproveAI = ({ type }: { type: 'title' | 'description' }) => {
             },
             onError: () => {
                 updateProductPageState("isGenerateDisabled", false);
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" });
+                showToast({ message: t('products.hooks.errors.improveAIError'), type: "error" });
             }
         }
     );
