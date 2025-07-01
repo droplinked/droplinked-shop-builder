@@ -5,6 +5,126 @@
   "error": "An error occurred",
   "save": "Save",
   "delete": "Delete",
+  "platform": "Platform",
+  "getStarted": "Get Started",
+  "signIn": "Sign In",
+  "videoTutorials": "Video Tutorials",
+  "contactSupport": "Contact Support",
+  "documentation": "Documentation",
+  "readyToGetStarted": "Ready to get started?",
+  "signUpForFree": "Sign up for free",
+  "back": "Back",
+  "contactUs": "Contact Us",
+  "brandAssets": "Brand Assets",
+  "developerKit": "Developer Kit",
+  "helpCenter": "Help Center",
+  "support": "Support",
+  "company": "Company",
+  "commerceTagline": "Commerce tools to sell and settle transparently",
+  "privacyAndDataCollection": "Privacy & Data Collection",
+  "termsOfService": "Terms of service",
+  "copyright": "© {{year}} All Rights Reserved",
+  "stayUpToDate": "Stay up to date",
+  "newsletterDescription": "Join our mailing list to stay up to date with the latest news",
+  "enterYourEmail": "Enter your email",
+  "invalidEmail": "Invalid email address",
+  "emailRequired": "Email is required",
+  "subscribe": "Subscribe",
+  "publicHeaderLinks": {
+    "pricing": "Pricing",
+    "affiliate": "Affiliate",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "publicMegaMenuItems": {
+    "platformFunctionalities": {
+      "label": "Platform Functionalities",
+      "links": {
+        "physicalInventory": {
+          "label": "Physical Inventory",
+          "description": "Portable Supply Chain Management"
+        },
+        "digitalGoods": {
+          "label": "Digital Goods",
+          "description": "Subscriptions, assets and more"
+        },
+        "productsOnDemand": {
+          "label": "Products on Demand",
+          "description": "Design customizable items"
+        },
+        "onchainAffiliate": {
+          "label": "Onchain Affiliate",
+          "description": "Fraud-free, transparent commerce"
+        },
+        "paymentLinks": {
+          "label": "Payment Links",
+          "description": "Seamlessly sell anytime, anywhere"
+        },
+        "productTiles": {
+          "label": "Product Tiles",
+          "description": "Customizable embeds to use"
+        },
+        "tokenizingProducts": {
+          "label": "Tokenizing Products",
+          "description": "Product records for assets"
+        },
+        "onchainSubscriptions": {
+          "label": "Onchain Subscriptions",
+          "description": "Automate to earn more"
+        },
+        "socialQuests": {
+          "label": "Social Quests",
+          "description": "Grow the community to earn more"
+        }
+      }
+    },
+    "enterprise": {
+      "label": "Enterprise",
+      "links": {
+        "dpp": {
+          "label": "DPP",
+          "description": "Digital product passports"
+        },
+        "dimst": {
+          "label": "DIMST",
+          "description": "Onchain inventory management"
+        },
+        "tokenpay": {
+          "label": "Tokenpay",
+          "description": "Payments for ERC/BRC/SPL"
+        },
+        "metaverseShowroom": {
+          "label": "Metaverse Showroom",
+          "description": "Interactive shopping made easy"
+        },
+        "customTokens": {
+          "label": "Custom Tokens",
+          "description": "Unlock the Power of Custom Tokens"
+        }
+      }
+    },
+    "partners": {
+      "label": "Partners",
+      "links": {
+        "unstoppableDomains": {
+          "label": "Unstoppable Domains",
+          "description": "droplinked & Unstoppable Domains"
+        },
+        "d3": {
+          "label": "D3",
+          "description": "droplinked & D3"
+        },
+        "polygon": {
+          "label": "Polygon",
+          "description": "droplinked & Polygon"
+        },
+        "crossmint": {
+          "label": "Crossmint",
+          "description": "droplinked & Crossmint"
+        }
+      }
+    }
+  },
   "socialMedia": {
     "telegram": "Telegram",
     "discord": "Discord",

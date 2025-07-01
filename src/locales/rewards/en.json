@@ -78,5 +78,24 @@
         "duration": "1 month"
       }
     }
+  },
+  "proPlanModal": {
+    "header": {
+      "title": "Free Pro Plan Unlocked!",
+      "description": "You now have access to the Pro Plan for one month for free."
+    },
+    "features": {
+      "proAccess": "Pro Access",
+      "cancelAnytime": "Cancel anytime",
+      "seamlessActivation": "Seamless Activation"
+    },
+    "planDetails": {
+      "title": "Pro Plan - {{months}} Month{{months > 1 ? 's' : ''}}",
+      "description": "Designed for large businesses needing comprehensive solutions."
+    },
+    "footer": {
+      "warning": "If you unfollow us at any time, your Pro Plan benefits will be revoked. Make sure to remain a follower to continue enjoying premium features!",
+      "buttonText": "Go to Dashboard"
+    }
   }
 } 

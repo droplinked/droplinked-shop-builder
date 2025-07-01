@@ -1,0 +1,63 @@
+{
+  "pageTitle": "حاسبة سجلات المنتجات",
+  "pageDescription": "توقع عائد الاستثمار عند استخدام إدارة المخزون المؤسسي وتتبع المبيعات من droplinked.",
+  "sections": {
+    "plans": "الخطط",
+    "protocols": "البروتوكولات",
+    "productDetails": "تفاصيل المنتج",
+    "financialMetrics": "المقاييس المالية والأداء",
+    "roi": "عائد الاستثمار"
+  },
+  "inputs": {
+    "serviceFee": {
+      "label": "رسوم الخدمة",
+      "tooltip": "التكلفة الأساسية المرتبطة بالخطة المختارة"
+    },
+    "totalSkus": {
+      "label": "إجمالي وحدات SKU"
+    },
+    "productRecordCount": {
+      "label": "عدد سجلات المنتجات"
+    },
+    "transactionCount": {
+      "label": "عدد المعاملات"
+    },
+    "averageOrderValue": {
+      "label": "متوسط قيمة الطلب",
+      "tooltip": "سعر البيع بالتجزئة المتوقع للعنصر المباع"
+    },
+    "royaltyPercentage": {
+      "label": "نسبة الإتاوات من إعادة البيع",
+      "tooltip": "نسبة الدفع % من سعر البيع بالتجزئة للعنصر المباع التي تعود إلى المنشئ للمبيعات المستمرة"
+    },
+    "capturedSecondarySalesPercentage": {
+      "label": "نسبة المبيعات الثانوية المحققة",
+      "tooltip": "النسبة المئوية من المبيعات الثانوية المتوقعة المحققة"
+    }
+  },
+  "results": {
+    "grossInvestment": "إجمالي الاستثمار",
+    "grossMerchandiseValue": "إجمالي قيمة البضائع (GMV)",
+    "grossCapturedValue": "إجمالي القيمة المحققة",
+    "roi": "عائد الاستثمار (ROI)"
+  },
+  "buttons": {
+    "calculate": "احسب",
+    "contactUs": "اتصل بنا"
+  },
+  "starryBorder": {
+    "title": "استفسر لمعرفة المزيد",
+    "description": "قلل الاحتيال، والتزم بالامتثال، وزد التحويلات لمنظمتك"
+  },
+  "errors": {
+    "upgradedPlan": "تم الترقية إلى {plan} بسبب تجاوز القيمة المدخلة حد خطة {currentPlan}."
+  },
+  "plans": {
+    "capsule": "كبسولة",
+    "pilot": "تجريبي",
+    "enterprise": "مؤسسة",
+    "skus": "وحدات SKU",
+    "productRecords": "سجلات المنتجات",
+    "baseCommitment": "الالتزام الأساسي"
+  }
+} 

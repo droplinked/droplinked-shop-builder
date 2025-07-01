@@ -3,20 +3,17 @@
     "features": {
         "defaultTitle": "Features and Benefits",
         "defaultFeatures": {
-            "defaultTitle": "Features and Benefits",
-            "defaultFeatures": {
-                "offerPerks": {
-                    "title": "Offer Perks, Discounts and Token-gated Items",
-                    "description": "Grant exclusive access and discounts to customers that are community members"
-                },
-                "embeddableTiles": {
-                    "title": "Embeddable Product Tiles for Products",
-                    "description": "Expand reach by promoting and selling inventory across third-party sites and platforms"
-                },
-                "decentralizedNetwork": {
-                    "title": "Decentralized Affiliate Network",
-                    "description": "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more"
-                }
+            "offerPerks": {
+                "title": "Offer Perks, Discounts and Token-gated Items",
+                "description": "Grant exclusive access and discounts to customers that are community members"
+            },
+            "embeddableTiles": {
+                "title": "Embeddable Product Tiles for Products",
+                "description": "Expand reach by promoting and selling inventory across third-party sites and platforms"
+            },
+            "decentralizedNetwork": {
+                "title": "Decentralized Affiliate Network",
+                "description": "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more"
             }
         }
     },

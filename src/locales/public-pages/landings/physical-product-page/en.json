@@ -1,0 +1,37 @@
+{
+  "aboveTheFold": {
+    "title": "Monetize Inventory with Tailored Storefronts",
+    "description": "Maximize sales value of inventory with a comprehensive storefront and onchain inventory management system. Leverage tokenization and product minting to gain deeper insights on your customer base and distribution"
+  },
+  "starryBorder": {
+    "title": "Launch a Store Today",
+    "description": "Simple setup, secure transactions and endless possibilities await your community.",
+    "buttonText": "Get Started"
+  },
+  "tabularContent": {
+    "tabs": {
+      "inventoryManagement": "Inventory Management",
+      "customShipping": "Custom Shipping",
+      "automatedShipping": "Automated Shipping",
+      "warehouseManagement": "Warehouse Management"
+    },
+    "content": {
+      "inventoryManagement": {
+        "title": "Manage Inventory Onchain",
+        "description": "Digitize and manage catalogues with blockchain-integrated tools"
+      },
+      "customShipping": {
+        "title": "Custom Shipping Methods",
+        "description": "Customized shipping rates by region to ensure cost-effective global delivery"
+      },
+      "automatedShipping": {
+        "title": "Automated Shipping and Fulfillment",
+        "description": "Simplify shipping and fulfillment processes with our third-party shipping services"
+      },
+      "warehouseManagement": {
+        "title": "Warehouse Management System Integration",
+        "description": "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction"
+      }
+    }
+  }
+} 

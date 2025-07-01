@@ -1,0 +1,63 @@
+{
+  "pageTitle": "Product Record Calculator",
+  "pageDescription": "Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.",
+  "sections": {
+    "plans": "Plans",
+    "protocols": "Protocols",
+    "productDetails": "Product Details",
+    "financialMetrics": "Financial and Performance Metrics",
+    "roi": "Return on Investment"
+  },
+  "inputs": {
+    "serviceFee": {
+      "label": "Service Fee",
+      "tooltip": "Baseline cost associated with plan selected"
+    },
+    "totalSkus": {
+      "label": "Total SKUs"
+    },
+    "productRecordCount": {
+      "label": "Product Record Count"
+    },
+    "transactionCount": {
+      "label": "Transaction Count"
+    },
+    "averageOrderValue": {
+      "label": "Average Order Value",
+      "tooltip": "Anticipated retail price of the item sold"
+    },
+    "royaltyPercentage": {
+      "label": "Royalty Percentage from Resales",
+      "tooltip": "The payout % of the retail price of an item sold that goes back to originator for ongoing sales"
+    },
+    "capturedSecondarySalesPercentage": {
+      "label": "Captured Secondary Sales Percentage",
+      "tooltip": "The % of anticipated secondary sales captured"
+    }
+  },
+  "results": {
+    "grossInvestment": "Gross Investment",
+    "grossMerchandiseValue": "Gross Merchandise Value (GMV)",
+    "grossCapturedValue": "Gross Captured Value",
+    "roi": "Return on Investment (ROI)"
+  },
+  "buttons": {
+    "calculate": "Calculate",
+    "contactUs": "Contact Us"
+  },
+  "starryBorder": {
+    "title": "Enquire to learn more",
+    "description": "Minimize fraud, adhere to compliance, increase conversions for your organization"
+  },
+  "errors": {
+    "upgradedPlan": "Upgraded to {plan} due to entered value exceeding the {currentPlan} plan limit threshold."
+  },
+  "plans": {
+    "capsule": "Capsule",
+    "pilot": "Pilot",
+    "enterprise": "Enterprise",
+    "skus": "SKUs",
+    "productRecords": "Product Records",
+    "baseCommitment": "Base Commitment"
+  }
+} 

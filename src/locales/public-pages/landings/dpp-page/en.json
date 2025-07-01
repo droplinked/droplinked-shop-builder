@@ -117,6 +117,68 @@
       "retail": "Retail",
       "electronics": "Electronics",
       "industrial": "Industrial"
+    },
+    "products": {
+      "moschinoBag": {
+        "name": "Moschino Bag",
+        "productId": "Ca23A58BHG90CC3",
+        "weight": "2.6kg",
+        "traceability": "Full supply chain transparency",
+        "manufacturingSite": "Milan, Italy",
+        "certifications": "ISO 9001, ISO 14001",
+        "circularCharacteristics": "Recyclable materials",
+        "sourcingComposition": "Calf leather from EU farms",
+        "lca": "Low environmental impact, sustainable practices",
+        "createdDate": "2021/04/11, 12:25"
+      },
+      "patekPhilippeWatch": {
+        "name": "Patek Philippe Chronograph Watch",
+        "productId": "LW45678EXQ",
+        "weight": "0.2kg",
+        "traceability": "Full supply chain transparency",
+        "manufacturingSite": "Geneva, Switzerland",
+        "certifications": "ISO 9001, Swiss Made",
+        "circularCharacteristics": "Recyclable materials",
+        "sourcingComposition": "Stainless steel from EU",
+        "lca": "Low environmental impact, durable design",
+        "createdDate": "2020/10/16, 18:45"
+      },
+      "timberlandBoot": {
+        "name": "Timberland Classic Boot",
+        "productId": "TB98765XPL",
+        "weight": "1.2kg",
+        "traceability": "Full supply chain transparency",
+        "manufacturingSite": "Newmarket, USA",
+        "certifications": "ISO 9001, ISO 14001",
+        "circularCharacteristics": "Recyclable materials",
+        "sourcingComposition": "Leather from North USA farms",
+        "lca": "Low impact, sustainable manufacturing",
+        "createdDate": "2022/08/21, 10:05"
+      },
+      "playstation5": {
+        "name": "PlayStation 5",
+        "productId": "PS5US12345",
+        "weight": "4.5kg",
+        "traceability": "Partial supply chain transparency",
+        "manufacturingSite": "Tokyo, Japan",
+        "certifications": "ISO 9001, CE Marking",
+        "circularCharacteristics": "Recyclable packaging",
+        "sourcingComposition": "Electronics components",
+        "lca": "Moderate environmental impact",
+        "createdDate": "2023/07/24, 14:30"
+      },
+      "samsoniteBag": {
+        "name": "Neopulse Travelbag by Samsonite",
+        "productId": "RL2022TRAVEL",
+        "weight": "3.5kg",
+        "traceability": "Full supply chain transparency",
+        "manufacturingSite": "Berlin, Germany",
+        "certifications": "ISO 9001, ISO 14001",
+        "circularCharacteristics": "Recyclable materials",
+        "sourcingComposition": "Polycarbonate from EU suppliers",
+        "lca": "Low environmental impact, sustainable practices",
+        "createdDate": "2023/05/10, 11:05"
+      }
     }
   }
 } 

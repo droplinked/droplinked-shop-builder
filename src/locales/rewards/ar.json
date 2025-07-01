@@ -53,12 +53,12 @@
           "duration": "شهر واحد"
         },
         "discord": {
-          "title": "انضم إلى Discord الخاص بنا",
+          "title": "انضم إلى ديسكورد الخاص بنا",
           "description": "خطة احترافية مجانية",
           "duration": "شهر واحد"
         },
         "telegram": {
-          "title": "انضم إلى Telegram الخاص بنا",
+          "title": "انضم إلى تيليجرام الخاص بنا",
           "description": "خطة احترافية مجانية",
           "duration": "شهر واحد"
         },
@@ -68,13 +68,13 @@
           "duration": "شهر واحد"
         },
         "youtube": {
-          "title": "اشترك في قناتنا على YouTube",
+          "title": "اشترك في قناتنا على يوتيوب",
           "description": "خطة احترافية مجانية",
           "duration": "شهر واحد"
         },
         "linkedin": {
-          "title": "تابعنا على LinkedIn",
-          "description": "خطة احترافية مجانية",
+          "title": "تابعنا على لينكد إن",
+          "description": "خطة احترافية مجانية", 
           "duration": "شهر واحد"
         }
       }

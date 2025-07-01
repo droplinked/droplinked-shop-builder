@@ -117,6 +117,68 @@
         "retail": "تجزئة",
         "electronics": "إلكترونيات",
         "industrial": "صناعي"
+      },
+      "products": {
+        "moschinoBag": {
+          "name": "حقيبة موشينو",
+          "productId": "Ca23A58BHG90CC3",
+          "weight": "2.6 كجم",
+          "traceability": "شفافية كاملة في سلسلة التوريد",
+          "manufacturingSite": "ميلانو، إيطاليا",
+          "certifications": "ISO 9001, ISO 14001",
+          "circularCharacteristics": "مواد قابلة لإعادة التدوير",
+          "sourcingComposition": "جلد العجل من مزارع الاتحاد الأوروبي",
+          "lca": "أثر بيئي منخفض، ممارسات مستدامة",
+          "createdDate": "2021/04/11, 12:25"
+        },
+        "patekPhilippeWatch": {
+          "name": "ساعة باتيك فيليب كرونوغراف",
+          "productId": "LW45678EXQ",
+          "weight": "0.2 كجم",
+          "traceability": "شفافية كاملة في سلسلة التوريد",
+          "manufacturingSite": "جنيف، سويسرا",
+          "certifications": "ISO 9001, صنع في سويسرا",
+          "circularCharacteristics": "مواد قابلة لإعادة التدوير",
+          "sourcingComposition": "فولاذ مقاوم للصدأ من الاتحاد الأوروبي",
+          "lca": "أثر بيئي منخفض، تصميم متين",
+          "createdDate": "2020/10/16, 18:45"
+        },
+        "timberlandBoot": {
+          "name": "حذاء تيمبرلاند الكلاسيكي",
+          "productId": "TB98765XPL",
+          "weight": "1.2 كجم",
+          "traceability": "شفافية كاملة في سلسلة التوريد",
+          "manufacturingSite": "نيوماركت، الولايات المتحدة الأمريكية",
+          "certifications": "ISO 9001, ISO 14001",
+          "circularCharacteristics": "مواد قابلة لإعادة التدوير",
+          "sourcingComposition": "جلد من مزارع شمال الولايات المتحدة الأمريكية",
+          "lca": "أثر منخفض، تصنيع مستدام",
+          "createdDate": "2022/08/21, 10:05"
+        },
+        "playstation5": {
+          "name": "بلاي ستيشن 5",
+          "productId": "PS5US12345",
+          "weight": "4.5 كجم",
+          "traceability": "شفافية جزئية في سلسلة التوريد",
+          "manufacturingSite": "طوكيو، اليابان",
+          "certifications": "ISO 9001, علامة CE",
+          "circularCharacteristics": "تغليف قابل لإعادة التدوير",
+          "sourcingComposition": "مكونات إلكترونية",
+          "lca": "أثر بيئي معتدل",
+          "createdDate": "2023/07/24, 14:30"
+        },
+        "samsoniteBag": {
+          "name": "حقيبة سفر نيوبلس من سامسونايت",
+          "productId": "RL2022TRAVEL",
+          "weight": "3.5 كجم",
+          "traceability": "شفافية كاملة في سلسلة التوريد",
+          "manufacturingSite": "برلين، ألمانيا",
+          "certifications": "ISO 9001, ISO 14001",
+          "circularCharacteristics": "مواد قابلة لإعادة التدوير",
+          "sourcingComposition": "بولي كربونات من موردي الاتحاد الأوروبي",
+          "lca": "أثر بيئي منخفض، ممارسات مستدامة",
+          "createdDate": "2023/05/10, 11:05"
+        }
       }
     }
   }
