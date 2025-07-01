@@ -12,7 +12,7 @@ const SUPPORT_LINKS = [
 
 const COMPANY_LINKS = [
     { label: 'Home', href: '/' },
-    { label: 'Pricing', href: '/pricing' },
+    { label: 'Pricing', href: '/plans' },
     { label: 'Affiliate', href: '/affiliate' },
     { label: 'Blog', href: '/blogs' },
     { label: 'About', href: '/about' }
