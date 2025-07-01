@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 const SUPPORT_LINKS = [
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Brand Assets', href: '/brand-assets', isExternal: true },
+    { label: 'Brand Assets', href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
     { label: 'Developer Kit', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
     { label: 'Help Center', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
 ] as const
