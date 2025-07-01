@@ -6,23 +6,27 @@ import Cards, { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Perks from '../svgs/Perks'
 
-export default function SetOfPerks() {
+interface SetOfPerksProps {
+    t: (key: string) => string;
+}
+
+export default function SetOfPerks({ t }: SetOfPerksProps) {
     const cardsData: CardData[] = [
         {
             icon: <ConfigureLg color="#fff" />,
-            title: "Store Setup Simplified",
-            description: "Use droplinked tools to launch your shop",
+            title: t('setOfPerks.cards.storeSetup.title'),
+            description: t('setOfPerks.cards.storeSetup.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <BuildingLg color="#fff" />,
-            title: "Enterprise-Level Tools",
-            description: "Unlock advanced features to scale your business from the start",
+            title: t('setOfPerks.cards.enterpriseTools.title'),
+            description: t('setOfPerks.cards.enterpriseTools.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }, {
             icon: <NftLg color="#fff" />,
-            title: "Seamless NFT Integration",
-            description: "Create, manage, and sell NFTs on a customizable storefront",
+            title: t('setOfPerks.cards.nftIntegration.title'),
+            description: t('setOfPerks.cards.nftIntegration.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
     ]
@@ -30,9 +34,9 @@ export default function SetOfPerks() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF PERKS'
-            headingTitle='Perks for Crossmint Members'
-            headingSubtitle='droplinked is offering 3 months of a pro plan for free'
+            sectionTitle={t('setOfPerks.sectionTitle')}
+            headingTitle={t('setOfPerks.headingTitle')}
+            headingSubtitle={t('setOfPerks.headingSubtitle')}
             typographySvg={<Perks />}
         >
             <Cards

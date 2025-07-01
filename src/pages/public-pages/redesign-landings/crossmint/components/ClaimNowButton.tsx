@@ -2,10 +2,28 @@ import AppButton, { AppButtonProps } from 'components/redesign/button/AppButton'
 import { useAuthNavigation } from 'hooks/useAuthNavigation/useAuthNavigation'
 import React from 'react'
 
-export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
+interface ClaimNowButtonProps extends AppButtonProps {
+    t: (key: string) => string;
+}
+
+export default function ClaimNowButton({ t, ...buttonProps }: ClaimNowButtonProps) {
     const { navigateBasedOnStatus } = useAuthNavigation()
 
     const handleClaimNow = () => navigateBasedOnStatus({ source: 'crossmint' })
+
+    // Add safety check for t function
+    if (typeof t !== 'function') {
+        console.error('Translation function t is not a function:', t)
+        return (
+            <AppButton
+                mt={6}
+                onClick={handleClaimNow}
+                {...buttonProps}
+            >
+                Claim Now
+            </AppButton>
+        )
+    }
 
     return (
         <AppButton
@@ -13,7 +31,7 @@ export default function ClaimNowButton({ ...buttonProps }: AppButtonProps) {
             onClick={handleClaimNow}
             {...buttonProps}
         >
-            Claim Now
+            {t('claimNow.buttonText')}
         </AppButton>
     )
 }

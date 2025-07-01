@@ -4,15 +4,20 @@ import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
 import React from 'react'
+import { TFunction } from 'i18next'
 import ClaimNowButton from '../ClaimNowButton'
 
-export default function SubtitleElements() {
+interface SubtitleElementsProps {
+    t: (key: string) => string
+}
+
+export default function SubtitleElements({ t }: SubtitleElementsProps) {
     const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
     const crossmintSize = useBreakpointValue({ base: "20px", md: "32px", lg: "40px" })
 
     return (
         <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
-            <ClaimNowButton />
+            <ClaimNowButton t={t} />
 
             <Flex
                 justifyContent="center"

@@ -3,7 +3,11 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import HeroSection from '../../../_shared/components/hero-section/HeroSection'
 import SubtitleElements from './SubtitleElements'
 
-export default function CrossmintHero() {
+interface CrossmintHeroProps {
+    t: (key: string) => string;
+}
+
+export default function CrossmintHero({ t }: CrossmintHeroProps) {
     const responsiveWidth = useBreakpointValue({ base: '250%', md: '100%' })
     const responsiveRight = useBreakpointValue({ base: '75%', md: '0%' })
 
@@ -19,14 +23,14 @@ export default function CrossmintHero() {
 
     return (
         <HeroSection
-            title={`Powering \n Agentic Commerce`}
-            subtitle={`Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today.`}
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             videoDesktop={videoUrl}
             videoTablet={videoUrl}
             videoMobile={videoUrl}
             videoStyle={videoStyle}
             subTitleElements={
-                <SubtitleElements />
+                <SubtitleElements t={t} />
             }
         />
     )
