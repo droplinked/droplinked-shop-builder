@@ -18,44 +18,45 @@ import { NetworkMd } from "assets/icons/System/Network/NetworkMd"
 import { PassportMd } from "assets/icons/System/Passport/PassportMd"
 import { SubscriptionMd } from "assets/icons/System/Subscription/SubscriptionMd"
 import { TokenpayMd } from "assets/icons/System/Tokenpay/TokenpayMd"
+import { TFunction } from "i18next"
 
-const publicMegaMenuItems = [
+const getPublicMegaMenuItems = (t: TFunction) => [
     {
-        label: 'Platform Functionalities',
+        label: t('publicMegaMenuItems.platformFunctionalities.label'),
         icon: Layer1Lg,
         links: [
-            { label: 'Physical Inventory', description: 'Portable Supply Chain Management', icon: BoxMd, href: '/physical-product' },
-            { label: 'Digital Goods', description: 'Subscriptions, assets and more', icon: ImageMd, href: '/digital-product' },
-            { label: 'Products on Demand', description: 'Design customizable items', icon: ShirtMd, href: '/pod-product' },
-            { label: 'Onchain Affiliate', description: 'Fraud-free, transparent commerce', icon: AffiliateMd, href: '/onchain-affiliate' },
-            { label: 'Payment Links', description: 'Seamlessly sell anytime, anywhere', icon: LinkMd, href: '/payment-links' },
-            { label: 'Product Tiles', description: 'Customizable embeds to use', icon: Layout1Md, href: '/product-tiles' },
-            { label: 'Tokenizing Products', description: 'Product records for assets', icon: CoinsMd, href: '/tokenizing-products' },
-            { label: 'Onchain Subscriptions', description: 'Automate to earn more', icon: SubscriptionMd, href: '/affiliate-sass' },
-            { label: 'Social Quests', description: 'Grow the community to earn more', icon: TargetMd, href: '/rewards' }
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.description'), icon: BoxMd, href: '/physical-product' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.description'), icon: ImageMd, href: '/digital-product' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.description'), icon: ShirtMd, href: '/pod-product' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.onchainAffiliate.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.onchainAffiliate.description'), icon: AffiliateMd, href: '/onchain-affiliate' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.paymentLinks.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.paymentLinks.description'), icon: LinkMd, href: '/payment-links' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.productTiles.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.productTiles.description'), icon: Layout1Md, href: '/product-tiles' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.tokenizingProducts.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.tokenizingProducts.description'), icon: CoinsMd, href: '/tokenizing-products' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.description'), icon: SubscriptionMd, href: '/affiliate-sass' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.socialQuests.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.socialQuests.description'), icon: TargetMd, href: '/rewards' }
         ]
     },
     {
-        label: 'Enterprise',
+        label: t('publicMegaMenuItems.enterprise.label'),
         icon: BuildingLg,
         links: [
-            { label: 'DPP', description: 'Digital product passports', icon: PassportMd, href: '/dpp' },
-            { label: 'DIMST', description: 'Onchain inventory management', icon: NetworkMd, href: '/roi' },
-            { label: 'Tokenpay', description: 'Payments for ERC/BRC/SPL', icon: TokenpayMd, href: '/tokenpay' },
-            { label: 'Metaverse Showroom', description: 'Interactive shopping made easy', icon: MetaverseMd, href: '/metaverse-store' },
-            { label: 'Custom Tokens', description: 'Unlock the Power of Custom Tokens', icon: LinkMd, href: '/custom-tokens' },
+            { label: t('publicMegaMenuItems.enterprise.links.dpp.label'), description: t('publicMegaMenuItems.enterprise.links.dpp.description'), icon: PassportMd, href: '/dpp' },
+            { label: t('publicMegaMenuItems.enterprise.links.dimst.label'), description: t('publicMegaMenuItems.enterprise.links.dimst.description'), icon: NetworkMd, href: '/roi' },
+            { label: t('publicMegaMenuItems.enterprise.links.tokenpay.label'), description: t('publicMegaMenuItems.enterprise.links.tokenpay.description'), icon: TokenpayMd, href: '/tokenpay' },
+            { label: t('publicMegaMenuItems.enterprise.links.metaverseShowroom.label'), description: t('publicMegaMenuItems.enterprise.links.metaverseShowroom.description'), icon: MetaverseMd, href: '/metaverse-store' },
+            { label: t('publicMegaMenuItems.enterprise.links.customTokens.label'), description: t('publicMegaMenuItems.enterprise.links.customTokens.description'), icon: LinkMd, href: '/custom-tokens' },
         ]
     },
     {
-        label: 'Partners',
+        label: t('publicMegaMenuItems.partners.label'),
         icon: PositionLg,
         links: [
-            { label: 'Unstoppable Domains', description: 'droplinked & Unstoppable Domains', icon: UnstoppableDomains, href: '/unstoppable-domains' },
-            { label: 'D3', description: 'droplinked & D3', icon: D3, href: '/d3' },
-            { label: 'Polygon', description: 'droplinked & Polygon', icon: Polygon, href: '/polygon' },
-            { label: 'Crossmint', description: 'droplinked & Crossmint', icon: CrossmintWhite, href: '/crossmint' }
+            { label: t('publicMegaMenuItems.partners.links.unstoppableDomains.label'), description: t('publicMegaMenuItems.partners.links.unstoppableDomains.description'), icon: UnstoppableDomains, href: '/unstoppable-domains' },
+            { label: t('publicMegaMenuItems.partners.links.d3.label'), description: t('publicMegaMenuItems.partners.links.d3.description'), icon: D3, href: '/d3' },
+            { label: t('publicMegaMenuItems.partners.links.polygon.label'), description: t('publicMegaMenuItems.partners.links.polygon.description'), icon: Polygon, href: '/polygon' },
+            { label: t('publicMegaMenuItems.partners.links.crossmint.label'), description: t('publicMegaMenuItems.partners.links.crossmint.description'), icon: CrossmintWhite, href: '/crossmint' }
         ]
     }
 ]
 
-export default publicMegaMenuItems
+export default getPublicMegaMenuItems
