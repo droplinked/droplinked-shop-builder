@@ -7,30 +7,34 @@ import Layout from '../_components/layout/Layout'
 import PaymentDetails from '../_components/payment-details/PaymentDetails'
 import StarryBorder from '../_components/starry-border/StarryBorder'
 import TabularContent from './TabularContent'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/physical-product-page/en.json'
+import localAr from 'locales/public-pages/landings/physical-product-page/ar.json'
 
 function PhysicalProductPage() {
     const navigate = useNavigate()
+    const { t } = useLocaleResources('public-pages/landings/physical-product' , { en: localEn, ar: localAr })
 
     return (
         <Layout>
             <AboveTheFoldSection
                 image="https://upload-file-droplinked.s3.amazonaws.com/43da5c3bee55cabbcbb7e470866a0f869b5e10862edb3cc3c1075d73885045dc.png"
-                title="Monetize Inventory with Tailored Storefronts"
-                description="Maximize sales value of inventory with a comprehensive storefront and onchain inventory management system. Leverage tokenization and product minting to gain deeper insights on your customer base and distribution"
+                title={t('aboveTheFold.title')}
+                description={t('aboveTheFold.description')}
             />
 
             <FrontModularity />
 
             <PaymentDetails />
 
-            <TabularContent />
+            <TabularContent t={t} />
 
             <Features />
 
             <StarryBorder
-                title='Launch a Store Today'
-                description='Simple setup, secure transactions and endless possibilities await your community.'
-                buttonText='Get Started'
+                title={t('starryBorder.title')}
+                description={t('starryBorder.description')}
+                buttonText={t('starryBorder.buttonText')}
                 onButtonClick={() => navigate('/onboarding?entry=signup')}
             />
         </Layout>

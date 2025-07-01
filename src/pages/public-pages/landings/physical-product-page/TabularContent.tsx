@@ -1,45 +1,68 @@
 import { Flex, Image } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
+import { TFunction } from 'i18next'
 import SpectrumHeader from '../_components/spectrum-header/SpectrumHeader'
 import TabsContainer from './TabsContainer'
 
-const tabContentMap = {
-    "Inventory Management": {
-        title: "Manage Inventory Onchain",
-        description: "Digitize and manage catalogues with blockchain-integrated tools",
-        imageSrc: "assets/images/physicalProduct/managing-inventory.png",
-    },
-    "Custom Shipping": {
-        title: "Custom Shipping Methods",
-        description: "Customized shipping rates by region to ensure cost-effective global delivery",
-        imageSrc: "assets/images/physicalProduct/custom-shipping.png",
-    },
-    "Automated Shipping": {
-        title: "Automated Shipping and Fulfillment",
-        description: "Simplify shipping and fulfillment processes with our third-party shipping services",
-        imageSrc: "assets/images/physicalProduct/automated-shipping.png",
-    },
-    "Warehouse Management": {
-        title: "Warehouse Management System Integration",
-        description: "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction",
-        imageSrc: "assets/images/physicalProduct/warehouse.png",
-    },
+interface TabularContentProps {
+    t: TFunction
 }
 
-export default function TabularContent() {
+const getTabContentMap = (t: TFunction) => ({
+    [t('tabularContent.tabs.inventoryManagement')]: {
+        title: t('tabularContent.content.inventoryManagement.title'),
+        description: t('tabularContent.content.inventoryManagement.description'),
+        imageSrc: "assets/images/physicalProduct/managing-inventory.png",
+    },
+    [t('tabularContent.tabs.customShipping')]: {
+        title: t('tabularContent.content.customShipping.title'),
+        description: t('tabularContent.content.customShipping.description'),
+        imageSrc: "assets/images/physicalProduct/custom-shipping.png",
+    },
+    [t('tabularContent.tabs.automatedShipping')]: {
+        title: t('tabularContent.content.automatedShipping.title'),
+        description: t('tabularContent.content.automatedShipping.description'),
+        imageSrc: "assets/images/physicalProduct/automated-shipping.png",
+    },
+    [t('tabularContent.tabs.warehouseManagement')]: {
+        title: t('tabularContent.content.warehouseManagement.title'),
+        description: t('tabularContent.content.warehouseManagement.description'),
+        imageSrc: "assets/images/physicalProduct/warehouse.png",
+    },
+})
+
+export default function TabularContent({ t }: TabularContentProps) {
+    const tabContentMap = getTabContentMap(t)
     const tabs = Object.keys(tabContentMap)
-    const [activeTab, setActiveTab] = useState(tabs[0])
+    const [activeTab, setActiveTab] = useState<string>('')
+
+    // Set the active tab once tabs are available
+    React.useEffect(() => {
+        if (tabs.length > 0 && !activeTab) {
+            setActiveTab(tabs[0])
+        }
+    }, [tabs, activeTab])
+
+    // Don't render until we have tabs and activeTab
+    if (!tabs.length || !activeTab) {
+        return null
+    }
 
     return (
         <Flex width="100%" direction="column" alignItems="center" gap={12}>
             <TabsContainer tabs={tabs} activeTab={activeTab} setter={setActiveTab} />
-            <TabContent activeTab={activeTab} />
+            <TabContent activeTab={activeTab} tabContentMap={tabContentMap} />
         </Flex>
     )
 }
 
-const TabContent = ({ activeTab }) => {
+interface TabContentProps {
+    activeTab: string
+    tabContentMap: Record<string, { title: string; description: string; imageSrc: string }>
+}
+
+const TabContent = ({ activeTab, tabContentMap }: TabContentProps) => {
     const { title, description, imageSrc } = tabContentMap[activeTab]
 
     return (
