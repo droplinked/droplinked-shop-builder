@@ -9,7 +9,7 @@ const plans: Plan[] = [
 ]
 
 
-const useROICalculation = () => {
+const useROICalculation = (t?: (key: string, options?: any) => string) => {
     const [selectedPlan, setSelectedPlan] = useState(() => plans[0])
     const [availableNetworks, setAvailableNetworks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -71,7 +71,8 @@ const useROICalculation = () => {
             const upgradedPlan = plans.find(plan => plan.skus >= +newSkuValue)
             if (upgradedPlan) {
                 setSelectedPlan(upgradedPlan)
-                setTotalSkusErrorMessage(`Upgraded to ${upgradedPlan.title} due to entered value exceeding the ${selectedPlan.title} plan limit threshold.`)
+                const errorMessage = t ? t('errors.upgradedPlan', { plan: upgradedPlan.title, currentPlan: selectedPlan.title }) : `Upgraded to ${upgradedPlan.title} due to entered value exceeding the ${selectedPlan.title} plan limit threshold.`
+                setTotalSkusErrorMessage(errorMessage)
             }
         }
     }

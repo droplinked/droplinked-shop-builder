@@ -2,6 +2,7 @@ import { Flex, Spinner } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../_components/layout/Layout'
@@ -13,9 +14,12 @@ import Radio from './_components/radio/Radio'
 import ROIResultRow from './_components/roi-result-row/ROIResultRow'
 import Select from './_components/select/Select'
 import useROICalculation from './utils/hooks/useROICalculation'
+import localEn from 'locales/public-pages/landings/roi-page/en.json'
+import localAr from 'locales/public-pages/landings/roi-page/ar.json'
 
 function ROIPage() {
     const navigate = useNavigate()
+    const { t } = useLocaleResources('public-pages/landings/roi-page', { en: localEn, ar: localAr })
 
     const {
         plans, selectedPlan, handlePlanChange,
@@ -24,28 +28,29 @@ function ROIPage() {
         handleTotalSkusChange, totalSkusErrorMessage,
         metrics, updateMetrics,
         buttonDisabled, handleCalculation, result, isLoading
-    } = useROICalculation()
+    } = useROICalculation(t)
 
     return (
         <Layout>
             <Flex width={"100%"} direction={"column"} gap={100}>
                 <Flex direction={"column"} alignItems={"center"} gap={4}>
-                    <SpectrumHeader fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>Product Record Calculator</SpectrumHeader>
-                    <AppTypography maxWidth={"700px"} textAlign={"center"} fontSize={{ base: 16, xl: 18 }} color={"#fff"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
+                    <SpectrumHeader fontSize={{ base: 24, md: 28, lg: 36, xl: 40 }}>{t('pageTitle')}</SpectrumHeader>
+                    <AppTypography maxWidth={"700px"} textAlign={"center"} fontSize={{ base: 16, xl: 18 }} color={"#fff"}>{t('pageDescription')}</AppTypography>
                 </Flex>
                 <Flex direction={{ base: "column", xl: "row" }} gap={{ base: 6, xl: 9 }}>
                     {/* left side */}
                     <Flex flex={1.75} direction={"column"} gap={6}>
-                        <Container title='Plans'>
+                        <Container title={t('sections.plans')}>
                             {plans.map((plan, index) => <Radio
                                 key={index}
                                 plan={plan}
                                 isSelected={selectedPlan?.title === plan.title}
                                 onChange={() => handlePlanChange(plan)}
+                                t={t}
                             />)}
                         </Container>
 
-                        <Container title='Protocols'>
+                        <Container title={t('sections.protocols')}>
                             {isLoading ?
                                 <Spinner />
                                 :
@@ -53,37 +58,37 @@ function ROIPage() {
                             }
                         </Container>
 
-                        <Container title='Product Details'>
-                            <Input label='Service Fee' value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollar />} tooltipText='Baseline cost associated with plan selected' onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
-                            <Input label='Total SKUs' value={productDetails.totalSkus} errorMessage={totalSkusErrorMessage} onChange={handleTotalSkusChange} />
-                            <Input label='Product Record Count' value={productDetails.productRecordCount} onChange={(e) => updateProductDetails("productRecordCount", e.target.value)} />
-                            <Input label='Transaction Count' value={productDetails.transactionCount} onChange={(e) => updateProductDetails("transactionCount", e.target.value)} />
+                        <Container title={t('sections.productDetails')}>
+                            <Input label={t('inputs.serviceFee.label')} value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollar />} tooltipText={t('inputs.serviceFee.tooltip')} onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
+                            <Input label={t('inputs.totalSkus.label')} value={productDetails.totalSkus} errorMessage={totalSkusErrorMessage} onChange={handleTotalSkusChange} />
+                            <Input label={t('inputs.productRecordCount.label')} value={productDetails.productRecordCount} onChange={(e) => updateProductDetails("productRecordCount", e.target.value)} />
+                            <Input label={t('inputs.transactionCount.label')} value={productDetails.transactionCount} onChange={(e) => updateProductDetails("transactionCount", e.target.value)} />
                         </Container>
 
-                        <Container title='Financial and Performance Metrics'>
-                            <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollar />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
-                            <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales' onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
-                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySalesPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales captured' onChange={(e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value)} />
+                        <Container title={t('sections.financialMetrics')}>
+                            <Input label={t('inputs.averageOrderValue.label')} value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollar />} tooltipText={t('inputs.averageOrderValue.tooltip')} onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
+                            <Input label={t('inputs.royaltyPercentage.label')} value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText={t('inputs.royaltyPercentage.tooltip')} onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
+                            <Input label={t('inputs.capturedSecondarySalesPercentage.label')} value={metrics.CapturedSecondarySalesPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText={t('inputs.capturedSecondarySalesPercentage.tooltip')} onChange={(e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value)} />
                         </Container>
                     </Flex>
 
                     {/* right side */}
                     <Flex flex={1} direction={"column"} flexShrink={0} gap={6}>
-                        <Container title='Return on Investment'>
-                            <ROIResultRow title='Gross Investment' value={result.grossInvestment} />
-                            <ROIResultRow title='Gross Merchandise Value (GMV)' value={result.grossMerchandiseValue} />
-                            <ROIResultRow title='Gross Captured Value' value={result.grossCapturedValue} />
-                            <ROIResultRow title='Return on Investment (ROI)' value={result.ROI} />
+                        <Container title={t('sections.roi')}>
+                            <ROIResultRow title={t('results.grossInvestment')} value={result.grossInvestment} />
+                            <ROIResultRow title={t('results.grossMerchandiseValue')} value={result.grossMerchandiseValue} />
+                            <ROIResultRow title={t('results.grossCapturedValue')} value={result.grossCapturedValue} />
+                            <ROIResultRow title={t('results.roi')} value={result.ROI} />
                         </Container>
-                        <BasicButton isDisabled={buttonDisabled} borderRadius={8} onClick={handleCalculation}>Calculate</BasicButton>
+                        <BasicButton isDisabled={buttonDisabled} borderRadius={8} onClick={handleCalculation}>{t('buttons.calculate')}</BasicButton>
                     </Flex>
                 </Flex>
             </Flex>
 
             <StarryBorder
-                title='Enquire to learn more'
-                description='Minimize fraud, adhere to compliance, increase conversions for your organization'
-                buttonText='Contact Us'
+                title={t('starryBorder.title')}
+                description={t('starryBorder.description')}
+                buttonText={t('buttons.contactUs')}
                 onButtonClick={() => navigate("/contact-us")}
             />
         </Layout>
