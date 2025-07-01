@@ -1,7 +1,10 @@
 import { Heading, Text } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function NewsletterHeader() {
+    const { t } = useLocaleResources('common')
+
     return (
         <>
             <Heading
@@ -10,7 +13,7 @@ function NewsletterHeader() {
                 fontWeight={500}
                 color="text.white"
             >
-                Stay up to date
+                {t('stayUpToDate')}
             </Heading>
             <Text
                 marginTop={1}
@@ -18,7 +21,7 @@ function NewsletterHeader() {
                 fontSize={{ base: 14, xl: 16 }}
                 color="text.subtext.placeholder.dark"
             >
-                Join our mailing list to stay up to date with the latest news
+                {t('newsletterDescription')}
             </Text>
         </>
 

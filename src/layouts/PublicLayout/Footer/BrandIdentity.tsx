@@ -6,6 +6,7 @@ import { InstagramMd } from 'assets/icons/SocialMedia/Colorless/Instagram/Instag
 import { LinkedinMd } from 'assets/icons/SocialMedia/Colorless/LinkedIn/LinkedinMd'
 import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/TelegramMd'
 import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -28,6 +29,8 @@ const ICON_WRAPPER_STYLES = {
 } as const
 
 function BrandIdentity() {
+    const { t } = useLocaleResources('common')
+
     return (
         <Box>
             <Flex
@@ -44,7 +47,7 @@ function BrandIdentity() {
             </Flex>
 
             <Text fontSize={{ base: 14, md: 16 }} fontWeight={500} color="text.white">
-                Commerce tools to sell and settle transparently
+                {t('commerceTagline')}
             </Text>
 
             <Flex marginBlock={{ base: 4, xl: 6 }} gap={2}>

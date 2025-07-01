@@ -1,28 +1,32 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
-import publicMegaMenuItems from 'data/publicMegaMenuItems'
+import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from "react-router-dom"
 
-const SUPPORT_LINKS = [
-    { label: 'Contact Us', href: '/contact' },
-    { label: 'Brand Assets', href: '/brand-assets' },
-    { label: 'Developer Kit', href: '/developer-kit', isExternal: true },
-    { label: 'Help Center', href: '/help-center', isExternal: true }
-] as const
-
-const COMPANY_LINKS = [
-    { label: 'Home', href: '/' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Affiliate', href: '/affiliate' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'About', href: '/about' }
-] as const
-
 export default function NavigationLinks() {
+    const { t } = useLocaleResources('common')
+    const publicMegaMenuItems = getPublicMegaMenuItems(t)
+    
+    const SUPPORT_LINKS = [
+        { label: t('contactUs'), href: '/contact' },
+        { label: t('brandAssets'), href: '/brand-assets' },
+        { label: t('developerKit'), href: '/developer-kit', isExternal: true },
+        { label: t('helpCenter'), href: '/help-center', isExternal: true }
+    ] as const
+
+    const COMPANY_LINKS = [
+        { label: t('home'), href: '/' },
+        { label: t('pricing'), href: '/pricing' },
+        { label: t('affiliate'), href: '/affiliate' },
+        { label: t('blog'), href: '/blog' },
+        { label: t('about'), href: '/about' }
+    ] as const
+    
     const navigationLinks = [
         ...publicMegaMenuItems.slice(0, 2),
-        { label: 'Support', links: SUPPORT_LINKS },
-        { label: 'Company', links: COMPANY_LINKS }
+        { label: t('support'), links: SUPPORT_LINKS },
+        { label: t('company'), links: COMPANY_LINKS }
     ]
 
     return (
