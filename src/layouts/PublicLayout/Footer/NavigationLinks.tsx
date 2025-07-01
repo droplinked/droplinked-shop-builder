@@ -5,16 +5,16 @@ import { Link } from "react-router-dom"
 
 const SUPPORT_LINKS = [
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Brand Assets', href: '/brand-assets' },
-    { label: 'Developer Kit', href: '/developer-kit', isExternal: true },
-    { label: 'Help Center', href: '/help-center', isExternal: true }
+    { label: 'Brand Assets', href: '/brand-assets', isExternal: true },
+    { label: 'Developer Kit', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
+    { label: 'Help Center', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
 ] as const
 
 const COMPANY_LINKS = [
     { label: 'Home', href: '/' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Affiliate', href: '/affiliate' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Blog', href: '/blogs' },
     { label: 'About', href: '/about' }
 ] as const
 
