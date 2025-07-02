@@ -1,27 +1,18 @@
-import { Grid, useBreakpointValue } from '@chakra-ui/react'
+import { Grid, GridProps, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import Card from './Card'
 
-export interface CardData {
+export interface CardData extends GridProps {
     icon?: React.ReactNode
     title: string
     description: string
-    children?: React.ReactNode
-    gridColumn?: string | { base?: string; md?: string; lg?: string }
     hasBackgroundOverlay?: boolean
     innerOverlay?: string
 }
 
-interface Props {
+interface Props extends GridProps {
     cardsData: CardData[]
-    templateColumns?: {
-        base?: string
-        md?: string
-        lg?: string
-    }
     hasHoverEffect?: boolean
-    gap?: number
-    flexDirection?: 'column' | 'column-reverse'
     hasGradiantOverlay?: boolean
 }
 

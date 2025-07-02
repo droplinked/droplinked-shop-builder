@@ -6,7 +6,6 @@ import { CardData } from "./Cards"
 
 interface CardProps extends CardData {
     hasHoverEffect?: boolean
-    flexDirection?: 'column' | 'column-reverse'
     hasGradiantOverlay?: boolean
     innerOverlay?: string
 }

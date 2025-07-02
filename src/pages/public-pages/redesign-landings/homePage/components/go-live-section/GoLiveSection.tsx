@@ -17,12 +17,12 @@ export default function GoLiveSection() {
             sectionTitle="GO LIVE IN MINUTES"
             headingTitle={`Effortlessly Designed \n Storefronts and Marketplaces`}
             headingSubtitle={`droplinked makes it simple to sell physical and digital inventory while allowing you \n to earn in cash or crypto`}
-            typographySvg={<HowItWorks style={{ marginTop: "48px" }} />}
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
                     <AppButton rightIcon={<ArrowrightMd />}>Get Started</AppButton>
                 </Link>
             }
+            typographySvg={<HowItWorks style={{ marginTop: "48px" }} />}
         >
             <Stepper {...stepControllerValues} />
         </SectionContainer>
