@@ -2,6 +2,10 @@ import { Box } from '@chakra-ui/react'
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 
+/**
+ * Wrapper component for creating a horizontal scrolling marquee with gradient fade effects on sides
+ * @param children - React nodes to be displayed in the scrolling marquee
+ */
 export default function MarqueeWrapper({ children }: { children: React.ReactNode }) {
     return (
         <Box

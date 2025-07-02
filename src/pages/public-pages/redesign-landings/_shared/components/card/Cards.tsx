@@ -16,6 +16,10 @@ interface Props extends GridProps {
     hasGradiantOverlay?: boolean
 }
 
+/**
+ * Grid container that renders multiple Card components.
+ * Manages responsive layout and passes shared props to individual Card instances.
+ */
 export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect, flexDirection, hasGradiantOverlay }: Props) {
     const responsiveGap = useBreakpointValue({ base: 4, "2xl": 6 })
 
