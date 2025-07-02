@@ -94,7 +94,6 @@ function SignInForm() {
                             </Checkbox>
                             <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
                             {t('signIn.resetPassword')} 
-                            {/* TODO : add link to reset password page  Text:Reset Password */}
                             </InteractiveText>
                         </Flex>
 

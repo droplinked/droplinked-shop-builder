@@ -15,7 +15,7 @@
       "lowercase": "One lowercase letter",
       "uppercase": "One uppercase letter",
       "length": "8 characters or more",
-      "special": "One special character",
+      "special": "One special characsignIn.resetPasswordter",
       "digit": "One digit"
     },
     "loading": "Loading",
@@ -68,7 +68,8 @@
     "rememberPassword": "Remember my password",
     "signInButton": "Sign In",
     "noAccountText": "Don't have an account?",
-    "createAccountText": "Join us and create one!"
+    "createAccountText": "Join us and create one!",
+    "resetPassword" : "Reset Password"
   },
   "signUp": {
     "subtitle": "Complete the details below or use your Google account.",

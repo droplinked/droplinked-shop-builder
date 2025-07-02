@@ -68,7 +68,8 @@
     "rememberPassword": "تذكر كلمة المرور الخاصة بي",
     "signInButton": "تسجيل الدخول",
     "noAccountText": "ليس لديك حساب؟",
-    "createAccountText": "انضم إلينا وأنشئ حسابًا!"
+    "createAccountText": "انضم إلينا وأنشئ حسابًا!",
+    "resetPassword": "إعادة تعيين كلمة المرور" 
   },
   "signUp": {
     "subtitle": "أكمل التفاصيل أدناه أو استخدم حساب جوجل الخاص بك.",
