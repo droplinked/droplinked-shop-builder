@@ -6,7 +6,7 @@ import localEn from 'locales/public-pages/redesign-landings/homePage/en.json'
 import localAr from 'locales/public-pages/redesign-landings/homePage/ar.json'
 import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'utils/constants/socialMediaLinks'
 import SectionContainer from './SectionContainer/SectionContainer'
-import Community from '../../crossmint/svgs/Community'
+import Community from '../svgs/Community'
 
 export default function JoinTheCommuity() {
     const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
@@ -23,6 +23,7 @@ export default function JoinTheCommuity() {
                 width="100%"
                 templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' }}
                 gap={4}
+                zIndex={1}
             >
                 {[...SOCIAL_MEDIA_LINKS, BLUE_SKY_LINK].map((socialMediaLink, index) => (
                     <Box

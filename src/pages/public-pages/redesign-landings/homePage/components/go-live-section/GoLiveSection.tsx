@@ -21,12 +21,12 @@ export default function GoLiveSection() {
             sectionTitle={t('goLive.sectionTitle')}
             headingTitle={t('goLive.headingTitle')}
             headingSubtitle={t('goLive.headingSubtitle')}
-            typographySvg={<HowItWorks style={{ marginTop: "48px" }} />}
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
                     <AppButton rightIcon={<ArrowrightMd />}>{t('goLive.getStarted')}</AppButton>
                 </Link>
             }
+            typographySvg={<HowItWorks style={{ marginTop: "48px" }} />}
         >
             <Stepper {...stepControllerValues} />
         </SectionContainer>

@@ -1,15 +1,6 @@
 import React from 'react'
 
-export interface InlineVideoPlayerProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
-    width?: string | number;
-    height?: string | number;
-    muted?: boolean;
-    playsInline?: boolean;
-    autoPlay?: boolean;
-    loop?: boolean;
-}
-
-const InlineVideoPlayer: React.FC<InlineVideoPlayerProps> = (props) => {
+const InlineVideoPlayer: React.FC<React.VideoHTMLAttributes<HTMLVideoElement>> = (props) => {
     const {
         onEnded,
         ...otherProps

@@ -4,6 +4,10 @@ import { partners } from '../../utils/partnersList'
 import SectionContainer from '../SectionContainer/SectionContainer'
 import MarqueeWrapper from './MarqueeWrapper'
 
+/**
+ * Section component that displays ecosystem partners in a scrolling marquee
+ * Uses MarqueeWrapper to create horizontal scrolling effect with partner icons
+ */
 export default function MarqueeSection() {
     return (
         <SectionContainer sectionTitle="ECOSYSTEM PARTNERS" paddingBlock={6}>

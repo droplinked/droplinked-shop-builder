@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import UserMenu from './UserMenu'
 
-const AuthButtons = () => {
+function AuthButtons() {
     const navigate = useNavigate()
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { user } = useAppStore()
     const { t } = useLocaleResources('common')
+
+    if (user) return <UserMenu />
 
     const GetStartedButton = () => (
         <AppButton
@@ -21,8 +23,6 @@ const AuthButtons = () => {
             {t('getStarted')}
         </AppButton>
     )
-
-    if (user) return <UserMenu />
 
     if (isMobile) return <GetStartedButton />
 

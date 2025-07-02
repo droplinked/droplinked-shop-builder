@@ -10,17 +10,17 @@ export default function NavigationLinks() {
     
     const SUPPORT_LINKS = [
         { label: t('contactUs'), href: '/contact' },
-        { label: t('brandAssets'), href: '/brand-assets' },
-        { label: t('developerKit'), href: '/developer-kit', isExternal: true },
-        { label: t('helpCenter'), href: '/help-center', isExternal: true }
+        { label: t('brandAssets'), href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
+        { label: t('developerKit'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
+        { label: t('helpCenter'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
     ] as const
 
     const COMPANY_LINKS = [
         { label: t('home'), href: '/' },
-        { label: t('pricing'), href: '/pricing' },
-        { label: t('affiliate'), href: '/affiliate' },
-        { label: t('blog'), href: '/blog' },
-        { label: t('about'), href: '/about' }
+        { label: t('publicHeaderLinks.pricing'), href: '/plans' },
+        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate' },
+        { label: t('publicHeaderLinks.blog'), href: '/blogs' },
+        { label: t('publicHeaderLinks.about'), href: '/about' }
     ] as const
     
     const navigationLinks = [

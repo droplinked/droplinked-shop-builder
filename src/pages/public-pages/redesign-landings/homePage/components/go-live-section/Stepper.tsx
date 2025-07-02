@@ -12,8 +12,6 @@ export default function Stepper({ containerRef, step, completedSteps, fixedPerce
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
-            px={{ base: 4, md: 8, lg: 12 }}
-            className="stepper-content"
         >
             <AnimationFrame
                 LottieView={LottieView}

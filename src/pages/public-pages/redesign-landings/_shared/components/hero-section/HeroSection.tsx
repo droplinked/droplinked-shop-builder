@@ -2,19 +2,33 @@ import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import HeroAnimation from './HeroAnimation'
 import { LazyLoad } from '../LazyLoad'
-import { InlineVideoPlayerProps } from '../InlineVideoPlayer'
 
+/**
+ * Props for HeroSection component
+ */
 interface HeroSectionProps {
+    /** Main title text */
     title?: string
+    /** Subtitle text */
     subtitle?: string
+    /** Additional elements to render below subtitle */
     subTitleElements?: React.ReactNode
+    /** Video URL for desktop breakpoint */
     videoDesktop?: string
+    /** Video URL for tablet breakpoint */
     videoTablet?: string
+    /** Video URL for mobile breakpoint */
     videoMobile?: string
+    /** Custom styles for video player */
     videoStyle?: React.CSSProperties
-    playerProps?: InlineVideoPlayerProps
+    /** HTML video element props */
+    playerProps?: React.VideoHTMLAttributes<HTMLVideoElement>
 }
 
+/**
+ * Hero section component with responsive background images and embedded video animation.
+ * Uses HeroAnimation component for video playback with breakpoint-specific sources.
+ */
 export default function HeroSection({
     title,
     subtitle,
