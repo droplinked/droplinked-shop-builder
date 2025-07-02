@@ -1,10 +1,10 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
-import { IBlog } from "../blogs.interface";
+import { IBlogDetail } from "../blogs.interface";
 import BlogContent from "./blog.content";
 
-function BlogDetails({ blog }: { blog: IBlog }) {
+function BlogDetails({ blog }: { blog: IBlogDetail }) {
     return (
         <Flex mt={"40px"} direction={"column"} gap={12} p={{ base: 4, md: 8, lg: "64px" }}>
             <Image width={"100%"} height={{ md: "450px", base: "300px" }} src={blog.image} objectFit={"cover"} />

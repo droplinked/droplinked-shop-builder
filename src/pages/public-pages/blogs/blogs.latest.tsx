@@ -2,10 +2,10 @@ import { Box, Flex, HStack, Image } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
-import { IBlog } from "./blogs.interface";
+import { IBlogDetail } from "./blogs.interface";
 import { getTimeAgo } from "utils/helpers";
 
-const LatestBlog = ({ blog }: { blog: IBlog }) => {
+const LatestBlog = ({ blog }: { blog: IBlogDetail }) => {
     return (
         <Box width={"full"} pos={"relative"} height={"512px"}>
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
