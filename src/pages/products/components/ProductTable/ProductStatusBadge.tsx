@@ -7,8 +7,19 @@ interface Props {
 }
 
 export default function ProductStatusBadge({ status, purchaseAvailable }: Props) {
-    const badgeKey = purchaseAvailable ? status : 'PRIVATE'
-    const badgeProps = statusMap[badgeKey]
+    const normalizedStatus = String(status).toUpperCase()
+    const badgeKey = purchaseAvailable ? normalizedStatus : 'PRIVATE'
+    const badgeProps = statusMap[badgeKey] || statusMap['PRIVATE']
+
+    if (!badgeProps) {
+        return (
+            <AppBadge
+                text="Unknown"
+                status="neutral"
+                size="24"
+            />
+        )
+    }
 
     return (
         <AppBadge
