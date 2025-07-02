@@ -1,4 +1,5 @@
 import { Flex, SimpleGrid, Switch, Text } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { printServices } from 'services/product/productServices'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
@@ -8,6 +9,7 @@ import FormControl from '../../../common/FormControl'
 import LoadingPlaceholder from '../../../common/LoadingPlaceholder'
 
 export default function WalletOptions() {
+    const { t } = useLocaleResources('products');
     const { data, isFetching } = useQuery({
         queryFn: printServices,
         queryKey: 'printServices',
@@ -28,7 +30,7 @@ export default function WalletOptions() {
 
     return (
         <FormControl
-            label="Wallet Options"
+            label={t('fields.pod.walletOptions.label')}
             errorMessage={getFieldErrorMessage(errors.m2m_positions)}
         >
             {

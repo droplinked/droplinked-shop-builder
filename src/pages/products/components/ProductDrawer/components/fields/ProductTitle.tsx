@@ -1,24 +1,26 @@
 import AppInput from 'components/redesign/input/AppInput'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import ImproveWithAi from '../common/ImproveWithAi'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 
 function ProductTitle() {
+    const { t } = useLocaleResources('products');
     const { values: { product_type, title }, errors, setFieldValue } = useProductForm()
     const improveAI = useImproveAI({ type: 'title' });
     const { isImproveLoading, isProTrialModalOpen, handleCloseProTrialModal } = improveAI
 
-    const label = product_type === "EVENT" ? 'Event Name' : 'Product Name'
+    const label = product_type === "EVENT" ? t('fields.title.eventName') : t('fields.title.productName')
 
     return (
         <>
             <AppInput
                 label={label}
-                description='Enter a unique product name. This will be visible to customers.'
+                description={t('fields.title.description')}
                 inputProps={{
-                    placeholder: "e.g., Handmade Ceramic Mug",
+                    placeholder: t('fields.title.placeholder'),
                     value: title,
                     isRequired: true,
                     fontSize: 16,

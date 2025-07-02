@@ -2,6 +2,7 @@ import { Box, ChakraProps, Flex, Menu, MenuButton, MenuItem, MenuList, useDisclo
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from "react";
 import { MagicwandSm } from 'assets/icons/AI/MagicWand/MagicwandSm';
 
@@ -24,44 +25,45 @@ export default function ImproveWithAi({
     isLoaded,
     BoxStyles
 }: Props) {
+    const { t } = useLocaleResources('products');
     const { onOpen, isOpen, onClose } = useDisclosure();
 
     const items = [
         {
             icon: <AppIcons.Light />,
-            title: "Casual",
+            title: t('ai.improve.styles.casual'),
         },
         {
             icon: <AppIcons.Smile />,
-            title: "Friendly"
+            title: t('ai.improve.styles.friendly')
         },
         {
             icon: <AppIcons.Case />,
-            title: "Professional"
+            title: t('ai.improve.styles.professional')
         },
         {
             icon: <AppIcons.Rocket />,
-            title: "Inspirational"
+            title: t('ai.improve.styles.inspirational')
         },
         {
             icon: <Box sx={{ path: { stroke: "#fff" } }}><AppIcons.MedalStarOutline /></Box>,
-            title: "Luxury"
+            title: t('ai.improve.styles.luxury')
         },
         {
             icon: <AppIcons.Robot />,
-            title: "Tech_Savvy"
+            title: t('ai.improve.styles.techSavvy')
         },
     ]
 
     const buttons = [
         {
-            title: "Revert",
+            title: t('ai.improve.actions.revert'),
             icon: <AppIcons.Refresh2 />,
             color: "#fff",
             onClick: handleRevert
         },
         {
-            title: "Try Again",
+            title: t('ai.improve.actions.tryAgain'),
             icon: <AppIcons.Refresh />,
             color: "#2BCFA1",
             onClick: handleTryAgain
@@ -102,7 +104,7 @@ export default function ImproveWithAi({
                             isDisabled={isImproveLoading || isDisabled}
                             leftIcon={<MagicwandSm/>}
                         >
-                            {!isImproveLoading && "Improve With AI"}
+                            {!isImproveLoading && t('ai.improve.button')}
                         </AppButton>
                     </MenuButton>
                     <MenuList zIndex={9999} borderRadius={8} background={"neutral.gray.1000"} border={"none"} p={3} minWidth={"150px"}>

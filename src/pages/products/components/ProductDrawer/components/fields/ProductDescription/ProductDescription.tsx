@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import { Editor } from '@tinymce/tinymce-react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useImproveAI } from 'pages/products/hooks/useImproveAI'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useRef } from 'react'
@@ -11,6 +12,7 @@ import './loading.css'
 import classes from './ProductDescription.module.scss'
 
 function ProductDescription() {
+    const { t } = useLocaleResources('products');
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
     const editorRef = useRef(null);
     const improveAI = useImproveAI({ type: 'description' });
@@ -32,8 +34,8 @@ function ProductDescription() {
     return (
         <>
             <FormFieldWrapper
-                label='Description'
-                description="Describe product features and details to help customers understand what they're buying."
+                label={t('fields.description.label')}
+                description={t('fields.description.description')}
                 errorMessage={errors.description}
             >
                 <AnimatedBox flexProps={{
@@ -66,7 +68,7 @@ function ProductDescription() {
                                 content_css: "dark",
                                 body_id: "loading",
                                 height: 200,
-                                placeholder: 'Add product information here...',
+                                placeholder: t('fields.description.placeholder'),
                                 menubar: false,
                                 plugins: [
                                     'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',

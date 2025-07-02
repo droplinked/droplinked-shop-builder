@@ -1,4 +1,5 @@
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useState } from 'react'
 import CategoryTree from './CategoryTree/CategoryTree'
@@ -6,6 +7,7 @@ import ProductList from './ProductList/ProductList'
 import SelectedProductDetails from './SelectedProductDetails'
 
 function PODProductCatalog() {
+    const { t } = useLocaleResources('products');
     const { values: { pod_blank_product_id } } = useProductForm()
     const [selection, setSelection] = useState({ categoryId: null, productId: null })
 
@@ -47,8 +49,8 @@ function PODProductCatalog() {
 
     return (
         <FormFieldWrapper
-            label="Product Catalog"
-            description="Select a category, product, or view product details."
+            label={t('fields.pod.productCatalog.label')}
+            description={t('fields.pod.productCatalog.description')}
             isRequired
         >
             {renderContent()}

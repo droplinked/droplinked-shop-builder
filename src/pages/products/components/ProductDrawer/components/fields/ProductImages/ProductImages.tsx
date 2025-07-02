@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
 import useFileUpload from 'hooks/useFileUpload/useFileUpload'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
 import { getFileSizeInMB } from 'utils/helpers'
@@ -11,6 +12,7 @@ import MediaActions from './MediaActions'
 export default function ProductImages() {
     const { values: { media }, errors, setFieldValue } = useProductForm()
     const { mutateAsync, isLoading } = useFileUpload()
+    const { t } = useLocaleResources('products')
 
     const sortedMedia = media.slice().sort((a, b) => (b.isMain ? 1 : 0) - (a.isMain ? 1 : 0))
 
@@ -33,14 +35,14 @@ export default function ProductImages() {
             setFieldValue("media", updatedMedia)
         }
         catch (error) {
-            console.error("File upload failed:", error)
+            console.error(t('fields.productImages.fileUploadFailed'), error)
         }
     }
 
     return (
         <FormFieldWrapper
-            label="Product Images"
-            description="Upload images or videos that visually showcase the product."
+            label={t('fields.productImages.label')}
+            description={t('fields.productImages.description')}
             errorMessage={errors.media?.toString()}
         >
             <Flex direction="column" gap={4}>

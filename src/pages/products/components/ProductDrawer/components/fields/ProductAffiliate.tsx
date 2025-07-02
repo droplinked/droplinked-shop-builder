@@ -1,10 +1,12 @@
 import AppIcons from 'assets/icon/Appicons'
 import AppInput from 'components/redesign/input/AppInput'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { ChangeEvent } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductAffiliate() {
+    const { t } = useLocaleResources('products');
     const { values, setFieldValue, errors } = useProductForm()
 
     function handleToggle(checked: boolean) {
@@ -22,8 +24,8 @@ function ProductAffiliate() {
 
     return (
         <SwitchBox
-            title="Affiliate Market"
-            description="Enable this to allow co-sellers to import and sell this product."
+            title={t('fields.affiliate.title')}
+            description={t('fields.affiliate.description')}
             switchProps={{
                 isChecked: values.canBeAffiliated,
                 onChange: (event) => handleToggle(event.target.checked)
@@ -38,7 +40,7 @@ function ProductAffiliate() {
                             min: 0,
                             max: 99.99,
                             step: 0.01,
-                            placeholder: '15',
+                            placeholder: t('fields.affiliate.commissionPlaceholder'),
                             value: values.commission,
                             onChange: handleCommissionChange
                         }}

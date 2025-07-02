@@ -1,10 +1,12 @@
 import AppDatePicker from 'components/redesign/date-picker/AppDatePicker'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useProductForm from 'pages/products/hooks/useProductForm'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductReleaseDate() {
+    const { t } = useLocaleResources('products');
     const { values: { launchDate }, setFieldValue, errors } = useProductForm()
     const [releaseDateSwitch, setReleaseDateSwitch] = useState(launchDate ? true : false)
 
@@ -15,8 +17,8 @@ function ProductReleaseDate() {
 
     return (
         <SwitchBox
-            title='Release Date'
-            description='Select a specific release date for this product.'
+            title={t('fields.releaseDate.title')}
+            description={t('fields.releaseDate.description')}
             switchProps={{
                 isChecked: releaseDateSwitch,
                 onChange: (e) => handleToggleSwitch(e.target.checked)

@@ -18,7 +18,7 @@
       "description": "Sell digital items like files, in-game assets and NFTs."
     },
     "pod": {
-      "title": "POD",
+      "title": "Print on Demand",
       "description": "Offer custom produced items on-demand, such as apparel and mugs."
     },
     "events": {
@@ -97,7 +97,7 @@
     }
   },
   "productDrawer": {
-    "title": "Product Details",
+    "title": "Product",
     "sections": {
       "basic": "Basic Information",
       "pricing": "Pricing",
@@ -107,13 +107,10 @@
       "variants": "Variants"
     },
     "actions": {
-      "save": "Save Product",
-      "cancel": "Cancel",
-      "delete": "Delete Product",
       "discard": "Discard",
-      "saveAsDraft": "Save as draft",
-      "updateProduct": "Update Product",
-      "addProduct": "Add Product"
+      "saveAsDraft": "Save as Draft",
+      "addProduct": "Add Product",
+      "updateProduct": "Update Product"
     }
   },
   "common": {
@@ -168,6 +165,108 @@
       "discard": "Discard",
       "importSelected": "Import {count} Selected Items",
       "selectItems": "Select Items to Import"
+    }
+  },
+  "fields": {
+    "title": {
+      "productName": "Product Name",
+      "eventName": "Event Name",
+      "description": "Enter a unique product name. This will be visible to customers.",
+      "placeholder": "e.g., Handmade Ceramic Mug"
+    },
+    "termsAndConditions": {
+      "title": "Custom Term of Service",
+      "description": "Display custom terms specific to this product, such as return policies or disclaimers, during checkout.",
+      "placeholder": "e.g., This product is non-refundable after purchase or legal terms applicable to this product."
+    },
+    "visibilityStatus": {
+      "label": "Visibility Status",
+      "description": "Set the visibility of this product. If deactivated, customers won't be able to add it to their cart.",
+      "public": {
+        "label": "Public",
+        "tooltip": "Customers will be able to add it to their cart"
+      },
+      "private": {
+        "label": "Private",
+        "tooltip": "Customers won't be able to add it to their cart"
+      }
+    },
+    "releaseDate": {
+      "title": "Release Date",
+      "description": "Select a specific release date for this product."
+    },
+    "deliveryMessage": {
+      "title": "Delivery Message",
+      "description": "Provide customers with important delivery details at checkout, such as estimated shipping times or special instructions.",
+      "messagePlaceholder": "e.g., Expected delivery within 5–7 business days, or include specific delivery instructions.",
+      "urlPlaceholder": "e.g., www.sample.com"
+    },
+    "affiliate": {
+      "title": "Affiliate Market",
+      "description": "Enable this to allow co-sellers to import and sell this product.",
+      "commissionPlaceholder": "15"
+    },
+    "collection": {
+      "label": "Collections",
+      "description": "Select the collection that will feature this product.",
+      "placeholder": "Select a collection"
+    }
+  },
+  "ai": {
+    "improve": {
+      "button": "Improve With AI",
+      "styles": {
+        "casual": "Casual",
+        "friendly": "Friendly",
+        "professional": "Professional",
+        "inspirational": "Inspirational",
+        "luxury": "Luxury",
+        "techSavvy": "Tech_Savvy"
+      },
+      "actions": {
+        "revert": "Revert",
+        "tryAgain": "Try Again"
+      }
+    },
+    "generate": {
+      "title": "Generate with AI",
+      "description": "Populate a product name and description based on the chosen default image.",
+      "errorMessage": "Oops! Something went wrong. Please try again."
+    }
+  },
+  "accordions": {
+    "generalInformation": {
+      "label": "General Information",
+      "eventSync": {
+        "title": "Event Sync Notice",
+        "description": "The event name and description are synced with your connected event account. To make updates, please edit directly in your event account. Changes will automatically appear here."
+      }
+    },
+    "additionalDetails": {
+      "label": "Additional Details",
+      "keywordsPlaceholder": "Type keywords to help customers find this product...",
+      "customField": {
+        "title": "Custom Field",
+        "description": "Add custom information to display during checkout."
+      }
+    },
+    "productVariants": {
+      "priceLabel": "Price",
+      "priceAndVariantsLabel": "Price & Variants"
+    },
+    "web3Settings": {
+      "label": "Web 3 Settings"
+    },
+    "shipping": {
+      "label": "Shipping"
+    },
+    "podDesign": {
+      "label": "POD Design"
+    },
+    "podMint2Merch": {
+      "label": "Mint to Merch",
+      "title": "Mint to Merch",
+      "description": "Enable customers to directly print their NFT artwork on the POD product."
     }
   }
 } 
