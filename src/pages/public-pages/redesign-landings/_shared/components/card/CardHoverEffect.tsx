@@ -1,6 +1,10 @@
 import { Box } from "@chakra-ui/react"
 import React from "react"
 
+/**
+ * Provides background hover animation effect for Card components.
+ * Can be static (always visible) or animated on hover.
+ */
 export default function CardHoverEffect({ isStatic }: { isStatic: boolean }) {
     const defaultOpacity = isStatic ? 1 : 0
 

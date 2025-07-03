@@ -14,7 +14,7 @@ export default function LayerBox({ LottieView, zIndex, opacity = 1, isActive = f
 
     return (
         <Box
-            width="100%"
+            width={{ base: "100%", md: "100%", lg: "100dvh" }}
             height="100%"
             borderRadius="24px 24px 0px 0px"
             border="1px solid rgba(43, 207, 161, 0.16)"

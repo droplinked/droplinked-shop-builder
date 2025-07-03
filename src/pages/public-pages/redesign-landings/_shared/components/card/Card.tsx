@@ -6,11 +6,14 @@ import { CardData } from "./Cards"
 
 interface CardProps extends CardData {
     hasHoverEffect?: boolean
-    flexDirection?: 'column' | 'column-reverse'
     hasGradiantOverlay?: boolean
     innerOverlay?: string
 }
 
+/**
+ * Reusable card component with customizable layout, hover effects, and overlay options.
+ * Used by the Cards component to render individual cards in a grid layout.
+ */
 export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay }: CardProps) {
     const [isHovered, setIsHovered] = useState(false)
     const hovered = isHovered && hasHoverEffect
