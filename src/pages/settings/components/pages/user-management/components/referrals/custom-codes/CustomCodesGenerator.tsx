@@ -7,10 +7,10 @@ import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
 import { ICustomReferralCode } from 'lib/apis/shop/interfaces'
 import { updateCustomReferralCodeService } from 'lib/apis/shop/shopServices'
-import useAppStore from 'stores/app/appStore'
-import { BUILDER_URL } from 'utils/app/variable'
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import useAppStore from 'stores/app/appStore'
+import { BUILDER_URL } from 'utils/app/variable'
 
 export default function CustomCodesGenerator() {
     const { mutateAsync, isLoading } = useMutation((params: ICustomReferralCode) => updateCustomReferralCodeService(params))
@@ -82,7 +82,7 @@ export default function CustomCodesGenerator() {
                             width: "24px",
                             height: "24px"
                         }}
-                        text={`${BUILDER_URL}/?modal=signup&referral=${shopInitialCustomCode.toLowerCase()}`}
+                        text={`${BUILDER_URL}/onboarding?entry=signup&referral=${shopInitialCustomCode.toLowerCase()}`}
                     />
                     <AppIcons.RedTrash onClick={() => setShopInitialCustomCode("")} style={{ width: "24px", height: "24px", cursor: "pointer" }} />
                 </Flex>
