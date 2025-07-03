@@ -29,7 +29,7 @@ export default function CustomCodesGenerator() {
                 key: 'shop',
                 params: { ...shop, referralDetails: { ...shop.referralDetails, customCode: value } }
             });
-            setShopInitialCustomCode(customCode)
+            setShopInitialCustomCode(value)
             setValue("")
             showToast({ type: "success", message: "Custom code updated successfully" });
         } catch (error) {
