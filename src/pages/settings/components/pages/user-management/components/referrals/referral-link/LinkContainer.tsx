@@ -1,15 +1,15 @@
 import { Flex } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppStore from 'stores/app/appStore'
-import { BUILDER_URL } from 'utils/app/variable'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useAppStore from 'stores/app/appStore'
+import { BUILDER_URL } from 'utils/app/variable'
 
 export default function LinkContainer() {
     const { shop: { referralDetails } } = useAppStore()
     const { code } = referralDetails ?? {}
-    const link = `${BUILDER_URL}/?modal=signup&referral=${code?.toLowerCase()}`
+    const link = `${BUILDER_URL}/onboarding?entry=signup&referral=${code?.toLowerCase()}`
 
     return (
         <Flex alignItems={"center"} gap={"6px"}>

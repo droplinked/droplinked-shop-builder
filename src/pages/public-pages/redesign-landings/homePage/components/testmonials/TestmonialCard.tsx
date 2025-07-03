@@ -6,27 +6,27 @@ import QouteIcon from '../../svgs/QouteIcon'
 export default function TestmonialCard({ feedback, name, image, time, ...flexProps }) {
     return (
         <Flex
+            height="100%"
             flexDirection="column"
-            p={{ base: 4, xl: 6 }}
+            gap="48px"
             border="1px solid"
             borderColor="neutral.gray.900"
             borderRadius={16}
-            zIndex={1}
+            padding={{ base: 4, xl: 6 }}
             background="neutral.websiteBackground"
-            gap="48px"
-            height="100%"
+            zIndex={1}
             {...flexProps}
         >
             <Text
+                height={{ base: "max-content", md: "112px", lg: "156px" }}
+                color="text.white"
                 fontSize={{ base: "14px", xl: "16px" }}
                 fontWeight={500}
-                color="text.white"
-                height={{ base: "max-content", md: "112px", lg: "156px" }}
             >
                 {feedback}
             </Text>
 
-            <Flex marginTop="auto" alignItems="center" gap={4}>
+            <Flex alignItems="center" gap={4} marginTop="auto">
                 <AppImage
                     src={image}
                     alt={`${name} avatar`}
