@@ -1,10 +1,14 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import ClaimNowButton from './ClaimNowButton'
+import { usePartnerClaimHandlers } from '../hooks/usePartnerClaimHandlers'
 
-export default function ProPlanCard() {
+export default function ProPlanCard({ partnerId }: { partnerId: string }) {
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
     const transformAmount = useBreakpointValue({ base: "scale(1)", md: "scale(0.8)", xl: "scale(1)" })
+    
+    const claimHandlers = usePartnerClaimHandlers();
+    const onClaim = claimHandlers[partnerId as keyof typeof claimHandlers];
 
     return (
         <Flex
@@ -14,7 +18,7 @@ export default function ProPlanCard() {
             height={{ base: "auto", md: "20rem" }}
             width="100%"
         >
-            <ClaimNowButton marginLeft={6} />
+            <ClaimNowButton marginLeft={6} onClaim={onClaim} />
 
             <img
                 style={{

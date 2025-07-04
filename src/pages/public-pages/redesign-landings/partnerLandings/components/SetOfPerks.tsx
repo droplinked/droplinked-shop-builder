@@ -1,3 +1,4 @@
+// Shared perks section showing benefits and features for partner offers
 import { BuildingLg } from 'assets/icons/System/Building/BuildingLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { NftLg } from 'assets/icons/System/NFT/NftLg'
@@ -6,7 +7,7 @@ import Cards, { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Perks from '../svgs/Perks'
 
-export default function SetOfPerks() {
+export default function SetOfPerks({ partnerName, trialMonths }: { partnerName: string, trialMonths: number }) {
     const cardsData: CardData[] = [
         {
             icon: <ConfigureLg color="#fff" />,
@@ -31,8 +32,8 @@ export default function SetOfPerks() {
         <SectionContainer
             icon='story'
             sectionTitle='SET OF PERKS'
-            headingTitle='Perks for Crossmint Members'
-            headingSubtitle='droplinked is offering 3 months of a pro plan for free'
+            headingTitle={`Perks for ${partnerName} Members`}
+            headingSubtitle={`droplinked is offering ${trialMonths} months of a pro plan for free`}
             typographySvg={<Perks />}
         >
             <Cards
@@ -46,4 +47,4 @@ export default function SetOfPerks() {
             />
         </SectionContainer>
     )
-}
+} 

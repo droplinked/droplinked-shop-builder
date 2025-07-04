@@ -1,18 +1,28 @@
+// Subtitle elements with partner logo for hero section
+import React from 'react'
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react'
-import Crossmint from 'assets/brand-identity/Crossmint'
+
 import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
-import React from 'react'
 import ClaimNowButton from '../ClaimNowButton'
+import { usePartnerClaimHandlers } from '../../hooks/usePartnerClaimHandlers'
 
-export default function SubtitleElements() {
+interface SubtitleElementsProps {
+    partnerId: string;
+    partnerLogo: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}
+
+export default function SubtitleElements({ partnerId, partnerLogo: PartnerLogo }: SubtitleElementsProps) {
     const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
     const crossmintSize = useBreakpointValue({ base: "20px", md: "32px", lg: "40px" })
 
+    const claimHandlers = usePartnerClaimHandlers();
+    const onClaim = claimHandlers[partnerId as keyof typeof claimHandlers];
+
     return (
         <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
-            <ClaimNowButton />
+            <ClaimNowButton onClaim={onClaim} />
 
             <Flex
                 justifyContent="center"
@@ -50,7 +60,13 @@ export default function SubtitleElements() {
                     <TransferLg color='#fff' />
 
                     <IconWrapper
-                        icon={<Crossmint width={crossmintSize} height={crossmintSize} color='#fff' />}
+                        icon={
+                            <PartnerLogo
+                            width={crossmintSize}
+                            height={crossmintSize}
+                            color="#fff"
+                          />
+                        }
                         background="rgba(43, 207, 161, 0.32)"
                         border="1px solid"
                         borderColor="rgba(43, 207, 161, 0.10)"

@@ -1,3 +1,4 @@
+// Shared modular stack section showing technical features and capabilities
 import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg'
 import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg'
@@ -8,7 +9,7 @@ import { CardData } from '../../_shared/components/card/Cards'
 import ProPlanCard from './ProPlanCard'
 import ModularStackTypography from '../svgs/ModularStackTypography'
 
-export default function ModularStack() {
+export default function ModularStack({partnerId, partnerName, trialMonths}: {partnerId: string, partnerName: string, trialMonths: number}) {
     const cardsData: CardData[] = [{
         icon: <BoxLg color="#fff" />,
         title: "Access +10k Products Instantly",
@@ -23,11 +24,11 @@ export default function ModularStack() {
         children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
     }, {
         icon: <PriceplanLg color="#fff" />,
-        title: "3 Month Pro Plan",
-        description: "Enjoy premium features for 3 months for being a loyal crossmint customer.",
+        title: `${trialMonths} Month Pro Plan`,
+        description: `Enjoy premium features for ${trialMonths} months for being a loyal ${partnerName} customer.`,
         gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
         hasBackgroundOverlay: true,
-        children: <ProPlanCard />
+        children: <ProPlanCard partnerId={partnerId} />
     }]
 
     return (
@@ -48,4 +49,4 @@ export default function ModularStack() {
             />
         </SectionContainer>
     )
-}
+} 

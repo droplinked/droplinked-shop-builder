@@ -1,9 +1,17 @@
+// Hero section component for partner landing pages with video background
 import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
 import HeroSection from '../../../_shared/components/hero-section/HeroSection'
 import SubtitleElements from './SubtitleElements'
 
-export default function CrossmintHero() {
+interface Props {
+    partnerId: string;
+    title: string;
+    subtitle: string;
+    partnerLogo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+export default function PartnerHero({partnerId, title, subtitle, partnerLogo}: Props) {
     const responsiveWidth = useBreakpointValue({ base: '250%', md: '100%' })
     const responsiveRight = useBreakpointValue({ base: '75%', md: '0%' })
 
@@ -17,16 +25,20 @@ export default function CrossmintHero() {
 
     const videoUrl = 'https://upload-file-droplinked.s3.amazonaws.com/50e0182a151bd9e3247744b6082939265383af48283b11306427b6a52a428ad7_or.webm'
 
+    // Convert \n characters to actual newlines
+    const processedTitle = title.replace(/\\n/g, '\n')
+    const processedSubtitle = subtitle.replace(/\\n/g, '\n')
+
     return (
         <HeroSection
-            title={`Powering \n Agentic Commerce`}
-            subtitle={`Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today.`}
+            title={processedTitle}
+            subtitle={processedSubtitle}
             videoDesktop={videoUrl}
             videoTablet={videoUrl}
             videoMobile={videoUrl}
             videoStyle={videoStyle}
             subTitleElements={
-                <SubtitleElements />
+                <SubtitleElements partnerId={partnerId} partnerLogo={partnerLogo} />
             }
         />
     )
