@@ -80,6 +80,7 @@ export default function HeroSection({
                                 maxWidth={{ base: "90%", md: "80%", xl: "45%" }}
                                 textAlign="center"
                                 fontSize={{ base: "14px", lg: "16px" }}
+                                whiteSpace="pre-line"
                             >
                                 {subtitle}
                             </Text>
