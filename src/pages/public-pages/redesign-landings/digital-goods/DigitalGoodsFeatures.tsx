@@ -6,7 +6,7 @@ import SectionContainer from '../_shared/components/SectionContainer/SectionCont
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
 
-function PhysicalInventoryFeatures() {
+function DigitalGoodsFeatures() {
     const cardsData: CardData[] = [
         {
             icon: <Layout2Lg color="#fff" />,
@@ -45,4 +45,4 @@ function PhysicalInventoryFeatures() {
     )
 }
 
-export default PhysicalInventoryFeatures
+export default DigitalGoodsFeatures

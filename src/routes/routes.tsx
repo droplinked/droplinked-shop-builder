@@ -22,7 +22,6 @@ import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
 import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
-import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
 import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
@@ -37,6 +36,7 @@ import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
+import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
 import HomePage from "pages/public-pages/redesign-landings/home/HomePage"
 import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
 import Rewards from "pages/public-pages/rewards/Rewards"
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
             { path: "contact-us", element: <ContactUs /> },
             { path: "privacy", element: <PrivacyPage /> },
             { path: "physical-inventory", element: <PhysicalInventoryPage /> },
-            { path: "digital-product", element: <DigitalProductPage /> },
+            { path: "digital-goods", element: <DigitalGoodsPage /> },
             { path: "pod-product", element: <PODProductPage /> },
             { path: "tokenpay", element: <TokanpayPage /> },
             { path: "payment-links", element: <PaymentLinkPage /> },

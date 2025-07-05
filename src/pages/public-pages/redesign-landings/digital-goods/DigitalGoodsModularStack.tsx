@@ -1,35 +1,35 @@
-import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import { Discount2Lg } from 'assets/icons/Finance/Discount2/Discount2Lg'
 import { GridLg } from 'assets/icons/Navigation/Grid/GridLg'
 import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
-import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
-import { DeliverytruckLg } from 'assets/icons/System/DeliveryTruck/DeliverytruckLg'
+import { NftLg } from 'assets/icons/System/NFT/NftLg'
+import { NetworkLg } from 'assets/icons/System/Network/NetworkLg'
+import { Star2Lg } from 'assets/icons/System/Star2/Star2Lg'
 import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import { Cards } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
 import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
 
-function PhysicalInventoryModularStack() {
+function DigitalGoodsModularStack() {
     const cardsData: CardData[] = [
         {
-            icon: <BoxLg color="#fff" />,
-            title: "Manage Inventory Onchain",
-            description: "Digitize and manage catalogues with blockchain-integrated tools",
+            icon: <NftLg color="#fff" />,
+            title: "Minting Assets",
+            description: "Convert art pieces, documents, audio, video and tickets into NFTs to offer within storefronts",
             gridColumn: { base: '1', md: '1', lg: '1 / 3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/49f43950da54190be0f48855598789155a36a5a2fea8cf5d98f4b3c6aedf18cc.png' />
         },
         {
-            icon: <DeliverytruckLg color="#fff" />,
-            title: "Automated Shipping and Fulfilment",
-            description: "Simplify shipping and fulfillment processes with our third-party shipping services",
+            icon: <NetworkLg color="#fff" />,
+            title: "Multi-Chain Integration",
+            description: "Supporting multiple blockchain networks to offer greater flexibility",
             gridColumn: { base: '1', md: '2', lg: '3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <ConfigureLg color="#fff" />,
-            title: "Warehouse Management",
-            description: "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction",
+            icon: <Star2Lg color="#fff" />,
+            title: "Loyalty and Royalty Programs ",
+            description: "Maximize earnings and rewards with co-selling and reselling",
             gridColumn: { base: '1', md: '1', lg: '1' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
@@ -72,4 +72,4 @@ function PhysicalInventoryModularStack() {
     )
 }
 
-export default PhysicalInventoryModularStack
+export default DigitalGoodsModularStack
