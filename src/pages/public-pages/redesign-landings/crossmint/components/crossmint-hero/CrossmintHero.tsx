@@ -1,5 +1,5 @@
-import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
+import React from 'react'
 import HeroSection from '../../../_shared/components/hero-section/HeroSection'
 import SubtitleElements from './SubtitleElements'
 

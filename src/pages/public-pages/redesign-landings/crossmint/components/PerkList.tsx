@@ -2,11 +2,11 @@ import { BuildingLg } from 'assets/icons/System/Building/BuildingLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { NftLg } from 'assets/icons/System/NFT/NftLg'
 import React from 'react'
-import Cards, { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
+import Cards, { CardData } from '../../_shared/components/card/Cards'
 import Perks from '../svgs/Perks'
 
-export default function SetOfPerks() {
+export default function PerkList() {
     const cardsData: CardData[] = [
         {
             icon: <ConfigureLg color="#fff" />,

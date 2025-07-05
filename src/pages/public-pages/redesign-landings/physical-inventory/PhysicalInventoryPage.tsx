@@ -2,24 +2,24 @@ import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
+import SignUpCta from '../_shared/components/SignUpCta'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
-import ClaimNow from './components/ClaimNow'
-import ModularStack from './components/ModularStack'
-import PerkList from './components/PerkList'
-import CrossmintHero from './components/crossmint-hero/CrossmintHero'
+import PhysicalInventoryFeatures from './PhysicalInventoryFeatures'
+import PhysicalInventoryHero from './PhysicalInventoryHero'
+import PhysicalInventoryModularStack from './PhysicalInventoryModularStack'
 
-export default function Crossmint() {
+function PhysicalInventoryPage() {
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
-        { id: 'perk-list', component: <PerkList /> },
-        { id: 'modular-stack', component: <ModularStack /> },
-        { id: 'join-the-community', component: <JoinCommunity /> },
-        { id: 'claim-now', component: <ClaimNow /> }
+        { id: 'feature-list', component: <PhysicalInventoryFeatures /> },
+        { id: 'modular-stack', component: <PhysicalInventoryModularStack /> },
+        { id: 'join-community', component: <JoinCommunity /> },
+        { id: 'sign-up-cta', component: <SignUpCta /> }
     ]
 
     return (
         <>
-            <CrossmintHero />
+            <PhysicalInventoryHero />
             <MaxWidthWrapper>
                 {sections.map((section) => (
                     <LazyLoad key={section.id}>
@@ -30,3 +30,5 @@ export default function Crossmint() {
         </>
     )
 }
+
+export default PhysicalInventoryPage

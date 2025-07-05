@@ -2,10 +2,10 @@ import { Box, Grid } from '@chakra-ui/react'
 import SocialMediaLink from 'components/redesign/community-engagement/SocialMediaLink'
 import React from 'react'
 import { BLUE_SKY_LINK, SOCIAL_MEDIA_LINKS } from 'utils/constants/socialMediaLinks'
-import SectionContainer from './SectionContainer/SectionContainer'
 import Community from '../svgs/Community'
+import SectionContainer from './SectionContainer/SectionContainer'
 
-export default function JoinTheCommuity() {
+export default function JoinCommunity() {
     return (
         <SectionContainer
             icon='globe'

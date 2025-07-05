@@ -1,10 +1,10 @@
-import React from 'react'
-import FinalCta from '../../_shared/components/FinalCta'
 import AppButton from 'components/redesign/button/AppButton'
-import { Link } from 'react-router-dom'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import FinalCta from '../../_shared/components/FinalCta'
 
-export default function JoinNow() {
+export default function SignUpCta() {
     return (
         <FinalCta
             sectionTitle='JOIN NOW'
@@ -12,9 +12,7 @@ export default function JoinNow() {
             headingSubtitle="Now’s the chance to join the next wave of commerce and make an impact "
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
-                    <AppButton
-                        mt={6}
-                    >
+                    <AppButton mt={6}>
                         Get Started
                     </AppButton>
                 </Link>

@@ -23,6 +23,5 @@ export default function ModularStackTypography(props: React.SVGProps<SVGSVGEleme
                 </linearGradient>
             </defs>
         </svg>
-
     )
 }

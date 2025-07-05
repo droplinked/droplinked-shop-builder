@@ -24,7 +24,7 @@ const publicMegaMenuItems = [
         label: 'Platform Functionalities',
         icon: Layer1Lg,
         links: [
-            { label: 'Physical Inventory', description: 'Portable Supply Chain Management', icon: BoxMd, href: '/physical-product' },
+            { label: 'Physical Inventory', description: 'Portable Supply Chain Management', icon: BoxMd, href: '/physical-inventory' },
             { label: 'Digital Goods', description: 'Subscriptions, assets and more', icon: ImageMd, href: '/digital-product' },
             { label: 'Products on Demand', description: 'Design customizable items', icon: ShirtMd, href: '/pod-product' },
             { label: 'Onchain Affiliate', description: 'Fraud-free, transparent commerce', icon: AffiliateMd, href: '/onchain-affiliate' },
