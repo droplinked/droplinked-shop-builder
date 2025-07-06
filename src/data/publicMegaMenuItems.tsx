@@ -31,7 +31,7 @@ const publicMegaMenuItems = [
             { label: 'Payment Links', description: 'Seamlessly sell anytime, anywhere', icon: LinkMd, href: '/payment-links' },
             { label: 'Product Tiles', description: 'Customizable embeds to use', icon: Layout1Md, href: '/product-tiles' },
             { label: 'Tokenizing Products', description: 'Product records for assets', icon: CoinsMd, href: '/tokenizing-products' },
-            { label: 'Onchain Subscriptions', description: 'Automate to earn more', icon: SubscriptionMd, href: '/affiliate-sass' },
+            { label: 'Onchain Subscriptions', description: 'Automate to earn more', icon: SubscriptionMd, href: '/onchain-subscriptions' },
             { label: 'Social Quests', description: 'Grow the community to earn more', icon: TargetMd, href: '/rewards' }
         ]
     },
