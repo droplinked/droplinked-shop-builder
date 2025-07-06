@@ -2,10 +2,8 @@ import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import { PriceplanLg } from 'assets/icons/Finance/PricePlan/PriceplanLg'
 import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg'
 import React from 'react'
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import { Cards } from '../../_shared/components/card'
 import { CardData } from '../../_shared/components/card/Cards'
-import ModularStackTypography from '../../_shared/svgs/ModularStackTypography'
+import PlatformFunctionalities from '../../_shared/components/PlatformFunctionalities'
 import ProPlanCard from './ProPlanCard'
 
 export default function ModularStack() {
@@ -35,21 +33,6 @@ export default function ModularStack() {
     ]
 
     return (
-        <SectionContainer
-            icon='layer-web'
-            sectionTitle='MODULAR STACK'
-            headingTitle='Platform Functionalities'
-            headingSubtitle='droplinked provides customizable tools and integrations to support any business'
-            typographySvg={<ModularStackTypography />}
-        >
-            <Cards
-                cardsData={cardsData}
-                templateColumns={{
-                    base: '1fr',
-                    md: 'repeat(2, 1fr)',
-                    lg: 'repeat(2, 1fr)'
-                }}
-            />
-        </SectionContainer>
+        <PlatformFunctionalities cardsData={cardsData} />
     )
 }
