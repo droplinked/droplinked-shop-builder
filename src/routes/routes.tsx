@@ -20,7 +20,6 @@ import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
-import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
 import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
@@ -41,6 +40,7 @@ import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
+import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilePage /> },
             { path: "tokenizing-products", element: <TokenizingProducts /> },
-            { path: "affiliate-sass", element: <AffiliateSassPage /> },
+            { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
             { path: "onchain-affiliate", element: <AffiliatePage /> },
