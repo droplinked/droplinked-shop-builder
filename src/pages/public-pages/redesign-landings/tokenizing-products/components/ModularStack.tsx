@@ -19,9 +19,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/1077f14571f36107036e16b51724eac48037ac8871e6a8e0ba3b8868f65b0904.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <LockLg color='#fff' />,
@@ -32,6 +33,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/cd97154ec5dcaa0c2789937406d2a0d99d3005eb100ce6407c2069edc18c9e05.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -45,6 +47,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/27f0c0324503901a7b96f4bb4f5093f1fba4843ec064abca96a158979c71641c.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -58,9 +61,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/fe53d50b4dd1712f368bc6efe0470b0323dd5fd9b8c38c2056b5b60396b9b3ac.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <ShowLg color='#fff' />,
@@ -71,9 +75,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/42982b54b6bee18043ea589862b5ab2e43aaea4695c5548c5b2206bdeb5a0037.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <GlobeLg color='#fff' />,
@@ -84,6 +89,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/42802b5ae65684e2e7512afb7f8e1b67414c257e2fdbbe78ed9b0c39b1a479cc.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -92,7 +98,7 @@ export default function ModularStack() {
 
     const templateColumns = {
         base: '1fr',
-        md: 'repeat(5, 1fr)',
+        md: 'repeat(4, 1fr)',
         lg: 'repeat(5, 1fr)'
     }
 

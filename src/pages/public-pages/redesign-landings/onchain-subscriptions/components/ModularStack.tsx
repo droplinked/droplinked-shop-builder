@@ -19,9 +19,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/2464553b878c29203c594252f23092bdff4ca089c6461c0f4194d0c6659af775.png'
                     alt='Protected Comissions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <AffiliateLg color='#fff' />,
@@ -32,6 +33,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/b61d798412fa0aae5a1435ba57a20469a4aa19038b6a7ba73d11747ea6295d94.png'
                     alt='Affiliate Made Easy'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -45,6 +47,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/683e10a81c48a3693f7ba9ec1a6f039250bd53f7d7b93c6d1e1b3c76d21c4b50.png'
                     alt='Real-Time Analytics'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -58,9 +61,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/d72f8bca0b4c34c1234d0af39be4062ce0e690fe2efd6685d776220764e9ca7f.png'
                     alt='Secure Affiliate Tracking'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <SendmoneyLg color='#fff' />,
@@ -71,9 +75,10 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/1ef326559123abe754e418ec1c98910f22777c96867b960bd1b5fcdc3d669498.png'
                     alt='Automated Commission Payouts and Distributions'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
-            gridColumn: { base: 'span 1', md: 'span 3' }
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' }
         },
         {
             icon: <SocialmediaLg color='#fff' />,
@@ -84,6 +89,7 @@ export default function ModularStack() {
                     src='https://upload-file-droplinked.s3.amazonaws.com/bf2eeff4f414bc8738b08456ea547b20031d49ab15cd882aae7a2738a02ac958.png'
                     alt='Expand Revenue Streams'
                     width="100%"
+                    style={{ objectFit: "cover" }}
                 />
             ),
             gridColumn: { base: 'span 1', md: 'span 2' }
@@ -92,7 +98,7 @@ export default function ModularStack() {
 
     const templateColumns = {
         base: '1fr',
-        md: 'repeat(5, 1fr)',
+        md: 'repeat(4, 1fr)',
         lg: 'repeat(5, 1fr)'
     }
 
