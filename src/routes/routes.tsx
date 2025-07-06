@@ -30,7 +30,6 @@ import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
-import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
@@ -41,6 +40,7 @@ import PaymentLinksPage from "pages/public-pages/redesign-landings/payment-links
 import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             { path: "tokenpay", element: <TokanpayPage /> },
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilePage /> },
-            { path: "tokenizing-products", element: <TokenizingProductsPage /> },
+            { path: "tokenizing-products", element: <TokenizingProducts /> },
             { path: "affiliate-sass", element: <AffiliateSassPage /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
