@@ -4,7 +4,7 @@ import { NetworkLg } from 'assets/icons/System/Network/NetworkLg'
 import React from 'react'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../../_shared/components/card/Cards'
-import Features from '../svgs/Features'
+import Features from '../../_shared/svgs/Features'
 
 export default function SetOfFeatures() {
     const cardsData: CardData[] = [
