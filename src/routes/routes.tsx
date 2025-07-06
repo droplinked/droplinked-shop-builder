@@ -21,7 +21,6 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
 import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
 import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
@@ -41,6 +40,7 @@ import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
+import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
             { path: "unstoppable-domains", element: <UdPage /> },
             { path: "polygon", element: <PolygonPage /> },
             { path: "roi", element: <ROIPage /> },
-            { path: "dpp", element: <DppPage /> },
+            { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
                 path: "blogs",
