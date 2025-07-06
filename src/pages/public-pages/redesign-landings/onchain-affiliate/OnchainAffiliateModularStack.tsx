@@ -1,56 +1,56 @@
-import { Discount2Lg } from 'assets/icons/Finance/Discount2/Discount2Lg'
-import { GridLg } from 'assets/icons/Navigation/Grid/GridLg'
-import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
-import { NftLg } from 'assets/icons/System/NFT/NftLg'
-import { NetworkLg } from 'assets/icons/System/Network/NetworkLg'
-import { Star2Lg } from 'assets/icons/System/Star2/Star2Lg'
+import { ChartLg } from 'assets/icons/Finance/Chart/ChartLg'
+import { ReceivemoneyLg } from 'assets/icons/Finance/ReceiveMoney/ReceivemoneyLg'
+import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
+import { CartLg } from 'assets/icons/System/Cart/CartLg'
+import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
+import { SoonLg } from 'assets/icons/System/Soon/SoonLg'
 import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import { Cards } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
 import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
 
-function DigitalGoodsModularStack() {
+function OnchainAffiliateModularStack() {
     const cardsData: CardData[] = [
         {
-            icon: <NftLg color="#fff" />,
-            title: "Minting Assets",
-            description: "Convert art pieces, documents, audio, video and tickets into NFTs to offer within storefronts",
+            icon: <ChartLg color="#fff" />,
+            title: "Collaborate & Grow",
+            description: "Partner with co-sellers to boost product visibility and increase sales to earn more",
             gridColumn: { base: '1', md: '1', lg: '1 / 3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/49f43950da54190be0f48855598789155a36a5a2fea8cf5d98f4b3c6aedf18cc.png' />
         },
         {
-            icon: <NetworkLg color="#fff" />,
-            title: "Multi-Chain Integration",
-            description: "Supporting multiple blockchain networks to offer greater flexibility",
+            icon: <ReceivemoneyLg color="#fff" />,
+            title: "Promote & Earn",
+            description: "Select products, submit approval requests and track the status of requests and sales on the go",
             gridColumn: { base: '1', md: '2', lg: '3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <Star2Lg color="#fff" />,
-            title: "Loyalty and Royalty Programs",
-            description: "Maximize earnings and rewards with co-selling and reselling",
+            icon: <CartLg color="#fff" />,
+            title: "Collaborate to Sell",
+            description: "When approved, products are instantly accessible so you can start promoting and earning better commissions transparently",
             gridColumn: { base: '1', md: '1', lg: '1' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <Discount2Lg color="#fff" />,
-            title: "Offer Perks, Discounts and Token-Gated Items",
-            description: "Grant exclusive access and discounts to customers that are community members",
+            icon: <DesignLg color="#fff" />,
+            title: "Create Storefronts",
+            description: "Set up a branded store, upload products, activate affiliates and set commission rates in minutes",
             gridColumn: { base: '1', md: '2', lg: '2 / 4' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <GridLg color="#fff" />,
-            title: "Embeddable Product Tiles",
-            description: "Expand reach by distributing inventory across third-party sites, marketplaces and platforms",
+            icon: <ConfigureLg color="#fff" />,
+            title: "Manage Requests",
+            description: "Review and approve co-seller requests inside the affiliate panel to whitelist trusted co-sellers",
             gridColumn: { base: '1', md: '1', lg: '1 / 3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <AffiliateLg color="#fff" />,
-            title: "Decentralized Affiliate Network",
-            description: "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more",
+            icon: <SoonLg color="#fff" />,
+            title: "Getting Started",
+            description: "Create a storefront and explore the affiliate panel to find a variety of brand products to instantly add to a shop or product tile",
             gridColumn: { base: '1', md: '2', lg: '3' },
             children: <img width="100%" height="100%" alt='products-icons' src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         }
@@ -72,4 +72,4 @@ function DigitalGoodsModularStack() {
     )
 }
 
-export default DigitalGoodsModularStack
+export default OnchainAffiliateModularStack

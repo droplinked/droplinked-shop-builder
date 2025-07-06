@@ -19,7 +19,6 @@ import PublicBlog from "pages/public-pages/blogs/blog/Blog"
 import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
-import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
 import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
@@ -33,6 +32,7 @@ import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Cro
 import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
 import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
 import HomePage from "pages/public-pages/redesign-landings/home/HomePage"
+import OnchainAffiliatePage from "pages/public-pages/redesign-landings/onchain-affiliate/OnchainAffiliatePage"
 import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
 import PaymentLinksPage from "pages/public-pages/redesign-landings/payment-links/PaymentLinksPage"
 import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
             { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
-            { path: "onchain-affiliate", element: <AffiliatePage /> },
+            { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "d3", element: <D3Page /> },
             { path: "unstoppable-domains", element: <UdPage /> },
             { path: "polygon", element: <PolygonPage /> },
