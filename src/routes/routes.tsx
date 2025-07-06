@@ -26,21 +26,21 @@ import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
 import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
+import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
 import HomePage from "pages/public-pages/redesign-landings/home/HomePage"
+import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
 import PaymentLinksPage from "pages/public-pages/redesign-landings/payment-links/PaymentLinksPage"
 import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
+import ProductTilesPage from "pages/public-pages/redesign-landings/product-tiles/ProductTilesPage"
+import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
-import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
-import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
-import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
             { path: "pod-product", element: <PODProductPage /> },
             { path: "tokenpay", element: <TokanpayPage /> },
             { path: "payment-links", element: <PaymentLinksPage /> },
-            { path: "product-tiles", element: <ProductTilePage /> },
+            { path: "product-tiles", element: <ProductTilesPage /> },
             { path: "tokenizing-products", element: <TokenizingProducts /> },
             { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
