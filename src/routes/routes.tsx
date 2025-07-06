@@ -25,7 +25,6 @@ import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page
 import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
 import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
 import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
-import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
@@ -38,6 +37,7 @@ import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-s
 import PaymentLinksPage from "pages/public-pages/redesign-landings/payment-links/PaymentLinksPage"
 import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
 import ProductTilesPage from "pages/public-pages/redesign-landings/product-tiles/ProductTilesPage"
+import ProductsOnDemandPage from "pages/public-pages/redesign-landings/products-on-demand/ProductsOnDemandPage"
 import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             { path: "privacy", element: <PrivacyPage /> },
             { path: "physical-inventory", element: <PhysicalInventoryPage /> },
             { path: "digital-goods", element: <DigitalGoodsPage /> },
-            { path: "pod-product", element: <PODProductPage /> },
+            { path: "products-on-demand", element: <ProductsOnDemandPage /> },
             { path: "tokenpay", element: <TokanpayPage /> },
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilesPage /> },
