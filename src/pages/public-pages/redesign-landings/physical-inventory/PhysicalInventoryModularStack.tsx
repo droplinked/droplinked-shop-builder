@@ -5,10 +5,9 @@ import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { DeliverytruckLg } from 'assets/icons/System/DeliveryTruck/DeliverytruckLg'
 import React from 'react'
-import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
-import { CardImage, Cards } from '../_shared/components/card'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
+import { CardImage } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
-import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
 
 function PhysicalInventoryModularStack() {
     const cardsData: CardData[] = [
@@ -56,20 +55,7 @@ function PhysicalInventoryModularStack() {
         }
     ]
 
-    return (
-        <SectionContainer
-            icon='layer-web'
-            sectionTitle='MODULAR STACK'
-            headingTitle='Platform Functionalities'
-            headingSubtitle='droplinked provides customizable tools and integrations to support any business'
-            typographySvg={<ModularStackTypography />}
-        >
-            <Cards
-                hasGradiantOverlay={true}
-                cardsData={cardsData}
-            />
-        </SectionContainer>
-    )
+    return <PlatformFunctionalities cardsData={cardsData} />
 }
 
 export default PhysicalInventoryModularStack
