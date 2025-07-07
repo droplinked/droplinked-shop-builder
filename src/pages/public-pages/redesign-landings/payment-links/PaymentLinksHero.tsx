@@ -24,15 +24,12 @@ function PaymentLinksHero() {
                     </Link>
                 </Flex>
             }
-            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/9d5f26f90db459a8281dab934d2d3f02281f5914e3433b3edc4a2c534c35b239_or.webm"
-            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/ea59a223c2ac47720ec5e5ffa6ab61930fd3a0b86cc7d3dd5eb9b7fe0fb922aa_or.webm"
-            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/9aed308658c6f01ba0874524f01000452b9424d99fceefcd7f6fbead162b1174_or.webm"
+            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/c9ae16803bfbc6cd3c8d1d10ede8dc99855747140bba8b24fb98ae49910d53e3_or.webm"
+            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/34ab5257f5265599aa8bb2d97b6504fd6274f2a39276868eaa2b710c18763ac4_or.webm"
+            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/187e89635e6e38424f2835e8cef046c562221d6a868abd448501c19a3dc3cc96_or.webm"
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline: "0px"
-            }}
-            playerProps={{
-                loop: false,
             }}
         />
     )

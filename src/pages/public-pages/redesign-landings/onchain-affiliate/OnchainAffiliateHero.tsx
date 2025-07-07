@@ -24,15 +24,12 @@ function OnchainAffiliateHero() {
                     </Link>
                 </Flex>
             }
-            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/9d5f26f90db459a8281dab934d2d3f02281f5914e3433b3edc4a2c534c35b239_or.webm"
-            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/ea59a223c2ac47720ec5e5ffa6ab61930fd3a0b86cc7d3dd5eb9b7fe0fb922aa_or.webm"
-            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/9aed308658c6f01ba0874524f01000452b9424d99fceefcd7f6fbead162b1174_or.webm"
+            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/493167ce60655e74a9cac9fe3e13a6681a28881b9b88dea3a7e9b5e54eb728ba_or.webm"
+            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/b1f78e5d4f91ba066c26ae7393fb3158adafa52bbbc8d3769230477e1602010d_or.webm"
+            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/a7319af0ec51a536b3adb2efee39b9bf9825e864dc0ee430a66a8d6014a39efe_or.webm"
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline: "0px"
-            }}
-            playerProps={{
-                loop: false,
             }}
         />
     )

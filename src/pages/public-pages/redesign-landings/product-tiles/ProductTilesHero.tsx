@@ -24,15 +24,12 @@ function ProductTilesHero() {
                     </Link>
                 </Flex>
             }
-            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/9d5f26f90db459a8281dab934d2d3f02281f5914e3433b3edc4a2c534c35b239_or.webm"
-            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/ea59a223c2ac47720ec5e5ffa6ab61930fd3a0b86cc7d3dd5eb9b7fe0fb922aa_or.webm"
-            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/9aed308658c6f01ba0874524f01000452b9424d99fceefcd7f6fbead162b1174_or.webm"
+            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/e2c7b59b531bfbf820bc38bb8648eb385ae9e85742383dcb9a39a6b67294a829_or.webm"
+            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/cc38b89e991660dd266fd2f3f91d592ecb8aac2e5fc463addba0d0f2aaf9cc91_or.webm"
+            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/e92c7282996eac8e74575d4c8b8bf5fe3f429a65730ad7d2942c756f03259c92_or.webm"
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline: "0px"
-            }}
-            playerProps={{
-                loop: false,
             }}
         />
     )

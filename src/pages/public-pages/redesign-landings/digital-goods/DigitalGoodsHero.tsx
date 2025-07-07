@@ -24,15 +24,12 @@ function DigitalGoodsHero() {
                     </Link>
                 </Flex>
             }
-            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/9d5f26f90db459a8281dab934d2d3f02281f5914e3433b3edc4a2c534c35b239_or.webm"
-            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/ea59a223c2ac47720ec5e5ffa6ab61930fd3a0b86cc7d3dd5eb9b7fe0fb922aa_or.webm"
-            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/9aed308658c6f01ba0874524f01000452b9424d99fceefcd7f6fbead162b1174_or.webm"
+            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/7a8299bded1685cb0cc8b570c7e221b97c0d95a2909955d75846fb695c0e73f2_or.webm"
+            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/a40b80c6189a488bef1e457aaa552a17768057da20375d48e8a89680150206fa_or.webm"
+            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/6433829f0fa0a91e577a06eb537f23c13d96ef9c48c78b823ac4536715f517c2_or.webm"
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline: "0px"
-            }}
-            playerProps={{
-                loop: false,
             }}
         />
     )
