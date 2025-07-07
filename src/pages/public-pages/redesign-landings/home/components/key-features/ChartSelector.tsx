@@ -11,11 +11,11 @@ interface ChartSelectorProps {
 export const ChartSelector: React.FC<ChartSelectorProps> = ({ chartNumber, setChartNumber }) => (
     <Flex
         gap={1}
-        alignItems="center"
+        alignItems="flex-start"
+        flexDirection={{ base: "column", "2xl": "row" }}
         backdropFilter="blur(10px)"
         borderRadius={8}
         border="1px solid rgba(10, 10, 10, 0.10)"
-        p={2}
     >
         <Box
             background={chartNumber === 1 ? "rgba(43, 207, 161, 0.10)" : "transparent"}
