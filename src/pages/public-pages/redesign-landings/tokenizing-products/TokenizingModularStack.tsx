@@ -1,6 +1,6 @@
 import React from 'react'
-import { CardData } from '../../_shared/components/card/Cards'
-import PlatformFunctionalities from '../../_shared/components/PlatformFunctionalities'
+import { CardData } from '../_shared/components/card/Cards'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
 import { ShieldLg } from 'assets/icons/System/Shield/ShieldLg'
 import { LockLg } from 'assets/icons/System/Lock/LockLg'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
@@ -8,7 +8,7 @@ import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import { ShowLg } from 'assets/icons/Action/Show/ShowLg'
 import { GlobeLg } from 'assets/icons/Sign/Globe/GlobeLg'
 
-export default function ModularStack() {
+export default function TokenizingModularStack() {
     const cardsData: CardData[] = [
         {
             icon: <ShieldLg color='#fff' />,

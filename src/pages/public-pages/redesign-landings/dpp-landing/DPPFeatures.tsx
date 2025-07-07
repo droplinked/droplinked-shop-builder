@@ -2,11 +2,11 @@ import { ChartLg } from 'assets/icons/Finance/Chart/ChartLg'
 import { Layer1Lg } from 'assets/icons/System/Layer1/Layer1Lg'
 import { ShieldLg } from 'assets/icons/System/Shield/ShieldLg'
 import React from 'react'
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import Cards, { CardData } from '../../_shared/components/card/Cards'
-import Features from '../../_shared/svgs/Features'
+import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
+import Cards, { CardData } from '../_shared/components/card/Cards'
+import Features from '../_shared/svgs/Features'
 
-export default function SetOfFeatures() {
+export default function DPPFeatures() {
     const cardsData: CardData[] = [
         {
             icon: <ChartLg color="#fff" />,

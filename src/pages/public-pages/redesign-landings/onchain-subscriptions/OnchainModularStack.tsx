@@ -1,6 +1,6 @@
 import React from 'react'
-import { CardData } from '../../_shared/components/card/Cards'
-import PlatformFunctionalities from '../../_shared/components/PlatformFunctionalities'
+import { CardData } from '../_shared/components/card/Cards'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
 import { ShieldLg } from 'assets/icons/System/Shield/ShieldLg'
 import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
 import { ChartLg } from 'assets/icons/Finance/Chart/ChartLg'
@@ -8,7 +8,7 @@ import { TokenpayLg } from 'assets/icons/System/Tokenpay/TokenpayLg'
 import { SendmoneyLg } from 'assets/icons/Finance/SendMoney/SendmoneyLg'
 import { SocialmediaLg } from 'assets/icons/System/SocialMedia/SocialmediaLg'
 
-export default function ModularStack() {
+export default function OnchainModularStack() {
     const cardsData: CardData[] = [
         {
             icon: <ShieldLg color='#fff' />,

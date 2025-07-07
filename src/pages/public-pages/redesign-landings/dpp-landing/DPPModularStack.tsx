@@ -5,10 +5,10 @@ import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { TechnologyLg } from 'assets/icons/System/Technology/TechnologyLg'
 import React from 'react'
-import { CardData } from '../../_shared/components/card/Cards'
-import PlatformFunctionalities from '../../_shared/components/PlatformFunctionalities'
+import { CardData } from '../_shared/components/card/Cards'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
 
-export default function ModularStack() {
+export default function DPPModularStack() {
     const cardsData: CardData[] = [
         {
             icon: <Refresh1Lg color='#fff' />,

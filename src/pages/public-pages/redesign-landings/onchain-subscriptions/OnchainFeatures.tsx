@@ -2,11 +2,11 @@ import { ChartLg } from 'assets/icons/Finance/Chart/ChartLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { TokenpayLg } from 'assets/icons/System/Tokenpay/TokenpayLg'
 import React from 'react'
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import Cards, { CardData } from '../../_shared/components/card/Cards'
-import Features from '../../_shared/svgs/Features'
+import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
+import Cards, { CardData } from '../_shared/components/card/Cards'
+import Features from '../_shared/svgs/Features'
 
-export default function SetOfFeatures() {
+export default function OnchainFeatures() {
     const cardsData: CardData[] = [
         {
             icon: <TokenpayLg color="#fff" />,

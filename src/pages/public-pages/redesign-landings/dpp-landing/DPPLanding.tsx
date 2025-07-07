@@ -4,15 +4,15 @@ import { LazyLoad } from '../_shared/components/LazyLoad'
 import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import SignUpCta from '../_shared/components/SignUpCta'
-import DppHero from './components/DppHero'
-import ModularStack from './components/ModularStack'
-import SetOfFeatures from './components/SetOfFeatures'
+import DPPFeatures from './DPPFeatures'
+import DppHero from './DppHero'
+import DPPModularStack from './DPPModularStack'
 
 export default function OnchainSubscriptions() {
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
-        { id: 'set-of-features', component: <SetOfFeatures /> },
-        { id: 'modular-stacks', component: <ModularStack /> },
+        { id: 'set-of-features', component: <DPPFeatures /> },
+        { id: 'modular-stacks', component: <DPPModularStack /> },
         { id: 'join-the-community', component: <JoinCommunity /> },
         { id: 'join-now', component: <SignUpCta /> },
     ]

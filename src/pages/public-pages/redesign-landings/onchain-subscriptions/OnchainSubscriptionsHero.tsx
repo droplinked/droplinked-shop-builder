@@ -3,7 +3,7 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import HeroSection from '../../_shared/components/hero-section/HeroSection'
+import HeroSection from '../_shared/components/hero-section/HeroSection'
 
 export default function OnchainSubscriptionsHero() {
     const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })

@@ -2,11 +2,11 @@ import { CoinsLg } from 'assets/icons/Finance/Coins/CoinsLg'
 import { GlobeLg } from 'assets/icons/Sign/Globe/GlobeLg'
 import { NetworkLg } from 'assets/icons/System/Network/NetworkLg'
 import React from 'react'
-import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import Cards, { CardData } from '../../_shared/components/card/Cards'
-import Features from '../../_shared/svgs/Features'
+import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
+import Cards, { CardData } from '../_shared/components/card/Cards'
+import Features from '../_shared/svgs/Features'
 
-export default function SetOfFeatures() {
+export default function TokenizingFeatures() {
     const cardsData: CardData[] = [
         {
             icon: <NetworkLg color="#fff" />,
