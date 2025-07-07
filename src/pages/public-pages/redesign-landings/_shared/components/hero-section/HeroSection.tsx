@@ -23,6 +23,8 @@ interface HeroSectionProps {
     videoStyle?: React.CSSProperties
     /** HTML video element props */
     playerProps?: React.VideoHTMLAttributes<HTMLVideoElement>
+    /** Children elements to render inside the hero section */
+    children?: React.ReactNode
 }
 
 /**
@@ -38,6 +40,7 @@ export default function HeroSection({
     videoMobile,
     videoStyle,
     playerProps,
+    children
 }: HeroSectionProps) {
     const backgroundImage = useBreakpointValue({
         base: "url(https://upload-file-droplinked.s3.amazonaws.com/5faebef9a91644efc0f2a81b0283762ab54982d57fcbac6969d51f4f08fde1a7.png)",
@@ -87,13 +90,15 @@ export default function HeroSection({
                         </Flex>
                         {subTitleElements}
                     </Box>
-                    <HeroAnimation
-                        videoDesktop={videoDesktop}
-                        videoTablet={videoTablet}
-                        videoMobile={videoMobile}
-                        style={videoStyle}
-                        playerProps={playerProps}
-                    />
+                    {children ||
+                        <HeroAnimation
+                            videoDesktop={videoDesktop}
+                            videoTablet={videoTablet}
+                            videoMobile={videoMobile}
+                            style={videoStyle}
+                            playerProps={playerProps}
+                        />
+                    }
                 </Box>
             </Grid>
         </LazyLoad>

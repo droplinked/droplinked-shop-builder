@@ -41,6 +41,7 @@ import ProductsOnDemandPage from "pages/public-pages/redesign-landings/products-
 import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import SocialQuests from "pages/public-pages/redesign-landings/social-quests/SocialQuests"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -107,6 +108,7 @@ const router = createBrowserRouter([
             },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            { path: "rewardsv2", element: <SocialQuests /> },
             {
                 path: "affiliate/products",
                 children: [
