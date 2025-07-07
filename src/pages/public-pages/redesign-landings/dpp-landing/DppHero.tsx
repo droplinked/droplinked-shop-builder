@@ -26,7 +26,9 @@ export default function DppHero() {
                     </Link>
                 </Flex>
             }
-            // TODO: implement Videos
+            videoDesktop='https://upload-file-droplinked.s3.amazonaws.com/daf85a8f70896bdcf168b2969d7fd472150ee208cc8c5a23f9d0e12d759abf7e_or.webm'
+            videoTablet='https://upload-file-droplinked.s3.amazonaws.com/26778725eba9b1e2bdb99eb3731005d3f01c54fefc8068c22c86210f53ca8fe9_or.webm'
+            videoMobile='https://upload-file-droplinked.s3.amazonaws.com/f9380f7618a1080622be8a4631c3d93b1167cd6d36cf05440e000c419da075a8_or.webm'
             videoStyle={{
                 margin: "48px auto auto",
                 paddingInline
