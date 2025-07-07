@@ -17,7 +17,7 @@ export default function DPPModularStack() {
             description: 'Capture and access detailed information from production to disposal, ensuring full lifecycle traceability',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/b4aa220afdf913386a2fcfd11dc2b6a96afd1afce8ec258d6ccbf1c86bcb9f52.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/d1be62b07688b9b8fb13aa60c4d2e941a890aca21958da54612d9e21b774b76b.png'
                     alt='Comprehensive Lifecycle Data'
                 />
             ),
@@ -29,7 +29,7 @@ export default function DPPModularStack() {
             description: 'Leverage state-of-the-art technologies such as blockchain, QR codes, and RFID for secure, reliable data management',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/70e949bf3c05b9c49b44a4e15b34276eabe3b2fb9c10e6f2022d4219f10f454d.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/8ac929a1d81c887f42beedb3b7fa718e3043e38554b0d601c4099a118a0290d6.png'
                     alt='Advanced Technology Integration'
                 />
             ),
@@ -41,7 +41,7 @@ export default function DPPModularStack() {
             description: 'Make informed decisions with insights into materials, sourcing, and environmental impact, driving sustainable practices',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/fd06fa4343bc6c3dd2309f6e27b483ee4707ad56ff729bc6f53a863a8c31eac6.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/c94156f4d36a429d1f957a6245cbc09c12bf8a2108c1945069482cedf4528068.png'
                     alt='Enhanced Sustainability'
                 />
             ),
@@ -53,7 +53,7 @@ export default function DPPModularStack() {
             description: 'Stay ahead of the curve with automatic compliance updates, keeping products aligned with the latest regulations',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/4adbd7578e6c7f9bbd58f50c1bf52b75a42040c6e102222b791c4feb4159b223.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/97d9bfcb7fdee0256ce22807b339fd0604613ddf8deba9cc6eea56e1a62dba03.png'
                     alt='Regulatory Compliance Made Easy'
                 />
             ),
@@ -65,7 +65,7 @@ export default function DPPModularStack() {
             description: 'Our intuitive platform allows for easy access and analysis of your data, streamlining management processes',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/acd027cae2c42ef004cff1fb8dbe3e65142fe7976a41e67cd0b6ba5d25875952.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/b36620b05d473d1dbb348d6aee59a634f4121823692142fb9d91744402754932.png'
                     alt='User-Friendly Interface'
                 />
             ),
@@ -77,7 +77,7 @@ export default function DPPModularStack() {
             description: 'Utilize rich analytics and reports to make strategic decisions, enhancing product’s value and market competitiveness',
             children: (
                 <CardImage
-                    src='https://upload-file-droplinked.s3.amazonaws.com/bb080a0e85d50b81a3023a50194e7269f827d6bcc89cfa60e3ff0325e5001a98.png'
+                    src='https://upload-file-droplinked.s3.amazonaws.com/837b856f991bc7510b970089c2beb4782b318d8301670a676505ff746da890a7.png'
                     alt='Data-Driven Decision Making'
                 />
             ),
