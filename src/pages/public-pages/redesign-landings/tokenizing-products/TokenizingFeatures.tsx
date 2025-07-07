@@ -19,12 +19,13 @@ export default function TokenizingFeatures() {
             title: "Simplifying Tokenization",
             description: "Easily tokenize luxury collectibles, physical items and other assets with NFT technology that enables custody ownership for distribution",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        }, {
+        },
+        {
             icon: <GlobeLg color="#fff" />,
             title: "Global Trading & Liquidity",
             description: "Unlock new global markets by making tokenized inventory tradable, increasing liquidity and reach with value-add partners and businesses",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        },
+        }
     ]
 
     return (

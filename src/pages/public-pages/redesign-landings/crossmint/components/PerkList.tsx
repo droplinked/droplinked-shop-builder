@@ -19,12 +19,13 @@ export default function PerkList() {
             title: "Enterprise-Level Tools",
             description: "Unlock advanced features to scale your business from the start",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        }, {
+        },
+        {
             icon: <NftLg color="#fff" />,
             title: "Seamless NFT Integration",
             description: "Create, manage, and sell NFTs on a customizable storefront",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        },
+        }
     ]
 
     return (

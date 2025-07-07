@@ -19,12 +19,13 @@ export default function OnchainFeatures() {
             title: "Automated Tracking",
             description: "Easily track affiliate sales and SaaS subscription referrals that ensure accurate, automated commission payouts between parties",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        }, {
+        },
+        {
             icon: <ConfigureLg color="#fff" />,
             title: "Seamless Integration",
             description: "Use the technology without additional coding or technical skills needed to further simplify partnership tracking between distributors and co-sellers",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        },
+        }
     ]
 
     return (

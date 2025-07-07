@@ -19,12 +19,13 @@ export default function DPPFeatures() {
             title: "Modular Transparency",
             description: "Product history visibility, public verification, consistent information",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        }, {
+        },
+        {
             icon: <ShieldLg color="#fff" />,
             title: "Security",
             description: "Immutable records and controlled access",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
-        },
+        }
     ]
 
     return (
