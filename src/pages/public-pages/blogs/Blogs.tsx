@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { HStack, VStack, useMediaQuery } from "@chakra-ui/react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Blog from "./blogs.blog";
-import { IBlog } from "./blogs.interface";
+import { IBlogListItem } from "./blogs.interface";
 import { getSuperAdminBlogs } from "lib/apis/blog/services";
 import LatestBlog from "./blogs.latest";
 import { sortByDate } from "utils/helpers";
@@ -18,7 +18,7 @@ const useScrollAnimation = (ref, length: number) => {
 };
 
 const PublicBlogs = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: getSuperAdminBlogs,
     queryKey: "super_admin_blogs_post",
   });
@@ -31,7 +31,7 @@ const PublicBlogs = () => {
 
   if (isLoading) return <LoadingBlogs />;
   
-  const blogs: IBlog[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
+  const blogs: IBlogListItem[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
   let columns;
   if (isLargerThan1024) {
     columns = [
