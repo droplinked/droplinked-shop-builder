@@ -3,20 +3,15 @@ import { BuildingLg } from 'assets/icons/System/Building/BuildingLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { NftLg } from 'assets/icons/System/NFT/NftLg'
 import React from 'react'
+import { Cards } from '../../_shared/components/card'
+import { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-<<<<<<<< HEAD:src/pages/public-pages/redesign-landings/partnerLandings/components/SetOfPerks.tsx
-import { usePartnerLanding } from '../context/PartnerLandingContext'
 import Perks from '../assets/Perks'
+import { usePartnerLanding } from '../context/PartnerLandingContext'
 
 export default function SetOfPerks() {
     const { partnerName, trialMonths } = usePartnerLanding();
     
-========
-import Cards, { CardData } from '../../_shared/components/card/Cards'
-import Perks from '../svgs/Perks'
-
-export default function PerkList() {
->>>>>>>> dev:src/pages/public-pages/redesign-landings/partnerLandings/components/PerkList.tsx
     const cardsData: CardData[] = [
         {
             icon: <ConfigureLg color="#fff" />,

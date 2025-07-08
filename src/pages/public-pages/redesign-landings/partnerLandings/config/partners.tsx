@@ -1,16 +1,16 @@
-import React from 'react';
-import D3Logo from 'assets/brand-identity/D3';
-import UnstoppableDomainsLogo from 'assets/brand-identity/UnstoppableDomains';
-import PolygonLogo from 'assets/brand-identity/Polygon';
 import CrossmintLogo from 'assets/brand-identity/Crossmint';
-import { PartnerConfig, Section } from './types';
+import D3Logo from 'assets/brand-identity/D3';
+import PolygonLogo from 'assets/brand-identity/Polygon';
+import UnstoppableDomainsLogo from 'assets/brand-identity/UnstoppableDomains';
+import React from 'react';
+import JoinCommunity from '../../_shared/components/JoinCommunity';
 import MarqueeSection from '../../_shared/components/marquee-wrapper/MarqueeSection';
-import JoinTheCommuity from '../../_shared/components/JoinTheCommuity';
-import SetOfPerks from '../components/SetOfPerks';
-import ModularStack from '../components/ModularStack';
 import ClaimNow from '../components/ClaimNow';
+import ModularStack from '../components/ModularStack';
 import D3BentoGrids from '../components/partner-specific/D3BentoGrids';
 import UDTldFeatures from '../components/partner-specific/UDTldFeatures';
+import SetOfPerks from '../components/SetOfPerks';
+import { PartnerConfig, Section } from './types';
 
 /**
  * Helper function to build partner landing page sections
@@ -32,7 +32,7 @@ const buildSections = (
     { id: 'partners', component: <MarqueeSection /> },
     { id: 'set-of-perks', component: <SetOfPerks /> },
     { id: 'modular-stack', component: <ModularStack /> },
-    { id: 'join-community', component: <JoinTheCommuity /> },
+    { id: 'join-community', component: <JoinCommunity /> },
     { id: 'claim-now', component: <ClaimNow /> },
   ];
 
