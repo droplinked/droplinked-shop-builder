@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
-import { IWalletStatusProps, renderIcon, renderSVGContent, renderSVGDefs, spinAnimation } from "./_components/WalletStatusComponents";
+import { IWalletStatusProps, renderIcon, renderSVGContent, renderSVGDefs, spinAnimation } from "utils/helpers/walletConnectionUtils";
 
 const WalletStatus: React.FC<IWalletStatusProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
     const isGreen = variant === "green";

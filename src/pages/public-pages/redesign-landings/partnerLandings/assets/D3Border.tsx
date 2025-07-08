@@ -1,5 +1,9 @@
-<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_bi_20474_659)">
+import React from 'react';
+
+export default function D3Border({ width = "96", height = "96" }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_bi_20474_659)">
         <rect width="96" height="96" rx="48" fill="url(#paint0_radial_20474_659)" />
         <rect x="0.5" y="0.5" width="95" height="95" rx="47.5" stroke="url(#paint1_radial_20474_659)" />
         <path
@@ -40,3 +44,5 @@
         </radialGradient>
     </defs>
 </svg>
+  );
+}

@@ -2,12 +2,21 @@ import { Box } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import React from "react";
 
+/**
+ * CSS animation for rotating elements (typically used for loading spinners)
+ * Rotates from 0 to 360 degrees continuously
+ */
 export const spinAnimation = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 `;
 
-export const IconFilter = ({ right = true }: { right: boolean }) => {
+/**
+ * SVG filter component for creating blur and shadow effects
+ * @param right - Boolean to position filter on left (false) or right (true) side
+ * @returns SVG filter element with sophisticated visual effects
+ */
+const IconFilter = ({ right = true }: { right: boolean }) => {
     return (
         <filter
             id={`filter1_bii_20474_640_${right}`}
@@ -31,6 +40,13 @@ export const IconFilter = ({ right = true }: { right: boolean }) => {
     );
 };
 
+/**
+ * Generates SVG gradient definitions for wallet status visual effects
+ * Creates radial gradients, linear gradients, and filter effects
+ * @param variant - Visual variant identifier for gradient IDs
+ * @param color - Base color for gradient effects
+ * @returns SVG defs element with all necessary gradients and filters
+ */
 export const renderSVGDefs = (variant: string, color: string) => (
     <defs>
         <radialGradient id={`paint0_radial_20314_11046_${variant}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(32.6192) scale(742.041 557.08)">
@@ -62,6 +78,12 @@ export const renderSVGDefs = (variant: string, color: string) => (
     </defs>
 );
 
+/**
+ * Renders the base SVG background content with gradient overlays
+ * Creates a layered visual effect with multiple background rectangles
+ * @param variant - Variant identifier for gradient references
+ * @returns SVG background elements
+ */
 export const renderSVGContent = (variant: string) => (
     <>
         <rect width="625" height="400" fill="#1C1C1C" />
@@ -70,7 +92,17 @@ export const renderSVGContent = (variant: string) => (
     </>
 );
 
+/**
+ * Renders wallet status icons with gradient styling
+ * Supports two icon types: wallet (for connection status) and tick (for success)
+ * @param icon - Icon type: "wallet" or "tick"
+ * @param variant - Variant identifier for gradient styling
+ * @param isGreen - Whether to use green color scheme (success state)
+ * @param color - Custom color for non-green states
+ * @returns Chakra UI Box containing the styled SVG icon
+ */
 export const renderIcon = (icon: string, variant: string, isGreen: boolean, color: string) => {
+    // SVG path data for different icon types
     const iconPath =
         icon === "wallet"
             ? "M53.833 76.957V66.293C53.833 63.517 55.537 61.043 58.127 60.063L76.653 53.063C79.547 51.967 82.65 54.113 82.65 57.217V66.083M64.333 76H80.667M90.093 79.617C89.113 80.573 88.553 81.95 88.693 83.42C88.903 85.94 91.213 87.783 93.733 87.783H98.167V90.56C98.167 95.39 94.223 99.333 89.393 99.333H62.607C57.777 99.333 53.833 95.39 53.833 90.56V74.857C53.833 70.027 57.777 66.083 62.607 66.083H89.393C94.223 66.083 98.167 70.027 98.167 74.857V78.217H93.453C92.147 78.217 90.957 78.73 90.093 79.617ZM100.637 80.597V85.404C100.637 86.687 99.61 87.737 98.304 87.784H93.73C91.21 87.784 88.9 85.94 88.69 83.42C88.55 81.95 89.11 80.574 90.09 79.617C90.954 78.73 92.144 78.217 93.45 78.217H98.304C99.61 78.264 100.637 79.314 100.637 80.597Z"
@@ -89,6 +121,10 @@ export const renderIcon = (icon: string, variant: string, isGreen: boolean, colo
     );
 };
 
+/**
+ * Props interface for wallet status components
+ * Defines all configurable properties for wallet status indicators
+ */
 export interface IWalletStatusProps {
     width?: string | number;
     height?: string | number;
