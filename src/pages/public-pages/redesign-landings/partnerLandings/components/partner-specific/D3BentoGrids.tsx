@@ -1,7 +1,7 @@
 // D3-specific features section with bento grid layout
 import React from 'react'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import BentoGrids from '../../svgs/BentoGrids'
+import BentoGrids from '../../assets/BentoGrids'
 
 export default function D3BentoGrids() {
 

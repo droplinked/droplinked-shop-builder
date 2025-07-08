@@ -1,28 +1,20 @@
 // Subtitle elements with partner logo for hero section
-import React from 'react'
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react'
-
+import React from 'react'
 import Drop3 from 'assets/brand-identity/Drop3'
 import { TransferLg } from 'assets/icons/Navigation/Transfer/TransferLg'
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper'
-import ClaimNowButton from '../ClaimNowButton'
-import { usePartnerClaimHandlers } from '../../hooks/usePartnerClaimHandlers'
+import { usePartnerLanding } from '../context/PartnerLandingContext'
+import ClaimNowButton from '../components/ClaimNowButton'
 
-interface SubtitleElementsProps {
-    partnerId: string;
-    partnerLogo: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
-
-export default function SubtitleElements({ partnerId, partnerLogo: PartnerLogo }: SubtitleElementsProps) {
+export default function SubtitleElements() {
+    const { logo: PartnerLogo } = usePartnerLanding();
     const droplinkedSize = useBreakpointValue({ base: "24px", md: "36px", lg: "48px" })
     const crossmintSize = useBreakpointValue({ base: "20px", md: "32px", lg: "40px" })
 
-    const claimHandlers = usePartnerClaimHandlers();
-    const onClaim = claimHandlers[partnerId as keyof typeof claimHandlers];
-
     return (
         <Flex flexDirection="column" alignItems="center" mt={{ base: 4, lg: 6 }} gap={4}>
-            <ClaimNowButton onClaim={onClaim} />
+            <ClaimNowButton />
 
             <Flex
                 justifyContent="center"

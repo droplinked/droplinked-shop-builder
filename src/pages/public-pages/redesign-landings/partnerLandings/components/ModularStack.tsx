@@ -6,10 +6,13 @@ import React from 'react'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
 import { Cards } from '../../_shared/components/card'
 import { CardData } from '../../_shared/components/card/Cards'
+import { usePartnerLanding } from '../context/PartnerLandingContext'
 import ProPlanCard from './ProPlanCard'
-import ModularStackTypography from '../svgs/ModularStackTypography'
+import ModularStackTypography from '../assets/ModularStackTypography'
 
-export default function ModularStack({partnerId, partnerName, trialMonths}: {partnerId: string, partnerName: string, trialMonths: number}) {
+export default function ModularStack() {
+    const { partnerName, trialMonths } = usePartnerLanding();
+    
     const cardsData: CardData[] = [{
         icon: <BoxLg color="#fff" />,
         title: "Access +10k Products Instantly",
@@ -28,7 +31,7 @@ export default function ModularStack({partnerId, partnerName, trialMonths}: {par
         description: `Enjoy premium features for ${trialMonths} months for being a loyal ${partnerName} customer.`,
         gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
         hasBackgroundOverlay: true,
-        children: <ProPlanCard partnerId={partnerId} />
+        children: <ProPlanCard />
     }]
 
     return (

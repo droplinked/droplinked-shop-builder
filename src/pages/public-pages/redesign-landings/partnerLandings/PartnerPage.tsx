@@ -1,7 +1,8 @@
 // Dynamic partner page component that handles all partners based on partnerId prop
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { PartnerLayout } from './components/PartnerLayout';
+import { PartnerLayout } from './layout/PartnerLayout';
+import { PartnerLandingProvider } from './context/PartnerLandingContext';
 import { PARTNER_CONFIGS } from './config/partners';
 import { PartnerId } from './config/types';
 
@@ -17,5 +18,9 @@ export default function PartnerPage({ partnerId }: PartnerPageProps) {
   
   const config = PARTNER_CONFIGS[partnerId as PartnerId];
   
-  return <PartnerLayout config={config} />;
+  return (
+    <PartnerLandingProvider partnerConfig={config}>
+      <PartnerLayout />
+    </PartnerLandingProvider>
+  );
 } 

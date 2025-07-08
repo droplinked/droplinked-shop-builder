@@ -5,9 +5,12 @@ import { NftLg } from 'assets/icons/System/NFT/NftLg'
 import React from 'react'
 import Cards, { CardData } from '../../_shared/components/card/Cards'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import Perks from '../svgs/Perks'
+import { usePartnerLanding } from '../context/PartnerLandingContext'
+import Perks from '../assets/Perks'
 
-export default function SetOfPerks({ partnerName, trialMonths }: { partnerName: string, trialMonths: number }) {
+export default function SetOfPerks() {
+    const { partnerName, trialMonths } = usePartnerLanding();
+    
     const cardsData: CardData[] = [
         {
             icon: <ConfigureLg color="#fff" />,

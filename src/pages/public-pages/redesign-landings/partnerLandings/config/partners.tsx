@@ -15,9 +15,6 @@ import UDTldFeatures from '../components/partner-specific/UDTldFeatures';
 /**
  * Helper function to build partner landing page sections
  * 
- * @param partnerId - Unique identifier for the partner
- * @param partnerName - Display name for the partner
- * @param trialMonths - Number of trial months offered
  * @param customSections - Array of partner-specific sections to insert after partners section
  * 
  * Default section order:
@@ -29,17 +26,14 @@ import UDTldFeatures from '../components/partner-specific/UDTldFeatures';
  * 6. claim-now
  */
 const buildSections = (
-  partnerId: string,
-  partnerName: string,
-  trialMonths: number,
   customSections: Section[] = []
 ): Section[] => {
   const defaultSections: Section[] = [
     { id: 'partners', component: <MarqueeSection /> },
-    { id: 'set-of-perks', component: <SetOfPerks partnerName={partnerName} trialMonths={trialMonths} /> },
-    { id: 'modular-stack', component: <ModularStack partnerId={partnerId} partnerName={partnerName} trialMonths={trialMonths} /> },
+    { id: 'set-of-perks', component: <SetOfPerks /> },
+    { id: 'modular-stack', component: <ModularStack /> },
     { id: 'join-community', component: <JoinTheCommuity /> },
-    { id: 'claim-now', component: <ClaimNow partnerId={partnerId} trialMonths={trialMonths} /> },
+    { id: 'claim-now', component: <ClaimNow /> },
   ];
 
   // Insert custom sections after partners section (index 1)
@@ -74,7 +68,7 @@ export const PARTNER_CONFIGS: Record<string, PartnerConfig> = {
       title: 'Powering \n Agentic Commerce',
       subtitle: 'Crossmint members unlock 6 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today.',
     },
-    sections: buildSections('d3', 'D3', 6, [
+    sections: buildSections([
       { id: 'd3-features', component: <D3BentoGrids /> }
     ])
   },
@@ -89,7 +83,7 @@ export const PARTNER_CONFIGS: Record<string, PartnerConfig> = {
       title: 'Unstoppable Domains \n Members',
       subtitle: 'Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a domain holder',
     },
-    sections: buildSections('unstoppableDomains', 'Unstoppable Domains', 3, [
+    sections: buildSections([
       { id: 'ud-features', component: <UDTldFeatures /> }
     ])
   },
@@ -104,7 +98,7 @@ export const PARTNER_CONFIGS: Record<string, PartnerConfig> = {
       title: '.Polygon Domain Holders',
       subtitle: 'Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a .polygon domain holder',
     },
-    sections: buildSections('polygon', '.Polygon', 3),
+    sections: buildSections(),
   },
   
   crossmint: {
@@ -117,6 +111,6 @@ export const PARTNER_CONFIGS: Record<string, PartnerConfig> = {
       title: 'Powering \n Agentic Commerce',
       subtitle: 'Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today.',
     },
-    sections: buildSections('crossmint', 'Crossmint', 3),
+    sections: buildSections(),
   }
 }; 

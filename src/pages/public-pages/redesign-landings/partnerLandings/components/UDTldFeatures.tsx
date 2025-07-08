@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import Features from '../svgs/Features'
+import Features from '../assets/Features'
 
 export default function UDTldFeatures() {
 
