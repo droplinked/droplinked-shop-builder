@@ -4,9 +4,9 @@ import AppTypography from "components/common/typography/AppTypography";
 import { getTimeAgo } from "utils/helpers";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IBlog } from "./blogs.interface";
+import { IBlogListItem } from "./blogs.interface";
  
-const Blog = ({ blog }: { blog: IBlog }) => {
+const Blog = ({ blog }: { blog: IBlogListItem }) => {
 
     return (
         <VStack

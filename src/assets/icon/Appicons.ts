@@ -62,10 +62,6 @@ import { ReactComponent as Convert } from './convert.svg';
 import { ReactComponent as Copy } from './copy.svg';
 import { ReactComponent as D3Access } from './d3-access.svg';
 import { ReactComponent as D3CoreChain } from './d3-core-chain.svg';
-import { ReactComponent as D3D3BorderRed } from './d3-d3-border-red.svg';
-import { ReactComponent as D3D3Border } from './d3-d3-border.svg';
-import { ReactComponent as D3DroplinkedBorderRed } from './d3-droplinked-border-red.svg';
-import { ReactComponent as D3DroplinkedBorder } from './d3-droplinked-border.svg';
 import { ReactComponent as D3EnterpriseTools } from './d3-enterprise-tools.svg';
 import { ReactComponent as D3NFTIntegration } from './d3-nft-integration.svg';
 import { ReactComponent as D3ProPlan } from './d3-pro-plan.svg';
@@ -262,8 +258,6 @@ import { ReactComponent as Token } from './token.svg';
 import { ReactComponent as TooltipIcon } from './tooltipIcon.svg';
 import { ReactComponent as Transfer } from './transfer.svg';
 import { ReactComponent as Trust } from './trust.svg';
-import { ReactComponent as UDBorderRed } from './ud-border-red.svg';
-import { ReactComponent as UDBorder } from './ud-border.svg';
 import { ReactComponent as Unisat } from './unisat.svg';
 import { ReactComponent as Unlock } from './unlock.svg';
 import { ReactComponent as UnstoppableDomainsIcon } from './unstoppableDomains.svg';
@@ -478,12 +472,6 @@ const AppIcons = {
   D3Access,
   D3ProPlan,
   D3Web3Support,
-  D3DroplinkedBorder,
-  D3D3Border,
-  UDBorder,
-  D3DroplinkedBorderRed,
-  D3D3BorderRed,
-  UDBorderRed,
   D3Shiba,
   D3Victorin,
   D3CoreChain,

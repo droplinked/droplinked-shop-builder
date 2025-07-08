@@ -21,14 +21,10 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
-import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
-import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
-import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
 import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
 import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
 import HomePage from "pages/public-pages/redesign-landings/home/HomePage"
@@ -42,6 +38,7 @@ import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import SocialQuests from "pages/public-pages/redesign-landings/social-quests/SocialQuests"
+import PartnerPage from "pages/public-pages/redesign-landings/partnerLandings/PartnerPage"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -76,7 +73,6 @@ const router = createBrowserRouter([
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <HomePage /> },
-            { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },
@@ -92,10 +88,12 @@ const router = createBrowserRouter([
             { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
+            // Partner routes using dynamic component 
+            { path: "d3", element: <PartnerPage partnerId="d3" /> },
+            { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
+            { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
+            { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
-            { path: "d3", element: <D3Page /> },
-            { path: "unstoppable-domains", element: <UdPage /> },
-            { path: "polygon", element: <PolygonPage /> },
             { path: "roi", element: <ROIPage /> },
             { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
