@@ -9,7 +9,7 @@ export default function QuestWindow() {
     const followStatusHook = useFollowStatus()
 
     return (
-        <HeroBrowser>
+        <HeroBrowser grantProPlan={followStatusHook.grantProPlan}>
             <Grid
                 padding={6}
                 templateColumns={{

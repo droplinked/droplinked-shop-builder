@@ -9,7 +9,7 @@ export default function ProPlanCard() {
     const { isLoggedIn } = useAppStore()
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
     const transformAmount = useBreakpointValue({ base: "scale(1)", md: "scale(0.8)", xl: "scale(1)" })
-    const url = isLoggedIn ? "/analytics" : AUTH_ROUTES.SIGN_UP
+    const url = isLoggedIn ? "/analytics/dashboard" : AUTH_ROUTES.SIGN_UP
 
     return (
         <Flex

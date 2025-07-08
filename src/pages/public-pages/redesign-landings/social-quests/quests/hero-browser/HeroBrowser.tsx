@@ -3,13 +3,19 @@ import React from 'react'
 import PageHeader from './PageHeader'
 import PanelTitle from './PanelTitle'
 import TopBar from './TopBar'
+import useFollowStatus from '../../hook/useFollowStatus'
 
-export default function HeroBrowser({ children }: { children?: React.ReactNode }) {
+interface Props {
+    grantProPlan?: ReturnType<typeof useFollowStatus>['grantProPlan'];
+    children?: React.ReactNode;
+}
+
+export default function HeroBrowser({ grantProPlan, children }: Props) {
     return (
         <Flex flexDirection="column">
             <TopBar />
             <PanelTitle />
-            <PageHeader />
+            <PageHeader grantProPlan={grantProPlan} />
             {children}
         </Flex>
     )
