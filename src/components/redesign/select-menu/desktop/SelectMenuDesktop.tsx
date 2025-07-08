@@ -12,7 +12,8 @@ export default function SelectMenuDesktop({
     multiple,
     value,
     onChange,
-    placeholder
+    placeholder,
+    fullWidth
 }: SelectMenuProps) {
     const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -33,7 +34,7 @@ export default function SelectMenuDesktop({
     return (
         <Menu isOpen={isOpen} onClose={onClose}>
             <MenuButton onClick={onOpen}>
-                <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer">
+                <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer" {...fullWidth && { width: "100%" }}>
                     <AppTypography color="#fff" fontSize={14} fontWeight={400}>
                         {placeholder}
                     </AppTypography>

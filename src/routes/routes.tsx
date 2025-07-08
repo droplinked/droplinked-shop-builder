@@ -38,6 +38,7 @@ import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import SocialQuests from "pages/public-pages/redesign-landings/social-quests/SocialQuests"
 import PartnerPage from "pages/public-pages/redesign-landings/partnerLandings/PartnerPage"
+import DIMST from "pages/public-pages/redesign-landings/DIMST/DIMST"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -94,6 +95,7 @@ const router = createBrowserRouter([
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <ROIPage /> },
+            { path: "roiv2", element: <DIMST /> },
             { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
