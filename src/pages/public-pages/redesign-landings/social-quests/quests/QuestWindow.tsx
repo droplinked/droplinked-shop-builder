@@ -3,8 +3,11 @@ import { Grid } from '@chakra-ui/react'
 import HeroBrowser from './hero-browser/HeroBrowser'
 import { promotions } from '../utils/promotionsList'
 import SocialMediaCard from './SocialMediaCard'
+import useFollowStatus from '../hook/useFollowStatus'
 
 export default function QuestWindow() {
+    const followStatusHook = useFollowStatus()
+
     return (
         <HeroBrowser>
             <Grid
@@ -16,7 +19,13 @@ export default function QuestWindow() {
                 }}
                 gap={{ base: 3, md: 6 }}
             >
-                {promotions.map((promotion, index) => <SocialMediaCard key={index} {...promotion} />)}
+                {promotions.map((promotion, index) =>
+                    <SocialMediaCard
+                        key={index}
+                        {...promotion}
+                        followStatusHook={followStatusHook}
+                    />
+                )}
             </Grid>
         </HeroBrowser>
     )

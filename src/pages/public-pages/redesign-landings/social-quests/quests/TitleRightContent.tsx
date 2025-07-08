@@ -9,9 +9,10 @@ interface Props {
 }
 
 export default function TitleRightContent({ isFollowed, isreadyToClaim, isLoading }: Props) {
+  console.log(isFollowed)
   return (
     <>
-      {isreadyToClaim && (
+      {(isreadyToClaim && !isLoading) && (
         <Box
           paddingBlock={1}
           paddingInline={2}

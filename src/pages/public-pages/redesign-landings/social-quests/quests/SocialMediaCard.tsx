@@ -6,23 +6,65 @@ import { Promotion } from "../utils/promotionsList"
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
 import useAppStore from "stores/app/appStore"
 import TitleRightContent from "./TitleRightContent"
-import useFollowStatus from "../hook/useFollowStatus"
+import { CARD_STATUSES } from "../hook/useFollowStatus"
+import { trackFollowService } from "lib/apis/quests/services"
+import useAppToast from "hooks/toast/useToast"
 
-function SocialMediaCard(promotion: Promotion) {
+interface SocialMediaCardProps extends Promotion {
+  followStatusHook: ReturnType<typeof import('../hook/useFollowStatus').default>
+}
+
+function SocialMediaCard(props: SocialMediaCardProps) {
+  const { title, platform, link, icon, hoverEffect, description, duration, gradiantLogo, followStatusHook } = props
   const [isHovered, setIsHovered] = useState(false)
+  const [loading, setLoading] = useState(false)
   const { isLoggedIn } = useAppStore()
-  const { followStatus, loading, getCardStatus, linkOpened, markLinkOpened, updateFollowStatus } = useFollowStatus()
-  const { title, platform, link, icon, hoverEffect, description, duration, gradiantLogo } = promotion
+  const { showToast } = useAppToast()
 
-  const isFollowed = true
-  const isreadyToClaim = false
-  const isLoading = false
+  const { followStatus, getCardStatus, markLinkOpened, updateFollowStatus, linkOpened } = followStatusHook
+  const isFollowed = followStatus[platform]
+  const status = getCardStatus(platform)
+  const isreadyToClaim = status === CARD_STATUSES.NOT_FOLLOWED
+
+  const openPlatformLink = () => window.open(link, '_blank')
+
+  const handleCardClick = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (loading) return // Prevent multiple clicks while loading
+
+    if (status === CARD_STATUSES.GUEST) {
+      openPlatformLink()
+      return
+    }
+
+    if (status === CARD_STATUSES.NOT_OPENED) {
+      openPlatformLink()
+      markLinkOpened(platform)
+      return
+    }
+
+    if (status === CARD_STATUSES.FOLLOWED) {
+      return
+    }
+
+    if (status === CARD_STATUSES.NOT_FOLLOWED) {
+      setLoading(true)
+      try {
+        await trackFollowService({ platform })
+        updateFollowStatus(platform)
+        showToast({ message: `Reward claimed for ${title}!`, type: 'success' })
+      } catch (error) {
+        showToast({ message: `Failed to claim reward for ${title}. Please try again later.`, type: 'error' })
+      } finally {
+        setLoading(false)
+      }
+    }
+  }
+
   const linkBackground = isFollowed ? "url(https://upload-file-droplinked.s3.amazonaws.com/b193d648e698c9ae124ca0db97292f82b66b95281eaba24e80b0aefa5936ef51.png)" : "neutral.websiteBackground"
 
   return (
-    <Link
-      href={link}
-      target="_blank"
+    <Box
       position="relative"
       height="100%"
       display="flex"
@@ -37,7 +79,9 @@ function SocialMediaCard(promotion: Promotion) {
       borderRadius="16px"
       border="1px solid"
       borderColor="neutral.gray.900"
-      {...!isFollowed && {
+      cursor={isFollowed ? 'default' : 'pointer'}
+      onClick={handleCardClick}
+      {...(!isFollowed && !linkOpened[platform]) && {
         _hover: {
           bg: hoverEffect,
           ".bg-icon svg": { filter: "brightness(100%)" },
@@ -49,9 +93,11 @@ function SocialMediaCard(promotion: Promotion) {
           ".subtext-color": { color: "text.white" }
         }
       }}
+      {...(!isFollowed && !linkOpened[platform]) && {
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false)
+      }}
       sx={{ "*": { transition: "all 0.3s" }, ".bg-icon svg": { filter: "brightness(100%)" }, }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Gradient Overlay for Fade Effect */}
       {isFollowed && (
@@ -94,19 +140,23 @@ function SocialMediaCard(promotion: Promotion) {
           </Text>
           {
             isLoggedIn ?
-              <TitleRightContent isFollowed={isFollowed} isreadyToClaim={isreadyToClaim} isLoading={isLoading} />
+              <TitleRightContent
+                isFollowed={isFollowed}
+                isreadyToClaim={isreadyToClaim}
+                isLoading={loading}
+              />
               :
               <Box className="link-arrow" opacity={0}>
                 <AppIcons.ExternalArrow />
               </Box>
           }
         </Flex>
-        <DotSeparatedList dotColor={isHovered ? "rgba(255, 255, 255, 0.20)" : "neutral.gray.900"}>
+        <DotSeparatedList dotColor={isHovered || isFollowed ? "rgba(255, 255, 255, 0.20)" : "neutral.gray.900"}>
           <Text className="subtext-color" color="text.subtext.placeholder.dark">{description}</Text>
           <Text className="subtext-color" color="text.subtext.placeholder.dark">{duration}</Text>
         </DotSeparatedList>
       </Flex>
-    </Link>
+    </Box>
   )
 }
 
