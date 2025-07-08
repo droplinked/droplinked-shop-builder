@@ -1,6 +1,10 @@
 import { Circle, Flex, FlexProps } from '@chakra-ui/react'
 import React from 'react'
 
+interface DotSeparatedListProps extends FlexProps {
+  dotColor?: string
+}
+
 /**
  * Displays a horizontal list of children separated by dots.
  * Ideal for creating visually distinct sections between inline items.
@@ -12,7 +16,7 @@ import React from 'react'
  *   <Text>Item 3</Text>
  * </DotSeparatedList>
  */
-function DotSeparatedList({ children, ...props }: FlexProps) {
+function DotSeparatedList({ children, dotColor, ...props }: DotSeparatedListProps) {
   const validChildren = React.Children.toArray(children).filter(Boolean)
 
   if (validChildren.length === 0) return null
@@ -22,7 +26,7 @@ function DotSeparatedList({ children, ...props }: FlexProps) {
       {validChildren.map((child, index) => (
         <React.Fragment key={index}>
           {child}
-          {index < validChildren.length - 1 && <Circle className="dot-separator" size={1} bg="neutral.gray.800" />}
+          {index < validChildren.length - 1 && <Circle className="dot-separator" size={1} bg={dotColor || "neutral.gray.800"} />}
         </React.Fragment>
       ))}
     </Flex>

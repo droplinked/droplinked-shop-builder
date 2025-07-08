@@ -24,14 +24,14 @@ const publicMegaMenuItems = [
         label: 'Platform Functionalities',
         icon: Layer1Lg,
         links: [
-            { label: 'Physical Inventory', description: 'Portable Supply Chain Management', icon: BoxMd, href: '/physical-product' },
-            { label: 'Digital Goods', description: 'Subscriptions, assets and more', icon: ImageMd, href: '/digital-product' },
-            { label: 'Products on Demand', description: 'Design customizable items', icon: ShirtMd, href: '/pod-product' },
+            { label: 'Physical Inventory', description: 'Portable Supply Chain Management', icon: BoxMd, href: '/physical-inventory' },
+            { label: 'Digital Goods', description: 'Subscriptions, assets and more', icon: ImageMd, href: '/digital-goods' },
+            { label: 'Products on Demand', description: 'Design customizable items', icon: ShirtMd, href: '/products-on-demand' },
             { label: 'Onchain Affiliate', description: 'Fraud-free, transparent commerce', icon: AffiliateMd, href: '/onchain-affiliate' },
             { label: 'Payment Links', description: 'Seamlessly sell anytime, anywhere', icon: LinkMd, href: '/payment-links' },
             { label: 'Product Tiles', description: 'Customizable embeds to use', icon: Layout1Md, href: '/product-tiles' },
             { label: 'Tokenizing Products', description: 'Product records for assets', icon: CoinsMd, href: '/tokenizing-products' },
-            { label: 'Onchain Subscriptions', description: 'Automate to earn more', icon: SubscriptionMd, href: '/affiliate-sass' },
+            { label: 'Onchain Subscriptions', description: 'Automate to earn more', icon: SubscriptionMd, href: '/onchain-subscriptions' },
             { label: 'Social Quests', description: 'Grow the community to earn more', icon: TargetMd, href: '/rewards' }
         ]
     },

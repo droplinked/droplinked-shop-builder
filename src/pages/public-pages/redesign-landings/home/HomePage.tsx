@@ -1,0 +1,30 @@
+import React from 'react'
+import JoinCommunity from '../_shared/components/JoinCommunity'
+import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
+import SignUpCta from '../_shared/components/SignUpCta'
+import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
+import HomePageHero from './components/HeroSection'
+import ProductOfferingSection from './components/ProductOfferingSection'
+import GoLiveSection from './components/go-live-section/GoLiveSection'
+import KeyFeatures from './components/key-features/KeyFeatures'
+import Testmonials from './components/testmonials/Testmonials'
+import useHomePageLogic from './hooks/useHomePageLogic'
+
+export default function HomePage() {
+  useHomePageLogic()
+
+  return (
+    <>
+      <HomePageHero />
+      <MaxWidthWrapper>
+        <MarqueeSection />
+        <GoLiveSection />
+        <ProductOfferingSection />
+        <KeyFeatures />
+        <Testmonials />
+        <JoinCommunity />
+        <SignUpCta />
+      </MaxWidthWrapper>
+    </>
+  )
+}

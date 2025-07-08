@@ -13,7 +13,7 @@ export default function HeadingTitle({ title }: { title?: string }) {
             fontSize={{ base: 24, md: 36, lg: 48 }}
             fontWeight="500"
             lineHeight={{ base: "36px", md: "52px", lg: "64px" }}
-            whiteSpace="pre-wrap"
+            whiteSpace={{ base: "normal", md: "pre-wrap" }}
         >
             {title}
         </Heading>

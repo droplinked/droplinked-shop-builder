@@ -19,26 +19,25 @@ import PublicBlog from "pages/public-pages/blogs/blog/Blog"
 import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
-import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
-import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
-import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
-import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
-import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
-import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
-import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
 import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import HomePage from "pages/public-pages/redesign-landings/homePage/HomePage"
+import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
+import DPPLanding from "pages/public-pages/redesign-landings/dpp-landing/DPPLanding"
+import HomePage from "pages/public-pages/redesign-landings/home/HomePage"
+import OnchainAffiliatePage from "pages/public-pages/redesign-landings/onchain-affiliate/OnchainAffiliatePage"
+import OnchainSubscriptions from "pages/public-pages/redesign-landings/onchain-subscriptions/OnchainSubscriptions"
+import PaymentLinksPage from "pages/public-pages/redesign-landings/payment-links/PaymentLinksPage"
+import PhysicalInventoryPage from "pages/public-pages/redesign-landings/physical-inventory/PhysicalInventoryPage"
+import ProductTilesPage from "pages/public-pages/redesign-landings/product-tiles/ProductTilesPage"
+import ProductsOnDemandPage from "pages/public-pages/redesign-landings/products-on-demand/ProductsOnDemandPage"
+import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import Rewards from "pages/public-pages/rewards/Rewards"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
-
-// Dynamic partner landing page
+import SocialQuests from "pages/public-pages/redesign-landings/social-quests/SocialQuests"
 import PartnerPage from "pages/public-pages/redesign-landings/partnerLandings/PartnerPage"
 
 // Lazy-loaded components for other routes
@@ -79,24 +78,24 @@ const router = createBrowserRouter([
             { path: "about", element: <AboutUs /> },
             { path: "contact-us", element: <ContactUs /> },
             { path: "privacy", element: <PrivacyPage /> },
-            { path: "physical-product", element: <PhysicalProductPage /> },
-            { path: "digital-product", element: <DigitalProductPage /> },
-            { path: "pod-product", element: <PODProductPage /> },
+            { path: "physical-inventory", element: <PhysicalInventoryPage /> },
+            { path: "digital-goods", element: <DigitalGoodsPage /> },
+            { path: "products-on-demand", element: <ProductsOnDemandPage /> },
             { path: "tokenpay", element: <TokanpayPage /> },
-            { path: "payment-links", element: <PaymentLinkPage /> },
-            { path: "product-tiles", element: <ProductTilePage /> },
-            { path: "tokenizing-products", element: <TokenizingProductsPage /> },
-            { path: "affiliate-sass", element: <AffiliateSassPage /> },
+            { path: "payment-links", element: <PaymentLinksPage /> },
+            { path: "product-tiles", element: <ProductTilesPage /> },
+            { path: "tokenizing-products", element: <TokenizingProducts /> },
+            { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
-            { path: "onchain-affiliate", element: <AffiliatePage /> },
-            // Partner routes using dynamic component but keeping original URLs
+            // Partner routes using dynamic component 
             { path: "d3", element: <PartnerPage partnerId="d3" /> },
             { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
             { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
+            { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <ROIPage /> },
-            { path: "dpp", element: <DppPage /> },
+            { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
                 path: "blogs",
@@ -107,6 +106,7 @@ const router = createBrowserRouter([
             },
             { path: "plans", element: <PricingPage /> },
             { path: "rewards", element: <Rewards /> },
+            { path: "rewardsv2", element: <SocialQuests /> },
             {
                 path: "affiliate/products",
                 children: [

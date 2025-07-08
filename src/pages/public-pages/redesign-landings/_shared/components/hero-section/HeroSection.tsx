@@ -23,6 +23,8 @@ interface HeroSectionProps {
     videoStyle?: React.CSSProperties
     /** HTML video element props */
     playerProps?: React.VideoHTMLAttributes<HTMLVideoElement>
+    /** Children elements to render inside the hero section */
+    children?: React.ReactNode
 }
 
 /**
@@ -38,6 +40,7 @@ export default function HeroSection({
     videoMobile,
     videoStyle,
     playerProps,
+    children
 }: HeroSectionProps) {
     const backgroundImage = useBreakpointValue({
         base: "url(https://upload-file-droplinked.s3.amazonaws.com/5faebef9a91644efc0f2a81b0283762ab54982d57fcbac6969d51f4f08fde1a7.png)",
@@ -70,7 +73,7 @@ export default function HeroSection({
                                 lineHeight={{ base: "48px", md: "64px", xl: "72px", "2xl": "80px" }}
                                 fontSize={{ base: "32px", md: "48px", xl: "56px", "2xl": "64px" }}
                                 mt={{ base: "48px", "md": "80px" }}
-                                whiteSpace="pre-line"
+                                whiteSpace={{ base: "normal", md: "pre-line" }}
                                 textAlign="center"
                             >
                                 {title}
@@ -78,22 +81,24 @@ export default function HeroSection({
                             <Text
                                 color="text.subtext.placeholder.light"
                                 maxWidth={{ base: "90%", md: "80%", xl: "45%" }}
-                                textAlign="center"
                                 fontSize={{ base: "14px", lg: "16px" }}
-                                whiteSpace="pre-line"
+                                textAlign="center"
+                                whiteSpace={{ base: "normal", md: "pre-line" }}
                             >
                                 {subtitle}
                             </Text>
                         </Flex>
                         {subTitleElements}
                     </Box>
-                    <HeroAnimation
-                        videoDesktop={videoDesktop}
-                        videoTablet={videoTablet}
-                        videoMobile={videoMobile}
-                        style={videoStyle}
-                        playerProps={playerProps}
-                    />
+                    {children ||
+                        <HeroAnimation
+                            videoDesktop={videoDesktop}
+                            videoTablet={videoTablet}
+                            videoMobile={videoMobile}
+                            style={videoStyle}
+                            playerProps={playerProps}
+                        />
+                    }
                 </Box>
             </Grid>
         </LazyLoad>

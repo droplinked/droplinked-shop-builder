@@ -1,7 +1,9 @@
-import AppIcons from 'assets/icon/Appicons'
+import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
+import { Verticalmove2Md } from 'assets/icons/Navigation/VerticalMove2/Verticalmove2Md'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import React from 'react'
-import ProductTypesPopover from './PageHeaderRightContent/ProductTypesPopover/ProductTypesPopover'
+import ProductTypeSelector from './ProductTypeSelector/ProductTypeSelector'
 
 interface ProductHeaderProps {
     onImportModalOpen: () => void
@@ -17,7 +19,7 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
             actionButtons={[
                 {
                     title: "Reorder Products",
-                    leftIcon: <AppIcons.VerticalMove />,
+                    leftIcon: <Verticalmove2Md />,
                     variant: "secondary",
                     fontSize: 14,
                     fontWeight: 500,
@@ -28,7 +30,7 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
                 },
                 {
                     title: "Import",
-                    leftIcon: <AppIcons.Download />,
+                    leftIcon: <DownloadMd />,
                     variant: "secondary",
                     fontSize: 14,
                     fontWeight: 500,
@@ -38,8 +40,8 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
                 },
                 {
                     title: "New Product",
-                    leftIcon: <AppIcons.BlackPlus />,
-                    wrapper: <ProductTypesPopover />
+                    leftIcon: <PlusMd />,
+                    wrapper: <ProductTypeSelector />
                 },
             ]}
         />
