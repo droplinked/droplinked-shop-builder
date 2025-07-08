@@ -2,14 +2,16 @@ import { Box, Spinner, Text } from "@chakra-ui/react";
 import { CheckMd } from "assets/icons/Sign/Check/CheckMd";
 import React from "react";
 
-export default function TitleRightContent() {
-  const isReadyToClaim = false;
-  const isClaimed = false;
-  const isLoading = false;
+interface Props {
+  isFollowed: boolean;
+  isreadyToClaim: boolean;
+  isLoading: boolean;
+}
 
+export default function TitleRightContent({ isFollowed, isreadyToClaim, isLoading }: Props) {
   return (
     <>
-      {isReadyToClaim && (
+      {isreadyToClaim && (
         <Box
           paddingBlock={1}
           paddingInline={2}
@@ -21,7 +23,7 @@ export default function TitleRightContent() {
           <Text color="text.primary" fontSize={14}>Claim Reward</Text>
         </Box>
       )}
-      {isClaimed && <CheckMd color="#2BCFA1" style={{ marginInline: "2px" }} />}
+      {isFollowed && <CheckMd color="#2BCFA1" style={{ marginInline: "2px" }} />}
       {isLoading && <Spinner width="20px" height="20px" color="main.primary" marginInline="2px" />}
     </>
   );
