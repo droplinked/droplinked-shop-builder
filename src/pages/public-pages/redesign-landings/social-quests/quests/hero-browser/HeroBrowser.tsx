@@ -1,8 +1,8 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import TopBar from './TopBar'
-import PanelTitle from './PanelTitle'
 import PageHeader from './PageHeader'
+import PanelTitle from './PanelTitle'
+import TopBar from './TopBar'
 
 export default function HeroBrowser({ children }: { children?: React.ReactNode }) {
     return (
@@ -10,9 +10,7 @@ export default function HeroBrowser({ children }: { children?: React.ReactNode }
             <TopBar />
             <PanelTitle />
             <PageHeader />
-            <Box mt={6}>
-                {children}
-            </Box>
+            {children}
         </Flex>
     )
 }

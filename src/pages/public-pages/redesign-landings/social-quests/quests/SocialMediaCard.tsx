@@ -1,10 +1,16 @@
 import { Box, Flex, Icon, Link, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
-import React from "react"
+import React, { useState } from "react"
 import { Promotion } from "../utils/promotionsList"
+import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList"
+import useAppStore from "stores/app/appStore"
+import TitleRightContent from "./TitleRightContent"
 
 function SocialMediaCard(promotion: Promotion) {
+  const [isHovered, setIsHovered] = useState(false)
+  const { isLoggedIn } = useAppStore()
+
   const { title, platform, link, icon, hoverEffect, description, duration, gradiantLogo } = promotion
 
   return (
@@ -15,10 +21,13 @@ function SocialMediaCard(promotion: Promotion) {
       height="100%"
       display="flex"
       flexDirection="column"
-      gap={{ base: 4, md: 6 }}
-      padding={{ base: 4, lg: 6 }}
+      gap={4}
+      padding={4}
       overflow="hidden"
       bg="neutral.websiteBackground"
+      borderRadius="16px"
+      border="1px solid"
+      borderColor="neutral.gray.900"
       _hover={{
         bg: hoverEffect,
         ".bg-icon svg": { filter: "brightness(100%)" },
@@ -26,9 +35,12 @@ function SocialMediaCard(promotion: Promotion) {
         ".icon-container": {
           bg: "rgba(255, 255, 255, 0.20)",
           borderColor: "rgba(255, 255, 255, 0.20)"
-        }
+        },
+        ".subtext-color": { color: "text.white" }
       }}
       sx={{ "*": { transition: "all 0.3s" }, ".bg-icon svg": { filter: "brightness(100%)" }, }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background Icon Layer with Gradient */}
       <Box
@@ -47,15 +59,26 @@ function SocialMediaCard(promotion: Promotion) {
       </Box>
 
       {/* Original Foreground Icon */}
-      <IconWrapper icon={<Icon as={icon} />} className="icon-container" />
+      <IconWrapper icon={<Icon as={icon} width="24px" height="24px" />} className="icon-container" />
 
-      <Flex alignItems="center" gap="6px">
-        <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="text.white">
-          {title}
-        </Text>
-        <Box className="link-arrow" opacity={0}>
-          <AppIcons.ExternalArrow />
-        </Box>
+      <Flex flexDirection="column" gap={1}>
+        <Flex alignItems="center" gap="6px">
+          <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="text.white">
+            {title}
+          </Text>
+          {
+            isLoggedIn ?
+              <TitleRightContent />
+              :
+              <Box className="link-arrow" opacity={0}>
+                <AppIcons.ExternalArrow />
+              </Box>
+          }
+        </Flex>
+        <DotSeparatedList dotColor={isHovered ? "rgba(255, 255, 255, 0.20)" : "neutral.gray.900"}>
+          <Text className="subtext-color" color="text.subtext.placeholder.dark">{description}</Text>
+          <Text className="subtext-color" color="text.subtext.placeholder.dark">{duration}</Text>
+        </DotSeparatedList>
       </Flex>
     </Link>
   )
