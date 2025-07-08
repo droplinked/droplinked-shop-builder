@@ -11,7 +11,7 @@ export default function QuestWindow() {
     return (
         <HeroBrowser grantProPlan={followStatusHook.grantProPlan}>
             <Grid
-                padding={6}
+                padding={{ base: 3, md: 6 }}
                 templateColumns={{
                     base: "1fr",
                     md: "repeat(2, 1fr)",

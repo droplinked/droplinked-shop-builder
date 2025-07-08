@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 import PageHeader from './PageHeader'
 import PanelTitle from './PanelTitle'
@@ -11,11 +11,17 @@ interface Props {
 }
 
 export default function HeroBrowser({ grantProPlan, children }: Props) {
+    const isMobile = useBreakpointValue({ base: true, md: false })
+
     return (
         <Flex flexDirection="column">
-            <TopBar />
-            <PanelTitle />
-            <PageHeader grantProPlan={grantProPlan} />
+            {!isMobile &&
+                <>
+                    <TopBar />
+                    <PanelTitle />
+                    <PageHeader grantProPlan={grantProPlan} />
+                </>
+            }
             {children}
         </Flex>
     )
