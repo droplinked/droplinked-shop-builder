@@ -1,9 +1,10 @@
-import React from 'react'
 import { Grid } from '@chakra-ui/react'
-import HeroBrowser from './hero-browser/HeroBrowser'
-import { promotions } from '../utils/promotionsList'
-import SocialMediaCard from './SocialMediaCard'
+import React from 'react'
 import useFollowStatus from '../hook/useFollowStatus'
+import { promotions } from '../utils/promotionsList'
+import HeroBrowser from './hero-browser/HeroBrowser'
+import MobileQuestCard from './MobileQuestCard'
+import SocialMediaCard from './SocialMediaCard'
 
 export default function QuestWindow() {
     const followStatusHook = useFollowStatus()
@@ -26,6 +27,8 @@ export default function QuestWindow() {
                         followStatusHook={followStatusHook}
                     />
                 )}
+
+                <MobileQuestCard followStatusHook={followStatusHook} />
             </Grid>
         </HeroBrowser>
     )

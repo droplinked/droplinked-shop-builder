@@ -1,4 +1,4 @@
-import { Drawer as ChakraDrawer, ChakraProps, DrawerCloseButton, DrawerContent, DrawerContentProps, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Drawer as ChakraDrawer, ChakraProps, DrawerCloseButton, DrawerContent, DrawerContentProps, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Heading, Text } from '@chakra-ui/react'
 import AppButton, { AppButtonProps } from 'components/redesign/button/AppButton'
 import React, { PropsWithChildren, ReactNode } from 'react'
 
@@ -21,6 +21,7 @@ interface Props extends PropsWithChildren {
     showSubmitButtons?: boolean
     headingStyle?: ChakraProps
     descriptionStyle?: ChakraProps
+    showCloseIcon?: boolean
     placement?: 'top' | 'right' | 'bottom' | 'left'
 }
 
@@ -44,6 +45,7 @@ function Drawer({
     headingStyle,
     drawerHeaderStyle,
     showSubmitButtons,
+    showCloseIcon = true,
     placement = "right"
 }: Props) {
     const isCentered = placement === 'top' || placement === 'bottom'
@@ -83,20 +85,22 @@ function Drawer({
                     {...drawerHeaderStyle}
                 >
                     <Flex justifyContent="space-between" alignItems="baseline" width="100%">
-                        {icon}
-                        {title &&
-                            <Flex flexDirection="column" gap={1}>
-                                <Heading as="h3" fontSize={{ base: 20, md: 24 }} fontWeight={700} color="#FFF" {...headingStyle}>
-                                    {title}
-                                </Heading>
-                                {description &&
-                                    <Text fontSize={{ base: 14, md: 16 }} color="#B1B1B1" {...descriptionStyle}>
-                                        {description}
-                                    </Text>
-                                }
-                            </Flex>
-                        }
-                        <DrawerCloseButton position="static" color="white" />
+                        <Box>
+                            {icon}
+                            {title &&
+                                <Flex flexDirection="column" gap={1}>
+                                    <Heading as="h3" fontSize={{ base: 20, md: 24 }} fontWeight={700} color="#FFF" {...headingStyle}>
+                                        {title}
+                                    </Heading>
+                                    {description &&
+                                        <Text fontSize={{ base: 14, md: 16 }} color="#B1B1B1" {...descriptionStyle}>
+                                            {description}
+                                        </Text>
+                                    }
+                                </Flex>
+                            }
+                        </Box>
+                        {showCloseIcon && <DrawerCloseButton position="static" color="white" />}
                     </Flex>
                     {headerContent}
                 </DrawerHeader>

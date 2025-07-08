@@ -22,7 +22,7 @@ const ProPlanCard: React.FC<{ unlockedMonths: number }> = ({ unlockedMonths }) =
       alignItems="start"
       overflow="hidden"
     >
-      <VStack p={6} w="full" gap={4} alignItems="start">
+      <VStack p={{ base: 4, md: 6 }} w="full" gap={4} alignItems="start">
         <IconWrapper
           bg="label.primary"
           borderColor="label.primary"
@@ -45,7 +45,7 @@ const ProPlanCard: React.FC<{ unlockedMonths: number }> = ({ unlockedMonths }) =
           </VStack>
         </VStack>
 
-        <Flex w="full" justify="start" alignItems="center" gap={6}>
+        <Flex w="full" flexDirection={{ base: "column", md: "row" }} justify="start" alignItems={{ base: "start", md: "center" }} gap={6}>
           <Flex justify="center" alignItems="center" gap={2}>
             <ShieldMd color="#2BCFA1" />
             <Text

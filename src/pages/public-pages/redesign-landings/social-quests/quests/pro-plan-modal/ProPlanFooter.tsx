@@ -27,8 +27,8 @@ const ProPlanFooter: React.FC = () => {
         textAlign="center"
         gap={1}
         mt={6}
-        mb="48px"
-        paddingInline="48px"
+        mb={{ base: "16px", md: "48px" }}
+        paddingInline={{ base: "16px", md: "48px" }}
         color="text.subtext.placeholder.dark"
       >
         If you unfollow us at any time, your Pro Plan benefits will be revoked.
@@ -42,7 +42,7 @@ const ProPlanFooter: React.FC = () => {
         borderColor="neutral.gray.900"
       />
 
-      <Flex py={9} px={12} gap={4} w="full">
+      <Flex py={{ base: 4, md: 9 }} px={{ base: 9, md: 12 }} w="full">
         <AppButton flex={1} onClick={handleButtonClick} isLoading={isFetching || loading}>
           Go to Dashboard
         </AppButton>
