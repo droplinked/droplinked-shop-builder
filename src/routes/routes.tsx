@@ -22,7 +22,7 @@ import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
-import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokanpayPage"
+import TokenpayPage from "pages/public-pages/redesign-landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import DigitalGoodsPage from "pages/public-pages/redesign-landings/digital-goods/DigitalGoodsPage"
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             { path: "physical-inventory", element: <PhysicalInventoryPage /> },
             { path: "digital-goods", element: <DigitalGoodsPage /> },
             { path: "products-on-demand", element: <ProductsOnDemandPage /> },
-            { path: "tokenpay", element: <TokanpayPage /> },
+            { path: "tokenpay", element: <TokenpayPage /> },
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilesPage /> },
             { path: "tokenizing-products", element: <TokenizingProducts /> },
