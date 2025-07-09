@@ -17,7 +17,12 @@ export default function HeroChildFrame({ children }: { children?: React.ReactNod
                 background={boxBackground}
                 backdropFilter="blur(50px)"
             >
-                <Box background="neutral.websiteBackground" borderRadius={{ base: "24px", md: "16px 16px 0 0" }}>
+                <Box
+                    background="neutral.websiteBackground"
+                    borderRadius={{ base: "24px", md: "16px 16px 0 0" }}
+                    overflowY="scroll"
+                    height={{ base: "auto", md: "66vh" }}
+                >
                     {children}
                 </Box>
             </Box>
