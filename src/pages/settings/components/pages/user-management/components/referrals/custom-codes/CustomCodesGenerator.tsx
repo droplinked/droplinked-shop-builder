@@ -5,13 +5,13 @@ import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
 import AppInput from 'components/redesign/input/AppInput'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React, { useState } from 'react'
+import { useMutation } from 'react-query'
 import { ICustomReferralCode } from 'services/shop/interfaces'
 import { updateCustomReferralCodeService } from 'services/shop/shopServices'
 import useAppStore from 'stores/app/appStore'
 import { BUILDER_URL } from 'utils/app/variable'
-import React, { useState } from 'react'
-import { useMutation } from 'react-query'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function CustomCodesGenerator() {
     const { mutateAsync, isLoading } = useMutation((params: ICustomReferralCode) => updateCustomReferralCodeService(params))
@@ -31,7 +31,7 @@ export default function CustomCodesGenerator() {
                 key: 'shop',
                 params: { ...shop, referralDetails: { ...shop.referralDetails, customCode: value } }
             });
-            setShopInitialCustomCode(customCode)
+            setShopInitialCustomCode(value)
             setValue("")
             showToast({ type: "success", message: t('settings.referrals.customCodes.success') });
         } catch (error) {
@@ -84,7 +84,7 @@ export default function CustomCodesGenerator() {
                             width: "24px",
                             height: "24px"
                         }}
-                        text={`${BUILDER_URL}/?modal=signup&referral=${shopInitialCustomCode.toLowerCase()}`}
+                        text={`${BUILDER_URL}/onboarding?entry=signup&referral=${shopInitialCustomCode.toLowerCase()}`}
                     />
                     <AppIcons.RedTrash onClick={() => setShopInitialCustomCode("")} style={{ width: "24px", height: "24px", cursor: "pointer" }} />
                 </Flex>

@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
-import SpectrumHeader from '../landings/_components/spectrum-header/SpectrumHeader'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import arLocale from 'locales/public-pages/contact-us/ar.json'
 import enLocale from 'locales/public-pages/contact-us/en.json'
-import ContactUsForm from './parts/form/Form'
+import React from 'react'
+import ContactUsForm from './components/Form'
+import SpectrumHeader from './components/SpectrumHeader'
 
 function ContactUs() {
     const { t } = useLocaleResources("contactUs", {

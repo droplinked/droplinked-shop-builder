@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { getPublicBlogsService } from "services/blog/services";
 import { sortByDate } from "utils/helpers";
 import Blog from "./blogs.blog";
-import { IBlog } from "./blogs.interface";
+import { IBlogListItem } from "./blogs.interface";
 import LatestBlog from "./blogs.latest";
 import LoadingBlogs from "./blogs.loading";
 
@@ -31,7 +31,7 @@ const PublicBlogs = () => {
 
   if (isLoading) return <LoadingBlogs />;
   
-  const blogs: IBlog[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
+  const blogs: IBlogListItem[] = !isLoading && data?.data?.data?.data ? data.data.data.data : [];
   let columns;
   if (isLargerThan1024) {
     columns = [

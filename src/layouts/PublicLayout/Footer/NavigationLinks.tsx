@@ -9,7 +9,7 @@ export default function NavigationLinks() {
     const publicMegaMenuItems = getPublicMegaMenuItems(t)
     
     const SUPPORT_LINKS = [
-        { label: t('contactUs'), href: '/contact' },
+        { label: t('contactUs'), href: '/contact-us' },
         { label: t('brandAssets'), href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
         { label: t('developerKit'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
         { label: t('helpCenter'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }

@@ -1,8 +1,9 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import ProductTypesPopover from '../PageHeaderRightContent/ProductTypesPopover/ProductTypesPopover'
+import ProductTypeSelector from '../ProductTypeSelector/ProductTypeSelector'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import AppButton from 'components/redesign/button/AppButton';
+import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
 
 function EmptyProductList() {
     const { t } = useLocaleResources('products');
@@ -26,19 +27,11 @@ function EmptyProductList() {
                 {t('productTable.empty.description')}
             </Text>
 
-            <ProductTypesPopover placement='top'>
-                <Flex
-                    as="button"
-                    alignItems="center"
-                    gap="6px"
-                    padding="10px 14px"
-                    fontSize={14}
-                    color="#2BCFA1"
-                >
-                    <AppIcons.GreenPlus width="20px" />
+            <ProductTypeSelector placement='top'>
+                <AppButton variant='normal' leftIcon={<PlusSm color='#2BCFA1' />}>
                     {t('pageHeader.actions.newProduct')}
-                </Flex>
-            </ProductTypesPopover>
+                </AppButton>
+            </ProductTypeSelector>
         </Flex>
     )
 }

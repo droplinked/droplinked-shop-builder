@@ -19,28 +19,25 @@ import PublicBlog from "pages/public-pages/blogs/blog/Blog"
 import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
-import AffiliatePage from "pages/public-pages/landings/affiliate-page/AffiliatePage"
-import AffiliateSassPage from "pages/public-pages/landings/affiliate-sass-page/AffiliateSassPage"
-import CustomTokenPage from "pages/public-pages/landings/custom-token-page/CustomTokenPage"
-import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
-import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
-import MetaverseStorePage from "pages/public-pages/landings/metaverse-store-page/MetaverseStorePage"
-import D3Page from "pages/public-pages/landings/partners-pages/pages/D3Page"
-import PolygonPage from "pages/public-pages/landings/partners-pages/pages/PolygonPage"
-import UdPage from "pages/public-pages/landings/partners-pages/pages/UdPage"
-import PaymentLinkPage from "pages/public-pages/landings/payment-link-page/PaymentLinkPage"
-import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
-import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import ProductTilePage from "pages/public-pages/landings/product-tile-page/ProductTilePage"
-import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
-import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products-page/TokenizingProductsPage"
-import TokanpayPage from "pages/public-pages/landings/tokenpay-page/TokenpayPage"
+import CustomTokenPage from "pages/public-pages/landings/custom-tokens/CustomTokensPage"
+import MetaverseStorePage from "pages/public-pages/landings/metaverse-showroom/MetaverseShowroomPage"
+import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import CrossmintLanding from "pages/public-pages/redesign-landings/crossmint/Crossmint"
-import HomePage from "pages/public-pages/redesign-landings/homePage/HomePage"
-import Rewards from "pages/public-pages/rewards/Rewards"
+import DigitalGoodsPage from "pages/public-pages/landings/digital-goods/DigitalGoodsPage"
+import DPPLanding from "pages/public-pages/landings/dpp-landing/DPPLanding"
+import HomePage from "pages/public-pages/landings/home/HomePage"
+import OnchainAffiliatePage from "pages/public-pages/landings/onchain-affiliate/OnchainAffiliatePage"
+import OnchainSubscriptions from "pages/public-pages/landings/onchain-subscriptions/OnchainSubscriptions"
+import PaymentLinksPage from "pages/public-pages/landings/payment-links/PaymentLinksPage"
+import PhysicalInventoryPage from "pages/public-pages/landings/physical-inventory/PhysicalInventoryPage"
+import ProductTilesPage from "pages/public-pages/landings/product-tiles/ProductTilesPage"
+import ProductsOnDemandPage from "pages/public-pages/landings/products-on-demand/ProductsOnDemandPage"
+import TokenizingProducts from "pages/public-pages/landings/tokenizing-products/TokenizingProducts"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import SocialQuests from "pages/public-pages/landings/social-quests/SocialQuests"
+import PartnerPage from "pages/public-pages/landings/partner-pages/PartnerPage"
+import DIMST from "pages/public-pages/landings/DIMST/DIMST"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -75,28 +72,29 @@ const router = createBrowserRouter([
         errorElement: <MaintenancePage />,
         children: [
             { index: true, element: <HomePage /> },
-            { path: "crossmint", element: <CrossmintLanding /> },
             { path: "enquiry", element: <Enquiry /> },
             { path: "terms", element: <TermsPage /> },
             { path: "about", element: <AboutUs /> },
             { path: "contact-us", element: <ContactUs /> },
             { path: "privacy", element: <PrivacyPage /> },
-            { path: "physical-product", element: <PhysicalProductPage /> },
-            { path: "digital-product", element: <DigitalProductPage /> },
-            { path: "pod-product", element: <PODProductPage /> },
-            { path: "tokenpay", element: <TokanpayPage /> },
-            { path: "payment-links", element: <PaymentLinkPage /> },
-            { path: "product-tiles", element: <ProductTilePage /> },
-            { path: "tokenizing-products", element: <TokenizingProductsPage /> },
-            { path: "affiliate-sass", element: <AffiliateSassPage /> },
+            { path: "physical-inventory", element: <PhysicalInventoryPage /> },
+            { path: "digital-goods", element: <DigitalGoodsPage /> },
+            { path: "products-on-demand", element: <ProductsOnDemandPage /> },
+            { path: "tokenpay", element: <TokenpayPage /> },
+            { path: "payment-links", element: <PaymentLinksPage /> },
+            { path: "product-tiles", element: <ProductTilesPage /> },
+            { path: "tokenizing-products", element: <TokenizingProducts /> },
+            { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
-            { path: "onchain-affiliate", element: <AffiliatePage /> },
-            { path: "d3", element: <D3Page /> },
-            { path: "unstoppable-domains", element: <UdPage /> },
-            { path: "polygon", element: <PolygonPage /> },
-            { path: "roi", element: <ROIPage /> },
-            { path: "dpp", element: <DppPage /> },
+            // Partner routes using dynamic component 
+            { path: "d3", element: <PartnerPage partnerId="d3" /> },
+            { path: "unstoppable-domains", element: <PartnerPage partnerId="unstoppableDomains" /> },
+            { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
+            { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
+            { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
+            { path: "roi", element: <DIMST /> },
+            { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
                 path: "blogs",
@@ -106,7 +104,7 @@ const router = createBrowserRouter([
                 ]
             },
             { path: "plans", element: <PricingPage /> },
-            { path: "rewards", element: <Rewards /> },
+            { path: "rewards", element: <SocialQuests /> },
             {
                 path: "affiliate/products",
                 children: [

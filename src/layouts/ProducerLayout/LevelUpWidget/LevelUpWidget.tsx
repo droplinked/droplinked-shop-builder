@@ -27,6 +27,17 @@ const LevelUpWidget = () => {
     if (!levelUpData && !isLoading) fetchLevelUpData();
   }, [levelUpData, isLoading, fetchLevelUpData]);
 
+  // Check if all sections are completed
+  const allSectionsCompleted =
+    levelUpData &&
+    levelUpSections.every(
+      (section) => levelUpData.list?.[section.objectField]
+    );
+
+  if (allSectionsCompleted) {
+    return null;
+  }
+
   return (
     <Box
       padding="16px"

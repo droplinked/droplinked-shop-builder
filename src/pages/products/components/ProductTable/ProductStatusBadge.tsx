@@ -8,8 +8,9 @@ interface Props {
 }
 
 export default function ProductStatusBadge({ status, purchaseAvailable }: Props) {
-    const { t } = useLocaleResources('products');
-    const badgeKey = purchaseAvailable ? status : 'PRIVATE'
+    const { t } = useLocaleResources('common')
+    const normalizedStatus = String(status).toUpperCase()
+    const badgeKey = purchaseAvailable ? normalizedStatus : 'PRIVATE'
     
     const statusMap: Record<string, { label: string, status: "success" | "neutral" | "error" }> = {
         "PUBLISHED": {
@@ -26,7 +27,17 @@ export default function ProductStatusBadge({ status, purchaseAvailable }: Props)
         }
     }
     
-    const badgeProps = statusMap[badgeKey]
+    const badgeProps = statusMap[badgeKey] || statusMap['PRIVATE']
+
+    if (!badgeProps) {
+        return (
+            <AppBadge
+                text="Unknown"
+                status="neutral"
+                size="24"
+            />
+        )
+    }
 
     return (
         <AppBadge

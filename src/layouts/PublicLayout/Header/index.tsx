@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AuthButtons from './AuthButtons'
 import BrandIcon from './BrandIcon/BrandIcon'
 import NavigationMenu from './NavigationMenu'
-import MaxWidthWrapper from 'pages/public-pages/redesign-landings/_shared/components/MaxWidthWrapper'
+import MaxWidthWrapper from 'pages/public-pages/landings/_shared/components/MaxWidthWrapper'
 import { Box } from '@chakra-ui/react'
 
 export default function Header() {

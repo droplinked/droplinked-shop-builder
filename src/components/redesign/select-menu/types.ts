@@ -13,4 +13,5 @@ export interface SelectMenuProps {
     placeholder?: string
     mobileModeIcon?: React.ReactNode
     showSelectedAsPlaceholder?: boolean
+    fullWidth?: boolean
 }

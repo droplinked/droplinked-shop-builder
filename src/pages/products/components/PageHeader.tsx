@@ -1,10 +1,13 @@
-import AppIcons from 'assets/icon/Appicons'
+import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
+import { Verticalmove2Md } from 'assets/icons/Navigation/VerticalMove2/Verticalmove2Md'
+import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd'
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import ProductTypesPopover from './PageHeaderRightContent/ProductTypesPopover/ProductTypesPopover'
 import enLocale from  'locales/products/en.json'
 import arLocale from  'locales/products/ar.json'
+import ProductTypeSelector from './ProductTypeSelector/ProductTypeSelector'
+
 interface ProductHeaderProps {
     onImportModalOpen: () => void
     onReorderModalOpen: () => void
@@ -25,7 +28,7 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
             actionButtons={[
                 {
                     title: t('pageHeader.actions.reorderProducts'),
-                    leftIcon: <AppIcons.VerticalMove />,
+                    leftIcon: <Verticalmove2Md />,
                     variant: "secondary",
                     fontSize: 14,
                     fontWeight: 500,
@@ -36,7 +39,7 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
                 },
                 {
                     title: t('pageHeader.actions.import'),
-                    leftIcon: <AppIcons.Download />,
+                    leftIcon: <DownloadMd />,
                     variant: "secondary",
                     fontSize: 14,
                     fontWeight: 500,
@@ -46,8 +49,8 @@ function PageHeader({ onImportModalOpen, onReorderModalOpen, isActionEnabled }: 
                 },
                 {
                     title: t('pageHeader.actions.newProduct'),
-                    leftIcon: <AppIcons.BlackPlus />,
-                    wrapper: <ProductTypesPopover />
+                    leftIcon: <PlusMd />,
+                    wrapper: <ProductTypeSelector />
                 },
             ]}
         />

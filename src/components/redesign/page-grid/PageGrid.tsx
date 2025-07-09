@@ -27,14 +27,13 @@
  * ```
  */
 
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import AppTypography from 'components/common/typography/AppTypography'
 import React, { createContext, useContext } from 'react'
 import AppInput from '../input/AppInput'
 import DesktopActionButtons from './components/DesktopActionButtons'
-import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import MobileFloatingMenu from './components/MobileFloatingMenu'
+import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
 
@@ -74,18 +73,14 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)")
 
     return (
-        <Flex w="full" marginBottom="36px" flexDirection="row" justifyContent="space-between" alignItems="start">
+        <Flex width="100%" justifyContent="space-between" marginBottom="36px">
             <Flex flexDirection="column" gap={1}>
                 {title && (
-                    <AppTypography color="neutral.white" fontSize="24px" fontWeight={700}>
+                    <Text color="neutral.white" fontSize="24px" fontWeight={700}>
                         {title}
-                    </AppTypography>
+                    </Text>
                 )}
-                {description && (
-                    <AppTypography color="#b1b1b1" fontSize="16px">
-                        {description}
-                    </AppTypography>
-                )}
+                {description && <Text color="text.subtext.placeholder.light">{description}</Text>}
             </Flex>
             {isSmallerThan768
                 ? <MobileFloatingMenu actionButtons={actionButtons} />

@@ -13,25 +13,28 @@ import { useImportWithUrl } from './hooks/useImportWithUrl'
 import useProductPageStore from './stores/ProductPageStore'
 
 function ProductsV2() {
+    const [searchTerm, setSearchTerm] = useState("")
+    const debouncedSearchTerm = useDebounce(searchTerm)
+    const { data, isFetching } = useProducts(debouncedSearchTerm)
+    const { productFormDrawer, importProductModal, productReorderModal, identifiedItemsModal } = useModalHandlers()
     const { selectedProductType, editingProductId } = useProductPageStore(s => ({
         selectedProductType: s.selectedProductType,
         editingProductId: s.editingProductId
     }))
-
-    const { productFormDrawer, importProductModal, productReorderModal, identifiedItemsModal } = useModalHandlers()
     const importWithUrl = useImportWithUrl({
         importProductModalController: importProductModal,
         identifiedItemsModalController: identifiedItemsModal
     })
-    const [searchTerm, setSearchTerm] = useState("")
-    const debouncedSearchTerm = useDebounce(searchTerm)
-    const { data, isFetching } = useProducts(debouncedSearchTerm)
+
+    // Computed values
     const productsCount = data?.pages?.flatMap(page => page.data.data.data)?.length || 0
     const isActionEnabled = !(productsCount === 0 && !searchTerm)
 
+    // Effects
     useEffect(() => {
-        if (selectedProductType || editingProductId)
+        if (selectedProductType || editingProductId) {
             productFormDrawer.onOpen()
+        }
     }, [selectedProductType, editingProductId])
 
     return (
@@ -42,30 +45,29 @@ function ProductsV2() {
                     onReorderModalOpen={productReorderModal.onOpen}
                     isActionEnabled={isActionEnabled}
                 />
-                {(isActionEnabled || isFetching) &&
+
+                {(isActionEnabled || isFetching) && (
                     <PageGrid.Actions
                         search={{
                             value: searchTerm,
                             onChange: (e) => setSearchTerm(e.target.value),
                             disabled: !isActionEnabled
                         }}
-                    />}
+                    />
+                )}
+
                 <PageGrid.Content>
                     <ProductTable searchTerm={debouncedSearchTerm} />
                 </PageGrid.Content>
             </PageGrid.Root>
 
-            {/* Modals */}
-            <ProductDrawer isOpen={productFormDrawer.isOpen} onClose={productFormDrawer.onClose} />
-            <ImportProductModal
-                isOpen={importProductModal.isOpen}
-                onClose={importProductModal.onClose}
-                importWithUrl={importWithUrl}
-            />
-            <IdentifiedItemsModal isOpen={identifiedItemsModal.isOpen} onClose={identifiedItemsModal.onClose} importWithUrl={importWithUrl} />
-            {productReorderModal.isOpen &&
-                <ProductReorderModal isOpen={productReorderModal.isOpen} onClose={productReorderModal.onClose} />
-            }
+            <ProductDrawer {...productFormDrawer} />
+
+            <ImportProductModal {...importProductModal} importWithUrl={importWithUrl} />
+
+            <IdentifiedItemsModal {...identifiedItemsModal} importWithUrl={importWithUrl} />
+
+            {productReorderModal.isOpen && <ProductReorderModal {...productReorderModal} />}
         </>
     )
 }

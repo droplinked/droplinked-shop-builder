@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Image, useBreakpointValue } from '@chakra-ui/react'
-import TypographyText from 'pages/public-pages/redesign-landings/_shared/components/SectionContainer/TypographyText'
+import TypographyText from 'pages/public-pages/landings/_shared/components/SectionContainer/TypographyText'
 import React from 'react'
 import NewsletterForm from './NewsletterForm'
 import NewsletterHeader from './NewsletterHeader'

@@ -1,18 +1,15 @@
 import { Box, Flex, HStack, Image } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
-import React from "react";
-import { IBlog } from "./blogs.interface";
-import { getTimeAgo } from "utils/helpers";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import arLocale from "locales/public-pages/blogs/ar.json";
 import enLocale from "locales/public-pages/blogs/en.json";
+import React from "react";
+import { getTimeAgo } from "utils/helpers";
+import { IBlogDetail } from "./blogs.interface";
 
-interface Props {
-    blog: IBlog;
-}
 
-const LatestBlog = ({ blog }: Props) => {
+const LatestBlog = ({ blog }: { blog: IBlogDetail }) => {
     const { t } = useLocaleResources("blogs", {
         ar: arLocale,
         en: enLocale,
