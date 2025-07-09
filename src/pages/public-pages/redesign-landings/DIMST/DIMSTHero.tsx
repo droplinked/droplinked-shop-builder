@@ -5,18 +5,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 import HeroChildFrame from '../_shared/components/HeroChildFrame'
-import HeroBrowser from './hero-browser/HeroBrowser'
-import useROICalculation from './hooks/useROICalculation'
-import Plans from './sections/Plans'
-import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import CalculationResult from './sections/CalculationResult'
-import { Refresh1Lg } from 'assets/icons/Action/Refresh1/Refresh1Lg'
-import CardsOverlay from './sections/components/CardsOverlay'
-import Protocols from './sections/Protocols'
+import CalculationSections from './CalculationSections'
 
 export default function DIMSTHero() {
     const isMobile = useBreakpointValue({ base: true, md: false })
-    const roiCalculationVariables = useROICalculation();
 
     return (
         <>
@@ -38,22 +30,7 @@ export default function DIMSTHero() {
                     </Flex>
                 }
             >
-                {!isMobile &&
-                    <HeroChildFrame>
-                        <HeroBrowser>
-                            <Flex gap={6} p={6}>
-                                <RuledGrid columns={1} borderRadius={16} width="60%">
-                                    <Plans roiCalculationVariables={roiCalculationVariables} />
-                                    <Protocols roiCalculationVariables={roiCalculationVariables} />
-                                </RuledGrid>
-                                <RuledGrid columns={1} borderRadius={16} width="40%" height="min-content">
-                                    <CardsOverlay title="Return on Investment" icon={<Refresh1Lg color="#fff" />} />
-                                    <CalculationResult roiCalculationVariables={roiCalculationVariables} />
-                                </RuledGrid>
-                            </Flex>
-                        </HeroBrowser>
-                    </HeroChildFrame>
-                }
+                {!isMobile && <CalculationSections />}
             </HeroSection>
             {isMobile &&
                 <HeroChildFrame>

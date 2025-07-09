@@ -70,7 +70,7 @@ export default function Plans({ roiCalculationVariables }: Props) {
                                 </Text>
                             </Box>
                         </Flex>
-                        <Flex gap={2} alignItems="center" mt={3}>
+                        <Flex gap={2} flexWrap="wrap" alignItems="center" mt={3}>
                             {skuChip("SKUs", plan.skus, isSelected)}
                             {skuChip("Product Records", plan.productRecords, isSelected)}
                             {skuChip("Base Commitment", plan.baseCommitment, isSelected)}
