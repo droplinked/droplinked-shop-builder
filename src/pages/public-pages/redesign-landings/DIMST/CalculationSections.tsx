@@ -18,7 +18,7 @@ export default function CalculationSections() {
     return (
         <HeroChildFrame>
             <HeroBrowser>
-                <Flex gap={6} p={6} flexDirection={{ base: "column", xl: "row" }}>
+                <Flex gap={{ base: 3, md: 6 }} p={{ base: 3, md: 6 }} flexDirection={{ base: "column", xl: "row" }}>
                     <RuledGrid columns={1} borderRadius={16} width={{ base: "100%", xl: "60%" }}>
                         <Plans roiCalculationVariables={roiCalculationVariables} />
                         <Protocols roiCalculationVariables={roiCalculationVariables} />

@@ -22,9 +22,9 @@ interface Props {
 export default function TitledText({ title, text, rightContent, direction = "column" }: Props) {
     return (
         <Flex flexDirection={direction} gap={1} justifyContent="space-between">
-            <Text color="text.subtext.placeholder.dark" fontSize={16}>{title}</Text>
+            <Text color="text.subtext.placeholder.dark" fontSize={{ base: 14, md: 16 }}>{title}</Text>
             <Flex alignItems="center" gap={1.5}>
-                <Text color="#fff" fontSize={16} fontWeight={500}>{text ?? "---"}</Text>
+                <Text color="#fff" fontSize={{ base: 14, md: 16 }} fontWeight={500}>{text ?? "---"}</Text>
                 {rightContent && (
                     <Flex alignItems="center" justifyContent="flex-end" width="100%">
                         {rightContent}

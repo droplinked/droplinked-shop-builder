@@ -10,10 +10,10 @@ interface Props {
 
 export default function CardsOverlay({ title, icon, children }: Props) {
     return (
-        <Flex flexDirection="column" gap={6} padding={6}>
+        <Flex flexDirection="column" gap={6} padding={{ base: 4, md: 6 }}>
             <Box>
                 <IconWrapper icon={icon} />
-                <Text mt={4} fontSize={20} fontWeight={500} color="text.white">{title}</Text>
+                <Text mt={4} fontSize={{ base: 16, md: 20 }} fontWeight={500} color="text.white">{title}</Text>
             </Box>
             {children}
         </Flex>

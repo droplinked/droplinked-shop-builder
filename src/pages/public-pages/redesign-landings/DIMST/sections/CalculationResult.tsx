@@ -18,22 +18,22 @@ export default function CalculationResult({ roiCalculationVariables }: Props) {
             <Flex flexDirection="column" gap={4}>
                 <TitledText
                     direction='row'
-                    text={<FormattedPrice price={grossInvestment} fontSize={16} fontWeight={500} />}
+                    text={<FormattedPrice price={grossInvestment} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
                     title="Gross Investment"
                 />
                 <TitledText
                     direction='row'
-                    text={<FormattedPrice price={grossMerchandiseValue} fontSize={16} fontWeight={500} />}
+                    text={<FormattedPrice price={grossMerchandiseValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
                     title="Gross Merchandise Value (GMV)"
                 />
                 <TitledText
                     direction='row'
-                    text={<FormattedPrice price={grossCapturedValue} fontSize={16} fontWeight={500} />}
+                    text={<FormattedPrice price={grossCapturedValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
                     title="Gross Captured Value"
                 />
                 <TitledText
                     direction='row'
-                    text={<FormattedPrice price={ROI} fontSize={16} fontWeight={500} />}
+                    text={<FormattedPrice price={ROI} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
                     title="Return on Investment (ROI)"
                 />
             </Flex>

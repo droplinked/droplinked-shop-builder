@@ -23,7 +23,6 @@ export default function Protocols({ roiCalculationVariables }: Props) {
                 value={String(selectedNetwork)}
                 placeholder={convertedNetworks.find(network => String(network.value) === String(selectedNetwork))?.label || 'Select Protocol'}
                 fullWidth
-                mobileModeIcon
             />
         </CardsOverlay>
     )

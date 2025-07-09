@@ -22,12 +22,12 @@ export default function Plans({ roiCalculationVariables }: Props) {
         >
             <Text
                 color="text.subtext.placeholder.dark"
-                fontSize={14}
+                fontSize={{ base: 12, md: 14 }}
                 fontWeight={400}
             >
                 {name}
             </Text>
-            <Text color="text.white" fontSize={14} fontWeight={400}>
+            <Text color="text.white" fontSize={{ base: 12, md: 14 }} fontWeight={400}>
                 {value}
             </Text>
         </DotSeparatedList>
@@ -51,7 +51,7 @@ export default function Plans({ roiCalculationVariables }: Props) {
                         transition="all 0.2s ease"
                     >
                         <Flex gap={3} alignItems="center">
-                            <Text fontSize={18} fontWeight={500} color="text.white">
+                            <Text fontSize={{ base: 14, md: 18 }} fontWeight={500} color="text.white">
                                 {plan.title}
                             </Text>
                             <Box
@@ -64,7 +64,7 @@ export default function Plans({ roiCalculationVariables }: Props) {
                             >
                                 <Text
                                     color={isSelected ? "text.primary" : "text.white"}
-                                    fontSize={14}
+                                    fontSize={{ base: 12, md: 14 }}
                                 >
                                     {plan.duration} Days
                                 </Text>

@@ -21,7 +21,7 @@ export default function HeroChildFrame({ children }: { children?: React.ReactNod
                     background="neutral.websiteBackground"
                     borderRadius={{ base: "24px", md: "16px 16px 0 0" }}
                     overflowY="scroll"
-                    height={{ base: "auto", md: "66vh" }}
+                    height={{ base: "auto", md: "648px", xl: "544px", "2xl": "616px" }}
                 >
                     {children}
                 </Box>
