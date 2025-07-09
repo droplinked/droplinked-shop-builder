@@ -94,8 +94,7 @@ const router = createBrowserRouter([
             { path: "polygon", element: <PartnerPage partnerId="polygon" /> },
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
-            { path: "roi", element: <ROIPage /> },
-            { path: "roiv2", element: <DIMST /> },
+            { path: "roi", element: <DIMST /> },
             { path: "dpp", element: <DPPLanding /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
