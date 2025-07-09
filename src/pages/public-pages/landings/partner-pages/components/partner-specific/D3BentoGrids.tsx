@@ -2,12 +2,12 @@
 import React from 'react'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
 import BentoGrids from '../../assets/BentoGrids'
-import { Cards } from 'pages/public-pages/redesign-landings/_shared/components/card'
+import { Cards } from 'pages/public-pages/landings/_shared/components/card'
 import { ShibLogo } from 'assets/logo/NetworkAndTokens/Shib/ShibLogo'
 import { VictionLogo } from 'assets/logo/NetworkAndTokens/Viction/VictionLogo'
 import { CoreLogo } from 'assets/logo/NetworkAndTokens/Core/CoreLogo'
 import { ApeCoinLogo } from 'assets/logo/NetworkAndTokens/apecoin/apecoin'
-import { CardData } from 'pages/public-pages/redesign-landings/_shared/components/card/Cards'
+import { CardData } from 'pages/public-pages/landings/_shared/components/card/Cards'
 
 export default function D3BentoGrids() {
 

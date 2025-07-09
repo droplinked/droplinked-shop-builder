@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
-import InlineVideoPlayer from 'pages/public-pages/redesign-landings/_shared/components/InlineVideoPlayer';
+import InlineVideoPlayer from 'pages/public-pages/landings/_shared/components/InlineVideoPlayer';
 import { ChartSelector } from './ChartSelector';
 import { OrdersInfo } from './OrdersInfo';
 

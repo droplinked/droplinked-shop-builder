@@ -2,7 +2,7 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import FinalCta from '../../_shared/components/FinalCta'
+import FinalCta from './FinalCta'
 
 export default function SignUpCta() {
     return (
