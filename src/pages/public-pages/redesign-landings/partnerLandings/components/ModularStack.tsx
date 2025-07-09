@@ -6,7 +6,6 @@ import React from 'react'
 import PlatformFunctionalities from '../../_shared/components/PlatformFunctionalities'
 import { CardImage } from '../../_shared/components/card'
 import { CardData } from '../../_shared/components/card/Cards'
-import { usePartnerLanding } from '../context/PartnerLandingContext'
 import ProPlanCard from './ProPlanCard'
 
 export default function ModularStack() {
