@@ -1,11 +1,16 @@
-import { PaymentLinkData } from "../../../context/PaymentLinkContext";
+import { useContext } from "react";
+import { PaymentLinkContext } from "../../../context/PaymentLinkContext";
 
 export interface PaymentLinkPreviewImage {
     desktop: string;
     mobile: string;
 }
 
-export default function usePreviewImages(paymentLinkData: PaymentLinkData): PaymentLinkPreviewImage {
+export type ScreenSize = keyof PaymentLinkPreviewImage
+
+export default function usePreviewImages(): PaymentLinkPreviewImage {
+    const { paymentLinkData } = useContext(PaymentLinkContext)
+
     const { variantsStyle, additionalNote } = paymentLinkData
     const imageBasePath = '/assets/images/paymentLink'
     const imageType = variantsStyle === "DROPDOWN" ? "dropdown" : "selector"

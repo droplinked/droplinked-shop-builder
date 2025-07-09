@@ -2,7 +2,7 @@ import { Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import { ScreenSize } from './PreviewModal'
+import { ScreenSize } from '../hooks/usePreviewImages'
 
 interface Props {
     currentScreenSize: ScreenSize,
@@ -17,9 +17,17 @@ export default function PreviewModalScreenSize({ currentScreenSize, onScreenSize
     })
 
     return (
-        <Flex height={12} alignItems={"center"} gap={1} bg={"neutral.gray.100"} p={1} borderRadius={8} {...getRootProps()}>
-            <ScreenSizeRadio icon={<AppIcons.Desktop />} text={"Desktop"} {...getRadioProps({ value: "desktop" })} />
-            <ScreenSizeRadio icon={<AppIcons.Mobile />} text={"Mobile"} {...getRadioProps({ value: "mobile" })} />
+        <Flex
+            height={12}
+            alignItems="center"
+            gap={1}
+            borderRadius={8}
+            padding={1}
+            bg="neutral.gray.100"
+            {...getRootProps()}
+        >
+            <ScreenSizeRadio icon={<AppIcons.Desktop />} text="Desktop" {...getRadioProps({ value: "desktop" })} />
+            <ScreenSizeRadio icon={<AppIcons.Mobile />} text="Mobile" {...getRadioProps({ value: "mobile" })} />
         </Flex>
     )
 }
@@ -29,14 +37,14 @@ function ScreenSizeRadio({ ...props }) {
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
 
     return (
-        <FormLabel height={"100%"} margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
+        <FormLabel height="100%" margin={0} cursor='pointer' {...htmlProps} {...getLabelProps()}>
             <input {...getInputProps()} hidden />
             <Flex
                 width={{ base: "100px", md: "120px", xl: "140px" }}
-                height={"100%"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                gap={"6px"}
+                height="100%"
+                justifyContent="center"
+                alignItems="center"
+                gap="6px"
                 borderRadius={8}
                 bg={isChecked ? "#fff" : "transparent"}
                 transition={"all 0.2s"}
@@ -46,7 +54,11 @@ function ScreenSizeRadio({ ...props }) {
                 }}
             >
                 {icon}
-                <AppTypography fontSize={14} fontWeight={isChecked ? 500 : 400} color={isChecked ? "#000" : "#BCBCBC"}>
+                <AppTypography
+                    fontSize={14}
+                    fontWeight={isChecked ? 500 : 400}
+                    color={isChecked ? "#000" : "#BCBCBC"}
+                >
                     {text}
                 </AppTypography>
             </Flex>
