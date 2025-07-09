@@ -8,6 +8,8 @@ export interface CardData extends GridProps {
     description?: string
     hasBackgroundOverlay?: boolean
     innerOverlay?: string
+    backgroundImage?: string
+    iconBackground?: string
 }
 
 interface Props extends GridProps {
@@ -48,6 +50,8 @@ export default function Cards({ cardsData, templateColumns, gap, hasHoverEffect,
                     flexDirection={flexDirection}
                     hasGradiantOverlay={hasGradiantOverlay}
                     innerOverlay={card.innerOverlay}
+                    backgroundImage={card.backgroundImage}
+                    iconBackground={card.iconBackground}
                 />
             ))}
         </Grid>

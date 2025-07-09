@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { usePartnerLanding } from "pages/public-pages/redesign-landings/partnerLandings/context/PartnerLandingContext";
+import { usePartnerLanding } from "pages/public-pages/redesign-landings/partner-pages/context/PartnerLandingContext";
 import React from "react";
 import { IWalletStatusProps } from "utils/helpers/walletConnectionUtils";
 import BackgroundSVG from "./BackgroundSVG";

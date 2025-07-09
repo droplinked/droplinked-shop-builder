@@ -8,13 +8,15 @@ interface CardProps extends CardData {
     hasHoverEffect?: boolean
     hasGradiantOverlay?: boolean
     innerOverlay?: string
+    backgroundImage?: string
+    iconBackground?: string
 }
 
 /**
  * Reusable card component with customizable layout, hover effects, and overlay options.
  * Used by the Cards component to render individual cards in a grid layout.
  */
-export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay }: CardProps) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay, backgroundImage, iconBackground }: CardProps) {
     const [isHovered, setIsHovered] = useState(false)
     const hovered = isHovered && hasHoverEffect
 
@@ -30,12 +32,15 @@ export default function Card({ icon, title, description, children, gridColumn, h
             overflow="hidden"
             flexDirection={flexDirection || "column"}
             border="1px solid"
-            borderColor="neutral.gray.900"
+            borderColor={iconBackground || "neutral.gray.900"}
             borderRadius={16}
             gridColumn={gridColumn}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            background="neutral.websiteBackground"
+            background={backgroundImage ? `url(${backgroundImage})` : "neutral.websiteBackground"}
+            backgroundSize="cover"
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
             cursor="default"
         >
             {(hasHoverEffect || hasBackgroundOverlay) && <CardHoverEffect isStatic={hasBackgroundOverlay} />}
@@ -43,8 +48,8 @@ export default function Card({ icon, title, description, children, gridColumn, h
                 {icon &&
                     <IconWrapper
                         border="1px solid"
-                        borderColor={hovered ? "label.primary.success" : "neutral.gray.900"}
-                        background={hovered ? "label.primary.success" : "neutral.background"}
+                        borderColor={iconBackground || (hovered ? "label.primary.success" : "neutral.gray.900")}
+                        background={iconBackground || (hovered ? "label.primary.success" : "neutral.background")}
                         transition="all 0.3s ease-in-out"
                         icon={icon}
                     />

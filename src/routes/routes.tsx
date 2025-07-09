@@ -36,7 +36,7 @@ import ProductsOnDemandPage from "pages/public-pages/redesign-landings/products-
 import TokenizingProducts from "pages/public-pages/redesign-landings/tokenizing-products/TokenizingProducts"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import SocialQuests from "pages/public-pages/redesign-landings/social-quests/SocialQuests"
-import PartnerPage from "pages/public-pages/redesign-landings/partnerLandings/PartnerPage"
+import PartnerPage from "pages/public-pages/redesign-landings/partner-pages/PartnerPage"
 import DIMST from "pages/public-pages/redesign-landings/DIMST/DIMST"
 
 // Lazy-loaded components for other routes
