@@ -1,11 +1,11 @@
 import { Box, Flex, Image, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import Slider from "react-slick"
-import { PaymentLinkPreviewImage } from '../hooks/usePreviewImages'
+import "slick-carousel/slick/slick-theme.css"
+import "slick-carousel/slick/slick.css"
+import { PaymentLinkPreviewImage, ScreenSize } from '../hooks/usePreviewImages'
 import PreviewModalArrows from './PreviewModalArrows'
 import PreviewModalScreenSize from './PreviewModalScreenSize'
-
-export type ScreenSize = keyof PaymentLinkPreviewImage
 
 const sliderImages: Array<PaymentLinkPreviewImage> = [
     { desktop: "/assets/images/paymentLink/desktop-quantity.png", mobile: "/assets/images/paymentLink/mobile-quantity.png" },
