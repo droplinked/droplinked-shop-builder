@@ -1,7 +1,7 @@
-import { Box, Flex, Grid, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Flex, Grid, Image, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
-import HeroAnimation from './HeroAnimation'
 import { LazyLoad } from '../LazyLoad'
+import HeroAnimation from './HeroAnimation'
 
 /**
  * Props for HeroSection component
@@ -19,17 +19,27 @@ interface HeroSectionProps {
     videoTablet?: string
     /** Video URL for mobile breakpoint */
     videoMobile?: string
+    /** Image URL for desktop breakpoint */
+    imageDesktop?: string
+    /** Image URL for tablet breakpoint */
+    imageTablet?: string
+    /** Image URL for mobile breakpoint */
+    imageMobile?: string
     /** Custom styles for video player */
     videoStyle?: React.CSSProperties
+    /** Custom styles for image */
+    imageStyle?: React.CSSProperties
     /** HTML video element props */
     playerProps?: React.VideoHTMLAttributes<HTMLVideoElement>
+    /** HTML image element props */
+    imageProps?: React.ImgHTMLAttributes<HTMLImageElement>
     /** Children elements to render inside the hero section */
     children?: React.ReactNode
 }
 
 /**
- * Hero section component with responsive background images and embedded video animation.
- * Uses HeroAnimation component for video playback with breakpoint-specific sources.
+ * Hero section component with responsive background images and embedded video/image animation.
+ * Uses HeroAnimation component for video playback or Image component for static images with breakpoint-specific sources.
  */
 export default function HeroSection({
     title,
@@ -38,8 +48,13 @@ export default function HeroSection({
     videoDesktop,
     videoTablet,
     videoMobile,
+    imageDesktop,
+    imageTablet,
+    imageMobile,
     videoStyle,
+    imageStyle,
     playerProps,
+    imageProps,
     children
 }: HeroSectionProps) {
     const backgroundImage = useBreakpointValue({
@@ -47,6 +62,17 @@ export default function HeroSection({
         md: "url(https://upload-file-droplinked.s3.amazonaws.com/3761e9e1835f3d39f9b409299913078b6b7cffa2c8af76007fe2b2b7fe8cdf0b.png)",
         xl: "url(https://upload-file-droplinked.s3.amazonaws.com/7e5f157d56078d2736d69e135d1353a7cba7430d99fb433f8c329cb6169340f4.png)",
         "2xl": "url(https://upload-file-droplinked.s3.amazonaws.com/b34093c1f326a8235b02ab761a21605c7c5dcc183cc6a87fccfd7b6c6ebb9130.png)"
+    })
+
+    // Determine if we should show video or image based on provided props
+    const hasVideo = videoDesktop || videoTablet || videoMobile
+    const hasImage = imageDesktop || imageTablet || imageMobile
+
+    // Get responsive image URL
+    const imageUrl = useBreakpointValue({
+        base: imageMobile || imageDesktop,
+        md: imageTablet || imageDesktop,
+        xl: imageDesktop,
     })
 
     return (
@@ -90,15 +116,30 @@ export default function HeroSection({
                         </Flex>
                         {subTitleElements}
                     </Box>
-                    {children ||
-                        <HeroAnimation
-                            videoDesktop={videoDesktop}
-                            videoTablet={videoTablet}
-                            videoMobile={videoMobile}
-                            style={videoStyle}
-                            playerProps={playerProps}
-                        />
-                    }
+                    {children || (
+                        hasImage ? (
+                            <Image
+                                src={imageUrl}
+                                alt={title || "Hero image"}
+                                style={{
+                                    margin: "48px auto auto",
+                                    paddingInline: "0px",
+                                    width: "100%",
+                                    height: "auto",
+                                    ...imageStyle
+                                }}
+                                {...imageProps}
+                            />
+                        ) : hasVideo ? (
+                            <HeroAnimation
+                                videoDesktop={videoDesktop}
+                                videoTablet={videoTablet}
+                                videoMobile={videoMobile}
+                                style={videoStyle}
+                                playerProps={playerProps}
+                            />
+                        ) : null
+                    )}
                 </Box>
             </Grid>
         </LazyLoad>

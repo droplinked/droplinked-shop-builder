@@ -4,8 +4,8 @@ import Card from './Card'
 
 export interface CardData extends GridProps {
     icon?: React.ReactNode
-    title: string
-    description: string
+    title?: string
+    description?: string
     hasBackgroundOverlay?: boolean
     innerOverlay?: string
 }

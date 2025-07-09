@@ -39,7 +39,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
             cursor="default"
         >
             {(hasHoverEffect || hasBackgroundOverlay) && <CardHoverEffect isStatic={hasBackgroundOverlay} />}
-            <Flex flexDirection="column" gap={4} p={6} position="relative" zIndex={1}>
+           {title && <Flex flexDirection="column" gap={4} p={6} position="relative" zIndex={1}>
                 {icon &&
                     <IconWrapper
                         border="1px solid"
@@ -62,7 +62,7 @@ export default function Card({ icon, title, description, children, gridColumn, h
                         {description}
                     </Text>
                 </Box>
-            </Flex>
+            </Flex>}
             {children && (
                 <Box height="100%" position="relative" zIndex={1}>
                     {/* Gradient overlay for children */}
