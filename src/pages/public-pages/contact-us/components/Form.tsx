@@ -8,7 +8,7 @@ import { contactUsService } from 'lib/apis/constact-us/services';
 import React from 'react';
 import { useMutation } from 'react-query';
 import * as Yup from "yup";
-import ContactUsInput from '../contact-us-input/ContactUsInput';
+import ContactUsInput from './ContactUsInput';
 
 interface IFormData {
     firstName: string;
