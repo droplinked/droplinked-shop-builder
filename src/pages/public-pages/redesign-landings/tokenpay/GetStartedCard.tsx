@@ -1,6 +1,8 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function GetStartedCard() {
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
@@ -14,9 +16,11 @@ export default function GetStartedCard() {
             height={{ base: "auto", md: "20rem" }}
             width="100%"
         >
-            <AppButton m={6}>
-                Get Started
-            </AppButton>
+            <Link to={AUTH_ROUTES.SIGN_UP}>
+                <AppButton m={6}>
+                    Get Started
+                </AppButton>
+            </Link>
 
             <img
                 style={{
