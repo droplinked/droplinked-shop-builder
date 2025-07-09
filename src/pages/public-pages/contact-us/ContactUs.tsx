@@ -1,8 +1,8 @@
 import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import SpectrumHeader from '../landings/_components/spectrum-header/SpectrumHeader'
-import ContactUsForm from './parts/form/Form'
+import SpectrumHeader from './components/SpectrumHeader'
+import ContactUsForm from './components/Form'
 
 function ContactUs() {
     return (
