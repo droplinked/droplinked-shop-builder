@@ -1,13 +1,13 @@
 // D3-specific features section with bento grid layout
 import React from 'react'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import BentoGrids from '../../assets/BentoGrids'
 import { Cards } from 'pages/public-pages/landings/_shared/components/card'
 import { ShibLogo } from 'assets/logo/NetworkAndTokens/Shib/ShibLogo'
 import { VictionLogo } from 'assets/logo/NetworkAndTokens/Viction/VictionLogo'
 import { CoreLogo } from 'assets/logo/NetworkAndTokens/Core/CoreLogo'
 import { ApeCoinLogo } from 'assets/logo/NetworkAndTokens/apecoin/apecoin'
 import { CardData } from 'pages/public-pages/landings/_shared/components/card/Cards'
+import Features from '../../assets/Features'
 
 export default function D3BentoGrids() {
 
@@ -53,7 +53,7 @@ export default function D3BentoGrids() {
             sectionTitle='SET OF FEATURES'
             headingTitle={`Join Your Community`}
             headingSubtitle={`Unlock exclusive perks and benefits today by proving ownership`}
-            typographySvg={<BentoGrids />}
+            typographySvg={<Features />}
         >
             <Cards
                 cardsData={cardsData}

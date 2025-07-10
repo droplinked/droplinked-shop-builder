@@ -9,7 +9,7 @@ import ClaimNow from '../components/ClaimNow';
 import ModularStack from '../components/ModularStack';
 import D3BentoGrids from '../components/partner-specific/D3BentoGrids';
 import UDTldFeatures from '../components/partner-specific/UDTldFeatures';
-import SetOfPerks from '../components/SetOfPerks';
+import PerkList from '../components/PerkList';
 import { PartnerConfig, Section } from './types';
 
 /**
@@ -30,7 +30,7 @@ const buildSections = (
 ): Section[] => {
   const defaultSections: Section[] = [
     { id: 'partners', component: <MarqueeSection /> },
-    { id: 'set-of-perks', component: <SetOfPerks /> },
+    { id: 'set-of-perks', component: <PerkList /> },
     { id: 'modular-stack', component: <ModularStack /> },
     { id: 'join-community', component: <JoinCommunity /> },
     { id: 'claim-now', component: <ClaimNow /> },
