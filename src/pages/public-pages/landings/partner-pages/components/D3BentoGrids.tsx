@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionContainer from '../../_shared/components/SectionContainer/SectionContainer'
-import BentoGrids from '../assets/BentoGrids'
+import Features from '../assets/Features'
 
 export default function D3BentoGrids() {
 
@@ -10,7 +10,7 @@ export default function D3BentoGrids() {
             sectionTitle='SET OF FEATURES'
             headingTitle={`Join Your Community`}
             headingSubtitle={`Unlock exclusive perks and benefits today by proving ownership`}
-            typographySvg={<BentoGrids />}
+            typographySvg={<Features />}
         >
            <p color='white'>BentoGrids</p>
         </SectionContainer>
