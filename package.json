@@ -58,8 +58,6 @@
 		"sonner": "^2.0.3",
 		"stream": "npm:stream-browserify@^3.0.0",
 		"stream-browserify": "^3.0.0",
-		"ts-prune": "^0.10.3",
-		"typescript": "^5.4.2",
 		"util": "^0.12.4",
 		"workbox-core": "^6.5.4",
 		"workbox-expiration": "^6.5.4",
@@ -135,6 +133,8 @@
 		"jest-watch-typeahead": "^2.2.2",
 		"react-app-rewired": "^2.2.1",
 		"sass": "^1.54.9",
+		"ts-prune": "^0.10.3",
+		"typescript": "^5.8.3",
 		"webpack": "^5.74.0",
 		"webpack-bundle-analyzer": "^4.10.2"
 	}
