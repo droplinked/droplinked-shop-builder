@@ -1,15 +1,11 @@
 // Generic layout component for all partner landing pages
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { LazyLoad } from '../../_shared/components/LazyLoad';
 import MaxWidthWrapper from '../../_shared/components/MaxWidthWrapper';
 import { usePartnerLanding } from '../context/PartnerLandingContext';
 import PartnerHero from './PartnerHero';
 
-interface PartnerLayoutProps {
-  children?: React.ReactNode;
-}
-
-export function PartnerLayout({ children }: PartnerLayoutProps) {
+export function PartnerLayout({ children }: PropsWithChildren) {
   const { partnerConfig } = usePartnerLanding();
 
   return (
