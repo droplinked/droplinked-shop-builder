@@ -25,14 +25,14 @@ const getPublicMegaMenuItems = (t: TFunction) => [
         label: t('publicMegaMenuItems.platformFunctionalities.label'),
         icon: Layer1Lg,
         links: [
-            { label: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.description'), icon: BoxMd, href: '/physical-product' },
-            { label: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.description'), icon: ImageMd, href: '/digital-product' },
-            { label: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.description'), icon: ShirtMd, href: '/pod-product' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.physicalInventory.description'), icon: BoxMd, href: '/physical-inventory' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.digitalGoods.description'), icon: ImageMd, href: '/digital-goods' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.productsOnDemand.description'), icon: ShirtMd, href: '/products-on-demand' },
             { label: t('publicMegaMenuItems.platformFunctionalities.links.onchainAffiliate.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.onchainAffiliate.description'), icon: AffiliateMd, href: '/onchain-affiliate' },
             { label: t('publicMegaMenuItems.platformFunctionalities.links.paymentLinks.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.paymentLinks.description'), icon: LinkMd, href: '/payment-links' },
             { label: t('publicMegaMenuItems.platformFunctionalities.links.productTiles.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.productTiles.description'), icon: Layout1Md, href: '/product-tiles' },
             { label: t('publicMegaMenuItems.platformFunctionalities.links.tokenizingProducts.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.tokenizingProducts.description'), icon: CoinsMd, href: '/tokenizing-products' },
-            { label: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.description'), icon: SubscriptionMd, href: '/affiliate-sass' },
+            { label: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.onchainSubscriptions.description'), icon: SubscriptionMd, href: '/onchain-subscriptions' },
             { label: t('publicMegaMenuItems.platformFunctionalities.links.socialQuests.label'), description: t('publicMegaMenuItems.platformFunctionalities.links.socialQuests.description'), icon: TargetMd, href: '/rewards' }
         ]
     },
