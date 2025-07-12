@@ -267,5 +267,43 @@
         "fillBusinessInfoFirst": "Please fill in business category and description first"
       }
     }
+  },
+  "proPlan": {
+    "crossmint": {
+      "title": "Free Pro Plan Unlocked!",
+      "description": "You now have access to the Pro Plan for 3 months for free."
+    },
+    "trial": {
+      "title": "Use droplinked AI to Create A Shop",
+      "description": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started."
+    },
+    "upgrade": {
+      "title": "Access Exclusive Features",
+      "description": "Upgrade today to take advantage of the benefits associated with a Premium Plan."
+    },
+    "payment": {
+      "successMessage": "Trial activated successfully! Your Pro features are now available."
+    },
+    "footer": {
+      "continue": "Continue",
+      "claimTrial": "Claim Trial Now",
+      "upgrade": "Upgrade",
+      "unsure": "Still unsure?",
+      "comparePlans": "Compare plans and pricing options",
+      "keepCurrentPlan": "Keep Current Plan",
+      "close": "Close"
+    },
+    "features": {
+      "less": "Less",
+      "more": "More"
+    },
+    "card": {
+      "crossmintTitle": "3 months free after adding card on file",
+      "proTitle": "Pro",
+      "description": "For small businesses and teams ready to grow.",
+      "proAccess": "Pro Access",
+      "cancelAnytime": "Cancel anytime",
+      "seamlessActivation": "Seamless Activation"
+    }
   }
 }

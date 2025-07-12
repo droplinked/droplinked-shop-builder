@@ -2,6 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import AppButton from 'components/redesign/button/AppButton';
 import ExternalLink from 'components/redesign/external-link/ExternalLink';
 import React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ProPlanFooterProps {
   isCrossmint: boolean;
@@ -11,10 +12,12 @@ interface ProPlanFooterProps {
 }
 
 const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateTrial, onClose, onUpgrade }) => {
+  const { t } = useLocaleResources('common');
+
   const getButtonText = () => {
-    if (isCrossmint) return 'Continue';
-    if (canActivateTrial) return 'Claim Trial Now';
-    return 'Upgrade';
+    if (isCrossmint) return t('proPlan.footer.continue');
+    if (canActivateTrial) return t('proPlan.footer.claimTrial');
+    return t('proPlan.footer.upgrade');
   };
 
   return (
@@ -22,7 +25,7 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateT
       {canActivateTrial ? null : (
         <Text display="flex" fontSize="sm" justifyContent="center" alignItems="center" gap={1} mt={6} color="white">
           {' '}
-          Still unsure? <ExternalLink onClick={() => window.open('/plans', '_blank')}>Compare plans and pricing options</ExternalLink>
+          {t('proPlan.footer.unsure')} <ExternalLink onClick={() => window.open('/plans', '_blank')}>{t('proPlan.footer.comparePlans')}</ExternalLink>
         </Text>
       )}
 
@@ -30,7 +33,7 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateT
 
       <Flex py={9} px={12} gap={4} w="full">
         <AppButton variant="secondary" onClick={onClose}>
-          {!canActivateTrial ? 'Keep Current Plan' : 'Close'}
+          {!canActivateTrial ? t('proPlan.footer.keepCurrentPlan') : t('proPlan.footer.close')}
         </AppButton>
         <AppButton flex={1} onClick={onUpgrade}>
           {getButtonText()}

@@ -7,6 +7,7 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import PlanPrice from 'components/redesign/plan-price/PlanPrice';
 import React, { useState } from 'react';
 import ProPlanFeatures from './ProPlanFeatures';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ProPlanCardProps {
   isCrossmint: boolean;
@@ -16,6 +17,8 @@ interface ProPlanCardProps {
 
 const ProPlanCard: React.FC<ProPlanCardProps> = ({ isCrossmint, canActivateTrial, businessPlan }) => {
   const [isFeaturesExpanded, setIsFeaturesExpanded] = useState(false);
+  const { t } = useLocaleResources('common');
+
   return (
     <Box
       borderRadius="2xl"
@@ -35,10 +38,10 @@ const ProPlanCard: React.FC<ProPlanCardProps> = ({ isCrossmint, canActivateTrial
         <VStack w="full" gap={2} alignItems="start">
           <VStack w="full" gap={0.5} alignItems="start">
             <Text fontSize="lg" fontWeight="bold" color="white" lineHeight="7">
-              {isCrossmint ? '3 months free after adding card on file' : 'Pro'}
+              {isCrossmint ? t('proPlan.card.crossmintTitle') : t('proPlan.card.proTitle')}
             </Text>
             <Text fontSize="sm" color="text.subtext.placeholder.light" fontWeight="normal" lineHeight="tight">
-              For small businesses and teams ready to grow.
+              {t('proPlan.card.description')}
             </Text>
           </VStack>
 
@@ -49,21 +52,21 @@ const ProPlanCard: React.FC<ProPlanCardProps> = ({ isCrossmint, canActivateTrial
           <Flex justify="center" alignItems="center" gap={2}>
             <ShieldMd color="#2BCFA1" />
             <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
-              Pro Access
+              {t('proPlan.card.proAccess')}
             </Text>
           </Flex>
 
           <Flex justify="center" alignItems="center" gap={2}>
             <DashboardMd color="#2BCFA1" />
             <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
-              Cancel anytime
+              {t('proPlan.card.cancelAnytime')}
             </Text>
           </Flex>
 
           <Flex justify="center" alignItems="center" gap={2}>
             <Refresh1Md color="#2BCFA1" />
             <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
-              Seamless Activation
+              {t('proPlan.card.seamlessActivation')}
             </Text>
           </Flex>
         </Flex>
