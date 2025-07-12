@@ -5,9 +5,11 @@ import { AISm } from 'assets/icons/AI'
 import { NotificationtrueSm } from 'assets/icons/System/NotificationTrue/NotificationtrueSm'
 import { UserSm } from 'assets/icons/System/User/UserSm'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function PanelTitle() {
     const droplinkedTypographyDisplay = useBreakpointValue({ base: "block", xl: "none" })
+    const { t } = useLocaleResources('public-pages/landings/social-quests');
 
     return (
         <Flex
@@ -25,7 +27,7 @@ export default function PanelTitle() {
                 fontWeight={700}
                 color="text.white"
             >
-                Quest
+                {t('heroBrowser.panelTitle.quest')}
             </Text>
             <Box
                 display={{ base: 'block', xl: 'none' }}
@@ -53,7 +55,7 @@ export default function PanelTitle() {
                     userSelect="none"
                 >
                     <AISm color='#2BCFA1' />
-                    <Text fontSize={12} fontWeight={500} color="text.primary">Ai Assistant</Text>
+                    <Text fontSize={12} fontWeight={500} color="text.primary">{t('heroBrowser.panelTitle.aiAssistant')}</Text>
                 </Flex>
                 <Box
                     display={{ base: 'none', xl: 'block' }}

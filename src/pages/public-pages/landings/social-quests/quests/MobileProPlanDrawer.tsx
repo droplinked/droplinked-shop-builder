@@ -4,6 +4,7 @@ import Drawer from 'components/common/Drawer/Drawer'
 import React from 'react'
 import ProPlanCard from './pro-plan-modal/ProPlanCard'
 import ProPlanFooter from './pro-plan-modal/ProPlanFooter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export default function MobileProPlanDrawer({ isOpen, onClose, unlockedMonths }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/social-quests');
+
     return (
         <Drawer
             isOpen={isOpen}
@@ -29,9 +32,9 @@ export default function MobileProPlanDrawer({ isOpen, onClose, unlockedMonths }:
                     <MedalstarLg color="#2BCFA1" />
                 </Flex>
             }
-            title="Free Pro Plan Unlocked!"
+            title={t('quests.mobileDrawer.title')}
             placement="bottom"
-            description='You now have access to the Pro Plan for one month for free.'
+            description={t('quests.mobileDrawer.description')}
             drawerContentStyle={{
                 background: 'url(https://upload-file-droplinked.s3.amazonaws.com/2abc65781b927044e61acccfd9eef90eca030be153053f7c2722c66a86938fcb.png)',
                 backgroundRepeat: "no-repeat",

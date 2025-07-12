@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { AUTH_ROUTES } from 'constants/authRoutes';
 import useFollowStatus from '../../hook/useFollowStatus';
 import ProPlanUpgradeModal from '../pro-plan-modal/ProPlanUpgradeModal';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     grantProPlan?: ReturnType<typeof useFollowStatus>['grantProPlan'];
@@ -17,8 +18,9 @@ export default function PageHeader({ grantProPlan }: Props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isLoggedIn } = useAppStore();
     const navigate = useNavigate();
+    const { t } = useLocaleResources('public-pages/landings/social-quests');
 
-    const description = isLoggedIn ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to qualify';
+    const description = isLoggedIn ? t('heroBrowser.pageHeader.completeToUnlock') : t('heroBrowser.pageHeader.registerToQualify');
 
     const onClick = async () => {
         if (!isLoggedIn) return navigate(AUTH_ROUTES.SIGN_IN)
@@ -42,11 +44,11 @@ export default function PageHeader({ grantProPlan }: Props) {
     return (
         <Flex justifyContent="space-between" alignItems="start" padding={6}>
             <Flex flexDirection="column" gap={1}>
-                <Text fontSize={18} fontWeight={500} color="text.white">Hi There 👋</Text>
+                <Text fontSize={18} fontWeight={500} color="text.white">{t('heroBrowser.pageHeader.greeting')}</Text>
                 <Text fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
             </Flex>
             <AppButton onClick={onClick} isLoading={loading}>
-                {isLoggedIn ? 'Activate Account' : 'Get Started'}
+                {isLoggedIn ? t('heroBrowser.pageHeader.activateAccount') : t('heroBrowser.pageHeader.getStarted')}
             </AppButton>
 
             <ProPlanUpgradeModal isOpen={isOpen} onClose={onClose} unlockedMonths={unlockedMonths} />
