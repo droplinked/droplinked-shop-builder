@@ -1,6 +1,6 @@
 // Hero section component for partner landing pages with video background
-import React from 'react'
 import { useBreakpointValue } from '@chakra-ui/react'
+import React from 'react'
 import HeroSection from '../../_shared/components/hero-section/HeroSection'
 import { usePartnerLanding } from '../context/PartnerLandingContext'
 import SubtitleElements from './SubtitleElements'
@@ -32,9 +32,7 @@ export default function PartnerHero() {
             videoTablet={videoUrl}
             videoMobile={videoUrl}
             videoStyle={videoStyle}
-            subTitleElements={
-                <SubtitleElements />
-            }
+            subTitleElements={<SubtitleElements />}
         />
     )
 }

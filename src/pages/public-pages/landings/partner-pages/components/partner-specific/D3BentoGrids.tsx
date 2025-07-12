@@ -2,7 +2,6 @@
 import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import BentoGrids from '../../assets/BentoGrids'
 import { Cards } from 'pages/public-pages/landings/_shared/components/card'
 import { ShibLogo } from 'assets/logo/NetworkAndTokens/Shib/ShibLogo'
 import { VictionLogo } from 'assets/logo/NetworkAndTokens/Viction/VictionLogo'
@@ -11,6 +10,7 @@ import { ApeCoinLogo } from 'assets/logo/NetworkAndTokens/apecoin/apecoin'
 import { CardData } from 'pages/public-pages/landings/_shared/components/card/Cards'
 import localEn from 'locales/public-pages/landings/partner-pages/en.json'
 import localAr from 'locales/public-pages/landings/partner-pages/ar.json'
+import Features from '../../assets/Features'
 
 export default function D3BentoGrids() {
     const { t } = useLocaleResources('public-pages/landings/partner-pages', {
@@ -60,7 +60,7 @@ export default function D3BentoGrids() {
             sectionTitle={t('d3Features.sectionTitle')}
             headingTitle={t('d3Features.headingTitle')}
             headingSubtitle={t('d3Features.headingSubtitle')}
-            typographySvg={<BentoGrids />}
+            typographySvg={<Features />}
         >
             <Cards
                 cardsData={cardsData}
