@@ -1,25 +1,32 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 
+// Import locale files
+import localEn from 'locales/public-pages/landings/digital-goods/en.json'
+import localAr from 'locales/public-pages/landings/digital-goods/ar.json'
+
 function DigitalGoodsHero() {
+    const { t } = useLocaleResources('public-pages/landings/digital-goods', { en: localEn, ar: localAr })
+
     return (
         <HeroSection
-            title="Mint and Monetize"
-            subtitle="Convert digital assets into exclusive collectibles that work across a catalog to engage communities and customers"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

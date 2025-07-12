@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 
@@ -7,6 +8,8 @@ import Marquee from 'react-fast-marquee'
  * @param children - React nodes to be displayed in the scrolling marquee
  */
 export default function MarqueeWrapper({ children }: { children: React.ReactNode }) {
+    const { isRTL } = useLocaleResources('common')
+
     return (
         <Box
             width="100%"
@@ -24,18 +27,29 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
                     zIndex: 2,
                 },
                 '&::before': {
-                    left: 0,
-                    background: 'linear-gradient(to right, #0A0A0A, transparent)',
+                    left: isRTL ? null : 0,
+                    right: isRTL ? 0 : null,
+                    background: isRTL 
+                        ? 'linear-gradient(to left, #0A0A0A, transparent)'
+                        : 'linear-gradient(to right, #0A0A0A, transparent)',
                 },
                 '&::after': {
-                    right: 0,
-                    background: 'linear-gradient(to left, #0A0A0A, transparent)',
+                    right: isRTL ? null : 0,
+                    left: isRTL ? 0 : null,
+                    background: isRTL 
+                        ? 'linear-gradient(to right, #0A0A0A, transparent)'
+                        : 'linear-gradient(to left, #0A0A0A, transparent)',
                 },
             }}
         >
             <Marquee
-                direction='right'
+                direction={isRTL ? 'left' : 'right'}
                 speed={25}
+                gradient={false}
+                gradientWidth={0}
+                gradientColor="#0A0A0A"
+                pauseOnHover={false}
+                play={true}
             >
                 {children}
             </Marquee>

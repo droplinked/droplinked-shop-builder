@@ -5,25 +5,32 @@ import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+
+// Import locale files
+import localEn from 'locales/public-pages/landings/digital-goods/en.json'
+import localAr from 'locales/public-pages/landings/digital-goods/ar.json'
 
 function DigitalGoodsFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/digital-goods', { en: localEn, ar: localAr })
+
     const cardsData: CardData[] = [
         {
             icon: <Layout2Lg color="#fff" />,
-            title: "Template Engine Tools",
-            description: "Utilize our template engine tools for easy customization",
+            title: t('features.cards.templateEngineTools.title'),
+            description: t('features.cards.templateEngineTools.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CodeLg color="#fff" />,
-            title: "Customization with CSS & HTML",
-            description: "Ready to go further? Dive into customization with implementing CSS and HTML coding",
+            title: t('features.cards.customizationWithCSS.title'),
+            description: t('features.cards.customizationWithCSS.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: "Create Custom Templates",
-            description: "Seeking a unique template? Our designers are here to turn your vision into reality",
+            title: t('features.cards.createCustomTemplates.title'),
+            description: t('features.cards.createCustomTemplates.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +38,9 @@ function DigitalGoodsFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='Front-End Modularity'
-            headingSubtitle='Headless and fully customizable storefront setup'
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
