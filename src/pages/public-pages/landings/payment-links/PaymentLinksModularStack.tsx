@@ -51,7 +51,7 @@ function PaymentLinksModularStack() {
             icon: <SettinggearLg color="#fff" />,
             title: t('modularStack.cards.customizableExperience.title'),
             description: t('modularStack.cards.customizableExperience.description'),
-            gridColumn: { base: '1', md: '1', lg: '1 / 3' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
             children: <CardImage alt={t('modularStack.cards.customizableExperience.title')} src='https://upload-file-droplinked.s3.amazonaws.com/1cc3738198c9fd436a93ffc4305546d0fb73485e0332364f14e585db76236dbc.png' />
         },
         {

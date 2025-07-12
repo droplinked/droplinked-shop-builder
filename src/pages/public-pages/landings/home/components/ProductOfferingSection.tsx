@@ -44,7 +44,7 @@ export default function ProductOfferingSection() {
             icon: <MinttomerchLg color='#fff' />,
             title: t("productOfferings.cards.podAndNfts.title"),
             description: t("productOfferings.cards.podAndNfts.description"),
-            gridColumn: { base: '1', md: '1 / -1', lg: '2 / 4' },
+            gridColumn: { base: 'span 1', md: 'span 4', lg: 'span 3' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/3aca27f1be4b8c9a86b30f7a4648f6d40b70e28b6dd4f76213be8ed793f5603a_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/35f4d210524301dcc5bafc1eb2f98a274553f3f765b10473b199496245816f93.png'
         }
