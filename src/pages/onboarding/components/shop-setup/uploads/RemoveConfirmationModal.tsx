@@ -4,6 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg';
 import React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface RemoveConfirmationModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface RemoveConfirmationModalProps {
 }
 
 const RemoveConfirmationModal: React.FC<RemoveConfirmationModalProps> = ({ isOpen, onClose, onConfirm, type, isLoading = false }) => {
+  const { t } = useLocaleResources('onboarding');
   // Remove the last character from type for display
   const displayType = type.slice(0, -1);
   
@@ -30,8 +32,8 @@ const RemoveConfirmationModal: React.FC<RemoveConfirmationModalProps> = ({ isOpe
     <AppModal modalRootProps={{ isOpen, onClose, size: 'xl', isCentered: true }} modalContentProps={{ width: '600px', gap: 0, paddingBlock: 0, bg: '#141414' }}>
       <ModalHeaderData
         icon={<WarningLg />}
-        title={`Remove Current ${displayType}`}
-        description={`You are about to remove the current ${displayType} in order to replace it. Are you sure you want to continue?`}
+        title={t('shopSetup.uploads.removeConfirmation.title', { type: displayType })}
+        description={t('shopSetup.uploads.removeConfirmation.description', { type: displayType })}
         modalHeaderProps={{
           bgColor: '#141414',
           paddingBlock: { lg: '48px !important', md: '32px !important', base: '16px !important' },
@@ -44,10 +46,10 @@ const RemoveConfirmationModal: React.FC<RemoveConfirmationModalProps> = ({ isOpe
 
       <ModalFooter display="flex" gap={6} mb="8">
         <AppButton flex={1} variant="secondary" isDisabled={isLoading} onClick={onClose}>
-          No, Keep It
+          {t('shopSetup.uploads.removeConfirmation.keepButton')}
         </AppButton>
         <AppButton flex={1} isLoading={isLoading} isDisabled={isLoading} {...confirmButtonProps}>
-          {`Yes, Replace ${displayType}`}
+          {t('shopSetup.uploads.removeConfirmation.replaceButton', { type: displayType })}
         </AppButton>
       </ModalFooter>
     </AppModal>

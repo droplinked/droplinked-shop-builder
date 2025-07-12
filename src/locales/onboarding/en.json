@@ -102,6 +102,66 @@
       "change": "Change",
       "upload": "Upload",
       "remove": "Remove"
+    },
+    "uploads": {
+      "logo": {
+        "title": "Logo",
+        "upload": "Upload"
+      },
+      "coverImage": {
+        "title": "Cover Image",
+        "dropDescription": "JPG, JPEG, and PNG"
+      },
+      "fileUpload": {
+        "dropHere": "Drop the file here ...",
+        "clickOrDrag": "Click or drag & drop here",
+        "uploading": "Uploading..., Please Wait.",
+        "editImage": "Edit image",
+        "deleteImage": "Delete image"
+      },
+      "removeConfirmation": {
+        "title": "Remove Current {{type}}",
+        "description": "You are about to remove the current {{type}} in order to replace it. Are you sure you want to continue?",
+        "keepButton": "No, Keep It",
+        "replaceButton": "Yes, Replace {{type}}"
+      }
+    },
+    "inputs": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Choose your store name",
+        "validation": {
+          "required": "Name is required",
+          "minLength": "Name must be at least 3 characters"
+        }
+      },
+      "url": {
+        "label": "Shop URL",
+        "placeholder": "Type your URL",
+        "validation": {
+          "required": "URL is required",
+          "notAvailable": "This URL is not available",
+          "checkError": "Error checking URL availability"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Write a 150 to 160 characters description for your shop. This will be visible in the footer and will be used for SEO purposes."
+      },
+      "import": {
+        "label": "Import",
+        "description": "Add a website link and we'll import the content into the account.",
+        "placeholder": "Paste URL here",
+        "button": "Start Import",
+        "validation": {
+          "required": "URL is required",
+          "invalid": "Please enter a valid URL"
+        }
+      },
+      "autoPopulate": {
+        "title": "Create Inspirational Inventory",
+        "description": "Grant our AI creative engine to add 3 merch on demand products based on the assets you've uploaded to easily get started."
+      }
     }
   },
   "paymentSetup": {
@@ -158,6 +218,8 @@
       "tryButton": "Try AI Assistant"
     },
     "imageSlider": {
+      "previous": "Previous",
+      "next": "Next"
     },
     "businessModal": {
       "businessDescribe": {
@@ -198,6 +260,24 @@
         "claimTrial": "Claim Trial Now",
         "subscribe": "Subscribe"
       }
+    },
+    "aiCard": {
+      "title": "Generate with AI",
+      "subtitle": "Customize the account with the droplinked assistant",
+      "proFeature": "Pro Feature",
+      "businessDescribe": {
+        "label": "Describe Your Business",
+        "placeholder": "Add descriptive information about the category and customer base to improve results."
+      },
+      "businessCategory": {
+        "label": "Business Category",
+        "placeholder": "Select Category"
+      },
+      "generateButton": "Generate Account Details"
+    },
+    "aiOptions": {
+      "aiSuggestions": "AI Suggestions",
+      "generateAgain": "Generate Again"
     }
   },
   "shopPreview": {
@@ -222,5 +302,64 @@
     "sports": "Sports & Fitness",
     "kids": "Kids & Baby",
     "luxury": "Luxury & Accessories"
+  },
+  "existingWebsite": {
+    "title": "Let's Get Started",
+    "description": "Did you already have an existing website?",
+    "options": {
+      "yes": {
+        "label": "Yes",
+        "description": "Import inventory and data over in just a few clicks."
+      },
+      "no": {
+        "label": "No",
+        "description": "Create a storefront with the AI assistant."
+      }
+    },
+    "continueButton": "Continue"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "description": "Enter the email linked to your account. We'll send you a verification code to reset your password.",
+    "form": {
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter email address",
+      "continueButton": "Continue"
+    },
+    "validation": {
+      "emailInvalid": "Please enter a valid email address.",
+      "emailRequired": "Email address is required.",
+      "passwordRequired": "Password is required.",
+      "passwordMinLength": "Password must be at least 8 characters long.",
+      "confirmPasswordRequired": "Confirm password is required.",
+      "passwordsMustMatch": "Passwords must match."
+    },
+    "success": {
+      "emailSent": "Reset password email sent successfully",
+      "passwordReset": "Password reset successfully"
+    },
+    "errors": {
+      "emailSendFailed": "Failed to send reset password email",
+      "passwordResetFailed": "Failed to reset password"
+    },
+    "links": {
+      "rememberPassword": "Remember your password?",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Join us and create one!"
+    },
+    "setNewPassword": {
+      "title": "Set a New Password",
+      "description": "Create a strong, new password for your account.",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "confirmPasswordPlaceholder": "Confirm New Password",
+      "resetButton": "Reset password"
+    },
+    "passwordUpdated": {
+      "title": "Password Updated!",
+      "description": "Your password has been reset successfully. You can now log in.",
+      "signInButton": "Sign In"
+    }
   }
 } 

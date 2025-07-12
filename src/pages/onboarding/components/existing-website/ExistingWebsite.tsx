@@ -8,10 +8,17 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useEffect } from 'react'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import YesNoRadioCard from './YesNoRadioCard'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import enLocale from 'locales/onboarding/en.json'
+import arLocale from 'locales/onboarding/ar.json'
 
 function ExistingWebsite() {
     const { updateOnboardingState, updateShopSetupUI, shopSetupUI } = useOnboardingStore()
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
+    const { t } = useLocaleResources('onboarding',{
+        en: enLocale,
+        ar: arLocale
+    })
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
@@ -25,15 +32,15 @@ function ExistingWebsite() {
     }, [openProTrialModal])
 
     const options = [
-        { value: 'yes', label: 'Yes', description: 'Import inventory and data over in just a few clicks.', icon: <ShopLg /> },
-        { value: 'no', label: 'No', description: 'Create a storefront with the AI assistant.', icon: <AILg /> }
+        { value: 'yes', label: t('existingWebsite.options.yes.label'), description: t('existingWebsite.options.yes.description'), icon: <ShopLg /> },
+        { value: 'no', label: t('existingWebsite.options.no.label'), description: t('existingWebsite.options.no.description'), icon: <AILg /> }
     ]
 
     return (
         <>
             <OnboardingStepHeader
-                heading="Let's Get Started"
-                description='Did you already have an existing website?'
+                heading={t('existingWebsite.title')}
+                description={t('existingWebsite.description')}
             />
 
             <Flex
@@ -56,7 +63,7 @@ function ExistingWebsite() {
                 rightIcon={<ArrowrightMd />}
                 onClick={() => updateOnboardingState('currentStep', 'STORE_DETAILS')}
             >
-                Continue
+                {t('existingWebsite.continueButton')}
             </AppButton>
 
             <ProTrialModal

@@ -5,6 +5,7 @@ import AppImage from 'components/common/image/AppImage';
 import AppButton from 'components/redesign/button/AppButton';
 import React, { useState } from 'react';
 import ImageSkeleton from './ImageSkeleton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ImageSliderProps {
   images: string[];
@@ -14,6 +15,7 @@ interface ImageSliderProps {
 }
 
 export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: ImageSliderProps) => {
+  const { t } = useLocaleResources('onboarding');
   const [currentIndex, setCurrentIndex] = useState(() => {
     if (selectedValue) {
       const index = images.indexOf(selectedValue);
@@ -75,7 +77,7 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
 
       <Flex alignItems="center" justifyContent="space-between" gap={4}>
         <AppButton variant="normal" leftIcon={<ChevronleftMd color={isLoading ? '#737373' : '#fff'} />} onClick={handlePrev} color="white" isDisabled={isLoading} _hover={'none'}>
-          Previous
+          {t('aiAssistant.imageSlider.previous')}
         </AppButton>
 
         <HStack spacing={2}>
@@ -95,7 +97,7 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
         </HStack>
 
         <AppButton variant="normal" rightIcon={<ChevronrightMd color={isLoading ? '#737373' : '#fff'} />} onClick={handleNext} color="white" isDisabled={isLoading} _hover={'none'}>
-          Next
+          {t('aiAssistant.imageSlider.next')}
         </AppButton>
       </Flex>
     </Flex>

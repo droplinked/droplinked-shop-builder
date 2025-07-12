@@ -6,6 +6,7 @@ import { FileUploadProps } from "./types"
 import LoadingState from "./LoadingState"
 import DropMessage from "./DropMessage"
 import ControlButtons from "./ControlButtons"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function FileUpload({
     onFileChange,
@@ -18,6 +19,7 @@ function FileUpload({
     title,
     value,
 }: FileUploadProps) {
+    const { t } = useLocaleResources('onboarding')
     const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
         onDrop: (acceptedFiles: File[]) => {
             const selectedFile = acceptedFiles[0]

@@ -102,6 +102,66 @@
       "change": "تغيير",
       "upload": "رفع",
       "remove": "إزالة"
+    },
+    "uploads": {
+      "logo": {
+        "title": "الشعار",
+        "upload": "رفع"
+      },
+      "coverImage": {
+        "title": "صورة الغلاف",
+        "dropDescription": "JPG و JPEG و PNG"
+      },
+      "fileUpload": {
+        "dropHere": "أفلت الملف هنا ...",
+        "clickOrDrag": "انقر أو اسحب وأفلت هنا",
+        "uploading": "جاري الرفع... يرجى الانتظار.",
+        "editImage": "تعديل الصورة",
+        "deleteImage": "حذف الصورة"
+      },
+      "removeConfirmation": {
+        "title": "إزالة {{type}} الحالي",
+        "description": "أنت على وشك إزالة {{type}} الحالي لاستبداله. هل أنت متأكد من أنك تريد المتابعة؟",
+        "keepButton": "لا، احتفظ به",
+        "replaceButton": "نعم، استبدل {{type}}"
+      }
+    },
+    "inputs": {
+      "name": {
+        "label": "الاسم",
+        "placeholder": "اختر اسم متجرك",
+        "validation": {
+          "required": "الاسم مطلوب",
+          "minLength": "يجب أن يكون الاسم 3 أحرف على الأقل"
+        }
+      },
+      "url": {
+        "label": "رابط المتجر",
+        "placeholder": "اكتب الرابط الخاص بك",
+        "validation": {
+          "required": "الرابط مطلوب",
+          "notAvailable": "هذا الرابط غير متوفر",
+          "checkError": "حدث خطأ أثناء التحقق من توفر الرابط"
+        }
+      },
+      "description": {
+        "label": "الوصف",
+        "placeholder": "اكتب وصفًا يتكون من 150 إلى 160 حرفًا لمتجرك. سيكون مرئيًا في التذييل وسيُستخدم لأغراض تحسين محركات البحث."
+      },
+      "import": {
+        "label": "استيراد",
+        "description": "أضف رابط موقع وسنقوم باستيراد المحتوى إلى الحساب.",
+        "placeholder": "الصق الرابط هنا",
+        "button": "بدء الاستيراد",
+        "validation": {
+          "required": "الرابط مطلوب",
+          "invalid": "يرجى إدخال رابط صحيح"
+        }
+      },
+      "autoPopulate": {
+        "title": "إنشاء مخزون إلهامي",
+        "description": "امنح محرك الذكاء الاصطناعي الإبداعي لدينا لإضافة 3 منتجات حسب الطلب بناءً على الأصول التي رفعتها للبدء بسهولة."
+      }
     }
   },
   "paymentSetup": {
@@ -142,7 +202,10 @@
       "subtitle": "خصص متجرك باستخدام الذكاء الاصطناعي من دروبلينكد",
       "tryButton": "جرّب مساعد الذكاء الاصطناعي"
     },
-    "imageSlider": {},
+    "imageSlider": {
+      "previous": "السابق",
+      "next": "التالي"
+    },
     "businessModal": {
       "businessDescribe": {
         "label": "وصف عملك",
@@ -182,6 +245,24 @@
         "claimTrial": "اطلب النسخة التجريبية الآن",
         "subscribe": "اشترك"
       }
+    },
+    "aiCard": {
+      "title": "إنشاء بالذكاء الاصطناعي",
+      "subtitle": "خصص الحساب باستخدام مساعد دروبلينكد",
+      "proFeature": "ميزة احترافية",
+      "businessDescribe": {
+        "label": "وصف عملك",
+        "placeholder": "أضف معلومات وصفية حول الفئة وقاعدة العملاء لتحسين النتائج."
+      },
+      "businessCategory": {
+        "label": "فئة العمل",
+        "placeholder": "اختر الفئة"
+      },
+      "generateButton": "إنشاء تفاصيل الحساب"
+    },
+    "aiOptions": {
+      "aiSuggestions": "اقتراحات الذكاء الاصطناعي",
+      "generateAgain": "إنشاء مرة أخرى"
     }
   },
   "shopPreview": {
@@ -206,5 +287,64 @@
     "sports": "الرياضة واللياقة البدنية",
     "kids": "الأطفال والرضع",
     "luxury": "الفخامة والإكسسوارات"
+  },
+  "existingWebsite": {
+    "title": "دعنا نبدأ",
+    "description": "هل لديك موقع ويب موجود بالفعل؟",
+    "options": {
+      "yes": {
+        "label": "نعم",
+        "description": "استيراد المخزون والبيانات بنقرة واحدة فقط."
+      },
+      "no": {
+        "label": "لا",
+        "description": "إنشاء واجهة متجر باستخدام مساعد الذكاء الاصطناعي."
+      }
+    },
+    "continueButton": "متابعة"
+  },
+  "resetPassword": {
+    "title": "إعادة تعيين كلمة المرور",
+    "description": "أدخل البريد الإلكتروني المرتبط بحسابك. سنرسل لك رمز تحقق لإعادة تعيين كلمة المرور.",
+    "form": {
+      "emailLabel": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "أدخل عنوان البريد الإلكتروني",
+      "continueButton": "متابعة"
+    },
+    "validation": {
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+      "emailRequired": "عنوان البريد الإلكتروني مطلوب.",
+      "passwordRequired": "كلمة المرور مطلوبة.",
+      "passwordMinLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+      "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب.",
+      "passwordsMustMatch": "يجب أن تتطابق كلمات المرور."
+    },
+    "success": {
+      "emailSent": "تم إرسال بريد إعادة تعيين كلمة المرور بنجاح",
+      "passwordReset": "تم إعادة تعيين كلمة المرور بنجاح"
+    },
+    "errors": {
+      "emailSendFailed": "فشل في إرسال بريد إعادة تعيين كلمة المرور",
+      "passwordResetFailed": "فشل في إعادة تعيين كلمة المرور"
+    },
+    "links": {
+      "rememberPassword": "تذكر كلمة المرور؟",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "createAccount": "انضم إلينا وأنشئ حسابًا!"
+    },
+    "setNewPassword": {
+      "title": "تعيين كلمة مرور جديدة",
+      "description": "أنشئ كلمة مرور قوية وجديدة لحسابك.",
+      "newPasswordLabel": "كلمة المرور الجديدة",
+      "confirmPasswordLabel": "تأكيد كلمة المرور الجديدة",
+      "confirmPasswordPlaceholder": "تأكيد كلمة المرور الجديدة",
+      "resetButton": "إعادة تعيين كلمة المرور"
+    },
+    "passwordUpdated": {
+      "title": "تم تحديث كلمة المرور!",
+      "description": "تم إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول.",
+      "signInButton": "تسجيل الدخول"
+    }
   }
 }

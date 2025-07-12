@@ -27,7 +27,7 @@ function ShopSetupForm() {
     <>
       <OnboardingStepHeader
         heading={t('common.shop.details')}
-        description="Complete the information below to optimize your storefront."
+        description={t('shopSetup.subtitle')}
       />
       {hasExistingShop ? <ExistingShopUrlProcessor /> : <AICard />}
       <LogoUploader />

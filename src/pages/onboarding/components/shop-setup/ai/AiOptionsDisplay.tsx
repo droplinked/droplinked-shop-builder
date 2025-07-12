@@ -7,6 +7,7 @@ import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 import useOnboardingStore, { initialShopData } from '../../../stores/useOnboardingStore';
 import RemoveConfirmationModal from '../uploads/RemoveConfirmationModal';
 import { ImageSlider } from './ImageSlider';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface AiOptionsDisplayProps {
   type: 'logos' | 'covers' | 'urls' | 'names';
@@ -18,6 +19,7 @@ interface AiOptionsDisplayProps {
 const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSelect, selectedValue }) => {
   const { isLoading, generateContent } = useAiGeneratedContent();
   const { aiGeneratedContent, shopData, shopSetupUI } = useOnboardingStore();
+  const { t } = useLocaleResources('onboarding');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pendingSelection, setPendingSelection] = useState<string | null>(null); //TODO : Replace with useRef
 
@@ -74,10 +76,10 @@ const AiOptionsDisplay: React.FC<AiOptionsDisplayProps> = ({ type, title, onSele
   const OptionsHeader = () => (
     <Flex justify="space-between" align="center" mb={4}>
       <Text display="flex" alignItems="center" gap={1} color="main.primary" fontSize="sm">
-        <AISm color="#2BCFA1" /> AI Suggestions
+        <AISm color="#2BCFA1" /> {t('aiAssistant.aiOptions.aiSuggestions')}
       </Text>
       <AppButton variant="normal" color="main.primary" leftIcon={<Refresh1Sm />} onClick={handleRegenerate} isLoading={isContentLoading}>
-        Generate Again
+        {t('aiAssistant.aiOptions.generateAgain')}
       </AppButton>
     </Flex>
   );
