@@ -5,25 +5,32 @@ import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+
+// Import locale files
+import localEn from 'locales/public-pages/landings/metaverse-showroom/en.json'
+import localAr from 'locales/public-pages/landings/metaverse-showroom/ar.json'
 
 function MetaverseShowroomFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom', { en: localEn, ar: localAr })
+
     const cardsData: CardData[] = [
         {
             icon: <MetaverseLg color="#fff" />,
-            title: "Immersive Experiences",
-            description: "Bring inventory into metaverses and beyond with fully interactive, 3D virtual spaces that customers can explore",
+            title: t('features.cards.immersiveExperiences.title'),
+            description: t('features.cards.immersiveExperiences.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: "Customizable Marketplace",
-            description: "Separately offer customers a unique 3D store tailored to deliver an interactive and engaging shopping experience",
+            title: t('features.cards.customizableMarketplace.title'),
+            description: t('features.cards.customizableMarketplace.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CartLg color="#fff" />,
-            title: "Seamlessly Interactive",
-            description: "Allow customers to browse, select, and purchase products directly within your virtual store",
+            title: t('features.cards.seamlesslyInteractive.title'),
+            description: t('features.cards.seamlesslyInteractive.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +38,9 @@ function MetaverseShowroomFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='Interactive Commerce Anywhere'
-            headingSubtitle='Transform existing shops and inventory into a 3D experience where customers can explore and interact like never before'
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
