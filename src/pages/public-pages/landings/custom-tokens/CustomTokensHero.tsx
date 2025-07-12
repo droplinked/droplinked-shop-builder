@@ -1,25 +1,30 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/custom-tokens/en.json'
+import localAr from 'locales/public-pages/landings/custom-tokens/ar.json'
 
 function CustomTokensHero() {
+    const { t } = useLocaleResources('public-pages/landings/custom-tokens', { en: localEn, ar: localAr })
+
     return (
         <HeroSection
-            title={`True Utility for Tokens`}
-            subtitle="Custom token payment options that drive usage and value across ecosystems"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                     <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

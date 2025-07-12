@@ -40,6 +40,7 @@ export type Namespace =
     | 'invoice-management'
     | 'crossmint'
     | 'public-pages/landings/_shared'
+    | 'public-pages/landings/custom-tokens'
     | 'public-pages/landings/digital-goods'
 
 

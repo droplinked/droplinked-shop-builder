@@ -5,25 +5,30 @@ import Features from '../_shared/svgs/Features'
 import { CoinsLg } from 'assets/icons/Finance/Coins/CoinsLg'
 import { RocketLg } from 'assets/icons/Action/Rocket/RocketLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/custom-tokens/en.json'
+import localAr from 'locales/public-pages/landings/custom-tokens/ar.json'
 
 function CustomTokensFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/custom-tokens', { en: localEn, ar: localAr })
+
     const cardsData: CardData[] = [
         {
             icon: <CoinsLg color="#fff" />,
-            title: "Token-Powered Transactions",
-            description: "Integrate any BRC/ERC/SPL token as a payment method that turns purchases into token-driven transactions",
+            title: t('features.cards.tokenPoweredTransactions.title'),
+            description: t('features.cards.tokenPoweredTransactions.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <RocketLg color="#fff" />,
-            title: "Boosting Token Utility",
-            description: "Increase a token's usage by making it a viable payment option across any website or app to encourage more adoption",
+            title: t('features.cards.boostingTokenUtility.title'),
+            description: t('features.cards.boostingTokenUtility.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <ConfigureLg color="#fff" />,
-            title: "Seamless Integration",
-            description: "Easily activate any custom token across properties with droplinkeds’ integration tools. no technical complexity involved when implementing into a website, game or mobile app",
+            title: t('features.cards.seamlessIntegration.title'),
+            description: t('features.cards.seamlessIntegration.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +36,9 @@ function CustomTokensFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='Day 0 Utility'
-            headingSubtitle='Enable communities to adopt custom tokens to purchase products and services, \n boosting utility and different use cases'
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
