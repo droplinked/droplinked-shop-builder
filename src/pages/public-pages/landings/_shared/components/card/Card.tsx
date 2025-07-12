@@ -10,14 +10,18 @@ interface CardProps extends CardData {
     innerOverlay?: string
     backgroundImage?: string
     iconBackground?: string
+    isGridCards?: boolean
 }
 
 /**
  * Reusable card component with customizable layout, hover effects, and overlay options.
  * Used by the Cards component to render individual cards in a grid layout.
  */
-export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay, backgroundImage, iconBackground }: CardProps) {
+export default function Card({ icon, title, description, children, gridColumn, hasHoverEffect, hasBackgroundOverlay, flexDirection, hasGradiantOverlay, innerOverlay, backgroundImage, iconBackground, isGridCards }: CardProps) {
     const [isHovered, setIsHovered] = useState(false)
+
+    const maxWidth = isGridCards ? "768px" : "unset"
+    const minWidth = isGridCards ? "527px" : "unset"
     const hovered = isHovered && hasHoverEffect
 
     // Determine gradient based on flex direction
@@ -42,32 +46,35 @@ export default function Card({ icon, title, description, children, gridColumn, h
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             cursor="default"
+            maxWidth={{ base: "unset", "2xl": maxWidth }}
+            minWidth={{ base: "unset", "2xl": minWidth }}
         >
             {(hasHoverEffect || hasBackgroundOverlay) && <CardHoverEffect isStatic={hasBackgroundOverlay} />}
-           {title && <Flex flexDirection="column" gap={4} p={6} position="relative" zIndex={1}>
-                {icon &&
-                    <IconWrapper
-                        border="1px solid"
-                        borderColor={iconBackground || (hovered ? "label.primary.success" : "neutral.gray.900")}
-                        background={iconBackground || (hovered ? "label.primary.success" : "neutral.background")}
-                        transition="all 0.3s ease-in-out"
-                        icon={icon}
-                    />
-                }
-                <Box>
-                    <Text fontSize={{ base: 16, lg: 20 }} fontWeight={500} color="text.white" mb={1}>
-                        {title}
-                    </Text>
-                    <Text
-                        fontSize={{ base: 14, lg: 16 }}
-                        fontWeight={400}
-                        color="text.subtext.placeholder.dark"
-                        mb={1}
-                    >
-                        {description}
-                    </Text>
-                </Box>
-            </Flex>}
+            {title &&
+                <Flex flexDirection="column" gap={4} p={{ base: 4, xl: 6 }} position="relative" zIndex={1}>
+                    {icon &&
+                        <IconWrapper
+                            border="1px solid"
+                            borderColor={iconBackground || (hovered ? "label.primary.success" : "neutral.gray.900")}
+                            background={iconBackground || (hovered ? "label.primary.success" : "neutral.background")}
+                            transition="all 0.3s ease-in-out"
+                            icon={icon}
+                        />
+                    }
+                    <Box>
+                        <Text fontSize={{ base: 16, lg: 20 }} fontWeight={500} color="text.white" mb={1}>
+                            {title}
+                        </Text>
+                        <Text
+                            fontSize={{ base: 14, lg: 16 }}
+                            fontWeight={400}
+                            color="text.subtext.placeholder.dark"
+                            mb={1}
+                        >
+                            {description}
+                        </Text>
+                    </Box>
+                </Flex>}
             {children && (
                 <Box height="100%" position="relative" zIndex={1}>
                     {/* Gradient overlay for children */}

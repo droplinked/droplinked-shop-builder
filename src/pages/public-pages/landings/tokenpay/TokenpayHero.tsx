@@ -34,10 +34,6 @@ function TokenpayHero() {
             imageDesktop="https://upload-file-droplinked.s3.amazonaws.com/fbaf8e74973ed4b141b858f4e2904401e3d15d2bd86e04eb0fe915924b4c0bcc.png"
             imageTablet="https://upload-file-droplinked.s3.amazonaws.com/f1701d3b12a66dceafa44490b8c393cb2a10bb95f8a889c6849ed34f8a931bab.png"
             imageMobile="https://upload-file-droplinked.s3.amazonaws.com/39459f0d64714a5048496d708787e2de55629075d8ed3c3cfc77ca1754d21627.png"
-            imageStyle={{
-                margin: "48px auto auto",
-                paddingInline: "0px"
-            }}
         />
     )
 }

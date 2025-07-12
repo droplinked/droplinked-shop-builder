@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import localEn from 'locales/public-pages/landings/homePage/en.json'

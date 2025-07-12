@@ -6,10 +6,9 @@ import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { DeliverytruckLg } from 'assets/icons/System/DeliveryTruck/DeliverytruckLg'
 import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import { CardImage } from '../_shared/components/card'
-import Cards, { CardData } from '../_shared/components/card/Cards'
-import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
+import { CardData } from '../_shared/components/card/Cards'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
 import localEn from 'locales/public-pages/landings/physical-inventory/en.json'
 import localAr from 'locales/public-pages/landings/physical-inventory/ar.json'
 
@@ -23,59 +22,58 @@ function PhysicalInventoryModularStack() {
             icon: <BoxLg color="#fff" />,
             title: t('modularStack.cards.manageInventoryOnchain.title'),
             description: t('modularStack.cards.manageInventoryOnchain.description'),
-            gridColumn: { base: '1', md: '1', lg: '1 / 3' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
             children: <CardImage alt={t('modularStack.cards.manageInventoryOnchain.title')} src='https://upload-file-droplinked.s3.amazonaws.com/e2d199ea0e8487fd77faedf45b8f6d9ad22a014b692d2dce14a8a4efbcc863a0.png' />
         },
         {
             icon: <DeliverytruckLg color="#fff" />,
             title: t('modularStack.cards.automatedShipping.title'),
             description: t('modularStack.cards.automatedShipping.description'),
-            gridColumn: { base: '1', md: '2', lg: '3' },
+            gridColumn: { base: 'span 1', md: 'span 2' },
             children: <CardImage alt={t('modularStack.cards.automatedShipping.title')} src='https://upload-file-droplinked.s3.amazonaws.com/c3c4171fdd51f514d68269e05010f233b488d93959be27308aa53968933f7046.png' />
         },
         {
             icon: <ConfigureLg color="#fff" />,
             title: t('modularStack.cards.warehouseManagement.title'),
             description: t('modularStack.cards.warehouseManagement.description'),
-            gridColumn: { base: '1', md: '1', lg: '1' },
+            gridColumn: { base: 'span 1', md: 'span 2' },
             children: <CardImage alt={t('modularStack.cards.warehouseManagement.title')} src='https://upload-file-droplinked.s3.amazonaws.com/fdf0945ecca1cc5e3aaa6ca968efa13bfe912e7a844c1b9a46a8cf4d2056ec4b.png' />
         },
         {
             icon: <Discount2Lg color="#fff" />,
             title: t('modularStack.cards.offerPerks.title'),
             description: t('modularStack.cards.offerPerks.description'),
-            gridColumn: { base: '1', md: '2', lg: '2 / 4' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
             children: <CardImage alt={t('modularStack.cards.offerPerks.title')} src='https://upload-file-droplinked.s3.amazonaws.com/f2511d193573eab6db67d1e08574c601dcce953181a3ac38097aee0361b7c0f7.png' />
         },
         {
             icon: <GridLg color="#fff" />,
             title: t('modularStack.cards.embeddableProductTiles.title'),
             description: t('modularStack.cards.embeddableProductTiles.description'),
-            gridColumn: { base: '1', md: '1', lg: '1 / 3' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
             children: <CardImage alt={t('modularStack.cards.embeddableProductTiles.title')} src='https://upload-file-droplinked.s3.amazonaws.com/add4930cd84e9ffdfe6e1149a5eabbbd885c871a4647f2fab5040f361ed81ab0.png' />
         },
         {
             icon: <AffiliateLg color="#fff" />,
             title: t('modularStack.cards.decentralizedAffiliateNetwork.title'),
             description: t('modularStack.cards.decentralizedAffiliateNetwork.description'),
-            gridColumn: { base: '1', md: '2', lg: '3' },
+            gridColumn: { base: 'span 1', md: 'span 2' },
             children: <CardImage alt={t('modularStack.cards.decentralizedAffiliateNetwork.title')} src='https://upload-file-droplinked.s3.amazonaws.com/519161d65a791400d307ff0747c5108f23c4a152d1e2497c48752df8a5533e0e.png' />
         }
     ]
 
+    const templateColumns = {
+        base: '1fr',
+        md: 'repeat(4, 1fr)',
+        lg: 'repeat(5, 1fr)'
+    }
+
     return (
-        <SectionContainer
-            icon='layer-web'
-            sectionTitle={t('modularStack.sectionTitle')}
-            headingTitle={t('modularStack.headingTitle')}
-            headingSubtitle={t('modularStack.headingSubtitle')}
-            typographySvg={<ModularStackTypography />}
-        >
-            <Cards
-                hasGradiantOverlay={true}
-                cardsData={cardsData}
-            />
-        </SectionContainer>
+        <PlatformFunctionalities
+            cardsData={cardsData}
+            templateColumns={templateColumns}
+            hasGradiantOverlay={true}
+        />
     )
 }
 

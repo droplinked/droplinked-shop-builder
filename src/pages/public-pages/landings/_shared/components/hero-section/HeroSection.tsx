@@ -64,6 +64,8 @@ export default function HeroSection({
         "2xl": "url(https://upload-file-droplinked.s3.amazonaws.com/b34093c1f326a8235b02ab761a21605c7c5dcc183cc6a87fccfd7b6c6ebb9130.png)"
     })
 
+    const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })
+
     // Determine if we should show video or image based on provided props
     const hasVideo = videoDesktop || videoTablet || videoMobile
     const hasImage = imageDesktop || imageTablet || imageMobile
@@ -123,7 +125,7 @@ export default function HeroSection({
                                 alt={title || "Hero image"}
                                 style={{
                                     margin: "48px auto auto",
-                                    paddingInline: "0px",
+                                    paddingInline: paddingInline,
                                     width: "100%",
                                     height: "auto",
                                     ...imageStyle

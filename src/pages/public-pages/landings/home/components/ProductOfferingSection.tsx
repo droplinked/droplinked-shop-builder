@@ -20,7 +20,7 @@ export default function ProductOfferingSection() {
             icon: <PositionLg color='#fff' />,
             title: t("productOfferings.cards.services.title"),
             description: t("productOfferings.cards.services.description"),
-            gridColumn: { base: '1', md: '1 / -1', lg: '1 / 3' },
+            gridColumn: { base: 'span 1', md: 'span 4', lg: 'span 3' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/2d590fabf845f1755d39c1f521b7abf37fa8fd253d15e826c02ad95e15d1d22b_or.webm" />,
             innerOverlay: "https://upload-file-droplinked.s3.amazonaws.com/7b228ed2a617cefa1a86123a032c7955b548d2b64d858532a2f7245d4f3c9ff2.png"
         },
@@ -28,7 +28,7 @@ export default function ProductOfferingSection() {
             icon: <BoxLg color='#fff' />,
             title: t("productOfferings.cards.digitalProducts.title"),
             description: t("productOfferings.cards.digitalProducts.description"),
-            gridColumn: { base: '1', md: '1', lg: '3' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/dd38f4a712c8f68e8375dd70bc92951c9a903dc49ad93bfcb6901bb0126079cd_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/0adc77b2411ddedae289d4a13d1c264c2670995eb95e5bdf15c115ba77b077b7.png'
         },
@@ -36,7 +36,7 @@ export default function ProductOfferingSection() {
             icon: <ImageLg color='#fff' />,
             title: t("productOfferings.cards.physicalProducts.title"),
             description: t("productOfferings.cards.physicalProducts.description"),
-            gridColumn: { base: '1', md: '2', lg: '1' },
+            gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/a8446a148de62ba284980a767f7284acc55e8a63d8955fc55f4271ed969a8a7e_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/05c6d5f6d6f830993e96d7eb47f3f930d2aeec67a6c81fa2ba18fd255e9c64b6.png'
         },
@@ -61,6 +61,12 @@ export default function ProductOfferingSection() {
             <Cards
                 hasGradiantOverlay={true}
                 cardsData={cardsData}
+                isGridCards
+                templateColumns={{
+                    base: '1fr',
+                    md: 'repeat(4, 1fr)',
+                    lg: 'repeat(5, 1fr)'
+                }}
             />
         </SectionContainer>
     )
