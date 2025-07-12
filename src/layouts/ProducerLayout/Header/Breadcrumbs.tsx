@@ -1,14 +1,16 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
+import { ChevronleftSm } from 'assets/icons/Navigation/ChevronLeft/ChevronleftSm'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/layout/sidebar/ar.json'
+import enLocale from 'locales/layout/sidebar/en.json'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { SidebarGroupType } from '../Sidebar/SidebarGroup'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import enLocale from 'locales/layout/sidebar/en.json'
-import arLocale from 'locales/layout/sidebar/ar.json'
 
 interface CustomBreadcrumbItem {
     title: string
@@ -18,15 +20,15 @@ interface CustomBreadcrumbItem {
 export const Breadcrumbs = () => {
     const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
-    const { t } = useLocaleResources('layout/sidebar', { en: enLocale, ar: arLocale })
+    const { t, isRTL } = useLocaleResources('layout/sidebar', { en: enLocale, ar: arLocale })
     const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'
-        ? <ChevronrightMd color='#b1b1b1' />
-        : <ChevronrightSm color='#b1b1b1' />
+        ? isRTL ? <ChevronleftMd color='#b1b1b1' /> : <ChevronrightMd color='#b1b1b1' />
+        : isRTL ? <ChevronleftSm color='#b1b1b1' /> : <ChevronrightSm color='#b1b1b1' />
 
     // Function to generate breadcrumbs based on the current path
-    const getBreadcrumbs = (path: string): CustomBreadcrumbItem[] => {
+    function getBreadcrumbs(path: string): CustomBreadcrumbItem[] {
         const breadcrumbs: CustomBreadcrumbItem[] = [{ title: t('items.home'), linkTo: '/analytics' }]
 
         sidebarLinks.forEach((group: SidebarGroupType) => {
