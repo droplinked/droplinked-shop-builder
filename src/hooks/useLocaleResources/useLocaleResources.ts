@@ -50,6 +50,7 @@ export type Namespace =
     | 'public-pages/landings/partner-pages'
     | 'public-pages/landings/payment-links'
     | 'public-pages/landings/physical-inventory'
+    | 'public-pages/landings/product-tiles'
 
 
 /**
