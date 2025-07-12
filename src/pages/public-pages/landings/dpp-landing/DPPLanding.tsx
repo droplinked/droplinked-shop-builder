@@ -8,7 +8,7 @@ import DPPFeatures from './DPPFeatures'
 import DppHero from './DppHero'
 import DPPModularStack from './DPPModularStack'
 
-export default function OnchainSubscriptions() {
+export default function DPPLanding() {
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'set-of-features', component: <DPPFeatures /> },
