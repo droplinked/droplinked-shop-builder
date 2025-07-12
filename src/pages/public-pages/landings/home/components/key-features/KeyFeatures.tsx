@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { Cards } from '../../../_shared/components/card'
 import { CardData } from '../../../_shared/components/card/Cards'

@@ -30,6 +30,7 @@ export default function PlatformFunctionalities({ cardsData, templateColumns, ha
                 cardsData={cardsData}
                 templateColumns={templateColumns || defaultTemplateColumns}
                 hasGradiantOverlay={hasGradiantOverlay}
+                isGridCards
             />
         </SectionContainer>
     )
