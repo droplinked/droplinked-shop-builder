@@ -19,10 +19,6 @@ export interface IchangePasswordService {
     accountRecoveryToken: string;
 }
 
-export interface IemailVerifyService {
-    token: string;
-}
-
 export interface IGetUserService {
     access_token: string;
 }

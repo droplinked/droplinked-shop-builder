@@ -20,10 +20,6 @@ export const resendEmailService = (props: IresendEmailService) => {
     return axiosInstance.post(`user/resend-email`, props);
 };
 
-export const emailVerifyService = (props: IemailVerifyService) => {
-    return axiosInstance.post(`user/email-verification`, props);
-};
-
 export const verifyEmailCode = (payload: VerifyEmailPayload) => {
     return axiosInstance.post(`user/verify-email-code`, payload);
 };
