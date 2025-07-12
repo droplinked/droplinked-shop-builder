@@ -39,24 +39,8 @@ export type Namespace =
     | 'products'
     | 'invoice-management'
     | 'crossmint'
-    | 'public-pages/redesign-landings/crossmint'
-    | 'public-pages/landings/tokenizing-products'
-    | 'public-pages/landings/tokenpay'
-    | 'public-pages/landings/roi'
-    | 'public-pages/landings/roi-page'
-    | 'public-pages/landings/physical-product'
-    | 'public-pages/landings/affiliate-sass'
-    | 'public-pages/landings/affiliate'
-    | 'public-pages/landings/_components'
-    | 'public-pages/landings/custom-token-page'
-    | 'public-pages/landings/digital-product-page'
-    | 'public-pages/landings/dpp-page'
-    | 'public-pages/landings/metaverse-store-page'
-    | 'public-pages/landings/partners-pages'
-    | 'public-pages/landings/payment-link-page'
-    | 'public-pages/landings/pod-product-page'
-    | 'public-pages/landings/product-tile-page'
-    | 'public-pages/landings/tokenpay'
+    | 'public-pages/landings/_shared'
+
 
 /**
  * A custom hook to easily load translation resources into i18next and provide the translation function
