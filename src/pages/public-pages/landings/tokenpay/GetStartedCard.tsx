@@ -3,8 +3,15 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/tokenpay/en.json'
+import localAr from 'locales/public-pages/landings/tokenpay/ar.json'
 
 export default function GetStartedCard() {
+    const { t } = useLocaleResources('public-pages/landings/tokenpay', {
+        en: localEn,
+        ar: localAr
+    })
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
     const transformAmount = useBreakpointValue({ base: "scale(1)", md: "scale(0.8)", xl: "scale(1)" })
 
@@ -18,7 +25,7 @@ export default function GetStartedCard() {
         >
             <Link to={AUTH_ROUTES.SIGN_UP}>
                 <AppButton m={6}>
-                    Get Started
+                    {t('getStartedCard.getStarted')}
                 </AppButton>
             </Link>
 

@@ -53,6 +53,7 @@ export type Namespace =
     | 'public-pages/landings/product-tiles'
     | 'public-pages/landings/products-on-demand'
     | 'public-pages/landings/tokenizing-products'
+    | 'public-pages/landings/tokenpay'
 
 
 /**

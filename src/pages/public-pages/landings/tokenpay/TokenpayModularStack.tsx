@@ -1,12 +1,19 @@
 import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import { CardImage, Cards } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
 import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
 import GetStartedCard from './GetStartedCard'
+import localEn from 'locales/public-pages/landings/tokenpay/en.json'
+import localAr from 'locales/public-pages/landings/tokenpay/ar.json'
 
-function TokenpayModularStack() {   
+function TokenpayModularStack() {
+    const { t } = useLocaleResources('public-pages/landings/tokenpay', {
+        en: localEn,
+        ar: localAr
+    })
     const cardsData: CardData[] = [
         {
             gridColumn: { base: '1', md: '1', lg: '1 / 2' },
@@ -19,8 +26,8 @@ function TokenpayModularStack() {
         },
         {
             icon: <BoxLg color="#fff" />,
-            title: "Ready to Get Started?",
-            description: "Now’s the chance to join the next wave of commerce and make an impact",
+            title: t('modularStack.cards.readyToGetStarted.title'),
+            description: t('modularStack.cards.readyToGetStarted.description'),
             gridColumn: { base: '1', md: '1', lg: '1 / 3' },
             hasBackgroundOverlay: true,
             children: <GetStartedCard />
@@ -30,9 +37,9 @@ function TokenpayModularStack() {
     return (
         <SectionContainer
             icon='layer-web'
-            sectionTitle='MODULAR STACK'
-            headingTitle='Platform Functionalities'
-            headingSubtitle='droplinked provides customizable tools and integrations to support any business'
+            sectionTitle={t('modularStack.sectionTitle')}
+            headingTitle={t('modularStack.headingTitle')}
+            headingSubtitle={t('modularStack.headingSubtitle')}
             typographySvg={<ModularStackTypography />}
         >
             <Cards
