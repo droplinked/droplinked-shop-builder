@@ -2,28 +2,36 @@ import { LinkLg } from 'assets/icons/Action/Link/LinkLg'
 import { WalletLg } from 'assets/icons/Finance/Wallet/WalletLg'
 import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
+import localEn from 'locales/public-pages/landings/payment-links/en.json'
+import localAr from 'locales/public-pages/landings/payment-links/ar.json'
 
 function PaymentLinksFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/payment-links', {
+        en: localEn,
+        ar: localAr
+    })
+
     const cardsData: CardData[] = [
         {
             icon: <LinkLg color="#fff" />,
-            title: "Instant Payment Links",
-            description: "Share URLs or QR codes to enable fast purchases for items or invoices within just a few clicks",
+            title: t('features.cards.instantPaymentLinks.title'),
+            description: t('features.cards.instantPaymentLinks.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: "Customizable Payment Pages",
-            description: "Create payment pages align with your look, and choose between dark and light modes while customizing product details to display",
+            title: t('features.cards.customizablePaymentPages.title'),
+            description: t('features.cards.customizablePaymentPages.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <WalletLg color="#fff" />,
-            title: "Crypto and Fiat Payments",
-            description: "Offer customers flexible payment options with a wide range of cryptocurrencies alongside traditional payment methods",
+            title: t('features.cards.cryptoAndFiatPayments.title'),
+            description: t('features.cards.cryptoAndFiatPayments.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +39,9 @@ function PaymentLinksFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='Sell Effortlessly with Full Flexibility'
-            headingSubtitle='Generate payment links in seconds to sell anywhere without customers needing to visit a particular site, marketplace or application'
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

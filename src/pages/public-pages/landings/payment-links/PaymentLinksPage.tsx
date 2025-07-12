@@ -8,7 +8,7 @@ import PaymentLinksFeatures from './PaymentLinksFeatures'
 import PaymentLinksHero from './PaymentLinksHero'
 import PaymentLinksModularStack from './PaymentLinksModularStack'
 
-function DigitalGoodsPage() {
+export default function PaymentLinksPage() {
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'feature-list', component: <PaymentLinksFeatures /> },
@@ -30,5 +30,3 @@ function DigitalGoodsPage() {
         </>
     )
 }
-
-export default DigitalGoodsPage

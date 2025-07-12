@@ -48,6 +48,7 @@ export type Namespace =
     | 'public-pages/landings/onchain-affiliate'
     | 'public-pages/landings/onchain-subscriptions'
     | 'public-pages/landings/partner-pages'
+    | 'public-pages/landings/payment-links'
 
 
 /**
