@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "title": "Product Record Calculator",
+    "subtitle": "Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking"
+  },
+  "calculationSections": {
+    "returnOnInvestment": "Return on Investment"
+  },
+  "calculationResult": {
+    "grossInvestment": "Gross Investment",
+    "grossMerchandiseValue": "Gross Merchandise Value (GMV)",
+    "grossCapturedValue": "Gross Captured Value",
+    "returnOnInvestment": "Return on Investment (ROI)",
+    "calculate": "Calculate"
+  },
+  "plans": {
+    "title": "Plans",
+    "days": "Days",
+    "skus": "SKUs",
+    "productRecords": "Product Records",
+    "baseCommitment": "Base Commitment"
+  }
+} 

@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "title": "حاسبة سجلات المنتجات",
+    "subtitle": "توقع عائد الاستثمار عند استخدام إدارة المخزون المؤسسية وتتبع المبيعات من دروبلينكد"
+  },
+  "calculationSections": {
+    "returnOnInvestment": "عائد الاستثمار"
+  },
+  "calculationResult": {
+    "grossInvestment": "إجمالي الاستثمار",
+    "grossMerchandiseValue": "إجمالي قيمة البضائع (GMV)",
+    "grossCapturedValue": "إجمالي القيمة المحققة",
+    "returnOnInvestment": "عائد الاستثمار (ROI)",
+    "calculate": "احسب"
+  },
+  "plans": {
+    "title": "الخطط",
+    "days": "أيام",
+    "skus": "وحدات حفظ المخزون",
+    "productRecords": "سجلات المنتجات",
+    "baseCommitment": "الالتزام الأساسي"
+  }
+} 

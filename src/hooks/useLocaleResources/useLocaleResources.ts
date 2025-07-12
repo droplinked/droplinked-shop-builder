@@ -42,6 +42,7 @@ export type Namespace =
     | 'public-pages/landings/_shared'
     | 'public-pages/landings/custom-tokens'
     | 'public-pages/landings/digital-goods'
+    | 'public-pages/landings/DIMST'
 
 
 /**
