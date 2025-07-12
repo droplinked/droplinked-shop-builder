@@ -2,28 +2,35 @@ import { CodeLg } from 'assets/icons/Coding/Code/CodeLg'
 import { ReceivemoneyLg } from 'assets/icons/Finance/ReceiveMoney/ReceivemoneyLg'
 import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
+import localEn from 'locales/public-pages/landings/products-on-demand/en.json'
+import localAr from 'locales/public-pages/landings/products-on-demand/ar.json'
 
 function ProductsOnDemandFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/products-on-demand', {
+        en: localEn,
+        ar: localAr
+    })
     const cardsData: CardData[] = [
         {
             icon: <DesignLg color="#fff" />,
-            title: "Merchandise Design Engine",
-            description: "Utilize our template engine tools for easy customization of products offered on demand",
+            title: t('features.cards.merchandiseDesignEngine.title'),
+            description: t('features.cards.merchandiseDesignEngine.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CodeLg color="#fff" />,
-            title: "Customization with CSS & HTML ",
-            description: "Ready to go further? Dive into customization with implementing CSS and HTML coding",
+            title: t('features.cards.customizationWithCssHtml.title'),
+            description: t('features.cards.customizationWithCssHtml.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <ReceivemoneyLg color="#fff" />,
-            title: "Monetize Without Overhead ",
-            description: "Use IP such as logos, trademarks and any assets to offer premium merchandise instantly",
+            title: t('features.cards.monetizeWithoutOverhead.title'),
+            description: t('features.cards.monetizeWithoutOverhead.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +38,9 @@ function ProductsOnDemandFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='No Minimum Requirements'
-            headingSubtitle="Design and offer an entire catalog of items that are produced as orders flow in"
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
