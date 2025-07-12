@@ -10,6 +10,8 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import ProductList from './ProductList'
 import ProductReorderLoading from './ProductReorderLoading'
+import localeEn from 'locales/products/en.json'
+import localeAr from 'locales/products/ar.json'
 
 interface Props {
     isOpen: boolean
@@ -17,7 +19,7 @@ interface Props {
 }
 
 function ProductReorderModal({ isOpen, onClose }: Props) {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('products',{ en:localeEn , ar:localeAr});
     const [products, setProducts] = useState([])
     const [initialProducts, setInitialProducts] = useState([])
     const { invalidateProductsQuery } = useInvalidateProductsQuery()

@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { ProductProperty, ProductPropertyItem } from 'pages/products/utils/types'
 import React, { useEffect, useState } from 'react'
 import FormControl from '../../../common/FormControl'
@@ -12,6 +13,7 @@ interface Props {
 }
 
 function VariantItemList({ localProperty, setLocalProperty }: Props) {
+    const { t } = useLocaleResources('products')
     const [newItem, setNewItem] = useState<ProductPropertyItem>({ caption: '', value: '' })
 
     // Store the condition in a variable
@@ -67,7 +69,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
                 />
                 <AppInput
                     inputProps={{
-                        placeholder: 'Color Name',
+                        placeholder: t('variantItemList.colorName'),
                         value: item.caption,
                         onChange: e => handleItemChange('caption', e.target.value, itemIndex)
                     }}
@@ -76,7 +78,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
             :
             <AppInput
                 inputProps={{
-                    placeholder: 'Enter Value',
+                    placeholder: t('variantItemList.enterValue'),
                     value: item.value,
                     onChange: e => handleItemChange('value', e.target.value, itemIndex)
                 }}
@@ -98,7 +100,7 @@ function VariantItemList({ localProperty, setLocalProperty }: Props) {
     }
 
     return (
-        <FormControl label="Value">
+        <FormControl label={t('variantItemList.value')}>
             <Flex direction="column" gap={4}>
                 {localProperty.items.map((item, index) => (
                     <Flex

@@ -10,9 +10,11 @@ import AnimatedBox from '../../common/AnimatedBox'
 import ImproveWithAi from '../../common/ImproveWithAi'
 import './loading.css'
 import classes from './ProductDescription.module.scss'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
 
 function ProductDescription() {
-    const { t } = useLocaleResources('products');
+    const { t } = useLocaleResources('products', { en: enLocale, ar: arLocale });
     const { values: { description, title }, errors, setFieldValue } = useProductForm()
     const editorRef = useRef(null);
     const improveAI = useImproveAI({ type: 'description' });
@@ -34,8 +36,8 @@ function ProductDescription() {
     return (
         <>
             <FormFieldWrapper
-                label={t('fields.description.label')}
-                description={t('fields.description.description')}
+                label={t('fields.productDescription.label')}
+                description={t('fields.productDescription.description')}
                 errorMessage={errors.description}
             >
                 <AnimatedBox flexProps={{
@@ -68,7 +70,7 @@ function ProductDescription() {
                                 content_css: "dark",
                                 body_id: "loading",
                                 height: 200,
-                                placeholder: t('fields.description.placeholder'),
+                                placeholder: t('fields.productDescription.placeholder'),
                                 menubar: false,
                                 plugins: [
                                     'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',

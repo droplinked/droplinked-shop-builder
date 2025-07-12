@@ -1,4 +1,5 @@
 import { Drawer, DrawerContent, DrawerOverlay } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { PropsWithChildren } from 'react'
 
 interface Props extends PropsWithChildren {
@@ -7,10 +8,13 @@ interface Props extends PropsWithChildren {
 }
 
 function ProductDrawerLayout({ isOpen, onDrawerClose, children }: Props) {
+    const { isRTL } = useLocaleResources('common')
+    const placement = isRTL ? 'left' : 'right'
+
     return (
         <Drawer
             isOpen={isOpen}
-            placement="right"
+            placement={placement}
             size="lg"
             onClose={onDrawerClose}
             trapFocus={false}

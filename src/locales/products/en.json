@@ -81,7 +81,7 @@
       "orderPodSample": "Order POD Sample",
       "share": "Share",
       "remove": "Remove",
-      "makeStatus": "Make {status}"
+      "makeStatus": "Make {{status}}"
     },
     "status": {
       "active": "Active",
@@ -191,6 +191,16 @@
         "tooltip": "Customers won't be able to add it to their cart"
       }
     },
+    "productImages": {
+      "label": "Product Images",
+      "description": "Upload images or videos that visually showcase the product.",
+      "fileUploadFailed": "Failed to upload file"
+    },
+    "productDescription": {
+      "label": "Product Description",
+      "description": "Describe product features and details to help customers understand what they're buying.",
+      "placeholder": "Add product information here..."
+    },
     "releaseDate": {
       "title": "Release Date",
       "description": "Select a specific release date for this product."
@@ -268,5 +278,148 @@
       "title": "Mint to Merch",
       "description": "Enable customers to directly print their NFT artwork on the POD product."
     }
+  },
+  "physicalProductVariants": {
+    "label": "Variants",
+    "description": "Add different versions of this product (e.g., size, color).",
+    "variantLimitWarning": {
+      "title": "Variant Limit Warning",
+      "description": "Can't add any more variants. You can only add up to {{maxVariants}} variants."
+    }
+  },
+  "productShippingType": {
+    "label": "Shipping Method",
+    "description": "Choose how to ship this product to customers.",
+    "customShipping": "Custom Shipping"
+  },
+  "productDrop": {
+    "title": "Drop",
+    "description": "Enable onchain records for this digital product.",
+    "alreadyPublishedError": "This product has already been published."
+  },
+  "variantForm": {
+    "type": "Type",
+    "discard": "Discard",
+    "edit": "Edit",
+    "save": "Save"
+  },
+  "variantItemList": {
+    "value": "Value",
+    "colorName": "Color Name",
+    "enterValue": "Enter Value"
+  },
+  "customShippingForm": {
+    "title": "Create New Custom Shipping",
+    "description": "Add an option to provide custom shipping details.",
+    "titleLabel": "Title",
+    "titlePlaceholder": "e.g., Express Delivery, Standard Shipping",
+    "discard": "Discard",
+    "create": "Create",
+    "successMessage": "Your custom shipping option has been created successfully.",
+    "errorMessage": "Failed to create the custom shipping option. Please try again."
+  },
+  "variantSelector": {
+    "createCustomVariant": "Create Custom Variant",
+    "createVariant": "Create \"{{variant}}\"",
+    "placeholder": "e.g., Storage, Material",
+    "inputPlaceholder": "Color, Size or Custom Variant"
+  },
+  "digitalProductSKU": {
+    "price": "Price",
+    "pricePlaceholder": "0.00",
+    "quantity": "Quantity",
+    "quantityPlaceholder": "1",
+    "externalID": "External ID",
+    "externalIDPlaceholder": "1"
+  },
+  "detailsModal": {
+    "productInfo": "Product Info",
+    "orders": "Orders",
+    "title": "Product Details",
+    "description": "Track product inventory, sales data, and applied discounts for seamless order management."
+  },
+  "productFooter": {
+    "soldItems": "Sold Items",
+    "totalSale": "Total Sale"
+  },
+  "ordersContent": {
+    "noOrdersAvailable": "No orders available yet!"
+  },
+  "orderHeader": {
+    "orderNumber": "Order #{{orderId}}"
+  },
+  "customerInfo": {
+    "fullName": "Full Name",
+    "emailAddress": "Email Address"
+  },
+  "orderProducts": {
+    "quantity": "Quantity"
+  },
+  "orderTotal": {
+    "totalPaid": "Total Paid"
+  },
+  "shareModal": {
+    "title": "Share Product",
+    "description": "Share your product with people around the world.",
+    "tabs": {
+      "directLink": "Direct Link",
+      "paymentLink": "Payment Link",
+      "productTile": "Product Tile",
+      "socialTile": "Social Tile"
+    },
+    "paymentLink": {
+      "configure": "Configure",
+      "downloadQRCode": "Download QR Code"
+    },
+    "embedCode": {
+      "title": "Embed Code",
+      "copied": "Copied",
+      "configure": "Configure",
+      "needHelp": "Need Help? Visit Help Center"
+    }
+  },
+  "confirmationModal": {
+    "actions": {
+      "delete": {
+        "title": "Delete Product",
+        "description": "Are you sure you want to delete this product? This action cannot be undone.",
+        "successMessage": "The product has been deleted."
+      },
+      "duplicate": {
+        "title": "Duplicate Product",
+        "description": "Are you sure you want to duplicate this product? A new copy will be created.",
+        "successMessage": "The product has been duplicated."
+      },
+      "publish": {
+        "title": "Publish Product",
+        "description": "Are you sure you want to publish this product? It will become visible to your customers.",
+        "successMessage": "The product has been published."
+      },
+      "draft": {
+        "title": "Unpublish Product",
+        "description": "Are you sure you want to revert this product to draft? It will no longer be visible to your customers.",
+        "successMessage": "The product has been set to draft."
+      }
+    },
+    "buttons": {
+      "cancel": "Cancel"
+    },
+    "error": {
+      "defaultMessage": "Something went wrong. Please refresh or try again later."
+    }
+  },
+  "dropInfoModal": {
+    "title": "Drop Information",
+    "details": {
+      "deployHash": "Deploy Hash",
+      "droppedOn": "Dropped on"
+    },
+    "productDetails": {
+      "alt": "Product Image"
+    }
+  },
+  "productReorderModal": {
+    "title": "Reorder Products",
+    "description": "Organize products by dragging and dropping them in the order that they should be displayed on the storefront."
   }
 } 

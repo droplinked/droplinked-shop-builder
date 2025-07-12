@@ -1,5 +1,7 @@
 import AppBadge from 'components/redesign/badge/AppBadge'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
 import React from 'react'
 
 interface Props {
@@ -8,7 +10,7 @@ interface Props {
 }
 
 export default function ProductStatusBadge({ status, purchaseAvailable }: Props) {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('products', { en: enLocale, ar: arLocale })
     const normalizedStatus = String(status).toUpperCase()
     const badgeKey = purchaseAvailable ? normalizedStatus : 'PRIVATE'
     

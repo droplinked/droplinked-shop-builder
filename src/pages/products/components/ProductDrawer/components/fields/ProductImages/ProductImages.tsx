@@ -8,11 +8,13 @@ import { getFileSizeInMB } from 'utils/helpers'
 import FileUpload from '../../common/FileUpload'
 import SelectedFileCard from '../../common/SelectedFileCard'
 import MediaActions from './MediaActions'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
 
 export default function ProductImages() {
     const { values: { media }, errors, setFieldValue } = useProductForm()
     const { mutateAsync, isLoading } = useFileUpload()
-    const { t } = useLocaleResources('products')
+    const { t } = useLocaleResources('products', { en: enLocale, ar: arLocale })
 
     const sortedMedia = media.slice().sort((a, b) => (b.isMain ? 1 : 0) - (a.isMain ? 1 : 0))
 

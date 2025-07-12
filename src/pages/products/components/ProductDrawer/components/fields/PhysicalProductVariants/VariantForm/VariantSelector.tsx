@@ -1,6 +1,7 @@
 import { Button, Flex, Popover, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { attributeToIdMap, ProductProperty } from 'pages/products/utils/types'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 function VariantSelector({ properties, setLocalProperty, localProperty }: Props) {
+    const { t } = useLocaleResources('products')
     const dropdownOptions = ["Color", "Size"]
     const [inputValue, setInputValue] = useState(localProperty?.title)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -19,8 +21,8 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
     const canAddVariants = properties.length < 2
     const isPredefinedOrEmpty = dropdownOptions.includes(inputValue) || !inputValue
     const buttonText = isPredefinedOrEmpty
-        ? 'Create Custom Variant'
-        : `Create "${inputValue}"`
+        ? t('variantSelector.createCustomVariant')
+        : t('variantSelector.createVariant', { variant: inputValue })
 
     const handleDropdownOptionClick = ({ selectedVariant, isCustomVariant }) => {
         setInputValue(selectedVariant)
@@ -56,7 +58,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
             <AppInput
                 inputProps={{
                     fontSize: 16,
-                    placeholder: 'e.g., Storage, Material',
+                    placeholder: t('variantSelector.placeholder'),
                     value: localProperty.value,
                     onChange: handleCustomVariantChange
                 }}
@@ -95,7 +97,7 @@ function VariantSelector({ properties, setLocalProperty, localProperty }: Props)
                         disabled={!canAddVariants}
                         maxLength={30}
                         autoCorrect="off"
-                        placeholder="Color, Size or Custom Variant"
+                        placeholder={t('variantSelector.inputPlaceholder')}
                         onChange={e => setInputValue(e.target.value)}
                     />
                     <AppIcons.SelectChevronDown />
