@@ -1,5 +1,6 @@
 // D3-specific features section with bento grid layout
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
 import BentoGrids from '../../assets/BentoGrids'
 import { Cards } from 'pages/public-pages/landings/_shared/components/card'
@@ -8,8 +9,14 @@ import { VictionLogo } from 'assets/logo/NetworkAndTokens/Viction/VictionLogo'
 import { CoreLogo } from 'assets/logo/NetworkAndTokens/Core/CoreLogo'
 import { ApeCoinLogo } from 'assets/logo/NetworkAndTokens/apecoin/apecoin'
 import { CardData } from 'pages/public-pages/landings/_shared/components/card/Cards'
+import localEn from 'locales/public-pages/landings/partner-pages/en.json'
+import localAr from 'locales/public-pages/landings/partner-pages/ar.json'
 
 export default function D3BentoGrids() {
+    const { t } = useLocaleResources('public-pages/landings/partner-pages', {
+        en: localEn,
+        ar: localAr
+    });
 
     const cardsData: CardData[] = [
         {
@@ -50,9 +57,9 @@ export default function D3BentoGrids() {
     return (
         <SectionContainer
             icon='sparkle'
-            sectionTitle='SET OF FEATURES'
-            headingTitle={`Join Your Community`}
-            headingSubtitle={`Unlock exclusive perks and benefits today by proving ownership`}
+            sectionTitle={t('d3Features.sectionTitle')}
+            headingTitle={t('d3Features.headingTitle')}
+            headingSubtitle={t('d3Features.headingSubtitle')}
             typographySvg={<BentoGrids />}
         >
             <Cards

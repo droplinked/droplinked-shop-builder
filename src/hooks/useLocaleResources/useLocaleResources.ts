@@ -47,6 +47,7 @@ export type Namespace =
     | 'public-pages/landings/metaverse-showroom'
     | 'public-pages/landings/onchain-affiliate'
     | 'public-pages/landings/onchain-subscriptions'
+    | 'public-pages/landings/partner-pages'
 
 
 /**

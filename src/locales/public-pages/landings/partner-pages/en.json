@@ -1,0 +1,89 @@
+{
+  "claimNow": "Claim Now",
+  "hero": {
+    "d3": {
+      "title": "Powering \n Agentic Commerce",
+      "subtitle": "Crossmint members unlock 6 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today."
+    },
+    "unstoppableDomains": {
+      "title": "Unstoppable Domains \n Members",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a domain holder"
+    },
+    "polygon": {
+      "title": ".Polygon Domain Holders",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a .polygon domain holder"
+    },
+    "crossmint": {
+      "title": "Powering \n Agentic Commerce",
+      "subtitle": "Crossmint members unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today."
+    }
+  },
+  "modularStack": {
+    "cards": {
+      "accessProducts": {
+        "title": "Access +10k Products Instantly",
+        "description": "Choose from a vast catalog to customize and sell unique merchandise on demand."
+      },
+      "web3Technology": {
+        "title": "Web3 Technology Support",
+        "description": "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer."
+      },
+      "proPlan": {
+        "title": "3 Month Pro Plan",
+        "description": "Enjoy premium features for 3 months for being a loyal crossmint customer."
+      }
+    }
+  },
+  "partners": {
+    "d3": {
+      "name": "D3",
+      "displayName": "D3",
+      "trialMonths": 6
+    },
+    "unstoppableDomains": {
+      "name": "Unstoppable Domains",
+      "displayName": "Unstoppable Domains",
+      "trialMonths": 3
+    },
+    "polygon": {
+      "name": ".Polygon",
+      "displayName": ".Polygon",
+      "trialMonths": 3
+    },
+    "crossmint": {
+      "name": "Crossmint",
+      "displayName": "Crossmint",
+      "trialMonths": 3
+    }
+  },
+  "perks": {
+    "sectionTitle": "SET OF PERKS",
+    "headingTitle": "Perks for {{partnerName}} Members",
+    "headingSubtitle": "droplinked is offering {{trialMonths}} months of a pro plan for free",
+    "cards": {
+      "storeSetup": {
+        "title": "Store Setup Simplified",
+        "description": "Use droplinked tools to launch your shop"
+      },
+      "enterpriseTools": {
+        "title": "Enterprise-Level Tools",
+        "description": "Unlock advanced features to scale your business from the start"
+      },
+      "nftIntegration": {
+        "title": "Seamless NFT Integration",
+        "description": "Create, manage, and sell NFTs on a customizable storefront"
+      }
+    }
+  },
+  "udFeatures": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Featured TLD's",
+    "headingSubtitle": "Unlock exclusive perks and benefits today by proving ownership",
+    "featuresText": "Features"
+  },
+  "d3Features": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Join Your Community",
+    "headingSubtitle": "Unlock exclusive perks and benefits today by proving ownership"
+  }
+} 

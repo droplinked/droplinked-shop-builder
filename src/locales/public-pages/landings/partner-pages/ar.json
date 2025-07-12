@@ -1,0 +1,89 @@
+{
+  "claimNow": "احصل عليه الآن",
+  "hero": {
+    "d3": {
+      "title": "تشغيل \n التجارة الذكية",
+      "subtitle": "أعضاء Crossmint يحصلون على 6 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم."
+    },
+    "unstoppableDomains": {
+      "title": "أعضاء \n Unstoppable Domains",
+      "subtitle": "احصل على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم كحامل نطاق"
+    },
+    "polygon": {
+      "title": "حاملو نطاقات .Polygon",
+      "subtitle": "احصل على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم كحامل نطاق .polygon"
+    },
+    "crossmint": {
+      "title": "تشغيل \n التجارة الذكية",
+      "subtitle": "أعضاء Crossmint يحصلون على 3 أشهر من الخطة الاحترافية مجاناً تماماً! \n استبدل العرض الحصري اليوم."
+    }
+  },
+  "modularStack": {
+    "cards": {
+      "accessProducts": {
+        "title": "الوصول إلى +10k منتج فوراً",
+        "description": "اختر من كتالوج واسع لتخصيص وبيع البضائع الفريدة عند الطلب."
+      },
+      "web3Technology": {
+        "title": "دعم تقنية Web3",
+        "description": "دمج NFTs بسلاسة مع ميزات البلوكتشين لإنشاء تجارب جديدة مع الأصول التي تملكها أو تريد تقديمها."
+      },
+      "proPlan": {
+        "title": "الخطة الاحترافية لمدة 3 أشهر",
+        "description": "استمتع بالميزات المتميزة لمدة 3 أشهر لكونك عميل crossmint مخلص."
+      }
+    }
+  },
+  "partners": {
+    "d3": {
+      "name": "D3",
+      "displayName": "D3",
+      "trialMonths": 6
+    },
+    "unstoppableDomains": {
+      "name": "Unstoppable Domains",
+      "displayName": "Unstoppable Domains",
+      "trialMonths": 3
+    },
+    "polygon": {
+      "name": ".Polygon",
+      "displayName": ".Polygon",
+      "trialMonths": 3
+    },
+    "crossmint": {
+      "name": "Crossmint",
+      "displayName": "Crossmint",
+      "trialMonths": 3
+    }
+  },
+  "perks": {
+    "sectionTitle": "مجموعة المزايا",
+    "headingTitle": "مزايا أعضاء {{partnerName}}",
+    "headingSubtitle": "يقدم droplinked {{trialMonths}} أشهر من الخطة الاحترافية مجاناً",
+    "cards": {
+      "storeSetup": {
+        "title": "إعداد المتجر مبسط",
+        "description": "استخدم أدوات droplinked لإطلاق متجرك"
+      },
+      "enterpriseTools": {
+        "title": "أدوات مستوى المؤسسات",
+        "description": "افتح الميزات المتقدمة لتوسيع نطاق عملك من البداية"
+      },
+      "nftIntegration": {
+        "title": "تكامل NFT سلس",
+        "description": "أنشئ وأدر وبيع NFTs على واجهة متجر قابلة للتخصيص"
+      }
+    }
+  },
+  "udFeatures": {
+    "sectionTitle": "مجموعة الميزات",
+    "headingTitle": "نطاقات TLD المميزة",
+    "headingSubtitle": "افتح المزايا والفوائد الحصرية اليوم من خلال إثبات الملكية",
+    "featuresText": "الميزات"
+  },
+  "d3Features": {
+    "sectionTitle": "مجموعة الميزات",
+    "headingTitle": "انضم إلى مجتمعك",
+    "headingSubtitle": "افتح المزايا والفوائد الحصرية اليوم من خلال إثبات الملكية"
+  }
+} 
