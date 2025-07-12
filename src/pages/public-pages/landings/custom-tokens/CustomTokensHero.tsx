@@ -18,7 +18,7 @@ function CustomTokensHero() {
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
-                    <AppButton variant='normal' bg="label.primary" color="neutral.white">
+                        <AppButton variant='normal' bg="label.primary" color="neutral.white">
                             Request a Demo
                         </AppButton>
                     </Link>
@@ -27,10 +27,6 @@ function CustomTokensHero() {
             videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/412e5be8abbf469deb0fa3979089d411f23d667e6e5cb1e4a844ef71a42e77a3_or.webm"
             videoTablet="https://upload-file-droplinked.s3.amazonaws.com/bd0386cd1b3ff31c98b20f9d203b72e56724de583caefc59befb1f62c5f67350_or.webm"
             videoMobile="https://upload-file-droplinked.s3.amazonaws.com/bd0386cd1b3ff31c98b20f9d203b72e56724de583caefc59befb1f62c5f67350_or.webm"
-            videoStyle={{
-                margin: "48px auto auto",
-                paddingInline: "0px"
-            }}
         />
     )
 }

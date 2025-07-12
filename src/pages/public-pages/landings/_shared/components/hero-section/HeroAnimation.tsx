@@ -28,11 +28,13 @@ export default function HeroAnimation({ videoDesktop, videoTablet, videoMobile, 
         md: videoTablet || videoDesktop,
         xl: videoDesktop,
     })
+    const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })
+
 
     return (
         <InlineVideoPlayer
             src={videoUrl}
-            style={style}
+            style={{ paddingInline, margin: "48px auto auto", ...style }}
             {...playerProps}
         />
     )

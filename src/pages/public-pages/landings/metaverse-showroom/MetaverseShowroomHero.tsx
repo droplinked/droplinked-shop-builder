@@ -27,10 +27,6 @@ function MetaverseShowroomHero() {
             videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/cb0c7e385980967c070ca12245597e112c1e3ad103b43382fb4fb7d78beb8330_or.webm"
             videoTablet="https://upload-file-droplinked.s3.amazonaws.com/27a5e38f59a35bd0041c92f1a53ec4798250e3827dec91e428555df1314cddf2_or.webm"
             videoMobile="https://upload-file-droplinked.s3.amazonaws.com/0daa143aafdf9501ab6a621547b4825297a8790bd0c27e3f48e53864be89658d_or.webm"
-            videoStyle={{
-                margin: "48px auto auto",
-                paddingInline: "0px"
-            }}
         />
     )
 }

@@ -27,10 +27,6 @@ function ProductTilesHero() {
             videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/e2c7b59b531bfbf820bc38bb8648eb385ae9e85742383dcb9a39a6b67294a829_or.webm"
             videoTablet="https://upload-file-droplinked.s3.amazonaws.com/cc38b89e991660dd266fd2f3f91d592ecb8aac2e5fc463addba0d0f2aaf9cc91_or.webm"
             videoMobile="https://upload-file-droplinked.s3.amazonaws.com/e92c7282996eac8e74575d4c8b8bf5fe3f429a65730ad7d2942c756f03259c92_or.webm"
-            videoStyle={{
-                margin: "48px auto auto",
-                paddingInline: "0px"
-            }}
         />
     )
 }
