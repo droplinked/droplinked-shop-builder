@@ -3,25 +3,32 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/onchain-subscriptions/en.json'
+import localAr from 'locales/public-pages/landings/onchain-subscriptions/ar.json'
 
 export default function OnchainSubscriptionsHero() {
+    const { t } = useLocaleResources('public-pages/landings/onchain-subscriptions', {
+        en: localEn,
+        ar: localAr
+    })
     const paddingInline = useBreakpointValue({ base: "8px", md: "20px", xl: "36px", "2xl": "48px" })
 
     return (
         <HeroSection
-            title="Sell Confidently"
-            subtitle={`Assign roles and identities to 3rd parties like manufacturers, distributors and\nco-sellers to seamlessly track commissions and settlements\nthat eliminate fraud and clickjacking`}
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>
