@@ -52,6 +52,7 @@ export type Namespace =
     | 'public-pages/landings/physical-inventory'
     | 'public-pages/landings/product-tiles'
     | 'public-pages/landings/products-on-demand'
+    | 'public-pages/landings/tokenizing-products'
 
 
 /**
