@@ -9,7 +9,10 @@ import DateRangeNavButton from './DateRangeNavButton'
 
 function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
-    const { t } = useLocaleResources("analyticsPage")
+    const { t, isRTL } = useLocaleResources("analyticsPage")
+
+    const PrevIcon = isRTL ? ChevronrightSm : ChevronleftSm
+    const NextIcon = isRTL ? ChevronleftSm : ChevronrightSm
 
     const [start, end] = Array.isArray(selectedDateRange)
         ? selectedDateRange
@@ -53,14 +56,14 @@ function ChartToolbar() {
             </Flex>
 
             <Flex gap={4}>
-                <DateRangeNavButton onClick={handlePrevClick} isDisabled={isPrevDisabled}>
-                    <ChevronleftSm color={isPrevDisabled ? '#4F4F4F' : 'white'} />
+                <DateRangeNavButton isDisabled={isPrevDisabled} onClick={handlePrevClick}>
+                    <PrevIcon color={isPrevDisabled ? '#4F4F4F' : '#FFF'} />
                     {t('prev')}
                 </DateRangeNavButton>
 
-                <DateRangeNavButton onClick={handleNextClick} isDisabled={isNextDisabled}>
+                <DateRangeNavButton isDisabled={isNextDisabled} onClick={handleNextClick}>
                     {t('next')}
-                    <ChevronrightSm color={isNextDisabled ? '#4F4F4F' : 'white'} />
+                    <NextIcon color={isNextDisabled ? '#4F4F4F' : '#FFF'} />
                 </DateRangeNavButton>
             </Flex>
         </Flex>

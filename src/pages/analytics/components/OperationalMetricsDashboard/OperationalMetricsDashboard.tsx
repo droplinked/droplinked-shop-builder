@@ -1,12 +1,10 @@
-import { Grid } from "@chakra-ui/react"
-import { getAnalyticsPerformanceReport } from "services/dashboard/dashboardServices"
 import { DEFAULT_PERFORMANCE_DATA } from "pages/analytics/constants/defaultPerformanceData"
 import useFormattedDateRange from "pages/analytics/hooks/useFormattedDateRange"
 import useAnalyticsStore from "pages/analytics/stores/useAnalyticsStore"
 import React, { useEffect } from "react"
 import { useQuery } from "react-query"
+import { getAnalyticsPerformanceReport } from "services/dashboard/dashboardServices"
 import InventorySummary from "./InventorySummary"
-import VisitorStats from "./VisitorStats"
 
 function OperationalMetricsDashboard() {
     const { startDate, endDate } = useFormattedDateRange()
@@ -24,16 +22,17 @@ function OperationalMetricsDashboard() {
         })
     }, [data, isFetching, isError, updateAnalyticsPageState])
 
-    return (
-        <Grid
-            templateColumns={{ base: "1fr", lg: "minmax(0, 50%) 1fr", "3xl": "444px 1fr" }}
-            alignItems="start"
-            gap={{ base: 4, "2xl": 6 }}
-        >
-            <VisitorStats />
-            <InventorySummary />
-        </Grid>
-    )
+    // return (
+    //     <Grid
+    //         templateColumns={{ base: "1fr", lg: "minmax(0, 50%) 1fr", "3xl": "444px 1fr" }}
+    //         alignItems="start"
+    //         gap={{ base: 4, "2xl": 6 }}
+    //     >
+    //         <VisitorStats />
+    //         <InventorySummary />
+    //     </Grid>
+    // )
+    return <InventorySummary />
 }
 
 export default OperationalMetricsDashboard

@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from "@chakra-ui/react"
+import { Flex, useBreakpointValue } from "@chakra-ui/react"
 import { CoinsLg } from "assets/icons/Finance/Coins/CoinsLg"
 import { InvoiceLg } from "assets/icons/Finance/Invoice/InvoiceLg"
 import { UserLg } from "assets/icons/System/User/UserLg"
@@ -9,7 +9,7 @@ import React from 'react'
 import MetricCard from "../MetricCard"
 
 function KeySalesMetrics() {
-    const [is1024pxOrAbove] = useMediaQuery('(min-width: 1024px)')
+    const is1024pxOrAbove = useBreakpointValue({ base: false, lg: true })
     const { data, isLoading } = useAnalyticsStore(state => state.performanceReportResponse)
     const { netProfit, customers, orders } = data
     const { t } = useLocaleResources("analyticsPage")

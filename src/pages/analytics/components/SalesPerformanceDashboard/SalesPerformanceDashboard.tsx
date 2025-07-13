@@ -1,15 +1,15 @@
-import { GridItem, useMediaQuery } from "@chakra-ui/react"
+import { GridItem, useBreakpointValue } from "@chakra-ui/react"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
-import { getAnalyticsSalesReport } from "services/dashboard/dashboardServices"
 import useFormattedDateRange from "pages/analytics/hooks/useFormattedDateRange"
 import React from "react"
 import { useQuery } from "react-query"
+import { getAnalyticsSalesReport } from "services/dashboard/dashboardServices"
 import EarningsSummary from "./EarningsSummary"
 import KeySalesMetrics from "./KeySalesMetrics"
 import SalesChart from "./SalesChart/SalesChart"
 
 function SalesPerformanceDashboard() {
-    const [is1024pxOrAbove] = useMediaQuery('(min-width: 1024px)')
+    const is1024pxOrAbove = useBreakpointValue({ base: false, lg: true })
     const { startDate, endDate } = useFormattedDateRange()
     const { isFetching, data } = useQuery({
         queryKey: ["salesReport", startDate, endDate],

@@ -1,14 +1,12 @@
-import { Flex, FlexProps } from '@chakra-ui/react'
+import { Button, ButtonProps } from '@chakra-ui/react'
 import React from 'react'
 
-interface Props extends FlexProps {
-    isDisabled?: boolean
-}
+function DateRangeNavButton({ ...props }: ButtonProps) {
+    const { isDisabled, children, ...rest } = props
 
-function DateRangeNavButton({ isDisabled, children, ...rest }: Props) {
     return (
-        <Flex
-            as="button"
+        <Button
+            variant='normal'
             alignItems="center"
             gap={1}
             padding="8px 12px"
@@ -18,7 +16,7 @@ function DateRangeNavButton({ isDisabled, children, ...rest }: Props) {
             {...rest}
         >
             {children}
-        </Flex>
+        </Button>
     )
 }
 
