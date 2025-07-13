@@ -9,7 +9,7 @@ import localEn from 'locales/public-pages/landings/social-quests/en.json'
 import localAr from 'locales/public-pages/landings/social-quests/ar.json'
 
 export default function ProPlanCard() {
-    const { t } = useLocaleResources('public-pages/landings/social-quests', {
+    const { t, isRTL } = useLocaleResources('public-pages/landings/social-quests', {
         en: localEn,
         ar: localAr
     })
@@ -27,7 +27,9 @@ export default function ProPlanCard() {
             width="100%"
         >
             <Link to={url}>
-                <AppButton marginLeft={6}>
+                <AppButton
+                    {...isRTL ? { marginRight: 6 } : { marginLeft: 6 }}
+                >
                     {t('proPlanCard.startNow')}
                 </AppButton>
             </Link>

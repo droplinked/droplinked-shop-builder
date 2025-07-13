@@ -42,5 +42,5 @@ export default function ModularStack() {
         }
     ]
 
-    return <PlatformFunctionalities cardsData={cardsData} />
+    return <PlatformFunctionalities cardsData={cardsData} isGridCards={false} />
 }
