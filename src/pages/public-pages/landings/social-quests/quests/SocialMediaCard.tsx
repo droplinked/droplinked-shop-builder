@@ -14,7 +14,7 @@ interface SocialMediaCardProps extends Promotion {
 }
 
 function SocialMediaCard(props: SocialMediaCardProps) {
-  const { title, platform, link, icon, hoverEffect, description, duration, gradiantLogo, followStatusHook } = props
+  const { title, platform, link, icon, hoverEffect, description, duration, followStatusHook } = props
   const [isHovered, setIsHovered] = useState(false)
   const [loading, setLoading] = useState(false)
   const { isLoggedIn } = useAppStore()
@@ -89,6 +89,7 @@ function SocialMediaCard(props: SocialMediaCardProps) {
         _hover: {
           bg: hoverEffect,
           ".bg-icon svg": { filter: "brightness(100%)" },
+          ".bg-icon": { opacity: 0.4 },
           ".link-arrow": { opacity: 1 },
           ".icon-container": {
             bg: "rgba(255, 255, 255, 0.20)",
@@ -104,7 +105,7 @@ function SocialMediaCard(props: SocialMediaCardProps) {
         ".bg-icon svg": { filter: "brightness(100%)" }
       }}
     >
-      <BackgroundIcon gradiantLogo={gradiantLogo} isFollowed={isFollowed} />
+      <BackgroundIcon icon={icon({ color: '#FFF' })} isFollowed={isFollowed} />
       <CardContent
         icon={icon}
         title={title}
