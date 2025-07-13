@@ -47,6 +47,7 @@ export default function TopBar() {
       borderColor="neutral.gray.1000"
       align="center"
       justify="space-between"
+      style={{ direction: "ltr" }}
     >
       {/* Left controls */}
       <Flex gap={{ base: 6, lg: 8 }} align="center">
