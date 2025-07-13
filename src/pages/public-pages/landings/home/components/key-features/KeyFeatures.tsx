@@ -16,34 +16,34 @@ export default function KeyFeatures() {
         {
             title: t("keyFeatures.cards.onchainRegistration.title"),
             description: t("keyFeatures.cards.onchainRegistration.description"),
-            gridColumn: { base: '1', md: '1 / -1', lg: '1 / 3' },
+            gridColumn: { base: '1', md: '1 / -1', lg: '1 / 4' },
             children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/c3dd2d77c5c4589b0ee2187b7190b03a4ed39b7bd7f0e8dc979f558b60186a55_or.webm' style={{ width: "max-content" }} />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/1c39b8bd7265e87eba2cb949d3096ef0cdc986ab1741d35c297c19ee78c96b5b.png'
         },
         {
             title: t("keyFeatures.cards.instantPayments.title"),
             description: t("keyFeatures.cards.instantPayments.description"),
-            gridColumn: { base: '1', md: '1 / -1', lg: '3 / 5' },
+            gridColumn: { base: '1', md: '1', lg: '4 / 7' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/c3a1b169f5e16f409900ec0fa9c0ee212ebb0177b7ba8736bc070b359cc3d5c8_or.webm" style={{ width: "max-content" }} />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/e2d31950aeb6449a86e57496be339d04fcd551f6605346e5dc58d7ed583f1b05.png'
         },
         {
             title: t("keyFeatures.cards.transparentFees.title"),
             description: t("keyFeatures.cards.transparentFees.description"),
-            gridColumn: { base: '1', md: '1', lg: '1 / 2' },
+            gridColumn: { base: '1', md: '2', lg: '1 / 3' },
             children: <Charts />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/c4ef534dd1063d4dbfb3ed39e6b333cdaef84b00fc1160f799ff6ae7c78f435d.png'
         },
         {
             title: t("keyFeatures.cards.communityDriven.title"),
             description: t("keyFeatures.cards.communityDriven.description"),
-            gridColumn: { base: '1', md: '2', lg: '2 / 3' },
+            gridColumn: { base: '1', md: '1', lg: '3 / 5' },
             children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/e77d073e037bb44f73447cb1c1682eb1479d387e323e0155e91250d926944ef0_or.webm" />
         },
         {
             title: t("keyFeatures.cards.numbersThatMatter.title"),
             description: t("keyFeatures.cards.numbersThatMatter.description"),
-            gridColumn: { base: '1', md: '1', lg: '3 / 4' },
+            gridColumn: { base: '1', md: '2', lg: '5 / 7' },
             children: <InlineVideoPlayer src='https://upload-file-droplinked.s3.amazonaws.com/394e29c7d4bf498f00465cb339e2ef75ee508d6542b204d1915acf5643cddcde_or.webm' />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/4b492fc0d1c7d1d76cb5b93749485d7e4e99ff32663a60a093e3904822fac555.png'
         }
@@ -64,8 +64,7 @@ export default function KeyFeatures() {
                 templateColumns={{
                     base: '1fr',
                     md: 'repeat(2, 1fr)',
-                    xl: 'repeat(2, 1fr)',
-                    "2xl": 'repeat(6, 1fr)'
+                    lg: 'repeat(6, 1fr)'
                 }}
             />
         </SectionContainer>
