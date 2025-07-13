@@ -21,7 +21,7 @@ interface Action {
 
 const initialState: State = {
     dashboardData: {},
-    isLoading: false,
+    isLoading: true,
     blogs: [
         {
             title: "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
