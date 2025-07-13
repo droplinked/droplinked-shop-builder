@@ -8,7 +8,7 @@ import React from 'react'
 import DateRangeNavButton from './DateRangeNavButton'
 
 function ChartToolbar() {
-    const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
+    const { selectedDateRange, setSelectedDateRange } = useAnalyticsStore()
     const { t, isRTL } = useLocaleResources("analyticsPage")
 
     const PrevIcon = isRTL ? ChevronrightSm : ChevronleftSm
@@ -37,7 +37,7 @@ function ChartToolbar() {
 
         const newStart = new Date(start.getTime() - duration)
         const newEnd = new Date(end.getTime() - duration)
-        updateAnalyticsPageState('selectedDateRange', [newStart, newEnd])
+        setSelectedDateRange([newStart, newEnd])
     }
 
     function handleNextClick() {
@@ -45,7 +45,7 @@ function ChartToolbar() {
 
         const newStart = new Date(start.getTime() + duration)
         const newEnd = new Date(end.getTime() + duration)
-        updateAnalyticsPageState('selectedDateRange', [newStart, newEnd])
+        setSelectedDateRange([newStart, newEnd])
     }
 
     return (

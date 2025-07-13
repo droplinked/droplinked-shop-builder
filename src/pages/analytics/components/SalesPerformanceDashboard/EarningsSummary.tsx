@@ -13,7 +13,7 @@ interface Props {
 
 function EarningsSummary({ earnings, isLoading }: Props) {
     const { selectedDateRange, startDate, endDate } = useFormattedDateRange()
-    const updateAnalyticsPageState = useAnalyticsStore(state => state.updateAnalyticsPageState)
+    const setSelectedDateRange = useAnalyticsStore(state => state.setSelectedDateRange)
     const { t } = useLocaleResources("analyticsPage")
 
     return (
@@ -50,7 +50,7 @@ function EarningsSummary({ earnings, isLoading }: Props) {
             {/* Right section: Date Picker */}
             <AppDateRangePicker
                 value={selectedDateRange}
-                onChange={(value) => updateAnalyticsPageState('selectedDateRange', value)}
+                onChange={(value) => setSelectedDateRange(value)}
             />
         </Flex>
     )

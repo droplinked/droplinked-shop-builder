@@ -16,7 +16,8 @@ interface State {
 }
 
 interface Actions {
-    updateAnalyticsPageState: <K extends keyof State>(key: K, value: State[K]) => void
+    setSelectedDateRange: (value: DateRangeValue) => void
+    setPerformanceReportResponse: <K extends keyof PerformanceReportState>(key: K, value: PerformanceReportState[K]) => void
     resetAnalyticsPageState: () => void
 }
 
@@ -31,7 +32,8 @@ const initialState: State = {
 
 const useAnalyticsStore = create<State & Actions>((set) => ({
     ...initialState,
-    updateAnalyticsPageState: (key, value) => set((state) => ({ ...state, [key]: value })),
+    setSelectedDateRange: (value) => set((state) => ({ ...state, selectedDateRange: value })),
+    setPerformanceReportResponse: (key, value) => set((state) => ({ ...state, performanceReportResponse: { ...state.performanceReportResponse, [key]: value } })),
     resetAnalyticsPageState: () => set(() => ({ ...initialState })),
 }))
 
