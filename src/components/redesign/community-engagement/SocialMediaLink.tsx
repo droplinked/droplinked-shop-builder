@@ -1,5 +1,5 @@
 import { Box, Flex, Link, Text } from "@chakra-ui/react"
-import AppIcons from "assets/icon/Appicons"
+import { ExternalarrowLg } from "assets/icons/Navigation/ExternalArrow/ExternalarrowLg"
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
@@ -64,7 +64,7 @@ function SocialMediaLink({ linkData }: Props) {
           {t(labelKey)}
         </Text>
         <Box className="link-arrow" opacity={0}>
-          <AppIcons.ExternalArrow />
+          <ExternalarrowLg color="#fff" style={{ rotate: isRTL ? "270deg" : "0deg" }} />
         </Box>
       </Flex>
     </Link>
