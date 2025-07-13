@@ -13,7 +13,7 @@ jest.mock('hooks/toast/useToast', () => ({
     default: jest.fn()
 }))
 
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     createBlogService: jest.fn()
 }))
@@ -38,7 +38,7 @@ jest.mock('./BlogForm/BlogForm', () => {
 describe('BlogCreatePage', () => {
     const useNavigate = require('react-router-dom').useNavigate as jest.Mock
     const useAppToast = require('hooks/toast/useToast').default as jest.Mock
-    const createService = require('lib/apis/blog/services').createBlogService as jest.Mock
+    const createService = require('services/blog/services').createBlogService as jest.Mock
 
     let navigate: jest.Mock
     let showToast: jest.Mock

@@ -3,18 +3,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import { CollapsedHeader, ExpandedHeader } from './components/common/Headers';
 import { CollapsedContent, ExpandedContent } from './components/common/Contents';
-import { configSections } from './configData';
+import { getConfigSections } from './configData';
+import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../locales/storefront/en.json';
+import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Sidebar component for the storefront designer with collapsible sections
  */
 function DesignerSidebar(): React.ReactElement {
-  const {
-    methods: { dispatch }
-  } = useContext(designerContext);
+  const { methods: { dispatch }  } = useContext(designerContext);
   const [openSection, setOpenSection] = useState<string>('theme');
   const [isTablet] = useMediaQuery('(min-width: 768px) and (max-width: 1024px)');
   const [isCollapsed, setIsCollapsed] = useState(isTablet);
+
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   // Set the initial active section
   useEffect(() => {
@@ -41,6 +44,8 @@ function DesignerSidebar(): React.ReactElement {
   const toggleSidebar = (): void => {
     setIsCollapsed(!isCollapsed);
   };
+
+  const configSections = getConfigSections(t);
 
   return (
     <Flex

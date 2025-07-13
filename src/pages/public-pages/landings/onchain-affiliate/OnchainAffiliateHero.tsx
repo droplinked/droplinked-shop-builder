@@ -3,23 +3,31 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/onchain-affiliate/en.json'
+import localAr from 'locales/public-pages/landings/onchain-affiliate/ar.json'
 
 function OnchainAffiliateHero() {
+    const { t } = useLocaleResources('public-pages/landings/onchain-affiliate', {
+        en: localEn,
+        ar: localAr
+    })
+
     return (
         <HeroSection
-            title={`Transparent Commerce \n That Earns the Most`}
-            subtitle="Unlock opportunities as a merchant or co-seller with the latest onchain technology. As a community-driven platform, droplinked empowers anyone with the tools to earn more on every sale while getting paid faster"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

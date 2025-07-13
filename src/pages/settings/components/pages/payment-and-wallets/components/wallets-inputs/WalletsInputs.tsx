@@ -6,21 +6,27 @@ import SectionContent from "pages/settings/components/common/SectionContent";
 import React, { useEffect, useState } from "react";
 import { WalletRow } from "./WalletRow";
 import { useFormikContext } from "formik";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import useAppStore from "stores/app/appStore";
 import useAppToast from "hooks/toast/useToast";
-import { getDescription, getWalletsData } from "./helpers";
+import { getWalletsData } from "./helpers";
 import { WalletData } from "./types";
 import ExternalLink from "components/redesign/external-link/ExternalLink";
 import BlueButton from "components/redesign/button/BlueButton";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
+    const { t } = useLocaleResources('settings');
     const { values, setFieldValue } = useFormikContext<ISettings>();
     const { shop: { circleWallets } } = useAppStore();
     const { showToast } = useAppToast();
     const walletType = isSolana ? "SOL" : "EVM";
     const circleWalletAddress = circleWallets?.find(wallet => wallet?.chain === (isSolana ? "SOLANA" : "ETH"))?.address || "";
-    const description = getDescription(isSolana);
+
+    const description = isSolana
+        ? t("settings.paymentsWallets.wallets.solanaWallet.description")
+        : t("settings.paymentsWallets.wallets.evmWallet.description");
+
     const walletsData = getWalletsData(values, walletType);
 
     // Temporarily store wallet data (we use it to prevent direct state mutation)
@@ -72,7 +78,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     // Set Circle wallet as default
     const handleSetDefault = () => {
         if (!circleWalletAddress) {
-            showToast({ type: "error", message: "Please activate your Merchant Wallet first" });
+            showToast({ type: "error", message: t("settings.merchantWallet.manage.errors.walletNotConnected") });
             return;
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
@@ -95,15 +101,15 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     onClick={handleAddWallet}
                 >
                     <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-                    Target Wallet
+                    {t("settings.paymentsWallets.wallets.addTargetWallet")}
                 </BlueButton>
             }
-            title={`${isSolana ? "Solana" : "EVM"} Wallet`}
+            title={isSolana ? t("settings.paymentsWallets.wallets.solanaWallet.title") : t("settings.paymentsWallets.wallets.evmWallet.title")}
         >
             <SectionContent
-                title="Address"
+                title={t("settings.address.title")}
                 description={description}
-                rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave)}>
+                rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave, t)}>
                 <ExternalLink
                     href={"#"}
                     textDecor={"none"}
@@ -114,7 +120,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     gap={"6px"}
                     target='_blank'
                 >
-                    Learn More
+                    {t(isSolana ? "settings.paymentsWallets.wallets.solanaWallet.learnMore" : "settings.paymentsWallets.wallets.evmWallet.learnMore")}
                     <AppIcons.ExternalLink style={{ display: "inline-block" }} />
                 </ExternalLink>
             </SectionContent>
@@ -123,7 +129,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
 }
 
 // Render wallet input rows list
-const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function) => (
+const renderWalletRows = (wallets: WalletData[], handleChange: Function, handleDelete: Function, handleSave: Function, t: Function) => (
     <Flex direction="column" gap={4}>
         {wallets.map((wallet, index) => (
             <WalletRow

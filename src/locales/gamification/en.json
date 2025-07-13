@@ -1,0 +1,45 @@
+{
+  "missionList": {
+    "title": "Missions",
+    "howDoMissionsWork": "How do missions work?"
+  },
+  "howGamificationWorksModal": {
+    "title": "How do missions work?",
+    "steps": [
+      {
+        "title": "Select and Understand Your Mission",
+        "description": "Browse through your mission list, choose a mission, and click on \"More Details\" to read the requirements and tasks needed to complete it."
+      },
+      {
+        "title": "Verify Your Mission Completion",
+        "description": "After completing the required tasks, go back to the mission's card and click on \"Check Completion\" to verify if you've met all the criteria."
+      },
+      {
+        "title": "Earn Points and Track Progress",
+        "description": "If the mission is successfully completed, you will see the amount of points earned. and your completed mission will be marked in the gamification tab."
+      }
+    ],
+    "close": "Close"
+  },
+  "completedMissions": {
+    "greeting": "Hey {{name}}!👋",
+    "subtitle": "Master Every Mission, Earn Your Victory!",
+    "points": "Points",
+    "missionsCompleted": "Missions Completed"
+  },
+  "mission": {
+    "points": "Points: {{points}}",
+    "completed": "Mission completed!",
+    "details": "Details"
+  },
+  "missionReviewModal": {
+    "mission": "Mission:",
+    "category": "Category:",
+    "description": "Description:",
+    "pointsAwarded": "Points Awarded:",
+    "reviewStatus": "Review Status",
+    "congratulations": "Congratulations!",
+    "taskCompleted": "Task completed! You've earned {{points}} points!",
+    "missionProgress": "Mission Progress:"
+  }
+}

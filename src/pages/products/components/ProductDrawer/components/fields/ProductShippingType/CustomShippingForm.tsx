@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react"
 import AppButton from "components/redesign/button/AppButton"
 import AppInput from "components/redesign/input/AppInput"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAppToast from "hooks/toast/useToast"
 import { useCreateCustomShipping } from "pages/products/hooks/useShippingTypes"
 import React, { useState } from "react"
@@ -8,6 +9,7 @@ import CustomShippingFileUpload from "./CustomShippingFileUpload"
 import SectionHeader from "./SectionHeader"
 
 function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
+    const { t } = useLocaleResources('products')
     const [shippingTitle, setShippingTitle] = useState("")
     const [uploadedFileData, setUploadedFileData] = useState(null)
 
@@ -18,10 +20,10 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
         try {
             const data = { title: shippingTitle, ...uploadedFileData }
             await createCustomShipping(data)
-            showToast({ type: "success", message: "Your custom shipping option has been created successfully." })
+            showToast({ type: "success", message: t('customShippingForm.successMessage') })
             onDiscard()
         } catch (error) {
-            showToast({ type: "error", message: "Failed to create the custom shipping option. Please try again." })
+            showToast({ type: "error", message: t('customShippingForm.errorMessage') })
         }
     }
 
@@ -36,15 +38,15 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
             padding={4}
         >
             <SectionHeader
-                title="Create New Custom Shipping"
-                description="Add an option to provide custom shipping details."
+                title={t('customShippingForm.title')}
+                description={t('customShippingForm.description')}
             />
 
             <AppInput
-                label="Title"
+                label={t('customShippingForm.titleLabel')}
                 inputProps={{
                     fontSize: 16,
-                    placeholder: "e.g., Express Delivery, Standard Shipping",
+                    placeholder: t('customShippingForm.titlePlaceholder'),
                     value: shippingTitle,
                     onChange: (e) => setShippingTitle(e.target.value),
                 }}
@@ -63,7 +65,7 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                     isDisabled={isLoading}
                     onClick={onDiscard}
                 >
-                    Discard
+                    {t('customShippingForm.discard')}
                 </AppButton>
                 <AppButton
                     type="button"
@@ -71,7 +73,7 @@ function CustomShippingForm({ onDiscard }: { onDiscard: () => void }) {
                     isLoading={isLoading}
                     onClick={handleCreate}
                 >
-                    Create
+                    {t('customShippingForm.create')}
                 </AppButton>
             </Flex>
         </Flex>

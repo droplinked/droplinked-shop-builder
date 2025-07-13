@@ -6,6 +6,7 @@ import React, { useEffect } from 'react'
 import AuthRedirectLink from '../AuthRedirectLink'
 import OnboardingStepHeader from '../OnboardingStepHeader'
 import OtpField from './OtpField'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface EmailConfirmationProps {
     mode: 'signup' | 'reset'
@@ -14,6 +15,7 @@ interface EmailConfirmationProps {
 function EmailConfirmation({ mode }: EmailConfirmationProps) {
     const { updateOnboardingState } = useOnboardingStore()
     const { otp, inputState, onOtpChange, verifyEmail, resendCode, verifyLoading, resendLoading, loginLoading } = useEmailVerification({ mode })
+    const { t } = useLocaleResources('onboarding')
 
     useEffect(() => {
         if (mode === 'signup') resendCode()
@@ -22,8 +24,8 @@ function EmailConfirmation({ mode }: EmailConfirmationProps) {
     return (
         <>
             <OnboardingStepHeader
-                heading='Confirm Email'
-                description='Verify the code received in your inbox below, be sure to check the spam folder in case you do not see it in your primary inbox.'
+                heading={t('emailConfirmation.title')}
+                description={t('emailConfirmation.subtitle')}
             />
 
             <Flex direction="column">
@@ -39,19 +41,19 @@ function EmailConfirmation({ mode }: EmailConfirmationProps) {
                     onClick={() => verifyEmail()}
                     isLoading={verifyLoading || loginLoading}
                 >
-                    Verify
+                    {t('emailConfirmation.verifyButton')}
                 </AppButton>
 
                 <Flex direction="column" gap={2} marginTop={6}>
                     <AuthRedirectLink
-                        text="Didn't receive the code?"
-                        linkText={resendLoading ? <Spinner color='#fff' size="xs" /> : "Resend"}
+                        text={t('emailConfirmation.noCodeText')}
+                        linkText={resendLoading ? <Spinner color='#fff' size="xs" /> : t('emailConfirmation.resendButton')}
                         action={resendCode}
                     />
 
                     <AuthRedirectLink
-                        text="Want to change your email address?"
-                        linkText="Go back"
+                        text={t('emailConfirmation.changeEmailText')}
+                        linkText={t('emailConfirmation.goBackButton')}
                         action={() => updateOnboardingState('currentStep', mode === 'signup' ? 'SIGN_UP' : 'RESET_PASSWORD')}
                     />
                 </Flex>

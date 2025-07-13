@@ -1,0 +1,107 @@
+{
+    "title": "مجموعات المنتجات",
+    "description": "أنشئ واطلع على مجموعات المخزون هنا.",
+    "newCollection": "مجموعة جديدة",
+    "visibilityAndReorder": "الظهور وإعادة الترتيب",
+    "genericErrorMessage": "عذراً! حدث خطأ ما",
+    "columnHeaders": {
+        "collection": "المجموعة",
+        "rulesets": "مجموعات القواعد",
+        "products": "المنتجات"
+    },
+    "emptyState": "لا توجد مجموعات متاحة. أنشئ مجموعة جديدة للبدء.",
+    "reorderModal": {
+        "title": "الظهور وإعادة ترتيب المجموعات",
+        "description": "أعد ترتيب المجموعات عن طريق السحب والإفلات لتحديد ترتيب عرضها في متجرك. تظهر أعلى ثلاث مجموعات في صفحة المنتجات."
+    },
+    "visibility": {
+        "error": "لا يمكنك تغيير حالة مجموعتك في الوقت الحالي. يرجى المحاولة لاحقاً"
+    },
+    "controls": {
+        "collectionIdCopied": "تم نسخ معرف المجموعة بنجاح",
+        "menu": {
+            "edit": "تعديل",
+            "ruleset": "مجموعة القواعد",
+            "copyId": "نسخ معرف المجموعة",
+            "delete": "حذف"
+        }
+    },
+    "ruleset": {
+        "createSuccess": "تم إنشاء مجموعة القواعد بنجاح",
+        "updateSuccess": "تم تحديث مجموعة القواعد بنجاح",
+        "blockchainNetwork": "شبكة البلوكشين",
+        "blockchainNetworkDescription": "اختر شبكة بلوكشين للتحقق من حيازة أو ملكية أصل رقمي/رمز NFT مطلوب.",
+        "selectChain": "اختر الشبكة",
+        "gatingMessage": "رسالة التقييد",
+        "gatingMessageDescription": "أدخل النص الذي سيظهر للزوار داخل نافذة الوصول.",
+        "gatingMessagePlaceholder": "مثال: StreamWave",
+        "minimumAssets": "الأصول المطلوبة",
+        "minimumAssetsDescription": "حدد الحد الأدنى لعدد الأصول الرقمية/الرموز التي يجب أن يمتلكها المستخدم لتلبية متطلبات هذه المجموعة.",
+        "minimumAssetsPlaceholder": "مثال: 5",
+        "nftUrl": "رابط NFT",
+        "nftUrlDescription": "اختر هذا الخيار لعرض صفحة قائمة السوق للزوار حيث يتم تداول المجموعة رسمياً.",
+        "nftUrlPlaceholder": "الصق رابط صفحة NFT أو السوق هنا",
+        "discount": "خصم",
+        "discountDescription": "فعّل هذه الوظيفة لتقديم خصم حصري للحاملين الذين يستوفون المتطلبات.",
+        "discountPlaceholder": "20%",
+        "createTitle": "إنشاء مجموعة قواعد",
+        "createDescription": "أنشئ مجموعة قواعد جديدة بإدخال التفاصيل اللازمة.",
+        "editTitle": "تعديل مجموعة القواعد",
+        "editDescription": "عدل تفاصيل مجموعة القواعد الخاصة بك.",
+        "address": {
+            "optionPlaceholder": "الخيار {index}",
+            "label": "عنوان العقد",
+            "description": "أدخل عناوين العقود التي ستُستخدم للتحقق من الحيازة أو الملكية."
+        },
+        "validation": {
+            "required": "مطلوب",
+            "addressRequired": "العنوان مطلوب",
+            "addressMinimum": "مطلوب عنوان واحد على الأقل",
+            "addressEmpty": "لا يمكن أن يكون العنوان فارغاً",
+            "enterNumber": "يرجى إدخال رقم",
+            "correctValue": "يرجى تصحيح القيمة",
+            "min": "الحد الأدنى {{value}}",
+            "max": "الحد الأقصى {{value}}"
+        },
+        "cancel": "إلغاء",
+        "save": "حفظ"
+    },
+    "delete": {
+        "title": "حذف المجموعة",
+        "confirmationText": "هل أنت متأكد أنك تريد حذف هذه المجموعة؟ لن يمكنك الوصول إلى هذه المجموعة بعد الآن.",
+        "success": "تم حذف المجموعة بنجاح"
+    },
+    "create": {
+        "title": "إنشاء مجموعة",
+        "editTitle": "تعديل المجموعة",
+        "description": "أنشئ مجموعة جديدة بإدخال التفاصيل اللازمة.",
+        "editDescription": "عدل تفاصيل مجموعتك.",
+        "fields": {
+            "name": {
+                "label": "اسم المجموعة",
+                "description": "أدخل عنواناً للمجموعة سيظهر للزوار.",
+                "placeholder": "مثال: StreamWave"
+            },
+            "description": {
+                "label": "الوصف",
+                "description": "أدخل الرسالة التي ستظهر للزوار.",
+                "placeholder": "مثال: StreamWave"
+            },
+            "cover": "غلاف المجموعة"
+        },
+        "validation": {
+            "nameRequired": "يرجى إدخال اسم للمجموعة",
+            "imageRequired": "يرجى إدخال صورة للمجموعة"
+        },
+        "buttons": {
+            "create": "إنشاء",
+            "edit": "تعديل",
+            "discard": "إلغاء",
+            "cancel": "إلغاء"
+        },
+        "success": {
+            "created": "تم إنشاء المجموعة بنجاح",
+            "updated": "تم تحديث المجموعة بنجاح"
+        }
+    }
+}

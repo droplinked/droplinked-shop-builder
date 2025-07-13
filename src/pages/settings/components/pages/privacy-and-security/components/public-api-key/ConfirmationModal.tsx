@@ -3,11 +3,12 @@ import AppButton from 'components/redesign/button/AppButton'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useAppToast from 'hooks/toast/useToast'
-import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
-import { updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
+import { ShopOAuth2Client } from 'services/shop/interfaces'
+import { updateShopAPIKeyService } from 'services/shop/shopServices'
 import { useCheckPermission } from 'stores/app/appStore'
 import React from 'react'
 import { useMutation } from 'react-query'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDomain, domains }: Props) {
+    const { t } = useLocaleResources('settings');
     const { showToast } = useAppToast()
     const checkPermissionAndShowToast = useCheckPermission()
     const { mutateAsync, isLoading } = useMutation((params: ShopOAuth2Client) => updateShopAPIKeyService(params))
@@ -30,7 +32,7 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
             const updatedDomains = domains.filter(domain => domain !== selectedDomain)
             await mutateAsync({ domains: updatedDomains })
             await refetch()
-            showToast({ message: "Domain deleted successfully", type: "success" })
+            showToast({ message: t("settings.privacySecurity.publicApiKey.deleteConfirmation.success"), type: "success" })
             onClose()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
@@ -46,12 +48,16 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
                     paddingBlock: "0px",
                     backgroundColor: '#141414',
                 }}
-                title='Delete Domain'
-                description="Are you sure you want to delete this Domain?"
+                title={t("settings.privacySecurity.publicApiKey.deleteConfirmation.title")}
+                description={t("settings.privacySecurity.publicApiKey.deleteConfirmation.description")}
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
-                    <AppButton width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>Cancel</AppButton>
-                    <AppButton width={"45%"} onClick={handleDeleteDomain} disabled={isLoading} isLoading={isLoading}>Delete</AppButton>
+                    <AppButton width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>
+                        {t("settings.privacySecurity.publicApiKey.deleteConfirmation.cancel")}
+                    </AppButton>
+                    <AppButton width={"45%"} onClick={handleDeleteDomain} disabled={isLoading} isLoading={isLoading}>
+                        {t("settings.privacySecurity.publicApiKey.deleteConfirmation.delete")}
+                    </AppButton>
                 </Flex>
             </ModalHeaderData>
         </AppModal>

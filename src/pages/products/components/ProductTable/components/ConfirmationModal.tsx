@@ -5,7 +5,8 @@ import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
 import useAppToast from 'hooks/toast/useToast'
-import { duplicateProductService, productDeleteServices, updateProductService } from 'lib/apis/product/productServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { duplicateProductService, productDeleteServices, updateProductService } from 'services/product/productServices'
 import React, { useState } from 'react'
 import { action } from '../ProductTableActionMenu'
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
+    const { t } = useLocaleResources('products')
     const [isLoading, setIsLoading] = useState(false)
     const { invalidateProductsQuery } = useInvalidateProductsQuery()
     const { showToast } = useAppToast()
@@ -24,27 +26,27 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
     const actionMessages = {
         DELETE: {
             icon: <AppIcons.WhiteTrash />,
-            title: "Delete Product",
-            description: "Are you sure you want to delete this product? This action cannot be undone.",
-            successMessage: "The product has been deleted."
+            title: t('confirmationModal.actions.delete.title'),
+            description: t('confirmationModal.actions.delete.description'),
+            successMessage: t('confirmationModal.actions.delete.successMessage')
         },
         DUPLICATE: {
             icon: <AppIcons.Copy />,
-            title: "Duplicate Product",
-            description: "Are you sure you want to duplicate this product? A new copy will be created.",
-            successMessage: "The product has been duplicated."
+            title: t('confirmationModal.actions.duplicate.title'),
+            description: t('confirmationModal.actions.duplicate.description'),
+            successMessage: t('confirmationModal.actions.duplicate.successMessage')
         },
         PUBLISH: {
             icon: <AppIcons.Transfer />,
-            title: "Publish Product",
-            description: "Are you sure you want to publish this product? It will become visible to your customers.",
-            successMessage: "The product has been published."
+            title: t('confirmationModal.actions.publish.title'),
+            description: t('confirmationModal.actions.publish.description'),
+            successMessage: t('confirmationModal.actions.publish.successMessage')
         },
         DRAFT: {
             icon: <AppIcons.Transfer />,
-            title: "Unpublish Product",
-            description: "Are you sure you want to revert this product to draft? It will no longer be visible to your customers.",
-            successMessage: "The product has been set to draft."
+            title: t('confirmationModal.actions.draft.title'),
+            description: t('confirmationModal.actions.draft.description'),
+            successMessage: t('confirmationModal.actions.draft.successMessage')
         }
     }
 
@@ -61,7 +63,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
             invalidateProductsQuery()
         }
         catch (error) {
-            const defaultMessage = "Something went wrong. Please refresh or try again later."
+            const defaultMessage = t('confirmationModal.error.defaultMessage')
             const errorMessage = error?.response?.data?.data?.message ?? defaultMessage
             showToast({ message: errorMessage, type: "error" })
         }
@@ -91,7 +93,7 @@ function ConfirmationModal({ isOpen, onClose, product, action }: Props) {
 
             <ModalBody display="flex" justifyContent="space-between" mb="8" bg="#141414" overflow="hidden">
                 <AppButton variant="secondary" isDisabled={isLoading} onClick={onClose}>
-                    Cancel
+                    {t('confirmationModal.buttons.cancel')}
                 </AppButton>
                 <AppButton isLoading={isLoading} onClick={handleAction}>
                     {title}

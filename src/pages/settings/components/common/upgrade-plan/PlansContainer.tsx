@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import PlanCard from './PlanCard';
 
@@ -11,14 +12,15 @@ interface Props {
 }
 
 export default function PlansContainer({ onOpen, isFetching }: Props) {
+    const { t } = useLocaleResources('settings');
     const border = "1px solid #2BCFA1";
 
     return (
         <Flex userSelect="none" gap="28px" flex={1} flexDirection="column">
             <PlanCard
                 icon={<AppIcons.EnterprisePlan />}
-                title="Enterprise"
-                description="Contact us to explore integration."
+                title={t("settings.upgradePlan.enterprise")}
+                description={t("settings.upgradePlan.enterpriseDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",
@@ -51,21 +53,21 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize="18px" fontWeight={700}>
-                            Premium
+                            {t("settings.upgradePlan.premium")}
                         </AppTypography>
                         <AppTypography color="#B1B1B1" fontSize="14px" fontWeight={400}>
-                            Designed for large businesses needing comprehensive solutions.
+                            {t("settings.upgradePlan.premiumDescription")}
                         </AppTypography>
                     </Flex>
                 </Flex>
                 <AppButton onClick={onOpen} isLoading={isFetching}>
-                    Unlock Features
+                    {t("settings.upgradePlan.unlockFeatures")}
                 </AppButton>
             </Flex>
             <PlanCard
                 icon={<AppIcons.StarOutline style={{ width: "27px", height: "27px" }} />}
-                title="Pro Plan"
-                description="For small businesses and teams ready to grow."
+                title={t("settings.upgradePlan.proPlan")}
+                description={t("settings.upgradePlan.proDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",

@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Mint and Monetize",
+    "subtitle": "Convert digital assets into exclusive collectibles that work across a catalog to engage communities and customers",
+    "startNow": "Start Now",
+    "requestDemo": "Request a Demo"
+  },
+  "features": {
+    "sectionTitle": "SET OF FEATURES",
+    "headingTitle": "Front-End Modularity",
+    "headingSubtitle": "Headless and fully customizable storefront setup",
+    "cards": {
+      "templateEngineTools": {
+        "title": "Template Engine Tools",
+        "description": "Utilize our template engine tools for easy customization"
+      },
+      "customizationWithCSS": {
+        "title": "Customization with CSS & HTML",
+        "description": "Ready to go further? Dive into customization with implementing CSS and HTML coding"
+      },
+      "createCustomTemplates": {
+        "title": "Create Custom Templates",
+        "description": "Seeking a unique template? Our designers are here to turn your vision into reality"
+      }
+    }
+  },
+  "modularStack": {
+    "sectionTitle": "MODULAR STACK",
+    "headingTitle": "Platform Functionalities",
+    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+    "cards": {
+      "mintingAssets": {
+        "title": "Minting Assets",
+        "description": "Convert art pieces, documents, audio, video and tickets into NFTs to offer within storefronts"
+      },
+      "multiChainIntegration": {
+        "title": "Multi-Chain Integration",
+        "description": "Supporting multiple blockchain networks to offer greater flexibility"
+      },
+      "loyaltyAndRoyaltyPrograms": {
+        "title": "Loyalty and Royalty Programs",
+        "description": "Maximize earnings and rewards with co-selling and reselling"
+      },
+      "offerPerksDiscounts": {
+        "title": "Offer Perks, Discounts and Token-Gated Items",
+        "description": "Grant exclusive access and discounts to customers that are community members"
+      },
+      "embeddableProductTiles": {
+        "title": "Embeddable Product Tiles",
+        "description": "Expand reach by distributing inventory across third-party sites, marketplaces and platforms"
+      },
+      "decentralizedAffiliateNetwork": {
+        "title": "Decentralized Affiliate Network",
+        "description": "Deploying products onchain connects them to the decentralized network, unlocking royalty benefits and more"
+      }
+    }
+  }
+} 

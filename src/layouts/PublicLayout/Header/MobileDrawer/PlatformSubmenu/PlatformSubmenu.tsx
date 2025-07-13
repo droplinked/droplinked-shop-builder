@@ -1,11 +1,12 @@
 import { Flex } from '@chakra-ui/react'
-import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
-import publicMegaMenuItems from 'data/publicMegaMenuItems'
+import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
-import QuickLinks from '../../QuickLinks'
-import SlideDrawer from '../SlideDrawer'
 import BackButton from './BackButton'
 import PlatformLinksSection from './PlatformLinksSection'
+import QuickLinks from '../../QuickLinks'
+import RuledGrid from 'components/redesign/ruled-grid/RuledGrid'
+import SlideDrawer from '../SlideDrawer'
 
 interface Props {
     isOpen: boolean
@@ -14,6 +15,9 @@ interface Props {
 }
 
 function PlatformSubmenu({ isOpen, onClose, onNavigate }: Props) {
+    const { t } = useLocaleResources('common')
+    const publicMegaMenuItems = getPublicMegaMenuItems(t)
+
     return (
         <SlideDrawer isOpen={isOpen} top="72px" width="100%" overflow="auto">
             <RuledGrid columns={1} nested>

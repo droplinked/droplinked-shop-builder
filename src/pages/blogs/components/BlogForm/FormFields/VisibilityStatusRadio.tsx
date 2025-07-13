@@ -1,11 +1,13 @@
 import { Flex, useRadioGroup } from '@chakra-ui/react'
 import FormFieldWrapper from 'components/redesign/form-field-wrapper/FormFieldWrapper'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import CustomRadioCard from 'pages/products/components/ProductDrawer/components/common/CustomRadioCard'
 import React from 'react'
 
 function VisibilityStatusRadio() {
     const { values, setFieldValue } = useBlogForm()
+    const { t } = useLocaleResources("blogs")
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-visibility-status',
@@ -14,14 +16,14 @@ function VisibilityStatusRadio() {
     })
 
     const statusList = [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Visible', value: 'visible' }
+        { label: t("form.visibilityStatus.options.draft"), value: 'draft' },
+        { label: t("form.visibilityStatus.options.visible"), value: 'visible' }
     ]
 
     return (
         <FormFieldWrapper
-            label="Visibility Status"
-            description="Save as a draft or publish the post when ready."
+            label={t("form.visibilityStatus.label")}
+            description={t("form.visibilityStatus.description")}
             isRequired
         >
             <Flex

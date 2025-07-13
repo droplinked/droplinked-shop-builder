@@ -1,39 +1,39 @@
-export type OrderStatus = "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED";
+export type OrderStatus = "PAYMENT_CONFIRMED" | "INITIALIZED_FOR_PAYMENT" | "CANCELED"
 
 export const getStatusColorScheme = (status?: OrderStatus): "success" | "pending" | "error" => {
     switch (status) {
         case "PAYMENT_CONFIRMED":
-            return "success";
+            return "success"
         case "INITIALIZED_FOR_PAYMENT":
-            return "pending";
+            return "pending"
         case "CANCELED":
-            return "error";
+            return "error"
         default:
-            return "pending";
+            return "pending"
     }
-};
+}
 
-export const isOrderCancelled = (status?: OrderStatus): boolean => status === "CANCELED";
+export const isOrderCancelled = (status?: OrderStatus): boolean => status === "CANCELED"
 
 /**
  * Converts underscored text to title case (e.g., PAYMENT_CONFIRMED → Payment Confirmed)
  */
 export const formatUnderlinedText = (status: string): string => {
-    if (!status) return '';
+    if (!status) return ''
 
     return status
         .split('_')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(' ');
-};
+        .join(' ')
+}
 
 /**
  * Truncates text if it exceeds the specified maximum length
  */
 export const truncateText = (text: string, maxLength: number = 15): string => {
-    if (!text) return '';
-    if (text.length <= maxLength) return text;
-    return `${text.substring(0, maxLength)}...`;
+    if (!text) return ''
+    if (text.length <= maxLength) return text
+    return `${text.substring(0, maxLength)}...`
 }
 
 /**
@@ -44,7 +44,7 @@ export const getCustomerDisplayName = (
     customerEmail?: string
 ): string => {
     if (customerAddressBook?.firstName || customerAddressBook?.lastName) {
-        return `${customerAddressBook.firstName || ''} ${customerAddressBook.lastName || ''}`.trim();
+        return `${customerAddressBook.firstName || ''} ${customerAddressBook.lastName || ''}`.trim()
     }
-    return customerEmail || '';
+    return customerEmail || ''
 }

@@ -5,25 +5,30 @@ import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/dpp-landing/en.json'
+import localAr from 'locales/public-pages/landings/dpp-landing/ar.json'
 
 export default function DPPFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/dpp-landing', { en: localEn, ar: localAr })
+
     const cardsData: CardData[] = [
         {
             icon: <ChartLg color="#fff" />,
-            title: "Traceability",
-            description: "Real-time tracking, supply chain insights, counterfeit prevention",
+            title: t('features.cards.traceability.title'),
+            description: t('features.cards.traceability.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <Layer1Lg color="#fff" />,
-            title: "Modular Transparency",
-            description: "Product history visibility, public verification, consistent information",
+            title: t('features.cards.modularTransparency.title'),
+            description: t('features.cards.modularTransparency.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <ShieldLg color="#fff" />,
-            title: "Security",
-            description: "Immutable records and controlled access",
+            title: t('features.cards.security.title'),
+            description: t('features.cards.security.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -31,9 +36,9 @@ export default function DPPFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle='SET OF FEATURES'
-            headingTitle='Enhancing DPPs Onchain'
-            headingSubtitle={`Implement onchain technology with Digital Product Passports (DPPs) increases the\nvalue of goods in terms of security, traceability and financing for businesses`}
+            sectionTitle={t('features.sectionTitle')}
+            headingTitle={t('features.headingTitle')}
+            headingSubtitle={t('features.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

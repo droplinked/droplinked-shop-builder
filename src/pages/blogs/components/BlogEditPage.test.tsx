@@ -13,7 +13,7 @@ jest.mock('hooks/toast/useToast', () => ({
     default: jest.fn()
 }))
 
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     updateBlogService: jest.fn()
 }))
@@ -50,7 +50,7 @@ jest.mock('./BlogForm/BlogForm', () => {
 describe('BlogEditPage', () => {
     const useNavigate = require('react-router-dom').useNavigate as jest.Mock
     const useAppToast = require('hooks/toast/useToast').default as jest.Mock
-    const updateService = require('lib/apis/blog/services').updateBlogService as jest.Mock
+    const updateService = require('services/blog/services').updateBlogService as jest.Mock
     const useBlog = require('../hooks/useBlog').default as jest.Mock
 
     let navigate: jest.Mock

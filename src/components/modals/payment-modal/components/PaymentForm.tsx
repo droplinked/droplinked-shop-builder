@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm';
 import useAppToast from 'hooks/toast/useToast';
-import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'lib/apis/subscription/subscriptionServices';
+import { getShopSubscriptionDataService, getSubscriptionPlansService, subscriptionPlanStripePaymentService } from 'services/subscription/subscriptionServices';
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';

@@ -4,8 +4,15 @@ import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/social-quests/en.json'
+import localAr from 'locales/public-pages/landings/social-quests/ar.json'
 
 export default function ProPlanCard() {
+    const { t } = useLocaleResources('public-pages/landings/social-quests', {
+        en: localEn,
+        ar: localAr
+    })
     const { isLoggedIn } = useAppStore()
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
     const transformAmount = useBreakpointValue({ base: "scale(1)", md: "scale(0.8)", xl: "scale(1)" })
@@ -21,7 +28,7 @@ export default function ProPlanCard() {
         >
             <Link to={url}>
                 <AppButton marginLeft={6}>
-                    Start Now
+                    {t('proPlanCard.startNow')}
                 </AppButton>
             </Link>
 

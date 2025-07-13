@@ -1,22 +1,24 @@
 import { Divider, Flex, ModalFooter, useTabsContext } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props {
-    onClose: () => void;
-    handleSubmit: (selectedIndex: number) => void;
-    isLoading: boolean;
+    onClose: () => void
+    handleSubmit: (selectedIndex: number) => void
+    isLoading: boolean
 }
 
 export default function TransferModalFooter({ onClose, handleSubmit, isLoading }: Props) {
+    const { t } = useLocaleResources("onchainRecords")
     const { selectedIndex } = useTabsContext()
 
     return (
         <>
-            <Divider borderColor={"neutral.gray.800"} />
+            <Divider borderColor="neutral.gray.800" />
             <ModalFooter
                 pt={{ base: "16px !important", md: "36px !important" }}
-                display={"flex"}
+                display="flex"
                 flexDirection="column"
                 gap={4}
             >
@@ -27,17 +29,18 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                         variant="secondary"
                         isDisabled={isLoading}
                     >
-                        Cancel
+                        {t("cancel")}
                     </AppButton>
                     <AppButton
                         width={{ base: "70%", md: "max-content" }}
                         onClick={() => handleSubmit(selectedIndex)}
                         isLoading={isLoading}
                     >
-                        {selectedIndex === 1 ? "Upload" : "Validate"}
+                        {selectedIndex === 1 ? t("upload") : t("validate")}
                     </AppButton>
                 </Flex>
             </ModalFooter>
         </>
     )
 }
+

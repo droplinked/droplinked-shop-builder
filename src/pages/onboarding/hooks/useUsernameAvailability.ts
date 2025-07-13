@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query'
-import { checkUsernameAvailabilityService } from 'lib/apis/shop/shopServices'
+import { checkUsernameAvailabilityService } from 'services/shop/shopServices'
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface UseUsernameAvailabilityProps {
     username: string
@@ -10,6 +11,7 @@ interface UseUsernameAvailabilityProps {
 
 export const useUsernameAvailability = ({ username, onSuccess, onError }: UseUsernameAvailabilityProps) => {
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('common')
 
     return useQuery(
         ['check-username', username],
@@ -24,7 +26,7 @@ export const useUsernameAvailability = ({ username, onSuccess, onError }: UseUse
             onError: (error: any) => {
                 showToast({
                     type: 'error',
-                    message: error?.response?.data?.data?.message || 'Error checking username'
+                    message: error?.response?.data?.data?.message || t('onboarding.hooks.errors.errorCheckingUsername')
                 })
                 onError?.()
             }

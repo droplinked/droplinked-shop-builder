@@ -4,6 +4,9 @@ import { useLogin } from 'pages/onboarding/hooks/useLogin'
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BASE_URL } from 'utils/app/variable'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 interface GoogleAuthButtonProps {
     isSignUp: boolean
@@ -17,6 +20,10 @@ interface GoogleAuthButtonProps {
 function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, source }: GoogleAuthButtonProps) {
     const [searchParams] = useSearchParams()
     const { authenticateUser, finalizeLogin, loading } = useLogin()
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     function handleClick() {
         const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`)
@@ -59,9 +66,8 @@ function GoogleAuthButton({ isSignUp, isDisabled, referralCode, d3Id, udId, sour
             isLoading={loading}
             isDisabled={isDisabled}
             onClick={handleClick}
-
         >
-            Google Account
+            {t('common.googleAccount')}
         </AppButton>
     )
 }

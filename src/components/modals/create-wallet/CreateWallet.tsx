@@ -3,7 +3,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import WalletStatus from "./WalletStatus";
 import AppButton from "components/redesign/button/AppButton";
 import AppModal from "components/redesign/modal/AppModal";
-import { postCreateCircleWallet } from "lib/apis/shop/shopServices";
+import { postCreateCircleWallet } from "services/shop/shopServices";
 import useAppStore from "stores/app/appStore";
 import React from "react";
 import { useQuery } from "react-query";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 function CreateWallet({ hasCreatedCircleWallet }: { hasCreatedCircleWallet: boolean }) {
     const navigate = useNavigate();
     const { updateState, shop } = useAppStore();
-    const { isLoading: isCreatingWallet,isError,  data: createWalletData, } = useQuery({
+    const { isLoading: isCreatingWallet, isError, data: createWalletData, } = useQuery({
         queryFn: postCreateCircleWallet,
         queryKey: ["create-wallet"],
         enabled: !hasCreatedCircleWallet,

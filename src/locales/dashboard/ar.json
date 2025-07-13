@@ -1,0 +1,102 @@
+{
+  "toast": {
+    "errorFetchingData": "خطأ في جلب البيانات"
+  },
+  "greeting": {
+    "goodMorning": "صباح الخير",
+    "goodAfternoon": "مساء الخير",
+    "goodNight": "تصبح على خير",
+    "welcomeMessage": "سواء كنت تطلق منتجًا لأول مرة أو تنشئ تجربة واجهة متجر للعملاء، لدينا كل الأدوات التي تحتاجها."
+  },
+  "noOrdersPlaceholder": {
+    "cards": {
+      "importingProducts": {
+        "title": "استيراد المنتجات",
+        "description": "إنشاء قوائم المنتجات داخل الواجهة أو استيراد المخزون الموجود.",
+        "buttons": {
+          "firstProduct": "أول منتج",
+          "helpCenter": "مركز المساعدة"
+        }
+      },
+      "sellingOnDroplinked": {
+        "title": "البيع على دروبلينكد",
+        "description": "اتبع الدليل خطوة بخطوة لإطلاق المنتجات والوصول إلى العملاء بسرعة.",
+        "buttons": {
+          "learnMore": "تعلم المزيد"
+        }
+      },
+      "customizableThemes": {
+        "title": "قوالب قابلة للتخصيص",
+        "description": "خصص تجربة التجارة بناءً على تجربة وتصميم مثاليين للزوار.",
+        "buttons": {
+          "getStarted": "ابدأ الآن"
+        }
+      }
+    }
+  },
+  "revenueStats": {
+    "totalRevenue": "إجمالي الإيرادات",
+    "netProfit": "صافي الربح",
+    "orders": "الطلبات",
+    "customers": "العملاء"
+  },
+  "quickActions": {
+    "createProduct": "إنشاء منتج",
+    "createCollection": "إنشاء مجموعة",
+    "createInvoice": "إنشاء فاتورة",
+    "createDiscount": "إنشاء خصم"
+  },
+  "orderSummaryCard": {
+    "title": "ملخص الطلبات"
+  },
+  "affiliateProgramCard": {
+    "title": "الشركاء"
+  },
+  "affiliateProgramEmptyState": {
+    "title": "نمو مع دروبلينكد!",
+    "description": "ادعُ العملاء وفعّل الشركاء لتسريع المبيعات",
+    "actionText": "سوق الشركاء"
+  },
+  "orderSummaryEmptyState": {
+    "title": "لا توجد طلبات بعد",
+    "description": "تعلم كيفية الترويج والنمو عبر الشبكة",
+    "actionText": "تعلم المزيد"
+  },
+  "resourceLinks": {
+    "blog": "مدونة",
+    "helpCenter": "مركز المساعدة"
+  },
+  "dashboardPageLinks": {
+    "blogs": [
+      "كيفية تحويل وبيع أعمال NFT والفكرية إلى بضائع مميزة",
+      "كيفية بيع NFTs الخاصة بك من خلال تقييد المنتج",
+      "كيفية الربح من المبيعات الثانوية بوضع منتجك على السلسلة",
+      "كيفية تحقيق الدخل من مخزونك المادي مع واجهة متجر مخصصة"
+    ],
+    "helpCenterLinks": [
+      {
+        "title": "الاستعداد للبدء في البيع",
+        "summary": "إعداد واجهة المتجر"
+      },
+      {
+        "title": "إدارة المنتجات",
+        "summary": "كيفية تخصيص صفحات المنتجات"
+      },
+      {
+        "title": "إدارة المجموعات",
+        "summary": "كيفية العمل مع المجموعات المرتبطة بواجهات المتاجر"
+      },
+      {
+        "title": "شبكة التسويق بالعمولة اللامركزية",
+        "summary": "كيفية استخدام نظام التسويق بالعمولة اللامركزي للتعاون مع المجتمعات"
+      }
+    ]
+  },
+  "orderItem": {
+    "orderLabel": "طلبية رقم "
+  },
+  "joinCommunityCard": {
+    "title": "انضم إلى المجتمع!",
+    "description": "تابعنا عبر قنواتنا للحصول على أحدث الأخبار والعروض الحصرية."
+  }
+}

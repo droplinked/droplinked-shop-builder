@@ -1,10 +1,11 @@
 import useAppToast from 'hooks/toast/useToast'
-import { forgetPasswordService, verifyResetPasswordCodeService } from 'lib/apis/auth/services'
-import { resendEmailService, verifyEmailCode } from 'lib/apis/user/services'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
+import { forgetPasswordService, verifyResetPasswordCodeService } from 'services/auth/services'
+import { resendEmailService, verifyEmailCode } from 'services/user/services'
 import useOnboardingStore from '../stores/useOnboardingStore'
 import { useLogin } from './useLogin'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     mode: 'signup' | 'reset'
@@ -20,6 +21,7 @@ export const useEmailVerification = ({ mode }: Props) => {
     const { onLoginSubmit, loading: loginLoading } = useLogin()
     const { showToast } = useAppToast()
     const { email } = credentials
+    const { t } = useLocaleResources('common')
 
     // Service selection based on mode
     const verifyConfirmationCodeService = mode === 'signup'
@@ -42,7 +44,7 @@ export const useEmailVerification = ({ mode }: Props) => {
 
         updateOnboardingState('resetToken', response.data.data.resetToken)
         updateOnboardingState('currentStep', 'SET_NEW_PASSWORD')
-        showToast({ type: "success", message: "Code verified successfully" })
+        showToast({ type: "success", message: t('onboarding.hooks.success.codeVerified') })
     }
 
     // Verification mutation
@@ -53,7 +55,7 @@ export const useEmailVerification = ({ mode }: Props) => {
             setInputState("error")
             showToast({
                 type: "error",
-                message: error?.response?.data?.message || "Invalid verification code"
+                message: error?.response?.data?.message || t('onboarding.hooks.errors.invalidVerificationCode')
             })
         }
     })
@@ -62,12 +64,12 @@ export const useEmailVerification = ({ mode }: Props) => {
     const { mutateAsync: resendCode, isLoading: resendLoading } = useMutation({
         mutationFn: resendConfirmationCodeService,
         onSuccess: () => {
-            showToast({ type: "success", message: "Verification code sent to your email" })
+            showToast({ type: "success", message: t('onboarding.hooks.success.verificationCodeSent') })
         },
         onError: (error: any) => {
             showToast({
                 type: "error",
-                message: error?.response?.data?.message || "Failed to send code"
+                message: error?.response?.data?.message || t('onboarding.hooks.errors.failedToSendCode')
             })
         },
         onSettled: () => {

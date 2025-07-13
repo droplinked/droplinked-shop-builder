@@ -5,14 +5,15 @@ import { Formik } from 'formik'
 import { getInitialValues, getValidationSchema } from './formConfigs'
 import CouponForm from './CouponForm'
 import { useMutation } from 'react-query'
-import { IgiftcardCreateService, IGiftCardExpiryDate } from 'lib/apis/coupons/interfaces'
-import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
+import { IgiftcardCreateService, IGiftCardExpiryDate } from 'services/coupons/interfaces'
+import { giftcardCreateService, updateGiftCartExpiryDateService } from 'services/coupons/addressServices'
 import useAppStore, { useCheckPermission } from 'stores/app/appStore'
 import useAppToast from 'hooks/toast/useToast'
 import { capitalizeFirst } from 'utils/helpers'
 import moment from 'moment/moment'
 import Drawer from 'components/common/Drawer/Drawer'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Props {
     isEdit?: boolean
@@ -23,6 +24,7 @@ interface Props {
 }
 
 export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onClose, refetch }: Props) {
+    const { t } = useLocaleResources('settings');
     const createGiftcard = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const updateGiftcardExpiryDate = useMutation((params: IGiftCardExpiryDate) => updateGiftCartExpiryDateService(params))
     const isLoading = createGiftcard.isLoading || updateGiftcardExpiryDate.isLoading
@@ -52,13 +54,13 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             }
 
             showToast({
-                message: `${capitalizeFirst(isEdit ? coupon.type : params.type)} has been ${isEdit ? "updated" : "created"}.`,
+                message: t(isEdit ? "settings.coupons.success.updated" : "settings.coupons.success.created", { type: capitalizeFirst(isEdit ? coupon.type : params.type) }),
                 type: 'success'
             })
             refetch()
             onClose()
         } catch (error) {
-            showToast({ message: error?.message || "Oops! Something went wrong.", type: 'error' });
+            showToast({ message: error?.message || t("settings.coupons.error"), type: 'error' });
         } finally {
             resetForm()
         }
@@ -68,16 +70,16 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
         <Formik
             initialValues={getInitialValues({ coupon, convertPrice })}
             validateOnChange={false}
-            validationSchema={getValidationSchema({ isEdit })}
+            validationSchema={getValidationSchema({ isEdit, t })}
             onSubmit={onSubmit}
         >
             {({ handleSubmit }) => (
                 <Drawer
                     isOpen={isOpen}
                     onClose={onClose}
-                    title={isEdit ? "Edit Discount" : "Create Discount"}
-                    discardButtonText={isEdit ? "Cancel" : "Discard"}
-                    saveButtonText={isEdit ? "Update" : "Create"}
+                    title={isEdit ? t("settings.coupons.drawer.editTitle") : t("settings.coupons.drawer.createTitle")}
+                    discardButtonText={isEdit ? t("settings.coupons.drawer.cancel") : t("settings.coupons.drawer.discard")}
+                    saveButtonText={isEdit ? t("settings.coupons.drawer.update") : t("settings.coupons.drawer.create")}
                     isLoading={isLoading}
                     onClick={handleSubmit}
                     showSubmitButtons

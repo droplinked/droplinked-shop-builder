@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
-import { getChainsFee } from "lib/apis/roi/services"
+import { getChainsFee } from "services/roi/services"
 
 const plans: Plan[] = [
     { title: 'Capsule', duration: 30, skus: 5, productRecords: 10000, baseCommitment: 10000 },
@@ -9,7 +9,7 @@ const plans: Plan[] = [
 ]
 
 
-const useROICalculation = () => {
+const useROICalculation = (t?: (key: string, options?: any) => string) => {
     const [selectedPlan, setSelectedPlan] = useState(() => plans[0])
     const [availableNetworks, setAvailableNetworks] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -71,7 +71,8 @@ const useROICalculation = () => {
             const upgradedPlan = plans.find(plan => plan.skus >= +newSkuValue)
             if (upgradedPlan) {
                 setSelectedPlan(upgradedPlan)
-                setTotalSkusErrorMessage(`Upgraded to ${upgradedPlan.title} due to entered value exceeding the ${selectedPlan.title} plan limit threshold.`)
+                const errorMessage = t ? t('errors.upgradedPlan', { plan: upgradedPlan.title, currentPlan: selectedPlan.title }) : `Upgraded to ${upgradedPlan.title} due to entered value exceeding the ${selectedPlan.title} plan limit threshold.`
+                setTotalSkusErrorMessage(errorMessage)
             }
         }
     }

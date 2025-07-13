@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import type { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import type { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import { formatDateToLongStyle } from 'utils/helpers'
 import useChangelogEntry from '../hooks/useChangelogEntry'

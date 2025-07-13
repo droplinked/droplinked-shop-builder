@@ -1,4 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import TabButton from './TabButton'
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 function TabList({ items, activeTab, onTabChange }: Props) {
+    const { t } = useLocaleResources('common')
+
     return (
         <Flex
             width="354px"
@@ -25,7 +28,7 @@ function TabList({ items, activeTab, onTabChange }: Props) {
                 fontSize={12}
                 color="text.subtext.placeholder.dark"
             >
-                Platform
+                {t('platform')}
             </Text>
 
             {items.map((item, index) => (

@@ -1,6 +1,7 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
@@ -10,6 +11,7 @@ function AuthButtons() {
     const navigate = useNavigate()
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { user } = useAppStore()
+    const { t } = useLocaleResources('common')
 
     if (user) return <UserMenu />
 
@@ -18,7 +20,7 @@ function AuthButtons() {
             padding="10px 14px"
             onClick={() => navigate(AUTH_ROUTES.SIGN_UP)}
         >
-            Get Started
+            {t('getStarted')}
         </AppButton>
     )
 
@@ -31,7 +33,7 @@ function AuthButtons() {
                 variant="secondary"
                 onClick={() => navigate(AUTH_ROUTES.SIGN_IN)}
             >
-                Sign In
+                {t('signIn')}
             </AppButton>
             <GetStartedButton />
         </Flex>

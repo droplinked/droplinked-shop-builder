@@ -3,6 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import Table from "components/redesign/table/Table";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -31,10 +32,11 @@ interface Props {
 }
 
 function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
+    const { t } = useLocaleResources('affiliate');
     const columns: ColumnDef<ICommunityShop>[] = [
         {
             accessorKey: "_id",
-            header: "Merchant",
+            header: t('stores.table.columns.merchant'),
             cell: (info) => {
                 const { logo, name, _id } = info?.row?.original;
                 if (name && _id)
@@ -57,19 +59,19 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
                             </Flex>
                         </Link>
                     );
-                return "N/A";
+                return t('stores.table.noData');
             },
         },
         {
             accessorKey: "totalProducts",
-            header: "Products",
+            header: t('stores.table.columns.products'),
             cell: (info) => info?.getValue(),
         },
-        { accessorKey: "totalSoldUnits", header: "Units Sold", cell: (info) => info.getValue() },
-        { accessorKey: "averageCommission", header: "Avg. Commission", cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
+        { accessorKey: "totalSoldUnits", header: t('stores.table.columns.unitsSold'), cell: (info) => info.getValue() },
+        { accessorKey: "averageCommission", header: t('stores.table.columns.avgCommission'), cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
         {
             accessorKey: "topProducts",
-            header: "Top Products",
+            header: t('stores.table.columns.topProducts'),
             cell: (info) => (
                 <Flex alignItems={"flex-start"} justifyContent={"flex-start"} overflow={"hidden"}>
                     {(info?.getValue() as Array<any>)?.map((product, index) => (

@@ -6,6 +6,7 @@ import InformationTab from './tabs-components/InformationTab'
 import TabsList from './tabs-components/TabsList'
 import TransferCard from './TransferCard'
 import { ICombinedNft } from 'pages/onchain-records/utils/interface'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     isOpen: boolean
@@ -14,15 +15,16 @@ interface Props {
 }
 
 export default function RecordDetails({ item, isOpen, onClose }: Props) {
+    const { t } = useLocaleResources("onchainRecords")
     const { tokenId } = item ?? {}
 
     const tabs = [
         {
-            title: "Information",
+            title: t("information"),
             content: <InformationTab item={item} />
         },
         {
-            title: "Activity",
+            title: t("activity"),
             content: <ActivityTab item={item} />,
             isDisabled: !tokenId
         }
@@ -33,7 +35,7 @@ export default function RecordDetails({ item, isOpen, onClose }: Props) {
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                title='Record Details'
+                title={t("record_details")}
                 drawerHeaderStyle={{ padding: 0, px: 9, py: 9, paddingBottom: 0 }}
                 headerContent={
                     <>
@@ -53,3 +55,4 @@ export default function RecordDetails({ item, isOpen, onClose }: Props) {
         </Tabs>
     )
 }
+

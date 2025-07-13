@@ -1,5 +1,6 @@
-import { IcreateRuleService, RuleTypes } from "lib/apis/rule/interfaces";
+import { IcreateRuleService, RuleTypes } from "services/rule/interfaces";
 import * as Yup from "yup";
+import { TFunction } from "i18next";
 
 export interface IFormData {
     description: string;
@@ -12,22 +13,29 @@ export interface IFormData {
     blockchainType: string;
 }
 
-export const ruleModalFormConfig = Yup.object().shape({
-    description: Yup.string().required("Required"),
+export const getRuleModalFormConfig = (t: TFunction) => Yup.object().shape({
+    description: Yup.string().required(t("ruleset.validation.required")),
     nftPurchaseLink: Yup.string().optional(),
-    chain: Yup.string().required("Required"),
-    type: Yup.string().required("Required"),
+    chain: Yup.string().required(t("ruleset.validation.required")),
+    type: Yup.string().required(t("ruleset.validation.required")),
     discountPercentage: Yup.number().nullable().optional()
         .when("type", {
             is: (value: string) => value === "DISCOUNT",
-            then: schema => schema.min(1, "Min 1").max(100, "Max 100").required("Required").typeError("Please Enter a number"),
+            then: schema => schema.min(1, t("ruleset.validation.min", { value: 1 }))
+                .max(100, t("ruleset.validation.max", { value: 100 }))
+                .required(t("ruleset.validation.required"))
+                .typeError(t("ruleset.validation.enterNumber")),
             otherwise: schema => schema
         }),
     address: Yup.array()
-        .of(Yup.string().trim().required("Address cannot be an empty string"))
-        .min(1, "At least one address is required")
-        .required("Address is required"),
-    minimumNftRequired: Yup.number().min(1).max(99).typeError("Please correct value").required("Required"),
+        .of(Yup.string().trim().required(t("ruleset.validation.addressEmpty")))
+        .min(1, t("ruleset.validation.addressMinimum"))
+        .required(t("ruleset.validation.addressRequired")),
+    minimumNftRequired: Yup.number()
+        .min(1, t("ruleset.validation.min", { value: 1 }))
+        .max(99, t("ruleset.validation.max", { value: 99 }))
+        .typeError(t("ruleset.validation.correctValue"))
+        .required(t("ruleset.validation.required")),
 });
 
 export const makeInitialValues = (state: IcreateRuleService) => {

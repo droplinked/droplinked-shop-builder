@@ -4,13 +4,14 @@ import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import AppImage from 'components/common/image/AppImage'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import Table from 'components/redesign/table/Table'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import useBlogs from 'pages/blogs/hooks/useBlogs'
 import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatDateToLongStyle } from 'utils/helpers'
 import BlogTableActionMenu from './BlogTableActionMenu'
 import BlogTableEmptyState from './BlogTableEmptyState'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     searchTerm: string
@@ -19,12 +20,13 @@ interface Props {
 function BlogTable({ searchTerm }: Props) {
     const navigate = useNavigate()
     const { isFetching, data, hasNextPage, fetchNextPage, isFetchingNextPage } = useBlogs(searchTerm)
+    const { t } = useLocaleResources("blogs")
 
     const blogPosts = data?.pages.flatMap(page => page.data.data) || []
 
     const columns: ColumnDef<Blog>[] = [
         {
-            header: 'Post',
+            header: t("table.columns.post"),
             cell: info => {
                 const { image, title } = info.row.original
                 const truncatedTitle = title.length <= 25 ? title : `${title.slice(0, 25)}...`
@@ -39,7 +41,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'category',
-            header: 'Category',
+            header: t("table.columns.category"),
             cell: (info) => {
                 const category = info.getValue()
 
@@ -50,7 +52,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'createdAt',
-            header: 'Date',
+            header: t("table.columns.date"),
             cell: info => {
                 const date = new Date(info.getValue() as string)
 
@@ -59,10 +61,10 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'isVisible',
-            header: 'Status',
+            header: t("table.columns.status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
-                const text = isVisible ? "Published" : "Draft"
+                const text = isVisible ? t("table.status.published") : t("table.status.draft")
                 const status = isVisible ? "success" : "pending"
 
                 return <AppBadge text={text} status={status} />

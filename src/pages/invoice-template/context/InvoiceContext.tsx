@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from 'react'
-import { PdfExportDataResponse } from '../../../lib/apis/credit/interfaces'
+import { PdfExportDataResponse } from '../../../services/credit/interfaces'
 
 // Context interface
 interface InvoiceContextType {

@@ -1,4 +1,5 @@
 import { Flex, ModalBody } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import Pagination from './Pagination'
 import MessageBox from 'components/redesign/message-box/MessageBox'
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default function IdentifiedItemsBody({ handleItemSelection, headerCheckState, handleHeaderCheckboxChange, selectedProducts, crawledProduct, maxSelectableItems, isSelectionDisabled, setshouldRecord, shouldRecord }: Props) {
+    const { t } = useLocaleResources('products');
     const ITEMS_PER_PAGE = 8
 
     const {
@@ -49,8 +51,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
             <Flex direction="column" gap={6}>
                 {selectedProducts.length >= maxSelectableItems && (
                     <MessageBox
-                        title='Maximum selection limit reached'
-                        description={`You have selected ${maxSelectableItems} items out of ${crawledProduct.length} available items. You cannot select more items at this time.`}
+                        title={t('identifiedItemsModal.maxSelectionLimit.title')}
+                        description={t('identifiedItemsModal.maxSelectionLimit.description', { selected: maxSelectableItems, total: crawledProduct.length })}
                         theme='warning'
                     />
                 )}
@@ -58,8 +60,8 @@ export default function IdentifiedItemsBody({ handleItemSelection, headerCheckSt
                 {appDevelopment && (
                     <RuledGrid columns={1} borderRadius={8} p="16px 24px">
                         <SwitchBox
-                            title="Drop (Digital Product Passport Records)"
-                            description="Create onchain digital records for the inventory selected below."
+                            title={t('identifiedItemsModal.dropRecords.title')}
+                            description={t('identifiedItemsModal.dropRecords.description')}
                             isChecked={shouldRecord}
                             onToggle={() => setshouldRecord(!shouldRecord)}
                             showBetaBadge

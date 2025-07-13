@@ -14,6 +14,9 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 const formSchema = Yup.object().shape({
     email: Yup.string().email("Please enter a valid email address.").required("Email address is required."),
@@ -27,6 +30,10 @@ function SignInForm() {
     const [rememberPassword, setRememberPassword] = useState<boolean>(!!savedEmail && !!savedPassword)
     const { onLoginSubmit } = useLogin()
     const { updateOnboardingState } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const handleSubmit = async (values: { email: string, password: string }) => {
         if (rememberPassword) {
@@ -43,8 +50,8 @@ function SignInForm() {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Sign in with your credentials below.'
+                heading={t('common.welcomeTitle')}
+                description={t('signIn.subtitle')}
             />
 
             <Formik
@@ -59,21 +66,23 @@ function SignInForm() {
                 {({ values, errors, handleChange, isSubmitting }) => (
                     <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                         <AppInput
-                            label="Email Address"
+                            label={t('common.emailLabel')}
                             inputProps={{
                                 name: "email",
                                 value: values.email,
                                 onChange: handleChange,
-                                placeholder: "Enter email address",
+                                placeholder: t('common.emailPlaceholder'),
                             }}
-                            message={errors.email?.toString()}
+                            message={errors.email ? t('common.emailError') : undefined}
                         />
 
                         <PasswordInput
                             name="password"
                             value={values.password}
                             onChange={handleChange}
-                            message={errors.password?.toString()}
+                            label={t('common.passwordLabe')}
+                            placeholder={t('common.passwordPlaceholder')}
+                            message={errors.password ? t('common.passwordError') : undefined}
                         />
 
                         <Flex alignItems="center" justifyContent="space-between" marginBlock={3}>
@@ -81,18 +90,18 @@ function SignInForm() {
                                 isChecked={rememberPassword}
                                 onChange={(e) => setRememberPassword(e.target.checked)}
                             >
-                                Remember my password
+                                {t('signIn.rememberPassword')}
                             </Checkbox>
                             <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
-                                Reset Password
+                            {t('signIn.resetPassword')} 
                             </InteractiveText>
                         </Flex>
 
                         <AppButton type="submit" isLoading={isSubmitting}>
-                            Sign In
+                            {t('signIn.signInButton')}
                         </AppButton>
 
-                        <DividerText text="or continue with" />
+                        <DividerText text={t('common.orContinueWith')} />
 
                         <GoogleAuthButton isSignUp={false} isDisabled={isSubmitting} />
 
@@ -101,9 +110,9 @@ function SignInForm() {
                             justifyContent="center"
                             alignItems="center"
                             gap={{ base: 1, md: 2 }}
-                            text="Don't have an account?"
+                            text= {t('signIn.noAccountText')}
                             action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                            linkText="Join us and create one!"
+                            linkText= {t('signIn.createAccountText')}
                         />
                     </Form>
                 )}

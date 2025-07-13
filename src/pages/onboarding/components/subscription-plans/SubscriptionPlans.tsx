@@ -2,13 +2,18 @@ import { Grid, useDisclosure } from "@chakra-ui/react"
 import PaymentModal from "components/modals/payment-modal/PaymentModal"
 import ExternalLink from "components/redesign/external-link/ExternalLink"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
-import { SubscriptionPlan } from "lib/apis/subscription/interfaces"
-import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import onboardingArLocale from 'locales/onboarding/ar.json'
+import onboardingEnLocale from 'locales/onboarding/en.json'
+import subscriptionArLocale from 'locales/subscription/ar.json'
+import subscriptionEnLocale from 'locales/subscription/en.json'
 import useOnboardingStore from "pages/onboarding/stores/useOnboardingStore"
 import { PlanType } from "pages/onboarding/types/onboarding"
 import Loading from "pages/subscription-plans/components/plan-cards/loading/Loading"
 import React, { useState } from "react"
 import { useQuery } from "react-query"
+import { SubscriptionPlan } from "services/subscription/interfaces"
+import { getSubscriptionPlansService} from "services/subscription/subscriptionServices"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
@@ -20,6 +25,14 @@ function SubscriptionPlans() {
     const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure()
     const { updateOnboardingState } = useOnboardingStore()
     const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan)
+    const { t: tOnboarding } = useLocaleResources('onboarding', {
+        en: onboardingEnLocale,
+        ar: onboardingArLocale
+    })
+    const { t: tSubscription } = useLocaleResources('subscription', {
+        en: subscriptionEnLocale,
+        ar: subscriptionArLocale
+    })
 
     const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
@@ -47,7 +60,10 @@ function SubscriptionPlans() {
 
     return (
         <>
-            <OnboardingStepHeader heading="Plans" description="Choose from the different package options below." />
+            <OnboardingStepHeader
+                 heading={tOnboarding('subscriptionPlans.title')} 
+                 description={tOnboarding('subscriptionPlans.subtitle')}
+            />
 
             <ExternalLink
                 fontSize="16px"
@@ -57,7 +73,7 @@ function SubscriptionPlans() {
                 hasArrow={true}
                 onClick={() => window.open("/plans", "_blank")}
             >
-                View all plans and compare 
+                {tOnboarding('subscriptionPlans.viewAllPlans')} 
             </ExternalLink>
 
             <PlanDurationRadioContainer />
@@ -70,7 +86,7 @@ function SubscriptionPlans() {
                         <SubscriptionPlanCard
                             key={plan._id}
                             plan={plan}
-                            features={getFeaturesWithInheritance(planType)}
+                            features={getFeaturesWithInheritance(planType, tSubscription)}
                             isPopular={planType === "BUSINESS"}
                             isSelected={selectedPlan === plan.type}
                             onSelect={setSelectedPlan}
@@ -80,7 +96,7 @@ function SubscriptionPlans() {
             </Grid>
 
             <ControlButtons
-                continueText={getContinueText(selectedPlan)}
+                 continueText={getContinueText(selectedPlan, tSubscription)} 
                 onSubmit={handleNext}
                 onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')}
             />

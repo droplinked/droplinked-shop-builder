@@ -1,11 +1,13 @@
 import { useFormikContext } from 'formik'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 const useBlogForm = () => {
     const formik = useFormikContext<Blog>()
+    const { t } = useLocaleResources('common')
 
     if (!formik) {
-        throw new Error('useBlogForm must be used within a Formik context')
+        throw new Error(t('blogs.hooks.errors.formikContextError'))
     }
 
     return formik

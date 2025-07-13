@@ -5,18 +5,21 @@ import { formatUnderlinedText, getCustomerDisplayName, getStatusColorScheme, tru
 import { IOrders } from '../../interface'
 import ControlsPopover from '../ControlsPopover'
 import DateCell from './DateCell'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     item: IOrders
 }
 
 export default function MobileCards({ item }: Props) {
+    const { t } = useLocaleResources("purchaseHistory")
+
     const { _id, status, updatedAt, customerAddressBook, customerEmail } = item
 
     // Prepare customer display name
-    const customerDisplayName = getCustomerDisplayName(customerAddressBook, customerEmail);
-    const isPaymentValid = status !== "CANCELED";
-    const statusColorScheme = getStatusColorScheme(status);
+    const customerDisplayName = getCustomerDisplayName(customerAddressBook, customerEmail)
+    const isPaymentValid = status !== "CANCELED"
+    const statusColorScheme = getStatusColorScheme(status)
 
     return (
         <Flex gap={4} flexDirection="column" p={4} bg="#141414" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
@@ -35,11 +38,11 @@ export default function MobileCards({ item }: Props) {
             </Flex>
             <Flex flexDirection="column" gap={4} p={4} background="neutral.gray.1000" borderRadius="8px">
                 <Flex justifyContent="space-between" alignItems="center">
-                    <Text color="text.subtext.placeholder.dark" fontSize={14}>Customer</Text>
+                    <Text color="text.subtext.placeholder.dark" fontSize={14}>{t("customer")}</Text>
                     <Text color="#fff" fontSize={14} title={customerDisplayName}>{truncateText(customerDisplayName)}</Text>
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
-                    <Text color="text.subtext.placeholder.dark" fontSize={14}>Date</Text>
+                    <Text color="text.subtext.placeholder.dark" fontSize={14}>{t("date")}</Text>
                     <DateCell date={updatedAt} />
                 </Flex>
             </Flex>

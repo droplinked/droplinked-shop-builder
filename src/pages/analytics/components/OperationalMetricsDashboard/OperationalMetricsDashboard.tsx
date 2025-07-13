@@ -1,5 +1,5 @@
 import { Grid } from "@chakra-ui/react"
-import { getAnalyticsPerformanceReport } from "lib/apis/dashboard/dashboardServices"
+import { getAnalyticsPerformanceReport } from "services/dashboard/dashboardServices"
 import { DEFAULT_PERFORMANCE_DATA } from "pages/analytics/constants/defaultPerformanceData"
 import useFormattedDateRange from "pages/analytics/hooks/useFormattedDateRange"
 import useAnalyticsStore from "pages/analytics/stores/useAnalyticsStore"

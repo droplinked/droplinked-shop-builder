@@ -1,5 +1,6 @@
 import { AbsoluteCenter, Box, Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
 }
 
 function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAction, onDotClick }: Props) {
+    const { t } = useLocaleResources('onboarding')
+
     const renderDots = () => [...Array(2)].map((_, index) => {
         const isActive = index === currentSlideIndex;
         return (
@@ -29,7 +32,7 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
     return (
         <Flex position="relative" justifyContent="space-between" alignItems="center" gap={{ base: 4 }}>
             <AppButton variant="secondary" onClick={handlePreviousAction}>
-                {currentSlideIndex === 0 ? 'Back' : 'Previous'}
+                {currentSlideIndex === 0 ? t('common.back') : t('common.buttons.previous')}
             </AppButton>
 
             <AbsoluteCenter display={{ base: "none", md: "flex" }} gap="6px">
@@ -37,7 +40,7 @@ function ActionControls({ currentSlideIndex, handlePreviousAction, handleNextAct
             </AbsoluteCenter>
 
             <AppButton flex={{ base: 1, md: 'unset' }} onClick={handleNextAction}>
-                {currentSlideIndex === 0 ? 'Next' : 'Start Exploring Dashboard'}
+                {currentSlideIndex === 0 ? t('completion.controls.next') : t('completion.controls.startExploring')}
             </AppButton>
         </Flex>
     )

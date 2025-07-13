@@ -1,8 +1,13 @@
 import { Badge } from '@chakra-ui/react'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function StatusBadge({ status }: { status: string }) {
-    const statusText = status === "PENDING" ? "Invitation Sent" : "Administrator"
+    const { t } = useLocaleResources('settings');
+    const statusText = status === "PENDING" ?
+        t('settings.userManagement.status.pending') :
+        t('settings.userManagement.status.administrator');
+
     const invitationSentStyles = {
         bg: '#092C22',
         color: '#2BCFA1',

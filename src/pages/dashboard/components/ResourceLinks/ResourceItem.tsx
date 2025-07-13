@@ -1,9 +1,13 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
+import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { DashboardPageLink } from "pages/dashboard/stores/useDashboardStore"
 import React from "react"
 
 function ResourceItem({ title, summary, url }: DashboardPageLink) {
+    const { isRTL } = useLocaleResources("dashboardPage")
+
     const titleStyles = {
         fontSize: { base: 16, xl: 18 },
         fontWeight: 700,
@@ -32,7 +36,10 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
                 padding="10px"
                 onClick={() => window.open(url)}
             >
-                <ChevronrightMd color='white' />
+                {isRTL
+                    ? <ChevronleftMd color='white' />
+                    : <ChevronrightMd color='white' />
+                }
             </Box>
         </Flex>
     )

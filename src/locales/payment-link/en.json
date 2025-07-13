@@ -1,0 +1,38 @@
+{
+  "components": {
+    "submit": {
+      "save": "Save",
+      "successMessage": "Payment link options saved successfully",
+      "errorMessage": "Failed to save payment link options"
+    },
+    "settings": {
+      "title": "Settings",
+      "additionalNote": {
+        "title": "Additional Note",
+        "description": "Enable this if you want users to be able to write an order note or give any additional information."
+      },
+      "variantsStyle": {
+        "title": "Variants Style",
+        "description": "Choose how you want product variants to be shown",
+        "options": {
+          "dropdown": {
+            "title": "Dropdown",
+            "description": "Variants are being shown in dropdowns."
+          },
+          "selector": {
+            "title": "Selector",
+            "description": "All variants are visible at once."
+          }
+        }
+      }
+    },
+    "preview": {
+      "title": "Preview",
+      "viewPreview": "View Preview",
+      "screenSize": {
+        "desktop": "Desktop",
+        "mobile": "Mobile"
+      }
+    }
+  }
+} 

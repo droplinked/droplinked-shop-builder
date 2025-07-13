@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { getChangelogEntries } from 'lib/apis/changelog/services'
+import { getChangelogEntries } from 'services/changelog/services'
 import { useInfiniteQuery } from 'react-query'
 import useChangelogEntries from './useChangelogEntries'
 
@@ -10,7 +10,7 @@ jest.mock('react-query', () => ({
     __esModule: true,
     useInfiniteQuery: jest.fn()
 }))
-jest.mock('lib/apis/changelog/services', () => ({
+jest.mock('services/changelog/services', () => ({
     __esModule: true,
     getChangelogEntries: jest.fn()
 }))

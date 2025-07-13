@@ -2,7 +2,7 @@ import { Box, ModalBody, useDisclosure } from '@chakra-ui/react';
 import PaymentModal from 'components/modals/payment-modal/PaymentModal';
 import AppModal from 'components/redesign/modal/AppModal';
 import PlanDurationRadioContainer from 'components/redesign/plan-duration-radio/PlanDurationRadioContainer';
-import { getSubscriptionPlansService } from 'lib/apis/subscription/subscriptionServices';
+import { getSubscriptionPlansService } from 'services/subscription/subscriptionServices';
 import React from 'react';
 import { useQuery } from 'react-query';
 import useAppStore from 'stores/app/appStore';
@@ -10,6 +10,7 @@ import ProPlanCard from './ProPlanCard';
 import ProPlanFooter from './ProPlanFooter';
 import ProPlanHeader from './ProPlanHeader';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export interface Props {
   isOpen: boolean;
@@ -20,6 +21,7 @@ const ProPlanUpgradeModal = ({ isOpen, onClose}: Props) => {
   const { isOpen: isPaymentModalOpen, onOpen: openPaymentModal, onClose: closePaymentModal } = useDisclosure();
   const { shop } = useAppStore();
   const { shopSetupUI } = useOnboardingStore()
+  const { t } = useLocaleResources('common');
 
   const canActivateTrial = shop?.subscription?.canActivateTrial ?? false;
   const isCrossmint = shopSetupUI.isFromCrossmint ?? false;
@@ -67,7 +69,7 @@ const ProPlanUpgradeModal = ({ isOpen, onClose}: Props) => {
         onClose={closePaymentModal}
         onSuccess={onClose}
         TrialMonths={isCrossmint ? 3 : 1}
-        successMessage="Trial activated successfully! Your Pro features are now available."
+        successMessage={t('proPlan.payment.successMessage')}
       />
     </AppModal>
   );

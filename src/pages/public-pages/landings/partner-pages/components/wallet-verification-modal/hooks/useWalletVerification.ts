@@ -1,9 +1,9 @@
 import { ChainWallet, DropWeb3, Network, Web3Actions } from 'droplinked-web3';
 import useAppToast from 'hooks/toast/useToast';
-import { IPostUserVerifyPartner } from 'lib/apis/user/interfaces';
-import { postUserVerifyD3, postUserVerifyUD } from 'lib/apis/user/services';
 import { useMutation } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
+import { IPostUserVerifyPartner } from 'services/user/interfaces';
+import { postUserVerifyD3, postUserVerifyUD } from 'services/user/services';
 import { appDevelopment } from 'utils/app/variable';
 import { usePartnerLanding } from '../../../context/PartnerLandingContext';
 import { useWalletVerificationContext } from '../../../context/WalletVerificationContext';

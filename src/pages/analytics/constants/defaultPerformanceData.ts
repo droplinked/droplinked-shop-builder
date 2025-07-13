@@ -1,4 +1,4 @@
-import { PerformanceReportResponse } from "lib/apis/dashboard/interfaces"
+import { PerformanceReportResponse } from "services/dashboard/interfaces"
 
 export const DEFAULT_PERFORMANCE_DATA: PerformanceReportResponse = {
     customers: { directCustomers: 0, affiliateCustomers: 0, total: 0 },

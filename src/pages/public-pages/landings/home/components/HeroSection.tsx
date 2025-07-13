@@ -3,23 +3,28 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/homePage/en.json'
+import localAr from 'locales/public-pages/landings/homePage/ar.json'
 import HeroSection from '../../_shared/components/hero-section/HeroSection'
 
 export default function HomePageHero() {
+    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+
     return (
         <HeroSection
-            title={`Commerce That \n Earns The Most`}
-            subtitle="From the largest enterprises to solo merchants, droplinked provides tools enabling businesses and entrepreneurs to finance growth and earn more on every sale"
+            title={t("hero.title")}
+            subtitle={t("hero.subtitle")}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t("hero.startNow")}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t("hero.requestDemo")}
                         </AppButton>
                     </Link>
                 </Flex>

@@ -2,23 +2,23 @@ import { Flex } from '@chakra-ui/react'
 import React, { useMemo } from 'react'
 import MultiSelectMenu from '../multi-select-menu/MultiSelectMenu'
 import ResponsiveTable from './ResponsiveTable'
-import { useQuery } from 'react-query';
-import { getAvailableFilterTypes } from 'lib/apis/credit/services';
-import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import { useQuery } from 'react-query'
+import { getAvailableFilterTypes } from 'services/credit/services'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 export default function TransactionsTable() {
     const { isFetching, data } = useQuery({
         queryKey: ["get-creditsAndActivity-filters"],
         queryFn: () => getAvailableFilterTypes(),
-    });
+    })
     const { types } = data?.data?.data ?? {}
 
     const filterItems = useMemo(() => {
         return (types ?? []).map(type => ({
             label: type,
             value: type
-        }));
-    }, [types]);
+        }))
+    }, [types])
 
     return (
         <Flex mt={6} flexDirection="column" gap={4}>

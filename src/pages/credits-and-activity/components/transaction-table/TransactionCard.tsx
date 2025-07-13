@@ -1,8 +1,8 @@
 import { Center, Flex, Text } from '@chakra-ui/react'
 import { DocumentdownloadMd } from 'assets/icons/Action/DocumentDownload/DocumentdownloadMd'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces'
 import React from 'react'
+import { IDetailedTransaction } from 'services/credit/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TypeColumn from './TypeColumn'
@@ -28,7 +28,7 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 <TypeColumn type={type} amountType={amountType} />
 
                 <Flex align="center" gap={4}>
-                    <StatusBadge status={status} />
+                    <StatusBadge status={status as "SUCCESS" | "FAILED"} />
                     {(id && status === "SUCCESS") && (
                         <Center
                             as="a"
@@ -51,17 +51,17 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 p={4}
                 bg="neutral.gray.1000"
             >
-                <InfoRow label="Amount">
+                <InfoRow label={t("transactionTable.card.amount")}>
                     <FormattedPrice price={amount} />
                 </InfoRow>
 
-                <InfoRow label="Date">
+                <InfoRow label={t("transactionTable.card.date")}>
                     <Text color="text.white" fontSize={14}>
                         {createdAt ? formatDateToLongStyle(new Date(createdAt)) : '—'}
                     </Text>
                 </InfoRow>
 
-                <InfoRow label="Transaction ID">
+                <InfoRow label={t("transactionTable.card.transactionId")}>
                     <Text color="text.white" fontSize={14}>
                         {id || '—'}
                     </Text>

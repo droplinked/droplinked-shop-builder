@@ -1,6 +1,7 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { MedalstarLg } from 'assets/icons/System/MedalStar/MedalstarLg';
 import React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ProPlanHeaderProps {
   isCrossmint: boolean;
@@ -8,16 +9,18 @@ interface ProPlanHeaderProps {
 }
 
 const ProPlanHeader: React.FC<ProPlanHeaderProps> = ({ isCrossmint, canActivateTrial }) => {
+  const { t } = useLocaleResources('common');
+
   const getTitle = () => {
-    if (isCrossmint) return 'Free Pro Plan Unlocked!';
-    if (canActivateTrial) return 'Use droplinked AI to Create A Shop';
-    return 'Access Exclusive Features';
+    if (isCrossmint) return t('proPlan.crossmint.title');
+    if (canActivateTrial) return t('proPlan.trial.title');
+    return t('proPlan.upgrade.title');
   };
 
   const getDescription = () => {
-    if (isCrossmint) return 'You now have access to the Pro Plan for 3 months for free.';
-    if (canActivateTrial) return 'Feel free to use the AI tools to customize shops and inventory. Add your details below to get started.';
-    return 'Upgrade today to take advantage of the benefits associated with a Premium Plan.';
+    if (isCrossmint) return t('proPlan.crossmint.description');
+    if (canActivateTrial) return t('proPlan.trial.description');
+    return t('proPlan.upgrade.description');
   };
 
   return (

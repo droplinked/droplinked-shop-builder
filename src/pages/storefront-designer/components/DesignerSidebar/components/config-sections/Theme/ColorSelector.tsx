@@ -2,9 +2,12 @@ import { Box, Circle, Flex, Text, VStack } from '@chakra-ui/react';
 import React, { useContext, useMemo } from 'react';
 import SectionItem from '../../common/SectionItem';
 import { useQuery } from 'react-query';
-import { availableTemplateService } from 'lib/apis/shop/shopServices';
+import { availableTemplateService } from 'services/shop/shopServices';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../../../../locales/storefront/en.json';
+import localAr from '../../../../../../../locales/storefront/ar.json';
 
 /**
  * Color palette selection component
@@ -18,6 +21,8 @@ const ColorSelector: React.FC = () => {
       },
     },
   } = useContext(designerContext);
+
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   // Fetch theme data from API
   const { data, isLoading } = useQuery({
@@ -84,18 +89,18 @@ const ColorSelector: React.FC = () => {
   };
 
   // Render theme section (light or dark)
-  const renderThemeSection = (title, themes, description?) => {
+  const renderThemeSection = (title: 'light' | 'dark', themes, description?: string) => {
     if (!Array.isArray(themes) || themes.length <= 0) return null;
 
     return (
-      <Box mt={title === 'Dark' ? 4 : 0}>
+      <Box mt={title === 'dark' ? 4 : 0}>
         <DotSeparatedList mb={2}>
           <Text color="white" fontSize="sm" fontWeight="medium">
-            {title}
+            {t(`designerSidebar.themeConfig.colorPalette.${title}`)}
           </Text>
           {description && (
             <Text flex="1" color="neutral.gray.500" fontSize="sm">
-              {description}
+              {t('designerSidebar.themeConfig.colorPalette.lightOptimized')}
             </Text>
           )}
         </DotSeparatedList>
@@ -108,16 +113,21 @@ const ColorSelector: React.FC = () => {
   };
 
   return (
-    <SectionItem title="Color Palette" description="Choose a preferred color scheme.">
+    <SectionItem 
+      title={t('designerSidebar.themeConfig.colorPalette.title')} 
+      description={t('designerSidebar.themeConfig.colorPalette.description')}
+    >
       <VStack spacing={4} align="stretch" w="100%" mt={2}>
         {/* Light Themes Section */}
-        {renderThemeSection('Light', lightThemes, 'Frost Gray (optimized)')}
+        {renderThemeSection('light', lightThemes, 'optimized')}
 
         {/* Dark Themes Section */}
-        {renderThemeSection('Dark', darkThemes)}
+        {renderThemeSection('dark', darkThemes)}
 
         {/* Show message if no themes are available */}
-        {!isLoading && lightThemes.length === 0 && darkThemes.length === 0 && <Text>No themes available</Text>}
+        {!isLoading && lightThemes.length === 0 && darkThemes.length === 0 && (
+          <Text>{t('designerSidebar.themeConfig.colorPalette.noThemes')}</Text>
+        )}
       </VStack>
     </SectionItem>
   );

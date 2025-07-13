@@ -4,6 +4,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import { DesktoppcMd } from 'assets/icons/StyleDesigner/DesktopPC/DesktoppcMd';
 import { TabletMd } from 'assets/icons/StyleDesigner/Tablet/TabletMd';
 import { MobileMd } from 'assets/icons/StyleDesigner/Mobile/MobileMd';
+import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../locales/storefront/en.json';
+import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Device type for preview modes
@@ -11,33 +14,31 @@ import { MobileMd } from 'assets/icons/StyleDesigner/Mobile/MobileMd';
 type DeviceType = 'desktop' | 'tablet' | 'mobile';
 
 /**
- * Available device options for preview
- */
-const deviceOptions = [
-  {
-    id: 'desktop' as DeviceType,
-    label: 'Desktop',
-    icon: (color: string) => <DesktoppcMd color={color} />
-  },
-  {
-    id: 'tablet' as DeviceType,
-    label: 'Tablet',
-    icon: (color: string) => <TabletMd color={color} />
-  },
-  {
-    id: 'mobile' as DeviceType,
-    label: 'Mobile',
-    icon: (color: string) => <MobileMd color={color} />
-  }
-];
-
-/**
  * Device view selector component for switching between display modes
  */
 function DeviceViewSelector(): React.ReactElement {
   const { state: { device }, methods: { dispatch }} = useContext(designerContext);
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   const isSmallerThanLg = useBreakpointValue({ base: true, lg: false });
+
+  const deviceOptions = [
+    {
+      id: 'desktop' as DeviceType,
+      label: t('designerHeader.deviceSelector.desktop'),
+      icon: (color: string) => <DesktoppcMd color={color} />
+    },
+    {
+      id: 'tablet' as DeviceType,
+      label: t('designerHeader.deviceSelector.tablet'),
+      icon: (color: string) => <TabletMd color={color} />
+    },
+    {
+      id: 'mobile' as DeviceType,
+      label: t('designerHeader.deviceSelector.mobile'),
+      icon: (color: string) => <MobileMd color={color} />
+    }
+  ];
 
   const handleDeviceChange = (selectedDevice: DeviceType): void => {
     dispatch({ type: 'updateState', params: { device: selectedDevice } });

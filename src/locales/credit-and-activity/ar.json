@@ -1,0 +1,41 @@
+{
+    "header": {
+        "title": "الرصيد ونشاط الحساب",
+        "subtitle": "إدارة رصيد الحساب ومراجعة النشاط على السلسلة.",
+        "tabTitle": "إدارة الرصيد"
+    },
+    "creditManagement": {
+        "accountBalance": {
+            "title": "رصيد الحساب",
+            "addCredit": "إضافة رصيد"
+        },
+        "transactions": {
+            "inbound": "واردة",
+            "outbound": "صادرة"
+        }
+    },
+    "multiSelectMenu": {
+        "type": "نوع العملية"
+    },
+    "transactionTable": {
+        "columns": {
+            "type": "النوع",
+            "amount": "المبلغ",
+            "date": "التاريخ",
+            "status": "الحالة",
+            "transactionId": "رقم العملية"
+        },
+        "card": {
+            "amount": "المبلغ",
+            "date": "التاريخ",
+            "transactionId": "رقم العملية"
+        },
+        "status": {
+            "success": "ناجحة",
+            "pending": "قيد الانتظار",
+            "failed": "فاشلة",
+            "cancelled": "ملغاة",
+            "completed": "مكتملة"
+        }
+    }
+}

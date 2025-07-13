@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react"
 import useAppToast from "hooks/toast/useToast"
-import { trackFollowService } from "lib/apis/quests/services"
+import { trackFollowService } from "services/quests/services"
 import React, { useState } from "react"
 import useAppStore from "stores/app/appStore"
 import useFollowStatus, { CARD_STATUSES } from "../hook/useFollowStatus"
 import { Promotion } from "../utils/promotionsList"
 import BackgroundIcon from "./BackgroundIcon"
 import CardContent from "./CardContent"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface SocialMediaCardProps extends Promotion {
   followStatusHook: ReturnType<typeof useFollowStatus>
@@ -18,6 +19,7 @@ function SocialMediaCard(props: SocialMediaCardProps) {
   const [loading, setLoading] = useState(false)
   const { isLoggedIn } = useAppStore()
   const { showToast } = useAppToast()
+  const { t } = useLocaleResources('public-pages/landings/social-quests');
 
   const { followStatus, getCardStatus, markLinkOpened, updateFollowStatus, linkOpened } = followStatusHook
   const isFollowed = followStatus[platform]
@@ -50,9 +52,9 @@ function SocialMediaCard(props: SocialMediaCardProps) {
       try {
         await trackFollowService({ platform })
         updateFollowStatus(platform)
-        showToast({ message: `Reward claimed for ${title}!`, type: 'success' })
+        showToast({ message: t('quests.rewardClaimed', { title }), type: 'success' })
       } catch (error) {
-        showToast({ message: `Failed to claim reward for ${title}. Please try again later.`, type: 'error' })
+        showToast({ message: t('quests.rewardClaimFailed', { title }), type: 'error' })
       } finally {
         setLoading(false)
       }

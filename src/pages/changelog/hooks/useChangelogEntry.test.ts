@@ -1,5 +1,5 @@
 import useAppToast from 'hooks/toast/useToast'
-import { getChangelogEntry } from 'lib/apis/changelog/services'
+import { getChangelogEntry } from 'services/changelog/services'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import useChangelogEntry from './useChangelogEntry'
@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn()
 }))
 
-jest.mock('lib/apis/changelog/services', () => ({
+jest.mock('services/changelog/services', () => ({
     __esModule: true,
     getChangelogEntry: jest.fn()
 }))

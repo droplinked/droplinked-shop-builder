@@ -1,24 +1,31 @@
-import PageGrid from 'components/redesign/page-grid/PageGrid';
-import useDebounce from 'hooks/debounce/useDebounce';
-import useAppToast from 'hooks/toast/useToast';
-import { exportOrdersReportService } from 'lib/apis/order/services';
-import { ordersServices } from 'lib/apis/orders/orderServices';
-import React, { useState } from 'react';
-import { useInfiniteQuery } from 'react-query';
-import EmptyView from './components/EmptyView';
-import HistoryTable from './components/table-components/HistoryTable';
-import { AxiosError } from 'axios';
+import { AxiosError } from 'axios'
+import PageGrid from 'components/redesign/page-grid/PageGrid'
+import useAppToast from 'hooks/toast/useToast'
+import useDebounce from 'hooks/useDebounce/useDebounce'
+import { exportOrdersReportService } from 'services/order/services'
+import { ordersServices } from 'services/orders/orderServices'
+import React, { useState } from 'react'
+import { useInfiniteQuery } from 'react-query'
+import EmptyView from './components/EmptyView'
+import HistoryTable from './components/table-components/HistoryTable'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import enLocale from 'locales/purchase-history/en.json'
+import arLocale from 'locales/purchase-history/ar.json'
 
 export default function PurchaseHistory() {
     // State management
-    const [isExporting, setIsExporting] = useState(false);
+    const [isExporting, setIsExporting] = useState(false)
     // Search functionality commented out but state kept for future use
-    const [searchValue, setSearchValue] = useState("");
-    const [statusValue, setStatusValue] = useState("");
-    const { showToast } = useAppToast();
+    const [searchValue, setSearchValue] = useState("")
+    const [statusValue, setStatusValue] = useState("")
+    const { showToast } = useAppToast()
+    const { t } = useLocaleResources("purchaseHistory", {
+        en: enLocale,
+        ar: arLocale,
+    })
 
     // Debounce search to prevent excessive API calls (kept but not currently used)
-    const debouncedSearchValue = useDebounce(searchValue, 1500);
+    const debouncedSearchValue = useDebounce(searchValue, 1500)
 
     // Query for purchase history data - search param removed
     const purchaseHistoryQuery = useInfiniteQuery({
@@ -28,55 +35,55 @@ export default function PurchaseHistory() {
             status: statusValue || undefined,
         }),
         getNextPageParam: (lastPage) => lastPage.data.data.nextPage,
-    });
+    })
 
     /**
      * Handles exporting orders report as Excel file
      */
     const handleExport = async () => {
         try {
-            setIsExporting(true);
-            const data = await exportOrdersReportService();
+            setIsExporting(true)
+            const data = await exportOrdersReportService()
 
             // Create download link for the Excel file
-            const url = window.URL.createObjectURL(data);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = `orders-report-${new Date().toISOString().split('T')[0]}.xlsx`;
+            const url = window.URL.createObjectURL(data)
+            const link = document.createElement("a")
+            link.href = url
+            link.download = `orders-report-${new Date().toISOString().split('T')[0]}.xlsx`
 
             // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
 
             // Clean up URL object
             setTimeout(() => {
-                window.URL.revokeObjectURL(url);
-            }, 100);
+                window.URL.revokeObjectURL(url)
+            }, 100)
         } catch (error) {
             const errorMessage = error instanceof AxiosError
                 ? error.message
-                : "Failed to export orders report";
-            showToast({ message: errorMessage, type: "error" });
+                : t("failed_to_export")
+            showToast({ message: errorMessage, type: "error" })
         } finally {
-            setIsExporting(false);
+            setIsExporting(false)
         }
-    };
+    }
 
     // Determine if there are no orders to display (removed searchValue check)
     const isEmpty = !purchaseHistoryQuery.isFetching &&
         !purchaseHistoryQuery?.data?.pages[0]?.data?.data?.data.length &&
-        !statusValue;
+        !statusValue
 
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title="Purchase History"
-                description="Easily view, manage and track all orders here."
+                title={t("purchase_history")}
+                description={t("purchase_history_description")}
                 {...!isEmpty && {
                     actionButtons: [
                         {
-                            title: "Export",
+                            title: t("export"),
                             variant: "secondary",
                             onClick: handleExport,
                             isLoading: isExporting,
@@ -100,5 +107,5 @@ export default function PurchaseHistory() {
                 )}
             </PageGrid.Content>
         </PageGrid.Root>
-    );
+    )
 }

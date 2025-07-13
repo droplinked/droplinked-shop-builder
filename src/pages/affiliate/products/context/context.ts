@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IGetProductsCommunityService } from "lib/apis/product/interfaces";
+import { IGetProductsCommunityService } from "services/product/interfaces";
 
 export interface IAffiliateProductsCategory {
     _id: string;
@@ -35,7 +35,7 @@ export const defaultAffiliateProductsContextValue: ProductContextType = {
         lowestCommission: 0,
         highestCommission: 100,
     },
-    setFilters: () => {},
+    setFilters: () => { },
 };
 
 export const ProductContext = createContext<ProductContextType>(defaultAffiliateProductsContextValue);

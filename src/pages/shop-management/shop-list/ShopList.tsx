@@ -1,16 +1,18 @@
 import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
-import { getUserShopsService } from 'lib/apis/shop/shopServices'
+import CreateShopModal from 'components/modals/create-shop-modal/CreateShopModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import EmptyBox from './_components/empty-box/EmptyBox'
-import Loading from './_components/loading/Loading'
-import ShopRow from './_components/shop-row/ShopRow'
+import { getUserShopsService } from 'services/shop/shopServices'
+import EmptyBox from './components/EmptyBox'
+import Loading from './components/Loading'
+import ShopRow from './components/ShopRow'
 
 function ShopList() {
+    const { t } = useLocaleResources('shop');
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isFetching, error, data } = useQuery({
@@ -20,7 +22,7 @@ function ShopList() {
 
     const renderContent = () => {
         if (isFetching) return <Loading />
-        if (error) return <AppTypography fontSize={16} color={"red.400"}>Oops! It looks like we can not access shops at the moment. Give it another try soon?</AppTypography>
+        if (error) return <AppTypography fontSize={16} color={"red.400"}>{t('shopList.error.message')}</AppTypography>
         const shops = data.data
         if (!shops.length) return <EmptyBox />
         return shops.map(shop => <ShopRow key={shop._id} shop={shop} />)
@@ -30,7 +32,7 @@ function ShopList() {
         <>
             <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
-                    <BasicButton alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
+                    <BasicButton alignSelf={"flex-end"} onClick={onOpen}>{t('shopList.createStore')}</BasicButton>
                 </Flex>
                 <TabPanels>
                     <TabPanel
@@ -47,7 +49,7 @@ function ShopList() {
                 </TabPanels>
             </Tabs>
             {isOpen && (
-                <SimpleRegistrationModal
+                <CreateShopModal
                     isOpen={isOpen}
                     mode='CREATE_EXTRA_SHOP'
                     close={onClose}

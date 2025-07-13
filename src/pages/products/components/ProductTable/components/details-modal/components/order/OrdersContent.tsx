@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box, Divider, Flex, VStack } from "@chakra-ui/react";
 import AppEmptyPage from "components/common/empty/AppEmptyPage";
-import { getOrderService, getProductOrdersService } from "lib/apis/order/services";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { getOrderService, getProductOrdersService } from "services/order/services";
 import useAppStore from "stores/app/appStore";
 import { useQuery } from "react-query";
 import OrderSkeleton from "./OrderSkeleton";
@@ -11,6 +12,7 @@ import { CustomerInfo } from "./CustomerInfo";
 import { OrderHeader } from "./ OrderHeader";
 
 const OrdersContent = ({ productId }: { productId: string }) => {
+  const { t } = useLocaleResources('products')
   const [customer, setCustomer] = useState<any>(null);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const {
@@ -59,7 +61,7 @@ const OrdersContent = ({ productId }: { productId: string }) => {
   }
 
   if (!orders.length) {
-    return <AppEmptyPage title="No orders available yet!" />;
+    return <AppEmptyPage title={t('ordersContent.noOrdersAvailable')} />;
   }
 
   return (

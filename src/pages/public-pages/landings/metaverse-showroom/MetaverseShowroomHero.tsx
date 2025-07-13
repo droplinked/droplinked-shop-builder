@@ -1,25 +1,32 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 
+// Import locale files
+import localEn from 'locales/public-pages/landings/metaverse-showroom/en.json'
+import localAr from 'locales/public-pages/landings/metaverse-showroom/ar.json'
+
 function MetaverseShowroomHero() {
+    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom', { en: localEn, ar: localAr })
+
     return (
         <HeroSection
-            title={`Immersive Commerce`}
-            subtitle="Enable visitors to explore and shop in virtual environments. Create and manage inventory alongside interactive AR/VR 3D shopping experiences"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

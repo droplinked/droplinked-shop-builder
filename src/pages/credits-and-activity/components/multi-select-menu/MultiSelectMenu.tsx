@@ -4,8 +4,8 @@ import MultiSelectMenuDesktop from './desktop/MultiSelectMenuDesktop'
 import MultiSelectMenuMobile from './mobile/MultiSelectMenuMobile'
 
 interface FilterItem {
-    label: string;
-    value: string;
+    label: string
+    value: string
 }
 
 export default function MultiSelectMenu({ filterItems }: { filterItems: FilterItem[] }) {

@@ -1,6 +1,7 @@
 import { DownloadMd } from 'assets/icons/Action/Download/DownloadMd'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { UseImportWithUrl } from 'pages/products/hooks/useImportWithUrl'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React, { useState } from 'react'
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }: Props) {
+    const { t } = useLocaleResources('products');
     const [shouldRecord, setshouldRecord] = useState(false)
     const { crawledProducts } = useProductPageStore()
     const { crawlingSelectedLoading, crawlSelectedProducts } = importWithUrl
@@ -54,8 +56,8 @@ export default function IdentifiedItemsModal({ isOpen, onClose, importWithUrl }:
         >
             <ModalHeaderData
                 icon={<DownloadMd color='#fff' />}
-                title="Identified Items"
-                description={`The product importer successfully identified ${crawledProductsCount} items.`}
+                title={t('identifiedItemsModal.title')}
+                description={t('identifiedItemsModal.description', { count: crawledProductsCount })}
                 descriptionProps={{
                     color: "#B1B1B1 !important",
                 }}

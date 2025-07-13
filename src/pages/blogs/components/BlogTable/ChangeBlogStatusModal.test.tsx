@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Blog } from 'lib/apis/blog/interfaces'
+import { Blog } from 'services/blog/interfaces'
 import React from 'react'
 import { useMutation } from 'react-query'
 import ChangeBlogStatusModal from './ChangeBlogStatusModal'
@@ -24,7 +24,7 @@ jest.mock('pages/blogs/hooks/useBlogs', () => ({
 }))
 
 // mock update service
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     updateBlogService: jest.fn()
 }))
@@ -109,7 +109,7 @@ describe('ChangeBlogStatusModal', () => {
     })
 
     it('on confirm calls updateBlogService and triggers success flow', async () => {
-        const updateService = require('lib/apis/blog/services').updateBlogService as jest.Mock
+        const updateService = require('services/blog/services').updateBlogService as jest.Mock
         updateService.mockResolvedValueOnce({})
         render(<ChangeBlogStatusModal blogPost={draftBlog} isOpen={true} onClose={onClose} />)
         await userEvent.click(screen.getByTestId('confirm-button'))
@@ -125,7 +125,7 @@ describe('ChangeBlogStatusModal', () => {
     })
 
     it('on confirm shows error toast when updateBlogService fails', async () => {
-        const updateService = require('lib/apis/blog/services').updateBlogService as jest.Mock
+        const updateService = require('services/blog/services').updateBlogService as jest.Mock
         updateService.mockRejectedValueOnce(new Error('oops'))
         render(<ChangeBlogStatusModal blogPost={pubBlog} isOpen={true} onClose={onClose} />)
         await userEvent.click(screen.getByTestId('confirm-button'))

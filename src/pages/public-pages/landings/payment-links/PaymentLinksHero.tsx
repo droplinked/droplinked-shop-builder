@@ -3,23 +3,31 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/payment-links/en.json'
+import localAr from 'locales/public-pages/landings/payment-links/ar.json'
 
 function PaymentLinksHero() {
+    const { t } = useLocaleResources('public-pages/landings/payment-links', {
+        en: localEn,
+        ar: localAr
+    })
+
     return (
         <HeroSection
-            title={`Seamless Payments \n Anytime, Anywhere`}
-            subtitle="Create and share payment links to offer simple customer checkout experiences"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

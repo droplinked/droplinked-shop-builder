@@ -7,7 +7,7 @@ jest.mock('react-router-dom', () => ({
     useParams: jest.fn(),
     useNavigate: jest.fn()
 }))
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     getBlogByIdService: jest.fn()
 }))
@@ -17,7 +17,7 @@ jest.mock('hooks/toast/useToast', () => ({
 }))
 
 import useAppToast from 'hooks/toast/useToast'
-import { getBlogByIdService } from 'lib/apis/blog/services'
+import { getBlogByIdService } from 'services/blog/services'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import useBlog from './useBlog'

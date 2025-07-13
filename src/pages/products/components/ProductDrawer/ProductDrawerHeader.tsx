@@ -1,20 +1,22 @@
 import { DrawerHeader as ChakraDrawerHeader, DrawerCloseButton, Heading } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { ProductType } from 'pages/products/utils/types'
 import React, { useMemo } from 'react'
 
 const ProductDrawerHeader = () => {
+    const { t } = useLocaleResources('products');
     const { values: { _id: editingProductId, product_type: productType } } = useProductForm()
 
     const productTitleMap: Record<ProductType, string> = useMemo(() => ({
-        NORMAL: 'Physical Product',
-        DIGITAL: 'Digital Product',
-        PRINT_ON_DEMAND: 'POD Product',
-        EVENT: 'Event'
-    }), [])
+        NORMAL: t('productTypes.physicalItems.title'),
+        DIGITAL: t('productTypes.digitalGoods.title'),
+        PRINT_ON_DEMAND: t('productTypes.pod.title'),
+        EVENT: t('productTypes.events.title')
+    }), [t])
 
-    const productTitle = productTitleMap[productType] || 'Product'
-    const actionText = editingProductId ? 'Update' : 'Add'
+    const productTitle = productTitleMap[productType] || t('productDrawer.title')
+    const actionText = editingProductId ? t('common.update') : t('common.add')
 
     return (
         <ChakraDrawerHeader

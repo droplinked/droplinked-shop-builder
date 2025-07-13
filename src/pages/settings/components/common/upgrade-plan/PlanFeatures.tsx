@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,18 +12,19 @@ interface Props {
 }
 
 export default function PlanFeatures({ onOpen, isFetching }: Props) {
+    const { t } = useLocaleResources('settings');
     const navigate = useNavigate()
     const features = [
         {
-            title: "Unlimited Access",
+            title: t("settings.upgradePlan.unlimitedAccess"),
             icon: <AppIcons.GreenInfinity />
         },
         {
-            title: "Advanced tools",
+            title: t("settings.upgradePlan.advancedTools"),
             icon: <AppIcons.GreenSpeedometer />
         },
         {
-            title: "Priority Support",
+            title: t("settings.upgradePlan.prioritySupport"),
             icon: <AppIcons.MedalStarOutline />
         },
     ]
@@ -30,12 +32,16 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
     return (
         <Flex flex={1} p={6} gap={6} flexDirection={"column"} alignItems={"start"}>
             <Flex flexDirection={"column"} gap={2}>
-                <AppTypography color={"#fff"} fontSize={18} fontWeight={700}>Upgrade to Unlock Premium Features!</AppTypography>
-                <AppTypography whiteSpace={"break-spaces"} color={"#b1b1b1"} fontSize={14}>{`You’re almost there! This feature is available to premium account users.\nExperience all the following features by upgrading today.`}</AppTypography>
+                <AppTypography color={"#fff"} fontSize={18} fontWeight={700}>
+                    {t("settings.upgradePlan.upgradeTitle")}
+                </AppTypography>
+                <AppTypography whiteSpace={"break-spaces"} color={"#b1b1b1"} fontSize={14}>
+                    {t("settings.upgradePlan.upgradeDescription")}
+                </AppTypography>
             </Flex>
             <Flex gap={4} alignItems={"center"}>
                 {features.map((item, index) => (
-                    <Flex gap={2} alignItems={"center"}>
+                    <Flex key={index} gap={2} alignItems={"center"}>
                         <Box p={2} borderRadius={"100%"} bg={"#2BCFA11A"}>
                             {item.icon}
                         </Box>
@@ -44,8 +50,12 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
                 ))}
             </Flex>
             <Flex gap={4}>
-                <AppButton variant='secondary' onClick={() => navigate("/analytics/plans")}>Visit Pricing Plans</AppButton>
-                <AppButton isLoading={isFetching} onClick={onOpen}>Upgrade</AppButton>
+                <AppButton variant='secondary' onClick={() => navigate("/analytics/plans")}>
+                    {t("settings.upgradePlan.visitPricingPlans")}
+                </AppButton>
+                <AppButton isLoading={isFetching} onClick={onOpen}>
+                    {t("settings.upgradePlan.upgrade")}
+                </AppButton>
             </Flex>
         </Flex>
     )

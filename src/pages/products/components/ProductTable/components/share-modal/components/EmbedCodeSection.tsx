@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Link, Text } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,12 +12,13 @@ interface EmbedCodeSectionProps {
 }
 
 const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLink, helpLink }) => {
+  const { t } = useLocaleResources('products');
   const navigate = useNavigate();
   const { showToast } = useAppToast();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
-    showToast({ message: 'Copied', type: 'success', options: { duration: 1500 } });
+    showToast({ message: t('shareModal.embedCode.copied'), type: 'success', options: { duration: 1500 } });
   };
 
   const handleNavigate = (link: string) => navigate(link);
@@ -24,7 +26,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
   return (
     <Flex width="100%" padding="32px" flexDirection="column" alignItems="flex-start" gap="16px" borderRadius="12px" border="1px solid" borderColor="neutral.gray.800" background="#141414" position="relative" mt="0">
       <Text fontSize="14px" fontWeight="bold" color="white" position="absolute" px="8px" zIndex="1">
-        Embed Code
+        {t('shareModal.embedCode.title')}
       </Text>
 
       <Box
@@ -73,7 +75,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
           gap="8px"
           onClick={() => handleNavigate(configLink)} // استفاده از handleNavigate برای هدایت
         >
-          Configure
+          {t('shareModal.embedCode.configure')}
         </Button>
         <Link href={helpLink} target="_blank" rel="noopener noreferrer">
           <Button
@@ -88,7 +90,7 @@ const EmbedCodeSection: React.FC<EmbedCodeSectionProps> = ({ embedCode, configLi
             alignItems="center"
             gap="8px"
           >
-            Need Help? Visit Help Center
+            {t('shareModal.embedCode.needHelp')}
           </Button>
         </Link>
       </Flex>

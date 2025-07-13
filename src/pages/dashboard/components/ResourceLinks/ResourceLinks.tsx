@@ -1,3 +1,4 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useDashboardPageStore from 'pages/dashboard/stores/useDashboardStore'
 import React from 'react'
 import DoubleColumnContainer from '../DoubleColumnContainer'
@@ -5,6 +6,7 @@ import ResourceCategory from './ResourceCategory'
 
 function ResourceLinks() {
     const { blogs, helpCenterLinks } = useDashboardPageStore()
+    const { t } = useLocaleResources("dashboardPage")
 
     const openLink = (url: string) => window.open(url, '_blank')
 
@@ -13,7 +15,7 @@ function ResourceLinks() {
             <ResourceCategory
                 items={blogs}
                 sectionContainerProps={{
-                    title: "Blog",
+                    title: t('resourceLinks.blog'),
                     onNavigate: () => openLink("https://droplinked.com/blogs")
                 }}
             />
@@ -21,7 +23,7 @@ function ResourceLinks() {
             <ResourceCategory
                 items={helpCenterLinks}
                 sectionContainerProps={{
-                    title: "Help Center",
+                    title: t('resourceLinks.helpCenter'),
                     onNavigate: () => openLink("https://droplinked.gitbook.io/droplinked-store-front-help-center")
                 }}
             />

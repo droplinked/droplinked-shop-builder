@@ -1,28 +1,32 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
-import publicMegaMenuItems from 'data/publicMegaMenuItems'
+import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from "react-router-dom"
 
-const SUPPORT_LINKS = [
-    { label: 'Contact Us', href: '/contact-us' },
-    { label: 'Brand Assets', href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
-    { label: 'Developer Kit', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
-    { label: 'Help Center', href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
-] as const
-
-const COMPANY_LINKS = [
-    { label: 'Home', href: '/' },
-    { label: 'Pricing', href: '/plans' },
-    { label: 'Affiliate', href: '/affiliate/products' },
-    { label: 'Blog', href: '/blogs' },
-    { label: 'About', href: '/about' }
-] as const
-
 export default function NavigationLinks() {
+    const { t } = useLocaleResources('common')
+    const publicMegaMenuItems = getPublicMegaMenuItems(t)
+
+    const SUPPORT_LINKS = [
+        { label: t('contactUs'), href: '/contact-us' },
+        { label: t('brandAssets'), href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
+        { label: t('developerKit'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools', isExternal: true },
+        { label: t('helpCenter'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
+    ] as const
+
+    const COMPANY_LINKS = [
+        { label: t('home'), href: '/' },
+        { label: t('publicHeaderLinks.pricing'), href: '/plans' },
+        { label: t('publicHeaderLinks.affiliate'), href: '/affiliate' },
+        { label: t('publicHeaderLinks.blog'), href: '/blogs' },
+        { label: t('publicHeaderLinks.about'), href: '/about' }
+    ] as const
+
     const navigationLinks = [
         ...publicMegaMenuItems.slice(0, 2),
-        { label: 'Support', links: SUPPORT_LINKS },
-        { label: 'Company', links: COMPANY_LINKS }
+        { label: t('support'), links: SUPPORT_LINKS },
+        { label: t('company'), links: COMPANY_LINKS }
     ]
 
     return (
@@ -44,6 +48,8 @@ function NavigationGroup({ label, links }) {
 }
 
 function NavigationLink({ label, href, isExternal }) {
+    const { isRTL } = useLocaleResources('common')
+
     const LinkComponent = isExternal ? ChakraLink : Link
     const linkProps = isExternal ? { href, target: '_blank' } : { to: href }
 
@@ -54,15 +60,19 @@ function NavigationLink({ label, href, isExternal }) {
             position="relative"
             transition="0.3s ease-in-out"
             _hover={{
-                '& > span': { color: 'text.white', transform: 'translateX(8px)' },
+                '& > span': {
+                    color: 'text.white',
+                    transform: isRTL ? 'translateX(-8px)' : 'translateX(8px)'
+                },
                 '& > .border': { opacity: 1 }
             }}
         >
             <Box
                 className="border"
                 position="absolute"
-                left={0}
                 top={0}
+                left={isRTL ? 'unset' : 0}
+                right={isRTL ? 0 : 'unset'}
                 width="2px"
                 height="100%"
                 borderRadius={2}

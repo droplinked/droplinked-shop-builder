@@ -1,0 +1,309 @@
+{
+  "home": "Home",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "error": "An error occurred",
+  "save": "Save",
+  "delete": "Delete",
+  "platform": "Platform",
+  "getStarted": "Get Started",
+  "signIn": "Sign In",
+  "videoTutorials": "Video Tutorials",
+  "contactSupport": "Contact Support",
+  "documentation": "Documentation",
+  "readyToGetStarted": "Ready to get started?",
+  "signUpForFree": "Sign up for free",
+  "back": "Back",
+  "contactUs": "Contact Us",
+  "brandAssets": "Brand Assets",
+  "developerKit": "Developer Kit",
+  "helpCenter": "Help Center",
+  "support": "Support",
+  "company": "Company",
+  "commerceTagline": "Commerce tools to sell and settle transparently",
+  "privacyAndDataCollection": "Privacy & Data Collection",
+  "termsOfService": "Terms of service",
+  "copyright": "© {{year}} All Rights Reserved",
+  "stayUpToDate": "Stay up to date",
+  "newsletterDescription": "Join our mailing list to stay up to date with the latest news",
+  "enterYourEmail": "Enter your email",
+  "invalidEmail": "Invalid email address",
+  "emailRequired": "Email is required",
+  "subscribe": "Subscribe",
+  "publicHeaderLinks": {
+    "pricing": "Pricing",
+    "affiliate": "Affiliate",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "publicMegaMenuItems": {
+    "platformFunctionalities": {
+      "label": "Platform Functionalities",
+      "links": {
+        "physicalInventory": {
+          "label": "Physical Inventory",
+          "description": "Portable Supply Chain Management"
+        },
+        "digitalGoods": {
+          "label": "Digital Goods",
+          "description": "Subscriptions, assets and more"
+        },
+        "productsOnDemand": {
+          "label": "Products on Demand",
+          "description": "Design customizable items"
+        },
+        "onchainAffiliate": {
+          "label": "Onchain Affiliate",
+          "description": "Fraud-free, transparent commerce"
+        },
+        "paymentLinks": {
+          "label": "Payment Links",
+          "description": "Seamlessly sell anytime, anywhere"
+        },
+        "productTiles": {
+          "label": "Product Tiles",
+          "description": "Customizable embeds to use"
+        },
+        "tokenizingProducts": {
+          "label": "Tokenizing Products",
+          "description": "Product records for assets"
+        },
+        "onchainSubscriptions": {
+          "label": "Onchain Subscriptions",
+          "description": "Automate to earn more"
+        },
+        "socialQuests": {
+          "label": "Social Quests",
+          "description": "Grow the community to earn more"
+        }
+      }
+    },
+    "enterprise": {
+      "label": "Enterprise",
+      "links": {
+        "dpp": {
+          "label": "DPP",
+          "description": "Digital product passports"
+        },
+        "dimst": {
+          "label": "DIMST",
+          "description": "Onchain inventory management"
+        },
+        "tokenpay": {
+          "label": "Tokenpay",
+          "description": "Payments for ERC/BRC/SPL"
+        },
+        "metaverseShowroom": {
+          "label": "Metaverse Showroom",
+          "description": "Interactive shopping made easy"
+        },
+        "customTokens": {
+          "label": "Custom Tokens",
+          "description": "Unlock the Power of Custom Tokens"
+        }
+      }
+    },
+    "partners": {
+      "label": "Partners",
+      "links": {
+        "unstoppableDomains": {
+          "label": "Unstoppable Domains",
+          "description": "droplinked & Unstoppable Domains"
+        },
+        "d3": {
+          "label": "D3",
+          "description": "droplinked & D3"
+        },
+        "polygon": {
+          "label": "Polygon",
+          "description": "droplinked & Polygon"
+        },
+        "crossmint": {
+          "label": "Crossmint",
+          "description": "droplinked & Crossmint"
+        }
+      }
+    }
+  },
+  "socialMedia": {
+    "telegram": "Telegram",
+    "discord": "Discord",
+    "x": "X (Twitter)",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube",
+    "tiktok": "TikTok",
+    "bluesky": "Blue Sky",
+    "facebook": "Facebook",
+    "messenger": "Messenger",
+    "web": "Website"
+  },
+  "fileUpload": {
+    "click": "Click",
+    "dragAndDrop": "or drag & drop here",
+    "dragActive": "Drop the file here ...",
+    "defaultFooter": "JPG, JPEG, PNG, MP4 and MOV (up to 10MB each)",
+    "ariaLabel": "Upload file"
+  },
+  "imageUpload": {
+    "dragActive": "Drop the image here...",
+    "footer": "JPG, JPEG, PNG (up to 5MB)",
+    "remove": "Remove {{name}}",
+    "uploadError": "Failed to upload image"
+  },
+  "hooks": {
+    "errors": {
+      "uploadFailed": "Upload failed!",
+      "downloadFailed": "Failed to download file",
+      "newsletterError": "An error occurred while subscribing to the newsletter"
+    },
+    "success": {
+      "newsletterSubscribed": "Thank you for subscribing to our newsletter"
+    },
+    "productTypes": {
+      "digital": "Digital",
+      "physical": "Physical",
+      "pod": "POD",
+      "event": "Event"
+    },
+    "defaults": {
+      "home": "home"
+    }
+  },
+  "products": {
+    "hooks": {
+      "errors": {
+        "improveAIError": "Oops! Something went wrong. Please try again.",
+        "unexpectedError": "An unexpected error occurred.",
+        "designMakerError": "Something went wrong. Please try again.",
+        "anErrorOccurred": "An error occurred"
+      },
+      "success": {
+        "productSaved": "The product has been saved successfully!",
+        "crawlTaskStarted": "Crawl Task Started",
+        "crawlTaskDescription": "We are crawling products from the provided URL. Once the task status is set to Previews_ready, you can select the products you want to import.",
+        "importTaskStarted": "Import task started",
+        "importTaskDescription": "We are importing selected products to your inventory. You can view ongoing tasks in the Import Products modal."
+      },
+      "shipping": {
+        "easyPost": {
+          "title": "EasyPost",
+          "description": "Calculates the real-time cost of the shipment based on the delivery address to provide a shipping label."
+        }
+      }
+    }
+  },
+  "blogs": {
+    "hooks": {
+      "errors": {
+        "formikContextError": "useBlogForm must be used within a Formik context"
+      }
+    }
+  },
+  "invoice": {
+    "hooks": {
+      "errors": {
+        "invoiceNotFound": "Invoice not found with this ID",
+        "pdfGenerationFailed": "Failed to generate PDF. Please try again."
+      },
+      "sections": {
+        "information": "Information",
+        "clientDetail": "Client detail",
+        "paymentDetails": "Payment Details"
+      },
+      "labels": {
+        "idNumber": "ID Number",
+        "status": "Status",
+        "memo": "Memo",
+        "fullName": "Full name",
+        "emailAddress": "Email Address",
+        "mobileNumber": "Mobile Number",
+        "address": "Address",
+        "shippingMethod": "Shipping Method",
+        "totalCart": "Total cart",
+        "tax": "Tax",
+        "totalShipping": "Total Shipping",
+        "totalCost": "Total Cost"
+      }
+    }
+  },
+  "onboarding": {
+    "hooks": {
+      "errors": {
+        "failedToImportShopData": "Failed to import shop data",
+        "importTimedOut": "Import timed out. Please try again.",
+        "failedToStartImport": "Failed to start import. Please try again.",
+        "failedToUploadLogo": "Failed to upload logo",
+        "failedToUploadBanner": "Failed to upload banner",
+        "failedToCompleteShopSetup": "Failed to complete shop setup",
+        "allLogoGenerationFailed": "All logo generation requests failed",
+        "failedToGetLogoRequestIds": "Failed to get request IDs for logo generation",
+        "failedToGenerateLogos": "Failed to generate logos",
+        "allCoverGenerationFailed": "All cover generation requests failed",
+        "failedToGetCoverRequestIds": "Failed to get request IDs for cover generation",
+        "failedToGenerateCovers": "Failed to generate covers",
+        "failedToGenerateUrls": "Failed to generate URLs",
+        "failedToGenerateNames": "Failed to generate names",
+        "errorCheckingUsername": "Error checking username",
+        "invalidVerificationCode": "Invalid verification code",
+        "failedToSendCode": "Failed to send code",
+        "accountDeleted": "This account has been deleted",
+        "accountUnableToLogin": "This account is unable to log in. Please check your credentials.",
+        "anErrorOccurred": "An error occurred",
+        "loginFailed": "Login failed"
+      },
+      "success": {
+        "shopDataImported": "Shop data imported successfully!",
+        "logosGenerated": "Logos generated successfully!",
+        "coversGenerated": "Covers generated successfully!",
+        "codeVerified": "Code verified successfully",
+        "verificationCodeSent": "Verification code sent to your email"
+      },
+      "info": {
+        "importStarted": "Import started. Please wait while we process your website..."
+      },
+      "warnings": {
+        "fillBusinessInfoFirst": "Please fill in business category and description first"
+      }
+    }
+  },
+  "proPlan": {
+    "crossmint": {
+      "title": "Free Pro Plan Unlocked!",
+      "description": "You now have access to the Pro Plan for 3 months for free."
+    },
+    "trial": {
+      "title": "Use droplinked AI to Create A Shop",
+      "description": "Feel free to use the AI tools to customize shops and inventory. Add your details below to get started."
+    },
+    "upgrade": {
+      "title": "Access Exclusive Features",
+      "description": "Upgrade today to take advantage of the benefits associated with a Premium Plan."
+    },
+    "payment": {
+      "successMessage": "Trial activated successfully! Your Pro features are now available."
+    },
+    "footer": {
+      "continue": "Continue",
+      "claimTrial": "Claim Trial Now",
+      "upgrade": "Upgrade",
+      "unsure": "Still unsure?",
+      "comparePlans": "Compare plans and pricing options",
+      "keepCurrentPlan": "Keep Current Plan",
+      "close": "Close"
+    },
+    "features": {
+      "less": "Less",
+      "more": "More"
+    },
+    "card": {
+      "crossmintTitle": "3 months free after adding card on file",
+      "proTitle": "Pro",
+      "description": "For small businesses and teams ready to grow.",
+      "proAccess": "Pro Access",
+      "cancelAnytime": "Cancel anytime",
+      "seamlessActivation": "Seamless Activation"
+    }
+  }
+}

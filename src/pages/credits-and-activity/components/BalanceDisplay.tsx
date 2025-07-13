@@ -1,18 +1,18 @@
-import { Flex } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
-import AppSkeleton from "components/common/skeleton/AppSkeleton";
-import AppTypography from "components/common/typography/AppTypography";
-import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter";
-import React from "react";
+import { Flex } from "@chakra-ui/react"
+import AppIcons from "assets/icon/Appicons"
+import AppSkeleton from "components/common/skeleton/AppSkeleton"
+import AppTypography from "components/common/typography/AppTypography"
+import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
+import React from "react"
 
 interface Props {
-    title: string;
-    amount: number;
-    isLoaded: boolean;
+    title: string
+    amount: number
+    isLoaded: boolean
 }
 
 export const BalanceDisplay = ({ title, amount, isLoaded }: Props) => {
-    const { abbreviation, convertPrice, symbol } = useCurrencyConverter();
+    const { abbreviation, convertPrice, symbol } = useCurrencyConverter()
 
     return (
         <Flex flexDirection="column" gap={{ base: 4, md: 6 }} alignItems="start">
@@ -35,5 +35,5 @@ export const BalanceDisplay = ({ title, amount, isLoaded }: Props) => {
                 </AppSkeleton>
             </Flex>
         </Flex>
-    );
-};
+    )
+}

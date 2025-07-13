@@ -3,20 +3,28 @@ import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparate
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
 import HorizontalBarChart from "components/redesign/horizontal-bar-chart/HorizontalBarChart"
 import StylizedTitle from "components/redesign/stylized-title/StylizedTitle"
-import { ProductBreakdown } from "lib/apis/dashboard/interfaces"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
-
-const BADGE_COLORS: Record<string, string> = {
-    "Normal Products": "#2BCFA1",
-    "Print on Demand": "#179EF8",
-    "Digital Goods": "#CF882B",
-    "Event Products": "#CB94FF"
-}
+import { ProductBreakdown } from "services/dashboard/interfaces"
 
 export default function ProductTypeBarChart({ productTypes }: { productTypes: ProductBreakdown[] }) {
+    const { t } = useLocaleResources("analyticsPage")
+
+    const BADGE_COLORS: Record<string, string> = {
+        [t('normalProducts')]: "#2BCFA1",
+        [t('printOnDemand')]: "#179EF8",
+        [t('digitalGoods')]: "#CF882B",
+        [t('eventProducts')]: "#CB94FF"
+    }
+
     return (
         <Flex direction="column" gap={6} padding={{ base: 4, lg: 6 }}>
-            <HorizontalBarChart data={productTypes} getValue={(item) => item.percentageOfTotal} getLabel={(item) => item.productType} colorMap={BADGE_COLORS} />
+            <HorizontalBarChart
+                data={productTypes}
+                getValue={(item) => item.percentageOfTotal}
+                getLabel={(item) => t(mapProductTypeKey(item.productType))}
+                colorMap={BADGE_COLORS}
+            />
 
             <SimpleGrid
                 alignItems="start"
@@ -24,14 +32,24 @@ export default function ProductTypeBarChart({ productTypes }: { productTypes: Pr
                 columnGap={14}
                 rowGap={4}
             >
-                {productTypes.map((item, index) => <BreakdownDetailsRow key={index} item={item} />)}
+                {productTypes.map((item, index) => <BreakdownDetailsRow key={index} item={item} t={t} badgeColors={BADGE_COLORS} />)}
             </SimpleGrid>
         </Flex>
     )
 }
 
-function BreakdownDetailsRow({ item }: { item: ProductBreakdown }) {
-    const badgeColor = BADGE_COLORS[item.productType]
+function mapProductTypeKey(productType: string) {
+    switch (productType) {
+        case "Normal Products": return "normalProducts"
+        case "Print on Demand": return "printOnDemand"
+        case "Digital Goods": return "digitalGoods"
+        case "Event Products": return "eventProducts"
+        default: return productType
+    }
+}
+
+function BreakdownDetailsRow({ item, t, badgeColors }: { item: ProductBreakdown, t: any, badgeColors: Record<string, string> }) {
+    const badgeColor = badgeColors[t(mapProductTypeKey(item.productType))]
 
     return (
         <Flex
@@ -42,7 +60,7 @@ function BreakdownDetailsRow({ item }: { item: ProductBreakdown }) {
             fontSize={14}
             color='text.white'
         >
-            <StylizedTitle bgColor={badgeColor} title={item.productType} />
+            <StylizedTitle bgColor={badgeColor} title={t(mapProductTypeKey(item.productType))} />
             <DotSeparatedList>
                 <Text>{item.percentageOfTotal?.toFixed(2)}%</Text>
                 <Text>{item.quantity}</Text>

@@ -1,16 +1,18 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
-import useAppStore from 'stores/app/appStore'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
+import useAppStore from 'stores/app/appStore'
 
 function GreetingBanner() {
+    const { t } = useLocaleResources("dashboardPage")
     const { shop } = useAppStore()
 
     // Function to get the appropriate greeting based on the time of day
     const getGreeting = () => {
         const hour = new Date().getHours()
-        if (hour >= 5 && hour < 12) return 'Good Morning'
-        else if (hour >= 12 && hour < 18) return 'Good Afternoon'
-        else return 'Good Night'
+        if (hour >= 5 && hour < 12) return t('greeting.goodMorning')
+        else if (hour >= 12 && hour < 18) return t('greeting.goodAfternoon')
+        else return t('greeting.goodNight')
     }
 
     return (
@@ -29,7 +31,7 @@ function GreetingBanner() {
                 👋
             </Heading>
             <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.light">
-                Whether launching a first product or creating a storefront experience for customers, we've got all the tools you need.
+                {t('greeting.welcomeMessage')}
             </Text>
         </Flex>
     )

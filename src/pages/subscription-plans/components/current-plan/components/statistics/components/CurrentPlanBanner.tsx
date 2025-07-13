@@ -1,19 +1,27 @@
 import { Flex, Text } from "@chakra-ui/react";
 import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparatedList";
 import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
-import { subscriptionPlans } from "utils/constants/subscriptionPlans";
-import { getSubscriptionPlanIcon } from "utils/helpers";
+import { getPlanDetails } from "utils/helpers";
 
 interface Props {
     currentPlan: string;
     status: string;
 }
 
+interface IconProps {
+    color?: string;
+    stroke?: string;
+    width?: string;
+    height?: string;
+}
+
 export default function CurrentPlanBanner({ currentPlan, status }: Props) {
-    const currentSubData = getSubscriptionPlanIcon(currentPlan);
+    const { t } = useLocaleResources('subscription');
+    const { title, icon: IconComponent } = getPlanDetails(currentPlan, t);
+    const IconWithProps = IconComponent as React.ComponentType<IconProps>;
     const isActive = status === "ACTIVE";
-    const IconComponent = currentSubData.icon;
 
     return (
         <Flex
@@ -26,7 +34,7 @@ export default function CurrentPlanBanner({ currentPlan, status }: Props) {
             borderRadius={16}
         >
             <IconWrapper
-                icon={<IconComponent color="#2BCFA1" stroke="#2BCFA1" />}
+                icon={<IconWithProps color="#2BCFA1" stroke="#2BCFA1" />}
                 background="label.primary"
                 border="1px solid"
                 borderColor="label.primary"
@@ -34,15 +42,15 @@ export default function CurrentPlanBanner({ currentPlan, status }: Props) {
             <Flex flexDirection="column" gap={1}>
                 <DotSeparatedList>
                     <Text color="#fff" fontSize={16} fontWeight="700">
-                        {subscriptionPlans[currentPlan].title} Plan
+                        {title} {t('detailsTab.planSuffix')}
                     </Text>
                     <Text color={isActive ? "#2BCFA1" : "#f24"} fontSize={16} fontWeight={500}>
-                        {isActive ? "Active" : "Inactive"}
+                        {isActive ? t('currentPlan.status') : t('currentPlan.inactive')}
                     </Text>
                 </DotSeparatedList>
                 {isActive && (
                     <Text color="#7B7B7B" fontSize={14} fontWeight={400}>
-                        {subscriptionPlans[currentPlan].title} Plan is active! Enjoy exclusive features.
+                        {t('currentPlan.activeMessage', { plan: title })}
                     </Text>
                 )}
             </Flex>

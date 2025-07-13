@@ -1,6 +1,6 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
-import useDebounce from 'hooks/debounce/useDebounce'
 import useProducts from 'hooks/products/useProducts'
+import useDebounce from 'hooks/useDebounce/useDebounce'
 import useModalHandlers from 'pages/products/hooks/useModalHandlers'
 import React, { useEffect, useState } from 'react'
 import IdentifiedItemsModal from './components/IdentifiendItemsModal/IdentifiedItemsModal'

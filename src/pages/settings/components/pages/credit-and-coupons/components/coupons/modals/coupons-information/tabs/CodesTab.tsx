@@ -3,8 +3,9 @@ import AppIcons from 'assets/icon/Appicons'
 import AppButton from 'components/redesign/button/AppButton'
 import AppSelect from 'components/redesign/select/AppSelect'
 import useDownloadFile from 'hooks/useDownloadFile/useDownloadFile'
-import { exportCouponsReport } from 'lib/apis/coupons/addressServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
+import { exportCouponsReport } from 'services/coupons/addressServices'
 import { Coupon } from '../../../interface'
 import CodesList from './CodesList'
 
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export default function CodesTab({ coupon, onClose }: Props) {
+    const { t } = useLocaleResources('settings');
     const [currentFilter, setCurrentFilter] = useState(Filters.All)
     const { download, isLoading } = useDownloadFile({
         fetcher: exportCouponsReport,
@@ -34,9 +36,18 @@ export default function CodesTab({ coupon, onClose }: Props) {
                 <Box width='150px'>
                     <AppSelect
                         items={[
-                            { label: Filters.All, value: Filters.All },
-                            { label: Filters.Used, value: Filters.Used },
-                            { label: Filters.Available, value: Filters.Available }
+                            {
+                                label: t("settings.coupons.information.filters.all"),
+                                value: Filters.All
+                            },
+                            {
+                                label: t("settings.coupons.information.filters.used"),
+                                value: Filters.Used
+                            },
+                            {
+                                label: t("settings.coupons.information.filters.available"),
+                                value: Filters.Available
+                            }
                         ]}
                         labelAccessor='label'
                         valueAccessor='value'
@@ -52,10 +63,10 @@ export default function CodesTab({ coupon, onClose }: Props) {
                     isLoading={isLoading}
                     leftIcon={<AppIcons.Download />}
                 >
-                    Download
+                    {t("settings.coupons.information.download")}
                 </AppButton>
-            </Flex>
+            </Flex >
             <CodesList codes={coupon.codes} currentFilter={currentFilter} />
-        </Flex>
+        </Flex >
     )
 }

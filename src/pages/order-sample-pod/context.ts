@@ -1,5 +1,5 @@
-import { IcreateAddressService } from "lib/apis/address/interfaces";
-import { IcreateSampleServiceSkues } from "lib/apis/order/interfaces";
+import { IcreateAddressService } from "services/address/interfaces";
+import { IcreateSampleServiceSkues } from "services/order/interfaces";
 import { createContext } from "react";
 import { number } from "yup";
 

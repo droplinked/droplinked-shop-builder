@@ -1,6 +1,6 @@
 import { AvatarGroup, Box } from "@chakra-ui/react";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
-import { SupportedChains } from "lib/apis/shop/interfaces";
+import { SupportedChains } from "services/shop/interfaces";
 import React from "react";
 
 export default function TokensIcon({ chains }: { chains: SupportedChains[] }) {

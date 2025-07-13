@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import useFollowStatus from '../hook/useFollowStatus'
 import MobileProPlanDrawer from './MobileProPlanDrawer'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface MobileQuestCardProps {
     followStatusHook: ReturnType<typeof useFollowStatus>
@@ -18,8 +19,9 @@ export default function MobileQuestCard({ followStatusHook }: MobileQuestCardPro
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isLoggedIn } = useAppStore()
+    const { t } = useLocaleResources('public-pages/landings/social-quests');
 
-    const description = isLoggedIn ? 'Complete Everything Below to Unlock Level 1 Membership' : 'Register to qualify';
+    const description = isLoggedIn ? t('quests.mobile.completeToUnlock') : t('quests.mobile.registerToQualify');
 
     const onClick = async () => {
         if (!isLoggedIn) return navigate(AUTH_ROUTES.SIGN_IN)
@@ -54,11 +56,11 @@ export default function MobileQuestCard({ followStatusHook }: MobileQuestCardPro
                 background="neutral.websiteBackground"
             >
                 <Box>
-                    <Text fontSize={18} fontWeight={500} color="text.white">Hi There 👋</Text>
+                    <Text fontSize={18} fontWeight={500} color="text.white">{t('quests.mobile.greeting')}</Text>
                     <Text mt={1} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                 </Box>
                 <AppButton onClick={onClick} isLoading={loading}>
-                    {isLoggedIn ? 'Activate Account' : 'Get Started'}
+                    {isLoggedIn ? t('quests.mobile.activateAccount') : t('quests.mobile.getStarted')}
                 </AppButton>
             </Flex>
             <MobileProPlanDrawer isOpen={isOpen} onClose={onClose} unlockedMonths={unlockedMonths} />

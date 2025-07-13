@@ -1,9 +1,11 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { ExternalarrowMd } from 'assets/icons/Navigation/ExternalArrow/ExternalarrowMd'
+import { ExternalarrowleftMd } from 'assets/icons/Navigation/ExternalArrowLeft/ExternalArrowLeftMd'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
-import { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ChangelogEntry } from 'services/changelog/interfaces'
 import { formatDateToLongStyle, getTimeAgo } from 'utils/helpers'
 import ChangelogTags from './ChangelogTags'
 
@@ -11,9 +13,9 @@ interface Props {
     entry: ChangelogEntry
 }
 
-const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, ref) {
-    const { entry } = props
+const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function ({ entry }, ref) {
     const navigate = useNavigate()
+    const { t, isRTL } = useLocaleResources('changelogPage')
 
     return (
         <Flex
@@ -33,7 +35,7 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
 
             <Box>
                 <Heading as="h3" marginBottom={3} fontSize={{ base: 18, xl: 20 }} color="text.white">
-                    Update {entry.version}
+                    {t('entry.update', { version: entry.version })}
                 </Heading>
 
                 <ChangelogTags changelogItem={entry} />
@@ -47,10 +49,10 @@ const ChangelogEntryCard = forwardRef<HTMLDivElement, Props>(function (props, re
                 </Text>
 
                 <InteractiveText
-                    iconRight={<ExternalarrowMd color="#179ef8" />}
+                    iconRight={isRTL ? <ExternalarrowleftMd color="#179ef8" /> : <ExternalarrowMd color="#179ef8" />}
                     onClick={() => navigate(`/analytics/changelog/${entry._id}`)}
                 >
-                    Read More
+                    {t('entry.read_more')}
                 </InteractiveText>
             </Box>
         </Flex>

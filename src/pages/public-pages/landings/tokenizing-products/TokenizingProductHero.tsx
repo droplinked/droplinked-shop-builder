@@ -3,23 +3,31 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/tokenizing-products/en.json'
+import localAr from 'locales/public-pages/landings/tokenizing-products/ar.json'
 
 export default function TokenizingProductHero() {
+    const { t } = useLocaleResources('public-pages/landings/tokenizing-products', {
+        en: localEn,
+        ar: localAr
+    })
+
     return (
         <HeroSection
-            title={`Competitive\nBusiness Funding`}
-            subtitle="Leverage onchain technology to tokenize inventory to ensure ownership and transparent attribution to unlock working capital for the business"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

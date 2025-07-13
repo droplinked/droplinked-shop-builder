@@ -3,23 +3,30 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/tokenpay/en.json'
+import localAr from 'locales/public-pages/landings/tokenpay/ar.json'
 
 function TokenpayHero() {
+    const { t } = useLocaleResources('public-pages/landings/tokenpay', {
+        en: localEn,
+        ar: localAr
+    })
     return (
         <HeroSection
-            title="Token Powered Commerce Driven by Communities"
-            subtitle="Leverage tokenpay with any ERC20, BRC20 and SPL tokens to unlock real utility"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

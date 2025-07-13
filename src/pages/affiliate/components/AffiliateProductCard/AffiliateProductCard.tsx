@@ -6,8 +6,15 @@ import ProductDetails from './components/ProductDetails';
 import ProductImageSlider from './components/productImageSlider/ProductImageSlider';
 import StoreInfo from './components/StoreInfo';
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
-export default function AffiliateProductCard({ product, isPublic }) {
+interface AffiliateProductCardProps {
+  product: any;
+  isPublic?: boolean;
+}
+
+export default function AffiliateProductCard({ product, isPublic }: AffiliateProductCardProps) {
+  const { t } = useLocaleResources('affiliate');
   const { shopNavigate } = useCustomNavigate();
   const productImages = product.media?.slice(0, 3).map((item) => item?.thumbnail || item?.url) || [];
   const mainProductImage = product.media?.find((img) => img?.isMain)?.thumbnail || product.media?.[0]?.thumbnail || product.media?.[0]?.url;
@@ -32,7 +39,7 @@ export default function AffiliateProductCard({ product, isPublic }) {
             <Image src={mainProductImage} alt={product.title} w="full" h="full" objectFit="cover" transition="transform 0.3s ease-in-out" _hover={{ transform: 'scale(1.1)' }} />
           </Box>
         )}
-        <ProductBadge commission={product.commission} />
+        <ProductBadge commission={product.commission} t={t} />
       </Box>
       {/* Product Info */}
       <Flex w="full" flexDir="column" gap={2}>

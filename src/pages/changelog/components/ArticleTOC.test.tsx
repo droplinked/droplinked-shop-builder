@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
-import type { ChangelogEntry } from 'lib/apis/changelog/interfaces'
+import type { ChangelogEntry } from 'services/changelog/interfaces'
 import React from 'react'
 import { extractHeadings, parseBlocknoteTexteditorContent } from 'utils/helpers/blocknoteUtils'
 import ArticleTOC from './ArticleTOC'

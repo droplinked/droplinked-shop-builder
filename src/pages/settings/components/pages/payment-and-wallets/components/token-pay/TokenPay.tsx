@@ -2,10 +2,11 @@ import { Grid, Image, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import { useFormikContext } from "formik";
-import { paymentPublicServiceV2 } from "lib/apis/shop/shopServices";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { paymentPublicServiceV2 } from "services/shop/shopServices";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 import React from "react";
 import { useQuery } from "react-query";
 import PaymentToken from "./PaymentToken";
@@ -14,6 +15,7 @@ import TokensModal from "./tokens-modal/TokensModal";
 import BlueButton from "components/redesign/button/BlueButton";
 
 const TokenPay: React.FC = () => {
+  const { t } = useLocaleResources('settings');
   const { values, setFieldValue } = useFormikContext<ISettings>();
   const { onClose, onOpen, isOpen } = useDisclosure();
   const { isFetching, data } = useQuery({
@@ -31,7 +33,7 @@ const TokenPay: React.FC = () => {
 
   return (
     <SectionContainer
-      title="Tokenpay"
+      title={t('settings.paymentsWallets.tokenPay.title')}
       rightContent={
         <BlueButton
           fontSize={12}
@@ -40,13 +42,13 @@ const TokenPay: React.FC = () => {
           isLoading={isFetching}
         >
           <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-          Payment Token
+          {t('settings.paymentsWallets.tokenPay.paymentTokens.addButton')}
         </BlueButton>
       }
     >
       <SectionContent
-        title="Payment Tokens"
-        description="Enable checkout payments for any native ERC20, BRC20 and SPL (Solana) based tokens."
+        title={t('settings.paymentsWallets.tokenPay.paymentTokens.title')}
+        description={t('settings.paymentsWallets.tokenPay.paymentTokens.description')}
         rightContent={
           isPaymentMethodsEmpty ? (
             <Image src="/assets/images/Revenue Sharing.svg" height="100%" width="100%" />

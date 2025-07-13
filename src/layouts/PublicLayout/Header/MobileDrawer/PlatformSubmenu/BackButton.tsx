@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function BackButton({ onClose }: Props) {
+    const { t } = useLocaleResources('common')
+
     return (
         <Flex
             as="button"
@@ -19,7 +22,7 @@ export default function BackButton({ onClose }: Props) {
             onClick={onClose}
         >
             <ChevronleftMd color='#fff' />
-            Back
+            {t('back')}
         </Flex>
     )
 } 

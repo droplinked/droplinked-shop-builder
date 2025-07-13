@@ -1,31 +1,23 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import localEn from 'locales/public-pages/landings/homePage/en.json'
+import localAr from 'locales/public-pages/landings/homePage/ar.json'
 
 interface StepData {
     title: string
     description: string
 }
 
-const stepData: StepData[] = [
-    {
-        title: "Join and Launch with AI",
-        description: "Pick your niche. AI builds your branded store theme, logo, colors and domain to get you ready to sell in minutes"
-    },
-    {
-        title: "Automated Setup",
-        description: "Import or create physical or digital products in a snap. AI optimizes titles, descriptions, and SEO to boost sales"
-    },
-    {
-        title: "Accept Payments",
-        description: "Connect global payment gateways. Accept cash and crypto. Automations handle orders so you scale faster"
-    }
-]
-
 interface StepTextsProps {
     currentStep: number
 }
 
 export default function StepTexts({ currentStep }: StepTextsProps) {
+    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr })
+    
+    const stepData: StepData[] = t('steps', { returnObjects: true }) as StepData[]
+
     return (
         <Flex
             width="100%"

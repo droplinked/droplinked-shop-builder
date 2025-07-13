@@ -1,9 +1,11 @@
 import useAppToast from "hooks/toast/useToast"
-import { getChangelogEntries } from "lib/apis/changelog/services"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import { getChangelogEntries } from "services/changelog/services"
 import { useInfiniteQuery } from "react-query"
 
 const useChangelogEntries = () => {
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('changelogPage')
 
     return useInfiniteQuery({
         queryKey: ["changelog-entries"],
@@ -12,7 +14,7 @@ const useChangelogEntries = () => {
         onError: () => {
             showToast({
                 type: "error",
-                message: "Failed to fetch changelog entries"
+                message: t('entries_load_failed')
             })
         }
     })

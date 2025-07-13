@@ -8,10 +8,11 @@ import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparate
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import AppSelect from 'components/redesign/select/AppSelect';
 import Textarea from 'components/redesign/textarea/Textarea';
-import { categories } from 'pages/onboarding/constants/categories';
+import { getCategories } from 'pages/onboarding/constants/categories';
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React, { useState } from 'react';
 import useAppStore from 'stores/app/appStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useAiGeneratedContent } from '../../../hooks/useAiGeneratedContent';
 
 function AICard() {
@@ -20,6 +21,9 @@ function AICard() {
   const { shopSetupUI, updateShopSetupUI } = useOnboardingStore();
   const { generateAllContent, isLoading } = useAiGeneratedContent();
   const { hasPaidSubscription } = useAppStore();
+  const { t } = useLocaleResources('onboarding');
+
+  const categories = getCategories(t);
 
   // Check if any content is currently being generated
   const isGenerating = Object.values(isLoading).every((value) => value === true);
@@ -80,17 +84,17 @@ function AICard() {
           <Flex flexDir="column" gap="2px">
             <DotSeparatedList>
               <Text color="white" fontWeight="medium">
-                Generate with AI
+                {t('aiAssistant.aiCard.title')}
               </Text>
               <Flex alignItems="center" gap={1}>
                 <SuitcaseSm color="#2BCFA1" />
                 <Text color="main.primary" fontSize="sm">
-                  Pro Feature
+                  {t('aiAssistant.aiCard.proFeature')}
                 </Text>
               </Flex>
             </DotSeparatedList>
             <Text color="text.subtext.placeholder.dark" fontSize="sm">
-              Customize the account with the droplinked assistant
+              {t('aiAssistant.aiCard.subtitle')}
             </Text>
           </Flex>
         </Flex>
@@ -103,29 +107,29 @@ function AICard() {
       <Box maxHeight={isOpen ? '500px' : '0px'} opacity={isOpen ? 1 : 0} overflow="hidden" transition="all 0.3s ease-in-out">
         <Box p={4} display="flex" flexDir="column" gap={6}>
           <Textarea
-            label="Describe Your Business"
+            label={t('aiAssistant.aiCard.businessDescribe.label')}
             fontFamily="14px"
             isRequired
-            placeholder="Add descriptive information about the category and customer base to improve results."
+            placeholder={t('aiAssistant.aiCard.businessDescribe.placeholder')}
             value={shopSetupUI.businessDescription}
             onChange={(e) => handleChange('businessDescribe', e.target.value)}
           />
 
           <AppSelect
-            label="Business Category"
+            label={t('aiAssistant.aiCard.businessCategory.label')}
             isRequired
             items={categories}
             valueAccessor="id"
             labelAccessor="name"
             selectProps={{
-              placeholder: 'Select Category',
+              placeholder: t('aiAssistant.aiCard.businessCategory.placeholder'),
               value: shopSetupUI.businessCategory,
               onChange: (e) => handleChange('businessCategory', e.target.value)
             }}
           />
 
           <AppButton size="lg" onClick={handleGenerateWithAI} isLoading={isGenerating} isDisabled={isGenerating}>
-            Generate Account Details
+            {t('aiAssistant.aiCard.generateButton')}
           </AppButton>
         </Box>
       </Box>

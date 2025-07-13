@@ -1,10 +1,11 @@
 import useAppToast from 'hooks/toast/useToast'
-import axiosInstance from 'lib/apis/axiosConfig'
-import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services'
+import axiosInstance from 'lib/axiosConfig'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import { getUniqueItems, printfulStyles } from 'pages/products/utils/printfulHelpers'
 import { useEffect, useRef, useState } from 'react'
+import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'services/pod/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function useDesignMakerHooks(onClose: () => void) {
     const { values, setFieldValue } = useProductForm()
@@ -21,8 +22,9 @@ function useDesignMakerHooks(onClose: () => void) {
     const [isLoading, setIsLoading] = useState(false)
     const [isIframeLoaded, setIsIframeLoaded] = useState(false)
 
-    const iframeRef = useRef<any>()
+    const iframeRef = useRef<any>(null)
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('common')
 
     const initializeDesignMaker = async () => {
         try {
@@ -59,7 +61,7 @@ function useDesignMakerHooks(onClose: () => void) {
     const handleDesignMakerError = (error) => {
         if (error && !error.includes('valid nonce')) {
             showToast({
-                message: error || 'Something went wrong. Please try again.',
+                message: error || t('products.hooks.errors.designMakerError'),
                 type: 'error',
             })
             setIsLoading(false)
@@ -163,7 +165,7 @@ function useDesignMakerHooks(onClose: () => void) {
         }
         catch (error) {
             showToast({
-                message: error?.message || 'An unexpected error occurred',
+                message: error?.message || t('products.hooks.errors.unexpectedError'),
                 type: 'error'
             })
         }

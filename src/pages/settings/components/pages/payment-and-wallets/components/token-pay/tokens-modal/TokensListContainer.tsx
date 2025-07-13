@@ -1,10 +1,11 @@
 import { Flex, Grid } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import { IPaymentPublicService } from 'lib/apis/shop/interfaces';
+import { IPaymentPublicService } from 'services/shop/interfaces';
 import React from 'react'
 import TokenCard from './TokenCard';
 import AppIcons from 'assets/icon/Appicons';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     isEvm?: boolean;
@@ -12,10 +13,12 @@ interface Props {
 }
 
 export default function TokensListContainer({ isEvm, tokens }: Props) {
+    const { t } = useLocaleResources('settings');
     const evmTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'EVM'));
     const solanaTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'SOLANA'));
     const filteredList = isEvm ? evmTokens : solanaTokens
-    const tooltipText = "In order to receive direct token payments, you must connect a Solana wallet. If not, all received money will be converted to USD/USDC and applied to credits."
+    const tooltipText = t('settings.paymentsWallets.tokens.solanaTooltip');
+
     if (filteredList.length === 0) {
         return null;
     }
@@ -23,7 +26,9 @@ export default function TokensListContainer({ isEvm, tokens }: Props) {
     return (
         <Flex flexDir={"column"} gap={6}>
             <Flex gap={2} alignItems={"center"}>
-                <AppTypography color={"neutral.white"} fontSize={"16px"}>{isEvm ? "EVM" : "Solana"}</AppTypography>
+                <AppTypography color={"neutral.white"} fontSize={"16px"}>
+                    {isEvm ? t('settings.paymentsWallets.tokens.evm') : t('settings.paymentsWallets.tokens.solana')}
+                </AppTypography>
                 {!isEvm &&
                     <AppTooltip flexShrink={0} placement="bottom-start" label={tooltipText}>
                         <AppIcons.TooltipIcon fill={'#292929'} />

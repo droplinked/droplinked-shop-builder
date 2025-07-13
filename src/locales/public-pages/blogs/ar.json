@@ -1,0 +1,13 @@
+{
+    "latestBlog": {
+        "lastUpdate": "آخر تحديث: {{time}}",
+        "by": "بواسطة {{writer}}"
+    },
+    "blog": {
+        "lastUpdate": "آخر تحديث: {{time}}",
+        "by": "بواسطة {{writer}}"
+    },
+    "blogDetails": {
+        "author": "الكاتب: {{name}}"
+    }
+}

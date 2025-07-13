@@ -1,4 +1,4 @@
-import { collectionService } from "lib/apis/collection/services";
+import { collectionService } from "services/collection/services";
 import useAppStore from "stores/app/appStore";
 import { useQuery } from "react-query";
 

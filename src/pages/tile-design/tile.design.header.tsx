@@ -5,21 +5,26 @@ import DropDownModel from "components/common/form/dropdown/DropDownModel";
 import AppTypography from "components/common/typography/AppTypography";
 import { TileDesignContext } from "./context/tile.design.context";
 import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import localAr from 'locales/tile-design/ar.json';
+import localEn from 'locales/tile-design/en.json';
 
-function TileDesignHeader() {
+const TileDesignHeader = () => {
+    const { t } = useLocaleResources('tile-design', { en: localEn, ar: localAr });
     const {
         state: { design, current },
         methods: { updateState },
     } = useContext(TileDesignContext);
+
     return (
         <HStack width={"full"} padding={"12px 24px"} rounded={"8px"} gap={"48px"} alignItems={"center"} justifyContent={"space-between"} backgroundColor={"#141414"}>
             <Select
                 options={[
-                    { label: TILE_DESIGN_PAGES_ENUM.PRODUCT, value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
-                    { label: TILE_DESIGN_PAGES_ENUM.INFORMATION, value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
-                    { label: TILE_DESIGN_PAGES_ENUM.SHIPPING, value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
-                    { label: TILE_DESIGN_PAGES_ENUM.PAYMENT, value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
-                    { label: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE, value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
+                    { label: t('product.title'), value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
+                    { label: t('information.title'), value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
+                    { label: t('shipping.title'), value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
+                    { label: t('payment.title'), value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
+                    { label: t('postPurchase.title'), value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
                 ]}
                 onChange={(e) => {
                     updateState("current", { page: e?.value, section: e.value === TILE_DESIGN_PAGES_ENUM.PRODUCT ? PRODUCT_SECTIONS_ENUM.CONTAINER : "none" });
@@ -68,6 +73,6 @@ function TileDesignHeader() {
             </Flex> */}
         </HStack>
     );
-}
+};
 
 export default TileDesignHeader;

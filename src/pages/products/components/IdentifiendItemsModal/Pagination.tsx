@@ -1,6 +1,7 @@
 import { Button, Flex, HStack } from '@chakra-ui/react'
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { generatePageNumbers } from '../../utils/paginationUtils'
 
@@ -11,6 +12,8 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+    const { t } = useLocaleResources('products');
+    
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             onPageChange(page)
@@ -31,7 +34,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label="Previous page"
+                    aria-label={t('identifiedItemsModal.pagination.previousPage')}
                 >
                     <ChevronleftMd color={currentPage === 1 ? "#646464" : "#fff"} />
                 </Button>
@@ -72,7 +75,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     w="40px"
                     h="40px"
                     border="1px solid #292929"
-                    aria-label="Next page"
+                    aria-label={t('identifiedItemsModal.pagination.nextPage')}
                 >
                     <ChevronrightMd color={currentPage === totalPages ? "#646464" : "#fff"} />
                 </Button>

@@ -1,5 +1,5 @@
 import { DateRangeValue } from 'components/redesign/date-range-picker/AppDateRangePicker'
-import { ITransactionType } from 'lib/apis/credit/interfaces'
+import { ITransactionType } from 'services/credit/interfaces'
 import { create } from 'zustand'
 
 interface State {

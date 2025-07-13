@@ -5,17 +5,20 @@ import React from 'react';
 import WalletFeatures from './components/WalletFeatures';
 import WalletInput from './components/WalletInput';
 import ManageRechargeButtons from './components/manage-recharge/ManageRechargeButtons';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 const MerchantWallet: React.FC = () => {
+  const { t } = useLocaleResources('settings');
+
   return (
     <>
       <SectionContainer
-        title=" Merchant Wallet"
+        title={t("settings.merchantWallet.title")}
         rightContent={<ManageRechargeButtons />}
       >
         <SectionContent
-          title="Address"
-          description="The merchant wallet enables USDC acceptance for all businesses. It offers a secure and seamless way to manage revenue while minimizing merchant processing fees."
+          title={t("settings.merchantWallet.address.title")}
+          description={t("settings.merchantWallet.address.description")}
           rightContent={<WalletInput />}
         >
           <WalletFeatures />

@@ -1,4 +1,4 @@
-import { ISettings } from "pages/settings/formConfigs";
+import { ISettings } from "pages/settings/utils/formConfigs";
 
 export const getDescription = (isSolana?: boolean) => isSolana
     ? "Connect a Solana-based wallet in order to accept Solana based digital assets. You can define percentage payouts across multiple wallet addresses."

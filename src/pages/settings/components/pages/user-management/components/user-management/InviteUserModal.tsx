@@ -6,9 +6,10 @@ import MessageBox from 'components/redesign/message-box/MessageBox';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'hooks/toast/useToast';
-import { sendInvitaionEmailService } from 'lib/apis/user/services';
+import { sendInvitaionEmailService } from 'services/user/services';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     isOpen: boolean;
@@ -18,18 +19,19 @@ interface Props {
 
 export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
     const [email, setEmail] = useState("");
-    const { showToast } = useAppToast()
+    const { showToast } = useAppToast();
+    const { t } = useLocaleResources('settings');
     const { mutateAsync, isLoading } = useMutation((email: string) => sendInvitaionEmailService(email));
 
     const handleSubmit = async () => {
         if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            showToast({ message: "Please enter a valid email address", type: "error" })
+            showToast({ message: t('settings.userManagement.inviteModal.invalidEmail'), type: "error" })
             return;
         }
 
         try {
             await mutateAsync(email);
-            showToast({ type: "success", message: "An invitation has been sent to this email." })
+            showToast({ type: "success", message: t('settings.userManagement.inviteModal.invitationSent') })
             setEmail("");
             refetch();
             onClose();
@@ -48,16 +50,16 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 descriptionProps={{
                     color: "#B1B1B1 !important"
                 }}
-                title='Invite New Member'
+                title={t('settings.userManagement.inviteModal.title')}
                 icon={<AppIcons.AddUser />}
-                description='Add a new member by entering their email address below.'
+                description={t('settings.userManagement.inviteModal.description')}
             />
             <ModalBody py={"48px !important"}>
                 <AppInput
-                    label='Email Address'
+                    label={t('settings.userManagement.inviteModal.emailLabel')}
                     inputProps={{
                         isRequired: true,
-                        placeholder: "Enter email address",
+                        placeholder: t('settings.userManagement.inviteModal.emailPlaceholder'),
                         value: email,
                         onChange: (e) => setEmail(e.target.value),
                     }}
@@ -68,15 +70,15 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 />
                 <MessageBox
                     theme='systemWarning'
-                    title='Access Warning'
-                    description='The following user will have access to all sections of the account. Invite with caution!'
+                    title={t('settings.userManagement.inviteModal.accessWarning')}
+                    description={t('settings.userManagement.inviteModal.accessWarningDesc')}
                 />
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
-                <AppButton variant='secondary' onClick={onClose}>Discard</AppButton>
+                <AppButton variant='secondary' onClick={onClose}>{t('settings.userManagement.inviteModal.discard')}</AppButton>
                 <AppButton onClick={handleSubmit} isLoading={isLoading} isDisabled={!email} >
-                    Send Invitation
+                    {t('settings.userManagement.inviteModal.sendInvitation')}
                 </AppButton>
             </ModalFooter>
         </AppModal>

@@ -6,21 +6,23 @@ import AppInput, { AppInputHeader } from "components/redesign/input/AppInput";
 import AppDatePicker from "components/redesign/date-picker/AppDatePicker";
 import AmountInput from "./AmountInput";
 import QuantityInput from "./QuantityInput";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
+    const { t } = useLocaleResources('settings');
     const { values, handleChange, errors, setFieldValue } = useFormikContext<CouponFormValues>();
 
     return (
         <Flex flexDirection={"column"} gap={9}>
             <AppInput
-                label="Title"
-                description="Enter a unique name for the discount."
+                label={t("settings.coupons.form.titleLabel")}
+                description={t("settings.coupons.form.titleDescription")}
                 maxCharacters={100}
                 inputProps={{
                     isRequired: true,
                     onChange: handleChange,
                     name: "name",
-                    placeholder: "e.g., Summer Sale",
+                    placeholder: t("settings.coupons.form.titlePlaceholder"),
                     value: values.name,
                     isDisabled: isEdit
                 }}
@@ -29,7 +31,11 @@ export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
             <AmountInput isEdit={isEdit} />
             <QuantityInput isEdit={isEdit} />
             <Flex flexDirection={"column"}>
-                <AppInputHeader label="Expiration Date" description="Select a specific expiration date for discount." inputProps={{ isRequired: true }} />
+                <AppInputHeader
+                    label={t("settings.coupons.form.expirationDateLabel")}
+                    description={t("settings.coupons.form.expirationDateDescription")}
+                    inputProps={{ isRequired: true }}
+                />
                 <Box {...errors.expiryDate && { border: "1px solid #F24" }} width={"min-content"} borderRadius={"8px"}>
                     <AppDatePicker
                         minDate={new Date()}

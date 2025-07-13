@@ -1,6 +1,7 @@
 import { Box, Flex, FormLabel, SimpleGrid, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useContext } from 'react'
 import { PaymentLinkContext, PaymentLinkVariantsStyle } from '../../context/PaymentLinkContext'
 
@@ -10,6 +11,7 @@ const variants: { image: string, title: string, description: string, value: Paym
 ]
 
 export default function VariantsStyle() {
+    const { t } = useLocaleResources('payment-link');
     const { paymentLinkData, updatePaymentLink } = useContext(PaymentLinkContext)
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'selected-variants-style',
@@ -20,13 +22,13 @@ export default function VariantsStyle() {
     return (
         <Flex direction={"column"} gap={4} sx={{ "*": { userSelect: "none" } }}>
             <Flex direction={"column"} gap={1}>
-                <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>Variants Style</AppTypography>
-                <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>Choose how you want product variants to be shown</AppTypography>
+                <AppTypography fontSize={16} fontWeight={600} color={"#fff"}>{t('components.settings.variantsStyle.title')}</AppTypography>
+                <AppTypography fontSize={14} fontWeight={400} color={"#fff"}>{t('components.settings.variantsStyle.description')}</AppTypography>
             </Flex>
 
             <SimpleGrid columns={{ base: 1, xl: 2 }} gap={6} {...getRootProps()}>
                 {variants.map((variant) => (
-                    <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} />
+                    <VariantStyleRadio key={variant.value} variant={variant} {...getRadioProps({ value: variant.value })} t={t} />
                 ))}
             </SimpleGrid>
         </Flex>
@@ -35,8 +37,20 @@ export default function VariantsStyle() {
 
 
 function VariantStyleRadio({ ...props }) {
-    const { variant, ...radioProps } = props
+    const { variant, t, ...radioProps } = props
     const { state: { isChecked }, getInputProps, htmlProps, getLabelProps } = useRadio(radioProps)
+
+    const getLocalizedTitle = (value: string) => {
+        if (value === 'DROPDOWN') return t('components.settings.variantsStyle.options.dropdown.title');
+        if (value === 'SELECTOR') return t('components.settings.variantsStyle.options.selector.title');
+        return variant.title;
+    };
+
+    const getLocalizedDescription = (value: string) => {
+        if (value === 'DROPDOWN') return t('components.settings.variantsStyle.options.dropdown.description');
+        if (value === 'SELECTOR') return t('components.settings.variantsStyle.options.selector.description');
+        return variant.description;
+    };
 
     return (
         <FormLabel
@@ -55,8 +69,8 @@ function VariantStyleRadio({ ...props }) {
             <Box borderRadius={4} padding={6} bgColor={"neutral.gray.700"}>
                 <AppImage height={"64px"} src={variant.image} objectFit={"contain"} />
             </Box>
-            <AppTypography mt={4} fontSize={16} fontWeight={600} color={"#fff"}>{variant.title}</AppTypography>
-            <AppTypography mt={1} fontSize={14} fontWeight={400} color={"#fff"}>{variant.description}</AppTypography>
+            <AppTypography mt={4} fontSize={16} fontWeight={600} color={"#fff"}>{getLocalizedTitle(variant.value)}</AppTypography>
+            <AppTypography mt={1} fontSize={14} fontWeight={400} color={"#fff"}>{getLocalizedDescription(variant.value)}</AppTypography>
         </FormLabel>
     )
 }

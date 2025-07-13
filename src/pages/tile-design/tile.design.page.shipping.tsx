@@ -1,9 +1,12 @@
 import { Box, RadioGroup, Button, VStack, HStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React, { useContext, useState } from "react";
 import { TileDesignContext } from "./context/tile.design.context";
 import './styles/tile.radio.css'
+
 const TileDesignPageShipping = () => {
+    const { t } = useLocaleResources('tile-design');
     const {
         state: {
             design: {
@@ -15,10 +18,11 @@ const TileDesignPageShipping = () => {
     const [checked, setChecked] = useState(false);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
     const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
+    
     return (
         <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <AppTypography fontSize={"16px"} fontWeight={"700"}>
-                Shipping Method
+                {t('shipping.fields.method')}
             </AppTypography>
             <RadioGroup>
                 <VStack spacing={6} width={"full"}>
@@ -35,11 +39,11 @@ const TileDesignPageShipping = () => {
                                 alignItems={"flex-start"}
                             >
                                 <HStack>
-                                    <AppTypography>Standard rate with CO2 offsetting</AppTypography>
+                                    <AppTypography>{t('shipping.methods.standard')}</AppTypography>
                                     <AppTypography>$23.98 USD</AppTypography>
                                 </HStack>
                                 <HStack>
-                                    <AppTypography>Fulfillment Date</AppTypography>
+                                    <AppTypography>{t('shipping.fields.fulfillmentDate')}</AppTypography>
                                     <AppTypography>•</AppTypography>
                                     <AppTypography>3 - 5 days</AppTypography>
                                 </HStack>
@@ -57,11 +61,11 @@ const TileDesignPageShipping = () => {
                                 alignItems={"flex-start"}
                             >
                                 <HStack>
-                                    <AppTypography>Flat Rate</AppTypography>
+                                    <AppTypography>{t('shipping.methods.local')}</AppTypography>
                                     <AppTypography>$3.98 USD</AppTypography>
                                 </HStack>
                                 <HStack>
-                                    <AppTypography>Fulfillment Date</AppTypography>
+                                    <AppTypography>{t('shipping.fields.fulfillmentDate')}</AppTypography>
                                     <AppTypography>•</AppTypography>
                                     <AppTypography>3 - 5 days</AppTypography>
                                 </HStack>
@@ -72,10 +76,10 @@ const TileDesignPageShipping = () => {
             </RadioGroup>
             <HStack width={"full"} justify={"space-between"}>
                 <Button variant="outline" fontWeight={"400"} padding={"12px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                    Back
+                    {t('shipping.actions.back')}
                 </Button>
                 <Button bg={white_if_dark_mode} width={"100px"} paddingX={"36px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    Next
+                    {t('shipping.actions.next')}
                 </Button>
             </HStack>
         </Box>

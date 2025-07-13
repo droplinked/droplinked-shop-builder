@@ -1,12 +1,14 @@
 import { Divider, Flex } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import SectionContainer from 'pages/settings/components/common/SectionContainer';
 import SectionContent from 'pages/settings/components/common/SectionContent';
 import React, { useState } from 'react';
 import CurrencyCard from './components/currency-card/CurrencyCard';
 import { useQuery } from 'react-query';
-import { getCurrencyList } from 'lib/apis/shop/shopServices';
+import { getCurrencyList } from 'services/shop/shopServices';
 
 const StoreDisplay: React.FC = () => {
+  const { t } = useLocaleResources('settings');
   const { isLoading, data } = useQuery({
     queryKey: ["currency-list"],
     queryFn: () => getCurrencyList()
@@ -28,21 +30,21 @@ const StoreDisplay: React.FC = () => {
 
   return (
     <>
-      <SectionContainer title="Store Display">
+      <SectionContainer title={t('settings.paymentsWallets.storeDisplay.title')}>
         <SectionContent
-          title="Default Currency"
-          description="Choose a default currency to display to customers for products. During the checkout process, visitors will be able to see the total price in their local currency."
+          title={t('settings.paymentsWallets.storeDisplay.defaultCurrency.title')}
+          description={t('settings.paymentsWallets.storeDisplay.defaultCurrency.description')}
           rightContent={
             <Flex flexDir={{ base: "column", xl: "row" }} gap="4">
               <CurrencyCard
-                currencyName="Fiat"
+                currencyName={t('settings.paymentsWallets.storeDisplay.fiat')}
                 isPrimary={switchState.fiat}
                 currencyList={currencyList}
                 onToggle={() => handleToggle('fiat')}
                 isLoading={isLoading}
               />
               <CurrencyCard
-                currencyName="Crypto"
+                currencyName={t('settings.paymentsWallets.storeDisplay.crypto')}
                 isPrimary={switchState.crypto}
                 currencyList={["USD Coin"]}
                 isSoon={false}

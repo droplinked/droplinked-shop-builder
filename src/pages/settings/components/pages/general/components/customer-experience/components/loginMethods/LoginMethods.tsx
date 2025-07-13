@@ -1,12 +1,14 @@
 import { Grid } from "@chakra-ui/react";
-import { authSupportedWalletsService } from "lib/apis/auth/services";
+import { authSupportedWalletsService } from "services/auth/services";
 import SectionContent from "pages/settings/components/common/SectionContent";
 import React from "react";
 import { useQuery } from "react-query";
 import MethodItem from "./MethodItem";
 import SkeletonLoading from "./SkeletonLoading";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 export default function LoginMethods() {
+    const { t } = useLocaleResources('settings');
     const { isFetching, data } = useQuery(
         "supported-login-methods",
         authSupportedWalletsService,
@@ -15,8 +17,8 @@ export default function LoginMethods() {
 
     return (
         <SectionContent
-            title="Login Methods"
-            description="Allow customers to log in and connect from the following options to interact with the storefront."
+            title={t("settings.customerExperience.loginMethods.title")}
+            description={t("settings.customerExperience.loginMethods.description")}
             rightContent={
                 <Grid
                     templateColumns={{ base: "1fr", md: "1fr", xl: "repeat(2, 1fr)" }}

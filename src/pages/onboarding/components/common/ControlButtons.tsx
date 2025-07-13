@@ -1,6 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 import AppButton from 'components/redesign/button/AppButton'
 import React, { useState } from 'react'
 
@@ -17,11 +20,16 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     onBack,
     onSubmit,
     onSkip = null,
-    continueText = "Continue",
+    continueText,
+    backText,
     isLoading: externalLoading = false,
     showBackButton = true,
 }) => {
     const [internalLoading, setInternalLoading] = useState(false)
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const handleSubmit = async (e: React.MouseEvent) => {
         e.preventDefault()
@@ -47,7 +55,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                     fontWeight='400'
                     fontSize='14px'
                 >
-                    Skip for Now
+                    {t('common.skipForNow')}
                 </AppTypography>
             )}
             <Flex marginLeft="auto" gap={4}>
@@ -57,7 +65,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                         onClick={onBack}
                         isDisabled={isButtonLoading}
                     >
-                        Back
+                        {backText || t('common.back')}
                     </AppButton>
                 }
                 <AppButton
@@ -65,7 +73,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
                     rightIcon={<ArrowrightMd />}
                     isLoading={isButtonLoading}
                 >
-                    {continueText}
+                    {continueText || t('common.continue')}
                 </AppButton>
             </Flex>
         </Flex>

@@ -1,5 +1,6 @@
 import { Box, ModalBody } from "@chakra-ui/react";
 import AppModal from "components/redesign/modal/AppModal";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useState } from "react";
 import TabButtons from "../common/TabButtons";
 import DirectLinkContent from "./components/DirectLinkContent";
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 function ProductShareModal({ product, isOpen, onClose }: IProps) {
+  const { t } = useLocaleResources('products');
   const [activeTab, setActiveTab] = useState(TABS.DIRECT_LINK);
   const transformedProduct = transformProductData(product);
 
@@ -56,7 +58,16 @@ function ProductShareModal({ product, isOpen, onClose }: IProps) {
         <Box pt="48px" pr="48px" pl="48px" pb="0px">
           <Header product={transformedProduct} />
           <Box mb="24px" />
-          <TabButtons activeTab={activeTab} onTabChange={handleTabChange} tabs={Object.keys(TABS).map(key => ({ name: TABS[key] }))} />
+          <TabButtons 
+            activeTab={activeTab} 
+            onTabChange={handleTabChange} 
+            tabs={[
+              { name: TABS.DIRECT_LINK, label: t('shareModal.tabs.directLink') },
+              { name: TABS.PAYMENT_LINK, label: t('shareModal.tabs.paymentLink') },
+              { name: TABS.PRODUCT_TILE, label: t('shareModal.tabs.productTile') },
+              { name: TABS.SOCIAL_TILE, label: t('shareModal.tabs.socialTile') }
+            ]} 
+          />
         </Box>
         {renderTabContent()}
       </ModalBody>

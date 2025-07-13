@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Text, VStack } from '@chakra-ui/react';
 import { InformationSm } from 'assets/icons/Sign/Information/InformationSm';
-import { SubscriptionPlan } from 'lib/apis/subscription/interfaces';
+import { SubscriptionPlan } from 'services/subscription/interfaces';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
 import BillingSummary from './BillingSummary';
 import PlanCard from './PlanCard';

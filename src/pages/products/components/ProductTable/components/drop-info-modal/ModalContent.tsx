@@ -2,11 +2,13 @@ import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import chainNameMap from 'utils/constants/blockchainMap'
 import React from 'react'
 import DetailRow from './DetailRow'
 
 function ModalContent({ product }) {
+  const { t } = useLocaleResources('products');
   if (!product?.nftData) return null
 
   const { transactionUrl, deployHash, networkName } = product.nftData
@@ -21,7 +23,7 @@ function ModalContent({ product }) {
       borderRadius={16}
       padding={6}
     >
-      <DetailRow label='Deploy Hash'>
+      <DetailRow label={t('dropInfoModal.details.deployHash')}>
         <Flex alignItems="center" gap={3}>
           <ExternalLink
             href={transactionUrl}
@@ -34,7 +36,7 @@ function ModalContent({ product }) {
         </Flex>
       </DetailRow>
 
-      <DetailRow label='Dropped on'>
+      <DetailRow label={t('dropInfoModal.details.droppedOn')}>
         <Flex alignItems="center" gap={2}>
           <BlockchainDisplay blockchain={networkName} show='icon' props={{ width: 20, height: 20 }} />
           <Text fontSize={14} fontWeight={500} color="#FFF">

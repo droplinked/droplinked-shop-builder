@@ -1,0 +1,309 @@
+{
+  "home": "الرئيسية",
+  "submit": "إرسال",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "error": "حدث خطأ",
+  "delete": "حذف",
+  "platform": "المنصة",
+  "getStarted": "ابدأ الآن",
+  "signIn": "تسجيل الدخول",
+  "videoTutorials": "فيديوهات تعليمية",
+  "contactSupport": "تواصل مع الدعم",
+  "documentation": "الوثائق",
+  "readyToGetStarted": "هل أنت مستعد للبدء؟",
+  "signUpForFree": "سجل مجاناً",
+  "back": "عودة",
+  "contactUs": "تواصل معنا",
+  "brandAssets": "أصول العلامة التجارية",
+  "developerKit": "مجموعة المطور",
+  "helpCenter": "مركز المساعدة",
+  "support": "الدعم",
+  "company": "الشركة",
+  "commerceTagline": "أدوات التجارة للبيع والتسوية بشفافية",
+  "privacyAndDataCollection": "الخصوصية وجمع البيانات",
+  "termsOfService": "شروط الخدمة",
+  "copyright": "© {{year}} جميع الحقوق محفوظة",
+  "stayUpToDate": "ابق على اطلاع",
+  "newsletterDescription": "انضم إلى قائمة البريد الإلكتروني للبقاء على اطلاع بآخر الأخبار",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "invalidEmail": "عنوان البريد الإلكتروني غير صحيح",
+  "emailRequired": "البريد الإلكتروني مطلوب",
+  "subscribe": "اشتراك",
+  "publicHeaderLinks": {
+    "pricing": "الأسعار",
+    "affiliate": "التسويق بالعمولة",
+    "blog": "المدونة",
+    "about": "حول"
+  },
+  "publicMegaMenuItems": {
+    "platformFunctionalities": {
+      "label": "وظائف المنصة",
+      "links": {
+        "physicalInventory": {
+          "label": "المخزون المادي",
+          "description": "إدارة سلسلة التوريد المحمولة"
+        },
+        "digitalGoods": {
+          "label": "السلع الرقمية",
+          "description": "الاشتراكات والأصول والمزيد"
+        },
+        "productsOnDemand": {
+          "label": "المنتجات عند الطلب",
+          "description": "تصميم عناصر قابلة للتخصيص"
+        },
+        "onchainAffiliate": {
+          "label": "التسويق بالعمولة على السلسلة",
+          "description": "تجارة شفافة خالية من الاحتيال"
+        },
+        "paymentLinks": {
+          "label": "روابط الدفع",
+          "description": "بيع سلس في أي وقت وأي مكان"
+        },
+        "productTiles": {
+          "label": "وحدات المنتجات",
+          "description": "تضمينات قابلة للتخصيص للاستخدام"
+        },
+        "tokenizingProducts": {
+          "label": "تحويل المنتجات إلى رموز",
+          "description": "سجلات المنتجات للأصول"
+        },
+        "onchainSubscriptions": {
+          "label": "الاشتراكات على السلسلة",
+          "description": "أتمتة لتحقيق المزيد من الأرباح"
+        },
+        "socialQuests": {
+          "label": "المهام الاجتماعية",
+          "description": "تنمية المجتمع لتحقيق المزيد من الأرباح"
+        }
+      }
+    },
+    "enterprise": {
+      "label": "المؤسسات",
+      "links": {
+        "dpp": {
+          "label": "جواز سفر المنتج الرقمي",
+          "description": "جوازات سفر المنتجات الرقمية"
+        },
+        "dimst": {
+          "label": "نظام إدارة المخزون الرقمي",
+          "description": "إدارة المخزون على السلسلة"
+        },
+        "tokenpay": {
+          "label": "توكين باي",
+          "description": "مدفوعات لـ ERC/BRC/SPL"
+        },
+        "metaverseShowroom": {
+          "label": "معرض الميتافيرس",
+          "description": "التسوق التفاعلي أصبح سهلاً"
+        },
+        "customTokens": {
+          "label": "الرموز المخصصة",
+          "description": "أطلق قوة الرموز المخصصة"
+        }
+      }
+    },
+    "partners": {
+      "label": "الشركاء",
+      "links": {
+        "unstoppableDomains": {
+          "label": "أنستوبابل دومينز",
+          "description": "دروب لينكد وأنستوبابل دومينز"
+        },
+        "d3": {
+          "label": "دي 3",
+          "description": "دروب لينكد ودي 3"
+        },
+        "polygon": {
+          "label": "بوليجون",
+          "description": "دروب لينكد وبوليجون"
+        },
+        "crossmint": {
+          "label": "كروس مينت",
+          "description": "دروب لينكد وكروس مينت"
+        }
+      }
+    }
+  },
+  "socialMedia": {
+    "telegram": "تلغرام",
+    "discord": "ديسكورد",
+    "x": "إكس (تويتر)",
+    "twitter": "تويتر",
+    "instagram": "إنستقرام",
+    "linkedin": "لينكدإن",
+    "youtube": "يوتيوب",
+    "tiktok": "تيك توك",
+    "bluesky": "بلو سكاي",
+    "facebook": "فيسبوك",
+    "messenger": "ماسنجر",
+    "web": "الموقع الإلكتروني"
+  },
+  "fileUpload": {
+    "click": "انقر",
+    "dragAndDrop": "أو اسحب وأفلت هنا",
+    "dragActive": "أفلت الملف هنا ...",
+    "defaultFooter": "JPG، JPEG، PNG، MP4 و MOV (حتى 10 ميجابايت لكل منها)",
+    "ariaLabel": "تحميل ملف"
+  },
+  "imageUpload": {
+    "dragActive": "أفلت الصورة هنا...",
+    "footer": "JPG، JPEG، PNG (حتى 5 ميجابايت)",
+    "remove": "إزالة {{name}}",
+    "uploadError": "فشل في تحميل الصورة"
+  },
+  "hooks": {
+    "errors": {
+      "uploadFailed": "فشل في التحميل!",
+      "downloadFailed": "فشل في تحميل الملف",
+      "newsletterError": "حدث خطأ أثناء الاشتراك في النشرة الإخبارية"
+    },
+    "success": {
+      "newsletterSubscribed": "شكراً لك على الاشتراك في نشرتنا الإخبارية"
+    },
+    "productTypes": {
+      "digital": "رقمي",
+      "physical": "مادي",
+      "pod": "عند الطلب",
+      "event": "فعالية"
+    },
+    "defaults": {
+      "home": "الرئيسية"
+    }
+  },
+  "products": {
+    "hooks": {
+      "errors": {
+        "improveAIError": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+        "unexpectedError": "حدث خطأ غير متوقع.",
+        "designMakerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+        "anErrorOccurred": "حدث خطأ"
+      },
+      "success": {
+        "productSaved": "تم حفظ المنتج بنجاح!",
+        "crawlTaskStarted": "تم بدء مهمة الزحف",
+        "crawlTaskDescription": "نحن نقوم بزحف المنتجات من الرابط المقدم. بمجرد أن تصبح حالة المهمة جاهزة للمعاينة، يمكنك اختيار المنتجات التي تريد استيرادها.",
+        "importTaskStarted": "تم بدء مهمة الاستيراد",
+        "importTaskDescription": "نحن نقوم باستيراد المنتجات المختارة إلى مخزونك. يمكنك عرض المهام الجارية في نافذة استيراد المنتجات."
+      },
+      "shipping": {
+        "easyPost": {
+          "title": "إيزي بوست",
+          "description": "يحسب التكلفة الفعلية للشحنة بناءً على عنوان التوصيل لتوفير ملصق شحن."
+        }
+      }
+    }
+  },
+  "blogs": {
+    "hooks": {
+      "errors": {
+        "formikContextError": "يجب استخدام useBlogForm داخل سياق Formik"
+      }
+    }
+  },
+  "invoice": {
+    "hooks": {
+      "errors": {
+        "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف",
+        "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى."
+      },
+      "sections": {
+        "information": "المعلومات",
+        "clientDetail": "تفاصيل العميل",
+        "paymentDetails": "تفاصيل الدفع"
+      },
+      "labels": {
+        "idNumber": "رقم المعرف",
+        "status": "الحالة",
+        "memo": "مذكرة",
+        "fullName": "الاسم الكامل",
+        "emailAddress": "عنوان البريد الإلكتروني",
+        "mobileNumber": "رقم الهاتف المحمول",
+        "address": "العنوان",
+        "shippingMethod": "طريقة الشحن",
+        "totalCart": "إجمالي السلة",
+        "tax": "الضريبة",
+        "totalShipping": "إجمالي الشحن",
+        "totalCost": "التكلفة الإجمالية"
+      }
+    }
+  },
+  "onboarding": {
+    "hooks": {
+      "errors": {
+        "failedToImportShopData": "فشل في استيراد بيانات المتجر",
+        "importTimedOut": "انتهت مهلة الاستيراد. يرجى المحاولة مرة أخرى.",
+        "failedToStartImport": "فشل في بدء الاستيراد. يرجى المحاولة مرة أخرى.",
+        "failedToUploadLogo": "فشل في تحميل الشعار",
+        "failedToUploadBanner": "فشل في تحميل البانر",
+        "failedToCompleteShopSetup": "فشل في إكمال إعداد المتجر",
+        "allLogoGenerationFailed": "فشلت جميع طلبات إنشاء الشعارات",
+        "failedToGetLogoRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الشعارات",
+        "failedToGenerateLogos": "فشل في إنشاء الشعارات",
+        "allCoverGenerationFailed": "فشلت جميع طلبات إنشاء الأغلفة",
+        "failedToGetCoverRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الأغلفة",
+        "failedToGenerateCovers": "فشل في إنشاء الأغلفة",
+        "failedToGenerateUrls": "فشل في إنشاء الروابط",
+        "failedToGenerateNames": "فشل في إنشاء الأسماء",
+        "errorCheckingUsername": "خطأ في التحقق من اسم المستخدم",
+        "invalidVerificationCode": "رمز التحقق غير صحيح",
+        "failedToSendCode": "فشل في إرسال الرمز",
+        "accountDeleted": "تم حذف هذا الحساب",
+        "accountUnableToLogin": "هذا الحساب غير قادر على تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
+        "anErrorOccurred": "حدث خطأ",
+        "loginFailed": "فشل تسجيل الدخول"
+      },
+      "success": {
+        "shopDataImported": "تم استيراد بيانات المتجر بنجاح!",
+        "logosGenerated": "تم إنشاء الشعارات بنجاح!",
+        "coversGenerated": "تم إنشاء الأغلفة بنجاح!",
+        "codeVerified": "تم التحقق من الرمز بنجاح",
+        "verificationCodeSent": "تم إرسال رمز التحقق إلى بريدك الإلكتروني"
+      },
+      "info": {
+        "importStarted": "تم بدء الاستيراد. يرجى الانتظار بينما نقوم بمعالجة موقعك..."
+      },
+      "warnings": {
+        "fillBusinessInfoFirst": "يرجى ملء فئة الأعمال والوصف أولاً"
+      }
+    }
+  },
+  "proPlan": {
+    "crossmint": {
+      "title": "تم فتح الخطة الاحترافية المجانية!",
+      "description": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجاناً."
+    },
+    "trial": {
+      "title": "استخدم الذكاء الاصطناعي لدروب لينكد لإنشاء متجر",
+      "description": "لا تتردد في استخدام أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف تفاصيلك أدناه للبدء."
+    },
+    "upgrade": {
+      "title": "الوصول إلى الميزات الحصرية",
+      "description": "قم بالترقية اليوم للاستفادة من المزايا المرتبطة بالخطة المميزة."
+    },
+    "payment": {
+      "successMessage": "تم تفعيل التجربة بنجاح! ميزاتك الاحترافية متاحة الآن."
+    },
+    "footer": {
+      "continue": "متابعة",
+      "claimTrial": "المطالبة بالتجربة الآن",
+      "upgrade": "ترقية",
+      "unsure": "ما زلت غير متأكد؟",
+      "comparePlans": "قارن الخطط وخيارات التسعير",
+      "keepCurrentPlan": "الاحتفاظ بالخطة الحالية",
+      "close": "إغلاق"
+    },
+    "features": {
+      "less": "أقل",
+      "more": "المزيد"
+    },
+    "card": {
+      "crossmintTitle": "3 أشهر مجاناً بعد إضافة البطاقة",
+      "proTitle": "احترافي",
+      "description": "للشركات الصغيرة والفرق الجاهزة للنمو.",
+      "proAccess": "الوصول الاحترافي",
+      "cancelAnytime": "إلغاء في أي وقت",
+      "seamlessActivation": "تفعيل سلس"
+    }
+  }
+}

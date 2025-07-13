@@ -6,6 +6,7 @@ import { ClocktimeMd } from 'assets/icons/System/ClockTime/ClocktimeMd';
 import { ImageMd } from 'assets/icons/System/Image/ImageMd';
 import { ShopMd } from 'assets/icons/System/Shop/ShopMd';
 import { FooterConfig, HeaderConfig, HeroConfig, SettingsConfig, StoreConfig, ThemeConfig } from './components/config-sections';
+import { ShopSm } from 'assets/icons/System/Shop/ShopSm';
 
 export interface ConfigSectionData {
   id: string;
@@ -15,45 +16,49 @@ export interface ConfigSectionData {
   defaultOpen?: boolean;
 } 
 
+type TranslateFunction = (key: string) => string;
+
 /**
  * Available configuration sections for the designer sidebar
  */
-export const configSections: ConfigSectionData[] = [
-  {
-    id: 'theme',
-    title: 'Theme',
-    icon: React.createElement(BrushMd, { color: "white" }),
-    component: ThemeConfig,
-    defaultOpen: true
-  },
-  {
-    id: 'header',
-    title: 'Header',
-    icon: React.createElement(HeaderMd, { color: "white" }),
-    component: HeaderConfig
-  },
-  {
-    id: 'hero',
-    title: 'Hero Section',
-    icon: React.createElement(ImageMd, { color: "white" }),
-    component: HeroConfig
-  },
-  {
-    id: 'store',
-    title: 'Store Details',
-    icon: React.createElement(ShopMd, { color: "white" }),
-    component: StoreConfig
-  },
-  {
-    id: 'footer',
-    title: 'Footer',
-    icon: React.createElement(FooterMd, { color: "white" }),
-    component: FooterConfig
-  },
-  {
-    id: 'settings',
-    title: 'Additional Settings',
-    icon: React.createElement(ClocktimeMd, { color: "white" }),
-    component: SettingsConfig
-  }
-]; 
+export const getConfigSections = (t: TranslateFunction): ConfigSectionData[] => {
+  return [
+    {
+      id: 'theme',
+      title: t('designerSidebar.sections.theme'),
+      icon: React.createElement(BrushMd, { color: "white" }),
+      component: ThemeConfig,
+      defaultOpen: true
+    },
+    {
+      id: 'header',
+      title: t('designerSidebar.sections.header'),
+      icon: React.createElement(HeaderMd, { color: "white" }),
+      component: HeaderConfig
+    },
+    {
+      id: 'hero',
+      title: t('designerSidebar.sections.heroSection'),
+      icon: React.createElement(ImageMd, { color: "white" }),
+      component: HeroConfig
+    },
+    {
+      id: 'store',
+      title: t('designerSidebar.sections.storeDetails'),
+      icon: React.createElement(ShopMd, { color: "white" }),
+      component: StoreConfig
+    },
+    {
+      id: 'footer',
+      title: t('designerSidebar.sections.footer'),
+      icon: React.createElement(FooterMd, { color: "white" }),
+      component: FooterConfig
+    },
+    {
+      id: 'settings',
+      title: t('designerSidebar.sections.additionalSettings'),
+      icon: React.createElement(ClocktimeMd, { color: "white" }),
+      component: SettingsConfig
+    }
+  ];
+}; 

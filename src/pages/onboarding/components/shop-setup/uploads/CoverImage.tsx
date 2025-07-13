@@ -4,10 +4,12 @@ import React from 'react'
 import FieldWrapper from '../inputs/FieldWrapper'
 import FileUpload from './FileUpload'
 import AiOptionsDisplay from '../ai/AiOptionsDisplay'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function CoverImage() {
     const { mutateAsync, isLoading } = useFileUpload()
     const { shopData, updateShopData } = useOnboardingStore()
+    const { t } = useLocaleResources('onboarding')
 
     const handleFileChange = async (file: File) => {
         if (file) {
@@ -25,7 +27,7 @@ export default function CoverImage() {
     }
 
     return (
-        <FieldWrapper title='Cover Image'>
+        <FieldWrapper title={t('shopSetup.uploads.coverImage.title')}>
             <FileUpload
                 onFileChange={handleFileChange}
                 isLoading={isLoading}
@@ -36,7 +38,7 @@ export default function CoverImage() {
                 boxProps={{
                     paddingBlock: 6
                 }}
-                dropDescription='JPG, JPEG, and PNG'
+                dropDescription={t('shopSetup.uploads.coverImage.dropDescription')}
                 value={shopData.hero_section}
             />
 

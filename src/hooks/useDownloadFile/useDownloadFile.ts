@@ -1,5 +1,6 @@
 import useAppToast from 'hooks/toast/useToast'
 import { useMutation } from 'react-query'
+import useLocaleResources from '../useLocaleResources/useLocaleResources'
 
 type FileNameResolver<T> = (params: T, data: Blob) => string
 
@@ -19,6 +20,7 @@ function useDownloadFile<T>({
     onSettled
 }: UseDownloadOptions<T>) {
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('common')
     const mutation = useMutation(
         (params: T) => fetcher(params),
         {
@@ -37,7 +39,7 @@ function useDownloadFile<T>({
                 onSuccess?.(data, params)
             },
             onError: (error: any, params) => {
-                showToast({ message: "Failed to download file", type: 'error' })
+                showToast({ message: t('hooks.errors.downloadFailed'), type: 'error' })
                 onError?.(error, params)
             },
             onSettled: (data, error, params) => onSettled?.(data, error, params)

@@ -2,6 +2,7 @@ import { Flex, GridItem, SimpleGrid } from '@chakra-ui/react'
 import ErrorMessage from 'components/redesign/error-message/ErrorMessage'
 import AppInput from 'components/redesign/input/AppInput'
 import CurrencySelect from 'components/redesign/select/CurrencySelect'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAppStore from 'stores/app/appStore'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import { getFieldErrorMessage } from 'pages/products/utils/formHelpers'
@@ -9,6 +10,7 @@ import React from 'react'
 import InfinityToggleButton from '../../common/InfinityToggleButton'
 
 function DigitalProductSKU() {
+    const { t } = useLocaleResources('products')
     const { values: { sku }, errors, setFieldValue } = useProductForm()
     const { shop: { currency } } = useAppStore()
 
@@ -31,12 +33,12 @@ function DigitalProductSKU() {
                 sx={{ input: { fontSize: 16 } }}
             >
                 <AppInput
-                    label="Price"
+                    label={t('digitalProductSKU.price')}
                     inputProps={{
                         isRequired: true,
                         type: 'number',
                         numberType: 'float',
-                        placeholder: '0.00',
+                        placeholder: t('digitalProductSKU.pricePlaceholder'),
                         value: skuData.price || '',
                         onChange: (e) => handleFieldUpdate('price', parseFloat(e.target.value))
                     }}
@@ -47,13 +49,13 @@ function DigitalProductSKU() {
                 </GridItem>
 
                 <AppInput
-                    label="Quantity"
+                    label={t('digitalProductSKU.quantity')}
                     inputContainerProps={{ padding: '10px' }}
                     inputProps={{
                         type: 'number',
                         numberType: 'int',
                         min: 0,
-                        placeholder: '1',
+                        placeholder: t('digitalProductSKU.quantityPlaceholder'),
                         value: skuData.quantity || '',
                         onChange: (e) => handleFieldUpdate('quantity', parseInt(e.target.value))
                     }}
@@ -66,9 +68,9 @@ function DigitalProductSKU() {
                 />
 
                 <AppInput
-                    label="External ID"
+                    label={t('digitalProductSKU.externalID')}
                     inputProps={{
-                        placeholder: '1',
+                        placeholder: t('digitalProductSKU.externalIDPlaceholder'),
                         value: skuData.externalID || '',
                         onChange: (e) => handleFieldUpdate('externalID', e.target.value)
                     }}

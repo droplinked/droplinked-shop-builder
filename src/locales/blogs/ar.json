@@ -1,0 +1,125 @@
+{
+    "title": "محرر المدونة",
+    "description": "هنا يمكنك إنشاء وتحرير وإدارة المشاركات المتعلقة بمدونتك.",
+    "search": "بحث",
+    "table": {
+        "columns": {
+            "post": "المشاركة",
+            "category": "الفئة",
+            "date": "التاريخ",
+            "status": "الحالة"
+        },
+        "status": {
+            "published": "منشور",
+            "draft": "مسودة"
+        },
+        "emptyState": {
+            "message": "انشر مشاركة جديدة لتعزيز تحسين محركات البحث وجذب الجمهور.",
+            "action": "مشاركة جديدة"
+        }
+    },
+    "form": {
+        "title": {
+            "label": "العنوان",
+            "description": "اختر عنوانًا واضحًا وجذابًا للمشاركة.",
+            "placeholder": "مثال: كوب سيراميك يدوي الصنع"
+        },
+        "body": {
+            "label": "المحتوى",
+            "description": "اكتب محتوى مفصل وجذاب لإفادة وإلهام القراء."
+        },
+        "searchEngineSummary": {
+            "label": "ملخص لمحركات البحث",
+            "description": "أضف ملخصًا من 150-200 كلمة ليظهر في نتائج محركات البحث.",
+            "placeholder": "ملخص لمحركات البحث"
+        },
+        "category": {
+            "label": "الفئة",
+            "description": "اختر فئة مناسبة لتنظيم وتحسين ظهور المشاركة.",
+            "placeholder": "اختر فئة",
+            "newCategory": "فئة جديدة"
+        },
+        "keywords": {
+            "label": "الكلمات المفتاحية",
+            "description": "أضف وسومًا ذات صلة لمساعدة المستخدمين في العثور على المشاركة.",
+            "placeholder": "اكتب كلمات مفتاحية لزيادة الوصول إلى هذه المشاركة..."
+        },
+        "featuredPicture": {
+            "label": "الصورة الرئيسية",
+            "description": "ارفع صورة جذابة لتعزيز المظهر البصري.",
+            "dragActiveText": "أسقط الملف هنا ...",
+            "footerText": "JPG أو JPEG أو PNG"
+        },
+        "visibilityStatus": {
+            "label": "حالة الظهور",
+            "description": "احفظ كمسودة أو انشر المشاركة عندما تكون جاهزًا.",
+            "options": {
+                "draft": "مسودة",
+                "visible": "مرئي"
+            }
+        },
+        "toggles": {
+            "featured": {
+                "title": "مميزة",
+                "description": "تثبيت المشاركة في الأعلى."
+            }
+        },
+        "actions": {
+            "discard": "إلغاء",
+            "publish": "نشر",
+            "saveDraft": "حفظ كمسودة"
+        },
+        "validation": {
+            "title": {
+                "required": "العنوان مطلوب"
+            },
+            "body": {
+                "required": "المحتوى مطلوب"
+            },
+            "category": {
+                "required": "الفئة مطلوبة"
+            },
+            "featuredPicture": {
+                "required": "الصورة الرئيسية مطلوبة"
+            }
+        }
+    },
+    "actions": {
+        "publish": "نشر المشاركة",
+        "draft": "حفظ كمسودة",
+        "share": "مشاركة",
+        "remove": "حذف",
+        "edit": "تعديل",
+        "newPost": "مشاركة جديدة"
+    },
+    "modals": {
+        "delete": {
+            "title": "حذف المدونة",
+            "description": "هل أنت متأكد أنك تريد حذف هذه المدونة؟ لا يمكن التراجع عن هذا الإجراء.",
+            "confirm": "حذف"
+        },
+        "changeStatus": {
+            "publishTitle": "نشر المشاركة",
+            "draftTitle": "حفظ كمسودة",
+            "publishDescription": "هل أنت متأكد أنك تريد نشر هذه المشاركة؟",
+            "draftDescription": "هل أنت متأكد أنك تريد حفظ هذه المشاركة كمسودة؟",
+            "confirm": "نشر",
+            "draftConfirm": "مسودة",
+            "cancel": "إلغاء"
+        }
+    },
+    "notifications": {
+        "created": "تم إنشاء المدونة بنجاح",
+        "updated": "تم تحديث المدونة بنجاح",
+        "deleted": "تم حذف المدونة بنجاح",
+        "statusUpdated": "تم تحديث حالة المدونة بنجاح",
+        "linkCopied": "تم نسخ الرابط إلى الحافظة",
+        "error": {
+            "create": "فشل في إنشاء المدونة",
+            "update": "فشل في تحديث المدونة",
+            "delete": "فشل في حذف المدونة",
+            "statusUpdate": "فشل في تحديث حالة المدونة",
+            "fetch": "فشل في جلب المدونات"
+        }
+    }
+}

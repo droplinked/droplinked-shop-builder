@@ -3,30 +3,28 @@ import { CoinsLg } from "assets/icons/Finance/Coins/CoinsLg"
 import { InvoiceLg } from "assets/icons/Finance/Invoice/InvoiceLg"
 import { UserLg } from "assets/icons/System/User/UserLg"
 import RuledGrid from "components/redesign/ruled-grid/RuledGrid"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
 import MetricCard from "../MetricCard"
 
 function KeySalesMetrics() {
+    const [is1024pxOrAbove] = useMediaQuery('(min-width: 1024px)')
     const { data, isLoading } = useAnalyticsStore(state => state.performanceReportResponse)
     const { netProfit, customers, orders } = data
-    const [is1024pxOrAbove] = useMediaQuery('(min-width: 1024px)')
+    const { t } = useLocaleResources("analyticsPage")
 
     const metrics = [
-        { icon: <CoinsLg color="white" />, title: "Net Profit", totalValue: netProfit.total, directValue: netProfit.directSales, affiliateValue: netProfit.affiliateSales },
-        { icon: <UserLg color="white" />, title: "Customers", totalValue: customers.total, directValue: customers.directCustomers, affiliateValue: customers.affiliateCustomers },
-        { icon: <InvoiceLg color="white" />, title: "Orders", totalValue: orders.totalOrders, directValue: orders.directOrders, affiliateValue: orders.affiliateOrders }
+        { icon: <CoinsLg color="white" />, title: t('netProfit'), totalValue: netProfit.total, directValue: netProfit.directSales, affiliateValue: netProfit.affiliateSales },
+        { icon: <UserLg color="white" />, title: t('customers'), totalValue: customers.total, directValue: customers.directCustomers, affiliateValue: customers.affiliateCustomers },
+        { icon: <InvoiceLg color="white" />, title: t('orders'), totalValue: orders.totalOrders, directValue: orders.directOrders, affiliateValue: orders.affiliateOrders }
     ]
 
     const renderMetricCards = () => (
         metrics.map((metric) => (
             <MetricCard
                 key={metric.title}
-                icon={metric.icon}
-                title={metric.title}
-                totalValue={metric.totalValue}
-                directValue={metric.directValue}
-                affiliateValue={metric.affiliateValue}
+                {...metric}
                 isLoading={isLoading}
             />
         ))
@@ -37,7 +35,6 @@ function KeySalesMetrics() {
             {renderMetricCards()}
         </RuledGrid>
     )
-
 
     return (
         <Flex

@@ -3,12 +3,12 @@ jest.mock('react-query', () => ({
     useInfiniteQuery: jest.fn(),
     useQueryClient: jest.fn()
 }))
-jest.mock('lib/apis/blog/services', () => ({
+jest.mock('services/blog/services', () => ({
     __esModule: true,
     getShopBlogsService: jest.fn()
 }))
 
-import { getShopBlogsService } from 'lib/apis/blog/services'
+import { getShopBlogsService } from 'services/blog/services'
 import { useInfiniteQuery, useQueryClient } from 'react-query'
 import useBlogs, { BLOG_LIST_QUERY_KEY, useInvalidateBlogList } from './useBlogs'
 

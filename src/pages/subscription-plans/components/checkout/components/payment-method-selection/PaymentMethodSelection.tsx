@@ -5,12 +5,13 @@ import AppTypography from 'components/common/typography/AppTypography';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { Chain, ChainWallet, DropWeb3, Network, Web3Actions, ZERO_ADDRESS } from 'droplinked-web3';
 import useAppToast from 'hooks/toast/useToast';
-import { SubscriptionPlanPaymentMethod } from 'lib/apis/subscription/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { SubscriptionPlanPaymentMethod } from 'services/subscription/interfaces';
 import {
 	getSubscriptionPaymentMethodsService,
 	sendPlanPurchaseTransactionToWeb3Service,
 	subscriptionPlanCryptoPaymentService,
-} from 'lib/apis/subscription/subscriptionServices';
+} from 'services/subscription/subscriptionServices';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export default function PaymentMethodSelection({ setModalData, selectedPaymentMethod }: Props) {
+	const { t } = useLocaleResources('subscription');
 	const { _id: selectedPlanId } = useSubscriptionPlanPurchaseStore((state) => state.selectedPlan);
 	const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration);
 	const { showToast } = useAppToast();
@@ -148,7 +150,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		if (isError)
 			return (
 				<AppTypography fontSize={16} color={'red.400'}>
-					Oops! It looks like we can not access payment methods at the moment. Give it another try soon?
+					{t('payment.methodSelection.error')}
 				</AppTypography>
 			);
 
@@ -174,8 +176,8 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		<>
 			<ModalHeaderData
 				icon={<AppIcons.PaymentMethodSelection />}
-				title="Payment methods"
-				description={'How would you like to pay for your subscription?'}
+				title={t('payment.methodSelection.title')}
+				description={t('payment.methodSelection.description')}
 			/>
 			<ModalBody display={'flex'} flexDirection={'column'} gap={4} {...getRootProps()}>
 				{renderContent()}
@@ -188,10 +190,10 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 					variant="outline"
 					onClick={handleBack}
 				>
-					Back
+					{t('payment.methodSelection.buttons.back')}
 				</BasicButton>
 				<BasicButton minWidth={'unset'} width={'50%'} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>
-					Next
+					{t('payment.methodSelection.buttons.next')}
 				</BasicButton>
 			</ModalFooter>
 		</>

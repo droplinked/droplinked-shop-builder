@@ -1,7 +1,8 @@
 import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import { ShareLg } from 'assets/icons/Action/Share/ShareLg';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import { TransformedProduct } from '../productUtils';
 interface DirectLinkContentProps {
@@ -9,12 +10,13 @@ interface DirectLinkContentProps {
 }
 
 const Header: React.FC<DirectLinkContentProps> = ({ product }) => {
+  const { t } = useLocaleResources('products');
   const { getFormattedPrice } = useCurrencyConverter();
 
   return (
     <Box width="100%">
       <Box marginX="-48px">
-        <ModalHeaderData icon={<AppIcons.Share />} title=" Share Product" description={`Share your product with people around the world.`} />
+        <ModalHeaderData icon={<ShareLg color="white" />} title={t('shareModal.title')} description={t('shareModal.description')} />
       </Box>
       <Box mb="24px" />
       <Flex width="100%" padding="16px 24px 16px 16px" alignItems="center" gap="24px" bg="neutral.gray.800" borderRadius="12px" border="1px solid" borderColor="neutral.gray.800">

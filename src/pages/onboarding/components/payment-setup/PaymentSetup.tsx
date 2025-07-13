@@ -1,14 +1,16 @@
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { useState } from 'react'
-import useAppStore from 'stores/app/appStore'
 import ControlButtons from '../common/ControlButtons'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import CurrencySection from './CurrencySection'
 import FinancialServices from './FinancialServices'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import useAppStore from 'stores/app/appStore'
 
 function PaymentSetup() {
   const [isLoading, setIsLoading] = useState(false)
   const { updateOnboardingState } = useOnboardingStore()
+  const { t } = useLocaleResources('onboarding')
   const { hasPaidSubscription } = useAppStore()
 
   const handleCurrencyLoading = (loading: boolean) => {
@@ -22,9 +24,9 @@ function PaymentSetup() {
 
   return (
     <>
-      <OnboardingStepHeader
-        heading="Basic Payment Details"
-        description="Choose to activate any of the options below."
+      <OnboardingStepHeader 
+        heading={t('paymentSetup.title')} 
+        description={t('paymentSetup.subtitle')} 
       />
       <FinancialServices />
       <CurrencySection onLoadingChange={handleCurrencyLoading} />

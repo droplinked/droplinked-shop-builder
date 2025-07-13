@@ -3,11 +3,13 @@ import { BlockNoteView } from "@blocknote/mantine"
 import "@blocknote/mantine/style.css"
 import { useCreateBlockNote } from "@blocknote/react"
 import FormFieldWrapper from "components/redesign/form-field-wrapper/FormFieldWrapper"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogForm from 'pages/blogs/hooks/useBlogForm'
 import React from 'react'
 
 function BodyEditor() {
     const { values, errors, setFieldValue } = useBlogForm()
+    const { t } = useLocaleResources("blogs")
     const editor = useCreateBlockNote({ initialContent: JSON.parse(values.content) })
 
     const formFieldWrapperStyles = {
@@ -30,8 +32,8 @@ function BodyEditor() {
 
     return (
         <FormFieldWrapper
-            label="Body"
-            description="Write detailed and engaging content to inform and captivate readers."
+            label={t("form.body.label")}
+            description={t("form.body.description")}
             errorMessage={errors.content?.toString() ?? ""}
             isRequired
             sx={formFieldWrapperStyles}

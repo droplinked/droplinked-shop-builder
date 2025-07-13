@@ -1,21 +1,28 @@
-import PageGrid from "components/redesign/page-grid/PageGrid";
-import React, { useEffect } from "react";
-import TabsContent from "./components/TabsContent";
-import useCreditStore from "./stores/CreditStore";
+import PageGrid from "components/redesign/page-grid/PageGrid"
+import React, { useEffect } from "react"
+import TabsContent from "./components/TabsContent"
+import useCreditStore from "./stores/CreditStore"
+import enLocale from "locales/credit-and-activity/en.json"
+import arLocale from "locales/credit-and-activity/ar.json"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 export default function CreditsAndActivity() {
+    const { t } = useLocaleResources("creditsAndActivity", {
+        en: enLocale,
+        ar: arLocale
+    })
     const { resetCreditState } = useCreditStore()
 
     useEffect(() => {
         return () => {
-            resetCreditState();
+            resetCreditState()
         }
     }, [])
 
     return (
         <PageGrid.Root>
-            <PageGrid.Header title="Credits and Account Activity" description="Manage account credits and review onchain activity." />
+            <PageGrid.Header title={t("header.title")} description={t("header.subtitle")} />
             <TabsContent />
         </PageGrid.Root>
-    );
+    )
 }

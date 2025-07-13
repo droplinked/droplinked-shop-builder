@@ -1,11 +1,14 @@
 import { Link as ChakraLink, Flex, useBreakpointValue } from '@chakra-ui/react'
-import publicHeaderLinks from 'data/publicHeaderLinks'
+import getPublicHeaderLinks from 'data/publicHeaderLinks'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu/MegaMenu'
 
 export default function NavigationMenu() {
     const isMobileView = useBreakpointValue({ base: true, xl: false })
+    const { t } = useLocaleResources('common')
+    const publicHeaderLinks = getPublicHeaderLinks(t)
 
     if (isMobileView) return null
 

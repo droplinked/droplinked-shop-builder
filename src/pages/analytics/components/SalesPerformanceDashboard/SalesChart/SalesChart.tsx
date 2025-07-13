@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import { SalesData } from 'lib/apis/dashboard/interfaces'
+import { SalesData } from 'services/dashboard/interfaces'
 import React from 'react'
 import ChartToolbar from './ChartToolbar'
 import StackedBarChart from './StackedBarChart'

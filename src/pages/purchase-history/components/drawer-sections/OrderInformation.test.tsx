@@ -1,7 +1,7 @@
 // filepath: i:\droplinked-shop-builder\src\pages\purchase-history\components\drawer-sections\OrderInformation.test.tsx
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { IOrderDetails } from 'lib/apis/order/interfaces';
+import { IOrderDetails } from 'services/order/interfaces';
 // Import the component under test after all mocks are defined
 import OrderInformation from './OrderInformation';
 

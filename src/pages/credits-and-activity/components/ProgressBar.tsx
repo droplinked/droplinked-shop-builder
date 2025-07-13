@@ -1,19 +1,20 @@
-import { Flex, HStack, VStack } from '@chakra-ui/react';
-import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
-import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice';
-import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/HorizontalBarChart';
-import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle';
-import { IBreakDown } from 'lib/apis/credit/interfaces';
-import React from 'react';
-import { createColorMap, getColor } from '../utils/colorHelpers';
+import { Flex, HStack, VStack } from '@chakra-ui/react'
+import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList'
+import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
+import HorizontalBarChart from 'components/redesign/horizontal-bar-chart/HorizontalBarChart'
+import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
+import { IBreakDown } from 'services/credit/interfaces'
+import React from 'react'
+import { createColorMap, getColor } from '../utils/colorHelpers'
 
 interface Props {
     items: IBreakDown[]
-    type: "inbound" | "outbound";
+    isInbound: boolean
 }
 
-export default function ProgressBar({ items, type }: Props) {
-    const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
+export default function ProgressBar({ items, isInbound }: Props) {
+    const sortedItems = [...items].sort((a, b) => b.amount - a.amount)
+    const type = isInbound ? "inbound" : "outbound"
     const colorMap = createColorMap(sortedItems, type)
 
     return (
@@ -38,6 +39,6 @@ export default function ProgressBar({ items, type }: Props) {
                 ))}
             </HStack>
         </VStack>
-    );
+    )
 }
 

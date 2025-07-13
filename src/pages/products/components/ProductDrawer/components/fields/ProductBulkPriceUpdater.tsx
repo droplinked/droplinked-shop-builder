@@ -1,10 +1,12 @@
 import CurrencyIcon from 'components/redesign/currency-icon/CurrencyIcon'
 import AppInput from 'components/redesign/input/AppInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React, { useEffect, useState } from 'react'
 import SwitchBox from '../common/SwitchBox'
 
 function ProductBulkPriceUpdater() {
+    const { t } = useLocaleResources('products');
     const { values: { sku }, setFieldValue } = useProductForm()
     const [fixedPrice, setFixedPrice] = useState(false)
     const [inputValue, setInputValue] = useState<string | number>('')
@@ -32,8 +34,8 @@ function ProductBulkPriceUpdater() {
 
     return (
         <SwitchBox
-            title="Fixed Price"
-            description="Apply a fixed price to all variants, overriding individual variant prices."
+            title={t('fields.bulkPriceUpdater.title')}
+            description={t('fields.bulkPriceUpdater.description')}
             switchProps={{
                 isChecked: fixedPrice,
                 onChange: (e) => setFixedPrice(e.target.checked)
@@ -45,7 +47,7 @@ function ProductBulkPriceUpdater() {
                         type: "number",
                         numberType: "float",
                         value: inputValue,
-                        placeholder: "0.00",
+                        placeholder: t('fields.bulkPriceUpdater.placeholder'),
                         onChange: (e) => handleInputChange((parseFloat(e.target.value)))
                     }}
                     leftElement={<CurrencyIcon />}

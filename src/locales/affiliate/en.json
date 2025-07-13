@@ -1,0 +1,99 @@
+{
+  "stores": {
+    "hero": {
+      "title": "Showcase and sell your products in the most awesome affiliate marketplace",
+      "cta": "Become an Affiliate Partner"
+    },
+    "filters": {
+      "searchPlaceholder": "Search"
+    },
+    "table": {
+      "columns": {
+        "merchant": "Merchant",
+        "products": "Products",
+        "unitsSold": "Units Sold",
+        "avgCommission": "Avg. Commission",
+        "topProducts": "Top Products"
+      },
+      "noData": "N/A"
+    }
+  },
+  "products": {
+    "filters": {
+      "searchPlaceholder": "Search products",
+      "priceRange": {
+        "min": "Price",
+        "max": "Max Price"
+      },
+      "commissionRange": {
+        "min": "Commission",
+        "max": "Max Commission"
+      },
+      "categories": "Categories",
+      "sortBy": "Sort by",
+      "sortOptions": {
+        "newest": "Newest",
+        "oldest": "Oldest",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "commissionHighToLow": "Commission: High to Low",
+        "commissionLowToHigh": "Commission: Low to High"
+      }
+    },
+    "actionBar": {
+      "showFilters": "Filters",
+      "hideFilters": "Filters",
+      "clearFilters": "Clear Filters",
+      "resultsCount": "{{count}} products found"
+    },
+    "productCard": {
+      "commission": "{{commission}}%",
+      "noPrice": "Price not available"
+    },
+    "productDetails": {
+      "commission": "Commission rate",
+      "price": "Price",
+      "description": "Description",
+      "features": "Features",
+      "specifications": "Specifications",
+      "relatedProducts": "Related Products",
+      "shareProduct": "Share Product",
+      "copyLink": "Copy Link",
+      "linkCopied": "Link copied to clipboard!",
+      "viewStore": "View Store",
+      "contactStore": "Contact Store",
+      "availableItems": "Available items",
+      "profitPerSale": "Profit per sale",
+      "producer": "Producer",
+      "importProduct": "Import Product",
+      "productImported": "Product Imported",
+      "failedToImport": "Failed to import product",
+      "shippingAvailability": "Shipping Availability"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noData": "N/A",
+    "retry": "Retry",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "add": "Add",
+    "remove": "Remove",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "download": "Download",
+    "upload": "Upload",
+    "export": "Export",
+    "import": "Import"
+  }
+} 

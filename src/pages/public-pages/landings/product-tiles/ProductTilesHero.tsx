@@ -3,23 +3,30 @@ import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
+import localEn from 'locales/public-pages/landings/product-tiles/en.json'
+import localAr from 'locales/public-pages/landings/product-tiles/ar.json'
 
 function ProductTilesHero() {
+    const { t } = useLocaleResources('public-pages/landings/product-tiles', {
+        en: localEn,
+        ar: localAr
+    })
     return (
         <HeroSection
-            title={`Sell Anywhere, Anytime \n with Product Tiles`}
-            subtitle="Easily create product tiles to share across any platform or site for direct selling, no complex integrations or coding required"
+            title={t('hero.title')}
+            subtitle={t('hero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            Start Now
+                            {t('hero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            Request a Demo
+                            {t('hero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

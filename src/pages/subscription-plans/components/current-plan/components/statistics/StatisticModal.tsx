@@ -1,10 +1,11 @@
-import { Flex, TabPanel, TabPanels, Tabs, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
+import { Flex, TabPanel, TabPanels, Tabs, useMediaQuery } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import Drawer from 'components/common/Drawer/Drawer';
 import AppButton from 'components/redesign/button/AppButton';
-import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { TabsList } from 'pages/purchase-history/components/drawer-components/TabList';
-import React from 'react';
+import React, { useState } from 'react';
+import { ShopSubscriptionData } from 'services/subscription/interfaces';
 import CurrentPlanBanner from './components/CurrentPlanBanner';
 import DetailsTab from './components/DetailsTab';
 import StatisticTab from './components/StatisticTab';
@@ -14,19 +15,20 @@ interface IProps {
 }
 
 function StatisticModal({ data }: IProps) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const currentPlan = data.subscriptionId.type
     const status = data.status
-    const drawerPlacement = useBreakpointValue({ base: "bottom", md: "right" }) as "bottom" | "right"
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
+    const { t } = useLocaleResources('subscription');
 
     const tabs = [
         {
-            title: "Statistics",
+            title: t('statisticsModal.tabs.statistics'),
             content: <StatisticTab data={data} />
         },
         {
-            title: "Details",
-            content: <DetailsTab handleCloseModal={onClose} data={data} />
+            title: t('statisticsModal.tabs.details'),
+            content: <DetailsTab data={data} />
         }
     ]
 
@@ -36,19 +38,19 @@ function StatisticModal({ data }: IProps) {
                 variant="outlined"
                 color="neutral.white"
                 borderColor="neutral.gray.800"
-                onClick={onOpen}
+                onClick={() => setIsOpen(true)}
                 leftIcon={<AppIcons.Statistics />}
             >
-                Manage Subscription
+                {t('statisticsModal.manageSubscription')}
             </AppButton>
 
             <Tabs variant="unstyled" width="100%">
                 <Drawer
                     isOpen={isOpen}
-                    onClose={onClose}
-                    title="Subscription Management"
-                    placement={drawerPlacement}
-                    description='Track your usage, view plan details, and update your subscription preferences.'
+                    onClose={() => setIsOpen(false)}
+                    title={t('statisticsModal.title')}
+                    placement={isSmallerThan768 ? "bottom" : "right"}
+                    description={t('statisticsModal.description')}
                     headerContent={
                         <Flex width="100%" flexDirection="column" gap={6}>
                             <CurrentPlanBanner currentPlan={currentPlan} status={status} />

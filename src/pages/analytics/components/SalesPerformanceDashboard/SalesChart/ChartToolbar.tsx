@@ -2,22 +2,21 @@ import { Flex } from '@chakra-ui/react'
 import { ChevronleftSm } from 'assets/icons/Navigation/ChevronLeft/ChevronleftSm'
 import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/ChevronrightSm'
 import StylizedTitle from 'components/redesign/stylized-title/StylizedTitle'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useAnalyticsStore from 'pages/analytics/stores/useAnalyticsStore'
 import React from 'react'
 import DateRangeNavButton from './DateRangeNavButton'
 
-export default function ChartToolbar() {
+function ChartToolbar() {
     const { selectedDateRange, updateAnalyticsPageState } = useAnalyticsStore()
+    const { t } = useLocaleResources("analyticsPage")
 
-    // Normalize the union type into a tuple
     const [start, end] = Array.isArray(selectedDateRange)
         ? selectedDateRange
         : [selectedDateRange, selectedDateRange]
 
-    // Check if range is valid
     const isValidRange = start instanceof Date && end instanceof Date
 
-    // Compute navigation states
     let duration = 0
     let nextEnd: Date | null = null
     const isPrevDisabled = !isValidRange
@@ -49,21 +48,23 @@ export default function ChartToolbar() {
     return (
         <Flex justifyContent="space-between">
             <Flex gap={12}>
-                <StylizedTitle bgColor="#2BCFA1" title="Direct" />
-                <StylizedTitle bgColor="#C5A3FF" title="Affiliate" />
+                <StylizedTitle bgColor="#2BCFA1" title={t('direct')} />
+                <StylizedTitle bgColor="#C5A3FF" title={t('affiliate')} />
             </Flex>
 
             <Flex gap={4}>
                 <DateRangeNavButton onClick={handlePrevClick} isDisabled={isPrevDisabled}>
                     <ChevronleftSm color={isPrevDisabled ? '#4F4F4F' : 'white'} />
-                    Prev
+                    {t('prev')}
                 </DateRangeNavButton>
 
                 <DateRangeNavButton onClick={handleNextClick} isDisabled={isNextDisabled}>
-                    Next
+                    {t('next')}
                     <ChevronrightSm color={isNextDisabled ? '#4F4F4F' : 'white'} />
                 </DateRangeNavButton>
             </Flex>
         </Flex>
     )
 }
+
+export default ChartToolbar

@@ -3,6 +3,9 @@ import { ShowMd } from 'assets/icons/Action/Show/ShowMd'
 import AppInput from 'components/redesign/input/AppInput'
 import React, { useState } from 'react'
 import { InputChangeEvent } from 'types/eventTypes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 
 interface PasswordInputProps {
     name: string
@@ -18,22 +21,26 @@ function PasswordInput({
     name,
     value,
     onChange,
-    placeholder = "Enter password",
-    label = "Password",
+    placeholder,
+    label,
     message,
     isRequired
 }: PasswordInputProps) {
     const [inputType, setInputType] = useState<"text" | "password">("password")
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     return (
         <AppInput
-            label={label}
+            label={label || t('common.passwordLabel')}
             inputProps={{
                 name,
                 type: inputType,
                 value,
                 onChange,
-                placeholder,
+                placeholder: placeholder || t('common.passwordPlaceholder'),
                 isRequired,
             }}
             rightElement={

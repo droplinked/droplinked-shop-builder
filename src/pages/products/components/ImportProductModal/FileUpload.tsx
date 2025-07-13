@@ -1,10 +1,13 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useDropzone } from 'react-dropzone'
 
 function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
+    const { t } = useLocaleResources('products');
+    
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: (acceptedFiles: File[]) => {
             const selectedFile = acceptedFiles[0]
@@ -15,14 +18,14 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
     })
 
     const dropMessage = isDragActive ?
-        <AppTypography fontSize={14} color="#fff">Drop the file here ...</AppTypography>
+        <AppTypography fontSize={14} color="#fff">{t('importModal.fileUpload.dropHere')}</AppTypography>
         :
         <>
             <AppTypography fontSize={14} color="#fff">
-                <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">Click</Box> {" "}
-                to add a new file or drag and drop it here.
+                <Box as="span" fontWeight={600} color="#179EF8" textDecoration="underline">{t('importModal.fileUpload.click')}</Box> {" "}
+                {t('importModal.fileUpload.dragDropText')}
             </AppTypography>
-            <AppTypography color="text.subtext.placeholder.dark">Just CSV (Up to 1MB)</AppTypography>
+            <AppTypography color="text.subtext.placeholder.dark">{t('importModal.fileUpload.supportedFormats')}</AppTypography>
         </>
 
 
@@ -39,7 +42,7 @@ function FileUpload({ onFileChange }: { onFileChange: (file: File) => void }) {
             cursor="pointer"
             {...getRootProps()}
         >
-            <input {...getInputProps()} type="file" name="file" aria-label="Upload file" />
+            <input {...getInputProps()} type="file" name="file" aria-label={t('importModal.fileUpload.uploadFile')} />
             <AppIcons.HeaderImage />
             {dropMessage}
         </Flex>

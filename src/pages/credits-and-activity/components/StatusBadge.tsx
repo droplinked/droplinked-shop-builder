@@ -1,5 +1,5 @@
 import AppBadge from 'components/redesign/badge/AppBadge';
-import { IDetailedTransaction } from 'lib/apis/credit/interfaces';
+import { IDetailedTransaction } from 'services/credit/interfaces';
 import React from 'react';
 
 export default function StatusBadge({ status }: { status: IDetailedTransaction["status"] }) {

@@ -5,19 +5,27 @@ import React from 'react'
 import ConnectWalletModal from './components/connect-wallets-modal/ConnectWalletModal'
 import { OnchainRecordsProvider } from './context/OnchainRecordsContext'
 import Records from './records/Records'
+import enLocale from "locales/onchain-records/en.json"
+import arLocale from "locales/onchain-records/ar.json"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function OnchainRecords() {
+    const { t } = useLocaleResources("onchainRecords", {
+        en: enLocale,
+        ar: arLocale
+    })
+
     const { onClose, isOpen, onOpen } = useDisclosure()
 
     return (
         <OnchainRecordsProvider>
             <PageGrid.Root>
                 <PageGrid.Header
-                    title="Onchain Records"
-                    description="View inventory records and onchain activity."
+                    title={t("onChain_Page_Title")}
+                    description={t("onChain_Page_Description")}
                     actionButtons={[
                         {
-                            title: "Connect Wallet",
+                            title: t("connect_wallet"),
                             onClick: onOpen,
                             fontSize: 14,
                             fontWeight: 500,

@@ -3,10 +3,12 @@ import AppIcons from 'assets/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function InvoicesEmptyState() {
+    const { t } = useLocaleResources('invoice-management');
     const navigate = useNavigate()
 
     return (
@@ -17,10 +19,10 @@ function InvoicesEmptyState() {
                 src='https://upload-file-droplinked.s3.amazonaws.com/8043d6e41e03dcb155f33d2a2ccde56ddcb02819e4e1c998e3285a271c3aeb24.png'
                 objectFit='cover'
                 borderRadius={8}
-                alt='floating astronaut'
+                alt={t('emptyState.alt')}
             />
-            <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>Looks like space is empty</AppTypography>
-            <AppTypography mt={2} fontSize={16} fontWeight={400} color={"white"}>Create an invoice to get started!</AppTypography>
+            <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>{t('emptyState.title')}</AppTypography>
+            <AppTypography mt={2} fontSize={16} fontWeight={400} color={"white"}>{t('emptyState.description')}</AppTypography>
             <BlueButton
                 sx={{ "svg path": { "stroke": "#2BCFA1" } }}
                 color="#2BCFA1"
@@ -33,7 +35,7 @@ function InvoicesEmptyState() {
                 mt={4}
                 onClick={() => navigate("/analytics/invoice-management/create")}
             >
-                New Invoice
+                {t('emptyState.newInvoice')}
             </BlueButton>
         </Flex>
     )

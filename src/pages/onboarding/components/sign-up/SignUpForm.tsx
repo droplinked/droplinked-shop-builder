@@ -5,7 +5,7 @@ import AppInput from 'components/redesign/input/AppInput'
 import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import { Form, Formik } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
-import { signupService } from 'lib/apis/auth/services'
+import { signupService } from 'services/auth/services'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import { arePasswordRulesMet } from 'pages/onboarding/utils/passwordRules'
 import React, { useState } from 'react'
@@ -17,6 +17,9 @@ import DividerText from '../common/DividerText'
 import GoogleAuthButton from '../common/GoogleAuthButton'
 import OnboardingStepHeader from '../common/OnboardingStepHeader'
 import PasswordInput from '../common/PasswordInput'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/onboarding/ar.json'
+import enLocale from 'locales/onboarding/en.json'
 import PasswordValidationRules from '../common/PasswordValidationRules'
 
 const formSchema = Yup.object().shape({
@@ -30,6 +33,10 @@ function SignUpForm() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const { updateOnboardingState } = useOnboardingStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('onboarding', {
+        en: enLocale,
+        ar: arLocale
+    })
 
     const referralCode = searchParams.get("referral")
     const d3Id = searchParams.get("d3-id")
@@ -51,7 +58,7 @@ function SignUpForm() {
             updateOnboardingState('currentStep', 'SIGNUP_EMAIL_VERIFICATION')
         }
         catch (error: any) {
-            const errorMessage = error?.response?.data?.data?.message || "Signup failed"
+            const errorMessage = error?.response?.data?.data?.message || t('signUp.errorMessage')
             showToast({ message: errorMessage, type: "error" })
         }
     }
@@ -59,8 +66,8 @@ function SignUpForm() {
     return (
         <>
             <OnboardingStepHeader
-                heading='Welcome to droplinked'
-                description='Complete the details below or use your Google account.'
+                heading={t('common.welcomeTitle')}
+                description={t('signUp.subtitle')}
             />
 
             <Formik
@@ -75,12 +82,12 @@ function SignUpForm() {
                     return (
                         <Form style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                             <AppInput
-                                label="Email Address"
+                                label={t('common.emailLabel')}
                                 inputProps={{
                                     name: "email",
                                     value: values.email,
                                     onChange: handleChange,
-                                    placeholder: "Enter email address",
+                                    placeholder: t('common.emailPlaceholder'),
                                     isRequired: true
                                 }}
                                 message={errors.email?.toString()}
@@ -98,12 +105,12 @@ function SignUpForm() {
                             </VStack>
 
                             <AppInput
-                                label="Referral Code"
+                                label={t('signUp.referralLabel')}
                                 inputProps={{
                                     name: "referralCode",
                                     value: values.referralCode,
                                     onChange: handleChange,
-                                    placeholder: "Enter referral code"
+                                    placeholder: t('signUp.referralPlaceholder')
                                 }}
                             />
 
@@ -114,8 +121,8 @@ function SignUpForm() {
                                 onChange={(e: InputChangeEvent) => setAcceptTerms(e.target.checked)}
                             >
                                 <Text display='flex' gap='1' fontSize={14} color="text.white">
-                                    By signing up, I agree to your {" "}
-                                    <InteractiveText to="/terms" display="contents">Terms and Conditions.</InteractiveText>
+                                    {t('signUp.termsPrefix')}
+                                    <InteractiveText to="/terms" display="contents">{t('signUp.termsLink')}</InteractiveText>
                                 </Text>
                             </Checkbox>
 
@@ -124,10 +131,10 @@ function SignUpForm() {
                                 isDisabled={!acceptTerms || isSubmitting || !isPasswordValid}
                                 onClick={submitForm}
                             >
-                                Sign Up
+                                {t('signUp.submitButton')}
                             </AppButton>
 
-                            <DividerText text="or sign up with" />
+                            <DividerText text={t('common.orContinueWith')} />
 
                             <GoogleAuthButton
                                 isSignUp={true}
@@ -140,8 +147,8 @@ function SignUpForm() {
 
                             <AuthRedirectLink
                                 justifyContent="center"
-                                text='Already have an account?'
-                                linkText='Sign in'
+                                text={t('signUp.haveAccountText')}
+                                linkText={t('signUp.signInLink')}
                                 action={() => updateOnboardingState('currentStep', 'SIGN_IN')}
                             />
                         </Form>

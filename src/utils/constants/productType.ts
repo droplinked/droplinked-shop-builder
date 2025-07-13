@@ -1,5 +1,5 @@
-import { product_type } from "lib/apis/product/interfaces";
-import { LegalUsageKey } from "lib/apis/subscription/interfaces";
+import { product_type } from "services/product/interfaces";
+import { LegalUsageKey } from "services/subscription/interfaces";
 import AppErrors from "./errors";
 
 // Maps product types to their respective legal usage and error messages
@@ -26,4 +26,3 @@ export const productTypeUsageLimits: Record<product_type | "drop", { errorMessag
     }
 }
 
- 

@@ -1,4 +1,4 @@
-import { SubscriptionPlanPaymentMethod } from "lib/apis/subscription/interfaces"
+import { SubscriptionPlanPaymentMethod } from "services/subscription/interfaces"
 
 export type ModalStep = 'PlanConfirmation' | 'PaymentMethodSelection' | 'StripePayment' | 'SuccessfulPayment' | 'FailedPayment'
 

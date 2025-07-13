@@ -1,12 +1,12 @@
-import { Tab, TabList } from "@chakra-ui/react";
-import React from 'react';
+import { Tab, TabList } from "@chakra-ui/react"
+import React from 'react'
 
 interface TabsListProps {
     tabs: Array<{
-        title: string;
-        content: any;
-        isDisabled?: boolean;
-    }>;
+        title: string
+        content: any
+        isDisabled?: boolean
+    }>
 }
 
 export function TabsList({ tabs }: TabsListProps) {

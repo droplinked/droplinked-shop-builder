@@ -1,84 +1,95 @@
-import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
+import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
 import { LeafLg } from 'assets/icons/System/Leaf/LeafLg';
 import { Star2Lg } from 'assets/icons/System/Star2/Star2Lg';
-import { BuildingLg } from 'assets/icons/System/Building/BuildingLg';
+import { SuitcaseLg } from 'assets/icons/System/SuitCase/SuitcaseLg';
+import { TFunction } from 'i18next';
+import { PlanType } from 'services/subscription/interfaces';
 
-export const subscriptionPlans = {
+type SubscriptionPlans = Record<PlanType, {
+  icon: React.ComponentType;
+  title: string;
+  description: string;
+  features: {
+    title: string;
+    items: string[];
+  };
+  type: PlanType;
+}>;
+
+export const getSubscriptionPlans = (t: TFunction): SubscriptionPlans => ({
   STARTER: { 
     icon: LeafLg, 
-    title: 'Starter', 
-    description: 'For individuals or companies just getting started.' ,
+    title: t('plans.starter.title'), 
+    description: t('plans.starter.description'),
     features: {
-      title: "Starter plan includes:",
+      title: t('plans.starter.featuresTitle'),
       items: [
-          "Analytics",
-          "Store designer",
-          "Shipment tracking",
-          "Product collections",
-          "Custom referral codes",
-          "Affiliate network access",
-          "Basic customer support"
+        t('plans.starter.features.analytics'),
+        t('plans.starter.features.storeDesigner'),
+        t('plans.starter.features.shipmentTracking'),
+        t('plans.starter.features.productCollections'),
+        t('plans.starter.features.referralCodes'),
+        t('plans.starter.features.affiliateNetwork'),
+        t('plans.starter.features.basicSupport')
       ]
     },
     type: 'STARTER'
   },
   BUSINESS: { 
     icon: SuitcaseLg, 
-    title: 'Pro', 
-    description: 'For small businesses and teams ready to grow.' ,
+    title: t('plans.pro.title'), 
+    description: t('plans.pro.description'),
     features: {
-      title: "Includes everything in Starter, plus:",
+      title: t('plans.pro.featuresTitle'),
       items: [
-          "Token gating",
-          "Mint-to-Merch",
-          "Unlimited tokenization",
-          "Unlimited digital goods",
-          "Unlimited physical products",
-          "Customizable domains",
-          "Customizable favicon",
-          "Customizable shipping",
-          "Digital coupons and giftcards",
-          "Warehouse system integration",
-          "Premium customer support"
+        t('plans.pro.features.tokenGating'),
+        t('plans.pro.features.mintToMerch'),
+        t('plans.pro.features.unlimitedTokenization'),
+        t('plans.pro.features.unlimitedDigitalGoods'),
+        t('plans.pro.features.unlimitedPhysicalProducts'),
+        t('plans.pro.features.customDomains'),
+        t('plans.pro.features.customFavicon'),
+        t('plans.pro.features.customShipping'),
+        t('plans.pro.features.digitalCoupons'),
+        t('plans.pro.features.warehouseIntegration'),
+        t('plans.pro.features.premiumSupport')
       ]
     },
     type: 'BUSINESS'
   },
   BUSINESS_PRO: { 
     icon: Star2Lg, 
-    title: 'Premium', 
-    description: 'For large businesses needing comprehensive solutions at scale.', 
+    title: t('plans.premium.title'), 
+    description: t('plans.premium.description'),
     features: {
-      title: "Includes everything in Pro, plus:",
-        items: [
-            "API integration",
-            "Royalty tracking",
-            "Advanced analytics",
-            "Embeddable product tiles",
-            "Unlimited Production-on-Demand",
-            "Marketing tools",
-            "Admin management panel",
-            "VIP customer support"
-        ]
+      title: t('plans.premium.featuresTitle'),
+      items: [
+        t('plans.premium.features.apiIntegration'),
+        t('plans.premium.features.royaltyTracking'),
+        t('plans.premium.features.advancedAnalytics'),
+        t('plans.premium.features.embeddableProducts'),
+        t('plans.premium.features.unlimitedProduction'),
+        t('plans.premium.features.marketingTools'),
+        t('plans.premium.features.adminPanel'),
+        t('plans.premium.features.vipSupport')
+      ]
     },
     type: 'BUSINESS_PRO'
   },
   ENTERPRISE: { 
     icon: BuildingLg, 
-    title: 'Enterprise', 
-    description: 'Contact us to explore integration.' ,
+    title: t('plans.enterprise.title'), 
+    description: t('plans.enterprise.description'),
     features: {
-      title: "Includes everything in Premium, plus",
+      title: t('plans.enterprise.featuresTitle'),
       items: [
-          "Tokenpay",
-          "Customizable templates",
-          "Unlimited login methods",
-          "Unlimited payment methods",
-          "DPP (Digital Product Passport)"
+        t('plans.enterprise.features.tokenPay'),
+        t('plans.enterprise.features.customTemplates'),
+        t('plans.enterprise.features.unlimitedLogin'),
+        t('plans.enterprise.features.unlimitedPayment'),
+        t('plans.enterprise.features.digitalPassport')
       ]
     },
     type: 'ENTERPRISE'
   }
-} as const; 
-
-export type PlanType = keyof typeof subscriptionPlans;
+})

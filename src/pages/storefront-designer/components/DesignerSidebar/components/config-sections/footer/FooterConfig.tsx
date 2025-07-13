@@ -8,6 +8,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import { AdditionalLinks } from 'pages/storefront-designer/types/designerTypes';
 import React, { useCallback, useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
+import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
+import localEn from '../../../../../../../locales/storefront/en.json';
+import localAr from '../../../../../../../locales/storefront/ar.json';
 
 /**
  * Footer configuration component for managing footer links
@@ -19,6 +22,8 @@ function FooterConfig(): React.ReactElement {
       shop: { shopDesign }
     }
   } = useContext(designerContext);
+
+  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   /**
    * Handle link field value changes
@@ -63,11 +68,11 @@ function FooterConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title="Link Management">
+      <SectionItem title={t('designerSidebar.footerConfig.linkManagement.title')}>
         <Box width="100%" height="auto" borderRadius="lg" borderWidth="1px" borderColor="neutral.gray.800" overflow="hidden">
           <Flex width="100%" height="auto" display="flex" alignItems="center" justifyContent="space-between" padding={3} backgroundColor="neutral.gray.800">
             <Text fontSize="sm" fontWeight="medium" color="white">
-              Column 1
+              {t('designerSidebar.footerConfig.linkManagement.column', { number: 1 })}
             </Text>
             <EditMd color="white" />
           </Flex>
@@ -76,7 +81,7 @@ function FooterConfig(): React.ReactElement {
             <Flex width="100%" height="auto" display="flex" flexDirection="column" gap={3} key={index}>
               <Flex width="100%" height="auto" display="flex" alignItems="center" justifyContent="space-between" padding="16px 16px 0 16px">
                 <Text fontSize="sm" fontWeight="medium" color="white">
-                  Link {index + 1}
+                  {t('designerSidebar.footerConfig.linkManagement.link', { number: index + 1 })}
                 </Text>
                 <Box width="auto" height="auto" cursor="pointer" onClick={() => deleteLink(index)}>
                   <TrashMd color="#FF2244" />
@@ -88,7 +93,7 @@ function FooterConfig(): React.ReactElement {
                   <AppInput
                     width="100%"
                     height="48px"
-                    placeholder="Label"
+                    placeholder={t('designerSidebar.footerConfig.linkManagement.inputs.label')}
                     name="caption"
                     value={item.caption}
                     onChange={(e) => handleChange(index, e.target.value, 'caption')}
@@ -103,7 +108,7 @@ function FooterConfig(): React.ReactElement {
                   <AppInput
                     width="100%"
                     height="48px"
-                    placeholder="URL"
+                    placeholder={t('designerSidebar.footerConfig.linkManagement.inputs.url')}
                     name="link"
                     value={item.link}
                     onChange={(e) => handleChange(index, e.target.value, 'link')}
@@ -130,7 +135,7 @@ function FooterConfig(): React.ReactElement {
             onClick={addLink}
             _hover="none"
           >
-            New Link
+            {t('designerSidebar.footerConfig.linkManagement.newLink')}
           </AppButton>
         </Box>
       </SectionItem>

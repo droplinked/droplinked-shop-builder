@@ -1,7 +1,10 @@
 import { Box, Button, Flex, HStack, Input, useBreakpointValue } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useRef } from 'react';
+import enLocale from 'locales/affiliate/en.json'
+import arLocale from 'locales/affiliate/ar.json'
 
 interface ActionBarProps {
   setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,6 +13,11 @@ interface ActionBarProps {
 }
 
 const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFilterChange }) => {
+  const { t } = useLocaleResources('affiliate',{
+    en: enLocale,
+    ar: arLocale
+  } );
+
   const inputRef = useRef(null);
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
@@ -35,7 +43,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
       >
         {isSmallScreen ? <AppIcons.FilterAction /> : <AppIcons.SideBarExpand />}
         <AppTypography color="white" fontSize="16px" fontWeight="500" ml={2}>
-          Filters
+          {t('products.actionBar.showFilters')}
         </AppTypography>
       </Button>
 
@@ -56,7 +64,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
           }}
           _placeholder={{ color: 'text.subtext.placeholder.dark' }}
           value={filters.title}
-          placeholder="Search"
+          placeholder={t('products.filters.searchPlaceholder')}
           onChange={(e) => handleFilterChange('title', e.target.value)}
         />
         <Box as="button" cursor={'pointer'} bg={"neutral.gray.800"} rounded={2} onClick={focusSearchInput}>

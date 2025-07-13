@@ -2,8 +2,9 @@ import { Flex, Text, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import ProTrialModal from 'components/modals/pro-plan-upgrade-modal/ProPlanUpgradeModal'
 import useAppToast from 'hooks/toast/useToast'
-import { IGenerateTitleDescription } from 'lib/apis/ai/interfaces'
-import { generateTitleDescription } from 'lib/apis/ai/services'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { IGenerateTitleDescription } from 'services/ai/interfaces'
+import { generateTitleDescription } from 'services/ai/services'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import useProductPageStore from 'pages/products/stores/ProductPageStore'
 import React from 'react'
@@ -12,6 +13,7 @@ import useAppStore from 'stores/app/appStore'
 import AnimatedBox from './AnimatedBox'
 
 function GenerateWithAI() {
+    const { t } = useLocaleResources('products');
     const { isOpen: isProTrialModalOpen, onOpen: openProTrialModal, onClose: closeProTrialModal } = useDisclosure()
     const { values: { media }, setFieldValue } = useProductForm()
     const { updateProductPageState, isAiGenerateLoading, isGenerateDisabled } = useProductPageStore()
@@ -32,7 +34,7 @@ function GenerateWithAI() {
             },
             onError: () => {
                 updateProductPageState('isAiGenerateLoading', false)
-                showToast({ message: "Oops! Something went wrong. Please try again.", type: "error" })
+                showToast({ message: t('ai.generate.errorMessage'), type: "error" })
             }
         }
     )
@@ -72,11 +74,11 @@ function GenerateWithAI() {
                         <Flex flexDirection={"column"} gap={1}>
                             <Flex alignItems="center" gap="6px">
                                 <Text background={isDisabled ? "neutral.gray.650" : "#2bcfa1"} backgroundClip="text" fontSize={14} fontWeight={500}>
-                                    Generate with AI
+                                    {t('ai.generate.title')}
                                 </Text>
                             </Flex>
                             <Text fontSize={12} fontWeight={400} color={isDisabled ? "neutral.gray.650" : "#FFFFFF"}>
-                                Populate a product name and description based on the chosen default image.
+                                {t('ai.generate.description')}
                             </Text>
                         </Flex>
                     </Flex>
