@@ -12,11 +12,12 @@ interface Props {
     cardsData: CardData[],
     templateColumns?: GridProps["templateColumns"]
     hasGradiantOverlay?: boolean
+    isGridCards?: boolean
 }
 
-export default function PlatformFunctionalities({ cardsData, templateColumns, hasGradiantOverlay }: Props) {
+export default function PlatformFunctionalities({ cardsData, templateColumns, hasGradiantOverlay, isGridCards = true }: Props) {
     const { t } = useLocaleResources('public-pages/landings/_shared', { en: localEn, ar: localAr })
-    
+
     const defaultTemplateColumns = {
         base: '1fr',
         md: 'repeat(2, 1fr)',
@@ -35,7 +36,7 @@ export default function PlatformFunctionalities({ cardsData, templateColumns, ha
                 cardsData={cardsData}
                 templateColumns={templateColumns || defaultTemplateColumns}
                 hasGradiantOverlay={hasGradiantOverlay}
-                isGridCards
+                isGridCards={isGridCards}
             />
         </SectionContainer>
     )

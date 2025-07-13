@@ -40,5 +40,5 @@ export default function SocialQuestsModularStack() {
         }
     ]
 
-    return <PlatformFunctionalities cardsData={cardsData} />
+    return <PlatformFunctionalities cardsData={cardsData} isGridCards={false} />
 }
