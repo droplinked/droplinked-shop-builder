@@ -7,6 +7,8 @@ import { LinkedinMd } from 'assets/icons/SocialMedia/Colorless/LinkedIn/Linkedin
 import { TelegramMd } from 'assets/icons/SocialMedia/Colorless/Telegram/TelegramMd'
 import { XMd } from 'assets/icons/SocialMedia/Colorless/X/XMd'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import DefaultStoreLanguage from 'pages/settings/components/pages/general/components/preferences/default-store-language/DefaultStoreLanguage'
+import LanguageSelect from 'pages/settings/components/pages/general/components/preferences/default-store-language/LanguageSelect'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -64,6 +66,10 @@ function BrandIdentity() {
                     </ChakraLink>
                 ))}
             </Flex>
+
+            <Box width="144px">
+                <LanguageSelect />
+            </Box>
         </Box>
     )
 }

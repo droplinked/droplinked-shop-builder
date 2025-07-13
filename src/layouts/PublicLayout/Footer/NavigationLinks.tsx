@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 export default function NavigationLinks() {
     const { t } = useLocaleResources('common')
     const publicMegaMenuItems = getPublicMegaMenuItems(t)
-    
+
     const SUPPORT_LINKS = [
         { label: t('contactUs'), href: '/contact-us' },
         { label: t('brandAssets'), href: 'https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing', isExternal: true },
@@ -22,7 +22,7 @@ export default function NavigationLinks() {
         { label: t('publicHeaderLinks.blog'), href: '/blogs' },
         { label: t('publicHeaderLinks.about'), href: '/about' }
     ] as const
-    
+
     const navigationLinks = [
         ...publicMegaMenuItems.slice(0, 2),
         { label: t('support'), links: SUPPORT_LINKS },
@@ -48,6 +48,8 @@ function NavigationGroup({ label, links }) {
 }
 
 function NavigationLink({ label, href, isExternal }) {
+    const { isRTL } = useLocaleResources('common')
+
     const LinkComponent = isExternal ? ChakraLink : Link
     const linkProps = isExternal ? { href, target: '_blank' } : { to: href }
 
@@ -58,15 +60,19 @@ function NavigationLink({ label, href, isExternal }) {
             position="relative"
             transition="0.3s ease-in-out"
             _hover={{
-                '& > span': { color: 'text.white', transform: 'translateX(8px)' },
+                '& > span': {
+                    color: 'text.white',
+                    transform: isRTL ? 'translateX(-8px)' : 'translateX(8px)'
+                },
                 '& > .border': { opacity: 1 }
             }}
         >
             <Box
                 className="border"
                 position="absolute"
-                left={0}
                 top={0}
+                left={isRTL ? 'unset' : 0}
+                right={isRTL ? 0 : 'unset'}
                 width="2px"
                 height="100%"
                 borderRadius={2}
