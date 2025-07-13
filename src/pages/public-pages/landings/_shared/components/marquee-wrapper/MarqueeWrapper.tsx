@@ -29,14 +29,14 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
                 '&::before': {
                     left: isRTL ? null : 0,
                     right: isRTL ? 0 : null,
-                    background: isRTL 
+                    background: isRTL
                         ? 'linear-gradient(to left, #0A0A0A, transparent)'
                         : 'linear-gradient(to right, #0A0A0A, transparent)',
                 },
                 '&::after': {
                     right: isRTL ? null : 0,
                     left: isRTL ? 0 : null,
-                    background: isRTL 
+                    background: isRTL
                         ? 'linear-gradient(to right, #0A0A0A, transparent)'
                         : 'linear-gradient(to left, #0A0A0A, transparent)',
                 },
@@ -50,6 +50,7 @@ export default function MarqueeWrapper({ children }: { children: React.ReactNode
                 gradientColor="#0A0A0A"
                 pauseOnHover={false}
                 play={true}
+                style={{ direction: "ltr" }}
             >
                 {children}
             </Marquee>
