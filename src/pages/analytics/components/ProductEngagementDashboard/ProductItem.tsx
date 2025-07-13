@@ -1,19 +1,22 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
+import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import AppImage from "components/common/image/AppImage"
 import FormattedPrice from "components/redesign/formatted-price/FormattedPrice"
-import { TopSeller } from "services/dashboard/interfaces"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { TopSeller } from "services/dashboard/interfaces"
 
 interface Props {
     product: TopSeller
 }
 
 function ProductItem({ product }: Props) {
-    const { productMedia, productName, totalAmountCombined } = product
     const navigate = useNavigate()
+    const { isRTL } = useLocaleResources("analyticsPage")
 
+    const { productMedia, productName, totalAmountCombined } = product
     const imageURL = (productMedia.find(m => m.isMain) ?? productMedia[0])?.thumbnail
 
     return (
@@ -50,7 +53,7 @@ function ProductItem({ product }: Props) {
                 padding="10px"
                 onClick={() => navigate("/analytics/products")}
             >
-                <ChevronrightMd color='white' />
+                {isRTL ? <ChevronleftMd color='white' /> : <ChevronrightMd color='white' />}
             </Box>
         </Flex>
     )
