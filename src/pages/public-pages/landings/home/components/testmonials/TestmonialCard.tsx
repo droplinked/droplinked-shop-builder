@@ -2,8 +2,11 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import React from 'react'
 import QouteIcon from '../../svgs/QouteIcon'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function TestmonialCard({ feedback, name, image, time, ...flexProps }) {
+    const { isRTL } = useLocaleResources('homePage')
+
     return (
         <Flex
             height="100%"
@@ -53,7 +56,7 @@ export default function TestmonialCard({ feedback, name, image, time, ...flexPro
                     </Text>
                 </Box>
 
-                <QouteIcon style={{ marginLeft: "auto" }} />
+                <QouteIcon style={isRTL ? { marginRight: "auto" } : { marginLeft: "auto" }} />
             </Flex>
         </Flex>
     )
