@@ -36,7 +36,8 @@ export default function GetStartedCard() {
                     transform: transformAmount
                 }}
                 alt='get-started-card'
-                src='https://upload-file-droplinked.s3.amazonaws.com/433b27784eeaf4b1f0da8063e62a58b8c190be7c95029303f40fff433f6a4f64.png'
+                width="648px"
+                src='https://upload-file-droplinked.s3.amazonaws.com/2720d8ad58aa50ab3db0cd0170cfa32400c7810f9e0009d9476be8b6c768f77b.png'
             />
         </Flex>
     )
