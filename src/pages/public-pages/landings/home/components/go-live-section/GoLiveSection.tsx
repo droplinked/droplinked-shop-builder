@@ -13,7 +13,7 @@ import Stepper from "./Stepper";
 
 export default function GoLiveSection() {
     const stepControllerValues = useStepController();
-    const { t } = useLocaleResources('homePage', { en: localEn, ar: localAr });
+    const { t, isRTL } = useLocaleResources('homePage', { en: localEn, ar: localAr });
 
     return (
         <SectionContainer
@@ -23,7 +23,11 @@ export default function GoLiveSection() {
             headingSubtitle={t('goLive.headingSubtitle')}
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
-                    <AppButton rightIcon={<ArrowrightMd />}>{t('goLive.getStarted')}</AppButton>
+                    <AppButton
+                        {...isRTL ? { leftIcon: <ArrowrightMd /> } : { rightIcon: <ArrowrightMd /> }}
+                    >
+                        {t('goLive.getStarted')}
+                    </AppButton>
                 </Link>
             }
             typographySvg={<HowItWorks style={{ marginTop: "48px" }} />}
