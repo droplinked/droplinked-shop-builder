@@ -66,31 +66,31 @@
     "blog": "Blog",
     "helpCenter": "Help Center"
   },
-  "dashboardPageLinks": {
-    "blogs": [
-      "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
-      "How to sell your NFTs through gating your product",
-      "How to Earn from Secondary Sales by putting your product on the chain",
-      "How to Monetize your Physical Inventory with Personalized Storefront"
-    ],
-    "helpCenterLinks": [
-      {
+  "dashboardLinks": {
+    "blogs": {
+      "transformNFT": "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
+      "gatingProduct": "How to sell your NFTs through gating your product",
+      "secondarySales": "How to Earn from Secondary Sales by putting your product on the chain",
+      "monetizeInventory": "How to Monetize your Physical Inventory with Personalized Storefront"
+    },
+    "helpCenter": {
+      "gettingStarted": {
         "title": "Getting Set up to Start Selling",
         "summary": "Set up a storefront"
       },
-      {
+      "managingProducts": {
         "title": "Managing products",
         "summary": "How to customize product pages"
       },
-      {
+      "managingCollections": {
         "title": "Managing collections",
         "summary": "How to work with Collections associated with storefronts"
       },
-      {
+      "affiliateNetwork": {
         "title": "Decentralized affiliate network",
         "summary": "How to use the decentralized affiliate system to co-sell with communities"
       }
-    ]
+    }
   },
   "orderItem": {
     "orderLabel": "order #"

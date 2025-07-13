@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/react"
 import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
-import { DashboardPageLink } from "pages/dashboard/stores/useDashboardStore"
+import { DashboardPageLink } from "pages/dashboard/hooks/useLocalizedDashboardLinks"
 import React from "react"
 
 function ResourceItem({ title, summary, url }: DashboardPageLink) {
