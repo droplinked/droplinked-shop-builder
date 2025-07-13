@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Link as ChakraLink, Flex, Text } from "@chakra-ui/react"
 import { ChevronleftMd } from "assets/icons/Navigation/ChevronLeft/ChevronleftMd"
 import { ChevronrightMd } from "assets/icons/Navigation/ChevronRight/ChevronrightMd"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
@@ -15,7 +15,10 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
     }
 
     return (
-        <Flex
+        <ChakraLink
+            href={url}
+            isExternal
+            display="flex"
             justifyContent="space-between"
             alignItems="center"
             gap={{ base: 4, xl: 6 }}
@@ -30,18 +33,13 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
                 <Text {...titleStyles}>{title}</Text>
             }
 
-            <Box
-                as="button"
-                flexShrink={0}
-                padding="10px"
-                onClick={() => window.open(url)}
-            >
+            <Box flexShrink={0} padding="10px">
                 {isRTL
                     ? <ChevronleftMd color='white' />
                     : <ChevronrightMd color='white' />
                 }
             </Box>
-        </Flex>
+        </ChakraLink>
     )
 }
 
