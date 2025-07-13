@@ -3,12 +3,15 @@ import SelectMenu from 'components/redesign/select-menu/SelectMenu';
 import React from 'react';
 import CardsOverlay from './components/CardsOverlay';
 import useROICalculation from '../hooks/useROICalculation';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     roiCalculationVariables: ReturnType<typeof useROICalculation>;
 }
 
 export default function Protocols({ roiCalculationVariables }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
+
     const { networks, setSelectedNetwork, selectedNetwork } = roiCalculationVariables
     const convertedNetworks = networks.map(network => ({
         value: String(network.value),
@@ -16,7 +19,7 @@ export default function Protocols({ roiCalculationVariables }: Props) {
     }))
 
     return (
-        <CardsOverlay title='Protocols' icon={<NetworkLg color='#fff' />}>
+        <CardsOverlay title={t("protocols")} icon={<NetworkLg color='#fff' />}>
             <SelectMenu
                 items={convertedNetworks}
                 onChange={(value) => setSelectedNetwork(+value)}

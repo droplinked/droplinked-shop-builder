@@ -3,6 +3,7 @@
     "title": "حاسبة سجلات المنتجات",
     "subtitle": "توقع عائد الاستثمار عند استخدام إدارة المخزون المؤسسية وتتبع المبيعات من دروبلينكد"
   },
+  "protocols": "البروتوكولات",
   "calculationSections": {
     "returnOnInvestment": "عائد الاستثمار"
   },
@@ -19,5 +20,22 @@
     "skus": "وحدات حفظ المخزون",
     "productRecords": "سجلات المنتجات",
     "baseCommitment": "الالتزام الأساسي"
+  },
+  "productDetails": {
+    "title": "تفاصيل المنتج",
+    "serviceFee": "رسوم الخدمة",
+    "serviceFeeTooltip": "التكلفة الأساسية المرتبطة بالخطة المختارة",
+    "totalSkus": "إجمالي وحدات حفظ المخزون",
+    "productRecordCount": "عدد سجلات المنتجات",
+    "transactionCount": "عدد المعاملات"
+  },
+  "metrics": {
+    "title": "تفاصيل المنتج",
+    "averageOrderValue": "متوسط قيمة الطلب",
+    "averageOrderValueTooltip": "السعر المتوقع للبيع بالتجزئة للعنصر المباع",
+    "royaltyPercentage": "نسبة الإتاوة من إعادة البيع",
+    "royaltyPercentageTooltip": "نسبة الدفع من سعر التجزئة للعنصر المباع التي تعود للمنشئ للمبيعات المستمرة",
+    "capturedSecondarySalesPercentage": "نسبة المبيعات الثانوية المحققة",
+    "capturedSecondarySalesPercentageTooltip": "نسبة المبيعات الثانوية المتوقعة المحققة"
   }
-} 
+}

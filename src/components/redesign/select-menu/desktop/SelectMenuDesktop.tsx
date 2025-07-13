@@ -41,7 +41,7 @@ export default function SelectMenuDesktop({
                     <AppIcons.SelectChevronDown />
                 </Flex>
             </MenuButton>
-            <MenuList {...styles.menuList} display="flex" flexDirection="column">
+            <MenuList {...styles.menuList} display="flex" flexDirection="column" maxHeight="250px" overflow="auto">
                 {items.map((item) => (
                     <SelectMenuItem
                         key={item.value}

@@ -11,8 +11,10 @@ import CardsOverlay from './sections/components/CardsOverlay';
 import CalculationResult from './sections/CalculationResult';
 import { Refresh1Lg } from 'assets/icons/Action/Refresh1/Refresh1Lg';
 import HeroChildFrame from '../_shared/components/HeroChildFrame';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 export default function CalculationSections() {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
     const roiCalculationVariables = useROICalculation();
 
     return (
@@ -26,7 +28,7 @@ export default function CalculationSections() {
                         <Metrics roiCalculationVariables={roiCalculationVariables} />
                     </RuledGrid>
                     <RuledGrid columns={1} borderRadius={16} width={{ base: "100%", xl: "40%" }} height="min-content">
-                        <CardsOverlay title="Return on Investment" icon={<Refresh1Lg color="#fff" />} />
+                        <CardsOverlay title={t('calculationResult.returnOnInvestment')} icon={<Refresh1Lg color="#fff" />} />
                         <CalculationResult roiCalculationVariables={roiCalculationVariables} />
                     </RuledGrid>
                 </Flex>

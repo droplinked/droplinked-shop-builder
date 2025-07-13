@@ -3,6 +3,7 @@
     "title": "Product Record Calculator",
     "subtitle": "Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking"
   },
+  "protocols": "Protocols",
   "calculationSections": {
     "returnOnInvestment": "Return on Investment"
   },
@@ -19,5 +20,22 @@
     "skus": "SKUs",
     "productRecords": "Product Records",
     "baseCommitment": "Base Commitment"
+  },
+  "productDetails": {
+    "title": "Product Details",
+    "serviceFee": "Service Fee",
+    "serviceFeeTooltip": "Baseline cost associated with plan selected",
+    "totalSkus": "Total SKUs",
+    "productRecordCount": "Product Record Count",
+    "transactionCount": "Transaction Count"
+  },
+  "metrics": {
+    "title": "Product Details",
+    "averageOrderValue": "Average Order Value",
+    "averageOrderValueTooltip": "Anticipated retail price of the item sold",
+    "royaltyPercentage": "Royalty Percentage from Resales",
+    "royaltyPercentageTooltip": "The payout % of the retail price of an item sold that goes back to originator for ongoing sales",
+    "capturedSecondarySalesPercentage": "Captured Secondary Sales Percentage",
+    "capturedSecondarySalesPercentageTooltip": "The % of anticipated secondary sales captured"
   }
-} 
+}

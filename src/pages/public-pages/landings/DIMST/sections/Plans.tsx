@@ -4,12 +4,15 @@ import DotSeparatedList from "components/redesign/dot-separated-list/DotSeparate
 import React from "react";
 import CardsOverlay from "./components/CardsOverlay";
 import useROICalculation from "../hooks/useROICalculation";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 interface Props {
     roiCalculationVariables: ReturnType<typeof useROICalculation>;
 }
 
 export default function Plans({ roiCalculationVariables }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
+
     const { plans, handlePlanChange, selectedPlan } = roiCalculationVariables;
 
     const skuChip = (name: string, value: number, isSelected: boolean) => (
@@ -34,7 +37,7 @@ export default function Plans({ roiCalculationVariables }: Props) {
     );
 
     return (
-        <CardsOverlay title="Plans" icon={<PriceplanLg color="#fff" />}>
+        <CardsOverlay title={t("plans.title")} icon={<PriceplanLg color="#fff" />}>
             {plans.map((plan, index) => {
                 const isSelected = selectedPlan?.title === plan.title;
 
@@ -66,14 +69,14 @@ export default function Plans({ roiCalculationVariables }: Props) {
                                     color={isSelected ? "text.primary" : "text.white"}
                                     fontSize={{ base: 12, md: 14 }}
                                 >
-                                    {plan.duration} Days
+                                    {plan.duration} {t("plans.days")}
                                 </Text>
                             </Box>
                         </Flex>
                         <Flex gap={2} flexWrap="wrap" alignItems="center" mt={3}>
-                            {skuChip("SKUs", plan.skus, isSelected)}
-                            {skuChip("Product Records", plan.productRecords, isSelected)}
-                            {skuChip("Base Commitment", plan.baseCommitment, isSelected)}
+                            {skuChip(t("plans.skus"), plan.skus, isSelected)}
+                            {skuChip(t("plans.productRecords"), plan.productRecords, isSelected)}
+                            {skuChip(t("plans.baseCommitment"), plan.baseCommitment, isSelected)}
                         </Flex>
                     </Box>
                 );

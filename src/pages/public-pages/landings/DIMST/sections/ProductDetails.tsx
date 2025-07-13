@@ -5,19 +5,22 @@ import useROICalculation from '../hooks/useROICalculation';
 import AppInput from 'components/redesign/input/AppInput';
 import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd';
 import { Grid } from '@chakra-ui/react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     roiCalculationVariables: ReturnType<typeof useROICalculation>;
 }
 
 export default function ProductDetails({ roiCalculationVariables }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
+
     const { productDetails, updateProductDetails, handleTotalSkusChange } = roiCalculationVariables;
 
     return (
-        <CardsOverlay title='Product Details' icon={<BlogLg color='#fff' />}>
+        <CardsOverlay title={t('productDetails.title')} icon={<BlogLg color='#fff' />}>
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                 <AppInput
-                    label='Service Fee'
+                    label={t('productDetails.serviceFee')}
                     inputProps={{
                         value: productDetails.serviceFee,
                         onChange: (e) => updateProductDetails("serviceFee", e.target.value),
@@ -25,10 +28,10 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                         type: 'number',
                     }}
                     leftElement={<DollarMd color='#7B7B7B' />}
-                    tooltipText='Baseline cost associated with plan selected'
+                    tooltipText={t('productDetails.serviceFeeTooltip')}
                 />
                 <AppInput
-                    label='Total SKUs'
+                    label={t('productDetails.totalSkus')}
                     inputProps={{
                         value: productDetails.totalSkus,
                         onChange: (e) => handleTotalSkusChange(e),
@@ -36,7 +39,7 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                     }}
                 />
                 <AppInput
-                    label='Product Record Count'
+                    label={t('productDetails.productRecordCount')}
                     inputProps={{
                         value: productDetails.productRecordCount,
                         onChange: (e) => updateProductDetails("productRecordCount", e.target.value),
@@ -44,7 +47,7 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                     }}
                 />
                 <AppInput
-                    label='Transaction Count'
+                    label={t('productDetails.transactionCount')}
                     inputProps={{
                         value: productDetails.transactionCount,
                         onChange: (e) => updateProductDetails("transactionCount", e.target.value),

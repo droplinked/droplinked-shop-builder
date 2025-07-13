@@ -8,7 +8,6 @@ const plans: Plan[] = [
     { title: 'Enterprise', duration: 365, skus: 100, productRecords: 1000000, baseCommitment: 150000 },
 ]
 
-
 const useROICalculation = (t?: (key: string, options?: any) => string) => {
     const [selectedPlan, setSelectedPlan] = useState(() => plans[0])
     const [availableNetworks, setAvailableNetworks] = useState([])

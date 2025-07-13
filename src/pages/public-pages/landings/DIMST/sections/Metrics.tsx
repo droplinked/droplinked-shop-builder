@@ -6,6 +6,7 @@ import { Grid } from '@chakra-ui/react';
 import AppInput from 'components/redesign/input/AppInput';
 import { DollarMd } from 'assets/icons/Finance/Dollar/DollarMd';
 import { PercentMd } from 'assets/icons/Sign/Percent/PercentMd';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 
 interface Props {
@@ -13,41 +14,43 @@ interface Props {
 }
 
 export default function Metrics({ roiCalculationVariables }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
+
     const { metrics, updateMetrics } = roiCalculationVariables;
 
     return (
-        <CardsOverlay title='Product Details' icon={<DashboardLg color='#fff' />}>
+        <CardsOverlay title={t('metrics.title')} icon={<DashboardLg color='#fff' />}>
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                 <AppInput
-                    label='Average Order Value'
+                    label={t('metrics.averageOrderValue')}
                     inputProps={{
                         value: metrics.averageOrderValue,
                         onChange: (e) => updateMetrics("averageOrderValue", e.target.value),
                         type: 'number',
                     }}
                     leftElement={<DollarMd color='#7B7B7B' />}
-                    tooltipText='Anticipated retail price of the item sold'
+                    tooltipText={t('metrics.averageOrderValueTooltip')}
                 />
                 <AppInput
-                    label='Royalty Percentage from Resales'
+                    label={t('metrics.royaltyPercentage')}
                     inputProps={{
                         value: metrics.royaltyPercentage,
                         onChange: (e) => updateMetrics("royaltyPercentage", e.target.value),
                         type: 'number',
                     }}
                     leftElement={<PercentMd color='#7B7B7B' />}
-                    tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales'
+                    tooltipText={t('metrics.royaltyPercentageTooltip')}
                 />
             </Grid>
             <AppInput
-                label='Captured Secondary Sales Percentage'
+                label={t('metrics.capturedSecondarySalesPercentage')}
                 inputProps={{
                     value: metrics.CapturedSecondarySalesPercentage,
                     onChange: (e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value),
                     type: 'number',
                 }}
                 leftElement={<PercentMd color='#7B7B7B' />}
-                tooltipText='The % of anticipated secondary sales captured'
+                tooltipText={t('metrics.capturedSecondarySalesPercentageTooltip')}
             />
         </CardsOverlay>
     )

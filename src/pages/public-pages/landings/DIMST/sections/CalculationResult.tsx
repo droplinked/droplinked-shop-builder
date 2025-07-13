@@ -4,12 +4,15 @@ import React from 'react';
 import useROICalculation from '../hooks/useROICalculation';
 import TitledText from './components/TitledText';
 import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface Props {
     roiCalculationVariables: ReturnType<typeof useROICalculation>;
 }
 
 export default function CalculationResult({ roiCalculationVariables }: Props) {
+    const { t } = useLocaleResources('public-pages/landings/DIMST')
+
     const { result, handleCalculation } = roiCalculationVariables
     const { ROI, grossCapturedValue, grossInvestment, grossMerchandiseValue } = result
 
@@ -19,22 +22,22 @@ export default function CalculationResult({ roiCalculationVariables }: Props) {
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossInvestment} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title="Gross Investment"
+                    title={t('calculationResult.grossInvestment')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossMerchandiseValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title="Gross Merchandise Value (GMV)"
+                    title={t('calculationResult.grossMerchandiseValue')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossCapturedValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title="Gross Captured Value"
+                    title={t('calculationResult.grossCapturedValue')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={ROI} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title="Return on Investment (ROI)"
+                    title={t('calculationResult.returnOnInvestment')}
                 />
             </Flex>
             <AppButton
@@ -44,7 +47,7 @@ export default function CalculationResult({ roiCalculationVariables }: Props) {
                 borderColor="neutral.gray.900"
                 onClick={handleCalculation}
             >
-                Calculate
+                {t('calculationResult.calculate')}
             </AppButton>
         </Box>
     )
