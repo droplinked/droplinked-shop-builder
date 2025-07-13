@@ -29,9 +29,9 @@ export default function HomePageHero() {
                     </Link>
                 </Flex>
             }
-            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/9d5f26f90db459a8281dab934d2d3f02281f5914e3433b3edc4a2c534c35b239_or.webm"
-            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/ea59a223c2ac47720ec5e5ffa6ab61930fd3a0b86cc7d3dd5eb9b7fe0fb922aa_or.webm"
-            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/9aed308658c6f01ba0874524f01000452b9424d99fceefcd7f6fbead162b1174_or.webm"
+            videoDesktop="https://upload-file-droplinked.s3.amazonaws.com/3cfc169e3013aa3e63e042053b3ba8ac6028f52ed8172d89c5894e98b37394e0_or.webm"
+            videoTablet="https://upload-file-droplinked.s3.amazonaws.com/348c948b0c1df59a484cdbdb7e57fa3980ae6ce77cb76f4b17b719a6139b034e_or.webm"
+            videoMobile="https://upload-file-droplinked.s3.amazonaws.com/804ef1eb7bf1626f0de140301d8ba21623f3b312e585ac13347d4736feb41c4c_or.webm"
             playerProps={{
                 loop: false,
             }}

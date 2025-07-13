@@ -23,7 +23,7 @@ export default function FinalCta(props: Props) {
             {...props}
         >
             <InlineVideoPlayer
-                src="https://upload-file-droplinked.s3.amazonaws.com/a9b6c9cc9a5afe32c9fb3b663c1ed25f2d54fda6985a202c28da01cfb2e8dc26_or.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/29eb1513a6d63d6d8e25c38ada93e91d0e8afcb740117909f966f0edcdc6eeeb_or.webm"
                 style={{ paddingTop: "16px" }}
             />
         </SectionContainer >

@@ -35,14 +35,14 @@ const Charts = () => {
             {chartNumber === 1 ? (
                 <InlineVideoPlayer
                     key={`chart1-${videoKey}`}
-                    src="https://upload-file-droplinked.s3.amazonaws.com/6fedce8ac2566852a44163f69939e9881fd0f5c631c1962d2f7fd36c1a830077_or.webm"
+                    src="https://upload-file-droplinked.s3.amazonaws.com/11a7b5387a5ac45556d40c76853a2e7a4d9e6d02a21397dbb6b74a4cef048939_or.webm"
                     loop={false}
                     style={{ height: "100%" }}
                 />
             ) : (
                 <InlineVideoPlayer
                     key={`chart2-${videoKey}`}
-                    src="https://upload-file-droplinked.s3.amazonaws.com/d06babec14d7d3bb8efbaab93f64a2a6fed86260f8a16ba7b325b85930923c84_or.webm"
+                    src="https://upload-file-droplinked.s3.amazonaws.com/0d7ab0fc3aa530e5943535f126d11f211eafa3509b2afd24f1bdd6c9601dcc84_or.webm"
                     loop={false}
                     style={{ height: "100%" }}
                 />

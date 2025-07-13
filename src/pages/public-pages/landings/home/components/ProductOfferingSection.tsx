@@ -21,7 +21,7 @@ export default function ProductOfferingSection() {
             title: t("productOfferings.cards.services.title"),
             description: t("productOfferings.cards.services.description"),
             gridColumn: { base: 'span 1', md: 'span 4', lg: 'span 3' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/2d590fabf845f1755d39c1f521b7abf37fa8fd253d15e826c02ad95e15d1d22b_or.webm" />,
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/6a73c2702a701de1a1d0f575a30514c0a801b6964c819ad5f652f108cbbc4926_or.webm" />,
             innerOverlay: "https://upload-file-droplinked.s3.amazonaws.com/7b228ed2a617cefa1a86123a032c7955b548d2b64d858532a2f7245d4f3c9ff2.png"
         },
         {
@@ -29,7 +29,7 @@ export default function ProductOfferingSection() {
             title: t("productOfferings.cards.digitalProducts.title"),
             description: t("productOfferings.cards.digitalProducts.description"),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/dd38f4a712c8f68e8375dd70bc92951c9a903dc49ad93bfcb6901bb0126079cd_or.webm" />,
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/d1308b65f100a22d6d66952df10ad3d3a1ce13530e8cb2594e7fed0dd3ecfc6b_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/0adc77b2411ddedae289d4a13d1c264c2670995eb95e5bdf15c115ba77b077b7.png'
         },
         {
@@ -37,7 +37,7 @@ export default function ProductOfferingSection() {
             title: t("productOfferings.cards.physicalProducts.title"),
             description: t("productOfferings.cards.physicalProducts.description"),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 2' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/a8446a148de62ba284980a767f7284acc55e8a63d8955fc55f4271ed969a8a7e_or.webm" />,
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/d323ff455d81c282830be5c31f3cccd0eac3f1cf3fd2ab058dc5c90324d82962_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/05c6d5f6d6f830993e96d7eb47f3f930d2aeec67a6c81fa2ba18fd255e9c64b6.png'
         },
         {
@@ -45,7 +45,7 @@ export default function ProductOfferingSection() {
             title: t("productOfferings.cards.podAndNfts.title"),
             description: t("productOfferings.cards.podAndNfts.description"),
             gridColumn: { base: 'span 1', md: 'span 4', lg: 'span 3' },
-            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/3aca27f1be4b8c9a86b30f7a4648f6d40b70e28b6dd4f76213be8ed793f5603a_or.webm" />,
+            children: <InlineVideoPlayer src="https://upload-file-droplinked.s3.amazonaws.com/0037d35ed3249e0dc754d90c3f07338558b11a57c5f4520ce7f9cb8f2af5594e_or.webm" />,
             innerOverlay: 'https://upload-file-droplinked.s3.amazonaws.com/35f4d210524301dcc5bafc1eb2f98a274553f3f765b10473b199496245816f93.png'
         }
     ]

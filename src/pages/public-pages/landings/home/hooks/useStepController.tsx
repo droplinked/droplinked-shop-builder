@@ -47,21 +47,21 @@ export function useStepController() {
         <>
             <InlineVideoPlayer
                 style={getVideoStyle(1)}
-                src="https://upload-file-droplinked.s3.amazonaws.com/b547aadc75195664a89484cc3738f80cce911a9ced71c3a7ab9eb445b45342e9_or.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/86d636f5431cabb26c8fcd1fb138d4f4ce311599ecf7da8570387e21a2abd25d_or.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(2)}
                 key="video-step-1"
             />
             <InlineVideoPlayer
                 style={getVideoStyle(2)}
-                src="https://upload-file-droplinked.s3.amazonaws.com/4e76691acd8c158e484704da1c5668216ef0e513403cf6fcd44807aaf8e8e307_or.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/6f931a6e6671d5febcb842baddae23a40acd5a485c9f47f3469eb49f512ec389_or.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(3)}
                 key="video-step-2"
             />
             <InlineVideoPlayer
                 style={getVideoStyle(3)}
-                src="https://upload-file-droplinked.s3.amazonaws.com/a09ff57a9e5b5eb37d158b4baf90bde0edf6f5773711c28da3988494fc634781_or.webm"
+                src="https://upload-file-droplinked.s3.amazonaws.com/ac56ef473f6ec7ea0f474354ecdc081783d06911b034eb77369c924d11cb5241_or.webm"
                 height={height}
                 onEnded={() => handleVideoEnded(1)}
                 key="video-step-3"
