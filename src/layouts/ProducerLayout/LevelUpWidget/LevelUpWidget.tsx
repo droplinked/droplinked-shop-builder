@@ -1,15 +1,15 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-
-import React, { useEffect, useState } from 'react';
 import { getLevelUpSections } from 'data/levelUpSections';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/layout/levelUp/ar.json';
+import enLocale from 'locales/layout/levelUp/en.json';
+import React, { useEffect, useState } from 'react';
+import useLevelUpStore from 'stores/level-up/levelUpStore';
 import LevelUpWidgetModal from './LevelUpWidgetModal';
 import LevelUpWidgetSection from './LevelUpWidgetSection';
-import useLevelUpStore from 'stores/level-up/levelUpStore';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import enLocale from 'locales/layout/levelUp/en.json';
-import arLocale from 'locales/layout/levelUp/ar.json';
+import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm'
+
 
 const LevelUpWidget = () => {
   const { t } = useLocaleResources('layout/levelUp', {
@@ -55,8 +55,8 @@ const LevelUpWidget = () => {
       mt={8}
     >
       {/* Level Up Icon */}
-      <Box display="flex" width="32px" height="32px" padding="8px" justifyContent="center" alignItems="center">
-        <AppIcons.SidebarAnalytics width="16px" height="16px" />
+      <Box display="flex" width="32px" height="32px" justifyContent="center" alignItems="center" border="1px solid" borderRadius="8px" borderColor="neutral.white">
+        <ChartSm />
       </Box>
 
       {/* Title & Description */}
