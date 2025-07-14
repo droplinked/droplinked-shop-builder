@@ -1,6 +1,5 @@
-import { Flex, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
+import { Flex, TabPanel, TabPanels, Tabs, Text, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppTypography from 'components/common/typography/AppTypography'
 import CreateShopModal from 'components/modals/create-shop-modal/CreateShopModal'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -12,17 +11,17 @@ import Loading from './components/Loading'
 import ShopRow from './components/ShopRow'
 
 function ShopList() {
-    const { t } = useLocaleResources('shop');
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isFetching, error, data } = useQuery({
         queryFn: () => getUserShopsService(),
         queryKey: ["current-user-shops"]
     })
+    const { t } = useLocaleResources('shopManagement')
 
     const renderContent = () => {
         if (isFetching) return <Loading />
-        if (error) return <AppTypography fontSize={16} color={"red.400"}>{t('shopList.error.message')}</AppTypography>
+        if (error) return <Text color="red.400">{t('ShopList.error')}</Text>
         const shops = data.data
         if (!shops.length) return <EmptyBox />
         return shops.map(shop => <ShopRow key={shop._id} shop={shop} />)
@@ -30,19 +29,19 @@ function ShopList() {
 
     return (
         <>
-            <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
-                <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
-                    <BasicButton alignSelf={"flex-end"} onClick={onOpen}>{t('shopList.createStore')}</BasicButton>
+            <Tabs variant='unstyled' display="flex" flexDirection="column" gap={5}>
+                <Flex justifyContent="space-between" alignItems="center" paddingBlock={2}>
+                    <BasicButton alignSelf="flex-end" onClick={onOpen}>{t('ShopList.createStore')}</BasicButton>
                 </Flex>
                 <TabPanels>
                     <TabPanel
-                        display={"flex"}
-                        flexDirection={"column"}
+                        display="flex"
+                        flexDirection="column"
                         gap={3}
-                        border={"2px solid"}
+                        border="2px solid"
                         borderColor="neutral.gray.700"
-                        borderRadius={"32px"}
-                        padding={"36px 40px"}
+                        borderRadius="32px"
+                        padding="36px 40px"
                     >
                         {renderContent()}
                     </TabPanel>

@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 export type Namespace =
     | '404Page'
     | 'homePage'
-    | 'shop'
     | 'common'
     | 'shopManagement'
     | 'onchainRecords'

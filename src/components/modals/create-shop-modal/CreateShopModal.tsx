@@ -1,11 +1,11 @@
-import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
+import { Box, Flex, Heading, Spinner, Text } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
-import BasicButton from "components/common/BasicButton/BasicButton"
 import AppModal from "components/common/modal/AppModal"
-import AppTypography from "components/common/typography/AppTypography"
+import AppButton from "components/redesign/button/AppButton"
 import useShopSwitcher from "hooks/shop/useShopSwitch"
 import useAppToast from "hooks/toast/useToast"
 import useDebounce from "hooks/useDebounce/useDebounce"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useProfile } from "hooks/useProfile/useProfile"
 import React, { useEffect, useState } from "react"
 import { useMutation } from "react-query"
@@ -32,16 +32,21 @@ type Props = RegisterShopNameProps | CreateExtraShopProps
 
 function CreateShopModal(props: Props) {
     const { isOpen, onSuccess, mode } = props
-    const { shop } = useProfile()
-    const { updateState } = useAppStore()
+
     const [username, setUsername] = useState("")
     const debouncedUsername = useDebounce(username, 1000)
     const [isUsernameAvailable, setUsernameAvailability] = useState<boolean | null>(null)
+
     const { mutateAsync: checkUsername, isLoading: isCheckingUsername } = useMutation(checkUsernameAvailabilityService)
     const { mutateAsync: updateUsername, isLoading: isUpdatingUsername } = useMutation(updateShopNameService)
     const { mutateAsync: createExtraShop, isLoading: isCreatingExtraShop } = useMutation(createExtraShopForCurrentUserService)
+
+    const { shop } = useProfile()
+    const { updateState } = useAppStore()
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher(true)
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('shopManagement')
+
     const isCreatingShop = mode === "CREATE_EXTRA_SHOP"
 
     const handleInputChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +70,7 @@ function CreateShopModal(props: Props) {
             onSuccess()
         }
         catch (error) {
-            showToast({ type: "error", message: "Oops! Something went wrong." })
+            showToast({ type: "error", message: t('CreateShopModal.errorGeneric') })
         }
     }
 
@@ -75,7 +80,7 @@ function CreateShopModal(props: Props) {
             await switchShop(_id)
             onSuccess()
         } catch (error) {
-            showToast({ type: "error", message: "Oops! Something went wrong." })
+            showToast({ type: "error", message: t('CreateShopModal.errorGeneric') })
         }
     }
 
@@ -97,11 +102,11 @@ function CreateShopModal(props: Props) {
         <AppModal open={isOpen} size="xl" close={() => isCreatingShop && props.close()}>
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
-                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="text.subtext.placeholder.dark">
+                    <Flex dir="ltr" alignItems="center" gap={3} borderRadius={8} padding="14px 16px" bgColor="#fff" color="text.subtext.placeholder.dark">
                         <Flex>
                             <Box as="span" fontWeight={500}>{`${appDevelopment ? "dev." : ""}droplinked.io/`}</Box>
                             &nbsp;
-                            <input value={username} placeholder="Type your URL" className={styles.input} onChange={handleInputChange} />
+                            <input value={username} placeholder={t('CreateShopModal.inputPlaceholder')} className={styles.input} onChange={handleInputChange} />
                         </Flex>
                         {renderUsernameAvailabilityIcon()}
                     </Flex>
@@ -109,19 +114,19 @@ function CreateShopModal(props: Props) {
                 <Flex direction="column" gap={14}>
                     <Flex direction="column" gap={2}>
                         <Heading margin={0} textAlign="center" fontSize={24} fontWeight={700} color="#fff">
-                            Choose URL
+                            {t('CreateShopModal.heading')}
                         </Heading>
-                        <AppTypography fontSize={14} color="#fff">
-                            Embark on your creator journey by crafting a unique username that sets you apart from the crowd.
-                        </AppTypography>
+                        <Text textAlign="center" fontSize={14} color="#fff">
+                            {t('CreateShopModal.description')}
+                        </Text>
                     </Flex>
-                    <BasicButton
+                    <AppButton
                         isLoading={isCreatingShop ? isCreatingExtraShop || isLoading : isUpdatingUsername}
                         isDisabled={isCreatingShop ? !isUsernameAvailable || isCheckingUsername || isCreatingExtraShop || isLoading : !isUsernameAvailable || isCheckingUsername || isUpdatingUsername}
                         onClick={isCreatingShop ? handleCreateExtraShop : handleUsernameRegistration}
                     >
-                        Continue
-                    </BasicButton>
+                        {t('CreateShopModal.continue')}
+                    </AppButton>
                 </Flex>
             </Flex>
         </AppModal>
