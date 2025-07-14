@@ -1,0 +1,24 @@
+{
+  "ShopManagement": {
+    "title": "Shop Management",
+    "description": "Manage all your shops in one place. Create, edit, and switch between your stores easily."
+  },
+  "ShopList": {
+    "createStore": "Create Store",
+    "error": "Failed to load shops."
+  },
+  "EmptyBox": {
+    "emptyBoxMessage": "Oops! It looks like you have no shops yet. Create your first shop to get started."
+  },
+  "ShopRow": {
+    "error": "Failed to switch shop. Please try again.",
+    "switch": "Switch"
+  },
+  "CreateShopModal": {
+    "inputPlaceholder": "Type your URL",
+    "heading": "Choose URL",
+    "description": "Embark on your creator journey by crafting a unique username that sets you apart from the crowd.",
+    "continue": "Continue",
+    "errorGeneric": "Oops! Something went wrong."
+  }
+}
