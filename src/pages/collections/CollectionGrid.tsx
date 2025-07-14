@@ -1,16 +1,16 @@
+import { Text } from '@chakra-ui/react';
 import { ColumnDef } from '@tanstack/react-table';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
-import AppTypography from "components/common/typography/AppTypography";
 import PageGrid from "components/redesign/page-grid/PageGrid";
 import Table from "components/redesign/table/Table";
-import { Collection } from "services/collection/interfaces";
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import arLocale from 'locales/collections/ar.json';
+import enLocale from 'locales/collections/en.json';
 import React from "react";
+import { Collection } from "services/collection/interfaces";
 import ControlsListCollection from "./components/controls/Controls";
 import CollectionRulesetColumn from './components/ruleset-column/CollectionRulesetColumn';
 import CollectionTitleColumn from './components/title-column/CollectionTitleColumn';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import arLocale from 'locales/collections/ar.json'
-import enLocale from 'locales/collections/en.json'
 
 interface CollectionGridProps {
     isFetching: boolean;
@@ -66,8 +66,8 @@ function CollectionGrid({
                 actionButtons={[
                     {
                         title: t('newCollection'),
-                        onClick: onCreateCollection,
                         leftIcon: <PlusSm color="#000" />,
+                        onClick: onCreateCollection,
                     },
                     {
                         title: t('visibilityAndReorder'),
@@ -88,9 +88,9 @@ function CollectionGrid({
                     data={rows}
                     isLoading={isFetching}
                     emptyView={
-                        <AppTypography fontSize={16} fontWeight={500} color={"white"}>
+                        <Text fontWeight={500} color="text.white">
                             {t('emptyState')}
-                        </AppTypography>
+                        </Text>
                     }
                 />
             </PageGrid.Content>

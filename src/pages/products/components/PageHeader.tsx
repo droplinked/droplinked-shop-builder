@@ -49,30 +49,22 @@ function PageHeader({ isActionEnabled }: ProductHeaderProps) {
                 actionButtons={[
                     {
                         title: t('pageHeader.actions.reorderProducts'),
-                        leftIcon: <Verticalmove2Md />,
                         variant: 'secondary',
-                        fontSize: 14,
-                        fontWeight: 500,
-                        iconSpacing: '6px',
-                        paddingInline: '14px',
-                        onClick: productReorderModal.onOpen,
+                        leftIcon: <Verticalmove2Md />,
                         isDisabled: !isActionEnabled,
+                        onClick: productReorderModal.onOpen,
                     },
                     {
                         title: t('pageHeader.actions.import'),
-                        leftIcon: <DownloadMd />,
                         variant: 'secondary',
-                        fontSize: 14,
-                        fontWeight: 500,
-                        iconSpacing: '6px',
-                        paddingInline: '14px',
+                        leftIcon: <DownloadMd />,
                         onClick: importProductModal.onOpen,
                     },
                     {
                         title: t('pageHeader.actions.newProduct'),
                         leftIcon: <PlusMd />,
                         wrapper: <ProductTypeSelector />,
-                    },
+                    }
                 ]}
             />
 
