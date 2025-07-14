@@ -1,19 +1,18 @@
 import { FlexProps } from '@chakra-ui/react'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
-import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
-import React from 'react'
-import DashboardLayoutSidebarGrowthHack from '../LevelUpWidget/LevelUpWidget'
+import { getFilteredSidebarLinks } from 'data/producerSidebarLinks'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import enLocale from 'locales/layout/sidebar/en.json'
 import arLocale from 'locales/layout/sidebar/ar.json'
+import enLocale from 'locales/layout/sidebar/en.json'
+import React from 'react'
+import useAppStore from 'stores/app/appStore'
+import LevelUpWidget from '../LevelUpWidget/LevelUpWidget'
 import SidebarGroup from './SidebarGroup'
 
 export default function NavLinks({ ...props }: FlexProps) {
-    const { t } = useLocaleResources('layout/sidebar', {
-        en: enLocale,
-        ar: arLocale
-    })
-    const sidebarLinks = getProducerSidebarLinks(t)
+    const { shop } = useAppStore();
+    const { t } = useLocaleResources('layout/sidebar', { en: enLocale, ar: arLocale })
+    const sidebarLinks = getFilteredSidebarLinks(t,shop.hasCompletedQuests);
 
     return (
         <AppAccordion
@@ -26,7 +25,7 @@ export default function NavLinks({ ...props }: FlexProps) {
             {sidebarLinks.map((sidebarGroup, index) => (
                 <SidebarGroup key={index} sidebarGroup={sidebarGroup} />
             ))}
-            <DashboardLayoutSidebarGrowthHack />
+            <LevelUpWidget />
         </AppAccordion>
     )
 }

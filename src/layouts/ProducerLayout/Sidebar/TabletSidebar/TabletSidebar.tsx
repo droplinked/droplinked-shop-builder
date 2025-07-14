@@ -1,18 +1,21 @@
 import { Box, Flex } from '@chakra-ui/react'
 import Drop3 from 'assets/brand-identity/Drop3'
-import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
-import React from 'react'
-import TabletSidebarGroup from './TabletSidebarGroup'
+import { getFilteredSidebarLinks } from 'data/producerSidebarLinks'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import enLocale from 'locales/layout/sidebar/en.json'
 import arLocale from 'locales/layout/sidebar/ar.json'
+import enLocale from 'locales/layout/sidebar/en.json'
+import React from 'react'
+import useAppStore from 'stores/app/appStore'
+import TabletSidebarGroup from './TabletSidebarGroup'
 
 export const TabletSidebar = () => {
+    const { shop } = useAppStore();
     const { t } = useLocaleResources('layout/sidebar', {
         en: enLocale,
         ar: arLocale
     })
-    const sidebarLinks = getProducerSidebarLinks(t)
+
+    const sidebarLinks = getFilteredSidebarLinks(t, shop.hasCompletedQuests)
 
     return (
         <>
