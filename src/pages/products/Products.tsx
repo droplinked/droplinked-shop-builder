@@ -1,75 +1,48 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useProducts from 'hooks/products/useProducts'
 import useDebounce from 'hooks/useDebounce/useDebounce'
-import useModalHandlers from 'pages/products/hooks/useModalHandlers'
-import React, { useEffect, useState } from 'react'
-import IdentifiedItemsModal from './components/IdentifiendItemsModal/IdentifiedItemsModal'
-import ImportProductModal from './components/ImportProductModal/ImportProductModal'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/products/ar.json'
+import enLocale from 'locales/products/en.json'
+import React, { useState } from 'react'
 import PageHeader from './components/PageHeader'
-import ProductDrawer from './components/ProductDrawer/ProductDrawer'
-import ProductReorderModal from './components/ProductReorderModal/ProductReorderModal'
 import ProductTable from './components/ProductTable/ProductTable'
-import { useImportWithUrl } from './hooks/useImportWithUrl'
-import useProductPageStore from './stores/ProductPageStore'
 
-function ProductsV2() {
+function Products() {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
-    const { data, isFetching } = useProducts(debouncedSearchTerm)
-    const { productFormDrawer, importProductModal, productReorderModal, identifiedItemsModal } = useModalHandlers()
-    const { selectedProductType, editingProductId } = useProductPageStore(s => ({
-        selectedProductType: s.selectedProductType,
-        editingProductId: s.editingProductId
-    }))
-    const importWithUrl = useImportWithUrl({
-        importProductModalController: importProductModal,
-        identifiedItemsModalController: identifiedItemsModal
-    })
+    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(debouncedSearchTerm)
+    useLocaleResources('products', { en: enLocale, ar: arLocale })
 
-    // Computed values
-    const productsCount = data?.pages?.flatMap(page => page.data.data.data)?.length || 0
-    const isActionEnabled = !(productsCount === 0 && !searchTerm)
-
-    // Effects
-    useEffect(() => {
-        if (selectedProductType || editingProductId) {
-            productFormDrawer.onOpen()
-        }
-    }, [selectedProductType, editingProductId])
+    // Derived data
+    const products = data?.pages?.flatMap(page => page.data.data.data) || []
+    const isActionEnabled = !(products.length === 0 && !searchTerm)
 
     return (
-        <>
-            <PageGrid.Root>
-                <PageHeader
-                    onImportModalOpen={importProductModal.onOpen}
-                    onReorderModalOpen={productReorderModal.onOpen}
-                    isActionEnabled={isActionEnabled}
+        <PageGrid.Root>
+            <PageHeader isActionEnabled={isActionEnabled} />
+
+            {(isActionEnabled || isFetching) && (
+                <PageGrid.Actions
+                    search={{
+                        value: searchTerm,
+                        onChange: (e) => setSearchTerm(e.target.value),
+                        disabled: !isActionEnabled
+                    }}
                 />
+            )}
 
-                {(isActionEnabled || isFetching) && (
-                    <PageGrid.Actions
-                        search={{
-                            value: searchTerm,
-                            onChange: (e) => setSearchTerm(e.target.value),
-                            disabled: !isActionEnabled
-                        }}
-                    />
-                )}
-
-                <PageGrid.Content>
-                    <ProductTable searchTerm={debouncedSearchTerm} />
-                </PageGrid.Content>
-            </PageGrid.Root>
-
-            <ProductDrawer {...productFormDrawer} />
-
-            <ImportProductModal {...importProductModal} importWithUrl={importWithUrl} />
-
-            <IdentifiedItemsModal {...identifiedItemsModal} importWithUrl={importWithUrl} />
-
-            {productReorderModal.isOpen && <ProductReorderModal {...productReorderModal} />}
-        </>
+            <PageGrid.Content>
+                <ProductTable
+                    products={products}
+                    isFetching={isFetching}
+                    hasNextPage={hasNextPage}
+                    fetchNextPage={fetchNextPage}
+                    isFetchingNextPage={isFetchingNextPage}
+                />
+            </PageGrid.Content>
+        </PageGrid.Root>
     )
 }
 
-export default ProductsV2
+export default Products

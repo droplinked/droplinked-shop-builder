@@ -4,22 +4,24 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import Table from 'components/redesign/table/Table'
+import { useProductTypeMap } from 'hooks/products/useProducts'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import useProducts, { useProductTypeMap } from 'hooks/products/useProducts'
 import React, { memo } from 'react'
 import EmptyProductList from './EmptyProductList'
 import ProductStatusBadge from './ProductStatusBadge'
 import ProductTableActionMenu from './ProductTableActionMenu'
 
 interface Props {
-    searchTerm: string
+    products: any[]
+    isFetching: boolean
+    hasNextPage: boolean
+    fetchNextPage: () => void | Promise<any>
+    isFetchingNextPage: boolean
 }
 
-function ProductTable({ searchTerm }: Props) {
-    const { t } = useLocaleResources('products');
-    const { data, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts(searchTerm)
+function ProductTable({ products, isFetching, hasNextPage, fetchNextPage, isFetchingNextPage }: Props) {
+    const { t } = useLocaleResources('products')
     const productTypeMap = useProductTypeMap()
-    const products = data?.pages?.flatMap(page => page.data.data.data) || []
 
     const columns: ColumnDef<any>[] = [
         {
@@ -59,7 +61,7 @@ function ProductTable({ searchTerm }: Props) {
         }
     ]
 
-    if (!isFetching && !products.length) return <EmptyProductList />
+    if (!isFetching && products.length === 0) return <EmptyProductList />
 
     return (
         <Table
