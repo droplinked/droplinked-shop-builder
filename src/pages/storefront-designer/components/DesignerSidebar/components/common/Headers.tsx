@@ -1,14 +1,14 @@
-import React from 'react';
 import { Flex, IconButton } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import Drop3Logo from 'assets/brand-identity/Drop3';
+import DroplinkedLogo from 'assets/brand-identity/DroplinkedLogo';
+import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography';
+import { Refresh2Sm } from 'assets/icons/Action/Refresh2/Refresh2Sm';
+import { SidebarcollapseMd } from 'assets/icons/Action/SidebarCollapse/SidebarcollapseMd';
+import { SidebarexpandMd } from 'assets/icons/Action/SidebarExpand/SidebarexpandMd';
 import AppSelect from 'components/redesign/select/AppSelect';
-import useLocaleResources from '../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
 
-/**
- * Props for header components
- */
 interface HeaderProps {
   toggleSidebar: () => void;
 }
@@ -17,26 +17,26 @@ interface HeaderProps {
  * Expanded sidebar header with logo, controls and page selector
  */
 export function ExpandedHeader({ toggleSidebar }: HeaderProps): React.ReactElement {
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t ,isRTL} = useLocaleResources('storefront');
 
   return (
     <Flex direction="column" width="100%" mb={4}>
       <Flex mb="16px" justifyContent="space-between" width="100%">
         <Flex alignItems="center" gap="12px" cursor="pointer">
-          <AppIcons.SidebarDroplinked width="32px" height="32px" aria-label={t('designerSidebar.common.droplinked.logo')} />
-          <AppIcons.SidebarDroplinked1 height="24px" color="#2BCFA1" aria-label={t('designerSidebar.common.droplinked.text')} />
+          <DroplinkedLogo width="32px" height="32px" color="#2BCFA1" />
+          <DroplinkedTypography height="24px" color="#2BCFA1"/>
         </Flex>
         <Flex gap={2}>
           <IconButton
-            aria-label={t('designerSidebar.common.buttons.refreshCustomizations')}
-            icon={<AppIcons.Refresh2 width="16px" height="16px" />}
+            aria-label="Refresh Customizations"
+            icon={<Refresh2Sm width="16px" height="16px" />}
             backgroundColor="neutral.gray.900"
             color="white"
             _hover={{ backgroundColor: '#222' }}
           />
           <IconButton
-            aria-label={t('designerSidebar.common.buttons.toggleSidebar')}
-            icon={<AppIcons.SideBarCollapse width="20px" height="20px" />}
+            aria-label="Toggle Sidebar"
+            icon={isRTL ? <SidebarexpandMd /> : <SidebarcollapseMd />}
             onClick={toggleSidebar}
             _hover={{ backgroundColor: '#222' }}
             backgroundColor="neutral.gray.900"
@@ -60,14 +60,14 @@ export function ExpandedHeader({ toggleSidebar }: HeaderProps): React.ReactEleme
  * Collapsed sidebar header with logo and expand button
  */
 export function CollapsedHeader({ toggleSidebar }: HeaderProps): React.ReactElement {
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { isRTL } = useLocaleResources('storefront');
 
   return (
     <Flex direction="column" alignItems="center" gap="24px" mb="24px">
-      <AppIcons.SidebarDroplinked width="32px" height="32px" aria-label={t('designerSidebar.common.droplinked.logo')} />
+      <Drop3Logo width="32px" height="32px" color="#2BCFA1" />
       <IconButton
-        aria-label={t('designerSidebar.common.buttons.toggleSidebar')}
-        icon={<AppIcons.SideBarExpand width="20px" height="20px" />}
+        aria-label="Toggle Sidebar"
+        icon={isRTL ? <SidebarcollapseMd /> : <SidebarexpandMd />}
         onClick={toggleSidebar}
         backgroundColor="neutral.gray.900"
         color="white"

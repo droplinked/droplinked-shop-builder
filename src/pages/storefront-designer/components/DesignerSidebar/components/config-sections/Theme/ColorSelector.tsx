@@ -5,9 +5,9 @@ import { useQuery } from 'react-query';
 import { availableTemplateService } from 'services/shop/shopServices';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import DotSeparatedList from 'components/redesign/dot-separated-list/DotSeparatedList';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Color palette selection component

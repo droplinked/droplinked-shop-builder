@@ -8,9 +8,9 @@ import useFileUpload from 'hooks/useFileUpload/useFileUpload';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useCallback, useContext, useState } from 'react';
 import { getFileSizeInMB } from 'utils/helpers';
-import useLocaleResources from '../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localCommonEn from '../../../../../../locales/common/en.json';
-import localCommonAr from '../../../../../../locales/common/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 /**
  * Props for ImageUploadSection component

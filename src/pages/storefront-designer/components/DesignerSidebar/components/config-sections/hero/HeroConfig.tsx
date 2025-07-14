@@ -3,9 +3,9 @@ import { VStack } from '@chakra-ui/react';
 import SectionItem from '../../common/SectionItem';
 import ImageUploadSection from '../../common/ImageUploadSection';
 import CoverImageSection from './CoverImageSection';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Hero section configuration with cover and custom image options

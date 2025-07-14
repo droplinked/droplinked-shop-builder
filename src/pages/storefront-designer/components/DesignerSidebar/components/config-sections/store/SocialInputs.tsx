@@ -4,9 +4,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import createSocialItems from './socialItems.model';
 import { SocialDisplay } from './SocialDisplay';
 import { SocialForm } from './SocialForm';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localCommonEn from '../../../../../../../locales/common/en.json';
-import localCommonAr from '../../../../../../../locales/common/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 type SocialInputsProps = {
     activeSocialId: string;

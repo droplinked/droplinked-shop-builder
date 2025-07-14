@@ -4,9 +4,9 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox';
 import { SocialInputs } from './SocialInputs';
 import { PlusMd } from 'assets/icons/Sign/Plus/PlusMd';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localCommonEn from '../../../../../../../locales/common/en.json';
-import localCommonAr from '../../../../../../../locales/common/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 export type SocialOption = {
   caption: string;

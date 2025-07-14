@@ -6,9 +6,9 @@ import IconColorSection from './IconColorSection';
 import AppSwitch from 'components/common/swich';
 import AppTypography from 'components/common/typography/AppTypography';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Header configuration with logo, favicon, and icon color settings

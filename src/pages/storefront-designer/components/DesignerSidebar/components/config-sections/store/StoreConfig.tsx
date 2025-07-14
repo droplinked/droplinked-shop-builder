@@ -3,9 +3,9 @@ import { VStack } from '@chakra-ui/react';
 import SectionItem from '../../common/SectionItem';
 import SocialChannelsSection from './SocialChannelsSection';
 import ImageUploadSection from '../../common/ImageUploadSection';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Store configuration with profile image and social channels

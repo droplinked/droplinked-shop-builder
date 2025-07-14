@@ -3,9 +3,9 @@ import { Layout2Md } from 'assets/icons/StyleDesigner/Layout2/Layout2Md';
 import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import React from 'react';
 import SectionItem from '../../common/SectionItem';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 const TemplateSelector: React.FC = () => {
   const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });

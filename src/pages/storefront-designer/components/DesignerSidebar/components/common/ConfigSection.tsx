@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Flex, IconButton } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import { AppAccordionChevron, AppAccordionItem, AppAccordionPanel, AppAccordionTrigger, useAppAccordionItemContext } from 'components/redesign/accordion/AppAccordion';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 /**
  * Props for ConfigSection component
@@ -22,6 +23,8 @@ interface ConfigSectionProps {
  * icon, and content component. Used for different configuration categories.
  */
 function ConfigSection({ title, icon, component: SectionComponent, itemId, defaultOpen = false, onToggle }: ConfigSectionProps): React.ReactElement {
+  const { isRTL } = useLocaleResources('storefront');
+  
   return (
     <AppAccordionItem width="100%" height="auto" display="flex" flexDirection="column" alignItems="flex-start" borderRadius="8px" itemId={itemId} defaultOpen={defaultOpen}>
       <ToggleObserver onToggle={onToggle} />
@@ -35,7 +38,7 @@ function ConfigSection({ title, icon, component: SectionComponent, itemId, defau
             backgroundColor="neutral.gray.900"
             color="white"
             _hover={{ backgroundColor: '#222' }}
-            marginRight={2}
+            {...(isRTL ? { marginLeft: 2 } : { marginRight: 2 })}
           />
           <AppTypography color="white" fontSize="base">
             {title}

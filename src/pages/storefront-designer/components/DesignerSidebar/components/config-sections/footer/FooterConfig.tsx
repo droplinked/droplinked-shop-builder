@@ -8,9 +8,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import { AdditionalLinks } from 'pages/storefront-designer/types/designerTypes';
 import React, { useCallback, useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Footer configuration component for managing footer links

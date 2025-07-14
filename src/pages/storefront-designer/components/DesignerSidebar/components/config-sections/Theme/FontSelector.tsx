@@ -2,9 +2,9 @@ import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Typography and font selection component

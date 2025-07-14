@@ -4,9 +4,9 @@ import AppInput from 'components/redesign/input/AppInput';
 import React, { useRef, useState, useContext, useEffect } from 'react';
 import { SocialItemsState } from './socialItems.model';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localCommonEn from '../../../../../../../locales/common/en.json';
-import localCommonAr from '../../../../../../../locales/common/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localCommonEn from 'locales/common/en.json';
+import localCommonAr from 'locales/common/ar.json';
 
 type SocialFormProps = {
     socialId: string;

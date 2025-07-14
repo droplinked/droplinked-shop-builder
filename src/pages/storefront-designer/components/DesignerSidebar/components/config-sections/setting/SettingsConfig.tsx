@@ -5,9 +5,9 @@ import SectionItem from '../../common/SectionItem';
 import { getNextDayMidnightISO } from 'utils/helpers/dateUtils';
 import AppDatepicker from 'components/common/datepicker/AppDatepicker';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
-import useLocaleResources from '../../../../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../../../../locales/storefront/en.json';
-import localAr from '../../../../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Settings configuration for release date and other settings
