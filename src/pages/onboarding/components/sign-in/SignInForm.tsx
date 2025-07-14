@@ -80,7 +80,7 @@ function SignInForm() {
                             name="password"
                             value={values.password}
                             onChange={handleChange}
-                            label={t('common.passwordLabe')}
+                            label={t('common.passwordLabel')}
                             placeholder={t('common.passwordPlaceholder')}
                             message={errors.password ? t('common.passwordError') : undefined}
                         />
@@ -93,7 +93,7 @@ function SignInForm() {
                                 {t('signIn.rememberPassword')}
                             </Checkbox>
                             <InteractiveText onClick={() => updateOnboardingState("currentStep", "RESET_PASSWORD")}>
-                            {t('signIn.resetPassword')} 
+                                {t('signIn.resetPassword')}
                             </InteractiveText>
                         </Flex>
 
@@ -110,9 +110,9 @@ function SignInForm() {
                             justifyContent="center"
                             alignItems="center"
                             gap={{ base: 1, md: 2 }}
-                            text= {t('signIn.noAccountText')}
+                            text={t('signIn.noAccountText')}
                             action={() => updateOnboardingState('currentStep', 'SIGN_UP')}
-                            linkText= {t('signIn.createAccountText')}
+                            linkText={t('signIn.createAccountText')}
                         />
                     </Form>
                 )}
