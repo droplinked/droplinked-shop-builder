@@ -1,29 +1,27 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 import { LogoutMd } from 'assets/icons/Action/LogOut/LogoutMd'
 import { WalletMd } from 'assets/icons/Finance/Wallet/WalletMd'
+import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd'
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd'
 import { GlobeMd } from 'assets/icons/Sign/Globe/GlobeMd'
 import { ShopMd } from 'assets/icons/System/Shop/ShopMd'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import useShopUrl from 'hooks/useShopUrl/useShopUrl'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import EnLocale from 'locales/layout/userMenu/en.json'
 import ArLocale from 'locales/layout/userMenu/ar.json'
-import { getShopCredit } from 'services/shop/shopServices'
+import EnLocale from 'locales/layout/userMenu/en.json'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { getShopCredit } from 'services/shop/shopServices'
 
 function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const navigate = useNavigate()
     const { logoutUser } = useProfile()
     const shopUrl = useShopUrl()
     const { getFormattedPrice } = useCurrencyConverter()
-    const { t } = useLocaleResources('layout/userMenu', {
-        en: EnLocale,
-        ar: ArLocale
-    })
+    const { t , isRTL } = useLocaleResources('layout/userMenu', {en: EnLocale,ar: ArLocale})
 
     const { isFetching, data } = useQuery({
         queryKey: ['shop-credit'],
@@ -56,7 +54,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
             icon: <ShopMd color='#FFF' />,
             label: t('actions.switch'),
             color: '#FFF',
-            rightContent: <ChevronrightMd color='#878787' />,
+            rightContent: isRTL ? <ChevronleftMd color='#878787' /> : <ChevronrightMd color='#878787' />,
             onClick: () => navigate('/shop-management')
         },
         {
@@ -69,6 +67,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
 
     const renderActionButton = (action: any) => {
         const { icon, label, color, rightContent, onClick } = action
+
         return (
             <Flex
                 as={onClick ? 'button' : 'div'}
@@ -82,7 +81,14 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
                 onClick={onClick}
             >
                 {icon}
-                <Text flex={1} fontSize={14} color={color}>{label}</Text>
+                <Text 
+                    flex={1} 
+                    fontSize={14}
+                    textAlign={isRTL ? 'right' : 'left'} 
+                    color={color}
+                >
+                    {label}
+                </Text>
                 {rightContent}
             </Flex>
         )
