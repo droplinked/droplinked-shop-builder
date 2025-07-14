@@ -39,7 +39,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
     // Helper function to render the value display based on title.
     // If title is "Net Profit", use FormattedPrice; otherwise, use Text.
     const renderValueDisplay = (fontSize: number | Record<string, number>) => {
-        return title === "Net Profit" ?
+        return title === t('netProfit') ?
             <FormattedPrice
                 price={totalValue}
                 fontSize={fontSize}
