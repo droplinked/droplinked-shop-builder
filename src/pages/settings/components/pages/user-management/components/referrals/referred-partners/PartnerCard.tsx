@@ -1,7 +1,7 @@
 import { Avatar, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
 import { appDevelopment } from 'utils/app/variable'
 import React from 'react'
@@ -23,19 +23,21 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                 <AppIcons.DotSpacer />
                 <FormattedPrice price={amount} fontWeight={500} />
             </Flex>
-            <ExternalLink
-                href={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`}
-                textDecor={"none"}
-                display={"flex"}
-                alignItems={"center"}
-                fontSize={16}
-                fontWeight={500}
-                gap={"6px"}
+            <InteractiveText
+                to={`https://${appDevelopment ? "dev." : ""}droplinked.io/${shopName}`}
                 target='_blank'
+                hasExternalIcon
+                sx={{
+                    textDecor: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: 16,
+                    fontWeight: 500,
+                    gap: "6px"
+                }}
             >
                 {t('settings.referrals.referredPartners.visit')}
-                <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-            </ExternalLink>
+            </InteractiveText>
         </Flex>
     )
 }

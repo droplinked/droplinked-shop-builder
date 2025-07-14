@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import chainNameMap from 'utils/constants/blockchainMap'
 import useProductForm from 'pages/products/hooks/useProductForm'
 import React from 'react'
@@ -27,9 +27,9 @@ function DropSummary() {
             }}
         >
             {transactionUrl ?
-                <ExternalLink href={transactionUrl} target="_blank">
+                <InteractiveText to={transactionUrl} target="_blank">
                     {truncatedTransactionUrl}
-                </ExternalLink>
+                </InteractiveText>
                 :
                 <Text>No transaction URL provided</Text>
             }

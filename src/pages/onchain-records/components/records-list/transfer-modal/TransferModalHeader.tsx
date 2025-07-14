@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import React, { ReactNode } from 'react'
 import TabsList from '../tabs-components/TabsList'
@@ -32,15 +32,15 @@ export default function TransferModalHeader({ tabs }: Props) {
             {...(!isSmallerThan768 && { icon: <AppIcons.Transfer /> })}
             description={t("transfer_records_description")}
         >
-            <ExternalLink href={SampleFile}
+            <InteractiveText
+                to={SampleFile}
                 width="max-content"
-                fontSize={14}
-                fontWeight={500}
+                target='_blank'
                 mt={2}
                 pb={4}
             >
                 {t("download_sample")}
-            </ExternalLink>
+            </InteractiveText>
             <TabsList tabs={tabs} />
         </ModalHeaderData>
     )

@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 import { useHasPermission } from 'stores/app/appStore'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AccessLevelBadge from 'components/redesign/access-level-badge/AccessLevelBadge'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import SectionContainer from 'pages/settings/components/common/SectionContainer'
 import SectionContent from 'pages/settings/components/common/SectionContent'
@@ -27,19 +27,13 @@ export default function PublicApiKey() {
                 <AccessLevelBadge justLevel level="Premium" />
             }
             rightContent={
-                <ExternalLink
-                    href={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
-                    textDecor={"none"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    fontSize={16}
-                    fontWeight={500}
-                    gap={"6px"}
-                    target='_blank'
-                    hasArrow={true}
+                <InteractiveText
+                    to={`https://${appDevelopment ? "apiv3dev" : "apiv3"}.droplinked.com/v1/public-apis/document`}
+                    target="_blank"
+                    hasExternalIcon
                 >
                     {t("settings.privacySecurity.publicApiKey.apiDocumentation")}
-                </ExternalLink>
+                </InteractiveText>
             }
         >
             <SectionContent

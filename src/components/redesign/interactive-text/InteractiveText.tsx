@@ -58,6 +58,7 @@ function InteractiveText({ to, onClick, iconLeft, iconRight, hasExternalIcon, ch
             to={to}
             onClick={onClick}
             {...interactiveTextStyles}
+            fontSize={hasExternalIcon ? 16 : 14}
             {...textProps}
         >
             {iconLeft}

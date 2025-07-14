@@ -1,6 +1,6 @@
 import AppIcons from 'assets/icon/Appicons'
 import fileTemplate from "assets/samples/import_product_template.xlsx"
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import AppModal from 'components/redesign/modal/AppModal'
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData'
 import useInvalidateProductsQuery from 'hooks/products/useInvalidateProducts'
@@ -43,14 +43,12 @@ function ImportProductModal({ isOpen, onClose, importWithUrl }: Props) {
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
             >
-                <ExternalLink
-                    fontSize={14}
-                    fontWeight={600}
-                    href={fileTemplate}
-                    download="import_product_template.xlsx"
+                <InteractiveText
+                    to={fileTemplate}
+                    target="_blank"
                 >
                     {t('importModal.downloadTemplate')}
-                </ExternalLink>
+                </InteractiveText>
             </ModalHeaderData>
             <ImportProductModalBody file={uploadedFile} onFileChange={setUploadedFile} importWithUrl={importWithUrl} />
             <ImportProductModalFooter file={uploadedFile} closeModal={onClose} importWithUrl={importWithUrl} />

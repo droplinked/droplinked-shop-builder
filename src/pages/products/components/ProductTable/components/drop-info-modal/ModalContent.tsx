@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import chainNameMap from 'utils/constants/blockchainMap'
 import React from 'react'
@@ -25,13 +25,12 @@ function ModalContent({ product }) {
     >
       <DetailRow label={t('dropInfoModal.details.deployHash')}>
         <Flex alignItems="center" gap={3}>
-          <ExternalLink
-            href={transactionUrl}
-            fontSize={14}
-            fontWeight={500}
+          <InteractiveText
+            to={transactionUrl}
+            target="_blank"
           >
             {truncatedDeployHash}
-          </ExternalLink>
+          </InteractiveText>
           <ClipboardText text={deployHash} />
         </Flex>
       </DetailRow>

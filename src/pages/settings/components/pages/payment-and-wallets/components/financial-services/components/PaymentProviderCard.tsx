@@ -1,7 +1,7 @@
 import { Box, Divider, Flex, HStack, Spinner, Text } from '@chakra-ui/react';
 import AppIcons from 'assets/icon/Appicons';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText';
 import SwitchBox from 'components/redesign/switch-box/SwitchBox';
 import { useFormikContext } from 'formik';
 import { ISettings } from 'pages/settings/utils/formConfigs';
@@ -46,20 +46,23 @@ const PaymentProviderCard: React.FC<PaymentProviderProps> = ({ item, onToggle })
         link && <>
           <Divider borderColor="#282828" />
           <Flex py={"14px"} textAlign="center" justifyContent={"center"}>
-            <ExternalLink
-              textDecor={"none"}
-              display={"flex"}
-              alignItems={"center"}
-              fontSize={16}
-              fontWeight={500}
-              gap={"6px"}
-              color={isExternal ? "#179EF8" : "#2BCFA1"}
-              hasArrow={isExternal ? true : false}
-              cursor={isLinkDisabled ? "not-allowed" : "pointer"}
-              {...!isLinkDisabled && { href: link, target: "_blank" }}
+            <InteractiveText
+              to={!isLinkDisabled ? link : undefined}
+              target="_blank"
+              hasExternalIcon={isExternal}
+              sx={{
+                textDecor: "none",
+                display: "flex",
+                alignItems: "center",
+                fontSize: 16,
+                fontWeight: 500,
+                gap: "6px",
+                color: isExternal ? "#179EF8" : "#2BCFA1",
+                cursor: isLinkDisabled ? "not-allowed" : "pointer"
+              }}
             >
               {isFetching ? <Spinner size={"sm"} /> : buttonText}
-            </ExternalLink>
+            </InteractiveText>
           </Flex>
         </>
       }

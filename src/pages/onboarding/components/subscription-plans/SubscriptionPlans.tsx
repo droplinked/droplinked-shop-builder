@@ -1,6 +1,6 @@
 import { Grid, useDisclosure } from "@chakra-ui/react"
 import PaymentModal from "components/modals/payment-modal/PaymentModal"
-import ExternalLink from "components/redesign/external-link/ExternalLink"
+import InteractiveText from "components/redesign/interactive-text/InteractiveText"
 import PlanDurationRadioContainer from "components/redesign/plan-duration-radio/PlanDurationRadioContainer"
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import onboardingArLocale from 'locales/onboarding/ar.json'
@@ -13,7 +13,7 @@ import Loading from "pages/subscription-plans/components/plan-cards/loading/Load
 import React, { useState } from "react"
 import { useQuery } from "react-query"
 import { SubscriptionPlan } from "services/subscription/interfaces"
-import { getSubscriptionPlansService} from "services/subscription/subscriptionServices"
+import { getSubscriptionPlansService } from "services/subscription/subscriptionServices"
 import useSubscriptionPlanStore from "stores/subscription-plan.ts/subscriptionPlanStore"
 import ControlButtons from "../common/ControlButtons"
 import OnboardingStepHeader from "../common/OnboardingStepHeader"
@@ -61,20 +61,20 @@ function SubscriptionPlans() {
     return (
         <>
             <OnboardingStepHeader
-                 heading={tOnboarding('subscriptionPlans.title')} 
-                 description={tOnboarding('subscriptionPlans.subtitle')}
+                heading={tOnboarding('subscriptionPlans.title')}
+                description={tOnboarding('subscriptionPlans.subtitle')}
             />
 
-            <ExternalLink
+            <InteractiveText
                 fontSize="16px"
                 mt="-46px"
                 justifyContent="flex-start"
                 padding={0}
-                hasArrow={true}
                 onClick={() => window.open("/plans", "_blank")}
+                hasExternalIcon
             >
-                {tOnboarding('subscriptionPlans.viewAllPlans')} 
-            </ExternalLink>
+                {tOnboarding('subscriptionPlans.viewAllPlans')}
+            </InteractiveText>
 
             <PlanDurationRadioContainer />
 
@@ -96,7 +96,7 @@ function SubscriptionPlans() {
             </Grid>
 
             <ControlButtons
-                 continueText={getContinueText(selectedPlan, tSubscription)} 
+                continueText={getContinueText(selectedPlan, tSubscription)}
                 onSubmit={handleNext}
                 onBack={() => updateOnboardingState('currentStep', 'PAYMENT_DETAILS')}
             />

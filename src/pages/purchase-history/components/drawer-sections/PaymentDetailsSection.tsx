@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import FormattedPrice from 'components/redesign/formatted-price/FormattedPrice'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import React from 'react'
 import InfoWrapper from '../drawer-components/InfoWrapper'
 import TitledText from '../drawer-components/TitledText'
@@ -128,15 +128,14 @@ function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
                     title={item.title}
                     direction='row'
                     text={item.trackings.map((tracking, index) => (
-                        <ExternalLink
+                        <InteractiveText
                             key={index}
-                            href={tracking.url}
+                            to={tracking.url}
                             target="_blank"
-                            rel="noopener noreferrer"
-                            hasArrow
+                            hasExternalIcon
                         >
                             {tracking.name}
-                        </ExternalLink>
+                        </InteractiveText>
                     ))}
                 />
             ))}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
-import ExternalLink from "components/redesign/external-link/ExternalLink"
+import InteractiveText from "components/redesign/interactive-text/InteractiveText"
 import hashkeyModel from "components/common/hashKey/model"
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
@@ -24,14 +24,14 @@ export default function TransactionLink({ transactions, chain }: TransactionLink
                     <AppTypography color="#7B7B7B" fontSize={14} fontWeight={400}>
                         {`${t("transaction_link")} ` + (index === 0 ? "" : index + 1)}
                     </AppTypography>
-                    <ExternalLink
+                    <InteractiveText
                         fontSize={14}
                         fontWeight={500}
-                        href={hashkeyModel.getLink({ blockchain: chain, hashkey: item.deploy_hash })}
-                        hasArrow={true}
+                        to={hashkeyModel.getLink({ blockchain: chain, hashkey: item.deploy_hash })}
+                        hasExternalIcon={true}
                     >
                         {slicedText(item.deploy_hash)}
-                    </ExternalLink>
+                    </InteractiveText>
                 </Flex >
             ))
             }

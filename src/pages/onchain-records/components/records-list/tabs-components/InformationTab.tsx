@@ -3,7 +3,7 @@ import ContainerCard from "../../ContainerCard"
 import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
 import { Flex } from "@chakra-ui/react"
 import AppTypography from "components/common/typography/AppTypography"
-import ExternalLink from "components/redesign/external-link/ExternalLink"
+import InteractiveText from "components/redesign/interactive-text/InteractiveText"
 import { ICombinedNft } from "pages/onchain-records/utils/interface"
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
 import SKURow from "../../SKURow"
@@ -109,14 +109,14 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         {
             title: t("address"),
             content: (
-                <ExternalLink
+                <InteractiveText
                     fontSize={14}
                     fontWeight={500}
-                    href={productAddress}
-                    hasArrow={true}
+                    to={productAddress}
+                    hasExternalIcon={true}
                 >
                     {slicedText(productAddress)}
-                </ExternalLink>
+                </InteractiveText>
             ),
         },
     ]

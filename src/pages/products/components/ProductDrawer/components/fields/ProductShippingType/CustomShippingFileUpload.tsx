@@ -1,6 +1,6 @@
 import { Button, Flex } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import { getFileSizeInMB } from 'utils/helpers'
 import { parseShippingFileData } from 'pages/products/utils/shippingFileParser'
@@ -61,15 +61,14 @@ function CustomShippingFileUpload({ onFileParsed }: Props) {
                 title="Sample File"
                 description="Use the sample template to ensure correct file format and details."
             >
-                <ExternalLink
+                <InteractiveText
                     mt={1}
                     fontSize={12}
-                    fontWeight={500}
-                    href="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/622e15c810c2e7fb08c93b7ffa185228feb223ea821a3a596dfdd64c63854597_or.xlsx"
-                    download="Droplinked-Shipping-Template.xlsx"
+                    to="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/622e15c810c2e7fb08c93b7ffa185228feb223ea821a3a596dfdd64c63854597_or.xlsx"
+                    target="_blank"
                 >
                     Download Template
-                </ExternalLink>
+                </InteractiveText>
             </MessageBox>
         </Flex>
     )

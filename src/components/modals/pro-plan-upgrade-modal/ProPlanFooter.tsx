@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import AppButton from 'components/redesign/button/AppButton';
-import ExternalLink from 'components/redesign/external-link/ExternalLink';
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText';
 import React from 'react';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
@@ -25,7 +25,9 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateT
       {canActivateTrial ? null : (
         <Text display="flex" fontSize="sm" justifyContent="center" alignItems="center" gap={1} mt={6} color="white">
           {' '}
-          {t('proPlan.footer.unsure')} <ExternalLink onClick={() => window.open('/plans', '_blank')}>{t('proPlan.footer.comparePlans')}</ExternalLink>
+          {t('proPlan.footer.unsure')} <InteractiveText to="/plans" target="_blank">
+            {t('proPlan.footer.comparePlans')}
+          </InteractiveText>
         </Text>
       )}
 
@@ -43,4 +45,4 @@ const ProPlanFooter: React.FC<ProPlanFooterProps> = ({ isCrossmint, canActivateT
   );
 };
 
-export default ProPlanFooter; 
+export default ProPlanFooter;
