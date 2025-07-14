@@ -1,19 +1,19 @@
 import { Flex } from "@chakra-ui/react";
 import AppIcons from "assets/icon/Appicons";
+import BlueButton from "components/redesign/button/BlueButton";
+import InteractiveText from "components/redesign/interactive-text/InteractiveText";
+import { useFormikContext } from "formik";
+import useAppToast from "hooks/toast/useToast";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import DefaultBadge from "pages/settings/components/common/DefaultBadge";
 import SectionContainer from "pages/settings/components/common/SectionContainer";
 import SectionContent from "pages/settings/components/common/SectionContent";
-import React, { useEffect, useState } from "react";
-import { WalletRow } from "./WalletRow";
-import { useFormikContext } from "formik";
 import { ISettings } from "pages/settings/utils/formConfigs";
+import React, { useEffect, useState } from "react";
 import useAppStore from "stores/app/appStore";
-import useAppToast from "hooks/toast/useToast";
 import { getWalletsData } from "./helpers";
 import { WalletData } from "./types";
-import ExternalLink from "components/redesign/external-link/ExternalLink";
-import BlueButton from "components/redesign/button/BlueButton";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { WalletRow } from "./WalletRow";
 
 export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const { t } = useLocaleResources('settings');
@@ -110,19 +110,13 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                 title={t("settings.address.title")}
                 description={description}
                 rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave, t)}>
-                <ExternalLink
-                    href={"#"}
-                    textDecor={"none"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    fontSize={16}
-                    fontWeight={500}
-                    gap={"6px"}
-                    target='_blank'
+                <InteractiveText
+                    to="#"
+                    target="_blank"
+                    hasExternalIcon
                 >
                     {t(isSolana ? "settings.paymentsWallets.wallets.solanaWallet.learnMore" : "settings.paymentsWallets.wallets.evmWallet.learnMore")}
-                    <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-                </ExternalLink>
+                </InteractiveText>
             </SectionContent>
         </SectionContainer>
     );

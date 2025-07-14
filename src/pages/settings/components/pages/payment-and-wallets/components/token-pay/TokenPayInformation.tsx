@@ -1,6 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import AppIcons from 'assets/icon/Appicons'
-import ExternalLink from 'components/redesign/external-link/ExternalLink'
+import InteractiveText from 'components/redesign/interactive-text/InteractiveText'
 import MessageBox from 'components/redesign/message-box/MessageBox'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
@@ -10,19 +9,13 @@ export default function TokenPayInformation() {
 
     return (
         <VStack spacing="4" align="start" width="100%">
-            <ExternalLink
-                href={"#"}
-                textDecor={"none"}
-                display={"flex"}
-                alignItems={"center"}
-                fontSize={16}
-                fontWeight={500}
-                gap={"6px"}
-                target='_blank'
+            <InteractiveText
+                to="#"
+                target="_blank"
+                hasExternalIcon
             >
                 {t('settings.paymentsWallets.tokenPay.paymentTokens.learnMore')}
-                <AppIcons.ExternalLink style={{ display: "inline-block" }} />
-            </ExternalLink>
+            </InteractiveText>
 
             <MessageBox
                 theme='warning'
