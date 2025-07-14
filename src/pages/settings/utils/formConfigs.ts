@@ -7,6 +7,7 @@ export interface ISettings {
     pre_purchase_data_fetch: string;
     isAgeRestricted: boolean;
     currencyAbbreviation: string;
+    defaultLanguage: string;
     paymentMethods: {
         type: string;
         isActive: boolean;
@@ -31,6 +32,7 @@ export const createSettingsPageSchema = (t) => Yup.object().shape({
     pre_purchase_data_fetch: Yup.string().nullable().optional(),
     isAgeRestricted: Yup.boolean().nullable().optional(),
     currencyAbbreviation: Yup.string().nullable().required(t('settings.validation.currencyRequired')),
+    defaultLanguage: Yup.string().required(),
     paymentMethods: Yup.array().of(
         Yup.object().shape({
             type: Yup.string().required(),
@@ -57,7 +59,7 @@ export const createSettingsPageSchema = (t) => Yup.object().shape({
     ).nullable().optional(),
 });
 
-export const getSettingsPageInitValues = (shopData, userData) => {
+export const getSettingsPageInitValues = (shopData, userData, defaultLanguage) => {
     const { name, pre_purchase_data_fetch, isAgeRestricted, currency, paymentMethods, loginMethods, paymentWallets } = shopData;
     const { email } = userData;
 
@@ -67,6 +69,7 @@ export const getSettingsPageInitValues = (shopData, userData) => {
         isAgeRestricted: isAgeRestricted || false,
         email: email || '',
         currencyAbbreviation: currency?.abbreviation || null,
+        defaultLanguage: defaultLanguage || 'en',
         paymentMethods: paymentMethods || [],
         paymentWallets: paymentWallets || [],
         loginMethods: loginMethods || []

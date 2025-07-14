@@ -1,6 +1,7 @@
-import React, { CSSProperties } from 'react'
-import { useTranslation } from 'react-i18next'
 import AppSelect from 'components/redesign/select/AppSelect'
+import { useFormikContext } from 'formik'
+import React from 'react'
+import { ISettings } from 'pages/settings/utils/formConfigs'
 
 const languageOptions = [
     { label: 'English', value: 'en' },
@@ -8,11 +9,10 @@ const languageOptions = [
 ]
 
 function LanguageSelect() {
-    const { i18n } = useTranslation()
+    const { values, setFieldValue } = useFormikContext<ISettings>()
 
     const handleLanguageChange = (selected: string) => {
-        if (selected === i18n.language) return
-        i18n.changeLanguage(selected)
+        setFieldValue('defaultLanguage', selected)
     }
 
     return (
@@ -21,11 +21,11 @@ function LanguageSelect() {
             labelAccessor="label"
             valueAccessor="value"
             selectProps={{
-                value: i18n.language,
+                value: values.defaultLanguage,
                 onChange: (e) => handleLanguageChange(e.target.value)
             }}
         />
     )
 }
 
-export default LanguageSelect 
+export default LanguageSelect

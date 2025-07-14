@@ -9,12 +9,14 @@ import { getSettingsPageInitValues, createSettingsPageSchema } from './utils/for
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import ar from 'locales/settings/ar.json'
 import en from 'locales/settings/en.json'
+import { useTranslation } from 'react-i18next'
 
 function SettingsPage() {
     const { t } = useLocaleResources('settings', {
         ar: ar,
         en: en
     })
+    const { i18n } = useTranslation()
     const { shop, user, updateShop, fetchShop } = useAppStore()
     const { showToast } = useAppToast()
 
@@ -28,6 +30,7 @@ function SettingsPage() {
             //we use !!values.pre_purchase_data_fetch to handle active/deactive state of pre_purchase_data_fetch 
             await updateShop({ ...values, pre_purchase_data_fetch: { active: !!values.pre_purchase_data_fetch, title: values.pre_purchase_data_fetch } });
             await fetchShop({ shopName: shop.name })
+            i18n.changeLanguage(values.defaultLanguage)
             resetForm({ values })
             showToast({ type: "success", message: t("settings.updateSuccess") })
         } catch (error) {
@@ -45,7 +48,7 @@ function SettingsPage() {
         <PageGrid.Root>
             <PageGrid.Header title={t("settings.title")} description={t("settings.description")} />
             <Formik
-                initialValues={getSettingsPageInitValues(shop, user)}
+                initialValues={getSettingsPageInitValues(shop, user, i18n.language)}
                 validateOnChange={false}
                 validationSchema={settingsPageSchema}
                 onSubmit={handleSubmit}
