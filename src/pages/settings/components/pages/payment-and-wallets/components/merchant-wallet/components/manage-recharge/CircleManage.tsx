@@ -2,20 +2,20 @@ import { Box, ModalBody, ModalHeader, Skeleton, SkeletonCircle, useDisclosure } 
 import AppIcons from "assets/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import AppButton from "components/redesign/button/AppButton";
+import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import { motion } from "framer-motion";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import React, { useState } from "react";
+import { useMutation, useQuery } from "react-query";
 import { IPostWithdrawCircleWallet } from "services/shop/interfaces";
 import { getCircleWallet, postWithdrawCircle } from "services/shop/shopServices";
 import useAppStore from "stores/app/appStore";
-import React, { useState } from "react";
-import { useMutation, useQuery } from "react-query";
 import { IModalProps } from "types/interface/modal.interface";
-import ConnectWallets from "./connect/ConnectWallets";
-import { ChainIcons } from "utils/constants/chainIcons";
-import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import { appDevelopment } from "utils/app/variable";
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import { ChainIcons } from "utils/constants/chainIcons";
+import ConnectWallets from "./connect/ConnectWallets";
 
 const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
     const { t } = useLocaleResources('settings');
@@ -97,9 +97,6 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                     modalHeaderProps={{
                         bgColor: "#141414",
                         paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
-                    }}
-                    descriptionProps={{
-                        color: "#B1B1B1 !important"
                     }}
                     title={t("settings.merchantWallet.manage.title")}
                     description={t("settings.merchantWallet.manage.description")}

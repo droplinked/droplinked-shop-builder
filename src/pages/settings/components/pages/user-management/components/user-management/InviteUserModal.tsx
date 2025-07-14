@@ -6,10 +6,10 @@ import MessageBox from 'components/redesign/message-box/MessageBox';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'hooks/toast/useToast';
-import { sendInvitaionEmailService } from 'services/user/services';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import { sendInvitaionEmailService } from 'services/user/services';
 
 interface Props {
     isOpen: boolean;
@@ -46,9 +46,6 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
-                }}
-                descriptionProps={{
-                    color: "#B1B1B1 !important"
                 }}
                 title={t('settings.userManagement.inviteModal.title')}
                 icon={<AppIcons.AddUser />}

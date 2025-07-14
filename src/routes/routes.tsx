@@ -20,24 +20,24 @@ import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-tokens/CustomTokensPage"
-import MetaverseStorePage from "pages/public-pages/landings/metaverse-showroom/MetaverseShowroomPage"
-import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
-import PricingPage from "pages/public-pages/pricing/PricingPage"
-import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import DigitalGoodsPage from "pages/public-pages/landings/digital-goods/DigitalGoodsPage"
+import DIMST from "pages/public-pages/landings/DIMST/DIMST"
 import DPPLanding from "pages/public-pages/landings/dpp-landing/DPPLanding"
 import HomePage from "pages/public-pages/landings/home/HomePage"
+import MetaverseStorePage from "pages/public-pages/landings/metaverse-showroom/MetaverseShowroomPage"
 import OnchainAffiliatePage from "pages/public-pages/landings/onchain-affiliate/OnchainAffiliatePage"
 import OnchainSubscriptions from "pages/public-pages/landings/onchain-subscriptions/OnchainSubscriptions"
+import PartnerPage from "pages/public-pages/landings/partner-pages/PartnerPage"
 import PaymentLinksPage from "pages/public-pages/landings/payment-links/PaymentLinksPage"
 import PhysicalInventoryPage from "pages/public-pages/landings/physical-inventory/PhysicalInventoryPage"
 import ProductTilesPage from "pages/public-pages/landings/product-tiles/ProductTilesPage"
 import ProductsOnDemandPage from "pages/public-pages/landings/products-on-demand/ProductsOnDemandPage"
-import TokenizingProducts from "pages/public-pages/landings/tokenizing-products/TokenizingProducts"
-import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import SocialQuests from "pages/public-pages/landings/social-quests/SocialQuests"
-import PartnerPage from "pages/public-pages/landings/partner-pages/PartnerPage"
-import DIMST from "pages/public-pages/landings/DIMST/DIMST"
+import TokenizingProducts from "pages/public-pages/landings/tokenizing-products/TokenizingProducts"
+import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
+import PricingPage from "pages/public-pages/pricing/PricingPage"
+import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
+import TermsPage from "pages/public-pages/terms-page/TermsPage"
 
 // Lazy-loaded components for other routes
 const StorefrontDesigner = lazy(() => import("pages/storefront-designer/StorefrontDesigner"))
@@ -50,7 +50,7 @@ const InvoiceManagement = lazy(() => import("pages/invoice-management").then(mod
 const CreateInvoice = lazy(() => import("pages/invoice-management").then(module => ({ default: module.CreateInvoice })))
 const MaintenancePage = lazy(() => import("pages/maintenance-page/MaintenancePage"))
 const ProductOrder = lazy(() => import("pages/order-sample-pod/ProductOrder"))
-const ProductsV2 = lazy(() => import("pages/products/ProductsV2"))
+const Products = lazy(() => import("pages/products/Products"))
 const AffiliateStores = lazy(() => import("pages/affiliate/stores/AffiliateStores"))
 const PaymentLink = lazy(() => import("pages/payment-link/PaymentLink"))
 const SimpleRegistration = lazy(() => import("pages/simple-registration/SimpleRegistration"))
@@ -139,7 +139,7 @@ const router = createBrowserRouter([
             {
                 path: "products",
                 children: [
-                    { index: true, element: <ProductsV2 /> },
+                    { index: true, element: <Products /> },
                     { path: "order/:productID", element: <ProductOrder /> }
                 ]
             },

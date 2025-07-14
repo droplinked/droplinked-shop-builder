@@ -1,10 +1,10 @@
 import { ModalFooter } from '@chakra-ui/react';
+import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg';
 import AppButton, { AppButtonProps } from 'components/redesign/button/AppButton';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
-import { WarningLg } from 'assets/icons/Sign/Warning/WarningLg';
-import React from 'react';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
 
 interface RemoveConfirmationModalProps {
   isOpen: boolean;
@@ -18,7 +18,7 @@ const RemoveConfirmationModal: React.FC<RemoveConfirmationModalProps> = ({ isOpe
   const { t } = useLocaleResources('onboarding');
   // Remove the last character from type for display
   const displayType = type.slice(0, -1);
-  
+
   const confirmButtonProps: AppButtonProps = {
     bgColor: 'system.error',
     color: 'white',
@@ -38,9 +38,6 @@ const RemoveConfirmationModal: React.FC<RemoveConfirmationModalProps> = ({ isOpe
           bgColor: '#141414',
           paddingBlock: { lg: '48px !important', md: '32px !important', base: '16px !important' },
           paddingBottom: { lg: '36px !important', md: '32px !important', base: '16px !important' }
-        }}
-        descriptionProps={{
-          color: 'text.subtext.placeholder.light !important'
         }}
       />
 

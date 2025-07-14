@@ -41,7 +41,7 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
         showToast({ message: "Payment confirmed! Your credit has been updated successfully", type: 'success' });
         handleRefetch()
     }
-    
+
     const handleError = (error: any) => {
         console.error("Payment failed:", error);
         showToast({ message: "Payment failed. Please try again.", type: 'error' });
@@ -54,15 +54,12 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                descriptionProps={{
-                    color: "#B1B1B1 !important"
-                }}
                 title='Add Credit'
                 icon={<AppIcons.HeaderCreditCard />}
                 description='Top up the account balance to pay for digital coupons, offers and monthly plan services.'
             />
             {paymentData.clientSecret ? (
-                <ModalBody px={{ base: 4, md: 8 }} py={4}> 
+                <ModalBody px={{ base: 4, md: 8 }} py={4}>
                     <DroplinkedPaymentForm
                         intentType="payment"
                         clientSecret={paymentData.clientSecret}

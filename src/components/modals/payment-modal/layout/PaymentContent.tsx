@@ -1,26 +1,26 @@
-import React from 'react';
 import { Flex, Grid, ModalBody } from '@chakra-ui/react';
 import { CreditcardLg } from 'assets/icons/Finance/CreditCard/CreditcardLg';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
+import React from 'react';
+import BillingInfo from '../components/BillingInfo';
 import ExpandableInfo from '../components/ExpandableInfo';
 import PaymentForm from '../components/PaymentForm';
-import BillingInfo from '../components/BillingInfo';
 
 interface PaymentContentProps {
   onClose: () => void;
-  planDetail: any; 
+  planDetail: any;
   TrialMonths?: number;
   isDrawer?: boolean;
   onSuccess?: () => void;
   successMessage?: string;
 }
 
-const PaymentContent = ({ onClose, planDetail,TrialMonths, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
+const PaymentContent = ({ onClose, planDetail, TrialMonths, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
   if (isDrawer) {
     return (
       <Flex direction="column" gap={4} background="neutral.gray.1000">
-        <PaymentForm 
-          onClose={onClose} 
+        <PaymentForm
+          onClose={onClose}
           planDetail={planDetail}
           onSuccess={onSuccess}
           successMessage={successMessage}
@@ -43,14 +43,13 @@ const PaymentContent = ({ onClose, planDetail,TrialMonths, isDrawer, onSuccess, 
           icon={<CreditcardLg color="white" />}
           title="Credit card information"
           description="Choose a credit card on file or add a new one."
-          descriptionProps={{ color: '#B1B1B1 !important' }}
           modalHeaderProps={{
             paddingBlock: '48px !important',
             borderBottom: '1px solid #292929',
           }}
         />
         <ModalBody padding="0px !important">
-          <PaymentForm 
+          <PaymentForm
             planDetail={planDetail}
             TrialMonths={TrialMonths}
             onClose={onClose}

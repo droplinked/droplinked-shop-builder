@@ -5,8 +5,8 @@ import AppModal from "components/redesign/modal/AppModal";
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData";
 import AppSelect from "components/redesign/select/AppSelect";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
-import { IPaymentPublicService } from "services/shop/interfaces";
 import React, { ChangeEvent, useEffect } from "react";
+import { IPaymentPublicService } from "services/shop/interfaces";
 import TokensListContainer from "./TokensListContainer";
 
 interface Props {
@@ -53,9 +53,6 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                 modalHeaderProps={{
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
-                }}
-                descriptionProps={{
-                    color: "#B1B1B1 !important"
                 }}
                 title={t('settings.paymentsWallets.tokens.title')}
                 description={t('settings.paymentsWallets.tokens.description')}

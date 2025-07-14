@@ -2,8 +2,8 @@ import { ModalFooter } from "@chakra-ui/react"
 import AppButton, { AppButtonProps } from "components/redesign/button/AppButton"
 import AppModal from "components/redesign/modal/AppModal"
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData"
-import React from "react"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
+import React from "react"
 
 interface Props {
     isOpen: boolean
@@ -31,9 +31,6 @@ function ConfirmationModal({ isOpen, onClose, icon, title, description, confirmB
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" },
                     paddingBottom: { lg: "36px !important", md: "32px !important", base: "16px !important" }
-                }}
-                descriptionProps={{
-                    color: "text.subtext.placeholder.light !important"
                 }}
             />
 

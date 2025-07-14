@@ -2,10 +2,10 @@ import { ModalBody } from "@chakra-ui/react"
 import AppIcons from "assets/icon/Appicons"
 import AppModal from "components/redesign/modal/AppModal"
 import ModalHeaderData from "components/redesign/modal/ModalHeaderData"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import ConnectWallets from "pages/onchain-records/components/connect-wallets-modal/ConnectWallets"
 import React from "react"
 import { useOnchainRecords } from "../../context/OnchainRecordsContext"
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 interface Props {
     isOpen: boolean
@@ -35,12 +35,7 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
                 paddingBlock: "0px"
             }}>
             <ModalHeaderData
-                modalHeaderProps={{
-                    bgColor: "#141414",
-                }}
-                descriptionProps={{
-                    color: "#B1B1B1 !important"
-                }}
+                modalHeaderProps={{ bgColor: "#141414" }}
                 title={t("connect_wallet_modal_title")}
                 icon={<AppIcons.Wallet />}
                 description={t("connect_wallet_modal_description")}
