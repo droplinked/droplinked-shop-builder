@@ -12,7 +12,7 @@ function EmptyBox() {
         <Flex direction="column" alignItems="center" gap={2}>
             <Image width={264} height={204} src={imageSrc} />
             <AppTypography width="80%" textAlign="center" fontSize={16} color="#808080">
-                {t('EmptyBox.emptyBoxMessage')}
+                {t('EmptyBox.noShopsMessage')}
             </AppTypography>
         </Flex>
     )

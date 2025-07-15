@@ -21,7 +21,7 @@ function ShopList() {
 
     const renderContent = () => {
         if (isFetching) return <Loading />
-        if (error) return <Text color="red.400">{t('ShopList.error')}</Text>
+        if (error) return <Text color="red.400">{t('ShopList.loadError')}</Text>
         const shops = data.data
         if (!shops.length) return <EmptyBox />
         return shops.map(shop => <ShopRow key={shop._id} shop={shop} />)
@@ -31,7 +31,7 @@ function ShopList() {
         <>
             <Tabs variant='unstyled' display="flex" flexDirection="column" gap={5}>
                 <Flex justifyContent="space-between" alignItems="center" paddingBlock={2}>
-                    <BasicButton alignSelf="flex-end" onClick={onOpen}>{t('ShopList.createStore')}</BasicButton>
+                    <BasicButton alignSelf="flex-end" onClick={onOpen}>{t('ShopList.createStoreButton')}</BasicButton>
                 </Flex>
                 <TabPanels>
                     <TabPanel

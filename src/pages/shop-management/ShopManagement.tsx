@@ -25,11 +25,11 @@ function ShopManagement() {
                     background="rgba(20, 20, 20, 0.85)"
                 >
                     <Flex justifyContent="space-between" alignItems="center">
-                        <Heading m={0} fontSize={24} color="neutral.white">{t('ShopManagement.title')}</Heading>
+                        <Heading m={0} fontSize={24} color="neutral.white">{t('ShopManagement.pageTitle')}</Heading>
                         <AppIcons.MultiShopManagement />
                     </Flex>
 
-                    <Text color="#808080">{t('ShopManagement.description')}</Text>
+                    <Text color="#808080">{t('ShopManagement.pageDescription')}</Text>
 
                     <Divider borderColor="#808080" />
 

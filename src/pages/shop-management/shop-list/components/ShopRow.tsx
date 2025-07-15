@@ -24,7 +24,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
             await switchShop(shop._id)
         }
         catch {
-            showToast({ type: "error", message: t('ShopRow.error') })
+            showToast({ type: "error", message: t('ShopRow.switchError') })
         }
     }
 
@@ -65,7 +65,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
                 isLoading={isLoading}
                 onClick={switchToShop}
             >
-                {t('ShopRow.switch')}
+                {t('ShopRow.switchButton')}
             </BasicButton>
         </Flex>
     )

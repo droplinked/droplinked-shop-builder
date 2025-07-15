@@ -70,7 +70,7 @@ function CreateShopModal(props: Props) {
             onSuccess()
         }
         catch (error) {
-            showToast({ type: "error", message: t('CreateShopModal.errorGeneric') })
+            showToast({ type: "error", message: t('common:genericError') })
         }
     }
 
@@ -80,7 +80,7 @@ function CreateShopModal(props: Props) {
             await switchShop(_id)
             onSuccess()
         } catch (error) {
-            showToast({ type: "error", message: t('CreateShopModal.errorGeneric') })
+            showToast({ type: "error", message: t('common:genericError') })
         }
     }
 
@@ -106,7 +106,7 @@ function CreateShopModal(props: Props) {
                         <Flex>
                             <Box as="span" fontWeight={500}>{`${appDevelopment ? "dev." : ""}droplinked.io/`}</Box>
                             &nbsp;
-                            <input value={username} placeholder={t('CreateShopModal.inputPlaceholder')} className={styles.input} onChange={handleInputChange} />
+                            <input value={username} placeholder={t('CreateShopModal.urlInputPlaceholder')} className={styles.input} onChange={handleInputChange} />
                         </Flex>
                         {renderUsernameAvailabilityIcon()}
                     </Flex>
@@ -114,10 +114,10 @@ function CreateShopModal(props: Props) {
                 <Flex direction="column" gap={14}>
                     <Flex direction="column" gap={2}>
                         <Heading margin={0} textAlign="center" fontSize={24} fontWeight={700} color="#fff">
-                            {t('CreateShopModal.heading')}
+                            {t('CreateShopModal.modalHeading')}
                         </Heading>
                         <Text textAlign="center" fontSize={14} color="#fff">
-                            {t('CreateShopModal.description')}
+                            {t('CreateShopModal.modalDescription')}
                         </Text>
                     </Flex>
                     <AppButton
@@ -125,7 +125,7 @@ function CreateShopModal(props: Props) {
                         isDisabled={isCreatingShop ? !isUsernameAvailable || isCheckingUsername || isCreatingExtraShop || isLoading : !isUsernameAvailable || isCheckingUsername || isUpdatingUsername}
                         onClick={isCreatingShop ? handleCreateExtraShop : handleUsernameRegistration}
                     >
-                        {t('CreateShopModal.continue')}
+                        {t('CreateShopModal.continueButton')}
                     </AppButton>
                 </Flex>
             </Flex>
