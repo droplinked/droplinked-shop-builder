@@ -1,10 +1,10 @@
 import { Box, Flex } from '@chakra-ui/react';
-import AppIcons from 'assets/icon/Appicons';
+import { Refresh2Sm } from 'assets/icons/Action/Refresh2/Refresh2Sm';
+import { ChevrondownSm } from 'assets/icons/Navigation/ChevronDown/ChevrondownSm';
 import { AppAccordion, AppAccordionItem, AppAccordionTrigger } from 'components/redesign/accordion/AppAccordion';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useContext } from 'react';
 import PreviewTypo from '../../common/typo/PreviewTypo';
-import { Refresh2Sm } from 'assets/icons/Action/Refresh2/Refresh2Sm';
 
 const PreviewFilterPanel = () => {
   const { state: { shop: { shopDesign: { foreground, textColorParagraphs } }}} = useContext(designerContext);
@@ -24,7 +24,7 @@ const PreviewFilterPanel = () => {
             <PreviewTypo fontSize="12px" textAlign="left">
               Type
             </PreviewTypo>
-            <AppIcons.SidebarChevrondown width="12px" height="12px" color={textColorParagraphs}></AppIcons.SidebarChevrondown>
+            <ChevrondownSm width="16px" height="16px" color={textColorParagraphs}></ChevrondownSm>
           </AppAccordionTrigger>
         </AppAccordionItem>
         {/* Category */}
@@ -33,7 +33,7 @@ const PreviewFilterPanel = () => {
             <PreviewTypo fontSize="12px" textAlign="left">
               Collection
             </PreviewTypo>
-            <AppIcons.SidebarChevrondown width="12px" height="12px" color={textColorParagraphs}></AppIcons.SidebarChevrondown>
+            <ChevrondownSm width="16px" height="16px" color={textColorParagraphs}></ChevrondownSm>
           </AppAccordionTrigger>
         </AppAccordionItem>
         {/* Price */}
@@ -49,10 +49,10 @@ const PreviewFilterPanel = () => {
           itemId="2"
         >
           <AppAccordionTrigger>
-            <PreviewTypo fontSize="12px" textAlign="left">
+            <PreviewTypo fontSize="16px" textAlign="left">
               Price
             </PreviewTypo>
-            <AppIcons.SidebarChevrondown width="12px" height="12px" color={textColorParagraphs}></AppIcons.SidebarChevrondown>
+            <ChevrondownSm color={textColorParagraphs}></ChevrondownSm>
           </AppAccordionTrigger>
         </AppAccordionItem>
       </AppAccordion>

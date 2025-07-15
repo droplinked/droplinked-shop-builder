@@ -36,15 +36,7 @@
       "additionalSettings": "Additional Settings"
     },
     "common": {
-      "pageSelector": "Product Listing Page",
-      "buttons": {
-        "refreshCustomizations": "Refresh Customizations",
-        "toggleSidebar": "Toggle Sidebar"
-      },
-      "droplinked": {
-        "logo": "Droplinked Logo",
-        "text": "Droplinked Text"
-      }
+      "pageSelector": "Product Listing Page"
     },
     "themeConfig": {
       "template": {

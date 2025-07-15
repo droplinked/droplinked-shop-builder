@@ -220,8 +220,6 @@ import { ReactComponent as SidebarAffiliate } from './sidebar-affiliate.svg';
 import { ReactComponent as SidebarAnalytics } from './sidebar-analytics.svg';
 import { ReactComponent as SidebarBrush } from './sidebar-brush.svg';
 import { ReactComponent as SidebarChat } from './sidebar-chat.svg';
-import { ReactComponent as SidebarChevrondown } from './sidebar-chevrondown.svg';
-import { ReactComponent as SidebarChevronright } from './sidebar-chevronright.svg';
 import { ReactComponent as SidebarCircle } from './sidebar-circle.svg';
 import { ReactComponent as SideBarCollapse } from './sidebar-collapse.svg';
 import { ReactComponent as SidebarDashboard } from './sidebar-dashboard.svg';
@@ -436,7 +434,6 @@ const AppIcons = {
   SidebarAnalytics,
   SidebarProducts,
   SidebarChat,
-  SidebarChevrondown,
   SidebarNote,
   SidebarRewards,
   SidebarSetting,
@@ -462,7 +459,6 @@ const AppIcons = {
   LandingPageTemplate,
   SidebarCircle,
   SidebarTickedCircle,
-  SidebarChevronright,
   SidebarNext,
   SidebarGo,
   D3Spinner,

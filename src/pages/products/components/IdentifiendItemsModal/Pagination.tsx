@@ -12,7 +12,7 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-    const { t } = useLocaleResources('products');
+    const { t , isRTL } = useLocaleResources('products');
     
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -21,6 +21,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
     }
 
     const pageNumbers = generatePageNumbers(currentPage, totalPages)
+    const iconColor = currentPage === 1 ? "#646464" : "#fff"
 
     return (
         <Flex justifyContent="center" alignItems="center" width="100%" mt={4} mb={2}>
@@ -36,7 +37,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                     border="1px solid #292929"
                     aria-label={t('identifiedItemsModal.pagination.previousPage')}
                 >
-                    <ChevronleftMd color={currentPage === 1 ? "#646464" : "#fff"} />
+                    {isRTL ? <ChevronrightMd color={iconColor} /> : <ChevronleftMd color={iconColor} />}
                 </Button>
 
                 {pageNumbers.map((pageNumber, index) => (

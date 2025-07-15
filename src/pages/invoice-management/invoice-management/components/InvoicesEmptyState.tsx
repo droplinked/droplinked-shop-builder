@@ -4,11 +4,13 @@ import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import BlueButton from 'components/redesign/button/BlueButton'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function InvoicesEmptyState() {
-    const { t } = useLocaleResources('invoice-management');
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale });
     const navigate = useNavigate()
 
     return (

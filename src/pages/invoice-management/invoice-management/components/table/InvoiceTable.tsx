@@ -4,13 +4,15 @@ import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import Table from 'components/redesign/table/Table'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { Invoice, InvoiceStatus } from 'lib/services/invoice/interfaces'
+import { Invoice, InvoiceStatus } from 'services/invoice/interfaces'
 import { SHOP_URL } from 'utils/app/variable'
 import InvoiceDetailsModal from 'pages/invoice-management/components/invoice-details/InvoiceDetailsModal'
 import React, { useRef } from 'react'
 import InvoiceTableMenu from './InvoiceTableMenu'
 import StatusBadge from './StatusBadge'
 import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConverter'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 
 interface Props {
     invoices: Invoice[]
@@ -22,7 +24,7 @@ interface Props {
 }
 
 function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNextPage, next }: Props) {
-    const { t } = useLocaleResources('invoice-management');
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale });
     const { getFormattedPrice } = useCurrencyConverter()
     const invoiceRef = useRef(null)
     const { isOpen, onOpen, onClose } = useDisclosure()

@@ -36,6 +36,7 @@ import MobileFloatingMenu from './components/MobileFloatingMenu'
 import FiltersDataGrid from './components/filters/FiltersDatagrid'
 import DataGridSkeleton from './components/skeleton/DatagridSkeleton'
 import { PageGridActionsProps, PageGridContentProps, PageGridHeaderProps, PageGridRootProps } from './interface'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 /**
  * Context to share loading state across PageGrid components
@@ -98,6 +99,7 @@ function PageGridHeader({ title, description, actionButtons }: PageGridHeaderPro
  * @param props.filters - Optional array of filter configurations
  */
 function PageGridActions({ search, filters }: PageGridActionsProps) {
+    const { t } = useLocaleResources('common')
     return (
         <Flex width="100%" mb="24px" justifyContent="space-between">
             {search && (
@@ -106,7 +108,7 @@ function PageGridActions({ search, filters }: PageGridActionsProps) {
                     inputContainerProps={{ bgColor: "neutral.gray.1000", padding: 3, _hover: search.disabled ? {} : { borderColor: "neutral.gray.700" } }}
                     inputProps={{
                         fontSize: 16,
-                        placeholder: search.placeholder ?? "Search",
+                        placeholder: search.placeholder ? search.placeholder : t('search'),
                         value: search.value,
                         onChange: search.onChange,
                         isDisabled: search.disabled

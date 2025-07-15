@@ -282,6 +282,7 @@
   "physicalProductVariants": {
     "label": "المتغيرات",
     "description": "أضف إصدارات مختلفة من هذا المنتج (مثل الحجم، اللون).",
+    "addVariantsButton": "إضافة متغيرات",
     "variantLimitWarning": {
       "title": "تحذير حد المتغيرات",
       "description": "لا يمكن إضافة المزيد من المتغيرات. يمكنك إضافة حتى {{maxVariants}} متغير فقط."
@@ -293,7 +294,7 @@
     "customShipping": "شحن مخصص"
   },
   "productDrop": {
-    "title": "Drop",
+    "title": "دروب",
     "description": "تفعيل السجلات على السلسلة لهذا المنتج الرقمي.",
     "alreadyPublishedError": "تم نشر هذا المنتج بالفعل."
   },

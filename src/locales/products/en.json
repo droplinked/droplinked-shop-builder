@@ -282,6 +282,7 @@
   "physicalProductVariants": {
     "label": "Variants",
     "description": "Add different versions of this product (e.g., size, color).",
+    "addVariantsButton": "Add Variants",
     "variantLimitWarning": {
       "title": "Variant Limit Warning",
       "description": "Can't add any more variants. You can only add up to {{maxVariants}} variants."

@@ -8,13 +8,14 @@ import DeviceViewSelector from './DeviceViewSelector';
 import StoreDesignActions from './StoreDesignActions';
 import localEn from '../../../../locales/storefront/en.json';
 import localAr from '../../../../locales/storefront/ar.json';
+import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd';
 
 /**
  * Header component for the storefront designer
  */
 function DesignerHeader(): React.ReactElement {
   const navigate = useNavigate();
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t , isRTL  } = useLocaleResources('storefront', { en: localEn, ar: localAr });
 
   return (
     <Flex
@@ -32,7 +33,7 @@ function DesignerHeader(): React.ReactElement {
       borderBottom="1px solid"
       borderColor="neutral.gray.800"
     >
-      <AppButton variant="normal" color="neutral.white" leftIcon={<ChevronleftMd />} _hover="none" _pressed="none" onClick={() => navigate('/analytics/dashboard')}>
+      <AppButton variant="normal" color="neutral.white" leftIcon={isRTL ? <ChevronrightMd /> : <ChevronleftMd />} _hover="none" _pressed="none" onClick={() => navigate('/analytics/dashboard')}>
         {t('designerHeader.backToDashboard')}
       </AppButton>
       <DeviceViewSelector />

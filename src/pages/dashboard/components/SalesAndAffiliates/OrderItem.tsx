@@ -45,7 +45,7 @@ function OrderItem({ order, onNavigate }: Props) {
                 padding="10px"
                 onClick={() => onNavigate("/analytics/purchase-history")}
             >
-                {isRTL ? <ChevronleftMd color='white' /> : <ChevronrightMd color='white' />}
+                {isRTL ? <ChevronleftMd /> : <ChevronrightMd />}
             </Box>
         </Flex>
     )
