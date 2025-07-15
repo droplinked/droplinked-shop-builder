@@ -4,9 +4,9 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import { CollapsedHeader, ExpandedHeader } from './components/common/Headers';
 import { CollapsedContent, ExpandedContent } from './components/common/Contents';
 import { getConfigSections } from './configData';
-import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../locales/storefront/en.json';
-import localAr from '../../../../locales/storefront/ar.json';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localEn from 'locales/storefront/en.json';
+import localAr from 'locales/storefront/ar.json';
 
 /**
  * Sidebar component for the storefront designer with collapsible sections
