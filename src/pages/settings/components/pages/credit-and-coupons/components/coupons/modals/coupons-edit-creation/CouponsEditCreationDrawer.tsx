@@ -60,7 +60,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             refetch()
             onClose()
         } catch (error) {
-            showToast({ message: error?.message || t("settings.coupons.error"), type: 'error' });
+            showToast({ message: error?.message || t("genericError"), type: 'error' });
         } finally {
             resetForm()
         }
@@ -78,7 +78,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
                     isOpen={isOpen}
                     onClose={onClose}
                     title={isEdit ? t("settings.coupons.drawer.editTitle") : t("settings.coupons.drawer.createTitle")}
-                    discardButtonText={isEdit ? t("settings.coupons.drawer.cancel") : t("settings.coupons.drawer.discard")}
+                    discardButtonText={isEdit ? t("cancel") : t("settings.coupons.drawer.discard")}
                     saveButtonText={isEdit ? t("settings.coupons.drawer.update") : t("settings.coupons.drawer.create")}
                     isLoading={isLoading}
                     onClick={handleSubmit}

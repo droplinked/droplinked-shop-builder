@@ -3,7 +3,6 @@
         "title": "Settings",
         "description": "Customize the platform to your Preferences",
         "updateSuccess": "Settings updated successfully",
-        "updateError": "Oops! Something went wrong.",
         "validation": {
             "nameRequired": "Please provide a name for shop",
             "emailRequired": "Please provide a valid email.",
@@ -134,8 +133,7 @@
                 "addressLine1Required": "Address line 1 is required"
             },
             "buttons": {
-                "discard": "Discard",
-                "save": "Save"
+                "discard": "Discard"
             }
         },
         "saveChanges": {
@@ -187,7 +185,6 @@
             "drawer": {
                 "editTitle": "Edit Discount",
                 "createTitle": "Create Discount",
-                "cancel": "Cancel",
                 "discard": "Discard",
                 "create": "Create",
                 "update": "Update"
@@ -222,7 +219,6 @@
                 "created": "{{type}} has been created.",
                 "updated": "{{type}} has been updated."
             },
-            "error": "Oops! Something went wrong.",
             "information": {
                 "creationDate": "Creation Date",
                 "expired": "Expired",
@@ -249,8 +245,7 @@
             "title": "Credits",
             "remainingBalance": "Remaining Balance",
             "description": "Use credits to create discounts and coupons.",
-            "charge": "Charge",
-            "error": "Oops! Something went wrong"
+            "charge": "Charge"
         },
         "preferences": {
             "title": "Preferences",
@@ -329,7 +324,6 @@
             "tokens": {
                 "title": "Tokens",
                 "description": "Select token options you want to use for payments.",
-                "search": "Search",
                 "allNetworks": "All Networks",
                 "evm": "EVM",
                 "solana": "Solana",
@@ -380,8 +374,6 @@
                 "deleteConfirmation": {
                     "title": "Delete Domain",
                     "description": "Are you sure you want to delete this Domain?",
-                    "cancel": "Cancel",
-                    "delete": "Delete",
                     "success": "Domain deleted successfully"
                 },
                 "apiDocumentation": "API Documentation"

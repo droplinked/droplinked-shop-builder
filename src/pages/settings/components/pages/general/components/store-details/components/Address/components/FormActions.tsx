@@ -28,7 +28,7 @@ export default function FormActions({ onClose }: { onClose: () => void }) {
                 {t("settings.address.buttons.discard")}
             </AppButton>
             <AppButton onClick={handleFormSubmit} isLoading={isSubmitting}>
-                {t("settings.address.buttons.save")}
+                {t("save")}
             </AppButton>
         </Flex>
     );

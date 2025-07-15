@@ -66,7 +66,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                     <AppInput
                         leftElement={<AppIcons.Search />}
                         inputGroupProps={{ width: { base: "100%", md: "300px" } }}
-                        inputProps={{ placeholder: t('settings.paymentsWallets.tokens.search'), onChange: handleSearchChange }}
+                        inputProps={{ placeholder: t('search'), onChange: handleSearchChange }}
                     />
                     <AppSelect
                         itemColor="neutral.white"

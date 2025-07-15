@@ -34,7 +34,7 @@ function SettingsPage() {
             resetForm({ values })
             showToast({ type: "success", message: t("settings.updateSuccess") })
         } catch (error) {
-            showToast({ type: "error", message: error.message || error?.data?.message || t("settings.updateError") })
+            showToast({ type: "error", message: error.message || error?.data?.message || t("genericError") })
         } finally {
             setSubmitting(false)
         }

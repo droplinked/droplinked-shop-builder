@@ -3,7 +3,6 @@
         "title": "الإعدادات",
         "description": "خصص المنصة حسب تفضيلاتك",
         "updateSuccess": "تم تحديث الإعدادات بنجاح",
-        "updateError": "عذراً! حدث خطأ ما.",
         "validation": {
             "nameRequired": "يرجى إدخال اسم للمتجر",
             "emailRequired": "يرجى إدخال بريد إلكتروني صالح.",
@@ -134,8 +133,7 @@
                 "addressLine1Required": "العنوان 1 مطلوب"
             },
             "buttons": {
-                "discard": "إلغاء",
-                "save": "حفظ"
+                "discard": "إلغاء"
             }
         },
         "saveChanges": {
@@ -187,7 +185,6 @@
             "drawer": {
                 "editTitle": "تعديل الخصم",
                 "createTitle": "إنشاء خصم",
-                "cancel": "إلغاء",
                 "discard": "إلغاء",
                 "create": "إنشاء",
                 "update": "تحديث"
@@ -222,7 +219,6 @@
                 "created": "تم إنشاء {{type}}.",
                 "updated": "تم تحديث {{type}}."
             },
-            "error": "عذراً! حدث خطأ ما.",
             "information": {
                 "creationDate": "تاريخ الإنشاء",
                 "expired": "منتهي",
@@ -249,8 +245,7 @@
             "title": "الأرصدة",
             "remainingBalance": "الرصيد المتبقي",
             "description": "استخدم الأرصدة لإنشاء الخصومات والقسائم.",
-            "charge": "شحن",
-            "error": "عذراً! حدث خطأ ما"
+            "charge": "شحن"
         },
         "preferences": {
             "title": "التفضيلات",
@@ -329,7 +324,6 @@
             "tokens": {
                 "title": "الرموز",
                 "description": "حدد خيارات الرموز التي ترغب في استخدامها للمدفوعات.",
-                "search": "بحث",
                 "allNetworks": "جميع الشبكات",
                 "evm": "EVM",
                 "solana": "Solana",
@@ -380,8 +374,6 @@
                 "deleteConfirmation": {
                     "title": "حذف النطاق",
                     "description": "هل أنت متأكد أنك تريد حذف هذا النطاق؟",
-                    "cancel": "إلغاء",
-                    "delete": "حذف",
                     "success": "تم حذف النطاق بنجاح"
                 },
                 "apiDocumentation": "توثيق API"

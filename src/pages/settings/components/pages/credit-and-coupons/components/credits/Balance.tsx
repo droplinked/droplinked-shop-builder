@@ -30,7 +30,7 @@ export default function Balance() {
             await refetch()
         }
         catch {
-            showToast({ message: t('settings.credits.error'), type: "error" })
+            showToast({ message: t('genericError'), type: "error" })
         }
         finally {
             setLoading(false);
