@@ -1,9 +1,21 @@
 import { ButtonProps } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import BlueButton from 'components/redesign/button/BlueButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
+// Local translations for this component
+const localEn = {
+  addVariantsButton: "Add Variants"
+}
+
+const localAr = {
+  addVariantsButton: "إضافة متغيرات"
+}
+
 function AddVariantsButton(props: ButtonProps) {
+    const { t } = useLocaleResources('products', { en: localEn, ar: localAr })
+
     return (
         <BlueButton
             w="full"
@@ -17,7 +29,7 @@ function AddVariantsButton(props: ButtonProps) {
             {...props}
         >
             <AppIcons.BlackPlus />
-            Add Varaints
+            {t('physicalProductVariants.addVariantsButton')}
         </BlueButton>
     )
 }
