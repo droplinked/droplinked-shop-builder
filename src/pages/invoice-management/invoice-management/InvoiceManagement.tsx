@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { useProfile } from 'hooks/useProfile/useProfile'
-import { InvoiceQueryParams } from 'lib/services/invoice/interfaces'
+import { InvoiceQueryParams } from 'services/invoice/interfaces'
 import { getInvoicesService } from 'services/invoice/invoiceServices'
 import React, { useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
