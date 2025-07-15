@@ -139,7 +139,6 @@
         "saveChanges": {
             "title": "تم تغيير الإعدادات!",
             "description": "هناك تغييرات غير محفوظة في الإعدادات. هل ترغب في تطبيق التغييرات الجديدة؟",
-            "discard": "إلغاء",
             "save": "حفظ التغييرات"
         },
         "defaultBadge": {
@@ -343,9 +342,8 @@
                 },
                 "addTargetWallet": "محفظة مستهدفة",
                 "walletAddress": {
-                    "placeholder": "أدخل عنوان محفظتك",
-                    "saveButton": "حفظ"
-                },
+                    "placeholder": "أدخل عنوان محفظتك"
+},
                 "actions": {
                     "setAsDefault": "تعيين كافتراضي"
                 }
@@ -400,7 +398,6 @@
                 "emailPlaceholder": "أدخل البريد الإلكتروني",
                 "accessWarning": "تحذير الوصول",
                 "accessWarningDesc": "سيكون لهذا المستخدم حق الوصول إلى جميع أقسام الحساب. يرجى الدعوة بحذر!",
-                "discard": "إلغاء",
                 "sendInvitation": "إرسال الدعوة",
                 "invalidEmail": "يرجى إدخال بريد إلكتروني صالح",
                 "invitationSent": "تم إرسال دعوة إلى هذا البريد الإلكتروني."

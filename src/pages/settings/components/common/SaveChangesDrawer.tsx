@@ -58,7 +58,7 @@ export default function SaveChangesDrawer() {
                         isDisabled={isSubmitting}
                         onClick={() => resetForm()}
                     >
-                        {t("settings.saveChanges.discard")}
+                        {t("cancel")}
                     </AppButton>
                     <AppButton
                         isLoading={isSubmitting}

@@ -73,7 +73,7 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
-                <AppButton variant='secondary' onClick={onClose}>{t('settings.userManagement.inviteModal.discard')}</AppButton>
+                <AppButton variant='secondary' onClick={onClose}>{t('cancel')}</AppButton>
                 <AppButton onClick={handleSubmit} isLoading={isLoading} isDisabled={!email} >
                     {t('settings.userManagement.inviteModal.sendInvitation')}
                 </AppButton>

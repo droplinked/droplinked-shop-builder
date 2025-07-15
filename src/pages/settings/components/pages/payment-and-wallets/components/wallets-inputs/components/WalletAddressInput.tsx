@@ -31,7 +31,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
                     onClick={onSave}
                     visibility={isButtonDisabled ? "visible" : "hidden"}
                 >
-                    {t("settings.paymentsWallets.wallets.walletAddress.saveButton")}
+                    {t("save")}
                 </AppButton>
             }
         />

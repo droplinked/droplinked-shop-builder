@@ -139,7 +139,6 @@
         "saveChanges": {
             "title": "Settings have changed!",
             "description": "There are unsaved changes in the settings. Would you like to apply the new changes?",
-            "discard": "Discard",
             "save": "Save Changes"
         },
         "defaultBadge": {
@@ -343,8 +342,7 @@
                 },
                 "addTargetWallet": "Target Wallet",
                 "walletAddress": {
-                    "placeholder": "Enter your wallet address",
-                    "saveButton": "Save"
+                    "placeholder": "Enter your wallet address"
                 },
                 "actions": {
                     "setAsDefault": "Set As Default"
@@ -400,7 +398,6 @@
                 "emailPlaceholder": "Enter email address",
                 "accessWarning": "Access Warning",
                 "accessWarningDesc": "The following user will have access to all sections of the account. Invite with caution!",
-                "discard": "Discard",
                 "sendInvitation": "Send Invitation",
                 "invalidEmail": "Please enter a valid email address",
                 "invitationSent": "An invitation has been sent to this email."
