@@ -5,8 +5,6 @@ import { CardData } from './card/Cards'
 import ModularStackTypography from '../svgs/ModularStackTypography'
 import { GridProps } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/_shared/en.json'
-import localAr from 'locales/public-pages/landings/_shared/ar.json'
 
 interface Props {
     cardsData: CardData[],
@@ -16,7 +14,7 @@ interface Props {
 }
 
 export default function PlatformFunctionalities({ cardsData, templateColumns, hasGradiantOverlay, isGridCards = true }: Props) {
-    const { t } = useLocaleResources('public-pages/landings/_shared', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('common')
 
     const defaultTemplateColumns = {
         base: '1fr',
