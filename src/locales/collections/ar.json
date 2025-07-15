@@ -3,7 +3,6 @@
     "description": "أنشئ واطلع على مجموعات المخزون هنا.",
     "newCollection": "مجموعة جديدة",
     "visibilityAndReorder": "الظهور وإعادة الترتيب",
-    "genericErrorMessage": "عذراً! حدث خطأ ما",
     "columnHeaders": {
         "collection": "المجموعة",
         "rulesets": "مجموعات القواعد",
@@ -22,8 +21,7 @@
         "menu": {
             "edit": "تعديل",
             "ruleset": "مجموعة القواعد",
-            "copyId": "نسخ معرف المجموعة",
-            "delete": "حذف"
+            "copyId": "نسخ معرف المجموعة"
         }
     },
     "ruleset": {
@@ -62,9 +60,7 @@
             "correctValue": "يرجى تصحيح القيمة",
             "min": "الحد الأدنى {{value}}",
             "max": "الحد الأقصى {{value}}"
-        },
-        "cancel": "إلغاء",
-        "save": "حفظ"
+        }
     },
     "delete": {
         "title": "حذف المجموعة",
@@ -96,8 +92,7 @@
         "buttons": {
             "create": "إنشاء",
             "edit": "تعديل",
-            "discard": "إلغاء",
-            "cancel": "إلغاء"
+            "discard": "إلغاء"
         },
         "success": {
             "created": "تم إنشاء المجموعة بنجاح",

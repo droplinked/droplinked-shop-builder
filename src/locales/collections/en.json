@@ -3,7 +3,6 @@
     "description": "Create and view inventory collections here.",
     "newCollection": "New Collection",
     "visibilityAndReorder": "Visibility and reorder",
-    "genericErrorMessage": "Oops! Something went wrong",
     "columnHeaders": {
         "collection": "Collection",
         "rulesets": "Rulesets",
@@ -22,8 +21,7 @@
         "menu": {
             "edit": "Edit",
             "ruleset": "Ruleset",
-            "copyId": "Copy Collection ID",
-            "delete": "Delete"
+            "copyId": "Copy Collection ID"
         }
     },
     "ruleset": {
@@ -62,9 +60,7 @@
             "correctValue": "Please correct value",
             "min": "Min {{value}}",
             "max": "Max {{value}}"
-        },
-        "cancel": "Cancel",
-        "save": "Save"
+        }
     },
     "delete": {
         "title": "Delete Collection",
@@ -96,8 +92,7 @@
         "buttons": {
             "create": "Create",
             "edit": "Edit",
-            "discard": "Discard",
-            "cancel": "Cancel"
+            "discard": "Discard"
         },
         "success": {
             "created": "Collection created successfully",

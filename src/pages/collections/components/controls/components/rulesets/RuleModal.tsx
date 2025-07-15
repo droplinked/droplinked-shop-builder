@@ -62,7 +62,7 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
             close();
             showToast({ message: ruleId ? t("ruleset.updateSuccess") : t("ruleset.createSuccess"), type: "success" });
         } catch (error) {
-            showToast({ message: t("genericErrorMessage"), type: "error" });
+            showToast({ message: t("genericError"), type: "error" });
         }
     };
 
@@ -95,10 +95,10 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                     </Box>
                                     <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent={"space-between"}>
                                         <AppButton width={"79px"} onClick={close} variant="outlined">
-                                            {t("ruleset.cancel")}
+                                            {t("cancel")}
                                         </AppButton>
                                         <AppButton width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
-                                            {t("ruleset.save")}
+                                            {t("save")}
                                         </AppButton>
                                     </HStack>
                                 </VStack>

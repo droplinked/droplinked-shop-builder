@@ -79,7 +79,7 @@ function ControlsListCollection({ collection, fetch }) {
                     icon: <AppIcons.Copy />
                 },
                 {
-                    title: t("controls.menu.delete"),
+                    title: t("delete"),
                     onClick: deleteModal.onOpen,
                     color: "#FF2244",
                     icon: <AppIcons.RedTrash />

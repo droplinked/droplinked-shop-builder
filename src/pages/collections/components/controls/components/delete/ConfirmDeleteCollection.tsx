@@ -41,7 +41,7 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast({ message: t("genericErrorMessage"), type: "error" })
+                            onError: async () => showToast({ message: t("genericError"), type: "error" })
                         })
                     }
                 }

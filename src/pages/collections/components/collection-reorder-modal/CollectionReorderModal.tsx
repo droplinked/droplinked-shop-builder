@@ -39,7 +39,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
             setCollections(collections => arrayMove(collections, originalPosition, newPosition));
             await reorderCollectionsService({ collectionId: active.id, newPosition: newPosition + 1 });
         } catch (error) {
-            showToast({ type: "error", message: t("genericErrorMessage") });
+            showToast({ type: "error", message: t("genericError") });
             setCollections(originalCollections);
         }
     };
@@ -54,7 +54,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                 setCollections(collectionsData?.data);
             } catch (error) {
                 if (!signal.aborted) {
-                    showToast({ type: "error", message: t("genericErrorMessage") });
+                    showToast({ type: "error", message: t("genericError") });
                 }
             }
         };

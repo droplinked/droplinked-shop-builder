@@ -46,7 +46,7 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
       close()
       queryClient.invalidateQueries({ queryKey: ['collectionList'] });
     } catch (error) {
-      showToast({ message: t("genericErrorMessage"), type: 'error' });
+      showToast({ message: t("genericError"), type: 'error' });
     }
   };
 

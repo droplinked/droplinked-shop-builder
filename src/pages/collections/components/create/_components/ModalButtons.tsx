@@ -18,7 +18,7 @@ function ModalButtons({ collection, createService, updateService, close }: Modal
     return (
         <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent="space-between">
             <AppButton background={"neutral.gray.800"} variant='secondary' width={"79px"} onClick={close}>
-                {collection ? t("create.buttons.cancel") : t("create.buttons.discard")}
+                {collection ? t("cancel") : t("create.buttons.discard")}
             </AppButton>
             <AppButton type="submit" width={"79px"} isLoading={createService.isLoading || updateService.isLoading}>
                 {collection ? t("create.buttons.edit") : t("create.buttons.create")}
