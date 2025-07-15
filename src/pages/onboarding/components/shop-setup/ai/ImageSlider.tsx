@@ -15,7 +15,10 @@ interface ImageSliderProps {
 }
 
 export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: ImageSliderProps) => {
-  const { t } = useLocaleResources('onboarding');
+  const { t , isRTL } = useLocaleResources('onboarding');
+  
+  // Icon color based on loading state
+  const iconColor = isLoading ? '#737373' : '#fff';
   const [currentIndex, setCurrentIndex] = useState(() => {
     if (selectedValue) {
       const index = images.indexOf(selectedValue);
@@ -54,7 +57,11 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
 
   return (
     <Flex flexDirection="column" width="100%" gap={4} overflow="hidden">
-      <Flex width={isLoading ? '300%' : `${images.length * 100}%`} transform={`translateX(-${(currentIndex * 100) / images.length}%)`} transition="transform 0.5s ease-in-out">
+      <Flex
+        width={isLoading ? '300%' : `${images.length * 100}%`}
+        transform={`translateX(-${(currentIndex * 100) / images.length}%)`}
+        transition="transform 0.5s ease-in-out"
+      >
         {isLoading && <ImageSkeleton />}
         {!isLoading &&
           images.map((image, index) => (
@@ -70,13 +77,27 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
               cursor="pointer"
               onClick={() => handleImageClick(image)}
             >
-              <AppImage src={image} alt={`Slide ${index + 1}`} width="100%" height="150px" borderRadius={8} objectFit="cover" />
+              <AppImage
+                src={image}
+                alt={`Slide ${index + 1}`}
+                width="100%"
+                height="150px"
+                borderRadius={8}
+                objectFit="cover"
+              />
             </Box>
           ))}
       </Flex>
 
       <Flex alignItems="center" justifyContent="space-between" gap={4}>
-        <AppButton variant="normal" leftIcon={<ChevronleftMd color={isLoading ? '#737373' : '#fff'} />} onClick={handlePrev} color="white" isDisabled={isLoading} _hover={'none'}>
+        <AppButton
+          variant="normal"
+          leftIcon={isRTL ? <ChevronrightMd color={iconColor} /> : <ChevronleftMd color={iconColor} />}
+          onClick={handlePrev}
+          color="white"
+          isDisabled={isLoading}
+          _hover={'none'}
+        >
           {t('aiAssistant.imageSlider.previous')}
         </AppButton>
 
@@ -96,7 +117,14 @@ export const ImageSlider = ({ images, onChange, isLoading, selectedValue }: Imag
             ))}
         </HStack>
 
-        <AppButton variant="normal" rightIcon={<ChevronrightMd color={isLoading ? '#737373' : '#fff'} />} onClick={handleNext} color="white" isDisabled={isLoading} _hover={'none'}>
+        <AppButton
+          variant="normal"
+          rightIcon={<ChevronrightMd color={iconColor} />}
+          onClick={handleNext}
+          color="white"
+          isDisabled={isLoading}
+          _hover={'none'}
+        >
           {t('aiAssistant.imageSlider.next')}
         </AppButton>
       </Flex>

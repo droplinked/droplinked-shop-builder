@@ -34,10 +34,7 @@ function ResourceItem({ title, summary, url }: DashboardPageLink) {
             }
 
             <Box flexShrink={0} padding="10px">
-                {isRTL
-                    ? <ChevronleftMd color='white' />
-                    : <ChevronrightMd color='white' />
-                }
+                {isRTL ? <ChevronleftMd /> : <ChevronrightMd />}
             </Box>
         </ChakraLink>
     )

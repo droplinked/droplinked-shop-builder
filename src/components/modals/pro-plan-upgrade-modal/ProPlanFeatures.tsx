@@ -39,7 +39,7 @@ const ProPlanFeatures: React.FC<ProPlanFeaturesProps> = ({ isExpanded, isCrossmi
           <Text fontSize="sm" color="white" fontWeight="normal" lineHeight="tight">
             {isExpanded ? t('proPlan.features.less') : t('proPlan.features.more')}
           </Text>
-          {isExpanded ? <ChevronupMd /> : <ChevrondownMd />}
+          {isExpanded ? <ChevronupMd color='black' /> : <ChevrondownMd color='black' />}
         </Flex>
         </>
       )}

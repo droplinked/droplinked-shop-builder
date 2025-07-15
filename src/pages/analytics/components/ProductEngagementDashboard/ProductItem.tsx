@@ -53,7 +53,7 @@ function ProductItem({ product }: Props) {
                 padding="10px"
                 onClick={() => navigate("/analytics/products")}
             >
-                {isRTL ? <ChevronleftMd color='white' /> : <ChevronrightMd color='white' />}
+                {isRTL ? <ChevronleftMd /> : <ChevronrightMd />}
             </Box>
         </Flex>
     )
