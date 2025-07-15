@@ -39,7 +39,6 @@
   "transfer_records": "تحويل السجلات",
   "transfer_records_description": "أرسل سجلات السلسلة إلى طرف أو عدة أطراف أدناه.",
   "download_sample": "تحميل نموذج القالب",
-  "cancel": "إلغاء",
   "upload": "رفع",
   "validate": "تحقق",
   "record_details": "تفاصيل السجل",
@@ -49,6 +48,5 @@
   "total_transfer_amount_error": "إجمالي كمية التحويل تتجاوز الكمية المتاحة",
   "total_transfer_amount": "إجمالي كمية التحويل",
   "available_quantity": "الكمية المتاحة",
-  "search": "بحث",
   "airdrop_success": "تمت معالجة التوزيع بنجاح"
 }

@@ -39,7 +39,6 @@
   "transfer_records": "Transfer Records",
   "transfer_records_description": "Send onchain records to one or multiple parties below.",
   "download_sample": "Download Sample Template",
-  "cancel": "Cancel",
   "upload": "Upload",
   "validate": "Validate",
   "record_details": "Record Details",
@@ -49,6 +48,5 @@
   "total_transfer_amount_error": "Total transfer amount exceeds available quantity",
   "total_transfer_amount": "Total Transfer Amount",
   "available_quantity": "Available Quantity",
-  "search": "Search",
   "airdrop_success": "Airdrop successfully processed"
 }
