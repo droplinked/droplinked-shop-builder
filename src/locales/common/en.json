@@ -315,5 +315,7 @@
       "seamlessActivation": "Seamless Activation"
     }
   },
-  "genericError": "Something went wrong. Please try again later."
+  "genericError": "Something went wrong. Please try again later.",
+  "affiliate": "Affiliate",
+  "growWithDroplinked": "Grow with droplinked!"
 }

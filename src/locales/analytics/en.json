@@ -1,24 +1,38 @@
 {
-  "earnings": "Earnings",
-  "incomePeriod": "Income from {{startDate}} to {{endDate}}.",
+  "EarningsSummary": {
+    "earnings": "Earnings",
+    "incomePeriod": "Income from {{startDate}} to {{endDate}}."
+  },
+  "KeySalesMetrics": {
+    "netProfit": "Net Profit",
+    "customers": "Customers",
+    "orders": "Orders"
+  },
+  "VisitorStats": {
+    "visitors": "Visitors"
+  },
+  "InventorySummary": {
+    "totalInventoryValue": "Total Inventory Value",
+    "numberOfProducts": "Number of Products",
+    "items": "Items"
+  },
+  "ProductTypeBarChart": {
+    "normalProducts": "Normal Products",
+    "printOnDemand": "Print on Demand",
+    "digitalGoods": "Digital Goods",
+    "eventProducts": "Event Products"
+  },
+  "ProductEngagementDashboard": {
+    "bestSellingProducts": "Best Selling Products",
+    "mostImportedProducts": "Most Imported Products"
+  },
+  "ChartToolbar": {
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "StackedBarChart": {
+    "totalEarning": "Total earning"
+  },
   "direct": "Direct",
-  "affiliate": "Affiliate",
-  "prev": "Prev",
-  "next": "Next",
-  "totalEarning": "Total earning",
-  "netProfit": "Net Profit",
-  "customers": "Customers",
-  "orders": "Orders",
-  "visitors": "Visitors",
-  "totalInventoryValue": "Total Inventory Value",
-  "numberOfProducts": "Number of Products",
-  "items": "Items",
-  "bestSellingProducts": "Best Selling Products",
-  "mostImportedProducts": "Most Imported Products",
-  "growWithDroplinked": "Grow with droplinked!",
-  "growWithDroplinkedDesc": "Click on the tasks, complete them to grow your shop, and increase your sales.",
-  "normalProducts": "Normal Products",
-  "printOnDemand": "Print on Demand",
-  "digitalGoods": "Digital Goods",
-  "eventProducts": "Event Products"
+  "growWithDroplinkedDesc": "Click on the tasks, complete them to grow your shop, and increase your sales."
 }

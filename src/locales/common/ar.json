@@ -315,5 +315,7 @@
       "seamlessActivation": "تفعيل سلس"
     }
   },
-  "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
+  "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
+  "affiliate": "التابع",
+  "growWithDroplinked": "نمُّ مع droplinked!"
 }

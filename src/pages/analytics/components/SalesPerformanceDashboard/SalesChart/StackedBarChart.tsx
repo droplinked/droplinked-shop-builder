@@ -26,7 +26,7 @@ export default function StackedBarChart({ salesData }: Props) {
                 borderRadius: 8
             },
             {
-                label: t('affiliate'),
+                label: t('common:affiliate'),
                 data: salesData?.map(item => item.affiliateSales),
                 backgroundColor: "#C5A3FF",
                 borderRadius: 8
@@ -73,7 +73,7 @@ export default function StackedBarChart({ salesData }: Props) {
 
                         <div style="display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid #292929; padding: 12px">
                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
-                                <p>${t('totalEarning')}</p>
+                                <p>${t('StackedBarChart.totalEarning')}</p>
                                 <p style="font-weight: 500">${symbol}${convertPrice({ amount: salesInfo.totalSales, toUSD: false }).toFixed(2)} <span style="color: #7B7B7B">${abbreviation}</span></p>
                             </div>
                         </div>
@@ -93,7 +93,7 @@ export default function StackedBarChart({ salesData }: Props) {
                             <div style="display: flex; justify-content: space-between; align-items: center">
                                  <div style="display: flex; align-items: center; gap: 8px">
                                     <div style="width: 4px; height: 16px; border-radius: 4px; background-color: #C5A3FF"></div>
-                                    <span>${t('affiliate')}</span>
+                                    <span>${t('common:affiliate')}</span>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 8px">
                                     <span>${affiliatePercentage.toFixed(2)}%</span>
@@ -107,29 +107,29 @@ export default function StackedBarChart({ salesData }: Props) {
                     tooltipEl.style.opacity = "1"
                     tooltipEl.style.minWidth = '250px';
                     tooltipEl.style.position = 'absolute';
-                    
+
                     // Get viewport dimensions
                     const viewportWidth = window.innerWidth;
                     const viewportHeight = window.innerHeight;
-                    
+
                     // Calculate initial positions
                     let topPosition = tooltipModel.caretY + 150;
                     let leftPosition = tooltipModel.caretX + 200;
-                    
+
                     // Get tooltip dimensions
                     const tooltipWidth = tooltipEl.offsetWidth;
                     const tooltipHeight = tooltipEl.offsetHeight;
-                    
+
                     // Adjust horizontal position if tooltip would overflow viewport
                     if (leftPosition + tooltipWidth > viewportWidth) {
                         leftPosition = Math.max(0, viewportWidth - tooltipWidth - 20); // 20px padding from edge
                     }
-                    
+
                     // Adjust vertical position if tooltip would overflow viewport
                     if (topPosition + tooltipHeight > viewportHeight) {
                         topPosition = Math.max(0, viewportHeight - tooltipHeight - 20); // 20px padding from edge
                     }
-                    
+
                     tooltipEl.style.top = topPosition + 'px';
                     tooltipEl.style.left = leftPosition + 'px';
                     tooltipEl.style.border = "1px solid #292929";

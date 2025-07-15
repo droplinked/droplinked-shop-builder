@@ -22,7 +22,7 @@ function ProductEngagementDashboard() {
     return (
         <DoubleColumnContainer alignItems="start">
             <SectionContainer
-                title={t('bestSellingProducts')}
+                title={t('ProductEngagementDashboard.bestSellingProducts')}
                 onNavigate={() => navigate('/analytics/products')}
             >
                 {isFetching
@@ -31,7 +31,7 @@ function ProductEngagementDashboard() {
                 }
             </SectionContainer>
 
-            <SectionContainer title={t('mostImportedProducts')}>
+            <SectionContainer title={t('ProductEngagementDashboard.mostImportedProducts')}>
                 {isFetching
                     ? <ProductsListLoading />
                     : <MostImportedProductsList />

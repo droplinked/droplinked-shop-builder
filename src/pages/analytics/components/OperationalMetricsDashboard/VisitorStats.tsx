@@ -14,7 +14,7 @@ function VisitorStats() {
         <RuledGrid columns={1} borderRadius={16}>
             <DataPointCard
                 icon={<GlobeLg color='white' />}
-                title={t('visitors')}
+                title={t('VisitorStats.visitors')}
                 isLoading={isLoading}
             >
                 <Text fontSize={{ base: 18, xl: 20 }} fontWeight={500} color="text.white">{data.visitors}</Text>

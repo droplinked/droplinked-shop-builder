@@ -34,7 +34,7 @@ function InventoryValueCard({ totalInventoryValue, isLoading }) {
     return (
         <DataPointCard
             icon={<CurrencyIcon __css={{ path: { stroke: "white" } }} />}
-            title={t('totalInventoryValue')}
+            title={t('InventorySummary.totalInventoryValue')}
             isLoading={isLoading}
         >
             <FormattedPrice
@@ -53,12 +53,12 @@ function ProductCountCard({ numberOfProducts, isLoading }) {
     return (
         <DataPointCard
             icon={<CoinsLg color="white" />}
-            title={t('numberOfProducts')}
+            title={t('InventorySummary.numberOfProducts')}
             isLoading={isLoading}
         >
             <Text fontSize={{ base: 18, xl: 20 }} fontWeight={500} color="text.white">
                 {numberOfProducts}{" "}
-                <Box as="span" color="text.subtext.placeholder.dark">{t('items')}</Box>
+                <Box as="span" color="text.subtext.placeholder.dark">{t('InventorySummary.items')}</Box>
             </Text>
         </DataPointCard>
     )

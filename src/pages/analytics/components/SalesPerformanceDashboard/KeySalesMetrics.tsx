@@ -15,9 +15,9 @@ function KeySalesMetrics() {
     const { t } = useLocaleResources("analyticsPage")
 
     const metrics = [
-        { icon: <CoinsLg color="white" />, title: t('netProfit'), totalValue: netProfit.total, directValue: netProfit.directSales, affiliateValue: netProfit.affiliateSales },
-        { icon: <UserLg color="white" />, title: t('customers'), totalValue: customers.total, directValue: customers.directCustomers, affiliateValue: customers.affiliateCustomers },
-        { icon: <InvoiceLg color="white" />, title: t('orders'), totalValue: orders.totalOrders, directValue: orders.directOrders, affiliateValue: orders.affiliateOrders }
+        { icon: <CoinsLg color="white" />, title: t('KeySalesMetrics.netProfit'), totalValue: netProfit.total, directValue: netProfit.directSales, affiliateValue: netProfit.affiliateSales },
+        { icon: <UserLg color="white" />, title: t('KeySalesMetrics.customers'), totalValue: customers.total, directValue: customers.directCustomers, affiliateValue: customers.affiliateCustomers },
+        { icon: <InvoiceLg color="white" />, title: t('KeySalesMetrics.orders'), totalValue: orders.totalOrders, directValue: orders.directOrders, affiliateValue: orders.affiliateOrders }
     ]
 
     const renderMetricCards = () => (

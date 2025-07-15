@@ -11,10 +11,10 @@ export default function ProductTypeBarChart({ productTypes }: { productTypes: Pr
     const { t } = useLocaleResources("analyticsPage")
 
     const BADGE_COLORS: Record<string, string> = {
-        [t('normalProducts')]: "#2BCFA1",
-        [t('printOnDemand')]: "#179EF8",
-        [t('digitalGoods')]: "#CF882B",
-        [t('eventProducts')]: "#CB94FF"
+        [t('ProductTypeBarChart.normalProducts')]: "#2BCFA1",
+        [t('ProductTypeBarChart.printOnDemand')]: "#179EF8",
+        [t('ProductTypeBarChart.digitalGoods')]: "#CF882B",
+        [t('ProductTypeBarChart.eventProducts')]: "#CB94FF"
     }
 
     return (
@@ -40,10 +40,10 @@ export default function ProductTypeBarChart({ productTypes }: { productTypes: Pr
 
 function mapProductTypeKey(productType: string) {
     switch (productType) {
-        case "Normal Products": return "normalProducts"
-        case "Print on Demand": return "printOnDemand"
-        case "Digital Goods": return "digitalGoods"
-        case "Event Products": return "eventProducts"
+        case "Normal Products": return "ProductTypeBarChart.normalProducts"
+        case "Print on Demand": return "ProductTypeBarChart.printOnDemand"
+        case "Digital Goods": return "ProductTypeBarChart.digitalGoods"
+        case "Event Products": return "ProductTypeBarChart.eventProducts"
         default: return productType
     }
 }

@@ -52,17 +52,17 @@ function ChartToolbar() {
         <Flex justifyContent="space-between">
             <Flex gap={12}>
                 <StylizedTitle bgColor="#2BCFA1" title={t('direct')} />
-                <StylizedTitle bgColor="#C5A3FF" title={t('affiliate')} />
+                <StylizedTitle bgColor="#C5A3FF" title={t('common:affiliate')} />
             </Flex>
 
             <Flex gap={4}>
                 <DateRangeNavButton isDisabled={isPrevDisabled} onClick={handlePrevClick}>
                     <PrevIcon color={isPrevDisabled ? '#4F4F4F' : '#FFF'} />
-                    {t('prev')}
+                    {t('ChartToolbar.prev')}
                 </DateRangeNavButton>
 
                 <DateRangeNavButton isDisabled={isNextDisabled} onClick={handleNextClick}>
-                    {t('next')}
+                    {t('ChartToolbar.next')}
                     <NextIcon color={isNextDisabled ? '#4F4F4F' : '#FFF'} />
                 </DateRangeNavButton>
             </Flex>

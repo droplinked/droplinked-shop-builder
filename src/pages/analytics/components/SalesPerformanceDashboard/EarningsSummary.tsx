@@ -26,7 +26,7 @@ function EarningsSummary({ earnings, isLoading }: Props) {
         >
             {/* Left section: Earnings and Income period */}
             <Flex direction="column" gap={{ base: 1, md: 2 }}>
-                <Text fontSize={{ base: 14, xl: 16 }} color="text.white">{t('earnings')}</Text>
+                <Text fontSize={{ base: 14, xl: 16 }} color="text.white">{t('EarningsSummary.earnings')}</Text>
 
                 <Skeleton isLoaded={!isLoading}>
                     <FormattedPrice
@@ -43,7 +43,7 @@ function EarningsSummary({ earnings, isLoading }: Props) {
                     color="text.subtext.placeholder.dark"
                     sx={{ span: { fontWeight: 500, color: 'text.subtext.placeholder.light' } }}
                 >
-                    {t('incomePeriod', { startDate, endDate })}
+                    {t('EarningsSummary.incomePeriod', { startDate, endDate })}
                 </Text>
             </Flex>
 

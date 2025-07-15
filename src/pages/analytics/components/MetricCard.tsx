@@ -26,8 +26,8 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
 
     // Create breakdown details for Direct and Affiliate metrics
     const metricBreakdown = [
-        { label: t("direct"), percentage: directPercentage, color: "main.primary" },
-        { label: t("affiliate"), percentage: affiliatePercentage, color: "#C5A3FF" }
+        { label: t('direct'), percentage: directPercentage, color: 'main.primary' },
+        { label: t('common:affiliate'), percentage: affiliatePercentage, color: '#C5A3FF' }
     ]
 
     // Only include metrics with a percentage greater than 0
@@ -39,7 +39,7 @@ function MetricCard({ icon, title, totalValue, directValue, affiliateValue, isLo
     // Helper function to render the value display based on title.
     // If title is "Net Profit", use FormattedPrice; otherwise, use Text.
     const renderValueDisplay = (fontSize: number | Record<string, number>) => {
-        return title === t('netProfit') ?
+        return title === t('KeySalesMetrics.netProfit') ?
             <FormattedPrice
                 price={totalValue}
                 fontSize={fontSize}
