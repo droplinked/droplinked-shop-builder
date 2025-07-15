@@ -1,14 +1,11 @@
 {
-  "toast": {
-    "errorFetchingData": "خطأ في جلب البيانات"
-  },
-  "greeting": {
+  "GreetingBanner": {
     "goodMorning": "صباح الخير",
     "goodAfternoon": "مساء الخير",
     "goodNight": "تصبح على خير",
     "welcomeMessage": "سواء كنت تطلق منتجًا لأول مرة أو تنشئ تجربة واجهة متجر للعملاء، لدينا كل الأدوات التي تحتاجها."
   },
-  "noOrdersPlaceholder": {
+  "NoOrdersPlaceholder": {
     "cards": {
       "importingProducts": {
         "title": "استيراد المنتجات",
@@ -29,44 +26,40 @@
         "title": "قوالب قابلة للتخصيص",
         "description": "خصص تجربة التجارة بناءً على تجربة وتصميم مثاليين للزوار.",
         "buttons": {
-          "getStarted": "ابدأ الآن"
+          
         }
       }
     }
   },
-  "revenueStats": {
-    "totalRevenue": "إجمالي الإيرادات",
-    "netProfit": "صافي الربح",
-    "orders": "الطلبات",
-    "customers": "العملاء"
+  "RevenueStatsGrid": {
+    "totalRevenue": "إجمالي الإيرادات"
   },
-  "quickActions": {
+  "QuickActionsGrid": {
     "createProduct": "إنشاء منتج",
     "createCollection": "إنشاء مجموعة",
     "createInvoice": "إنشاء فاتورة",
     "createDiscount": "إنشاء خصم"
   },
-  "orderSummaryCard": {
+  "OrderSummaryCard": {
     "title": "ملخص الطلبات"
   },
-  "affiliateProgramCard": {
+  "AffiliateProgramCard": {
     "title": "الشركاء"
   },
-  "affiliateProgramEmptyState": {
-    "title": "نمو مع دروبلينكد!",
+  "AffiliateProgramEmptyState": {
     "description": "ادعُ العملاء وفعّل الشركاء لتسريع المبيعات",
     "actionText": "سوق الشركاء"
   },
-  "orderSummaryEmptyState": {
+  "OrderSummaryEmptyState": {
     "title": "لا توجد طلبات بعد",
     "description": "تعلم كيفية الترويج والنمو عبر الشبكة",
     "actionText": "تعلم المزيد"
   },
-  "resourceLinks": {
+  "ResourceLinks": {
     "blog": "مدونة",
     "helpCenter": "مركز المساعدة"
   },
-  "dashboardLinks": {
+  "useLocalizedDashboardLinks": {
     "blogs": {
       "transformNFT": "كيفية تحويل وبيع أعمال NFT والفكرية إلى بضائع مميزة",
       "gatingProduct": "كيفية بيع NFTs الخاصة بك من خلال تقييد المنتج",
@@ -92,10 +85,10 @@
       }
     }
   },
-  "orderItem": {
+  "OrderItem": {
     "orderLabel": "طلبية رقم "
   },
-  "joinCommunityCard": {
+  "JoinCommunityCard": {
     "title": "انضم إلى المجتمع!",
     "description": "تابعنا عبر قنواتنا للحصول على أحدث الأخبار والعروض الحصرية."
   }

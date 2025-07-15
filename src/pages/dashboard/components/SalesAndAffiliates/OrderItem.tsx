@@ -24,7 +24,7 @@ function OrderItem({ order, onNavigate }: Props) {
             <Flex flex={1} flexDirection="column" gap={1}>
                 <Flex flexWrap="wrap" justifyContent="space-between" columnGap={4} rowGap={1}>
                     <Text color="text.white" fontSize={{ base: 14, xl: 16 }}>
-                        {t('orderItem.orderLabel')}{order._id}
+                        {t('OrderItem.orderLabel')}{order._id}
                     </Text>
                     <FormattedPrice
                         price={order.totalPriceCart}

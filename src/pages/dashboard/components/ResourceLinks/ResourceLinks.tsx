@@ -15,7 +15,7 @@ function ResourceLinks() {
             <ResourceCategory
                 items={blogs}
                 sectionContainerProps={{
-                    title: t('resourceLinks.blog'),
+                    title: t('ResourceLinks.blog'),
                     onNavigate: () => openLink("https://droplinked.com/blogs")
                 }}
             />
@@ -23,7 +23,7 @@ function ResourceLinks() {
             <ResourceCategory
                 items={helpCenterLinks}
                 sectionContainerProps={{
-                    title: t('resourceLinks.helpCenter'),
+                    title: t('ResourceLinks.helpCenter'),
                     onNavigate: () => openLink("https://droplinked.gitbook.io/droplinked-store-front-help-center")
                 }}
             />

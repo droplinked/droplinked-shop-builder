@@ -3,11 +3,6 @@
     "earnings": "الأرباح",
     "incomePeriod": "الدخل من {{startDate}} إلى {{endDate}}."
   },
-  "KeySalesMetrics": {
-    "netProfit": "صافي الربح",
-    "customers": "العملاء",
-    "orders": "الطلبات"
-  },
   "VisitorStats": {
     "visitors": "الزوار"
   },

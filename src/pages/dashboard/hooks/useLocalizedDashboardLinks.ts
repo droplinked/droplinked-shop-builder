@@ -52,13 +52,13 @@ function useLocalizedDashboardLinks() {
     const { t } = useLocaleResources('dashboardPage')
 
     const blogs: DashboardPageLink[] = BLOG_LINKS.map(({ id, url }) => ({
-        title: t(`dashboardLinks.blogs.${id}`),
+        title: t(`useLocalizedDashboardLinks.blogs.${id}`),
         url
     }))
 
     const helpCenterLinks: DashboardPageLink[] = HELP_CENTER_LINKS.map(({ id, url }) => ({
-        title: t(`dashboardLinks.helpCenter.${id}.title`),
-        summary: t(`dashboardLinks.helpCenter.${id}.summary`),
+        title: t(`useLocalizedDashboardLinks.helpCenter.${id}.title`),
+        summary: t(`useLocalizedDashboardLinks.helpCenter.${id}.summary`),
         url
     }))
 

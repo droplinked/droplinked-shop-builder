@@ -17,7 +17,7 @@ function OrderSummaryCard({ recentOrders }: Props) {
 
     return (
         <SectionContainer
-            title={t('orderSummaryCard.title')}
+            title={t('OrderSummaryCard.title')}
             onNavigate={() => navigate("/analytics/purchase-history")}
         >
             {!recentOrders?.length

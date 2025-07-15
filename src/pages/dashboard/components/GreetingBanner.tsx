@@ -10,9 +10,9 @@ function GreetingBanner() {
     // Function to get the appropriate greeting based on the time of day
     const getGreeting = () => {
         const hour = new Date().getHours()
-        if (hour >= 5 && hour < 12) return t('greeting.goodMorning')
-        else if (hour >= 12 && hour < 18) return t('greeting.goodAfternoon')
-        else return t('greeting.goodNight')
+        if (hour >= 5 && hour < 12) return t('GreetingBanner.goodMorning')
+        else if (hour >= 12 && hour < 18) return t('GreetingBanner.goodAfternoon')
+        else return t('GreetingBanner.goodNight')
     }
 
     return (
@@ -31,7 +31,7 @@ function GreetingBanner() {
                 👋
             </Heading>
             <Text fontSize={{ base: 14, xl: 16 }} color="text.subtext.placeholder.light">
-                {t('greeting.welcomeMessage')}
+                {t('GreetingBanner.welcomeMessage')}
             </Text>
         </Flex>
     )

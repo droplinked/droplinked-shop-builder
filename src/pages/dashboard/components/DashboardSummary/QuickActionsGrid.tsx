@@ -12,10 +12,10 @@ function QuickActionsGrid() {
     const { t } = useLocaleResources("dashboardPage")
 
     const actions: QuickAction[] = [
-        { icon: <BoxMd color='white' />, label: t('quickActions.createProduct'), url: "/analytics/products" },
-        { icon: <CollectionMd color='white' />, label: t('quickActions.createCollection'), url: "/analytics/collections" },
-        { icon: <InvoiceMd color='white' />, label: t('quickActions.createInvoice'), url: "/analytics/invoice-management/create" },
-        { icon: <Discount1Md color='white' />, label: t('quickActions.createDiscount'), url: "/analytics/account-settings" },
+        { icon: <BoxMd color='white' />, label: t('QuickActionsGrid.createProduct'), url: "/analytics/products" },
+        { icon: <CollectionMd color='white' />, label: t('QuickActionsGrid.createCollection'), url: "/analytics/collections" },
+        { icon: <InvoiceMd color='white' />, label: t('QuickActionsGrid.createInvoice'), url: "/analytics/invoice-management/create" },
+        { icon: <Discount1Md color='white' />, label: t('QuickActionsGrid.createDiscount'), url: "/analytics/account-settings" },
     ]
 
     return (

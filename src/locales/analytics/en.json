@@ -3,11 +3,6 @@
     "earnings": "Earnings",
     "incomePeriod": "Income from {{startDate}} to {{endDate}}."
   },
-  "KeySalesMetrics": {
-    "netProfit": "Net Profit",
-    "customers": "Customers",
-    "orders": "Orders"
-  },
   "VisitorStats": {
     "visitors": "Visitors"
   },

@@ -15,10 +15,10 @@ function RevenueStatsGrid() {
     const { t } = useLocaleResources("dashboardPage")
 
     const stats = [
-        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: t('revenueStats.totalRevenue'), value: shopStats?.totalRevenue, isPrice: true },
-        { icon: <CoinsLg color='white' />, label: t('revenueStats.netProfit'), value: shopStats?.profit, isPrice: true },
-        { icon: <InvoiceLg color='white' />, label: t('revenueStats.orders'), value: shopStats?.orders, isPrice: false },
-        { icon: <UserLg color='white' />, label: t('revenueStats.customers'), value: shopStats?.customers, isPrice: false }
+        { icon: <CurrencyIcon __css={{ path: { stroke: "neutral.white" } }} />, label: t('RevenueStatsGrid.totalRevenue'), value: shopStats?.totalRevenue, isPrice: true },
+        { icon: <CoinsLg color='white' />, label: t('netProfit'), value: shopStats?.profit, isPrice: true },
+        { icon: <InvoiceLg color='white' />, label: t('orders'), value: shopStats?.orders, isPrice: false },
+        { icon: <UserLg color='white' />, label: t('customers'), value: shopStats?.customers, isPrice: false }
     ]
 
     return (

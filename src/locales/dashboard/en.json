@@ -1,14 +1,11 @@
 {
-  "toast": {
-    "errorFetchingData": "Error fetching data"
-  },
-  "greeting": {
+  "GreetingBanner": {
     "goodMorning": "Good Morning",
     "goodAfternoon": "Good Afternoon",
     "goodNight": "Good Night",
     "welcomeMessage": "Whether launching a first product or creating a storefront experience for customers, we've got all the tools you need."
   },
-  "noOrdersPlaceholder": {
+  "NoOrdersPlaceholder": {
     "cards": {
       "importingProducts": {
         "title": "Importing Products",
@@ -29,44 +26,40 @@
         "title": "Customizable Themes",
         "description": "Customize a commerce experience based on an optimal experience and design for visitors.",
         "buttons": {
-          "getStarted": "Get Started"
+          
         }
       }
     }
   },
-  "revenueStats": {
-    "totalRevenue": "Total Revenue",
-    "netProfit": "Net Profit",
-    "orders": "Orders",
-    "customers": "Customers"
+  "RevenueStatsGrid": {
+    "totalRevenue": "Total Revenue"
   },
-  "quickActions": {
+  "QuickActionsGrid": {
     "createProduct": "Create Product",
     "createCollection": "Create Collection",
     "createInvoice": "Create Invoice",
     "createDiscount": "Create Discount"
   },
-  "orderSummaryCard": {
+  "OrderSummaryCard": {
     "title": "Order Summary"
   },
-  "affiliateProgramCard": {
+  "AffiliateProgramCard": {
     "title": "Affiliate"
   },
-  "affiliateProgramEmptyState": {
-    "title": "Grow with droplinked!",
+  "AffiliateProgramEmptyState": {
     "description": "Invite customers and activate partners to accelerate sales",
     "actionText": "Affiliate Market"
   },
-  "orderSummaryEmptyState": {
+  "OrderSummaryEmptyState": {
     "title": "No Orders Yet",
     "description": "Learn how to promote and grow across the network",
     "actionText": "Learn More"
   },
-  "resourceLinks": {
+  "ResourceLinks": {
     "blog": "Blog",
     "helpCenter": "Help Center"
   },
-  "dashboardLinks": {
+  "useLocalizedDashboardLinks": {
     "blogs": {
       "transformNFT": "How to Transform and Sell NFT Artwork and IP into Premium Merchandise",
       "gatingProduct": "How to sell your NFTs through gating your product",
@@ -92,10 +85,10 @@
       }
     }
   },
-  "orderItem": {
+  "OrderItem": {
     "orderLabel": "order #"
   },
-  "joinCommunityCard": {
+  "JoinCommunityCard": {
     "title": "Join the Community!",
     "description": "Follow us across our channels to get the latest news and exclusive offers."
   }

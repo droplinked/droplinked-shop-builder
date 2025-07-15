@@ -12,7 +12,7 @@ import NoOrdersPlaceholder from "./components/NoOrdersPlaceholder"
 import useDashboardPageStore from "./stores/useDashboardStore"
 
 function Dashboard() {
-    useLocaleResources("dashboardPage", { en: enLocale, ar: arLocale })
+    const { t } = useLocaleResources("dashboardPage", { en: enLocale, ar: arLocale })
     const updateDashboardPageState = useDashboardPageStore(state => state.updateDashboardPageState)
     const { showToast } = useAppToast()
 
@@ -20,7 +20,7 @@ function Dashboard() {
         queryKey: ["dashboardData"],
         queryFn: getDashboardPageData,
         onSuccess: data => updateDashboardPageState("dashboardData", data),
-        onError: () => showToast({ type: "error", message: "Error fetching data" }),
+        onError: () => showToast({ type: "error", message: t('common:error') }),
         onSettled: () => updateDashboardPageState("isLoading", false)
     })
 

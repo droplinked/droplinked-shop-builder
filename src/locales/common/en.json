@@ -317,5 +317,8 @@
   },
   "genericError": "Something went wrong. Please try again later.",
   "affiliate": "Affiliate",
-  "growWithDroplinked": "Grow with droplinked!"
+  "growWithDroplinked": "Grow with droplinked!",
+  "netProfit": "Net Profit",
+  "orders": "Orders",
+  "customers": "Customers"
 }
