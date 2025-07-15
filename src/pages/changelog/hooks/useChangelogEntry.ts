@@ -1,8 +1,8 @@
 import useAppToast from "hooks/toast/useToast"
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
-import { getChangelogEntry } from "services/changelog/services"
 import { useQuery } from "react-query"
 import { useNavigate, useParams } from "react-router-dom"
+import { getChangelogEntry } from "services/changelog/services"
 
 const useChangelogEntry = () => {
     const { id } = useParams()
@@ -17,7 +17,7 @@ const useChangelogEntry = () => {
         onError: () => {
             showToast({
                 type: 'error',
-                message: t('entry_load_failed')
+                message: t('useChangelogEntry.entryLoadFailed')
             })
             navigate('/analytics/changelog')
         }

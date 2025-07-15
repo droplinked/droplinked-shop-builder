@@ -314,5 +314,6 @@
       "cancelAnytime": "إلغاء في أي وقت",
       "seamlessActivation": "تفعيل سلس"
     }
-  }
+  },
+  "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
 }

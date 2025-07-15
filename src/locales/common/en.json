@@ -314,5 +314,6 @@
       "cancelAnytime": "Cancel anytime",
       "seamlessActivation": "Seamless Activation"
     }
-  }
+  },
+  "genericError": "Something went wrong. Please try again later."
 }

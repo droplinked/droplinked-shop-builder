@@ -43,7 +43,7 @@ function ChangelogDetail() {
 
                 <DotSeparatedList marginBottom={9}>
                     <Text color='text.subtext.placeholder.light'>
-                        {t('entry.update', { version: changelog?.version })}
+                        {t('entryCard.update', { version: changelog?.version })}
                     </Text>
                     <Text color='text.subtext.placeholder.light'>
                         {formatDateToLongStyle(new Date(changelog?.date))}

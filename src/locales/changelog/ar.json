@@ -4,12 +4,11 @@
     "description": "تعرف على المزيد حول أحدث الميزات والتحسينات."
   },
   "error": {
-    "title": "خطأ",
-    "description": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
+    "title": "خطأ"
   },
-  "entry": {
+  "entryCard": {
     "update": "تحديث {{version}}",
-    "read_more": "اقرأ المزيد"
+    "readMore": "اقرأ المزيد"
   },
   "badge": {
     "integration": "التكامل",
@@ -21,8 +20,12 @@
   "detail": {
     "version": "الإصدار {{version}}"
   },
-  "article_toc": "في هذه المقالة",
+  "articleToc": "في هذه المقالة",
   "tags": "الوسوم",
-  "entries_load_failed": "فشل في تحميل إدخالات سجل التغييرات",
-  "entry_load_failed": "فشل في تحميل إدخال سجل التغييرات"
+  "useChangelogEntries": {
+    "entriesLoadFailed": "فشل في تحميل إدخالات سجل التغييرات"
+  },
+  "useChangelogEntry": {
+    "entryLoadFailed": "فشل في تحميل إدخال سجل التغييرات"
+  }
 }

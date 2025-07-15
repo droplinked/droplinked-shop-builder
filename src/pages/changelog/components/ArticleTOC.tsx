@@ -63,7 +63,7 @@ function ArticleTOC({ changelogItem }: Props) {
         <Flex direction="column" gap={4}>
             <SectionHeader
                 icon={<ListMd color='#fff' />}
-                title={t('article_toc')}
+                title={t('articleToc')}
             />
 
             <Flex

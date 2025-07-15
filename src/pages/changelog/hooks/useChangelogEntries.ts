@@ -14,7 +14,7 @@ const useChangelogEntries = () => {
         onError: () => {
             showToast({
                 type: "error",
-                message: t('entries_load_failed')
+                message: t('useChangelogEntries.entriesLoadFailed')
             })
         }
     })
