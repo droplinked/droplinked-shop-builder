@@ -30,7 +30,7 @@ function ChangelogTags({ changelogItem, withHeading }: Props) {
         <Flex direction="column" gap={4}>
             <SectionHeader
                 icon={<TagMd color='#fff' />}
-                title={t('tags')}
+                title={t('ChangelogTags.label')}
             />
 
             {renderTags()}

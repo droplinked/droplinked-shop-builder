@@ -57,7 +57,7 @@ function ChangelogBadge({ label }: Props) {
             {...badgeProps}
         >
             {icon}
-            {t(`badge.${normalizedLabel}`)}
+            {t(`ChangelogBadge.${normalizedLabel}`)}
         </Badge>
     )
 }

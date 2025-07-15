@@ -24,8 +24,8 @@ function Changelog() {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title={t('header.title')}
-                description={t('header.description')}
+                title={t('Changelog.header.title')}
+                description={t('Changelog.header.description')}
             />
             {entries.length === 0 && isFetching
                 ? <ChangelogEntryLoading count={3} />

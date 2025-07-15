@@ -1,27 +1,33 @@
 {
-  "header": {
-    "title": "التحديثات والإصدارات",
-    "description": "تعرف على المزيد حول أحدث الميزات والتحسينات."
+  "Changelog": {
+    "header": {
+      "title": "التحديثات والإصدارات",
+      "description": "تعرف على المزيد حول أحدث الميزات والتحسينات."
+    }
   },
-  "error": {
+  "ChangelogError": {
     "title": "خطأ"
   },
-  "entryCard": {
+  "ChangelogEntryCard": {
     "update": "تحديث {{version}}",
     "readMore": "اقرأ المزيد"
   },
-  "badge": {
+  "ChangelogBadge": {
     "integration": "التكامل",
     "new_feature": "ميزة جديدة",
     "deprecation": "الإيقاف",
     "improvement": "تحسين",
     "bugfix": "إصلاح الخلل"
   },
-  "detail": {
+  "ChangelogDetail": {
     "version": "الإصدار {{version}}"
   },
-  "articleToc": "في هذه المقالة",
-  "tags": "الوسوم",
+  "ArticleTOC": {
+    "label": "في هذه المقالة"
+  },
+  "ChangelogTags": {
+    "label": "الوسوم"
+  },
   "useChangelogEntries": {
     "entriesLoadFailed": "فشل في تحميل إدخالات سجل التغييرات"
   },

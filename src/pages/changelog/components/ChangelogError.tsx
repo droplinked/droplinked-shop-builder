@@ -12,7 +12,7 @@ export function ChangelogError({ error }: ChangelogErrorProps) {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title={t('error.title')}
+                title={t('ChangelogError.title')}
                 description={t('common:genericError')}
             />
         </PageGrid.Root>
