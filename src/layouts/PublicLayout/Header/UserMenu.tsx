@@ -33,7 +33,7 @@ function UserMenu() {
             <ProducerUserMenu
                 trigger={
                     <Center as='button' padding='10px'>
-                        <ChevrondownMd color='#fff' />
+                        <ChevrondownMd />
                     </Center>
                 }
             />
