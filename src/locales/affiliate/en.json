@@ -70,30 +70,5 @@
       "failedToImport": "Failed to import product",
       "shippingAvailability": "Shipping Availability"
     }
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "noData": "N/A",
-    "retry": "Retry",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "close": "Close",
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "view": "View",
-    "add": "Add",
-    "remove": "Remove",
-    "search": "Search",
-    "filter": "Filter",
-    "sort": "Sort",
-    "refresh": "Refresh",
-    "download": "Download",
-    "upload": "Upload",
-    "export": "Export",
-    "import": "Import"
   }
-} 
+}

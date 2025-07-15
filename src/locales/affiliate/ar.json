@@ -70,30 +70,5 @@
         "failedToImport": "فشل في استيراد المنتج",
         "shippingAvailability": "توفر الشحن"
       }
-    },
-    "common": {
-      "loading": "جارٍ التحميل...",
-      "error": "حدث خطأ",
-      "noData": "غير متوفر",
-      "retry": "إعادة المحاولة",
-      "back": "عودة",
-      "next": "التالي",
-      "previous": "السابق",
-      "close": "إغلاق",
-      "save": "حفظ",
-      "cancel": "إلغاء",
-      "delete": "حذف",
-      "edit": "تعديل",
-      "view": "عرض",
-      "add": "إضافة",
-      "remove": "إزالة",
-      "search": "بحث",
-      "filter": "تصفية",
-      "sort": "ترتيب",
-      "refresh": "تحديث",
-      "download": "تحميل",
-      "upload": "رفع",
-      "export": "تصدير",
-      "import": "استيراد"
     }
   }

@@ -51,7 +51,7 @@ const ProducerInfoSection = ({ shopDetails, shopId, t }: { shopDetails; shopId; 
       </Text>
       {/* <Link to={`/analytics/affiliate/stores/${shopId}`}> */}
         <Text color="#f5f7fa" fontSize="base" fontWeight="medium">
-          {shopDetails.name || t('common.noData')}
+          {shopDetails.name}
         </Text>
       {/* </Link> */}
     </Box>
