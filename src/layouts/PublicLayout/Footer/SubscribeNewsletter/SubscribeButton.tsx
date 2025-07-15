@@ -8,7 +8,7 @@ interface Props {
 }
 
 function SubscribeButton({ isSubmitting, isFullWidth = false }: Props) {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     return (
         <AppButton
@@ -20,7 +20,7 @@ function SubscribeButton({ isSubmitting, isFullWidth = false }: Props) {
             isLoading={isSubmitting}
             isDisabled={isSubmitting}
         >
-            {t('subscribe')}
+            {t('Footer.SubscribeNewsletter.SubscribeButton.subscribe')}
         </AppButton>
     )
 }

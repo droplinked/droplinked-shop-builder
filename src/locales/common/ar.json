@@ -5,31 +5,15 @@
   "save": "حفظ",
   "error": "حدث خطأ",
   "delete": "حذف",
-  "platform": "المنصة",
-  "getStarted": "ابدأ الآن",
-  "signIn": "تسجيل الدخول",
-  "videoTutorials": "فيديوهات تعليمية",
-  "contactSupport": "تواصل مع الدعم",
-  "documentation": "الوثائق",
   "readyToGetStarted": "هل أنت مستعد للبدء؟",
   "signUpForFree": "سجل مجاناً",
-  "back": "عودة",
   "contactUs": "تواصل معنا",
   "brandAssets": "أصول العلامة التجارية",
   "developerKit": "مجموعة المطور",
   "helpCenter": "مركز المساعدة",
   "support": "الدعم",
   "company": "الشركة",
-  "commerceTagline": "أدوات التجارة للبيع والتسوية بشفافية",
-  "privacyAndDataCollection": "الخصوصية وجمع البيانات",
-  "termsOfService": "شروط الخدمة",
-  "copyright": "© {{year}} جميع الحقوق محفوظة",
-  "stayUpToDate": "ابق على اطلاع",
-  "newsletterDescription": "انضم إلى قائمة البريد الإلكتروني للبقاء على اطلاع بآخر الأخبار",
-  "enterYourEmail": "أدخل بريدك الإلكتروني",
-  "invalidEmail": "عنوان البريد الإلكتروني غير صحيح",
-  "emailRequired": "البريد الإلكتروني مطلوب",
-  "subscribe": "اشتراك",
+  "getStarted": "ابدأ الآن",
   "search": "البحث",
   "publicHeaderLinks": {
     "pricing": "الأسعار",
@@ -42,97 +26,8 @@
     "headingTitle": "وظائف المنصة",
     "headingSubtitle": "يوفر دروبلينكد أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري"
   },
-    "marqueeSection": {
+  "marqueeSection": {
     "sectionTitle": "شركاء النظام البيئي"
-  },
-  "publicMegaMenuItems": {
-    "platformFunctionalities": {
-      "label": "وظائف المنصة",
-      "links": {
-        "physicalInventory": {
-          "label": "المخزون المادي",
-          "description": "إدارة سلسلة التوريد المحمولة"
-        },
-        "digitalGoods": {
-          "label": "السلع الرقمية",
-          "description": "الاشتراكات والأصول والمزيد"
-        },
-        "productsOnDemand": {
-          "label": "المنتجات عند الطلب",
-          "description": "تصميم عناصر قابلة للتخصيص"
-        },
-        "onchainAffiliate": {
-          "label": "التسويق بالعمولة على السلسلة",
-          "description": "تجارة شفافة خالية من الاحتيال"
-        },
-        "paymentLinks": {
-          "label": "روابط الدفع",
-          "description": "بيع سلس في أي وقت وأي مكان"
-        },
-        "productTiles": {
-          "label": "وحدات المنتجات",
-          "description": "تضمينات قابلة للتخصيص للاستخدام"
-        },
-        "tokenizingProducts": {
-          "label": "تحويل المنتجات إلى رموز",
-          "description": "سجلات المنتجات للأصول"
-        },
-        "onchainSubscriptions": {
-          "label": "الاشتراكات على السلسلة",
-          "description": "أتمتة لتحقيق المزيد من الأرباح"
-        },
-        "socialQuests": {
-          "label": "المهام الاجتماعية",
-          "description": "تنمية المجتمع لتحقيق المزيد من الأرباح"
-        }
-      }
-    },
-    "enterprise": {
-      "label": "المؤسسات",
-      "links": {
-        "dpp": {
-          "label": "جواز سفر المنتج الرقمي",
-          "description": "جوازات سفر المنتجات الرقمية"
-        },
-        "dimst": {
-          "label": "نظام إدارة المخزون الرقمي",
-          "description": "إدارة المخزون على السلسلة"
-        },
-        "tokenpay": {
-          "label": "توكين باي",
-          "description": "مدفوعات لـ ERC/BRC/SPL"
-        },
-        "metaverseShowroom": {
-          "label": "معرض الميتافيرس",
-          "description": "التسوق التفاعلي أصبح سهلاً"
-        },
-        "customTokens": {
-          "label": "الرموز المخصصة",
-          "description": "أطلق قوة الرموز المخصصة"
-        }
-      }
-    },
-    "partners": {
-      "label": "الشركاء",
-      "links": {
-        "unstoppableDomains": {
-          "label": "أنستوبابل دومينز",
-          "description": "دروب لينكد وأنستوبابل دومينز"
-        },
-        "d3": {
-          "label": "دي 3",
-          "description": "دروب لينكد ودي 3"
-        },
-        "polygon": {
-          "label": "بوليجون",
-          "description": "دروب لينكد وبوليجون"
-        },
-        "crossmint": {
-          "label": "كروس مينت",
-          "description": "دروب لينكد وكروس مينت"
-        }
-      }
-    }
   },
   "socialMedia": {
     "telegram": "تلغرام",
@@ -164,11 +59,7 @@
   "hooks": {
     "errors": {
       "uploadFailed": "فشل في التحميل!",
-      "downloadFailed": "فشل في تحميل الملف",
-      "newsletterError": "حدث خطأ أثناء الاشتراك في النشرة الإخبارية"
-    },
-    "success": {
-      "newsletterSubscribed": "شكراً لك على الاشتراك في نشرتنا الإخبارية"
+      "downloadFailed": "فشل في تحميل الملف"
     },
     "productTypes": {
       "digital": "رقمي",

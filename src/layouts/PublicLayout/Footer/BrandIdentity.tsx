@@ -31,7 +31,7 @@ const ICON_WRAPPER_STYLES = {
 } as const
 
 function BrandIdentity() {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     return (
         <Box>
@@ -49,7 +49,7 @@ function BrandIdentity() {
             </Flex>
 
             <Text fontSize={{ base: 14, md: 16 }} fontWeight={500} color="text.white">
-                {t('commerceTagline')}
+                {t('Footer.BrandIdentity.commerceTagline')}
             </Text>
 
             <Flex marginBlock={{ base: 4, xl: 6 }} gap={2}>

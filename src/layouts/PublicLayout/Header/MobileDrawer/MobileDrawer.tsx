@@ -15,7 +15,7 @@ interface Props {
 
 export default function MobileDrawer({ isOpen, onClose }: Props) {
     const [isPlatformSubmenuOpen, setIsPlatformSubmenuOpen] = useState(false)
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
     const publicHeaderLinks = getPublicHeaderLinks(t)
 
     // Close platform submenu when drawer is closed
@@ -37,13 +37,13 @@ export default function MobileDrawer({ isOpen, onClose }: Props) {
                 padding={{ base: 4, md: 5 }}
             >
                 <Text paddingInline={3} fontSize={12} color="text.subtext.placeholder.dark">
-                    {t('platform')}
+                    {t('Header.MobileDrawer.platform')}
                 </Text>
 
                 <Flex marginTop={3} direction="column" gap={2}>
                     <NavItem
                         icon={<Layer1Md color='#fff' />}
-                        label={t('platform')}
+                        label={t('Header.MobileDrawer.platform')}
                         onClick={() => setIsPlatformSubmenuOpen(true)}
                     />
 

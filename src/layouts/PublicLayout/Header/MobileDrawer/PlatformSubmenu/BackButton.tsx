@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function BackButton({ onClose }: Props) {
-    const { t , isRTL } = useLocaleResources('common')
+    const { t , isRTL } = useLocaleResources('layout/PublicLayout')
 
     return (
         <Flex
@@ -23,7 +23,7 @@ export default function BackButton({ onClose }: Props) {
             onClick={onClose}
         >
             {isRTL ? <ChevronrightMd /> : <ChevronleftMd />}
-            {t('back')}
+            {t('Header.MobileDrawer.BackButton.back')}
         </Flex>
     )
 } 

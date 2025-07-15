@@ -10,10 +10,10 @@ import SubscribeButton from './SubscribeButton'
 function NewsletterForm() {
     const isMobileBreakpoint = useBreakpointValue({ base: true, md: false })
     const { handleSubmit } = useNewsletterSubmission()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     const newsletterFormSchema = Yup.object().shape({
-        email: Yup.string().email(t('invalidEmail')).required(t('emailRequired'))
+        email: Yup.string().email(t('Footer.SubscribeNewsletter.NewsletterForm.invalidEmail')).required(t('Footer.SubscribeNewsletter.NewsletterForm.emailRequired'))
     })
 
     return (
@@ -36,7 +36,7 @@ function NewsletterForm() {
                             }}
                             inputProps={{
                                 name: 'email',
-                                placeholder: t('enterYourEmail'),
+                                placeholder: t('Footer.SubscribeNewsletter.NewsletterForm.enterYourEmail'),
                                 value: values.email,
                                 onChange: handleChange
                             }}

@@ -11,14 +11,14 @@ import { Link, useNavigate } from 'react-router-dom'
 function QuickLinks(props: FlexProps) {
     const navigate = useNavigate()
     const layout = useBreakpointValue({ base: 'mobile', md: 'tablet', xl: 'desktop' })
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     const LINK_ITEMS = [
-        { icon: <PlayMd color='#b1b1b1' />, label: t('videoTutorials'), href: 'https://www.youtube.com/@droplinked-fj6nt', isExternal: true },
-        { icon: <ChatMd color='#b1b1b1' />, label: t('contactSupport'), href: '/contact-us', isExternal: false },
-        { icon: <DocumentMd color='#b1b1b1' />, label: t('documentation'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
+        { icon: <PlayMd color='#b1b1b1' />, label: t('Header.QuickLinks.videoTutorials'), href: 'https://www.youtube.com/@droplinked-fj6nt', isExternal: true },
+        { icon: <ChatMd color='#b1b1b1' />, label: t('Header.QuickLinks.contactSupport'), href: '/contact-us', isExternal: false },
+        { icon: <DocumentMd color='#b1b1b1' />, label: t('Header.QuickLinks.documentation'), href: 'https://droplinked.gitbook.io/droplinked-store-front-help-center', isExternal: true }
     ].filter(item => {
-        if (layout === 'tablet') return [t('videoTutorials'), t('contactSupport')].includes(item.label)
+        if (layout === 'tablet') return [t('Header.QuickLinks.videoTutorials'), t('Header.QuickLinks.contactSupport')].includes(item.label)
         if (layout === 'desktop') return true
         return false
     })

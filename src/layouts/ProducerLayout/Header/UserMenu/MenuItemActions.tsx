@@ -9,8 +9,8 @@ import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConv
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import useShopUrl from 'hooks/useShopUrl/useShopUrl'
-import ArLocale from 'locales/layout/userMenu/ar.json'
-import EnLocale from 'locales/layout/userMenu/en.json'
+import ArLocale from 'locales/layout/ProducerLayout/ar.json'
+import EnLocale from 'locales/layout/ProducerLayout/en.json'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +21,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const { logoutUser } = useProfile()
     const shopUrl = useShopUrl()
     const { getFormattedPrice } = useCurrencyConverter()
-    const { t , isRTL } = useLocaleResources('layout/userMenu', {en: EnLocale,ar: ArLocale})
+    const { t , isRTL } = useLocaleResources('layout/ProducerLayout', {en: EnLocale,ar: ArLocale})
 
     const { isFetching, data } = useQuery({
         queryKey: ['shop-credit'],
@@ -34,7 +34,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const actions = [
         {
             icon: <WalletMd color='#FFF' />,
-            label: t('labels.credit'),
+            label: t('UserMenu.MenuItemActions.labels.credit'),
             color: '#FFF',
             rightContent: isFetching
                 ? <Spinner size='sm' color='text.primary' />
@@ -46,20 +46,20 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
         },
         {
             icon: <GlobeMd color='#FFF' />,
-            label: t('actions.viewStore'),
+            label: t('UserMenu.MenuItemActions.actions.viewStore'),
             color: '#FFF',
             onClick: () => window.open(shopUrl, '_blank')
         },
         {
             icon: <ShopMd color='#FFF' />,
-            label: t('actions.switch'),
+            label: t('UserMenu.MenuItemActions.actions.switch'),
             color: '#FFF',
             rightContent: isRTL ? <ChevronleftMd color='#878787' /> : <ChevronrightMd color='#878787' />,
             onClick: () => navigate('/shop-management')
         },
         {
             icon: <LogoutMd color='#FF2244' />,
-            label: t('actions.logout'),
+            label: t('UserMenu.MenuItemActions.actions.logout'),
             color: '#FF2244',
             onClick: logoutUser
         }

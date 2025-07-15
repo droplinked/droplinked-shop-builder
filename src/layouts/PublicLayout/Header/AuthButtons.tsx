@@ -6,12 +6,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import UserMenu from './UserMenu'
+import arLocale from 'locales/layout/PublicLayout/ar.json'
+import enLocale from 'locales/layout/PublicLayout/en.json'
 
 function AuthButtons() {
     const navigate = useNavigate()
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { user } = useAppStore()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout', { en: enLocale, ar: arLocale })
 
     if (user) return <UserMenu />
 
@@ -33,7 +35,7 @@ function AuthButtons() {
                 variant="secondary"
                 onClick={() => navigate(AUTH_ROUTES.SIGN_IN)}
             >
-                {t('signIn')}
+                {t('Header.AuthButtons.signIn')}
             </AppButton>
             <GetStartedButton />
         </Flex>

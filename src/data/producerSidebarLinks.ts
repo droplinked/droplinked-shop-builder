@@ -14,16 +14,16 @@ import { TFunction } from "i18next";
 
 const createSidebarLinks = (t: TFunction) => [
     {
-        group: t('groups.performance'),
+        group: t('Sidebar.NavLinks.groups.performance'),
         items: [
             {
-                title: t('items.dashboard'),
+                title: t('Sidebar.NavLinks.items.dashboard'),
                 icon: React.createElement(DashboardMd, { color: "#FFF" }),
                 linkTo: '/analytics/dashboard',
                 list: []
             },
             {
-                title: t('items.analytics'),
+                title: t('Sidebar.NavLinks.items.analytics'),
                 icon: React.createElement(ChartMd, { color: "#FFF" }),
                 linkTo: '/analytics',
                 list: []
@@ -31,86 +31,86 @@ const createSidebarLinks = (t: TFunction) => [
         ]
     },
     {
-        group: t('groups.storefront'),
+        group: t('Sidebar.NavLinks.groups.storefront'),
         items: [
             {
-                title: t('items.products'),
+                title: t('Sidebar.NavLinks.items.products'),
                 icon: React.createElement(BoxMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.inventoryManagement'), linkTo: '/analytics/products' },
-                    { listTitle: t('lists.productCollections'), linkTo: '/analytics/collections' },
-                    { listTitle: t('lists.onchainInventory'), linkTo: '/analytics/onchain-records' }
+                    { listTitle: t('Sidebar.NavLinks.lists.inventoryManagement'), linkTo: '/analytics/products' },
+                    { listTitle: t('Sidebar.NavLinks.lists.productCollections'), linkTo: '/analytics/collections' },
+                    { listTitle: t('Sidebar.NavLinks.lists.onchainInventory'), linkTo: '/analytics/onchain-records' }
                 ]
             },
             {
-                title: t('items.orderManagement'),
+                title: t('Sidebar.NavLinks.items.orderManagement'),
                 icon: React.createElement(BasketMd, { color: "#fff" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.purchaseHistory'), linkTo: '/analytics/purchase-history' },
-                    { listTitle: t('lists.invoices'), linkTo: '/analytics/invoice-management' }
+                    { listTitle: t('Sidebar.NavLinks.lists.purchaseHistory'), linkTo: '/analytics/purchase-history' },
+                    { listTitle: t('Sidebar.NavLinks.lists.invoices'), linkTo: '/analytics/invoice-management' }
                 ]
             },
             {
-                title: t('items.styleCenter'),
+                title: t('Sidebar.NavLinks.items.styleCenter'),
                 icon: React.createElement(BrushMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.storefrontDesigner'), linkTo: '/style-center/storefront-designer' },
-                    { listTitle: t('lists.productTiles'), linkTo: '/analytics/style-center/product-tiles' },
-                    { listTitle: t('lists.productLinks'), linkTo: '/analytics/style-center/product-links' },
-                    { listTitle: t('lists.blogEditor'), linkTo: '/analytics/blogs' }
+                    { listTitle: t('Sidebar.NavLinks.lists.storefrontDesigner'), linkTo: '/style-center/storefront-designer' },
+                    { listTitle: t('Sidebar.NavLinks.lists.productTiles'), linkTo: '/analytics/style-center/product-tiles' },
+                    { listTitle: t('Sidebar.NavLinks.lists.productLinks'), linkTo: '/analytics/style-center/product-links' },
+                    { listTitle: t('Sidebar.NavLinks.lists.blogEditor'), linkTo: '/analytics/blogs' }
                 ]
             }
         ]
     },
     {
-        group: t('groups.more'),
+        group: t('Sidebar.NavLinks.groups.more'),
         items: [
             {
-                title: t('items.affiliateNetwork'),
+                title: t('Sidebar.NavLinks.items.affiliateNetwork'),
                 icon: React.createElement(AffiliateMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.products'), linkTo: '/analytics/affiliate/products' },
+                    { listTitle: t('Sidebar.NavLinks.lists.products'), linkTo: '/analytics/affiliate/products' },
                 ]
             },
             {
-                title: t('items.accountSettings'),
+                title: t('Sidebar.NavLinks.items.accountSettings'),
                 icon: React.createElement(SettinggearMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.settings'), linkTo: '/analytics/account-settings' },
-                    { listTitle: t('lists.creditsAndActivity'), linkTo: '/analytics/credits-and-activity' }
+                    { listTitle: t('Sidebar.NavLinks.lists.settings'), linkTo: '/analytics/account-settings' },
+                    { listTitle: t('Sidebar.NavLinks.lists.creditsAndActivity'), linkTo: '/analytics/credits-and-activity' }
                 ]
             },
             {
-                title: t('items.rewardsCenter'),
+                title: t('Sidebar.NavLinks.items.rewardsCenter'),
                 icon: React.createElement(GiftMd, { color: "#FFF" }),
                 linkTo: '/analytics/gamification',
                 list: []
             },
             {
-                title: t('items.quests'),
+                title: t('Sidebar.NavLinks.items.quests'),
                 icon: React.createElement(TargetMd, { color: "#FFF" }),
                 linkTo: '/rewards',
                 list: [],
                 external: true
             },
             {
-                title: t('items.customerSupport'),
+                title: t('Sidebar.NavLinks.items.customerSupport'),
                 icon: React.createElement(ChatMd, { color: "#FFF" }),
                 linkTo: "#",
                 list: [],
                 onClick: () => window.Tawk_API?.toggle()
             },
             {
-                title: t('items.helpCenter'),
+                title: t('Sidebar.NavLinks.items.helpCenter'),
                 icon: React.createElement(HelpMd, { color: "#FFF" }),
                 linkTo: null,
                 list: [
-                    { listTitle: t('lists.changelog'), linkTo: '/analytics/changelog' }
+                    { listTitle: t('Sidebar.NavLinks.lists.changelog'), linkTo: '/analytics/changelog' }
                 ]
             }
         ]
@@ -123,7 +123,7 @@ export const getFilteredSidebarLinks = (t: TFunction, hasCompletedQuests: boolea
         ...group,
         items: group.items.filter(item => {
             // Filter out Quests if they are completed
-            if (item.title === t('items.quests') && hasCompletedQuests) {
+            if (item.title === t('Sidebar.NavLinks.items.quests') && hasCompletedQuests) {
                 return false;
             }
             return true

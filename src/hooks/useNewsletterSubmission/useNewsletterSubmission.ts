@@ -11,17 +11,17 @@ interface NewsletterFormValues {
 const useNewsletterSubmission = () => {
     const { showToast } = useAppToast()
     const { pathname } = useLocation()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     const feature = pathname !== "/" ? pathname.replace('/', '') : "home"
 
     const handleSubmit = async (values: NewsletterFormValues, { resetForm }: FormikHelpers<NewsletterFormValues>) => {
         try {
             await subscribeFeature({ feature, email: values.email })
-            showToast({ type: "success", message: t('hooks.success.newsletterSubscribed') })
+            showToast({ type: "success", message: t('Footer.SubscribeNewsletter.NewsletterForm.successMessage') })
             resetForm()
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : t('hooks.errors.newsletterError')
+            const errorMessage = error instanceof Error ? error.message : t('Footer.SubscribeNewsletter.NewsletterForm.errorMessage')
             showToast({ type: "error", message: errorMessage })
         }
     }

@@ -7,7 +7,7 @@ import MegaMenu from './MegaMenu/MegaMenu'
 
 export default function NavigationMenu() {
     const isMobileView = useBreakpointValue({ base: true, xl: false })
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
     const publicHeaderLinks = getPublicHeaderLinks(t)
 
     if (isMobileView) return null

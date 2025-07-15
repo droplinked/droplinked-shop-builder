@@ -3,7 +3,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
 function NewsletterHeader() {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     return (
         <>
@@ -13,7 +13,7 @@ function NewsletterHeader() {
                 fontWeight={500}
                 color="text.white"
             >
-                {t('stayUpToDate')}
+                {t('Footer.SubscribeNewsletter.NewsletterHeader.stayUpToDate')}
             </Heading>
             <Text
                 marginTop={1}
@@ -21,7 +21,7 @@ function NewsletterHeader() {
                 fontSize={{ base: 14, xl: 16 }}
                 color="text.subtext.placeholder.dark"
             >
-                {t('newsletterDescription')}
+                {t('Footer.SubscribeNewsletter.NewsletterHeader.newsletterDescription')}
             </Text>
         </>
 

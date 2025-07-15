@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 import { appVersion } from 'utils/app/variable'
 
 function FooterLegal() {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
     const currentYear = new Date().getFullYear()
 
     const LEGAL_LINKS = [
-        { to: '/privacy', label: t('privacyAndDataCollection') },
-        { to: '/terms', label: t('termsOfService') }
+        { to: '/privacy', label: t('Footer.FooterLegal.privacyAndDataCollection') },
+        { to: '/terms', label: t('Footer.FooterLegal.termsOfService') }
     ] as const
 
     return (
@@ -25,7 +25,7 @@ function FooterLegal() {
             color="text.subtext.placeholder.dark"
         >
             <DotSeparatedList>
-                <Text>{t('copyright', { year: currentYear })}</Text>
+                <Text>{t('Footer.FooterLegal.copyright', { year: currentYear })}</Text>
                 <Text>{appVersion}</Text>
             </DotSeparatedList>
 

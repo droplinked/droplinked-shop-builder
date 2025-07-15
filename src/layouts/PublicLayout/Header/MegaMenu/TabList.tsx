@@ -10,7 +10,7 @@ interface Props {
 }
 
 function TabList({ items, activeTab, onTabChange }: Props) {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     return (
         <Flex
@@ -28,7 +28,7 @@ function TabList({ items, activeTab, onTabChange }: Props) {
                 fontSize={12}
                 color="text.subtext.placeholder.dark"
             >
-                {t('platform')}
+                {t('Header.MegaMenu.platform')}
             </Text>
 
             {items.map((item, index) => (

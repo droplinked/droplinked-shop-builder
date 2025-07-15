@@ -15,7 +15,7 @@ interface Props {
 }
 
 function PlatformSubmenu({ isOpen, onClose, onNavigate }: Props) {
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('layout/PublicLayout')
     const publicMegaMenuItems = getPublicMegaMenuItems(t)
 
     return (

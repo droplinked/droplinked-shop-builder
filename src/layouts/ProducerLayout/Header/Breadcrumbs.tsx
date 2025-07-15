@@ -6,8 +6,8 @@ import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/Chevronrigh
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/layout/sidebar/ar.json'
-import enLocale from 'locales/layout/sidebar/en.json'
+import arLocale from 'locales/layout/ProducerLayout/ar.json'
+import enLocale from 'locales/layout/ProducerLayout/en.json'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { SidebarGroupType } from '../Sidebar/SidebarGroup'
@@ -20,7 +20,7 @@ interface CustomBreadcrumbItem {
 export const Breadcrumbs = () => {
     const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
-    const { t, isRTL } = useLocaleResources('layout/sidebar', { en: enLocale, ar: arLocale })
+    const { t, isRTL } = useLocaleResources('layout/ProducerLayout', { en: enLocale, ar: arLocale })
     const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'
@@ -29,7 +29,7 @@ export const Breadcrumbs = () => {
 
     // Function to generate breadcrumbs based on the current path
     function getBreadcrumbs(path: string): CustomBreadcrumbItem[] {
-        const breadcrumbs: CustomBreadcrumbItem[] = [{ title: t('items.home'), linkTo: '/analytics' }]
+        const breadcrumbs: CustomBreadcrumbItem[] = [{ title: t('Sidebar.NavLinks.items.home'), linkTo: '/analytics' }]
 
         sidebarLinks.forEach((group: SidebarGroupType) => {
             group.items.forEach((item) => {

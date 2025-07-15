@@ -2,8 +2,8 @@ import { Box, useDisclosure } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import { getLevelUpSections } from 'data/levelUpSections';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import arLocale from 'locales/layout/levelUp/ar.json';
-import enLocale from 'locales/layout/levelUp/en.json';
+import arLocale from 'locales/layout/ProducerLayout/ar.json';
+import enLocale from 'locales/layout/ProducerLayout/en.json';
 import React, { useEffect, useState } from 'react';
 import useLevelUpStore from 'stores/level-up/levelUpStore';
 import LevelUpWidgetModal from './LevelUpWidgetModal';
@@ -12,14 +12,14 @@ import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm'
 
 
 const LevelUpWidget = () => {
-  const { t } = useLocaleResources('layout/levelUp', {
-    en: enLocale,
-    ar: arLocale
-  });
-  const levelUpSections = getLevelUpSections(t);
   const [currentSection, setCurrentSection] = useState(0);
   const [currentSubSection, setCurrentSubSection] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+      const { t } = useLocaleResources('layout/ProducerLayout', {
+        en: enLocale,
+        ar: arLocale
+    });
+  const levelUpSections = getLevelUpSections(t);
   const { levelUpData, isLoading, fetchLevelUpData } = useLevelUpStore();
 
   // Fetch level up data if not already loaded
@@ -62,10 +62,10 @@ const LevelUpWidget = () => {
       {/* Title & Description */}
       <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" alignSelf="stretch">
         <AppTypography color="#FFF" fontSize="14px" fontWeight="500">
-          {t('widget.title')}
+          {t('LevelUpWidget.widget.title')}
         </AppTypography>
         <AppTypography color="#FFF" fontSize="12px" fontWeight="400">
-          {t('widget.description')}
+          {t('LevelUpWidget.widget.description')}
         </AppTypography>
       </Box>
 
