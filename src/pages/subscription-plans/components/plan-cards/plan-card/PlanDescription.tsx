@@ -1,11 +1,11 @@
 import { Text } from '@chakra-ui/react'
-import { SubscriptionPlan } from 'services/subscription/interfaces'
-import React, { useCallback, useEffect, useRef } from 'react'
-import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
-import useSubscriptionPlanPurchaseStore from '../../../../../stores/subscription-plan.ts/subscriptionPlanStore'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/subscription/en.json'
 import localAr from 'locales/subscription/ar.json'
+import localEn from 'locales/subscription/en.json'
+import React, { useCallback, useEffect, useRef } from 'react'
+import { SubscriptionPlan } from 'services/subscription/interfaces'
+import useSubscriptionPlanPurchaseStore from 'stores/subscription-plan.ts/subscriptionPlanStore'
+import { getSubscriptionPlans } from 'utils/constants/subscriptionPlans'
 
 function PlanDescription({ plan }: { plan: SubscriptionPlan }) {
     const descriptionRef = useRef<HTMLDivElement>(null)
