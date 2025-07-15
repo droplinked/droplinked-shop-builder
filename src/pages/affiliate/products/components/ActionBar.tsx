@@ -15,7 +15,10 @@ interface ActionBarProps {
 }
 
 const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFilterChange }) => {
-  const { t, isRTL } = useLocaleResources('affiliate');
+  const { t , isRTL} = useLocaleResources('affiliate',{
+    en: enLocale,
+    ar: arLocale
+  } );
 
   const inputRef = useRef(null);
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
