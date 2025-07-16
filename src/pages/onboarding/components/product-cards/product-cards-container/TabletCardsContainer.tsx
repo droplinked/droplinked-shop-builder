@@ -3,10 +3,7 @@ import React, { PropsWithChildren } from 'react'
 
 function TabletCardsContainer({ children }: PropsWithChildren) {
     return (
-        <Box
-            as="section"
-            height="100%"
-        >
+        <Box as="section" height="100%">
             {children}
         </Box>
     )
