@@ -1,37 +1,32 @@
 import { LinkLg } from 'assets/icons/Action/Link/LinkLg'
 import { WalletLg } from 'assets/icons/Finance/Wallet/WalletLg'
 import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
-import localEn from 'locales/public-pages/landings/payment-links/en.json'
-import localAr from 'locales/public-pages/landings/payment-links/ar.json'
 
 function PaymentLinksFeatures() {
-    const { t } = useLocaleResources('public-pages/landings/payment-links', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/payment-links')
 
     const cardsData: CardData[] = [
         {
             icon: <LinkLg color="#fff" />,
-            title: t('features.cards.instantPaymentLinks.title'),
-            description: t('features.cards.instantPaymentLinks.description'),
+            title: t('PaymentLinksFeatures.cards.instantPaymentLinks.title'),
+            description: t('PaymentLinksFeatures.cards.instantPaymentLinks.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: t('features.cards.customizablePaymentPages.title'),
-            description: t('features.cards.customizablePaymentPages.description'),
+            title: t('PaymentLinksFeatures.cards.customizablePaymentPages.title'),
+            description: t('PaymentLinksFeatures.cards.customizablePaymentPages.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <WalletLg color="#fff" />,
-            title: t('features.cards.cryptoAndFiatPayments.title'),
-            description: t('features.cards.cryptoAndFiatPayments.description'),
+            title: t('PaymentLinksFeatures.cards.cryptoAndFiatPayments.title'),
+            description: t('PaymentLinksFeatures.cards.cryptoAndFiatPayments.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -39,9 +34,9 @@ function PaymentLinksFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('features.sectionTitle')}
-            headingTitle={t('features.headingTitle')}
-            headingSubtitle={t('features.headingSubtitle')}
+            sectionTitle={t('PaymentLinksFeatures.sectionTitle')}
+            headingTitle={t('PaymentLinksFeatures.headingTitle')}
+            headingSubtitle={t('PaymentLinksFeatures.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

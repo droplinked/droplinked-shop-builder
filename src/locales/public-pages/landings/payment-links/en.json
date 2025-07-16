@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "PaymentLinksHero": {
     "title": "Seamless Payments \n Anytime, Anywhere",
     "subtitle": "Create and share payment links to offer simple customer checkout experiences",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "PaymentLinksFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Sell Effortlessly with Full Flexibility",
     "headingSubtitle": "Generate payment links in seconds to sell anywhere without customers needing to visit a particular site, marketplace or application",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "PaymentLinksModularStack": {
     "cards": {
       "sellAnywhereAnytime": {
         "title": "Sell Anywhere, Anytime",

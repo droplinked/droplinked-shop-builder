@@ -4,27 +4,22 @@ import { WalletLg } from 'assets/icons/Finance/Wallet/WalletLg'
 import { CartLg } from 'assets/icons/System/Cart/CartLg'
 import { CursorLg } from 'assets/icons/System/Cursor/CursorLg'
 import { SettinggearLg } from 'assets/icons/System/SettingGear/SettinggearLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { CardData } from '../_shared/components/card/Cards'
-import { CardImage } from '../_shared/components/card'
+import React from 'react'
 import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
-import localEn from 'locales/public-pages/landings/payment-links/en.json'
-import localAr from 'locales/public-pages/landings/payment-links/ar.json'
+import { CardImage } from '../_shared/components/card'
+import { CardData } from '../_shared/components/card/Cards'
 
 function PaymentLinksModularStack() {
-    const { t } = useLocaleResources('public-pages/landings/payment-links', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/payment-links')
 
     const cardsData: CardData[] = [
         {
             icon: <ChartLg color="#fff" />,
-            title: t('modularStack.cards.sellAnywhereAnytime.title'),
-            description: t('modularStack.cards.sellAnywhereAnytime.description'),
+            title: t('PaymentLinksModularStack.cards.sellAnywhereAnytime.title'),
+            description: t('PaymentLinksModularStack.cards.sellAnywhereAnytime.description'),
             gridColumn: { base: 'span 1', md: 'span 2', lg: 'span 3' },
-            children: <CardImage alt={t('modularStack.cards.sellAnywhereAnytime.title')} src='https://upload-file-droplinked.s3.amazonaws.com/99c575ebd82d8853f32775b716bda56fc80bed1aafaa120f8529387a424dcb4e.png' />
+            children: <CardImage alt={t('PaymentLinksModularStack.cards.sellAnywhereAnytime.title')} src='https://upload-file-droplinked.s3.amazonaws.com/99c575ebd82d8853f32775b716bda56fc80bed1aafaa120f8529387a424dcb4e.png' />
         },
         {
             icon: <CursorLg color="#fff" />,

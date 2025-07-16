@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/payment-links/ar.json'
+import enLocale from 'locales/public-pages/landings/payment-links/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import PaymentLinksHero from './PaymentLinksHero'
 import PaymentLinksModularStack from './PaymentLinksModularStack'
 
 export default function PaymentLinksPage() {
+    useLocaleResources('public-pages/landings/payment-links', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'feature-list', component: <PaymentLinksFeatures /> },
