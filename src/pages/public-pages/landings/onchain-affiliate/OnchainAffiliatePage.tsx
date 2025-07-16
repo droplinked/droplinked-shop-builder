@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/onchain-affiliate/ar.json'
+import enLocale from 'locales/public-pages/landings/onchain-affiliate/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import OnchainAffiliateHero from './OnchainAffiliateHero'
 import OnchainAffiliateModularStack from './OnchainAffiliateModularStack'
 
 function OnchainAffiliatePage() {
+    useLocaleResources('public-pages/landings/onchain-affiliate', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'feature-list', component: <OnchainAffiliateFeatures /> },

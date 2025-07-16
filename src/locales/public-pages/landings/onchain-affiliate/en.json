@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "OnchainAffiliateHero": {
     "title": "Transparent Commerce \n That Earns the Most",
     "subtitle": "Unlock opportunities as a merchant or co-seller with the latest onchain technology. As a community-driven platform, droplinked empowers anyone with the tools to earn more on every sale while getting paid faster",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "OnchainAffiliateFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Tracking Production to Point of Sale",
     "headingSubtitle": "Earn or distribute affiliate commissions with smart rule based logic, \n minimizing fraud and automating payouts between parties based on contract terms",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "OnchainAffiliateModularStack": {
     "cards": {
       "collaborateGrow": {
         "title": "Collaborate & Grow",

@@ -1,33 +1,28 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/onchain-affiliate/en.json'
-import localAr from 'locales/public-pages/landings/onchain-affiliate/ar.json'
 
 function OnchainAffiliateHero() {
-    const { t } = useLocaleResources('public-pages/landings/onchain-affiliate', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/onchain-affiliate')
 
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('OnchainAffiliateHero.title')}
+            subtitle={t('OnchainAffiliateHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('OnchainAffiliateHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('OnchainAffiliateHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>
