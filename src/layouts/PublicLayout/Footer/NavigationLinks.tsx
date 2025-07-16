@@ -1,13 +1,12 @@
 import { Box, Link as ChakraLink, Flex, Grid, Heading } from '@chakra-ui/react'
 import getPublicMegaMenuItems from 'data/publicMegaMenuItems'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/layout/PublicLayout/ar.json'
-import enLocale from 'locales/layout/PublicLayout/en.json'
 import React from 'react'
 import { Link } from "react-router-dom"
 
 export default function NavigationLinks() {
-    const { t } = useLocaleResources('layout/PublicLayout', { en: enLocale, ar: arLocale })
+    const { t } = useLocaleResources('layout/PublicLayout')
+
     const publicMegaMenuItems = getPublicMegaMenuItems(t)
 
     const SUPPORT_LINKS = [

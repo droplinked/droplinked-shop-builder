@@ -6,14 +6,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import UserMenu from './UserMenu'
-import arLocale from 'locales/layout/PublicLayout/ar.json'
-import enLocale from 'locales/layout/PublicLayout/en.json'
 
 function AuthButtons() {
     const navigate = useNavigate()
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { user } = useAppStore()
-    const { t } = useLocaleResources('layout/PublicLayout', { en: enLocale, ar: arLocale })
+    const { t } = useLocaleResources('layout/PublicLayout')
 
     if (user) return <UserMenu />
 
