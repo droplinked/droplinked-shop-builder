@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/products-on-demand/ar.json'
+import enLocale from 'locales/public-pages/landings/products-on-demand/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import ProductsOnDemandHero from './ProductsOnDemandHero'
 import ProductsOnDemandModularStack from './ProductsOnDemandModularStack'
 
 function ProductsOnDemandPage() {
+    useLocaleResources('public-pages/landings/products-on-demand', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'feature-list', component: <ProductsOnDemandFeatures /> },

@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "ProductsOnDemandHero": {
     "title": "Transform IP and Artwork \n into Premium Merchandise",
     "subtitle": "droplinked helps you create and sell customizable products on-demand with no inventory minimums, stock burdens or shipment hassles",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "ProductsOnDemandFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "No Minimum Requirements",
     "headingSubtitle": "Design and offer an entire catalog of items that are produced as orders flow in",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "ProductsOnDemandModularStack": {
     "cards": {
       "moreThan10kItems": {
         "title": "More than +10K Items to Customize",

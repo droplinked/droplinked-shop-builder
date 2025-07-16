@@ -1,32 +1,28 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/products-on-demand/en.json'
-import localAr from 'locales/public-pages/landings/products-on-demand/ar.json'
 
 function ProductsOnDemandHero() {
-    const { t } = useLocaleResources('public-pages/landings/products-on-demand', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/products-on-demand')
+
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('ProductsOnDemandHero.title')}
+            subtitle={t('ProductsOnDemandHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('ProductsOnDemandHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('ProductsOnDemandHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>
