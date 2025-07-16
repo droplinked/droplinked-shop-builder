@@ -6,27 +6,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 
-// Import locale files
-import localEn from 'locales/public-pages/landings/digital-goods/en.json'
-import localAr from 'locales/public-pages/landings/digital-goods/ar.json'
-
 function DigitalGoodsHero() {
-    const { t } = useLocaleResources('public-pages/landings/digital-goods', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('public-pages/landings/digital-goods')
 
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('DigitalGoodsHero.title')}
+            subtitle={t('DigitalGoodsHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('DigitalGoodsHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('DigitalGoodsHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

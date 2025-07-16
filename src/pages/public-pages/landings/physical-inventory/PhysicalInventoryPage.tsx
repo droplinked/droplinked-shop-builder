@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/physical-inventory/ar.json'
+import enLocale from 'locales/public-pages/landings/physical-inventory/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import PhysicalInventoryHero from './PhysicalInventoryHero'
 import PhysicalInventoryModularStack from './PhysicalInventoryModularStack'
 
 function PhysicalInventoryPage() {
+    useLocaleResources('public-pages/landings/physical-inventory', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
         { id: 'feature-list', component: <PhysicalInventoryFeatures /> },

@@ -1,18 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/physical-inventory/en.json'
-import localAr from 'locales/public-pages/landings/physical-inventory/ar.json'
 
 function PhysicalInventoryHero() {
-    const { t } = useLocaleResources('public-pages/landings/physical-inventory', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/physical-inventory')
+
     return (
         <HeroSection
             title={t('PhysicalInventoryHero.title')}

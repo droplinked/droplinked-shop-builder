@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "DigitalGoodsHero": {
     "title": "Mint and Monetize",
     "subtitle": "Convert digital assets into exclusive collectibles that work across a catalog to engage communities and customers",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "DigitalGoodsFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Front-End Modularity",
     "headingSubtitle": "Headless and fully customizable storefront setup",
@@ -14,7 +14,7 @@
         "title": "Template Engine Tools",
         "description": "Utilize our template engine tools for easy customization"
       },
-      "customizationWithCSS": {
+      "customizationWithCssHtml": {
         "title": "Customization with CSS & HTML",
         "description": "Ready to go further? Dive into customization with implementing CSS and HTML coding"
       },
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "DigitalGoodsModularStack": {
     "cards": {
       "mintingAssets": {
         "title": "Minting Assets",

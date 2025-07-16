@@ -4,19 +4,15 @@ import { GridLg } from 'assets/icons/Navigation/Grid/GridLg'
 import { AffiliateLg } from 'assets/icons/System/Affiliate/AffiliateLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { DeliverytruckLg } from 'assets/icons/System/DeliveryTruck/DeliverytruckLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
+import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
 import { CardImage } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
-import PlatformFunctionalities from '../_shared/components/PlatformFunctionalities'
-import localEn from 'locales/public-pages/landings/physical-inventory/en.json'
-import localAr from 'locales/public-pages/landings/physical-inventory/ar.json'
 
 function PhysicalInventoryModularStack() {
-    const { t } = useLocaleResources('public-pages/landings/physical-inventory', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/physical-inventory')
+
     const cardsData: CardData[] = [
         {
             icon: <BoxLg color="#fff" />,

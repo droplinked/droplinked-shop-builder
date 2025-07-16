@@ -1,36 +1,32 @@
 import { CodeLg } from 'assets/icons/Coding/Code/CodeLg'
 import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
 import { Layout2Lg } from 'assets/icons/StyleDesigner/Layout2/Layout2Lg'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-
-// Import locale files
-import localEn from 'locales/public-pages/landings/digital-goods/en.json'
-import localAr from 'locales/public-pages/landings/digital-goods/ar.json'
 
 function DigitalGoodsFeatures() {
-    const { t } = useLocaleResources('public-pages/landings/digital-goods', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('public-pages/landings/digital-goods')
 
     const cardsData: CardData[] = [
         {
             icon: <Layout2Lg color="#fff" />,
-            title: t('features.cards.templateEngineTools.title'),
-            description: t('features.cards.templateEngineTools.description'),
+            title: t('DigitalGoodsFeatures.cards.templateEngineTools.title'),
+            description: t('DigitalGoodsFeatures.cards.templateEngineTools.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CodeLg color="#fff" />,
-            title: t('features.cards.customizationWithCSS.title'),
-            description: t('features.cards.customizationWithCSS.description'),
+            title: t('DigitalGoodsFeatures.cards.customizationWithCssHtml.title'),
+            description: t('DigitalGoodsFeatures.cards.customizationWithCssHtml.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: t('features.cards.createCustomTemplates.title'),
-            description: t('features.cards.createCustomTemplates.description'),
+            title: t('DigitalGoodsFeatures.cards.createCustomTemplates.title'),
+            description: t('DigitalGoodsFeatures.cards.createCustomTemplates.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -38,9 +34,9 @@ function DigitalGoodsFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('features.sectionTitle')}
-            headingTitle={t('features.headingTitle')}
-            headingSubtitle={t('features.headingSubtitle')}
+            sectionTitle={t('DigitalGoodsFeatures.sectionTitle')}
+            headingTitle={t('DigitalGoodsFeatures.headingTitle')}
+            headingSubtitle={t('DigitalGoodsFeatures.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

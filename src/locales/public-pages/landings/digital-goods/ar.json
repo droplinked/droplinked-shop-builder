@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "DigitalGoodsHero": {
     "title": "سك وربح",
     "subtitle": "حول الأصول الرقمية إلى مجموعات حصرية تعمل عبر كتالوج لجذب المجتمعات والعملاء",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "DigitalGoodsFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "المرونة في الواجهة الأمامية",
     "headingSubtitle": "إعداد متجر بلا رأس وقابل للتخصيص بالكامل",
@@ -14,7 +14,7 @@
         "title": "أدوات محرك القوالب",
         "description": "استخدم أدوات محرك القوالب للتخصيص السهل"
       },
-      "customizationWithCSS": {
+      "customizationWithCssHtml": {
         "title": "التخصيص باستخدام CSS و HTML",
         "description": "هل أنت مستعد للذهاب أبعد؟ انغمس في التخصيص من خلال تطبيق ترميز CSS و HTML"
       },
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "المكدس المعياري",
-    "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر دروبلينكد أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري",
+  "DigitalGoodsModularStack": {
     "cards": {
       "mintingAssets": {
         "title": "سك الأصول",

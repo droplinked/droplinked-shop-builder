@@ -1,19 +1,15 @@
 import { CodeLg } from 'assets/icons/Coding/Code/CodeLg'
 import { DesignLg } from 'assets/icons/StyleDesigner/Design/DesignLg'
 import { Layout2Lg } from 'assets/icons/StyleDesigner/Layout2/Layout2Lg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
-import localEn from 'locales/public-pages/landings/physical-inventory/en.json'
-import localAr from 'locales/public-pages/landings/physical-inventory/ar.json'
 
 function PhysicalInventoryFeatures() {
-    const { t } = useLocaleResources('public-pages/landings/physical-inventory', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/physical-inventory')
+
     const cardsData: CardData[] = [
         {
             icon: <Layout2Lg color="#fff" />,
