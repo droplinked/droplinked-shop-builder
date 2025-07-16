@@ -33,7 +33,7 @@ import PhysicalInventoryPage from "pages/public-pages/landings/physical-inventor
 import ProductTilesPage from "pages/public-pages/landings/product-tiles/ProductTilesPage"
 import ProductsOnDemandPage from "pages/public-pages/landings/products-on-demand/ProductsOnDemandPage"
 import SocialQuests from "pages/public-pages/landings/social-quests/SocialQuests"
-import TokenizingProducts from "pages/public-pages/landings/tokenizing-products/TokenizingProducts"
+import TokenizingProductsPage from "pages/public-pages/landings/tokenizing-products/TokenizingProductsPage"
 import TokenpayPage from "pages/public-pages/landings/tokenpay/TokenpayPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             { path: "tokenpay", element: <TokenpayPage /> },
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilesPage /> },
-            { path: "tokenizing-products", element: <TokenizingProducts /> },
+            { path: "tokenizing-products", element: <TokenizingProductsPage /> },
             { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },

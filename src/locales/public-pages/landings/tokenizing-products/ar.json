@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "TokenizingProductsHero": {
     "title": "تمويل الأعمال \n التنافسي",
     "subtitle": "استفد من تقنية البلوكشين لرقمنة المخزون لضمان الملكية والإسناد الشفاف لفتح رأس المال العامل للأعمال",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "TokenizingProductsFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "أدوات لتتبع المخزون",
     "headingSubtitle": "أنشئ سجلات رقمية للمخزون والأصول على البلوكشين \n لضمان التوزيع والتداول الآمن والشفاف",
@@ -24,7 +24,7 @@
       }
     }
   },
-  "modularStack": {
+  "TokenizingProductsModularStack": {
     "cards": {
       "secureCustodyOwnership": {
         "title": "الحفظ والملكية الآمنة",

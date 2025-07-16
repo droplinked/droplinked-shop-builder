@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "TokenizingProductsHero": {
     "title": "Competitive\nBusiness Funding",
     "subtitle": "Leverage onchain technology to tokenize inventory to ensure ownership and transparent attribution to unlock working capital for the business",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "TokenizingProductsFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Tools to Track Inventory",
     "headingSubtitle": "Create digital records of inventory and assets onchain\nto ensure secure and transparent distribution and trading",
@@ -24,7 +24,7 @@
       }
     }
   },
-  "modularStack": {
+  "TokenizingProductsModularStack": {
     "cards": {
       "secureCustodyOwnership": {
         "title": "Secure Custody and Ownership",
