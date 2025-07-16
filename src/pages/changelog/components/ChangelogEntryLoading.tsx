@@ -5,9 +5,7 @@ import { ChangelogGrid } from './ChangelogGrid'
 export function ChangelogEntryLoading({ count = 1 }: { count?: number }) {
     return (
         <ChangelogGrid>
-            {Array.from({ length: count }).map((_, index) =>
-                <LoadingEntry key={index} />
-            )}
+            {Array.from({ length: count }).map((_, index) => <LoadingEntry key={index} />)}
         </ChangelogGrid>
     )
 }

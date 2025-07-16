@@ -2,11 +2,7 @@ import PageGrid from 'components/redesign/page-grid/PageGrid'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 
-interface ChangelogErrorProps {
-    error: unknown
-}
-
-export function ChangelogError({ error }: ChangelogErrorProps) {
+export function ChangelogError() {
     const { t } = useLocaleResources('changelogPage')
 
     return (
