@@ -21,10 +21,6 @@
     "bestSellingProducts": "Best Selling Products",
     "mostImportedProducts": "Most Imported Products"
   },
-  "ChartToolbar": {
-    "prev": "Prev",
-    "next": "Next"
-  },
   "StackedBarChart": {
     "totalEarning": "Total earning"
   },

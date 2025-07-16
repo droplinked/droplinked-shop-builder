@@ -58,11 +58,11 @@ function ChartToolbar() {
             <Flex gap={4}>
                 <DateRangeNavButton isDisabled={isPrevDisabled} onClick={handlePrevClick}>
                     <PrevIcon color={isPrevDisabled ? '#4F4F4F' : '#FFF'} />
-                    {t('ChartToolbar.prev')}
+                    {t('common:prev')}
                 </DateRangeNavButton>
 
                 <DateRangeNavButton isDisabled={isNextDisabled} onClick={handleNextClick}>
-                    {t('ChartToolbar.next')}
+                    {t('common:next')}
                     <NextIcon color={isNextDisabled ? '#4F4F4F' : '#FFF'} />
                 </DateRangeNavButton>
             </Flex>

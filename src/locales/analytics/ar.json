@@ -21,10 +21,6 @@
     "bestSellingProducts": "أفضل المنتجات مبيعًا",
     "mostImportedProducts": "أكثر المنتجات استيرادًا"
   },
-  "ChartToolbar": {
-    "prev": "السابق",
-    "next": "التالي"
-  },
   "StackedBarChart": {
     "totalEarning": "الإيرادات الكلية"
   },
