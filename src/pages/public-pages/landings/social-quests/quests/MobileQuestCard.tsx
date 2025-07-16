@@ -60,7 +60,7 @@ export default function MobileQuestCard({ followStatusHook }: MobileQuestCardPro
                     <Text mt={1} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                 </Box>
                 <AppButton onClick={onClick} isLoading={loading}>
-                    {isLoggedIn ? t('quests.mobile.activateAccount') : t('quests.mobile.getStarted')}
+                    {isLoggedIn ? t('quests.mobile.activateAccount') : t('getStarted')}
                 </AppButton>
             </Flex>
             <MobileProPlanDrawer isOpen={isOpen} onClose={onClose} unlockedMonths={unlockedMonths} />

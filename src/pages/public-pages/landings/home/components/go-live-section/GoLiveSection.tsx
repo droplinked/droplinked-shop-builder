@@ -26,7 +26,7 @@ export default function GoLiveSection() {
                     <AppButton
                         {...isRTL ? { leftIcon: <ArrowrightMd /> } : { rightIcon: <ArrowrightMd /> }}
                     >
-                        {t('goLive.getStarted')}
+                        {t('getStarted')}
                     </AppButton>
                 </Link>
             }

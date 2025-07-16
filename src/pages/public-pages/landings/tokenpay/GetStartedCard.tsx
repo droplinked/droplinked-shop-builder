@@ -25,7 +25,7 @@ export default function GetStartedCard() {
         >
             <Link to={AUTH_ROUTES.SIGN_UP}>
                 <AppButton m={6}>
-                    {t('getStartedCard.getStarted')}
+                    {t('getStarted')}
                 </AppButton>
             </Link>
 

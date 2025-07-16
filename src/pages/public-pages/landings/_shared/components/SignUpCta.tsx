@@ -18,7 +18,7 @@ export default function SignUpCta() {
             subTitleElement={
                 <Link to={AUTH_ROUTES.SIGN_UP}>
                     <AppButton mt={6}>
-                        {t('joinNow.getStarted')}
+                        {t('getStarted')}
                     </AppButton>
                 </Link>
             }

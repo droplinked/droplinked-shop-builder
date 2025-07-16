@@ -30,8 +30,7 @@
       "greeting": "Hi There 👋",
       "completeToUnlock": "Complete Everything Below to Unlock Level 1 Membership",
       "registerToQualify": "Register to qualify",
-      "activateAccount": "Activate Account",
-      "getStarted": "Get Started"
+      "activateAccount": "Activate Account"
     },
     "mobileDrawer": {
       "title": "Free Pro Plan Unlocked!",
@@ -75,8 +74,7 @@
       "greeting": "Hi There 👋",
       "completeToUnlock": "Complete Everything Below to Unlock Level 1 Membership",
       "registerToQualify": "Register to qualify",
-      "activateAccount": "Activate Account",
-      "getStarted": "Get Started"
+      "activateAccount": "Activate Account"
     },
     "panelTitle": {
       "quest": "Quest",

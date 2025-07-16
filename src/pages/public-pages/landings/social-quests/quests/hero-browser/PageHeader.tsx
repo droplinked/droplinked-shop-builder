@@ -48,7 +48,7 @@ export default function PageHeader({ grantProPlan }: Props) {
                 <Text fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
             </Flex>
             <AppButton onClick={onClick} isLoading={loading}>
-                {isLoggedIn ? t('heroBrowser.pageHeader.activateAccount') : t('heroBrowser.pageHeader.getStarted')}
+                {isLoggedIn ? t('heroBrowser.pageHeader.activateAccount') : t('getStarted')}
             </AppButton>
 
             <ProPlanUpgradeModal isOpen={isOpen} onClose={onClose} unlockedMonths={unlockedMonths} />
