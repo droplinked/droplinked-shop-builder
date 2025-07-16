@@ -15,18 +15,18 @@ function PhysicalInventoryHero() {
     })
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('PhysicalInventoryHero.title')}
+            subtitle={t('PhysicalInventoryHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('PhysicalInventoryHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('PhysicalInventoryHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

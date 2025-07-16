@@ -17,20 +17,20 @@ function PhysicalInventoryFeatures() {
     const cardsData: CardData[] = [
         {
             icon: <Layout2Lg color="#fff" />,
-            title: t('features.cards.templateEngineTools.title'),
-            description: t('features.cards.templateEngineTools.description'),
+            title: t('PhysicalInventoryFeatures.cards.templateEngineTools.title'),
+            description: t('PhysicalInventoryFeatures.cards.templateEngineTools.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CodeLg color="#fff" />,
-            title: t('features.cards.customizationWithCssHtml.title'),
-            description: t('features.cards.customizationWithCssHtml.description'),
+            title: t('PhysicalInventoryFeatures.cards.customizationWithCssHtml.title'),
+            description: t('PhysicalInventoryFeatures.cards.customizationWithCssHtml.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: t('features.cards.createCustomTemplates.title'),
-            description: t('features.cards.createCustomTemplates.description'),
+            title: t('PhysicalInventoryFeatures.cards.createCustomTemplates.title'),
+            description: t('PhysicalInventoryFeatures.cards.createCustomTemplates.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -38,9 +38,9 @@ function PhysicalInventoryFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('features.sectionTitle')}
-            headingTitle={t('features.headingTitle')}
-            headingSubtitle={t('features.headingSubtitle')}
+            sectionTitle={t('PhysicalInventoryFeatures.sectionTitle')}
+            headingTitle={t('PhysicalInventoryFeatures.headingTitle')}
+            headingSubtitle={t('PhysicalInventoryFeatures.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

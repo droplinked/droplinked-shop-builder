@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "PhysicalInventoryHero": {
     "title": "Agentic Inventory \n Management",
     "subtitle": "Gain deeper insights on customers while dynamically pricing and distributing items across multiple channels with droplinked AI to drive inventory sales",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "PhysicalInventoryFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Front-End Modularity",
     "headingSubtitle": "Headless and fully customizable storefront setup",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "PhysicalInventoryModularStack": {
     "cards": {
       "manageInventoryOnchain": {
         "title": "Manage Inventory Onchain",

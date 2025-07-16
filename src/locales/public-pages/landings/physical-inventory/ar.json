@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "PhysicalInventoryHero": {
     "title": "إدارة المخزون الذكية",
     "subtitle": "احصل على رؤى أعمق حول العملاء مع تسعير وتوزيع ديناميكي للبضائع عبر قنوات متعددة باستخدام الذكاء الاصطناعي من droplinked لزيادة مبيعات المخزون",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "PhysicalInventoryFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "مرونة الواجهة الأمامية",
     "headingSubtitle": "إعداد واجهة متجر قابلة للتخصيص بالكامل وبدون رأس",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "المكدس المعياري",
-    "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر droplinked أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري",
+  "PhysicalInventoryModularStack": {
     "cards": {
       "manageInventoryOnchain": {
         "title": "إدارة المخزون على البلوكشين",
