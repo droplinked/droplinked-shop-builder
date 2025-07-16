@@ -1,72 +1,88 @@
 {
   "home": "Home",
-  "submit": "Submit",
-  "cancel": "Cancel",
-  "error": "An error occurred",
-  "save": "Save",
-  "delete": "Delete",
-  "getStarted": "Get Started",
-  "readyToGetStarted": "Ready to get started?",
-  "signUpForFree": "Sign up for free",
-  "contactUs": "Contact Us",
-  "brandAssets": "Brand Assets",
-  "developerKit": "Developer Kit",
-  "helpCenter": "Help Center",
-  "support": "Support",
-  "company": "Company",
-  "search": "Search",
-  "edit": "Edit",
   "back": "Back",
   "prev": "Prev",
   "next": "Next",
-  "required": "Required",
+  "previous": "Previous",
   "close": "Close",
-  "description": "Description",
-  "price": "Price",
-  "genericError": "Something went wrong. Please try again later.",
-  "affiliate": "Affiliate",
-  "growWithDroplinked": "Grow with droplinked!",
-  "netProfit": "Net Profit",
-  "orders": "Orders",
-  "customers": "Customers",
-  "duplicate": "Duplicate",
   "view": "View",
-  "actions": "Actions",
+  "edit": "Edit",
+  "create": "Create",
+  "update": "Update",
+  "delete": "Delete",
+  "duplicate": "Duplicate",
+  "remove": "Remove",
+  "add": "Add",
+
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "save": "Save",
+  "discard": "Discard",
+  "confirm": "Confirm",
+  "required": "Required",
+  "loading": "Loading...",
+  "success": "Success",
+  "error": "An error occurred",
+  "genericError": "Something went wrong. Please try again later.",
+
+  "import": "Import",
+  "export": "Export",
+  "download": "Download",
+  "upload": "Upload",
+  "refresh": "Refresh",
+  "filter": "Filter",
+  "sort": "Sort",
+  "search": "Search",
+
   "status": "Status",
   "active": "Active",
   "pending": "Pending",
   "paid": "Paid",
-  "total": "Total",
-  "client": "Client",
-  "product": "Product",
-  "download": "Download",
-  "update": "Update",
-  "create": "Create",
-  "success": "Success",
-  "previous": "Previous",
-  "refresh": "Refresh",
-  "import": "Import",
-  "export": "Export",
-  "filter": "Filter",
-  "sort": "Sort",
-  "upload": "Upload",
-  "add": "Add",
-  "remove": "Remove",
-  "details": "Details",
   "draft": "Draft",
   "public": "Public",
   "private": "Private",
+
+  "product": "Product",
   "order": "Order",
+  "orders": "Orders",
   "customer": "Customer",
+  "customers": "Customers",
+  "client": "Client",
+  "affiliate": "Affiliate",
+
+  "price": "Price",
+  "total": "Total",
   "date": "Date",
+  "type": "Type",
+  "description": "Description",
+  "details": "Details",
+  "actions": "Actions",
+
+  "share": "Share",
+  "getStarted": "Get Started",
+  "readyToGetStarted": "Ready to get started?",
+  "signUpForFree": "Sign up for free",
+
+  "contactUs": "Contact Us",
+  "helpCenter": "Help Center",
+  "support": "Support",
+  "company": "Company",
+  "brandAssets": "Brand Assets",
+  "developerKit": "Developer Kit",
+
+  "growWithDroplinked": "Grow with droplinked!",
+  "netProfit": "Net Profit",
+
   "platformFunctionalities": {
     "sectionTitle": "MODULAR STACK",
     "headingTitle": "Platform Functionalities",
     "headingSubtitle": "droplinked provides customizable tools and integrations to support any business"
   },
+
   "marqueeSection": {
     "sectionTitle": "ECOSYSTEM PARTNERS"
   },
+
   "socialMedia": {
     "telegram": "Telegram",
     "discord": "Discord",
@@ -81,6 +97,7 @@
     "messenger": "Messenger",
     "web": "Website"
   },
+
   "fileUpload": {
     "click": "Click",
     "dragAndDrop": "or drag & drop here",
@@ -88,117 +105,21 @@
     "defaultFooter": "JPG, JPEG, PNG, MP4 and MOV (up to 10MB each)",
     "ariaLabel": "Upload file"
   },
+
   "imageUpload": {
     "dragActive": "Drop the image here...",
     "footer": "JPG, JPEG, PNG (up to 5MB)",
     "remove": "Remove {{name}}",
     "uploadError": "Failed to upload image"
   },
+
   "hooks": {
     "errors": {
       "uploadFailed": "Upload failed!",
       "downloadFailed": "Failed to download file"
-    },
-    "productTypes": {
-      "digital": "Digital",
-      "physical": "Physical",
-      "pod": "POD",
-      "event": "Event"
-    },
-    "defaults": {
-      "home": "home"
     }
   },
-  "products": {
-    "hooks": {
-      "errors": {
-        "improveAIError": "Oops! Something went wrong. Please try again.",
-        "unexpectedError": "An unexpected error occurred.",
-        "designMakerError": "Something went wrong. Please try again.",
-        "anErrorOccurred": "An error occurred"
-      },
-      "success": {
-        "productSaved": "The product has been saved successfully!",
-        "crawlTaskStarted": "Crawl Task Started",
-        "crawlTaskDescription": "We are crawling products from the provided URL. Once the task status is set to Previews_ready, you can select the products you want to import.",
-        "importTaskStarted": "Import task started",
-        "importTaskDescription": "We are importing selected products to your inventory. You can view ongoing tasks in the Import Products modal."
-      },
-      "shipping": {
-        "easyPost": {
-          "title": "EasyPost",
-          "description": "Calculates the real-time cost of the shipment based on the delivery address to provide a shipping label."
-        }
-      }
-    }
-  },
-  "invoice": {
-    "hooks": {
-      "errors": {
-        "invoiceNotFound": "Invoice not found with this ID",
-        "pdfGenerationFailed": "Failed to generate PDF. Please try again."
-      },
-      "sections": {
-        "information": "Information",
-        "clientDetail": "Client detail",
-        "paymentDetails": "Payment Details"
-      },
-      "labels": {
-        "idNumber": "ID Number",
-        "status": "Status",
-        "memo": "Memo",
-        "fullName": "Full name",
-        "emailAddress": "Email Address",
-        "mobileNumber": "Mobile Number",
-        "address": "Address",
-        "shippingMethod": "Shipping Method",
-        "totalCart": "Total cart",
-        "tax": "Tax",
-        "totalShipping": "Total Shipping",
-        "totalCost": "Total Cost"
-      }
-    }
-  },
-  "onboarding": {
-    "hooks": {
-      "errors": {
-        "failedToImportShopData": "Failed to import shop data",
-        "importTimedOut": "Import timed out. Please try again.",
-        "failedToStartImport": "Failed to start import. Please try again.",
-        "failedToUploadLogo": "Failed to upload logo",
-        "failedToUploadBanner": "Failed to upload banner",
-        "failedToCompleteShopSetup": "Failed to complete shop setup",
-        "allLogoGenerationFailed": "All logo generation requests failed",
-        "failedToGetLogoRequestIds": "Failed to get request IDs for logo generation",
-        "failedToGenerateLogos": "Failed to generate logos",
-        "allCoverGenerationFailed": "All cover generation requests failed",
-        "failedToGetCoverRequestIds": "Failed to get request IDs for cover generation",
-        "failedToGenerateCovers": "Failed to generate covers",
-        "failedToGenerateUrls": "Failed to generate URLs",
-        "failedToGenerateNames": "Failed to generate names",
-        "errorCheckingUsername": "Error checking username",
-        "invalidVerificationCode": "Invalid verification code",
-        "failedToSendCode": "Failed to send code",
-        "accountDeleted": "This account has been deleted",
-        "accountUnableToLogin": "This account is unable to log in. Please check your credentials.",
-        "anErrorOccurred": "An error occurred",
-        "loginFailed": "Login failed"
-      },
-      "success": {
-        "shopDataImported": "Shop data imported successfully!",
-        "logosGenerated": "Logos generated successfully!",
-        "coversGenerated": "Covers generated successfully!",
-        "codeVerified": "Code verified successfully",
-        "verificationCodeSent": "Verification code sent to your email"
-      },
-      "info": {
-        "importStarted": "Import started. Please wait while we process your website..."
-      },
-      "warnings": {
-        "fillBusinessInfoFirst": "Please fill in business category and description first"
-      }
-    }
-  },
+
   "proPlan": {
     "crossmint": {
       "title": "Free Pro Plan Unlocked!",
