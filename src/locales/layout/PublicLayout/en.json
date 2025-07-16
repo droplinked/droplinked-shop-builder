@@ -1,4 +1,10 @@
 {
+  "publicHeaderLinks": {
+    "pricing": "Pricing",
+    "affiliate": "Affiliate",
+    "blog": "Blog",
+    "about": "About"
+  },
   "publicMegaMenuItems": {
     "platformFunctionalities": {
       "label": "Platform Functionalities",
