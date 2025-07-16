@@ -1,13 +1,13 @@
 import { ArchiveMd } from "assets/icons/Action/Archive/ArchiveMd"
 import { DoublecheckMd } from "assets/icons/Sign/DoubleCheck/DoublecheckMd"
 import useAppToast from "hooks/toast/useToast"
-import { Blog } from "services/blog/interfaces"
-import { updateBlogService } from "services/blog/services"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useInvalidateBlogList } from "pages/blogs/hooks/useBlogs"
 import React from "react"
 import { useMutation } from "react-query"
+import { Blog } from "services/blog/interfaces"
+import { updateBlogService } from "services/blog/services"
 import ConfirmationModal from "./ConfirmationModal"
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 interface Props {
     blogPost: Blog
@@ -24,16 +24,16 @@ function ChangeBlogStatusModal({ blogPost, isOpen, onClose }: Props) {
     const { mutate: changeBlogStatus, isLoading } = useMutation({
         mutationFn: () => updateBlogService({ ...blogPost, isVisible: !isDraft }),
         onSuccess: () => {
-            showToast({ type: "success", message: t("notifications.statusUpdated") })
+            showToast({ type: "success", message: t("ChangeBlogStatusModal.notifications.statusUpdated") })
             onClose()
             invalidateBlogList()
         },
-        onError: () => showToast({ type: "error", message: t("notifications.error.statusUpdate") })
+        onError: () => showToast({ type: "error", message: t('common:genericError') })
     })
 
-    const title = isDraft ? t("modals.changeStatus.draftTitle") : t("modals.changeStatus.publishTitle")
-    const description = isDraft ? t("modals.changeStatus.draftDescription") : t("modals.changeStatus.publishDescription")
-    const buttonText = isDraft ? t("modals.changeStatus.draftConfirm") : t("modals.changeStatus.confirm")
+    const title = isDraft ? t("ChangeBlogStatusModal.draftTitle") : t("ChangeBlogStatusModal.publishTitle")
+    const description = isDraft ? t("ChangeBlogStatusModal.draftDescription") : t("ChangeBlogStatusModal.publishDescription")
+    const buttonText = isDraft ? t("ChangeBlogStatusModal.draftConfirm") : t("ChangeBlogStatusModal.confirm")
 
     return (
         <ConfirmationModal

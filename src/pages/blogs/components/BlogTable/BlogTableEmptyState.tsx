@@ -1,8 +1,9 @@
 import { Flex, Image, Text } from '@chakra-ui/react'
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm'
+import AppButton from 'components/redesign/button/AppButton'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 function BlogTableEmptyState() {
     const navigate = useNavigate()
@@ -24,22 +25,16 @@ function BlogTableEmptyState() {
             />
 
             <Text mt="36px" mb="16px" fontSize={14} color="text.white">
-                {t("table.emptyState.message")}
+                {t("BlogTable.emptyState.message")}
             </Text>
 
-            <Flex
-                as="button"
-                alignItems="center"
-                gap="4px"
-                padding="8px 12px"
-                fontSize={12}
-                fontWeight={500}
-                color="text.primary"
+            <AppButton
+                variant='normal'
+                leftIcon={<PlusSm color='#2BCFA1' />}
                 onClick={() => navigate('/analytics/blogs/new')}
             >
-                <PlusSm color='#2bcfa1' />
-                {t("table.emptyState.action")}
-            </Flex>
+                {t("Blogs.newPost")}
+            </AppButton>
         </Flex>
     )
 }

@@ -10,7 +10,7 @@ function BlogFormActions() {
     const { values, submitForm, isSubmitting } = useBlogForm()
     const { t } = useLocaleResources("blogs")
 
-    const mainButtonText = values.isVisible ? t("form.actions.publish") : t("form.actions.saveDraft")
+    const mainButtonText = values.isVisible ? t("BlogFormActions.publish") : t("BlogFormActions.saveDraft")
 
     return (
         <Flex alignSelf="flex-end" alignItems="center" gap={4}>
@@ -19,7 +19,7 @@ function BlogFormActions() {
                 isDisabled={isSubmitting}
                 onClick={() => navigate("/analytics/blogs")}
             >
-                {t("form.actions.discard")}
+                {t("BlogFormActions.discard")}
             </AppButton>
             <AppButton
                 isLoading={isSubmitting}

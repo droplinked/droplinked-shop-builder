@@ -16,7 +16,7 @@ interface Props {
 
 function ConfirmationModal({ isOpen, onClose, icon, title, description, confirmButtonProps }: Props) {
     const isLoading = confirmButtonProps?.isLoading
-    const { t } = useLocaleResources("blogs")
+    const { t } = useLocaleResources("common")
 
     return (
         <AppModal

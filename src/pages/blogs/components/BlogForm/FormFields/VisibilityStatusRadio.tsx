@@ -16,14 +16,14 @@ function VisibilityStatusRadio() {
     })
 
     const statusList = [
-        { label: t("form.visibilityStatus.options.draft"), value: 'draft' },
-        { label: t("form.visibilityStatus.options.visible"), value: 'visible' }
+        { label: t("VisibilityStatusRadio.options.draft"), value: 'draft' },
+        { label: t("VisibilityStatusRadio.options.visible"), value: 'visible' }
     ]
 
     return (
         <FormFieldWrapper
-            label={t("form.visibilityStatus.label")}
-            description={t("form.visibilityStatus.description")}
+            label={t("VisibilityStatusRadio.label")}
+            description={t("VisibilityStatusRadio.description")}
             isRequired
         >
             <Flex

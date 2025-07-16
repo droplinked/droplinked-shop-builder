@@ -17,7 +17,7 @@ const useBlog = () => {
         onError: () => {
             showToast({
                 type: 'error',
-                message: t("notifications.errors.fetchBlog")
+                message: t("useBlog.error.fetchBlog")
             })
             navigate('/analytics/blogs')
         }

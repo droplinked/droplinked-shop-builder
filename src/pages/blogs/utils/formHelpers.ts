@@ -15,11 +15,11 @@ const DEFAULT_BLOG_VALUES: Blog = {
 export const getInitialValues = (blog?: Blog): Blog => blog ?? DEFAULT_BLOG_VALUES
 
 export const createValidationSchema = (t: (key: string) => string) => Yup.object({
-    image: Yup.string().required(t('form.validation.featuredPicture.required')),
-    title: Yup.string().required(t('form.validation.title.required')),
-    content: Yup.string().required(t('form.validation.body.required')),
+    image: Yup.string().required(t('FeaturedPictureUpload.validation.required')),
+    title: Yup.string().required(t('TitleInput.validation.required')),
+    content: Yup.string().required(t('BodyEditor.validation.required')),
     searchEngineSummary: Yup.string().default(''),
-    category: Yup.string().required(t('form.validation.category.required')),
+    category: Yup.string().required(t('CategorySelect.validation.required')),
     tags: Yup.array().of(Yup.string()),
     isVisible: Yup.boolean(),
     isFeatured: Yup.boolean()

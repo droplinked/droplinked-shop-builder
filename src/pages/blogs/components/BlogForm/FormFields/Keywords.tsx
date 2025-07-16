@@ -11,9 +11,9 @@ function Keywords() {
         <KeywordInput
             keywords={values.tags}
             onKeywordsChange={(keywords) => setFieldValue('tags', keywords)}
-            label={t("form.keywords.label")}
-            description={t("form.keywords.description")}
-            placeholder={t("form.keywords.placeholder")}
+            label={t("Keywords.label")}
+            description={t("Keywords.description")}
+            placeholder={t("Keywords.placeholder")}
         />
     )
 }

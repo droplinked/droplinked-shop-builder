@@ -9,8 +9,8 @@ function BlogToggles() {
 
     return (
         <SwitchBox
-            title={t("form.toggles.featured.title")}
-            description={t("form.toggles.featured.description")}
+            title={t("BlogToggles.featured.title")}
+            description={t("BlogToggles.featured.description")}
             switchProps={{
                 isChecked: values.isFeatured,
                 onChange: (e) => setFieldValue('isFeatured', e.target.checked)

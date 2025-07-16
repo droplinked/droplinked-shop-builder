@@ -32,8 +32,8 @@ function BodyEditor() {
 
     return (
         <FormFieldWrapper
-            label={t("form.body.label")}
-            description={t("form.body.description")}
+            label={t("BodyEditor.label")}
+            description={t("BodyEditor.description")}
             errorMessage={errors.content?.toString() ?? ""}
             isRequired
             sx={formFieldWrapperStyles}

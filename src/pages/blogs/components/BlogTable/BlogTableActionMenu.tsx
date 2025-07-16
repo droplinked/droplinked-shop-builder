@@ -28,23 +28,23 @@ function BlogTableActionMenu({ blogPost }: Props) {
     const copyBlogLink = () => {
         const blogLink = `${shopUrl}/blogs/${slug}`
         navigator.clipboard.writeText(blogLink)
-        showToast({ type: "success", message: t("notifications.linkCopied") })
+        showToast({ type: "success", message: t("BlogTableActionMenu.notifications.linkCopied") })
     }
 
     const actions = [
         {
             icon: isVisible ? <ArchiveMd color='#fff' /> : <DoublecheckMd color='#fff' />,
-            title: isVisible ? t("actions.draft") : t("actions.publish"),
+            title: isVisible ? t("BlogTableActionMenu.actions.draft") : t("BlogTableActionMenu.actions.publish"),
             onClick: onChangeStatusOpen
         },
         {
             icon: <ShareMd color='#fff' />,
-            title: t("actions.share"),
+            title: t("BlogTableActionMenu.actions.share"),
             onClick: copyBlogLink
         },
         {
             icon: <TrashMd color='#F24' />,
-            title: t("actions.remove"),
+            title: t("BlogTableActionMenu.actions.remove"),
             color: "#F24",
             onClick: onDeleteOpen
         }

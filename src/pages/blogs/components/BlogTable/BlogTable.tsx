@@ -26,7 +26,7 @@ function BlogTable({ searchTerm }: Props) {
 
     const columns: ColumnDef<Blog>[] = [
         {
-            header: t("table.columns.post"),
+            header: t("BlogTable.columns.post"),
             cell: info => {
                 const { image, title } = info.row.original
                 const truncatedTitle = title.length <= 25 ? title : `${title.slice(0, 25)}...`
@@ -41,7 +41,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'category',
-            header: t("table.columns.category"),
+            header: t("BlogTable.columns.category"),
             cell: (info) => {
                 const category = info.getValue()
 
@@ -52,7 +52,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'createdAt',
-            header: t("table.columns.date"),
+            header: t("BlogTable.columns.date"),
             cell: info => {
                 const date = new Date(info.getValue() as string)
 
@@ -61,10 +61,10 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'isVisible',
-            header: t("table.columns.status"),
+            header: t("BlogTable.columns.status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
-                const text = isVisible ? t("table.status.published") : t("table.status.draft")
+                const text = isVisible ? t("BlogTable.status.published") : t("BlogTable.status.draft")
                 const status = isVisible ? "success" : "pending"
 
                 return <AppBadge text={text} status={status} />
@@ -83,7 +83,7 @@ function BlogTable({ searchTerm }: Props) {
         )
     }
 
-    if (!isFetching && !blogPosts?.length) return <BlogTableEmptyState />
+    return <BlogTableEmptyState />
 
     return (
         <Table

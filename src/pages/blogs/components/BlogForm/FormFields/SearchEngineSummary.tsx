@@ -9,9 +9,9 @@ function SearchEngineSummary() {
 
     return (
         <Textarea
-            label={t("form.searchEngineSummary.label")}
-            description={t("form.searchEngineSummary.description")}
-            placeholder={t("form.searchEngineSummary.placeholder")}
+            label={t("SearchEngineSummary.label")}
+            description={t("SearchEngineSummary.description")}
+            placeholder={t("SearchEngineSummary.placeholder")}
             value={values.searchEngineSummary}
             onChange={(e) => setFieldValue("searchEngineSummary", e.target.value)}
         />

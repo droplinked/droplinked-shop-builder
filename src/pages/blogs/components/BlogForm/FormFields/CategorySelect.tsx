@@ -34,8 +34,8 @@ const CategorySelect = () => {
 
     return (
         <FormFieldWrapper
-            label={t("form.category.label")}
-            description={t("form.category.description")}
+            label={t("CategorySelect.label")}
+            description={t("CategorySelect.description")}
             errorMessage={errors?.category?.toString()}
         >
             <Popover
@@ -61,7 +61,7 @@ const CategorySelect = () => {
                             flex={1}
                             color={values.category ? 'text.white' : 'text.subtext.placeholder.dark'}
                         >
-                            {values.category || t("form.category.placeholder")}
+                            {values.category || t("CategorySelect.placeholder")}
                         </Text>
                         <AppIcons.SelectChevronDown />
                     </Flex>
@@ -94,7 +94,7 @@ const CategorySelect = () => {
                     <AppInput
                         inputContainerProps={{ border: 'none', padding: '8px 12px' }}
                         inputProps={{
-                            placeholder: t("form.category.newCategory"),
+                            placeholder: t("CategorySelect.newCategory"),
                             padding: '12px 16px',
                             fontSize: 16,
                             value: newCategory,

@@ -1,15 +1,15 @@
 import PageGrid from 'components/redesign/page-grid/PageGrid';
 import { Form, Formik } from 'formik';
 import useAppToast from 'hooks/toast/useToast';
-import useAppStore from 'stores/app/appStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import ar from 'locales/settings/ar.json';
+import en from 'locales/settings/en.json';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import useAppStore from 'stores/app/appStore';
 import SaveChangesDrawer from './components/common/SaveChangesDrawer';
 import TabsContent from './components/common/TabsContent';
-import { getSettingsPageInitValues, createSettingsPageSchema } from './utils/formConfigs';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import ar from 'locales/settings/ar.json'
-import en from 'locales/settings/en.json'
-import { useTranslation } from 'react-i18next'
+import { createSettingsPageSchema, getSettingsPageInitValues } from './utils/formConfigs';
 
 function SettingsPage() {
     const { t } = useLocaleResources('settings', {

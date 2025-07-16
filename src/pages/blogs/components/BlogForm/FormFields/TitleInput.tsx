@@ -9,14 +9,14 @@ function TitleInput() {
 
     return (
         <AppInput
-            label={t("form.title.label")}
-            description={t("form.title.description")}
+            label={t("TitleInput.label")}
+            description={t("TitleInput.description")}
             inputProps={{
                 isRequired: true,
-                placeholder: t("form.title.placeholder"),
+                placeholder: t("TitleInput.placeholder"),
                 value: values.title,
                 onChange: (e) => setFieldValue('title', e.target.value),
-                "aria-label": t("form.title.label"),
+                "aria-label": t("TitleInput.label"),
             }}
             {...errors.title && { state: "error", message: errors.title }}
         />

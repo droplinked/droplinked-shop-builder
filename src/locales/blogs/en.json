@@ -1,125 +1,130 @@
 {
+  "Blogs": {
     "title": "Blog Posts",
     "description": "Here you can create, edit and manage posts related to your blog.",
-    "search": "Search",
-    "table": {
-        "columns": {
-            "post": "Post",
-            "category": "Category",
-            "date": "Date",
-            "status": "Status"
-        },
-        "status": {
-            "published": "Published",
-            "draft": "Draft"
-        },
-        "emptyState": {
-            "message": "Publish a new blog post to boost SEO and engage audiences.",
-            "action": "New Post"
-        }
+    "newPost": "New Post",
+    "search": "Search"
+  },
+  "BlogTable": {
+    "columns": {
+      "post": "Post",
+      "category": "Category",
+      "date": "Date",
+      "status": "Status"
     },
-    "form": {
-        "title": {
-            "label": "Title",
-            "description": "Choose a clear and compelling title for the post.",
-            "placeholder": "e.g., Handmade Ceramic Mug"
-        },
-        "body": {
-            "label": "Body",
-            "description": "Write detailed and engaging content to inform and captivate readers."
-        },
-        "searchEngineSummary": {
-            "label": "Search Engine Summary",
-            "description": "Include 150-200 words about the post to display on search engines as the content summary.",
-            "placeholder": "Search Engine Summary"
-        },
-        "category": {
-            "label": "Category",
-            "description": "Select a relevant category for organization and improve discoverability.",
-            "placeholder": "Select a Category",
-            "newCategory": "New Category"
-        },
-        "keywords": {
-            "label": "Keywords",
-            "description": "Add relevant tags to help users find posted content across search engines.",
-            "placeholder": "Type keywords to help drive traffic to this post..."
-        },
-        "featuredPicture": {
-            "label": "Featured Picture",
-            "description": "Upload an eye-catching image to enhance the visual appeal.",
-            "dragActiveText": "Drop the file here ...",
-            "footerText": "JPG, JPEG or PNG"
-        },
-        "visibilityStatus": {
-            "label": "Visibility Status",
-            "description": "Save as a draft or publish the post when ready.",
-            "options": {
-                "draft": "Draft",
-                "visible": "Visible"
-            }
-        },
-        "toggles": {
-            "featured": {
-                "title": "Featured",
-                "description": "Pin the post on the header."
-            }
-        },
-        "actions": {
-            "discard": "Discard",
-            "publish": "Publish",
-            "saveDraft": "Save as Draft"
-        },
-        "validation": {
-            "title": {
-                "required": "Title is required"
-            },
-            "body": {
-                "required": "Body is required"
-            },
-            "category": {
-                "required": "Category is required"
-            },
-            "featuredPicture": {
-                "required": "Featured picture is required"
-            }
-        }
+    "status": {
+      "published": "Published",
+      "draft": "Draft"
     },
+    "emptyState": {
+      "message": "Publish a new blog post to boost SEO and engage audiences."
+    }
+  },
+  "BlogTableActionMenu": {
     "actions": {
-        "publish": "Publish Post",
-        "draft": "Draft Post",
-        "share": "Share",
-        "remove": "Remove",
-        "edit": "Edit",
-        "newPost": "New Post"
-    },
-    "modals": {
-        "delete": {
-            "title": "Remove Blog",
-            "description": "Are you sure you want to remove this blog? This action cannot be undone",
-            "confirm": "Remove"
-        },
-        "changeStatus": {
-            "publishTitle": "Publish Post",
-            "draftTitle": "Draft Post",
-            "publishDescription": "Are you sure you want to publish this blog?",
-            "draftDescription": "Are you sure you want to draft this blog?",
-            "confirm": "Publish",
-            "draftConfirm": "Draft",
-            "cancel": "Cancel"
-        }
+      "publish": "Publish",
+      "draft": "Draft",
+      "share": "Share",
+      "remove": "Remove"
     },
     "notifications": {
-        "created": "Blog created successfully",
-        "updated": "Blog updated successfully",
-        "deleted": "Blog removed successfully",
-        "statusUpdated": "Blog status updated successfully",
-        "linkCopied": "Link copied to clipboard",
-        "error": {
-            "create": "Failed to create blog",
-            "update": "Failed to update blog",
-            "delete": "Failed to remove blog",
-            "statusUpdate": "Failed to update blog status",
-            "fetch": "Failed to fetch blogs"
-        }
+      "linkCopied": "Link copied to clipboard"
     }
+  },
+  "ChangeBlogStatusModal": {
+    "publishTitle": "Publish Post",
+    "draftTitle": "Draft Post",
+    "publishDescription": "Are you sure you want to publish this blog?",
+    "draftDescription": "Are you sure you want to draft this blog?",
+    "confirm": "Publish",
+    "draftConfirm": "Draft",
+    "notifications": {
+      "statusUpdated": "Blog status updated successfully"
+    }
+  },
+  "DeleteBlogModal": {
+    "title": "Remove Blog",
+    "description": "Are you sure you want to remove this blog? This action cannot be undone",
+    "confirm": "Remove",
+    "notifications": {
+      "deleted": "Blog removed successfully"
+    }
+  },
+  "BlogCreatePage": {
+    "notifications": {
+      "created": "Blog created successfully"
+    }
+  },
+  "BlogEditPage": {
+    "notifications": {
+      "updated": "Blog updated successfully"
+    }
+  },
+  "TitleInput": {
+    "label": "Title",
+    "description": "Choose a clear and compelling title for the post.",
+    "placeholder": "e.g., Handmade Ceramic Mug",
+    "validation": {
+      "required": "Title is required"
+    }
+  },
+  "BodyEditor": {
+    "label": "Body",
+    "description": "Write detailed and engaging content to inform and captivate readers.",
+    "validation": {
+      "required": "Body is required"
+    }
+  },
+  "SearchEngineSummary": {
+    "label": "Search Engine Summary",
+    "description": "Include 150-200 words about the post to display on search engines as the content summary.",
+    "placeholder": "Search Engine Summary"
+  },
+  "CategorySelect": {
+    "label": "Category",
+    "description": "Select a relevant category for organization and improve discoverability.",
+    "placeholder": "Select a Category",
+    "newCategory": "New Category",
+    "validation": {
+      "required": "Category is required"
+    }
+  },
+  "Keywords": {
+    "label": "Keywords",
+    "description": "Add relevant tags to help users find posted content across search engines.",
+    "placeholder": "Type keywords to help drive traffic to this post..."
+  },
+  "FeaturedPictureUpload": {
+    "label": "Featured Picture",
+    "description": "Upload an eye-catching image to enhance the visual appeal.",
+    "dragActiveText": "Drop the file here ...",
+    "footerText": "JPG, JPEG or PNG",
+    "validation": {
+      "required": "Featured picture is required"
+    }
+  },
+  "VisibilityStatusRadio": {
+    "label": "Visibility Status",
+    "description": "Save as a draft or publish the post when ready.",
+    "options": {
+      "draft": "Draft",
+      "visible": "Visible"
+    }
+  },
+  "BlogToggles": {
+    "featured": {
+      "title": "Featured",
+      "description": "Pin the post on the header."
+    }
+  },
+  "BlogFormActions": {
+    "discard": "Discard",
+    "publish": "Publish",
+    "saveDraft": "Save as Draft"
+  },
+  "useBlog": {
+    "error": {
+      "fetchBlog": "Failed to fetch blog"
+    }
+  }
 }

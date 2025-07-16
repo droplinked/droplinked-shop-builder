@@ -30,8 +30,8 @@ function FeaturedPictureUpload() {
 
     return (
         <FormFieldWrapper
-            label={t("form.featuredPicture.label")}
-            description={t("form.featuredPicture.description")}
+            label={t("FeaturedPictureUpload.label")}
+            description={t("FeaturedPictureUpload.description")}
             isRequired
             errorMessage={errors.image?.toString()}
         >
@@ -45,8 +45,8 @@ function FeaturedPictureUpload() {
                     }}
                     flexProps={{ minH: "140px" }}
                     text={{
-                        dragActiveText: t("form.featuredPicture.dragActiveText"),
-                        footerText: t("form.featuredPicture.footerText")
+                        dragActiveText: t("FeaturedPictureUpload.dragActiveText"),
+                        footerText: t("FeaturedPictureUpload.footerText")
                     }}
                 />
 

@@ -1,12 +1,12 @@
 import { TrashMd } from "assets/icons/Action/Trash/TrashMd"
 import useAppToast from "hooks/toast/useToast"
-import { Blog } from "services/blog/interfaces"
-import { deleteBlogService } from "services/blog/services"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import { useInvalidateBlogList } from "pages/blogs/hooks/useBlogs"
 import React from "react"
 import { useMutation } from "react-query"
+import { Blog } from "services/blog/interfaces"
+import { deleteBlogService } from "services/blog/services"
 import ConfirmationModal from "./ConfirmationModal"
-import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 
 interface Props {
     blogPost: Blog
@@ -22,25 +22,25 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
     const { mutate: deleteBlog, isLoading } = useMutation({
         mutationFn: () => deleteBlogService(blogPost._id),
         onSuccess: () => {
-            showToast({ type: "success", message: t("notifications.deleted") })
+            showToast({ type: "success", message: t("DeleteBlogModal.notifications.deleted") })
             onClose()
             invalidateBlogList()
         },
-        onError: () => showToast({ type: "error", message: t("notifications.error.delete") })
+        onError: () => showToast({ type: "error", message: t('common:genericError') })
     })
 
     return (
         <ConfirmationModal
             isOpen={isOpen}
             onClose={onClose}
-            title={t("modals.delete.title")}
-            description={t("modals.delete.description")}
+            title={t("DeleteBlogModal.title")}
+            description={t("DeleteBlogModal.description")}
             icon={<TrashMd color="#fff" />}
             confirmButtonProps={{
                 variant: "normal",
                 bgColor: "system.error",
                 color: "text.white",
-                children: t("modals.delete.confirm"),
+                children: t("DeleteBlogModal.confirm"),
                 isLoading,
                 onClick: () => deleteBlog()
             }}
