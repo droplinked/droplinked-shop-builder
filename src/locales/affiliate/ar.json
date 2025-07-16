@@ -1,74 +1,67 @@
 {
-    "stores": {
-      "hero": {
-        "title": "اعرض منتجاتك وبِعها في أفضل سوق للتسويق بالعمولة",
-        "cta": "انضم كشريك تسويق بالعمولة"
+  "AffiliateStores": {
+    "hero": {
+      "title": "اعرض وبيع منتجاتك في أفضل سوق للتسويق بالعمولة",
+      "cta": "كن شريكًا في التسويق بالعمولة"
+    }
+  },
+  "AffiliateStoresTable": {
+    "columns": {
+      "merchant": "التاجر",
+      "products": "المنتجات",
+      "unitsSold": "الوحدات المباعة",
+      "avgCommission": "متوسط العمولة",
+      "topProducts": "أفضل المنتجات"
+    },
+    "noData": "غير متوفر"
+  },
+  "AffiliateProductsPage": {
+    "filters": {
+      "priceRange": {
+        "min": "السعر",
+        "max": "أعلى سعر"
       },
-      "filters": {
-        "searchPlaceholder": "بحث"
+      "commissionRange": {
+        "min": "العمولة",
+        "max": "أعلى عمولة"
       },
-      "table": {
-        "columns": {
-          "merchant": "البائع",
-          "products": "المنتجات",
-          "unitsSold": "الوحدات المباعة",
-          "avgCommission": "متوسط العمولة",
-          "topProducts": "أفضل المنتجات"
-        },
-        "noData": "غير متوفر"
+      "categories": "الفئات",
+      "sortBy": "ترتيب حسب",
+      "sortOptions": {
+        "newest": "الأحدث",
+        "oldest": "الأقدم",
+        "priceLowToHigh": "السعر: من الأقل إلى الأعلى",
+        "priceHighToLow": "السعر: من الأعلى إلى الأقل",
+        "commissionHighToLow": "العمولة: من الأعلى إلى الأقل",
+        "commissionLowToHigh": "العمولة: من الأقل إلى الأعلى"
       }
     },
-    "products": {
-      "filters": {
-        "searchPlaceholder": "بحث عن المنتجات",
-        "priceRange": {
-          "min": "السعر",
-          "max": "أعلى سعر"
-        },
-        "commissionRange": {
-          "min": "العمولة",
-          "max": "أعلى عمولة"
-        },
-        "categories": "الفئات",
-        "sortBy": "ترتيب حسب",
-        "sortOptions": {
-          "newest": "الأحدث",
-          "oldest": "الأقدم",
-          "priceLowToHigh": "السعر: من الأقل إلى الأعلى",
-          "priceHighToLow": "السعر: من الأعلى إلى الأقل",
-          "commissionHighToLow": "العمولة: من الأعلى إلى الأقل",
-          "commissionLowToHigh": "العمولة: من الأقل إلى الأعلى"
-        }
-      },
-      "actionBar": {
-        "showFilters": "الفلاتر",
-        "hideFilters": "الفلاتر",
-        "clearFilters": "مسح الفلاتر",
-        "resultsCount": "تم العثور على {{count}} منتج"
-      },
-      "productCard": {
-        "commission": "{{commission}}٪",
-        "noPrice": "السعر غير متوفر"
-      },
-      "productDetails": {
-        "commission": "نسبة العمولة",
-        "price": "السعر",
-        "description": "الوصف",
-        "features": "الميزات",
-        "specifications": "المواصفات",
-        "relatedProducts": "منتجات ذات صلة",
-        "shareProduct": "مشاركة المنتج",
-        "copyLink": "نسخ الرابط",
-        "linkCopied": "تم نسخ الرابط إلى الحافظة!",
-        "viewStore": "عرض المتجر",
-        "contactStore": "الاتصال بالمتجر",
-        "availableItems": "العناصر المتوفرة",
-        "profitPerSale": "الربح من كل عملية بيع",
-        "producer": "المنتِج",
-        "importProduct": "استيراد المنتج",
-        "productImported": "تم استيراد المنتج",
-        "failedToImport": "فشل في استيراد المنتج",
-        "shippingAvailability": "توفر الشحن"
-      }
+    "actionBar": {
+      "filters": "الفلاتر",
+      "clearFilters": "مسح الفلاتر",
+      "resultsCount": "تم العثور على {{count}} منتج"
     }
+  },
+  "AffiliateProductCard": {
+    "commission": "{{commission}}٪",
+    "noPrice": "السعر غير متوفر"
+  },
+  "ProductDetails": {
+    "commission": "نسبة العمولة",
+    "features": "الميزات",
+    "specifications": "المواصفات",
+    "relatedProducts": "منتجات ذات صلة",
+    "shareProduct": "مشاركة المنتج",
+    "copyLink": "نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط إلى الحافظة!",
+    "viewStore": "عرض المتجر",
+    "contactStore": "اتصل بالمتجر",
+    "availableItems": "العناصر المتوفرة",
+    "profitPerSale": "الربح لكل عملية بيع",
+    "producer": "المنتج",
+    "importProduct": "استيراد المنتج",
+    "productImported": "تم استيراد المنتج",
+    "failedToImport": "فشل في استيراد المنتج",
+    "shippingAvailability": "توفر الشحن"
   }
+}

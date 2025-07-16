@@ -44,11 +44,11 @@ function AffiliateStores() {
             >
                 <Box width={"full"} display="flex" flexDirection="column" alignItems="flex-start" gap="36px" alignSelf="stretch">
                     <AppTypography color="#FFF" fontFamily="Poppins" fontSize="24px" maxW={{ base: "70%", md: "50%" }} fontStyle="normal" fontWeight="400" lineHeight="36px">
-                        {t('stores.hero.title')}
+                        {t('AffiliateStores.hero.title')}
                     </AppTypography>
                     <HStack spacing={"8px"} alignItems={"center"} justifyContent={"center"}>
                         <AppTypography color="#2BCFA1" fontFamily="Inter" fontSize="20px" fontStyle="normal" fontWeight="700" lineHeight="32px">
-                            {t('stores.hero.cta')}
+                            {t('AffiliateStores.hero.cta')}
                         </AppTypography>
                         {/* <AppIcons.AffiliateProductsArrow width={"24px"} height={"24px"} /> */}
                     </HStack>

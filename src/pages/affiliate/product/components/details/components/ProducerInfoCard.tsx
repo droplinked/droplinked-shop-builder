@@ -6,7 +6,6 @@ import enLocale from 'locales/affiliate/en.json';
 import React from 'react';
 import ProductPrice from '../../common/ProductPrice';
 
-
 interface Props {
   price: number; // Item price
   commission: number; // Commission percentage
@@ -31,11 +30,11 @@ const ProducerInfoCard = ({ price, commission, shopDetails, availableItems, shop
       <Box display={{ base: 'block', xl: 'none' }} width="100%" borderBottom="1px solid" borderColor="neutral.gray.700" mb="4" p="0" />
       {/* Statistics section */}
       <Flex flexDirection={{ base: 'column', md: 'row' }} flex="2" gap="6" width="100%" justify="space-between">
-        <StatItem label={t('products.productDetails.availableItems')} value={displayedAvailableItems} />
+        <StatItem label={t('ProductDetails.availableItems')} value={displayedAvailableItems} />
         <DividerComponent />
-        <StatItem label={t('products.productDetails.commission')} value={`${commission}%`} />
+        <StatItem label={t('ProductDetails.commission')} value={`${commission}%`} />
         <DividerComponent />
-        <StatItem label={t('products.productDetails.profitPerSale')} value={<ProductPrice price={profitPerSale} fontSize='16px' showAbbreviation={false}></ProductPrice>} />
+        <StatItem label={t('ProductDetails.profitPerSale')} value={<ProductPrice price={profitPerSale} fontSize='16px' showAbbreviation={false}></ProductPrice>} />
       </Flex>
     </Box>
   );
@@ -47,7 +46,7 @@ const ProducerInfoSection = ({ shopDetails, shopId, t }: { shopDetails; shopId; 
     <AppImage w="12" h="12" borderRadius="full" src={shopDetails.logo} alt="Producer" />
     <Box flex="1">
       <Text color="#868686" fontSize="sm" fontWeight="normal">
-        {t('products.productDetails.producer')}
+        {t('ProductDetails.producer')}
       </Text>
       {/* <Link to={`/analytics/affiliate/stores/${shopId}`}> */}
         <Text color="#f5f7fa" fontSize="base" fontWeight="medium">

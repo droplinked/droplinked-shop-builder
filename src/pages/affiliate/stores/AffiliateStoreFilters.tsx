@@ -11,7 +11,7 @@ interface Props {
 }
 
 function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
-  const { t } = useLocaleResources('affiliate');
+  const { t } = useLocaleResources('common');
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm);
 
@@ -25,7 +25,7 @@ function AffiliateStoreFilters({ updateInvoiceFilters }: Props) {
         inputGroupProps={{ width: '300px', height: 12, bgColor: 'neutral.gray.1000' }}
         inputProps={{
           value: searchTerm,
-          placeholder: t('stores.filters.searchPlaceholder'),
+          placeholder: t('common:search'),
           onChange: (e) => setSearchTerm(e.target.value)
         }}
         leftElement={<AppIcons.Search />}

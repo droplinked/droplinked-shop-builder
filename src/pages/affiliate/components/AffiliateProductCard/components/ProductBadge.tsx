@@ -12,7 +12,7 @@ export default function ProductBadge({ commission, t }: ProductBadgeProps) {
     <Flex px={2} py={1} position="absolute" left={2} top={2} bg="whiteAlpha.700" borderRadius="md" shadow="md" border="1px solid #ddd" backdropFilter="blur(10px)" align="center" gap={1}>
       <AppIcons.SidebarAffiliate color="black" />
       <Text fontSize="base" color="black">
-        {t('products.productCard.commission').replace('{{commission}}', commission.toString())}
+        {t('AffiliateProductCard.commission').replace('{{commission}}', commission.toString())}
       </Text>
     </Flex>
   );

@@ -65,7 +65,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({ product }) => {
           onClick={() => scrollToSection('description')}
           color="white"
         >
-          {t('products.productDetails.description')}
+          {t('common:description')}
         </Text>
 
         {product?.pod_blank_product_id && (

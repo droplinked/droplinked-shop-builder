@@ -24,9 +24,9 @@ function ImportProductButton({ productId }: ImportProductButtonProps) {
 
     try {
       await mutateAsync({ productId });
-      showToast({ type: 'success', message: t('products.productDetails.productImported') });
+      showToast({ type: 'success', message: t('ProductDetails.productImported') });
     } catch (e) {
-      showToast({ type: 'error', message: e?.response?.data?.data?.message || t('products.productDetails.failedToImport') });
+      showToast({ type: 'error', message: e?.response?.data?.data?.message || t('ProductDetails.failedToImport') });
     }
   };
 
@@ -38,7 +38,7 @@ function ImportProductButton({ productId }: ImportProductButtonProps) {
       width="full"
       onClick={importProduct}
     >
-      {t('products.productDetails.importProduct')}
+      {t('ProductDetails.importProduct')}
     </AppButton>
   );
 }

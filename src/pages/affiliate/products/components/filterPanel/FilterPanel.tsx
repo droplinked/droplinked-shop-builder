@@ -67,7 +67,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
         >
           <Flex alignItems="center" justifyContent="space-between" gap={2} p={4} borderBottomWidth="1px" borderBottomColor={'neutral.gray.800'}>
             <AppTypography fontSize="base" fontWeight="bold" color={'white'}>
-              {t('products.actionBar.showFilters')}
+              {t('AffiliateProductsPage.actionBar.filters')}
             </AppTypography>
             <HStack spacing={2}>
               <IconButton
@@ -95,7 +95,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
                 >
                   {isRTL ? <SidebarexpandMd /> : <SidebarcollapseMd />}
                   <AppTypography color="white" fontSize="sm" fontWeight="medium" ml={isRTL ? 0 : 2} mr={isRTL ? 2 : 0}>
-                    {t('products.actionBar.hideFilters')}
+                    {t('AffiliateProductsPage.actionBar.filters')}
                   </AppTypography>
                 </Button>
               )}
@@ -104,12 +104,12 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
           <Box flexShrink={0} padding={2}>
             <AppAccordion multiCollapse display="flex" flexDir="column" gap={2}>
               {/* Type Section */}
-              <FilterSection title={t('products.filters.categories')} itemId="1">
+              <FilterSection title={t('AffiliateProductsPage.filters.categories')} itemId="1">
                 <CheckboxList categories={categories} filters={filters} handleFilterChange={handleFilterChange} />
               </FilterSection>
 
               {/* Price Section */}
-              <FilterSection title={t('products.filters.priceRange.min')} itemId="2">
+              <FilterSection title={t('AffiliateProductsPage.filters.priceRange.min')} itemId="2">
                 <HStack width="full" spacing="8px">
                   <FilterInput value={filters.lowestPrice} placeholder="0" onChange={(val) => handleFilterChange('lowestPrice', val)} icon={priceIcon} />
                   <AppIcons.AffiliateProductsSeparator />
@@ -118,7 +118,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({ isPublic, showFilters, setS
               </FilterSection>
 
               {/* Commission Section */}
-              <FilterSection title={t('products.filters.commissionRange.min')} itemId="3">
+              <FilterSection title={t('AffiliateProductsPage.filters.commissionRange.min')} itemId="3">
                 <HStack width="full" spacing="8px">
                   <FilterInput value={filters.lowestCommission} placeholder="0" onChange={(val) => handleFilterChange('lowestCommission', val)} icon={<AppIcons.AffiliateProductsPercent />} />
                   <AppIcons.AffiliateProductsSeparator color="red" />

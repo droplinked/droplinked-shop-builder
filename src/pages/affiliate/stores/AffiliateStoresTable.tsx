@@ -36,7 +36,7 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
     const columns: ColumnDef<ICommunityShop>[] = [
         {
             accessorKey: "_id",
-            header: t('stores.table.columns.merchant'),
+            header: t('AffiliateStoresTable.columns.merchant'),
             cell: (info) => {
                 const { logo, name, _id } = info?.row?.original;
                 if (name && _id)
@@ -59,19 +59,19 @@ function AffiliateStoresTable({ stores, isLoading, dataLength, hasMore, isFetchi
                             </Flex>
                         </Link>
                     );
-                return t('stores.table.noData');
+                return t('AffiliateStoresTable.noData');
             },
         },
         {
             accessorKey: "totalProducts",
-            header: t('stores.table.columns.products'),
+            header: t('AffiliateStoresTable.columns.products'),
             cell: (info) => info?.getValue(),
         },
-        { accessorKey: "totalSoldUnits", header: t('stores.table.columns.unitsSold'), cell: (info) => info.getValue() },
-        { accessorKey: "averageCommission", header: t('stores.table.columns.avgCommission'), cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
+        { accessorKey: "totalSoldUnits", header: t('AffiliateStoresTable.columns.unitsSold'), cell: (info) => info.getValue() },
+        { accessorKey: "averageCommission", header: t('AffiliateStoresTable.columns.avgCommission'), cell: (info) => `%${(info.getValue() as Number)?.toFixed(2) || 0}` },
         {
             accessorKey: "topProducts",
-            header: t('stores.table.columns.topProducts'),
+            header: t('AffiliateStoresTable.columns.topProducts'),
             cell: (info) => (
                 <Flex alignItems={"flex-start"} justifyContent={"flex-start"} overflow={"hidden"}>
                     {(info?.getValue() as Array<any>)?.map((product, index) => (

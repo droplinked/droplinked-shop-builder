@@ -45,7 +45,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
       >
         {isSmallScreen ? <AppIcons.FilterAction /> : isRTL ? <SidebarcollapseMd /> : <SidebarexpandMd /> }
         <AppTypography color="white" fontSize="16px" fontWeight="500" ml={isRTL ? 0 : 2} mr={isRTL ? 2 : 0}>
-          {t('products.actionBar.showFilters')}
+          {t('AffiliateProductsPage.actionBar.filters')}
         </AppTypography>
       </Button>
 
@@ -66,7 +66,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ setShowFilters, filters, handleFi
           }}
           _placeholder={{ color: 'text.subtext.placeholder.dark' }}
           value={filters.title}
-          placeholder={t('products.filters.searchPlaceholder')}
+          placeholder={t('common:search')}
           onChange={(e) => handleFilterChange('title', e.target.value)}
         />
         <Box as="button" cursor={'pointer'} bg={"neutral.gray.800"} rounded={2} onClick={focusSearchInput}>
