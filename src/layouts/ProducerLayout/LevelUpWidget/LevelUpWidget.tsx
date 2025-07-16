@@ -1,24 +1,19 @@
 import { Box, useDisclosure } from '@chakra-ui/react';
+import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm';
 import AppTypography from 'components/common/typography/AppTypography';
 import { getLevelUpSections } from 'data/levelUpSections';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import arLocale from 'locales/layout/ProducerLayout/ar.json';
-import enLocale from 'locales/layout/ProducerLayout/en.json';
 import React, { useEffect, useState } from 'react';
 import useLevelUpStore from 'stores/level-up/levelUpStore';
 import LevelUpWidgetModal from './LevelUpWidgetModal';
 import LevelUpWidgetSection from './LevelUpWidgetSection';
-import { ChartSm } from 'assets/icons/Finance/Chart/ChartSm'
 
 
 const LevelUpWidget = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentSubSection, setCurrentSubSection] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
-      const { t } = useLocaleResources('layout/ProducerLayout', {
-        en: enLocale,
-        ar: arLocale
-    });
+  const { t } = useLocaleResources('layout/ProducerLayout');
   const levelUpSections = getLevelUpSections(t);
   const { levelUpData, isLoading, fetchLevelUpData } = useLevelUpStore();
 

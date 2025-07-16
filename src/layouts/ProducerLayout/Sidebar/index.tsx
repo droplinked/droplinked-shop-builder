@@ -8,7 +8,7 @@ import TabletSidebar from './TabletSidebar/TabletSidebar'
 
 export const Sidebar = () => {
     const { breakpoint } = useProducerLayout()
-    const { isRTL } = useLocaleResources("layout/sidebar")
+    const { isRTL } = useLocaleResources("layout/ProducerLayout")
 
     if (breakpoint === 'mobile') return <MobileSidebar />
 

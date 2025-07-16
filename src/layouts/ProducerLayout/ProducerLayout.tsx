@@ -1,6 +1,9 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { ProducerLayoutProvider } from 'context/ProducerLayoutContext'
 import AdminHoc from 'hoc/admin/adminHoc'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/layout/ProducerLayout/ar.json'
+import enLocale from 'locales/layout/ProducerLayout/en.json'
 import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
@@ -17,6 +20,7 @@ function ProducerLayout({ children, hideSidebar = false, showBackground = false 
     const navigate = useNavigate()
     const { user } = useAppStore()
     const { resetOnboarding } = useOnboardingStore()
+    useLocaleResources('layout/ProducerLayout', { en: enLocale, ar: arLocale })
 
     // Prevent users from accessing panel and other areas until store setup is complete
     // Redirects users with incomplete profiles to onboarding and prevents default URL access

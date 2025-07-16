@@ -6,8 +6,6 @@ import { ChevronrightSm } from 'assets/icons/Navigation/ChevronRight/Chevronrigh
 import { useProducerLayout } from 'context/ProducerLayoutContext'
 import { getProducerSidebarLinks } from 'data/producerSidebarLinks'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/layout/ProducerLayout/ar.json'
-import enLocale from 'locales/layout/ProducerLayout/en.json'
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { SidebarGroupType } from '../Sidebar/SidebarGroup'
@@ -18,9 +16,10 @@ interface CustomBreadcrumbItem {
 }
 
 export const Breadcrumbs = () => {
-    const { breakpoint } = useProducerLayout()
     const { pathname } = useLocation()
-    const { t, isRTL } = useLocaleResources('layout/ProducerLayout', { en: enLocale, ar: arLocale })
+    const { breakpoint } = useProducerLayout()
+    const { t, isRTL } = useLocaleResources('layout/ProducerLayout')
+
     const sidebarLinks = getProducerSidebarLinks(t)
 
     const separator = breakpoint === 'desktop'

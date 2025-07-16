@@ -2,17 +2,15 @@ import { FlexProps } from '@chakra-ui/react'
 import { AppAccordion } from 'components/redesign/accordion/AppAccordion'
 import { getFilteredSidebarLinks } from 'data/producerSidebarLinks'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import arLocale from 'locales/layout/ProducerLayout/ar.json'
-import enLocale from 'locales/layout/ProducerLayout/en.json'
 import React from 'react'
 import useAppStore from 'stores/app/appStore'
 import LevelUpWidget from '../LevelUpWidget/LevelUpWidget'
 import SidebarGroup from './SidebarGroup'
 
 export default function NavLinks({ ...props }: FlexProps) {
-    const { shop } = useAppStore();
-    const { t } = useLocaleResources('layout/ProducerLayout', { en: enLocale, ar: arLocale })
-    const sidebarLinks = getFilteredSidebarLinks(t,shop.hasCompletedQuests);
+    const { shop } = useAppStore()
+    const { t } = useLocaleResources('layout/ProducerLayout')
+    const sidebarLinks = getFilteredSidebarLinks(t, shop.hasCompletedQuests)
 
     return (
         <AppAccordion

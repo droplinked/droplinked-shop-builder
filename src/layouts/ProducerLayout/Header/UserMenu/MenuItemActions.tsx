@@ -9,8 +9,6 @@ import { useCurrencyConverter } from 'hooks/useCurrencyConverter/useCurrencyConv
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import useShopUrl from 'hooks/useShopUrl/useShopUrl'
-import ArLocale from 'locales/layout/ProducerLayout/ar.json'
-import EnLocale from 'locales/layout/ProducerLayout/en.json'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +19,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const { logoutUser } = useProfile()
     const shopUrl = useShopUrl()
     const { getFormattedPrice } = useCurrencyConverter()
-    const { t , isRTL } = useLocaleResources('layout/ProducerLayout', {en: EnLocale,ar: ArLocale})
+    const { t, isRTL } = useLocaleResources('layout/ProducerLayout')
 
     const { isFetching, data } = useQuery({
         queryKey: ['shop-credit'],
@@ -81,10 +79,10 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
                 onClick={onClick}
             >
                 {icon}
-                <Text 
-                    flex={1} 
+                <Text
+                    flex={1}
                     fontSize={14}
-                    textAlign={isRTL ? 'right' : 'left'} 
+                    textAlign={isRTL ? 'right' : 'left'}
                     color={color}
                 >
                     {label}
