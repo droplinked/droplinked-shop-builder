@@ -2,191 +2,123 @@
   "home": "الرئيسية",
   "submit": "إرسال",
   "cancel": "إلغاء",
-  "save": "حفظ",
   "error": "حدث خطأ",
+  "save": "حفظ",
   "delete": "حذف",
+  "getStarted": "ابدأ الآن",
   "readyToGetStarted": "هل أنت مستعد للبدء؟",
-  "signUpForFree": "سجل مجاناً",
-  "contactUs": "تواصل معنا",
+  "signUpForFree": "اشترك مجانًا",
+  "contactUs": "اتصل بنا",
   "brandAssets": "أصول العلامة التجارية",
-  "developerKit": "مجموعة المطور",
+  "developerKit": "مجموعة المطورين",
   "helpCenter": "مركز المساعدة",
   "support": "الدعم",
   "company": "الشركة",
-  "getStarted": "ابدأ الآن",
-  "search": "البحث",
-  "publicHeaderLinks": {
-    "pricing": "الأسعار",
-    "affiliate": "التسويق بالعمولة",
-    "blog": "المدونة",
-    "about": "حول"
-  },
+  "search": "بحث",
+  "edit": "تعديل",
+  "back": "عودة",
+  "prev": "السابق",
+  "next": "التالي",
+  "required": "مطلوب",
+  "close": "إغلاق",
+  "description": "الوصف",
+  "price": "السعر",
+  "genericError": "حدث خطأ ما. يرجى المحاولة لاحقًا.",
+  "affiliate": "شريك",
+  "growWithDroplinked": "نمُ مع Droplinked!",
+  "netProfit": "صافي الربح",
+  "orders": "الطلبات",
+  "customers": "العملاء",
+  "duplicate": "تكرار",
+  "view": "عرض",
+  "actions": "إجراءات",
+  "status": "الحالة",
+  "active": "نشط",
+  "pending": "قيد الانتظار",
+  "paid": "مدفوع",
+  "total": "الإجمالي",
+  "client": "العميل",
+  "product": "المنتج",
+  "download": "تنزيل",
+  "update": "تحديث",
+  "create": "إنشاء",
+  "success": "تم بنجاح",
+  "previous": "السابق",
+  "refresh": "تحديث",
+  "import": "استيراد",
+  "export": "تصدير",
+  "filter": "تصفية",
+  "sort": "فرز",
+  "upload": "رفع",
+  "add": "إضافة",
+  "remove": "إزالة",
+  "details": "التفاصيل",
+  "draft": "مسودة",
+  "public": "عام",
+  "private": "خاص",
+  "order": "طلب",
+  "customer": "عميل",
+  "date": "التاريخ",
   "platformFunctionalities": {
-    "sectionTitle": "المكدس المعياري",
+    "sectionTitle": "حزمة مرنة",
     "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر دروبلينكد أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري"
+    "headingSubtitle": "توفر Droplinked أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري"
   },
   "marqueeSection": {
     "sectionTitle": "شركاء النظام البيئي"
   },
   "socialMedia": {
-    "telegram": "تلغرام",
+    "telegram": "تيليجرام",
     "discord": "ديسكورد",
-    "x": "إكس (تويتر)",
+    "x": "X (تويتر)",
     "twitter": "تويتر",
-    "instagram": "إنستقرام",
+    "instagram": "إنستغرام",
     "linkedin": "لينكدإن",
     "youtube": "يوتيوب",
     "tiktok": "تيك توك",
     "bluesky": "بلو سكاي",
     "facebook": "فيسبوك",
     "messenger": "ماسنجر",
-    "web": "الموقع الإلكتروني"
+    "web": "موقع إلكتروني"
   },
   "fileUpload": {
     "click": "انقر",
     "dragAndDrop": "أو اسحب وأفلت هنا",
-    "dragActive": "أفلت الملف هنا ...",
-    "defaultFooter": "JPG، JPEG، PNG، MP4 و MOV (حتى 10 ميجابايت لكل منها)",
-    "ariaLabel": "تحميل ملف"
+    "dragActive": "أسقط الملف هنا...",
+    "defaultFooter": "JPG، JPEG، PNG، MP4 وMOV (حتى 10 ميغابايت لكل ملف)",
+    "ariaLabel": "رفع ملف"
   },
   "imageUpload": {
-    "dragActive": "أفلت الصورة هنا...",
-    "footer": "JPG، JPEG، PNG (حتى 5 ميجابايت)",
+    "dragActive": "أسقط الصورة هنا...",
+    "footer": "JPG، JPEG، PNG (حتى 5 ميغابايت)",
     "remove": "إزالة {{name}}",
-    "uploadError": "فشل في تحميل الصورة"
+    "uploadError": "فشل في رفع الصورة"
   },
   "hooks": {
     "errors": {
-      "uploadFailed": "فشل في التحميل!",
-      "downloadFailed": "فشل في تحميل الملف"
-    },
-    "productTypes": {
-      "digital": "رقمي",
-      "physical": "مادي",
-      "pod": "عند الطلب",
-      "event": "فعالية"
-    },
-    "defaults": {
-      "home": "الرئيسية"
-    }
-  },
-  "products": {
-    "hooks": {
-      "errors": {
-        "improveAIError": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-        "unexpectedError": "حدث خطأ غير متوقع.",
-        "designMakerError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-        "anErrorOccurred": "حدث خطأ"
-      },
-      "success": {
-        "productSaved": "تم حفظ المنتج بنجاح!",
-        "crawlTaskStarted": "تم بدء مهمة الزحف",
-        "crawlTaskDescription": "نحن نقوم بزحف المنتجات من الرابط المقدم. بمجرد أن تصبح حالة المهمة جاهزة للمعاينة، يمكنك اختيار المنتجات التي تريد استيرادها.",
-        "importTaskStarted": "تم بدء مهمة الاستيراد",
-        "importTaskDescription": "نحن نقوم باستيراد المنتجات المختارة إلى مخزونك. يمكنك عرض المهام الجارية في نافذة استيراد المنتجات."
-      },
-      "shipping": {
-        "easyPost": {
-          "title": "إيزي بوست",
-          "description": "يحسب التكلفة الفعلية للشحنة بناءً على عنوان التوصيل لتوفير ملصق شحن."
-        }
-      }
-    }
-  },
-  "blogs": {
-    "hooks": {
-      "errors": {
-        "formikContextError": "يجب استخدام useBlogForm داخل سياق Formik"
-      }
-    }
-  },
-  "invoice": {
-    "hooks": {
-      "errors": {
-        "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف",
-        "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى."
-      },
-      "sections": {
-        "information": "المعلومات",
-        "clientDetail": "تفاصيل العميل",
-        "paymentDetails": "تفاصيل الدفع"
-      },
-      "labels": {
-        "idNumber": "رقم المعرف",
-        "status": "الحالة",
-        "memo": "مذكرة",
-        "fullName": "الاسم الكامل",
-        "emailAddress": "عنوان البريد الإلكتروني",
-        "mobileNumber": "رقم الهاتف المحمول",
-        "address": "العنوان",
-        "shippingMethod": "طريقة الشحن",
-        "totalCart": "إجمالي السلة",
-        "tax": "الضريبة",
-        "totalShipping": "إجمالي الشحن",
-        "totalCost": "التكلفة الإجمالية"
-      }
-    }
-  },
-  "onboarding": {
-    "hooks": {
-      "errors": {
-        "failedToImportShopData": "فشل في استيراد بيانات المتجر",
-        "importTimedOut": "انتهت مهلة الاستيراد. يرجى المحاولة مرة أخرى.",
-        "failedToStartImport": "فشل في بدء الاستيراد. يرجى المحاولة مرة أخرى.",
-        "failedToUploadLogo": "فشل في تحميل الشعار",
-        "failedToUploadBanner": "فشل في تحميل البانر",
-        "failedToCompleteShopSetup": "فشل في إكمال إعداد المتجر",
-        "allLogoGenerationFailed": "فشلت جميع طلبات إنشاء الشعارات",
-        "failedToGetLogoRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الشعارات",
-        "failedToGenerateLogos": "فشل في إنشاء الشعارات",
-        "allCoverGenerationFailed": "فشلت جميع طلبات إنشاء الأغلفة",
-        "failedToGetCoverRequestIds": "فشل في الحصول على معرفات الطلبات لإنشاء الأغلفة",
-        "failedToGenerateCovers": "فشل في إنشاء الأغلفة",
-        "failedToGenerateUrls": "فشل في إنشاء الروابط",
-        "failedToGenerateNames": "فشل في إنشاء الأسماء",
-        "errorCheckingUsername": "خطأ في التحقق من اسم المستخدم",
-        "invalidVerificationCode": "رمز التحقق غير صحيح",
-        "failedToSendCode": "فشل في إرسال الرمز",
-        "accountDeleted": "تم حذف هذا الحساب",
-        "accountUnableToLogin": "هذا الحساب غير قادر على تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك.",
-        "anErrorOccurred": "حدث خطأ",
-        "loginFailed": "فشل تسجيل الدخول"
-      },
-      "success": {
-        "shopDataImported": "تم استيراد بيانات المتجر بنجاح!",
-        "logosGenerated": "تم إنشاء الشعارات بنجاح!",
-        "coversGenerated": "تم إنشاء الأغلفة بنجاح!",
-        "codeVerified": "تم التحقق من الرمز بنجاح",
-        "verificationCodeSent": "تم إرسال رمز التحقق إلى بريدك الإلكتروني"
-      },
-      "info": {
-        "importStarted": "تم بدء الاستيراد. يرجى الانتظار بينما نقوم بمعالجة موقعك..."
-      },
-      "warnings": {
-        "fillBusinessInfoFirst": "يرجى ملء فئة الأعمال والوصف أولاً"
-      }
+      "uploadFailed": "فشل الرفع!",
+      "downloadFailed": "فشل تنزيل الملف"
     }
   },
   "proPlan": {
     "crossmint": {
-      "title": "تم فتح الخطة الاحترافية المجانية!",
-      "description": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجاناً."
+      "title": "تم تفعيل الخطة الاحترافية مجانًا!",
+      "description": "لديك الآن إمكانية الوصول إلى الخطة الاحترافية لمدة 3 أشهر مجانًا."
     },
     "trial": {
-      "title": "استخدم الذكاء الاصطناعي لدروب لينكد لإنشاء متجر",
-      "description": "لا تتردد في استخدام أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف تفاصيلك أدناه للبدء."
+      "title": "استخدم Droplinked AI لإنشاء متجر",
+      "description": "استخدم أدوات الذكاء الاصطناعي لتخصيص المتاجر والمخزون. أضف بياناتك أدناه للبدء."
     },
     "upgrade": {
       "title": "الوصول إلى الميزات الحصرية",
-      "description": "قم بالترقية اليوم للاستفادة من المزايا المرتبطة بالخطة المميزة."
+      "description": "قم بالترقية اليوم للاستفادة من مزايا الخطة المميزة."
     },
     "payment": {
-      "successMessage": "تم تفعيل التجربة بنجاح! ميزاتك الاحترافية متاحة الآن."
+      "successMessage": "تم تفعيل النسخة التجريبية بنجاح! ميزات الخطة الاحترافية أصبحت متاحة الآن."
     },
     "footer": {
       "continue": "متابعة",
-      "claimTrial": "المطالبة بالتجربة الآن",
+      "claimTrial": "احصل على النسخة التجريبية الآن",
       "upgrade": "ترقية",
       "unsure": "ما زلت غير متأكد؟",
       "comparePlans": "قارن الخطط وخيارات التسعير",
@@ -195,21 +127,15 @@
     },
     "features": {
       "less": "أقل",
-      "more": "المزيد"
+      "more": "أكثر"
     },
     "card": {
-      "crossmintTitle": "3 أشهر مجاناً بعد إضافة البطاقة",
-      "proTitle": "احترافي",
-      "description": "للشركات الصغيرة والفرق الجاهزة للنمو.",
-      "proAccess": "الوصول الاحترافي",
+      "crossmintTitle": "3 أشهر مجانًا بعد إضافة بطاقة الدفع",
+      "proTitle": "الخطة الاحترافية",
+      "description": "للشركات الصغيرة والفرق المستعدة للنمو.",
+      "proAccess": "الوصول للاحترافية",
       "cancelAnytime": "إلغاء في أي وقت",
       "seamlessActivation": "تفعيل سلس"
     }
-  },
-  "genericError": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
-  "affiliate": "التسويق بالعمولة",
-  "growWithDroplinked": "نم مع دروبلينكد!",
-  "netProfit": "صافي الربح",
-  "orders": "الطلبات",
-  "customers": "العملاء"
+  }
 }
