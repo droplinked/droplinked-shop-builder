@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppButton from "components/redesign/button/AppButton";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 
 type ValuePiece = Date | null;
@@ -14,6 +15,8 @@ interface Props {
 }
 
 export default function ControlButtons({ value, tempValue, setTempValue, onChange, onClose }: Props) {
+  const { t } = useLocaleResources('common')
+
   const handleDiscard = () => {
     setTempValue(value);
     onClose();
@@ -31,7 +34,7 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
         size="sm"
         onClick={handleDiscard}
       >
-        Discard
+        {t('common:discard')}
       </AppButton>
       <AppButton
         width={{ base: '50%', md: 'min-content' }}
@@ -39,7 +42,7 @@ export default function ControlButtons({ value, tempValue, setTempValue, onChang
         size="sm"
         onClick={handleConfirm}
       >
-        Confirm
+        {t('common:confirm')}
       </AppButton>
     </Flex>
   );
