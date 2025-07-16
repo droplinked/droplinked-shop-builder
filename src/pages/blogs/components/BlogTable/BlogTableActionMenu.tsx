@@ -44,7 +44,7 @@ function BlogTableActionMenu({ blogPost }: Props) {
         },
         {
             icon: <TrashMd color='#F24' />,
-            title: t("BlogTableActionMenu.actions.remove"),
+            title: t("common:remove"),
             color: "#F24",
             onClick: onDeleteOpen
         }

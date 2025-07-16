@@ -40,7 +40,7 @@ function DeleteBlogModal({ blogPost, isOpen, onClose }: Props) {
                 variant: "normal",
                 bgColor: "system.error",
                 color: "text.white",
-                children: t("DeleteBlogModal.confirm"),
+                children: t("common:remove"),
                 isLoading,
                 onClick: () => deleteBlog()
             }}

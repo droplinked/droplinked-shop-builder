@@ -1,9 +1,8 @@
 {
   "Blogs": {
-    "title": "محرر المدونة",
-    "description": "هنا يمكنك إنشاء وتحرير وإدارة المشاركات المتعلقة بمدونتك.",
-    "newPost": "مشاركة جديدة",
-    "search": "بحث"
+    "title": "مشاركات المدونة",
+    "description": "يمكنك هنا إنشاء وتعديل وإدارة المشاركات المتعلقة بمدونتك.",
+    "newPost": "مشاركة جديدة"
   },
   "BlogTable": {
     "columns": {
@@ -13,19 +12,18 @@
       "status": "الحالة"
     },
     "status": {
-      "published": "منشور",
+      "published": "منشورة",
       "draft": "مسودة"
     },
     "emptyState": {
-      "message": "انشر مشاركة جديدة لتعزيز تحسين محركات البحث وجذب الجمهور."
+      "message": "انشر مشاركة جديدة في المدونة لتعزيز تحسين محركات البحث وجذب الجمهور."
     }
   },
   "BlogTableActionMenu": {
     "actions": {
       "publish": "نشر",
-      "draft": "مسودة",
-      "share": "مشاركة",
-      "remove": "حذف"
+      "draft": "تحويل إلى مسودة",
+      "share": "مشاركة"
     },
     "notifications": {
       "linkCopied": "تم نسخ الرابط إلى الحافظة"
@@ -33,19 +31,18 @@
   },
   "ChangeBlogStatusModal": {
     "publishTitle": "نشر المشاركة",
-    "draftTitle": "حفظ كمسودة",
+    "draftTitle": "تحويل المشاركة إلى مسودة",
     "publishDescription": "هل أنت متأكد أنك تريد نشر هذه المشاركة؟",
-    "draftDescription": "هل أنت متأكد أنك تريد حفظ هذه المشاركة كمسودة؟",
+    "draftDescription": "هل أنت متأكد أنك تريد تحويل هذه المشاركة إلى مسودة؟",
     "confirm": "نشر",
-    "draftConfirm": "مسودة",
+    "draftConfirm": "تحويل إلى مسودة",
     "notifications": {
-      "statusUpdated": "تم تحديث حالة المدونة بنجاح"
+      "statusUpdated": "تم تحديث حالة المشاركة بنجاح"
     }
   },
   "DeleteBlogModal": {
     "title": "حذف المدونة",
-    "description": "هل أنت متأكد أنك تريد حذف هذه المدونة؟ لا يمكن التراجع عن هذا الإجراء.",
-    "confirm": "حذف",
+    "description": "هل أنت متأكد أنك تريد حذف هذه المدونة؟ لا يمكن التراجع عن هذا الإجراء",
     "notifications": {
       "deleted": "تم حذف المدونة بنجاح"
     }
@@ -70,19 +67,19 @@
   },
   "BodyEditor": {
     "label": "المحتوى",
-    "description": "اكتب محتوى مفصل وجذاب لإفادة وإلهام القراء.",
+    "description": "اكتب محتوى مفصلًا وجذابًا لإبلاغ القراء وإثارة اهتمامهم.",
     "validation": {
       "required": "المحتوى مطلوب"
     }
   },
   "SearchEngineSummary": {
     "label": "ملخص لمحركات البحث",
-    "description": "أضف ملخصًا من 150-200 كلمة ليظهر في نتائج محركات البحث.",
+    "description": "أضف 150–200 كلمة حول المشاركة ليتم عرضها في محركات البحث كملخص للمحتوى.",
     "placeholder": "ملخص لمحركات البحث"
   },
   "CategorySelect": {
     "label": "الفئة",
-    "description": "اختر فئة مناسبة لتنظيم وتحسين ظهور المشاركة.",
+    "description": "اختر فئة مناسبة لتنظيم المحتوى وتحسين قابلية الاكتشاف.",
     "placeholder": "اختر فئة",
     "newCategory": "فئة جديدة",
     "validation": {
@@ -91,24 +88,24 @@
   },
   "Keywords": {
     "label": "الكلمات المفتاحية",
-    "description": "أضف وسومًا ذات صلة لمساعدة المستخدمين في العثور على المشاركة.",
-    "placeholder": "اكتب كلمات مفتاحية لزيادة الوصول إلى هذه المشاركة..."
+    "description": "أضف علامات ذات صلة لمساعدة المستخدمين في العثور على المحتوى المنشور عبر محركات البحث.",
+    "placeholder": "اكتب كلمات مفتاحية لزيادة الزيارات إلى هذه المشاركة..."
   },
   "FeaturedPictureUpload": {
-    "label": "الصورة الرئيسية",
-    "description": "ارفع صورة جذابة لتعزيز المظهر البصري.",
-    "dragActiveText": "أسقط الملف هنا ...",
-    "footerText": "JPG أو JPEG أو PNG",
+    "label": "الصورة المميزة",
+    "description": "قم بتحميل صورة جذابة لتعزيز الجاذبية البصرية.",
+    "dragActiveText": "أسقط الملف هنا...",
+    "footerText": "JPG، JPEG أو PNG",
     "validation": {
-      "required": "الصورة الرئيسية مطلوبة"
+      "required": "الصورة المميزة مطلوبة"
     }
   },
   "VisibilityStatusRadio": {
     "label": "حالة الظهور",
-    "description": "احفظ كمسودة أو انشر المشاركة عندما تكون جاهزًا.",
+    "description": "احفظ المشاركة كمسودة أو انشرها عند الانتهاء.",
     "options": {
       "draft": "مسودة",
-      "visible": "مرئي"
+      "visible": "مرئية"
     }
   },
   "BlogToggles": {
@@ -118,13 +115,13 @@
     }
   },
   "BlogFormActions": {
-    "discard": "إلغاء",
+    "discard": "تجاهل",
     "publish": "نشر",
     "saveDraft": "حفظ كمسودة"
   },
   "useBlog": {
     "error": {
-      "fetchBlog": "فشل في جلب المدونة"
+      "fetchBlog": "فشل في جلب بيانات المدونة"
     }
   }
 }

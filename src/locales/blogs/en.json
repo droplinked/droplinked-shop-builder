@@ -2,8 +2,7 @@
   "Blogs": {
     "title": "Blog Posts",
     "description": "Here you can create, edit and manage posts related to your blog.",
-    "newPost": "New Post",
-    "search": "Search"
+    "newPost": "New Post"
   },
   "BlogTable": {
     "columns": {
@@ -24,8 +23,7 @@
     "actions": {
       "publish": "Publish",
       "draft": "Draft",
-      "share": "Share",
-      "remove": "Remove"
+      "share": "Share"
     },
     "notifications": {
       "linkCopied": "Link copied to clipboard"
@@ -45,7 +43,6 @@
   "DeleteBlogModal": {
     "title": "Remove Blog",
     "description": "Are you sure you want to remove this blog? This action cannot be undone",
-    "confirm": "Remove",
     "notifications": {
       "deleted": "Blog removed successfully"
     }

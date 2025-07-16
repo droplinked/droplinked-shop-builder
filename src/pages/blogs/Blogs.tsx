@@ -26,7 +26,7 @@ function Blogs() {
             <PageGrid.Actions
                 search={{
                     value: searchTerm,
-                    placeholder: t("Blogs.search"),
+                    placeholder: t("common:search"),
                     onChange: (e) => setSearchTerm(e.target.value)
                 }}
             />
