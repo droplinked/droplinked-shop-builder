@@ -7,15 +7,15 @@ import AppSwitch from 'components/common/swich';
 import AppTypography from 'components/common/typography/AppTypography';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Header configuration with logo, favicon, and icon color settings
  */
 function HeaderConfig(): React.ReactElement {
   const { methods: { dispatch }, state: {shop: { shopDesign: { isLogoAsFavicon } } }} = useContext(designerContext);
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   /**
    * Handle favicon toggle switch changes

@@ -27,7 +27,7 @@ export type Namespace =
     | 'about'
     | 'privacyPage'
     | 'termsPage'
-    | 'storefront'
+    | 'storefront-designer'
     | 'acceptInvitation'
     | 'contactUs'
     | 'tile-design'

@@ -1,13 +1,13 @@
 import { Flex } from '@chakra-ui/react';
 import { ChevronleftMd } from 'assets/icons/Navigation/ChevronLeft/ChevronleftMd';
 import AppButton from 'components/redesign/button/AppButton';
-import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeviceViewSelector from './DeviceViewSelector';
 import StoreDesignActions from './StoreDesignActions';
-import localEn from '../../../../locales/storefront/en.json';
-import localAr from '../../../../locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/ChevronrightMd';
 
 /**
@@ -15,7 +15,7 @@ import { ChevronrightMd } from 'assets/icons/Navigation/ChevronRight/Chevronrigh
  */
 function DesignerHeader(): React.ReactElement {
   const navigate = useNavigate();
-  const { t , isRTL  } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t , isRTL  } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   return (
     <Flex
@@ -34,7 +34,7 @@ function DesignerHeader(): React.ReactElement {
       borderColor="neutral.gray.800"
     >
       <AppButton variant="normal" color="neutral.white" leftIcon={isRTL ? <ChevronrightMd /> : <ChevronleftMd />} _hover="none" _pressed="none" onClick={() => navigate('/analytics/dashboard')}>
-        {t('designerHeader.backToDashboard')}
+        {t('DesignerHeader.backToDashboard')}
       </AppButton>
       <DeviceViewSelector />
       <StoreDesignActions />

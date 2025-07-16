@@ -13,7 +13,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 function StorefrontDesigner(): React.ReactElement {
   const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
-  const { isRTL } = useLocaleResources('storefront');
+  const { isRTL } = useLocaleResources('storefront-designer');
 
   // Display mobile notice for small screens
   if (isSmallScreen) {

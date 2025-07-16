@@ -23,7 +23,7 @@ interface ConfigSectionProps {
  * icon, and content component. Used for different configuration categories.
  */
 function ConfigSection({ title, icon, component: SectionComponent, itemId, defaultOpen = false, onToggle }: ConfigSectionProps): React.ReactElement {
-  const { isRTL } = useLocaleResources('storefront');
+  const { isRTL } = useLocaleResources('storefront-designer');
   
   return (
     <AppAccordionItem width="100%" height="auto" display="flex" flexDirection="column" alignItems="flex-start" borderRadius="8px" itemId={itemId} defaultOpen={defaultOpen}>

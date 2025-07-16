@@ -17,7 +17,7 @@ interface HeaderProps {
  * Expanded sidebar header with logo, controls and page selector
  */
 export function ExpandedHeader({ toggleSidebar }: HeaderProps): React.ReactElement {
-  const { t ,isRTL} = useLocaleResources('storefront');
+  const { t ,isRTL} = useLocaleResources('storefront-designer');
 
   return (
     <Flex direction="column" width="100%" mb={4}>
@@ -60,7 +60,7 @@ export function ExpandedHeader({ toggleSidebar }: HeaderProps): React.ReactEleme
  * Collapsed sidebar header with logo and expand button
  */
 export function CollapsedHeader({ toggleSidebar }: HeaderProps): React.ReactElement {
-  const { isRTL } = useLocaleResources('storefront');
+  const { isRTL } = useLocaleResources('storefront-designer');
 
   return (
     <Flex direction="column" alignItems="center" gap="24px" mb="24px">

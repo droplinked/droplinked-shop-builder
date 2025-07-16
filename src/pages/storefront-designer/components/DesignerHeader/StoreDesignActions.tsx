@@ -4,32 +4,23 @@ import AppButton from 'components/redesign/button/AppButton';
 import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useProfile } from 'hooks/useProfile/useProfile';
-import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
+import localAr from 'locales/storefront-designer/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
 import { initialStateDesignPage } from 'pages/storefront-designer/constants/initialState';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import React, { useCallback, useContext } from 'react';
-import localEn from '../../../../locales/storefront/en.json';
-import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Actions for saving or discarding store design changes
  */
 function StoreDesignActions(): React.ReactElement {
-  const {
-    state: { shop },
-    methods: { dispatch }
-  } = useContext(designerContext);
-
-  const {
-    setShopData: { update, loading },
-    updateShopData,
-    shop: originalShop
-  } = useProfile();
-
+  const { state: { shop }, methods: { dispatch }} = useContext(designerContext);
+  const { setShopData: { update, loading }, updateShopData, shop: originalShop} = useProfile();
   const { showToast } = useAppToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   // Save store design changes
   const handleSaveChanges = useCallback(async () => {
@@ -41,7 +32,7 @@ function StoreDesignActions(): React.ReactElement {
         }
       });
       updateShopData();
-      showToast({ message: t('designerHeader.actions.toasts.updateSuccess'), type: 'success' });
+      showToast({ message: t('StoreDesignActions.toasts.updateSuccess'), type: 'success' });
     } catch (error) {
       showToast({ message: error, type: 'error' });
     }
@@ -59,7 +50,7 @@ function StoreDesignActions(): React.ReactElement {
       type: 'updateState',
       params: { device: initialStateDesignPage.device, shop: originalShop }
     });
-    showToast({ message: t('designerHeader.actions.toasts.discardSuccess'), type: 'info' });
+    showToast({ message: t('StoreDesignActions.toasts.discardSuccess'), type: 'info' });
     onClose();
   }, [originalShop, dispatch, updateShopData, showToast, onClose, t]);
 
@@ -71,10 +62,10 @@ function StoreDesignActions(): React.ReactElement {
       <Flex width="auto" display="flex" justifyContent="space-between" flexDirection="row-reverse">
         <Flex gap="16px">
           <AppButton variant="secondary" onClick={openDiscardConfirmation}>
-            {t('designerHeader.actions.discard')}
+            {t('common:discard')}
           </AppButton>
           <AppButton isDisabled={isSubmitDisabled} isLoading={loading} onClick={handleSaveChanges}>
-            {t('designerHeader.actions.saveChanges')}
+            {t('StoreDesignActions.saveChanges')}
           </AppButton>
         </Flex>
       </Flex>
@@ -88,17 +79,17 @@ function StoreDesignActions(): React.ReactElement {
         }}
       >
         <ModalHeaderData
-          title={t('designerHeader.actions.resetDesign.title')}
+          title={t('StoreDesignActions.resetDesign.title')}
           icon={<Refresh2Md color="white" />}
-          description={t('designerHeader.actions.resetDesign.description')}
+                      description={t('StoreDesignActions.resetDesign.description')}
         />
 
         <Flex width="100%" display="flex" justifyContent="space-between" paddingX="48px" gap="24px">
           <AppButton flex={1} variant="secondary" size="lg" onClick={onClose}>
-            {t('designerHeader.actions.resetDesign.cancel')}
+            {t('common:cancel')}
           </AppButton>
           <AppButton flex={1} variant="filled" size="lg" bg="system.error" _hover="none" _pressed="none" color="white" onClick={handleDiscardChanges}>
-            {t('designerHeader.actions.resetDesign.reset')}
+            {t('StoreDesignActions.resetDesign.reset')}
           </AppButton>
         </Flex>
       </AppModal>

@@ -6,8 +6,8 @@ import { getNextDayMidnightISO } from 'utils/helpers/dateUtils';
 import AppDatepicker from 'components/common/datepicker/AppDatepicker';
 import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Settings configuration for release date and other settings
@@ -15,7 +15,7 @@ import localAr from 'locales/storefront/ar.json';
 function SettingsConfig(): React.ReactElement {
   const { state, methods } = useContext(designerContext);
   const launchDate = state?.shop?.launchDate;
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   const [isEnabled, setIsEnabled] = useState(() => Boolean(launchDate));
   const [formattedDate, setFormattedDate] = useState('5 Aug, 2024 - 22:13');

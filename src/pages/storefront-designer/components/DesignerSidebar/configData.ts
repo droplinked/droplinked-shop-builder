@@ -25,38 +25,38 @@ export const getConfigSections = (t: TranslateFunction): ConfigSectionData[] => 
   return [
     {
       id: 'theme',
-      title: t('designerSidebar.sections.theme'),
+      title: t('DesignerSidebar.sections.theme'),
       icon: React.createElement(BrushMd, { color: "white" }),
       component: ThemeConfig,
       defaultOpen: true
     },
     {
       id: 'header',
-      title: t('designerSidebar.sections.header'),
+      title: t('DesignerSidebar.sections.header'),
       icon: React.createElement(HeaderMd, { color: "white" }),
       component: HeaderConfig
     },
     {
       id: 'hero',
-      title: t('designerSidebar.sections.heroSection'),
+      title: t('DesignerSidebar.sections.heroSection'),
       icon: React.createElement(ImageMd, { color: "white" }),
       component: HeroConfig
     },
     {
       id: 'store',
-      title: t('designerSidebar.sections.storeDetails'),
+      title: t('DesignerSidebar.sections.storeDetails'),
       icon: React.createElement(ShopMd, { color: "white" }),
       component: StoreConfig
     },
     {
       id: 'footer',
-      title: t('designerSidebar.sections.footer'),
+      title: t('DesignerSidebar.sections.footer'),
       icon: React.createElement(FooterMd, { color: "white" }),
       component: FooterConfig
     },
     {
       id: 'settings',
-      title: t('designerSidebar.sections.additionalSettings'),
+      title: t('DesignerSidebar.sections.additionalSettings'),
       icon: React.createElement(ClocktimeMd, { color: "white" }),
       component: SettingsConfig
     }

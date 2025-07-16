@@ -3,8 +3,8 @@ import { designerContext } from 'pages/storefront-designer/context/designerConte
 import React, { useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Typography and font selection component
@@ -19,7 +19,7 @@ const FontSelector: React.FC = () => {
     },
   } = useContext(designerContext);
 
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   const fonts = ['Inter', 'Nunito Sans', 'Montserrat', 'Manrope', 'Source Serif Pro', 'Fredoka One', 'Allerta'];
   const selectedFont = fontfamily;

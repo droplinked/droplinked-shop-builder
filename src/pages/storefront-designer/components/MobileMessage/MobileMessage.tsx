@@ -1,13 +1,13 @@
 import { Box, Text, VStack } from '@chakra-ui/react';
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd';
 import AppButton from 'components/redesign/button/AppButton';
-import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localAr from 'locales/storefront-designer/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
 import Lottie from 'lottie-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimationData } from './mobileDeviceAnimation';
-import localEn from '../../../../locales/storefront/en.json';
-import localAr from '../../../../locales/storefront/ar.json';
 
 /**
  * Mobile message that informs users the storefront designer
@@ -15,7 +15,7 @@ import localAr from '../../../../locales/storefront/ar.json';
  */
 function MobileMessage(): React.ReactElement {
   const navigate = useNavigate();
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   return (
     <Box
@@ -40,7 +40,7 @@ function MobileMessage(): React.ReactElement {
             color="text.white"
             textAlign="center"
           >
-            {t('mobileMessage.title')}
+            {t('MobileMessage.title')}
           </Text>
 
           <Text
@@ -51,7 +51,7 @@ function MobileMessage(): React.ReactElement {
             color="text.subtext.placeholder.light"
             textAlign="center"
           >
-            {t('mobileMessage.description')}
+            {t('MobileMessage.description')}
           </Text>
         </VStack>
 
@@ -61,7 +61,7 @@ function MobileMessage(): React.ReactElement {
           rightIcon={<ArrowrightMd />}
           onClick={() => navigate('/analytics/dashboard')}
         >
-          {t('mobileMessage.dashboardButton')}
+          {t('MobileMessage.dashboardButton')}
         </AppButton>
       </VStack>
     </Box>

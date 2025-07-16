@@ -4,11 +4,11 @@ import IconWrapper from 'components/redesign/icon-wrapper/IconWrapper';
 import React from 'react';
 import SectionItem from '../../common/SectionItem';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 const TemplateSelector: React.FC = () => {
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   return (
     <SectionItem 

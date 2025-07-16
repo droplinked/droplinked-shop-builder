@@ -1,0 +1,124 @@
+{
+  "StorefrontDesigner": {
+    "mobileMessage": {
+      "title": "أفضل عرض على الحاسوب",
+      "description": "هذه الصفحة غير مُحسّنة بالكامل للجوال، يرجى التبديل إلى شاشة أكبر للمتابعة.",
+      "dashboardButton": "الانتقال إلى لوحة التحكم"
+    }
+  },
+  "MobileMessage": {
+    "title": "أفضل عرض على الحاسوب",
+    "description": "هذه الصفحة غير مُحسّنة بالكامل للجوال، يرجى التبديل إلى شاشة أكبر للمتابعة.",
+    "dashboardButton": "الانتقال إلى لوحة التحكم"
+  },
+  "DesignerHeader": {
+    "backToDashboard": "العودة إلى لوحة التحكم"
+  },
+  "DeviceViewSelector": {
+    "desktop": "حاسوب",
+    "tablet": "جهاز لوحي",
+    "mobile": "جوال"
+  },
+  "StoreDesignActions": {
+    "saveChanges": "حفظ التغييرات",
+    "resetDesign": {
+      "title": "إعادة تعيين التصميم",
+      "description": "سيتم إعادة تعيين جميع التخصيصات واستعادة الإعدادات الافتراضية. هل أنت متأكد أنك تريد المتابعة؟",
+      "reset": "إعادة تعيين"
+    },
+    "toasts": {
+      "updateSuccess": "تم تحديث تصميم المتجر بنجاح",
+      "discardSuccess": "تم تجاهل التغييرات بنجاح"
+    }
+  },
+  "DesignerSidebar": {
+    "sections": {
+      "theme": "الثيم",
+      "header": "رأس الصفحة",
+      "heroSection": "قسم البطل",
+      "storeDetails": "تفاصيل المتجر",
+      "footer": "تذييل الصفحة",
+      "additionalSettings": "إعدادات إضافية"
+    },
+    "common": {
+      "pageSelector": "صفحة عرض المنتجات"
+    }
+  },
+  "ThemeConfig": {
+    "template": {
+      "title": "قالب الواجهة",
+      "description": "اختر من بين التصاميم أدناه أو اطلب قالبًا مخصصًا.",
+      "defaultTemplate": "القالب الافتراضي",
+      "customTemplate": "اطلب قالبًا مخصصًا"
+    },
+    "colorPalette": {
+      "title": "لوحة الألوان",
+      "description": "اختر نظام الألوان المفضل.",
+      "light": "فاتح",
+      "dark": "داكن",
+      "lightOptimized": "رمادي فاتح (محسّن)",
+      "noThemes": "لا توجد ثيمات متاحة"
+    },
+    "fontStyle": {
+      "title": "نمط الخط",
+      "description": "اختر نوع الخط المفضل.",
+      "fonts": {
+        "inter": "Inter (محسّن)",
+        "nunitosans": "Nunito Sans",
+        "montserrat": "Montserrat",
+        "manrope": "Manrope",
+        "sourceserifpro": "Source Serif Pro",
+        "fredokaone": "Fredoka One",
+        "allerta": "Allerta"
+      },
+      "sampleText": "الجيل القادم من التجارة"
+    }
+  },
+  "FooterConfig": {
+    "linkManagement": {
+      "title": "إدارة الروابط",
+      "column": "العمود {{number}}",
+      "link": "الرابط {{number}}",
+      "newLink": "رابط جديد",
+      "inputs": {
+        "label": "التسمية",
+        "url": "الرابط الإلكتروني"
+      }
+    }
+  },
+  "HeaderConfig": {
+    "logo": {
+      "title": "الشعار",
+      "useFavicon": "استخدمه كرمز في المتصفح"
+    },
+    "favicon": {
+      "title": "رمز التبويب (Favicon)"
+    },
+    "iconColor": {
+      "title": "لون الأيقونات في شريط التنقل"
+    }
+  },
+  "HeroConfig": {
+    "coverImage": {
+      "title": "صورة الغلاف"
+    },
+    "customImage": {
+      "title": "صورة مخصصة"
+    }
+  },
+  "SettingsConfig": {
+    "releaseDate": {
+      "title": "تاريخ الإطلاق",
+      "description": "اختر تاريخ إطلاق واجهة المتجر.",
+      "placeholder": "{{date}} - {{time}}"
+    }
+  },
+  "StoreConfig": {
+    "profileImage": {
+      "title": "صورة الملف الشخصي"
+    },
+    "socialChannels": {
+      "title": "القنوات الاجتماعية"
+    }
+  }
+}

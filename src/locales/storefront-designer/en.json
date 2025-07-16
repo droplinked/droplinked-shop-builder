@@ -1,0 +1,124 @@
+{
+  "StorefrontDesigner": {
+    "mobileMessage": {
+      "title": "Best Viewed on Desktop",
+      "description": "This page isn't fully optimized for mobile, please switch to a larger screen to continue.",
+      "dashboardButton": "Go to Dashboard"
+    }
+  },
+  "MobileMessage": {
+    "title": "Best Viewed on Desktop",
+    "description": "This page isn't fully optimized for mobile, please switch to a larger screen to continue.",
+    "dashboardButton": "Go to Dashboard"
+  },
+  "DesignerHeader": {
+    "backToDashboard": "back to dashboard"
+  },
+  "DeviceViewSelector": {
+    "desktop": "Desktop",
+    "tablet": "Tablet",
+    "mobile": "Mobile"
+  },
+  "StoreDesignActions": {
+    "saveChanges": "Save Changes",
+    "resetDesign": {
+      "title": "Reset Design",
+      "description": "This will reset all customizations and restore the default settings. Are you sure you want to continue?",
+      "reset": "Reset"
+    },
+    "toasts": {
+      "updateSuccess": "Store design has been updated",
+      "discardSuccess": "Changes discarded successfully"
+    }
+  },
+  "DesignerSidebar": {
+    "sections": {
+      "theme": "Theme",
+      "header": "Header",
+      "heroSection": "Hero Section",
+      "storeDetails": "Store Details",
+      "footer": "Footer",
+      "additionalSettings": "Additional Settings"
+    },
+    "common": {
+      "pageSelector": "Product Listing Page"
+    }
+  },
+  "ThemeConfig": {
+    "template": {
+      "title": "Storefront Template",
+      "description": "Choose from one of the designs below or order a custom one.",
+      "defaultTemplate": "Default template",
+      "customTemplate": "Order a customized template"
+    },
+    "colorPalette": {
+      "title": "Color Palette",
+      "description": "Choose a preferred color scheme.",
+      "light": "Light",
+      "dark": "Dark",
+      "lightOptimized": "Frost Gray (optimized)",
+      "noThemes": "No themes available"
+    },
+    "fontStyle": {
+      "title": "Font Style",
+      "description": "Choose a preferred font typography.",
+      "fonts": {
+        "inter": "Inter (Optimized)",
+        "nunitosans": "Nunito Sans",
+        "montserrat": "Montserrat",
+        "manrope": "Manrope",
+        "sourceserifpro": "Source Serif Pro",
+        "fredokaone": "Fredoka One",
+        "allerta": "Allerta"
+      },
+      "sampleText": "The Next Generation of Commerce"
+    }
+  },
+  "FooterConfig": {
+    "linkManagement": {
+      "title": "Link Management",
+      "column": "Column {{number}}",
+      "link": "Link {{number}}",
+      "newLink": "New Link",
+      "inputs": {
+        "label": "Label",
+        "url": "URL"
+      }
+    }
+  },
+  "HeaderConfig": {
+    "logo": {
+      "title": "Logo",
+      "useFavicon": "Use as favicon on browser"
+    },
+    "favicon": {
+      "title": "Favicon"
+    },
+    "iconColor": {
+      "title": "Icon Color on Navigation Bar"
+    }
+  },
+  "HeroConfig": {
+    "coverImage": {
+      "title": "Cover Image"
+    },
+    "customImage": {
+      "title": "Custom Image"
+    }
+  },
+  "SettingsConfig": {
+    "releaseDate": {
+      "title": "Release Date",
+      "description": "Choose a date for the storefront to go live.",
+      "placeholder": "{{date}} - {{time}}"
+    }
+  },
+  "StoreConfig": {
+    "profileImage": {
+      "title": "Profile Image"
+    },
+    "socialChannels": {
+      "title": "Social Channels"
+    }
+  }
+}

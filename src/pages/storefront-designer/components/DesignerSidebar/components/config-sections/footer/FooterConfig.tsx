@@ -9,8 +9,8 @@ import { AdditionalLinks } from 'pages/storefront-designer/types/designerTypes';
 import React, { useCallback, useContext } from 'react';
 import SectionItem from '../../common/SectionItem';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Footer configuration component for managing footer links
@@ -23,7 +23,7 @@ function FooterConfig(): React.ReactElement {
     }
   } = useContext(designerContext);
 
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   /**
    * Handle link field value changes

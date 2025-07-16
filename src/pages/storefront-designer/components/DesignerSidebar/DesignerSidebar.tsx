@@ -5,8 +5,8 @@ import { CollapsedHeader, ExpandedHeader } from './components/common/Headers';
 import { CollapsedContent, ExpandedContent } from './components/common/Contents';
 import { getConfigSections } from './configData';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import localEn from 'locales/storefront/en.json';
-import localAr from 'locales/storefront/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import localAr from 'locales/storefront-designer/ar.json';
 
 /**
  * Sidebar component for the storefront designer with collapsible sections
@@ -17,7 +17,7 @@ function DesignerSidebar(): React.ReactElement {
   const [isTablet] = useMediaQuery('(min-width: 768px) and (max-width: 1024px)');
   const [isCollapsed, setIsCollapsed] = useState(isTablet);
 
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   // Set the initial active section
   useEffect(() => {
@@ -26,7 +26,7 @@ function DesignerSidebar(): React.ReactElement {
 
   // Update collapsed state when screen size changes
   useEffect(() => {
-    setIsCollapsed(isTablet);
+    setIsCollapsed(isTablet); 
   }, [isTablet]);
 
   // Handle section opening and closing

@@ -1,12 +1,12 @@
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
-import React, { useContext, useEffect } from 'react';
-import { designerContext } from 'pages/storefront-designer/context/designerContext';
 import { DesktoppcMd } from 'assets/icons/StyleDesigner/DesktopPC/DesktoppcMd';
-import { TabletMd } from 'assets/icons/StyleDesigner/Tablet/TabletMd';
 import { MobileMd } from 'assets/icons/StyleDesigner/Mobile/MobileMd';
-import useLocaleResources from '../../../../hooks/useLocaleResources/useLocaleResources';
-import localEn from '../../../../locales/storefront/en.json';
-import localAr from '../../../../locales/storefront/ar.json';
+import { TabletMd } from 'assets/icons/StyleDesigner/Tablet/TabletMd';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import localAr from 'locales/storefront-designer/ar.json';
+import localEn from 'locales/storefront-designer/en.json';
+import { designerContext } from 'pages/storefront-designer/context/designerContext';
+import React, { useContext, useEffect } from 'react';
 
 /**
  * Device type for preview modes
@@ -18,24 +18,24 @@ type DeviceType = 'desktop' | 'tablet' | 'mobile';
  */
 function DeviceViewSelector(): React.ReactElement {
   const { state: { device }, methods: { dispatch }} = useContext(designerContext);
-  const { t } = useLocaleResources('storefront', { en: localEn, ar: localAr });
+  const { t } = useLocaleResources('storefront-designer', { en: localEn, ar: localAr });
 
   const isSmallerThanLg = useBreakpointValue({ base: true, lg: false });
 
   const deviceOptions = [
     {
       id: 'desktop' as DeviceType,
-      label: t('designerHeader.deviceSelector.desktop'),
+      label: t('DeviceViewSelector.desktop'),
       icon: (color: string) => <DesktoppcMd color={color} />
     },
     {
       id: 'tablet' as DeviceType,
-      label: t('designerHeader.deviceSelector.tablet'),
+      label: t('DeviceViewSelector.tablet'),
       icon: (color: string) => <TabletMd color={color} />
     },
     {
       id: 'mobile' as DeviceType,
-      label: t('designerHeader.deviceSelector.mobile'),
+      label: t('DeviceViewSelector.mobile'),
       icon: (color: string) => <MobileMd color={color} />
     }
   ];
