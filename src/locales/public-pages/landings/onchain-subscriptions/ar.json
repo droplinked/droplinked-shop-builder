@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "OnchainSubscriptionsHero": {
     "title": "بيع بثقة",
     "subtitle": "عيّن الأدوار والهويات لأطراف ثالثة مثل المصنعين والموزعين\nوالشركاء البائعين لتتبع العمولات والتسويات بسلاسة\nالتي تقضي على الاحتيال والتصيد",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "OnchainSubscriptionsFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "شراكات التسويق بالعمولة الآمنة",
     "headingSubtitle": "استفد من الإسناد على السلسلة لحماية علاقات الشركاء. ضمان\nالعمولات الدقيقة مع القضاء على الاحتيال المرتبط عادة بالجهات السيئة.",
@@ -24,7 +24,7 @@
       }
     }
   },
-  "modularStack": {
+  "OnchainSubscriptionsModularStack": {
     "cards": {
       "protectedCommissions": {
         "title": "العمولات المحمية",

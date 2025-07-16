@@ -26,7 +26,7 @@ import DPPLanding from "pages/public-pages/landings/dpp-landing/DPPLanding"
 import HomePage from "pages/public-pages/landings/home/HomePage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-showroom/MetaverseShowroomPage"
 import OnchainAffiliatePage from "pages/public-pages/landings/onchain-affiliate/OnchainAffiliatePage"
-import OnchainSubscriptions from "pages/public-pages/landings/onchain-subscriptions/OnchainSubscriptions"
+import OnchainSubscriptionsPage from "pages/public-pages/landings/onchain-subscriptions/OnchainSubscriptionsPage"
 import PartnerPage from "pages/public-pages/landings/partner-pages/PartnerPage"
 import PaymentLinksPage from "pages/public-pages/landings/payment-links/PaymentLinksPage"
 import PhysicalInventoryPage from "pages/public-pages/landings/physical-inventory/PhysicalInventoryPage"
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             { path: "payment-links", element: <PaymentLinksPage /> },
             { path: "product-tiles", element: <ProductTilesPage /> },
             { path: "tokenizing-products", element: <TokenizingProductsPage /> },
-            { path: "onchain-subscriptions", element: <OnchainSubscriptions /> },
+            { path: "onchain-subscriptions", element: <OnchainSubscriptionsPage /> },
             { path: "custom-tokens", element: <CustomTokenPage /> },
             { path: "metaverse-store", element: <MetaverseStorePage /> },
             // Partner routes using dynamic component 

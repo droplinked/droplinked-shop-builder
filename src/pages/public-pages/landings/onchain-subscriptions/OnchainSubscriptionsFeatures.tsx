@@ -1,37 +1,32 @@
 import { ChartLg } from 'assets/icons/Finance/Chart/ChartLg'
 import { ConfigureLg } from 'assets/icons/System/Configure/ConfigureLg'
 import { TokenpayLg } from 'assets/icons/System/Tokenpay/TokenpayLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
-import localEn from 'locales/public-pages/landings/onchain-subscriptions/en.json'
-import localAr from 'locales/public-pages/landings/onchain-subscriptions/ar.json'
 
-export default function OnchainFeatures() {
-    const { t } = useLocaleResources('public-pages/landings/onchain-subscriptions', {
-        en: localEn,
-        ar: localAr
-    })
+function OnchainSubscriptionsFeatures() {
+    const { t } = useLocaleResources('public-pages/landings/onchain-subscriptions')
 
     const cardsData: CardData[] = [
         {
             icon: <TokenpayLg color="#fff" />,
-            title: t('features.cards.tamperProofSales.title'),
-            description: t('features.cards.tamperProofSales.description'),
+            title: t('OnchainSubscriptionsFeatures.cards.tamperProofSales.title'),
+            description: t('OnchainSubscriptionsFeatures.cards.tamperProofSales.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <ChartLg color="#fff" />,
-            title: t('features.cards.automatedTracking.title'),
-            description: t('features.cards.automatedTracking.description'),
+            title: t('OnchainSubscriptionsFeatures.cards.automatedTracking.title'),
+            description: t('OnchainSubscriptionsFeatures.cards.automatedTracking.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <ConfigureLg color="#fff" />,
-            title: t('features.cards.seamlessIntegration.title'),
-            description: t('features.cards.seamlessIntegration.description'),
+            title: t('OnchainSubscriptionsFeatures.cards.seamlessIntegration.title'),
+            description: t('OnchainSubscriptionsFeatures.cards.seamlessIntegration.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -39,9 +34,9 @@ export default function OnchainFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('features.sectionTitle')}
-            headingTitle={t('features.headingTitle')}
-            headingSubtitle={t('features.headingSubtitle')}
+            sectionTitle={t('OnchainSubscriptionsFeatures.sectionTitle')}
+            headingTitle={t('OnchainSubscriptionsFeatures.headingTitle')}
+            headingSubtitle={t('OnchainSubscriptionsFeatures.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
@@ -56,3 +51,5 @@ export default function OnchainFeatures() {
         </SectionContainer>
     )
 }
+
+export default OnchainSubscriptionsFeatures

@@ -1,18 +1,23 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/onchain-subscriptions/ar.json'
+import enLocale from 'locales/public-pages/landings/onchain-subscriptions/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
-import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
 import MaxWidthWrapper from '../_shared/components/MaxWidthWrapper'
 import SignUpCta from '../_shared/components/SignUpCta'
-import OnchainFeatures from './OnchainFeatures'
-import OnchainModularStack from './OnchainModularStack'
+import MarqueeSection from '../_shared/components/marquee-wrapper/MarqueeSection'
+import OnchainSubscriptionsFeatures from './OnchainSubscriptionsFeatures'
 import OnchainSubscriptionsHero from './OnchainSubscriptionsHero'
+import OnchainSubscriptionsModularStack from './OnchainSubscriptionsModularStack'
 
-export default function OnchainSubscriptions() {
+function OnchainSubscriptionsPage() {
+    useLocaleResources('public-pages/landings/onchain-subscriptions', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partners', component: <MarqueeSection /> },
-        { id: 'set-of-features', component: <OnchainFeatures /> },
-        { id: 'modular-stacks', component: <OnchainModularStack /> },
+        { id: 'set-of-features', component: <OnchainSubscriptionsFeatures /> },
+        { id: 'modular-stacks', component: <OnchainSubscriptionsModularStack /> },
         { id: 'join-the-community', component: <JoinCommunity /> },
         { id: 'join-now', component: <SignUpCta /> },
     ]
@@ -30,3 +35,5 @@ export default function OnchainSubscriptions() {
         </>
     )
 }
+
+export default OnchainSubscriptionsPage
