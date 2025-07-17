@@ -96,11 +96,11 @@ const ColorSelector: React.FC = () => {
       <Box mt={title === 'dark' ? 4 : 0}>
         <DotSeparatedList mb={2}>
           <Text color="white" fontSize="sm" fontWeight="medium">
-            {t(`designerSidebar.themeConfig.colorPalette.${title}`)}
+            {t(`DesignerSidebar.themeConfig.colorPalette.${title}`)}
           </Text>
           {description && (
             <Text flex="1" color="neutral.gray.500" fontSize="sm">
-              {t('designerSidebar.themeConfig.colorPalette.lightOptimized')}
+              {t('DesignerSidebar.themeConfig.colorPalette.lightOptimized')}
             </Text>
           )}
         </DotSeparatedList>
@@ -114,8 +114,8 @@ const ColorSelector: React.FC = () => {
 
   return (
     <SectionItem 
-      title={t('designerSidebar.themeConfig.colorPalette.title')} 
-      description={t('designerSidebar.themeConfig.colorPalette.description')}
+      title={t('DesignerSidebar.themeConfig.colorPalette.title')} 
+      description={t('DesignerSidebar.themeConfig.colorPalette.description')}
     >
       <VStack spacing={4} align="stretch" w="100%" mt={2}>
         {/* Light Themes Section */}
@@ -126,7 +126,7 @@ const ColorSelector: React.FC = () => {
 
         {/* Show message if no themes are available */}
         {!isLoading && lightThemes.length === 0 && darkThemes.length === 0 && (
-          <Text>{t('designerSidebar.themeConfig.colorPalette.noThemes')}</Text>
+          <Text>{t('DesignerSidebar.themeConfig.colorPalette.noThemes')}</Text>
         )}
       </VStack>
     </SectionItem>

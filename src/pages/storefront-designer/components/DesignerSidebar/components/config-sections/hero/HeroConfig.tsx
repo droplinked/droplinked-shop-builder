@@ -15,11 +15,11 @@ function HeroConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title={t('designerSidebar.heroConfig.coverImage.title')}>
+      <SectionItem title={t('DesignerSidebar.heroConfig.coverImage.title')}>
         <CoverImageSection />
       </SectionItem>
 
-      <SectionItem title={t('designerSidebar.heroConfig.customImage.title')}>
+      <SectionItem title={t('DesignerSidebar.heroConfig.customImage.title')}>
         <ImageUploadSection fieldName="backgroundImage" altText="backgroundImage" />
       </SectionItem>
     </VStack>

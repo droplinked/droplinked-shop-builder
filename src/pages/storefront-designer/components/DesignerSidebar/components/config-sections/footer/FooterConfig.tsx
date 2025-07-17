@@ -68,11 +68,11 @@ function FooterConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title={t('designerSidebar.footerConfig.linkManagement.title')}>
+      <SectionItem title={t('DesignerSidebar.footerConfig.linkManagement.title')}>
         <Box width="100%" height="auto" borderRadius="lg" borderWidth="1px" borderColor="neutral.gray.800" overflow="hidden">
           <Flex width="100%" height="auto" display="flex" alignItems="center" justifyContent="space-between" padding={3} backgroundColor="neutral.gray.800">
             <Text fontSize="sm" fontWeight="medium" color="white">
-              {t('designerSidebar.footerConfig.linkManagement.column', { number: 1 })}
+              {t('DesignerSidebar.footerConfig.linkManagement.column', { number: 1 })}
             </Text>
             <EditMd color="white" />
           </Flex>
@@ -81,7 +81,7 @@ function FooterConfig(): React.ReactElement {
             <Flex width="100%" height="auto" display="flex" flexDirection="column" gap={3} key={index}>
               <Flex width="100%" height="auto" display="flex" alignItems="center" justifyContent="space-between" padding="16px 16px 0 16px">
                 <Text fontSize="sm" fontWeight="medium" color="white">
-                  {t('designerSidebar.footerConfig.linkManagement.link', { number: index + 1 })}
+                  {t('DesignerSidebar.footerConfig.linkManagement.link', { number: index + 1 })}
                 </Text>
                 <Box width="auto" height="auto" cursor="pointer" onClick={() => deleteLink(index)}>
                   <TrashMd color="#FF2244" />
@@ -93,7 +93,7 @@ function FooterConfig(): React.ReactElement {
                   <AppInput
                     width="100%"
                     height="48px"
-                    placeholder={t('designerSidebar.footerConfig.linkManagement.inputs.label')}
+                    placeholder={t('DesignerSidebar.footerConfig.linkManagement.inputs.label')}
                     name="caption"
                     value={item.caption}
                     onChange={(e) => handleChange(index, e.target.value, 'caption')}
@@ -108,7 +108,7 @@ function FooterConfig(): React.ReactElement {
                   <AppInput
                     width="100%"
                     height="48px"
-                    placeholder={t('designerSidebar.footerConfig.linkManagement.inputs.url')}
+                    placeholder={t('DesignerSidebar.footerConfig.linkManagement.inputs.url')}
                     name="link"
                     value={item.link}
                     onChange={(e) => handleChange(index, e.target.value, 'link')}
@@ -135,7 +135,7 @@ function FooterConfig(): React.ReactElement {
             onClick={addLink}
             _hover="none"
           >
-            {t('designerSidebar.footerConfig.linkManagement.newLink')}
+            {t('DesignerSidebar.footerConfig.linkManagement.newLink')}
           </AppButton>
         </Box>
       </SectionItem>

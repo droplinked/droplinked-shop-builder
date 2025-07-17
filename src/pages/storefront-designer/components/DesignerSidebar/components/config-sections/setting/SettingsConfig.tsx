@@ -70,10 +70,10 @@ function SettingsConfig(): React.ReactElement {
           <VStack width="auto" height="auto" display="flex" flex="1" alignItems="flex-start" spacing={4} overflow="hidden">
             <Box width="100%" height="auto">
               <Text fontSize="base" fontWeight="medium" color="white">
-                {t('designerSidebar.settingsConfig.releaseDate.title')}
+                {t('DesignerSidebar.settingsConfig.releaseDate.title')}
               </Text>
               <Text fontSize="sm" color="neutral.gray.500">
-                {t('designerSidebar.settingsConfig.releaseDate.description')}
+                {t('DesignerSidebar.settingsConfig.releaseDate.description')}
               </Text>
             </Box>
 

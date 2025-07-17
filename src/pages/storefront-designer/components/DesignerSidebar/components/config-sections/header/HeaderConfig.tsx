@@ -27,7 +27,7 @@ function HeaderConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title={t('designerSidebar.headerConfig.logo.title')}>
+      <SectionItem title={t('DesignerSidebar.headerConfig.logo.title')}>
         <Flex width="100%" height="auto" display="flex" flexDirection="column" gap="16px" alignItems="space-between" alignSelf="stretch">
           <ImageUploadSection fieldName="headerIcon" altText="headerIcon" />
           <Flex
@@ -44,18 +44,18 @@ function HeaderConfig(): React.ReactElement {
             bg="neutral.gray.900"
           >
             <AppTypography fontSize="14px" fontWeight={400} color="white">
-              {t('designerSidebar.headerConfig.logo.useFavicon')}
+              {t('DesignerSidebar.headerConfig.logo.useFavicon')}
             </AppTypography>
             <AppSwitch isChecked={isLogoAsFavicon} onChange={handleSwitchChange} />
           </Flex>
         </Flex>
       </SectionItem>
 
-      <SectionItem title={t('designerSidebar.headerConfig.favicon.title')}>
+      <SectionItem title={t('DesignerSidebar.headerConfig.favicon.title')}>
         <ImageUploadSection fieldName="faviconURL" fieldPath="shopDesign.faviconURL" altText="Favicon" />
       </SectionItem>
 
-      <SectionItem title={t('designerSidebar.headerConfig.iconColor.title')}>
+      <SectionItem title={t('DesignerSidebar.headerConfig.iconColor.title')}>
         <IconColorSection />
       </SectionItem>
     </VStack>

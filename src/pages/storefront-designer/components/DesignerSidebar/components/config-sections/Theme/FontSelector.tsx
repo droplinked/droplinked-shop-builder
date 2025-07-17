@@ -26,8 +26,8 @@ const FontSelector: React.FC = () => {
 
   return (
     <SectionItem 
-      title={t('designerSidebar.themeConfig.fontStyle.title')} 
-      description={t('designerSidebar.themeConfig.fontStyle.description')}
+      title={t('DesignerSidebar.themeConfig.fontStyle.title')} 
+      description={t('DesignerSidebar.themeConfig.fontStyle.description')}
     >
       <VStack spacing={3} align="stretch" w="100%" mt={2}>
         {fonts.map((font, i) => {
@@ -54,7 +54,7 @@ const FontSelector: React.FC = () => {
             >
               <Box flex="1" minW="0">
                 <Text color={isSelected ? 'main.primary' : 'white'} fontSize="sm" fontWeight="medium">
-                  {t(`designerSidebar.themeConfig.fontStyle.fonts.${font.toLowerCase().replace(/\s+/g, '')}`)}
+                  {t(`DesignerSidebar.themeConfig.fontStyle.fonts.${font.toLowerCase().replace(/\s+/g, '')}`)}
                 </Text>
                 <Text color="text.subtext.placeholder.dark" fontSize="12px" fontFamily={font}>
                    The Next Generation of Commerce

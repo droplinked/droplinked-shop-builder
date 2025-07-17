@@ -6,7 +6,6 @@ import { ClocktimeMd } from 'assets/icons/System/ClockTime/ClocktimeMd';
 import { ImageMd } from 'assets/icons/System/Image/ImageMd';
 import { ShopMd } from 'assets/icons/System/Shop/ShopMd';
 import { FooterConfig, HeaderConfig, HeroConfig, SettingsConfig, StoreConfig, ThemeConfig } from './components/config-sections';
-import { ShopSm } from 'assets/icons/System/Shop/ShopSm';
 
 export interface ConfigSectionData {
   id: string;

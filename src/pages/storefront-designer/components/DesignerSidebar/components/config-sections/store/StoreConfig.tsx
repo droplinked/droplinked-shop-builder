@@ -15,11 +15,11 @@ function StoreConfig(): React.ReactElement {
 
   return (
     <VStack width="100%" height="auto" display="flex" align="stretch" spacing={3}>
-      <SectionItem title={t('designerSidebar.storeConfig.profileImage.title')}>
+      <SectionItem title={t('DesignerSidebar.storeConfig.profileImage.title')}>
         <ImageUploadSection fieldName="logo" altText="Logo" />
       </SectionItem>
 
-      <SectionItem title={t('designerSidebar.storeConfig.socialChannels.title')}>
+      <SectionItem title={t('DesignerSidebar.storeConfig.socialChannels.title')}>
         <SocialChannelsSection />
       </SectionItem>
     </VStack>

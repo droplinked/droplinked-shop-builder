@@ -6,6 +6,8 @@ import MobileMessage from './components/MobileMessage/MobileMessage';
 import StorePreview from './components/StorePreview/StorePreview';
 import { DesignerProvider } from './context/DesignerProvider';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import enLocale from 'locales/storefront-designer/en.json';
+import arLocale from 'locales/storefront-designer/ar.json';
 
 /**
  * Main storefront designer component with responsive layout
@@ -13,7 +15,7 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 function StorefrontDesigner(): React.ReactElement {
   const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
-  const { isRTL } = useLocaleResources('storefront-designer');
+  const { isRTL } = useLocaleResources('storefront-designer',{en: enLocale, ar: arLocale});
 
   // Display mobile notice for small screens
   if (isSmallScreen) {

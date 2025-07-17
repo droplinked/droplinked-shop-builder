@@ -12,15 +12,15 @@ const TemplateSelector: React.FC = () => {
 
   return (
     <SectionItem 
-      title={t('designerSidebar.themeConfig.template.title')} 
-      description={t('designerSidebar.themeConfig.template.description')}
+      title={t('DesignerSidebar.themeConfig.template.title')} 
+      description={t('DesignerSidebar.themeConfig.template.description')}
     >
       <Flex gap="3" w="100%">
         <Box flex="1" borderWidth="1px" borderColor="main.primary" borderRadius="lg" pl={3} pt={3} cursor="pointer">
           <Image
             h={'100%'}
             src="https://upload-file-droplinked.s3.amazonaws.com/db5de5352f04fb252bb5130d5763dcb768b0c9b32ef69228052b4fdc9832dfd1.png"
-            alt={t('designerSidebar.themeConfig.template.defaultTemplate')}
+            alt={t('DesignerSidebar.themeConfig.template.defaultTemplate')}
           />
         </Box>
 
@@ -35,7 +35,7 @@ const TemplateSelector: React.FC = () => {
         >
           <IconWrapper icon={<Layout2Md color="white" />}></IconWrapper>
           <Text color="white" fontSize="sm" mt={2}>
-            {t('designerSidebar.themeConfig.template.customTemplate')}
+            {t('DesignerSidebar.themeConfig.template.customTemplate')}
           </Text>
         </Box>
       </Flex>

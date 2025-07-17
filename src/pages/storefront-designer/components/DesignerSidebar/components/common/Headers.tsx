@@ -45,7 +45,7 @@ export function ExpandedHeader({ toggleSidebar }: HeaderProps): React.ReactEleme
         </Flex>
       </Flex>
       <AppSelect
-        items={[t('designerSidebar.common.pageSelector')]}
+        items={[t('DesignerSidebar.common.pageSelector')]}
         selectProps={{
           width: '100%',
           onChange: () => {},
