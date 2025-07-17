@@ -6,7 +6,7 @@ import { TFunction } from 'i18next';
 import { PlanType } from 'services/subscription/interfaces';
 
 type SubscriptionPlans = Record<PlanType, {
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ color?: string }>;
   title: string;
   description: string;
   features: {
