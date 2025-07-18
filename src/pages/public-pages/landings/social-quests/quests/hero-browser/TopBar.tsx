@@ -9,7 +9,6 @@ import { DownloadcircleMd } from "assets/icons/System/DownloadCircle/Downloadcir
 import { LockSm } from "assets/icons/System/Lock/LockSm"
 import React from "react"
 import { appDevelopment } from "utils/app/variable"
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 // Chrome-style color dots component
 const ChromeDots = () => (
@@ -39,7 +38,6 @@ const ActionButtons = () => (
 
 export default function TopBar() {
   const shopAddress = `${appDevelopment ? "dev." : ""}droplinked.io`
-  const { t } = useLocaleResources('public-pages/landings/social-quests');
 
   return (
     <Flex

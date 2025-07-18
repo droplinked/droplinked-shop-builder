@@ -1,16 +1,17 @@
 import { Grid } from '@chakra-ui/react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import useFollowStatus from '../hook/useFollowStatus'
 import { getPromotions } from '../utils/promotionsList'
-import HeroBrowser from './hero-browser/HeroBrowser'
 import MobileQuestCard from './MobileQuestCard'
 import SocialMediaCard from './SocialMediaCard'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import HeroBrowser from './hero-browser/HeroBrowser'
 
 export default function QuestWindow() {
     const followStatusHook = useFollowStatus()
-    const { t } = useLocaleResources('public-pages/landings/social-quests');
-    const promotions = getPromotions(t);
+    const { t } = useLocaleResources('public-pages/landings/social-quests')
+
+    const promotions = getPromotions(t)
 
     return (
         <HeroBrowser grantProPlan={followStatusHook.grantProPlan}>

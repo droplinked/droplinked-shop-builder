@@ -1,21 +1,17 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import localEn from 'locales/public-pages/landings/social-quests/en.json'
-import localAr from 'locales/public-pages/landings/social-quests/ar.json'
 
 export default function ProPlanCard() {
-    const { t, isRTL } = useLocaleResources('public-pages/landings/social-quests', {
-        en: localEn,
-        ar: localAr
-    })
-    const { isLoggedIn } = useAppStore()
     const bottomAmount = useBreakpointValue({ base: "unset", md: "7rem", xl: "10rem" })
     const transformAmount = useBreakpointValue({ base: "scale(1)", md: "scale(0.8)", xl: "scale(1)" })
+    const { t, isRTL } = useLocaleResources('public-pages/landings/social-quests')
+    const { isLoggedIn } = useAppStore()
+
     const url = isLoggedIn ? "/analytics/dashboard" : AUTH_ROUTES.SIGN_UP
 
     return (
@@ -30,7 +26,7 @@ export default function ProPlanCard() {
                 <AppButton
                     {...isRTL ? { marginRight: 6 } : { marginLeft: 6 }}
                 >
-                    {t('proPlanCard.startNow')}
+                    {t('ProPlanCard.startNow')}
                 </AppButton>
             </Link>
 

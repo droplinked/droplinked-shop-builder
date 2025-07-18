@@ -1,12 +1,12 @@
 import { Box, Flex, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useAppStore from 'stores/app/appStore'
 import useFollowStatus from '../hook/useFollowStatus'
 import MobileProPlanDrawer from './MobileProPlanDrawer'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface MobileQuestCardProps {
     followStatusHook: ReturnType<typeof useFollowStatus>
@@ -19,9 +19,9 @@ export default function MobileQuestCard({ followStatusHook }: MobileQuestCardPro
     const isMobile = useBreakpointValue({ base: true, md: false })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isLoggedIn } = useAppStore()
-    const { t } = useLocaleResources('public-pages/landings/social-quests');
+    const { t } = useLocaleResources('public-pages/landings/social-quests')
 
-    const description = isLoggedIn ? t('quests.mobile.completeToUnlock') : t('quests.mobile.registerToQualify');
+    const description = isLoggedIn ? t('Quests.mobile.completeToUnlock') : t('Quests.mobile.registerToQualify');
 
     const onClick = async () => {
         if (!isLoggedIn) return navigate(AUTH_ROUTES.SIGN_IN)
@@ -56,11 +56,11 @@ export default function MobileQuestCard({ followStatusHook }: MobileQuestCardPro
                 background="neutral.websiteBackground"
             >
                 <Box>
-                    <Text fontSize={18} fontWeight={500} color="text.white">{t('quests.mobile.greeting')}</Text>
+                    <Text fontSize={18} fontWeight={500} color="text.white">{t('Quests.mobile.greeting')}</Text>
                     <Text mt={1} fontSize={14} color="text.subtext.placeholder.dark">{description}</Text>
                 </Box>
                 <AppButton onClick={onClick} isLoading={loading}>
-                    {isLoggedIn ? t('quests.mobile.activateAccount') : t('getStarted')}
+                    {isLoggedIn ? t('Quests.mobile.activateAccount') : t('getStarted')}
                 </AppButton>
             </Flex>
             <MobileProPlanDrawer isOpen={isOpen} onClose={onClose} unlockedMonths={unlockedMonths} />

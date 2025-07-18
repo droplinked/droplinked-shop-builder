@@ -1,15 +1,15 @@
 import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react'
 import DroplinkedTypography from 'assets/brand-identity/DroplinkedTypography'
-import { SidebarexpandSm } from 'assets/icons/Action/SidebarExpand/SidebarexpandSm'
 import { AISm } from 'assets/icons/AI'
+import { SidebarexpandSm } from 'assets/icons/Action/SidebarExpand/SidebarexpandSm'
 import { NotificationtrueSm } from 'assets/icons/System/NotificationTrue/NotificationtrueSm'
 import { UserSm } from 'assets/icons/System/User/UserSm'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 
 export default function PanelTitle() {
     const droplinkedTypographyDisplay = useBreakpointValue({ base: "block", xl: "none" })
-    const { t } = useLocaleResources('public-pages/landings/social-quests');
+    const { t } = useLocaleResources('public-pages/landings/social-quests')
 
     return (
         <Flex
@@ -27,7 +27,7 @@ export default function PanelTitle() {
                 fontWeight={700}
                 color="text.white"
             >
-                {t('heroBrowser.panelTitle.quest')}
+                {t('QuestsHeroBrowser.panelTitle.quest')}
             </Text>
             <Box
                 display={{ base: 'block', xl: 'none' }}
@@ -55,7 +55,7 @@ export default function PanelTitle() {
                     userSelect="none"
                 >
                     <AISm color='#2BCFA1' />
-                    <Text fontSize={12} fontWeight={500} color="text.primary">{t('heroBrowser.panelTitle.aiAssistant')}</Text>
+                    <Text fontSize={12} fontWeight={500} color="text.primary">{t('QuestsHeroBrowser.panelTitle.aiAssistant')}</Text>
                 </Flex>
                 <Box
                     display={{ base: 'none', xl: 'block' }}
