@@ -1,16 +1,19 @@
 {
+  "AcceptInvitation": {
     "welcomeToDroplinked": "Welcome to droplinked!",
-    "signUpCredentials": "Sign up with your credentials to start managing your shop",
+    "signUpCredentials": "Sign up with your credentials to start managing your shop"
+  },
+  "InvitationForm": {
     "emailLabel": "Email",
     "passwordLabel": "Password",
     "repeatPasswordLabel": "Repeat Password",
-    "required": "Required",
     "signUpButton": "Sign up",
     "loadingText": "Loading...",
     "validations": {
-        "fieldRequired": "Incorrect email. Please check it and try again.",
-        "invalidEmail": "Please enter a valid email address.",
-        "passwordRequirements": "Your password must contain at least 8 characters, including at least one uppercase letter, lowercase letter, and one number",
-        "passwordsDoNotMatch": "Passwords do not match!"
+      "fieldRequired": "Incorrect email. Please check it and try again.",
+      "invalidEmail": "Please enter a valid email address.",
+      "passwordRequirements": "Your password must contain at least 8 characters, including at least one uppercase letter, lowercase letter, and one number",
+      "passwordsDoNotMatch": "Passwords do not match!"
     }
+  }
 }

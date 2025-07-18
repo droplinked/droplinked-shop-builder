@@ -1,33 +1,32 @@
-import { Box, Flex, InputProps } from "@chakra-ui/react";
-import AppInput from "components/common/form/textbox/AppInput";
-import AppTypography from "components/common/typography/AppTypography";
-import ShowPassword from "components/modals/signup-modal/ShowPassword";
-import React, { useState } from 'react';
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
-import arLocale from 'locales/public-pages/accept-invitation/ar.json';
-import enLocale from 'locales/public-pages/accept-invitation/en.json';
+import { Box, Flex, InputProps } from "@chakra-ui/react"
+import AppInput from "components/common/form/textbox/AppInput"
+import AppTypography from "components/common/typography/AppTypography"
+import ShowPassword from "components/modals/signup-modal/ShowPassword"
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React, { useState } from 'react'
 
 interface Props extends InputProps {
-    label: string;
-    type: string;
-    value: any;
-    isRequired?: boolean;
+    label: string
+    type: string
+    value: any
+    isRequired?: boolean
     error?: string
 }
 
 function InvitationInput({ label, type, value, isRequired, error, ...props }: Props) {
     const [inputType, setInputType] = useState(type)
+    const { t } = useLocaleResources("acceptInvitation")
+
     const toggleInputType = () => setInputType(inputType === "password" ? "text" : "password")
-    const { t } = useLocaleResources("acceptInvitation", {
-        ar: arLocale,
-        en: enLocale
-    })
 
     return (
-        <Flex direction="column" gap={2} userSelect={"none"}>
-            <AppTypography fontSize={14} fontWeight={600} color={"#fff"}>{label} {isRequired && <Box as="span" color={"#2BCFA1"}>({t("required")})</Box>}</AppTypography>
-            <Flex direction={"column"} gap={2}>
-                <Box position={"relative"}>
+        <Flex direction="column" gap={2} userSelect="none">
+            <AppTypography fontSize={14} fontWeight={600} color="#fff">
+                {label}
+                {isRequired && <Box as="span" color="label.primary">({t("common:required")})</Box>}
+            </AppTypography>
+            <Flex direction="column" gap={2}>
+                <Box position="relative">
                     <AppInput
                         name=""
                         type={inputType}
