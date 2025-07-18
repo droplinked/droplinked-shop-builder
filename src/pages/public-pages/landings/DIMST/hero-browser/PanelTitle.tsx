@@ -27,7 +27,7 @@ export default function PanelTitle() {
                 fontWeight={700}
                 color="text.white"
             >
-                {t('browserPageTitle')}
+                {t('PanelTitle.browserPageTitle')}
             </Text>
             <Box
                 display={{ base: 'block', xl: 'none' }}
@@ -55,7 +55,7 @@ export default function PanelTitle() {
                     userSelect="none"
                 >
                     <AISm color='#2BCFA1' />
-                    <Text fontSize={12} fontWeight={500} color="text.primary">{t("aiAssistant")}</Text>
+                    <Text fontSize={12} fontWeight={500} color="text.primary">{t("PanelTitle.aiAssistant")}</Text>
                 </Flex>
                 <Box
                     display={{ base: 'none', xl: 'block' }}

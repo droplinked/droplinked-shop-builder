@@ -1,29 +1,33 @@
 {
-  "hero": {
+  "DIMSTHero": {
     "title": "Product Record Calculator",
     "subtitle": "Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking"
   },
-  "protocols": "Protocols",
-  "browserPageTitle": "Product Record Calculator",
-  "aiAssistant": "AI Assistant",
-  "calculationSections": {
+  "PanelTitle": {
+    "browserPageTitle": "Product Record Calculator",
+    "aiAssistant": "AI Assistant"
+  },
+  "Protocols": {
+    "title": "Protocols"
+  },
+  "CalculationSections": {
     "returnOnInvestment": "Return on Investment"
   },
-  "calculationResult": {
+  "CalculationResult": {
     "grossInvestment": "Gross Investment",
     "grossMerchandiseValue": "Gross Merchandise Value (GMV)",
     "grossCapturedValue": "Gross Captured Value",
     "returnOnInvestment": "Return on Investment (ROI)",
     "calculate": "Calculate"
   },
-  "plans": {
+  "Plans": {
     "title": "Plans",
     "days": "Days",
     "skus": "SKUs",
     "productRecords": "Product Records",
     "baseCommitment": "Base Commitment"
   },
-  "productDetails": {
+  "ProductDetails": {
     "title": "Product Details",
     "serviceFee": "Service Fee",
     "serviceFeeTooltip": "Baseline cost associated with plan selected",
@@ -31,7 +35,7 @@
     "productRecordCount": "Product Record Count",
     "transactionCount": "Transaction Count"
   },
-  "metrics": {
+  "Metrics": {
     "title": "Product Details",
     "averageOrderValue": "Average Order Value",
     "averageOrderValueTooltip": "Anticipated retail price of the item sold",

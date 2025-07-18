@@ -19,38 +19,38 @@ export default function Metrics({ roiCalculationVariables }: Props) {
     const { metrics, updateMetrics } = roiCalculationVariables;
 
     return (
-        <CardsOverlay title={t('metrics.title')} icon={<DashboardLg color='#fff' />}>
+        <CardsOverlay title={t('Metrics.title')} icon={<DashboardLg color='#fff' />}>
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                 <AppInput
-                    label={t('metrics.averageOrderValue')}
+                    label={t('Metrics.averageOrderValue')}
                     inputProps={{
                         value: metrics.averageOrderValue,
                         onChange: (e) => updateMetrics("averageOrderValue", e.target.value),
                         type: 'number',
                     }}
                     leftElement={<DollarMd color='#7B7B7B' />}
-                    tooltipText={t('metrics.averageOrderValueTooltip')}
+                    tooltipText={t('Metrics.averageOrderValueTooltip')}
                 />
                 <AppInput
-                    label={t('metrics.royaltyPercentage')}
+                    label={t('Metrics.royaltyPercentage')}
                     inputProps={{
                         value: metrics.royaltyPercentage,
                         onChange: (e) => updateMetrics("royaltyPercentage", e.target.value),
                         type: 'number',
                     }}
                     leftElement={<PercentMd color='#7B7B7B' />}
-                    tooltipText={t('metrics.royaltyPercentageTooltip')}
+                    tooltipText={t('Metrics.royaltyPercentageTooltip')}
                 />
             </Grid>
             <AppInput
-                label={t('metrics.capturedSecondarySalesPercentage')}
+                label={t('Metrics.capturedSecondarySalesPercentage')}
                 inputProps={{
                     value: metrics.CapturedSecondarySalesPercentage,
                     onChange: (e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value),
                     type: 'number',
                 }}
                 leftElement={<PercentMd color='#7B7B7B' />}
-                tooltipText={t('metrics.capturedSecondarySalesPercentageTooltip')}
+                tooltipText={t('Metrics.capturedSecondarySalesPercentageTooltip')}
             />
         </CardsOverlay>
     )

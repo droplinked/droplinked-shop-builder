@@ -19,7 +19,7 @@ export default function Protocols({ roiCalculationVariables }: Props) {
     }))
 
     return (
-        <CardsOverlay title={t("protocols")} icon={<NetworkLg color='#fff' />}>
+        <CardsOverlay title={t("Protocols.title")} icon={<NetworkLg color='#fff' />}>
             <SelectMenu
                 items={convertedNetworks}
                 onChange={(value) => setSelectedNetwork(+value)}

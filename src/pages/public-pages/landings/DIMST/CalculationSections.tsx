@@ -28,7 +28,7 @@ export default function CalculationSections() {
                         <Metrics roiCalculationVariables={roiCalculationVariables} />
                     </RuledGrid>
                     <RuledGrid columns={1} borderRadius={16} width={{ base: "100%", xl: "40%" }} height="min-content">
-                        <CardsOverlay title={t('calculationResult.returnOnInvestment')} icon={<Refresh1Lg color="#fff" />} />
+                        <CardsOverlay title={t('CalculationSections.returnOnInvestment')} icon={<Refresh1Lg color="#fff" />} />
                         <CalculationResult roiCalculationVariables={roiCalculationVariables} />
                     </RuledGrid>
                 </Flex>

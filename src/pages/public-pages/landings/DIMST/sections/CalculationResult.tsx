@@ -22,22 +22,22 @@ export default function CalculationResult({ roiCalculationVariables }: Props) {
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossInvestment} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title={t('calculationResult.grossInvestment')}
+                    title={t('CalculationResult.grossInvestment')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossMerchandiseValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title={t('calculationResult.grossMerchandiseValue')}
+                    title={t('CalculationResult.grossMerchandiseValue')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={grossCapturedValue} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title={t('calculationResult.grossCapturedValue')}
+                    title={t('CalculationResult.grossCapturedValue')}
                 />
                 <TitledText
                     direction='row'
                     text={<FormattedPrice price={ROI} fontSize={{ base: 14, md: 16 }} fontWeight={500} />}
-                    title={t('calculationResult.returnOnInvestment')}
+                    title={t('CalculationResult.returnOnInvestment')}
                 />
             </Flex>
             <AppButton
@@ -47,7 +47,7 @@ export default function CalculationResult({ roiCalculationVariables }: Props) {
                 borderColor="neutral.gray.900"
                 onClick={handleCalculation}
             >
-                {t('calculationResult.calculate')}
+                {t('CalculationResult.calculate')}
             </AppButton>
         </Box>
     )

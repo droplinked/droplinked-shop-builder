@@ -11,8 +11,8 @@ export default function DIMSTHero() {
     return (
         <>
             <HeroSection
-                title={t('hero.title')}
-                subtitle={t('hero.subtitle')}
+                title={t('DIMSTHero.title')}
+                subtitle={t('DIMSTHero.subtitle')}
             >
                 {!isMobile && <CalculationSections />}
             </HeroSection>

@@ -17,10 +17,10 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
     const { productDetails, updateProductDetails, handleTotalSkusChange } = roiCalculationVariables;
 
     return (
-        <CardsOverlay title={t('productDetails.title')} icon={<BlogLg color='#fff' />}>
+        <CardsOverlay title={t('ProductDetails.title')} icon={<BlogLg color='#fff' />}>
             <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                 <AppInput
-                    label={t('productDetails.serviceFee')}
+                    label={t('ProductDetails.serviceFee')}
                     inputProps={{
                         value: productDetails.serviceFee,
                         onChange: (e) => updateProductDetails("serviceFee", e.target.value),
@@ -28,10 +28,10 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                         type: 'number',
                     }}
                     leftElement={<DollarMd color='#7B7B7B' />}
-                    tooltipText={t('productDetails.serviceFeeTooltip')}
+                    tooltipText={t('ProductDetails.serviceFeeTooltip')}
                 />
                 <AppInput
-                    label={t('productDetails.totalSkus')}
+                    label={t('ProductDetails.totalSkus')}
                     inputProps={{
                         value: productDetails.totalSkus,
                         onChange: (e) => handleTotalSkusChange(e),
@@ -39,7 +39,7 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                     }}
                 />
                 <AppInput
-                    label={t('productDetails.productRecordCount')}
+                    label={t('ProductDetails.productRecordCount')}
                     inputProps={{
                         value: productDetails.productRecordCount,
                         onChange: (e) => updateProductDetails("productRecordCount", e.target.value),
@@ -47,7 +47,7 @@ export default function ProductDetails({ roiCalculationVariables }: Props) {
                     }}
                 />
                 <AppInput
-                    label={t('productDetails.transactionCount')}
+                    label={t('ProductDetails.transactionCount')}
                     inputProps={{
                         value: productDetails.transactionCount,
                         onChange: (e) => updateProductDetails("transactionCount", e.target.value),

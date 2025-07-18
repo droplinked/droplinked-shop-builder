@@ -1,29 +1,33 @@
 {
-  "hero": {
+  "DIMSTHero": {
     "title": "حاسبة سجلات المنتجات",
     "subtitle": "توقع عائد الاستثمار عند استخدام إدارة المخزون المؤسسية وتتبع المبيعات من دروبلينكد"
   },
-  "protocols": "البروتوكولات",
-  "browserPageTitle": "حاسبة سجلات المنتجات",
-  "aiAssistant": "مساعد الذكاء الاصطناعي",
-  "calculationSections": {
+  "PanelTitle": {
+    "browserPageTitle": "حاسبة سجلات المنتجات",
+    "aiAssistant": "مساعد الذكاء الاصطناعي"
+  },
+  "Protocols": {
+    "title": "البروتوكولات"
+  },
+  "CalculationSections": {
     "returnOnInvestment": "عائد الاستثمار"
   },
-  "calculationResult": {
+  "CalculationResult": {
     "grossInvestment": "إجمالي الاستثمار",
     "grossMerchandiseValue": "إجمالي قيمة البضائع (GMV)",
     "grossCapturedValue": "إجمالي القيمة المحققة",
     "returnOnInvestment": "عائد الاستثمار (ROI)",
     "calculate": "احسب"
   },
-  "plans": {
+  "Plans": {
     "title": "الخطط",
     "days": "أيام",
     "skus": "وحدات حفظ المخزون",
     "productRecords": "سجلات المنتجات",
     "baseCommitment": "الالتزام الأساسي"
   },
-  "productDetails": {
+  "ProductDetails": {
     "title": "تفاصيل المنتج",
     "serviceFee": "رسوم الخدمة",
     "serviceFeeTooltip": "التكلفة الأساسية المرتبطة بالخطة المختارة",
@@ -31,7 +35,7 @@
     "productRecordCount": "عدد سجلات المنتجات",
     "transactionCount": "عدد المعاملات"
   },
-  "metrics": {
+  "Metrics": {
     "title": "تفاصيل المنتج",
     "averageOrderValue": "متوسط قيمة الطلب",
     "averageOrderValueTooltip": "السعر المتوقع للبيع بالتجزئة للعنصر المباع",

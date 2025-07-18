@@ -37,7 +37,7 @@ export default function Plans({ roiCalculationVariables }: Props) {
     );
 
     return (
-        <CardsOverlay title={t("plans.title")} icon={<PriceplanLg color="#fff" />}>
+        <CardsOverlay title={t("Plans.title")} icon={<PriceplanLg color="#fff" />}>
             {plans.map((plan, index) => {
                 const isSelected = selectedPlan?.title === plan.title;
 
@@ -69,14 +69,14 @@ export default function Plans({ roiCalculationVariables }: Props) {
                                     color={isSelected ? "text.primary" : "text.white"}
                                     fontSize={{ base: 12, md: 14 }}
                                 >
-                                    {plan.duration} {t("plans.days")}
+                                    {plan.duration} {t("Plans.days")}
                                 </Text>
                             </Box>
                         </Flex>
                         <Flex gap={2} flexWrap="wrap" alignItems="center" mt={3}>
-                            {skuChip(t("plans.skus"), plan.skus, isSelected)}
-                            {skuChip(t("plans.productRecords"), plan.productRecords, isSelected)}
-                            {skuChip(t("plans.baseCommitment"), plan.baseCommitment, isSelected)}
+                            {skuChip(t("Plans.skus"), plan.skus, isSelected)}
+                            {skuChip(t("Plans.productRecords"), plan.productRecords, isSelected)}
+                            {skuChip(t("Plans.baseCommitment"), plan.baseCommitment, isSelected)}
                         </Flex>
                     </Box>
                 );
