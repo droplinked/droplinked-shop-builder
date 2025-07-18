@@ -40,7 +40,7 @@ export type Namespace =
     | 'public-pages/landings/custom-tokens'
     | 'public-pages/landings/digital-goods'
     | 'public-pages/landings/DIMST'
-    | 'public-pages/landings/dpp-landing'
+    | 'public-pages/landings/dpp'
     | 'public-pages/landings/metaverse-showroom'
     | 'public-pages/landings/onchain-affiliate'
     | 'public-pages/landings/onchain-subscriptions'

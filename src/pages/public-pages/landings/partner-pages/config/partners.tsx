@@ -2,15 +2,15 @@ import CrossmintLogo from 'assets/brand-identity/Crossmint';
 import D3Logo from 'assets/brand-identity/D3';
 import PolygonLogo from 'assets/brand-identity/Polygon';
 import UnstoppableDomainsLogo from 'assets/brand-identity/UnstoppableDomains';
-import React from 'react';
 import { TFunction } from 'i18next';
 import JoinCommunity from 'pages/public-pages/landings/_shared/components/JoinCommunity';
 import MarqueeSection from 'pages/public-pages/landings/_shared/components/marquee-wrapper/MarqueeSection';
 import ClaimNow from 'pages/public-pages/landings/partner-pages/components/ClaimNow';
 import ModularStack from 'pages/public-pages/landings/partner-pages/components/ModularStack';
+import PerkList from 'pages/public-pages/landings/partner-pages/components/PerkList';
 import D3BentoGrids from 'pages/public-pages/landings/partner-pages/components/partner-specific/D3BentoGrids';
 import UDTldFeatures from 'pages/public-pages/landings/partner-pages/components/partner-specific/UDTldFeatures';
-import PerkList from 'pages/public-pages/landings/partner-pages/components/PerkList';
+import React from 'react';
 import { Section } from './types';
 
 export interface PartnerConfig {
@@ -36,9 +36,9 @@ export type PartnerId = 'd3' | 'unstoppableDomains' | 'polygon' | 'crossmint';
  * @param customSections - Array of partner-specific sections to insert after partners section
  * 
  * Default section order:
- * 1. partners (MarqueeSection)
+ * 1. partner-list (MarqueeSection)
  * 2. [custom sections inserted here]
- * 3. set-of-perks
+ * 3. perk-list
  * 4. modular-stack
  * 5. join-community
  * 6. claim-now
@@ -48,8 +48,8 @@ const buildSections = (
   customSections: Section[] = []
 ): Section[] => {
   const defaultSections: Section[] = [
-    { id: 'partners', component: <MarqueeSection /> },
-    { id: 'set-of-perks', component: <PerkList /> },
+    { id: 'partner-list', component: <MarqueeSection /> },
+    { id: 'perk-list', component: <PerkList /> },
     { id: 'modular-stack', component: <ModularStack /> },
     { id: 'join-community', component: <JoinCommunity /> },
     { id: 'claim-now', component: <ClaimNow /> },
@@ -85,7 +85,7 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
       { id: 'd3-features', component: <D3BentoGrids /> }
     ])
   },
-  
+
   unstoppableDomains: {
     id: 'unstoppableDomains',
     name: t('partners.unstoppableDomains.name'),
@@ -100,7 +100,7 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
       { id: 'ud-features', component: <UDTldFeatures /> }
     ])
   },
-  
+
   polygon: {
     id: 'polygon',
     name: t('partners.polygon.name'),
@@ -113,7 +113,7 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
     },
     sections: buildSections(t, []),
   },
-  
+
   crossmint: {
     id: 'crossmint',
     name: t('partners.crossmint.name'),

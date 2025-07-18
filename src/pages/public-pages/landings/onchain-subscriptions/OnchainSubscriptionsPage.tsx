@@ -15,11 +15,11 @@ function OnchainSubscriptionsPage() {
     useLocaleResources('public-pages/landings/onchain-subscriptions', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
-        { id: 'set-of-features', component: <OnchainSubscriptionsFeatures /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
+        { id: 'feature-list', component: <OnchainSubscriptionsFeatures /> },
         { id: 'modular-stacks', component: <OnchainSubscriptionsModularStack /> },
-        { id: 'join-the-community', component: <JoinCommunity /> },
-        { id: 'join-now', component: <SignUpCta /> },
+        { id: 'join-community', component: <JoinCommunity /> },
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (

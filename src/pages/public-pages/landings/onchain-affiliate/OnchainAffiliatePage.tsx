@@ -15,7 +15,7 @@ function OnchainAffiliatePage() {
     useLocaleResources('public-pages/landings/onchain-affiliate', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <OnchainAffiliateFeatures /> },
         { id: 'modular-stack', component: <OnchainAffiliateModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

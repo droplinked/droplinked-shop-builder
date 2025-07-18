@@ -10,7 +10,7 @@ import MetaverseShowroomModularStack from './MetaverseShowroomModularStack'
 
 function MetaverseShowroomPage() {
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <MetaverseShowroomFeatures /> },
         { id: 'modular-stack', component: <MetaverseShowroomModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

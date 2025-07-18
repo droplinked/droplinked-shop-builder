@@ -22,7 +22,7 @@ import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import CustomTokenPage from "pages/public-pages/landings/custom-tokens/CustomTokensPage"
 import DigitalGoodsPage from "pages/public-pages/landings/digital-goods/DigitalGoodsPage"
 import DIMST from "pages/public-pages/landings/DIMST/DIMST"
-import DPPLanding from "pages/public-pages/landings/dpp-landing/DPPLanding"
+import DPPPage from "pages/public-pages/landings/dpp/DPPPage"
 import HomePage from "pages/public-pages/landings/home/HomePage"
 import MetaverseStorePage from "pages/public-pages/landings/metaverse-showroom/MetaverseShowroomPage"
 import OnchainAffiliatePage from "pages/public-pages/landings/onchain-affiliate/OnchainAffiliatePage"
@@ -94,7 +94,7 @@ const router = createBrowserRouter([
             { path: "crossmint", element: <PartnerPage partnerId="crossmint" /> },
             { path: "onchain-affiliate", element: <OnchainAffiliatePage /> },
             { path: "roi", element: <DIMST /> },
-            { path: "dpp", element: <DPPLanding /> },
+            { path: "dpp", element: <DPPPage /> },
             { path: "accept-invitation/:invitationId", element: <AcceptInvitation /> },
             {
                 path: "blogs",

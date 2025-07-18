@@ -10,7 +10,7 @@ import CustomTokensModularStack from './CustomTokensModularStack'
 
 function CustomTokensPage() {
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <CustomTokensFeatures /> },
         { id: 'modular-stack', component: <CustomTokensModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

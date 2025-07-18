@@ -15,7 +15,7 @@ function ProductTilesPage() {
     useLocaleResources('public-pages/landings/product-tiles', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <ProductTilesFeatures /> },
         { id: 'modular-stack', component: <ProductTilesModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

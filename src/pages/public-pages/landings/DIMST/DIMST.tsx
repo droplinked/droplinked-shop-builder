@@ -8,9 +8,9 @@ import { LazyLoad } from '../_shared/components/LazyLoad'
 
 export default function DIMST() {
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
-        { id: 'join-the-community', component: <JoinCommunity /> },
-        { id: 'join-now', component: <SignUpCta /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
+        { id: 'join-community', component: <JoinCommunity /> },
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (

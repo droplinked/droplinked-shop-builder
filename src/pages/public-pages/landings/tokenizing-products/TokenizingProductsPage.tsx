@@ -15,11 +15,11 @@ function TokenizingProductsPage() {
     useLocaleResources('public-pages/landings/tokenizing-products', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
-        { id: 'set-of-features', component: <TokenizingProductsFeatures /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
+        { id: 'feature-list', component: <TokenizingProductsFeatures /> },
         { id: 'modular-stacks', component: <TokenizingProductsModularStack /> },
-        { id: 'join-the-community', component: <JoinCommunity /> },
-        { id: 'join-now', component: <SignUpCta /> },
+        { id: 'join-community', component: <JoinCommunity /> },
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (

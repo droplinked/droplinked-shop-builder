@@ -9,10 +9,10 @@ import SocialQuestsModularStack from './SocialQuestsModularStack'
 
 export default function SocialQuests() {
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'modular-stacks', component: <SocialQuestsModularStack /> },
-        { id: 'join-the-community', component: <JoinCommunity /> },
-        { id: 'join-now', component: <SignUpCta /> },
+        { id: 'join-community', component: <JoinCommunity /> },
+        { id: 'sign-up-cta', component: <SignUpCta /> },
     ]
 
     return (

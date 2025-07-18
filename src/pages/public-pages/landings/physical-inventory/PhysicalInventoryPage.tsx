@@ -15,7 +15,7 @@ function PhysicalInventoryPage() {
     useLocaleResources('public-pages/landings/physical-inventory', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <PhysicalInventoryFeatures /> },
         { id: 'modular-stack', component: <PhysicalInventoryModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

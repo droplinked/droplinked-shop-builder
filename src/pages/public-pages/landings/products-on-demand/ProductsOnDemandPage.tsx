@@ -15,7 +15,7 @@ function ProductsOnDemandPage() {
     useLocaleResources('public-pages/landings/products-on-demand', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <ProductsOnDemandFeatures /> },
         { id: 'modular-stack', component: <ProductsOnDemandModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

@@ -15,7 +15,7 @@ export default function PaymentLinksPage() {
     useLocaleResources('public-pages/landings/payment-links', { en: enLocale, ar: arLocale })
 
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <PaymentLinksFeatures /> },
         { id: 'modular-stack', component: <PaymentLinksModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },

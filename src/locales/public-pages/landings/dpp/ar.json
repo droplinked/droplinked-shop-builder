@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "DPPHero": {
     "title": "إدارة دورة حياة المنتج\nالمستقبلية",
     "subtitle": "جواز سفر المنتج الرقمي يوفر كفاءة الإسناد والامتثال\nلإدارة المخزون على نطاق واسع. استفد من DPPs لتتبع وتتبع البضائع",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "DPPFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "تعزيز DPPs على البلوكتشين",
     "headingSubtitle": "تنفيذ تقنية البلوكتشين مع جوازات سفر المنتج الرقمي (DPPs) يزيد من\nقيمة البضائع من حيث الأمان والتتبع والتمويل للشركات",
@@ -24,7 +24,7 @@
       }
     }
   },
-  "modularStack": {
+  "DPPModularStack": {
     "cards": {
       "comprehensiveLifecycleData": {
         "title": "بيانات دورة الحياة الشاملة",

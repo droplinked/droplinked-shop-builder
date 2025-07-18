@@ -5,26 +5,24 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/dpp-landing/en.json'
-import localAr from 'locales/public-pages/landings/dpp-landing/ar.json'
 
-export default function DppHero() {
-    const { t } = useLocaleResources('public-pages/landings/dpp-landing', { en: localEn, ar: localAr })
+function DPPHero() {
+    const { t } = useLocaleResources('public-pages/landings/dpp')
 
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('DPPHero.title')}
+            subtitle={t('DPPHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('DPPHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('DPPHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>
@@ -35,3 +33,5 @@ export default function DppHero() {
         />
     )
 }
+
+export default DPPHero

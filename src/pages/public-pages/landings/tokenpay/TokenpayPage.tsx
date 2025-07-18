@@ -10,7 +10,7 @@ import TokenpayModularStack from './TokenpayModularStack'
 
 function TokenpayPage() {
     const sections = [
-        { id: 'partners', component: <MarqueeSection /> },
+        { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <TokenpayFeatures /> },
         { id: 'modular-stack', component: <TokenpayModularStack /> },
         { id: 'join-community', component: <JoinCommunity /> },
