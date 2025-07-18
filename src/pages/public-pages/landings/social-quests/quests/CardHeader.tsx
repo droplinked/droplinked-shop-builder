@@ -1,5 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import AppIcons from "assets/icon/Appicons";
+import { ExternalarrowLg } from "assets/icons/Navigation/ExternalArrow/ExternalarrowLg";
+import { ExternalarrowleftLg } from "assets/icons/Navigation/ExternalArrowLeft/ExternalArrowLeftLg";
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 import TitleRightContent from "./TitleRightContent";
 
@@ -18,6 +20,8 @@ export default function CardHeader({
     isreadyToClaim,
     isLoading
 }: CardHeaderProps) {
+    const { isRTL } = useLocaleResources('public-pages/landings/social-quests')
+
     return (
         <Flex alignItems="center" gap="6px">
             <Text fontSize={{ base: 18, lg: 20 }} fontWeight={500} color="text.white">
@@ -31,7 +35,7 @@ export default function CardHeader({
                 />
             ) : (
                 <Box className="link-arrow" opacity={0}>
-                    <AppIcons.ExternalArrow />
+                    {isRTL ? <ExternalarrowleftLg color="#fff" /> : <ExternalarrowLg color="#fff" />}
                 </Box>
             )}
         </Flex>
