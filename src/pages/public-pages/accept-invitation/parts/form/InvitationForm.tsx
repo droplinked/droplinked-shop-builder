@@ -53,15 +53,16 @@ function InvitationForm({ invitationId, email }: Props) {
         >
             {({ errors, values, setFieldValue }) =>
                 <Form style={{ width: "100%", display: "flex", flexDirection: "column", gap: 9 }}>
-                    <Flex direction="column" gap={4}>                        <InvitationInput
-                        label={t("InvitationForm.emailLabel")}
-                        type='email'
-                        value={values.email}
-                        placeholder={t("InvitationForm.emailLabel")}
-                        isReadOnly
-                        error={errors.email && errors.email.toString()}
-                        onChange={(e) => setFieldValue("email", e.target.value)}
-                    />
+                    <Flex direction="column" gap={4}>                       
+                         <InvitationInput
+                            label={t("InvitationForm.emailLabel")}
+                            type='email'
+                            value={values.email}
+                            placeholder={t("InvitationForm.emailLabel")}
+                            isReadOnly
+                            error={errors.email && errors.email.toString()}
+                            onChange={(e) => setFieldValue("email", e.target.value)}
+                         />
 
                         <InvitationInput
                             label={t("InvitationForm.passwordLabel")}
@@ -83,7 +84,7 @@ function InvitationForm({ invitationId, email }: Props) {
                             onChange={(e) => setFieldValue("confirmPassword", e.target.value)}
                         />
                     </Flex>
-                    <BasicButton type='submit' isDisabled={isLoading} isLoading={isLoading}>{t("InvitationForm.signUpButton")}</BasicButton>
+                    <BasicButton type='submit' isDisabled={isLoading} isLoading={isLoading}>{t("common:signUp")}</BasicButton>
                 </Form>
             }
         </Formik>

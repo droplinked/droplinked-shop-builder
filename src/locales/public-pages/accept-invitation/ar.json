@@ -7,8 +7,6 @@
     "emailLabel": "البريد الإلكتروني",
     "passwordLabel": "كلمة المرور",
     "repeatPasswordLabel": "تأكيد كلمة المرور",
-    "signUpButton": "سجّل",
-    "loadingText": "جارٍ التحميل...",
     "validations": {
       "fieldRequired": "خطأ في البريد الإلكتروني. يرجى التحقق والمحاولة مرة أخرى.",
       "invalidEmail": "يرجى إدخال بريد إلكتروني صالح.",

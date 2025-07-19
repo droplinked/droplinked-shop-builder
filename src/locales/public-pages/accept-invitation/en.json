@@ -7,8 +7,6 @@
     "emailLabel": "Email",
     "passwordLabel": "Password",
     "repeatPasswordLabel": "Repeat Password",
-    "signUpButton": "Sign up",
-    "loadingText": "Loading...",
     "validations": {
       "fieldRequired": "Incorrect email. Please check it and try again.",
       "invalidEmail": "Please enter a valid email address.",
