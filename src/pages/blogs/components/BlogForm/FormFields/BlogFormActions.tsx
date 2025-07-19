@@ -19,7 +19,7 @@ function BlogFormActions() {
                 isDisabled={isSubmitting}
                 onClick={() => navigate("/analytics/blogs")}
             >
-                {t("BlogFormActions.discard")}
+                {t("common:discard")}
             </AppButton>
             <AppButton
                 isLoading={isSubmitting}

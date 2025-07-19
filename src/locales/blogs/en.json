@@ -12,8 +12,7 @@
       "status": "Status"
     },
     "status": {
-      "published": "Published",
-      "draft": "Draft"
+      "published": "Published"
     },
     "emptyState": {
       "message": "Publish a new blog post to boost SEO and engage audiences."
@@ -21,9 +20,7 @@
   },
   "BlogTableActionMenu": {
     "actions": {
-      "publish": "Publish",
-      "draft": "Draft",
-      "share": "Share"
+      "publish": "Publish"
     },
     "notifications": {
       "linkCopied": "Link copied to clipboard"
@@ -115,7 +112,6 @@
     }
   },
   "BlogFormActions": {
-    "discard": "Discard",
     "publish": "Publish",
     "saveDraft": "Save as Draft"
   },

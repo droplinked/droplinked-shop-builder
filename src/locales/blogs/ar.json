@@ -12,8 +12,7 @@
       "status": "الحالة"
     },
     "status": {
-      "published": "منشورة",
-      "draft": "مسودة"
+      "published": "منشورة"
     },
     "emptyState": {
       "message": "انشر مشاركة جديدة في المدونة لتعزيز تحسين محركات البحث وجذب الجمهور."
@@ -21,9 +20,7 @@
   },
   "BlogTableActionMenu": {
     "actions": {
-      "publish": "نشر",
-      "draft": "تحويل إلى مسودة",
-      "share": "مشاركة"
+      "publish": "نشر"
     },
     "notifications": {
       "linkCopied": "تم نسخ الرابط إلى الحافظة"
@@ -115,7 +112,6 @@
     }
   },
   "BlogFormActions": {
-    "discard": "تجاهل",
     "publish": "نشر",
     "saveDraft": "حفظ كمسودة"
   },

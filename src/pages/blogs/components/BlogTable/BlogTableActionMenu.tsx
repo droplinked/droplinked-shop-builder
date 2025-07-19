@@ -34,12 +34,12 @@ function BlogTableActionMenu({ blogPost }: Props) {
     const actions = [
         {
             icon: isVisible ? <ArchiveMd color='#fff' /> : <DoublecheckMd color='#fff' />,
-            title: isVisible ? t("BlogTableActionMenu.actions.draft") : t("BlogTableActionMenu.actions.publish"),
+            title: isVisible ? t('common:draft') : t("BlogTableActionMenu.actions.publish"),
             onClick: onChangeStatusOpen
         },
         {
             icon: <ShareMd color='#fff' />,
-            title: t("BlogTableActionMenu.actions.share"),
+            title: t("common:share"),
             onClick: copyBlogLink
         },
         {

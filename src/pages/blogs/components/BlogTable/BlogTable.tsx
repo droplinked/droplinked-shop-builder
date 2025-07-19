@@ -4,14 +4,13 @@ import { EditLg } from 'assets/icons/Action/Edit/EditLg'
 import AppImage from 'components/common/image/AppImage'
 import AppBadge from 'components/redesign/badge/AppBadge'
 import Table from 'components/redesign/table/Table'
-import { Blog } from 'services/blog/interfaces'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import useBlogs from 'pages/blogs/hooks/useBlogs'
 import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Blog } from 'services/blog/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import BlogTableActionMenu from './BlogTableActionMenu'
-import BlogTableEmptyState from './BlogTableEmptyState'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     searchTerm: string
@@ -52,7 +51,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'createdAt',
-            header: t("BlogTable.columns.date"),
+            header: t("common:date"),
             cell: info => {
                 const date = new Date(info.getValue() as string)
 
@@ -61,7 +60,7 @@ function BlogTable({ searchTerm }: Props) {
         },
         {
             accessorKey: 'isVisible',
-            header: t("BlogTable.columns.status"),
+            header: t("common:status"),
             cell: info => {
                 const isVisible = info.getValue() as boolean
                 const text = isVisible ? t("BlogTable.status.published") : t("BlogTable.status.draft")
@@ -82,8 +81,6 @@ function BlogTable({ searchTerm }: Props) {
             </Flex>
         )
     }
-
-    return <BlogTableEmptyState />
 
     return (
         <Table
