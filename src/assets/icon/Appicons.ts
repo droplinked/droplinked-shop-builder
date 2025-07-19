@@ -1,9 +1,3 @@
-import { ReactComponent as ColorfulYouTube } from './Colorful-YouTube.svg';
-import { ReactComponent as ColorfulDiscord } from './ColorfulDiscord.svg';
-import { ReactComponent as ColorfulInstagram } from './ColorfulInstagram.svg';
-import { ReactComponent as ColorfulLinkedin } from './ColorfulLinkedin.svg';
-import { ReactComponent as ColorfulTelegram } from './ColorfulTelegram.svg';
-import { ReactComponent as ColorfulXTwitter } from './ColorfulX-Twitter.svg';
 import { ReactComponent as Invoice } from './Invoice.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as PremiumPlanGreenStarIcon } from './PremiumPlanGreenStarIcon.svg';
@@ -505,12 +499,6 @@ const AppIcons = {
   Watch,
   PremiumPlanGreenStarIcon,
   Bitlayer,
-  ColorfulXTwitter,
-  ColorfulDiscord,
-  ColorfulTelegram,
-  ColorfulInstagram,
-  ColorfulYouTube,
-  ColorfulLinkedin,
   DROP_LINKED_LOGO,
   Soon,
   SideBarQuests,
