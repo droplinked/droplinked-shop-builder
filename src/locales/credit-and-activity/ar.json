@@ -1,35 +1,50 @@
 {
-    "header": {
+    "CreditsAndActivity": {
         "title": "الرصيد ونشاط الحساب",
-        "subtitle": "إدارة رصيد الحساب ومراجعة النشاط على السلسلة.",
+        "subtitle": "إدارة رصيد الحساب ومراجعة النشاط على السلسلة."
+    },
+    "TabsContent": {
         "tabTitle": "إدارة الرصيد"
     },
+    "CreditManagement": {},
+    "AccountBalance": {},
+    "ActionButtons": {
+        "addCredit": "إضافة رصيد"
+    },
+    "BalanceDisplay": {},
+    "OverallTransactionsDisplay": {},
+    "ProgressBar": {},
+    "StatusBadge": {
+        "completed": "مكتملة",
+        "failed": "فاشلة",
+        "pending": "قيد الانتظار"
+    },
+    "TransactionsTable": {},
+    "ResponsiveTable": {
+        "columns": {
+            "amount": "المبلغ",
+            "transactionId": "رقم العملية"
+        }
+    },
+    "TransactionCard": {
+        "card": {
+            "amount": "المبلغ",
+            "transactionId": "رقم العملية"
+        }
+    },
+    "TypeColumn": {},
+    "TransactionsCards": {},
+    "MultiSelectMenu": {},
     "creditManagement": {
         "accountBalance": {
-            "title": "رصيد الحساب",
-            "addCredit": "إضافة رصيد"
+            "title": "رصيد الحساب"
         },
         "transactions": {
             "inbound": "واردة",
             "outbound": "صادرة"
         }
     },
-    "multiSelectMenu": {
-        "type": "نوع العملية"
-    },
     "transactionTable": {
-        "columns": {
-            "type": "النوع",
-            "amount": "المبلغ",
-            "date": "التاريخ",
-            "status": "الحالة",
-            "transactionId": "رقم العملية"
-        },
-        "card": {
-            "amount": "المبلغ",
-            "date": "التاريخ",
-            "transactionId": "رقم العملية"
-        },
         "status": {
             "success": "ناجحة",
             "pending": "قيد الانتظار",

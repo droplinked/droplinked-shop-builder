@@ -6,12 +6,14 @@ import { IDetailedTransaction } from 'services/credit/interfaces'
 import { formatDateToLongStyle } from 'utils/helpers'
 import StatusBadge from '../StatusBadge'
 import TypeColumn from './TypeColumn'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface TransactionCardProps {
     transaction?: IDetailedTransaction
 }
 
 export default function TransactionCard({ transaction }: TransactionCardProps) {
+    const { t } = useLocaleResources("creditsAndActivity")
     const { amount, createdAt, id, type, amountType, status } = transaction ?? {}
 
     return (
@@ -51,17 +53,17 @@ export default function TransactionCard({ transaction }: TransactionCardProps) {
                 p={4}
                 bg="neutral.gray.1000"
             >
-                <InfoRow label={t("transactionTable.card.amount")}>
+                <InfoRow label={t("TransactionCard.card.amount")}>
                     <FormattedPrice price={amount} />
                 </InfoRow>
 
-                <InfoRow label={t("transactionTable.card.date")}>
+                <InfoRow label={t("common:date")}>
                     <Text color="text.white" fontSize={14}>
                         {createdAt ? formatDateToLongStyle(new Date(createdAt)) : '—'}
                     </Text>
                 </InfoRow>
 
-                <InfoRow label={t("transactionTable.card.transactionId")}>
+                <InfoRow label={t("TransactionCard.card.transactionId")}>
                     <Text color="text.white" fontSize={14}>
                         {id || '—'}
                     </Text>

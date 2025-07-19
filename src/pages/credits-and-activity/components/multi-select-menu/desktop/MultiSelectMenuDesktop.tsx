@@ -22,7 +22,7 @@ export default function MultiSelectMenuDesktop({ items }: Props) {
             <MenuButton onClick={onOpen} ml={"auto"}>
                 <Flex {...styles.menuButton} justifyContent="space-between" alignItems="center" cursor="pointer">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize={14} fontWeight={400}>
-                        {t("multiSelectMenu.type")}
+                        {t("common:type")}
                     </AppTypography>
                     <AppIcons.SelectChevronDown />
                 </Flex>

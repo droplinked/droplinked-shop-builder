@@ -33,27 +33,27 @@ export default function TransactionsTable() {
         {
             accessorKey: "type",
 
-            header: t("transactionTable.columns.type"),
+            header: t("common:type"),
             cell: (info) => <TypeColumn type={info.getValue() as string} amountType={info.row.original.amountType} />,
         },
         {
             accessorKey: "amount",
-            header: t("transactionTable.columns.amount"),
+            header: t("ResponsiveTable.columns.amount"),
             cell: (info) => <FormattedPrice price={info.getValue() as number} fontSize={16} />,
         },
         {
             accessorKey: "createdAt",
-            header: t("transactionTable.columns.date"),
+            header: t("common:date"),
             cell: (info) => formatDateToLongStyle(new Date(info.getValue() as string))
         },
         {
             accessorKey: "status",
-            header: t("transactionTable.columns.status"),
+            header: t("common:status"),
             cell: (info) => <StatusBadge status={info.getValue() as "SUCCESS" | "FAILED"} />,
         },
         {
             accessorKey: "id",
-            header: t("transactionTable.columns.transactionId"),
+            header: t("ResponsiveTable.columns.transactionId"),
             cell: (info) => <Text color="text.white" userSelect="all">{info.getValue() as string ?? "-"}</Text>
         }
     ]

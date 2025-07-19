@@ -1,34 +1,50 @@
 {
-    "header": {
+    "CreditsAndActivity": {
         "title": "Credits and Account Activity",
         "subtitle": "Manage account credits and review onchain activity."
     },
+    "TabsContent": {
+        "tabTitle": "Credit Management"
+    },
+    "CreditManagement": {},
+    "AccountBalance": {},
+    "ActionButtons": {
+        "addCredit": "Add Credit"
+    },
+    "BalanceDisplay": {},
+    "OverallTransactionsDisplay": {},
+    "ProgressBar": {},
+    "StatusBadge": {
+        "completed": "Completed",
+        "failed": "Failed",
+        "pending": "Pending"
+    },
+    "TransactionsTable": {},
+    "ResponsiveTable": {
+        "columns": {
+            "amount": "Amount",
+            "transactionId": "Transaction ID"
+        }
+    },
+    "TransactionCard": {
+        "card": {
+            "amount": "Amount",
+            "transactionId": "Transaction ID"
+        }
+    },
+    "TypeColumn": {},
+    "TransactionsCards": {},
+    "MultiSelectMenu": {},
     "creditManagement": {
         "accountBalance": {
-            "title": "Account Balance",
-            "addCredit": "Add Credit"
+            "title": "Account Balance"
         },
         "transactions": {
             "inbound": "Inbound",
             "outbound": "Outbound"
         }
     },
-    "multiSelectMenu": {
-        "type": "Type"
-    },
     "transactionTable": {
-        "columns": {
-            "type": "Type",
-            "amount": "Amount",
-            "date": "Date",
-            "status": "Status",
-            "transactionId": "Transaction ID"
-        },
-        "card": {
-            "amount": "Amount",
-            "date": "Date",
-            "transactionId": "Transaction ID"
-        },
         "status": {
             "success": "Success",
             "pending": "Pending",

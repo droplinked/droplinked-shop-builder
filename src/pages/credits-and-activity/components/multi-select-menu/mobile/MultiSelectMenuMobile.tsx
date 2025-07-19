@@ -22,7 +22,7 @@ export default function MultiSelectMenuMobile({ items }: Props) {
         <Box width="100%">
             <Flex {...styles.menuButton} onClick={onOpen} justifyContent="space-between" alignItems="center" cursor="pointer">
                 <AppTypography color="text.subtext.placeholder.dark" fontSize={14} fontWeight={400}>
-                    {t("multiSelectMenu.type")}
+                    {t("common:type")}
                 </AppTypography>
                 <AppIcons.SelectChevronDown />
             </Flex>
@@ -30,7 +30,7 @@ export default function MultiSelectMenuMobile({ items }: Props) {
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                title={t("multiSelectMenu.type")}
+                title={t("common:type")}
                 placement="bottom"
                 drawerHeaderStyle={{ padding: 0, px: 4, py: 4, paddingBottom: 4, gap: 4, mb: 0.5 }}
                 headingStyle={{ fontSize: 14, fontWeight: 700, color: "#FFF" }}

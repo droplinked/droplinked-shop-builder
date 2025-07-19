@@ -8,7 +8,7 @@ export default function TabsContent() {
 
     const tabs = [
         {
-            title: t("header.tabTitle"),
+            title: t("TabsContent.tabTitle"),
             content: <CreditManagement />
         },
     ]

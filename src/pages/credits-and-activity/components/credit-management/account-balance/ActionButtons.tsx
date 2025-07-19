@@ -29,7 +29,7 @@ export const ActionButtons = ({ isLoading, handleRefetchData }: Props) => {
                     isLoading={isLoading}
                     onClick={onOpen}
                 >
-                    {t("creditManagement.accountBalance.addCredit")}
+                    {t("ActionButtons.addCredit")}
                 </AppButton>
             </Flex>
             <AddBalanceModal isOpen={isOpen} onClose={onClose} handleRefetch={handleRefetchData} />

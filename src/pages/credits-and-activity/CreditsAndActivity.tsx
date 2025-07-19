@@ -21,7 +21,7 @@ export default function CreditsAndActivity() {
 
     return (
         <PageGrid.Root>
-            <PageGrid.Header title={t("header.title")} description={t("header.subtitle")} />
+            <PageGrid.Header title={t("CreditsAndActivity.title")} description={t("CreditsAndActivity.subtitle")} />
             <TabsContent />
         </PageGrid.Root>
     )
