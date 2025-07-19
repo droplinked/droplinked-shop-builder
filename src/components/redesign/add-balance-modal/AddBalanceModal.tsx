@@ -4,6 +4,7 @@ import AppModal from 'components/redesign/modal/AppModal';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import DroplinkedPaymentForm from 'components/redesign/payment/DroplinkedPaymentForm';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import React, { useState } from 'react';
 import BalanceModalBody from './BalanceModalBody';
 
@@ -27,6 +28,7 @@ interface Props {
 export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Props) {
     const [paymentData, setPaymentData] = useState({ clientSecret: null, amount: 0 })
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("common")
 
     const handleSetPayment = (clientSecret: string, amount: number) => setPaymentData({ clientSecret, amount })
 
@@ -38,13 +40,13 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
     const handleSuccessPayment = async () => {
         onClose()
         setPaymentData({ clientSecret: null, amount: null })
-        showToast({ message: "Payment confirmed! Your credit has been updated successfully", type: 'success' });
+        showToast({ message: t("AddBalanceModal.paymentConfirmed"), type: 'success' });
         handleRefetch()
     }
 
     const handleError = (error: any) => {
         console.error("Payment failed:", error);
-        showToast({ message: "Payment failed. Please try again.", type: 'error' });
+        showToast({ message: t("AddBalanceModal.paymentFailed"), type: 'error' });
     }
 
     return (
@@ -54,9 +56,9 @@ export default function AddBalanceModal({ isOpen, onClose, handleRefetch }: Prop
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                title='Add Credit'
+                title={t("AddBalanceModal.title")}
                 icon={<AppIcons.HeaderCreditCard />}
-                description='Top up the account balance to pay for digital coupons, offers and monthly plan services.'
+                description={t("AddBalanceModal.description")}
             />
             {paymentData.clientSecret ? (
                 <ModalBody px={{ base: 4, md: 8 }} py={4}>

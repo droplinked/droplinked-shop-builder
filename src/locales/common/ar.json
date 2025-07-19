@@ -124,6 +124,18 @@
     }
   },
 
+  "AddBalanceModal": {
+    "title": "إضافة رصيد",
+    "description": "أضف رصيداً للحساب لدفع الكوبونات الرقمية والعروض وخدمات الخطة الشهرية.",
+    "paymentConfirmed": "تم تأكيد الدفع! تم تحديث رصيدك بنجاح",
+    "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
+  },
+  "BalanceModalBody": {
+    "amount": "المبلغ",
+    "placeholder": "100",
+    "pay": "دفع",
+    "genericError": "عذراً! حدث خطأ ما"
+  },
   "proPlan": {
     "crossmint": {
       "title": "تم تفعيل الخطة الاحترافية مجانًا!",

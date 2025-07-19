@@ -125,6 +125,18 @@
     }
   },
 
+  "AddBalanceModal": {
+    "title": "Add Credit",
+    "description": "Top up the account balance to pay for digital coupons, offers and monthly plan services.",
+    "paymentConfirmed": "Payment confirmed! Your credit has been updated successfully",
+    "paymentFailed": "Payment failed. Please try again."
+  },
+  "BalanceModalBody": {
+    "amount": "Amount",
+    "placeholder": "100",
+    "pay": "Pay",
+    "genericError": "Oops! Something went wrong"
+  },
   "proPlan": {
     "crossmint": {
       "title": "Free Pro Plan Unlocked!",
