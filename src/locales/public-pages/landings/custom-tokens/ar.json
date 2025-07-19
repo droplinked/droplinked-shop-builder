@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "CustomTokensHero": {
     "title": "فائدة حقيقية للرموز",
     "subtitle": "خيارات دفع الرموز المخصصة التي تعزز الاستخدام والقيمة عبر النظم البيئية",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "CustomTokensFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "فائدة من اليوم الأول",
     "headingSubtitle": "تمكين المجتمعات من اعتماد الرموز المخصصة لشراء المنتجات والخدمات، \n مما يعزز الفائدة وحالات الاستخدام المختلفة",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "المكدس المعياري",
-    "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر دروبلينكد أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري",
+  "CustomTokensModularStack": {
     "cards": {
       "gameDevelopers": {
         "title": "مطورو الألعاب والشركات الناشئة",

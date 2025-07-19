@@ -5,26 +5,24 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/custom-tokens/en.json'
-import localAr from 'locales/public-pages/landings/custom-tokens/ar.json'
 
 function CustomTokensHero() {
-    const { t } = useLocaleResources('public-pages/landings/custom-tokens', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('public-pages/landings/custom-tokens')
 
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('CustomTokensHero.title')}
+            subtitle={t('CustomTokensHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('CustomTokensHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('CustomTokensHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

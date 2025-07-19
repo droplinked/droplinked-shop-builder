@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "CustomTokensHero": {
     "title": "True Utility for Tokens",
     "subtitle": "Custom token payment options that drive usage and value across ecosystems",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "CustomTokensFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Day 0 Utility",
     "headingSubtitle": "Enable communities to adopt custom tokens to purchase products and services, \n boosting utility and different use cases",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "CustomTokensModularStack": {
     "cards": {
       "gameDevelopers": {
         "title": "Game Developers and Startups",
