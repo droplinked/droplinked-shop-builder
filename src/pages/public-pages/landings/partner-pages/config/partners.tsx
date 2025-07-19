@@ -73,13 +73,13 @@ const buildSections = (
 export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> => ({
   d3: {
     id: 'd3',
-    name: t('partners.d3.name'),
-    displayName: t('partners.d3.displayName'),
-    trialMonths: Number(t('partners.d3.trialMonths')) as 3 | 6 | 12,
+    name: t('PartnerConfig.d3.name'),
+    displayName: t('PartnerConfig.d3.displayName'),
+    trialMonths: Number(t('PartnerConfig.d3.trialMonths')) as 3 | 6 | 12,
     logo: D3Logo,
     hero: {
-      title: t('hero.d3.title'),
-      subtitle: t('hero.d3.subtitle'),
+      title: t('PartnerHero.d3.title'),
+      subtitle: t('PartnerHero.d3.subtitle'),
     },
     sections: buildSections(t, [
       { id: 'd3-features', component: <D3BentoGrids /> }
@@ -88,13 +88,13 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
 
   unstoppableDomains: {
     id: 'unstoppableDomains',
-    name: t('partners.unstoppableDomains.name'),
-    displayName: t('partners.unstoppableDomains.displayName'),
-    trialMonths: Number(t('partners.unstoppableDomains.trialMonths')) as 3 | 6 | 12,
+    name: t('PartnerConfig.unstoppableDomains.name'),
+    displayName: t('PartnerConfig.unstoppableDomains.displayName'),
+    trialMonths: Number(t('PartnerConfig.unstoppableDomains.trialMonths')) as 3 | 6 | 12,
     logo: UnstoppableDomainsLogo,
     hero: {
-      title: t('hero.unstoppableDomains.title'),
-      subtitle: t('hero.unstoppableDomains.subtitle'),
+      title: t('PartnerHero.unstoppableDomains.title'),
+      subtitle: t('PartnerHero.unstoppableDomains.subtitle'),
     },
     sections: buildSections(t, [
       { id: 'ud-features', component: <UDTldFeatures /> }
@@ -103,26 +103,26 @@ export const getPartnerConfigs = (t: TFunction): Record<string, PartnerConfig> =
 
   polygon: {
     id: 'polygon',
-    name: t('partners.polygon.name'),
-    displayName: t('partners.polygon.displayName'),
-    trialMonths: Number(t('partners.polygon.trialMonths')) as 3 | 6 | 12,
+    name: t('PartnerConfig.polygon.name'),
+    displayName: t('PartnerConfig.polygon.displayName'),
+    trialMonths: Number(t('PartnerConfig.polygon.trialMonths')) as 3 | 6 | 12,
     logo: PolygonLogo,
     hero: {
-      title: t('hero.polygon.title'),
-      subtitle: t('hero.polygon.subtitle'),
+      title: t('PartnerHero.polygon.title'),
+      subtitle: t('PartnerHero.polygon.subtitle'),
     },
     sections: buildSections(t, []),
   },
 
   crossmint: {
     id: 'crossmint',
-    name: t('partners.crossmint.name'),
-    displayName: t('partners.crossmint.displayName'),
-    trialMonths: Number(t('partners.crossmint.trialMonths')) as 3 | 6 | 12,
+    name: t('PartnerConfig.crossmint.name'),
+    displayName: t('PartnerConfig.crossmint.displayName'),
+    trialMonths: Number(t('PartnerConfig.crossmint.trialMonths')) as 3 | 6 | 12,
     logo: CrossmintLogo,
     hero: {
-      title: t('hero.crossmint.title'),
-      subtitle: t('hero.crossmint.subtitle'),
+      title: t('PartnerHero.crossmint.title'),
+      subtitle: t('PartnerHero.crossmint.subtitle'),
     },
     sections: buildSections(t, []),
   }

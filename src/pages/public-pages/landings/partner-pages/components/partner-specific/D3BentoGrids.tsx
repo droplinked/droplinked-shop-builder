@@ -1,22 +1,17 @@
 // D3-specific features section with bento grid layout
-import React from 'react'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
-import { Cards } from 'pages/public-pages/landings/_shared/components/card'
+import { CoreLogo } from 'assets/logo/NetworkAndTokens/Core/CoreLogo'
 import { ShibLogo } from 'assets/logo/NetworkAndTokens/Shib/ShibLogo'
 import { VictionLogo } from 'assets/logo/NetworkAndTokens/Viction/VictionLogo'
-import { CoreLogo } from 'assets/logo/NetworkAndTokens/Core/CoreLogo'
 import { ApeCoinLogo } from 'assets/logo/NetworkAndTokens/apecoin/apecoin'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import { Cards } from 'pages/public-pages/landings/_shared/components/card'
 import { CardData } from 'pages/public-pages/landings/_shared/components/card/Cards'
-import localEn from 'locales/public-pages/landings/partner-pages/en.json'
-import localAr from 'locales/public-pages/landings/partner-pages/ar.json'
+import React from 'react'
+import SectionContainer from '../../../_shared/components/SectionContainer/SectionContainer'
 import Features from '../../assets/Features'
 
 export default function D3BentoGrids() {
-    const { t } = useLocaleResources('public-pages/landings/partner-pages', {
-        en: localEn,
-        ar: localAr
-    });
+    const { t } = useLocaleResources('public-pages/landings/partner-pages');
 
     const cardsData: CardData[] = [
         {
@@ -44,22 +39,22 @@ export default function D3BentoGrids() {
             iconBackground: "#F005001A"
         },
         {
-            icon: <CoreLogo/>,
+            icon: <CoreLogo />,
             title: "Core Chain",
             description: ".core",
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" },
             backgroundImage: "https://upload-file-droplinked.s3.amazonaws.com/9a13e6980076cf1772ec176be9de67163aecb451b36d5536109449eaf70b0fbc.png",
             iconBackground: "#FF92111A"
         },
-       
+
     ]
 
     return (
         <SectionContainer
             icon='sparkle'
-            sectionTitle={t('d3Features.sectionTitle')}
-            headingTitle={t('d3Features.headingTitle')}
-            headingSubtitle={t('d3Features.headingSubtitle')}
+            sectionTitle={t('D3BentoGrids.sectionTitle')}
+            headingTitle={t('D3BentoGrids.headingTitle')}
+            headingSubtitle={t('D3BentoGrids.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards
@@ -72,6 +67,6 @@ export default function D3BentoGrids() {
             />
         </SectionContainer>
 
-        
+
     )
 } 

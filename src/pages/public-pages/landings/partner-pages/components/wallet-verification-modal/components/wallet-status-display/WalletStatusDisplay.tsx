@@ -2,13 +2,11 @@ import { Box } from "@chakra-ui/react";
 import { usePartnerLanding } from "pages/public-pages/landings/partner-pages/context/PartnerLandingContext";
 import React from "react";
 import { IWalletStatusProps } from "utils/helpers/walletConnectionUtils";
-import BackgroundSVG from "./BackgroundSVG";
 import AnimatedCircles from "./AnimatedCircles";
+import BackgroundSVG from "./BackgroundSVG";
+import CenterIcon from "./CenterIcon";
 import LoadingSpinner from "./LoadingSpinner";
 import SideIcons from "./SideIcons";
-import CenterIcon from "./CenterIcon";
-
-
 
 const WalletStatusDisplay: React.FC<IWalletStatusProps> = ({ variant = "green", isLoading = false, icon = "wallet" }) => {
     const isGreen = variant === "green";
@@ -31,24 +29,24 @@ const WalletStatusDisplay: React.FC<IWalletStatusProps> = ({ variant = "green", 
             justifyContent="center"
         >
             <BackgroundSVG variant={variant} color={color} />
-            
+
             <AnimatedCircles isGreen={isGreen} isLoading={isLoading} color={color} />
-            
-            <LoadingSpinner 
-                isGreen={isGreen} 
-                isLoading={isLoading} 
-                centerIconSize={centerIconSize} 
-                centerIconSizeSm={centerIconSizeSm} 
+
+            <LoadingSpinner
+                isGreen={isGreen}
+                isLoading={isLoading}
+                centerIconSize={centerIconSize}
+                centerIconSizeSm={centerIconSizeSm}
             />
 
-            <SideIcons 
+            <SideIcons
                 isGreen={isGreen}
                 color={color}
                 partnerName={partnerName}
                 sideIconsSize={sideIconsSize}
                 sideIconsSizeSm={sideIconsSizeSm}
             >
-                <CenterIcon 
+                <CenterIcon
                     isGreen={isGreen}
                     isLoading={isLoading}
                     color={color}

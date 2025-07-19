@@ -3,6 +3,7 @@ import { Flex } from '@chakra-ui/react';
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd';
 import AppButton from 'components/redesign/button/AppButton';
 import { StepsType } from '../../../context/WalletVerificationContext';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ModalButtonsProps {
   currentStep: StepsType;
@@ -19,17 +20,19 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
   onResetStep,
   onClaimNow,
 }) => {
+  const { t } = useLocaleResources('public-pages/landings/partner-pages');
+
   const getButtonConfig = () => {
     switch (currentStep) {
       case 'connect':
         return {
           left: {
-            label: 'Close',
+            label: t('close'),
             onClick: onClose,
             styles: {},
           },
           right: {
-            label: 'Check Wallet Eligibility',
+            label: t('ModalButtons.checkEligibilityLabel'),
             onClick: onConnectWallet,
             rightIcon: <ArrowrightMd />,
             styles: {},
@@ -38,8 +41,8 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
       case 'loading':
         return {
           left: {
-            label: 'Close',
-            onClick: () => {},
+            label: t('close'),
+            onClick: () => { },
             styles: {
               background: '#292929',
               color: '#737373',
@@ -47,8 +50,8 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
             },
           },
           right: {
-            label: 'Check Wallet Eligibility',
-            onClick: () => {},
+            label: t('ModalButtons.checkEligibilityLabel'),
+            onClick: () => { },
             rightIcon: <ArrowrightMd color="#737373" />,
             styles: {
               background: '#292929',
@@ -62,7 +65,7 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
         return {
           left: null,
           right: {
-            label: 'Return',
+            label: t('return'),
             onClick: onResetStep,
             styles: {},
           },
@@ -71,13 +74,13 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
         return {
           left: null,
           right: {
-            label: 'Claim Now',
+            label: t('claimNow'),
             onClick: onClaimNow,
             styles: {},
           },
         };
       default:
-        return { left: null, right: { label: '', onClick: () => {}, styles: {} } };
+        return { left: null, right: { label: '', onClick: () => { }, styles: {} } };
     }
   };
 

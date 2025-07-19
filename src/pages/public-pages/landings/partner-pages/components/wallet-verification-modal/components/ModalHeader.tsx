@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import { StepsType } from '../../../context/WalletVerificationContext';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface ModalHeaderProps {
   currentStep: StepsType;
@@ -9,31 +10,16 @@ interface ModalHeaderProps {
 }
 
 const ModalHeader: React.FC<ModalHeaderProps> = ({ currentStep, trialMonths }) => {
+  const { t } = useLocaleResources('public-pages/landings/partner-pages');
+
   const getStepContent = () => {
-    switch (currentStep) {
-      case 'connect':
-        return {
-          title: 'Connect Wallet for Verification',
-          description: `Connect your wallet to check if you're eligible for the ${trialMonths} month Pro Plan`
-        };
-      case 'loading':
-        return {
-          title: 'Verifying Wallet Status',
-          description: 'Please wait while your wallet is verified for eligibility.'
-        };
-      case 'error':
-        return {
-          title: 'Wallet Verification Unsuccessful',
-          description: "It looks like your wallet doesn't meet the criteria. Unfortunately, you're not eligible to claim the offer."
-        };
-      case 'done':
-        return {
-          title: 'Congrats, Wallet Offer Verified',
-          description: `You can now create an account and enjoy ${trialMonths} months of a Pro Plan.`
-        };
-      default:
-        return { title: '', description: '' };
-    }
+    const titleKey = `ModalHeader.${currentStep}.title`;
+    const descriptionKey = `ModalHeader.${currentStep}.description`;
+
+    return {
+      title: t(titleKey, { trialMonths }),
+      description: t(descriptionKey, { trialMonths })
+    };
   };
 
   const { title, description } = getStepContent();

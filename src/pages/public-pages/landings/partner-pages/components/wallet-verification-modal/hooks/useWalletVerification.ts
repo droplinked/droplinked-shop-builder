@@ -1,5 +1,6 @@
 import { ChainWallet, DropWeb3, Network, Web3Actions } from 'droplinked-web3';
 import useAppToast from 'hooks/toast/useToast';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import { useMutation } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 import { IPostUserVerifyPartner } from 'services/user/interfaces';
@@ -10,10 +11,11 @@ import { useWalletVerificationContext } from '../../../context/WalletVerificatio
 
 export const useWalletVerification = () => {
 	const { showToast } = useAppToast();
+	const { t } = useLocaleResources('public-pages/landings/partner-pages');
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { partnerName } = usePartnerLanding();
-    const { methods: { updateStates }} = useWalletVerificationContext();
-    
+	const { methods: { updateStates } } = useWalletVerificationContext();
+
 	const mutation = useMutation(async (props: IPostUserVerifyPartner) => {
 		switch (partnerName) {
 			case 'D3':
@@ -66,7 +68,7 @@ export const useWalletVerification = () => {
 					if (error?.message === 'No EVM Wallet is installed') {
 						showToast({
 							type: 'error',
-							message: 'Metamask wallet is not installed!',
+							message: t('useWalletVerification.metamaskNotInstalled'),
 						});
 						updateStates({
 							key: 'currentStep',
@@ -101,7 +103,7 @@ export const useWalletVerification = () => {
 					if (error?.message === 'No UNSTOPPABLEDOMAIN Wallet is installed') {
 						showToast({
 							type: 'error',
-							message: 'Unstoppable Wallet is not installed!',
+							message: t('useWalletVerification.unstoppableNotInstalled'),
 						});
 						updateStates({
 							key: 'currentStep',

@@ -2,15 +2,17 @@ import React from 'react'
 import ClaimNowButton from './ClaimNowButton'
 import FinalCta from '../../_shared/components/FinalCta'
 import { usePartnerLanding } from '../context/PartnerLandingContext'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 export default function ClaimNow() {
     const { trialMonths } = usePartnerLanding();
+    const { t } = useLocaleResources('public-pages/landings/partner-pages');
 
     return (
         <FinalCta
-            sectionTitle='CLAIM NOW'
-            headingTitle={`Free ${trialMonths} Month Pro Plan`}
-            headingSubtitle={`Unlock ${trialMonths} months of the Pro Plan absolutely free!\nRedeem the exclusive offer today.`}
+            sectionTitle={t('ClaimNow.sectionTitle')}
+            headingTitle={t('ClaimNow.headingTitle', { trialMonths })}
+            headingSubtitle={t('ClaimNow.headingSubtitle', { trialMonths })}
             subTitleElement={<ClaimNowButton />}
         />
     )

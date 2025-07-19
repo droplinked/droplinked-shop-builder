@@ -3,12 +3,15 @@ import { Box, Flex } from '@chakra-ui/react';
 import { DashboardSm } from 'assets/icons/System/Dashboard/DashboardSm';
 import { Star2Sm } from 'assets/icons/System/Star2/Star2Sm';
 import AppTypography from 'components/common/typography/AppTypography';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface FeatureListProps {
   trialMonths: number;
 }
 
 const FeatureList: React.FC<FeatureListProps> = ({ trialMonths }) => {
+  const { t } = useLocaleResources('public-pages/landings/partner-pages');
+
   return (
     <Flex
       flexDir={{ base: 'column', md: 'row' }}
@@ -22,7 +25,7 @@ const FeatureList: React.FC<FeatureListProps> = ({ trialMonths }) => {
           <Star2Sm color="#2BCFA1" />
         </Box>
         <AppTypography color="#FFF" fontSize="14px" fontWeight="400">
-          {trialMonths} Month Pro Plan
+          {t('FeatureList.proPlanLabel', { trialMonths })}
         </AppTypography>
       </Flex>
       <Flex alignItems="center" gap="12px" flex="1 0 0">
@@ -30,7 +33,7 @@ const FeatureList: React.FC<FeatureListProps> = ({ trialMonths }) => {
           <DashboardSm color="#2BCFA1" />
         </Box>
         <AppTypography color="#FFF" fontSize="14px" fontWeight="400">
-          Instant Verification
+          {t('FeatureList.instantVerificationLabel')}
         </AppTypography>
       </Flex>
     </Flex>
