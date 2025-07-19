@@ -20,6 +20,8 @@
   "discard": "تجاهل",
   "confirm": "تأكيد",
   "required": "مطلوب",
+  "optional": "اختياري",
+  "select": "اختر",
   "loading": "جاري التحميل...",
   "success": "تم بنجاح",
   "error": "حدث خطأ",
@@ -61,6 +63,7 @@
   "share": "مشاركة",
   "getStarted": "ابدأ الآن",
   "readyToGetStarted": "هل أنت مستعد للبدء؟",
+  "signUp": "إنشاء حساب",
   "signUpForFree": "اشترك مجانًا",
 
   "contactUs": "اتصل بنا",

@@ -20,6 +20,8 @@
   "discard": "Discard",
   "confirm": "Confirm",
   "required": "Required",
+  "optional": "Optional",
+  "select": "Select",
   "loading": "Loading...",
   "success": "Success",
   "error": "An error occurred",
@@ -61,6 +63,7 @@
   "share": "Share",
   "getStarted": "Get Started",
   "readyToGetStarted": "Ready to get started?",
+  "signUp": "Sign up",
   "signUpForFree": "Sign up for free",
 
   "contactUs": "Contact Us",
