@@ -23,10 +23,10 @@ function PaymentLinkSubmit() {
             setLoading(true)
             await updateProductLinkOptionsService(paymentLinkData)
             updateState({ key: 'shop', params: { ...shop, productLinkOptions: paymentLinkData } })
-            showToast({ message: t('components.submit.successMessage'), type: 'success' })
+            showToast({ message: t('PaymentLinkSubmit.successMessage'), type: 'success' })
         }
         catch (error) {
-            showToast({ message: t('components.submit.errorMessage'), type: 'error' })
+            showToast({ message: t('PaymentLinkSubmit.errorMessage'), type: 'error' })
         }
         finally {
             setLoading(false)
@@ -34,7 +34,7 @@ function PaymentLinkSubmit() {
     }
 
     return (
-        <BasicButton alignSelf={"flex-end"} isLoading={isLoading} isDisabled={isLoading} onClick={handleSubmit}>{t('components.submit.save')}</BasicButton>
+        <BasicButton alignSelf={"flex-end"} isLoading={isLoading} isDisabled={isLoading} onClick={handleSubmit}>{t('common:save')}</BasicButton>
     )
 }
 

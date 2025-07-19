@@ -1,6 +1,7 @@
 import { Flex, FormLabel, useRadio, useRadioGroup } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { ScreenSize } from '../hooks/usePreviewImages'
 

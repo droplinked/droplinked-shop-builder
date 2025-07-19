@@ -17,12 +17,12 @@ function PaymentLinkSettings() {
     const { paymentLinkData, updatePaymentLink } = useContext(PaymentLinkContext)
 
     return (
-        <PaymentLinkCard title={t('components.settings.title')}>
+        <PaymentLinkCard title={t('PaymentLinkSettings.title')}>
             <VariantsStyle />
             <Divider borderColor={"neutral.gray.700"} />
             <PaymentLinkSwitch
-                title={t('components.settings.additionalNote.title')}
-                description={t('components.settings.additionalNote.description')}
+                title={t('PaymentLinkSettings.additionalNote.title')}
+                description={t('PaymentLinkSettings.additionalNote.description')}
                 checked={paymentLinkData.additionalNote}
                 onChange={(checked: boolean) => updatePaymentLink('additionalNote', checked)}
             />
