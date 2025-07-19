@@ -44,7 +44,7 @@ function ProductOrderSkues() {
     )
 
     return (
-        <ProductOrderCard title={t("skues.title")}>
+        <ProductOrderCard title={t("ProductOrderSkues.title")}>
             {product ?
                 <Flex direction={"column"} gap={8}>
                     <Flex alignItems="center" gap={4}>

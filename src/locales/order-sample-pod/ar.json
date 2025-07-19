@@ -1,15 +1,17 @@
 {
-  "main": {
+  "ProductOrder": {
     "title": "طلب عينة منتج",
     "desc": "اختر منتجاتك للحصول على عينة."
   },
-  "skues": {
+  "ProductOrderCard": {},
+  "ProductOrderSkues": {
     "title": "المنتج",
     "productCost": "تكلفة المنتج",
     "variant": "المتغير",
     "quantity": "الكمية"
   },
-  "address": {
+  "productOrderSkuesModel": {},
+  "ProductOrderAddress": {
     "title": "عنوان الشحن",
     "firstName": "الاسم الأول",
     "lastName": "اسم العائلة",
@@ -18,19 +20,16 @@
     "country": "الدولة",
     "state": "المنطقة",
     "city": "المدينة",
-    "zip": "الرمز البريدي",
-    "next": "التالي",
-    "required": "مطلوب"
+    "zip": "الرمز البريدي"
   },
-  "shipments": {
+  "AddressModalModel": {},
+  "ProductOrderShipments": {
     "title": "طرق الشحن",
     "fulfillmentDate": "تاريخ التسليم",
-    "price": "السعر",
     "tax": "الضريبة",
-    "payWithStripe": "الدفع عبر Stripe",
-    "back": "رجوع"
+    "payWithStripe": "الدفع عبر Stripe"
   },
-  "payment": {
+  "PaymentModal": {
     "title": "الدفع",
     "successTitle": "تم تقديم الطلب بنجاح!",
     "successDesc": "تم تأكيد طلب العينة! اختيارك في الطريق.",
@@ -38,7 +37,6 @@
   },
   "errors": {
     "selectSku": "الرجاء اختيار المنتج",
-    "selectRate": "الرجاء اختيار طريقة الشحن",
-    "general": "حدث خطأ"
+    "selectRate": "الرجاء اختيار طريقة الشحن"
   }
 }

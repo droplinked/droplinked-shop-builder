@@ -34,8 +34,8 @@ function ProductOrder() {
                 <AppCard mini boxProps={{ padding: 0, background: "none" }}>
                     <Flex direction={"column"} color="#fff" gap={4}>
                         <Flex direction={"column"} gap={2}>
-                            <AppTypography fontSize="18px" fontWeight="bold">{t("main.title")}</AppTypography>
-                            <AppTypography fontSize="14px" color="#C2C2C2">{t("main.desc")}</AppTypography>
+                            <AppTypography fontSize="18px" fontWeight="bold">{t("ProductOrder.title")}</AppTypography>
+                            <AppTypography fontSize="14px" color="#C2C2C2">{t("ProductOrder.desc")}</AppTypography>
                         </Flex>
                         <ProductOrderSkues />
                         <ProductOrderAddress />

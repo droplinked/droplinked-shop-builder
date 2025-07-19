@@ -36,7 +36,7 @@ function ProductOrderShipments() {
 
     return shipmentRates && Object.keys(shipmentRates).length ? (
         <>
-            <ProductOrderCard title={t("shipments.title")}>
+            <ProductOrderCard title={t("ProductOrderShipments.title")}>
                 <Flex direction={"column"} gap={4}>
                     <RadioGroup className={classes.fullwidth} onChange={e => updateState('rateId', e)}>
                         <Flex direction={"column"} gap={4}>
@@ -47,12 +47,12 @@ function ProductOrderShipments() {
                                             <AppTypography fontSize="14px" fontWeight="600">{el.title}</AppTypography>
                                             <Flex justifyContent="space-between">
                                                 <Flex alignItems="center" gap="8px">
-                                                    <AppTypography color="neutral.gray.400">{t("shipments.fulfillmentDate")}</AppTypography>
+                                                    <AppTypography color="neutral.gray.400">{t("ProductOrderShipments.fulfillmentDate")}</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
                                                     <AppTypography>{el.delivery_estimation}</AppTypography>
                                                 </Flex>
                                                 <Flex alignItems="center" gap="8px">
-                                                    <AppTypography color="neutral.gray.400">{t("shipments.price")}</AppTypography>
+                                                    <AppTypography color="neutral.gray.400">{t("common:price")}</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
                                                     <AppTypography>{`${getFormattedPrice({ amount: el.price, toFixed: true })}`}</AppTypography>
                                                 </Flex>
@@ -72,7 +72,7 @@ function ProductOrderShipments() {
                         <BasicButton onClick={() => {
                             updateState('shipmentRates', [])
                             updateState('orderId', null)
-                        }} variant="outline">{t("shipments.back")}</BasicButton>
+                        }} variant="outline">{t("common:back")}</BasicButton>
                     </Flex>
                 </Flex>
             </ProductOrderCard >

@@ -38,7 +38,7 @@ namespace productOrderSkuesModel {
                 return {
                     _data: el,
                     variant: {
-                        caption: t("skues.variant"),
+                        caption: t("ProductOrderSkues.variant"),
                         value: (
                             <HStack alignItems="center">
                                 {option("color") && (
@@ -56,7 +56,7 @@ namespace productOrderSkuesModel {
                         ),
                     },
                     cost: {
-                        caption: t("skues.productCost"),
+                        caption: t("ProductOrderSkues.productCost"),
                         value: (
                             <AppTypography>
                                 {`${symbol}${convertPrice({
@@ -70,7 +70,7 @@ namespace productOrderSkuesModel {
                         ),
                     },
                     quantity: {
-                        caption: t("skues.quantity"),
+                        caption: t("ProductOrderSkues.quantity"),
                         value: (
                             <AppSelectBox
                                 isDisabled={!SkuesIDs.includes(el._id) || !!orderId}

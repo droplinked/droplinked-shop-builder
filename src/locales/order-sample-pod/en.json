@@ -1,15 +1,17 @@
 {
-  "main": {
+  "ProductOrder": {
     "title": "Order Sample Product",
     "desc": "Select your products to receive a sample."
   },
-  "skues": {
+  "ProductOrderCard": {},
+  "ProductOrderSkues": {
     "title": "Product",
     "productCost": "Product Cost",
     "variant": "Variant",
     "quantity": "Quantity"
   },
-  "address": {
+  "productOrderSkuesModel": {},
+  "ProductOrderAddress": {
     "title": "Shipping Address",
     "firstName": "First Name",
     "lastName": "Last Name",
@@ -18,19 +20,16 @@
     "country": "Country",
     "state": "State",
     "city": "City",
-    "zip": "Zip Code",
-    "next": "Next",
-    "required": "Required"
+    "zip": "Zip Code"
   },
-  "shipments": {
+  "AddressModalModel": {},
+  "ProductOrderShipments": {
     "title": "Shipping Methods",
     "fulfillmentDate": "Fulfillment Date",
-    "price": "Price",
     "tax": "Tax",
-    "payWithStripe": "Pay with Stripe",
-    "back": "Back"
+    "payWithStripe": "Pay with Stripe"
   },
-  "payment": {
+  "PaymentModal": {
     "title": "Payment",
     "successTitle": "Order Submitted!",
     "successDesc": "Sample order confirmed! Your selection is on its way.",
@@ -38,7 +37,6 @@
   },
   "errors": {
     "selectSku": "Please select a sku",
-    "selectRate": "Please select a rate method",
-    "general": "An error occurred"
+    "selectRate": "Please select a rate method"
   }
 }
