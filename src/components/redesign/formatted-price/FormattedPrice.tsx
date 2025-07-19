@@ -1,5 +1,6 @@
 import { Box, BoxProps, Text, TextProps } from "@chakra-ui/react"
 import { useCurrencyConverter } from "hooks/useCurrencyConverter/useCurrencyConverter"
+import useLocaleResources from "hooks/useLocaleResources/useLocaleResources"
 import React from "react"
 
 /**
@@ -20,17 +21,37 @@ interface Props extends TextProps {
 
 export default function FormattedPrice({ price, abbreviationProps, ...rest }: Props) {
     const { symbol, abbreviation, convertPrice } = useCurrencyConverter()
+    const { isRTL } = useLocaleResources("common")    
 
     // Convert and format the price
     const formattedPrice = formatPrice(convertPrice({ amount: price, toUSD: false }))
 
     return (
-        <Text color="#fff" {...rest}>
-            {symbol}
-            {formattedPrice}{" "}
-            <Box as="span" color="#B1B1B1" {...abbreviationProps}>
-                {abbreviation}
-            </Box>
+        <Text
+            color="neutral.white"
+            direction={isRTL ? "rtl" : "ltr"}
+            textAlign={isRTL ? "right" : "left"}
+            {...rest}
+        >
+            {isRTL ? (
+                <>
+                    <Box as="span" color="#B1B1B1" {...abbreviationProps}>
+                        {abbreviation}
+                    </Box>{" "}
+                    {formattedPrice}
+                    <Box as="span" mx="1">
+                        {symbol}
+                    </Box>
+                </>
+            ) : (
+                <>
+                    {symbol}
+                    {formattedPrice}{" "}
+                    <Box as="span" color="#B1B1B1" {...abbreviationProps}>
+                        {abbreviation}
+                    </Box>
+                </>
+            )}
         </Text>
     )
 }
