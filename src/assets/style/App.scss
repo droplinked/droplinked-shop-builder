@@ -50,8 +50,8 @@
     src: url(../fonts/inter/Inter-Black.ttf);
 }
 @font-face {
-    font-family: "AAAGoldenLotus Stg1_Ver1";
-    src: url(../fonts/golden-lotus/GoldenLotusRegular.ttf);
+    font-family: "NotoSansArabic-VariableFont_wdth,wght";
+    src: url(../fonts/noto-sans-arabic/NotoSansArabic-VariableFont_wdth,wght.ttf);
 }
 
 ::-webkit-scrollbar {
@@ -81,7 +81,7 @@ body {
 }
 
 [lang="ar"] * , [dir="rtl"] * {
-    font-family: "AAAGoldenLotus Stg1_Ver1" !important;
+    font-family: "NotoSansArabic-VariableFont_wdth,wght" !important;
 }
 
 [lang="en"] *, [dir="ltr"] * {
