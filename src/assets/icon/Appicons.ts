@@ -2,7 +2,6 @@ import { ReactComponent as Invoice } from './Invoice.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as PremiumPlanGreenStarIcon } from './PremiumPlanGreenStarIcon.svg';
 import { ReactComponent as FilterAction } from './action-filter.svg';
-import { ReactComponent as ActiveIcon } from './active.svg';
 import { ReactComponent as AddUser } from './add-user.svg';
 import { ReactComponent as AffiliateAddProduct } from './affiliate-add-product.svg';
 import { ReactComponent as AffiliateProductsArrow } from './affiliate-products-arrow.svg';
@@ -120,7 +119,6 @@ import { ReactComponent as HidedIcon } from './hidedIcon.svg';
 import { ReactComponent as Infinity } from './infinity.svg';
 import { ReactComponent as InfoIcon } from './info-icon.svg';
 import { ReactComponent as Info } from './info.svg';
-import { ReactComponent as InstagramOutlined } from './instagram-outlined.svg';
 import { ReactComponent as InvisibleIcon } from './invisible-icon.svg';
 import { ReactComponent as InvoiceCreated } from './invoice-created.svg';
 import { ReactComponent as InvoiceDiscount } from './invoice-discount.svg';
@@ -136,7 +134,6 @@ import { ReactComponent as Letter } from "./letter.svg";
 import { ReactComponent as Light } from './light.svg';
 import { ReactComponent as Like } from './like.svg';
 import { ReactComponent as Linea } from './linea.svg';
-import { ReactComponent as LinkedInOutlined } from './linkedin-outlined.svg';
 import { ReactComponent as Location } from './location.svg';
 import { ReactComponent as MagicWind } from './magic-wind.svg';
 import { ReactComponent as Maximize } from './maximize.svg';
@@ -225,10 +222,8 @@ import { ReactComponent as StripeS } from './stripe-s-icon.svg';
 import { ReactComponent as Stripe } from './stripe.svg';
 import { ReactComponent as Stacks } from './stx.svg';
 import { ReactComponent as SystemWarning } from './system-warning.svg';
-import { ReactComponent as TelegramOutlined } from './telegram-outlined.svg';
 import { ReactComponent as ThreeStars } from './three-stars.svg';
 import { ReactComponent as Tick } from './tick.svg';
-import { ReactComponent as TikTokOutlined } from './tikTok-outlined.svg';
 import { ReactComponent as Token } from './token.svg';
 import { ReactComponent as TooltipIcon } from './tooltipIcon.svg';
 import { ReactComponent as Transfer } from './transfer.svg';
@@ -250,14 +245,12 @@ import { ReactComponent as WhiteSave } from './white-save.svg';
 import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as WhiteWarning } from './white-warning.svg';
 import { ReactComponent as WomenClothing } from './women-clothing.svg';
-import { ReactComponent as XOutlined } from './x-outlined.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 import { ReactComponent as Xverse } from './xverse.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 import { ReactComponent as OutlinedStar } from './yellow-star.svg';
 import { ReactComponent as YellowWarning } from './yellow-warning.svg';
-import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 
 const AppIcons = {
   Paymob,
@@ -312,7 +305,6 @@ const AppIcons = {
   Solana,
   Phantom,
   InfoIcon,
-  ActiveIcon,
   ArrowDown,
   Close,
   Stacks,
@@ -452,10 +444,6 @@ const AppIcons = {
   CircleWithdraw,
   Document,
   DeliveryTruck,
-  XOutlined,
-  TelegramOutlined,
-  InstagramOutlined,
-  LinkedInOutlined,
   Available,
   Statistics,
   Infinity,
@@ -508,8 +496,6 @@ const AppIcons = {
   Collection,
   Discount,
   User,
-  YouTubeOutlined,
-  TikTokOutlined,
   SidebarDashboard,
   Transfer,
   SideBarExpand,
