@@ -14,7 +14,7 @@ function AffiliateProgramCard({ isLoading }: Props) {
 
     return (
         <SectionContainer
-            title={t('AffiliateProgramCard.title')}
+            title={t('common:affiliate')}
             onNavigate={() => navigate("/analytics/affiliate/products")}
         >
             <AffiliateProgramEmptyState />

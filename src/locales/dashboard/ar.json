@@ -43,9 +43,6 @@
   "OrderSummaryCard": {
     "title": "ملخص الطلبات"
   },
-  "AffiliateProgramCard": {
-    "title": "الشركاء"
-  },
   "AffiliateProgramEmptyState": {
     "description": "ادعُ العملاء وفعّل الشركاء لتسريع المبيعات",
     "actionText": "سوق الشركاء"
