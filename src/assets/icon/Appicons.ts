@@ -101,8 +101,6 @@ import { ReactComponent as ETH } from './eth.svg';
 import { ReactComponent as Euro } from './euro.svg';
 import { ReactComponent as EventTicket } from './event-ticket.svg';
 import { ReactComponent as Export } from './export.svg';
-import { ReactComponent as ExternalArrow } from './external-arrow.svg';
-import { ReactComponent as ExternalLink } from './external-link.svg';
 import { ReactComponent as Eye } from './eye.svg';
 import { ReactComponent as FileUpload } from './file-upload.svg';
 import { ReactComponent as Furniture } from './furniture.svg';
@@ -209,8 +207,6 @@ import { ReactComponent as SearchOutlined } from './search-redesign.svg';
 import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Secure } from './secure.svg';
 import { ReactComponent as SelectChevronDown } from './select-chevron-down.svg';
-import { ReactComponent as SendMoney } from './send-money.svg';
-import { ReactComponent as SettingGear } from './setting-gear.svg';
 import { ReactComponent as SettingIcon } from './setting-icon.svg';
 import { ReactComponent as Share } from './share.svg';
 import { ReactComponent as Shirt } from './shirt.svg';
@@ -283,7 +279,6 @@ import { ReactComponent as YouTubeOutlined } from './youTube-outlined.svg';
 const AppIcons = {
   Paymob,
   NFTIcon,
-  SendMoney,
   ArrowUp,
   ArrowDownOutlined,
   RecieveMoney,
@@ -309,7 +304,6 @@ const AppIcons = {
   Usdc,
   DollarSign,
   Location,
-  ExternalLink,
   Asterisk,
   GreenSpeedometer,
   MedalStarOutline,
@@ -531,7 +525,6 @@ const AppIcons = {
   KidClothing,
   Watch,
   PremiumPlanGreenStarIcon,
-  SettingGear,
   Bitlayer,
   ColorfulXTwitter,
   ColorfulDiscord,
@@ -540,7 +533,6 @@ const AppIcons = {
   ColorfulYouTube,
   ColorfulLinkedin,
   DROP_LINKED_LOGO,
-  ExternalArrow,
   Soon,
   SideBarQuests,
   HeaderPolygon,
