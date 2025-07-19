@@ -4,7 +4,6 @@ import { ReactComponent as ColorfulInstagram } from './ColorfulInstagram.svg';
 import { ReactComponent as ColorfulLinkedin } from './ColorfulLinkedin.svg';
 import { ReactComponent as ColorfulTelegram } from './ColorfulTelegram.svg';
 import { ReactComponent as ColorfulXTwitter } from './ColorfulX-Twitter.svg';
-import { ReactComponent as HeaderPolygon } from './Header-polygon.svg';
 import { ReactComponent as Invoice } from './Invoice.svg';
 import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as PremiumPlanGreenStarIcon } from './PremiumPlanGreenStarIcon.svg';
@@ -60,16 +59,7 @@ import { ReactComponent as Collection } from './collection.svg';
 import { ReactComponent as CollectionModalIcon } from './collectionModalIcon.svg';
 import { ReactComponent as Convert } from './convert.svg';
 import { ReactComponent as Copy } from './copy.svg';
-import { ReactComponent as D3Access } from './d3-access.svg';
-import { ReactComponent as D3CoreChain } from './d3-core-chain.svg';
-import { ReactComponent as D3EnterpriseTools } from './d3-enterprise-tools.svg';
-import { ReactComponent as D3NFTIntegration } from './d3-nft-integration.svg';
-import { ReactComponent as D3ProPlan } from './d3-pro-plan.svg';
-import { ReactComponent as D3Shiba } from './d3-shiba.svg';
-import { ReactComponent as D3ShopSetup } from './d3-shop-setup.svg';
 import { ReactComponent as D3Spinner } from './d3-spinner.svg';
-import { ReactComponent as D3Victorin } from './d3-victorin.svg';
-import { ReactComponent as D3Web3Support } from './d3-web3-support.svg';
 import { ReactComponent as DayCalendar } from './day-calendar.svg';
 import { ReactComponent as DeleteIcon } from './delete-icon.svg';
 import { ReactComponent as DeliveryTruck } from './delivery-truck.svg';
@@ -125,7 +115,6 @@ import { ReactComponent as HeaderAffiliate } from './header-affiliate.svg';
 import { ReactComponent as HeaderBag } from './header-bag.svg';
 import { ReactComponent as HeaderCoins } from './header-coins.svg';
 import { ReactComponent as HeaderCreditCard } from './header-credit.svg';
-import { ReactComponent as HeaderD3 } from './header-d3.svg';
 import { ReactComponent as HeaderImage } from './header-image.svg';
 import { ReactComponent as HeaderProductBox } from './header-product-box.svg';
 import { ReactComponent as HeaderShirt } from './header-shirt.svg';
@@ -454,15 +443,6 @@ const AppIcons = {
   SidebarNext,
   SidebarGo,
   D3Spinner,
-  D3ShopSetup,
-  D3EnterpriseTools,
-  D3NFTIntegration,
-  D3Access,
-  D3ProPlan,
-  D3Web3Support,
-  D3Shiba,
-  D3Victorin,
-  D3CoreChain,
   HeaderAffiliate,
   HeaderAffiliateSass,
   HeaderBag,
@@ -471,7 +451,6 @@ const AppIcons = {
   HeaderImage,
   HeaderShirt,
   HeaderTokenCoin,
-  HeaderD3,
   HeaderUd,
   HeaderProductBox,
   MetaverseStore,
@@ -535,7 +514,6 @@ const AppIcons = {
   DROP_LINKED_LOGO,
   Soon,
   SideBarQuests,
-  HeaderPolygon,
   Letter,
   ArrowRight,
   DroplinkedLogo,
