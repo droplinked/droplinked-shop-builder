@@ -1,6 +1,6 @@
 import { Spinner, Td } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
-import { DeleteInvoiceProduct } from 'lib/services/invoice/interfaces'
+import { DeleteInvoiceProduct } from 'services/invoice/interfaces'
 import { removeProductFromCartService } from 'services/invoice/invoiceServices'
 import useInvoiceStore from 'pages/invoice-management/create-invoice/store/invoiceStore'
 import React from 'react'
