@@ -20,7 +20,7 @@ function ModalHeaderData({ icon, title, description, modalHeaderProps, children 
             <Flex justifyContent="space-between">
                 {icon
                     ? <ModalHeaderIconWrapper>{icon}</ModalHeaderIconWrapper>
-                    : <Text fontSize={{ base: 20, md: 24 }} fontWeight={700}>{title}</Text>
+                    : <Text fontSize={{ base: 20, md: 24 }} fontWeight={700} color="text.white">{title}</Text>
                 }
                 <ModalCloseButton position="static" color="white" />
             </Flex>
