@@ -42,7 +42,10 @@
     "VisibilitySwitch": {},
     "CollectionTitle": {},
     "CollectionTitleColumn": {},
-    "CollectionRulesetColumn": {},
+    "CollectionRulesetColumn": {
+        "gating": "Gating",
+        "discount": "Discount"
+    },
     "ConfirmDeleteCollection": {
         "title": "Delete Collection",
         "confirmationText": "Are you sure you want to delete this collection? You will no longer have access to this collection.",

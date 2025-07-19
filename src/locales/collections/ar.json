@@ -42,7 +42,10 @@
     "VisibilitySwitch": {},
     "CollectionTitle": {},
     "CollectionTitleColumn": {},
-    "CollectionRulesetColumn": {},
+    "CollectionRulesetColumn": {
+        "gating": "التقييد",
+        "discount": "الخصم"
+    },
     "ConfirmDeleteCollection": {
         "title": "حذف المجموعة",
         "confirmationText": "هل أنت متأكد أنك تريد حذف هذه المجموعة؟ لن يمكنك الوصول إلى هذه المجموعة بعد الآن.",
