@@ -74,7 +74,7 @@ function FooterConfig(): React.ReactElement {
             <Text fontSize="sm" fontWeight="medium" color="white">
               {t('DesignerSidebar.footerConfig.linkManagement.column', { number: 1 })}
             </Text>
-            <EditMd color="white" />
+            <EditMd />
           </Flex>
 
           {shopDesign.footerLinks.map((item, index) => (

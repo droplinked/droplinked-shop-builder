@@ -79,7 +79,6 @@ import { ReactComponent as Diamond } from './diamond.svg';
 import { ReactComponent as Dirham } from './dirham.svg';
 import { ReactComponent as DiscordOutlined } from './discord-outlined.svg';
 import { ReactComponent as DiscountCouponIcon } from './discount-coupon-icon.svg';
-import { ReactComponent as DiscountRuleset } from './discount-ruleset.svg';
 import { ReactComponent as DiscountSetting } from './discount-setting.svg';
 import { ReactComponent as Discount } from './discount.svg';
 import { ReactComponent as Document } from './document.svg';
@@ -107,7 +106,6 @@ import { ReactComponent as ExternalLink } from './external-link.svg';
 import { ReactComponent as Eye } from './eye.svg';
 import { ReactComponent as FileUpload } from './file-upload.svg';
 import { ReactComponent as Furniture } from './furniture.svg';
-import { ReactComponent as GatingRuleset } from './gated-ruleset.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
 import { ReactComponent as Globe } from './globe.svg';
 import { ReactComponent as GoldenStar } from './golden-star.svg';
@@ -502,8 +500,6 @@ const AppIcons = {
   ReorderDesigned,
   CollectionModalIcon,
   RulesetModalIcon,
-  DiscountRuleset,
-  GatingRuleset,
   DotSpacer,
   EditOutlined,
   HidedIcon,

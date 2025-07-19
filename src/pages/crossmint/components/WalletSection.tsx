@@ -19,7 +19,7 @@ function WalletSection({ crossmintWallet }: { crossmintWallet?: string }) {
 
     const CopyButton = () => (
         <button onClick={handleCopyAddress}>
-            <CopyMd color='#FFF' />
+            <CopyMd />
         </button>
     )
 

@@ -32,7 +32,7 @@ const ActionButtons = () => (
   <Flex display="flex" gap={4}>
     <DownloadcircleMd color="white" />
     <PlusMd color="white" />
-    <CopyMd color="white" />
+    <CopyMd />
   </Flex>
 )
 
