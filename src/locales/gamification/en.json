@@ -1,9 +1,15 @@
 {
-  "missionList": {
+  "CompletedMissions": {
+    "greeting": "Hey {{name}}!👋",
+    "subtitle": "Master Every Mission, Earn Your Victory!",
+    "points": "Points",
+    "missionsCompleted": "Missions Completed"
+  },
+  "MissionList": {
     "title": "Missions",
     "howDoMissionsWork": "How do missions work?"
   },
-  "howGamificationWorksModal": {
+  "HowGamificationWorksModal": {
     "title": "How do missions work?",
     "steps": [
       {
@@ -18,21 +24,14 @@
         "title": "Earn Points and Track Progress",
         "description": "If the mission is successfully completed, you will see the amount of points earned. and your completed mission will be marked in the gamification tab."
       }
-    ],
-    "close": "Close"
+    ]
   },
-  "completedMissions": {
-    "greeting": "Hey {{name}}!👋",
-    "subtitle": "Master Every Mission, Earn Your Victory!",
-    "points": "Points",
-    "missionsCompleted": "Missions Completed"
-  },
-  "mission": {
+  "Mission": {
     "points": "Points: {{points}}",
     "completed": "Mission completed!",
     "details": "Details"
   },
-  "missionReviewModal": {
+  "MissionReviewModal": {
     "mission": "Mission:",
     "category": "Category:",
     "description": "Description:",

@@ -63,10 +63,10 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                     />
                     <Flex direction="column" gap="10px" fontSize={12} fontWeight={700}>
                         <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                            {t("missionReviewModal.mission")} <Box as="span" color="#fff">{mission.name}</Box>
+                            {t("MissionReviewModal.mission")} <Box as="span" color="#fff">{mission.name}</Box>
                         </AppTypography>
                         <AppTypography fontSize={12} fontWeight={700} color="#2BCFA1">
-                            {t("missionReviewModal.category")} <Box as="span" color="#fff">{mission.categoryId.name}</Box>
+                            {t("MissionReviewModal.category")} <Box as="span" color="#fff">{mission.categoryId.name}</Box>
                         </AppTypography>
                     </Flex>
                 </Flex>
@@ -77,17 +77,17 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                             <Box position="relative">
                                 {isLoading && <GamificationSpinner />}
                                 <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" whiteSpace={"pre-line"} filter={isLoading ? 'blur(4px)' : 'none'}>
-                                    <Box as="span" color="#2BCFA1" fontWeight={700}>{t("missionReviewModal.description")}</Box> {mission.description}
+                                    <Box as="span" color="#2BCFA1" fontWeight={700}>{t("MissionReviewModal.description")}</Box> {mission.description}
                                 </AppTypography>
                             </Box>
                             <Divider height="2px" borderColor="neutral.gray.800" />
                             {!error && (
                                 <Flex direction="column" gap={4}>
                                     <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                        {t("missionReviewModal.pointsAwarded")} <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
+                                        {t("MissionReviewModal.pointsAwarded")} <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
                                     </AppTypography>
                                     <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
-                                        {t("missionReviewModal.reviewStatus")}
+                                        {t("MissionReviewModal.reviewStatus")}
                                     </BasicButton>
                                 </Flex>
                             )}
@@ -98,16 +98,16 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                                 <AppTypography fontSize={72} fontWeight={700} whiteSpace="nowrap" bgGradient="linear(to-b, #2EC99E1A, #2EC99EA6)" bgClip="text">
                                     {`“${missionCreditReward} Points“`}
                                 </AppTypography>
-                                <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">{t("missionReviewModal.congratulations")}</AppTypography>
+                                <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">{t("MissionReviewModal.congratulations")}</AppTypography>
                                 <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                    {t("missionReviewModal.taskCompleted", { points: missionCreditReward })}
+                                    {t("MissionReviewModal.taskCompleted", { points: missionCreditReward })}
                                 </AppTypography>
                             </Flex>
                         </motion.div>
                 }
                 {error && (
                     <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2">
-                        <Box as="span" color="#2BCFA1" fontWeight={700}>{t("missionReviewModal.missionProgress")}</Box> {error}
+                        <Box as="span" color="#2BCFA1" fontWeight={700}>{t("MissionReviewModal.missionProgress")}</Box> {error}
                     </AppTypography>
                 )}
             </Flex>

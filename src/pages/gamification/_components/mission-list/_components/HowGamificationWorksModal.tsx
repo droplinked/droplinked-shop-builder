@@ -19,12 +19,12 @@ interface StepProps {
 
 function HowGamificationWorksModal({ isOpen, onClose }: Props) {
     const { t } = useLocaleResources("gamification")
-    const steps = t("howGamificationWorksModal.steps", { returnObjects: true })
+    const steps = t("HowGamificationWorksModal.steps", { returnObjects: true })
 
     return (
         <AppModal open={isOpen} close={onClose} scrollBehavior="inside" size="5xl" contentProps={{ padding: 4, margin: 4 }}>
             <Flex direction={"column"} gap={4}>
-                <AppTypography textAlign={"center"} fontSize={16} fontWeight={700} color={"#2BCFA1"}>{t("howGamificationWorksModal.title")}</AppTypography>
+                <AppTypography textAlign={"center"} fontSize={16} fontWeight={700} color={"#2BCFA1"}>{t("HowGamificationWorksModal.title")}</AppTypography>
                 <Divider height={"2px"} borderColor={"neutral.gray.800"} />
                 <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} columnGap={4} rowGap={"80px"}>
                     <Flex direction={'column'} gap={4}>
@@ -49,7 +49,7 @@ function HowGamificationWorksModal({ isOpen, onClose }: Props) {
                         </Box>
                     </Flex>
                 </SimpleGrid>
-                <BasicButton alignSelf={"center"} variant='ghost' onClick={onClose}>{t("howGamificationWorksModal.close")}</BasicButton>
+                <BasicButton alignSelf={"center"} variant='ghost' onClick={onClose}>{t("common:close")}</BasicButton>
             </Flex>
         </AppModal>
     )

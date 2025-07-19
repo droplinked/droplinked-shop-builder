@@ -20,8 +20,8 @@ function MissionList({ isLoading, missions, t }: Props) {
         <>
             <GamificationCard direction={"column"} gap={5} padding={5}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
-                    <AppTypography fontSize={24} fontWeight={700} color={"#fff"}>{t("missionList.title")}</AppTypography>
-                    <AppTypography as={"button"} fontSize={14} fontWeight={700} color={"#2BCFA1"} onClick={onOpen}>{t("missionList.howDoMissionsWork")}</AppTypography>
+                    <AppTypography fontSize={24} fontWeight={700} color={"#fff"}>{t("MissionList.title")}</AppTypography>
+                    <AppTypography as={"button"} fontSize={14} fontWeight={700} color={"#2BCFA1"} onClick={onOpen}>{t("MissionList.howDoMissionsWork")}</AppTypography>
                 </Flex>
 
                 <Divider height={"2px"} borderColor={"neutral.gray.800"} />

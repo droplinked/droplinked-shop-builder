@@ -1,9 +1,15 @@
 {
-  "missionList": {
+  "CompletedMissions": {
+    "greeting": "مرحباً {{name}}!👋",
+    "subtitle": "أتقن كل مهمة، وحقق انتصارك!",
+    "points": "النقاط",
+    "missionsCompleted": "المهام المكتملة"
+  },
+  "MissionList": {
     "title": "المهام",
     "howDoMissionsWork": "كيف تعمل المهام؟"
   },
-  "howGamificationWorksModal": {
+  "HowGamificationWorksModal": {
     "title": "كيف تعمل المهام؟",
     "steps": [
       {
@@ -18,21 +24,14 @@
         "title": "اكسب النقاط وتابع التقدم",
         "description": "إذا تم إكمال المهمة بنجاح، سترى عدد النقاط المكتسبة وستُعلَّم مهمتك المكتملة في علامة التبويب الخاصة بالتلعيب."
       }
-    ],
-    "close": "إغلاق"
+    ]
   },
-  "completedMissions": {
-    "greeting": "مرحباً {{name}}!👋",
-    "subtitle": "أتقن كل مهمة، وحقق انتصارك!",
-    "points": "النقاط",
-    "missionsCompleted": "المهام المكتملة"
-  },
-  "mission": {
+  "Mission": {
     "points": "النقاط: {{points}}",
     "completed": "تم إكمال المهمة!",
     "details": "التفاصيل"
   },
-  "missionReviewModal": {
+  "MissionReviewModal": {
     "mission": "المهمة:",
     "category": "الفئة:",
     "description": "الوصف:",
