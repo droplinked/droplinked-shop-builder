@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "TokenpayHero": {
     "title": "تجارة مدعومة بالعملات الرقمية يقودها المجتمعات",
     "subtitle": "استفد من tokenpay مع أي عملات ERC20 و BRC20 و SPL لفتح المنفعة الحقيقية",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "TokenpayFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "مرونة الواجهة الأمامية",
     "headingSubtitle": "إعداد واجهة متجر قابلة للتخصيص بالكامل وبدون رأس",
@@ -24,13 +24,9 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "المكدس المعياري",
-    "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر droplinked أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري",
+  "TokenpayModularStack": {
     "cards": {
       "readyToGetStarted": {
-        "title": "هل أنت مستعد للبدء؟",
         "description": "الآن فرصة للانضمام إلى الموجة التالية من التجارة وإحداث تأثير"
       }
     }

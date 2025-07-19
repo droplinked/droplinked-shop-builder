@@ -1,32 +1,28 @@
 import { Flex } from '@chakra-ui/react'
 import AppButton from 'components/redesign/button/AppButton'
 import { AUTH_ROUTES } from 'constants/authRoutes'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
-import localEn from 'locales/public-pages/landings/tokenpay/en.json'
-import localAr from 'locales/public-pages/landings/tokenpay/ar.json'
 
 function TokenpayHero() {
-    const { t } = useLocaleResources('public-pages/landings/tokenpay', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/tokenpay')
+
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('TokenpayHero.title')}
+            subtitle={t('TokenpayHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('TokenpayHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('TokenpayHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>

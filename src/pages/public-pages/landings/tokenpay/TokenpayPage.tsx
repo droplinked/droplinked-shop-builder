@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/tokenpay/ar.json'
+import enLocale from 'locales/public-pages/landings/tokenpay/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import TokenpayHero from './TokenpayHero'
 import TokenpayModularStack from './TokenpayModularStack'
 
 function TokenpayPage() {
+    useLocaleResources('public-pages/landings/tokenpay', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <TokenpayFeatures /> },

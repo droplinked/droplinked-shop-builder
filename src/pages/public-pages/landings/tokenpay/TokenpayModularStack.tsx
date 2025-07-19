@@ -1,19 +1,15 @@
 import { BoxLg } from 'assets/icons/Finance/Box/BoxLg'
-import React from 'react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import React from 'react'
 import SectionContainer from '../_shared/components/SectionContainer/SectionContainer'
 import { CardImage, Cards } from '../_shared/components/card'
 import { CardData } from '../_shared/components/card/Cards'
 import ModularStackTypography from '../_shared/svgs/ModularStackTypography'
 import GetStartedCard from './GetStartedCard'
-import localEn from 'locales/public-pages/landings/tokenpay/en.json'
-import localAr from 'locales/public-pages/landings/tokenpay/ar.json'
 
 function TokenpayModularStack() {
-    const { t } = useLocaleResources('public-pages/landings/tokenpay', {
-        en: localEn,
-        ar: localAr
-    })
+    const { t } = useLocaleResources('public-pages/landings/tokenpay')
+
     const cardsData: CardData[] = [
         {
             gridColumn: { base: '1', md: '1', lg: '1 / 2' },
@@ -26,8 +22,8 @@ function TokenpayModularStack() {
         },
         {
             icon: <BoxLg color="#fff" />,
-            title: t('modularStack.cards.readyToGetStarted.title'),
-            description: t('modularStack.cards.readyToGetStarted.description'),
+            title: t('readyToGetStarted'),
+            description: t('TokenpayModularStack.cards.readyToGetStarted.description'),
             gridColumn: { base: '1', md: '1', lg: '1 / 3' },
             hasBackgroundOverlay: true,
             children: <GetStartedCard />
@@ -37,9 +33,9 @@ function TokenpayModularStack() {
     return (
         <SectionContainer
             icon='layer-web'
-            sectionTitle={t('modularStack.sectionTitle')}
-            headingTitle={t('modularStack.headingTitle')}
-            headingSubtitle={t('modularStack.headingSubtitle')}
+            sectionTitle={t('platformFunctionalities.sectionTitle')}
+            headingTitle={t('platformFunctionalities.headingTitle')}
+            headingSubtitle={t('platformFunctionalities.headingSubtitle')}
             typographySvg={<ModularStackTypography />}
         >
             <Cards
