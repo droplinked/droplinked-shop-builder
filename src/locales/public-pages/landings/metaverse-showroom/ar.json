@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "MetaverseShowroomHero": {
     "title": "التجارة الغامرة",
     "subtitle": "تمكين الزوار من استكشاف والتسوق في البيئات الافتراضية. إنشاء وإدارة المخزون جنبًا إلى جنب مع تجارب التسوق التفاعلية ثلاثية الأبعاد AR/VR",
     "startNow": "ابدأ الآن",
     "requestDemo": "اطلب عرض توضيحي"
   },
-  "features": {
+  "MetaverseShowroomFeatures": {
     "sectionTitle": "مجموعة الميزات",
     "headingTitle": "التجارة التفاعلية في أي مكان",
     "headingSubtitle": "حول المتاجر والمخزون الحالي إلى تجربة ثلاثية الأبعاد حيث يمكن للعملاء الاستكشاف والتفاعل كما لم يحدث من قبل",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "المكدس المعياري",
-    "headingTitle": "وظائف المنصة",
-    "headingSubtitle": "يوفر دروبلينكد أدوات وتكاملات قابلة للتخصيص لدعم أي عمل تجاري",
+  "MetaverseShowroomModularStack": {
     "cards": {
       "virtualShowrooms": {
         "title": "معارض افتراضية",

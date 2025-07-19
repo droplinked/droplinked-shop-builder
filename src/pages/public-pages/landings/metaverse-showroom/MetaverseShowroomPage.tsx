@@ -1,3 +1,6 @@
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/public-pages/landings/metaverse-showroom/ar.json'
+import enLocale from 'locales/public-pages/landings/metaverse-showroom/en.json'
 import React from 'react'
 import JoinCommunity from '../_shared/components/JoinCommunity'
 import { LazyLoad } from '../_shared/components/LazyLoad'
@@ -9,6 +12,8 @@ import MetaverseShowroomHero from './MetaverseShowroomHero'
 import MetaverseShowroomModularStack from './MetaverseShowroomModularStack'
 
 function MetaverseShowroomPage() {
+    useLocaleResources('public-pages/landings/metaverse-showroom', { en: enLocale, ar: arLocale })
+
     const sections = [
         { id: 'partner-list', component: <MarqueeSection /> },
         { id: 'feature-list', component: <MetaverseShowroomFeatures /> },

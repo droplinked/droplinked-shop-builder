@@ -1,11 +1,11 @@
 {
-  "hero": {
+  "MetaverseShowroomHero": {
     "title": "Immersive Commerce",
     "subtitle": "Enable visitors to explore and shop in virtual environments. Create and manage inventory alongside interactive AR/VR 3D shopping experiences",
     "startNow": "Start Now",
     "requestDemo": "Request a Demo"
   },
-  "features": {
+  "MetaverseShowroomFeatures": {
     "sectionTitle": "SET OF FEATURES",
     "headingTitle": "Interactive Commerce Anywhere",
     "headingSubtitle": "Transform existing shops and inventory into a 3D experience where customers can explore and interact like never before",
@@ -24,10 +24,7 @@
       }
     }
   },
-  "modularStack": {
-    "sectionTitle": "MODULAR STACK",
-    "headingTitle": "Platform Functionalities",
-    "headingSubtitle": "droplinked provides customizable tools and integrations to support any business",
+  "MetaverseShowroomModularStack": {
     "cards": {
       "virtualShowrooms": {
         "title": "Virtual Showrooms",

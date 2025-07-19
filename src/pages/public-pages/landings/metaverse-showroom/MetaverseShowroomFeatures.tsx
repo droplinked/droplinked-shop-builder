@@ -7,30 +7,26 @@ import Cards, { CardData } from '../_shared/components/card/Cards'
 import Features from '../_shared/svgs/Features'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
-// Import locale files
-import localEn from 'locales/public-pages/landings/metaverse-showroom/en.json'
-import localAr from 'locales/public-pages/landings/metaverse-showroom/ar.json'
-
 function MetaverseShowroomFeatures() {
-    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom')
 
     const cardsData: CardData[] = [
         {
             icon: <MetaverseLg color="#fff" />,
-            title: t('features.cards.immersiveExperiences.title'),
-            description: t('features.cards.immersiveExperiences.description'),
+            title: t('MetaverseShowroomFeatures.cards.immersiveExperiences.title'),
+            description: t('MetaverseShowroomFeatures.cards.immersiveExperiences.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <DesignLg color="#fff" />,
-            title: t('features.cards.customizableMarketplace.title'),
-            description: t('features.cards.customizableMarketplace.description'),
+            title: t('MetaverseShowroomFeatures.cards.customizableMarketplace.title'),
+            description: t('MetaverseShowroomFeatures.cards.customizableMarketplace.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         },
         {
             icon: <CartLg color="#fff" />,
-            title: t('features.cards.seamlesslyInteractive.title'),
-            description: t('features.cards.seamlesslyInteractive.description'),
+            title: t('MetaverseShowroomFeatures.cards.seamlesslyInteractive.title'),
+            description: t('MetaverseShowroomFeatures.cards.seamlesslyInteractive.description'),
             gridColumn: { base: "1fr", md: "span 1", lg: "span 1" }
         }
     ]
@@ -38,9 +34,9 @@ function MetaverseShowroomFeatures() {
     return (
         <SectionContainer
             icon='story'
-            sectionTitle={t('features.sectionTitle')}
-            headingTitle={t('features.headingTitle')}
-            headingSubtitle={t('features.headingSubtitle')}
+            sectionTitle={t('MetaverseShowroomFeatures.sectionTitle')}
+            headingTitle={t('MetaverseShowroomFeatures.headingTitle')}
+            headingSubtitle={t('MetaverseShowroomFeatures.headingSubtitle')}
             typographySvg={<Features />}
         >
             <Cards

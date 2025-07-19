@@ -6,27 +6,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../_shared/components/hero-section/HeroSection'
 
-// Import locale files
-import localEn from 'locales/public-pages/landings/metaverse-showroom/en.json'
-import localAr from 'locales/public-pages/landings/metaverse-showroom/ar.json'
-
 function MetaverseShowroomHero() {
-    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom', { en: localEn, ar: localAr })
+    const { t } = useLocaleResources('public-pages/landings/metaverse-showroom')
 
     return (
         <HeroSection
-            title={t('hero.title')}
-            subtitle={t('hero.subtitle')}
+            title={t('MetaverseShowroomHero.title')}
+            subtitle={t('MetaverseShowroomHero.subtitle')}
             subTitleElements={
                 <Flex justifyContent="center" mt={{ base: 4, lg: 6 }} gap={4}>
                     <Link to={AUTH_ROUTES.SIGN_UP}>
                         <AppButton>
-                            {t('hero.startNow')}
+                            {t('MetaverseShowroomHero.startNow')}
                         </AppButton>
                     </Link>
                     <Link to='mailto:support@droplinked.com'>
                         <AppButton variant='normal' bg="label.primary" color="neutral.white">
-                            {t('hero.requestDemo')}
+                            {t('MetaverseShowroomHero.requestDemo')}
                         </AppButton>
                     </Link>
                 </Flex>
