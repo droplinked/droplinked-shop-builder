@@ -1,9 +1,10 @@
-import React from 'react';
 import { Flex } from '@chakra-ui/react';
+import { ArrowleftMd } from 'assets/icons/Navigation/ArrowLeft/ArrowleftMd';
 import { ArrowrightMd } from 'assets/icons/Navigation/ArrowRight/ArrowrightMd';
 import AppButton from 'components/redesign/button/AppButton';
-import { StepsType } from '../../../context/WalletVerificationContext';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
+import { StepsType } from '../../../context/WalletVerificationContext';
 
 interface ModalButtonsProps {
   currentStep: StepsType;
@@ -20,7 +21,7 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
   onResetStep,
   onClaimNow,
 }) => {
-  const { t } = useLocaleResources('public-pages/landings/partner-pages');
+  const { t, isRTL } = useLocaleResources('public-pages/landings/partner-pages');
 
   const getButtonConfig = () => {
     switch (currentStep) {
@@ -34,7 +35,7 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
           right: {
             label: t('ModalButtons.checkEligibilityLabel'),
             onClick: onConnectWallet,
-            rightIcon: <ArrowrightMd />,
+            rightIcon: isRTL ? <ArrowleftMd /> : <ArrowrightMd />,
             styles: {},
           },
         };
@@ -52,7 +53,7 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({
           right: {
             label: t('ModalButtons.checkEligibilityLabel'),
             onClick: () => { },
-            rightIcon: <ArrowrightMd color="#737373" />,
+            rightIcon: isRTL ? <ArrowleftMd color="#737373" /> : <ArrowrightMd color="#737373" />,
             styles: {
               background: '#292929',
               color: '#737373',
