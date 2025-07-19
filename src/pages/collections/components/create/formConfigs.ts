@@ -11,7 +11,7 @@ export const getCollectionCreateInputFields = (t) => [
     },
     {
         name: 'description',
-        label: t("create.fields.description.label"),
+        label: t("common:description"),
         description: t("create.fields.description.description"),
         placeholder: t("create.fields.description.placeholder"),
         maxLength: 100,

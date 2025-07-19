@@ -21,7 +21,7 @@ function ImageUploader({ errors, values, setFieldValue }: ImageUploaderProps) {
     return (
         <VStack width="100%">
             <Flex width={"100%"} direction="column" gap={"16px"}>
-                <AppTypography fontSize={"16px"} fontWeight={500}>{t("create.fields.cover")}</AppTypography>
+                <AppTypography fontSize={"16px"} fontWeight={500}>{t("ImageUploader.cover")}</AppTypography>
                 <AppUploadImage setFileData={(data: IFileData) => setFileData(data)} onChange={(image: string) => setFieldValue('image', image)} values={values.image} size='original' accept={{ "image/png": [".png", ".jpeg", ".jpg"] }} />
                 {errors.image && <ErrorLabel message={errors.image} />}
             </Flex>

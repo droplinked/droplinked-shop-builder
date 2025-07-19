@@ -22,33 +22,23 @@ interface CollectionGridProps {
     refetch: () => void;
 }
 
-function CollectionGrid({
-    isFetching,
-    rows,
-    searchTerm,
-    onSearchChange,
-    onCreateCollection,
-    onReorderClick,
-    refetch,
-}: CollectionGridProps) {
-    const { t } = useLocaleResources("collections", {
-        en: enLocale,
-        ar: arLocale
-    })
+function CollectionGrid({ isFetching, rows, searchTerm, onSearchChange, onCreateCollection, onReorderClick, refetch }: CollectionGridProps) {
+    const { t } = useLocaleResources("collections", {en: enLocale, ar: arLocale})
+    
     const columns: ColumnDef<Collection>[] = [
         {
             accessorKey: 'title',
-            header: t('columnHeaders.collection'),
+            header: t('CollectionGrid.columnHeaders.collection'),
             cell: info => <CollectionTitleColumn collection={info.row.original} />
         },
         {
             accessorKey: 'ruleSetID',
-            header: t('columnHeaders.rulesets'),
+            header: t('CollectionGrid.columnHeaders.rulesets'),
             cell: info => info.getValue() ? <CollectionRulesetColumn ruleset={info.getValue()} /> : "-"
         },
         {
             accessorKey: 'productsCount',
-            header: t('columnHeaders.products'),
+            header: t('CollectionGrid.columnHeaders.products'),
             cell: info => info.getValue() || "-"
         },
         {
@@ -61,16 +51,16 @@ function CollectionGrid({
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title={t('title')}
-                description={t('description')}
+                title={t('CollectionGrid.title')}
+                description={t('CollectionGrid.description')}
                 actionButtons={[
                     {
-                        title: t('newCollection'),
+                        title: t('CollectionGrid.newCollection'),
                         leftIcon: <PlusSm color="#000" />,
                         onClick: onCreateCollection,
                     },
                     {
-                        title: t('visibilityAndReorder'),
+                        title: t('CollectionGrid.visibilityAndReorder'),
                         variant: "secondary",
                         onClick: onReorderClick,
                     }
@@ -89,7 +79,7 @@ function CollectionGrid({
                     isLoading={isFetching}
                     emptyView={
                         <Text fontWeight={500} color="text.white">
-                            {t('emptyState')}
+                            {t('CollectionGrid.emptyState')}
                         </Text>
                     }
                 />

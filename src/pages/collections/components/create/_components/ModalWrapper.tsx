@@ -17,8 +17,8 @@ function ModalWrapper({ collection, isOpen, onClose, children }: { collection?: 
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title={collection ? t("create.editTitle") : t("create.title")}
-                description={collection ? t("create.editDescription") : t("create.description")}
+                title={collection ? t("ModalWrapper.editTitle") : t("ModalWrapper.title")}
+                description={collection ? t("ModalWrapper.editDescription") : t("ModalWrapper.description")}
             />
             {children}
         </AppModal >

@@ -22,7 +22,6 @@ import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 
 // This modal is used to add a new rule or edit an existing rule
 const RuleModal = ({ show, collectionId, close, ruleId }) => {
-    const { t } = useLocaleResources("collections");
     const queryClient = useQueryClient()
     const checkPermissionAndShowToast = useCheckPermission()
     const getRule = useQuery({
@@ -38,6 +37,8 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
         cacheTime: 60 * 60 * 1000,
     });
     const { showToast } = useAppToast();
+    const { t } = useLocaleResources("collections");
+    
     const submit = async (data: IFormData) => {
         const { description, nftPurchaseLink, chain, blockchainType, type, discountPercentage, address, minimumNftRequired } = data;
         try {
@@ -60,9 +61,9 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
             }
             queryClient.invalidateQueries({ queryKey: ['collectionList'] })
             close();
-            showToast({ message: ruleId ? t("ruleset.updateSuccess") : t("ruleset.createSuccess"), type: "success" });
+            showToast({ message: ruleId ? t("RuleModal.updateSuccess") : t("RuleModal.createSuccess"), type: "success" });
         } catch (error) {
-            showToast({ message: t("genericError"), type: "error" });
+            showToast({ message: t("common:genericError"), type: "error" });
         }
     };
 
@@ -95,10 +96,10 @@ const RuleModal = ({ show, collectionId, close, ruleId }) => {
                                     </Box>
                                     <HStack borderTop={"1px solid"} borderColor="neutral.gray.800" py={"2rem"} justifyContent={"space-between"}>
                                         <AppButton width={"79px"} onClick={close} variant="outlined">
-                                            {t("cancel")}
+                                            {t("common:cancel")}
                                         </AppButton>
                                         <AppButton width={"79px"} isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading} type="submit" onClick={submitForm}>
-                                            {t("save")}
+                                            {t("common:save")}
                                         </AppButton>
                                     </HStack>
                                 </VStack>
@@ -118,16 +119,16 @@ const BlockchainNetworkSelect = ({ chains, values, errors, setFieldValue, getRul
     return (
         <VStack align="stretch" spacing={"16px"}>
             <VStack align="stretch" spacing={"4px"}>
-                <FieldLabel label={t("ruleset.blockchainNetwork")} isRequired />
+                <FieldLabel label={t("BlockchainNetworkSelect.blockchainNetwork")} isRequired />
                 <AppTypography fontSize="14px" color="#7b7b7b">
-                    {t("ruleset.blockchainNetworkDescription")}
+                    {t("BlockchainNetworkSelect.blockchainNetworkDescription")}
                 </AppTypography>
             </VStack>
             <AppSkeleton isLoaded={!getRule.isLoading && !chains.isLoading}>
                 <AppSelect
                     selectProps={{
                         name: "chain",
-                        placeholder: t("ruleset.selectChain"),
+                        placeholder: t("BlockchainNetworkSelect.selectChain"),
                         onChange: (e) => {
                             setFieldValue("chain", e.target.value)
                         },
@@ -158,10 +159,10 @@ const GatingMessageInput = () => {
     return (
         <TextboxRule
             isRequired={true}
-            label={t("ruleset.gatingMessage")}
-            description={t("ruleset.gatingMessageDescription")}
+            label={t("GatingMessageInput.gatingMessage")}
+            description={t("GatingMessageInput.gatingMessageDescription")}
             element={"description"}
-            placeholder={t("ruleset.gatingMessagePlaceholder")}
+            placeholder={t("GatingMessageInput.gatingMessagePlaceholder")}
         />
     )
 };
@@ -171,13 +172,13 @@ const MinimumAssetsRequiredInput = () => {
     return (
         <HStack align="stretch" spacing={2} width={"100%"}>
             <VStack align="stretch" spacing={1} width={"100%"}>
-                <FieldLabel label={t("ruleset.minimumAssets")} isRequired />
+                <FieldLabel label={t("MinimumAssetsRequiredInput.minimumAssets")} isRequired />
                 <AppTypography fontSize="14px" color="#7b7b7b">
-                    {t("ruleset.minimumAssetsDescription")}
+                    {t("MinimumAssetsRequiredInput.minimumAssetsDescription")}
                 </AppTypography>
             </VStack>
             <Box width={"20%"} ml={"0.5rem"}>
-                <TextboxRule isRequired={true} element={"minimumNftRequired"} placeholder={t("ruleset.minimumAssetsPlaceholder")} />
+                <TextboxRule isRequired={true} element={"minimumNftRequired"} placeholder={t("MinimumAssetsRequiredInput.minimumAssetsPlaceholder")} />
             </Box>
         </HStack>
     )
@@ -187,11 +188,11 @@ const NftUrlInput = () => {
     const { t } = useLocaleResources("collections");
     return (
         <TextboxRule
-            label={t("ruleset.nftUrl")}
-            description={t("ruleset.nftUrlDescription")}
+            label={t("NftUrlInput.nftUrl")}
+            description={t("NftUrlInput.nftUrlDescription")}
             isRequired={false}
             element={"nftPurchaseLink"}
-            placeholder={t("ruleset.nftUrlPlaceholder")}
+            placeholder={t("NftUrlInput.nftUrlPlaceholder")}
         />
     )
 };

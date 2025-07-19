@@ -14,6 +14,8 @@ import ModalButtons from "./_components/ModalButtons";
 import Textarea from "components/redesign/textarea/Textarea";
 import AppInput from "components/redesign/input/AppInput";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
+import enLocale from "locales/collections/en.json";
+import arLocale from "locales/collections/ar.json";
 
 interface IProps {
   close: () => void;
@@ -23,11 +25,11 @@ interface IProps {
 
 const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
   const queryClient = useQueryClient();
-  const checkPermissionAndShowToast = useCheckPermission();
-  const { showToast } = useAppToast();
   const createService = useMutation(createCollectionService);
   const updateService = useMutation(updateCollectionService);
-  const { t } = useLocaleResources("collections");
+  const checkPermissionAndShowToast = useCheckPermission();
+  const { showToast } = useAppToast();
+  const { t } = useLocaleResources("collections", { en: enLocale, ar: arLocale });
 
   const collectionCreateInputFields = getCollectionCreateInputFields(t);
   const collectionCreateSchema = getCollectionCreateSchema(t);
@@ -37,16 +39,16 @@ const CollectionCreate: React.FC<IProps> = ({ close, open, collection }) => {
       const { title, description, image } = data;
       if (collection) {
         await updateService.mutateAsync({ title, collectionID: collection._id, description, image });
-        showToast({ message: t("create.success.updated"), type: 'success' });
+        showToast({ message: t("CollectionCreate.success.updated"), type: 'success' });
       } else {
         if (!checkPermissionAndShowToast("collection_management")) return;
         await createService.mutateAsync({ title, description, image });
-        showToast({ message: t("create.success.created"), type: 'success' });
+        showToast({ message: t("CollectionCreate.success.created"), type: 'success' });
       }
       close()
       queryClient.invalidateQueries({ queryKey: ['collectionList'] });
     } catch (error) {
-      showToast({ message: t("genericError"), type: 'error' });
+      showToast({ message: t("common:genericError"), type: 'error' });
     }
   };
 

@@ -8,8 +8,8 @@ import React, { useContext } from 'react';
 import ruleModelContext from '../../context';
 
 function RulesetAddress() {
-    const { t } = useLocaleResources("collections");
     const { loading, setFieldValue, values, errors } = useContext(ruleModelContext);
+    const { t } = useLocaleResources("collections");
 
     const addInput = () => {
         setFieldValue("address", [...values.address, '']);
@@ -36,12 +36,12 @@ function RulesetAddress() {
                                 inputProps={{
                                     name: "text",
                                     value: input,
-                                    placeholder: t("ruleset.address.optionPlaceholder", { index: index + 1 }),
+                                    placeholder: t("RuleModal.address.optionPlaceholder", { index: index + 1 }),
                                     onChange: e => handleInputChange(index, e.target.value),
                                     isRequired: true,
                                 }}
-                                label={index === 0 && t("ruleset.address.label")}
-                                description={index === 0 && t("ruleset.address.description")}
+                                label={index === 0 && t("RuleModal.address.label")}
+                                description={index === 0 && t("RuleModal.address.description")}
                             />
                             {values.address.length > 1 && index < values.address.length - 1 && (
                                 <Box ml={3} mb={4} cursor={"pointer"} onClick={() => handleDelete(index)}>

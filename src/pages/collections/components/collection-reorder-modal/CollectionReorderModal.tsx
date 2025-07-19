@@ -19,13 +19,13 @@ interface Props {
 function CollectionReorderModal({ isOpen, close }: Props) {
     const [collections, setCollections] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const { showToast } = useAppToast();
-    const { t } = useLocaleResources("collections")
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
         useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
     );
+    const { showToast } = useAppToast();
+    const { t } = useLocaleResources("collections")
 
     const getCollectionPosition = (id) => collections?.findIndex(p => p._id === id);
 
@@ -39,7 +39,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
             setCollections(collections => arrayMove(collections, originalPosition, newPosition));
             await reorderCollectionsService({ collectionId: active.id, newPosition: newPosition + 1 });
         } catch (error) {
-            showToast({ type: "error", message: t("genericError") });
+            showToast({ type: "error", message: t("common:genericError") });
             setCollections(originalCollections);
         }
     };
@@ -54,7 +54,7 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                 setCollections(collectionsData?.data);
             } catch (error) {
                 if (!signal.aborted) {
-                    showToast({ type: "error", message: t("genericError") });
+                    showToast({ type: "error", message: t("common:genericError") });
                 }
             }
         };
@@ -77,8 +77,8 @@ function CollectionReorderModal({ isOpen, close }: Props) {
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title={t("reorderModal.title")}
-                description={t("reorderModal.description")}
+                title={t("CollectionReorderModal.title")}
+                description={t("CollectionReorderModal.description")}
             />
             <Flex direction={"column"} gap={9}>
                 {isLoading ? (

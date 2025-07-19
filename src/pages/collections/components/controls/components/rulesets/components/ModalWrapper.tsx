@@ -17,8 +17,8 @@ function ModalWrapper({ ruleId, isOpen, onClose, children }: { ruleId: string, i
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title={ruleId ? t("ruleset.editTitle") : t("ruleset.createTitle")}
-                description={ruleId ? t("ruleset.editDescription") : t("ruleset.createDescription")}
+                title={ruleId ? t("ModalWrapperRulesets.editTitle") : t("ModalWrapperRulesets.createTitle")}
+                description={ruleId ? t("ModalWrapperRulesets.editDescription") : t("ModalWrapperRulesets.createDescription")}
             />
             {children}
         </AppModal>

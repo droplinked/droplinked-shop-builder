@@ -13,35 +13,35 @@ interface IProps {
     collectionID: string
 }
 function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
-    const { t } = useLocaleResources("collections");
     const { mutate, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources("collections");
 
     return (
         <AppDialog
             open={open}
             close={() => { }}
-            title={t("delete.title")}
-            text={t("delete.confirmationText")}
+            title={t("ConfirmDeleteCollection.title")}
+            text={t("ConfirmDeleteCollection.confirmationText")}
             buttons={[
                 {
-                    children: t("cancel"),
+                    children: t("common:cancel"),
                     onClick: () => close(),
                     buttonProps: {
                         variant: "outline"
                     }
                 },
                 {
-                    children: t("delete"),
+                    children: t("common:delete"),
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                showToast({ message: t("delete.success"), type: "success" })
+                                showToast({ message: t("ConfirmDeleteCollection.success"), type: "success" })
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast({ message: t("genericError"), type: "error" })
+                            onError: async () => showToast({ message: t("common:genericError"), type: "error" })
                         })
                     }
                 }
