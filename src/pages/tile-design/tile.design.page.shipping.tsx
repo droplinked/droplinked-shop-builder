@@ -69,10 +69,10 @@ const TileDesignPageShipping = () => {
             </RadioGroup>
             <HStack width={"full"} justify={"space-between"}>
                 <Button variant="outline" fontWeight={"400"} padding={"12px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                    {t('common.back')}
+                    {t('common: back')}
                 </Button>
                 <Button bg={white_if_dark_mode} width={"100px"} paddingX={"36px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    {t('common.next')}
+                    {t('common:next')}
                 </Button>
             </HStack>
         </Box>

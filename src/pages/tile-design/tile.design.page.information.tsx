@@ -79,7 +79,7 @@ const TileDesignPageInformation = () => {
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
                             {t('TileDesignPageInformation.state')}
                         </AppTypography>
-                        <Select id="state" placeholder={t('common.select')} size={"lg"}>
+                        <Select id="state" placeholder={t('common:select')} size={"lg"}>
                             {sampleLocations.countries.map((el) => (
                                 <option key={el.name} value={el.name}>
                                     {el.name}
@@ -91,7 +91,7 @@ const TileDesignPageInformation = () => {
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
                             {t('TileDesignPageInformation.city')}
                         </AppTypography>
-                        <Select id="city" placeholder={t('common.select')} size={"lg"}>
+                        <Select id="city" placeholder={t('common:select')} size={"lg"}>
                             {sampleLocations.cities.map((el) => (
                                 <option key={el.name} value={el.name}>
                                     {el.name}

@@ -55,7 +55,7 @@ const TileDesignPagePostPurchase = () => {
                     </HStack>
                 </VStack>
             </VStack>
-            <BasicButton variant="outline" color={grey_if_dark_mode}>{t('common.close')}</BasicButton>
+            <BasicButton variant="outline" color={grey_if_dark_mode}>{t('common:close')}</BasicButton>
         </Box>
     );
 };

@@ -14,7 +14,7 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/215575e99677753f8ba8277f621ac9a36eda99e621cdd60b1b69d3d8ce11da4d.png',
         buttons: {
           right: {
-            label: t('common.next'),
+            label: t('common:next'),
             rightIcon: ArrowrightLg,
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev + 1)
           }
@@ -27,11 +27,11 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/59fe00a4b64ec51e04c4c0b80927ddd9e021d6aa2b418e26ba7ee19c0aad6796.png',
         buttons: {
           left: {
-            label: t('common.back'),
+            label: t('common:back'),
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev - 1)
           },
           right: {
-            label: t('common.next'),
+            label: t('common:next'),
             rightIcon: ArrowrightLg,
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev + 1)
           }
@@ -48,7 +48,7 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/6fd973113f122e9941f93472b3487dbe21750dae58e2ad075d00880a9bf50913.png',
         buttons: {
           left: {
-            label: t('common.back'),
+            label: t('common:back'),
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev - 1)
           },
           right: {
@@ -137,11 +137,11 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/93ddecbdb555b88368ba3bf31cb4facd30a625d87396faa5de271b6804437e4f.png',
         buttons: {
           left: {
-            label: t('common.back'),
+            label: t('common:back'),
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev - 1)
           },
           right: {
-            label: t('common.next'),
+            label: t('common:next'),
             rightIcon: ArrowrightLg,
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev + 1)
           }
@@ -158,11 +158,11 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/1728952a3abf0b4a17346cd309ff18d97e9db470051e3b08f955135a5a27c675.png',
         buttons: {
           left: {
-            label: t('common.back'),
+            label: t('common:back'),
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev - 1)
           },
           right: {
-            label: t('common.next'),
+            label: t('common:next'),
             rightIcon: ArrowrightLg,
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev + 1)
           }
@@ -179,7 +179,7 @@ export const getLevelUpSections = (t: TFunction) => [
         image: 'https://upload-file-droplinked.s3.amazonaws.com/36399de3948b9d88ccc7a455434e69c123a0f7e5494de763507e8d6532d1a5d5.png',
         buttons: {
           left: {
-            label: t('common.back'),
+            label: t('common:back'),
             onClick: (setCurrentSubSection) => setCurrentSubSection((prev) => prev - 1)
           },
           right: {
