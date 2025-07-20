@@ -1,22 +1,4 @@
 {
-  "UserMenu": {
-    "MenuItemActions": {
-      "actions": {
-        "logout": "تسجيل الخروج",
-        "switch": "تبديل",
-        "viewStore": "عرض المتجر"
-      },
-      "labels": {
-        "credit": "الرصيد",
-        "version": "الإصدار"
-      }
-    },
-    "MenuItemAppVersion": {
-      "labels": {
-        "version": "الإصدار"
-      }
-    }
-  },
   "LevelUpWidget": {
     "widget": {
       "title": "ارتقِ",

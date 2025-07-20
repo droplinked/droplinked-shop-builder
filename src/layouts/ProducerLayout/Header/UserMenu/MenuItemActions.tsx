@@ -19,7 +19,7 @@ function MenuItemActions({ isMenuOpen }: { isMenuOpen: boolean }) {
     const { logoutUser } = useProfile()
     const shopUrl = useShopUrl()
     const { getFormattedPrice } = useCurrencyConverter()
-    const { t, isRTL } = useLocaleResources('layout/ProducerLayout')
+    const { t, isRTL } = useLocaleResources('layout/UserMenu')
 
     const { isFetching, data } = useQuery({
         queryKey: ['shop-credit'],

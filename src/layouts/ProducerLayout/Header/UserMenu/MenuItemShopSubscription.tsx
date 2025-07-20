@@ -27,19 +27,19 @@ function MenuItemShopSubscription() {
     const planInfo = {
         'STARTER': {
             icon: <LeafMd color='#FFF' />,
-            title: t('plans.starter.title')
+            title: t('PlanCard.starter.title')
         },
         'BUSINESS': {
             icon: <SuitcaseMd color='#FFF' />,
-            title: t('plans.pro.title')
+            title: t('PlanCard.pro.title')
         },
         'BUSINESS_PRO': {
             icon: <Star2Md color='#FFF' />,
-            title: t('plans.premium.title')
+            title: t('PlanCard.premium.title')
         },
         'ENTERPRISE': {
             icon: <BuildingMd color='#FFF' />,
-            title: t('plans.enterprise.title')
+            title: t('PlanCard.enterprise.title')
         }
     }
 
@@ -51,8 +51,8 @@ function MenuItemShopSubscription() {
 
     // Determine button text based on days left
     const buttonText = isExpired 
-        ? t('plans.cta.upgrade') 
-        : `${daysLeft} ${t('values.month')} ${t('statistics.alert.upgrade')}`
+        ? t('Plans.cta.upgrade') 
+        : `${daysLeft} ${t('common.month')} ${t('Plans.cta.upgrade')}`
 
     return (
         <Flex

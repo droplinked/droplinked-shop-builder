@@ -2,9 +2,14 @@ import { Flex, Text } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 import React from 'react'
 import { appVersion } from 'utils/app/variable'
+import EnLocale from 'locales/layout/UserMenu/en.json'
+import ArLocale from 'locales/layout/UserMenu/ar.json'
 
 function MenuItemAppVersion() {
-    const { t } = useLocaleResources('layout/ProducerLayout')
+    const { t } = useLocaleResources('layout/UserMenu', {
+        en: EnLocale,
+        ar: ArLocale
+    })
 
     return (
         <Flex
