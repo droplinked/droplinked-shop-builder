@@ -13,7 +13,7 @@ export const useWalletVerification = () => {
 	const { showToast } = useAppToast();
 	const { t } = useLocaleResources('public-pages/landings/partner-pages');
 	const [searchParams, setSearchParams] = useSearchParams();
-	const { partnerName } = usePartnerLanding();
+	const { partnerName  } = usePartnerLanding();
 	const { methods: { updateStates } } = useWalletVerificationContext();
 
 	const mutation = useMutation(async (props: IPostUserVerifyPartner) => {
@@ -21,7 +21,7 @@ export const useWalletVerification = () => {
 			case 'D3':
 				return postUserVerifyD3(props);
 			case 'Unstoppable Domains':
-			case 'Polygon':
+			case '.Polygon':
 				return postUserVerifyUD(props);
 			default:
 				throw new Error('Unsupported partner');
@@ -125,7 +125,7 @@ export const useWalletVerification = () => {
 			case 'D3':
 				return connectD3Wallet();
 			case 'Unstoppable Domains':
-			case 'Polygon':
+			case '.Polygon':
 				return connectUnstoppableWallet();
 			default:
 				throw new Error('Unsupported partner');
