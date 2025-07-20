@@ -3,6 +3,8 @@ import AppIcons from 'assets/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
+import localEn from 'locales/subscription/en.json';
+import localAr from 'locales/subscription/ar.json';
 
 interface IProps {
     value: number;
@@ -11,7 +13,7 @@ interface IProps {
 }
 
 function LinearProgressBar({ value, maxValue, title }: IProps) {
-    const { t } = useLocaleResources('subscription');
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
     
     const getPathColor = () => {
         if (maxValue === "Unlimited") {
@@ -35,7 +37,7 @@ function LinearProgressBar({ value, maxValue, title }: IProps) {
                         </HStack>
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
-                    {maxValue !== "Unlimited" && <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>{t('statistics.usage.used')}</AppTypography>}
+                    {maxValue !== "Unlimited" && <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>{t('LinearProgressBar.used')}</AppTypography>}
                 </HStack>
             </HStack>
             <Progress

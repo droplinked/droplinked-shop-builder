@@ -4,6 +4,8 @@ import IconWrapper from "components/redesign/icon-wrapper/IconWrapper";
 import useLocaleResources from "hooks/useLocaleResources/useLocaleResources";
 import React from "react";
 import { getPlanDetails } from "utils/helpers";
+import localEn from 'locales/subscription/en.json';
+import localAr from 'locales/subscription/ar.json';
 
 interface Props {
     currentPlan: string;
@@ -18,7 +20,7 @@ interface IconProps {
 }
 
 export default function CurrentPlanBanner({ currentPlan, status }: Props) {
-    const { t } = useLocaleResources('subscription');
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
     const { title, icon: IconComponent } = getPlanDetails(currentPlan, t);
     const IconWithProps = IconComponent as React.ComponentType<IconProps>;
     const isActive = status === "ACTIVE";
@@ -42,15 +44,15 @@ export default function CurrentPlanBanner({ currentPlan, status }: Props) {
             <Flex flexDirection="column" gap={1}>
                 <DotSeparatedList>
                     <Text color="#fff" fontSize={16} fontWeight="700">
-                        {title} {t('detailsTab.planSuffix')}
+                        {title} {t('DetailsTab.planSuffix')}
                     </Text>
                     <Text color={isActive ? "#2BCFA1" : "#f24"} fontSize={16} fontWeight={500}>
-                        {isActive ? t('currentPlan.status') : t('currentPlan.inactive')}
+                        {isActive ? t('CurrentPlan.status') : t('CurrentPlan.inactive')}
                     </Text>
                 </DotSeparatedList>
                 {isActive && (
                     <Text color="#7B7B7B" fontSize={14} fontWeight={400}>
-                        {t('currentPlan.activeMessage', { plan: title })}
+                        {t('CurrentPlan.activeMessage', { plan: title })}
                     </Text>
                 )}
             </Flex>

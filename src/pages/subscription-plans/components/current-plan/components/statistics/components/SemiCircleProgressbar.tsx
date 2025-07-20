@@ -4,6 +4,8 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import * as React from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import localEn from 'locales/subscription/en.json';
+import localAr from 'locales/subscription/ar.json';
 
 interface IProps {
     value: number;
@@ -12,7 +14,7 @@ interface IProps {
 }
 
 function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
-    const { t } = useLocaleResources('subscription');
+    const { t } = useLocaleResources('subscription', { en: localEn, ar: localAr });
     const scaledValue = typeof maxValue === "string" ? null : ((value / maxValue) * 50);
 
     const getPathColor = () => {
@@ -58,7 +60,7 @@ function SemiCircleProgressbar({ value, maxValue, title }: IProps) {
                     }
                     {maxValue === "Unlimited" && <AppIcons.Infinity />}
                     <AppTypography color={"text.subtext.placeholder.dark"} fontWeight={"400"} fontSize={"14px"}>
-                        {maxValue === "Unlimited" ? t('statistics.usage.unlimited') : t('statistics.usage.used')}
+                        {maxValue === "Unlimited" ? t('Charts.unlimited') : t('LinearProgressBar.used')}
                     </AppTypography>
                 </VStack>
             </Box>

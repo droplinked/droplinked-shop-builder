@@ -22,7 +22,7 @@ interface PlanDurationRadioContainerProps {
  */
 
 
-function PlanDurationRadioContainer({ bgColor = "neutral.gray.1000", showBorder = false, defaultDuration = "Monthly" }: PlanDurationRadioContainerProps) {
+function PlanDurationRadioContainer({ bgColor = "neutral.gray.1000", showBorder = false, defaultDuration = "Plans.cycles.monthly" }: PlanDurationRadioContainerProps) {
     const preferredPlanDuration = useSubscriptionPlanPurchaseStore((state) => state.preferredPlanDuration)
     const updatePlanDuration = useSubscriptionPlanPurchaseStore((state) => state.updatePlanDuration)
 

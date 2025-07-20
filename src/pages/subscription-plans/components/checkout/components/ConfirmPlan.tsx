@@ -33,8 +33,8 @@ function ConfirmPlan({ setPlanPurchaseModalStep, close }: Props) {
         <>
             <ModalHeaderData
                 icon={<Box sx={{ "path": { stroke: "#FFFFFF" } }}><AppIcons.Like /></Box>}
-                title={t('confirmPlan.title')}
-                description={t('confirmPlan.description', { plan: t(title), price: priceDisplay })}
+                title={t('SubscriptionPlanCheckoutModal.title')}
+                description={t('SubscriptionPlanCheckoutModal.description', { plan: t(title), price: priceDisplay })}
             />
             <ModalBody>
                 <Flex
@@ -56,8 +56,8 @@ function ConfirmPlan({ setPlanPurchaseModalStep, close }: Props) {
                 </Flex>
             </ModalBody>
             <ModalFooter display="flex" alignItems="center" gap={{ xl: 6, base: 3 }}>
-                <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('actions.discard')}</BasicButton>
-                <BasicButton minWidth="unset" width="50%" onClick={() => setPlanPurchaseModalStep("PaymentMethodSelection")}>{t('actions.next')}</BasicButton>
+                <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('common:discard')}</BasicButton>
+                <BasicButton minWidth="unset" width="50%" onClick={() => setPlanPurchaseModalStep("PaymentMethodSelection")}>{t('common:next')}</BasicButton>
             </ModalFooter>
         </>
     )

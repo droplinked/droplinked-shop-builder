@@ -43,7 +43,7 @@ function PlanDurationRadio({ ...props }) {
                         </AppTypography>
                         {duration.discount && (
                             <Center paddingBlock={1} paddingInline={2} borderRadius={"100px"} bgColor={"#80EDCF1A"} color={"#2BCFA1"} fontSize={12} fontWeight={600}>
-                                {t('plans.savePercent', { percent: duration.discount })}
+                                {t('Plans.savePercent', { percent: duration.discount })}
                             </Center>
                         )}
                     </Flex>

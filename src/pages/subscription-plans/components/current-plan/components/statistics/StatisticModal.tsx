@@ -19,15 +19,15 @@ function StatisticModal({ data }: IProps) {
     const currentPlan = data.subscriptionId.type
     const status = data.status
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
-    const { t } = useLocaleResources('subscription');
+    const { t, isRTL } = useLocaleResources('subscription');
 
     const tabs = [
         {
-            title: t('statisticsModal.tabs.statistics'),
+            title: t('StatisticModal.tabs.statistics'),
             content: <StatisticTab data={data} />
         },
         {
-            title: t('statisticsModal.tabs.details'),
+            title: t('StatisticModal.tabs.details'),
             content: <DetailsTab data={data} />
         }
     ]
@@ -41,16 +41,16 @@ function StatisticModal({ data }: IProps) {
                 onClick={() => setIsOpen(true)}
                 leftIcon={<AppIcons.Statistics />}
             >
-                {t('statisticsModal.manageSubscription')}
+                {t('StatisticModal.manageSubscription')}
             </AppButton>
 
             <Tabs variant="unstyled" width="100%">
                 <Drawer
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
-                    title={t('statisticsModal.title')}
-                    placement={isSmallerThan768 ? "bottom" : "right"}
-                    description={t('statisticsModal.description')}
+                    title={t('StatisticModal.title')}
+                    placement={isSmallerThan768 ? "bottom" : isRTL ? "left" : "right"}
+                    description={t('StatisticModal.description')}
                     headerContent={
                         <Flex width="100%" flexDirection="column" gap={6}>
                             <CurrentPlanBanner currentPlan={currentPlan} status={status} />

@@ -150,7 +150,7 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		if (isError)
 			return (
 				<AppTypography fontSize={16} color={'red.400'}>
-					{t('payment.methodSelection.error')}
+					{t('PaymentMethodSelection.error')}
 				</AppTypography>
 			);
 
@@ -176,8 +176,8 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 		<>
 			<ModalHeaderData
 				icon={<AppIcons.PaymentMethodSelection />}
-				title={t('payment.methodSelection.title')}
-				description={t('payment.methodSelection.description')}
+				title={t('PaymentMethodSelection.title')}
+				description={t('PaymentMethodSelection.description')}
 			/>
 			<ModalBody display={'flex'} flexDirection={'column'} gap={4} {...getRootProps()}>
 				{renderContent()}
@@ -190,10 +190,10 @@ export default function PaymentMethodSelection({ setModalData, selectedPaymentMe
 					variant="outline"
 					onClick={handleBack}
 				>
-					{t('payment.methodSelection.buttons.back')}
+					{t('common:back')}
 				</BasicButton>
 				<BasicButton minWidth={'unset'} width={'50%'} isDisabled={isTransactionInProgress} isLoading={isTransactionInProgress} onClick={handlePayment}>
-					{t('payment.methodSelection.buttons.next')}
+					{t('common:next')}
 				</BasicButton>
 			</ModalFooter>
 		</>

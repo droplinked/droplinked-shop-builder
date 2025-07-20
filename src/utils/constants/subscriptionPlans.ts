@@ -19,75 +19,75 @@ type SubscriptionPlans = Record<PlanType, {
 export const getSubscriptionPlans = (t: TFunction): SubscriptionPlans => ({
   STARTER: { 
     icon: LeafLg, 
-    title: t('plans.starter.title'), 
-    description: t('plans.starter.description'),
+    title: t('PlanCard.starter.title'), 
+    description: t('PlanCard.starter.description'),
     features: {
-      title: t('plans.starter.featuresTitle'),
+      title: t('PlanCard.starter.featuresTitle'),
       items: [
-        t('plans.starter.features.analytics'),
-        t('plans.starter.features.storeDesigner'),
-        t('plans.starter.features.shipmentTracking'),
-        t('plans.starter.features.productCollections'),
-        t('plans.starter.features.referralCodes'),
-        t('plans.starter.features.affiliateNetwork'),
-        t('plans.starter.features.basicSupport')
+        t('PlanCard.starter.features.analytics'),
+        t('PlanCard.starter.features.storeDesigner'),
+        t('PlanCard.starter.features.shipmentTracking'),
+        t('PlanCard.starter.features.productCollections'),
+        t('PlanCard.starter.features.referralCodes'),
+        t('PlanCard.starter.features.affiliateNetwork'),
+        t('PlanCard.starter.features.basicSupport')
       ]
     },
     type: 'STARTER'
   },
   BUSINESS: { 
     icon: SuitcaseLg, 
-    title: t('plans.pro.title'), 
-    description: t('plans.pro.description'),
+    title: t('PlanCard.pro.title'), 
+    description: t('PlanCard.pro.description'),
     features: {
-      title: t('plans.pro.featuresTitle'),
+      title: t('PlanCard.pro.featuresTitle'),
       items: [
-        t('plans.pro.features.tokenGating'),
-        t('plans.pro.features.mintToMerch'),
-        t('plans.pro.features.unlimitedTokenization'),
-        t('plans.pro.features.unlimitedDigitalGoods'),
-        t('plans.pro.features.unlimitedPhysicalProducts'),
-        t('plans.pro.features.customDomains'),
-        t('plans.pro.features.customFavicon'),
-        t('plans.pro.features.customShipping'),
-        t('plans.pro.features.digitalCoupons'),
-        t('plans.pro.features.warehouseIntegration'),
-        t('plans.pro.features.premiumSupport')
+        t('PlanCard.pro.features.tokenGating'),
+        t('PlanCard.pro.features.mintToMerch'),
+        t('PlanCard.pro.features.unlimitedTokenization'),
+        t('PlanCard.pro.features.unlimitedDigitalGoods'),
+        t('PlanCard.pro.features.unlimitedPhysicalProducts'),
+        t('PlanCard.pro.features.customDomains'),
+        t('PlanCard.pro.features.customFavicon'),
+        t('PlanCard.pro.features.customShipping'),
+        t('PlanCard.pro.features.digitalCoupons'),
+        t('PlanCard.pro.features.warehouseIntegration'),
+        t('PlanCard.pro.features.premiumSupport')
       ]
     },
     type: 'BUSINESS'
   },
   BUSINESS_PRO: { 
     icon: Star2Lg, 
-    title: t('plans.premium.title'), 
-    description: t('plans.premium.description'),
+    title: t('PlanCard.premium.title'), 
+    description: t('PlanCard.premium.description'),
     features: {
-      title: t('plans.premium.featuresTitle'),
+      title: t('PlanCard.premium.featuresTitle'),
       items: [
-        t('plans.premium.features.apiIntegration'),
-        t('plans.premium.features.royaltyTracking'),
-        t('plans.premium.features.advancedAnalytics'),
-        t('plans.premium.features.embeddableProducts'),
-        t('plans.premium.features.unlimitedProduction'),
-        t('plans.premium.features.marketingTools'),
-        t('plans.premium.features.adminPanel'),
-        t('plans.premium.features.vipSupport')
+        t('PlanCard.premium.features.apiIntegration'),
+        t('PlanCard.premium.features.royaltyTracking'),
+        t('PlanCard.premium.features.advancedAnalytics'),
+        t('PlanCard.premium.features.embeddableProducts'),
+        t('PlanCard.premium.features.unlimitedProduction'),
+        t('PlanCard.premium.features.marketingTools'),
+        t('PlanCard.premium.features.adminPanel'),
+        t('PlanCard.premium.features.vipSupport')
       ]
     },
     type: 'BUSINESS_PRO'
   },
   ENTERPRISE: { 
     icon: BuildingLg, 
-    title: t('plans.enterprise.title'), 
-    description: t('plans.enterprise.description'),
+    title: t('PlanCard.enterprise.title'), 
+    description: t('PlanCard.enterprise.description'),
     features: {
-      title: t('plans.enterprise.featuresTitle'),
+      title: t('PlanCard.enterprise.featuresTitle'),
       items: [
-        t('plans.enterprise.features.tokenPay'),
-        t('plans.enterprise.features.customTemplates'),
-        t('plans.enterprise.features.unlimitedLogin'),
-        t('plans.enterprise.features.unlimitedPayment'),
-        t('plans.enterprise.features.digitalPassport')
+        t('PlanCard.enterprise.features.tokenPay'),
+        t('PlanCard.enterprise.features.customTemplates'),
+        t('PlanCard.enterprise.features.unlimitedLogin'),
+        t('PlanCard.enterprise.features.unlimitedPayment'),
+        t('PlanCard.enterprise.features.digitalPassport')
       ]
     },
     type: 'ENTERPRISE'

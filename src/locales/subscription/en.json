@@ -1,5 +1,5 @@
 {
-  "currentPlan": {
+  "CurrentPlan": {
     "title": "Plan",
     "status": "Active",
     "inactive": "Inactive",
@@ -9,52 +9,37 @@
     "activeMessage": "{{plan}} is active! Enjoy exclusive features.",
     "activeMessageWithPrice": "You are subscribed to the {{plan}} for ${{price}} per {{period}}, active from {{startDate}} to {{endDate}}."
   },
-  "statistics": {
+  "StatisticModal": {
+    "manageSubscription": "Manage Subscription",
     "title": "Subscription Management",
     "description": "Track your usage, view plan details, and update your subscription preferences.",
-    "manageSubscription": "Manage Subscription",
     "tabs": {
       "statistics": "Statistics",
       "details": "Details"
-    },
+    }
+  },
+  "statistics": {
     "usage": {
-      "used": "Used",
-      "unlimited": "Unlimited",
-      "cryptoPayment": "Crypto Payment",
       "physicalProduct": "Physical Product",
       "digitalProduct": "Digital Product",
       "printOnDemand": "Print On Demand",
-      "event": "Event"
-    },
-    "alert": {
-      "title": "Usage Exceeded",
-      "description": "All \"{{feature}}\" items have been used. Upgrade the plan to access more.",
-      "upgrade": "Upgrade"
+      "event": "Event",
+      "web3_network_login": "Web3 Network Login",
+      "drop": "Drop",
+      "web3_payment": "Web3 Payment",
+      "ai_shop_builder": "Ai Shop Builder",
+      "shop_data_export_url": "Shop Data Export Url"
     }
   },
-  "statisticsModal": {
-    "manageSubscription": "Manage Subscription",
-    "title": "Subscription Management",
-    "description": "Track your usage, view plan details, and update your subscription preferences.",
-    "tabs": {
-      "statistics": "Statistics",
-      "details": "Details"
-    }
+  "UsageExceededAlert": {
+    "title": "Usage Exceeded",
+    "description": "All \"{{feature}}\" items have been used. Upgrade the plan to access more.",
+    "upgrade": "Upgrade"
   },
-  "values": {
-    "network": "network",
-    "networks": "networks",
-    "month": "month",
-    "year": "year",
-    "unlimited": "unlimited"
-  },
-  "plans": {
+  "Plans": {
     "title": "Available Plans",
     "subtitle": "Choose from the different package options below.",
     "viewAllPlans": "View all plans and compare",
-    "monthly": "month",
-    "yearly": "year",
-    "threeYear": "3-year",
     "savePercent": "Save {{percent}}%",
     "inheritance": "Everything in {{plan}} plan",
     "continueWithPlan": "Continue with {{plan}} Plan",
@@ -74,6 +59,13 @@
       "upgrade": "Upgrade",
       "contact": "Contact Sales"
     },
+    "cycles": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "fiveYear": "5-Year"
+    }
+  },
+  "PlanCard": {
     "starter": {
       "title": "Starter",
       "description": "Start your journey with essential features",
@@ -134,7 +126,10 @@
       }
     }
   },
-  "plansTable": {
+  "PopularPlanBadge": {
+    "mostPopular": "Most Popular"
+  },
+  "ComparisonTable": {
     "title": "Compare Plans",
     "features": "Features",
     "basic": "Basic",
@@ -146,80 +141,78 @@
     "storefront": "Storefront",
     "paymentOptions": "Payment Options",
     "shipping": "Shipping",
-    "services": "Services",
-    "features": {
-      "storeDesigner": "Store Designer",
-      "analytics": "Analytics",
-      "collectionManagement": "Collection Management",
-      "orderInventoryManagement": "Order & Inventory Management",
-      "affiliateNetwork": "Affiliate Network",
-      "customReferralCodes": "Custom Referral Codes",
-      "couponsAndCredits": "Coupons and Credits",
-      "advancedAnalytics": "Advanced Analytics",
-      "adminManagement": "Admin Management",
-      "embeddableProductTile": "Embeddable Product Tile",
-      "apiIntegration": "API Integration",
-      "physicalProducts": "Physical Products",
-      "digitalGoods": "Digital Goods",
-      "productionOnDemand": "Production on Demand",
-      "productTokenization": "Product Tokenization",
-      "loginMethods": "Login Methods",
-      "postPurchaseDataGathering": "Post Purchase Data Gathering",
-      "customizableFavicon": "Customizable Favicon",
-      "mintToMerch": "Mint to Merch",
-      "tokenGating": "Token Gating",
-      "embeddableProductTiles": "Embeddable Product Tiles",
-      "customizableDomain": "Customizable Domain",
-      "royaltyTracking": "Royalty Tracking",
-      "customTemplates": "Custom Templates",
-      "cryptoPayments": "Crypto Payments",
-      "creditCardPayments": "Credit Card Payments",
-      "tokenPay": "Token Pay",
-      "automatedShipping": "Automated Shipping",
-      "selfManagedShipping": "Self Managed Shipping",
-      "shipmentTracking": "Shipment Tracking",
-      "customizableShipping": "Customizable Shipping",
-      "marketingTools": "Marketing Tools",
-      "accountManager": "Account Manager",
-      "digitalProductPassport": "Digital Product Passport",
-      "support": "Support",
-      "basicSupport": "Basic Customer Support",
-      "premiumSupport": "Premium Customer Support",
-      "vipSupport": "VIP Customer Support",
-      "unlimited": "Unlimited"
+    "services": "Services"
+  },
+  "PlansTable": {
+    "storeDesigner": "Store Designer",
+    "analytics": "Analytics",
+    "collectionManagement": "Collection Management",
+    "orderInventoryManagement": "Order & Inventory Management",
+    "affiliateNetwork": "Affiliate Network",
+    "customReferralCodes": "Custom Referral Codes",
+    "couponsAndCredits": "Coupons and Credits",
+    "advancedAnalytics": "Advanced Analytics",
+    "adminManagement": "Admin Management",
+    "embeddableProductTile": "Embeddable Product Tile",
+    "apiIntegration": "API Integration",
+    "physicalProducts": "Physical Products",
+    "digitalGoods": "Digital Goods",
+    "productionOnDemand": "Production on Demand",
+    "productTokenization": "Product Tokenization",
+    "loginMethods": "Login Methods",
+    "postPurchaseDataGathering": "Post Purchase Data Gathering",
+    "customizableFavicon": "Customizable Favicon",
+    "mintToMerch": "Mint to Merch",
+    "tokenGating": "Token Gating",
+    "embeddableProductTiles": "Embeddable Product Tiles",
+    "customizableDomain": "Customizable Domain",
+    "royaltyTracking": "Royalty Tracking",
+    "customTemplates": "Custom Templates",
+    "cryptoPayments": "Crypto Payments",
+    "creditCardPayments": "Credit Card Payments",
+    "tokenPay": "Token Pay",
+    "automatedShipping": "Automated Shipping",
+    "selfManagedShipping": "Self Managed Shipping",
+    "shipmentTracking": "Shipment Tracking",
+    "customizableShipping": "Customizable Shipping",
+    "marketingTools": "Marketing Tools",
+    "accountManager": "Account Manager",
+    "digitalProductPassport": "Digital Product Passport",
+    "support": "Support",
+    "basicSupport": "Basic Customer Support",
+    "premiumSupport": "Premium Customer Support",
+    "vipSupport": "VIP Customer Support",
+    "unlimited": "Unlimited"
+  },
+  "TableHeading": {
+    "title": "Find the Perfect Plan for Your Needs",
+    "description": "Compare our plans in detail to see which one best suits your business goals and budget."
+  },
+  "PlansHeading": {
+    "title": "Plan Comparison & Features"
+  },
+  "SubscriptionPlanCheckoutModal": {
+    "title": "Confirm subscription",
+    "description": "Upgrade to the {{plan}} Plan for ${{price}} per year to access advanced features."
+  },
+  "PaymentMethodSelection": {
+    "title": "Payment methods",
+    "description": "How would you like to pay for your subscription?",
+    "error": "Oops! It looks like we can not access payment methods at the moment. Give it another try soon?",
+    "stripe": "Credit card information",
+    "stripeDescription": "Choose a credit card on file or add a new one.",
+    "methods": {
+      "stripe": "Stripe",
+      "crypto": "Cryptocurrency"
     }
   },
-  "messages": {
-    "upgradeSuccess": "Plan upgraded successfully",
-    "upgradeError": "Failed to upgrade plan",
-    "cancelSuccess": "Plan cancelled successfully",
-    "cancelError": "Failed to cancel plan",
+  "PaymentStatus": {
     "paymentSuccess": "You're all set!",
     "paymentFailed": "Payment failed",
     "subscriptionActive": "Your {{plan}} Plan subscription is now active.",
     "paymentError": "There was an issue with the payment. Please double-check the details and try again. If the issue persists, please contact us."
   },
-  "errors": {
-    "subscriptionDataUnavailable": "Subscription data is unavailable",
-    "paymentError": "Failed to create payment intent"
-  },
-  "actions": {
-    "returnToDashboard": "Return to Dashboard",
-    "close": "Close",
-    "contactUs": "Contact Us",
-    "discard": "Discard",
-    "next": "Next"
-  },
-  "confirmPlan": {
-    "title": "Confirm subscription",
-    "description": "Upgrade to the {{plan}} Plan for ${{price}} per year to access advanced features."
-  },
-  "network": "network",
-  "tableHeading": {
-    "title": "Find the Perfect Plan for Your Needs",
-    "description": "Compare our plans in detail to see which one best suits your business goals and budget."
-  },
-  "detailsTab": {
+  "DetailsTab": {
     "subscriptionDetails": "Subscription Details",
     "subscriptionPlan": "Subscription Plan",
     "planSuffix": "Plan",
@@ -232,33 +225,38 @@
       "title": "Auto Renewal",
       "description": "Auto-renewal keeps your subscription running without interruption. If turned off, it won't renew automatically and can only be re-enabled by purchasing a new plan."
     },
-    "cancelSubscription": "Cancel Subscription",
-    "cycles": {
-      "monthly": "Monthly",
-      "annual": "Annual",
-      "fiveYear": "5-Year"
-    }
+    "cancelSubscription": "Cancel Subscription"
   },
-  "plansHeading": {
-    "title": "Plan Comparison & Features"
+  "Charts": {
+    "used": "Used",
+    "unlimited": "Unlimited",
+    "cryptoPayment": "Crypto Payment",
+    "web3_network_login": "Web3 Network Login",
+    "web3_payment": "Web3 Payment",
+    "ai_shop_builder": "Ai Shop Builder",
+    "shop_data_export_url": "Shop Data Export Url",
+    "drop": "Drop"
   },
-  "payment": {
-    "stripe": {
-      "title": "Credit card information",
-      "description": "Choose a credit card on file or add a new one."
-    },
-    "methodSelection": {
-      "title": "Payment methods",
-      "description": "How would you like to pay for your subscription?",
-      "error": "Oops! It looks like we can not access payment methods at the moment. Give it another try soon?",
-      "buttons": {
-        "back": "Back",
-        "next": "Next"
-      }
-    },
-    "methods": {
-      "stripe": "Stripe",
-      "crypto": "Crypto"
-    }
+  "LinearProgressBar": {
+    "used": "Used"
+  },
+  "common": {
+    "select": "Select",
+    "noData": "---",
+    "network": "network",
+    "month": "month"
+  },
+  "messages": {
+    "upgradeSuccess": "Plan upgraded successfully",
+    "upgradeError": "Failed to upgrade plan",
+    "cancelSuccess": "Plan cancelled successfully",
+    "cancelError": "Failed to cancel plan"
+  },
+  "errors": {
+    "subscriptionDataUnavailable": "Subscription data is unavailable",
+    "paymentError": "Failed to create payment intent"
+  },
+  "actions": {
+    "returnToDashboard": "Return to Dashboard"
   }
 } 

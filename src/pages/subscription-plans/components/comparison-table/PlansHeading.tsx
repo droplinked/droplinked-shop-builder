@@ -13,7 +13,7 @@ function PlansHeading({ data }: { data: Array<SubscriptionPlan> }) {
       <Tr>
         <Th px={0} textTransform={"none"} border={"none"}>
           <AppTypography color={"#fff"} width={"200px"} height={"130px"} style={{ textWrap: "wrap" }} lineHeight={"30px"} fontWeight={"700"} fontSize={"18px"}>
-            {t('plansHeading.title')}
+            {t('PlansHeading.title')}
           </AppTypography>
         </Th>
         {

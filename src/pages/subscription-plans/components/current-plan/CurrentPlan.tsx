@@ -11,6 +11,7 @@ import StatisticModal from './components/statistics/StatisticModal';
 function CurrentPlan() {
     const { isFetching, data } = useShopSubscriptionData();
     const subscriptionData = data?.data;
+    console.log(subscriptionData);
     const planType = subscriptionData?.subscriptionId?.type;
     const { t } = useLocaleResources('subscription');
 
@@ -43,7 +44,7 @@ function CurrentPlan() {
                     <StatisticModal data={subscriptionData} />
                 </HStack>
             </HStack>
-            <PlanDescription data={subscriptionData} currentSubData={currentPlanInformation} />
+            <PlanDescription data={subscriptionData} currentSubData={{ title: currentPlanInformation.title }} />
         </VStack>
     );
 }

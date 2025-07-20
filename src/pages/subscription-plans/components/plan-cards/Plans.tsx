@@ -24,7 +24,7 @@ export default function Plans() {
 
     return (
         <Flex direction="column" gap={9}>
-            <PlanDurationRadioContainer defaultDuration="Yearly" />
+            <PlanDurationRadioContainer defaultDuration="Plans.cycles.annual" />
             <PlansGrid >
                 {plans.map((plan) => <PlanCard key={plan._id} plan={plan} />)}
             </PlansGrid>

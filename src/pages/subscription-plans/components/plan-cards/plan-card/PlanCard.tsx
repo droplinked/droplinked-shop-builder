@@ -72,7 +72,7 @@ const PlanCard = ({ plan }: { plan: SubscriptionPlan }) => {
                 <PlanPrice plan={plan} />
 
                 <AppButton isDisabled={isStarter} onClick={handlePlanPurchase}>
-                    {isEnterprise ? t('plans.cta.contact') : t('plans.cta.select')}
+                    {isEnterprise ? t('Plans.cta.contact') : t('Plans.cta.select')}
                 </AppButton>
 
                 <Divider borderColor="neutral.gray.700" />

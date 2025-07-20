@@ -46,7 +46,7 @@ export default function PaymentMethodRadio({ ...props }) {
 					<Circle size={2.5} bg={'#2BCFA1'} opacity={isChecked ? 1 : 0} />
 				</Circle>
 				{type === 'STRIPE'
-					? <AppTypography>{t('payment.methods.stripe')}</AppTypography>
+					? <AppTypography>{t('PaymentMethodSelection.methods.stripe')}</AppTypography>
 					: (
 						<Flex
 							alignItems={'center'}

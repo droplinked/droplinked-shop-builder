@@ -25,7 +25,7 @@ function PopularPlanBadge() {
         >
             <AppIcons.PopularPlanMedal />
             <AppTypography textTransform="uppercase" fontSize={14} fontWeight={600} color="#000">
-                {t('plans.mostPopular')}
+                {t('PopularPlanBadge.mostPopular')}
             </AppTypography>
         </Flex>
     )

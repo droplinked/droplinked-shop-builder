@@ -7,206 +7,206 @@ export const getTableData = (t: TFunction) => ({
       type: 'STARTER',
       subOptionIds: [
         {
-          title: t('plansTable.storeBuilder'),
+          title: t('ComparisonTable.storeBuilder'),
           key: 'dashboard',
           value: [
             {
-              title: t('plansTable.features.storeDesigner'),
+              title: t('PlansTable.storeDesigner'),
               key: 'shop_designer',
               value: true
             },
             {
-              title: t('plansTable.features.analytics'),
+              title: t('PlansTable.analytics'),
               key: 'analytics',
               value: true
             },
             {
-              title: t('plansTable.features.collectionManagement'),
+              title: t('PlansTable.collectionManagement'),
               key: 'Collection management',
               value: true
             },
             {
-              title: t('plansTable.features.orderInventoryManagement'),
+              title: t('PlansTable.orderInventoryManagement'),
               key: 'Order & Inventory Management',
               value: true
             },
             {
-              title: t('plansTable.features.affiliateNetwork'),
+              title: t('PlansTable.affiliateNetwork'),
               key: 'Affiliate network',
               value: true
             },
             {
-              title: t('plansTable.features.customReferralCodes'),
+              title: t('PlansTable.customReferralCodes'),
               key: 'Custom referral codes',
               value: true
             },
             {
-              title: t('plansTable.features.couponsAndCredits'),
+              title: t('PlansTable.couponsAndCredits'),
               key: 'Coupons and credit creation',
               value: false
             },
             {
-              title: t('plansTable.features.advancedAnalytics'),
+              title: t('PlansTable.advancedAnalytics'),
               key: 'Advanced analytics',
               value: false
             },
             {
-              title: t('plansTable.features.adminManagement'),
+              title: t('PlansTable.adminManagement'),
               key: 'Admin management',
               value: false
             },
             {
-              title: t('plansTable.features.embeddableProductTile'),
+              title: t('PlansTable.embeddableProductTile'),
               key: 'Embeddable product tile',
               value: false
             },
             {
-              title: t('plansTable.features.apiIntegration'),
+              title: t('PlansTable.apiIntegration'),
               key: 'API integration',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.storefront'),
+          title: t('ComparisonTable.storefront'),
           key: 'shop',
           value: [
             {
-              title: t('plansTable.features.physicalProducts'),
+              title: t('PlansTable.physicalProducts'),
               key: 'Physical products',
               value: '5'
             },
             {
-              title: t('plansTable.features.digitalGoods'),
+              title: t('PlansTable.digitalGoods'),
               key: 'Digital goods',
               value: '5'
             },
             {
-              title: t('plansTable.features.productionOnDemand'),
+              title: t('PlansTable.productionOnDemand'),
               key: 'Production-on-Demand',
               value: '5'
             },
             {
-              title: t('plansTable.features.productTokenization'),
+              title: t('PlansTable.productTokenization'),
               key: 'digital_product',
               value: '5'
             },
             {
-              title: t('plansTable.features.loginMethods'),
+              title: t('PlansTable.loginMethods'),
               key: 'print_on_demand',
-              value: `1 ${t('network')}`
+              value: `1 ${t('common.network')}`
             },
             {
-              title: t('plansTable.features.postPurchaseDataGathering'),
+              title: t('PlansTable.postPurchaseDataGathering'),
               key: 'Post Purchase Data Gathering',
               value: true
             },
             {
-              title: t('plansTable.features.customizableFavicon'),
+              title: t('PlansTable.customizableFavicon'),
               key: 'Customizable_favicon',
               value: false
             },
             {
-              title: t('plansTable.features.mintToMerch'),
+              title: t('PlansTable.mintToMerch'),
               key: 'Mint_to_Merch',
               value: false
             },
             {
-              title: t('plansTable.features.tokenGating'),
+              title: t('PlansTable.tokenGating'),
               key: 'Token_gating',
               value: false
             },
             {
-              title: t('plansTable.features.embeddableProductTiles'),
+              title: t('PlansTable.embeddableProductTiles'),
               key: 'Embeddable_product_tiles',
               value: false
             },
             {
-              title: t('plansTable.features.customizableDomain'),
+              title: t('PlansTable.customizableDomain'),
               key: 'Customizable_domain',
               value: false
             },
             {
-              title: t('plansTable.features.royaltyTracking'),
+              title: t('PlansTable.royaltyTracking'),
               key: 'Royalty_tracking',
               value: false
             },
             {
-              title: t('plansTable.features.customTemplates'),
+              title: t('PlansTable.customTemplates'),
               key: 'Custom_templates',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.paymentOptions'),
+          title: t('ComparisonTable.paymentOptions'),
           key: 'payment_options',
           value: [
             {
-              title: t('plansTable.features.cryptoPayments'),
+              title: t('PlansTable.cryptoPayments'),
               key: 'crypto_payments',
               value: 1
             },
             {
-              title: t('plansTable.features.creditCardPayments'),
+              title: t('PlansTable.creditCardPayments'),
               key: 'credit_card_payments',
               value: true
             },
             {
-              title: t('plansTable.features.tokenPay'),
+              title: t('PlansTable.tokenPay'),
               key: 'tokenpay',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.shipping'),
+          title: t('ComparisonTable.shipping'),
           key: 'shipping_options',
           value: [
             {
-              title: t('plansTable.features.automatedShipping'),
+              title: t('PlansTable.automatedShipping'),
               key: 'automated_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.selfManagedShipping'),
+              title: t('PlansTable.selfManagedShipping'),
               key: 'self_managed_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.shipmentTracking'),
+              title: t('PlansTable.shipmentTracking'),
               key: 'shipment_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customizableShipping'),
+              title: t('PlansTable.customizableShipping'),
               key: 'customizable_shipping',
               value: false
             }
           ]
         },
         {
-          key: t('plansTable.services'),
+          key: t('ComparisonTable.services'),
           value: [
             {
-              title: t('plansTable.features.marketingTools'),
+              title: t('PlansTable.marketingTools'),
               key: 'marketing_tools',
               value: false
             },
             {
-              title: t('plansTable.features.accountManager'),
+              title: t('PlansTable.accountManager'),
               key: 'account_manager',
               value: false
             },
             {
-              title: t('plansTable.features.digitalProductPassport'),
+              title: t('PlansTable.digitalProductPassport'),
               key: 'digital_product_passport',
               value: false
             },
             {
-              title: t('plansTable.features.support'),
+              title: t('PlansTable.support'),
               key: 'support',
-              value: t('plansTable.features.basicSupport')
+              value: t('PlansTable.basicSupport')
             }
           ]
         }
@@ -217,206 +217,206 @@ export const getTableData = (t: TFunction) => ({
       type: 'BUSINESS',
       subOptionIds: [
         {
-          title: t('plansTable.storeBuilder'),
+          title: t('ComparisonTable.storeBuilder'),
           key: 'dashboard',
           value: [
             {
-              title: t('plansTable.features.storeDesigner'),
+              title: t('PlansTable.storeDesigner'),
               key: 'shop_designer',
               value: true
             },
             {
-              title: t('plansTable.features.analytics'),
+              title: t('PlansTable.analytics'),
               key: 'analytics',
               value: true
             },
             {
-              title: t('plansTable.features.collectionManagement'),
+              title: t('PlansTable.collectionManagement'),
               key: 'Collection management',
               value: true
             },
             {
-              title: t('plansTable.features.orderInventoryManagement'),
+              title: t('PlansTable.orderInventoryManagement'),
               key: 'Order & Inventory Management',
               value: true
             },
             {
-              title: t('plansTable.features.affiliateNetwork'),
+              title: t('PlansTable.affiliateNetwork'),
               key: 'Affiliate network',
               value: true
             },
             {
-              title: t('plansTable.features.customReferralCodes'),
+              title: t('PlansTable.customReferralCodes'),
               key: 'Custom referral codes',
               value: true
             },
             {
-              title: t('plansTable.features.couponsAndCredits'),
+              title: t('PlansTable.couponsAndCredits'),
               key: 'Coupons and credit creation',
               value: true
             },
             {
-              title: t('plansTable.features.advancedAnalytics'),
+              title: t('PlansTable.advancedAnalytics'),
               key: 'Advanced analytics',
               value: false
             },
             {
-              title: t('plansTable.features.adminManagement'),
+              title: t('PlansTable.adminManagement'),
               key: 'Admin management',
               value: false
             },
             {
-              title: t('plansTable.features.embeddableProductTile'),
+              title: t('PlansTable.embeddableProductTile'),
               key: 'Embeddable product tile',
               value: false
             },
             {
-              title: t('plansTable.features.apiIntegration'),
+              title: t('PlansTable.apiIntegration'),
               key: 'API integration',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.storefront'),
+          title: t('ComparisonTable.storefront'),
           key: 'shop',
           value: [
             {
-              title: t('plansTable.features.physicalProducts'),
+              title: t('PlansTable.physicalProducts'),
               key: 'Physical products',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.digitalGoods'),
+              title: t('PlansTable.digitalGoods'),
               key: 'Digital goods',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.productionOnDemand'),
+              title: t('PlansTable.productionOnDemand'),
               key: 'Production-on-Demand',
-              value: `10 / ${t('values.month')}`
+              value: `10 / ${t('common.month')}`
             },
             {
-              title: t('plansTable.features.productTokenization'),
+              title: t('PlansTable.productTokenization'),
               key: 'digital_product',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.loginMethods'),
+              title: t('PlansTable.loginMethods'),
               key: 'print_on_demand',
-              value: `3 ${t('network')}`
+              value: `3 ${t('common.network')}`
             },
             {
-              title: t('plansTable.features.postPurchaseDataGathering'),
+              title: t('PlansTable.postPurchaseDataGathering'),
               key: 'Post Purchase Data Gathering',
               value: true
             },
             {
-              title: t('plansTable.features.customizableFavicon'),
+              title: t('PlansTable.customizableFavicon'),
               key: 'Customizable_favicon',
               value: true
             },
             {
-              title: t('plansTable.features.mintToMerch'),
+              title: t('PlansTable.mintToMerch'),
               key: 'Mint_to_Merch',
               value: true
             },
             {
-              title: t('plansTable.features.tokenGating'),
+              title: t('PlansTable.tokenGating'),
               key: 'Token_gating',
               value: true
             },
             {
-              title: t('plansTable.features.embeddableProductTiles'),
+              title: t('PlansTable.embeddableProductTiles'),
               key: 'Embeddable_product_tiles',
               value: true
             },
             {
-              title: t('plansTable.features.customizableDomain'),
+              title: t('PlansTable.customizableDomain'),
               key: 'Customizable_domain',
               value: true
             },
             {
-              title: t('plansTable.features.royaltyTracking'),
+              title: t('PlansTable.royaltyTracking'),
               key: 'Royalty_tracking',
               value: false
             },
             {
-              title: t('plansTable.features.customTemplates'),
+              title: t('PlansTable.customTemplates'),
               key: 'Custom_templates',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.paymentOptions'),
+          title: t('ComparisonTable.paymentOptions'),
           key: 'payment_options',
           value: [
             {
-              title: t('plansTable.features.cryptoPayments'),
+              title: t('PlansTable.cryptoPayments'),
               key: 'crypto_payments',
               value: 3
             },
             {
-              title: t('plansTable.features.creditCardPayments'),
+              title: t('PlansTable.creditCardPayments'),
               key: 'credit_card_payments',
               value: true
             },
             {
-              title: t('plansTable.features.tokenPay'),
+              title: t('PlansTable.tokenPay'),
               key: 'tokenpay',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.shipping'),
+          title: t('ComparisonTable.shipping'),
           key: 'shipping_options',
           value: [
             {
-              title: t('plansTable.features.automatedShipping'),
+              title: t('PlansTable.automatedShipping'),
               key: 'automated_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.selfManagedShipping'),
+              title: t('PlansTable.selfManagedShipping'),
               key: 'self_managed_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.shipmentTracking'),
+              title: t('PlansTable.shipmentTracking'),
               key: 'shipment_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customizableShipping'),
+              title: t('PlansTable.customizableShipping'),
               key: 'customizable_shipping',
               value: true
             }
           ]
         },
         {
-          key: t('plansTable.services'),
+          key: t('ComparisonTable.services'),
           value: [
             {
-              title: t('plansTable.features.marketingTools'),
+              title: t('PlansTable.marketingTools'),
               key: 'marketing_tools',
               value: false
             },
             {
-              title: t('plansTable.features.accountManager'),
+              title: t('PlansTable.accountManager'),
               key: 'account_manager',
               value: false
             },
             {
-              title: t('plansTable.features.digitalProductPassport'),
+              title: t('PlansTable.digitalProductPassport'),
               key: 'digital_product_passport',
               value: false
             },
             {
-              title: t('plansTable.features.support'),
+              title: t('PlansTable.support'),
               key: 'support',
-              value: t('plansTable.features.premiumSupport')
+              value: t('PlansTable.premiumSupport')
             }
           ]
         }
@@ -427,206 +427,206 @@ export const getTableData = (t: TFunction) => ({
       type: 'BUSINESS_PRO',
       subOptionIds: [
         {
-          title: t('plansTable.storeBuilder'),
+          title: t('ComparisonTable.storeBuilder'),
           key: 'dashboard',
           value: [
             {
-              title: t('plansTable.features.storeDesigner'),
+              title: t('PlansTable.storeDesigner'),
               key: 'shop_designer',
               value: true
             },
             {
-              title: t('plansTable.features.analytics'),
+              title: t('PlansTable.analytics'),
               key: 'analytics',
               value: true
             },
             {
-              title: t('plansTable.features.collectionManagement'),
+              title: t('PlansTable.collectionManagement'),
               key: 'Collection management',
               value: true
             },
             {
-              title: t('plansTable.features.orderInventoryManagement'),
+              title: t('PlansTable.orderInventoryManagement'),
               key: 'Order & Inventory Management',
               value: true
             },
             {
-              title: t('plansTable.features.affiliateNetwork'),
+              title: t('PlansTable.affiliateNetwork'),
               key: 'Affiliate network',
               value: true
             },
             {
-              title: t('plansTable.features.customReferralCodes'),
+              title: t('PlansTable.customReferralCodes'),
               key: 'Custom referral codes',
               value: true
             },
             {
-              title: t('plansTable.features.couponsAndCredits'),
+              title: t('PlansTable.couponsAndCredits'),
               key: 'Coupons and credit creation',
               value: true
             },
             {
-              title: t('plansTable.features.advancedAnalytics'),
+              title: t('PlansTable.advancedAnalytics'),
               key: 'Advanced analytics',
               value: true
             },
             {
-              title: t('plansTable.features.adminManagement'),
+              title: t('PlansTable.adminManagement'),
               key: 'Admin management',
               value: true
             },
             {
-              title: t('plansTable.features.embeddableProductTile'),
+              title: t('PlansTable.embeddableProductTile'),
               key: 'Embeddable product tile',
               value: true
             },
             {
-              title: t('plansTable.features.apiIntegration'),
+              title: t('PlansTable.apiIntegration'),
               key: 'API integration',
               value: true
             }
           ]
         },
         {
-          title: t('plansTable.storefront'),
+          title: t('ComparisonTable.storefront'),
           key: 'shop',
           value: [
             {
-              title: t('plansTable.features.physicalProducts'),
+              title: t('PlansTable.physicalProducts'),
               key: 'Physical products',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.digitalGoods'),
+              title: t('PlansTable.digitalGoods'),
               key: 'Digital goods',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.productionOnDemand'),
+              title: t('PlansTable.productionOnDemand'),
               key: 'Production-on-Demand',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.productTokenization'),
+              title: t('PlansTable.productTokenization'),
               key: 'digital_product',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.loginMethods'),
+              title: t('PlansTable.loginMethods'),
               key: 'print_on_demand',
-              value: `5 ${t('network')}`
+              value: `5 ${t('common.network')}`
             },
             {
-              title: t('plansTable.features.postPurchaseDataGathering'),
+              title: t('PlansTable.postPurchaseDataGathering'),
               key: 'Post Purchase Data Gathering',
               value: true
             },
             {
-              title: t('plansTable.features.customizableFavicon'),
+              title: t('PlansTable.customizableFavicon'),
               key: 'Customizable_favicon',
               value: true
             },
             {
-              title: t('plansTable.features.mintToMerch'),
+              title: t('PlansTable.mintToMerch'),
               key: 'Mint_to_Merch',
               value: true
             },
             {
-              title: t('plansTable.features.tokenGating'),
+              title: t('PlansTable.tokenGating'),
               key: 'Token_gating',
               value: true
             },
             {
-              title: t('plansTable.features.embeddableProductTiles'),
+              title: t('PlansTable.embeddableProductTiles'),
               key: 'Embeddable_product_tiles',
               value: true
             },
             {
-              title: t('plansTable.features.customizableDomain'),
+              title: t('PlansTable.customizableDomain'),
               key: 'Customizable_domain',
               value: true
             },
             {
-              title: t('plansTable.features.royaltyTracking'),
+              title: t('PlansTable.royaltyTracking'),
               key: 'Royalty_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customTemplates'),
+              title: t('PlansTable.customTemplates'),
               key: 'Custom_templates',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.paymentOptions'),
+          title: t('ComparisonTable.paymentOptions'),
           key: 'payment_options',
           value: [
             {
-              title: t('plansTable.features.cryptoPayments'),
+              title: t('PlansTable.cryptoPayments'),
               key: 'crypto_payments',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.creditCardPayments'),
+              title: t('PlansTable.creditCardPayments'),
               key: 'credit_card_payments',
               value: true
             },
             {
-              title: t('plansTable.features.tokenPay'),
+              title: t('PlansTable.tokenPay'),
               key: 'tokenpay',
               value: false
             }
           ]
         },
         {
-          title: t('plansTable.shipping'),
+          title: t('ComparisonTable.shipping'),
           key: 'shipping_options',
           value: [
             {
-              title: t('plansTable.features.automatedShipping'),
+              title: t('PlansTable.automatedShipping'),
               key: 'automated_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.selfManagedShipping'),
+              title: t('PlansTable.selfManagedShipping'),
               key: 'self_managed_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.shipmentTracking'),
+              title: t('PlansTable.shipmentTracking'),
               key: 'shipment_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customizableShipping'),
+              title: t('PlansTable.customizableShipping'),
               key: 'customizable_shipping',
               value: true
             }
           ]
         },
         {
-          key: t('plansTable.services'),
+          key: t('ComparisonTable.services'),
           value: [
             {
-              title: t('plansTable.features.marketingTools'),
+              title: t('PlansTable.marketingTools'),
               key: 'marketing_tools',
               value: true
             },
             {
-              title: t('plansTable.features.accountManager'),
+              title: t('PlansTable.accountManager'),
               key: 'account_manager',
               value: false
             },
             {
-              title: t('plansTable.features.digitalProductPassport'),
+              title: t('PlansTable.digitalProductPassport'),
               key: 'digital_product_passport',
               value: false
             },
             {
-              title: t('plansTable.features.support'),
+              title: t('PlansTable.support'),
               key: 'support',
-              value: t('plansTable.features.vipSupport')
+              value: t('PlansTable.vipSupport')
             }
           ]
         }
@@ -637,206 +637,206 @@ export const getTableData = (t: TFunction) => ({
       type: 'ENTERPRISE',
       subOptionIds: [
         {
-          title: t('plansTable.storeBuilder'),
+          title: t('ComparisonTable.storeBuilder'),
           key: 'dashboard',
           value: [
             {
-              title: t('plansTable.features.storeDesigner'),
+              title: t('PlansTable.storeDesigner'),
               key: 'shop_designer',
               value: true
             },
             {
-              title: t('plansTable.features.analytics'),
+              title: t('PlansTable.analytics'),
               key: 'analytics',
               value: true
             },
             {
-              title: t('plansTable.features.collectionManagement'),
+              title: t('PlansTable.collectionManagement'),
               key: 'Collection management',
               value: true
             },
             {
-              title: t('plansTable.features.orderInventoryManagement'),
+              title: t('PlansTable.orderInventoryManagement'),
               key: 'Order & Inventory Management',
               value: true
             },
             {
-              title: t('plansTable.features.affiliateNetwork'),
+              title: t('PlansTable.affiliateNetwork'),
               key: 'Affiliate network',
               value: true
             },
             {
-              title: t('plansTable.features.customReferralCodes'),
+              title: t('PlansTable.customReferralCodes'),
               key: 'Custom referral codes',
               value: true
             },
             {
-              title: t('plansTable.features.couponsAndCredits'),
+              title: t('PlansTable.couponsAndCredits'),
               key: 'Coupons and credit creation',
               value: true
             },
             {
-              title: t('plansTable.features.advancedAnalytics'),
+              title: t('PlansTable.advancedAnalytics'),
               key: 'Advanced analytics',
               value: true
             },
             {
-              title: t('plansTable.features.adminManagement'),
+              title: t('PlansTable.adminManagement'),
               key: 'Admin management',
               value: true
             },
             {
-              title: t('plansTable.features.embeddableProductTile'),
+              title: t('PlansTable.embeddableProductTile'),
               key: 'Embeddable product tile',
               value: true
             },
             {
-              title: t('plansTable.features.apiIntegration'),
+              title: t('PlansTable.apiIntegration'),
               key: 'API integration',
               value: true
             }
           ]
         },
         {
-          title: t('plansTable.storefront'),
+          title: t('ComparisonTable.storefront'),
           key: 'shop',
           value: [
             {
-              title: t('plansTable.features.physicalProducts'),
+              title: t('PlansTable.physicalProducts'),
               key: 'Physical products',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.digitalGoods'),
+              title: t('PlansTable.digitalGoods'),
               key: 'Digital goods',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.productionOnDemand'),
+              title: t('PlansTable.productionOnDemand'),
               key: 'Production-on-Demand',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.productTokenization'),
+              title: t('PlansTable.productTokenization'),
               key: 'digital_product',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.loginMethods'),
+              title: t('PlansTable.loginMethods'),
               key: 'print_on_demand',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.postPurchaseDataGathering'),
+              title: t('PlansTable.postPurchaseDataGathering'),
               key: 'Post Purchase Data Gathering',
               value: true
             },
             {
-              title: t('plansTable.features.customizableFavicon'),
+              title: t('PlansTable.customizableFavicon'),
               key: 'Customizable_favicon',
               value: true
             },
             {
-              title: t('plansTable.features.mintToMerch'),
+              title: t('PlansTable.mintToMerch'),
               key: 'Mint_to_Merch',
               value: true
             },
             {
-              title: t('plansTable.features.tokenGating'),
+              title: t('PlansTable.tokenGating'),
               key: 'Token_gating',
               value: true
             },
             {
-              title: t('plansTable.features.embeddableProductTiles'),
+              title: t('PlansTable.embeddableProductTiles'),
               key: 'Embeddable_product_tiles',
               value: true
             },
             {
-              title: t('plansTable.features.customizableDomain'),
+              title: t('PlansTable.customizableDomain'),
               key: 'Customizable_domain',
               value: true
             },
             {
-              title: t('plansTable.features.royaltyTracking'),
+              title: t('PlansTable.royaltyTracking'),
               key: 'Royalty_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customTemplates'),
+              title: t('PlansTable.customTemplates'),
               key: 'Custom_templates',
               value: true
             }
           ]
         },
         {
-          title: t('plansTable.paymentOptions'),
+          title: t('ComparisonTable.paymentOptions'),
           key: 'payment_options',
           value: [
             {
-              title: t('plansTable.features.cryptoPayments'),
+              title: t('PlansTable.cryptoPayments'),
               key: 'crypto_payments',
-              value: t('plansTable.features.unlimited')
+              value: t('PlansTable.unlimited')
             },
             {
-              title: t('plansTable.features.creditCardPayments'),
+              title: t('PlansTable.creditCardPayments'),
               key: 'credit_card_payments',
               value: true
             },
             {
-              title: t('plansTable.features.tokenPay'),
+              title: t('PlansTable.tokenPay'),
               key: 'tokenpay',
               value: true
             }
           ]
         },
         {
-          title: t('plansTable.shipping'),
+          title: t('ComparisonTable.shipping'),
           key: 'shipping_options',
           value: [
             {
-              title: t('plansTable.features.automatedShipping'),
+              title: t('PlansTable.automatedShipping'),
               key: 'automated_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.selfManagedShipping'),
+              title: t('PlansTable.selfManagedShipping'),
               key: 'self_managed_shipping',
               value: true
             },
             {
-              title: t('plansTable.features.shipmentTracking'),
+              title: t('PlansTable.shipmentTracking'),
               key: 'shipment_tracking',
               value: true
             },
             {
-              title: t('plansTable.features.customizableShipping'),
+              title: t('PlansTable.customizableShipping'),
               key: 'customizable_shipping',
               value: true
             }
           ]
         },
         {
-          key: t('plansTable.services'),
+          key: t('ComparisonTable.services'),
           value: [
             {
-              title: t('plansTable.features.marketingTools'),
+              title: t('PlansTable.marketingTools'),
               key: 'marketing_tools',
               value: true
             },
             {
-              title: t('plansTable.features.accountManager'),
+              title: t('PlansTable.accountManager'),
               key: 'account_manager',
               value: true
             },
             {
-              title: t('plansTable.features.digitalProductPassport'),
+              title: t('PlansTable.digitalProductPassport'),
               key: 'digital_product_passport',
               value: true
             },
             {
-              title: t('plansTable.features.support'),
+              title: t('PlansTable.support'),
               key: 'support',
-              value: t('plansTable.features.vipSupport')
+              value: t('PlansTable.vipSupport')
             }
           ]
         }

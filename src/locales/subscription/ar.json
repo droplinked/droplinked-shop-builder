@@ -1,5 +1,5 @@
 {
-  "currentPlan": {
+  "CurrentPlan": {
     "title": "الخطة",
     "status": "نشط",
     "inactive": "غير نشط",
@@ -9,47 +9,63 @@
     "activeMessage": "{{plan}} نشطة! استمتع بالميزات الحصرية.",
     "activeMessageWithPrice": "أنت مشترك في {{plan}} مقابل {{price}}$ لكل {{period}}، نشط من {{startDate}} إلى {{endDate}}."
   },
-  "statistics": {
-    "title": "إدارة الاشتراك",
-    "description": "تتبع استخدامك، عرض تفاصيل الخطة، وتحديث تفضيلات اشتراكك",
+  "StatisticModal": {
     "manageSubscription": "إدارة الاشتراك",
+    "title": "إدارة الاشتراك",
+    "description": "تتبع استخدامك وعرض تفاصيل الخطة وتحديث تفضيلات الاشتراك.",
     "tabs": {
       "statistics": "الإحصائيات",
       "details": "التفاصيل"
-    },
+    }
+  },
+  "statistics": {
     "usage": {
-      "used": "مستخدم",
-      "unlimited": "غير محدود",
-      "cryptoPayment": "دفع العملات المشفرة",
       "physicalProduct": "منتج مادي",
       "digitalProduct": "منتج رقمي",
       "printOnDemand": "طباعة عند الطلب",
-      "event": "حدث"
-    },
-    "alert": {
-      "title": "تم تجاوز الاستخدام",
-      "description": "تم استخدام جميع عناصر \"{{feature}}\". قم بترقية الخطة للوصول إلى المزيد.",
-      "upgrade": "ترقية"
+      "event": "حدث",
+      "web3_network_login": "تسجيل دخول شبكة Web3",
+      "drop": "إسقاط",
+      "web3_payment": "دفع Web3",
+      "ai_shop_builder": "منشئ المتجر الذكي",
+      "shop_data_export_url": "رابط تصدير بيانات المتجر"
     }
   },
-  "values": {
-    "network": "شبكة",
-    "month": "شهر",
-    "year": "سنة",
-    "unlimited": "غير محدود"
+  "UsageExceededAlert": {
+    "title": "تم تجاوز الاستخدام",
+    "description": "تم استخدام جميع عناصر \"{{feature}}\". قم بترقية الخطة للوصول إلى المزيد.",
+    "upgrade": "ترقية"
   },
-  "plans": {
+  "Plans": {
     "title": "الخطط المتاحة",
     "subtitle": "اختر من بين خيارات الباقات المختلفة أدناه.",
     "viewAllPlans": "عرض جميع الخطط والمقارنة بينها",
-    "monthly": "شهر",
-    "yearly": "سنة",
-    "threeYear": "3 سنوات",
     "savePercent": "وفر {{percent}}%",
     "inheritance": "كل ما في خطة {{plan}}",
     "continueWithPlan": "المتابعة مع خطة {{plan}}",
     "selected": "مختارة",
     "mostPopular": "الأكثر شعبية",
+    "features": {
+      "products": "المنتجات",
+      "storage": "التخزين",
+      "bandwidth": "عرض النطاق الترددي",
+      "support": "الدعم",
+      "customDomain": "النطاق المخصص",
+      "analytics": "التحليلات"
+    },
+    "cta": {
+      "select": "اختر الخطة",
+      "current": "الخطة الحالية",
+      "upgrade": "ترقية",
+      "contact": "اتصل بالمبيعات"
+    },
+    "cycles": {
+      "monthly": "شهري",
+      "annual": "سنوي",
+      "fiveYear": "5 سنوات"
+    }
+  },
+  "PlanCard": {
     "starter": {
       "title": "المبتدئ",
       "description": "ابدأ رحلتك مع الميزات الأساسية",
@@ -108,15 +124,12 @@
         "unlimitedPayment": "دفع غير محدود",
         "digitalPassport": "جواز سفر رقمي"
       }
-    },
-    "cta": {
-      "select": "اختر الخطة",
-      "current": "الخطة الحالية",
-      "upgrade": "ترقية",
-      "contact": "اتصل بالمبيعات"
     }
   },
-  "plansTable": {
+  "PopularPlanBadge": {
+    "mostPopular": "الأكثر شعبية"
+  },
+  "ComparisonTable": {
     "title": "مقارنة الخطط",
     "features": "الميزات",
     "basic": "أساسي",
@@ -128,89 +141,78 @@
     "storefront": "واجهة المتجر",
     "paymentOptions": "خيارات الدفع",
     "shipping": "الشحن",
-    "services": "الخدمات",
-    "features": {
-      "storeDesigner": "مصمم المتجر",
-      "analytics": "التحليلات",
-      "collectionManagement": "إدارة المجموعات",
-      "orderInventoryManagement": "إدارة الطلبات والمخزون",
-      "affiliateNetwork": "شبكة التسويق بالعمولة",
-      "customReferralCodes": "رموز إحالة مخصصة",
-      "couponsAndCredits": "كوبونات وأرصدة",
-      "advancedAnalytics": "تحليلات متقدمة",
-      "adminManagement": "إدارة المشرفين",
-      "embeddableProductTile": "بطاقة منتج قابلة للتضمين",
-      "apiIntegration": "تكامل API",
-      "physicalProducts": "منتجات مادية",
-      "digitalGoods": "سلع رقمية",
-      "productionOnDemand": "إنتاج حسب الطلب",
-      "productTokenization": "ترميز المنتجات",
-      "loginMethods": "طرق تسجيل الدخول",
-      "postPurchaseDataGathering": "جمع بيانات ما بعد الشراء",
-      "customizableFavicon": "أيقونة مخصصة",
-      "mintToMerch": "تحويل الرموز إلى منتجات",
-      "tokenGating": "بوابة الرموز",
-      "embeddableProductTiles": "بطاقات منتجات قابلة للتضمين",
-      "customizableDomain": "نطاق مخصص",
-      "royaltyTracking": "تتبع العائدات",
-      "customTemplates": "قوالب مخصصة",
-      "cryptoPayments": "مدفوعات العملات المشفرة",
-      "creditCardPayments": "مدفوعات البطاقات الائتمانية",
-      "tokenPay": "الدفع بالرموز",
-      "automatedShipping": "شحن آلي",
-      "selfManagedShipping": "شحن ذاتي الإدارة",
-      "shipmentTracking": "تتبع الشحنات",
-      "customizableShipping": "شحن مخصص",
-      "marketingTools": "أدوات تسويقية",
-      "accountManager": "مدير حساب",
-      "digitalProductPassport": "جواز سفر المنتج الرقمي",
-      "support": "الدعم",
-      "basicSupport": "دعم العملاء الأساسي",
-      "premiumSupport": "دعم العملاء المتميز",
-      "vipSupport": "دعم العملاء VIP",
-      "unlimited": "غير محدود"
+    "services": "الخدمات"
+  },
+  "PlansTable": {
+    "storeDesigner": "مصمم المتجر",
+    "analytics": "التحليلات",
+    "collectionManagement": "إدارة المجموعات",
+    "orderInventoryManagement": "إدارة الطلبات والمخزون",
+    "affiliateNetwork": "شبكة التسويق بالعمولة",
+    "customReferralCodes": "رموز إحالة مخصصة",
+    "couponsAndCredits": "كوبونات وأرصدة",
+    "advancedAnalytics": "تحليلات متقدمة",
+    "adminManagement": "إدارة المشرفين",
+    "embeddableProductTile": "بطاقة منتج قابلة للتضمين",
+    "apiIntegration": "تكامل API",
+    "physicalProducts": "منتجات مادية",
+    "digitalGoods": "سلع رقمية",
+    "productionOnDemand": "إنتاج حسب الطلب",
+    "productTokenization": "ترميز المنتجات",
+    "loginMethods": "طرق تسجيل الدخول",
+    "postPurchaseDataGathering": "جمع بيانات ما بعد الشراء",
+    "customizableFavicon": "أيقونة مخصصة",
+    "mintToMerch": "تحويل الرموز إلى منتجات",
+    "tokenGating": "بوابة الرموز",
+    "embeddableProductTiles": "بطاقات منتجات قابلة للتضمين",
+    "customizableDomain": "نطاق مخصص",
+    "royaltyTracking": "تتبع العائدات",
+    "customTemplates": "قوالب مخصصة",
+    "cryptoPayments": "مدفوعات العملات المشفرة",
+    "creditCardPayments": "مدفوعات البطاقات الائتمانية",
+    "tokenPay": "الدفع بالرموز",
+    "automatedShipping": "شحن آلي",
+    "selfManagedShipping": "شحن ذاتي الإدارة",
+    "shipmentTracking": "تتبع الشحنات",
+    "customizableShipping": "شحن مخصص",
+    "marketingTools": "أدوات تسويقية",
+    "accountManager": "مدير حساب",
+    "digitalProductPassport": "جواز سفر المنتج الرقمي",
+    "support": "الدعم",
+    "basicSupport": "دعم العملاء الأساسي",
+    "premiumSupport": "دعم العملاء المتميز",
+    "vipSupport": "دعم العملاء VIP",
+    "unlimited": "غير محدود"
+  },
+  "TableHeading": {
+    "title": "اختر الخطة المثالية لاحتياجاتك",
+    "description": "قارن خططنا بالتفصيل لمعرفة أيها يناسب أهداف عملك وميزانيتك بشكل أفضل."
+  },
+  "PlansHeading": {
+    "title": "مقارنة الخطط والميزات"
+  },
+  "SubscriptionPlanCheckoutModal": {
+    "title": "تأكيد الاشتراك",
+    "description": "قم بالترقية إلى خطة {{plan}} مقابل {{price}}$ سنويًا للوصول إلى الميزات المتقدمة."
+  },
+  "PaymentMethodSelection": {
+    "title": "طرق الدفع",
+    "description": "كيف تريد أن تدفع مقابل اشتراكك؟",
+    "error": "عذراً! يبدو أننا لا نستطيع الوصول إلى طرق الدفع في الوقت الحالي. حاول مرة أخرى قريباً؟",
+    "stripe": "معلومات البطاقة الائتمانية",
+    "stripeDescription": "اختر بطاقة ائتمان مسجلة أو أضف بطاقة جديدة.",
+    "methods": {
+      "stripe": "سترايب",
+      "crypto": "عملات رقمية"
     }
   },
-  "messages": {
-    "upgradeSuccess": "تمت ترقية الخطة بنجاح",
-    "upgradeError": "فشل في ترقية الخطة",
-    "cancelSuccess": "تم إلغاء الخطة بنجاح",
-    "cancelError": "فشل في إلغاء الخطة",
+  "PaymentStatus": {
     "paymentSuccess": "كل شيء جاهز!",
     "paymentFailed": "فشل الدفع",
     "subscriptionActive": "اشتراكك في خطة {{plan}} نشط الآن.",
     "paymentError": "حدثت مشكلة في عملية الدفع. يرجى التحقق من التفاصيل والمحاولة مرة أخرى. إذا استمرت المشكلة، يرجى الاتصال بنا."
   },
-  "errors": {
-    "subscriptionDataUnavailable": "بيانات الاشتراك غير متوفرة",
-    "paymentError": "فشل إنشاء طلب الدفع"
-  },
-  "actions": {
-    "returnToDashboard": "العودة إلى لوحة التحكم",
-    "close": "إغلاق",
-    "contactUs": "اتصل بنا",
-    "discard": "تجاهل",
-    "next": "التالي"
-  },
-  "confirmPlan": {
-    "title": "تأكيد الاشتراك",
-    "description": "قم بالترقية إلى خطة {{plan}} مقابل {{price}}$ سنويًا للوصول إلى الميزات المتقدمة."
-  },
-  "network": "شبكة",
-  "tableHeading": {
-    "title": "اختر الخطة المثالية لاحتياجاتك",
-    "description": "قارن خططنا بالتفصيل لمعرفة أيها يناسب أهداف عملك وميزانيتك بشكل أفضل."
-  },
-  "statisticsModal": {
-    "manageSubscription": "إدارة الاشتراك",
-    "title": "إدارة الاشتراك",
-    "description": "تتبع استخدامك، عرض تفاصيل الخطة، وتحديث تفضيلات اشتراكك",
-    "tabs": {
-      "statistics": "الإحصائيات",
-      "details": "التفاصيل"
-    }
-  },
-  "detailsTab": {
+  "DetailsTab": {
     "subscriptionDetails": "تفاصيل الاشتراك",
     "subscriptionPlan": "خطة الاشتراك",
     "planSuffix": "خطة",
@@ -223,33 +225,38 @@
       "title": "التجديد التلقائي",
       "description": "يحافظ التجديد التلقائي على استمرار اشتراكك دون انقطاع. إذا تم إيقافه، فلن يتجدد تلقائياً ويمكن إعادة تفعيله فقط عن طريق شراء خطة جديدة."
     },
-    "cancelSubscription": "إلغاء الاشتراك",
-    "cycles": {
-      "monthly": "شهري",
-      "annual": "سنوي",
-      "fiveYear": "5 سنوات"
-    }
+    "cancelSubscription": "إلغاء الاشتراك"
   },
-  "plansHeading": {
-    "title": "مقارنة الخطط والميزات"
+  "Charts": {
+    "used": "مستخدم",
+    "unlimited": "غير محدود",
+    "cryptoPayment": "دفع التشفير",
+    "web3_network_login": "تسجيل دخول شبكة Web3",
+    "web3_payment": "دفع Web3",
+    "ai_shop_builder": "منشئ المتجر الذكي",
+    "shop_data_export_url": "رابط تصدير بيانات المتجر",
+    "drop": "إسقاط"
   },
-  "payment": {
-    "stripe": {
-      "title": "معلومات البطاقة الائتمانية",
-      "description": "اختر بطاقة ائتمان مسجلة أو أضف بطاقة جديدة."
-    },
-    "methodSelection": {
-      "title": "طرق الدفع",
-      "description": "كيف تريد أن تدفع مقابل اشتراكك؟",
-      "error": "عذراً! يبدو أننا لا نستطيع الوصول إلى طرق الدفع في الوقت الحالي. حاول مرة أخرى قريباً؟",
-      "buttons": {
-        "back": "رجوع",
-        "next": "التالي"
-      }
-    },
-    "methods": {
-      "stripe": "سترايب",
-      "crypto": "عملات رقمية"
-    }
+  "LinearProgressBar": {
+    "used": "مستخدم"
+  },
+  "common": {
+    "select": "اختر",
+    "noData": "---",
+    "network": "شبكة",
+    "month": "شهر"
+  },
+  "messages": {
+    "upgradeSuccess": "تمت ترقية الخطة بنجاح",
+    "upgradeError": "فشل في ترقية الخطة",
+    "cancelSuccess": "تم إلغاء الخطة بنجاح",
+    "cancelError": "فشل في إلغاء الخطة"
+  },
+  "errors": {
+    "subscriptionDataUnavailable": "بيانات الاشتراك غير متوفرة",
+    "paymentError": "فشل إنشاء طلب الدفع"
+  },
+  "actions": {
+    "returnToDashboard": "العودة إلى لوحة التحكم"
   }
 } 

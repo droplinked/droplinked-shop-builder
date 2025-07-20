@@ -45,7 +45,7 @@ function PaymentStatus({ paymentStatus, close }: Props) {
                     fontWeight={700}
                     color={"white"}
                 >
-                    {t(isSuccessful ? 'messages.paymentSuccess' : 'messages.paymentFailed')}
+                    {t(isSuccessful ? 'PaymentStatus.paymentSuccess' : 'PaymentStatus.paymentFailed')}
                 </AppTypography>
                 <AppTypography
                     fontSize={16}
@@ -53,9 +53,9 @@ function PaymentStatus({ paymentStatus, close }: Props) {
                     color={"white"}
                 >
                     {isSuccessful ?
-                        t('messages.subscriptionActive', { plan: getSubscriptionPlans(t)[selectedPlan.type].title })
+                        t('PaymentStatus.subscriptionActive', { plan: getSubscriptionPlans(t)[selectedPlan.type].title })
                         :
-                        t('messages.paymentError')}
+                        t('PaymentStatus.paymentError')}
                 </AppTypography>
             </ModalBody>
 
@@ -70,8 +70,8 @@ function PaymentStatus({ paymentStatus, close }: Props) {
                         <BasicButton variant='outline' onClick={fetchShopSubscriptionData}>{t('actions.returnToDashboard')}</BasicButton>
                         :
                         <>
-                            <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('actions.close')}</BasicButton>
-                            <BasicButton minWidth="unset" width="50%" onClick={() => window.location.href = "mailto:Support@droplinked.com"}>{t('actions.contactUs')}</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" variant='outline' onClick={close}>{t('common:close')}</BasicButton>
+                            <BasicButton minWidth="unset" width="50%" onClick={() => window.location.href = "mailto:Support@droplinked.com"}>{t('common:contactUs')}</BasicButton>
                         </>
                 }
             </ModalFooter>

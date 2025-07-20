@@ -31,7 +31,7 @@ function PlanBadge({ currentSubData, data }: props) {
                 variant="muted"
                 size={"36"}
                 status={data.status === "ACTIVE" ? "success" : "error"}
-                text={t(data.status === "ACTIVE" ? 'currentPlan.status' : 'currentPlan.inactive')}
+                text={t(data.status === "ACTIVE" ? 'CurrentPlan.status' : 'CurrentPlan.inactive')}
                 leftIcon={AppIcons.Available} />
         </HStack>
     );

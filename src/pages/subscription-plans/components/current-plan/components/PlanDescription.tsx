@@ -4,11 +4,9 @@ import * as React from 'react';
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import localEn from 'locales/subscription/en.json';
 import localAr from 'locales/subscription/ar.json';
-import { IconProps } from 'react-toastify';
 
 interface props {
     currentSubData: {
-        icon: React.ComponentType<IconProps>,
         title: string
     };
     data: ShopSubscriptionData
@@ -24,9 +22,9 @@ function PlanDescription({ currentSubData, data }: props) {
     if (data.subscriptionId.type === "STARTER") { return null }
 
     return (
-        currentSubData.title === "plans.enterprise.title" ?
+        currentSubData.title === "PlanCard.enterprise.title" ?
             <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
-                {t('currentPlan.activeMessage', {
+                {t('CurrentPlan.activeMessage', {
                     plan: t(currentSubData.title),
                     startDate: formatDate(data.startsAt),
                     endDate: formatDate(data.expiresAt)
@@ -34,10 +32,10 @@ function PlanDescription({ currentSubData, data }: props) {
             </AppTypography>
             :
             <AppTypography color={"#B1B1B1"} fontWeight={400} fontSize={"16px"}>
-                {t('currentPlan.activeMessageWithPrice', {
+                {t('CurrentPlan.activeMessageWithPrice', {
                     plan: t(currentSubData.title),
                     price: data.paidAmount?.toFixed(2),
-                    period: data.monthLength === 1 ? t('plans.monthly') : data.monthLength === 12 ? t('plans.yearly') : t('plans.threeYear'),
+                    period: data.monthLength === 1 ? t('Plans.cycles.monthly') : data.monthLength === 12 ? t('Plans.cycles.annual') : t('Plans.cycles.fiveYear'),
                     startDate: formatDate(data.startsAt),
                     endDate: formatDate(data.expiresAt)
                 })}
