@@ -40,7 +40,7 @@ const TileDesignPagePayment = () => {
                                 justifyContent={"space-between"}
                                 alignItems={"center"}
                             >
-                                <AppTypography>{t('payment.methods.casperWallet')}</AppTypography>
+                                <AppTypography>{t('TileDesignPagePayment.casperWallet')}</AppTypography>
                                 <AppIcons.CasperIcon width={"24px"} height={"24px"} />
                             </HStack>
                         </label>
@@ -64,19 +64,19 @@ const TileDesignPagePayment = () => {
             </RadioGroup>
             <VStack spacing={"16px"} width={"full"} color={grey_if_dark_mode}>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>{t('payment.fields.totalCart')}</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.totalCart')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>{t('payment.fields.shipping')}</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.shipping')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>{t('payment.fields.tax')}</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.tax')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
                 <HStack justify={"space-between"} width={"full"}>
-                    <AppTypography fontWeight={"600"}>{t('payment.fields.total')}</AppTypography>
+                    <AppTypography fontWeight={"600"}>{t('TileDesignPagePayment.total')}</AppTypography>
                     <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                 </HStack>
             </VStack>
@@ -85,7 +85,7 @@ const TileDesignPagePayment = () => {
                     {t('common.back')}
                 </Button>
                 <Button bg={white_if_dark_mode} width={"200px"} paddingX={"36px"} fontSize={"14px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    {t('payment.actions.pay').replace('{{amount}}', '$246.98 USD')}
+                    {t('TileDesignPagePayment.pay').replace('{{amount}}', '$246.98 USD')}
                 </Button>
             </HStack>
         </Box>

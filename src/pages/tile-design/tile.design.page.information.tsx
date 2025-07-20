@@ -45,39 +45,39 @@ const TileDesignPageInformation = () => {
     return (
         <Box bg={black_if_dark_mode} color={white_if_dark_mode} width={"full"} maxW={"80%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <AppTypography fontSize={"16px"} fontWeight={"700px"}>
-                {t('information.title')}
+                {t('TileDesignPageInformation.title')}
             </AppTypography>
             <VStack spacing={12} width={"full"}>
                 <HStack width={"full"} justifyContent={"space-between"}>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            {t('information.fields.firstName')}
+                            {t('TileDesignPageInformation.firstName')}
                         </AppTypography>
                         <Input padding={"12px 16px"} id="firstName" placeholder="John" />
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            {t('information.fields.lastName')}
+                            {t('TileDesignPageInformation.lastName')}
                         </AppTypography>
                         <Input padding={"12px 16px"} id="lastName" placeholder="Doe" />
                     </VStack>
                 </HStack>
                 <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                     <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                        {t('information.fields.email')}
+                        {t('TileDesignPageInformation.email')}
                     </AppTypography>
                     <Input padding={"12px 16px"} id="email" type="email" placeholder="you@example.com" />
                 </VStack>
                 <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                     <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                        {t('information.fields.address')}
+                        {t('TileDesignPageInformation.address')}
                     </AppTypography>
-                    <Input padding={"12px 16px"} id="address" placeholder={t('information.fields.addressPlaceholder')} />
+                    <Input padding={"12px 16px"} id="address" placeholder={t('TileDesignPageInformation.addressPlaceholder')} />
                 </VStack>
                 <HStack width={"full"}>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            {t('information.fields.state')}
+                            {t('TileDesignPageInformation.state')}
                         </AppTypography>
                         <Select id="state" placeholder={t('common.select')} size={"lg"}>
                             {sampleLocations.countries.map((el) => (
@@ -89,7 +89,7 @@ const TileDesignPageInformation = () => {
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            {t('information.fields.city')}
+                            {t('TileDesignPageInformation.city')}
                         </AppTypography>
                         <Select id="city" placeholder={t('common.select')} size={"lg"}>
                             {sampleLocations.cities.map((el) => (
@@ -101,17 +101,17 @@ const TileDesignPageInformation = () => {
                     </VStack>
                     <VStack spacing={"8px"} width={"full"} alignItems={"flex-start"}>
                         <AppTypography fontSize={"14px"} fontWeight={"400"}>
-                            {t('information.fields.zipCode')}
+                            {t('TileDesignPageInformation.zipCode')}
                         </AppTypography>
-                        <Input padding={"12px 16px"} id="zip" placeholder={t('information.fields.zipCodePlaceholder')} />
+                        <Input padding={"12px 16px"} id="zip" placeholder={t('TileDesignPageInformation.zipCodePlaceholder')} />
                     </VStack>
                 </HStack>
                 <HStack width={"full"} justify={"space-between"}>
                     <Button variant="outline" fontWeight={"400"} padding={"12px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                        {t('information.actions.backToShop')}
+                        Back to shop
                     </Button>
                     <Button bg={white_if_dark_mode} width={"100px"} paddingX={"36px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                        {t('information.actions.next')}
+                        {t('common:next')}
                     </Button>
                 </HStack>
             </VStack>

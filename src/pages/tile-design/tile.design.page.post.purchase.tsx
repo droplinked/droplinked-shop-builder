@@ -22,35 +22,35 @@ const TileDesignPagePostPurchase = () => {
         <Box bg={black_if_dark_mode} color={grey_if_dark_mode} width={"full"} maxW={"70%"} p={"36px"} borderRadius="lg" display={"flex"} flexDir={"column"} boxShadow="base" mx="auto" gap={"48px"}>
             <VStack spacing={"10px"} padding={"16px"} rounded={"8px"} bg={"#1E9473"} alignItems={"flex-start"}>
                 <AppTypography fontSize={"16px"} fontWeight={"700"} color={"white"}>
-                    {t('postPurchase.messages.completed')}
+                    {t('TileDesignPagePostPurchase.completed')}
                 </AppTypography>
                 <AppTypography fontSize={"14px"} fontWeight={"400"} color={"white"}>
-                    {t('postPurchase.messages.confirmation')}
+                    {t('TileDesignPagePostPurchase.confirmation')}
                 </AppTypography>
             </VStack>
             <VStack rounded={"8px"} spacing={"24px"} alignItems={"flex-start"} width={"full"}>
                 <AppTypography fontSize={"16px"} fontWeight={"600"}>
-                    {t('postPurchase.title')}
+                    {t('TileDesignPagePostPurchase.title')}
                 </AppTypography>
                 <VStack spacing={"16px"} width={"full"}>
                     <HStack justify={"space-between"} width={"full"}>
-                        <AppTypography fontWeight={"600"}>{t('postPurchase.fields.orderId')}</AppTypography>
+                        <AppTypography fontWeight={"600"}>{t('TileDesignPagePostPurchase.orderId')}</AppTypography>
                         <AppTypography fontWeight={"600"}>46321</AppTypography>
                     </HStack>
                     <HStack justify={"space-between"} width={"full"}>
-                        <AppTypography fontWeight={"600"}>{t('postPurchase.fields.transactionId')}</AppTypography>
+                        <AppTypography fontWeight={"600"}>{t('TileDesignPagePostPurchase.transactionId')}</AppTypography>
                         <AppTypography fontWeight={"600"} color={"#179EF8"} cursor={"pointer"} textTransform={"uppercase"} textDecoration={"underline"}>e0327b0924cf37e0327b0924cf37e0327b0924cf37a3284c</AppTypography>
                     </HStack>
                     <HStack justify={"space-between"} width={"full"}>
-                        <AppTypography fontWeight={"600"}>{t('postPurchase.fields.shippingMethod')}</AppTypography>
+                        <AppTypography fontWeight={"600"}>{t('TileDesignPagePostPurchase.shippingMethod')}</AppTypography>
                         <AppTypography fontWeight={"600"}>Express shipping</AppTypography>
                     </HStack>
                     <HStack justify={"space-between"} width={"full"}>
-                        <AppTypography fontWeight={"600"}>{t('postPurchase.fields.shippingAddress')}</AppTypography>
+                        <AppTypography fontWeight={"600"}>{t('TileDesignPagePostPurchase.shippingAddress')}</AppTypography>
                         <AppTypography fontWeight={"600"}>US - Los Angeles - 811 West &th Street - 90017</AppTypography>
                     </HStack>
                     <HStack justify={"space-between"} width={"full"}>
-                        <AppTypography fontWeight={"600"}>{t('postPurchase.fields.totalPayment')}</AppTypography>
+                        <AppTypography fontWeight={"600"}>{t('TileDesignPagePostPurchase.totalPayment')}</AppTypography>
                         <AppTypography fontWeight={"600"}>$23.98 USD</AppTypography>
                     </HStack>
                 </VStack>

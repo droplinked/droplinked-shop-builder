@@ -1,123 +1,86 @@
 {
-  "header": {
-    "title": "تصميم البلاط الخاص بك",
-    "description": "تخصيص مظهر وإعدادات البلاط"
+  "TileDesignHeader": {
+    "productTitle": "تفاصيل المنتج",
+    "informationTitle": "المعلومات",
+    "shippingTitle": "معلومات الشحن",
+    "paymentTitle": "تفاصيل الدفع",
+    "postPurchaseTitle": "معلومات الطلب"
   },
-  "form": {
+  "TileDesignForm": {
     "title": "التصميم",
     "description": "أدخل تفاصيل البلاط الخاص بك",
     "validation": {
       "required": "هذا الحقل مطلوب",
       "invalid": "إدخال غير صالح"
-    }
-  },
-  "product": {
-    "title": "تفاصيل المنتج",
-    "description": "تكوين إعدادات المنتج",
-    "fields": {
-      "name": "اسم المنتج",
-      "description": "الوصف",
-      "price": "السعر",
-      "category": "الفئة",
-      "images": "صور المنتج",
-      "type": "النوع",
-      "backgroundColor": "لون الخلفية",
-      "transparency": "شفافية الخلفية",
-      "darkMode": "الوضع الداكن",
-      "buttonText": "نص زر الشراء",
-      "buttonBackgroundColor": "لون خلفية زر الشراء",
-      "buttonTextColor": "لون نص زر الشراء",
-      "phoneForDigital": "الحصول على رقم الهاتف للمنتج الرقمي",
-      "image": "الصورة",
-      "imageSlider": "عارض الصور",
-      "titleColor": "لون العنوان",
-      "priceColor": "لون نص السعر",
-      "variantDisplay": "خيارات عرض المتغيرات",
-      "color": "اللون",
-      "size": "المقاس"
     },
-    "actions": {
-      "addImage": "إضافة صورة",
-      "removeImage": "إزالة",
-      "save": "حفظ المنتج",
-      "cancel": "إلغاء",
-      "buy": "اشتر الآن"
-    }
+    "productType": "النوع",
+    "backgroundColor": "لون الخلفية",
+    "transparency": "شفافية الخلفية",
+    "darkMode": "الوضع الداكن",
+    "buttonText": "نص زر الشراء",
+    "buttonBackgroundColor": "لون خلفية زر الشراء",
+    "buttonTextColor": "لون نص زر الشراء",
+    "phoneForDigital": "الحصول على رقم الهاتف للمنتج الرقمي",
+    "image": "الصورة",
+    "imageSlider": "عارض الصور",
+    "titleColor": "لون العنوان",
+    "priceColor": "لون نص السعر",
+    "variantDisplay": "خيارات عرض المتغيرات"
   },
-  "shipping": {
-    "title": "معلومات الشحن",
-    "description": "إعداد تفاصيل الشحن",
-    "fields": {
-      "method": "طريقة الشحن",
-      "cost": "تكلفة الشحن",
-      "address": "عنوان الشحن",
-      "country": "الدولة",
-      "city": "المدينة",
-      "postalCode": "الرمز البريدي",
-      "fulfillmentDate": "تاريخ التنفيذ"
-    },
-    "methods": {
-      "standard": "الشحن القياسي مع تعويض الكربون",
-      "express": "الشحن السريع",
-      "international": "الشحن الدولي",
-      "local": "السعر الثابت"
-    }
-  },
-  "payment": {
-    "title": "تفاصيل الدفع",
-    "description": "تكوين إعدادات الدفع",
-    "fields": {
-      "method": "طريقة الدفع",
-      "currency": "العملة",
-      "price": "السعر",
-      "totalCart": "إجمالي السلة",
-      "shipping": "الشحن",
-      "tax": "الضريبة",
-      "total": "الإجمالي"
-    },
-    "methods": {
-      "crypto": "العملات المشفرة",
-      "card": "بطاقة الائتمان",
-      "wallet": "المحفظة الرقمية",
-      "casperWallet": "محفظة كاسبر",
-      "unstoppableWallet": "محفظة أنستوبابل"
-    },
-    "actions": {
-      "pay": "دفع {{amount}}"
-    }
-  },
-  "information": {
+  "TileDesignPageInformation": {
     "title": "المعلومات",
-    "description": "إضافة أي تفاصيل إضافية",
-    "fields": {
-      "firstName": "الاسم الأول",
-      "lastName": "اسم العائلة",
-      "email": "البريد الإلكتروني",
-      "address": "العنوان",
-      "addressPlaceholder": "عنوانك",
-      "state": "الولاية",
-      "city": "المدينة",
-      "zipCode": "الرمز البريدي",
-      "zipCodePlaceholder": "الرمز البريدي",
-      "notes": "ملاحظات",
-      "tags": "العلامات",
-      "customFields": "حقول مخصصة"
-    }
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "addressPlaceholder": "عنوانك",
+    "state": "الولاية",
+    "city": "المدينة",
+    "zipCode": "الرمز البريدي",
+    "zipCodePlaceholder": "الرمز البريدي",
+    "notes": "ملاحظات",
+    "tags": "العلامات",
+    "customFields": "حقول مخصصة"
   },
-  "postPurchase": {
+  "TileDesignPageShipping": {
+    "title": "معلومات الشحن",
+    "method": "طريقة الشحن",
+    "cost": "تكلفة الشحن",
+    "address": "عنوان الشحن",
+    "country": "الدولة",
+    "city": "المدينة",
+    "postalCode": "الرمز البريدي",
+    "fulfillmentDate": "تاريخ التنفيذ",
+    "standard": "الشحن القياسي مع تعويض الكربون",
+    "express": "الشحن السريع",
+    "international": "الشحن الدولي",
+    "local": "السعر الثابت"
+  },
+  "TileDesignPagePayment": {
+    "title": "تفاصيل الدفع",
+    "method": "طريقة الدفع",
+    "currency": "العملة",
+    "price": "السعر",
+    "totalCart": "إجمالي السلة",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "total": "الإجمالي",
+    "crypto": "العملات المشفرة",
+    "card": "بطاقة الائتمان",
+    "wallet": "المحفظة الرقمية",
+    "casperWallet": "محفظة كاسبر",
+    "unstoppableWallet": "محفظة أنستوبابل",
+    "pay": "دفع {{amount}}"
+  },
+  "TileDesignPagePostPurchase": {
     "title": "معلومات الطلب",
-    "description": "تفاصيل إتمام الطلب",
-    "fields": {
-      "orderId": "رقم الطلب",
-      "transactionId": "رقم المعاملة",
-      "shippingMethod": "طريقة الشحن",
-      "shippingAddress": "عنوان الشحن",
-      "totalPayment": "إجمالي الدفع"
-    },
-    "messages": {
-      "completed": "تم الدفع بنجاح!",
-      "confirmation": "يرجى الانتظار 1-2 دقيقة لتأكيد المعاملة. نقدر صبرك بينما نقوم بإنهاء طلبك."
-    }
+    "orderId": "رقم الطلب",
+    "transactionId": "رقم المعاملة",
+    "shippingMethod": "طريقة الشحن",
+    "shippingAddress": "عنوان الشحن",
+    "totalPayment": "إجمالي الدفع",
+    "completed": "تم الدفع بنجاح!",
+    "confirmation": "يرجى الانتظار 1-2 دقيقة لتأكيد المعاملة. نقدر صبرك بينما نقوم بإنهاء طلبك."
   },
   "common": {
     "save": "حفظ",

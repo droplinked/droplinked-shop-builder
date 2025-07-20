@@ -7,14 +7,7 @@ import './styles/tile.radio.css'
 
 const TileDesignPageShipping = () => {
     const { t } = useLocaleResources('tile-design');
-    const {
-        state: {
-            design: {
-                PRODUCT: { IMAGE, CONTAINER, BUTTON, VARIANTS, TITLE, PRICE },
-            },
-            current,
-        },
-    } = useContext(TileDesignContext);
+    const { state: { design: { PRODUCT: { CONTAINER } } } } = useContext(TileDesignContext);
     const [checked, setChecked] = useState(false);
     const white_if_dark_mode = CONTAINER.darkMode ? "#FFFFFF" : "#000000";
     const black_if_dark_mode = CONTAINER.darkMode ? "#141414" : "#FFFFFF";
@@ -43,7 +36,7 @@ const TileDesignPageShipping = () => {
                                     <AppTypography>$23.98 USD</AppTypography>
                                 </HStack>
                                 <HStack>
-                                    <AppTypography>{t('shipping.fields.fulfillmentDate')}</AppTypography>
+                                    <AppTypography>{t('TileDesignPageShipping.fulfillmentDate')}</AppTypography>
                                     <AppTypography>•</AppTypography>
                                     <AppTypography>3 - 5 days</AppTypography>
                                 </HStack>
@@ -61,11 +54,11 @@ const TileDesignPageShipping = () => {
                                 alignItems={"flex-start"}
                             >
                                 <HStack>
-                                    <AppTypography>{t('shipping.methods.local')}</AppTypography>
+                                    <AppTypography>{t('TileDesignPageShipping.local')}</AppTypography>
                                     <AppTypography>$3.98 USD</AppTypography>
                                 </HStack>
                                 <HStack>
-                                    <AppTypography>{t('shipping.fields.fulfillmentDate')}</AppTypography>
+                                    <AppTypography>{t('TileDesignPageShipping.fulfillmentDate')}</AppTypography>
                                     <AppTypography>•</AppTypography>
                                     <AppTypography>3 - 5 days</AppTypography>
                                 </HStack>
@@ -76,10 +69,10 @@ const TileDesignPageShipping = () => {
             </RadioGroup>
             <HStack width={"full"} justify={"space-between"}>
                 <Button variant="outline" fontWeight={"400"} padding={"12px"} border={`1px solid ${white_if_dark_mode}`} color={white_if_dark_mode} _hover={{}} _active={{}}>
-                    {t('shipping.actions.back')}
+                    {t('common.back')}
                 </Button>
                 <Button bg={white_if_dark_mode} width={"100px"} paddingX={"36px"} fontWeight={"400"} padding={"12px"} border={"none"} color={black_if_dark_mode} _hover={{}} _active={{}}>
-                    {t('shipping.actions.next')}
+                    {t('common.next')}
                 </Button>
             </HStack>
         </Box>

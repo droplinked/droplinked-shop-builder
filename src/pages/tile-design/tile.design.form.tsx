@@ -16,48 +16,48 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.CONTAINER]: {
             inputs: [
                 {
-                    label: t('product.fields.type'),
+                    label: t('TileDesignForm.productType'),
                     type: TILE_INPUT_TYPES.DROPDOWN,
                     options: ["card", "button"],
                     key: "type",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: t('product.fields.backgroundColor'),
+                    label: t('TileDesignForm.backgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "backgroundColor",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: t('product.fields.transparency'),
+                    label: t('TileDesignForm.transparency'),
                     type: TILE_INPUT_TYPES.SLIDER,
                     key: "opacity",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "card" && {
-                    label: t('product.fields.description'),
+                    label: t('TileDesignForm.description'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "description",
                 },
                 {
-                    label: t('product.fields.darkMode'),
+                    label: t('TileDesignForm.darkMode'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "darkMode",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: t('product.fields.buttonText'),
+                    label: t('TileDesignForm.buttonText'),
                     type: TILE_INPUT_TYPES.TEXT,
                     key: "text",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: t('product.fields.buttonBackgroundColor'),
+                    label: t('TileDesignForm.buttonBackgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "buttonBackgroundColor",
                 },
                 design?.[TILE_DESIGN_PAGES_ENUM.PRODUCT][PRODUCT_SECTIONS_ENUM.CONTAINER].type === "button" && {
-                    label: t('product.fields.buttonTextColor'),
+                    label: t('TileDesignForm.buttonTextColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
                 {
-                    label: t('product.fields.phoneForDigital'),
+                    label: t('TileDesignForm.phoneForDigital'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "phone",
                 },
@@ -67,12 +67,12 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.IMAGE]: {
             inputs: [
                 {
-                    label: t('product.fields.image'),
+                    label: t('TileDesignForm.image'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "display",
                 },
                 {
-                    label: t('product.fields.imageSlider'),
+                    label: t('TileDesignForm.imageSlider'),
                     type: TILE_INPUT_TYPES.SWITCH,
                     key: "slider",
                 },
@@ -82,7 +82,7 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.TITLE]: {
             inputs: [
                 {
-                    label: t('product.fields.titleColor'),
+                    label: t('TileDesignForm.titleColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -92,7 +92,7 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.PRICE]: {
             inputs: [
                 {
-                    label: t('product.fields.priceColor'),
+                    label: t('TileDesignForm.priceColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -102,7 +102,7 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.VARIANTS]: {
             inputs: [
                 {
-                    label: t('product.fields.variantDisplay'),
+                    label: t('TileDesignForm.variantDisplay'),
                     type: TILE_INPUT_TYPES.DROPDOWN,
                     options: ["dropdown", "checkbox"],
                     key: "displayType",
@@ -113,17 +113,17 @@ const tile_design_form_fields_object = ({ design, t }: Pick<ITileDesignState, "d
         [PRODUCT_SECTIONS_ENUM.BUTTON]: {
             inputs: [
                 {
-                    label: t('product.fields.buttonText'),
+                    label: t('TileDesignForm.buttonText'),
                     type: TILE_INPUT_TYPES.TEXT,
                     key: "text",
                 },
                 {
-                    label: t('product.fields.buttonBackgroundColor'),
+                    label: t('TileDesignForm.buttonBackgroundColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "backgroundColor",
                 },
                 {
-                    label: t('product.fields.buttonTextColor'),
+                    label: t('TileDesignForm.buttonTextColor'),
                     type: TILE_INPUT_TYPES.COLOR_PICKER,
                     key: "color",
                 },
@@ -194,7 +194,7 @@ const TileDesignForm = () => {
             <HStack borderBottom={"4px solid #2BCFA1"}>
                 <AppIcons.Paint />
                 <AppTypography fontSize={"16px"} fontWeight={"500"}>
-                    {t('form.title')}
+                    {t('TileDesignForm.title')}
                 </AppTypography>
             </HStack>
             <form>

@@ -57,9 +57,9 @@ const TileDesign = () => {
                             <TileDesignForm />
                         </HStack>
                         <Flex justifyContent="flex-end" width={"full"} gap={"8px"}>
-                            <BasicButton variant="outline">{t('common.cancel')}</BasicButton>
+                            <BasicButton variant="outline">{t('common:cancel')}</BasicButton>
                             <BasicButton isLoading={isLoading} onClick={submit} isDisabled={JSON.stringify(initialTileDesignState) === JSON.stringify(States) || isLoading}>
-                                {t('common.save')}
+                                {t('common:save')}
                             </BasicButton>
                         </Flex>
                     </>

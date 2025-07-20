@@ -20,11 +20,11 @@ const TileDesignHeader = () => {
         <HStack width={"full"} padding={"12px 24px"} rounded={"8px"} gap={"48px"} alignItems={"center"} justifyContent={"space-between"} backgroundColor={"#141414"}>
             <Select
                 options={[
-                    { label: t('product.title'), value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
-                    { label: t('information.title'), value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
-                    { label: t('shipping.title'), value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
-                    { label: t('payment.title'), value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
-                    { label: t('postPurchase.title'), value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
+                    { label: t('TileDesignHeader.productTitle'), value: TILE_DESIGN_PAGES_ENUM.PRODUCT },
+                    { label: t('TileDesignHeader.informationTitle'), value: TILE_DESIGN_PAGES_ENUM.INFORMATION },
+                    { label: t('TileDesignHeader.shippingTitle'), value: TILE_DESIGN_PAGES_ENUM.SHIPPING },
+                    { label: t('TileDesignHeader.paymentTitle'), value: TILE_DESIGN_PAGES_ENUM.PAYMENT },
+                    { label: t('TileDesignHeader.postPurchaseTitle'), value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
                 ]}
                 onChange={(e) => {
                     updateState("current", { page: e?.value, section: e.value === TILE_DESIGN_PAGES_ENUM.PRODUCT ? PRODUCT_SECTIONS_ENUM.CONTAINER : "none" });
