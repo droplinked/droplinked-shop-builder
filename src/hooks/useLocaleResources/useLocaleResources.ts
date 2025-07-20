@@ -17,6 +17,7 @@ export type Namespace =
     | 'dashboardPage'
     | 'layout/ProducerLayout'
     | 'layout/PublicLayout'
+    | 'layout/UserMenu'
     | 'subscription'
     | 'settings'
     | 'collections'
