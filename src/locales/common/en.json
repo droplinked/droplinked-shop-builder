@@ -137,6 +137,12 @@
     "pay": "Pay",
     "genericError": "Oops! Something went wrong"
   },
+  "AccessLevelBadge": {
+    "Pro": "Pro",
+    "Premium": "Premium",
+    "Enterprise": "Enterprise",
+    "feature": "Feature"
+  },
   "proPlan": {
     "crossmint": {
       "title": "Free Pro Plan Unlocked!",

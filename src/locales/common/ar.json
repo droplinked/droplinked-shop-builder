@@ -136,6 +136,12 @@
     "pay": "دفع",
     "genericError": "عذراً! حدث خطأ ما"
   },
+  "AccessLevelBadge": {
+    "Pro": "احترافي",
+    "Premium": "مميز",
+    "Enterprise": "مؤسسة",
+    "feature": "ميزة"
+  },
   "proPlan": {
     "crossmint": {
       "title": "تم تفعيل الخطة الاحترافية مجانًا!",
