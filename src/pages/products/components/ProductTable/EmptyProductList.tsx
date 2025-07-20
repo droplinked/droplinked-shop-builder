@@ -1,9 +1,9 @@
-import { Flex, Image, Text } from '@chakra-ui/react'
-import React from 'react'
-import ProductTypeSelector from '../ProductTypeSelector/ProductTypeSelector'
-import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import AppButton from 'components/redesign/button/AppButton';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import { PlusSm } from 'assets/icons/Sign/Plus/PlusSm';
+import AppButton from 'components/redesign/button/AppButton';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
+import React from 'react';
+import ProductTypeSelector from '../ProductTypeSelector/ProductTypeSelector';
 
 function EmptyProductList() {
     const { t } = useLocaleResources('products');
