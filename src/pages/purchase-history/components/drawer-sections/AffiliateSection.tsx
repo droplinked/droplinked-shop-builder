@@ -15,20 +15,20 @@ export default function AffiliateSection({ affiliate }: AffiliateProps) {
 
     return (
         affiliate.map((item, index) => (
-            <InfoWrapper title={`${t("affiliate")} ${index + 1}`} key={index}>
+            <InfoWrapper title={`${t("common:affiliate")} ${index + 1}`} key={index}>
                 <Flex direction="column" gap={4}>
                     <TitledText
-                        title={t("publisher")}
+                        title={t("AffiliateSection.publisher")}
                         direction='row'
                         text={item.publisher}
                     />
                     <TitledText
-                        title={t("publisher_profit")}
+                        title={t("AffiliateSection.publisherProfit")}
                         direction='row'
                         text={<FormattedPrice price={item.publisherProfit} fontSize={14} fontWeight={500} />}
                     />
                     <TitledText
-                        title={t("total")}
+                        title={t("AffiliateSection.total")}
                         direction='row'
                         text={<FormattedPrice price={item.total} fontSize={14} fontWeight={500} />}
                     />

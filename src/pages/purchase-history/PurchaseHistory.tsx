@@ -63,7 +63,7 @@ export default function PurchaseHistory() {
         } catch (error) {
             const errorMessage = error instanceof AxiosError
                 ? error.message
-                : t("failed_to_export")
+                : t("PurchaseHistory.failedToExport")
             showToast({ message: errorMessage, type: "error" })
         } finally {
             setIsExporting(false)
@@ -78,12 +78,12 @@ export default function PurchaseHistory() {
     return (
         <PageGrid.Root>
             <PageGrid.Header
-                title={t("purchase_history")}
-                description={t("purchase_history_description")}
+                title={t("PurchaseHistory.title")}
+                description={t("PurchaseHistory.description")}
                 {...!isEmpty && {
                     actionButtons: [
                         {
-                            title: t("export"),
+                            title: t("common:export"),
                             variant: "secondary",
                             onClick: handleExport,
                             isLoading: isExporting,

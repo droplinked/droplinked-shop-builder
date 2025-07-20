@@ -1,40 +1,69 @@
 {
-  "purchase_history": "Purchase History",
-  "purchase_history_description": "Easily view, manage and track all orders here.",
-  "failed_to_export": "Failed to export orders report",
-  "export": "Export",
-  "search_products": "Search Products...",
-  "empty_view_title": "You don't have any order yet",
-  "quantity": "Quantity",
-  "unit_price": "Unit Price",
-  "total": "Total",
-  "affiliate": "Affiliate",
-  "publisher": "Publisher",
-  "publisher_profit": "Publisher Profit",
-  "commission": "Commission",
-  "customer_information": "Customer Information",
-  "full_name": "Full Name",
-  "email_address": "Email Address",
-  "mobile_number": "Mobile Number",
-  "shipping_address": "Shipping Address",
-  "additional_details": "Additional Details",
-  "discount": "Discount",
-  "discount_ruleset": "Discount Ruleset",
-  "total_products": "Total Products",
-  "total_cost": "Total Cost",
-  "total_cart": "Total Cart",
-  "tax": "Tax",
-  "shipping": "Shipping",
-  "total_net_profit": "Total Net Profit",
-  "payment_method": "Payment Method",
-  "order_id": "Order ID",
-  "payment_details": "Payment Details",
-  "not_available": "Not Available",
-  "customer": "Customer",
-  "date": "Date",
-  "status": "Status",
-  "order_details": "Order Details",
-  "order_information": "Order Information",
-  "cart": "Cart",
-  "order": "Order"
+  "PurchaseHistory": {
+    "title": "Purchase History",
+    "description": "Easily view, manage and track all orders here.",
+    "failedToExport": "Failed to export orders report"
+  },
+  "EmptyView": {
+    "title": "You don't have any order yet",
+    "emptyFormAlt": "Empty Form"
+  },
+  "FilterInputs": {
+    "searchProducts": "Search Products..."
+  },
+  "DesktopTable": {
+    "orderId": "Order ID"
+  },
+  "DateCell": {
+    "notAvailable": "Not Available"
+  },
+  "ControlsPopover": {
+    "orderDetails": "Order Details"
+  },
+  "OrderDetails": {
+    "orderInformation": "Order Information",
+    "cart": "Cart"
+  },
+  "CustomerInfoSection": {
+    "customerInformation": "Customer Information",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "mobileNumber": "Mobile Number",
+    "shippingAddress": "Shipping Address",
+    "additionalDetails": "Additional Details"
+  },
+  "ShippingSection": {
+    "shipping": "Shipping"
+  },
+  "CommissionSection": {
+    "commission": "Commission",
+    "droplinked": "Droplinked",
+    "stripe": "Stripe"
+  },
+  "AffiliateSection": {
+    "publisher": "Publisher",
+    "publisherProfit": "Publisher Profit",
+    "total": "Total"
+  },
+  "PaymentDetailsSection": {
+    "paymentDetails": "Payment Details",
+    "discount": "Discount",
+    "discountRuleset": "Discount Ruleset",
+    "totalProducts": "Total Products",
+    "totalCost": "Total Cost",
+    "totalCart": "Total Cart",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "totalNetProfit": "Total Net Profit",
+    "paymentMethod": "Payment Method",
+    "orderId": "Order ID"
+  },
+  "CartItem": {
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "total": "Total"
+  },
+  "TitledText": {
+    "noData": "---"
+  }
 }

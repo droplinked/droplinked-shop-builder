@@ -22,12 +22,12 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
     const columns: ColumnDef<IOrders>[] = [
         {
             accessorKey: "_id",
-            header: t("order_id"),
+            header: t("DesktopTable.orderId"),
             cell: (info) => <span style={{ userSelect: "all" }}>{info.row.original._id}</span>,
         },
         {
             accessorKey: "customerAddressBook",
-            header: t("customer"),
+            header: t("common:customer"),
             cell: (info) => {
                 const { customerAddressBook, customerEmail } = info.row.original
                 return getCustomerDisplayName(customerAddressBook, customerEmail)
@@ -35,12 +35,12 @@ export default function DesktopTable({ purchaseHistoryQuery }: Props) {
         },
         {
             accessorKey: "updatedAt",
-            header: t("date"),
+            header: t("common:date"),
             cell: (info) => <DateCell date={info.row.original.updatedAt} />,
         },
         {
             accessorKey: "status",
-            header: t("status"),
+            header: t("common:status"),
             cell: (info) => {
                 const status = info.row.original.status
                 return (

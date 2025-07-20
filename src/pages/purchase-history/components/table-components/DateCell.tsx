@@ -15,7 +15,7 @@ export default function DateCell({ date }: DateCellProps) {
     const { t } = useLocaleResources("purchaseHistory")
 
     if (!date) {
-        return <Text fontSize={14} color="#7B7B7B">{t("not_available")}</Text>
+        return <Text fontSize={14} color="#7B7B7B">{t("DateCell.notAvailable")}</Text>
     }
 
     return (

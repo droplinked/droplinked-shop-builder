@@ -36,7 +36,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                     padding: { base: "10px 16px", md: "12px 16px" },
                 }}
                 inputProps={{
-                    placeholder: t("search_products"),
+                    placeholder: t("FilterInputs.searchProducts"),
                     onChange: (e) => onSearchChange(e.target.value),
                     value: searchValue,
                 }}
@@ -48,7 +48,7 @@ export default function FilterInputs({ onSearchChange, onStatusChange, selectVal
                         [] :
                         data?.map((item) => ({ label: item.caption, value: item.value }))
                     }
-                    placeholder={t("status")}
+                    placeholder={t("common:status")}
                     onChange={(value: string) => onStatusChange(value)}
                     mobileModeIcon={<FilterMd color='#fff' />}
                     value={selectValue}

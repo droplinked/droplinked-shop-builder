@@ -10,8 +10,8 @@ export default function EmptyView() {
 
     return (
         <Flex alignItems="center" justifyContent="center" flexDirection="column" gap="64px" mt="15vh">
-            <AppImage src={image} alt="Empty Form" width="320px" height="268px" />
-            <Text color="text.disabled.dark">{t("empty_view_title")}</Text>
+            <AppImage src={image} alt={t("EmptyView.emptyFormAlt")} width="320px" height="268px" />
+            <Text color="text.disabled.dark">{t("EmptyView.title")}</Text>
         </Flex>
     )
 }

@@ -21,7 +21,7 @@ interface OrderDetailsProps {
  * Shows information in a drawer with tabs for order information and cart
  */
 export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsProps) {
-    const { t } = useLocaleResources("purchaseHistory")
+    const { t, isRTL } = useLocaleResources("purchaseHistory")
     // Handle the case where useMediaQuery might not return an array in tests
     const mediaQueryResult = useMediaQuery("(max-width: 768px)")
     const isSmallerThan768 = Array.isArray(mediaQueryResult) ? mediaQueryResult[0] : false
@@ -40,11 +40,11 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
 
     const tabs = [
         {
-            title: t("order_information"),
+            title: t("OrderDetails.orderInformation"),
             content: <OrderInformation orderData={orderData} isFetching={isFetching} />
         },
         {
-            title: t("cart"),
+            title: t("OrderDetails.cart"),
             content: <OrderCart orderData={orderData} rowData={rowData} isFetching={isFetching} />
         }
     ]
@@ -54,8 +54,8 @@ export default function OrderDetails({ rowData, isOpen, onClose }: OrderDetailsP
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                title={`${t("order")} ${truncateText(rowData._id, 10)}`}
-                placement={isSmallerThan768 ? "bottom" : "right"}
+                title={`${t("common:order")} ${truncateText(rowData._id, 10)}`}
+                placement={isSmallerThan768 ? "bottom" : isRTL ? "left" : "right"}
                 headerContent={
                     <OrderHeaderContent
                         isFetching={isFetching}

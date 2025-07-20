@@ -1,40 +1,69 @@
 {
-  "purchase_history": "سجل المشتريات",
-  "purchase_history_description": "يمكنك بسهولة عرض وإدارة وتتبع جميع الطلبات هنا.",
-  "failed_to_export": "فشل في تصدير تقرير الطلبات",
-  "export": "تصدير",
-  "search_products": "البحث عن المنتجات...",
-  "empty_view_title": "ليس لديك أي طلبات بعد",
-  "quantity": "الكمية",
-  "unit_price": "سعر الوحدة",
-  "total": "الإجمالي",
-  "affiliate": "الشريك",
-  "publisher": "الناشر",
-  "publisher_profit": "ربح الناشر",
-  "commission": "العمولة",
-  "customer_information": "معلومات العميل",
-  "full_name": "الاسم الكامل",
-  "email_address": "عنوان البريد الإلكتروني",
-  "mobile_number": "رقم الهاتف المحمول",
-  "shipping_address": "عنوان الشحن",
-  "additional_details": "تفاصيل إضافية",
-  "discount": "الخصم",
-  "discount_ruleset": "قواعد الخصم",
-  "total_products": "إجمالي المنتجات",
-  "total_cost": "التكلفة الإجمالية",
-  "total_cart": "إجمالي السلة",
-  "tax": "الضريبة",
-  "shipping": "الشحن",
-  "total_net_profit": "إجمالي الربح الصافي",
-  "payment_method": "طريقة الدفع",
-  "order_id": "معرف الطلب",
-  "payment_details": "تفاصيل الدفع",
-  "not_available": "غير متوفر",
-  "customer": "العميل",
-  "date": "التاريخ",
-  "status": "الحالة",
-  "order_details": "تفاصيل الطلب",
-  "order_information": "معلومات الطلب",
-  "cart": "السلة",
-  "order": "الطلب"
+  "PurchaseHistory": {
+    "title": "سجل المشتريات",
+    "description": "يمكنك بسهولة عرض وإدارة وتتبع جميع الطلبات هنا.",
+    "failedToExport": "فشل في تصدير تقرير الطلبات"
+  },
+  "EmptyView": {
+    "title": "ليس لديك أي طلبات بعد",
+    "emptyFormAlt": "نموذج فارغ"
+  },
+  "FilterInputs": {
+    "searchProducts": "البحث عن المنتجات..."
+  },
+  "DesktopTable": {
+    "orderId": "معرف الطلب"
+  },
+  "DateCell": {
+    "notAvailable": "غير متوفر"
+  },
+  "ControlsPopover": {
+    "orderDetails": "تفاصيل الطلب"
+  },
+  "OrderDetails": {
+    "orderInformation": "معلومات الطلب",
+    "cart": "السلة"
+  },
+  "CustomerInfoSection": {
+    "customerInformation": "معلومات العميل",
+    "fullName": "الاسم الكامل",
+    "emailAddress": "عنوان البريد الإلكتروني",
+    "mobileNumber": "رقم الهاتف المحمول",
+    "shippingAddress": "عنوان الشحن",
+    "additionalDetails": "تفاصيل إضافية"
+  },
+  "ShippingSection": {
+    "shipping": "الشحن"
+  },
+  "CommissionSection": {
+    "commission": "العمولة",
+    "droplinked": "Droplinked",
+    "stripe": "Stripe"
+  },
+  "AffiliateSection": {
+    "publisher": "الناشر",
+    "publisherProfit": "ربح الناشر",
+    "total": "الإجمالي"
+  },
+  "PaymentDetailsSection": {
+    "paymentDetails": "تفاصيل الدفع",
+    "discount": "الخصم",
+    "discountRuleset": "قواعد الخصم",
+    "totalProducts": "إجمالي المنتجات",
+    "totalCost": "التكلفة الإجمالية",
+    "totalCart": "إجمالي السلة",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "totalNetProfit": "إجمالي الربح الصافي",
+    "paymentMethod": "طريقة الدفع",
+    "orderId": "معرف الطلب"
+  },
+  "CartItem": {
+    "quantity": "الكمية",
+    "unitPrice": "سعر الوحدة",
+    "total": "الإجمالي"
+  },
+  "TitledText": {
+    "noData": "---"
+  }
 }

@@ -26,7 +26,7 @@ export default function ControlsPopover({ rowData }: Props) {
                     {
                         icon: <InvoiceMd color='#fff' />,
                         onClick: onDetailsDrawerOpen,
-                        title: t("order_details"),
+                        title: t("ControlsPopover.orderDetails"),
                         color: "#fff"
                     }
                 ]}

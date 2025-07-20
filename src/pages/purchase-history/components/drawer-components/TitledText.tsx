@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import React, { ReactNode } from 'react'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 
 interface Props {
     title: string
@@ -20,11 +21,13 @@ interface Props {
  */
 
 export default function TitledText({ title, text, rightContent, direction = "column" }: Props) {
+    const { t } = useLocaleResources("purchaseHistory")
+    
     return (
         <Flex flexDirection={direction} gap={1} justifyContent="space-between">
             <Text color="text.subtext.placeholder.dark" fontSize={14}>{title}</Text>
             <Flex alignItems="center" gap={1.5}>
-                <Text color="#fff" fontSize={14} fontWeight={500}>{text ?? "---"}</Text>
+                <Text color="#fff" fontSize={14} fontWeight={500}>{text ?? t("TitledText.noData")}</Text>
                 {rightContent && (
                     <Flex alignItems="center" justifyContent="flex-end" width="100%">
                         {rightContent}

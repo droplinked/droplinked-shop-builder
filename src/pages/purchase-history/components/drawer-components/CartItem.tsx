@@ -49,19 +49,19 @@ export default function CartItem({ item }: { item: IOrderDetailsItems }) {
                         ))
                         : null}
                     <DotSeparatedList border="1px solid #292929" px={4} py={1} borderRadius="full">
-                        <Text color="#7b7b7b" fontSize={14} fontWeight={400}>{t("quantity")}</Text>
+                        <Text color="#7b7b7b" fontSize={14} fontWeight={400}>{t("CartItem.quantity")}</Text>
                         <Text color="#fff" fontSize={14} fontWeight={400}>{quantity}</Text>
                     </DotSeparatedList>
                 </Flex>
             </Flex>
             <Flex flexDirection="column" p={{ base: 4, md: 6 }} gap={1}>
                 <TitledText
-                    title={t("unit_price")}
+                    title={t("CartItem.unitPrice")}
                     direction='row'
                     text={<FormattedPrice price={price / quantity} />}
                 />
                 <TitledText
-                    title={t("total")}
+                    title={t("CartItem.total")}
                     direction='row'
                     text={<FormattedPrice price={price} fontSize={16} fontWeight={700} />}
                 />

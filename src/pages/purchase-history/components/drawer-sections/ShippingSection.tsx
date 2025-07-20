@@ -14,7 +14,7 @@ export default function ShippingSection({ shippings }: ShippingProps) {
     const { t } = useLocaleResources("purchaseHistory")
 
     return (
-        <InfoWrapper title={t("shipping")}>
+        <InfoWrapper title={t("ShippingSection.shipping")}>
             <Flex direction="column" gap={4}>
                 {shippings.map((item, index) => (
                     <TitledText

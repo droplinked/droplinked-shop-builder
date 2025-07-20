@@ -14,18 +14,18 @@ export default function CommissionSection({ commission }: CommissionProps) {
     const { t } = useLocaleResources("purchaseHistory")
 
     return (
-        <InfoWrapper title={t("commission")}>
+        <InfoWrapper title={t("CommissionSection.commission")}>
             <Flex direction="column" gap={4}>
                 {!!commission.droplinked &&
                     <TitledText
-                        title='Droplinked'
+                        title={t("CommissionSection.droplinked")}
                         direction='row'
                         text={<FormattedPrice price={commission.droplinked} fontSize={14} fontWeight={500} />}
                     />}
 
                 {!!commission.stripe &&
                     <TitledText
-                        title='Stripe'
+                        title={t("CommissionSection.stripe")}
                         direction='row'
                         text={<FormattedPrice price={commission.stripe} fontSize={14} fontWeight={500} />}
                     />}

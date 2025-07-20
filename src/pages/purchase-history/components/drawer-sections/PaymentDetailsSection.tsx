@@ -21,7 +21,7 @@ export default function PaymentDetailsSection({ details, trackingInfo, giftCard,
 
     return (
         <InfoWrapper
-            title={t("payment_details")}
+            title={t("PaymentDetailsSection.paymentDetails")}
             flexProps={{ p: 0 }}
             textProps={{
                 pt: { base: 4, md: 6 },
@@ -50,7 +50,7 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
         >
             {appliedGiftCard && (
                 <TitledText
-                    title={t("discount")}
+                    title={t("PaymentDetailsSection.discount")}
                     direction='row'
                     text={
                         <FormattedPrice price={giftCard.amount} fontSize={14} fontWeight={500} />
@@ -59,41 +59,41 @@ function PaymentSummary({ details, giftCard, isPhysical }) {
             )}
             {hasRuleset && (
                 <TitledText
-                    title={t("discount_ruleset")}
+                    title={t("PaymentDetailsSection.discountRuleset")}
                     direction='row'
                     text={<FormattedPrice price={giftCard.ruleset} fontSize={14} fontWeight={500} />}
                 />
             )}
             <TitledText
-                title={t("total_products")}
+                title={t("PaymentDetailsSection.totalProducts")}
                 direction='row'
                 text={<FormattedPrice price={details.products} fontSize={14} fontWeight={500} />}
             />
             {details.cost && <TitledText
-                title={t("total_cost")}
+                title={t("PaymentDetailsSection.totalCost")}
                 direction='row'
                 text={<FormattedPrice price={details.cost} fontSize={14} fontWeight={500} />}
             />
             }
             <TitledText
-                title={t("total_cart")}
+                title={t("PaymentDetailsSection.totalCart")}
                 direction='row'
                 text={<FormattedPrice price={details.cart} fontSize={14} fontWeight={500} />}
             />
             <TitledText
-                title={t("tax")}
+                title={t("PaymentDetailsSection.tax")}
                 direction='row'
                 text={<FormattedPrice price={details.tax} fontSize={14} fontWeight={500} />}
             />
             {isPhysical &&
                 <TitledText
-                    title={t("shipping")}
+                    title={t("PaymentDetailsSection.shipping")}
                     direction='row'
                     text={<FormattedPrice price={details.shipping} fontSize={14} fontWeight={500} />}
                 />
             }
             <TitledText
-                title={t("total_net_profit")}
+                title={t("PaymentDetailsSection.totalNetProfit")}
                 direction='row'
                 text={<FormattedPrice price={details.profit} fontSize={14} fontWeight={700} />}
             />
@@ -112,12 +112,12 @@ function PaymentMethodAndTracking({ details, trackingInfo, orderId }) {
             pb={{ base: 4, md: 6 }}
         >
             <TitledText
-                title={t("payment_method")}
+                title={t("PaymentDetailsSection.paymentMethod")}
                 direction='row'
                 text={details.paidWith}
             />
             <TitledText
-                title={t("order_id")}
+                title={t("PaymentDetailsSection.orderId")}
                 direction='row'
                 text={orderId}
                 rightContent={<ClipboardText text={orderId} />}
