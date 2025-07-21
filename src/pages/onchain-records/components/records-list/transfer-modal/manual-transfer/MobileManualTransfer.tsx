@@ -47,7 +47,7 @@ export default function MobileManualTransfer({ data, setData }: Props) {
                     <Flex gap={3} flexDirection="column" p={3}>
                         <AppInput
                             inputProps={{
-                                placeholder: t("enter_wallet_address"),
+                                placeholder: t("ManualTransfer.enterWalletAddress"),
                                 onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value),
                                 value: wallet.receiver
                             }}

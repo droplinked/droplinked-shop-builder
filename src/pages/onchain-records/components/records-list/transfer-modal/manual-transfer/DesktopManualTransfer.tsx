@@ -39,7 +39,7 @@ export default function DesktopManualTransfer({ data, setData }: Props) {
                 <Flex key={index} gap={4} alignItems="center">
                     <AppInput
                         inputProps={{
-                            placeholder: t("enter_wallet_address"),
+                            placeholder: t("ManualTransfer.enterWalletAddress"),
                             value: wallet.receiver,
                             onChange: (e) => handleUpdateWallet(index, 'receiver', e.target.value)
                         }}

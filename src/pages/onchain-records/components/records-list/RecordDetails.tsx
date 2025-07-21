@@ -20,11 +20,11 @@ export default function RecordDetails({ item, isOpen, onClose }: Props) {
 
     const tabs = [
         {
-            title: t("information"),
+            title: t("RecordDetails.information"),
             content: <InformationTab item={item} />
         },
         {
-            title: t("activity"),
+            title: t("RecordDetails.activity"),
             content: <ActivityTab item={item} />,
             isDisabled: !tokenId
         }
@@ -35,7 +35,7 @@ export default function RecordDetails({ item, isOpen, onClose }: Props) {
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                title={t("record_details")}
+                title={t("RecordDetails.recordDetails")}
                 drawerHeaderStyle={{ padding: 0, px: 9, py: 9, paddingBottom: 0 }}
                 headerContent={
                     <>

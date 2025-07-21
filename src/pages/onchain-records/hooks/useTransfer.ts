@@ -53,7 +53,7 @@ export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
                 }
             },
             onError(err: AxiosError<{ data: { message: string } }>) {
-                showToast({ message: err.response.data.data.message ?? t("default_api_error"), type: "error" })
+                showToast({ message: err.response.data.data.message ?? t("errors.oopsSomethingWentWrongShort"), type: "error" })
             },
         }
     )
@@ -84,15 +84,15 @@ export const useTransfer = ({ item, onSuccess }: UseTransferProps) => {
                     })
                     const transfer = await provider.executeAirdrop(_id)
                     await processAirdropTransaction({ id: _id, transactionHashes: transfer.transactionHashes })
-                    showToast({ message: t("airdrop_success"), type: "success" })
+                    showToast({ message: t("useTransfer.airdropSuccess"), type: "success" })
                     onSuccess()
                 } catch (error) {
                     setIsExecuteLoading(false)
-                    showToast({ message: t("default_api_error"), type: "error" })
+                    showToast({ message: t("errors.oopsSomethingWentWrongShort"), type: "error" })
                 }
             },
             onError: (err: AxiosError<{ data: { message: string } }>) => {
-                showToast({ message: err.response.data.data.message ?? t("default_api_error"), type: "error" })
+                showToast({ message: err.response.data.data.message ?? t("errors.oopsSomethingWentWrongShort"), type: "error" })
             },
         }
     )

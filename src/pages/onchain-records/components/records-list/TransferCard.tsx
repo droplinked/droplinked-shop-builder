@@ -67,7 +67,7 @@ export default function TransferCard({ item }: { item: ICombinedNft }) {
                 isDisabled={isDroplinkedProduct || item.quantity === "0"}
                 width="20%"
             >
-                {t("transfer")}
+                {t("TransferCard.transfer")}
             </AppButton>
             <TransferModal item={item} isOpen={isOpen} onClose={onClose} />
         </Flex>

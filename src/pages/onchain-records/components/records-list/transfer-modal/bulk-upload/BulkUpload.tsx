@@ -20,8 +20,8 @@ export default function BulkUpload({ file, setFile }: Props) {
                 accept={{ 'text/csv': ['.csv'] }}
                 icon={<AppIcons.Document />}
                 text={{
-                    dragActiveText: t("drag_active_text"),
-                    footerText: t("uploader_footer_text")
+                    dragActiveText: t("BulkUpload.dragActiveText"),
+                    footerText: t("BulkUpload.uploaderFooterText")
                 }}
             />
 

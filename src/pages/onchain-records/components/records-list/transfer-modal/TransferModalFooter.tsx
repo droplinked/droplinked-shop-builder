@@ -36,7 +36,7 @@ export default function TransferModalFooter({ onClose, handleSubmit, isLoading }
                         onClick={() => handleSubmit(selectedIndex)}
                         isLoading={isLoading}
                     >
-                        {selectedIndex === 1 ? t("upload") : t("validate")}
+                        {selectedIndex === 1 ? t("TransferModalFooter.upload") : t("TransferModalFooter.validate")}
                     </AppButton>
                 </Flex>
             </ModalFooter>

@@ -1,52 +1,82 @@
 {
-  "onChain_Page_Title": "Onchain Records",
-  "onChain_Page_Description": "View inventory records and onchain activity.",
-  "connect_wallet": "Connect Wallet",
-  "all_records": "All Records",
-  "droplinked_records": "Droplinked Records",
-  "all_wallets": "All Wallets",
-  "connect_wallet_modal_title": "Connect your wallets",
-  "connect_wallet_modal_description": "Please select a wallet to connect.",
-  "extension_not_found_error": "extension not found. Please ensure the extension is installed and try again",
-  "login_failed": "Login Failed",
-  "connect": "Connect",
-  "wallets": "Wallets",
-  "records": "Records",
-  "empty_view_Description": "Get started by adding your first product",
-  "default_api_error": "Oops! Something went wrong.",
-  "chain": "Chain",
-  "id": "ID",
-  "network": "Network",
-  "status": "Status",
-  "transfer": "Transfer",
-  "transaction_link": "Transaction Link",
-  "name": "Name",
-  "description": "Description",
-  "quantity": "Quantity",
-  "token_address": "Token Address",
-  "token_id": "Token ID",
-  "price": "Price",
-  "owner_address": "Owner Address",
-  "address": "Address",
-  "information": "Information",
-  "activity": "Activity",
-  "product_details": "Product Details",
-  "drag_active_text": "Drop the file here",
-  "uploader_footer_text": "CSV (Up to 1MB)",
-  "enter_wallet_address": "Enter your wallet address",
-  "manual": "Manual",
-  "bulk_upload": "Bulk Upload",
-  "transfer_records": "Transfer Records",
-  "transfer_records_description": "Send onchain records to one or multiple parties below.",
-  "download_sample": "Download Sample Template",
-  "upload": "Upload",
-  "validate": "Validate",
-  "record_details": "Record Details",
-  "no_items_to_validate_error": "Please enter at least one valid transfer",
-  "invalid_address_error": "Please enter valid addresses for all transfers",
-  "zero_amount_error": "Please enter a non-zero amount for all transfers",
-  "total_transfer_amount_error": "Total transfer amount exceeds available quantity",
-  "total_transfer_amount": "Total Transfer Amount",
-  "available_quantity": "Available Quantity",
-  "airdrop_success": "Airdrop successfully processed"
+  "OnchainRecords": {
+    "pageTitle": "Onchain Records",
+    "pageDescription": "View inventory records and onchain activity."
+  },
+  "ConnectWalletModal": {
+    "modalTitle": "Connect your wallets",
+    "modalDescription": "Please select a wallet to connect."
+  },
+  "ConnectWallets": {
+    "connect": "Connect",
+    "extensionNotFoundError": "extension not found. Please ensure the extension is installed and try again",
+    "loginFailed": "Login Failed"
+  },
+  "EmptyView": {
+    "description": "Get started by adding your first product"
+  },
+  "Filters": {
+    "allRecords": "All Records",
+    "droplinkedRecords": "Droplinked Records",
+    "allWallets": "All Wallets",
+    "wallets": "Wallets",
+    "records": "Records"
+  },
+  "RecordDetails": {
+    "recordDetails": "Record Details",
+    "information": "Information",
+    "activity": "Activity"
+  },
+  "TransferCard": {
+    "transfer": "Transfer"
+  },
+  "TransferModal": {
+    "transferRecords": "Transfer Records",
+    "transferRecordsDescription": "Send onchain records to one or multiple parties below.",
+    "downloadSample": "Download Sample Template",
+    "manual": "Manual",
+    "bulkUpload": "Bulk Upload"
+  },
+  "TransferModalFooter": {
+    "upload": "Upload",
+    "validate": "Validate"
+  },
+  "ManualTransfer": {
+    "enterWalletAddress": "Enter your wallet address"
+  },
+  "BulkUpload": {
+    "dragActiveText": "Drop the file here",
+    "uploaderFooterText": "CSV (Up to 1MB)"
+  },
+  "InformationTab": {
+    "name": "Name",
+    "description": "Description",
+    "quantity": "Quantity",
+    "tokenAddress": "Token Address",
+    "tokenId": "Token ID",
+    "price": "Price",
+    "network": "Network",
+    "ownerAddress": "Owner Address",
+    "address": "Address",
+    "productDetails": "Product Details"
+  },
+  "ActivityTab": {
+    "chain": "Chain",
+    "id": "ID",
+    "network": "Network",
+    "status": "Status",
+    "transfer": "Transfer"
+  },
+  "TransactionLink": {
+    "transactionLink": "Transaction Link"
+  },
+  "useTransfer": {
+    "noItemsToValidateError": "Please enter at least one valid transfer",
+    "invalidAddressError": "Please enter valid addresses for all transfers",
+    "zeroAmountError": "Please enter a non-zero amount for all transfers",
+    "totalTransferAmountError": "Total transfer amount exceeds available quantity",
+    "totalTransferAmount": "Total Transfer Amount",
+    "availableQuantity": "Available Quantity",
+    "airdropSuccess": "Airdrop successfully processed"
+  }
 }

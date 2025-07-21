@@ -22,7 +22,7 @@ export default function TransactionLink({ transactions, chain }: TransactionLink
             {transactions.map((item, index) => (
                 <Flex justifyContent="space-between" alignItems="center" gap={8} key={index}>
                     <AppTypography color="#7B7B7B" fontSize={14} fontWeight={400}>
-                        {`${t("transaction_link")} ` + (index === 0 ? "" : index + 1)}
+                        {`${t("TransactionLink.transactionLink")} ` + (index === 0 ? "" : index + 1)}
                     </AppTypography>
                     <InteractiveText
                         fontSize={14}

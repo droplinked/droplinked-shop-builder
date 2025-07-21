@@ -25,9 +25,9 @@ export default function TransferModalHeader({ tabs }: Props) {
                 pt: { md: "48px !important", base: "16px !important" },
                 pb: "0px !important",
             }}
-            title={t("transfer_records")}
+            title={t("TransferModal.transferRecords")}
             {...(!isSmallerThan768 && { icon: <AppIcons.Transfer /> })}
-            description={t("transfer_records_description")}
+            description={t("TransferModal.transferRecordsDescription")}
         >
             <InteractiveText
                 to={SampleFile}
@@ -36,7 +36,7 @@ export default function TransferModalHeader({ tabs }: Props) {
                 mt={2}
                 pb={4}
             >
-                {t("download_sample")}
+                {t("TransferModal.downloadSample")}
             </InteractiveText>
             <TabsList tabs={tabs} />
         </ModalHeaderData>

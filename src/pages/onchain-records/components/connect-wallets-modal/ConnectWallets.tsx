@@ -37,7 +37,7 @@ function ConnectWallets() {
 				if (!installed) {
 					showToast({
 						type: 'error',
-						message: `${walletName} ${t('extension_not_found_error')}`,
+						message: `${walletName} ${t('ConnectWallets.extensionNotFoundError')}`,
 					})
 					if (chain === 'STACKS')
 						window.open(
@@ -50,7 +50,7 @@ function ConnectWallets() {
 				await login({ chain, wallets, stack })
 			} catch (error) {
 				showToast({
-					message: error || t("login_failed"),
+					message: error || t("ConnectWallets.loginFailed"),
 					type: 'warning',
 				})
 			}
@@ -135,7 +135,7 @@ function ConnectWallets() {
 													)
 												}
 											>
-												{t("connect")}
+												{t("ConnectWallets.connect")}
 											</BasicButton>
 										)}
 									</Box>

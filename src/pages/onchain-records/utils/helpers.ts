@@ -28,20 +28,20 @@ export const handleValidateManualTransfer = ({ manualTransferData, quantity, sho
 
     // If no items to validate after removing empty last item
     if (dataToValidate.length === 0) {
-        showToast({ message: t("no_items_to_validate_error"), type: "error" })
+        showToast({ message: t("useTransfer.noItemsToValidateError"), type: "error" })
         return false
     }
 
     // Check for falsy addresses
     const hasInvalidAddress = dataToValidate.some((item) => !item.receiver)
     if (hasInvalidAddress) {
-        showToast({ message: t("invalid_address_error"), type: "error" })
+        showToast({ message: t("useTransfer.invalidAddressError"), type: "error" })
         return false
     }
 
     const hasZeroAmount = dataToValidate.some((item) => !item.amount)
     if (hasZeroAmount) {
-        showToast({ message: t("zero_amount_error"), type: "error" })
+        showToast({ message: t("useTransfer.zeroAmountError"), type: "error" })
         return false
     }
 
@@ -51,8 +51,8 @@ export const handleValidateManualTransfer = ({ manualTransferData, quantity, sho
     // Check if total amount exceeds available quantity
     if (totalAmount > +quantity) {
         showToast({
-            message: `${t("total_transfer_amount_error")}`,
-            description: `${t("total_transfer_amount")}: ${totalAmount}, ${t("available_quantity")}: ${quantity}`,
+            message: `${t("useTransfer.totalTransferAmountError")}`,
+            description: `${t("useTransfer.totalTransferAmount")}: ${totalAmount}, ${t("useTransfer.availableQuantity")}: ${quantity}`,
             type: "error"
         })
         return false

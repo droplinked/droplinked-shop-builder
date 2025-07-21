@@ -16,7 +16,7 @@ export default function EmptyView() {
             <AppImage width="328px" height="200px" src="https://upload-file-droplinked.s3.amazonaws.com/e3238488d0379947e2e925d7c86f96274bb325c2d0d3f2f3408c2504398019b2.png" alt="Empty" />
             <Flex flexDirection="column" gap={4}>
                 <AppTypography color="#fff" fontSize={16} fontWeight={400}>
-                    {t("empty_view_Description")}
+                    {t("EmptyView.description")}
                 </AppTypography>
                 <BlueButton
                     sx={{ path: { stroke: "#2BCFA1" } }}
@@ -27,7 +27,7 @@ export default function EmptyView() {
                     fontWeight={500}
                     onClick={onOpen}
                 >
-                    {t("connect_wallet")}
+                    {t("ConnectWallets.connect")}
                 </BlueButton>
             </Flex>
             <ConnectWalletModal isOpen={isOpen} onClose={onClose} />

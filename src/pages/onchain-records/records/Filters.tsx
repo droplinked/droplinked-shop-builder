@@ -21,12 +21,12 @@ export default function Filters() {
     } = useOnchainRecords()
 
     const recordItems = [
-        { label: t("all_records"), value: null },
-        { label: t("droplinked_records"), value: true }
+        { label: t("Filters.allRecords"), value: null },
+        { label: t("Filters.droplinkedRecords"), value: true }
     ]
 
     const walletsItems = useMemo(() => {
-        const baseItems = [{ label: t("all_wallets"), value: null }]
+        const baseItems = [{ label: t("Filters.allWallets"), value: null }]
 
         const walletOptions = wallets?.map(({ address, type }) => ({
             label: type,
@@ -54,14 +54,14 @@ export default function Filters() {
                 <SelectMenu
                     items={walletsItems}
                     onChange={setWalletFilter}
-                    placeholder={t("wallets")}
+                    placeholder={t("Filters.wallets")}
                     value={walletFilter}
                     mobileModeIcon={<AppIcons.Wallet width="20px" height="20px" />}
                 />
                 <SelectMenu
                     items={recordItems}
                     onChange={setRecordFilter}
-                    placeholder={t("records")}
+                    placeholder={t("Filters.records")}
                     value={recordFilter}
                     mobileModeIcon={<AppIcons.NFTIcon />}
                 />

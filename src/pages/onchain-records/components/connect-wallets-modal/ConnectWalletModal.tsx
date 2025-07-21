@@ -36,9 +36,9 @@ export default function ConnectWalletModal({ isOpen, onClose }: Props) {
             }}>
             <ModalHeaderData
                 modalHeaderProps={{ bgColor: "#141414" }}
-                title={t("connect_wallet_modal_title")}
+                title={t("ConnectWalletModal.modalTitle")}
                 icon={<AppIcons.Wallet />}
-                description={t("connect_wallet_modal_description")}
+                description={t("ConnectWalletModal.modalDescription")}
             />
             <ModalBody paddingInline="0px !important" padding="0px" overflow="auto">
                 <ConnectWallets />

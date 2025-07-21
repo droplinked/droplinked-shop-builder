@@ -21,12 +21,12 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
 
     const informationData = [
         {
-            title: t("name"),
+            title: t("InformationTab.name"),
             content: slicedText(name),
         },
         {
             ...description && {
-                title: t("description"),
+                title: t("InformationTab.description"),
                 content: <AppTypography
                     color="#fff"
                     fontSize={14}
@@ -41,12 +41,12 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
             }
         },
         {
-            title: t("quantity"),
+            title: t("InformationTab.quantity"),
             content: quantity,
         },
         {
             ...tokenAddress && {
-                title: t("token_address"),
+                title: t("InformationTab.tokenAddress"),
                 content: <AppTypography
                     color="#fff"
                     fontSize={14}
@@ -64,18 +64,18 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         },
         {
             ...tokenId && {
-                title: t("token_id"),
+                title: t("InformationTab.tokenId"),
                 content: slicedText(tokenId),
             }
         },
         {
             ...price && {
-                title: t("price"),
+                title: t("InformationTab.price"),
                 content: getFormattedPrice({ amount: price, toFixed: true }),
             }
         },
         {
-            title: t("network"),
+            title: t("InformationTab.network"),
             content: (
                 <Flex gap={2} alignItems="center">
                     <BlockchainDisplay blockchain={chain} show="icon" props={{ style: { width: "20px", height: "20px" } }} />
@@ -87,7 +87,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
         },
         {
             ...ownerAddress && {
-                title: t("owner_address"),
+                title: t("InformationTab.ownerAddress"),
                 content: <AppTypography
                     color="#fff"
                     fontSize={14}
@@ -107,7 +107,7 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
 
     const productDetails = [
         {
-            title: t("address"),
+            title: t("InformationTab.address"),
             content: (
                 <InteractiveText
                     fontSize={14}
@@ -123,9 +123,9 @@ export default function InformationTab({ item }: { item: ICombinedNft }) {
 
     return (
         <Flex flexDirection="column" gap={4}>
-            <ContainerCard title={t("information")} items={informationData} />
+            <ContainerCard title={t("InformationTab.information")} items={informationData} />
             {productAddress && sku &&
-                <ContainerCard title={t("product_details")} items={productDetails}>
+                <ContainerCard title={t("InformationTab.productDetails")} items={productDetails}>
                     {sku.map((item, index) => {
                         return (
                             !!item.options.length && <SKURow key={item._id} item={item} />

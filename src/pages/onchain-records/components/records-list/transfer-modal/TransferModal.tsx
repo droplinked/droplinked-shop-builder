@@ -58,11 +58,11 @@ export default function TransferModal({ onClose, isOpen, item }: Props) {
     // Define tabs configuration for the modal
     const tabs = [
         {
-            title: t("manual"),
+            title: t("TransferModal.manual"),
             content: <ManualTransfer data={manualTransferData} setData={(values) => setManualTransferData(values)} />,
         },
         {
-            title: t("bulk_upload"),
+            title: t("TransferModal.bulkUpload"),
             content: <BulkUpload file={file} setFile={setFile} />,
         },
     ]

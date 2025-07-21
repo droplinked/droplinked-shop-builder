@@ -34,7 +34,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
             fontWeight={500}
             textAlign="center"
         >
-            {(error as AxiosError<{ data: { message: string } }>).response?.data.data.message ?? t("default_api_error")}
+            {(error as AxiosError<{ data: { message: string } }>).response?.data.data.message ?? t("errors.oopsSomethingWentWrongShort")}
         </AppTypography>
     }
 
@@ -46,7 +46,7 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
                     {data.data.map((item) => {
                         const transferData = [
                             {
-                                title: t("chain"),
+                                title: t("ActivityTab.chain"),
                                 content: <Flex gap={2}>
                                     <BlockchainDisplay
                                         blockchain={item.chain}
@@ -59,22 +59,22 @@ export default function ActivityTab({ item }: { item: ICombinedNft }) {
                                 </Flex>,
                             },
                             {
-                                title: t("id"),
+                                title: t("ActivityTab.id"),
                                 content: item.id,
                             },
                             {
-                                title: t("network"),
+                                title: t("ActivityTab.network"),
                                 content: item.networkName,
                             },
                             {
-                                title: t("status"),
+                                title: t("ActivityTab.status"),
                                 content: item.status,
                             },
                         ]
 
                         return (
                             <ContainerCard
-                                title={t("transfer")}
+                                title={t("ActivityTab.transfer")}
                                 items={transferData}
                                 hasBorder={true}
                                 titleRightContent={<DateFormatter date={item.airdropTimestamp} />}

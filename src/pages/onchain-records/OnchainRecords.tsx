@@ -17,11 +17,11 @@ export default function OnchainRecords() {
         <OnchainRecordsProvider>
             <PageGrid.Root>
                 <PageGrid.Header
-                    title={t("onChain_Page_Title")}
-                    description={t("onChain_Page_Description")}
+                    title={t("OnchainRecords.pageTitle")}
+                    description={t("OnchainRecords.pageDescription")}
                     actionButtons={[
                         {
-                            title: t("connect_wallet"),
+                            title: t("ConnectWallets.connect"),
                             leftIcon: <WalletMd />,
                             onClick: onOpen,
                         }
