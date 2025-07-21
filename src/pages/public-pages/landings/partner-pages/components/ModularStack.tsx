@@ -8,10 +8,12 @@ import PlatformFunctionalities from '../../_shared/components/PlatformFunctional
 import { CardImage } from '../../_shared/components/card'
 import { CardData } from '../../_shared/components/card/Cards'
 import ProPlanCard from './ProPlanCard'
+import { usePartnerLanding } from '../context/PartnerLandingContext'
 
 export default function ModularStack() {
     const { t } = useLocaleResources('public-pages/landings/partner-pages')
-
+    const { partnerName , trialMonths} = usePartnerLanding()
+ 
     const cardsData: CardData[] = [
         {
             icon: <BoxLg color="#fff" />,
@@ -28,9 +30,9 @@ export default function ModularStack() {
             children: <CardImage alt={t('ModularStack.cards.web3Technology.title')} src='https://upload-file-droplinked.s3.amazonaws.com/3dde6acd17201deac931f01af2fc6959161021afcd23697727b7042ee79489f2.png' />
         },
         {
-            icon: <PriceplanLg color="#fff" />,
-            title: t('ModularStack.cards.proPlan.title'),
-            description: t('ModularStack.cards.proPlan.description'),
+            icon: <PriceplanLg color="#fff" />, 
+            title: t('ModularStack.cards.proPlan.title', { partnerName, trialMonths }),
+            description: t('ModularStack.cards.proPlan.description', { partnerName, trialMonths }),
             gridColumn: { base: "1fr", md: "span 2", lg: "span 2" },
             hasBackgroundOverlay: true,
             children: <ProPlanCard />

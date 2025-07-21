@@ -1,8 +1,8 @@
 {
   "PartnerHero": {
     "d3": {
-      "title": "Powering \n Agentic Commerce",
-      "subtitle": "Crossmint members unlock 6 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today."
+      "title": "D3 Network Members",
+      "subtitle": "Unlock 3 months of the Pro Plan absolutely free! \n Redeem the exclusive offer today as a domain holder"
     },
     "unstoppableDomains": {
       "title": "Unstoppable Domains \n Members",
@@ -69,8 +69,8 @@
         "description": "Seamlessly integrate NFTs alongside blockchain features to create novel experiences with assets you own or want to offer."
       },
       "proPlan": {
-        "title": "3 Month Pro Plan",
-        "description": "Enjoy premium features for 3 months for being a loyal crossmint customer."
+        "title": "{{trialMonths}} Month Pro Plan",
+        "description": "Enjoy premium features for {{trialMonths}} months for being a loyal {{partnerName}} customer."
       }
     }
   },
