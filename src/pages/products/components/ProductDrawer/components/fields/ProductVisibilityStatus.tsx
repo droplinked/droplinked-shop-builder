@@ -17,7 +17,6 @@ function ProductVisibilityStatus() {
         value: values.purchaseAvailable ? 'public' : 'private'
     })
 
-    //TODO : check tooltips
     const statusList = [
         { label: t('ProductVisibilityStatus.public.label'), tooltipText: t('ProductVisibilityStatus.public.tooltip'), value: 'public' },
         { label: t('ProductVisibilityStatus.private.label'), tooltipText: t('ProductVisibilityStatus.private.tooltip'), value: 'private' }
