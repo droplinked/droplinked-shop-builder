@@ -258,5 +258,40 @@
   },
   "actions": {
     "returnToDashboard": "العودة إلى لوحة التحكم"
+  },
+  "PaymentDrawer": {
+    "saveButtonText": "احصل على {{planTitle}}",
+    "title": "معلومات البطاقة الائتمانية",
+    "description": "اختر بطاقة ائتمان مسجلة أو أضف بطاقة جديدة."
+  },
+  "PaymentContent": {
+    "title": "معلومات البطاقة الائتمانية",
+    "description": "اختر بطاقة ائتمان مسجلة أو أضف بطاقة جديدة."
+  },
+  "PaymentForm": {
+    "initializingPayment": "جاري تهيئة الدفع...",
+    "failedToInitialize": "فشل في تهيئة الدفع.",
+    "processingPayment": "جاري معالجة الدفع... يرجى الانتظار.",
+    "failedToInitializePayment": "فشل في تهيئة الدفع. يرجى المحاولة مرة أخرى.",
+    "failedToFetchPlans": "فشل في جلب خطط الاشتراك. يرجى المحاولة مرة أخرى.",
+    "selectedPlanNotFound": "لم يتم العثور على الخطة المختارة. يرجى المحاولة مرة أخرى.",
+    "paymentSuccessful": "تم الدفع بنجاح! تم تفعيل اشتراكك.",
+    "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+    "paymentProcessingError": "حدث خطأ أثناء معالجة الدفع."
+  },
+  "BillingInfo": {
+    "autoRenewalInfo": "سيتم خصم حسابك تلقائياً للتجديد بمجرد انتهاء النسخة التجريبية المجانية."
+  },
+  "BillingSummary": {
+    "billingCycle": "دورة الفوترة",
+    "monthly": "شهري",
+    "yearly": "سنوي",
+    "threeYear": "3 سنوات",
+    "subscriptionCost": "تكلفة الاشتراك",
+    "threeMonthFree": "3 أشهر مجاناً",
+    "firstMonthFree": "الشهر الأول مجاناً",
+    "usd": "دولار أمريكي",
+    "total": "الإجمالي",
+    "free": "مجاناً"
   }
 } 

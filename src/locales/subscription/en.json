@@ -258,5 +258,40 @@
   },
   "actions": {
     "returnToDashboard": "Return to Dashboard"
+  },
+  "PaymentDrawer": {
+    "saveButtonText": "Get {{planTitle}}",
+    "title": "Credit card information",
+    "description": "Choose a credit card on file or add a new one."
+  },
+  "PaymentContent": {
+    "title": "Credit card information",
+    "description": "Choose a credit card on file or add a new one."
+  },
+  "PaymentForm": {
+    "initializingPayment": "Initializing payment...",
+    "failedToInitialize": "Failed to initialize payment.",
+    "processingPayment": "Processing payment... Please wait.",
+    "failedToInitializePayment": "Failed to initialize payment. Please try again.",
+    "failedToFetchPlans": "Failed to fetch subscription plans. Please try again.",
+    "selectedPlanNotFound": "Selected plan not found. Please try again.",
+    "paymentSuccessful": "Payment successful! Your subscription has been activated.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "paymentProcessingError": "An error occurred during payment processing."
+  },
+  "BillingInfo": {
+    "autoRenewalInfo": "Your account will be automatically charged for renewal once the free trial ends."
+  },
+  "BillingSummary": {
+    "billingCycle": "Billing Cycle",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "threeYear": "3-Year",
+    "subscriptionCost": "Subscription cost",
+    "threeMonthFree": "3 month free",
+    "firstMonthFree": "First month free",
+    "usd": "USD",
+    "total": "Total",
+    "free": "Free"
   }
 } 

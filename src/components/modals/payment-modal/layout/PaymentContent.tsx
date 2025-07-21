@@ -2,6 +2,7 @@ import { Flex, Grid, ModalBody } from '@chakra-ui/react';
 import { CreditcardLg } from 'assets/icons/Finance/CreditCard/CreditcardLg';
 import ModalHeaderData from 'components/redesign/modal/ModalHeaderData';
 import React from 'react';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import BillingInfo from '../components/BillingInfo';
 import ExpandableInfo from '../components/ExpandableInfo';
 import PaymentForm from '../components/PaymentForm';
@@ -16,6 +17,8 @@ interface PaymentContentProps {
 }
 
 const PaymentContent = ({ onClose, planDetail, TrialMonths, isDrawer, onSuccess, successMessage }: PaymentContentProps) => {
+  const { t } = useLocaleResources('subscription');
+  
   if (isDrawer) {
     return (
       <Flex direction="column" gap={4} background="neutral.gray.1000">
@@ -41,8 +44,8 @@ const PaymentContent = ({ onClose, planDetail, TrialMonths, isDrawer, onSuccess,
       <Flex flexDirection="column">
         <ModalHeaderData
           icon={<CreditcardLg color="white" />}
-          title="Credit card information"
-          description="Choose a credit card on file or add a new one."
+          title={t('PaymentContent.title')}
+          description={t('PaymentContent.description')}
           modalHeaderProps={{
             paddingBlock: '48px !important',
             borderBottom: '1px solid #292929',

@@ -3,6 +3,7 @@ import { Flex, Text, VStack } from '@chakra-ui/react';
 import { InformationSm } from 'assets/icons/Sign/Information/InformationSm';
 import { SubscriptionPlan } from 'services/subscription/interfaces';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 import BillingSummary from './BillingSummary';
 import PlanCard from './PlanCard';
 
@@ -15,6 +16,7 @@ const BillingInfo = ({ planDetail }: BillingInfoProps) => {
     preferredPlanDuration: state.preferredPlanDuration,
     selectedPlan: state.selectedPlan
   }));
+  const { t } = useLocaleResources('subscription');
   
   // Get the target price based on plan duration
   const targetPrice = selectedPlan && Array.isArray(selectedPlan.price) && typeof selectedPlan.price[0] !== 'string' 
@@ -36,7 +38,7 @@ const BillingInfo = ({ planDetail }: BillingInfoProps) => {
       <Flex w="473px" alignItems="center" gap={1}>
         <InformationSm color="#7b7b7b" />
         <Text flex={1} textAlign="center" color="#7b7b7b" fontSize="xs" fontFamily="Inter" lineHeight="none">
-          Your account will be automatically charged for renewal once the free trial ends.
+          {t('BillingInfo.autoRenewalInfo')}
         </Text>
       </Flex>
     </VStack>

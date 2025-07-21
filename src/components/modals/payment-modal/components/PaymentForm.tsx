@@ -5,6 +5,7 @@ import { getShopSubscriptionDataService, getSubscriptionPlansService, subscripti
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface PaymentFormProps {
   planDetail: any;
@@ -24,6 +25,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
   const updateSelectedPlan = useSubscriptionPlanStore((state) => state.updateSelectedPlan);
   const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration);
   const { showToast } = useAppToast();
+  const { t } = useLocaleResources('subscription');
 
 
   const {
@@ -42,7 +44,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
     },
     onError: (error: any) => {
       const errorMessage =
-        error?.response?.data?.data?.message || 'Failed to initialize payment. Please try again.';
+        error?.response?.data?.data?.message || t('PaymentForm.failedToInitializePayment');
       showToast({ message: errorMessage, type: 'error' });
     }
   });
@@ -50,7 +52,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
 
   useEffect(() => {
     if (plansError) {
-      showToast({ message: 'Failed to fetch subscription plans. Please try again.', type: 'error' });
+      showToast({ message: t('PaymentForm.failedToFetchPlans'), type: 'error' });
       onClose();
       return;
     }
@@ -59,7 +61,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
       const selectedPlan = plansData.data.find((plan) => plan.type === planDetail.type);
   
       if (!selectedPlan) {
-        showToast({ message: 'Selected plan not found. Please try again.', type: 'error' });
+        showToast({ message: t('PaymentForm.selectedPlanNotFound'), type: 'error' });
         onClose();
         return;
       }
@@ -72,13 +74,13 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
         },
         {
           onError: () => {
-            showToast({ message: 'Failed to initialize payment. Please try again.', type: 'error' });
+            showToast({ message: t('PaymentForm.failedToInitializePayment'), type: 'error' });
             onClose();
           }
         }
       );
     }
-  }, [plansData, plansError, planDetail, preferredPlanDuration, clientSecret, intentType, paymentMutation.isLoading]);
+  }, [plansData, plansError, planDetail, preferredPlanDuration, clientSecret, intentType, paymentMutation.isLoading, t, showToast, onClose]);
 
   const handleSuccess = async () => {
     setIsProcessingPayment(true);
@@ -90,12 +92,12 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
       const updatedPlan = plansResponse.data.find((plan) => plan.type === planDetail.type);
       if (updatedPlan) updateSelectedPlan(updatedPlan);
 
-      showToast({ message: successMessage || 'Payment successful! Your subscription has been activated.', type: 'success' });
+      showToast({ message: successMessage || t('PaymentForm.paymentSuccessful'), type: 'success' });
 
       onClose();
       onSuccess?.();
     } catch {
-      const errorMessage = 'An unexpected error occurred. Please try again.';
+      const errorMessage = t('PaymentForm.unexpectedError');
       setErrorMessage(errorMessage);
       showToast({ message: errorMessage, type: 'error' });
     } finally {
@@ -105,7 +107,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
 
   const handleError = (error: any) => {
     setIsProcessingPayment(false);
-    const errorMsg = error?.message || 'An error occurred during payment processing.';
+    const errorMsg = error?.message || t('PaymentForm.paymentProcessingError');
     setErrorMessage(errorMsg);
     showToast({ message: errorMsg, type: 'error' });
   };
@@ -119,7 +121,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
   if (isPlansLoading || paymentMutation.isLoading) {
     return (
       <Box p={6}>
-        <Text color="white">Initializing payment...</Text>
+        <Text color="white">{t('PaymentForm.initializingPayment')}</Text>
       </Box>
     );
   }
@@ -127,7 +129,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
   if (plansError || paymentMutation.isError || !intentType || !clientSecret) {
     return (
       <Box p={6}>
-        <Text color="red.500">Failed to initialize payment.</Text>
+        <Text color="red.500">{t('PaymentForm.failedToInitialize')}</Text>
       </Box>
     );
   }
@@ -137,7 +139,7 @@ const PaymentForm = ({ planDetail, TrialMonths, onClose, onSuccess, successMessa
       <Box p={6}>
         {isProcessingPayment && (
           <Text color="blue.400" mb={4} fontSize="sm" textAlign="center">
-            Processing payment... Please wait.
+            {t('PaymentForm.processingPayment')}
           </Text>
         )}
         <DroplinkedPaymentForm

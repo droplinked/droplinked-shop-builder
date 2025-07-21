@@ -3,6 +3,7 @@ import useOnboardingStore from 'pages/onboarding/stores/useOnboardingStore';
 import React from 'react';
 import useAppStore from 'stores/app/appStore';
 import useSubscriptionPlanStore from 'stores/subscription-plan.ts/subscriptionPlanStore';
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources';
 
 interface BillingSummaryProps {
   subscriptionCost: number;
@@ -14,11 +15,12 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
   const preferredPlanDuration = useSubscriptionPlanStore((state) => state.preferredPlanDuration);
   const { shop } = useAppStore();
   const canActivateTrial = shop?.subscription?.canActivateTrial ?? false;
+  const { t } = useLocaleResources('subscription');
 
   const getBillingCycleText = () => {
-    if (preferredPlanDuration.month === 1) return 'Monthly';
-    if (preferredPlanDuration.month === 12) return 'Yearly';
-    if (preferredPlanDuration.month === 36) return '3-Year';
+    if (preferredPlanDuration.month === 1) return t('BillingSummary.monthly');
+    if (preferredPlanDuration.month === 12) return t('BillingSummary.yearly');
+    if (preferredPlanDuration.month === 36) return t('BillingSummary.threeYear');
     return `${preferredPlanDuration.month} Months`;
   };
 
@@ -27,7 +29,7 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
       <Box p={6} display="flex" flexDirection="column" gap={4} width="100%">
         <Flex justifyContent="space-between" alignItems="center" width="100%">
           <Text color="text.subtext.placeholder.dark" fontSize="base">
-            Billing Cycle
+            {t('BillingSummary.billingCycle')}
           </Text>
           <Text color="white" fontSize="base" fontWeight="medium">
             {getBillingCycleText()}
@@ -36,15 +38,15 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
 
         <Flex justifyContent="space-between" alignItems="center" width="100%">
           <Text color="text.subtext.placeholder.dark" fontSize="base">
-            Subscription cost
+            {t('BillingSummary.subscriptionCost')}
           </Text>
           <Flex alignItems="center" gap={1}>
             <Text display="flex" alignItems="center" gap={1} color="white" fontSize="base" fontWeight="medium">
-              {shopSetupUI.isFromCrossmint ? '3 month free' : canActivateTrial ? 'First month free' : (
+              {shopSetupUI.isFromCrossmint ? t('BillingSummary.threeMonthFree') : canActivateTrial ? t('BillingSummary.firstMonthFree') : (
                 <>
                   {subscriptionCost}
                   <Text color="#868686" fontSize="base">
-                    USD
+                    {t('BillingSummary.usd')}
                   </Text>
                 </>
               )}
@@ -57,11 +59,11 @@ function BillingSummary({ subscriptionCost, total }: BillingSummaryProps) {
 
       <Flex p={6} justifyContent="space-between" alignItems="center" width="100%">
         <Text color="text.subtext.placeholder.dark" fontSize="base">
-          Total
+          {t('BillingSummary.total')}
         </Text>
         <Flex alignItems="center" gap={1}>
           <Text color="white" fontSize="base" fontWeight="medium">
-            {total === '0.00' ? 'Free' : `$${total}`}
+            {total === '0.00' ? t('BillingSummary.free') : `$${total}`}
           </Text>
         </Flex>
       </Flex>
