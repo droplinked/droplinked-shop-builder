@@ -47,12 +47,12 @@ export default function InvoiceTableMenu({ invoice }) {
                             icon={<AppIcons.Edit />}
                             onClick={() => navigate(`/analytics/invoice-management/edit/${invoice._id}`)}
                         >
-                            {t('table.actions.edit')}
+                            {t('InvoiceTableMenu.actions.edit')}
                         </MenuItem>
                     }
 
                     <MenuItem icon={<AppIcons.RedTrash />} color="#FF2244" onClick={onOpen}>
-                        {t('table.actions.delete')}
+                        {t('InvoiceTableMenu.actions.delete')}
                     </MenuItem>
                 </MenuList>
             </Menu>
@@ -76,7 +76,7 @@ function ConfirmInvoiceDeleteModal({ invoiceId, isOpen, onClose }) {
         }
         catch (error) {
             showToast({
-                message: error.response?.data?.data?.message || t('common.error'),
+                message: error.response?.data?.data?.message || t('common:error'),
                 type: "error"
             })
         }
@@ -85,11 +85,11 @@ function ConfirmInvoiceDeleteModal({ invoiceId, isOpen, onClose }) {
     return (
         <AppModal modalRootProps={{ isOpen, onClose, size: "md", isCentered: true }}>
             <ModalBody>
-                <AppTypography textAlign="center" fontSize={16} fontWeight={500} color="white">{t('table.deleteConfirm.message')}</AppTypography>
+                <AppTypography textAlign="center" fontSize={16} fontWeight={500} color="white">{t('InvoiceTable.deleteConfirm.message')}</AppTypography>
             </ModalBody>
             <ModalFooter display="flex" justifyContent="space-between">
-                <AppButton variant='outlined' isDisabled={isLoading} onClick={onClose}>{t('common.cancel')}</AppButton>
-                <AppButton isDisabled={isLoading} isLoading={isLoading} onClick={handleDelete}>{t('table.actions.delete')}</AppButton>
+                <AppButton variant='outlined' isDisabled={isLoading} onClick={onClose}>{t('common:cancel')}</AppButton>
+                <AppButton isDisabled={isLoading} isLoading={isLoading} onClick={handleDelete}>{t('InvoiceTableMenu.actions.delete')}</AppButton>
             </ModalFooter>
         </AppModal>
     )

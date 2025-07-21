@@ -4,6 +4,8 @@ import FullScreenLoading from 'components/redesign/fullscreen-loading/FullScreen
 import { Form, Formik, FormikProvider } from 'formik'
 import useAppToast from 'hooks/toast/useToast'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import InvoiceDetailsModal from '../components/invoice-details/InvoiceDetailsModal'
@@ -16,7 +18,7 @@ import useCreateInvoice from './hooks/useCreateInvoice'
 import useInvoiceStore from './store/invoiceStore'
 
 export default function CreateInvoice() {
-    const { t } = useLocaleResources('invoice-management');
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale });
     const navigate = useNavigate()
     const { invoiceId } = useParams()
     const { isOpen, onOpen: openInvoiceDetailsModal, onClose: closeInvoiceDetailsModal } = useDisclosure()
@@ -34,7 +36,7 @@ export default function CreateInvoice() {
     useEffect(() => {
         if (invoiceId && data?._id) {
             if (data.status !== "ACTIVE") {
-                showToast({ message: t('createInvoice.error.cannotEditInactive'), type: "error" })
+                showToast({ message: t('CreateInvoice.error.cannotEditInactive'), type: "error" })
                 navigate("/analytics/invoice-management")
                 return
             }
@@ -86,8 +88,8 @@ export default function CreateInvoice() {
                                 <Flex direction="column" gap={6}>
                                     <InvoiceSummary />
                                     <Flex direction="column" gap={4}>
-                                        <AppButton type='submit' isLoading={isLoading} isDisabled={isLoading}>{invoiceId ? t('createInvoice.updateTitle') : t('createInvoice.title')}</AppButton>
-                                        <AppButton type='button' variant='outlined' isDisabled={isLoading} onClick={handleDiscard}>{t('createInvoice.discard')}</AppButton>
+                                        <AppButton type='submit' isLoading={isLoading} isDisabled={isLoading}>{invoiceId ? t('CreateInvoice.updateTitle') : t('CreateInvoice.title')}</AppButton>
+                                        <AppButton type='button' variant='outlined' isDisabled={isLoading} onClick={handleDiscard}>{t('common:discard')}</AppButton>
                                     </Flex>
                                 </Flex>
                             </Flex>

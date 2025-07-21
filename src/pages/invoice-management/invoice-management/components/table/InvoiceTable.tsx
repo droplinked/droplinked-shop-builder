@@ -31,7 +31,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
     const columns: ColumnDef<Invoice>[] = [
         {
             accessorKey: 'email',
-            header: t('table.columns.client'),
+            header: t('common:client'),
             cell: info => {
                 const { email, checkoutAddressID } = info.row.original
                 const { firstName, lastName } = checkoutAddressID ?? {}
@@ -47,17 +47,17 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 return "-"
             }
         },
-        { accessorKey: 'createdAt', header: t('table.columns.date'), cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
+        { accessorKey: 'createdAt', header: t('common:date'), cell: info => (new Date(info.getValue() as string)).toLocaleString("en-US", { day: "numeric", month: "long", year: "numeric" }) },
         {
             accessorKey: 'amount',
-            header: t('table.columns.amount'),
+            header: t('InvoiceTable.columns.amount'),
             cell: (info) => {
                 const amount = info.getValue() as number
                 if (amount) return `${getFormattedPrice({ amount, toFixed: true })}`
                 return "-"
             }
         },
-        { accessorKey: 'status', header: t('table.columns.status'), cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
+        { accessorKey: 'status', header: t('common:status'), cell: info => <StatusBadge status={info.getValue() as InvoiceStatus} /> }
     ]
 
     const openDetailsModal = (invoice: Invoice) => {
@@ -86,7 +86,7 @@ function InvoiceTable({ invoices, isLoading, dataLength, hasMore, isFetchingNext
                 renderActions={renderActions}
                 emptyView={
                     <AppTypography fontSize={16} fontWeight={500} color="white">
-                        {t('table.empty.description')}
+                        {t('InvoiceTable.empty.description')}
                     </AppTypography>
                 }
                 infiniteScroll={{ dataLength, hasMore, next, isFetchingNextPage }}

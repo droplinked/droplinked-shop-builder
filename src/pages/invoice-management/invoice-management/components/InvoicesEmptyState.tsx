@@ -21,10 +21,10 @@ function InvoicesEmptyState() {
                 src='https://upload-file-droplinked.s3.amazonaws.com/8043d6e41e03dcb155f33d2a2ccde56ddcb02819e4e1c998e3285a271c3aeb24.png'
                 objectFit='cover'
                 borderRadius={8}
-                alt={t('emptyState.alt')}
+                alt={t('InvoicesEmptyState.alt')}
             />
-            <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>{t('emptyState.title')}</AppTypography>
-            <AppTypography mt={2} fontSize={16} fontWeight={400} color={"white"}>{t('emptyState.description')}</AppTypography>
+            <AppTypography mt={16} fontSize={24} fontWeight={500} color={"white"}>{t('InvoicesEmptyState.title')}</AppTypography>
+            <AppTypography mt={2} fontSize={16} fontWeight={400} color={"white"}>{t('InvoicesEmptyState.description')}</AppTypography>
             <BlueButton
                 sx={{ "svg path": { "stroke": "#2BCFA1" } }}
                 color="#2BCFA1"
@@ -37,7 +37,7 @@ function InvoicesEmptyState() {
                 mt={4}
                 onClick={() => navigate("/analytics/invoice-management/create")}
             >
-                {t('emptyState.newInvoice')}
+                {t('InvoicesEmptyState.newInvoice')}
             </BlueButton>
         </Flex>
     )

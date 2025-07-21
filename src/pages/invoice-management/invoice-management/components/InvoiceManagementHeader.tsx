@@ -17,11 +17,11 @@ function InvoiceManagementHeader() {
             gap={{ base: 4, md: 0 }}
         >
             <Flex direction="column" gap={1}>
-                <Heading as="h2" fontSize={28} fontWeight={600} color="white">{t('header.title')}</Heading>
-                <AppTypography fontSize={16} color="neutral.gray.500">{t('header.description')}</AppTypography>
+                <Heading as="h2" fontSize={28} fontWeight={600} color="white">{t('InvoiceManagementHeader.title')}</Heading>
+                <AppTypography fontSize={16} color="neutral.gray.500">{t('InvoiceManagementHeader.description')}</AppTypography>
             </Flex>
             <AppButton iconLeft={<AppIcons.BlackPlus />} onClick={() => navigate("/analytics/invoice-management/create")}>
-                {t('header.newInvoice')}
+                {t('InvoiceManagementHeader.newInvoice')}
             </AppButton>
         </Flex>
     );

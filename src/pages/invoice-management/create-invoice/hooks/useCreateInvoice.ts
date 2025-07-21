@@ -1,4 +1,7 @@
 import useAppToast from 'hooks/toast/useToast'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import { addAdditionalDetailsToCartService, addAddressToCartService, addShippingMethodToCartService, createAddressService } from 'services/invoice/invoiceServices'
 import { areObjectsEqual } from 'utils/helpers'
 import { phone } from "phone"
@@ -15,15 +18,16 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
     const [isLoading, setLoading] = useState(false)
     const { cart, updateCart, isAddressSwitchToggled, countryISO2, selectedShippingMethod } = useInvoiceStore()
     const { showToast } = useAppToast()
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
 
     const isInvoiceDataValid = (formData: any) => {
-        if (!cart._id) return showToast({ message: "You have to add products to the cart first", type: "error" })
+        if (!cart._id) return showToast({ message: t('useCreateInvoice.errors.addProductsFirst'), type: "error" })
 
         if (trigger === "SHIPPING_METHODS_SWITCH") {
             const { addressLine1, city, state, zip, country } = formData.address ?? {}
             const allFieldsPresent = [addressLine1, city, state, zip, country].every(Boolean)
             if (!allFieldsPresent) {
-                return showToast({ message: "Please provide a valid address to proceed", type: "error" })
+                return showToast({ message: t('useCreateInvoice.errors.provideValidAddress'), type: "error" })
             }
         }
 
@@ -32,7 +36,7 @@ export default function useCreateInvoice({ trigger, onSuccess }: Props) {
 
     const validatePhoneNumber = (formData: any) => {
         const { isValid, phoneNumber } = phone(formData.address.phoneNumber, { country: countryISO2 })
-        if (!isValid) throw new Error("Please enter a valid phone number")
+        if (!isValid) throw new Error(t('useCreateInvoice.errors.validPhoneNumber'))
         formData.address.phoneNumber = phoneNumber
     }
 

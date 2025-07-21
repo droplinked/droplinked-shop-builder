@@ -4,7 +4,7 @@ import AppInput from 'components/redesign/input/AppInput'
 import AppSelect from 'components/redesign/select/AppSelect'
 import useDebounce from 'hooks/useDebounce/useDebounce'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { InvoiceQueryParams, InvoiceStatus } from 'lib/services/invoice/interfaces'
+import { InvoiceQueryParams, InvoiceStatus } from 'services/invoice/interfaces'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 interface Props {
@@ -16,9 +16,9 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm)
     const statusOptions = [
-        { title: t('filters.statusOptions.active'), value: "ACTIVE" },
-        { title: t('filters.statusOptions.pending'), value: "PENDING" },
-        { title: t('filters.statusOptions.checkedOut'), value: "CHECKED_OUT" }
+        { title: t('common:active'), value: "ACTIVE" },
+        { title: t('common:pending'), value: "PENDING" },
+        { title: t('InvoiceFilters.statusOptions.checkedOut'), value: "CHECKED_OUT" }
     ]
 
     useEffect(() => {
@@ -31,7 +31,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 inputGroupProps={{ width: "300px", height: 12, bgColor: "neutral.gray.1000" }}
                 inputProps={{
                     value: searchTerm,
-                    placeholder: t('filters.search'),
+                    placeholder: t('common:search'),
                     onChange: (e) => setSearchTerm(e.target.value)
                 }}
                 leftElement={<AppIcons.Search />}
@@ -43,7 +43,7 @@ function InvoiceFilters({ updateInvoiceFilters }: Props) {
                 selectProps={{
                     width: "200px",
                     bgColor: "neutral.gray.1000",
-                    placeholder: t('filters.status'),
+                    placeholder: t('common:status'),
                     onChange: (e) => updateInvoiceFilters(prev => ({ ...prev, page: 1, status: e.target.value as InvoiceStatus })),
                 }}
             />

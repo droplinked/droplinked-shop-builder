@@ -1,6 +1,9 @@
 import { Button, PopoverTrigger } from '@chakra-ui/react'
 import AppIcons from 'assets/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
+import arLocale from 'locales/invoice-management/ar.json'
+import enLocale from 'locales/invoice-management/en.json'
 import React from 'react'
 import SKUOptions from './SKUOptions'
 
@@ -10,6 +13,7 @@ interface Props {
 }
 
 function DropdownTrigger({ isOpen, selectedSKU }: Props) {
+    const { t } = useLocaleResources('invoice-management', { en: enLocale, ar: arLocale })
     return (
         <PopoverTrigger>
             <Button
@@ -34,7 +38,7 @@ function DropdownTrigger({ isOpen, selectedSKU }: Props) {
                         textProps={{ fontSize: 14 }}
                     />
                     :
-                    <AppTypography flex={1} textAlign="left" fontSize={14}>Size / Color</AppTypography>
+                    <AppTypography flex={1} textAlign="left" fontSize={14}>{t('DropdownTrigger.placeholder')}</AppTypography>
                 }
                 <AppIcons.SelectChevronDown
                     style={{

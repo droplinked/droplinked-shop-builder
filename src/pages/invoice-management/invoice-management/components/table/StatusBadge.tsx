@@ -1,6 +1,6 @@
 import { Badge, BadgeProps } from '@chakra-ui/react'
 import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
-import { InvoiceStatus } from 'lib/services/invoice/interfaces'
+import { InvoiceStatus } from 'services/invoice/interfaces'
 import React from 'react'
 
 function StatusBadge({ status }: { status: InvoiceStatus }) {
@@ -8,7 +8,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
     
     const statusMap: Record<InvoiceStatus, { label: string, styles: BadgeProps }> = {
         "CHECKED_OUT": {
-            label: t('table.status.checkedOut'),
+            label: t('StatusBadge.status.checkedOut'),
             styles: {
                 bg: '#092C22',
                 color: '#2BCFA1',
@@ -16,7 +16,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
             }
         },
         "PENDING": {
-            label: t('table.status.pending'),
+            label: t('common:pending'),
             styles: {
                 bg: '#FF22441A',
                 color: '#FF2244',
@@ -24,7 +24,7 @@ function StatusBadge({ status }: { status: InvoiceStatus }) {
             }
         },
         "ACTIVE": {
-            label: t('table.status.active'),
+            label: t('common:active'),
             styles: {
                 bg: '#292929',
                 color: '#fff',
