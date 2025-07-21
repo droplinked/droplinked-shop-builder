@@ -11,7 +11,7 @@ export const useInvoiceData = () => {
     const [isDownloading, setIsDownloading] = useState(false)
     const params = useParams()
     const { showToast } = useAppToast()
-    const { t } = useLocaleResources('common')
+    const { t } = useLocaleResources('invoice-management')
 
     const { data, isFetching } = useQuery({
         queryFn: () => downloadCreditChangeInvoice(params.txId),
@@ -23,7 +23,7 @@ export const useInvoiceData = () => {
         },
         onError() {
             showToast({
-                message: t('invoice.hooks.errors.invoiceNotFound'),
+                message: t('hooks.errors.invoiceNotFound'),
                 type: "error"
             })
             navigate("/")
@@ -53,7 +53,7 @@ export const useInvoiceData = () => {
             // Generate PDF
             await toPDF()
         } catch (error) {
-            showToast({ message: t('invoice.hooks.errors.pdfGenerationFailed'), type: "error" })
+            showToast({ message: t('hooks.errors.pdfGenerationFailed'), type: "error" })
         } finally {
             setIsDownloading(false)
         }
