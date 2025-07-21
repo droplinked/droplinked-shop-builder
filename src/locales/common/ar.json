@@ -15,6 +15,7 @@
   "add": "إضافة",
   "claimNow": "احصل عليه الآن",
   "return": "رجوع",
+  "continue": "متابعة",
 
   "submit": "إرسال",
   "cancel": "إلغاء",
@@ -123,6 +124,16 @@
       "downloadFailed": "فشل في تحميل الملف"
     }
   },
+  "errors": {
+    "oopsSomethingWentWrong": "عذراً! حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "oopsSomethingWentWrongShort": "عذراً! حدث خطأ ما.",
+    "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "failedToCreate": "فشل في الإنشاء. يرجى المحاولة مرة أخرى.",
+    "anErrorOccurred": "حدث خطأ",
+    "unexpectedError": "حدث خطأ غير متوقع.",
+    "pdfGenerationFailed": "فشل في إنشاء ملف PDF. يرجى المحاولة مرة أخرى.",
+    "invoiceNotFound": "لم يتم العثور على الفاتورة بهذا المعرف"
+  },
 
   "AddBalanceModal": {
     "title": "إضافة رصيد",
@@ -159,7 +170,6 @@
       "successMessage": "تم تفعيل النسخة التجريبية بنجاح! ميزات الخطة الاحترافية أصبحت متاحة الآن."
     },
     "footer": {
-      "continue": "متابعة",
       "claimTrial": "احصل على النسخة التجريبية الآن",
       "upgrade": "ترقية",
       "unsure": "ما زلت غير متأكد؟",
