@@ -42,33 +42,33 @@ const PaymentProviderList: React.FC = () => {
   // Define payment providers with their details
   const providers: Provider[] = [
     {
-      title: t('settings.financialServices.providers.stripe.title'),
+      title: t('FinancialServices.providers.stripe.title'),
       type: "stripe",
       buttonText: onboardedExpressStripeAccount
-        ? t('settings.financialServices.providers.stripe.buttonTextConnected')
-        : t('settings.financialServices.providers.stripe.buttonTextNotConnected'),
+                    ? t('FinancialServices.providers.stripe.buttonTextConnected')
+            : t('FinancialServices.providers.stripe.buttonTextNotConnected'),
       link: stripeOnboardingUrl || "https://dashboard.stripe.com/login",
       isExternal: true,
       isFetching: isFetching,
-      tooltip: t('settings.financialServices.providers.stripe.tooltip'),
+              tooltip: t('FinancialServices.providers.stripe.tooltip'),
       icon: <StripeLogo />,
     },
     {
-      title: t('settings.financialServices.providers.coinbase.title'),
+      title: t('FinancialServices.providers.coinbase.title'),
       type: "coinbase",
-      buttonText: t('settings.financialServices.providers.coinbase.buttonText'),
+      buttonText: t('FinancialServices.providers.coinbase.buttonText'),
       link: "#",
       isExternal: true,
-      tooltip: t('settings.financialServices.providers.coinbase.tooltip'),
+      tooltip: t('FinancialServices.providers.coinbase.tooltip'),
       icon: <CoinbaseLogo />,
     },
     {
-      title: t('settings.financialServices.providers.paymob.title'),
+      title: t('FinancialServices.providers.paymob.title'),
       type: "paymob",
-      buttonText: t('settings.financialServices.providers.paymob.buttonText'),
+      buttonText: t('FinancialServices.providers.paymob.buttonText'),
       isExternal: false,
       isDisabled: true,
-      tooltip: t('settings.financialServices.providers.paymob.tooltip'),
+      tooltip: t('FinancialServices.providers.paymob.tooltip'),
       icon: <PaymobLogo />,
     },
   ];

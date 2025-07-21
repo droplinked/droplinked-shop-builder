@@ -19,11 +19,11 @@ export default function CouponsInformationDrawer({ isOpen, onClose, coupon }: Pr
     const { createdAt, isExpired, name } = coupon
     const tabs = [
         {
-            title: t("settings.coupons.information.tabs.information"),
+                            title: t("Coupons.information.tabs.information"),
             content: <InformationTab coupon={coupon} />
         },
         {
-            title: t("settings.coupons.information.tabs.codes"),
+                            title: t("Coupons.information.tabs.codes"),
             content: <CodesTab coupon={coupon} onClose={onClose} />
         },
     ];
@@ -40,8 +40,8 @@ export default function CouponsInformationDrawer({ isOpen, onClose, coupon }: Pr
                         <TabsList tabs={tabs} />
                     </>
                 }
-                discardButtonText={t("settings.coupons.information.close")}
-                saveButtonText={t("settings.coupons.information.saveChanges")}
+                discardButtonText={t("Coupons.information.close")}
+                saveButtonText={t("Coupons.information.saveChanges")}
                 drawerHeaderStyle={{ padding: 0, px: 9, py: 9, paddingBottom: 0 }}
             >
                 <TabPanels>

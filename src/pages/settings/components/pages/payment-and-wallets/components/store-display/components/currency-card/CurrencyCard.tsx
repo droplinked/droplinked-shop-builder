@@ -26,8 +26,8 @@ const CurrencyCard: React.FC<CurrencyCardProps> = ({ currencyName, isPrimary, cu
             {currencyName}
           </Text>
           <Badge textTransform={"unset"} bg={isPrimary ? "#ffd9511a" : "grey.800"} color={isPrimary ? "#ffd850" : "neutral.gray.650"} borderRadius="4px" fontWeight={400} px="2">
-            {isPrimary && t('settings.paymentsWallets.storeDisplay.primary')}
-            {isSoon && t('settings.paymentsWallets.storeDisplay.soon')}
+                            {isPrimary && t('PaymentsWallets.storeDisplay.primary')}
+                            {isSoon && t('PaymentsWallets.storeDisplay.soon')}
           </Badge>
         </Flex>
         <SwitchBox isDisabled={isSoon} isChecked={isPrimary} onToggle={onToggle} />

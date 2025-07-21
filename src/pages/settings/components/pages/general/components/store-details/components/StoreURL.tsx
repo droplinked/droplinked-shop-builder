@@ -23,6 +23,6 @@ export default function StoreURL() {
     )
 
     return (
-        <SectionContent title={t("settings.storeDetails.storeURL")} rightContent={shopLink()} />
+        <SectionContent title={t("StoreURL.title")} rightContent={shopLink()} />
     )
 }

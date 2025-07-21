@@ -32,7 +32,7 @@ export default function DefaultBadge({ isDefault, onClick }: Props) {
         >
             {isDefault ? <AppIcons.GoldenStar style={{ width: "16px", height: "16px" }} /> : <AppIcons.OutlinedStar style={{ width: "16px", height: "16px" }} />}
             <AppTypography fontSize={14} color={isDefault ? "#ffd951" : "#fff"}>
-                {isDefault ? t("settings.defaultBadge.default") : t("settings.defaultBadge.setAsDefault")}
+                {isDefault ? t("DefaultBadge.default") : t("DefaultBadge.setAsDefault")}
             </AppTypography>
         </Flex>
     );

@@ -34,33 +34,33 @@ export const getValidationSchema = ({ isEdit, t }: { isEdit: boolean, t: (key: s
     if (isEdit) {
         return (
             Yup.object().shape({
-                name: Yup.string().required(t("settings.coupons.form.validation.titleRequired")),
-                quantity: Yup.number().typeError(t("settings.coupons.form.validation.mustBeNumber")).required(t("settings.coupons.form.validation.quantityRequired")),
-                type: Yup.string().required(t("settings.coupons.form.validation.typeRequired")),
-                balance: Yup.number().typeError(t("settings.coupons.form.validation.mustBeNumber")).required(t("settings.coupons.form.validation.amountRequired")),
+                name: Yup.string().required(t("validationHandlers.validation.titleRequired")),
+                quantity: Yup.number().typeError(t("validationHandlers.validation.mustBeNumber")).required(t("validationHandlers.validation.quantityRequired")),
+                type: Yup.string().required(t("validationHandlers.validation.typeRequired")),
+                balance: Yup.number().typeError(t("validationHandlers.validation.mustBeNumber")).required(t("validationHandlers.validation.amountRequired")),
                 expiryDate: Yup.date()
-                    .required(t("settings.coupons.form.validation.expiryDateRequired"))
+                    .required(t("validationHandlers.validation.expiryDateRequired"))
                     .nullable(),
             })
         )
     } else {
         return (
             Yup.object().shape({
-                name: Yup.string().required(t("settings.coupons.form.validation.titleRequired")),
-                quantity: Yup.number().required(t("settings.coupons.form.validation.quantityRequired")),
-                type: Yup.string().required(t("settings.coupons.form.validation.typeRequired")),
+                name: Yup.string().required(t("validationHandlers.validation.titleRequired")),
+                quantity: Yup.number().required(t("validationHandlers.validation.quantityRequired")),
+                type: Yup.string().required(t("validationHandlers.validation.typeRequired")),
                 balance: Yup.number()
                     .when("type", {
                         is: (value: string) => value === "DISCOUNT",
-                        then: (schema) => schema.integer(t("settings.coupons.form.validation.validNumber"))
-                            .min(1, t("settings.coupons.form.validation.minDiscount"))
-                            .max(100, t("settings.coupons.form.validation.maxDiscount"))
+                        then: (schema) => schema.integer(t("validationHandlers.validation.validNumber"))
+                            .min(1, t("validationHandlers.validation.minDiscount"))
+                            .max(100, t("validationHandlers.validation.maxDiscount"))
                             .required(""),
-                        otherwise: (schema) => schema.required(t("settings.coupons.form.validation.amountRequired")),
+                        otherwise: (schema) => schema.required(t("validationHandlers.validation.amountRequired")),
                     }),
                 expiryDate: Yup.date()
-                    .required(t("settings.coupons.form.validation.expiryDateRequired"))
-                    .min(new Date(), t("settings.coupons.form.validation.futureDateRequired"))
+                    .required(t("validationHandlers.validation.expiryDateRequired"))
+                    .min(new Date(), t("validationHandlers.validation.futureDateRequired"))
                     .nullable(),
             })
         )

@@ -17,7 +17,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
     return (
         <AppInput
             inputProps={{
-                placeholder: t("settings.paymentsWallets.wallets.walletAddress.placeholder"),
+                placeholder: t("PaymentsWallets.wallets.walletAddress.placeholder"),
                 value,
                 onChange: (e) => onChange(e.target.value),
                 // Disable input when not in editing mode
@@ -31,7 +31,7 @@ export const WalletAddressInput = ({ value, onChange, isEditing, onSave }: Walle
                     onClick={onSave}
                     visibility={isButtonDisabled ? "visible" : "hidden"}
                 >
-                    {t("save")}
+                    {t("common:save")}
                 </AppButton>
             }
         />

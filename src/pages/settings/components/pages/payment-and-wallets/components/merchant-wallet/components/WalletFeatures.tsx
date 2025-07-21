@@ -13,7 +13,7 @@ export default function WalletFeatures() {
                     <AppIcons.Secure />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    {t("settings.merchantWallet.features.secure")}
+                    {t("MerchantWallet.features.secure")}
                 </Text>
             </HStack>
             <HStack>
@@ -21,7 +21,7 @@ export default function WalletFeatures() {
                     <AppIcons.GreenSpeedometer />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    {t("settings.merchantWallet.features.instant")}
+                    {t("MerchantWallet.features.instant")}
                 </Text>
             </HStack>
             <HStack>
@@ -29,7 +29,7 @@ export default function WalletFeatures() {
                     <AppIcons.Refresh color='#2BCFA1' style={{ width: "16px", height: "16px" }} />
                 </Box>
                 <Text color="white" fontSize="sm">
-                    {t("settings.merchantWallet.features.automaticConversion")}
+                    {t("MerchantWallet.features.automaticConversion")}
                 </Text>
             </HStack>
         </Flex>

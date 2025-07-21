@@ -19,7 +19,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                 <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>{shopName}</AppTypography>
             </Flex>
             <Flex gap={3} alignItems={"center"} flex={1}>
-                <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>{t('settings.referrals.referredPartners.yourEarning')}</AppTypography>
+                <AppTypography color={"neutral.white"} fontSize={16} fontWeight={500}>{t('Referrals.referredPartners.yourEarning')}</AppTypography>
                 <AppIcons.DotSpacer />
                 <FormattedPrice price={amount} fontWeight={500} />
             </Flex>
@@ -36,7 +36,7 @@ export default function PartnerCard({ partner }: { partner: Partner }) {
                     gap: "6px"
                 }}
             >
-                {t('settings.referrals.referredPartners.visit')}
+                                    {t('Referrals.referredPartners.visit')}
             </InteractiveText>
         </Flex>
     )

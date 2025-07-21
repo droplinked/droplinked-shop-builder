@@ -13,8 +13,8 @@ export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
         <Flex justifyContent={"space-between"} alignItems={"center"}>
             <Flex width={"100%"} flexDirection={"column"}>
                 <AppInputHeader
-                    label={t("settings.coupons.form.quantityLabel")}
-                    description={t("settings.coupons.form.quantityDescription")}
+                                label={t("Coupons.form.quantityLabel")}
+            description={t("Coupons.form.quantityDescription")}
                     inputProps={{ isRequired: true }}
                 />
             </Flex>
@@ -23,7 +23,7 @@ export default function QuantityInput({ isEdit }: { isEdit?: boolean }) {
                     inputProps={{
                         onChange: handleChange,
                         name: "quantity",
-                        placeholder: t("settings.coupons.form.quantityPlaceholder"),
+                        placeholder: t("Coupons.form.quantityPlaceholder"),
                         type: "number",
                         value: values.quantity,
                         isDisabled: isEdit

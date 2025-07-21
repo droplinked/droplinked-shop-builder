@@ -25,10 +25,10 @@ export default function FormActions({ onClose }: { onClose: () => void }) {
                 isDisabled={isSubmitting}
                 onClick={handleCloseForm}
             >
-                {t("settings.address.buttons.discard")}
+                {t("common:cancel")}
             </AppButton>
             <AppButton onClick={handleFormSubmit} isLoading={isSubmitting}>
-                {t("save")}
+                {t("common:save")}
             </AppButton>
         </Flex>
     );

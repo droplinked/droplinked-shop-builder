@@ -25,7 +25,7 @@ export default function StatesField() {
         },
         onError: () => {
             showToast({
-                message: t("settings.address.errors.statesError"),
+                message: t("Address.errors.statesError"),
                 type: "error",
             });
         },
@@ -36,7 +36,7 @@ export default function StatesField() {
             isLoading={isStateFetching}
             options={states}
             name="state"
-            placeholder={t("settings.address.fields.state")}
+                            placeholder={t("Address.fields.state")}
             disabled={isStateFetching || !values.country}
             key={"state"}
         />

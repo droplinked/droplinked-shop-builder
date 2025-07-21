@@ -12,20 +12,21 @@ interface Props {
 }
 
 export default function PlansContainer({ onOpen, isFetching }: Props) {
-    const { t } = useLocaleResources('settings');
+    const { t , isRTL } = useLocaleResources('settings');
     const border = "1px solid #2BCFA1";
 
     return (
         <Flex userSelect="none" gap="28px" flex={1} flexDirection="column">
             <PlanCard
                 icon={<AppIcons.EnterprisePlan />}
-                title={t("settings.upgradePlan.enterprise")}
-                description={t("settings.upgradePlan.enterpriseDescription")}
+                title={t("UpgradePlan.enterprise")}
+                description={t("UpgradePlan.enterpriseDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",
                     bottom: "1rem",
-                    left: "15rem",
+                    left: isRTL ? "0px" : "15rem",
+                    right: isRTL ? "15rem" : "0px",
                     width: "100%",
                     gap: 4,
                     border: "1px solid #333",
@@ -39,9 +40,11 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                 width="100%"
                 gap={4}
                 borderTop={border}
-                borderLeft={border}
+                borderLeft={isRTL ? "0px" : border}
+                borderRight={isRTL ? border : "0px"}
                 borderBottom={border}
-                borderLeftRadius="16px"
+                borderLeftRadius={isRTL ? "0px" : "16px"}
+                borderRightRadius={isRTL ? "16px" : "0px"}
                 background="#2BCEA11A"
                 alignItems="center"
                 justifyContent="space-between"
@@ -53,26 +56,27 @@ export default function PlansContainer({ onOpen, isFetching }: Props) {
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize="18px" fontWeight={700}>
-                            {t("settings.upgradePlan.premium")}
+                            {t("UpgradePlan.premium")}
                         </AppTypography>
                         <AppTypography color="#B1B1B1" fontSize="14px" fontWeight={400}>
-                            {t("settings.upgradePlan.premiumDescription")}
+                            {t("UpgradePlan.premiumDescription")}
                         </AppTypography>
                     </Flex>
                 </Flex>
                 <AppButton onClick={onOpen} isLoading={isFetching}>
-                    {t("settings.upgradePlan.unlockFeatures")}
+                    {t("UpgradePlan.unlockFeatures")}
                 </AppButton>
-            </Flex>
+            </Flex> 
             <PlanCard
                 icon={<AppIcons.StarOutline style={{ width: "27px", height: "27px" }} />}
-                title={t("settings.upgradePlan.proPlan")}
-                description={t("settings.upgradePlan.proDescription")}
+                title={t("UpgradePlan.proPlan")}
+                description={t("UpgradePlan.proDescription")}
                 styles={{
                     filter: "blur(2px)",
                     position: "relative",
                     top: "1rem",
-                    left: "15rem",
+                    right: isRTL ? "15rem" : "0px",
+                    left: isRTL ? "0px" : "15rem",
                     width: "100%",
                     gap: 4,
                     border: "1px solid #333",

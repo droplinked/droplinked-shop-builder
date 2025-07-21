@@ -30,21 +30,21 @@ const StoreDisplay: React.FC = () => {
 
   return (
     <>
-      <SectionContainer title={t('settings.paymentsWallets.storeDisplay.title')}>
-        <SectionContent
-          title={t('settings.paymentsWallets.storeDisplay.defaultCurrency.title')}
-          description={t('settings.paymentsWallets.storeDisplay.defaultCurrency.description')}
+              <SectionContainer title={t('PaymentsWallets.storeDisplay.title')}>
+            <SectionContent
+                title={t('PaymentsWallets.storeDisplay.defaultCurrency.title')}
+                description={t('PaymentsWallets.storeDisplay.defaultCurrency.description')}
           rightContent={
             <Flex flexDir={{ base: "column", xl: "row" }} gap="4">
               <CurrencyCard
-                currencyName={t('settings.paymentsWallets.storeDisplay.fiat')}
+                currencyName={t('PaymentsWallets.storeDisplay.fiat')}
                 isPrimary={switchState.fiat}
                 currencyList={currencyList}
                 onToggle={() => handleToggle('fiat')}
                 isLoading={isLoading}
               />
               <CurrencyCard
-                currencyName={t('settings.paymentsWallets.storeDisplay.crypto')}
+                currencyName={t('PaymentsWallets.storeDisplay.crypto')}
                 isPrimary={switchState.crypto}
                 currencyList={["USD Coin"]}
                 isSoon={false}

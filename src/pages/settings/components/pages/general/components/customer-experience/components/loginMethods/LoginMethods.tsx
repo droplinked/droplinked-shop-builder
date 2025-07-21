@@ -17,8 +17,8 @@ export default function LoginMethods() {
 
     return (
         <SectionContent
-            title={t("settings.customerExperience.loginMethods.title")}
-            description={t("settings.customerExperience.loginMethods.description")}
+            title={t("CustomerExperience.loginMethods.title")}
+            description={t("CustomerExperience.loginMethods.description")}
             rightContent={
                 <Grid
                     templateColumns={{ base: "1fr", md: "1fr", xl: "repeat(2, 1fr)" }}

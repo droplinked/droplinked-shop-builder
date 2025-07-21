@@ -32,9 +32,9 @@ function SettingsPage() {
             await fetchShop({ shopName: shop.name })
             i18n.changeLanguage(values.defaultLanguage)
             resetForm({ values })
-            showToast({ type: "success", message: t("settings.updateSuccess") })
+            showToast({ type: "success", message: t("SettingsPage.updateSuccess") })
         } catch (error) {
-            showToast({ type: "error", message: error.message || error?.data?.message || t("genericError") })
+            showToast({ type: "error", message: error.message || error?.data?.message || t("common:genericError") })
         } finally {
             setSubmitting(false)
         }
@@ -46,7 +46,7 @@ function SettingsPage() {
 
     return (
         <PageGrid.Root>
-            <PageGrid.Header title={t("settings.title")} description={t("settings.description")} />
+            <PageGrid.Header title={t("SettingsPage.title")} description={t("SettingsPage.description")} />
             <Formik
                 initialValues={getSettingsPageInitValues(shop, user, i18n.language)}
                 validateOnChange={false}

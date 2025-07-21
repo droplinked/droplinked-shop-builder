@@ -19,16 +19,16 @@ export default function UserManagementTable({ data, isFetching }: Props) {
     const columns: ColumnDef<IInvitation>[] = [
         {
             accessorKey: 'recipientEmail',
-            header: t('settings.userManagement.table.name'),
+            header: t('UserManagement.table.name'),
             cell: info => <UserNameColumn userData={info.row.original} />
         },
         {
             accessorKey: 'createdAt',
-            header: t('settings.userManagement.table.dateAdded'),
+            header: t('UserManagement.table.dateAdded'),
         },
         {
             accessorKey: 'status',
-            header: t('settings.userManagement.table.status'),
+            header: t('UserManagement.table.status'),
             cell: info => <StatusBadge status={info.row.original.status} />
         },
     ]

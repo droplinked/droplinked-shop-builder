@@ -8,8 +8,8 @@ export default function CustomCodes() {
 
     return (
         <SectionContent
-            title={t('settings.referrals.customCodes.title')}
-            description={t('settings.referrals.customCodes.description')}
+            title={t('Referrals.customCodes.title')}
+            description={t('Referrals.customCodes.description')}
             rightContent={<CustomCodesGenerator />}
         />
     )

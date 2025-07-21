@@ -11,12 +11,12 @@ export default function StoreName() {
 
     return (
         <SectionContent
-            title={t("settings.storeDetails.storeName.title")}
-            description={t("settings.storeDetails.storeName.description")}
+            title={t("StoreName.title")}
+            description={t("StoreName.description")}
             rightContent={
                 <AppInput
                     inputProps={{
-                        placeholder: t("settings.storeDetails.storeName.placeholder"),
+                        placeholder: t("StoreName.placeholder"),
                         value: values.name,
                         onChange: handleChange,
                         name: "name",

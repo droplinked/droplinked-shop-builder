@@ -9,7 +9,7 @@ export default function CustomerExperience() {
     const { t } = useLocaleResources('settings')
 
     return (
-        <SectionContainer title={t('settings.customerExperience.title')} px={{ base: 4, md: 6 }}>
+        <SectionContainer title={t('CustomerExperience.title')} px={{ base: 4, md: 6 }}>
             <LoginMethods />
             <PostPurchaseInfo />
             <AgeGate />

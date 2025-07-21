@@ -26,7 +26,7 @@ export default function CitiesField() {
             citiesService({ country_name: values.country, state_name: values.state }),
         onError: () => {
             showToast({
-                message: t("settings.address.errors.citiesError"),
+                message: t("Address.errors.citiesError"),
                 type: "error",
             });
         },
@@ -37,7 +37,7 @@ export default function CitiesField() {
             isLoading={isCityFetching}
             options={cities}
             name="city"
-            placeholder={t("settings.address.fields.city")}
+                            placeholder={t("Address.fields.city")}
             disabled={isCityFetching || !values.state}
             key={"city"}
         />

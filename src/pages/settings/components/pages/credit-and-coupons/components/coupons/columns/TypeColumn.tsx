@@ -18,7 +18,7 @@ export default function TypeColumn({ type, isExpired }: Props) {
         <Flex width={"min-content"} borderRadius={"8px"} sx={{ path: { stroke: color } }} background={isExpired ? "#FF22440D" : "#2BCFA11A"} px={3} py={2} gap={2}>
             <AppIcons.DiscountCouponIcon />
             <AppTypography fontSize={14} color={color}>
-                {isDiscount ? t("settings.coupons.types.discount") : t("settings.coupons.types.coupon")}
+                {isDiscount ? t("Coupons.types.discount") : t("Coupons.types.coupon")}
             </AppTypography>
         </Flex>
     )

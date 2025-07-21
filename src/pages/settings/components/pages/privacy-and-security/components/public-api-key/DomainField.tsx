@@ -24,15 +24,15 @@ export default function DomainField({ refetch, domains }: Props) {
 
     const handleUpdateShopAPIKey = async () => {
         try {
-            if (!domainRegex.test(value)) throw Error(t("settings.privacySecurity.publicApiKey.domain.errorValidDomain"));
+            if (!domainRegex.test(value)) throw Error(t("PublicApiKey.domain.errorValidDomain"));
             if (domains?.length) {
-                if (domains?.includes(value)) throw Error(t("settings.privacySecurity.publicApiKey.domain.errorDomainExists"));
+                if (domains?.includes(value)) throw Error(t("PublicApiKey.domain.errorDomainExists"));
                 await mutateAsync({ domains: [...domains, value] });
             } else {
                 await mutateAsync({ domains: [value] });
             }
             refetch();
-            showToast({ message: t("settings.privacySecurity.publicApiKey.domain.addSuccess", { value: value }), type: "success" });
+            showToast({ message: t("PublicApiKey.domain.addSuccess", { value: value }), type: "success" });
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" });
         }
@@ -42,7 +42,7 @@ export default function DomainField({ refetch, domains }: Props) {
         <AppInput
             inputProps={{
                 isDisabled: !hasShopApiPermission,
-                placeholder: t("settings.privacySecurity.publicApiKey.domain.placeholder"),
+                                    placeholder: t("PublicApiKey.domain.placeholder"),
                 value,
                 onChange: (e) => setValue(e.target.value)
             }}
@@ -58,7 +58,7 @@ export default function DomainField({ refetch, domains }: Props) {
                     padding={1}
                     onClick={handleUpdateShopAPIKey}
                 >
-                    {t("settings.privacySecurity.publicApiKey.domain.buttonText")}
+                    {t("PublicApiKey.domain.buttonText")}
                 </AppButton>
             }
         />

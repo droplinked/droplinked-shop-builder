@@ -45,10 +45,10 @@ export default function SaveChangesDrawer() {
                     </Box>
                     <Flex flexDir="column">
                         <AppTypography color="#fff" fontSize={14} fontWeight={700}>
-                            {t("settings.saveChanges.title")}
+                            {t("SaveChangesDrawer.title")}
                         </AppTypography>
                         <AppTypography color="#B1B1B1" fontSize={12}>
-                            {t("settings.saveChanges.description")}
+                            {t("SaveChangesDrawer.description")}
                         </AppTypography>
                     </Flex>
                 </Flex>
@@ -58,14 +58,14 @@ export default function SaveChangesDrawer() {
                         isDisabled={isSubmitting}
                         onClick={() => resetForm()}
                     >
-                        {t("cancel")}
+                        {t("common:cancel")}
                     </AppButton>
                     <AppButton
                         isLoading={isSubmitting}
                         width={{ base: "80%", lg: "max-content" }}
                         onClick={handleSaveClick}
                     >
-                        {t("settings.saveChanges.save")}
+                        {t("SaveChangesDrawer.save")}
                     </AppButton>
                 </Flex>
             </Flex>

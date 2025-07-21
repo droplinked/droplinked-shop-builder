@@ -15,8 +15,8 @@ function DefaultStoreLanguage() {
 
     return (
         <SectionContent
-            title={t("settings.preferences.defaultLanguage.title")}
-            description={t("settings.preferences.defaultLanguage.description")}
+            title={t("Preferences.defaultLanguage.title")}
+            description={t("Preferences.defaultLanguage.description")}
             rightContent={
                 <LanguageSelect
                     value={values.defaultLanguage}

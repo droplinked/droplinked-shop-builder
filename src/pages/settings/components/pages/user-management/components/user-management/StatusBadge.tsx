@@ -5,8 +5,8 @@ import useLocaleResources from 'hooks/useLocaleResources/useLocaleResources'
 export default function StatusBadge({ status }: { status: string }) {
     const { t } = useLocaleResources('settings');
     const statusText = status === "PENDING" ?
-        t('settings.userManagement.status.pending') :
-        t('settings.userManagement.status.administrator');
+        t('UserManagement.status.pending') :
+        t('UserManagement.status.administrator');
 
     const invitationSentStyles = {
         bg: '#092C22',

@@ -16,27 +16,27 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
     const navigate = useNavigate()
     const features = [
         {
-            title: t("settings.upgradePlan.unlimitedAccess"),
+            title: t("UpgradePlan.unlimitedAccess"),
             icon: <AppIcons.GreenInfinity />
         },
         {
-            title: t("settings.upgradePlan.advancedTools"),
+             title: t("UpgradePlan.advancedTools"),
             icon: <AppIcons.GreenSpeedometer />
         },
         {
-            title: t("settings.upgradePlan.prioritySupport"),
+            title: t("UpgradePlan.prioritySupport"),
             icon: <AppIcons.MedalStarOutline />
         },
     ]
 
     return (
-        <Flex flex={1} p={6} gap={6} flexDirection={"column"} alignItems={"start"}>
+        <Flex flex={1} p={6} gap={6} flexDirection={"column"} alignItems={"start"} >
             <Flex flexDirection={"column"} gap={2}>
                 <AppTypography color={"#fff"} fontSize={18} fontWeight={700}>
-                    {t("settings.upgradePlan.upgradeTitle")}
+                    {t("UpgradePlan.upgradeTitle")}
                 </AppTypography>
                 <AppTypography whiteSpace={"break-spaces"} color={"#b1b1b1"} fontSize={14}>
-                    {t("settings.upgradePlan.upgradeDescription")}
+                    {t("UpgradePlan.upgradeDescription")}
                 </AppTypography>
             </Flex>
             <Flex gap={4} alignItems={"center"}>
@@ -51,10 +51,10 @@ export default function PlanFeatures({ onOpen, isFetching }: Props) {
             </Flex>
             <Flex gap={4}>
                 <AppButton variant='secondary' onClick={() => navigate("/analytics/plans")}>
-                    {t("settings.upgradePlan.visitPricingPlans")}
+                    {t("UpgradePlan.visitPricingPlans")}
                 </AppButton>
                 <AppButton isLoading={isFetching} onClick={onOpen}>
-                    {t("settings.upgradePlan.upgrade")}
+                    {t("UpgradePlan.upgrade")}
                 </AppButton>
             </Flex>
         </Flex>

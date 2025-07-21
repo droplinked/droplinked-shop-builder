@@ -14,23 +14,23 @@ function TabsContent() {
 
     const tabs = [
         {
-            title: t("settings.tabs.general"),
+            title: t("TabsContent.tabs.general"),
             content: <General />
         },
         {
-            title: t("settings.tabs.privacySecurity"),
+            title: t("TabsContent.tabs.privacySecurity"),
             content: <PrivacyAndSecurity />
         },
         {
-            title: t("settings.tabs.paymentsWallets"),
+            title: t("TabsContent.tabs.paymentsWallets"),
             content: <PaymentAndWallets />
         },
         {
-            title: t("settings.tabs.creditsCoupons"),
+            title: t("TabsContent.tabs.creditsCoupons"),
             content: <CreditAndCoupons />
         },
         {
-            title: t("settings.tabs.userManagement"),
+            title: t("TabsContent.tabs.userManagement"),
             content: <UserManagement />
         },
     ];

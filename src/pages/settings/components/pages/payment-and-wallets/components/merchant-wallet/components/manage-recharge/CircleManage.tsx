@@ -98,13 +98,13 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                         bgColor: "#141414",
                         paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                     }}
-                    title={t("settings.merchantWallet.manage.title")}
-                    description={t("settings.merchantWallet.manage.description")}
+                    title={t("MerchantWallet.manage.title")}
+                    description={t("MerchantWallet.manage.description")}
                 />
                 <ModalBody mt={"48px"} display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" gap="24px">
                     <Box display="flex" flexDirection="column" alignItems="flex-start" gap="8px" alignSelf="stretch">
                         <AppTypography color="#FFF" fontFamily="Inter" fontSize="24px" fontStyle="normal" fontWeight="700" lineHeight="36px">
-                            {t("settings.merchantWallet.manage.circleWallet")}
+                            {t("MerchantWallet.manage.circleWallet")}
                         </AppTypography>
                     </Box>
                     <Box display="flex" flexDirection="column" alignItems="flex-start" alignSelf="stretch" borderRadius="8px" border="1px solid" borderColor="neutral.gray.800">
@@ -209,8 +209,8 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                             animate={isWithdrawingThisChain ? "withdrawing" : "idle"}
                                         >
                                             {isWithdrawingThisChain ?
-                                                t("settings.merchantWallet.manage.withdrawing") :
-                                                t("settings.merchantWallet.manage.withdraw")}
+                                                t("MerchantWallet.manage.withdrawing") :
+                                                t("MerchantWallet.manage.withdraw")}
                                             <motion.div
                                                 style={{
                                                     transform: "translateX(-80%)",
@@ -244,13 +244,13 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                 <Box display="flex" flexDirection="column" alignItems="flex-start" gap="4px" flex="1 0 0">
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="700" lineHeight="20px">
                                         {Error === "USDC"
-                                            ? t("settings.merchantWallet.manage.errors.usdcVerification")
-                                            : t("settings.merchantWallet.manage.errors.walletNotConnected")}
+                                            ? t("MerchantWallet.manage.errors.usdcVerification")
+                                            : t("MerchantWallet.manage.errors.walletNotConnected")}
                                     </AppTypography>
                                     <AppTypography alignSelf="stretch" color="#FFF" fontSize="14px" fontStyle="normal" fontWeight="400" lineHeight="20px">
                                         {Error === "USDC"
-                                            ? t("settings.merchantWallet.manage.errors.contactSupport")
-                                            : t("settings.merchantWallet.manage.errors.connectWalletFirst")}
+                                            ? t("MerchantWallet.manage.errors.contactSupport")
+                                            : t("MerchantWallet.manage.errors.connectWalletFirst")}
                                     </AppTypography>
                                 </Box>
                             </Box>
@@ -273,7 +273,7 @@ const CircleManage = ({ isOpen, onClose, onOpen }: IModalProps) => {
                                     background="neutral.gray.850"
                                     onClick={connectWalletModal.onOpen}
                                 >
-                                    {t("settings.merchantWallet.manage.connectWallet")}
+                                    {t("MerchantWallet.manage.connectWallet")}
                                 </AppButton>}
                         </Box>
                     )}

@@ -35,7 +35,7 @@ const handleValidatePercentage = ({ values, showToast, t }: IValidateHandlers): 
     if (walletOverLimit) {
         showToast({
             type: "error",
-            message: t("settings.validation.walletPercentageExceeds", { walletType }),
+            message: t("validationHandlers.validation.walletPercentageExceeds", { walletType }),
             options: { duration: 5000 }
         });
         return false;
@@ -52,7 +52,7 @@ const handleValidateZeroPercentage = ({ values, showToast, t }: IValidateHandler
     if (walletWithZeroPercent) {
         showToast({
             type: "error",
-            message: t("settings.validation.walletPercentageZero", { walletType }),
+            message: t("validationHandlers.validation.walletPercentageZero", { walletType }),
             options: { duration: 5000 }
         });
         return false;
@@ -65,7 +65,7 @@ const handleValidatePaymentMethods = ({ values, showToast, t }: IValidateHandler
     if (walletLength < 1) {
         showToast({
             type: "error",
-            message: t("settings.validation.paymentMethodRequired"),
+            message: t("validationHandlers.validation.paymentMethodRequired"),
             options: { duration: 5000 }
         });
         return false;
@@ -78,7 +78,7 @@ const handleValidateLoginMethods = ({ values, showToast, t }: IValidateHandlers)
     if (walletLength < 1) {
         showToast({
             type: "error",
-            message: t("settings.validation.loginMethodRequired"),
+            message: t("validationHandlers.validation.loginMethodRequired"),
             options: { duration: 5000 }
         });
         return false;

@@ -19,7 +19,7 @@ export default function DrawerHeaderContent({ createdAt, isExpired }: Props) {
         <Flex justifyContent={"space-between"}>
             <Flex gap={2} alignItems={"center"}>
                 <AppTypography fontSize={"14px !important"} color={"#B1B1B1 !important"}>
-                    {t("settings.coupons.information.creationDate")}
+                    {t("Coupons.information.creationDate")}
                 </AppTypography>
                 <AppIcons.DotSpacer />
                 <AppTypography fontWeight={500} fontSize={"14px !important"} color={"#fff"}>
@@ -28,7 +28,7 @@ export default function DrawerHeaderContent({ createdAt, isExpired }: Props) {
             </Flex>
             <Box px={3} border={`1px solid ${color}`} borderRadius={"24px"} bg={bg}>
                 <AppTypography fontSize={14} color={color}>
-                    {isExpired ? t("settings.coupons.information.expired") : t("settings.coupons.information.active")}
+                    {isExpired ? t("Coupons.information.expired") : t("Coupons.information.active")}
                 </AppTypography>
             </Box>
         </Flex>

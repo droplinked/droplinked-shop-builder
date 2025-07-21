@@ -9,7 +9,7 @@ export default function PrivateKey() {
 
     return (
         <SectionContainer
-            title={t("settings.privacySecurity.privateKey.title")}
+            title={t("PrivateKey.title")}
             badge={
                 <AccessLevelBadge justLevel level="Premium" />
             }>

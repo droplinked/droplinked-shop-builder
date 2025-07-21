@@ -25,13 +25,13 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
 
     const handleSubmit = async () => {
         if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            showToast({ message: t('settings.userManagement.inviteModal.invalidEmail'), type: "error" })
+            showToast({ message: t('UserManagement.inviteModal.invalidEmail'), type: "error" })
             return;
         }
 
         try {
             await mutateAsync(email);
-            showToast({ type: "success", message: t('settings.userManagement.inviteModal.invitationSent') })
+            showToast({ type: "success", message: t('UserManagement.inviteModal.invitationSent') })
             setEmail("");
             refetch();
             onClose();
@@ -47,16 +47,16 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                title={t('settings.userManagement.inviteModal.title')}
+                title={t('UserManagement.inviteModal.title')}
                 icon={<AppIcons.AddUser />}
-                description={t('settings.userManagement.inviteModal.description')}
+                description={t('UserManagement.inviteModal.description')}
             />
             <ModalBody py={"48px !important"}>
                 <AppInput
-                    label={t('settings.userManagement.inviteModal.emailLabel')}
+                    label={t('UserManagement.inviteModal.emailLabel')}
                     inputProps={{
                         isRequired: true,
-                        placeholder: t('settings.userManagement.inviteModal.emailPlaceholder'),
+                        placeholder: t('UserManagement.inviteModal.emailPlaceholder'),
                         value: email,
                         onChange: (e) => setEmail(e.target.value),
                     }}
@@ -67,15 +67,15 @@ export default function InviteUserModal({ isOpen, onClose, refetch }: Props) {
                 />
                 <MessageBox
                     theme='systemWarning'
-                    title={t('settings.userManagement.inviteModal.accessWarning')}
-                    description={t('settings.userManagement.inviteModal.accessWarningDesc')}
+                    title={t('UserManagement.inviteModal.accessWarning')}
+                    description={t('UserManagement.inviteModal.accessWarningDesc')}
                 />
             </ModalBody>
             <Divider borderColor={"neutral.gray.800"} />
             <ModalFooter pt={"36px !important"} display={"flex"} justifyContent={"space-between"}>
                 <AppButton variant='secondary' onClick={onClose}>{t('cancel')}</AppButton>
                 <AppButton onClick={handleSubmit} isLoading={isLoading} isDisabled={!email} >
-                    {t('settings.userManagement.inviteModal.sendInvitation')}
+                    {t('UserManagement.inviteModal.sendInvitation')}
                 </AppButton>
             </ModalFooter>
         </AppModal>

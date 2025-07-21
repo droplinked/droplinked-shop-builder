@@ -33,7 +33,7 @@ const TokenPay: React.FC = () => {
 
   return (
     <SectionContainer
-      title={t('settings.paymentsWallets.tokenPay.title')}
+                  title={t('PaymentsWallets.tokenPay.title')}
       rightContent={
         <BlueButton
           fontSize={12}
@@ -42,13 +42,13 @@ const TokenPay: React.FC = () => {
           isLoading={isFetching}
         >
           <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-          {t('settings.paymentsWallets.tokenPay.paymentTokens.addButton')}
+                      {t('PaymentsWallets.tokenPay.paymentTokens.addButton')}
         </BlueButton>
       }
     >
       <SectionContent
-        title={t('settings.paymentsWallets.tokenPay.paymentTokens.title')}
-        description={t('settings.paymentsWallets.tokenPay.paymentTokens.description')}
+                    title={t('PaymentsWallets.tokenPay.paymentTokens.title')}
+            description={t('PaymentsWallets.tokenPay.paymentTokens.description')}
         rightContent={
           isPaymentMethodsEmpty ? (
             <Image src="/assets/images/Revenue Sharing.svg" height="100%" width="100%" />

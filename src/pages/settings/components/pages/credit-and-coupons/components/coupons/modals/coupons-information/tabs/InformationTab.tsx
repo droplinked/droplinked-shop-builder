@@ -14,7 +14,7 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
 
     const data = [
         {
-            title: t("settings.coupons.information.amount"),
+                            title: t("Coupons.information.amount"),
             content: type === "DISCOUNT" ? (
                 <AppTypography color={"#fff"} fontWeight={500} fontSize={14}>{balance}%</AppTypography>
             ) : (
@@ -26,11 +26,11 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
             )
         },
         {
-            title: t("settings.coupons.information.expirationDate"),
+                            title: t("Coupons.information.expirationDate"),
             content: <AppTypography color={"#fff"} fontWeight={500} fontSize={14}>{formatDateToLocaleString(expiryDate)}</AppTypography>
         },
         {
-            title: t("settings.coupons.information.usageLimit"),
+                            title: t("Coupons.information.usageLimit"),
             content:
                 <AppTypography sx={{ span: { color: "text.subtext.placeholder.dark", fontWeight: 500 } }} color={"#fff"} fontWeight={500} fontSize={14}>
                     {redeemedCounts} <span>/ {codes.length}</span>
@@ -42,7 +42,7 @@ export default function InformationTab({ coupon }: { coupon: Coupon }) {
 
     return (
         <Flex flexDirection={"column"} borderRadius={"8px"} p={6} gap={6} border={"1px solid"} borderColor="neutral.gray.800">
-            <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>{t("settings.coupons.information.details")}</AppTypography>
+                            <AppTypography color={"#fff"} fontSize={16} fontWeight={500}>{t("Coupons.information.details")}</AppTypography>
             <Flex direction={"column"} gap={4}>
                 {
                     data.map((item, index) => {

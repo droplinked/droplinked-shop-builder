@@ -46,7 +46,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                     paddingBlock: "0px",
                     backgroundColor: '#141414',
                 }}
-                title={t("settings.storeDetails.customURL.dnsModal.title")}
+                title={t("CustomURL.dnsModal.title")}
                 description=''
             >
                 <Flex marginTop={"2rem"} flexDirection={"column"} gap={4}>
@@ -54,7 +54,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                         NS_records?.map((record, index) => {
                             return (
                                 <Flex key={record} justifyContent={"space-between"} alignItems={"center"}>
-                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>{t("settings.storeDetails.customURL.dnsModal.dnsLabel", { index: index + 1 })}</AppTypography>
+                                    <AppTypography fontSize={"14px"} opacity={"0.5"} color={"#fff"}>{t("CustomURL.dnsModal.dnsLabel", { index: index + 1 })}</AppTypography>
                                     <Flex gap={4}>
                                         <AppTypography fontSize={"14px"} color={"#fff"}>{record}</AppTypography>
                                         <ClipboardText text={record} />
@@ -69,7 +69,7 @@ export default function DnsModal({ isOpen, onClose, data }: Props) {
                             marginTop={"1rem"}
                             onClick={() => mutate({ domain_name: domain_name })}
                         >
-                            {t("settings.storeDetails.customURL.dnsModal.checkStatus")}
+                            {t("CustomURL.dnsModal.checkStatus")}
                         </AppButton>}
                 </Flex>
             </ModalHeaderData>

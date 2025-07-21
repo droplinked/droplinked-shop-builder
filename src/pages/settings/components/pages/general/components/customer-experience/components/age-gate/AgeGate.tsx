@@ -12,13 +12,13 @@ export default function AgeGate() {
 
     return (
         <SectionContent
-            title={t("settings.customerExperience.ageGate.title")}
-            description={t("settings.customerExperience.ageGate.description")}
+            title={t("CustomerExperience.ageGate.title")}
+            description={t("CustomerExperience.ageGate.description")}
             rightContent={
                 <Flex alignItems={"center"} gap={4}>
                     <SwitchBox
                         isChecked={values.isAgeRestricted}
-                        title={t("settings.customerExperience.ageGate.restrictUsersUnder18")}
+                        title={t("CustomerExperience.ageGate.restrictUsersUnder18")}
                         description=''
                         onToggle={(e) => setFieldValue("isAgeRestricted", e.target.checked)}
                     />

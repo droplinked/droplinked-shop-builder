@@ -9,9 +9,9 @@ export default function ReferralLink() {
     const { code } = referralDetails ?? {}
     const { t } = useLocaleResources('settings');
 
-    const description = t('settings.referrals.link.description', { code: code });
+    const description = t('Referrals.link.description', { code: code });
 
     return (
-        <SectionContent title={t('settings.referrals.link.title')} description={description} rightContent={<LinkContainer />} />
+        <SectionContent title={t('Referrals.link.title')} description={description} rightContent={<LinkContainer />} />
     )
 }

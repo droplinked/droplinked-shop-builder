@@ -22,7 +22,7 @@ export default function PublicApiKey() {
 
     return (
         <SectionContainer
-            title={t("settings.privacySecurity.publicApiKey.title")}
+            title={t("PublicApiKey.title")}
             badge={
                 <AccessLevelBadge justLevel level="Premium" />
             }
@@ -32,13 +32,13 @@ export default function PublicApiKey() {
                     target="_blank"
                     hasExternalIcon
                 >
-                    {t("settings.privacySecurity.publicApiKey.apiDocumentation")}
+                    {t("PublicApiKey.apiDocumentation")}
                 </InteractiveText>
             }
         >
             <SectionContent
-                title={t("settings.privacySecurity.publicApiKey.domain.title")}
-                description={t("settings.privacySecurity.publicApiKey.domain.description")}
+                title={t("PublicApiKey.domain.title")}
+                description={t("PublicApiKey.domain.description")}
                 rightContent={
                     <Flex flexDirection={"column"} gap={4}>
                         <Box mb={{ base: 4, md: 6 }}>

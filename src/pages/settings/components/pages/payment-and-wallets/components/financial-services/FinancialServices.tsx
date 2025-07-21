@@ -10,10 +10,10 @@ const FinancialServices: React.FC = () => {
 
   return (
     <>
-      <SectionContainer title={t('settings.financialServices.title')}>
-        <SectionContent
-          title={t('settings.financialServices.paymentProviders.title')}
-          description={t('settings.financialServices.paymentProviders.description')}
+              <SectionContainer title={t('FinancialServices.title')}>
+            <SectionContent
+                title={t('FinancialServices.paymentProviders.title')}
+                description={t('FinancialServices.paymentProviders.description')}
           rightContent={<PaymentProviderList />}
         />
       </SectionContainer>

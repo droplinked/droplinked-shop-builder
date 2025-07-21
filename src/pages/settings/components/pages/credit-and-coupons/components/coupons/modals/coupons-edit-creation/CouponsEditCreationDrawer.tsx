@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onClose, refetch }: Props) {
-    const { t } = useLocaleResources('settings');
+    const { t, isRTL } = useLocaleResources('settings');
     const createGiftcard = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const updateGiftcardExpiryDate = useMutation((params: IGiftCardExpiryDate) => updateGiftCartExpiryDateService(params))
     const isLoading = createGiftcard.isLoading || updateGiftcardExpiryDate.isLoading
@@ -54,7 +54,7 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
             }
 
             showToast({
-                message: t(isEdit ? "settings.coupons.success.updated" : "settings.coupons.success.created", { type: capitalizeFirst(isEdit ? coupon.type : params.type) }),
+                message: t(isEdit ? "Coupons.success.updated" : "Coupons.success.created", { type: capitalizeFirst(isEdit ? coupon.type : params.type) }),
                 type: 'success'
             })
             refetch()
@@ -77,12 +77,13 @@ export default function CouponsEditCreationDrawer({ isEdit, coupon, isOpen, onCl
                 <Drawer
                     isOpen={isOpen}
                     onClose={onClose}
-                    title={isEdit ? t("settings.coupons.drawer.editTitle") : t("settings.coupons.drawer.createTitle")}
-                    discardButtonText={isEdit ? t("cancel") : t("settings.coupons.drawer.discard")}
-                    saveButtonText={isEdit ? t("settings.coupons.drawer.update") : t("settings.coupons.drawer.create")}
+                    title={isEdit ? t("Coupons.drawer.editTitle") : t("Coupons.drawer.createTitle")}
+                    discardButtonText={isEdit ? t("common:cancel") : t("common:discard")}
+                    saveButtonText={isEdit ? t("common:update") : t("common:create")}
                     isLoading={isLoading}
                     onClick={handleSubmit}
                     showSubmitButtons
+                    placement={isRTL ? "left" : "right"}
                 >
                     <Flex my={9} height={"100%"} px={9} flexDir="column">
                         <CouponForm isEdit={isEdit} />

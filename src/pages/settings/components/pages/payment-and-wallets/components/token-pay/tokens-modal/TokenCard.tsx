@@ -74,7 +74,7 @@ export default function TokenCard({ token }: Props) {
             <Flex gap={2} px={6} py={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
                     <AppTypography color="text.subtext.placeholder.dark" fontSize="12px">
-                        {t('settings.paymentsWallets.tokens.networks')}
+                        {t('PaymentsWallets.tokens.networks')}
                     </AppTypography>
                     <Flex flexWrap={"wrap"} gap={2} alignItems="center" justifyContent={"start"} sx={{ rect: { fill: "#292929" } }}>
                         {token.supportedChains.map((chain, index) => (

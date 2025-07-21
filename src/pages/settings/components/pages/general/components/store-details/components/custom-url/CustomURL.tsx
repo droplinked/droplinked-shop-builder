@@ -24,26 +24,26 @@ export default function CustomURL() {
         queryKey: "shopDNSInformation",
         queryFn: () => getShopDNSInformationService(),
         onError: () => {
-            showToast({ message: t("settings.storeDetails.customURL.errors.fetchDNS"), type: "error" })
+            showToast({ message: t("CustomURL.errors.fetchDNS"), type: "error" })
         }
     })
 
     return (
         <SectionContent
-            title={t("settings.storeDetails.customURL.title")}
-            description={t("settings.storeDetails.customURL.description")}
+            title={t("CustomURL.title")}
+            description={t("CustomURL.description")}
             rightContent={
                 <AppInput
                     inputProps={{
                         isDisabled: isFetching,
-                        placeholder: t("settings.storeDetails.customURL.placeholder"),
+                        placeholder: t("CustomURL.placeholder"),
                         value: Array.isArray(shopDomain) ? shopDomain[0] : shopDomain,
                         onChange: (e) => setUrl(e.target.value)
                     }}
                     inputContainerProps={{ padding: 2, paddingLeft: 4 }}
                     rightElement={
                         <AppButton isDisabled={shopDomain ? false : !url} isLoading={isFetching} onClick={shopDomain ? onDnsModalOpen : onOpen} fontSize={"12px"} height={"32px"} paddingInline={{ base: 3, lg: 3 }} padding={1}>
-                            {shopDomain ? t("settings.storeDetails.customURL.dnsInfo") : t("settings.storeDetails.customURL.add")}
+                            {shopDomain ? t("CustomURL.dnsInfo") : t("CustomURL.add")}
                         </AppButton>
                     }
                 />

@@ -7,7 +7,7 @@ function Preferences() {
   const { t } = useLocaleResources('settings')
 
   return (
-    <SectionContainer title={t("settings.preferences.title")} px={{ base: 4, md: 6 }}>
+            <SectionContainer title={t("Preferences.title")} px={{ base: 4, md: 6 }}>
       <DefaultStoreLanguage />
     </SectionContainer>
   )

@@ -29,7 +29,7 @@ export default function ConfirmationModal({ isOpen, onClose, url, refetch }: Pro
             await mutateAsync({ domain: url })
             await fetchShop({ shopName: shop.name })
             await refetch()
-            showToast({ message: t("settings.storeDetails.customURL.success.urlSet"), type: "success" })
+            showToast({ message: t("CustomURL.success.urlSet"), type: "success" })
             onClose()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
@@ -47,15 +47,15 @@ export default function ConfirmationModal({ isOpen, onClose, url, refetch }: Pro
                     paddingBlock: "0px",
                     backgroundColor: '#141414'
                 }}
-                title={t("settings.storeDetails.customURL.confirmModal.title")}
-                description={t("settings.storeDetails.customURL.confirmModal.description", { url })}
+                title={t("CustomURL.confirmModal.title")}
+                description={t("CustomURL.confirmModal.description", { url })}
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
                     <AppButton variant='secondary' width={"45%"} disabled={isLoading} onClick={onClose}>
-                        {t("settings.storeDetails.customURL.confirmModal.no")}
+                        {t("CustomURL.confirmModal.no")}
                     </AppButton>
                     <AppButton width={"45%"} onClick={generateShopCustomURL} disabled={isLoading} isLoading={isLoading}>
-                        {t("settings.storeDetails.customURL.confirmModal.yes")}
+                        {t("CustomURL.confirmModal.yes")}
                     </AppButton>
                 </Flex>
             </ModalHeaderData>

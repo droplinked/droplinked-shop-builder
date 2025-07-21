@@ -21,7 +21,7 @@ export default function CountriesField() {
         },
         onError: () => {
             showToast({
-                message: t("settings.address.errors.countriesError"),
+                message: t("Address.errors.countriesError"),
                 type: "error",
             });
         },
@@ -32,7 +32,7 @@ export default function CountriesField() {
             isLoading={isCountryFetching}
             options={countries}
             name="country"
-            placeholder={t("settings.address.fields.country")}
+                            placeholder={t("Address.fields.country")}
             key={"country"}
         />
     );

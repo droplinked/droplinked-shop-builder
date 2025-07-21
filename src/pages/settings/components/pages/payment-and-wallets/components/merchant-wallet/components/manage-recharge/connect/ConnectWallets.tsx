@@ -37,7 +37,7 @@ function ConnectWallets() {
 				if (!installed) {
 					showToast({
 						type: 'error',
-						message: t("settings.merchantWallet.connect.errors.walletNotFound", { walletName: walletName }),
+						            message: t("MerchantWallet.connect.errors.walletNotFound", { walletName: walletName }),
 					});
 					if (chain === 'STACKS')
 						window.open(
@@ -50,7 +50,7 @@ function ConnectWallets() {
 				await login({ chain, wallets, stack });
 			} catch (error) {
 				showToast({
-					message: error || t("settings.merchantWallet.connect.errors.failedLogin"),
+					            message: error || t("MerchantWallet.connect.errors.failedLogin"),
 					type: 'warning',
 				});
 			}
@@ -134,7 +134,7 @@ function ConnectWallets() {
 													)
 												}
 											>
-												{t("settings.merchantWallet.connect.connectButton")}
+												                {t("MerchantWallet.connect.connectButton")}
 											</BasicButton>
 										)}
 									</Box>

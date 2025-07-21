@@ -17,7 +17,7 @@ interface Props {
 
 export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Props) {
     const { t } = useLocaleResources('settings');
-    const allNetworksItem = { type: t('settings.paymentsWallets.tokens.allNetworks') };
+    const allNetworksItem = { type: t('PaymentsWallets.tokens.allNetworks') };
     const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [filteredPaymentMethods, setFilteredPaymentMethods] = React.useState<IPaymentPublicService[]>([]);
     const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
@@ -31,7 +31,7 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
 
     const handleFilterData = (e: ChangeEvent<HTMLSelectElement>) => {
         const type = e.target.value;
-        if (type === t('settings.paymentsWallets.tokens.allNetworks')) {
+        if (type === t('PaymentsWallets.tokens.allNetworks')) {
             setFilteredPaymentMethods(paymentMethodsData);
         } else {
             const filteredData = paymentMethodsData.filter((item) => item.type?.toLowerCase().includes(type.toLowerCase()));
@@ -54,8 +54,8 @@ export default function TokensModal({ paymentMethodsData, isOpen, onClose }: Pro
                     bgColor: "#141414",
                     paddingBlock: { lg: "48px !important", md: "32px !important", base: "16px !important" }
                 }}
-                title={t('settings.paymentsWallets.tokens.title')}
-                description={t('settings.paymentsWallets.tokens.description')}
+                title={t('PaymentsWallets.tokens.title')}
+                description={t('PaymentsWallets.tokens.description')}
             />
             <ModalBody maxHeight={"60dvh"} display={"flex"} gap={9} flexDir={"column"}>
                 <Flex py={{ base: "24px", md: "48px" }} flexDirection={{ base: "column", md: "row" }}

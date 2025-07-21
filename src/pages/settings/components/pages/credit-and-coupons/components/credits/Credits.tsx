@@ -8,10 +8,10 @@ export default function Credits() {
     const { t } = useLocaleResources('settings')
 
     return (
-        <SectionContainer title={t('settings.credits.title')}>
+        <SectionContainer title={t('Credits.title')}>
             <SectionContent
-                title={t('settings.credits.remainingBalance')}
-                description={t('settings.credits.description')}
+                title={t('Credits.remainingBalance')}
+                description={t('Credits.description')}
                 rightContent={<Balance />}
             />
         </SectionContainer>

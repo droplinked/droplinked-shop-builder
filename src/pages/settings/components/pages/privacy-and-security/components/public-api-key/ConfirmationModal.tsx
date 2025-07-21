@@ -32,7 +32,7 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
             const updatedDomains = domains.filter(domain => domain !== selectedDomain)
             await mutateAsync({ domains: updatedDomains })
             await refetch()
-            showToast({ message: t("settings.privacySecurity.publicApiKey.deleteConfirmation.success"), type: "success" })
+            showToast({ message: t("PublicApiKey.deleteConfirmation.success"), type: "success" })
             onClose()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
@@ -48,8 +48,8 @@ export default function ConfirmationModal({ isOpen, onClose, refetch, selectedDo
                     paddingBlock: "0px",
                     backgroundColor: '#141414',
                 }}
-                title={t("settings.privacySecurity.publicApiKey.deleteConfirmation.title")}
-                description={t("settings.privacySecurity.publicApiKey.deleteConfirmation.description")}
+                title={t("PublicApiKey.deleteConfirmation.title")}
+                description={t("PublicApiKey.deleteConfirmation.description")}
             >
                 <Flex gap={6} justifyContent={"space-between"} mt={"38px"}>
                     <AppButton width={"45%"} disabled={isLoading} variant='secondary' onClick={onClose}>

@@ -14,15 +14,15 @@ export default function PostPurchaseInfo() {
 
     return (
         <SectionContent
-            title={t("settings.customerExperience.postPurchaseInfo.title")}
-            description={t("settings.customerExperience.postPurchaseInfo.description")}
+            title={t("CustomerExperience.postPurchaseInfo.title")}
+            description={t("CustomerExperience.postPurchaseInfo.description")}
             badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <AppInput
                     inputProps={{
                         value: values.pre_purchase_data_fetch,
                         onChange: handleChange,
-                        placeholder: t("settings.customerExperience.postPurchaseInfo.placeholder"),
+                        placeholder: t("CustomerExperience.postPurchaseInfo.placeholder"),
                         isDisabled: !hasPermission("post_purchase_data_gathering"),
                         name: "pre_purchase_data_fetch",
                     }}

@@ -11,7 +11,7 @@ export default function StoreDetails() {
     const { t } = useLocaleResources('settings');
 
     return (
-        <SectionContainer title={t("settings.title")} px={{ base: 4, md: 6 }}>
+        <SectionContainer title={t("StoreDetails.title")} px={{ base: 4, md: 6 }}>
             <StoreURL />
             <StoreName />
             <EmailAddress />

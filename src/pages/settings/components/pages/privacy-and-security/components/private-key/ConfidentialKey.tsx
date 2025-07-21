@@ -10,8 +10,8 @@ export default function ConfidentialKey() {
 
     return (
         <SectionContent
-            title={t("settings.privacySecurity.privateKey.confidentialKey.title")}
-            description={t("settings.privacySecurity.privateKey.confidentialKey.description")}
+            title={t("PrivateKey.confidentialKey.title")}
+            description={t("PrivateKey.confidentialKey.description")}
             rightContent={
                 <KeyContainer />
             }
@@ -21,7 +21,7 @@ export default function ConfidentialKey() {
                 target="_blank"
                 hasExternalIcon
             >
-                {t("settings.privacySecurity.privateKey.confidentialKey.learnMore")}
+                {t("PrivateKey.confidentialKey.learnMore")}
             </InteractiveText>
         </SectionContent>
     )

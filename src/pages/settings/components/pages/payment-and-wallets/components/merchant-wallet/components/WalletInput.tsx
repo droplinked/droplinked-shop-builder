@@ -23,7 +23,7 @@ export default function WalletInput() {
             />
             :
             <Button width={"100%"} onClick={() => navigate("/analytics/registration")}>
-                {t("settings.merchantWallet.activateButton")}
+                {t("MerchantWallet.activateButton")}
             </Button>
     )
 }

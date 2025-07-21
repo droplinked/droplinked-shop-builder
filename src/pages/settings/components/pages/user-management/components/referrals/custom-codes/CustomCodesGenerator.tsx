@@ -33,7 +33,7 @@ export default function CustomCodesGenerator() {
             });
             setShopInitialCustomCode(value)
             setValue("")
-            showToast({ type: "success", message: t('settings.referrals.customCodes.success') });
+            showToast({ type: "success", message: t('Referrals.customCodes.success') });
         } catch (error) {
             showToast({ type: "error", message: "Failed to create custom code" });
         }
@@ -48,7 +48,7 @@ export default function CustomCodesGenerator() {
         <Flex flexDirection={"column"} gap={6}>
             <AppInput
                 inputProps={{
-                    placeholder: t('settings.referrals.customCodes.placeholder'),
+                    placeholder: t('Referrals.customCodes.placeholder'),
                     value,
                     onChange: handleInputChange,
                     isDisabled: shopInitialCustomCode
@@ -67,7 +67,7 @@ export default function CustomCodesGenerator() {
                             onClick={handleCreateCustomCode}
                             isDisabled={!isValidLength || shopInitialCustomCode}
                         >
-                            {t('settings.referrals.customCodes.createButton')}
+                            {t('Referrals.customCodes.createButton')}
                         </AppButton>
                     </>
                 }

@@ -17,8 +17,8 @@ export default function Coupons() {
 
     return (
         <SectionContainer
-            description={t("settings.coupons.description")}
-            title={t("settings.coupons.title")}
+            description={t("Coupons.description")}
+            title={t("Coupons.title")}
             badge={<AccessLevelBadge justLevel level="Premium" />}
             rightContent={
                 <BlueButton
@@ -29,7 +29,7 @@ export default function Coupons() {
                     onClick={onOpen}
                 >
                     <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-                    {t("settings.coupons.create")}
+                    {t("Coupons.create")}
                 </BlueButton>
             }
         >

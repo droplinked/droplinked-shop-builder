@@ -41,7 +41,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.firstName}
                     {...(errors.firstName && { state: "error" })}
                     inputProps={{
-                        placeholder: t("settings.address.fields.firstName"),
+                        placeholder: t("Address.fields.firstName"),
                         name: "firstName",
                         value: values.firstName,
                         onChange: handleChange,
@@ -51,7 +51,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.lastName}
                     {...(errors.lastName && { state: "error" })}
                     inputProps={{
-                        placeholder: t("settings.address.fields.lastName"),
+                        placeholder: t("Address.fields.lastName"),
                         name: "lastName",
                         value: values.lastName,
                         onChange: handleChange,
@@ -63,7 +63,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.addressLine1}
                     {...(errors.addressLine1 && { state: "error" })}
                     inputProps={{
-                        placeholder: t("settings.address.fields.addressLine1"),
+                        placeholder: t("Address.fields.addressLine1"),
                         name: "addressLine1",
                         value: values.addressLine1,
                         onChange: handleChange,
@@ -73,7 +73,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.addressLine2}
                     {...(errors.addressLine2 && { state: "error" })}
                     inputProps={{
-                        placeholder: t("settings.address.fields.addressLine2"),
+                        placeholder: t("Address.fields.addressLine2"),
                         name: "addressLine2",
                         value: values.addressLine2,
                         onChange: handleChange,
@@ -88,7 +88,7 @@ export default function AddressInputs({ onClose }: Props) {
                     message={errors.zip}
                     {...(errors.zip && { state: "error" })}
                     inputProps={{
-                        placeholder: t("settings.address.fields.zip"),
+                        placeholder: t("Address.fields.zip"),
                         name: "zip",
                         value: values.zip,
                         onChange: handleChange,

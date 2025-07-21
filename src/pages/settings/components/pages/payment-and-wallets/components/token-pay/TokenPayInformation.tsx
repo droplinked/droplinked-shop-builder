@@ -14,13 +14,13 @@ export default function TokenPayInformation() {
                 target="_blank"
                 hasExternalIcon
             >
-                {t('settings.paymentsWallets.tokenPay.paymentTokens.learnMore')}
+                {t('PaymentsWallets.tokenPay.paymentTokens.learnMore')}
             </InteractiveText>
 
             <MessageBox
                 theme='warning'
-                title={t('settings.paymentsWallets.tokenPay.walletRequirement.title')}
-                description={t('settings.paymentsWallets.tokenPay.walletRequirement.description')}
+                            title={t('PaymentsWallets.tokenPay.walletRequirement.title')}
+            description={t('PaymentsWallets.tokenPay.walletRequirement.description')}
             />
         </VStack>
     )

@@ -11,12 +11,12 @@ export default function EmailAddress() {
 
     return (
         <SectionContent
-            title={t("settings.storeDetails.emailAddress.title")}
-            description={t("settings.storeDetails.emailAddress.description")}
+            title={t("EmailAddress.title")}
+            description={t("EmailAddress.description")}
             rightContent={
                 <AppInput
                     inputProps={{
-                        placeholder: t("settings.storeDetails.emailAddress.placeholder"),
+                        placeholder: t("EmailAddress.placeholder"),
                         value: values.email,
                         onChange: handleChange,
                         name: "email",

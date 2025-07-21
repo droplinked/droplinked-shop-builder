@@ -29,7 +29,7 @@ export default function Address() {
         queryFn: () => addressByIdService({ addressID: addressBookID }),
         onError: () => {
             showToast({
-                message: t("settings.address.errors.fetchFailed"),
+                message: t("Address.errors.fetchFailed"),
                 type: "error",
             });
         },
@@ -46,14 +46,14 @@ export default function Address() {
                 })
             }
             showToast({
-                message: addressBookID ? t("settings.address.success.updated") : t("settings.address.success.created"),
+                message: addressBookID ? t("Address.success.updated") : t("Address.success.created"),
                 type: "success"
             });
             onClose();
         }
         catch (error) {
             const message = error?.response?.data?.data.message;
-            showToast({ message: message || t("settings.address.errors.saveFailed"), type: "error" });
+            showToast({ message: message || t("Address.errors.saveFailed"), type: "error" });
         }
         finally {
             setSubmitting(false);
@@ -62,8 +62,8 @@ export default function Address() {
 
     return (
         <SectionContent
-            title={t("settings.address.title")}
-            description={t("settings.address.description")}
+            title={t("Address.title")}
+            description={t("Address.description")}
             rightContent={
                 (isFetching || loading) ? (
                     <AppSkeleton
@@ -88,7 +88,7 @@ export default function Address() {
                                 <AppIcons.BluePlus
                                     style={{ width: "24px", height: "24px", marginRight: "8px" }}
                                 />
-                                {t("settings.address.addButton")}
+                                {t("Address.addButton")}
                             </BlueButton>
                         )}
                         {isOpen && (

@@ -13,12 +13,12 @@ const MerchantWallet: React.FC = () => {
   return (
     <>
       <SectionContainer
-        title={t("settings.merchantWallet.title")}
+        title={t("MerchantWallet.title")}
         rightContent={<ManageRechargeButtons />}
       >
         <SectionContent
-          title={t("settings.merchantWallet.address.title")}
-          description={t("settings.merchantWallet.address.description")}
+          title={t("MerchantWallet.address.title")}
+          description={t("MerchantWallet.address.description")}
           rightContent={<WalletInput />}
         >
           <WalletFeatures />

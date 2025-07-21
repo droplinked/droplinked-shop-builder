@@ -62,7 +62,7 @@ export default function Balance() {
                     sx={{ path: { stroke: "#179EF8", width: "16px", height: "16px" } }}
                 >
                     <AppIcons.Refresh color="#2BCFA1" />
-                    {t('settings.credits.charge')}
+                    {t('Credits.charge')}
                 </BlueButton>
             </Flex>
             {(isFetching || loading) ?

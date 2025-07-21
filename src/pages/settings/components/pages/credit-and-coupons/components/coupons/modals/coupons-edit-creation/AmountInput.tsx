@@ -15,8 +15,8 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
     return (
         <Flex flexDirection={"column"}>
             <AppInputHeader
-                label={t("settings.coupons.form.amountLabel")}
-                description={t("settings.coupons.form.amountDescription")}
+                label={t("Coupons.form.amountLabel")}
+                description={t("Coupons.form.amountDescription")}
                 inputProps={{ isRequired: true }}
             />
             <Flex gap={4} width={"100%"}>
@@ -24,7 +24,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                     inputProps={{
                         onChange: handleChange,
                         name: "balance",
-                        placeholder: t("settings.coupons.form.amountPlaceholder"),
+                        placeholder: t("Coupons.form.amountPlaceholder"),
                         value: values.balance,
                         isDisabled: isEdit,
                         type: "number",
@@ -33,7 +33,7 @@ export default function AmountInput({ isEdit }: { isEdit?: boolean }) {
                 />
                 <AppSelect
                     items={[
-                        { label: t("settings.coupons.form.percentage"), value: "DISCOUNT" },
+                        { label: t("Coupons.form.percentage"), value: "DISCOUNT" },
                         { label: abbreviation, value: "CREDIT" }
                     ]}
                     labelAccessor="label"

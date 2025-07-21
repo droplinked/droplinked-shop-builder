@@ -23,8 +23,8 @@ export default function UserManagementSection() {
 
     return (
         <SectionContainer
-            title={t('settings.userManagement.title')}
-            description={t('settings.userManagement.description')}
+            title={t('UserManagement.title')}
+            description={t('UserManagement.description')}
             badge={
                 <AccessLevelBadge justLevel level="Premium" />
             }
@@ -38,7 +38,7 @@ export default function UserManagementSection() {
                         isDisabled={!isPremiumOrHigher}
                     >
                         <AppIcons.BluePlus style={{ display: "inline-block", width: "16px", height: "16px" }} />
-                        {t('settings.userManagement.newUser')}
+                        {t('UserManagement.newUser')}
                     </BlueButton>
                 </>
             }

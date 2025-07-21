@@ -27,11 +27,11 @@ export interface ISettings {
 }
 
 export const createSettingsPageSchema = (t) => Yup.object().shape({
-    name: Yup.string().required(t('settings.validation.nameRequired')),
-    email: Yup.string().email().typeError(t('settings.validation.emailValid')).required(t('settings.validation.emailRequired')),
+    name: Yup.string().required(t('validationHandlers.validation.nameRequired')),
+    email: Yup.string().email().typeError(t('validationHandlers.validation.emailValid')).required(t('validationHandlers.validation.emailRequired')),
     pre_purchase_data_fetch: Yup.string().nullable().optional(),
     isAgeRestricted: Yup.boolean().nullable().optional(),
-    currencyAbbreviation: Yup.string().nullable().required(t('settings.validation.currencyRequired')),
+    currencyAbbreviation: Yup.string().nullable().required(t('validationHandlers.validation.currencyRequired')),
     defaultLanguage: Yup.string().required(),
     paymentMethods: Yup.array().of(
         Yup.object().shape({

@@ -17,7 +17,7 @@ export default function TokensListContainer({ isEvm, tokens }: Props) {
     const evmTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'EVM'));
     const solanaTokens = tokens.filter(token => token.supportedChains?.some(chain => chain.group === 'SOLANA'));
     const filteredList = isEvm ? evmTokens : solanaTokens
-    const tooltipText = t('settings.paymentsWallets.tokens.solanaTooltip');
+    const tooltipText = t('PaymentsWallets.tokens.solanaTooltip');
 
     if (filteredList.length === 0) {
         return null;
@@ -27,7 +27,7 @@ export default function TokensListContainer({ isEvm, tokens }: Props) {
         <Flex flexDir={"column"} gap={6}>
             <Flex gap={2} alignItems={"center"}>
                 <AppTypography color={"neutral.white"} fontSize={"16px"}>
-                    {isEvm ? t('settings.paymentsWallets.tokens.evm') : t('settings.paymentsWallets.tokens.solana')}
+                    {isEvm ? t('PaymentsWallets.tokens.evm') : t('PaymentsWallets.tokens.solana')}
                 </AppTypography>
                 {!isEvm &&
                     <AppTooltip flexShrink={0} placement="bottom-start" label={tooltipText}>

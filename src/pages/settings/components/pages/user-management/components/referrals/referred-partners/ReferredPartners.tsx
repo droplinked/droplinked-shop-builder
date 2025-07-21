@@ -8,8 +8,8 @@ export default function ReferredPartners() {
 
     return (
         <SectionContent
-            title={t('settings.referrals.referredPartners.title')}
-            description={t('settings.referrals.referredPartners.description')}
+            title={t('Referrals.referredPartners.title')}
+            description={t('Referrals.referredPartners.description')}
             rightContent={<PartnerList />}
         />
     )

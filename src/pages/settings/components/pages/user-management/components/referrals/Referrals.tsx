@@ -12,7 +12,7 @@ export default function Referrals() {
     const { t } = useLocaleResources('settings');
 
     return (
-        <SectionContainer title={t('settings.referrals.title')}>
+        <SectionContainer title={t('Referrals.title')}>
             <ReferralLink />
             <CustomCodes />
             {(count !== 0 || !!count) && <ReferredPartners />}

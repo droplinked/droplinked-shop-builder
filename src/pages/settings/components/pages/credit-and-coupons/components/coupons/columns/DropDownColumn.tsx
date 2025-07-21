@@ -32,17 +32,17 @@ export default function DropDownColumn({ couponId, rowData, refetch }: Props) {
                     {
                         icon: <AppIcons.Eye stroke='#fff' style={{ width: '20px', height: '20px' }} />,
                         onClick: openInfo,
-                        title: t("settings.coupons.tableMenu.details")
+                        title: t("common:details")
                     },
                     {
                         icon: <AppIcons.Edit />,
                         onClick: openEdit,
-                        title: t("settings.coupons.tableMenu.edit")
+                        title: t("common:edit")
                     },
                     {
                         icon: <AppIcons.Export />,
                         onClick: () => exportCodes({ giftCardId: couponId }),
-                        title: t("settings.coupons.tableMenu.exportCodes"),
+                        title: t("Coupons.tableMenu.exportCodes"),
                     }
                 ]}
             />

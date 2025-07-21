@@ -35,16 +35,16 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
     const columns: ColumnDef<Coupon>[] = [
         {
             accessorKey: "name",
-            header: t("settings.coupons.tableHeaders.title"),
+                            header: t("CouponsTable.title"),
         },
         {
             accessorKey: "codes",
-            header: t("settings.coupons.tableHeaders.quantity"),
+                            header: t("CouponsTable.quantity"),
             cell: (info) => info.row.original.codes.length,
         },
         {
             accessorKey: "balance",
-            header: t("settings.coupons.tableHeaders.amount"),
+                            header: t("CouponsTable.amount"),
             cell: (info) => (
                 <AmountColumn
                     type={info.row.original.type}
@@ -54,7 +54,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "expiryDate",
-            header: t("settings.coupons.tableHeaders.expirationDate"),
+                            header: t("CouponsTable.expirationDate"),
             cell: (info) => {
                 const expiryDate = info.row.original.expiryDate;
                 const date = new Date(expiryDate);
@@ -68,7 +68,7 @@ export default function CouponsTable({ isOpen, onClose }: Props) {
         },
         {
             accessorKey: "type",
-            header: t("settings.coupons.tableHeaders.type"),
+            header: t("common:type"),
             cell: (info) => (
                 <TypeColumn
                     type={info.row.original.type}

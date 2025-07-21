@@ -24,8 +24,8 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     const circleWalletAddress = circleWallets?.find(wallet => wallet?.chain === (isSolana ? "SOLANA" : "ETH"))?.address || "";
 
     const description = isSolana
-        ? t("settings.paymentsWallets.wallets.solanaWallet.description")
-        : t("settings.paymentsWallets.wallets.evmWallet.description");
+                    ? t("PaymentsWallets.wallets.solanaWallet.description")
+            : t("PaymentsWallets.wallets.evmWallet.description");
 
     const walletsData = getWalletsData(values, walletType);
 
@@ -78,7 +78,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
     // Set Circle wallet as default
     const handleSetDefault = () => {
         if (!circleWalletAddress) {
-            showToast({ type: "error", message: t("settings.merchantWallet.manage.errors.walletNotConnected") });
+            showToast({ type: "error", message: t("MerchantWallet.manage.errors.walletNotConnected") });
             return;
         }
         const updatedAddresses = [{ destinationAddress: circleWalletAddress, percent: 100 }];
@@ -101,13 +101,13 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     onClick={handleAddWallet}
                 >
                     <AppIcons.BluePlus style={{ width: "16px", height: "16px" }} />
-                    {t("settings.paymentsWallets.wallets.addTargetWallet")}
+                    {t("PaymentsWallets.wallets.addTargetWallet")}
                 </BlueButton>
             }
-            title={isSolana ? t("settings.paymentsWallets.wallets.solanaWallet.title") : t("settings.paymentsWallets.wallets.evmWallet.title")}
+                            title={isSolana ? t("PaymentsWallets.wallets.solanaWallet.title") : t("PaymentsWallets.wallets.evmWallet.title")}
         >
             <SectionContent
-                title={t("settings.address.title")}
+                title={t("Address.title")}
                 description={description}
                 rightContent={renderWalletRows(tempData, handleChange, handleDelete, handleSave, t)}>
                 <InteractiveText
@@ -115,7 +115,7 @@ export default function WalletInputs({ isSolana }: { isSolana?: boolean }) {
                     target="_blank"
                     hasExternalIcon
                 >
-                    {t(isSolana ? "settings.paymentsWallets.wallets.solanaWallet.learnMore" : "settings.paymentsWallets.wallets.evmWallet.learnMore")}
+                    {t(isSolana ? "PaymentsWallets.wallets.solanaWallet.learnMore" : "PaymentsWallets.wallets.evmWallet.learnMore")}
                 </InteractiveText>
             </SectionContent>
         </SectionContainer>

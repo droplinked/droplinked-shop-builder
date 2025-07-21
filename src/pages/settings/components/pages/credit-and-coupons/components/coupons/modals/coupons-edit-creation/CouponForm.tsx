@@ -15,14 +15,14 @@ export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
     return (
         <Flex flexDirection={"column"} gap={9}>
             <AppInput
-                label={t("settings.coupons.form.titleLabel")}
-                description={t("settings.coupons.form.titleDescription")}
+                            label={t("Coupons.form.titleLabel")}
+            description={t("Coupons.form.titleDescription")}
                 maxCharacters={100}
                 inputProps={{
                     isRequired: true,
                     onChange: handleChange,
                     name: "name",
-                    placeholder: t("settings.coupons.form.titlePlaceholder"),
+                    placeholder: t("Coupons.form.titlePlaceholder"),
                     value: values.name,
                     isDisabled: isEdit
                 }}
@@ -32,8 +32,8 @@ export default function CouponForm({ isEdit }: { isEdit?: boolean }) {
             <QuantityInput isEdit={isEdit} />
             <Flex flexDirection={"column"}>
                 <AppInputHeader
-                    label={t("settings.coupons.form.expirationDateLabel")}
-                    description={t("settings.coupons.form.expirationDateDescription")}
+                                label={t("Coupons.form.expirationDateLabel")}
+            description={t("Coupons.form.expirationDateDescription")}
                     inputProps={{ isRequired: true }}
                 />
                 <Box {...errors.expiryDate && { border: "1px solid #F24" }} width={"min-content"} borderRadius={"8px"}>
